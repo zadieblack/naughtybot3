@@ -9,6 +9,7 @@ from enum import *
 
 MAX_TWITTER_CHARS = 280
 MAX_GENERATOR_NO = 44
+MAX_SEARCH_LOOPS = 8
 TWIT_USERNAME = 'bot_lust'
 
 Q_SIZE = 20
@@ -182,7 +183,6 @@ class WordList:
 			self.List = NewList
 			
 		self.DefaultWord = ""
-		self.WordHistoryQ = HistoryQ(3)
 		
 	def FoundIn(self, sWord, ListStrings):
 		bFound = False 
@@ -195,14 +195,31 @@ class WordList:
 				
 		return bFound 
 	
-	def GetWord(self, sNot = ""):
+	def GetWord(self, sNot = "", NotList = None, SomeHistoryQ = None):
 		sWord = ""
+		
+		if NotList == None:
+			NotList = []
+		
+		if sNot != "":
+			NotList.append(sNot)
 		
 		if not self.List == None and len(self.List) > 0:
 			sWord = self.List[randint(0, len(self.List) - 1)]
-			while not self.WordHistoryQ.PushToHistoryQ(sWord) and (sNot != "" and sNot in sWord):
-				sWord = self.List[randint(0, len(self.List) - 1)]
-				
+		
+			if SomeHistoryQ is None:
+				i = 0
+				while self.FoundIn(sWord, NotList) and i < MAX_SEARCH_LOOPS:
+					#print("Collision! '" + sWord + "' in NotList, trying again.")
+					sWord = self.List[randint(0, len(self.List) - 1)]
+					i += 1
+			else:
+				i = 0
+				while (not SomeHistoryQ.PushToHistoryQ(sWord) or self.FoundIn(sWord, NotList)) and i < MAX_SEARCH_LOOPS:
+					#print("Collision! '" + sWord + "' in NotList, trying again.")
+					sWord = self.List[randint(0, len(self.List) - 1)]
+					i += 1
+					
 		return sWord
 		
 class NounAdjList:
@@ -231,7 +248,6 @@ class NounAdjList:
 		
 		if not self.NounList == None and len(self.NounList) > 0:
 			sNoun = self.NounList[randint(0, len(self.NounList) - 1)]
-			print(sNoun)
 			while not self.NounHistoryQ.PushToHistoryQ(sNoun) or sNoun in NotList:
 				sNoun = self.NounList[randint(0, len(self.NounList) - 1)]
 			
@@ -245,8 +261,6 @@ class NounAdjList:
 			
 		if not self.AdjList == None and len(self.AdjList) > 0:
 			sAdj = self.AdjList[randint(0, len(self.AdjList) - 1)]
-			
-			print(sAdj)
 			while not self.AdjHistoryQ.PushToHistoryQ(sAdj) or sAdj in NotList:
 				sAdj = self.AdjList[randint(0, len(self.AdjList) - 1)]
 			

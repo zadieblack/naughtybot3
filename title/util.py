@@ -246,8 +246,6 @@ class NounAdjList:
 		if NotList is None:
 			NotList = []
 		
-		iRandNounIndex = 0
-		
 		if not self.NounList == None and len(self.NounList) > 0:
 			sNoun = self.NounList[randint(0, len(self.NounList) - 1)]
 			while not self.NounHistoryQ.PushToHistoryQ(sNoun) or sNoun in NotList:
@@ -260,8 +258,6 @@ class NounAdjList:
 		
 		if NotList is None:
 			NotList = []
-		
-		iRandAdjIndex = 0
 		
 		if not self.AdjList == None and len(self.AdjList) > 0:
 			sAdj = self.AdjList[randint(0, len(self.AdjList) - 1)]
