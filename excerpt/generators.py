@@ -153,52 +153,6 @@ class Generator():
 	
 		return ""
 		
-class GeneratorPromo(Generator):
-	ID = 0
-	Priority = 0
-	Type = GeneratorType.Promo
-	
-	def GenerateTweet(self):
-		super().GenerateTweet()
-		sTweet = ""
-		
-		#sTweet = "Blue Diamond: \U0001F539 Eggplant: \U0001F346 Fire: \U0001F525 Laughing: \U0001F923 Robot: \U0001F916 Green Heart: \U0001F49A Blue Heart: \U0001F499 Purple Heart: \U0001F49C No one under 18: \U0001F51E Winking kiss face: \U0001F618 Star: \U00002B50"
-
-		iRand = randint(1,8)
-		while not PromoHistoryQ.PushToHistoryQ(iRand):
-			iRand = randint(1,7)
-
-		if iRand == 1:
-			sTweet = "Reply to " + WordList(["one of my tweets", "an @bot_lust tweet", "a Flaming Lust Bot tweet"]).GetWord() + " and I'll respond with another " + SexyAdjs().GetWord() + " hilarious love scene! " + GetEmoji()
-		elif iRand == 2:
-			sTweet = "Tell your family, friends and lovers to follow " + WordList(["@bot_lust", "Flaming Lust Bot", "me", "this bot"]).GetWord() + " for all the steamy, sweaty, silly action!\n" + GetEmoji(randint(1,3))
-		elif iRand == 3:
-			sTweet = WordList(["@bot_lust", "Flaming Lust Bot", "this bot"]).GetWord() + " is very naughty, and NOT appropriate for anyone under 18! \U0001F51E\n\nThat includes you, " + WordList(["kid who is hiding their phone behind their math book while they check twitter", str(randint(6,11)) + "th grader who is supposed to be doing homework", str(randint(6,11)) + "th grader who is supposed to be reading"]).GetWord() + "!"
-			if CoinFlip(): 
-				sTweet += " \U0001F928"
-		elif iRand == 4:
-			sTweet = "I am a twitter bot\U0001F916 designed to automatically generate " + WordList(["hot", "sexy", "naughty", "steamy"]).GetWord() + "\U0001F525, " + WordList(["filthy", "dirty"]).GetWord() + "\U0001F346, and " + WordList(["funny", "hilarious", "ridiculous", "silly"]).GetWord() + "\U0001F923 scenes from the world's worst smutty romance novel!\n\nReply to one of my tweets " + WordList(["and get a surprise!", "if you want more.", "if you're impatient for my next terrible love scene!"]).GetWord()
-		elif iRand == 5:
-			if CoinFlip():
-				sTweet = "Full disclosure: "
-			sTweet += "I am a bot\U0001F916!\n\nBut not the Russian kind of bot, the " + WordList(["funny", "sexy", "naughty", "silly", "dirty"]).GetWord() + " kind of bot!" 
-			if CoinFlip():
-				sTweet += " " + GetEmoji()
-			if CoinFlip():
-				sTweet += "\n#botlife #twitterbot"
-		elif iRand == 6:
-			sTweet = "Look what " + WordList(["my followers are", "people are ", "other twitter users are", "the internet is"]).GetWord() + " saying:\n\n\U00002B50'I am hooked on this ridiculous account!'\n\U00002B50'The stuff this bot comes up with is hysterical. XD'\n\U00002B50'[S]imultaneously hilarious, nauseating, and inspiring'\n\n" + WordList(["Thank you!", "Thanks!", "Thank you all!", "Big bot love to everyone!"]).GetWord() 
-			sTweet += " " + GetEmoji(randint(1,3))
-		elif iRand == 7:
-			sTweet = "My " + WordList(["sister bot", "bot sibling"]).GetWord() + " @erotic_ebooks tweets made-up titles for steamy ebooks! " + WordList(["Go check it out", "Please follow her", "Go take a look", "Give her a visit"]).GetWord() + "! " + GetEmoji()
-		else:
-			sTweet = WordList(["I love you", "You're the best", "Big Bot Love", "I \U00002764 you"]).GetWord() + ", followers!"
-			if CoinFlip():
-				sTweet = "*" + sTweet + "*"
-			sTweet += "\n\n" + GetHeartEmoji(randint(1,5))
-			
-		return sTweet
-		
 class Generator1(Generator):
 	ID = 1
 	Priority = 1

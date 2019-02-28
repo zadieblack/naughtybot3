@@ -99,7 +99,10 @@ def CoinFlip():
 def GenerateFileName():
 	# if bot uses same filename every time, twitter might think its spamming. this function randomizes the filename.
 	sFileName = ""
-	sFileType = "jpg"
+	sFileType = "png"
+	
+	#append current time in seconds, remove '.' that seperates miliseconds
+	sFileName += str(time.time()).replace(".", "")
 	
 	#first part of filename is 5-12 alphanumeric chars
 	sAlphaNum = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
@@ -107,9 +110,6 @@ def GenerateFileName():
 	for i in range(5, randint(7,13)):
 		sFileName += sAlphaNum[randint(0, len(sAlphaNum) - 1)]
 		
-	#append current time in seconds, remove '.' that seperates miliseconds
-	sFileName += str(time.time()).replace(".", "")
-	
 	sFileName += "." + sFileType
 	
 	return sFileName
@@ -149,7 +149,7 @@ class HistoryQ():
 			
 class HistoryQWithLog(HistoryQ):
 	def __init__(self, sLogFileName, iQSize = Q_SIZE):
-		super().__init__(iQSize = iQSize)
+		super().__init__(iQSize)
 		self.LogFileName = sLogFileName
 		#print("LogFileName is " + self.LogFileName)
 		
@@ -183,6 +183,17 @@ class WordList:
 			
 		self.DefaultWord = ""
 		self.WordHistoryQ = HistoryQ(3)
+		
+	def FoundIn(self, sWord, ListStrings):
+		bFound = False 
+		
+		if not ListStrings is None and len(ListStrings) > 0:
+			for str in ListStrings:
+				if str.lower() in sWord.lower() or sWord.lower() in str.lower():
+					bFound = True
+					break
+				
+		return bFound 
 	
 	def GetWord(self, sNot = ""):
 		sWord = ""

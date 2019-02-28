@@ -1174,7 +1174,7 @@ class Generator49(Generator):
 			"at the Old Manor House",
 			"in the Abandoned Mansion",
 			"at the Construction Site",
-			"Next to the Assembly Line",
+			"next to the Assembly Line",
 			"on a Hotel Balcony"
 			])
 		
@@ -1361,15 +1361,29 @@ class Generator50(Generator):
 		sTweet += "?"
 		return sTweet
 
-# class Generator57(Generator):
-	# ID = 57
-	# Priority = 2
+class Generator51(Generator):
+	ID = 51
+	Priority = 3
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		sName = self.HerName 
+		Girl = None
+		
+		Places = WordList(["Land", "Kingdom", "Planet", "World", "Lost Land", "Lost World", "Forgotten Kingdom", "Island", "Lost Island", "Empire", "Zone", "Forbidden Zone"])
+		Beings = WordList(["Penisaurs", "Dong-o-saurs", "Fuck Men", "Ass-Eaters", "Ass Apes", "Cock-o-saurus Rex", "Tri-cock Men", "Sex Robots", "Dildo-Bots", "Uniporns", "Girthy Griffons", "Boner Beasts", "Homo Erectus", "Horny Mermen", "Barewolves", "Lepra-dongs", "Semen Centaurs", "Cum Imps", "Dick Dwarves", "Anal Elves", "Anal Aliens", "Naked Barbarians", "Naked Cowboys", "Massive Martians", "Engorged Energy Beings", "Cum Commandos", "Knob Goblins", "Turgid Trolls"])
+		
+		if CoinFlip():
+			Girl = FemaleChar(iNumMaxCBits = 3, Type = GirlType.Good, bAddArticle = False, bAllowMaritalStatus = False, bAllowSpecies = False, bAllowPregState = False)
+		else:
+			Girl = FemaleChar(iNumMaxCBits = 3, Type = GirlType.Bad, bAddArticle = False, bAllowMaritalStatus = False, bAllowSpecies = False, bAllowPregState = False)
+			
+		sTweet = sName + " the " + Girl.Desc + " in:\n"	
+		sTweet += "The " + Places.GetWord() + " of the " + Beings.GetWord()
 
-		# return sTweet
+		return sTweet
 		
 # class Generator58(Generator):
 	# ID = 58
