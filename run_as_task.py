@@ -31,6 +31,7 @@ import excerpt.lust_bot
 import title.ee_bot
 
 iTweetTimer = 28800 # 8 hours
+currentDT = datetime.datetime.now()
 
 while True:
 	excerpt.lust_bot.InitBot(180, bTweet = True, bLoop = False)
