@@ -1,9 +1,8 @@
 #!/usr/bin/python3.6
 # -*- coding: utf-8 -*-
 
-import logging
-import socket
-import sys
+import datetime, logging, socket, sys
+from random import *
 
 lock_socket = None  # we want to keep the socket open until the very end of
                     # our script so we use a global variable to avoid going
@@ -34,8 +33,8 @@ import title.ee_bot
 iTweetTimer = 28800 # 8 hours
 
 while True:
-	lust_bot.InitBot(180, bTweet = True, bLoop = False)
-	ee_bot.InitBot(180, bTweet = True, bLoop = False)
+	excerpt.lust_bot.InitBot(180, bTweet = True, bLoop = False)
+	title.ee_bot.InitBot(180, bTweet = True, bLoop = False)
 	
 	if iTweetTimer > 180:
 		iRandSecs = iTweetTimer
