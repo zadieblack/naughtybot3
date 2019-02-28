@@ -87,7 +87,7 @@ def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorN
 							
 							status = UpdateStatusWithImage(api, sText, ImgFile, status.id)	
 					
-					util.TweetHistoryQ.LogHistoryQ()
+					excerpt.util.TweetHistoryQ.LogHistoryQ()
 						
 			i += 1
 	except KeyboardInterrupt:
