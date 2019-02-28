@@ -47,7 +47,7 @@ def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorN
 			
 			Gen = GetTweet(bTest, iGeneratorNo, bAllowPromo = True)
 			#print("Generator ID: " + str(Gen.ID))
-			while bTweet and not util.TweetHistoryQ.PushToHistoryQ(Gen.ID):
+			while bTweet and not excerpt.util.TweetHistoryQ.PushToHistoryQ(Gen.ID):
 				Gen = GetTweet(bTest, iGeneratorNo, bAllowPromo = True)
 			
 			sTweet = Gen.GenerateTweet()
