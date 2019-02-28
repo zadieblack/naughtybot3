@@ -4,7 +4,7 @@ title/twitterauth.py
 title/history_q.txt
 excerpt/history_q.txt
 title/tweettxt_history_q.txt
-title/_pycache_
-excerpt/_pycache_
+title/_pycache_/
+excerpt/_pycache_/
 excerpt/twitterauth.py
 title/generators.py
