@@ -33,7 +33,7 @@ import title.ee_bot
 
 iTweetTimer = 28800 # 8 hours
 
-while True
+while True:
 	lust_bot.InitBot(180, bTweet = True, bLoop = False)
 	ee_bot.InitBot(180, bTweet = True, bLoop = False)
 	
