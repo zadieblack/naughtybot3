@@ -58,9 +58,15 @@ class GeneratorType(Enum):
 def AddArticles(sNounPhrase):
 	sUpdatedPhrase = ""
 	
+	iStartChar = 0
+	for x in range(0, len(sNounPhrase) - 1):
+		iStartChar = x 
+		if sNounPhrase[x].isalpha():
+			break
+	
 	if len(sNounPhrase) > 0:
 		if not sNounPhrase[len(sNounPhrase) - 1] == 's':
-			if sNounPhrase[0].lower() in ['a','e','i','o','u']:
+			if sNounPhrase[iStartChar].lower() in ['a','e','i','o','u']:
 				sUpdatedPhrase = 'an ' + sNounPhrase
 			else:
 				sUpdatedPhrase = 'a ' + sNounPhrase

@@ -1950,8 +1950,61 @@ class Generator58(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		sHisName = self.MaleName.FirstName
-		sHerName = self.FemaleName.FirstName
+		sHisName = self.MaleName.FirstName()
+		sHerName = self.FemaleName.FirstName()
+		
+		Cock = self.MaleBodyParts.Penis
+		Used = []
+		
+		ShortPenis = WordList(['dick','cock','penis','prick','dong','wiener','dingus','choad','knob','pecker','schlong','johnson','tool','willy','snake','ding-a-ling'])
+
+		sShort1 = ShortPenis.GetWord(NotList = Used)
+		Used.append(sShort1)
+		sShort2 = ShortPenis.GetWord(NotList = Used)
+		Used.append(sShort2)
+		
+		MediumPenis = WordList(['dick', 'dong', 'Johnson', 'schlong', 'cucumber', 'erection','joystick','hard-on','shaft','pole','phallus','pipe','rod','ramrod','serpent','stalk','manhood','lizard','cock','chubby','piston','disco stick','eggroll','popsicle','boner','sausage','anaconda', 'stiffy', 'beef snake', 'beef bayonet'])
+		
+		sShort3 = MediumPenis.GetWord(NotList = Used)
+		Used.append(sShort3)
+		sMedium1 = MediumPenis.GetWord(NotList = Used)
+		Used.append(sMedium1)
+		
+		SillyPenis = WordList(['baloney pony', 'custard launcher', 'fire hose', 'fuck-pole', 'hot-rod', 'jade stalk', 'love muscle', 'meat puppet', 'bratwurst', 'meat popsicle', 'pork sword', 'sex salami', 'man cannon', 'bmanhood', 'baby maker', 'skin flute', 'trouser snake', 'third leg', 'tube steak', 'pocket monster', 'one-eyed snake', 'jackhammer', 'rape tool', 'pleasure pump', 'lap rocket', 'knob goblin', 'love lever'])
+		
+		sMedium2 = SillyPenis.GetWord(NotList = Used)
+		Used.append(sMedium2)
+		sSilly1 = SillyPenis.GetWord(NotList = Used)
+		Used.append(sShort3)
+		
+		RidicPenis = WordList(['Pocket rocket', 'Sexcalibur', 'Yogurt hose', 'Flesh tower', 'Piss weasel', 'Fudge packer', 'Pink torpedo', 'One-eyed wonder weasel', '$5 footlong', 'Winkie', 'Love burrito', 'Donkey Kong', 'King Dong', 'Steamin\' Semen Roadway', 'Lady dagger', 'Vlad the Impaler', 'Weapon of Ass Destruction', 'Uncle Reamus', 'Puff the One-Eyed Dragon', 'Rumpleforeskin', 'Prince Everhard of the Netherlands', 'Moby Dick', 'Long Dong Silver', 'Cocktapus', 'Clam hammer', 'The Dicktator', 'Jurassic Pork', 'Woody Womb Pecker', 'Russell the Love Muscle'])
+		sRidic = RidicPenis.GetWord(NotList = Used)
+		
+		sActualName = ""
+		iRand = randint(1,4)
+		if iRand == 1:
+			sActualName = "Little " + sHisName
+		elif iRand == 2:
+			sActualName = sHisName + " Jr." 
+		elif iRand == 3:
+			sActualName = "Tiny " + sHisName
+		else:
+			sActualName = "Baby " + sHisName
+		
+		if CoinFlip():
+			sTweet = sHerName + " undid " + sHisName + "'s heavy belt buckle and pulled his blue jeans down his " + WordList(["lean", "bony", "muscular", "narrow", "powerful"]).GetWord() + " hips.\n"
+		else:
+			sTweet = sHerName + " unzipped " + sHisName + "'s zipper and reached down the front of his pants.\n"
+		sTweet += "'Ooh, baby, what do we have here?' she " + WordList(["purred", "cooed", "growled sexily"]).GetWord() + ". 'Is it " + AddArticles('*' + sShort1 + '*') + "? " + AddArticles('*' + sShort2 + '*').capitalize() + "? Maybe it's " + AddArticles('*' + sShort3 + '*') + "!' "
+		sTweet += "She took it in her hand and began to fondle it with delicate fingers. " 
+		sTweet += sHisName + " felt himself growing " + WordList(["harder", "stiffer", "tumescent", "engorged"]).GetWord() + " beneath her touch. "
+		sTweet += "'It's growing " + WordList(['bigger','longer','thicker']).GetWord() + " now,' she said. 'Maybe it's " + AddArticles('*' + sMedium1 + '*') + " or " + AddArticles('*' + sMedium2 + '*') + "?'\n"
+		sTweet += "She planted a moist kiss on his " + Cock.Head.FloweryDescription() + ". Then she gave the underside of the shaft a long, slow lick with her tongue. "
+		sTweet += sHisName + " groaned with pleasure.\n"
+		sTweet += "'C'mon baby,' she coaxed. 'Tell me what you like to call your junk. Ooh, I know... you call it your *" + sSilly1 + "* don't you? Wait, no. I've got it: *" + sRidic + "*!' "
+		sTweet += "He shook his head and moaned. "
+		sTweet += "'Tell me and I'll " + WordList(["suck you off", "deep throat you", "let you cum all over my tongue", "let you throat fuck me", "let you nut in my mouth"]).GetWord() + ",' she purred.\n"
+		sTweet += "'I just call it my... *" + sActualName + "*' he " + WordList(['whispered','whimpered','breathed']).GetWord() + "."
 
 		return sTweet
 		
