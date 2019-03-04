@@ -15,31 +15,6 @@ from excerpt.people import *
 from excerpt.texttoimg import *
 
 PromoHistoryQ = excerpt.util.HistoryQ(2)
-
-def GetTweet(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = None):
-	Generator = None
-	GenType = None 
-	
-	if not Type is None:
-		GenType = Type 
-	else:
-		GenType = None 
-	#print("GetTweet() Generator Type is " + str(GenType))
-	
-	iSwitch = 999
-	
-	GenSel = GeneratorSelector()
-	if bTest:
-		gen = GenSel.GetGenerator(iGeneratorNo)
-		if not gen == None:
-			Generator = gen
-	else:
-		gen = GenSel.RandomGenerator(bAllowPromo = bAllowPromo, Type = GenType)
-
-		if not gen == None:
-			Generator = gen
-		
-	return Generator
 	
 def ChopTweet(sTweet, sPrefix):
 	# This function is no longer in use since the bot was switched to tweeting images. However since it is useful for splitting text over 280 chars into multiple tweets, I'm leaving it in for future reference
@@ -153,6 +128,28 @@ class Generator():
 	
 		return ""
 		
+def GetTweet(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = None):
+	gen = None
+	GenType = None 
+	
+	if not Type is None:
+		GenType = Type 
+	else:
+		GenType = None 
+	# print("GetTweet() Generator Type is " + str(GenType))
+	
+	iSwitch = 999
+	
+	GenSel = GeneratorSelector()
+	if bTest:
+		gen = GenSel.GetGenerator(iGeneratorNo)
+		if gen == None:
+			gen = Generator()
+	else:
+		gen = GenSel.RandomGenerator(bAllowPromo = bAllowPromo, Type = GenType)
+		
+	return gen
+	
 class Generator1(Generator):
 	ID = 1
 	Priority = 1
@@ -1970,6 +1967,7 @@ class Generator58(Generator):
 		sMedium1 = MediumPenis.GetWord(NotList = Used)
 		Used.append(sMedium1)
 		
+		
 		SillyPenis = WordList(['baloney pony', 'custard launcher', 'fire hose', 'fuck-pole', 'hot-rod', 'jade stalk', 'love muscle', 'meat puppet', 'bratwurst', 'meat popsicle', 'pork sword', 'sex salami', 'man cannon', 'bmanhood', 'baby maker', 'skin flute', 'trouser snake', 'third leg', 'tube steak', 'pocket monster', 'one-eyed snake', 'jackhammer', 'rape tool', 'pleasure pump', 'lap rocket', 'knob goblin', 'love lever'])
 		
 		sMedium2 = SillyPenis.GetWord(NotList = Used)
@@ -1977,7 +1975,7 @@ class Generator58(Generator):
 		sSilly1 = SillyPenis.GetWord(NotList = Used)
 		Used.append(sShort3)
 		
-		RidicPenis = WordList(['Pocket rocket', 'Sexcalibur', 'Yogurt hose', 'Flesh tower', 'Piss weasel', 'Fudge packer', 'Pink torpedo', 'One-eyed wonder weasel', '$5 footlong', 'Winkie', 'Love burrito', 'Donkey Kong', 'King Dong', 'Steamin\' Semen Roadway', 'Lady dagger', 'Vlad the Impaler', 'Weapon of Ass Destruction', 'Uncle Reamus', 'Puff the One-Eyed Dragon', 'Rumpleforeskin', 'Prince Everhard of the Netherlands', 'Moby Dick', 'Long Dong Silver', 'Cocktapus', 'Clam hammer', 'The Dicktator', 'Jurassic Pork', 'Woody Womb Pecker', 'Russell the Love Muscle'])
+		RidicPenis = WordList(['Semen Demon', 'Pocket rocket', 'Sexcalibur', 'Yogurt hose', 'Flesh tower', 'Piss weasel', 'Fudge packer', 'Pink torpedo', 'One-eyed wonder weasel', '$5 footlong', 'Winkie', 'Love burrito', 'Donkey Kong', 'King Dong', 'Steamin\' Semen Roadway', 'Lady dagger', 'Vlad the Impaler', 'Weapon of Ass Destruction', 'Uncle Reamus', 'Puff the One-Eyed Dragon', 'Rumpleforeskin', 'Prince Everhard of the Netherlands', 'Moby Dick', 'Long Dong Silver', 'Cocktapus', 'Clam hammer', 'The Dicktator', 'Jurassic Pork', 'Woody Womb Pecker', 'Russell the Love Muscle'])
 		sRidic = RidicPenis.GetWord(NotList = Used)
 		
 		sActualName = ""

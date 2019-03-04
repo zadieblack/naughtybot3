@@ -29,14 +29,14 @@ def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorN
 			bTest = True
 		i = 0
 		while i in range(0,iTweets) or bLoop:
-			#Tweets = [1]
+			# Tweets = [1]
 			Gen = None 
 			sTweet = ""
 			sText = ""
 			
-			#Tweets = generators.GetChoppedTweets(bTest, iGeneratorNo)
+			# Tweets = generators.GetChoppedTweets(bTest, iGeneratorNo)
 			Gen = GetTweet(bTest, iGeneratorNo, bAllowPromo = True)
-			#print("Generator ID: " + str(Gen.ID))
+			# print("Generator ID: " + str(Gen.ID))
 			while bTweet and not TweetHistoryQ.PushToHistoryQ(Gen.ID):
 				print("Generator ID " + str(Gen.ID) + " already in Q")
 				Gen = GetTweet(bTest, iGeneratorNo, bAllowPromo = True)
@@ -54,7 +54,7 @@ def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorN
 				print("[" + sTweet + "]")
 				if len(sText) > 0:
 					print("Tweet text: [" + sText + "]")
-					#print(misc.TweetReplyBuilder().GetReply())
+					# print(misc.TweetReplyBuilder().GetReply())
 					
 				currentDT = datetime.datetime.now()
 				
@@ -67,15 +67,15 @@ def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorN
 					status = None
 						
 					if status == None:
-						#pass
-						#status = UpdateStatus(api, tweet)
+						# pass
+						# status = UpdateStatus(api, tweet)
 						if Gen.Type == GeneratorType.Promo:
 							status = UpdateStatus(api, sTweet)
 						else:
 							status = UpdateStatusWithImage(api, sText, ImgFile)		
 					else:
-						#pass
-						#status = UpdateStatus(api, tweet, status.id)
+						# pass
+						# status = UpdateStatus(api, tweet, status.id)
 						if Gen.Type == GeneratorType.Promo:
 							status = UpdateStatus(api, sTweet, status.id)
 						else:
@@ -92,6 +92,12 @@ def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorN
 					# with open(GenerateFileName(), 'wb') as file:
 						# file.write(ImgFile.getvalue())
 			i += 1
+		
+		# Look for replies from controller Twitter account
+		RespondToMoreRequests(api, TWIT_CONTROLLER)
+		
+		# Look for replies from controller indicating that a suggestion is a favorite
+		SaveFavorites(api, TWIT_CONTROLLER)
 	except KeyboardInterrupt:
 		print("Ending program ...")
 	finally:

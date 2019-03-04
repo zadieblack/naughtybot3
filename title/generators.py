@@ -1286,6 +1286,7 @@ class Generator50(Generator):
 			"Fingering",
 			"Fisting",
 			"Masturbation",
+			"Muff Diving",
 			"Mutual Masturbation",
 			"Tit Play",
 			"Pegging",
@@ -1347,16 +1348,16 @@ class Generator50(Generator):
 		
 		sTweet = "What's a Little " + Adjective.GetWord()
 		
-		if CoinFlip():
+		iRand = randint(1,3)
+		if iRand == 1:
 			#straight
 			sTweet += NaughtinessStraight.GetWord() + " Between " + FriendsGen.GetWord()
+		elif iRand == 2:
+			#gay
+			sTweet += NaughtinessGay.GetWord() + " Between " + FriendsGay.GetWord()
 		else:
-			if CoinFlip():
-				#gay
-				sTweet += NaughtinessGay.GetWord() + " Between " + FriendsGay.GetWord()
-			else:
-				#lesbian
-				sTweet += NaughtinessLez.GetWord() + " Between " + FriendsLez.GetWord()
+			#lesbian
+			sTweet += NaughtinessLez.GetWord() + " Between " + FriendsLez.GetWord()
 				
 		sTweet += "?"
 		return sTweet
@@ -1385,6 +1386,8 @@ class Generator51(Generator):
 
 		return sTweet
 		
+# I hooked up with a strapping leather cowboy
+# and now I'm pregnant!
 # class Generator58(Generator):
 	# ID = 58
 	# Priority = 2
@@ -1394,7 +1397,9 @@ class Generator51(Generator):
 		# sTweet = ""
 
 		# return sTweet
-		
+	
+# The hot bikini model prom queen
+# is secretly a lesbian 	
 # class Generator59(Generator):
 	# ID = 59
 	# Priority = 2
@@ -1405,7 +1410,81 @@ class Generator51(Generator):
 
 		# return sTweet		
 		
+# Sweet Little Amy
+# The Swedish Schoolgirl 
+# and her 
+# Adventure with the
+# Magic Butt Plug
+class Generator60(Generator):
+	ID = 60
+	Priority = 2
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		SweetAdjs = WordList(['Sweet', 'Sweet', 'Cute', 'Blonde','Innocent','Bashful','Naive'])
+		NiceNames = WordList(['Amy','Angelica','Annie','Charity','Daisy','Daphne','Elsie',
+							  'Emmy','Frances','Gertrude','Greta','Jeanie','Lacey','Lizzy',
+							  'Mabel','Mary','Maryanne','Molly','Nancy','Nell','Olive','Phoebe',
+							  'Rosie','Shelly','Sophie','Summer','Virginia'])
+		NiceGirlAdjs = WordList(['All-American','Amish','Apple-Bottomed','Athletic','Asian','Blue-Eyed',
+								 'Busty','Buxom','Country','Curvy','Freshman','Korean','Leggy','Modest','Nubile',
+								 'Pale','Repressed','Small-Town','Swedish','Teen Beauty Queen','Virgin'])
+		NiceGirlNouns = WordList(['Babysitter','Cheerleader','Coed','Daddy\'s Girl','Farmer\'s Daughter',
+								  'Freshman','Geek Girl', 'Gymnast','Maiden','Nerd Girl','Schoolgirl','Southern Belle',
+								  'Step-Daughter','Teen Model','Virgin'])
+		ObjectAdjs = WordList(['Demon-Possessed','Enchanted','Haunted','Magic','Magical'])
+		ObjectNouns = WordList(['Anal Beads','Anal Hook','Ball Gag','Ben Wa balls','Bull Dyke','Butt Plug',
+								'Clit Clamp','Clit Pump','Crotchless Panties','Dildo','11\" Dildo',
+								'Double-Ended Dildo','Gimp Mask','Hitachi Magic Wand','Leather Riding Crop',
+								'Nipple Clamps','Orgasmatron','Rabbit Vibe','Rubber Fetish Suit','Sex Doll',
+								'Sex Swing','Spreader Bar','Speculum','Strap-On','Sybian','Thong','Vibrator'])
+		sNice1 = ""
+		sNice2 = ""
+		
+		sTweet += NiceNames.GetWord() + " the " 
+		if CoinFlip():
+			sTweet += SweetAdjs.GetWord() + " "
+		sTweet += "Little "
+		if CoinFlip():
+			sNice1 = NiceGirlAdjs.GetWord()
+			sTweet += sNice1 + " "
+		sNice2 = NiceGirlAdjs.GetWord(NotList = [sNice1])
+		sTweet += sNice2 + " " + NiceGirlNouns.GetWord(NotList = [sNice1, sNice2]) + "\nand her\nAdventure with\n"
+		sTweet += "The " + ObjectAdjs.GetWord() + " " + ObjectNouns.GetWord()
+		
+		return sTweet	
+		
+# class Generator61(Generator):
+	# ID = 61
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
 
+		# return sTweet	
+		
+# class Generator62(Generator):
+	# ID = 62
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator63(Generator):
+	# ID = 63
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
 				
 class GeneratorSelector():
 	GeneratorList = []

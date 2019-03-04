@@ -14,7 +14,7 @@ import excerpt.twitterauth
 from random import *
 from excerpt.util import *
 
-REPLIES_FILE_NAME = "reply_ids.txt"
+REPLIES_FILE_NAME = "excerpt/reply_ids.txt"
 HASHTAG_LOVESCENE = "#lovescene"
 HASHTAG_BOOKTITLE = "#book"
 

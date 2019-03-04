@@ -11,10 +11,13 @@ MAX_TWITTER_CHARS = 280
 MAX_GENERATOR_NO = 44
 MAX_SEARCH_LOOPS = 8
 TWIT_USERNAME = 'erotica_ebooks'
+TWIT_CONTROLLER = 'zadieblack'
 
 Q_SIZE = 12
-HISTORYQ_FILENAME = 'history_q.txt'
-TWEETTXT_HISTORYQ_FILENAME = 'tweettxt_history_q.txt'
+HISTORYQ_FILENAME = 'title/history_q.txt'
+TWEETTXT_HISTORYQ_FILENAME = 'title/tweettxt_history_q.txt'
+FAVTITLE_FILENAME = 'title/fav_titles.txt'
+FAVTITLE_DIVIDER = '///'
 
 TAG_PEN = "sex act with penetration scene"
 TAG_NON_PEN = "non-penetrative sex act scene"
@@ -275,3 +278,9 @@ class NounAdjList:
 		sWord = self.GetAdj(NotList) + " " + self.GetNoun(NotList)
 		
 		return sWord
+		
+def ParseFavTitleFile(sFileName = ""):
+	if sFileName == "":
+		sFileName = FAVTITLE_FILENAME
+		
+	

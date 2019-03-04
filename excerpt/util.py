@@ -13,7 +13,7 @@ MAX_SEARCH_LOOPS = 8
 TWIT_USERNAME = 'bot_lust'
 
 Q_SIZE = 20
-HISTORYQ_FILENAME = 'history_q.txt'
+HISTORYQ_FILENAME = 'excerpt/history_q.txt'
 
 TAG_PEN = "sex act with penetration scene"
 TAG_NON_PEN = "non-penetrative sex act scene"
