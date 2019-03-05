@@ -52,27 +52,20 @@ def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorN
 				CreateImg(sTweet).save(ImgFile, format = 'PNG')
 				print("Image created.")
 				if bTweet:
-					print("* Tweeted at " + currentDT.strftime("%H:%M:%S"))
-						
 					status = None
 						
 					if status == None:
 						# pass
 						# status = UpdateStatus(api, tweet)
-						if Gen.Type == GeneratorType.Promo:
-							status = UpdateStatus(api, sTweet)
-						else:
-							status = UpdateStatusWithImage(api, sText, ImgFile)		
+						status = UpdateStatusWithImage(api, sText, ImgFile)		
 					else:
 						# pass
 						# status = UpdateStatus(api, tweet, status.id)
-						if Gen.Type == GeneratorType.Promo:
-							status = UpdateStatus(api, sTweet, status.id)
-						else:
-							ImgFile = BytesIO() 
-							CreateImg(sTweet).save(ImgFile, format = 'PNG')
-							
-							status = UpdateStatusWithImage(api, sText, ImgFile, status.id)	
+						ImgFile = BytesIO() 
+						CreateImg(sTweet).save(ImgFile, format = 'PNG')
+						
+						status = UpdateStatusWithImage(api, sText, ImgFile, status.id)	
+					print("* Tweeted at " + currentDT.strftime("%H:%M:%S"))
 					
 					TweetHistoryQ.LogHistoryQ()
 					TweetTxtHistoryQ.LogHistoryQ()
