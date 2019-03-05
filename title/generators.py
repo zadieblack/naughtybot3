@@ -1477,56 +1477,90 @@ class Generator60(Generator):
 # From Sweet Innocent All-American Schoolgirl
 # to
 # Leather-Clad Bondage Slut 
-# class Generator61(Generator):
-	# ID = 61
-	# Priority = 2
+class Generator61(Generator):
+	ID = 61
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		GoodGirl = FemaleChar(iNumMaxCBits = 4, Type = GirlType.Good, bAddArticle = False, bAllowRelate = False, bAllowSexuality = False, bAllowSpecies = False, bAllowNation = False)
+		BadGirl = FemaleChar(iNumMaxCBits = 4, Type = GirlType.Bad, bAddArticle = False, bAllowRelate = False, bAllowSexuality = True, bAllowMaritalStatus = False, bAllowSpecies = True, bAllowNation = False)
+		
+		sTweet = "Transformed:\nfrom\n" + GoodGirl.Desc + "\nto\n" + BadGirl.Desc
 
-		# return sTweet	
+		return sTweet	
 		
 # Help!
 # A husky investment banker
 # has me chained up in his basement (garage/sex dungeon)
 # naked!
-# class Generator62(Generator):
-	# ID = 62
-	# Priority = 2
+class Generator62(Generator):
+	ID = 62
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		Exclamations = WordList(["Help!", "Help!", "Oh No!", "Uh Oh!", "What Do I Do?!?"])
+		BadPlaces = WordList(["Basement", "Basement", "Dungeon", "Garage", "Attic", "Man Cave", "Den", "Sex Dungeon", "Cellar", "Secret Lair", "Secret Hideout", "Secret Love-Nest", "Swanky Bachelor Pad"])
+		BadMan = MaleChar(iNumMaxCBits = 4, bAddArticle = False, bAllowRelate = False, bAllowSpecies = False, bAllowMaritalStatus = False, bAllowGang = False)
+		
+		sTweet = "\"" + Exclamations.GetWord() + "\n" + AddArticles(BadMan.Desc) + "\nHas Me Chained Up In His " + BadPlaces.GetWord() + ",\nNaked!\""
 
-		# return sTweet	
+		return sTweet	
 		
 # The Busty Blonde Flight Attendant's 
 # Topless Miami Vacation
-# class Generator63(Generator):
-	# ID = 63
-	# Priority = 2
+class Generator63(Generator):
+	ID = 63
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
-
-		# return sTweet	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		Girl = None
+		if CoinFlip():
+			Girl = FemaleChar(iNumMaxCBits = 3, Type = GirlType.Good, bAddArticle = True, bAllowClothing = False, bAllowRelate = False, bAllowSexuality = False, bAllowSpecies = False, bAllowNation = True, bAllowMaritalStatus = False, bAllowTitle = False)
+		else:
+			Girl = FemaleChar(iNumMaxCBits = 4, Type = GirlType.Bad, bAddArticle = True, bAllowClothing = False, bAllowRelate = False, bAllowSexuality = True, bAllowSpecies = False, bAllowNation = True, bAllowMaritalStatus = False, bAllowTitle = False)
+		VacType = WordList(["Topless", "Nudist", "Fully Nude", "Naked"])
+		VacPlace = WordList(["Miami", "Carribean", "Spanish", "Italian", "Greek", "Cancún", "Hawaiian", "Los Angeles", "Bangkok", 
+							 "Las Vegas", "Macau", "Ibiza", "Jamaica", "New Orleans", "Rio", "Berlin", "Bali", "Goa", "Australian",
+							 "Amsterdam", "Lagos", "Bora Bora", "Thai", "Fiji"])
+		VacWord = WordList(["Vacation", "Vacation", "Getaway", "Holiday", "Spring Break"])
+							 
+		sTweet = Girl.Desc + "'s\n" + VacType.GetWord() + " " + VacPlace.GetWord() + " " + VacWord.GetWord()
+			
+		return sTweet	
 		
 # 'Oh $@*#!'
 # My new stepmom is a 
 # Tanned Swedish Masseuse
 # and 
-# Her Ass Looks Amazing!
-# class Generator64(Generator):
-	# ID = 64
-	# Priority = 2
+# Her Ass Looks Amazing! (She shaves completely bare/she likes to sunbathe nude/she doesn't wear panties/she likes to go commando/she doesn't wear underwear/she likes to go braless)
+class Generator64(Generator):
+	ID = 64
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		Exclamations = WordList(["Oh S@*#!", "Uh Oh!", "WTF?!?", "Oh F*@%!"])
+		Relatives = WordList(["Stepmom", "Stepmom", "Step-Sister", "Sister-in-Law", "Step-Daughter"])
+		Ender = WordList(["Her Ass Looks Amazing", "She's At Least A Double-D", "She Likes To Sunbathe Nude", 
+						  "She Doesn't Wear Panties", "She Likes To Go Braless", "She Likes To Go Commando", 
+						  "She's A Nudist", "She Showers With The Door Open", "Her Tits Look Amazing",
+						  "She Shaves Herself Down There", "She Has The Body Of A Porn Star"])
+		Girl = FemaleChar(iNumMaxCBits = 4, bAddArticle = False, bAllowClothing = False, bAllowRelate = False, bAllowSexuality = False, bAllowSpecies = False, bAllowNation = True, bAllowMaritalStatus = False, bAllowTitle = False, bAllowPregState = False)
 
-		# return sTweet	
+		sTweet = Exclamations.GetWord() + "\nMy New " + Relatives.GetWord() + " Is\n" + AddArticles(Girl.Desc) + "\nAnd " + Ender.GetWord()
+		
+		return sTweet	
 		
 # Anita Gets Serviced (Pleasured / Taken / Satisfied / Ravished)
 # By 5 Naked Cowboys 

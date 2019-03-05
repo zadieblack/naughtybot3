@@ -78,11 +78,11 @@ def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorN
 		
 		# Look for replies from controller Twitter account
 		print("Looking for 'more' requests from controller account.")
-		RespondToMoreRequests(api, TWIT_CONTROLLER)
+		#RespondToMoreRequests(api, TWIT_CONTROLLER)
 		
 		# Look for replies from controller indicating that a suggestion is a favorite
 		print("Looking for 'yes' tweet favs from controller account.")
-		SaveFavorites(api, TWIT_CONTROLLER)
+		#SaveFavorites(api, TWIT_CONTROLLER)
 	except KeyboardInterrupt:
 		print("Ending program ...")
 	finally:

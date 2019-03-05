@@ -258,7 +258,6 @@ class MaritalStatusFemale(WordList):
 	def __init__(self):
 		super().__init__(['Recently-Divorced',
 			'Concubine',
-			'Harem','Harem',
 			'Married','Married','Married',
 			'Single','Single','Single','Single'])
 
