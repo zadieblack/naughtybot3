@@ -153,28 +153,27 @@ def RespondToMoreRequests(api, sFrom = ""):
 			if not reply.user.id_str == my_userid:
 				if len(HistoricReplies) == 0 or not reply.id_str in HistoricReplies:
 					sTweetText = reply.text
-					#if reply.text.lower() == "@" + TWIT_USERNAME.lower() + " #more":
-					print("Reply found (ID# " + reply.id_str + "): " + sTweetText)
+					#print("Reply found (ID# " + reply.id_str + "): " + sTweetText)
 					
 					# find tweets from the controller that contain #more. 
 					istart = sTweetText.lower().find("#more")
 					if istart > -1:
 						istart += 5
 						
-						print("Found '#more'. Remaining tweet: [" + sTweetText[istart:] + "]")
+						#print("Found '#more'. Remaining tweet: [" + sTweetText[istart:] + "]")
 						
 						sMoreNum = ""
 						while not sTweetText[istart].isdigit() and istart < len(sTweetText):
 							istart += 1
 							
-						print("Skipped non-digits. Remaining tweet: [" + sTweetText[istart:] + "]")
+						#print("Skipped non-digits. Remaining tweet: [" + sTweetText[istart:] + "]")
 							
 						while istart < len(sTweetText) and sTweetText[istart].isdigit():
-							print("character #" + str(istart) + " [" + sTweetText[istart] + "] is a digit.")
+							#print("character #" + str(istart) + " [" + sTweetText[istart] + "] is a digit.")
 							sMoreNum += str(sTweetText[istart])
 							istart += 1
 							
-						print("sMoreNum from [" + sTweetText + "] is " + sMoreNum)
+						#print("sMoreNum from [" + sTweetText + "] is " + sMoreNum)
 						xMore = 0
 						if sMoreNum != "":
 							xMore = int(sMoreNum) 
@@ -183,8 +182,7 @@ def RespondToMoreRequests(api, sFrom = ""):
 
 							sPrefix = "@" + reply.user.screen_name + " "
 							
-							Gen = GetTweet(False, bAllowPromo = False)
-							sTweet = Gen.GenerateTweet()
+							sTweet = GetTweet(False, False, bAllowPromo = False, bAllowFavTweets = False)
 
 							status = None
 							print("===Here is " + str(len(sPrefix + sTweet)) + " char tweet reply #" + str(x+1) + " of " + str(xMore) + "===")
@@ -197,6 +195,7 @@ def RespondToMoreRequests(api, sFrom = ""):
 								WriteReplyFile.write(str(reply.id_str) + "\n")
 								
 							time.sleep(.85)
+						time.sleep(3)
 		
 	except tweepy.TweepError as e:
 		print("***ERROR*** [" + e.reason + "]")

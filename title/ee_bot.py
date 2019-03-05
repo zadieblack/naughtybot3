@@ -34,21 +34,10 @@ def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorN
 			sTweet = ""
 			sText = ""
 			
-			# Tweets = generators.GetChoppedTweets(bTest, iGeneratorNo)
-			Gen = GetTweet(bTest, iGeneratorNo, bAllowPromo = True)
-			# print("Generator ID: " + str(Gen.ID))
-			while bTweet and not TweetHistoryQ.PushToHistoryQ(Gen.ID):
-				print("Generator ID " + str(Gen.ID) + " already in Q")
-				Gen = GetTweet(bTest, iGeneratorNo, bAllowPromo = True)
-				print("New generator ID: " + str(Gen.ID))
+			sTweet = GetTweet(bTest, bTweet, iGeneratorNo, bAllowPromo = True, TweetHistoryQ = TweetHistoryQ)
 			
-			sTweet = Gen.GenerateTweet()
 			if len(sTweet) > 0:
-				if Gen.Type != GeneratorType.Promo:
-					if iTweetTxtNo > 0:
-						sText = GetImgTweetText(bTest = True, TweetTxtHistoryQ = TweetTxtHistoryQ, iGeneratorNo = iTweetTxtNo)
-					else:
-						sText = GetImgTweetText(bTest = False, TweetTxtHistoryQ = TweetTxtHistoryQ)
+				sText = GetImgTweetText(bTest = False, TweetTxtHistoryQ = TweetTxtHistoryQ)
 				
 				print("\n===Here is your " + str(len(sTweet)) + " char tweet (" + str(i + 1) + " of " + str(iTweets) + ")===")
 				print("[" + sTweet + "]")
@@ -58,9 +47,10 @@ def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorN
 					
 				currentDT = datetime.datetime.now()
 				
+				print("Preparing to create image.")
 				ImgFile = BytesIO() 
 				CreateImg(sTweet).save(ImgFile, format = 'PNG')
-				
+				print("Image created.")
 				if bTweet:
 					print("* Tweeted at " + currentDT.strftime("%H:%M:%S"))
 						
@@ -94,9 +84,11 @@ def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorN
 			i += 1
 		
 		# Look for replies from controller Twitter account
+		print("Looking for 'more' requests from controller account.")
 		RespondToMoreRequests(api, TWIT_CONTROLLER)
 		
 		# Look for replies from controller indicating that a suggestion is a favorite
+		print("Looking for 'yes' tweet favs from controller account.")
 		SaveFavorites(api, TWIT_CONTROLLER)
 	except KeyboardInterrupt:
 		print("Ending program ...")

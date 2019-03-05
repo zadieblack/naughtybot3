@@ -279,8 +279,33 @@ class NounAdjList:
 		
 		return sWord
 		
-def ParseFavTitleFile(sFileName = ""):
+def GetNextFavTitleFromFile(sFileName = ""):
 	if sFileName == "":
 		sFileName = FAVTITLE_FILENAME
+		
+	sFavTitle = ""
+	
+	Titles = [""]
+	iTitleCount = 0
+		
+	with open(sFileName, 'r') as infile:
+		for line in infile:
+			if line.strip() != FAVTITLE_DIVIDER:
+				Titles[iTitleCount] += line 
+			else:
+				Titles.append("")
+				iTitleCount += 1
+				
+	print("iTitleCount = " + str(iTitleCount))
+	
+	with open(sFileName, 'w') as outfile:	
+		for x in range(1, len(Titles)-1):
+			outfile.write(Titles[x] + FAVTITLE_DIVIDER + "\n")
+	
+	sFavTitle = Titles[0].strip()
+	print("Saved fav tweet is [" + sFavTitle + "]")
+	
+	return sFavTitle.strip()
+				
 		
 	

@@ -61,7 +61,7 @@ class Generator():
 		
 		return ""
 
-def GetTweet(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = None):
+def GetTweetGenerator(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = None):
 	gen = None
 	GenType = None 
 	
@@ -82,6 +82,23 @@ def GetTweet(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = None):
 		gen = GenSel.RandomGenerator(bAllowPromo = bAllowPromo, Type = GenType)
 		
 	return gen
+	
+def GetTweet(bTest, bTweet, iGeneratorNo = 0, bAllowPromo = True, Type = None, TweetHistoryQ = None, bAllowFavTweets = True):
+	sTweet = ""
+	if not bTest and bAllowFavTweets:
+		sTweet = title.util.GetNextFavTitleFromFile()
+		
+	if sTweet == "":
+		Gen = GetTweetGenerator(bTest, iGeneratorNo, bAllowPromo = True)
+		# print("Generator ID: " + str(Gen.ID))
+		while bTweet and not TweetHistoryQ.PushToHistoryQ(Gen.ID):
+			print("Generator ID " + str(Gen.ID) + " already in Q")
+			Gen = GetTweetGenerator(bTest, iGeneratorNo, bAllowPromo = True)
+			print("New generator ID: " + str(Gen.ID))
+	
+		sTweet = Gen.GenerateTweet()
+	
+	return sTweet
 	
 class GeneratorPromo(Generator):
 	ID = 0
@@ -1456,6 +1473,10 @@ class Generator60(Generator):
 		
 		return sTweet	
 		
+# Transformation:
+# From Sweet Innocent All-American Schoolgirl
+# to
+# Leather-Clad Bondage Slut 
 # class Generator61(Generator):
 	# ID = 61
 	# Priority = 2
@@ -1466,6 +1487,10 @@ class Generator60(Generator):
 
 		# return sTweet	
 		
+# Help!
+# A husky investment banker
+# has me chained up in his basement (garage/sex dungeon)
+# naked!
 # class Generator62(Generator):
 	# ID = 62
 	# Priority = 2
@@ -1476,8 +1501,47 @@ class Generator60(Generator):
 
 		# return sTweet	
 		
+# The Busty Blonde Flight Attendant's 
+# Topless Miami Vacation
 # class Generator63(Generator):
 	# ID = 63
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# 'Oh $@*#!'
+# My new stepmom is a 
+# Tanned Swedish Masseuse
+# and 
+# Her Ass Looks Amazing!
+# class Generator64(Generator):
+	# ID = 64
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# Anita Gets Serviced (Pleasured / Taken / Satisfied / Ravished)
+# By 5 Naked Cowboys 
+# class Generator65(Generator):
+	# ID = 65
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator66(Generator):
+	# ID = 66
 	# Priority = 2
 	
 	# def GenerateTweet(self):

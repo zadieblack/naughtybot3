@@ -189,7 +189,6 @@ def CreateImg(sText):
 	ImgTxt = DrawText(ImgBase.size, sText, color)
 	 
 	# composite the text and base images
-
 	ImgOut = Image.alpha_composite(ImgBase, ImgTxt)
 	 
 	# save the edited image
