@@ -1405,15 +1405,24 @@ class Generator51(Generator):
 		
 # I hooked up with a strapping leather cowboy
 # and now I'm pregnant!
-# class Generator58(Generator):
-	# ID = 58
-	# Priority = 2
+class Generator58(Generator):
+	ID = 58
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
-
-		# return sTweet
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		HookUpPhrases = WordList(["Hooked Up With", "Had a One Night Stand With", "Slept With", "Banged", "Had a Quickie With", "Fooled Around With"])
+		MaleRelatives = WordList(["Step-Dad", "Step-Brother", "Brother", "Brother-in-Law", "Father", "Dad", "Daddy", "Step-Father"])
+		Man = MaleChar(iNumMaxCBits = 4, bAddArticle = False, bAllowRelate = True, bAllowSpecies = True, bAllowMaritalStatus = True, bAllowGang = False, bAllowTitle = False)
+		sMan = Man.Desc 
+		
+		if MaleRelatives.FoundIn(sMan, MaleRelatives.List):
+			sTweet = "I " + HookUpPhrases.GetWord() +" My " + sMan + "\nAnd Now I'm Pregnant!"
+		else:
+			sTweet = "I " + HookUpPhrases.GetWord() +" " + AddArticles(sMan) + "\nAnd Now I'm Pregnant!"
+		return sTweet
 	
 # The hot bikini model prom queen
 # is secretly a lesbian 	
@@ -1574,6 +1583,9 @@ class Generator64(Generator):
 
 		# return sTweet	
 		
+# My Hot Redhead Teacher
+# Is Secretly
+# A Stripper!
 # class Generator66(Generator):
 	# ID = 66
 	# Priority = 2
@@ -1583,7 +1595,237 @@ class Generator64(Generator):
 		# sTweet = ""
 
 		# return sTweet	
-				
+		
+# class Generator67(Generator):
+	# ID = 67
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator68(Generator):
+	# ID = 68
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator69(Generator):
+	# ID = 69
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator70(Generator):
+	# ID = 70
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator71(Generator):
+	# ID = 71
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator72(Generator):
+	# ID = 72
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator73(Generator):
+	# ID = 73
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator74(Generator):
+	# ID = 74
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+
+# class Generator75(Generator):
+	# ID = 75
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator76(Generator):
+	# ID = 76
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator77(Generator):
+	# ID = 77
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator78(Generator):
+	# ID = 78
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator79(Generator):
+	# ID = 79
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator80(Generator):
+	# ID = 80
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator81(Generator):
+	# ID = 81
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator82(Generator):
+	# ID = 82
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator83(Generator):
+	# ID = 83
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator84(Generator):
+	# ID = 84
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+
+# class Generator85(Generator):
+	# ID = 85
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator86(Generator):
+	# ID = 86
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator87(Generator):
+	# ID = 87
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator88(Generator):
+	# ID = 88
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator89(Generator):
+	# ID = 89
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
 class GeneratorSelector():
 	GeneratorList = []
 	
