@@ -1573,8 +1573,8 @@ class Generator64(Generator):
 		Relatives = WordList(["Stepmom", "Stepmom", "Step-Sister", "Sister-in-Law", "Step-Daughter"])
 		Ender = WordList(["Her Ass Looks Amazing", "She's At Least A Double-D", "She Likes To Sunbathe Nude", 
 						  "She Doesn't Wear Panties", "She Likes To Go Braless", "She Likes To Go Commando", 
-						  "She's A Nudist", "She Showers With The Door Open", "Her Boobs Are Incredible",
-						  "She Shaves Herself Down There", "She Has The Body Of A Porn Star",
+						  "She's A Shameless Nudist", "She Showers With The Door Open", "Her Boobs Are Incredible",
+						  "She Shaves Herself Down There", "She Has The Body Of A Porn Star", "She Has Enormous Coconuts",
 						  "And I've Seen Her Tits"])
 		Girl = FemaleChar(iNumMaxCBits = 4, bAddArticle = False, bAllowClothing = False, bAllowRelate = False, bAllowSexuality = False, bAllowSpecies = False, bAllowNation = True, bAllowMaritalStatus = False, bAllowTitle = False, bAllowPregState = False)
 
@@ -1621,16 +1621,37 @@ class Generator65(Generator):
 
 		# return sTweet	
 		
-# class Generator67(Generator):
-	# ID = 67
-	# Priority = 2
+# "Go easy on me! I'm a teenage coed nun
+# and its my first time
+# doing anal!"
+class Generator67(Generator):
+	ID = 67
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
-
-		# return sTweet	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
 		
+		Beginnings = WordList(["Please Go Easy On Me", "Please Be Gentle With Me", "Please Be Gentle", "Please Go Slow", 
+							   "Please Be Careful"])
+		FirstTimes = WordList(["Doing Anal", "With A Girl", "With Another Woman", "Doing Butt Stuff", 
+							   "Wearing a Butt Plug", "In a Gimp Mask", "Being Punished With a Riding Crop",
+							   "In a Sex Swing", "Deep Throating", "Being Choked", "Trying Erotic Asphyxiation", 
+							   "Wearing Nipple Clamps", "In a Sex Dungeon", "Doing It in Public", "Swallowing",
+							   "With One This Big", "Trying Bukkake", "Trying Double Penetration",
+							   "With Two Dudes", "With Three Guys At Once", "Trying a Gang Bang",
+							   "With an Older Man", "Doing Hardcore Bondage Play", "Wearing a Ball Gag",
+							   "Trying Water Sports"])
+		Girl = FemaleChar(iNumMaxCBits = 3, Type = GirlType.Good, bAddArticle = False, bAllowClothing = False, bAllowRelate = False, bAllowSexuality = False, bAllowSpecies = False, bAllowNation = True, bAllowMaritalStatus = False, bAllowTitle = False, bAllowPregState = False)
+
+		sTweet = "\"" + Beginnings.GetWord() + "!\nI'm " + AddArticles(Girl.Desc) + "\nAnd Its My First Time\n" + FirstTimes.GetWord() + "!\""
+
+		return sTweet	
+		
+# I know I'm married,
+# but it can't hurt if I try rimming
+# with this Italian Don Juan cowboy 
+# just this once!
 # class Generator68(Generator):
 	# ID = 68
 	# Priority = 2
@@ -1641,6 +1662,8 @@ class Generator65(Generator):
 
 		# return sTweet	
 		
+# The wholesome blonde Christian girl spreads her legs (bends over/drops her panties/puts out)
+# for the cocky Italian DILF!
 # class Generator69(Generator):
 	# ID = 69
 	# Priority = 2
@@ -1651,25 +1674,55 @@ class Generator65(Generator):
 
 		# return sTweet	
 		
-# class Generator70(Generator):
-	# ID = 70
-	# Priority = 2
+# I shot a porn scene
+# with a handsome BBC construction worker
+class Generator70(Generator):
+	ID = 70
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
-
-		# return sTweet	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
 		
-# class Generator71(Generator):
-	# ID = 71
-	# Priority = 2
-	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+		Beginnings = WordList(["I Shot a Porn Scene", "I Made a Porn Video", "I Made a Porno", "I Shot a Porn Video", "I Did Porn"])
+		Endings = WordList(["And His Friends", "And I Liked It", "While My Husband Watched", "And I Didn't Get Paid", 
+							"And I Was Paid $60", "And Now I'm Pregnant", "While My Boyfriend Watched", "While My Girlfriend Watched",
+							"And My " + WordList(["Dad","Brother","Step-Dad","Step-Brother"]).GetWord() + " Saw It",
+							"And His " + str(randint(2,13)) + " Friends", "And I Didn't Tell My Boyfriend", "And I Didn't Tell My Dad",
+							"And My Dad Found Out"])
+							
+		Man = MaleChar(iNumMaxCBits = 3, bAddArticle = False, bAllowRelate = False, bAllowSpecies = False, bAllowMaritalStatus = True, bAllowGang = False, bAllowTitle = False)
 
-		# return sTweet	
+		sTweet = "\"" + Beginnings.GetWord() + "\nwith\n" + AddArticles(Man.Desc)
+		if CoinFlip():
+			sTweet+= "\n" + Endings.GetWord()
+		sTweet += "\""
+		
+		return sTweet	
+		
+class Generator71(Generator):
+	ID = 71
+	Priority = 2
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		Beginnings = WordList(["I Shot a Lesbian Porn Scene", "I Made a Lesbian Porn Video", "I Made Lesbian Porn", "I Shot a Lesbian Porn Video", "I Did Lesbian Porn"])
+		Endings = WordList(["And Her Friends", "And I Liked It", "While My Husband Watched", "And I Didn't Get Paid", 
+							"And I Was Paid $50", "While My Boyfriend Watched", "While My Girlfriend Watched",
+							"And My " + WordList(["Dad","Brother","Step-Dad","Step-Brother"]).GetWord() + " Saw It",
+							"And Her " + str(randint(2,13)) + " Friends", "And I Didn't Tell My Boyfriend", "And I Didn't Tell My Mom",
+							"And My Mom Found Out", "While My Wife Watched", "And I Didn't Tell My Girlfriend"])
+							
+		Girl = FemaleChar(iNumMaxCBits = 3, bAddArticle = False, bAllowClothing = False, bAllowRelate = False, bAllowSexuality = False, bAllowSpecies = False, bAllowMaritalStatus = True, bAllowTitle = False)
+
+		sTweet = "\"" + Beginnings.GetWord() + "\nwith\n" + AddArticles(Girl.Desc)
+		if CoinFlip():
+			sTweet+= "\n" + Endings.GetWord()
+		sTweet += "\""
+
+		return sTweet	
 		
 # class Generator72(Generator):
 	# ID = 72

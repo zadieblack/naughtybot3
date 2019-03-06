@@ -345,7 +345,6 @@ class ProfGoodFemale(WordList):
 			'Housewife',
 			'Flight Attendant',
 			'Governess',
-			'Handmaiden',
 			'French Maid',
 			'Librarian',
 			'Life Drawing Model',
@@ -536,17 +535,14 @@ class TropesBadFemale(WordList):
 	def __init__(self):
 		super().__init__(['Bad Girl',
 			'Bad Girl',
+			'Brat',
 			'Anal Bimbo',
 			'Bimbo','Bimbo',
 			'Cougar',
 			'Naughty Brat',
-			'Easy Groupie',
 			'Femme Fatale',
 			'Goth Girl',
-			'Harem Girl',
-			'Hot Sorority Sister',
 			'Hotwife','Hotwife',
-			'Hot Teacher',
 			'Sex Kitten',
 			'Lesbian',
 			'MILF','MILF','MILF',
@@ -556,7 +552,9 @@ class TropesBadFemale(WordList):
 			'Rebellious Teen',
 			'Rich Bitch',
 			'Single Mom Stripper',
+			'Sorority Girl',
 			'Spoiled Bitch',
+			'Stripper',
 			'Submissive',
 			'Tease',
 			'Valley Girl',
@@ -736,8 +734,7 @@ class PhysCharMale(WordList):
 			'Visibly Erect',
 			'Well-Built',
 			'Well-Hung','Well-Hung',
-			'Well-Endowed','Well-Endowed',
-			'XXL'])
+			'Well-Endowed','Well-Endowed'])
 		
 class ProfMale(WordList):
 	def __init__(self):
