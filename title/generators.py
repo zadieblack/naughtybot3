@@ -1426,15 +1426,25 @@ class Generator58(Generator):
 	
 # The hot bikini model prom queen
 # is secretly a lesbian 	
-# class Generator59(Generator):
-	# ID = 59
-	# Priority = 2
+class Generator59(Generator):
+	ID = 59
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		sHotAdjs = WordList(["Dirty", "Hot", "Sexy", "Busty", "Jiggly", "Stacked", "Athletic", "Slender", "Apple-Bottomed", "Curvaceous", "Flexible"])
+		sGirlAdjs = WordList(["Blonde", "Redhead", "Asian", "Chocolate", "Giggly", "Flirty", "Curly-Haired", "Tattooed"])
+		GirlNouns = WordList(["Schoolgirl", "Bimbo", "Cheerleader", "Bikini Model", "Prom Queen", "Teen", "Coed", "Gymnast",
+								"Baby-Sitter", "Fashion Model", "Beach Bunny", "Surfer Girl", "Goth Girl"])
+		sNoun1 = GirlNouns.GetWord()
+		sNoun2 = GirlNouns.GetWord(NotList = [sNoun1])
 
-		# return sTweet		
+		sTweet = "The " + sHotAdjs.GetWord() + " " + sGirlAdjs.GetWord() + " "
+		sTweet += sNoun1 + " " + sNoun2 + "\n"
+		sTweet += "Is Secretly a Lesbian!" 
+		return sTweet		
 		
 # Sweet Little Amy
 # The Swedish Schoolgirl 
@@ -1573,15 +1583,29 @@ class Generator64(Generator):
 		
 # Anita Gets Serviced (Pleasured / Taken / Satisfied / Ravished)
 # By 5 Naked Cowboys 
-# class Generator65(Generator):
-	# ID = 65
-	# Priority = 2
+class Generator65(Generator):
+	ID = 65
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		Verbs = WordList(["Serviced","Pleasured","Taken","Satisfied","Shared","Ravished","Mounted","Treated Like A Lady"])
+		Numbers = WordList(["Three","Four","Five","Six","Seven","Eight","Nine","Ten","Eleven","Twelve",
+							"Thirteen"])
+		Adjs = WordList(["Burly","Hairy","Mustachioed","Muscular","Bald","Beefy","Chiseled","Handsome",
+						 "Tall","Hung","Hunky","Well-Endowed","Sexy","Rock Hard","Strapping","Strong",
+						 "Gruff","Cocky","Powerful","Horny","Skillful","Tattooed"])
+		Men = WordList(["Bikers","Cops","Cowboys","Firemen","Football Players","Gangsters","Knights",
+						"Weight Lifters","Mountain Men","Pirates","Scottsmen","Sumo Wrestlers","Werewolves",
+						"Viking Warriors","Bull Riders","Chippendales Dancers","Construction Workers",
+						"Defensive Linemen","Gladiators","MMA Fighters","Sailors","Gentleman","Older Men"])
+		
+		sTweet = self.HerName + " Gets " + Verbs.GetWord() + " By\n"
+		sTweet += Numbers.GetWord() + " " +Adjs.GetWord() + " Naked " + Men.GetWord()
 
-		# return sTweet	
+		return sTweet	
 		
 # My Hot Redhead Teacher
 # Is Secretly
