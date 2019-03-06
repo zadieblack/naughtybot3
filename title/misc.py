@@ -1160,14 +1160,11 @@ class BookGerunds(WordList):
 	
 	def __init__(self):
 		super().__init__(['Anally Deflowering',
-			'Auctioning',
-			'Beating',
 			'Bedding',
 			'Blackmailing',
 			'Binding',
 			'Breaking',
 			'Claiming','Claiming','Claiming',
-			'Collaring',
 			'Controlling',
 			'Coveting',
 			'Deflowering', 
