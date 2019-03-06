@@ -356,7 +356,6 @@ class ProfGoodFemale(WordList):
 			'Nanny',
 			'Nun',
 			'Nurse',
-			'Priestess',
 			'Secretary','Secretary',
 			'Servant',
 			'Schoolgirl',
@@ -647,7 +646,6 @@ class AttitudeMale(WordList):
 			'Suave','Suave',
 			'Taciturn',
 			'Thrill-Seeking',
-			'Quiet',
 			'Wicked'])
 		
 class GenModMale(WordList):

@@ -1505,7 +1505,7 @@ class Generator61(Generator):
 		sTweet = ""
 		
 		GoodGirl = FemaleChar(iNumMaxCBits = 4, Type = GirlType.Good, bAddArticle = False, bAllowRelate = False, bAllowSexuality = False, bAllowSpecies = False, bAllowNation = False)
-		BadGirl = FemaleChar(iNumMaxCBits = 4, Type = GirlType.Bad, bAddArticle = False, bAllowRelate = False, bAllowSexuality = True, bAllowMaritalStatus = False, bAllowSpecies = True, bAllowNation = False)
+		BadGirl = FemaleChar(iNumMaxCBits = 4, Type = GirlType.Bad, bAddArticle = False, bAllowRelate = False, bAllowSexuality = True, bAllowMaritalStatus = False, bAllowSpecies = True, bAllowNation = False, bAllowTitle = False)
 		
 		sTweet = "Transformed:\nfrom\n" + GoodGirl.Desc + "\nto\n" + BadGirl.Desc
 
@@ -1560,7 +1560,7 @@ class Generator63(Generator):
 # My new stepmom is a 
 # Tanned Swedish Masseuse
 # and 
-# Her Ass Looks Amazing! (She shaves completely bare/she likes to sunbathe nude/she doesn't wear panties/she likes to go commando/she doesn't wear underwear/she likes to go braless)
+# Her Ass Looks Amazing! 
 class Generator64(Generator):
 	ID = 64
 	Priority = 2
@@ -1573,16 +1573,17 @@ class Generator64(Generator):
 		Relatives = WordList(["Stepmom", "Stepmom", "Step-Sister", "Sister-in-Law", "Step-Daughter"])
 		Ender = WordList(["Her Ass Looks Amazing", "She's At Least A Double-D", "She Likes To Sunbathe Nude", 
 						  "She Doesn't Wear Panties", "She Likes To Go Braless", "She Likes To Go Commando", 
-						  "She's A Nudist", "She Showers With The Door Open", "Her Tits Look Amazing",
-						  "She Shaves Herself Down There", "She Has The Body Of A Porn Star"])
+						  "She's A Nudist", "She Showers With The Door Open", "Her Boobs Are Incredible",
+						  "She Shaves Herself Down There", "She Has The Body Of A Porn Star",
+						  "And I've Seen Her Tits"])
 		Girl = FemaleChar(iNumMaxCBits = 4, bAddArticle = False, bAllowClothing = False, bAllowRelate = False, bAllowSexuality = False, bAllowSpecies = False, bAllowNation = True, bAllowMaritalStatus = False, bAllowTitle = False, bAllowPregState = False)
 
 		sTweet = Exclamations.GetWord() + "\nMy New " + Relatives.GetWord() + " Is\n" + AddArticles(Girl.Desc) + "\nAnd " + Ender.GetWord()
 		
 		return sTweet	
 		
-# Anita Gets Serviced (Pleasured / Taken / Satisfied / Ravished)
-# By 5 Naked Cowboys 
+# Anita Gets Serviced 
+# By Five Naked Cowboys 
 class Generator65(Generator):
 	ID = 65
 	Priority = 2

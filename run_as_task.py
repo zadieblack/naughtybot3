@@ -30,7 +30,7 @@ if not is_lock_free():
 import excerpt.lust_bot 
 import title.ee_bot
 
-iTweetTimer = 28800 # 8 hours
+iTweetTimer = 2700 
 currentDT = datetime.datetime.now()
 
 while True:

@@ -47,10 +47,9 @@ def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorN
 					
 				currentDT = datetime.datetime.now()
 				
-				print("Preparing to create image.")
 				ImgFile = BytesIO() 
 				CreateImg(sTweet).save(ImgFile, format = 'PNG')
-				print("Image created.")
+				
 				if bTweet:
 					status = None
 						
