@@ -188,8 +188,8 @@ class Generator3(Generator):
 		Master = MaleChar(iNumMaxCBits = 3, bAddArticle = True, sPosArticle = "My")
 			
 		sTweet = self.VerbsTo.GetWord() + " To " + Master.Desc
-		if CoinFlip():
-			sTweet += ":\n" + WordList(["A " + self._getFMs_(), "A BDSM", "A Taboo", "A Forbidden", "A Secret", "An Erotic"]).GetWord() + " " + self.SubtitleCoda.GetWord()
+		# if CoinFlip():
+			# sTweet += ":\n" + WordList(["A " + self._getFMs_(), "A BDSM", "A Taboo", "A Forbidden", "A Secret", "An Erotic"]).GetWord() + " " + self.SubtitleCoda.GetWord()
 		
 		return sTweet
 
@@ -1474,7 +1474,7 @@ class Generator60(Generator):
 		ObjectNouns = WordList(['Anal Beads','Anal Hook','Ball Gag','Ben Wa balls','Bull Dyke','Butt Plug',
 								'Clit Clamp','Clit Pump','Crotchless Panties','Dildo','11\" Dildo',
 								'Double-Ended Dildo','Gimp Mask','Hitachi Magic Wand','Leather Riding Crop',
-								'Nipple Clamps','Orgasmatron','Rabbit Vibe','Rubber Fetish Suit','Sex Doll',
+								'Nipple Clamps','Orgasmatron','Pearl Necklace','Rabbit Vibe','Rubber Fetish Suit','Sex Doll',
 								'Sex Swing','Spreader Bar','Speculum','Strap-On','Sybian','Thong','Vibrator'])
 		sNice1 = ""
 		sNice2 = ""
@@ -1826,16 +1826,47 @@ class Generator75(Generator):
 
 		# return sTweet	
 		
-# class Generator77(Generator):
-	# ID = 77
-	# Priority = 2
+# "I was a fertile harem girl
+# for a strapping black cowboy sheikh"
+class Generator77(Generator):
+	ID = 77
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
-
-		# return sTweet	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
 		
+		MateAdjs1 = WordList(["Fertile","Nubile","Breeding","Yielding","Pregnant","Kept","Blushing","Virginal",
+							 "Willing","Lactating","Ripe","Submissive","Subservient","Wide-Eyed","Conjugal",
+							 "Naive Young","Innocent","Bashful"])
+		MateAdjs2 = WordList(["Buxom","Petite","Voluptuous","Small-Town","Dark-Eyed","Dark-Skinned","Blonde",
+							  "Brunette","Redheaded","Chubby","BBW","Slender","Coed","Country Girl","Wide-Hipped",
+							  "Full-Bodied","Nude","Shaved"])
+		MateNouns = WordList(["Harem Girl","Bride","Mate","Concubine","Courtesan","Mistress","Princess","Wife"])
+		ManAdjs = WordList(["Naked","Strapping","Nudist","Well-Hung","Virile","Muscular","Burly",
+							 "Hunky","Bald","Well-Endowed","Beefcake","Girthy","Handsome","Mustachioed",
+							 "Rock-Hard","Horny","Wicked","Kinky","Sensual","Naughty","Throbbing"])
+		sManAdj = ManAdjs.GetWord()
+		Man = MaleChar(iNumMaxCBits = 3, NotList = [sManAdj], bAddArticle = False, bAllowRelate = False, bAllowSpecies = False, bAllowMaritalStatus = False, bAllowGang = False, bAllowTitle = True)
+
+		sMate = ""
+		if CoinFlip():
+			sMate = MateAdjs1.GetWord() + " " + MateAdjs2.GetWord() + " " + MateNouns.GetWord()
+		else:
+			sMate = MateAdjs1.GetWord() + " " + MateNouns.GetWord()
+		
+		iRand = randint(1,2)
+		if iRand == 1:
+			sTweet += "I Was " + AddArticles(sMate) + "\nfor\n" + AddArticles(sManAdj + " " + Man.Desc)
+		elif iRand == 2:
+			sTweet += "I Was " + WordList(["Sold","Gifted","Mated","Bound","Betrothed","Promised","Married","Bred"]).GetWord() + " as " + AddArticles(sMate) + "\nto\n" + AddArticles(sManAdj + " " + Man.Desc)
+		# else:
+			# sTweet += "I Was " + WordList(["Pledged","Trained"]).GetWord() + " as " + AddArticles(sMate) + "\nfor\n" + AddArticles(sManAdj + " " + Man.Desc)
+
+		return sTweet	
+	
+# His for the Fisting:
+# A Submissive Nubile Black Flight-Attendant Story	
 # class Generator78(Generator):
 	# ID = 78
 	# Priority = 2
