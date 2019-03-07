@@ -184,12 +184,9 @@ class AttitudeGoodFemale(WordList):
 			'Conservative','Conservative',
 			'Demure',
 			'Flirty',
-			'Graceful',
-			'Humble',
 			'Innocent','Innocent','Innocent',
 			'Modest','Modest',
 			'Pure',
-			'Saintly',
 			'Sassy','Sassy',
 			'Sexy',
 			'Sheltered',
@@ -333,6 +330,7 @@ class ProfGoodFemale(WordList):
 		super().__init__(['Airline Stewardess',
 			'Babysitter',
 			'Ballerina',
+			'Barista',
 			'Bikini Model',
 			'Bridesmaid',
 			'Cheerleader',
@@ -499,7 +497,6 @@ class TropesGoodFemale(WordList):
 			'Beauty',
 			'Beauty Queen',
 			'Bride',
-			'Butterface',
 			'Catholic School Girl',
 			'Chaste Nun',
 			'Cheer Squad Captain',
@@ -1063,7 +1060,6 @@ class BookVerbsBy(WordList):
 			'Bared',
 			'Beaten',
 			'Beaten with a Belt',
-			'Blackmailed',
 			'Bound',
 			'Bound in the Dungeon',
 			'Bred',
@@ -1072,6 +1068,7 @@ class BookVerbsBy(WordList):
 			'Caught on Tape',
 			'Caught on Video',
 			'Claimed','Claimed',
+			'Claimed From Behind',
 			'Claimed Hard',
 			'Claimed in Public',
 			'Conquered',
@@ -1094,10 +1091,10 @@ class BookVerbsBy(WordList):
 			'Impregnated','Impregnated',
 			'Imprisoned in the Sex Dungeon',
 			'Knocked Up','Knocked Up',
-			'Leashed',
 			'Massaged',
-			'Mastered',
+			'Milked',
 			'Mind-Controlled',
+			'Motor-Boated',
 			'Mounted',
 			'Mounted Bareback',
 			'Owned',
@@ -1110,9 +1107,9 @@ class BookVerbsBy(WordList):
 			'Ravished','Ravished',
 			'Ridden',
 			'Ridden Bareback',
-			'Ruled',
 			'Seduced',
 			'Sexually Harrassed At My Workplace',
+			'Shaved',
 			'Sold',
 			'Sold',
 			'Spanked',
@@ -1122,6 +1119,7 @@ class BookVerbsBy(WordList):
 			'Stripped',
 			'Stripped in Public',
 			'Taken','Taken',
+			'Taken From Behind',
 			'Taken Hard',
 			'Taken Hard in Public',
 			'Taken in Public',
@@ -1130,10 +1128,8 @@ class BookVerbsBy(WordList):
 			'Tied Up',
 			'Tied Up in the Basement',
 			'Tempted',
-			'Trained',
 			'Secretly Watched',
 			'Sexually Trained',
-			'Violated',
 			'Whipped',
 			'Whipped in Public'])
 			
@@ -1145,13 +1141,10 @@ class BookVerbsTo(WordList):
 				'Bound',
 				'Bred',
 				'Chained',
-				'Engaged',
 				'Enslaved',
 				'Gifted',
 				'Hotwifed',
-				'Married',
 				'Mated',
-				'Pledged',
 				'Sold',
 				'Surrendered'])
 				
@@ -1166,7 +1159,6 @@ class BookGerunds(WordList):
 			'Breaking',
 			'Claiming','Claiming','Claiming',
 			'Controlling',
-			'Coveting',
 			'Deflowering', 
 			'Dominating',
 			'Enslaving',
@@ -1182,7 +1174,6 @@ class BookGerunds(WordList):
 			'Licking',
 			'Lusting For',
 			'Massaging',
-			'Mastering',
 			'Milking',
 			'Mind Controlling',
 			'Motor-Boating',
@@ -1210,10 +1201,8 @@ class BookGerunds(WordList):
 			'Taming',
 			'Tasting',
 			'Tempting',
-			'Training',
 			'Tying Up',
 			'Teaching',
-			'Training',
 			'Undressing',
 			'Using',
 			'Videoing',
@@ -1231,5 +1220,89 @@ class SubtitleCoda(WordList):
 			'Romance','Romance','Romance',
 			'Rendezvous',
 			'Story'])
+			
+class NiceGirlGoodAdjs(WordList):
+	WordHistoryQ = HistoryQ(3)
+	
+	def __init__(self):
+		super().__init__(["Amish",
+						  "Bashful",
+						  "Chaste",
+						  "Conservative",
+						  "Christian","Christian",
+						  "Demure",
+						  "Innocent",
+						  "Modest",
+						  "Pure",
+						  "Sheltered",
+						  "Shy",
+						  "Wholesome",
+						  "Uptight",
+						  "Virgin"])
+
+class NiceGirlAdjs(WordList):
+	WordHistoryQ = HistoryQ(3)
+	
+	def __init__(self):
+		super().__init__(["All-American",
+						  "Asian",
+						  "Athletic",
+						  "BBW",
+						  "Blonde",
+						  "British",
+						  "Brunette",
+						  "Cheerleader",
+						  "Dark-Skinned",
+						  "Curvy",
+						  "Ebony",
+						  "Fashionable",
+						  "Geeky",
+						  "Gymnast",
+						  "Introverted",
+						  "Irish",
+						  "Lactating",
+						  "Mature",
+						  "Nerdy",
+						  "Pale",
+						  "Petite",
+						  "Pregnant",
+						  "Redheaded",
+						  "Spanish"])
+
+class NiceGirlNouns(WordList):
+	WordHistoryQ = HistoryQ(3)
+	
+	def __init__(self):
+		super().__init__(["Babysitter",
+						  "Bride",
+						  "Fiancé",
+						  "Girlfriend",
+						  "Governess",
+						  "House Maid",
+						  "Housewife",
+						  "Librarian",
+						  "Maid",
+						  "Piano Teacher",
+						  "Teacher",
+						  "Secretary",
+						  "Schoolgirl",
+						  "Small-Town Girl",
+						  "Stay-at-Home Wife",
+						  "Step-Daughter",
+						  "Step-Mom",
+						  "Step-Sister",
+						  "Wife"])
+
+class NiceGirl():
+	def __init__(self):
+		sNiceAdj1 = NiceGirlGoodAdjs().GetWord()
+		sNiceGirl = sNiceAdj1 + " "
+		if CoinFlip():
+			sNiceGirl += NiceGirlGoodAdjs().GetWord(NotList = [sNiceAdj1]) + " "
+		if CoinFlip():
+			sNiceGirl += NiceGirlAdjs().GetWord() + " "
+		sNiceGirl += NiceGirlNouns().GetWord()
+		
+		self.Desc = sNiceGirl 
 			
 			

@@ -1724,6 +1724,10 @@ class Generator71(Generator):
 
 		return sTweet	
 		
+# Daddy Found Out
+# His Sweet Little Step-Daughter 
+# Is a Sassy Asian Stripper 
+# And Now He's Pissed!
 # class Generator72(Generator):
 	# ID = 72
 	# Priority = 2
@@ -1734,35 +1738,65 @@ class Generator71(Generator):
 
 		# return sTweet	
 		
-# class Generator73(Generator):
-	# ID = 73
-	# Priority = 2
+class Generator73(Generator):
+	ID = 73
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
-
-		# return sTweet	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
 		
-# class Generator74(Generator):
-	# ID = 74
-	# Priority = 2
+		Girl = title.misc.NiceGirl()
+		sNiceGirl = Girl.Desc
+						  
+		BadResult = WordList(["an Amateur Porn Star","an Anal Bimbo","a Naughty Bikini Model","a Foul-Mouthed Skank","a High-Class Call Girl","a $1000-an-hour Hooker","a Leather Bondage Submissive",
+							  "a Hotwife","a Porn Star","a Sex Addict","a Sex Slave","a Slut","a Shameless Exhibitionist","a Stripper","a Topless Spring Break Party Girl"])									  
+		sTweet = "I Turned My " + sNiceGirl + " into " + BadResult.GetWord() + "!"
+
+		return sTweet	
+		
+class Generator74(Generator):
+	ID = 74
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		Girl = title.misc.NiceGirl()
+		sNiceGirl = Girl.Desc
+		
+		NaughtyStuff = WordList(["an Anal Hook","Anal Sex","BBC","BDSM","Bukkake","a Butt Plug","a Clit Clamp","a Dirty Sanchez","Double Penetration","Erotic Asphyxiation","a Gang Bang",
+									 "an Interracial Threesome", "Leather Bondage","Lesbian Sex","Face-Sitting","Fisting","an Orgy","Nipple Clamps","Nudism","Rimming","Sex With Another Woman","Spanking",
+									 "Stripping at a Club","Swinging","a Threesome","Watching Porn","Water Sports","Whips and Chains","Wife Swapping"])
+		Reactions = WordList(["Now She Can't Get Enough","She Loves It","She Wants More","Now She Won't Stop","Now She Won't Quit","Now She's Insatiable",
+							  "It Turned Her Into A Slut","It Turned Her Into A Sex-Crazed Bimbo","Now She's a Sex Addict","It Turned Her Into A Ho","It Turned Her Into a Lesbian",
+							  "Now She's a Professional Porn Star", "She Decided to Become a Porn Star","Now All She Does Is Masturbate","It Was Awkward and Not Really Her Thing"])
 
-		# return sTweet	
+		if CoinFlip():
+			sTweet = "I Made My " + sNiceGirl + " Try " + NaughtyStuff.GetWord() + " And " + Reactions.GetWord() + "!"
+		else:
+			sTweet = "My " + sNiceGirl + " Tried " + NaughtyStuff.GetWord() + " And " + Reactions.GetWord() + "!"
+				
+		return sTweet	
 
-# class Generator75(Generator):
-	# ID = 75
-	# Priority = 2
+class Generator75(Generator):
+	ID = 75
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		Exclamations = WordList(["Oh S@*#!", "Oh No!", "WTF?!?", "Oh F*@%!"])
+		Girl = title.misc.NiceGirl()
+		sNiceGirl = Girl.Desc
+		
+		if CoinFlip():
+			sTweet += Exclamations.GetWord() + " "
+		sTweet += "My " + sNiceGirl + " Went Black and She Won't Come Back!"
 
-		# return sTweet	
+		return sTweet	
 		
 # class Generator76(Generator):
 	# ID = 76
