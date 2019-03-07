@@ -1664,15 +1664,29 @@ class Generator67(Generator):
 		
 # The wholesome blonde Christian girl spreads her legs (bends over/drops her panties/puts out)
 # for the cocky Italian DILF!
-# class Generator69(Generator):
-	# ID = 69
-	# Priority = 2
+class Generator69(Generator):
+	ID = 69
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
-
-		# return sTweet	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		Actions = WordList(["Spreads her Legs","Spreads her Legs","Bends Over","Drops Her Panties","Lifts her Skirt","Opens her Thighs","Spreads her Cheeks","Opens Her Legs","Lubes Herself Up"])
+		Girl = title.misc.NiceGirl()
+		sNiceGirl = Girl.Desc
+		
+		Man = MaleChar(iNumMaxCBits = 3, bAddArticle = False, bAllowRelate = False, bAllowSpecies = False, bAllowMaritalStatus = True, bAllowGang = False, bAllowTitle = True)
+		
+		iRand = randint(1,3)
+		if iRand == 1:
+			sTweet = "The " + Girl.Desc + "\n" + Actions.GetWord() + " for\nThe " + Man.Desc 
+		elif iRand == 2:
+			sTweet = NamesFemale().FirstName() + " the " + Girl.Desc + "\n" + Actions.GetWord() + " for\nThe " + Man.Desc 
+		else:
+			sTweet = "My " + Girl.Desc + "\n" + Actions.GetWord() + " for\n" + AddArticles(Man.Desc)
+			
+		return sTweet	
 		
 # I shot a porn scene
 # with a handsome BBC construction worker
@@ -1766,7 +1780,7 @@ class Generator74(Generator):
 		Girl = title.misc.NiceGirl()
 		sNiceGirl = Girl.Desc
 		
-		NaughtyStuff = WordList(["an Anal Hook","Anal Sex","BBC","BDSM","Bukkake","a Butt Plug","a Clit Clamp","a Dirty Sanchez","Double Penetration","Erotic Asphyxiation","a Gang Bang",
+		NaughtyStuff = WordList(["69ing", "an Anal Hook","Anal Sex","BBC","BDSM","Bukkake","a Butt Plug","a Clit Clamp","a Dirty Sanchez","Double Penetration","Erotic Asphyxiation","a Gang Bang",
 									 "an Interracial Threesome", "Leather Bondage","Lesbian Sex","Face-Sitting","Fisting","an Orgy","Nipple Clamps","Nudism","Rimming","Sex With Another Woman","Spanking",
 									 "Stripping at a Club","Swinging","a Threesome","Watching Porn","Water Sports","Whips and Chains","Wife Swapping"])
 		Reactions = WordList(["Now She Can't Get Enough","She Loves It","She Wants More","Now She Won't Stop","Now She Won't Quit","Now She's Insatiable",
