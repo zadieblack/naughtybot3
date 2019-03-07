@@ -699,41 +699,41 @@ class Generator29(Generator):
 
 		return sTweet
 		
-class Generator30(Generator):
-	# Hot Ménage a Trois: Dick and Lily and The Well-Hung Bodyguard Sumo-Wrestler
-	ID = 30
-	Priority = 2
+# class Generator30(Generator):
+	# # Hot Ménage a Trois: Dick and Lily and The Well-Hung Bodyguard Sumo-Wrestler
+	# ID = 30
+	# Priority = 2
 	
-	def GenerateTweet(self):
-		super().GenerateTweet()
-		sTweet = ""
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
 		
-		sHisName1 = NamesMale().FirstName()
-		sHisName2 = NamesMale().FirstName()
-		sHerName1 = NamesFemale().FirstName()
-		sHerName2 = NamesFemale().FirstName()
-		sLastName = LastNames().GetWord()
+		# sHisName1 = NamesMale().FirstName()
+		# sHisName2 = NamesMale().FirstName()
+		# sHerName1 = NamesFemale().FirstName()
+		# sHerName2 = NamesFemale().FirstName()
+		# sLastName = LastNames().GetWord()
 		
-		Girl = FemaleChar(iNumMaxCBits = 3)
-		Lesbo = LesbianChar(iNumMaxCBits = 3)
-		Master = MaleChar(iNumMaxCBits = 3, bAllowGang = False)
-		Gay = GayChar(iNumMaxCBits = 3)
+		# Girl = FemaleChar(iNumMaxCBits = 3)
+		# Lesbo = LesbianChar(iNumMaxCBits = 3)
+		# Master = MaleChar(iNumMaxCBits = 3, bAllowGang = False)
+		# Gay = GayChar(iNumMaxCBits = 3)
 		
-		Menages = []
+		# Menages = []
 		
-		sTweet = SexyAdjs().GetWord().capitalize() + " " + WordList(["Ménage", "Ménage a Trois", "Threesome", "Three-Way"]).GetWord() + ":\n"
+		# sTweet = SexyAdjs().GetWord().capitalize() + " " + WordList(["Ménage", "Ménage a Trois", "Threesome", "Three-Way"]).GetWord() + ":\n"
 		
-		Menages.append(sHisName1 + " and " + sHerName1 + "\nand\nthe " + Girl.Desc)
-		Menages.append(sHisName1 + " and " + sHerName1 + "\nand\nthe " + Master.Desc)
-		Menages.append(sHerName1 + " and " + sHerName2 + "\nand\nthe " + Lesbo.Desc)
-		Menages.append(sHerName1 + " and " + sHerName2 + "\nand\nthe " + Master.Desc)
-		Menages.append(sHisName1 + " and " + sHisName2 + "\nand\nthe " + Gay.Desc)
-		Menages.append("Mr. & Mrs. " + sLastName + "\nand\nthe " + Girl.Desc)
-		Menages.append("Mr. & Mrs. " + sLastName + "\nand\nthe " + Master.Desc)
+		# Menages.append(sHisName1 + " and " + sHerName1 + "\nand\nthe " + Girl.Desc)
+		# Menages.append(sHisName1 + " and " + sHerName1 + "\nand\nthe " + Master.Desc)
+		# Menages.append(sHerName1 + " and " + sHerName2 + "\nand\nthe " + Lesbo.Desc)
+		# Menages.append(sHerName1 + " and " + sHerName2 + "\nand\nthe " + Master.Desc)
+		# Menages.append(sHisName1 + " and " + sHisName2 + "\nand\nthe " + Gay.Desc)
+		# Menages.append("Mr. & Mrs. " + sLastName + "\nand\nthe " + Girl.Desc)
+		# Menages.append("Mr. & Mrs. " + sLastName + "\nand\nthe " + Master.Desc)
 		
-		sTweet += Menages[randint(0, len(Menages) -1)]
+		# sTweet += Menages[randint(0, len(Menages) -1)]
 
-		return sTweet
+		# return sTweet
 		
 class Generator31(Generator):
 	#Wanton & Willing: My Naked Lesbian Futa Princess
@@ -1065,21 +1065,21 @@ class Generator43(Generator):
 		
 		return sTweet
 		
-class Generator44(Generator):
-	# The Amish French Maid Goes Dogging 
-	ID = 44
-	Priority = 2
+# class Generator44(Generator):
+	# # The Amish French Maid Goes Dogging 
+	# ID = 44
+	# Priority = 2
 	
-	def GenerateTweet(self):
-		super().GenerateTweet()
-		sTweet = ""
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
 		
-		Girl = FemaleChar(iNumMaxCBits = 4, bAddArticle = True, bAllowRelate = True, bAllowSexuality = False, bAllowSpecies = False)
-		Suffixes = WordList(["Spreads Her Legs", "Spreads Her Legs", "Rides Again", "Puts Out", "Takes It Deep", "Rides A Big One", "Spreads Her Cheeks", "Takes A Roll In The Hay", "Assumes the Position", "Goes Down", "Has a Quickie", "Bends Over", "Goes Dogging", "Gets Laid", "Knocks Boots", "Does the Rumpy Pumpy", "Gets Off", "Goes All The Way", "Drops Her Pants"])
+		# Girl = FemaleChar(iNumMaxCBits = 4, bAddArticle = True, bAllowRelate = True, bAllowSexuality = False, bAllowSpecies = False)
+		# Suffixes = WordList(["Spreads Her Legs", "Spreads Her Legs", "Rides Again", "Puts Out", "Takes It Deep", "Rides A Big One", "Spreads Her Cheeks", "Takes A Roll In The Hay", "Assumes the Position", "Goes Down", "Has a Quickie", "Bends Over", "Goes Dogging", "Gets Laid", "Knocks Boots", "Does the Rumpy Pumpy", "Gets Off", "Goes All The Way", "Drops Her Pants"])
 
-		sTweet = Girl.Desc + "\n" + Suffixes.GetWord()
+		# sTweet = Girl.Desc + "\n" + Suffixes.GetWord()
 		
-		return sTweet
+		# return sTweet
 		
 class Generator45(Generator):
 	# Naked in the Park: A Sweet Wholesome Cheerleader Adventure
@@ -1117,24 +1117,24 @@ class Generator46(Generator):
 			sTweet = Prefix.GetWord() + "\nMy " + Girl.Desc + " " + Relations.GetWord(NotList = ["Girlfriend", "Mistress", "Wife"])
 		return sTweet
 		
-class Generator47(Generator):
-	# My Step-Dad Transforms Into A Cocky Gentleman Mer-Man!
-	ID = 47
-	Priority = 2
+# class Generator47(Generator):
+	# # My Step-Dad Transforms Into A Cocky Gentleman Mer-Man!
+	# ID = 47
+	# Priority = 2
 	
-	def GenerateTweet(self):
-		super().GenerateTweet()
-		sTweet = ""
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
 		
-		Relate = title.misc.RelateMale()
-		Species = title.misc.SpeciesMale()
-		VerbTrans = WordList(["Transforms", "Transforms", "Changes", "Shifts", "Morphs", "Metamorphs"])
+		# Relate = title.misc.RelateMale()
+		# Species = title.misc.SpeciesMale()
+		# VerbTrans = WordList(["Transforms", "Transforms", "Changes", "Shifts", "Morphs", "Metamorphs"])
 		
-		Master = MaleChar(bAddEndNoun = False, bAllowAge = False, bAllowMaritalStatus = False, bAllowNation = False, bAllowRelate = False, bAllowSpecies = False, bAllowTitle = False)
+		# Master = MaleChar(bAddEndNoun = False, bAllowAge = False, bAllowMaritalStatus = False, bAllowNation = False, bAllowRelate = False, bAllowSpecies = False, bAllowTitle = False)
 		
-		sTweet = "My " + Relate.GetWord() + " " + VerbTrans.GetWord() + "\ninto a\n" + Master.Desc + " " + Species.GetWord() + "!"
+		# sTweet = "My " + Relate.GetWord() + " " + VerbTrans.GetWord() + "\ninto a\n" + Master.Desc + " " + Species.GetWord() + "!"
 
-		return sTweet
+		# return sTweet
 		
 class Generator48(Generator):
 	# Lusting For the Wicked Blonde Fetish Model
@@ -1672,7 +1672,7 @@ class Generator69(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		Actions = WordList(["Spreads her Legs","Spreads her Legs","Bends Over","Drops Her Panties","Lifts her Skirt","Opens her Thighs","Spreads her Cheeks","Opens Her Legs","Lubes Herself Up"])
+		Actions = WordList(["Spreads her Legs for","Spreads her Legs for","Bends Over for","Drops Her Panties for","Goes Down On","Lifts her Skirt for","Spreads her Thighs for","Spreads her Cheeks for","Opens Her Legs for","Lubes Herself Up for"])
 		Girl = title.misc.NiceGirl()
 		sNiceGirl = Girl.Desc
 		
@@ -1680,11 +1680,11 @@ class Generator69(Generator):
 		
 		iRand = randint(1,3)
 		if iRand == 1:
-			sTweet = "The " + Girl.Desc + "\n" + Actions.GetWord() + " for\nThe " + Man.Desc 
+			sTweet = "The " + Girl.Desc + "\n" + Actions.GetWord() + "\nThe " + Man.Desc 
 		elif iRand == 2:
-			sTweet = NamesFemale().FirstName() + " the " + Girl.Desc + "\n" + Actions.GetWord() + " for\nThe " + Man.Desc 
+			sTweet = NamesFemale().FirstName() + " the " + Girl.Desc + "\n" + Actions.GetWord() + "\nThe " + Man.Desc 
 		else:
-			sTweet = "My " + Girl.Desc + "\n" + Actions.GetWord() + " for\n" + AddArticles(Man.Desc)
+			sTweet = "My " + Girl.Desc + "\n" + Actions.GetWord() + "\n" + AddArticles(Man.Desc)
 			
 		return sTweet	
 		
@@ -1812,6 +1812,10 @@ class Generator75(Generator):
 
 		return sTweet	
 		
+# My New Neighbor is a 
+# Tanned Redheaded Secretary
+# and 
+# I Ate Her Out
 # class Generator76(Generator):
 	# ID = 76
 	# Priority = 2
