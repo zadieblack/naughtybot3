@@ -1877,6 +1877,9 @@ class Generator77(Generator):
 
 		# return sTweet	
 		
+# When the Princess
+# Met the Cowboy...
+# ...and they had wild interracial sex!
 # class Generator79(Generator):
 	# ID = 79
 	# Priority = 2

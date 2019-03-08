@@ -30,7 +30,11 @@ if not is_lock_free():
 import excerpt.lust_bot 
 import title.ee_bot
 
-iTweetTimer = 2700 
+def SetGetArgs():
+	Parser = argparse.ArgumentParser(prog='naughtybots',description='Run Flaming Lust Bot & erotica_ebooks for Twitter.')
+	Parser.add_argument('-tweettimer', type=int, default=2700, help='num of seconds to wait before next tweet')
+
+iTweetTimer = Args.tweettimer 
 currentDT = datetime.datetime.now()
 
 while True:
