@@ -1130,7 +1130,6 @@ class BookVerbsBy(WordList):
 			'Tied Up in the Basement',
 			'Tempted',
 			'Secretly Watched',
-			'Sexually Trained',
 			'Whipped',
 			'Whipped in Public'])
 			

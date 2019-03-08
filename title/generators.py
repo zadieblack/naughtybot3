@@ -398,22 +398,22 @@ class Generator14(Generator):
 		
 		return sTweet
 		
-class Generator15(Generator):
-	# The Small-Town Virgin's First Porno
-	ID = 15
-	Priority = 2
+# class Generator15(Generator):
+	# # The Small-Town Virgin's First Porno
+	# ID = 15
+	# Priority = 2
 	
-	def GenerateTweet(self):
-		super().GenerateTweet()
-		sTweet = ""
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
 		
-		Girl = FemaleChar(iNumMaxCBits = 3, Type = GirlType.Good, bAddArticle = True, bAllowClothing = False, bAllowSexuality = False, bAllowTitle = False)
+		# Girl = FemaleChar(iNumMaxCBits = 3, Type = GirlType.Good, bAddArticle = True, bAllowClothing = False, bAllowSexuality = False, bAllowTitle = False)
 		
-		sTweet = Girl.Desc + "'s\nFirst Porno"
-		if CoinFlip():
-			sTweet += ":\nAn " + self._getFMs_() + " " + self.SubtitleCoda.GetWord()
+		# sTweet = Girl.Desc + "'s\nFirst Porno"
+		# if CoinFlip():
+			# sTweet += ":\nAn " + self._getFMs_() + " " + self.SubtitleCoda.GetWord()
 
-		return sTweet
+		# return sTweet
 		
 class Generator16(Generator):
 	# The Small-Town Virgin's First Time
