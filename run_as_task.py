@@ -24,15 +24,17 @@ def is_lock_free():
 if not is_lock_free():
 	logging.info("Bot already running.")
 	sys.exit()
+	
+def SetGetArgs():
+	Parser = argparse.ArgumentParser(prog='naughtybots',description='Run Flaming Lust Bot & erotica_ebooks for Twitter.')
+	Parser.add_argument('-tweettimer', type=int, default=2700, help='num of seconds to wait before next tweet')
+	
+	return Parser.parse_args()
 
 # then, either include the rest of your script below,
 # or import it, if it's in a separate file:
 import excerpt.lust_bot 
 import title.ee_bot
-
-def SetGetArgs():
-	Parser = argparse.ArgumentParser(prog='naughtybots',description='Run Flaming Lust Bot & erotica_ebooks for Twitter.')
-	Parser.add_argument('-tweettimer', type=int, default=2700, help='num of seconds to wait before next tweet')
 
 Args = SetGetArgs()	
 print(Args)
