@@ -34,6 +34,9 @@ def SetGetArgs():
 	Parser = argparse.ArgumentParser(prog='naughtybots',description='Run Flaming Lust Bot & erotica_ebooks for Twitter.')
 	Parser.add_argument('-tweettimer', type=int, default=2700, help='num of seconds to wait before next tweet')
 
+Args = SetGetArgs()	
+print(Args)
+
 iTweetTimer = Args.tweettimer 
 currentDT = datetime.datetime.now()
 
