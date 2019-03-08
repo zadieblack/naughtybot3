@@ -1867,29 +1867,54 @@ class Generator77(Generator):
 	
 # His for the Fisting:
 # A Submissive Nubile Black Flight-Attendant Story	
-# class Generator78(Generator):
-	# ID = 78
-	# Priority = 2
+class Generator78(Generator):
+	ID = 78
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
 
-		# return sTweet	
+		Gerunds = WordList(["69ing","Ass-Eating","Bedding","Binding","Breaking","Breeding","Caning","Claiming","Deflowering",
+						    "Defiling","Dominating","Edging","Exposing","Fingering","Fisting","Impregating","Ogling","Milking","Motor-Boating",
+							"Paddling","Peeing On","Penetrating","Pleasuring","Porking","Pumping","Rimming","Sharing","Shaving","Spanking","Spraying","Spread-Eagling",
+							"Spit-Roasting","Stripping","Stuffing","Taking","Tasting","Tea-Bagging","Touching","Toying","Whipping",
+							"Undressing","Using","Video-Taping"])
+		SubAdjs = WordList(["Submissive","Submissive","Subservient","Compliant","Slave Girl","Obedient","Kinky"])
+		sSubAdj = SubAdjs.GetWord()
+		Girl = FemaleChar(iNumMaxCBits = 3, NotList = [sSubAdj], bAddArticle = False, bAllowClothing = True, bAllowRelate = True, bAllowSexuality = True, bAllowSpecies = True, bAllowMaritalStatus = True, bAllowTitle = True)
+		
+		sTweet = "His For The " + Gerunds.GetWord() + ":\n"
+		sTweet += AddArticles(sSubAdj + " " + Girl.Desc) + " Story"
+		return sTweet	
+		
+class Generator79(Generator):
+	ID = 79
+	Priority = 2
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		VerbsTo = WordList(["69","Anally Deflower","Bone","Chain Up","Claim","Claim Hard","Command","Deflower",
+							"Degrade","Dominate","Enslave","Gag","Hotwife","Humiliate","Hypnotize","Impregnate",
+							"Knock-Up","Lick","Master","Mind Control","Motor-Boat","Mount Roughly","Paddle",
+							"Pee On","Penetrate","Pervert","Possess","Publicly Expose","Punish","Ride Hard","Shave",
+							"Splooge On","Suck On","Take From Behind","Tame","Tea-Bag","Wife-Swap","Undress",
+							"Use Sexually","Video-Tape"])
+
+		SubAdjs = WordList(["Submissive","Submissive","Subservient","Compliant","Slave Girl","Obedient","Kinky"])
+		sSubAdj = SubAdjs.GetWord()
+		Girl = FemaleChar(iNumMaxCBits = 3, NotList = [sSubAdj], bAddArticle = False, bAllowClothing = True, bAllowRelate = True, bAllowSexuality = True, bAllowSpecies = True, bAllowMaritalStatus = True, bAllowTitle = True)
+		
+		sTweet = "His To " + VerbsTo.GetWord() + ":\n"
+		sTweet += AddArticles(sSubAdj + " " + Girl.Desc) + " Story"
+
+		return sTweet	
 		
 # When the Princess
 # Met the Cowboy...
 # ...and they had wild interracial sex!
-# class Generator79(Generator):
-	# ID = 79
-	# Priority = 2
-	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
-
-		# return sTweet	
-		
 # class Generator80(Generator):
 	# ID = 80
 	# Priority = 2

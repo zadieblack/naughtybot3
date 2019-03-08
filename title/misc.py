@@ -379,8 +379,7 @@ class ProfBadFemale(WordList):
 			'Porn Star',
 			'Slave','Slave','Slave',
 			'Stripper','Stripper',
-			'Whore',
-			'Witch','Witch','Witch'])
+			'Whore'])
 			
 class ProfFemale(WordList):
 	def __init__(self):
@@ -423,8 +422,7 @@ class ProfLesbian(WordList):
 			'Stuntwoman',
 			'Tattoo Artist',
 			'Tri-Athlete',
-			'Trucker','Trucker','Trucker',
-			'Witch','Witch','Witch'])
+			'Trucker','Trucker','Trucker'])
 
 # step-daughter, mom
 class RelateFemale(WordList):
