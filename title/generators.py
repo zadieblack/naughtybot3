@@ -1506,8 +1506,13 @@ class Generator61(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		GoodGirl = FemaleChar(iNumMaxCBits = 4, Type = GirlType.Good, bAddArticle = False, bAllowRelate = False, bAllowSexuality = False, bAllowSpecies = False, bAllowNation = False)
-		BadGirl = FemaleChar(iNumMaxCBits = 4, Type = GirlType.Bad, bAddArticle = False, bAllowRelate = False, bAllowSexuality = True, bAllowMaritalStatus = False, bAllowSpecies = True, bAllowNation = False, bAllowTitle = False)
+		GoodGirlNotList = ["Tanned","Concubine","Recently-Divorced","Big Titty","Busty","Hot",
+							"Juicy","Leggy","Naked","Nude","Shaved","Voluptuous","Young",
+							"Pregnant","Jiggling","Wet Nurse","Sassy","Geisha","Baroness",
+							"Duchess","Slave Girl","Slave","MILF","HuCow","Kitten"]
+		BadGirlNotList = ["Virgin","Married","Nursing"]
+		GoodGirl = FemaleChar(iNumMaxCBits = 4, Type = GirlType.Good, bAddArticle = False, NotList = GoodGirlNotList, bAllowRelate = False, bAllowPregState = False, bAllowSexuality = False, bAllowSpecies = False, bAllowNation = False, bAllowGenMod = False, bAllowClothing = False)
+		BadGirl = FemaleChar(iNumMaxCBits = 4, Type = GirlType.Bad, bAddArticle = False, NotList = BadGirlNotList, bAllowRelate = False, bAllowSexuality = True, bAllowMaritalStatus = False, bAllowSpecies = True, bAllowNation = False, bAllowTitle = False)
 		
 		sTweet = "Transformed:\nfrom\n" + GoodGirl.Desc + "\nto\n" + BadGirl.Desc
 
