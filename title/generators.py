@@ -1925,16 +1925,81 @@ class Generator79(Generator):
 
 		# return sTweet	
 		
-# class Generator81(Generator):
-	# ID = 81
-	# Priority = 2
+# I Lost My Virginity To 
+# A Tanned Leather Cowboy 
+# And he was my old 7th grade chemistry teacher
+class Generator81(Generator):
+	ID = 81
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
-
-		# return sTweet	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
 		
+		ManNotList = (["Teenage","Young","College","Visibly Erect"])
+		Places = WordList(["at the Bowling Alley","in the Produce Section", "in the Baked Goods Section","in the Bakery",
+			"Behind the Chic-fil-a", "in the Ball Pit","Behind a Bench in the Park","at the Beach","Under an Overpass",
+			"on the Eliptical Machine at the Gym","In the Locker Room Showers","at the Seafood Restaurant","at the Museum",
+			"at the Library","at the Farmer's Market","next to the Duck Pond","in the Back of a Church","On Top of the Bar",
+			"in the Window Display of a Shoe Store","Under the Boardwalk","in the Hunting Section at a Wal-Mart",
+			"in the Church Graveyard","in a White Van Under an Overpass","at the Construction Site","next to the Assembly Line",
+			"on a Hotel Balcony","in a Room at a Motel 6","in my Parent's Bedroom","at the Pet Store","Beside the Bike Path",
+			"Behind the Bleachers","Behind the Bar","In the Back Seat of a Prius","In the Back of a Ford 150",
+			"In the Back Seat of a Volvo","In the Back of a Movie Theater"
+			])
+		Retailers = WordList(["In-n-Out Burger","Whole Foods","Wal-Mart","Starbucks","Gold's Gym","LA Fitness","Krispy Kreme",
+							  "CVS","Target","Chipotle","Burger King","the Mall","IHOP","the Multiplex"])
+		
+		Man = MaleChar(iNumMaxCBits = 4, bAddArticle = False, NotList = ManNotList, bAllowRelate = False, bAllowSpecies = False, bAllowMaritalStatus = False, bAllowGang = False, bAllowTitle = False, bAllowTrope = False, bAllowGenMod = False)
+
+		if CoinFlip():
+			sTweet = "I Lost My Virginity\n"
+			sTweet += "to " + AddArticles(Man.Desc) + "\n"
+		else:
+			sTweet = "I Got My Cherry Popped\n"
+			sTweet += "by " + AddArticles(Man.Desc) + "\n"
+		
+		iRand = randint(1,8)
+		
+		if iRand == 1:
+			sTweet += "in the " + WordList(["Men's Room","Women's Restroom","Parking Lot"]).GetWord() + " " 
+			sTweet += "at " + Retailers.GetWord()
+		
+		elif iRand == 2:
+			sTweet += Places.GetWord()
+		
+		elif iRand == 3:
+			sTweet += "and " + WordList(["Two","Two","Three","Three","Four","Five","Seven","Nine","Twelve","Thirteen","Twenty"]).GetWord() + " of His Buddies!"
+		
+		elif iRand == 4:
+			iInches = randint(8,12)
+			sTweet += "Who Used " + WordList(["a Cucumber","a Banana","an Eggplant","an Electric Toothbrush",
+						"a " + str(iInches) + "\" Black Dildo",
+						"a " + str(iInches) + "\" Steel Dildo"]).GetWord() + " On Me!"
+		elif iRand == 5:
+			sTweet += "Who Used To Be My " + WordList(["High School Chemistry Teacher","High School English Teacher","French Teacher",
+						"Gym Teacher","6th Grade Teacher","7th Grader Teacher","8th Grade Teacher","Chemistry Teacher","Algebra Teacher",
+						"Literature Professor","Boss","Boss at " + Retailers.GetWord(),"Math Tutor","Next Door Neighbor","Gym Coach","Track Coach",
+						"Basketball Coach","Pediatrician","Gynecologist"]).GetWord() + "!"
+		elif iRand == 6:
+			sTweet += "and Then I Realized He Was " + WordList(["My New Step-Dad","My New Step-Brother",
+						"My New Next Door Neighbor","My New Brother-in-Law","My Literature Professor",
+						"My Biology Professor","My Gynecologist", "My Mom's New Boyfriend"]).GetWord() + "!"
+		elif iRand == 7:
+			sTweet += WordList(["Live on Television!","Live on the Internet!","And He Gave Me $100!",
+								"And My Dad Was Pissed When He Found Out!","And I Let His Friends Watch!",
+								"And a Cop Caught Us!","And We Filmed the Whole Thing!",
+								"In the Basement of His Parents House!","Upstairs at His Parents House!",
+								"And He Didn't Pull Out!","And He Did My Ass Too!","And Then My Parents Came Home!"]).GetWord()
+		else:
+			sTweet += "and Now I'm Pregnant!"
+		
+		return sTweet	
+		
+# "I'm a Pregnant Asian Waitress
+# and
+# I'm Stripping 
+# For a Well-Hung Millionaire Sheikh!" (alt: I'm a pregnant asian waitress: what am I doing stripping for...??)
 # class Generator82(Generator):
 	# ID = 82
 	# Priority = 2
@@ -1945,6 +2010,10 @@ class Generator79(Generator):
 
 		# return sTweet	
 		
+# 8" of Steel:
+# The Feisty Princess (Nubile Queen / Virginal Priestess)
+# Encounters 
+# The Strapping Naked Half-Orc Barbarian 
 # class Generator83(Generator):
 	# ID = 83
 	# Priority = 2
@@ -1955,6 +2024,10 @@ class Generator79(Generator):
 
 		# return sTweet	
 		
+# Forsooth My Lord, I See Thou Art Horny!
+# The Nubile Princess 
+# and the
+# Beefy Well-Hung Marquis
 # class Generator84(Generator):
 	# ID = 84
 	# Priority = 2
