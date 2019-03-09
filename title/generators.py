@@ -2081,7 +2081,7 @@ class Generator85(Generator):
 		sTweet += WordList(["Live on Television!","Live on the Internet!","And He Gave Me $100!",
 								"And My Dad Was Pissed When He Found Out!","And I Let His Friends Watch!",
 								"And " + WordList(["a Cop","My Dad","the Principal","a Teacher","My Step-Brother","a Stranger"]).GetWord() + " Caught Us!",
-								"And We Filmed the Whole Thing!",
+								"And We Filmed the Whole Thing!","And Now I'm So Sore I Can Hardly Walk!",
 								"In the Basement of His Parents House!","Upstairs at His Parents House!",
 								"And He Didn't Pull Out!","And He Did My Ass Too!","And Then My Parents Came Home!",
 								"And His Sexy Wife!","And Now I'm Pregnant!","Who Used To Be A Woman!"]).GetWord()
@@ -2148,8 +2148,151 @@ class Generator86(Generator):
 
 		# return sTweet	
 		
-# class Generator89(Generator):
-	# ID = 89
+# Sweet Little Sophie 
+# The Country Virgin Schoolgirl
+# and the
+# Swollen 8" Purple Dick
+class Generator89(Generator):
+	ID = 89
+	Priority = 2
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		SweetAdjs = WordList(['Sweet', 'Sweet', 'Cute', 'Blonde','Innocent','Bashful','Naive'])
+		NiceNames = WordList(['Amy','Angelica','Annie','Charity','Daisy','Daphne','Elsie',
+							  'Emmy','Frances','Gertrude','Greta','Jeanie','Lacey','Lizzy',
+							  'Mabel','Mary','Maryanne','Molly','Nancy','Nell','Olive','Phoebe',
+							  'Rosie','Shelly','Sophie','Summer','Virginia'])
+							  
+		Girl = title.misc.NiceGirl()
+		sNiceGirl = Girl.Desc
+		
+		BigAdjs = WordList(["Massive","Enormous","Girthy","Thick","Lengthy","Oversized","Stacked","Swinging",
+							"Monstrous","Big","Giant","Hulking","Hefty","Heavy","Towering"])
+		SwoleAdjs = WordList(["Swollen","Engorged","Turgid","Rock Hard","Hard","Erect","Stiff","Tumescent",
+							  "Fat","Bulging","Rigid","Fully Erect","Hugely Erect"])
+		ExtraAdjs = WordList(["Veiny","Throbbing","Meaty","Burning","Dripping","Purple","Red","Exposed",
+							  "Fleshy","Straining","Feverish","Lustful","Passionate","Fervid","Throbbing",
+							  "Pulsating","Vigorous","Virile","Dark","Moist","Black","Rampant"])
+		DickSyns = WordList(["Dick","Dick","Cock","Cock","Prick","Erection","Member","Phallus","Tool","Hard-On",
+							 "Dong","Schlong","Penis"])
+		sDick = ""
+		
+		if CoinFlip():
+			sDick = BigAdjs.GetWord() + " " + SwoleAdjs.GetWord() + " " + ExtraAdjs.GetWord() + " " + DickSyns.GetWord()
+		else:
+			sDick = SwoleAdjs.GetWord() + " " + str(randint(8,12)) + "\" " + ExtraAdjs.GetWord() + " " + DickSyns.GetWord()
+
+		sTweet = SweetAdjs.GetWord() + " Little " + NiceNames.GetWord() + "\n"
+		sTweet += "The " + sNiceGirl + "\nand the\n"
+		sTweet += sDick 
+		
+		return sTweet	
+	
+# class Generator90(Generator):
+	# ID = 90
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator91(Generator):
+	# ID = 91
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator92(Generator):
+	# ID = 92
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator93(Generator):
+	# ID = 93
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator94(Generator):
+	# ID = 94
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator95(Generator):
+	# ID = 95
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator96(Generator):
+	# ID = 96
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator97(Generator):
+	# ID = 97
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator98(Generator):
+	# ID = 98
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator99(Generator):
+	# ID = 99
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator100(Generator):
+	# ID = 100
 	# Priority = 2
 	
 	# def GenerateTweet(self):

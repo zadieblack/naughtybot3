@@ -431,24 +431,24 @@ class TweetTxtGen19(TweetTxtGen):
 		
 		return sText
 		
-class TweetTxtGen20(TweetTxtGen):
-	# Reply to this tweet and I'll tweet a randomly-generated naughty ebook title @ you!
-	ID = 20
-	Priority = 2
+# class TweetTxtGen20(TweetTxtGen):
+	# # Reply to this tweet and I'll tweet a randomly-generated naughty ebook title @ you!
+	# ID = 20
+	# Priority = 2
 	
-	def GenerateTweet(self):
-		super().GenerateTweet()
-		sText = ""
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sText = ""
 		
-		sText = "Reply to this tweet and " 
-		if CoinFlip():
-			sText += "I'll tweet a " + WordList(["randomly", "computer", "bot", "algorithmically"]).GetWord () + "-generated " + WordList(["erotica", "smutty", "naughty", "erotic", "adult"]).GetWord() + " ebook title @ you!"
-		else:
-			sText += "get a custom " + WordList(["erotica", "smutty", "naughty", "erotic", "adult"]).GetWord() + " ebook title of your very own in reply! " + GetEmoji()
-		sText += " " + GetEmoji()
+		# sText = "Reply to this tweet and " 
+		# if CoinFlip():
+			# sText += "I'll tweet a " + WordList(["randomly", "computer", "bot", "algorithmically"]).GetWord () + "-generated " + WordList(["erotica", "smutty", "naughty", "erotic", "adult"]).GetWord() + " ebook title @ you!"
+		# else:
+			# sText += "get a custom " + WordList(["erotica", "smutty", "naughty", "erotic", "adult"]).GetWord() + " ebook title of your very own in reply! " + GetEmoji()
+		# sText += " " + GetEmoji()
 
 		
-		return sText
+		# return sText
 		
 class TweetTxtGen21(TweetTxtGen):
 	# Follow my sister bot @bot_lust to read naughty excerpts from this book (warning: NSFW!) ;-)
@@ -741,16 +741,49 @@ class TweetTxtGen33(TweetTxtGen):
 		
 		return sText
 
-# class TweetTxtGen34(TweetTxtGen):
-	# The sexy read that was BANNED on Amazon! Now available on Smashwords
-	# ID = 34
-	# Priority = 2
+class TweetTxtGen34(TweetTxtGen):
+	# This is widely considered to be the Lord of the Rings of anal fisting books.
+	ID = 34
+	Priority = 4
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sText = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sText = ""
 		
-		# return sText
+		Books = WordList(["Lord of the Rings","War and Peace","Finnegan's Wake","Harry Potter","1984",
+						  "Jane Eyre","Moby Dick","Romeo & Juliet","Hamlet","Lord of the Flies",
+						  "To Kill a Mockingbird","Don Quixote","Brave New World","Catch-22","Bell Jar",
+						  "One Hundred Years of Solitude","Grapes of Wrath","Ulysses","Brothers Karamazov",
+						  "Atlas Shrugged","Heart of Darkness","Handmaid's Tale","Madame Bovary",
+						  "Great Expectations","Paradise Lost","Old Man and the Sea","Scarlet Letter",
+						  "Gone With the Wind","Waiting for Godot","Fahrenheit 451"])
+		EroticaNiches = WordList(["anal fisting","dwarf lactation","wife-swapping","lesbian fisting",
+								  "lesbian lactation","lesbian anal","trans age-play","cuckquean lactation",
+								  "werewolf fisting","vampire age-play","vampire lactation",
+								  "anal exhibitionism","vampire Knotting","BDSM lactation","vampire menage",
+								  "anal menage","lactation menage","cuckquean Psuedo-incest",
+								  "pseudo-incest lactation","pseudo-incest fisting","vampire fisting",
+								  "pseudo-incest age-play","BDSM cuckolding","interracial fisting",
+								  "interracial vampire menage","vampire exhibitionism",
+								  "interracial pseudo-incest","trans pseudo-incest","interracial cuckqueaning",
+								  "interracial age-play","pseudo-incest anal fisting","interracial anal fisting",
+								  "interracial gangbang","interracial anal gangbang",
+								  "interracial pseudo-incest anal gangbang","interracial lesbian voyeurism",
+								  "interracial pseudo-incest BDSM","non-consensual vampire fisting",
+								  "interracial lesbian anal menage","trans Merman age-play",
+								  "trans Merman BDSM","pseudo-incest Gangbang Voyeurism",
+								  "trans cuckquean BDSM", "interracial trans lactation",
+								  "interracial anal cuckolding","Non-consensual nipple play",
+								  "pseudo-incest lesbian nipple play","interracial anal fem-dom",
+								  "interracial vampire fem-dom","trans pseudo-incest fem-dom",
+								  "non-consensual fem-dom lactation", "male lactation",
+								  "interracial futanari pseudo-incest","interracial futanari gangbang",
+								  "interracial futanari anal","interracial futanari lactation"])
+								  
+		sText = "This is " + WordList(["widely regarded","widely considered","broadly regarded","broadly considered"]).GetWord() + " "
+		sText += "to be the '" + Books.GetWord() + "' of " + EroticaNiches.GetWord() + " books."
+		
+		return sText
 
 # class TweetTxtGen35(TweetTxtGen):
 	# The sexy read that was BANNED on Amazon! Now available on Smashwords
