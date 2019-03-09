@@ -291,7 +291,7 @@ def GetNextFavTitleFromFile(sFileName = ""):
 	with open(sFileName, 'r') as infile:
 		for line in infile:
 			if line.strip() != FAVTITLE_DIVIDER:
-				Titles[iTitleCount] += line 
+				Titles[iTitleCount] += line.replace('&amp;','&')
 			else:
 				Titles.append("")
 				iTitleCount += 1
@@ -299,7 +299,7 @@ def GetNextFavTitleFromFile(sFileName = ""):
 	print("iTitleCount = " + str(iTitleCount))
 	
 	with open(sFileName, 'w') as outfile:	
-		for x in range(1, len(Titles)-1):
+		for x in range(1, len(Titles)):
 			outfile.write(Titles[x] + FAVTITLE_DIVIDER + "\n")
 	
 	sFavTitle = Titles[0].strip()
