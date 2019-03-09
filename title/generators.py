@@ -861,6 +861,7 @@ class Generator35(Generator):
 			'Gagging On',
 			'Going Down On',
 			'Massaging',
+			'Pegging',
 			'Playing With',
 			'Pleasing',
 			'Riding',
@@ -869,6 +870,7 @@ class Generator35(Generator):
 			'Sharing',
 			'Showering With',
 			'Smothering',
+			'Stroking',
 			'Stripping For',
 			'Submitting To',
 			'Swallowing',
@@ -1816,15 +1818,35 @@ class Generator75(Generator):
 # Tanned Redheaded Secretary
 # and 
 # I Ate Her Out
-# class Generator76(Generator):
-	# ID = 76
-	# Priority = 2
+class Generator76(Generator):
+	ID = 76
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
-
-		# return sTweet	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		WomanNotList = ["Wife","Girlfriend","Fiancé","Virgin","Harem","Slave Girl","Damsel","Maiden","Fetish","Call-Girl"]
+		Girl = FemaleChar(iNumMaxCBits = 3, NotList = WomanNotList, bAddArticle = False, bAllowClothing = True, bAllowRelate = False, bAllowSexuality = True, bAllowSpecies = False, bAllowMaritalStatus = False, bAllowTitle = False, bAllowGenMod = True, bAddEndNoun = True)
+		Relations = WordList(["Dad's New Girlfriend","New Next Door Neighbor","New Co-worker","New Boss","New Step-Sister",
+								"New Step-Daughter","Daughter's New Best Friend","New Student","New Secretatry",
+								"New Sister-in-Law","New Girlfriend's Sister","New Assistant","New Gym Coach",
+								"New Math Tutor","New English Teacher","Dad's New Wife","New Step-Mom"])
+		NaughtyStuff = WordList(["I Ate Her Out","I Ate Her Ass","I Sucked Her Titties","I Finger-Banged Her",
+								 "I Gave Her a Pearl Necklace","I Gave Her a Rim Job","We Sixty-nined","I Fisted Her",
+								 "She Asked Me to Shave Her Cooch","I Took Pictures of Her Doing Nude Yoga","She Sucked Me Off",
+								 "She Gave Me a Hand-job","She Gave Me a Foot-Job","I Gave Her a Booty Massage... Naked",
+								 "She Let Me Play With Her Titties","She Likes to Wear Nipple Clamps",
+								 "I Whipped Her Bare Ass With a Riding Crop","She Sat On My Face",
+								 "She Smothered Me With Her Ass","She Pegged Me With a Strap-On","I Knocked Her Up",
+								 "I Spanked Her Bare Ass With a Steel Paddle","I Rimmed Her Butt-hole",
+								 "I've Seen Her Naked","She Let Me Soap Her Up in the Shower","I Got her Pregnant",
+								 "She Let Me Play With Her Hard Nips","She Let Me Play With Her Nipple Piercings"])
+		sTweet = "\"My " + Relations.GetWord() + " is\n"
+		sTweet += AddArticles(Girl.Desc) + "\n"
+		sTweet += "and\n" + NaughtyStuff.GetWord() + "!\""
+		
+		return sTweet	
 		
 # "I was a fertile harem girl
 # for a strapping black cowboy sheikh"
@@ -1936,7 +1958,7 @@ class Generator81(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		ManNotList = (["Teenage","Young","College","Visibly Erect"])
+		ManNotList = (["Teenage","Young","College","Visibly Erect","Space"])
 		Places = WordList(["at the Bowling Alley","in the Produce Section", "in the Baked Goods Section","in the Bakery",
 			"Behind the Chic-fil-a", "in the Ball Pit","Behind a Bench in the Park","at the Beach","Under an Overpass",
 			"on the Eliptical Machine at the Gym","In the Locker Room Showers","at the Seafood Restaurant","at the Museum",
@@ -1959,7 +1981,7 @@ class Generator81(Generator):
 			sTweet = "I Got My Cherry Popped\n"
 			sTweet += "by " + AddArticles(Man.Desc) + "\n"
 		
-		iRand = randint(1,8)
+		iRand = randint(1,7)
 		
 		if iRand == 1:
 			sTweet += "in the " + WordList(["Men's Room","Women's Restroom","Parking Lot"]).GetWord() + " " 
@@ -1985,14 +2007,13 @@ class Generator81(Generator):
 			sTweet += "and Then I Realized He Was " + WordList(["My New Step-Dad","My New Step-Brother",
 						"My New Next Door Neighbor","My New Brother-in-Law","My Literature Professor",
 						"My Biology Professor","My Gynecologist", "My Mom's New Boyfriend"]).GetWord() + "!"
-		elif iRand == 7:
+		else:
 			sTweet += WordList(["Live on Television!","Live on the Internet!","And He Gave Me $100!",
 								"And My Dad Was Pissed When He Found Out!","And I Let His Friends Watch!",
 								"And a Cop Caught Us!","And We Filmed the Whole Thing!",
 								"In the Basement of His Parents House!","Upstairs at His Parents House!",
-								"And He Didn't Pull Out!","And He Did My Ass Too!","And Then My Parents Came Home!"]).GetWord()
-		else:
-			sTweet += "and Now I'm Pregnant!"
+								"And He Didn't Pull Out!","And He Did My Ass Too!","And Then My Parents Came Home!",
+								"And His Sexy Wife!","And Now I'm Pregnant!"]).GetWord()
 		
 		return sTweet	
 		
@@ -2038,26 +2059,72 @@ class Generator81(Generator):
 
 		# return sTweet	
 
-# class Generator85(Generator):
-	# ID = 85
-	# Priority = 2
+class Generator85(Generator):
+	ID = 85
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
-
-		# return sTweet	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
 		
-# class Generator86(Generator):
-	# ID = 86
-	# Priority = 2
+		ManNotList = (["Teenage","Young","College","Visibly Erect","Space"])
+		
+		Man = MaleChar(iNumMaxCBits = 4, bAddArticle = False, NotList = ManNotList, bAllowRelate = False, bAllowSpecies = False, bAllowMaritalStatus = False, bAllowGang = False, bAllowTitle = False, bAllowTrope = False, bAllowGenMod = False)
+
+		if CoinFlip():
+			sTweet = "I Lost My Virginity\n"
+			sTweet += "to " + AddArticles(Man.Desc) + "\n"
+		else:
+			sTweet = "I Got My Cherry Popped\n"
+			sTweet += "by " + AddArticles(Man.Desc) + "\n"
+		
+		sTweet += WordList(["Live on Television!","Live on the Internet!","And He Gave Me $100!",
+								"And My Dad Was Pissed When He Found Out!","And I Let His Friends Watch!",
+								"And " + WordList(["a Cop","My Dad","the Principal","a Teacher","My Step-Brother","a Stranger"]).GetWord() + " Caught Us!",
+								"And We Filmed the Whole Thing!",
+								"In the Basement of His Parents House!","Upstairs at His Parents House!",
+								"And He Didn't Pull Out!","And He Did My Ass Too!","And Then My Parents Came Home!",
+								"And His Sexy Wife!","And Now I'm Pregnant!","Who Used To Be A Woman!"]).GetWord()
+
+		return sTweet	
+		
+# I Shared My Innocent Asian Wife 
+# with 
+# A Well-Hung Beefy Fighter Pilot!
+class Generator86(Generator):
+	ID = 86
+	Priority = 4
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
-
-		# return sTweet	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
 		
+		ManNotList = ["Space","Gladiator","Knight","Viking","Warrior","Shape-Shifting","Ghost"]
+		WomanNotList = ["Wife","Girlfriend","Fiancé","Virgin","Harem","Slave Girl","Damsel"]
+		
+		Man = MaleChar(iNumMaxCBits = 4, bAddArticle = False, NotList = ManNotList, bAllowRelate = False, bAllowSpecies = False, bAllowMaritalStatus = False, bAllowGang = False, bAllowTitle = False, bAllowTrope = True, bAllowGenMod = False)
+		Girl = FemaleChar(iNumMaxCBits = 3, Type = GirlType.Good, NotList = WomanNotList, bAddArticle = False, bAllowClothing = False, bAllowRelate = False, bAllowSexuality = False, bAllowSpecies = False, bAllowMaritalStatus = False, bAllowTitle = False, bAllowGenMod = False, bAddEndNoun = False)
+		
+		sTweet = "\"I Shared My " + Girl.Desc + " Wife\n"
+		sTweet += "With " + AddArticles(Man.Desc) 
+		
+		if CoinFlip():
+			sTweet += "\n" + WordList(["And She Let Me Watch","And I Haven't Seen Her Since","And She Let Him Do Butt Stuff",
+										"And She Videoed The Whole Thing For Me", "And Now She Can't Get Enough",
+										"And Now She's Insatiable","And It Turned Her Into A Wanton Slut",
+										"And She Says He's Bigger Than I Am","On Our Annivesary",
+										"As a Special Valentine's Day Gift","And Next Time It's My Turn",
+										"And He Sent Me The Pictures","And Now She's Pregnant",
+										"And They Let Me Watch","We Met At The Bar","We Found On Craigslist",
+										"Who Has a BDSM Sex Dungeon","On Her Birthday","And That Was a Big Mistake",
+										"And He Paid Us $10,000"]).GetWord()
+		
+		sTweet += "!\""
+		
+		return sTweet	
+		
+# Filming My Step-Son's Rich Bitch Wife
+# In the Shower
 # class Generator87(Generator):
 	# ID = 87
 	# Priority = 2
@@ -2068,6 +2135,9 @@ class Generator81(Generator):
 
 		# return sTweet	
 		
+# Last Night a Sexy Dominatrix (Honey, A Sexy Dominatrix)
+# Forced Me 
+# To Eat Her Ass 
 # class Generator88(Generator):
 	# ID = 88
 	# Priority = 2
