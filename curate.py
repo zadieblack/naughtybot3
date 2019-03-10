@@ -1,9 +1,10 @@
 from decimal import Decimal
+import sys, argparse
 from title.generators import *
 import title.misc
 import title.util
 
-def CurateFavorites():
+def CurateFavorites(iGen = 0):
 	sInput = ""
 	iSkipCount = 0
 	iAddCount = 0
@@ -11,7 +12,10 @@ def CurateFavorites():
 	while True:
 		# Create Title and output.
 		sTweet = ""
-		sTweet = GetTweet(False, False, bAllowPromo = False, bAllowFavTweets = False)
+		if iGen != 0:
+			sTweet = GetTweet(True, False, iGeneratorNo = iGen, bAllowPromo = False, bAllowFavTweets = False)
+		else:
+			sTweet = GetTweet(False, False, iGeneratorNo = iGen, bAllowPromo = False, bAllowFavTweets = False)
 		print("\nGenerated tweet:\n[" + sTweet + "]")
 		
 		# Prompt user.
@@ -26,7 +30,11 @@ def CurateFavorites():
 			
 		# If [q], quit.
 		elif sInput.lower().strip() == "q":
-			print("\nFavorited " + str(iAddCount) + ", rejected " + str(iSkipCount) + ". " + str(round((Decimal(iSkipCount)/Decimal(iAddCount + iSkipCount))*100,2)) + "% rejection rate.")
+			dPerRejects = 100
+			if (iAddCount + iSkipCount) != 0:
+				dPerRejects = round((Decimal(iSkipCount)/Decimal(iAddCount + iSkipCount))*100,2)
+				
+			print("\nFavorited " + str(iAddCount) + ", rejected " + str(iSkipCount) + ". " + str(dPerRejects) + "% rejection rate.")
 			break
 		
 		# If [n], do nothing and loop.
@@ -34,5 +42,13 @@ def CurateFavorites():
 			iSkipCount += 1
 			print("Skipped.")
 			
-			
-CurateFavorites()
+Parser = argparse.ArgumentParser(prog='Curate',description='Curate favorite tweets.')
+Parser.add_argument('-gen', type=int, default=0, help='tweet text generator # to curate')
+Args = Parser.parse_args()
+
+if Args.gen != 0:
+	print("Curating tweets for Generator #" + str(Args.gen))
+else:
+	print("Curating random tweets.")
+
+CurateFavorites(iGen = Args.gen)

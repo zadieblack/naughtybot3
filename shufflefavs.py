@@ -23,6 +23,6 @@ def ShuffleFavs(sFileName = ""):
 	with open(sFileName, 'w') as outfile:	
 		for x in range(0, len(Titles)):
 			outfile.write(Titles[x] + util.FAVTITLE_DIVIDER + "\n")
-			
-			
+
+	
 ShuffleFavs()
