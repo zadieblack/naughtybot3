@@ -180,18 +180,23 @@ class AttitudeGoodFemale(WordList):
 		super().__init__(['Anal Virgin',
 			'Angelic',
 			'Bashful',
+			'Bouncy',
+			'Bubbly',
 			'Chaste',
 			'Conservative','Conservative',
 			'Demure',
+			'Eager',
 			'Flirty',
 			'Innocent','Innocent','Innocent',
 			'Modest','Modest',
-			'Pure',
-			'Sassy','Sassy',
+			'Perky','Perky',
 			'Sexy',
 			'Sheltered',
 			'Shy','Shy',
+			'Sparkling',
+			'Spirited',
 			'Sporty',
+			'Straight',
 			'Sweet','Sweet',
 			'Uptight',
 			'Virginal',
@@ -205,21 +210,24 @@ class AttitudeBadFemale(WordList):
 		super().__init__(['Brazen',
 			'Daring',
 			'Desperate',
+			'Devlish',
 			'Dirty','Dirty',
 			'Dirty-Minded',
 			'Foxy',
+			'Horny',
 			'Kinky','Kinky',
 			'Lewd',
-			'Horny',
 			'Naughty','Naughty',
 			'Nympho','Nympho',
 			'Promiscuous',
 			'Revealing',
 			'Risqué',
 			'Salacious',
+			'Sassy','Sassy',
 			'Shameless','Shameless',
 			'Slutty','Slutty','Slutty',
 			'Wanton','Wanton',
+			'Wet',
 			'Wicked',
 			'Wild','Wild',
 			'Willing','Willing',
@@ -243,13 +251,15 @@ class ClothingFemale(WordList):
 class GenModFemale(WordList):
 	def __init__(self):
 		super().__init__(['Anal','Anal',
-		'BDSM','BDSM','BDSM',
+		'BDSM','BDSM',
 		'Erotic',
 		'Fetish',
 		'Horny',
-		'Nudist','Nudist','Nudist',
-		'Sex',
-		'Taboo','Taboo'])
+		'Naughty',
+		'Nudist','Nudist',
+		'Sexy','Sexy',
+		'Taboo',
+		'Tattooed'])
 		
 # single, single mom, married, engaged
 class MaritalStatusFemale(WordList):
@@ -262,16 +272,25 @@ class MaritalStatusFemale(WordList):
 # french, italian, etc
 class NationFemale(WordList):
 	def __init__(self):
-		super().__init__(['Amish','Amish','Amish',
+		super().__init__(['All-American',
+			'Amish','Amish','Amish',
 			'Asian','Asian',
-			'Brazillian',
+			'Brazillian','Brazillian',
 			'Christian','Christian','Christian',
+			'Columbian',
 			'Country',
 			'Czech',
+			'Eastern European',
+			'Elvish',
 			'French',
 			'German',
 			'Irish',
+			'Italian',
+			'Japanese',
+			'Korean',
 			'Latina',
+			'Mexican',
+			'Mormon',
 			'Polynesian',
 			'Russian',
 			'Small-Town',
@@ -343,7 +362,6 @@ class ProfGoodFemale(WordList):
 			'House Maid',
 			'Housewife',
 			'Flight Attendant',
-			'Governess',
 			'French Maid',
 			'Librarian',
 			'Life Drawing Model',
@@ -468,22 +486,21 @@ class SkinHairColorFemale(WordList):
 # futa			
 class SpeciesFemale(WordList):
 	def __init__(self):
-		super().__init__(['Cat-Girl', 
-			'Green-Skinned Alien',
+		super().__init__(['Elf',
 			'Fairy',
 			'Futa','Futa',
+			'Green-Skinned Alien',
 			'Mermaid','Mermaid','Mermaid',
 			'Nymph',
 			'Succubus','Succubus',
-			'Vampire Queen','Vampire Queen'])
+			'Vampire',
+			'Vampire Queen'])
 	
 # princess	
 class TitlesFemale(WordList):
 	def __init__(self):
-		super().__init__(['Baroness','Baroness',
-			'Duchess','Duchess',
-			'Princess','Princess','Princess','Princess','Princess',
-			'Queen','Queen','Queen'])
+		super().__init__(['Princess','Princess','Princess','Princess','Princess',
+			'Queen','Queen'])
 		
 # Amish maiden, BBW, Farmer's Daughter
 class TropesGoodFemale(WordList):
@@ -906,10 +923,8 @@ class TropesMale(WordList):
 			'Ghost',
 			'Heart-Breaker',
 			'Hipster',
-			'Hot Professor',
 			'Hunk',
 			'Jock',
-			'Kingpin',
 			'Knight',
 			'Ladies Man',
 			'Ladykiller',
