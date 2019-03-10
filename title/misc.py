@@ -353,15 +353,14 @@ class ProfGoodFemale(WordList):
 			'Milk Maid',
 			'Nanny',
 			'Nun',
-			'Nurse',
+			'Nurse','Nurse',
 			'Secretary','Secretary',
 			'Servant',
 			'Schoolgirl',
 			'Starlet',
 			'Supermodel',
 			'Teacher',
-			'Waitress',
-			'Wet Nurse'])
+			'Waitress'])
 			
 # porn star, call girl, escort, etc
 class ProfBadFemale(WordList):
@@ -504,7 +503,6 @@ class TropesGoodFemale(WordList):
 			'Damsel',
 			'Daddy\'s Girl',
 			'Farmer\'s Daughter',
-			'Geisha',
 			'Good Christian Girl',
 			'Harem Princess',
 			'Hippy Chick',
@@ -522,8 +520,7 @@ class TropesGoodFemale(WordList):
 			'Soccer Mom',
 			'Southern Belle',
 			'Tomboy',
-			'Virgin','Virgin','Virgin',
-			'Wallflower'])
+			'Virgin','Virgin','Virgin'])
 		
 # bad girl, bimbo, brat
 class TropesBadFemale(WordList):
