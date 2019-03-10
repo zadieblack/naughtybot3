@@ -467,6 +467,15 @@ class PhysCharMale(CharBit):
 		self.val = title.misc.PhysCharMale().GetWord(NotList = NotList, SomeHistoryQ = MaleCBitHistoryQ)
 		self.part = "adj"
 		return self.val
+		
+class DickCharMale(CharBit):
+	def Get(self, NotList = None):
+		if NotList is None:
+			NotList = []
+		
+		self.val = title.misc.DickCharMale().GetWord(NotList = NotList, SomeHistoryQ = MaleCBitHistoryQ)
+		self.part = "adj"
+		return self.val
 
 		
 class ProfMale(CharBit):
@@ -578,7 +587,7 @@ class GayMaleNoun(CharBit):
 		
 class MaleChar():
 	def __init__(self, iNumMinCBits = 1, iNumMaxCBits = 3, NotList = None, bAllowGang = True, bAddArticle = False, sPosArticle = "My", bAddEndNoun = True,
-		bAllowAttitude = True, bAllowPhysChar = True, bAllowSkinHairColor = True, bAllowGenMod = True, bAllowAge = True, bAllowMaritalStatus = True,
+		bAllowAttitude = True, bAllowPhysChar = True, bAllowDickChar = True, bAllowSkinHairColor = True, bAllowGenMod = True, bAllowAge = True, bAllowMaritalStatus = True,
 		bAllowNation = True, bAllowProf = True, bAllowSpecies = True, bAllowTrope = True, bAllowRelate = False,
 		bAllowTitle = True):
 		if NotList is None:
@@ -590,11 +599,11 @@ class MaleChar():
 		if iRand == 5 and bAllowGang == True:
 			self.Char = MaleGangChar(iNumMinCBits = iNumMinCBits, iNumMaxCBits = iNumMaxCBits, NotList = NotList, bAddArticle = bAddArticle, sPosArticle = sPosArticle, bAddEndNoun = bAddEndNoun,
 				bAllowAttitude = bAllowAttitude, bAllowSkinHairColor = bAllowSkinHairColor,
-				bAllowGenMod = bAllowGenMod, bAllowAge = bAllowAge,  
+				bAllowGenMod = bAllowGenMod, bAllowAge = bAllowAge, bAllowDickChar = bAllowDickChar,
 				bAllowNation = bAllowNation, bAllowProf = bAllowProf, bAllowSpecies = bAllowSpecies, bAllowTrope = bAllowTrope)
 		else:
 			self.Char = MaleRegChar(iNumMinCBits = iNumMinCBits, iNumMaxCBits = iNumMaxCBits, NotList = NotList, bAddArticle = bAddArticle, sPosArticle = sPosArticle, bAddEndNoun = bAddEndNoun,
-				bAllowAttitude = bAllowAttitude, bAllowPhysChar = bAllowPhysChar, bAllowSkinHairColor = bAllowSkinHairColor,
+				bAllowAttitude = bAllowAttitude, bAllowPhysChar = bAllowPhysChar, bAllowDickChar = bAllowDickChar, bAllowSkinHairColor = bAllowSkinHairColor,
 				bAllowGenMod = bAllowGenMod, bAllowAge = bAllowAge, bAllowMaritalStatus = bAllowMaritalStatus, 
 				bAllowNation = bAllowNation, bAllowProf = bAllowProf, bAllowSpecies = bAllowSpecies, bAllowTrope = bAllowTrope,
 				bAllowRelate = bAllowRelate, bAllowTitle = bAllowTitle)
@@ -603,7 +612,7 @@ class MaleChar():
 		
 class MaleRegChar(Character):
 	def __init__(self, iNumMinCBits = 1, iNumMaxCBits = 3, NotList = None, bAddArticle = False, sPosArticle = "My", bAddEndNoun = True, 
-		bAllowAttitude = True, bAllowPhysChar = True, bAllowSkinHairColor = True, bAllowGenMod = True, bAllowAge = True, bAllowMaritalStatus = True,
+		bAllowAttitude = True, bAllowPhysChar = True, bAllowDickChar = True, bAllowSkinHairColor = True, bAllowGenMod = True, bAllowAge = True, bAllowMaritalStatus = True,
 		bAllowNation = True, bAllowProf = True, bAllowSpecies = True, bAllowTrope = True, bAllowRelate = False,
 		bAllowTitle = True):
 		super().__init__()
@@ -622,6 +631,8 @@ class MaleRegChar(Character):
 		if bAllowPhysChar:
 			CharBitList.append(PhysCharMale())
 			CharBitList.append(PhysCharMale())
+		if bAllowDickChar:
+			CharBitList.append(DickCharMale())
 		if bAllowSkinHairColor:
 			CharBitList.append(SkinHairColorMale())
 		if bAllowGenMod:
@@ -688,7 +699,7 @@ class MaleRegChar(Character):
 			
 class MaleGangChar(Character):
 	def __init__(self, iNumMinCBits = 1, iNumMaxCBits = 3, NotList = None, bAddArticle = False, sPosArticle = "My", bAddEndNoun = True, 
-		bAllowAttitude = True, bAllowSkinHairColor = True, bAllowGenMod = True, bAllowAge = True, 
+		bAllowAttitude = True, bAllowSkinHairColor = True, bAllowGenMod = True, bAllowAge = True, bAllowDickChar = True,
 		bAllowNation = True, bAllowProf = True, bAllowSpecies = True, bAllowTrope = True):
 		super().__init__()
 		
@@ -710,6 +721,8 @@ class MaleGangChar(Character):
 			CharBitList.append(GenModMale())
 		if bAllowAge:
 			CharBitList.append(AgeMale())
+		if bAllowDickChar:
+			CharBitList.append(DickCharMale())
 		if bAllowNation:
 			CharBitList.append(NationMale())
 		if bAllowProf:

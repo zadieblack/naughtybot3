@@ -155,7 +155,7 @@ class Generator1(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		Master = MaleChar(iNumMaxCBits = 3, bAddArticle = True)
+		Master = MaleChar(iNumMaxCBits = 4, bAddArticle = True)
 	
 		sTweet = self.VerbsBy.GetWord() + " By\n" + Master.Desc
 		
@@ -843,7 +843,8 @@ class Generator30(Generator):
 		elif iRand == 10:
 			sTweet += "Gets Her Anal Cherry Popped"
 		elif iRand > 10 and iRand < 12:
-			sTweet += WordList(["Wants","Craves","Is Horny for","Begs for"]).GetWord() + " " + WordList(["Dick","The D","Cock","Some Dick","A Hard Cock"]).GetWord()
+			sTweet += WordList(["Wants","Craves","Is Horny for","Begs for"]).GetWord() + " " 
+			sTweet += WordList(["Dick","The D","Cock","Some Dick","A Hard Cock","a Fat Boner"]).GetWord()
 		else: 
 			sTweet += "Wears a Butt Plug"
 
@@ -915,7 +916,7 @@ class Generator31(Generator):
 			sTweet += WordList(["Wants","Craves","Is Horny for","Begs for"]).GetWord() + " " 
 			sTweet += WordList(["Her Neighbor's","Her Step-Brother's","Her Professor's","Her Teacher's","Her Boss's",
 								"Her Step-Dad's","Her Uncle's","Her Gym Coach's","Her Gynecologist's","A Stranger's"]).GetWord() + " "
-			sTweet += WordList(["Dick","D","Cock","Hard Cock","Fat Dick","Dingus","Meat Stick","Flesh Pole"]).GetWord()
+			sTweet += WordList(["Dick","D","Cock","Hard Cock","Fat Dick","Dingus","Meat Stick","Flesh Pole","Fat Boner"]).GetWord()
 		else: 
 			sTweet += "Is Wearing " + WordList(["a Butt Plug","an Anal Hook","Nipple Clamps","a Ball Gag","a Clit Clamp",
 												"Crotchless Panties","a Strap-On","a Remote-Controlled Vibrator",
@@ -2066,7 +2067,7 @@ class Generator78(Generator):
 		sTweet = ""
 
 		Gerunds = WordList(["69ing","Ass-Eating","Bedding","Binding","Breaking","Breeding","Caning","Claiming","Deflowering",
-						    "Defiling","Dominating","Edging","Exposing","Fingering","Fisting","Impregating","Ogling","Milking","Motor-Boating",
+						    "Defiling","Dominating","Edging","Exposing","Fingering","Fisting","Impregnating","Ogling","Milking","Motor-Boating",
 							"Paddling","Peeing On","Penetrating","Pleasuring","Porking","Pumping","Rimming","Sharing","Shaving","Spanking","Spraying","Spread-Eagling",
 							"Spit-Roasting","Stripping","Stuffing","Taking","Tasting","Tea-Bagging","Touching","Toying","Whipping",
 							"Undressing","Using","Video-Taping"])
@@ -2359,15 +2360,69 @@ class Generator89(Generator):
 		
 		return sTweet	
 	
-# class Generator90(Generator):
-	# ID = 90
-	# Priority = 2
+# A Big Day for Veronica:
+# The Nubile Nympho Teen Slut 
+# Gets Anal Fisted 
+class Generator90(Generator):
+	ID = 90
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		NotGirlList = ["Harem Princess"]
+		Girl = FemaleChar(iNumMinCBits = 3, Type = GirlType.Bad, NotList = NotGirlList, bAllowSpecies = False)
 
-		# return sTweet	
+		
+			
+		sHerName = NamesFemale().FirstName()
+		
+		sTweet = "A Big Day for " + sHerName + ":\n"
+		sTweet += "The " + Girl.Desc + "\n"
+			
+		iRand = randint(1,13)
+		if iRand < 3:
+			ErectAdjs = WordList(["Swollen","Engorged","Turgid","Rock Hard","Bulging","Fully Erect","Hugely Erect","Veiny",
+						  "Throbbing","Meaty","Burning","Dripping","Purple","Red","Fleshy","Lustful","Passionate",
+						  "Throbbing","Pulsating","Vigorous","Virile","Moist","Black","Stiff","Girthy"])
+			sTweet += "Gets a " + ErectAdjs.GetWord() + " " + str(randint(8,12)) + "\" Surprise"
+		elif iRand == 3:
+			sTweet += "Makes Her First " + WordList(["Lesbian","Hardcore","Anal","Gangbang","Creampie","Bondage"]).GetWord() + " Porno"
+		elif iRand == 4:
+			sTweet += "Gets Her " + WordList(["Nipples","Clit","Labia","Taint","Ass Dimples"]).GetWord() + " Pierced"
+		elif iRand == 5:
+			Places = WordList(["at the Bowling Alley","in the Produce Section", "in the Baked Goods Section","in the Bakery",
+			"at the Chic-fil-a","in the Ball Pit","at the Park","at the Beach","Under an Overpass","at the Gym",
+			"on the Eliptical Machine at the Gym","at the Seafood Restaurant","at the Museum","at Burger King",
+			"at the Library","at the Farmer's Market","next to the Duck Pond","at Church","at the Bar",
+			"in the Window Display of a Shoe Store","at Wal-Mart","at Starbucks","at School","on Campus",
+			"in the Church Graveyard","at a Construction Site","at Rush Hour Traffic","at Her Uber Driver",
+			"on a Hotel Balcony","Beside the Bike Path","at the Mail Man","at the Amazon Delivery Guy",
+			"Behind the Bleachers","In the Back of a Ford 150","In a Movie Theater","at Chipotle","at Barnes & Noble",
+			"at Whole Foods","at the Mall","at the CVS"
+			])
+			sTweet += "Flashes Her " + WordList(["Tits","Ass","Pussy"]).GetWord() + " " + Places.GetWord()
+		elif iRand == 6:
+			sTweet += "Has Her First " + WordList(["Threesome","Foursome","Fivesome","Orgy","Gang Bang","Black Gang Bang"]).GetWord()
+		elif iRand == 7:
+			sTweet += "Has a " + WordList(["Dick","Cock","Penis","Prick"]).GetWord()
+		elif iRand == 8:
+			sTweet += "Tries a Glory Hole"
+		elif iRand == 9:
+			sTweet += "Gets " + WordList(["Fisted","Anal Fisted","Bukkake'd","Double-Penetrated","Spit-Roasted",
+										  "Blindfolded and Whipped","Shared with Strangers"]).GetWord()
+		elif iRand > 10 and iRand < 12:
+			sTweet += WordList(["Gets"]).GetWord() + " " 
+			sTweet += WordList(["Her Neighbor's","Her Step-Brother's","Her Professor's","Her Teacher's","Her Boss's",
+								"Her Step-Dad's","Her Uncle's","Her Gym Coach's","Her Gynecologist's","A Stranger's"]).GetWord() + " "
+			sTweet += WordList(["Dick","D","Cock","Hard Cock","Fat Dick","Dingus","Meat Stick","Flesh Pole","Fat Boner"]).GetWord()
+		else: 
+			sTweet += "Tries " + WordList(["a Butt Plug","an Anal Hook","Nipple Clamps","a Ball Gag","a Clit Clamp",
+												"Crotchless Panties","a Strap-On","a Remote-Controlled Vibrator",
+												"Anal Beads"]).GetWord()
+
+		return sTweet	
 		
 # class Generator91(Generator):
 	# ID = 91
