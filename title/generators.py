@@ -2243,7 +2243,7 @@ class Generator82(Generator):
 		sInnocentAdj = WordList(title.misc.NiceGirlGoodAdjs().List + ["Sweet"]).GetWord()
 		
 		GirlNotList = ['MILF','Older','Fertile','Slave Girl','Life Drawing Model','Bikini Model','HuCow','Supermodel','Harem Princess',sInnocentAdj]
-		Girl = FemaleChar(iNumMaxCBits = 3, iNumMinCBits = 2, NotList = GirlNotList, Type = GirlType.Good, bAddArticle = False, bAllowRelate = False, bAllowAttitude = False, bAllowSpecies = False, bAllowSkinHairColor = False, bAllowTitle = False, bAllowNation = True, bAllowGenMod = False, bAllowClothing = False, bAllowPhysChar = False, bAllowSexuality = False, bAllowMaritalStatus = False)
+		Girl = FemaleChar(iNumMaxCBits = 3, iNumMinCBits = 1, NotList = GirlNotList, Type = GirlType.Good, bAddArticle = False, bAllowRelate = False, bAllowAttitude = False, bAllowSpecies = False, bAllowSkinHairColor = False, bAllowTitle = False, bAllowNation = True, bAllowGenMod = False, bAllowClothing = False, bAllowPhysChar = False, bAllowSexuality = False, bAllowMaritalStatus = False)
 
 		ManNotList = ['Shape-Shifting']
 		Man = MaleChar(iNumMaxCBits = 4, iNumMinCBits = 2, NotList = ManNotList, bAddArticle = False, bAllowGang = False, bAllowRelate = False, bAllowAttitude = True, bAllowSpecies = False, bAllowSkinHairColor = True, bAllowTitle = False, bAllowNation = True)
