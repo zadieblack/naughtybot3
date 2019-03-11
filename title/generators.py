@@ -2242,7 +2242,7 @@ class Generator82(Generator):
 		
 		sInnocentAdj = WordList(title.misc.NiceGirlGoodAdjs().List + ["Sweet"]).GetWord()
 		
-		GirlNotList = ['Older','Fertile','Slave Girl','Life Drawing Model','Bikini Model','HuCow','Supermodel',sInnocentAdj]
+		GirlNotList = ['MILF','Older','Fertile','Slave Girl','Life Drawing Model','Bikini Model','HuCow','Supermodel','Harem Princess',sInnocentAdj]
 		Girl = FemaleChar(iNumMaxCBits = 3, iNumMinCBits = 2, NotList = GirlNotList, Type = GirlType.Good, bAddArticle = False, bAllowRelate = False, bAllowAttitude = False, bAllowSpecies = False, bAllowSkinHairColor = False, bAllowTitle = False, bAllowNation = True, bAllowGenMod = False, bAllowClothing = False, bAllowPhysChar = False, bAllowSexuality = False, bAllowMaritalStatus = False)
 
 		ManNotList = ['Shape-Shifting']

@@ -757,7 +757,7 @@ class PhysCharMale(WordList):
 			
 class DickCharMale(WordList):
 	def __init__(self):
-		super().__init__(['Donkey Dicked',
+		super().__init__(['Donkey-Dicked',
 			'Engorged',
 			'Erect',
 			'Fully Erect',
@@ -971,7 +971,6 @@ class TropesMale(WordList):
 			'Stalker',
 			'Stud',
 			'Sugar Daddy',
-			'Suave Bachelor',
 			'Trillionaire',
 			'Viking',
 			'Voyeur',
