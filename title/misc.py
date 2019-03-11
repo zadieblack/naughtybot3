@@ -241,11 +241,11 @@ class AttitudeFemale(WordList):
 		
 class ClothingFemale(WordList):
 	def __init__(self):
-		super().__init__(['Bikini Wearing',
+		super().__init__(['Bikini-Wearing',
 			'Braless',
 			'G-String',
 			'High-Heeled',
-			'Latex Wearing',
+			'Latex-Wearing',
 			'Leather-Clad',
 			'Scantily-Clad',
 			'Topless'])
@@ -368,7 +368,6 @@ class ProfGoodFemale(WordList):
 			'Cheerleader',
 			'Co-ed',
 			'College Girl',
-			'Dancer',
 			'Fashion Model',
 			'Gymnast',
 			'House Maid',
@@ -689,7 +688,6 @@ class GenModMale(WordList):
 			'Secret',
 			'Sex Addict',
 			'Shirtless',
-			'Sorcerer',
 			'Stay-at-Home',	
 			'Studly',
 			'Stylish',
@@ -1258,7 +1256,7 @@ class NiceGirlGoodAdjs(WordList):
 						  "Demure",
 						  "Innocent",
 						  "Modest",
-						  "Pure",
+						  "Mormon",
 						  "Sheltered",
 						  "Shy",
 						  "Wholesome",
