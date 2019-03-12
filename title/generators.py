@@ -1823,15 +1823,29 @@ class Generator67(Generator):
 # but it can't hurt if I try rimming
 # with this Italian Don Juan cowboy 
 # just this once!
-# class Generator68(Generator):
-	# ID = 68
-	# Priority = 2
+class Generator68(Generator):
+	ID = 68
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		SexActs = WordList(["69 with","have Anal Sex with","try BDSM with","get a Dirty Sanchez from","try Double Penetration with",
+							"try Erotic Asphyxiation with","try Leather Bondage with","try Face-Sitting with","get Fisted by",
+							"get Rimmed by", "try Rimming","try Water Sports with","try Whips and Chains with",
+							"try Spooning Naked with","try Age Play with","do Butt Stuff with","try Edging with",
+							"get My Ass Eaten by","try Eating the Ass of","perform an Erotic Massage on",
+							"do a Strip Tease for","give a Footjob to","try Nipple Play with","Go Down On",
+							"give a Tit-Job to","get Cunnilingus from","get Eaten Out by","get Fingered by"])
+		
+		Man = MaleChar(iNumMaxCBits = 2, bAddArticle = False, bAddEndNoun = False, bAllowAge = False, bAllowRelate = False, bAllowSpecies = True, bAllowMaritalStatus = False, bAllowGang = False, bAllowTitle = False, bAllowTrope = False)
+		
+		sTweet = "\"I Know " + WordList(["I'm Married","I'm Married","I'm Engaged","I Have a Boyfriend"]).GetWord() + ", But\n"
+		sTweet += "It Can't Hurt If I " + SexActs.GetWord() + " " + AddArticles(Man.Desc + " " + title.misc.ProfMale().GetWord()) + "\n"
+		sTweet += "Just This Once!\""
 
-		# return sTweet	
+		return sTweet	
 		
 # The wholesome blonde Christian girl spreads her legs (bends over/drops her panties/puts out)
 # for the cocky Italian DILF!

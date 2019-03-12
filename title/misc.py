@@ -304,7 +304,7 @@ class PhysCharFemale(WordList):
 		super().__init__(['Apple-Bottomed',
 			'Athletic',
 			'Attractive',
-			'Bare Shaven',
+			'Bare-Shaven',
 			'Beautiful',
 			'Big Bottomed',
 			'Big-Titty',
@@ -1258,6 +1258,7 @@ class NiceGirlGoodAdjs(WordList):
 						  "Mormon",
 						  "Sheltered",
 						  "Shy",
+						  "Tender",
 						  "Wholesome",
 						  "Uptight",
 						  "Virgin"])
