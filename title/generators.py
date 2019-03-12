@@ -155,7 +155,7 @@ class Generator1(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		Master = MaleChar(iNumMaxCBits = 4, bAddArticle = True)
+		Master = MaleChar(iNumMaxCBits = 5, bAddArticle = True, bAllowGang = False)
 	
 		sTweet = self.VerbsBy.GetWord() + " By\n" + Master.Desc
 		
@@ -679,7 +679,7 @@ class Generator28(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		Girl = FemaleChar(bAddEndNoun = False, bAllowMaritalStatus = False, NotList = ['Single', 'Divorced'])
+		Girl = FemaleChar(iNumMaxCBits = 3, bAddEndNoun = False, bAllowMaritalStatus = False, NotList = ['Single', 'Divorced'])
 		
 		if CoinFlip():
 			sTweet = "Cuckolded By My\n" + Girl.Desc + " " + WordList(['Wife', 'Wife', 'Hotwife', 'Fiancé', 'Girlfriend', 'Mistress']).GetWord()
@@ -980,9 +980,9 @@ class Generator33(Generator):
 		
 		sVerb = self.Gerunds.GetWord()
 		
-		Girl = FemaleChar(iNumMaxCBits = 3)
+		Girl = FemaleChar(iNumMaxCBits = 4)
 		sTweet = sVerb + " " + self.HerName + ":\n"
-		sTweet += "A " + Girl.Desc + "\n" + self.SubtitleCoda.GetWord()
+		sTweet += AddArticles(Girl.Desc) + "\n" + self.SubtitleCoda.GetWord()
 
 		return sTweet
 		
@@ -2528,6 +2528,8 @@ class Generator90(Generator):
 
 		# return sTweet	
 		
+# Veronica Puts On Latex (Leather/A Butt Plug):
+# Let the Hotwife Games Begin! (Bondage/BDSM/Dominatrix)
 # class Generator93(Generator):
 	# ID = 93
 	# Priority = 2
@@ -2538,6 +2540,9 @@ class Generator90(Generator):
 
 		# return sTweet	
 		
+# "I'm a Stay-at-Home Mommmy Blogger
+# And A Billionaire Biker
+# Spooned Me Hard!"
 # class Generator94(Generator):
 	# ID = 94
 	# Priority = 2

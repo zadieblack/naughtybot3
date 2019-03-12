@@ -185,6 +185,7 @@ class AttitudeGoodFemale(WordList):
 			'Chaste',
 			'Conservative','Conservative',
 			'Demure',
+			'Ditzy',
 			'Eager',
 			'Flirty',
 			'Innocent','Innocent','Innocent',
@@ -207,7 +208,8 @@ class AttitudeGoodFemale(WordList):
 # kinky, slutty, etc 
 class AttitudeBadFemale(WordList):
 	def __init__(self):
-		super().__init__(['Brazen',
+		super().__init__(['Anal Virgin',
+			'Brazen',
 			'Daring',
 			'Desperate',
 			'Devlish',
@@ -226,6 +228,7 @@ class AttitudeBadFemale(WordList):
 			'Risqué',
 			'Salacious',
 			'Sassy','Sassy',
+			'Saucy',
 			'Shameless','Shameless',
 			'Slutty','Slutty','Slutty',
 			'Wanton','Wanton',
@@ -243,11 +246,15 @@ class ClothingFemale(WordList):
 	def __init__(self):
 		super().__init__(['Bikini-Wearing',
 			'Braless',
+			'Fashionable',
 			'G-String',
 			'High-Heeled',
 			'Latex-Wearing',
 			'Leather-Clad',
+			'Naked',
+			'Nudist','Nudist',
 			'Scantily-Clad',
+			'Thong-Wearing',
 			'Topless'])
 
 class GenModFemale(WordList):
@@ -258,7 +265,6 @@ class GenModFemale(WordList):
 		'Fetish',
 		'Horny',
 		'Naughty',
-		'Nudist','Nudist',
 		'Sexy','Sexy',
 		'Taboo',
 		'Tattooed'])
@@ -302,23 +308,29 @@ class NationFemale(WordList):
 class PhysCharFemale(WordList):
 	def __init__(self):
 		super().__init__(['Apple-Bottomed',
+			'Ample-Bosomed',
 			'Athletic',
 			'Attractive',
 			'Bare-Shaven',
 			'Beautiful',
 			'Big Bottomed',
 			'Big-Titty',
+			'Boobalicious',
+			'Bosomy',
 			'Bubble Butt',
 			'Busty',
 			'Buxom',
 			'Curvy',
 			'Curvaceous',
 			'Cute',
+			'Flat-Chested',
 			'Flexible',
+			'Full-Figured',
 			'Gorgeous',
 			'Hot',
 			'Jiggling',
 			'Juicy','Juicy',
+			'Large-Breasted',
 			'Leggy',
 			'Little','Little','Little',
 			'Naked',
@@ -329,13 +341,16 @@ class PhysCharFemale(WordList):
 			'Oiled Up',
 			'Petite',
 			'Plump',
+			'Ripe',
 			'Round-Bottomed',
 			'Rubenesque',
+			'Sun-Baked',
 			'Shapely',
 			'Shaved Bare',
 			'Skinny',
 			'Slender',
 			'Sporty',
+			'Stacked',
 			'Statuesque',
 			'Supple',
 			'Tender',
@@ -363,51 +378,63 @@ class ProfGoodFemale(WordList):
 			'Babysitter',
 			'Ballerina',
 			'Barista',
-			'Bikini Model',
 			'Bridesmaid',
 			'Cheerleader',
 			'Co-ed',
 			'College Girl',
 			'Fashion Model',
+			'Flight Attendant',
 			'Gymnast',
 			'House Maid',
 			'Housewife',
-			'Flight Attendant',
-			'French Maid',
+			'Intern',
 			'Librarian',
 			'Life Drawing Model',
-			'Lingerie Model',
 			'Masseuse',	
 			'Maid',
 			'Milk Maid',
+			'Mommy Blogger',
 			'Nanny',
 			'Nun',
 			'Nurse','Nurse',
+			'Nursing Student',
 			'Secretary','Secretary',
 			'Servant',
 			'Schoolgirl',
-			'Starlet',
+			'Stay-at-Home Mom',
 			'Supermodel',
 			'Teacher',
-			'Waitress'])
+			'Waitress',
+			'Yoga Instructor'])
 			
 # porn star, call girl, escort, etc
 class ProfBadFemale(WordList):
 	def __init__(self):
 		super().__init__(['Amateur Porn Star',
 			'Anal Whore',
-			'Call-Girl','Call-Girl','Call-Girl',
+			'Bikini Model',
+			'Call-Girl','Call-Girl',
+			'Cheerleader',
 			'Dominatrix',
 			'Escort',
 			'Fashion Model',
 			'Fetish Model',
+			'French Maid',
 			'Gymnast',
+			'Hooter\'s Waitress',
 			'Housewife',
+			'Lingerie Model',
+			'Masseuse',	
 			'Nun',
+			'Nurse',
 			'Playboy Centerfold',
+			'Pole Dancer',
 			'Porn Star',
+			'Secretary',
 			'Slave','Slave','Slave',
+			'Starlet',
 			'Stripper','Stripper',
+			'Supermodel',
 			'Whore'])
 			
 class ProfFemale(WordList):
@@ -510,7 +537,8 @@ class SpeciesFemale(WordList):
 # princess	
 class TitlesFemale(WordList):
 	def __init__(self):
-		super().__init__(['Princess','Princess','Princess','Princess','Princess',
+		super().__init__(['Heiress',
+			'Princess','Princess','Princess','Princess','Princess',
 			'Queen','Queen'])
 		
 # Amish maiden, BBW, Farmer's Daughter
@@ -530,15 +558,13 @@ class TropesGoodFemale(WordList):
 			'Damsel',
 			'Daddy\'s Girl',
 			'Farmer\'s Daughter',
-			'Good Christian Girl',
-			'Harem Princess',
 			'Hippy Chick',
 			'HuCow',
 			'Kitten',
 			'Pastor\'s Wife',
 			'Pixie',
 			'Princess',
-			'Prom Queen','Prom Queen',
+			'Prom Queen',
 			'Schoolgirl',
 			'Single Mom',
 			'Slave Girl',
@@ -554,6 +580,8 @@ class TropesBadFemale(WordList):
 	def __init__(self):
 		super().__init__(['Bad Girl',
 			'Bad Girl',
+			'Beach Bunny',
+			'Bitch',
 			'Brat',
 			'Anal Bimbo',
 			'Bimbo','Bimbo',
@@ -561,7 +589,9 @@ class TropesBadFemale(WordList):
 			'Naughty Brat',
 			'Femme Fatale',
 			'Goth Girl',
+			'Harem Princess',
 			'Hotwife','Hotwife',
+			'HuCow',
 			'Sex Kitten',
 			'Lesbian',
 			'MILF','MILF','MILF',
@@ -571,6 +601,7 @@ class TropesBadFemale(WordList):
 			'Rebellious Teen',
 			'Rich Bitch',
 			'Single Mom Stripper',
+			'Slut',
 			'Sorority Girl',
 			'Spoiled Bitch',
 			'Stripper',
@@ -975,6 +1006,19 @@ class TropesMale(WordList):
 			'Viking',
 			'Voyeur',
 			'Warrior'])
+			
+class TropesMale(WordList):
+	def __init__(self):
+		super().__init__(['Billionaire',
+			'Bitcoin Billionaire',
+			'Gazillionaire',
+			'Millionaire',
+			'Multi-Billionaire',
+			'Multi-Millionaire',
+			'Playboy',
+			'Playboy Billionaire',
+			'Trillionaire'
+			])
 			
 class GangsMale(WordList):
 	def __init__(self):

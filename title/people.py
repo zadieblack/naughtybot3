@@ -269,13 +269,13 @@ class FemaleChar(Character):
 		if bAllowSexuality:
 			CharBitList.append(SexualityFemale())
 		if bAllowProf: 
-			CharBitList.append(ProfFemale(Type = Type))
+			#CharBitList.append(ProfFemale(Type = Type))
 			CharBitList.append(ProfFemale(Type = Type))
 			CharBitList.append(ProfFemale(Type = Type))
 		if bAllowSpecies:
 			CharBitList.append(SpeciesFemale())
 		if bAllowTrope:
-			CharBitList.append(TropeFemale(Type = Type))
+			#CharBitList.append(TropeFemale(Type = Type))
 			CharBitList.append(TropeFemale(Type = Type))
 			CharBitList.append(TropeFemale(Type = Type))
 		if bAllowRelate:
@@ -306,6 +306,8 @@ class FemaleChar(Character):
 			if not bFoundNoun:
 				if bAllowTrope:
 					BitGetList.append(TropeFemale(Type = Type).Get(NotList = NotList))
+				elif bAllowProf:
+					BitGetList.append(ProfFemale(Type = Type).Get(NotList = NotList))
 				else:
 					BitGetList.append(WordList(["Girl","Woman"]).GetWord(NotList = NotList))
 		
@@ -650,7 +652,6 @@ class MaleRegChar(Character):
 			CharBitList.append(SpeciesMale())
 		if bAllowTrope:
 			CharBitList.append(TropeMale())
-			CharBitList.append(TropeMale())
 		if bAllowRelate:
 			CharBitList.append(RelateMale())
 		if bAllowTitle:
@@ -729,7 +730,6 @@ class MaleGangChar(Character):
 			CharBitList.append(ProfMale())
 			CharBitList.append(ProfMale())
 		if bAllowTrope:
-			CharBitList.append(TropeMale())
 			CharBitList.append(TropeMale())
 		if bAllowSpecies:
 			CharBitList.append(SpeciesMale())

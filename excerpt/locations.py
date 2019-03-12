@@ -71,8 +71,10 @@ class Location():
 				sPutItOn = "pulled his " + self.MaleBottomClothing + " up"
 			else:
 				sPutItOn = "pulled his " + self.MaleBottomClothing + " up and put on his " + self.MaleTopClothing
-		else:
+		elif not self.MaleBottomClothing == "":
 			sPutItOn = "pulled up his " + self.MaleBottomClothing
+		else:
+			sPutItOn = "began to pull on some clothes"
 			
 		return sPutItOn
 		
@@ -84,8 +86,10 @@ class Location():
 				sPutItOn = "wiggled into her " + self.FemaleBottomClothing
 			else:
 				sPutItOn = "wiggled into her " + self.FemaleBottomClothing + " and then he helped her into her " + self.FemaleTopClothing
-		else:
+		elif not self.FemaleBottomClothing == "":
 			sPutItOn = "wiggled into her " + self.FemaleBottomClothing
+		else:
+			sPutItOn = "began to pull on some clothes"
 			
 		return sPutItOn
 		
