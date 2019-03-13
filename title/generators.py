@@ -1568,6 +1568,162 @@ class Generator51(Generator):
 
 		return sTweet
 		
+# My Hot Redhead Teacher
+# Is Secretly
+# A Stripper!
+class Generator52(Generator):
+	ID = 52
+	Priority = 2
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		Exclamations = WordList(["Oh S@*#!", "Oh No!", "WTF?!?", "Oh F*@%!"])
+
+		SexyAdjs = WordList(["Hot","Sexy","Cute","Busty","Stacked","Thicc","Tanned","Bikini-Bod",
+							 "Chesty","Young","Nubile"
+							])
+		sSexyAdj = SexyAdjs.GetWord()
+		GoodJobs = WordList(["Teacher","English Teacher","Yoga Instructor","Librarian","Nanny","Math Tutor","Babysitter",
+							 "Nurse","Piano Teacher","Dance Teacher","Algebra Teacher","Biology Teacher","Personal Trainer",
+							 "House Maid","French Maid","Secretary","Intern","Assistant","Physical Therapist","Therapist",
+							 "Violin Teacher","Dance Instructor","Gym Coach","Volleyball Coach"
+							 ])
+		sJob = GoodJobs.GetWord()
+		
+		GirlNotList = [sSexyAdj,sJob,'Slave Girl','Concubine']
+		Girl = FemaleChar(iNumMinCBits = 1, iNumMaxCBits = 2, Type = GirlType.Good, NotList = GirlNotList, bAddArticle = False, bAddEndNoun = False,
+							bAllowTitle = False, bAllowSexuality = False, bAllowClothing = False, bAllowGenMod = False, bAllowPregState = False, bAllowSpecies = False, bAllowMaritalStatus = False, bAllowAge = False)
+
+		BadGirlNotList = ['Nun','Nurse','Gymnast','Masseuse','Cheerleader','Starlet','Secretary','Housewife','Fashion Model','French Maid']
+		if CoinFlip():
+			sTweet += Exclamations.GetWord() + " "
+		if CoinFlip():	
+			sTweet+= "My " + sSexyAdj + " " + Girl.Desc + " " + GoodJobs.GetWord() + " Is Secretly\n" + AddArticles(title.misc.ProfBadFemale().GetWord(NotList = BadGirlNotList)) + "!"
+		else:
+			sTweet+= "My " + sSexyAdj + " " + Girl.Desc + " " + GoodJobs.GetWord() + " Is Secretly\n" + AddArticles(title.misc.SpeciesFemale().GetWord() + " " + title.misc.ProfBadFemale().GetWord(NotList = BadGirlNotList)) + "!"
+		
+		return sTweet	
+		
+# Daddy Found Out
+# His Sweet Little Step-Daughter 
+# Is a Sassy Asian Stripper 
+# And Now He's Pissed!
+class Generator53(Generator):
+	ID = 53
+	Priority = 2
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		NiceAdjs1 = WordList(["Bashful","Chaste","Conservative","Demure","Innocent",
+							 "Modest","Sheltered","Shy","Tender","Wholesome","Introverted","Bubbly",
+							 "Sweet","Sweet","Sweet","Little","Little"])
+		NiceAdjs2 = WordList(["Christian","Christian","Mormon","Virgin","All-American",
+							 "Athletic","Blonde","British","Brunette","Cheerleader","Dark-Skinned","Curvy",
+							 "Ebony","French","Gymnast","Redheaded","Mormon","Curly-Haired"])
+		sNiceAdj1 = NiceAdjs1.GetWord()
+		sNiceAdj2 = NiceAdjs2.GetWord()
+		
+		RelateGirls = WordList(["Step-Daughter","Daughter"])
+		
+		BadGirlNotList = ['Nun','Nurse','Gymnast','Masseuse','Cheerleader','Starlet','Secretary','Housewife','Fashion Model','French Maid']
+		Girl = FemaleChar(iNumMinCBits = 1, iNumMaxCBits = 3, bAddArticle = False, Type = GirlType.Bad, NotList = BadGirlNotList, 
+							bAllowAge = False, bAllowClothing = False, bAllowMaritalStatus = False, bAllowPregState = False, bAllowTrope = False, bAllowPhysChar = False, bAllowRelate = False)
+		
+		sTweet = "Daddy Found Out\nThat His " + sNiceAdj1 + " " + sNiceAdj2 + " " + RelateGirls.GetWord() + "\n"
+		sTweet += "Is " + AddArticles(Girl.Desc) + "\nAnd Now He's Pissed!"
+
+		return sTweet	
+		
+# 8" of Steel:
+# The Feisty Princess (Nubile Queen / Virginal Priestess)
+# Encounters 
+# The Strapping Naked Half-Orc Barbarian 
+class Generator54(Generator):
+	ID = 54
+	Priority = 2
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		Weapons = WordList(['Steel','Molten Steel','Iron','Molten Iron','Hot Steel','Burning Steel','Hot Iron','Smoldering Steel'])
+		LadyAdjs1 = WordList(['Feisty','Nubile','Virginal','Saucy','Wanton','Chaste','Demure','Virginal',
+							  'Winsome','Brazen','Sassy','Willing','Lonesome','Sheltered','Blossoming'])
+		LadyAdjs2 = WordList(['Buxom','Ample-Bosomed','Apple-Bottomed','Bosomy','Jiggling','Little','Naked','Narrow-Waisted',
+							  'Nude','Petite','Plump','Ripe','Rubenesque','Shapely','Slender','Willowy','Statuesque',
+							  'Tender','Voluptuous','Young','Undressed'])
+		Ladies = WordList(['Princess','Queen','Maiden','Priestess','Maid','Nun','Damsel','Handmaiden'])
+		MaleAdjs1 = WordList(['Beefy','Brawny','Bearded','Broad-Chested','Enormous','Hairy','Handsome','Huge','Muscle-Bound',
+							  'Muscular','Strapping','Hunky'])
+		MaleAdjs2 = WordList(['Powerful','Shirtless','Naked','Nude','Brazen','Rakish','Roguish','Cocky','Cocksure',
+							  'Gruff','Dominant','Horny','Lustful','Randy','Savage','Wanton'])
+		DickAdjs = WordList(['Donkey-Dicked','Engorged','Erect','Fully Erect','Girthy','Hard','Horse-Cock',
+							  'Hugely Erect','Hung','Hung','Massively Erect','Rock-Hard','Throbbing',
+						      'Visibly Aroused','Visibly Erect','Well-Hung','Well-Hung','Well-Endowed',
+							  'Well-Endowed','Virile'])
+		MaleSpecies = WordList(['Dark Elf','Demon','Dwarf','Centaur','Gargoyle','Giant','Goat Man','Goblin',
+								'Half-Orc','Lizard Man','Orc','Vampire','Werewolf'])
+		MaleClass = WordList(['Barbarian','Warrior','Knight','Ranger','Bandit','Highwayman','Prince','Duke','Mercenary',
+								'Paladin','Monk','Rogue','Thief','Warlock','Sorcerer','Hunter','Swordsman'])
+								
+		iLength = randint(8,12)
+		sTweet = str(iLength) + "\" of " + Weapons.GetWord() + ":\n"
+		sTweet += "The " + LadyAdjs1.GetWord() + " " + LadyAdjs2.GetWord() + " " + Ladies.GetWord() + "\n"
+		sTweet += "Encounters\nThe "
+		if CoinFlip():
+			sTweet += MaleAdjs1.GetWord() + " "
+		if CoinFlip():
+			sTweet += MaleAdjs2.GetWord() + " "
+		if CoinFlip():
+			sTweet += DickAdjs.GetWord() + " "
+		sTweet += MaleSpecies.GetWord() + " " + MaleClass.GetWord()
+
+		return sTweet	
+		
+# class Generator55(Generator):
+	# ID = 55
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator56(Generator):
+	# ID = 56
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator57(Generator):
+	# ID = 57
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator58(Generator):
+	# ID = 58
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
 # I hooked up with a strapping leather cowboy
 # and now I'm pregnant!
 class Generator58(Generator):
@@ -1779,9 +1935,6 @@ class Generator65(Generator):
 
 		return sTweet	
 		
-# My Hot Redhead Teacher
-# Is Secretly
-# A Stripper!
 # class Generator66(Generator):
 	# ID = 66
 	# Priority = 2
@@ -1923,10 +2076,6 @@ class Generator71(Generator):
 
 		return sTweet	
 		
-# Daddy Found Out
-# His Sweet Little Step-Daughter 
-# Is a Sassy Asian Stripper 
-# And Now He's Pissed!
 # class Generator72(Generator):
 	# ID = 72
 	# Priority = 2
@@ -2279,10 +2428,6 @@ class Generator82(Generator):
 		
 		return sTweet	
 		
-# 8" of Steel:
-# The Feisty Princess (Nubile Queen / Virginal Priestess)
-# Encounters 
-# The Strapping Naked Half-Orc Barbarian 
 # class Generator83(Generator):
 	# ID = 83
 	# Priority = 2
@@ -2553,15 +2698,32 @@ class Generator90(Generator):
 
 		# return sTweet	
 		
-# class Generator95(Generator):
-	# ID = 95
-	# Priority = 2
+# Welcome to Pound Town, Miss Dixon!
+class Generator95(Generator):
+	ID = 95
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		Suffixes = WordList(["berg","berg","ville","ville","town"," Town"," City"])
+		sLastName = ""
+		sLastName = title.names.LastNames().GetWord() 
+		
+		if CoinFlip():
+			#For a woman
+			Prefixes = WordList(["Drill","Fuchs","Cocks","Pound","Ball","Dix","Pricks","Shafts","Bawl","Cox","Pecker",
+								 "Bang","Peen","Swallow","Pork"])
+								 
+			sTweet = "\"Welcome to " + Prefixes.GetWord() + Suffixes.GetWord() + ", " + WordList(["Miss","Mrs"]).GetWord() + " " + sLastName + "!\""
+		else:
+			#For a man
+			Prefixes = WordList(["Beaver","Boob","Ass","Buttes","Kuntz","Slutt","Fuchs","Tits","Brest","Blow","Suck",
+								 "Bang","Anal","Muff","Pork","Booty"])
+			sTweet = "\"Welcome to " + Prefixes.GetWord() + Suffixes.GetWord() + ", Mr. " + sLastName + "!\""			 
 
-		# return sTweet	
+		return sTweet	
 		
 # class Generator96(Generator):
 	# ID = 96
