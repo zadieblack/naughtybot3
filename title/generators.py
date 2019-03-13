@@ -1656,7 +1656,7 @@ class Generator54(Generator):
 		LadyAdjs2 = WordList(['Buxom','Ample-Bosomed','Apple-Bottomed','Bosomy','Jiggling','Little','Naked','Narrow-Waisted',
 							  'Nude','Petite','Plump','Ripe','Rubenesque','Shapely','Slender','Willowy','Statuesque',
 							  'Tender','Voluptuous','Young','Undressed','Elf','Elven'])
-		Ladies = WordList(['Princess','Queen','Maiden','Priestess','Maid','Nun','Damsel','Handmaiden','Elf'])
+		Ladies = WordList(['Princess','Queen','Maiden','Priestess','Maid','Nun','Damsel','Handmaiden','Elf Maiden'])
 		MaleAdjs1 = WordList(['Beefy','Brawny','Bearded','Broad-Chested','Enormous','Hairy','Handsome','Huge','Muscle-Bound',
 							  'Muscular','Strapping','Hunky'])
 		MaleAdjs2 = WordList(['Powerful','Shirtless','Naked','Nude','Brazen','Rakish','Roguish','Cocky','Cocksure',
@@ -1673,14 +1673,31 @@ class Generator54(Generator):
 		iLength = randint(8,12)
 		sTweet = str(iLength) + " Inches of " + Weapons.GetWord() + ":\n"
 		sTweet += "The " + LadyAdjs1.GetWord() + " " + LadyAdjs2.GetWord() + " " + Ladies.GetWord() + "\n"
-		sTweet += "Encounters\nThe "
+		sTweet += "Encounters\n"
+		
+		sMonster = ""
 		if CoinFlip():
-			sTweet += MaleAdjs1.GetWord() + " "
+			sMonster += MaleAdjs1.GetWord() + " "
 		if CoinFlip():
-			sTweet += MaleAdjs2.GetWord() + " "
+			sMonster += MaleAdjs2.GetWord() + " "
 		if CoinFlip():
-			sTweet += DickAdjs.GetWord() + " "
-		sTweet += MaleSpecies.GetWord() + " " + MaleClass.GetWord()
+			sMonster += DickAdjs.GetWord() + " "
+			
+		#print("Monster string is [" + sMonster.strip() + "]")
+		if sMonster.strip():
+			sMonster = AddArticles(sMonster)
+		else:
+			sMonster = "The " + sMonster
+			
+		iRand = randint(1,5)
+		if iRand == 1 or iRand == 2:
+			sMonster += MaleSpecies.GetWord()
+		elif iRand == 3 or iRand == 4:
+			sMonster += MaleClass.GetWord()
+		else:
+			sMonster += MaleSpecies.GetWord() + " " + MaleClass.GetWord()
+			
+		sTweet += sMonster
 
 		return sTweet	
 		
