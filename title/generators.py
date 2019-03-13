@@ -1671,7 +1671,7 @@ class Generator54(Generator):
 								'Paladin','Monk','Rogue','Thief','Warlock','Sorcerer','Hunter','Swordsman'])
 								
 		iLength = randint(8,12)
-		sTweet = str(iLength) + "\" of " + Weapons.GetWord() + ":\n"
+		sTweet = str(iLength) + " Inches of " + Weapons.GetWord() + ":\n"
 		sTweet += "The " + LadyAdjs1.GetWord() + " " + LadyAdjs2.GetWord() + " " + Ladies.GetWord() + "\n"
 		sTweet += "Encounters\nThe "
 		if CoinFlip():
