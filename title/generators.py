@@ -1701,15 +1701,39 @@ class Generator54(Generator):
 
 		return sTweet	
 		
-# class Generator55(Generator):
-	# ID = 55
-	# Priority = 2
+# The Sarah Sandwich:
+# Fireman on Top,
+# Fireman on the Bottom,
+# Kinky Airline Stewardess in the Middle
+class Generator55(Generator):
+	ID = 55
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		FemmeNames = WordList(['Amy','Alicia','Alice','Alexis','Amanda','Amber','Angelica','Anita','Anna','Ava','Bella','Belle','Bianca',
+							   'Daphne','Delilah','Delores','Donna','Doris','Eliza','Elizabeth','Emma','Ericka','Esmerelda',
+							   'Estelle','Felicia','Felicity','Fiona','Francesca','Georgina','Gisele','Inya','Isabelle',
+							   'Jacinda','Jackie','Jasmine','Josephine','Julie','Juliette','Karen','Katrina','Laurel','Lola',
+							   'Marianna','Marilyn','Marsha','Melina','Molly','Natasha','Olivia','Phillippa',
+							   'Phoebe','Piper','Regina','Rosie','Ruby','Ruth','Sabrina','Sharon','Sylvia','Vanessa','Veronica'
+							   ])
+		sJob1 = title.misc.ProfMale().GetWord()
+		sJob2 = title.misc.ProfMale().GetWord()
+		
+		GirlNotList = ['Queen','Princess','Single','Concubine','Slave']
+		Girl = FemaleChar(iNumMinCBits = 1, iNumMaxCBits = 2, bAddArticle = False, NotList = GirlNotList, 
+							bAllowAttitude = False, bAllowAge = False, bAllowClothing = False, bAllowGenMod = False, bAllowRelate = False)
+		sHerName = FemmeNames.GetWord()
+		
+		sTweet = "The " + sHerName + " Sandwich:\n"
+		sTweet += sJob1 + " on Top,\n"
+		sTweet += sJob2 + " on the Bottom,\n"
+		sTweet += Girl.Desc + " in the Middle"
 
-		# return sTweet	
+		return sTweet	
 		
 # class Generator56(Generator):
 	# ID = 56
