@@ -1655,8 +1655,8 @@ class Generator54(Generator):
 							  'Winsome','Brazen','Sassy','Willing','Lonesome','Sheltered','Blossoming'])
 		LadyAdjs2 = WordList(['Buxom','Ample-Bosomed','Apple-Bottomed','Bosomy','Jiggling','Little','Naked','Narrow-Waisted',
 							  'Nude','Petite','Plump','Ripe','Rubenesque','Shapely','Slender','Willowy','Statuesque',
-							  'Tender','Voluptuous','Young','Undressed'])
-		Ladies = WordList(['Princess','Queen','Maiden','Priestess','Maid','Nun','Damsel','Handmaiden'])
+							  'Tender','Voluptuous','Young','Undressed','Elf','Elven'])
+		Ladies = WordList(['Princess','Queen','Maiden','Priestess','Maid','Nun','Damsel','Handmaiden','Elf'])
 		MaleAdjs1 = WordList(['Beefy','Brawny','Bearded','Broad-Chested','Enormous','Hairy','Handsome','Huge','Muscle-Bound',
 							  'Muscular','Strapping','Hunky'])
 		MaleAdjs2 = WordList(['Powerful','Shirtless','Naked','Nude','Brazen','Rakish','Roguish','Cocky','Cocksure',
