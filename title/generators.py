@@ -1735,15 +1735,46 @@ class Generator55(Generator):
 
 		return sTweet	
 		
-# class Generator56(Generator):
-	# ID = 56
-	# Priority = 2
+# The Kinky Brazillian Bikini Model
+# is hot for
+# Bald Men!
+class Generator56(Generator):
+	ID = 56
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		FirstAdjs = WordList(['Sultry','Sexy','Stunning','Hot','Bubbly','Perky','Gorgeous','Foxy','Sensual',
+							  'Passionate','Seductive','Slinky','Spicy','Luscious'])
+		RaceHairColor = WordList(['Korean','Japanese','Brazilian','Argentinian','Swedish','Eastern European','Latvian',
+								  'Coffee-Skinned','Black','Blue-Eyed','Green-Eyed','Redheaded','Platinum Blonde',
+								  'South African','Icelandic','Irish','Pale','Porcelain-Skinned','Chinese'
+								  'Italian','French','Latina','Columbian'])
+		PhysAdjs = WordList(['Tall','Stacked','Leggy','Willowy','Slender','Bronzed','Voluptuous','Statuesque','Skinny',
+							 'Jiggling','Tanned','Bubble-Butt','Tight-Bodied','Full-Figured','Curvaceous','Juicy'])
+		ExoticGirlJobs = WordList(['Bikini Model','Supermodel','Fashion Model','Flight Attendant','Lingerie Model',
+									'Masseuse','Playboy Centerfold','Penthouse Pet','Erotic Model','Beach Bunny',
+									'Beauty Queen','Actress','Starlet','Movie Star'])
+		Fetishes = WordList(['Bald','Middle-Aged','Dad Bod','Overweight','Stay-at-Home'])
+									
+		sExoticGirl = ""
+		if CoinFlip():
+			sExoticGirl += FirstAdjs.GetWord() + " "
+		if CoinFlip():
+			sExoticGirl += RaceHairColor.GetWord() + " "
+		if CoinFlip():
+			sExoticGirl += PhysAdjs.GetWord() + " "
+		sExoticGirl += ExoticGirlJobs.GetWord()
+		
+		sTweet = "The " + sExoticGirl + "\nis hot for\n"
+		#if CoinFlip():
+		sTweet += Fetishes.GetWord()
+		#else:
+			
 
-		# return sTweet	
+		return sTweet	
 		
 # class Generator57(Generator):
 	# ID = 57

@@ -379,7 +379,6 @@ class ProfGoodFemale(WordList):
 			'Babysitter',
 			'Ballerina',
 			'Barista',
-			'Bridesmaid',
 			'Cheerleader',
 			'Co-ed',
 			'College Girl',
