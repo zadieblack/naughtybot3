@@ -1555,8 +1555,17 @@ class Generator51(Generator):
 		sName = self.HerName 
 		Girl = None
 		
-		Places = WordList(["Land", "Kingdom", "Planet", "World", "Lost Land", "Lost World", "Forgotten Kingdom", "Island", "Lost Island", "Empire", "Zone", "Forbidden Zone"])
-		Beings = WordList(["Penisaurs", "Dong-o-saurs", "Fuck Men", "Ass-Eaters", "Ass Apes", "Cock-o-saurus Rex", "Tri-cock Men", "Sex Robots", "Dildo-Bots", "Uniporns", "Girthy Griffons", "Boner Beasts", "Homo Erectus", "Horny Mermen", "Barewolves", "Lepra-dongs", "Semen Centaurs", "Cum Imps", "Dick Dwarves", "Anal Elves", "Anal Aliens", "Naked Barbarians", "Naked Cowboys", "Massive Martians", "Engorged Energy Beings", "Cum Commandos", "Knob Goblins", "Turgid Trolls"])
+		Places = WordList(["Land", "Kingdom", "Planet", "World", "Lost Land", "Lost World", "Forgotten Kingdom", "Island", 
+						   "Lost Island", "Zone", "Forbidden Zone"])
+		Beings = WordList(["Penisaurs", "Dong-o-saurs", "Fuck Men", "Ass-Eaters", "Ass Apes", "Cock-o-saurus Rex", 
+						   "Tri-cock Men", "Sex Robots", "Dildo-Bots", "Uniporns", "Girthy Griffons", "Boner Beasts", 
+						   "Homo Erectus", "Horny Mermen", "Barewolves", "Lepra-dongs", "Semen Centaurs", "Cum Imps", 
+						   "Dick Dwarves", "Anal Elves", "Anal Aliens", "Naked Barbarians", "Naked Cowboys", 
+						   "Massive Martians", "Cum Commandos", "Knob Goblins", 
+						   "Turgid Trolls", "Bukkake Basilisks", "Bukkake Bugbears", "Blowjob Bugbears",
+						   "Double-Dick Demons","Tea-Bagging Tyrannosaurs","Tea-Bagging Trolls","Frottage Fairies",
+						   "Muff-Diving Mermaids","Muff-Diving Medusas","Dry-Humping Druids","Anal Angels",
+						   "Ass-Eating Angels","Ass-Eating Aliens","Sex Serpents","Penis Pythons"])
 		
 		if CoinFlip():
 			Girl = FemaleChar(iNumMaxCBits = 3, Type = GirlType.Good, bAddArticle = False, bAllowMaritalStatus = False, bAllowSpecies = False, bAllowPregState = False)
@@ -1666,9 +1675,11 @@ class Generator54(Generator):
 						      'Visibly Aroused','Visibly Erect','Well-Hung','Well-Hung','Well-Endowed',
 							  'Well-Endowed','Virile'])
 		MaleSpecies = WordList(['Dark Elf','Demon','Dwarf','Centaur','Gargoyle','Giant','Goat Man','Goblin',
-								'Half-Orc','Lizard Man','Orc','Vampire','Werewolf'])
+								'Half-Orc','Lizard Man','Orc','Vampire','Werewolf','Dragon Man','Half Dragon',
+								'Minotaur'])
 		MaleClass = WordList(['Barbarian','Warrior','Knight','Ranger','Bandit','Highwayman','Prince','Duke','Mercenary',
-								'Paladin','Monk','Rogue','Thief','Warlock','Sorcerer','Hunter','Swordsman'])
+								'Paladin','Monk','Rogue','Thief','Warlock','Sorcerer','Hunter','Swordsman','Soldier',
+								'Troubador','Woodsman'])
 								
 		iLength = randint(8,12)
 		sTweet = str(iLength) + " Inches of " + Weapons.GetWord() + ":\n"
