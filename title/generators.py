@@ -1761,14 +1761,26 @@ class Generator56(Generator):
 							  'Passionate','Seductive','Slinky','Spicy','Luscious'])
 		RaceHairColor = WordList(['Korean','Japanese','Brazilian','Argentinian','Swedish','Eastern European','Latvian',
 								  'Coffee-Skinned','Black','Blue-Eyed','Green-Eyed','Redheaded','Platinum Blonde',
-								  'South African','Icelandic','Irish','Pale','Porcelain-Skinned','Chinese'
+								  'South African','Icelandic','Irish','Pale','Porcelain-Skinned','Chinese',
 								  'Italian','French','Latina','Columbian'])
 		PhysAdjs = WordList(['Tall','Stacked','Leggy','Willowy','Slender','Bronzed','Voluptuous','Statuesque','Skinny',
 							 'Jiggling','Tanned','Bubble-Butt','Tight-Bodied','Full-Figured','Curvaceous','Juicy'])
 		ExoticGirlJobs = WordList(['Bikini Model','Supermodel','Fashion Model','Flight Attendant','Lingerie Model',
 									'Masseuse','Playboy Centerfold','Penthouse Pet','Erotic Model','Beach Bunny',
 									'Beauty Queen','Actress','Starlet','Movie Star'])
-		Fetishes = WordList(['Bald','Middle-Aged','Dad Bod','Overweight','Stay-at-Home'])
+		Fetishes = WordList(['Middle-Aged','Dad Bod','Overweight','Stay-at-Home','Chubby','Nerdy','Geeky','Awkward',
+							 'Anti-Social','Unemployed'])
+		PhysAttr = WordList(['Black','Bearded','Blonde','Copper-Skinned','Bald','Balding','Curly-Haired','Ebony',
+							 'Red-Headed','Ginger','Brown-Haired','Graying','Latino','Scottish','Irish','Southern',
+							 'British','French','Asian','Italian','Russian','Norwegian','Indian','Arabic',
+							 'Turkish','German'])
+		Men = WordList(['Men','Dads','Middle Managers','Construction Workers','Doctors','College Students','Virgins',
+						'Cops','Cowboys','Male Nurses','Fire Fighters','Ball Boys','Web Designers','Gym Coaches',
+						'Professors','Engineers','Software Engineers','Lawyers','Preachers','Ministers',
+						'Youth Ministers','Centaurs','Dwarves','Dinosaurs','Goat Men','Swamp Creatures','Vampires',
+						'Werewolves','Were-Horses','Mer-Men','Zombies','Reverse Centaurs','Car Salesmen',
+						'Guitar Teachers','Realtors','Waiters','Lizard Men','Ex-Cons','Hipsters','Single Dads',
+						'Walmart Greeters','Security Guards','Uber Drivers','Old Guys','Guys','Dudes'])
 									
 		sExoticGirl = ""
 		if CoinFlip():
@@ -1779,11 +1791,9 @@ class Generator56(Generator):
 			sExoticGirl += PhysAdjs.GetWord() + " "
 		sExoticGirl += ExoticGirlJobs.GetWord()
 		
-		sTweet = "The " + sExoticGirl + "\nis hot for\n"
-		#if CoinFlip():
-		sTweet += Fetishes.GetWord()
-		#else:
-			
+		sMan = Fetishes.GetWord() + " " + PhysAttr.GetWord() + " " + Men.GetWord()
+		
+		sTweet = "This " + sExoticGirl + "\nis hot for\n" + sMan + "!"
 
 		return sTweet	
 		
