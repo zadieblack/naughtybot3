@@ -815,6 +815,7 @@ class ProfMale(WordList):
 			'Assassin',
 			'Athlete',
 			'Attorney',
+			'Blacksmith',
 			'Body Builder',
 			'Bodyguard',
 			'Boxer',

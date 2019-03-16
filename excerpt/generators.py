@@ -2006,6 +2006,8 @@ class Generator58(Generator):
 
 		return sTweet
 		
+# Candice walked stiffly down the stairs, groaning with every step. "Oh god," she said. "That's the last time I
+# let a burly Italian construction worker fist my anus!"
 # class Generator59(Generator):
 	# ID = 59
 	# Priority = 1

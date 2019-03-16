@@ -1679,7 +1679,7 @@ class Generator54(Generator):
 								'Minotaur'])
 		MaleClass = WordList(['Barbarian','Warrior','Knight','Ranger','Bandit','Highwayman','Prince','Duke','Mercenary',
 								'Paladin','Monk','Rogue','Thief','Warlock','Sorcerer','Hunter','Swordsman','Soldier',
-								'Troubador','Woodsman'])
+								'Troubador','Woodsman','Blacksmith'])
 								
 		iLength = randint(8,12)
 		sTweet = str(iLength) + " Inches of " + Weapons.GetWord() + ":\n"
@@ -1787,25 +1787,30 @@ class Generator56(Generator):
 
 		return sTweet	
 		
-# class Generator57(Generator):
-	# ID = 57
-	# Priority = 2
+# Taken in the Locker Room 
+# by an Entire Team of 
+# Muscular Lumberjack Hockey Players
+class Generator57(Generator):
+	ID = 57
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
-
-		# return sTweet	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
 		
-# class Generator58(Generator):
-	# ID = 58
-	# Priority = 2
+		Verbs = WordList(['Taken','Gang-Banged','Shared','Claimed','Taken Hard','Claimed Hard','Tied Up & Used','Deflowered',
+						  'Fisted','Motor-Boated','Impregnated','Fertilized','Mounted Bareback','Ridden Hard','Pleasured',
+						  'Ravished','Satisfied','Oiled Up','Paddled'])
+		Teams = WordList(['Hockey Players','Football Players','Basketball Players','Sumo Wrestlers','Rugby Players',
+						  'Baseball Players','Olympic Swimmers','Wrestlers','Soccer Players'])
+		sTeam = Teams.GetWord()
+		MenNotList = [sTeam, 'Single']
+		Men = MaleChar(iNumMaxCBits = 2, bAddEndNoun = False, bAddArticle = False, bAllowGang = False, NotList = MenNotList,
+						bAllowAge = False, bAllowAttitude = False, bAllowGenMod = False, bAllowRelate = False, bAllowTitle = False)
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+		sTweet += Verbs.GetWord() + " in the Locker Room\nby an Entire Team of\n" + Men.Desc + " " + Teams.GetWord()
 
-		# return sTweet	
+		return sTweet	
 		
 # I hooked up with a strapping leather cowboy
 # and now I'm pregnant!
