@@ -846,6 +846,7 @@ class ProfMale(WordList):
 			'Investment Banker',
 			'Killer-for-Hire',
 			'Lawyer',
+			'Long Haul Trucker',
 			'Lumberjack',
 			'Olympic Gold Medalist',
 			'Outlaw',
@@ -879,6 +880,7 @@ class ProfMale(WordList):
 			'Sumo Wrestler',
 			'Surfer',
 			'Tattoo Artist',
+			'Trucker',
 			'Undercover Cop'])
 		
 class RelateMale(WordList):
@@ -1074,6 +1076,7 @@ class GangsMale(WordList):
 			'Sperm Donors',
 			'Street Gang',
 			'Sumo Wrestlers',
+			'Truckers',
 			'Viking Horde',
 			'Vampire Coven',
 			'Werewolf Pack'])
