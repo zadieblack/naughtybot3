@@ -2038,16 +2038,28 @@ class Generator65(Generator):
 		sTweet += Numbers.GetWord() + " " +Adjs.GetWord() + " Naked " + Men.GetWord()
 
 		return sTweet	
-		
-# class Generator66(Generator):
-	# ID = 66
-	# Priority = 2
-	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
 
-		# return sTweet	
+# The Bride Wore a Ball Gag		
+class Generator66(Generator):
+	ID = 66
+	Priority = 2
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		BrideWore = WordList(['Latex','Black Leather','Body Paint','a Spreader Bar','a Speculum','a Clit Pump','Nipple Clamps',
+							  'a Ball Gag','a Leash','a Butt Plug','an Anal Plug','a Vibrator','Crotchless Panties',
+							  'Assless Leather Chaps','an Anal Tail Plug','a Steel Collar','a Chain-mail Bikini',
+							  'a Clit Clamp','a Gimp Mask','a Leather Body Harness','Chocolate Lingerie','a Cupless Bra',
+							  'a Leather Catsuit','Crotchless Pantyhose','a Fishnet Bodystocking','a Chastity Belt',
+							  '9-inch Heels','Thigh-High Boots','a Steel Bra','a Leather Bikini','a G-string',
+							  'Pasties and a G-string','Handcuffs','Pasties','a Sheer Bodysuit','Spiked Heels',
+							  'a Strap-On', 'a Leather Tail'])
+							  
+		sTweet = "The Bride Wore " + BrideWore.GetWord()
+
+		return sTweet	
 		
 # "Go easy on me! I'm a teenage coed nun
 # and its my first time
@@ -2180,7 +2192,7 @@ class Generator71(Generator):
 
 		return sTweet	
 		
-# My New Coworkers
+# My New Coworker
 # is a Strapping Long Haul Truckers
 # and He Sucked My Titties 
 class Generator72(Generator):
@@ -2252,10 +2264,7 @@ class Generator74(Generator):
 							  "It Turned Her Into A Slut","It Turned Her Into A Sex-Crazed Bimbo","Now She's a Sex Addict","It Turned Her Into A Ho","It Turned Her Into a Lesbian",
 							  "Now She's a Professional Porn Star", "She Decided to Become a Porn Star","Now All She Does Is Masturbate","It Was Awkward and Not Really Her Thing"])
 
-		if CoinFlip():
-			sTweet = "I Made My " + sNiceGirl + " Try " + NaughtyStuff.GetWord() + "\nAnd " + Reactions.GetWord() + "!"
-		else:
-			sTweet = "My " + sNiceGirl + "\nTried " + NaughtyStuff.GetWord() + "\nAnd " + Reactions.GetWord() + "!"
+		sTweet = "My " + sNiceGirl + "\nTried " + NaughtyStuff.GetWord() + "\nAnd " + Reactions.GetWord() + "!"
 				
 		return sTweet	
 
@@ -2559,15 +2568,41 @@ class Generator82(Generator):
 		
 		return sTweet	
 		
-# class Generator83(Generator):
-	# ID = 83
-	# Priority = 2
+#The Virgin Christian Redheaded Librarian
+#Tries an Interracial Threesome
+class Generator83(Generator):
+	ID = 83
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		NiceGirl = title.misc.NiceGirl()
+		
+		NaughtyStuff = WordList(["69", "an Anal Hook","Anal Sex","BBC","BDSM","a Butt Plug","a Clit Clamp",
+								 "a Dirty Sanchez","Double Penetration","Erotic Asphyxiation",
+								 "an Interracial Threesome", "Leather Bondage","Lesbian Sex","Face-Sitting",
+								 "Fisting","Nipple Clamps","Stripping at a Club","a Threesome",
+								 "Watching Hardcore Porn","Butt Stuff","Anal Fisting","Edible Lube",
+								 "Water Sports","Whips and Chains","Wife Swapping","Anal Beads",
+								 "Getting Her Clit Pierced","Eating Ass","Ass-to-Ass","a Clit Pump",
+								 "an Ass Vibe","a 12 inch Steel Dildo"])
+		Extras = WordList(["with the Pope","with the Dalai Lama","with Miss America","with Her Step-Dad",
+						   "with Her Step-Mom","with Her Step-Brother","with Her English Teacher",
+						   "with Her Gym Coach","with Her Guidance Counselor","with Her Literature Professor",
+						   "with Her Gynecologist","at the Zoo","in a Starbucks Restroom",
+						   "in Her Parents Bedroom","in the Locker Room","at College","with Her Best Friend",
+						   "with Her Tinder Date","at the Aquarium","with Her SCUBA Partner",
+						   "with a Police Officer","with a 65-Year-Old Man","with Her Lab Partner"
+						   "on the Coffee Table","on the Dining Room Table","on the Hotel Balcony",
+						   "with a Total Stranger"])
 
-		# return sTweet	
+		sTweet = "The " + NiceGirl.Desc + "\nTries " + NaughtyStuff.GetWord() 
+		if CoinFlip():
+			sTweet += "\n" + Extras.GetWord() + "!"
+
+		return sTweet	
 		
 # Forsooth My Lord, I See Thou Art Horny!
 # The Nubile Princess 
