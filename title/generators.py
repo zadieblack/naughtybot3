@@ -1758,7 +1758,7 @@ class Generator56(Generator):
 		sTweet = ""
 		
 		FirstAdjs = WordList(['Sultry','Sexy','Stunning','Hot','Bubbly','Perky','Gorgeous','Foxy','Sensual',
-							  'Passionate','Seductive','Slinky','Spicy','Luscious','Stunning'])
+							  'Passionate','Seductive','Slinky','Spicy','Luscious','Stunning','Nympho'])
 		RaceHairColor = WordList(['Korean','Japanese','Brazilian','Argentinian','Swedish','Eastern European','Latvian',
 								  'Coffee-Skinned','Black','Blue-Eyed','Green-Eyed','Redheaded','Platinum Blonde',
 								  'South African','Icelandic','Irish','Pale','Porcelain-Skinned','Chinese',
@@ -2180,15 +2180,42 @@ class Generator71(Generator):
 
 		return sTweet	
 		
-# class Generator72(Generator):
-	# ID = 72
-	# Priority = 2
+# My New Coworkers
+# is a Strapping Long Haul Truckers
+# and He Sucked My Titties 
+class Generator72(Generator):
+	ID = 72
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		ManNotList = ["Single"]
+		Man = MaleChar(iNumMaxCBits = 3, NotList = ManNotList, bAddArticle = False, bAllowGang = False,
+						bAllowRelate = False, bAllowSpecies = True, bAllowMaritalStatus = False, bAllowTitle = False, bAllowGenMod = True, bAllowTrope = False)
+		Relations = WordList(["Co-worker","Boss","Boss","Step-Brother","Brother-in-Law","Son-in-Law","Step-Son",
+								"Tutoring Student","Gym Coach","Personal Trainer","Massage Therapist",
+								"Nextdoor Neighbor","Math Teacher","Math Tutor","English Teacher",
+								"Literature Professor","Tennis Coach","Pool Boy"
+								])
+		NaughtyStuff = WordList(["He Ate Me Out","He Ate My Ass","He Sucked My Titties","I Let Him Finger Me",
+								"We Sixty-nined","I Let Him Fist Me","I Let Him Shave My Cooch","I Gave Him Head",
+								 "I Gave Him a Hand-Job","I Gave Him a Foot-Job","I Let Him Play With My Titties",
+								 "He Whipped My Bare Ass With a Riding Crop","I Sat On His Face",
+								 "He Spanked My Ass","I Gave Him Road Head","I've Seen Him Naked",
+								 "We Showered Together","I Jerked Him Off","I Dry-Humped Him",
+								 "I Gave Him a Rim-Job","He Wears a Cock Ring","He Has a Cock Piercing",
+								 "He Likes to be Pegged","We Did Butt Stuff","I Went Down On Him",
+								 "He Went Down On Me"])
 
-		# return sTweet	
+		sTweet = "\"My New " + Relations.GetWord() + " is\n"
+		sTweet += AddArticles(Man.Desc) + "\n"
+		sTweet += "and\n" + NaughtyStuff.GetWord() + "!\""
+		
+		return sTweet	
+
+		return sTweet	
 		
 class Generator73(Generator):
 	ID = 73
