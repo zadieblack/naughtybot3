@@ -2054,8 +2054,10 @@ class Generator66(Generator):
 							  'a Clit Clamp','a Gimp Mask','a Leather Body Harness','Chocolate Lingerie','a Cupless Bra',
 							  'a Leather Catsuit','Crotchless Pantyhose','a Fishnet Bodystocking','a Chastity Belt',
 							  '9-inch Heels','Thigh-High Boots','a Steel Bra','a Leather Bikini','a G-string',
-							  'Pasties and a G-string','Handcuffs','Pasties','a Sheer Bodysuit','Spiked Heels',
-							  'a Strap-On', 'a Leather Tail'])
+							  'Pasties and a G-string','Handcuffs','a Sheer Black Bodysuit','Spiked Heels',
+							  'a Strap-On', 'a Black Leather Tail','Nothing','Black Latex','Red Leather','Red Latex',
+							  'a Black Body Harness','a Black Bodystocking','a Red Sheer Bodystocking',
+							  'a Black Sheer Bodystocking','a Black Leather Bikini','Black Pasties','Red Pasties'])
 							  
 		sTweet = "The Bride Wore " + BrideWore.GetWord()
 
@@ -2594,7 +2596,7 @@ class Generator83(Generator):
 						   "with Her Gynecologist","at the Zoo","in a Starbucks Restroom",
 						   "in Her Parents Bedroom","in the Locker Room","at College","with Her Best Friend",
 						   "with Her Tinder Date","at the Aquarium","with Her SCUBA Partner",
-						   "with a Police Officer","with a 65-Year-Old Man","with Her Lab Partner"
+						   "with a Police Officer","with a 65-Year-Old Man","with Her Lab Partner",
 						   "on the Coffee Table","on the Dining Room Table","on the Hotel Balcony",
 						   "with a Total Stranger"])
 
