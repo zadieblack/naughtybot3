@@ -2006,7 +2006,7 @@ class Generator64(Generator):
 						  "She Doesn't Wear Panties", "She Likes To Go Braless", "She Likes To Go Commando", 
 						  "She's A Shameless Nudist", "She Showers With The Door Open", "Her Boobs Are Incredible",
 						  "She Shaves Herself Down There", "She Has The Body Of A Porn Star", "She Has Enormous Coconuts",
-						  "And I've Seen Her Tits"])
+						  "And I've Seen Her Tits","And She Is Stacked"])
 		Girl = FemaleChar(iNumMaxCBits = 4, bAddArticle = False, bAllowClothing = False, bAllowRelate = False, bAllowSexuality = False, bAllowSpecies = False, bAllowNation = True, bAllowMaritalStatus = False, bAllowTitle = False, bAllowPregState = False)
 
 		sTweet = Exclamations.GetWord() + "\nMy New " + Relatives.GetWord() + " Is\n" + AddArticles(Girl.Desc) + "\nAnd " + Ender.GetWord()
@@ -2893,15 +2893,31 @@ class Generator95(Generator):
 
 		return sTweet	
 		
-# class Generator96(Generator):
-	# ID = 96
-	# Priority = 2
+# In Love With
+# My Innocent Amish Maid's 
+# Enormous Coconuts 
+class Generator96(Generator):
+	ID = 96
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		Girl = title.misc.NiceGirl(NotList = ['Wife','Girlfriend'])
+		SizeAdj = WordList(['Enormous','Gigantic','Titantic','Humongous','Massive','Sumptuous','Milky','Giant',
+							'Honking','Juicy','Jiggling','Double D','Magnificent','Gargantuan','Jumbo'])
+		Breasts = WordList(['Coconuts','Tatas','Breasticles','Gazongas','Titties','Mammaries','Melons',
+							'Cantaloups','Jugs','Fun-Bags','Jubblies','Knockers','Hooters','Bazooms','Bosoms',
+							'Milk Balloons','Juice-Bags','Sweater-Zeppelins','Grapefruits','Pumpkins',
+							'Grand Tetons','Hangers','Bongos','Meat-Melons','Love-Pillows','Udders'])
+							
+		sTweet = WordList(["In Love With","Falling For","Head-Over-Heels For","Captivated By",
+						   "Bewitched By","Entranced By","Enraptured By","Spellbound By"]).GetWord()
+		sTweet += "\nMy " + Girl.Desc + "'s\n"
+		sTweet += SizeAdj.GetWord() + " " + Breasts.GetWord()
 
-		# return sTweet	
+		return sTweet	
 		
 # class Generator97(Generator):
 	# ID = 97

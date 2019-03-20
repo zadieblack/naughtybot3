@@ -68,6 +68,7 @@ class Hashtags(WordList):
 			'bookboost','bookboost',
 			#'bitcoin',
 			#'blockchain',
+			'bookideas',
 			'bot',
 			'dirtyreads',
 			'eartg',
@@ -76,11 +77,13 @@ class Hashtags(WordList):
 			'eroticromance',
 			'fiftyshades',
 			'kink',
+			'JustABot',
 			#'litecoin',
 			'lovestory',
 			'lprtg',
 			'mrbrtg',
 			'naughty',
+			'naughtybot',
 			'naughtyreads',
 			'nsfw','nsfw',
 			'PleaseRT','PleaseRT',
@@ -1367,14 +1370,17 @@ class NiceGirlNouns(WordList):
 						  "Wife"])
 
 class NiceGirl():
-	def __init__(self):
-		sNiceAdj1 = NiceGirlGoodAdjs().GetWord()
+	def __init__(self, NotList = None):
+		if NotList == None:
+			NotList = []
+			
+		sNiceAdj1 = NiceGirlGoodAdjs().GetWord(NotList = NotList)
 		sNiceGirl = sNiceAdj1 + " "
 		if CoinFlip():
-			sNiceGirl += NiceGirlGoodAdjs().GetWord(NotList = [sNiceAdj1]) + " "
+			sNiceGirl += NiceGirlGoodAdjs().GetWord(NotList = [sNiceAdj1] + NotList) + " "
 		if CoinFlip():
-			sNiceGirl += NiceGirlAdjs().GetWord() + " "
-		sNiceGirl += NiceGirlNouns().GetWord()
+			sNiceGirl += NiceGirlAdjs().GetWord(NotList = NotList) + " "
+		sNiceGirl += NiceGirlNouns().GetWord(NotList = NotList)
 		
 		self.Desc = sNiceGirl 
 			

@@ -339,7 +339,7 @@ class LastNames(WordList):
 			"Fox",
 			"Fuchs",
 			"Furrows",
-			"Goodebody"
+			"Goodebody",
 			"Goodhead",
 			"Grotch",
 			"Hancock",
