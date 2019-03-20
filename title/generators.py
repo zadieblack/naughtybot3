@@ -2699,15 +2699,34 @@ class Generator86(Generator):
 # Last Night a Sexy Dominatrix (Honey, A Sexy Dominatrix)
 # Forced Me 
 # To Eat Her Ass 
-# class Generator88(Generator):
-	# ID = 88
-	# Priority = 2
+class Generator88(Generator):
+	ID = 88
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		Actions = WordList(["Forced Me\nTo Eat Her Ass","Spanked Me\nWith a Steel Paddle",
+							"Whipped Me\nWith a Riding Crop","Dressed Me In Lingerie\nAnd Whipped My Ass",
+							"Tied Me to the Bed Naked\nAnd Took Pics","Handcuffed Me\nAnd Whipped My Ass",
+							"Forced Me\nTo Eat Her Out","Rode My Face","Smothered Me With Her Ass",
+							"Spanked Me\nWith a Wooden Paddle","Beat Me\nWith a Wooden Spoon",
+							"Made Me Wear Nipple Clamps","Made Me Wear a Ball Gag",
+							"Made Me Wear a Gimp Mask","Made Me\nEat Her Panties","Cuffed Me to My Bed",
+							"Rode Me\nWith a Strap-On","Used a Strap-On\nOn My Ass",
+							"Made Me\nWear Women's Lingerie","Made Me\nDrink Her Pee",
+							"Made Me\nEat Her Ass","Spanked Me\nIn Assless Chaps",
+							"Dominated Me\nWith Her Ass","Dominated Me\nIn Her Sex Dungeon",
+							"Made Me\nWear a Butt Plug"])
+		
+		GirlNotList = ['Desperate','Willing','Little','Fashionable','Anal Virgin','Slave']
+		Girl = FemaleChar(iNumMinCBits = 1, iNumMaxCBits = 3, bAddArticle = False, Type = GirlType.Bad, NotList = GirlNotList,
+							bAllowTrope = False, bAllowAge = False, bAllowMaritalStatus = False, bAllowPregState = False, bAllowRelate = False, bAllowSexuality = False, bAllowTitle = False)
+							
+		sTweet = "Last Night\n" + AddArticles(Girl.Desc) + "\n" + Actions.GetWord()
 
-		# return sTweet	
+		return sTweet	
 		
 # Sweet Little Sophie 
 # The Country Virgin Schoolgirl
