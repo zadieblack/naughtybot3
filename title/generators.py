@@ -2303,7 +2303,7 @@ class Generator76(Generator):
 		WomanNotList = ["Wife","Girlfriend","Fiancé","Virgin","Harem","Slave Girl","Damsel","Maiden","Fetish","Call-Girl"]
 		Girl = FemaleChar(iNumMaxCBits = 3, NotList = WomanNotList, bAddArticle = False, bAllowClothing = True, bAllowRelate = False, bAllowSexuality = True, bAllowSpecies = False, bAllowMaritalStatus = False, bAllowTitle = False, bAllowGenMod = True, bAddEndNoun = True)
 		Relations = WordList(["Dad's New Girlfriend","New Next Door Neighbor","New Co-worker","New Boss","New Step-Sister",
-								"New Step-Daughter","Daughter's New Best Friend","New Student","New Secretatry",
+								"New Step-Daughter","Daughter's New Best Friend","New Student","New Secretary",
 								"New Sister-in-Law","New Girlfriend's Sister","New Assistant","New Gym Coach",
 								"New Math Tutor","New English Teacher","Dad's New Wife","New Step-Mom"])
 		NaughtyStuff = WordList(["I Ate Her Out","I Ate Her Ass","I Sucked Her Titties","I Finger-Banged Her",
@@ -2744,10 +2744,10 @@ class Generator89(Generator):
 		if CoinFlip():
 			sDick = BigAdjs.GetWord() + " " + SwoleAdjs.GetWord() + " " + ExtraAdjs.GetWord() + " " + DickSyns.GetWord()
 		else:
-			sDick = SwoleAdjs.GetWord() + " " + str(randint(8,12)) + "\" " + ExtraAdjs.GetWord() + " " + DickSyns.GetWord()
+			sDick = SwoleAdjs.GetWord() + " " + str(randint(8,12)) + "-inch " + ExtraAdjs.GetWord() + " " + DickSyns.GetWord()
 
 		sTweet = SweetAdjs.GetWord() + " Little " + NiceNames.GetWord() + "\n"
-		sTweet += "The " + sNiceGirl + "\nand the\n"
+		sTweet += "The " + sNiceGirl + "\nand the " + WordList(["Case of the","Tale of the","Adventure of the","Secret of the","Curse of the"]).GetWord() + "\n"
 		sTweet += sDick 
 		
 		return sTweet	
