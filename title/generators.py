@@ -251,26 +251,26 @@ class Generator6(Generator):
 		
 		return sTweet
 		
-class Generator7(Generator):
-	# The Virgin, The Werewolf, and The Billionaire Manticore: A Hot Menage	
+# class Generator7(Generator):
+	# # The Virgin, The Werewolf, and The Billionaire Manticore: A Hot Menage	
 	
-	ID = 7
-	Priority = 1
+	# ID = 7
+	# Priority = 1
 	
-	def GenerateTweet(self):
-		super().GenerateTweet()
-		sTweet = ""
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
 		
-		Master1 = MaleChar(iNumMaxCBits = 2, bAllowGang = False)
-		Master2 = MaleChar(iNumMaxCBits = 3, bAddArticle = True)
-		Girl = FemaleChar(iNumMaxCBits = 2)
-		sTweet = "The " + Girl.Desc + ",\nThe " + Master1.Desc + ",\n& " + Master2.Desc + ":\n"
-		if CoinFlip():
-			sTweet += "A Hot Ménage"
-		else:
-			sTweet += "A " + self._getFMs_() + " " + self.SubtitleCoda.GetWord()
+		# Master1 = MaleChar(iNumMaxCBits = 2, bAllowGang = False)
+		# Master2 = MaleChar(iNumMaxCBits = 3, bAddArticle = True)
+		# Girl = FemaleChar(iNumMaxCBits = 2)
+		# sTweet = "The " + Girl.Desc + ",\nThe " + Master1.Desc + ",\n& " + Master2.Desc + ":\n"
+		# if CoinFlip():
+			# sTweet += "A Hot Ménage"
+		# else:
+			# sTweet += "A " + self._getFMs_() + " " + self.SubtitleCoda.GetWord()
 		
-		return sTweet
+		# return sTweet
 
 class Generator8(Generator):
 	# My Boyfriend is a Secret Daddy Dom 
@@ -1850,27 +1850,27 @@ class Generator58(Generator):
 			sTweet = "I " + HookUpPhrases.GetWord() +" " + AddArticles(sMan) + "\nAnd Now I'm Pregnant!"
 		return sTweet
 	
-# The hot bikini model prom queen
-# is secretly a lesbian 	
-class Generator59(Generator):
-	ID = 59
-	Priority = 2
+# # The hot bikini model prom queen
+# # is secretly a lesbian 	
+# class Generator59(Generator):
+	# ID = 59
+	# Priority = 2
 	
-	def GenerateTweet(self):
-		super().GenerateTweet()
-		sTweet = ""
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
 		
-		sHotAdjs = WordList(["Dirty", "Hot", "Sexy", "Busty", "Jiggly", "Stacked", "Athletic", "Slender", "Apple-Bottomed", "Curvaceous", "Flexible"])
-		sGirlAdjs = WordList(["Blonde", "Redhead", "Asian", "Chocolate", "Giggly", "Flirty", "Curly-Haired", "Tattooed"])
-		GirlNouns = WordList(["Schoolgirl", "Bimbo", "Cheerleader", "Bikini Model", "Prom Queen", "Teen", "Coed", "Gymnast",
-								"Baby-Sitter", "Fashion Model", "Beach Bunny", "Surfer Girl", "Goth Girl"])
-		sNoun1 = GirlNouns.GetWord()
-		sNoun2 = GirlNouns.GetWord(NotList = [sNoun1])
+		# sHotAdjs = WordList(["Dirty", "Hot", "Sexy", "Busty", "Jiggly", "Stacked", "Athletic", "Slender", "Apple-Bottomed", "Curvaceous", "Flexible"])
+		# sGirlAdjs = WordList(["Blonde", "Redhead", "Asian", "Chocolate", "Giggly", "Flirty", "Curly-Haired", "Tattooed"])
+		# GirlNouns = WordList(["Schoolgirl", "Bimbo", "Cheerleader", "Bikini Model", "Prom Queen", "Teen", "Coed", "Gymnast",
+								# "Baby-Sitter", "Fashion Model", "Beach Bunny", "Surfer Girl", "Goth Girl"])
+		# sNoun1 = GirlNouns.GetWord()
+		# sNoun2 = GirlNouns.GetWord(NotList = [sNoun1])
 
-		sTweet = "The " + sHotAdjs.GetWord() + " " + sGirlAdjs.GetWord() + " "
-		sTweet += sNoun1 + " " + sNoun2 + "\n"
-		sTweet += "Is Secretly a Lesbian!" 
-		return sTweet		
+		# sTweet = "The " + sHotAdjs.GetWord() + " " + sGirlAdjs.GetWord() + " "
+		# sTweet += sNoun1 + " " + sNoun2 + "\n"
+		# sTweet += "Is Secretly a Lesbian!" 
+		# return sTweet		
 		
 # Sweet Little Amy
 # The Swedish Schoolgirl 
@@ -2063,32 +2063,32 @@ class Generator66(Generator):
 
 		return sTweet	
 		
-# "Go easy on me! I'm a teenage coed nun
-# and its my first time
-# doing anal!"
-class Generator67(Generator):
-	ID = 67
-	Priority = 2
+# # "Go easy on me! I'm a teenage coed nun
+# # and its my first time
+# # doing anal!"
+# class Generator67(Generator):
+	# ID = 67
+	# Priority = 2
 	
-	def GenerateTweet(self):
-		super().GenerateTweet()
-		sTweet = ""
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
 		
-		Beginnings = WordList(["Please Go Easy On Me", "Please Be Gentle With Me", "Please Be Gentle", "Please Go Slow", 
-							   "Please Be Careful"])
-		FirstTimes = WordList(["Doing Anal", "With A Girl", "With Another Woman", "Doing Butt Stuff", 
-							   "Wearing a Butt Plug", "In a Gimp Mask", "Being Punished With a Riding Crop",
-							   "In a Sex Swing", "Deep Throating", "Being Choked", "Trying Erotic Asphyxiation", 
-							   "Wearing Nipple Clamps", "In a Sex Dungeon", "Doing It in Public", "Swallowing",
-							   "With One This Big", "Trying Bukkake", "Trying Double Penetration",
-							   "With Two Dudes", "With Three Guys At Once", "Trying a Gang Bang",
-							   "With an Older Man", "Doing Hardcore Bondage Play", "Wearing a Ball Gag",
-							   "Trying Water Sports"])
-		Girl = FemaleChar(iNumMaxCBits = 3, Type = GirlType.Good, bAddArticle = False, bAllowClothing = False, bAllowRelate = False, bAllowSexuality = False, bAllowSpecies = False, bAllowNation = True, bAllowMaritalStatus = False, bAllowTitle = False, bAllowPregState = False)
+		# Beginnings = WordList(["Please Go Easy On Me", "Please Be Gentle With Me", "Please Be Gentle", "Please Go Slow", 
+							   # "Please Be Careful"])
+		# FirstTimes = WordList(["Doing Anal", "With A Girl", "With Another Woman", "Doing Butt Stuff", 
+							   # "Wearing a Butt Plug", "In a Gimp Mask", "Being Punished With a Riding Crop",
+							   # "In a Sex Swing", "Deep Throating", "Being Choked", "Trying Erotic Asphyxiation", 
+							   # "Wearing Nipple Clamps", "In a Sex Dungeon", "Doing It in Public", "Swallowing",
+							   # "With One This Big", "Trying Bukkake", "Trying Double Penetration",
+							   # "With Two Dudes", "With Three Guys At Once", "Trying a Gang Bang",
+							   # "With an Older Man", "Doing Hardcore Bondage Play", "Wearing a Ball Gag",
+							   # "Trying Water Sports"])
+		# Girl = FemaleChar(iNumMaxCBits = 3, Type = GirlType.Good, bAddArticle = False, bAllowClothing = False, bAllowRelate = False, bAllowSexuality = False, bAllowSpecies = False, bAllowNation = True, bAllowMaritalStatus = False, bAllowTitle = False, bAllowPregState = False)
 
-		sTweet = "\"" + Beginnings.GetWord() + "!\nI'm " + AddArticles(Girl.Desc) + "\nAnd Its My First Time\n" + FirstTimes.GetWord() + "!\""
+		# sTweet = "\"" + Beginnings.GetWord() + "!\nI'm " + AddArticles(Girl.Desc) + "\nAnd Its My First Time\n" + FirstTimes.GetWord() + "!\""
 
-		return sTweet	
+		# return sTweet	
 		
 # I know I'm married,
 # but it can't hurt if I try rimming
@@ -2409,59 +2409,59 @@ class Generator79(Generator):
 
 		return sTweet	
 		
-# When the Princess
-# Met the Cowboy...
-# ...and they had wild interracial sex!
-class Generator80(Generator):
-	ID = 80
-	Priority = 2
+# # When the Princess
+# # Met the Cowboy...
+# # ...and they had wild interracial sex!
+# class Generator80(Generator):
+	# ID = 80
+	# Priority = 2
 	
-	def GenerateTweet(self):
-		super().GenerateTweet()
-		sTweet = ""
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
 		
-		SexAdjs1 = WordList(["Wild","Illicit","Unbridled","Unprotected","Passionate","Hate-Fueled",
-								"Interracial","Wall-Banging","Steamy","Wanton","Lustful","Hot",
-								"Steamy","Lust-Fueled","Loud","Filthy"])
-		SexAdjs2 = WordList(["Illicit","Unbridled","Unprotected","Passionate","Extramarital",
-								"Interracial","Wild","Loud","Kinky"])
-		sSexAdj1 = SexAdjs1.GetWord()
-		sSexAdj2 = SexAdjs2.GetWord(NotList = [sSexAdj1])
+		# SexAdjs1 = WordList(["Wild","Illicit","Unbridled","Unprotected","Passionate","Hate-Fueled",
+								# "Interracial","Wall-Banging","Steamy","Wanton","Lustful","Hot",
+								# "Steamy","Lust-Fueled","Loud","Filthy"])
+		# SexAdjs2 = WordList(["Illicit","Unbridled","Unprotected","Passionate","Extramarital",
+								# "Interracial","Wild","Loud","Kinky"])
+		# sSexAdj1 = SexAdjs1.GetWord()
+		# sSexAdj2 = SexAdjs2.GetWord(NotList = [sSexAdj1])
 		
-		ManNotList = []
-		Man = MaleChar(iNumMaxCBits = 3, iNumMinCBits = 2, NotList = ManNotList, bAddArticle = False, bAllowGang = False, bAllowRelate = False, bAllowAttitude = False, bAllowSpecies = False, bAllowSkinHairColor = False, bAllowTitle = False, bAllowNation = False)
-		GirlNotList = []
-		Girl = FemaleChar(iNumMaxCBits = 3, iNumMinCBits = 2, NotList = GirlNotList, bAddArticle = False, bAllowRelate = False, bAllowAttitude = False, bAllowSpecies = False, bAllowSkinHairColor = False, bAllowTitle = False, bAllowNation = False)
+		# ManNotList = []
+		# Man = MaleChar(iNumMaxCBits = 3, iNumMinCBits = 2, NotList = ManNotList, bAddArticle = False, bAllowGang = False, bAllowRelate = False, bAllowAttitude = False, bAllowSpecies = False, bAllowSkinHairColor = False, bAllowTitle = False, bAllowNation = False)
+		# GirlNotList = []
+		# Girl = FemaleChar(iNumMaxCBits = 3, iNumMinCBits = 2, NotList = GirlNotList, bAddArticle = False, bAllowRelate = False, bAllowAttitude = False, bAllowSpecies = False, bAllowSkinHairColor = False, bAllowTitle = False, bAllowNation = False)
 
-		sTweet = "When the " + Girl.Desc + "\n"
-		sTweet += "Met the " + Man.Desc + "\n"
+		# sTweet = "When the " + Girl.Desc + "\n"
+		# sTweet += "Met the " + Man.Desc + "\n"
 		
-		iRand = randint(1,3)
-		if iRand == 1:
-			PublicPlaces = WordList(["at the Bowling Alley","in the Produce Section", "in the Baked Goods Section",
-				"on the Coffee Table","in the Restroom at Chiopotle","Behind the Dumpster","Behind the Chic-fil-a", 
-				"in the Ball Pit", "in the Whole Foods Parking Lot","in the Men's Room","in a Stall in the Ladies Room",
-				"on a Bench in the Park","Under the Boardwalk at the Beach","on the Eliptical Machine at the Gym",
-				"at the Seafood Restaurant","in the Locker Room Showers","at the Museum","in the Non-Fiction Section at the Library",
-				"at the Farmer's Market","in the Window of a Shoe Store","in the Auto Parts Section at a Wal-Mart",
-				"in the Church Graveyard","in the Back of a Church","in a House They Broke Into","in a Motel 6",
-				"next to the Assembly Line","on a Hotel Balcony","in Her Parents Bedroom","on the Floor of the Restroom",
-				"in a Truck Stop Bathroom","in a Parking Garage","in a Changing Room"
-				])
-			sTweet += "...and They Had " + sSexAdj1 + ", " + sSexAdj2 + " Sex " + PublicPlaces.GetWord() + "!"
-		elif iRand == 2:
-			Gangs = WordList(["a Construction Crew","a Biker Gang","a Basketball Team","the Football Team","some Carnies",
-								"a Chain Gang","some Chippendales Dancers","some Coal Miners","the Cops","some Cowboys","some Firemen",
-								"a Hockey Team","Identical Triplets","a Men's Volleyball Team","the Guys at the Gym",
-								"some Rednecks","some Mountain Men","a Band of Pirates","a Rock Band","some Pro Wrestlers",
-								"some Sumo Wrestlers","a Rugby Team","a S.W.A.T. Team","a Viking Horde","a Werewolf Pack",
-								"a Group of Sailors","some Fraternity Brothers","some Professional Bull Riders",
-								"the Kappa Omega Kappa Fraternity House","some Gay-for-Pay Porn Stars"])
-			sTweet += "...and They Had " + WordList(["Group Sex","an Orgy","a Gang Bang"]).GetWord() + " With " + Gangs.GetWord() + "!"
-		else:
-			sTweet += "...and They Had " + sSexAdj1 + ", " + sSexAdj2 + " Sex!"
+		# iRand = randint(1,3)
+		# if iRand == 1:
+			# PublicPlaces = WordList(["at the Bowling Alley","in the Produce Section", "in the Baked Goods Section",
+				# "on the Coffee Table","in the Restroom at Chiopotle","Behind the Dumpster","Behind the Chic-fil-a", 
+				# "in the Ball Pit", "in the Whole Foods Parking Lot","in the Men's Room","in a Stall in the Ladies Room",
+				# "on a Bench in the Park","Under the Boardwalk at the Beach","on the Eliptical Machine at the Gym",
+				# "at the Seafood Restaurant","in the Locker Room Showers","at the Museum","in the Non-Fiction Section at the Library",
+				# "at the Farmer's Market","in the Window of a Shoe Store","in the Auto Parts Section at a Wal-Mart",
+				# "in the Church Graveyard","in the Back of a Church","in a House They Broke Into","in a Motel 6",
+				# "next to the Assembly Line","on a Hotel Balcony","in Her Parents Bedroom","on the Floor of the Restroom",
+				# "in a Truck Stop Bathroom","in a Parking Garage","in a Changing Room"
+				# ])
+			# sTweet += "...and They Had " + sSexAdj1 + ", " + sSexAdj2 + " Sex " + PublicPlaces.GetWord() + "!"
+		# elif iRand == 2:
+			# Gangs = WordList(["a Construction Crew","a Biker Gang","a Basketball Team","the Football Team","some Carnies",
+								# "a Chain Gang","some Chippendales Dancers","some Coal Miners","the Cops","some Cowboys","some Firemen",
+								# "a Hockey Team","Identical Triplets","a Men's Volleyball Team","the Guys at the Gym",
+								# "some Rednecks","some Mountain Men","a Band of Pirates","a Rock Band","some Pro Wrestlers",
+								# "some Sumo Wrestlers","a Rugby Team","a S.W.A.T. Team","a Viking Horde","a Werewolf Pack",
+								# "a Group of Sailors","some Fraternity Brothers","some Professional Bull Riders",
+								# "the Kappa Omega Kappa Fraternity House","some Gay-for-Pay Porn Stars"])
+			# sTweet += "...and They Had " + WordList(["Group Sex","an Orgy","a Gang Bang"]).GetWord() + " With " + Gangs.GetWord() + "!"
+		# else:
+			# sTweet += "...and They Had " + sSexAdj1 + ", " + sSexAdj2 + " Sex!"
 		
-		return sTweet	
+		# return sTweet	
 		
 # I Lost My Virginity To 
 # A Tanned Leather Cowboy 
@@ -2838,15 +2838,37 @@ class Generator90(Generator):
 # I Spent the Night With
 # A Buff Well-Hung Mossad Agent
 # And a Sexy Cheerleader Stripper!
-# class Generator91(Generator):
-	# ID = 91
-	# Priority = 2
+class Generator91(Generator):
+	ID = 91
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		Prefix = WordList(["I Spent the Night with","I Slept with","I Showered with","I Went Down on","I Made Love to",
+							"I Was Pleasured by","I Got Pounded by","I Was Taken Passionately by",
+							"I Was Mounted from Behind by","I Had Sex With","I Shared a Night of Passion with",
+							"I Had a Steamy Affair with", "I Had an Affair with","I Spent a Wild Night with",
+							"I Shared a Night of Lust with","I Had a Forbidden Affair with",
+							"I Had a Secret Affair with","I Was Ridden Hard by"])
+		
+		ManAdjNotList = ['Fine','Naked','Clever','Highly Eligible','Visibly Erect','Bare-Chested']
+		ManAdjs = WordList(title.misc.AttitudeMale().List + title.misc.SkinHairColorMale().List + title.misc.NationMale().List + title.misc.PhysCharMale().List + title.misc.DickCharMale().List + ['Older','Married','Heavily-Tattooed','Naked'])
+		if CoinFlip():
+			sMan = ManAdjs.GetWord(NotList = ManAdjNotList) + " " + title.misc.ProfMale().GetWord()
+		else:
+			sManAdj1 = ManAdjs.GetWord(NotList = ManAdjNotList)
+			sManAdj2 = ManAdjs.GetWord(NotList = ManAdjNotList + [sManAdj1])
+			sMan = sManAdj1 + " " + sManAdj2 + " " + title.misc.ProfMale().GetWord()
+		
+		WomanAdjNotList = ['Little','Natural','Desperate','Moist','Wet','Narrow-Waisted','Flat-Chested']
+		WomanAdjs = WordList(title.misc.PhysCharFemale().List + title.misc.AttitudeBadFemale().List + ['Older','Pregnant','Cougar','Insatiable','Submissive','Dominant','European','Bisexual','Open-Minded','Pregnant','Teenage','Eager','Nympho','Naughty','Sexy','Horny','Well-Endowed'])
+		sWoman = WomanAdjs.GetWord(NotList = WomanAdjNotList) + " " + WordList(['Wife','Girlfriend']).GetWord()
+		
+		sTweet = "\"" + Prefix.GetWord() + "\n" + AddArticles(sMan) + "\nand his " + sWoman + "!\""
 
-		# return sTweet	
+		return sTweet	
 		
 # "I Gave A Naked Italian Airline Stewardess
 # A Full Frontal Massage!"
