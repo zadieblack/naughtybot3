@@ -2862,7 +2862,7 @@ class Generator91(Generator):
 			sManAdj2 = ManAdjs.GetWord(NotList = ManAdjNotList + [sManAdj1])
 			sMan = sManAdj1 + " " + sManAdj2 + " " + title.misc.ProfMale().GetWord()
 		
-		WomanAdjNotList = ['Little','Natural','Desperate','Moist','Wet','Narrow-Waisted','Flat-Chested']
+		WomanAdjNotList = ['Little','Natural','Desperate','Moist','Wet','Narrow-Waisted','Flat-Chested','Revealing']
 		WomanAdjs = WordList(title.misc.PhysCharFemale().List + title.misc.AttitudeBadFemale().List + ['Older','Pregnant','Cougar','Insatiable','Submissive','Dominant','European','Bisexual','Open-Minded','Pregnant','Teenage','Eager','Nympho','Naughty','Sexy','Horny','Well-Endowed'])
 		sWoman = WomanAdjs.GetWord(NotList = WomanAdjNotList) + " " + WordList(['Wife','Girlfriend']).GetWord()
 		
@@ -2959,26 +2959,66 @@ class Generator96(Generator):
 		sTweet += SizeAdj.GetWord() + " " + Breasts.GetWord()
 
 		return sTweet	
-		
-# class Generator97(Generator):
-	# ID = 97
-	# Priority = 2
-	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
 
-		# return sTweet	
-		
-# class Generator98(Generator):
-	# ID = 98
-	# Priority = 2
+# The Secretary 
+# is wearing
+# a butt plug		
+class Generator97(Generator):
+	ID = 97
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		LadyJobs = WordList(['Airline Stewardess','Babysitter','Ballerina','Barista','Cheerleader',
+							'Co-ed','Fashion Model','Flight Attendant','Gymnast','House Maid',
+							'Intern','Librarian','Maid','Nanny','Nun','Nurse','Secretary',
+							'Supermodel','Teacher','Waitress','Bikini Model','Hooter\'s Waitress',
+							'Yoga Instructor','Actress'])
+							
+		Accessories = WordList(['a Butt Plug','Anal Beads','Nipple Clamps','a Clit Clamp','a Strap-On',
+								'an Anal Hook','a Remote-Controlled Vibrator','Crotchless Panties',
+								'Edible Panties','Nipple Pasties','a Pony Tail Butt Plug',
+								'Assless Chaps','a Ball Gag','a Rubber Fetish Mask','a Latex Body Suit',
+								'a Rubber Fetish Suit','a Transparent Bikini','a Chastity Belt'])
+								
+		sTweet = "The " + LadyJobs.GetWord() + "\nIs Wearing\n" + Accessories.GetWord()
 
-		# return sTweet	
+		return sTweet	
+		
+class Generator98(Generator):
+	ID = 98
+	Priority = 4
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		sHerName = NamesFemale().FirstName()
+		
+		NaughtyStuff = WordList(["Tries Nipple Play with","Gets Fisted by","Tries Bukkake with","Jerks Off",
+								 "Tries Forced Feminization with","Gets Spanked by", "Tries Hardcore Bondage with",
+								 "Tries Water-Sports with","Sixty-Nines","Gets Erotically Asphyxiated by",
+								 "Does Anal with","Does Butt Stuff with","Gets Anal Fisted by",
+								 "Tries Double Penetration with","Deep Throats","Gets Tea-Bagged by",
+								 "Tries Triple Penetration with","Gets a Dirty Sanchez from",
+								 "Gets Whipped By","Gets Hotwifed to","Gags On","Gets Her Ass Eaten by"
+								 "Gives a Rim-Job to","Has Twincest with","Tries Leather Bondage with",
+								 "Gets Peed on by"])
+								 
+		MaleAdjs = WordList(title.misc.PhysCharMale().List + title.misc.DickCharMale().List + ['Black','Married','Heavily-Tattooed','DILF','Naked','Nudist','Virile','Wealthy','Millionaire','Billionaire'])
+		Species = WordList(["Unicorn","Centaur","Werewolf","Merman","Dragon","Goat Man","Dwarf",
+							"Space Alien","Tentacle Monster","Pirate","Trapeze Artist","Clown", 
+							"Sumo Wrestler","Were-Horse","Werewolf","Dinosaur", "Dinosaur",
+							"Vampire","Martian","Contortionist","Warlock","Minotaur",
+							"Reverse Centaur","Male Porn Star","Pirate Captain","Giant",
+							"Green Beret","Navy SEAL","Priest","Biker","Male Model","Unicorn",
+							"Rodeo Clown","Astronaut"])
+							
+		sTweet = sHerName + "\n" + NaughtyStuff.GetWord() + "\n" + AddArticles(MaleAdjs.GetWord() + " " + Species.GetWord())
+
+		return sTweet	
 		
 # class Generator99(Generator):
 	# ID = 99
