@@ -2997,13 +2997,13 @@ class Generator98(Generator):
 		
 		sHerName = NamesFemale().FirstName()
 		
-		NaughtyStuff = WordList(["Tries Nipple Play with","Gets Fisted by","Tries Bukkake with","Jerks Off",
+		NaughtyStuff = WordList(["Does Nipple Play with","Gets Fisted by","Tries Bukkake with","Jerks Off",
 								 "Tries Forced Feminization with","Gets Spanked by", "Tries Hardcore Bondage with",
 								 "Tries Water-Sports with","Sixty-Nines","Gets Erotically Asphyxiated by",
 								 "Does Anal with","Does Butt Stuff with","Gets Anal Fisted by",
 								 "Tries Double Penetration with","Deep Throats","Gets Tea-Bagged by",
 								 "Tries Triple Penetration with","Gets a Dirty Sanchez from",
-								 "Gets Whipped By","Gets Hotwifed to","Gags On","Gets Her Ass Eaten by"
+								 "Gets Whipped By","Gets Hotwifed to","Gags On","Gets Her Ass Eaten by",
 								 "Gives a Rim-Job to","Has Twincest with","Tries Leather Bondage with",
 								 "Gets Peed on by"])
 								 
@@ -3014,7 +3014,7 @@ class Generator98(Generator):
 							"Vampire","Martian","Contortionist","Warlock","Minotaur",
 							"Reverse Centaur","Male Porn Star","Pirate Captain","Giant",
 							"Green Beret","Navy SEAL","Priest","Biker","Male Model","Unicorn",
-							"Rodeo Clown","Astronaut"])
+							"Rodeo Clown","Astronaut","Ghost","Zombie"])
 							
 		sTweet = sHerName + "\n" + NaughtyStuff.GetWord() + "\n" + AddArticles(MaleAdjs.GetWord() + " " + Species.GetWord())
 
