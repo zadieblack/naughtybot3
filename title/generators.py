@@ -3007,7 +3007,7 @@ class Generator98(Generator):
 								 "Gives a Rim-Job to","Has Twincest with","Tries Leather Bondage with",
 								 "Gets Peed on by"])
 								 
-		MaleAdjs = WordList(title.misc.PhysCharMale().List + title.misc.DickCharMale().List + ['Black','Married','Heavily-Tattooed','DILF','Naked','Nudist','Virile','Wealthy','Millionaire','Billionaire'])
+		MaleAdjs = WordList(title.misc.PhysCharMale().List + title.misc.DickCharMale().List + ['Giant','Enormous','Black','Black','Married','Heavily-Tattooed','DILF','Naked','Nudist','Virile','Wealthy','Millionaire','Billionaire'])
 		Species = WordList(["Unicorn","Centaur","Werewolf","Merman","Dragon","Goat Man","Dwarf",
 							"Space Alien","Tentacle Monster","Pirate","Trapeze Artist","Clown", 
 							"Sumo Wrestler","Were-Horse","Werewolf","Dinosaur", "Dinosaur",
@@ -3016,19 +3016,56 @@ class Generator98(Generator):
 							"Green Beret","Navy SEAL","Priest","Biker","Male Model","Unicorn",
 							"Rodeo Clown","Astronaut","Ghost","Zombie"])
 							
-		sTweet = sHerName + "\n" + NaughtyStuff.GetWord() + "\n" + AddArticles(MaleAdjs.GetWord() + " " + Species.GetWord())
+		sTweet = sHerName + "\n" + NaughtyStuff.GetWord() + "\n"
+		sTweet += AddArticles(MaleAdjs.GetWord() + " " + Species.GetWord())
 
 		return sTweet	
 		
-# class Generator99(Generator):
-	# ID = 99
-	# Priority = 2
+class Generator99(Generator):
+	ID = 99
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		sHerName = NamesFemale().FirstName()
+		
+		NaughtyStuff = WordList(["Does Nipple Play with","Gets Fisted by","Tries Bukkake with","Jerks Off",
+								 "Tries Forced Feminization with","Gets Spanked by", "Tries Hardcore Bondage with",
+								 "Tries Water-Sports with","Sixty-Nines","Gets Erotically Asphyxiated by",
+								 "Does Anal with","Does Butt Stuff with","Gets Anal Fisted by",
+								 "Tries Double Penetration with","Deep Throats","Gets Tea-Bagged by",
+								 "Tries Triple Penetration with","Gets a Dirty Sanchez from",
+								 "Gets Whipped By","Gets Hotwifed to","Gags On","Gets Her Ass Eaten by",
+								 "Gives a Rim-Job to","Has Twincest with","Tries Leather Bondage with",
+								 "Gets Peed on by"])
+								 
+		MaleAdjs = WordList(title.misc.PhysCharMale().List + title.misc.DickCharMale().List + ['Giant','Enormous','Black','Black','Married','Heavily-Tattooed','DILF','Naked','Nudist','Virile','Wealthy','Millionaire','Billionaire'])
+		Species = WordList(["Unicorn","Centaur","Werewolf","Merman","Goat Man","Dwarf",
+							"Space Alien","Tentacle Monster","Pirate","Trapeze Artist","Were-Horse",
+							"Werewolf","Dinosaur", "Dinosaur","Vampire","Martian","Contortionist",
+							"Warlock","Minotaur","Reverse Centaur","Giant","Unicorn",
+							"Ghost","Zombie"])
+		Jobs = WordList(['Airline Pilot','Astronaut','Assassin','Athlete','Attorney','Body Builder',
+							'Bodyguard','Boxer','Brain Surgeon','Bull Rider','Business Man',
+							'Chippendales Dancer','CIA Agent','Coal Miner','Construction Worker',
+							'Cop','Cowboy','Defensive Lineman','Doctor','Fashion Photographer',
+							'FBI Agent','Fighter Pilot','Fighter Pilot','Fire Fighter',
+							'Green Beret','Gunslinger','Gym Coach','Surgeon','Hitman',
+							'Investment Banker','Killer-for-Hire','Lawyer','Long Haul Trucker',
+							'Lumberjack','Male Escort','Male Model','Male Nurse','Matador',
+							'MI5 Agent','Mossad Agent','MMA Fighter','Navy Seal','Pirate',
+							'Preacher','Priest','Private Eye','Professor','Quarterback',
+							'Rock Guitarist','Rodeo Clown','Sailor','Secret Agent',
+							'Secret Service Agent','Sheriff','Deputy','Snowboarder','Spy',
+							'Stockbroker','Stuntman','Sumo Wrestler','Surfer','Tattoo Artist','Trucker',
+							'Porn Star','Biker','Contortionist'])
+							
+		sTweet = sHerName + "\n" + NaughtyStuff.GetWord() + "\n"
+		sTweet += AddArticles(Species.GetWord() + " " + title.misc.ProfMale().GetWord())
 
-		# return sTweet	
+		return sTweet	
 		
 # class Generator100(Generator):
 	# ID = 100
