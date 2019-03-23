@@ -65,6 +65,7 @@ class Hashtags(WordList):
 	def __init__(self):
 		super().__init__(['50shades',
 			'amwriting',
+			'BannedFromAmazon',
 			'bookboost','bookboost',
 			#'bitcoin',
 			#'blockchain',

@@ -2910,7 +2910,7 @@ class Generator91(Generator):
 # Welcome to Pound Town, Miss Dixon!
 class Generator95(Generator):
 	ID = 95
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -2989,7 +2989,7 @@ class Generator97(Generator):
 		
 class Generator98(Generator):
 	ID = 98
-	Priority = 4
+	Priority = 3
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3066,6 +3066,329 @@ class Generator99(Generator):
 		sTweet += AddArticles(Species.GetWord() + " " + title.misc.ProfMale().GetWord())
 
 		return sTweet	
+
+# I Secretly Impregnated 
+# My Nudist Mommy-Blogger Sister-in-Law!		
+class Generator100(Generator):
+	ID = 100
+	Priority = 2
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		GirlAdj = WordList(title.misc.PhysCharFemale().List + ['Fertile','Naked','Sassy','Saucy','Sexy','Black','Ebony','Bisexual'])
+		GirlNoun = WordList(title.misc.ProfGoodFemale().List + title.misc.SpeciesFemale().List)
+		Relate = WordList(["Mother-in-Law","Step-Mom","Sister-in-Law","Step-Sister","Half Sister","Step-Daughter",
+							"Daughter-in-Law","Cousin"])
+						
+		sTweet = "I Secretly Impregnated\nMy " 
+		if CoinFlip():
+			sTweet += GirlAdj.GetWord() + " " + GirlNoun.GetWord() + " " + Relate.GetWord()
+		else:
+			MaleRelate = WordList(["Best Friend's","Step-Father's","Dad's","Boss's","Neighbor's"])
+			sTweet += MaleRelate.GetWord() + "\n" + GirlAdj.GetWord() + " " + GirlNoun.GetWord() + " " + WordList(["Wife","Girlfriend","Fiancé"]).GetWord()
+
+		return sTweet	
+		
+# class Generator100(Generator):
+	# ID = 100
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator100(Generator):
+	# ID = 100
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator100(Generator):
+	# ID = 100
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator100(Generator):
+	# ID = 100
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator100(Generator):
+	# ID = 100
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator100(Generator):
+	# ID = 100
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator100(Generator):
+	# ID = 100
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator100(Generator):
+	# ID = 100
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator100(Generator):
+	# ID = 100
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator100(Generator):
+	# ID = 100
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator100(Generator):
+	# ID = 100
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator100(Generator):
+	# ID = 100
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator100(Generator):
+	# ID = 100
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator100(Generator):
+	# ID = 100
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator100(Generator):
+	# ID = 100
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+# class Generator100(Generator):
+	# ID = 100
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator100(Generator):
+	# ID = 100
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator100(Generator):
+	# ID = 100
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator100(Generator):
+	# ID = 100
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator100(Generator):
+	# ID = 100
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator100(Generator):
+	# ID = 100
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator100(Generator):
+	# ID = 100
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator100(Generator):
+	# ID = 100
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator100(Generator):
+	# ID = 100
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator100(Generator):
+	# ID = 100
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator100(Generator):
+	# ID = 100
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator100(Generator):
+	# ID = 100
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator100(Generator):
+	# ID = 100
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator100(Generator):
+	# ID = 100
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator100(Generator):
+	# ID = 100
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
 		
 # class Generator100(Generator):
 	# ID = 100

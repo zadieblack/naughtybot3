@@ -24,7 +24,7 @@ def LastNameBuilder(NotList = None):
 	sName1 = LastNames().GetWord(NotList = NotList)
 	sName2 = LastNames().GetWord(NotList = [sName1] + NotList)
 	
-	for _ in range(4):
+	for _ in range(3):
 		Names.append(sName1)
 	
 	Names.append(sName1 + "-" + sName2)
@@ -53,14 +53,14 @@ def AuthorBuilder(Gender = Gender.Neuter):
 			
 		sName1 = ""
 		sName2 = ""
-		for _ in range(2):
-			sName1 = MaleNames.FirstName()
-			sName2 = MaleNames.FirstName()
-			while sName2 in sName1:
-				sName2 = MaleNames.FirstName()
-			FirstNames.append(sName1 + " " + sName2)
-			
 		for _ in range(4):
+			sName1 = MaleNames.FirstName()
+			# sName2 = MaleNames.FirstName()
+			# while sName2 in sName1:
+				# sName2 = MaleNames.FirstName()
+			FirstNames.append(sName1)
+			
+		for _ in range(2):
 			FirstNames.append(MaleNames.FirstName() + " " + Alphabet[randint(0, len(Alphabet) - 1)] + ".")
 		
 	if Gender == Gender.Female or Gender == Gender.Neuter:
@@ -69,14 +69,14 @@ def AuthorBuilder(Gender = Gender.Neuter):
 			
 		sName1 = ""
 		sName2 = ""
-		for _ in range(2):
-			sName1 = FemNames.FirstName()
-			sName2 = FemNames.FirstName()
-			while sName2 in sName1:
-				sName2 = FemNames.FirstName()
-			FirstNames.append(sName1 + " " + sName2)
-			
 		for _ in range(4):
+			sName1 = FemNames.FirstName()
+			# sName2 = FemNames.FirstName()
+			# while sName2 in sName1:
+				# sName2 = FemNames.FirstName()
+			FirstNames.append(sName1)
+			
+		for _ in range(2):
 			FirstNames.append(FemNames.FirstName() + " " + Alphabet[randint(0, len(Alphabet) - 1)] + ".")
 		
 	sAName = FirstNames[randint(0, len(FirstNames) - 1)]
@@ -293,7 +293,7 @@ class TweetTxtGen10(TweetTxtGen):
 class TweetTxtGen11(TweetTxtGen):
 	# Include one little sumo wrestler fisting scene and they ban you from Amazon for life!
 	ID = 11
-	Priority = 4
+	Priority = 3
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -340,7 +340,7 @@ class TweetTxtGen13(TweetTxtGen):
 class TweetTxtGen14(TweetTxtGen):
 	# CONTENT WARNING: book contains graphic depictions of veganism.
 	ID = 14
-	Priority = 4
+	Priority = 3
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -370,7 +370,7 @@ class TweetTxtGen15(TweetTxtGen):
 class TweetTxtGen16(TweetTxtGen):
 	# SPOILER ALERT: Amber winds up deep-throating a biker
 	ID = 16
-	Priority = 300
+	Priority = 3
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -401,7 +401,7 @@ class TweetTxtGen17(TweetTxtGen):
 class TweetTxtGen18(TweetTxtGen):
 	# 'Delightful & provactive!' raves Dwarf Fisting Magazine 
 	ID = 18
-	Priority = 4
+	Priority = 3
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -417,7 +417,7 @@ class TweetTxtGen18(TweetTxtGen):
 class TweetTxtGen19(TweetTxtGen):
 	# 'Ben Dover's latest is a triumph!' applauds Goat-man Foursome Magazine 
 	ID = 19
-	Priority = 4
+	Priority = 3
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -525,7 +525,7 @@ class TweetTxtGen24(TweetTxtGen):
 class TweetTxtGen25(TweetTxtGen):
 	# Why don't I ever meet any horny, well-hung lumberjacks in real life?
 	ID = 25
-	Priority = 50
+	Priority = 3
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -634,7 +634,7 @@ class TweetTxtGen30(TweetTxtGen):
 class TweetTxtGen31(TweetTxtGen):
 	# ME YELLING AT THE MAIN CHARACTER: No Emily! You can't sleep with Jack! He's your long-lost twin brother!
 	ID = 31
-	Priority = 5
+	Priority = 3
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -830,7 +830,7 @@ class TweetTxtGen36(TweetTxtGen):
 		
 		SexToys = WordList(["clit clamps","Ben Wa balls","nipple clamps","cock rings","anal hooks","spreader bars",
 							"ball gags","butt plugs","dental dams","clothes pins","sex swings","riding crops",
-							"nose hooks","castity belts","erotic furniture","clit Pumps","sybians","nylons",
+							"nose hooks","castity belts","erotic furniture","clit pumps","sybians","nylons",
 							"anal beads"])
 						
 		Fetishes = WordList(["lactation","bukkake","age play","tea bagging","fem-dom","butt play",
@@ -843,16 +843,79 @@ class TweetTxtGen36(TweetTxtGen):
 		
 		return sText		
 		
-# class TweetTxtGen37(TweetTxtGen):
-	# The sexy read that was BANNED on Amazon! Now available on Smashwords
-	# ID = 37
-	# Priority = 2
+class TweetTxtGen37(TweetTxtGen):
+	# This was Ben Dover's last book before he was banned from Amazon for writing a scene involving a goat man and bukkake.
+	ID = 37
+	Priority = 5
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sText = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sText = ""
 		
-		# return sText	
+		Adjs = WordList(['filthy','shocking','provactive','outrageous','disgusting','taboo','naughty','tasteless'])
+		Species = WordList(["unicorn","centaur","werewolf","merman","goat man","dwarf","demon","clown",
+							"space alien","tentacle monster","were-horse","manticore","sea monster",
+							"werewolf","dinosaur", "dinosaur","vampire","martian","lizard man","mime",
+							"minotaur","reverse centaur","giant","unicorn","pegasus","ghost",
+							"zombie"])
+		SexToys = WordList(["clit clamps","Ben Wa balls","nipple clamps","cock rings","anal hooks","spreader bars",
+							"ball gags","butt plugs","dental dams","clothes pins","sex swings","riding crops",
+							"nose hooks","chastity belts","erotic furniture","clit pumps","sybians","nylons",
+							"anal beads","fur suits","steel dildos","wooden dildos","anal vibrators",
+							"strap-ons","assless chaps","glory holes"])
+		SexActs = WordList(["anal", "double anal", "fisting","anal fisting","nipple play", "incest", "twincest",
+							"cum-swapping","bukkake","rope play","pee-drinking","cuckolding","sixty-nine",
+							"erotic asphyxiation","double penetration","triple penetration",
+							"BDSM","water-sports","lactation","age play","edging","forced orgasm", 
+							"forced feminization","deep-throating","swinging","leather bondage","tea-bagging",
+							"full-frontal massage","cuck-queaning","enemas","pegging","butt stuff","sodomy",
+							"premarital sex","spanking","paddling"])
+		
+		if CoinFlip():
+			# male
+			sText = "This was " + AuthorBuilder(Gender = Gender.Male) + "'s last book before "
+			sText += "he was banned from Amazon for " + AddArticles(Adjs.GetWord()).lower() + " scene involving "
+			
+		else:
+			# female
+			sText = "This was " + AuthorBuilder(Gender = Gender.Female) + "'s final book before "
+			sText += "she was banned from Amazon for " + AddArticles(Adjs.GetWord()).lower() + " scene involving "
+			
+		iRand = randint(1,5)
+		if iRand == 1:
+			sText += SexToys.GetWord() + " and "
+			if CoinFlip():
+				sText += AddArticles("underage " + Species.GetWord()).lower()
+			else:
+				sText += AddArticles(Species.GetWord()).lower()
+		elif iRand == 2:
+			sText += SexToys.GetWord() + " and "
+			if CoinFlip():
+				sText += "underage "
+			sText += SexActs.GetWord() 
+		elif iRand == 3:
+			if CoinFlip():
+				sText += AddArticles("underage " + Species.GetWord()).lower()
+			else:
+				sText += AddArticles(Species.GetWord()).lower()
+			sText += " and " 
+			if CoinFlip():
+				sText += WordList(['underage','non-consensual','extreme']).GetWord() + " "
+			sText += SexActs.GetWord()
+		elif iRand == 4:
+			sText += SexToys.GetWord() + " and "
+			if CoinFlip():
+				sText += WordList(['underage','non-consensual','extreme']).GetWord() + " "
+			sText += Species.GetWord() + " sex"
+		else:
+			sText += Species.GetWord() + " " + SexActs.GetWord() + " and "
+			if CoinFlip():
+				sText +=  WordList(['underage','non-consensual','extreme']).GetWord() + " "
+			sText += SexToys.GetWord() 
+
+		sText += "!"
+		
+		return sText	
 		
 # class TweetTxtGen38(TweetTxtGen):
 	# The sexy read that was BANNED on Amazon! Now available on Smashwords
