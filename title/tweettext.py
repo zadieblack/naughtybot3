@@ -830,7 +830,7 @@ class TweetTxtGen36(TweetTxtGen):
 		
 		SexToys = WordList(["clit clamps","Ben Wa balls","nipple clamps","cock rings","anal hooks","spreader bars",
 							"ball gags","butt plugs","dental dams","clothes pins","sex swings","riding crops",
-							"nose hooks","castity belts","erotic furniture","clit pumps","sybians","nylons",
+							"nose hooks","chastity belts","erotic furniture","clit pumps","sybians","nylons",
 							"anal beads"])
 						
 		Fetishes = WordList(["lactation","bukkake","age play","tea bagging","fem-dom","butt play",
@@ -917,16 +917,54 @@ class TweetTxtGen37(TweetTxtGen):
 		
 		return sText	
 		
-# class TweetTxtGen38(TweetTxtGen):
-	# The sexy read that was BANNED on Amazon! Now available on Smashwords
-	# ID = 38
-	# Priority = 2
+class TweetTxtGen38(TweetTxtGen):
+	# By day, erotica author Ben Dover is a Wedding Photographer from Scranton.
+	ID = 38
+	Priority = 200
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sText = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sText = ""
+		MaleJobs = WordList(["Accountant","Graphic Designer","Bank Manager","Fry Cook","Golf Caddy",
+							 "Drywall Installer","Physical Therapist","Dentist","Building Inspector",
+							 "Used Car Salesman","Mortician","Drummer","Opthamologist",
+							 "IT Technician","Male Nurse","Cat Sitter","Dog Walker",
+							 "Wedding Photographer","Warehouse Manager","SCUBA Supplier",
+							 "8th Grade Teacher","College Adjunct","Business Analyst",
+							 "Call Center Employee","Grad Student","Beekeeper","Piano Tuner",
+							 "9th Grade Teacher","Zoology Professor","Retiree","US Army Ranger",
+							 "Auto Mechanic","HVAC Technician","Zoomba Instructor","Life Coach",
+							 "Vice Principal","Truck Driver","Materials Engineer","Uber Driver",
+							 "Cable Installer","Bouncer","Zamboni Driver",'Windshield Installer'
+							 ])
+		FemaleJobs = WordList(["Bank Teller","Gourmet Chef","Physical Therapist","Nurse","Dental Hygenist",
+							   "Receptionist","English Teacher","Spanish Teacher","Lexicographer",
+							   "Dermatologist","Graphic Designer","Church Pianist","3rd Grade Teacher",
+							   "Tax Accountant","Cat Sitter","Dog Walker","Pigeon Trainer","Intern",
+							   "Grad Student","Beekeeper","Produce Buyer","Electrical Engineer",
+							   "Mommy Blogger","Stay-at-Home Mom","Guidance Counselor",
+							   "Yoga Instructor","Lyft Driver","Librarian","Podcast Host","Police Officer",
+							   "Speech Therapist","Beautician","Manicurist","Wedding Planner","Hostess",
+							   "Cocktail Waitress","Kindergarten Teacher","Tutor","House Maid",
+							   "Funeral Planner","Professional Hand Model","Sculptor"
+							   ])
+		Places = WordList(['Tulsa','Tuscaloosa','Scranton','Ithaca','Flagstaff','East Lansing','Duluth',
+							'Syracuse','Fargo','Provo','South Bend','Ann Arbor','Des Moines','Reno',
+							'Billings','Spokane','Deltona','St. Petersburg','Sioux Falls',
+							'Cedar Rapids','Peoria','Sunnyvale','Elk Grove','North Myrtle Beach',
+							'Modesto','Pensacola','El Paso','East Lansing','Dayton','Albuquerque',
+							'Toledo','Shreveport','Wichita','Fresno','Blackpool','Hull',
+							'Wolverhampton','Norwich','Derby','Doncaster','Portsmouth','Southampton',
+							'Santa Fe'])
 		
-		# return sText	
+		if CoinFlip():
+			# male
+			sText = "By day, erotica author " + AuthorBuilder(Gender = Gender.Male) + " is " + AddArticles(MaleJobs.GetWord()).lower() + " from " + Places.GetWord() + "."	
+		else:
+			# female
+			"By day, erotica author " + AuthorBuilder(Gender = Gender.Female) + " is " + AddArticles(FemaleJobs.GetWord()).lower() + " from " + Places.GetWord() + "."
+		
+		return sText	
 		
 # class TweetTxtGen39(TweetTxtGen):
 	# The sexy read that was BANNED on Amazon! Now available on Smashwords
