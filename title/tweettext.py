@@ -674,34 +674,43 @@ class TweetTxtGen31(TweetTxtGen):
 class TweetTxtGen32(TweetTxtGen):
 	# Ben Dover is definitely the best erotica author working in Tuscaloosa!
 	ID = 32
-	Priority = 4
+	Priority = 400
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
 		sText = ""
 		
 		sAuthor = AuthorBuilder()
-		sSuper = WordList(["best", "premier", "finest", "#1"]).GetWord()
+		sSuper = WordList(["best", "premier", "finest", "top ten"]).GetWord()
 		sType = WordList(["erotica", "erotica", "smut", "erotic romance", "naughty romance", "adult romance", "adult erotic romance", "fetish-friendly romance", "kink-friendly erotica", "erotic space opera", "erotic detective fiction", "kink-friendly LitRPG", "lesbian cozy mystery", "fetish cozy mystery", "erotic cookbook"]).GetWord()
 		
+		Places = WordList(['Tulsa','Tuscaloosa','Scranton','Ithaca','Flagstaff','East Lansing','Duluth',
+							'Syracuse','Fargo','Provo','South Bend','Ann Arbor','Des Moines','Reno',
+							'Billings','Spokane','Deltona','St. Petersburg','Sioux Falls',
+							'Cedar Rapids','Peoria','Sunnyvale','Elk Grove','North Myrtle Beach',
+							'Modesto','Pensacola','El Paso','East Lansing','Dayton','Albuquerque',
+							'Toledo','Shreveport','Wichita','Fresno','Blackpool','Hull',
+							'Wolverhampton','Norwich','Derby','Doncaster','Portsmouth','Southampton',
+							'Santa Fe','Norwich','West Bromwich','Poole','Plano','Fort Wayne','Sussex',
+							'Essex','Cardiff'])
 		sPlace = ""
 		if CoinFlip():
 			sPlace += "in " 
 			if CoinFlip():
 				sPlace += WordList(["north", "south", "east", "west"]).GetWord() + " "
-			sPlace += WordList(["Tulsa", "Tuscaloosa", "Scranton", "Hull", "Huddersfield", "Jacksonville", "Plano", "Fort Wayne", "Calgary", "Liverpool", "Northampton", "Sussex", "Essex", "Cardiff"]).GetWord()
+			sPlace += Places.GetWord()
 		else:
 			sPlace += "from " 
 			if CoinFlip():
 				sPlace += WordList(["north", "south", "east", "west"]).GetWord() + " "
-			sPlace += WordList(["Alabama", "Arkansas", "Canada", "Liverpool", "Northampton", "Sussex", "Essex", "New Jersey", "Florida", "West Virginia"]).GetWord()
+			sPlace += Places.GetWord()
 			
-		sText = WordList(["There's no question that " + sAuthor + " is the ",
-						  sAuthor + " is absolutely the ",
-						  "There's no doubt in my mind that " + sAuthor + " is the ",
-						  "There can be no debate that " + sAuthor + " is the ",
-						  "No one can deny that " + sAuthor + " is the "]).GetWord()
-		sText += sSuper + " " + sType + " writer " + sPlace
+		sText = WordList(["There's no question that " + sAuthor + " is one of the ",
+						  sAuthor + " is absolutely one of the ",
+						  "There's no doubt in my mind that " + sAuthor + " is one of the ",
+						  "There can be no debate that " + sAuthor + " is one of the ",
+						  "No one can deny that " + sAuthor + " is one of the "]).GetWord()
+		sText += sSuper + " " + sType + " writers " + sPlace
 		
 		return sText
 
@@ -935,7 +944,8 @@ class TweetTxtGen38(TweetTxtGen):
 							 "9th Grade Teacher","Zoology Professor","Retiree","US Army Ranger",
 							 "Auto Mechanic","HVAC Technician","Zoomba Instructor","Life Coach",
 							 "Vice Principal","Truck Driver","Materials Engineer","Uber Driver",
-							 "Cable Installer","Bouncer","Zamboni Driver",'Windshield Installer'
+							 "Cable Installer","Bouncer","Zamboni Driver","Windshield Installer"
+							 "Tiler Grouter","Forklift Operator","Air Traffic Controller"
 							 ])
 		FemaleJobs = WordList(["Bank Teller","Gourmet Chef","Physical Therapist","Nurse","Dental Hygenist",
 							   "Receptionist","English Teacher","Spanish Teacher","Lexicographer",
@@ -946,7 +956,8 @@ class TweetTxtGen38(TweetTxtGen):
 							   "Yoga Instructor","Lyft Driver","Librarian","Podcast Host","Police Officer",
 							   "Speech Therapist","Beautician","Manicurist","Wedding Planner","Hostess",
 							   "Cocktail Waitress","Kindergarten Teacher","Tutor","House Maid",
-							   "Funeral Planner","Professional Hand Model","Sculptor"
+							   "Funeral Planner","Professional Hand Model","Sculptor","Car Wash Manager",
+							   "Loan Officer"
 							   ])
 		Places = WordList(['Tulsa','Tuscaloosa','Scranton','Ithaca','Flagstaff','East Lansing','Duluth',
 							'Syracuse','Fargo','Provo','South Bend','Ann Arbor','Des Moines','Reno',
@@ -955,7 +966,8 @@ class TweetTxtGen38(TweetTxtGen):
 							'Modesto','Pensacola','El Paso','East Lansing','Dayton','Albuquerque',
 							'Toledo','Shreveport','Wichita','Fresno','Blackpool','Hull',
 							'Wolverhampton','Norwich','Derby','Doncaster','Portsmouth','Southampton',
-							'Santa Fe'])
+							'Santa Fe','Norwich','West Bromwich','Poole','Plano','Fort Wayne','Sussex',
+							'Essex','Cardiff'])
 		
 		if CoinFlip():
 			# male
