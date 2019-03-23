@@ -920,7 +920,7 @@ class TweetTxtGen37(TweetTxtGen):
 class TweetTxtGen38(TweetTxtGen):
 	# By day, erotica author Ben Dover is a Wedding Photographer from Scranton.
 	ID = 38
-	Priority = 200
+	Priority = 4
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
