@@ -3140,15 +3140,27 @@ class Generator102(Generator):
 
 		return sTweet	
 		
-# class Generator103(Generator):
-	# ID = 103
-	# Priority = 2
+# My Mother-in-Law is 
+# A Tanned Cheerleader 
+# and I Got Her Pregnant!
+class Generator103(Generator):
+	ID = 103
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		GirlAdj = WordList(title.misc.PhysCharFemale().List + title.misc.NationFemale().List + title.misc.AttitudeGoodFemale().List + title.misc.SkinHairColorFemale().List + ['Fertile','Naked','Sassy','Saucy','Sexy','Black','Ebony','Bisexual'])
+		GirlNoun = WordList(title.misc.ProfGoodFemale().List + title.misc.TropesGoodFemale().List + title.misc.SpeciesFemale().List)
+		Relate = WordList(["Mother-in-Law","Step-Mom","Sister-in-Law","Step-Sister","Half Sister","Step-Daughter",
+							"Daughter-in-Law","Cousin"])
+						
+		sTweet = "My " + Relate.GetWord() + " is\n"
+		sTweet += AddArticles(GirlAdj.GetWord() + " " + GirlNoun.GetWord()) + ",\n"
+		sTweet += "and " + WordList(["I Got Her Pregnant","I Got Her Pregnant","I Knocked Her Up"]).GetWord() + "!"
 
-		# return sTweet	
+		return sTweet	
 		
 # class Generator104(Generator):
 	# ID = 104
