@@ -563,7 +563,6 @@ class TropesGoodFemale(WordList):
 			'Chaste Nun',
 			'Cheer Squad Captain',
 			'Damsel',
-			'Daddy\'s Girl',
 			'Farmer\'s Daughter',
 			'Hippy Chick',
 			'HuCow',
@@ -697,6 +696,7 @@ class AttitudeMale(WordList):
 			'Roguish',
 			'Savage',
 			'Seductive',
+			'Sensitive',
 			'Sensual',
 			'Shameless',
 			'Slick',
@@ -731,6 +731,7 @@ class GenModMale(WordList):
 			'Stylish',
 			'Taboo',
 			'S.W.A.T. Team',
+			'Vegan',
 			'Virile',
 			'Wealthy'])
 		
@@ -790,8 +791,7 @@ class PhysCharMale(WordList):
 			'Strapping',
 			'Strong',
 			'Tall','Tall',
-			'Tattooed',
-			'Tough'])
+			'Tattooed'])
 			
 class DickCharMale(WordList):
 	def __init__(self):
@@ -922,17 +922,15 @@ class SpeciesMale(WordList):
 			'Centaur','Centaur',
 			'Cyborg',
 			'Demon',
-			'Dinosaur',
+			'Dinosaur','Dinosaur',
 			'Dwarf',
-			'Futanari',
 			'Gargoyle',
 			'Giant',
 			'Goat-Man',
-			'Incubus',
 			'Man-o-taur',
 			'MANtelope',
 			'MANticore',
-			'Mer-man',
+			'Mer-man','Mer-man',
 			'Swamp Creature',
 			'Tentacle Monster',
 			'Uniporn',

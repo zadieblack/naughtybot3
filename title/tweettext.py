@@ -279,14 +279,14 @@ class TweetTxtGen10(TweetTxtGen):
 		super().GenerateTweet()
 		sText = ""
 		
-		sSuitor1 = Master = MaleChar(iNumMaxCBits = 1, bAddArticle = True).Desc.lower()
-		sSuitor2 = Master = MaleChar(iNumMaxCBits = 1, bAddArticle = True).Desc.lower()
-		sText = "Who will " + NamesFemale().FirstName() + " choose, " + sSuitor1 + " or " + sSuitor2 + "? I was on the edge of my seat! " 
+		sSuitor1 = Master = MaleChar(iNumMaxCBits = 1, bAddArticle = True).Desc
+		sSuitor2 = Master = MaleChar(iNumMaxCBits = 1, bAddArticle = True).Desc
+		sText = "Who will " + NamesFemale().FirstName() + " choose, " + sSuitor1.lower() + " or " + sSuitor2.lower() + "? I was on the edge of my seat! " 
 		if CoinFlip():
 			if CoinFlip():
-				sText += "#team" + sSuitor1.replace(" ", "").replace("the", "").replace("her", "").replace("-", "")
+				sText += "#Team" + sSuitor1.replace(" ", "").replace("The", "").replace("Her", "").replace("-", "")
 			else:
-				sText += "#team" + sSuitor2.replace(" ", "").replace("the", "").replace("her", "").replace("-", "")
+				sText += "#Team" + sSuitor2.replace(" ", "").replace("The", "").replace("Her", "").replace("-", "")
 		
 		return sText
 		
@@ -674,7 +674,7 @@ class TweetTxtGen31(TweetTxtGen):
 class TweetTxtGen32(TweetTxtGen):
 	# Ben Dover is definitely the best erotica author working in Tuscaloosa!
 	ID = 32
-	Priority = 400
+	Priority = 4
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -682,7 +682,36 @@ class TweetTxtGen32(TweetTxtGen):
 		
 		sAuthor = AuthorBuilder()
 		sSuper = WordList(["best", "premier", "finest", "top ten"]).GetWord()
-		sType = WordList(["erotica", "erotica", "smut", "erotic romance", "naughty romance", "adult romance", "adult erotic romance", "fetish-friendly romance", "kink-friendly erotica", "erotic space opera", "erotic detective fiction", "kink-friendly LitRPG", "lesbian cozy mystery", "fetish cozy mystery", "erotic cookbook"]).GetWord()
+		EroticaNiches = WordList(["anal fisting","dwarf lactation","wife-swapping","lesbian fisting",
+								  "lesbian lactation","lesbian anal","trans age-play","cuckquean lactation",
+								  "werewolf fisting","vampire age-play","vampire lactation",
+								  "anal exhibitionism","vampire knotting","BDSM lactation","vampire menage",
+								  "anal menage","lactation menage","cuckquean psuedo-incest",
+								  "pseudo-incest lactation","pseudo-incest fisting","vampire fisting",
+								  "pseudo-incest age-play","BDSM cuckolding","interracial fisting",
+								  "interracial vampire menage","vampire exhibitionism",
+								  "interracial pseudo-incest","trans pseudo-incest","interracial cuckqueaning",
+								  "interracial age-play","pseudo-incest anal fisting","interracial anal fisting",
+								  "interracial gangbang","interracial anal gangbang",
+								  "interracial pseudo-incest anal gangbang","interracial lesbian voyeurism",
+								  "interracial pseudo-incest BDSM","non-consensual vampire fisting",
+								  "interracial lesbian anal menage","trans mer-man age-play",
+								  "trans mer-man BDSM","pseudo-incest gangbang voyeurism",
+								  "trans cuckquean BDSM", "interracial trans lactation",
+								  "interracial anal cuckolding","non-consensual nipple play",
+								  "pseudo-incest lesbian nipple play","interracial anal fem-dom",
+								  "interracial vampire fem-dom","trans pseudo-incest fem-dom",
+								  "non-consensual fem-dom lactation", "male lactation",
+								  "interracial futanari pseudo-incest","interracial futanari gangbang",
+								  "interracial futanari anal","interracial futanari lactation",
+								  "interracial futa wife-swapping", "interracial lesbian wife-swapping",
+								  "anal mer-man exhibitionism", "interracial MILF nipple-play",
+								  "psuedo-incest anal cuck-quean", "non-consensual foot fetish",
+								  "pseudo-incest vampire menage", "lesbian vampire fisting",
+								  "werewolf foot-fetish fem-dom", "reverse gangbang anal fisting",
+								  "anal vampire reverse gangbang", "trans anal foot-fetish",
+								  "pseudo-incest werewolf foot-fetish", "trans vampire anal wife-swapping"])
+		sType = EroticaNiches.GetWord()
 		
 		Places = WordList(['Tulsa','Tuscaloosa','Scranton','Ithaca','Flagstaff','East Lansing','Duluth',
 							'Syracuse','Fargo','Provo','South Bend','Ann Arbor','Des Moines','Reno',
@@ -697,12 +726,12 @@ class TweetTxtGen32(TweetTxtGen):
 		if CoinFlip():
 			sPlace += "in " 
 			if CoinFlip():
-				sPlace += WordList(["north", "south", "east", "west"]).GetWord() + " "
+				sPlace += WordList(["North", "South", "East", "West"]).GetWord() + " "
 			sPlace += Places.GetWord()
 		else:
 			sPlace += "from " 
 			if CoinFlip():
-				sPlace += WordList(["north", "south", "east", "west"]).GetWord() + " "
+				sPlace += WordList(["North", "South", "East", "West"]).GetWord() + " "
 			sPlace += Places.GetWord()
 			
 		sText = WordList(["There's no question that " + sAuthor + " is one of the ",
@@ -977,28 +1006,84 @@ class TweetTxtGen38(TweetTxtGen):
 			"By day, erotica author " + AuthorBuilder(Gender = Gender.Female) + " is " + AddArticles(FemaleJobs.GetWord()).lower() + " from " + Places.GetWord() + "."
 		
 		return sText	
-		
-# class TweetTxtGen39(TweetTxtGen):
-	# The sexy read that was BANNED on Amazon! Now available on Smashwords
-	# ID = 39
-	# Priority = 2
+
+# I have to tell you, I did not expect the ~SPOILER ALERT~ velociraptor attack!		
+class TweetTxtGen39(TweetTxtGen):
+	ID = 39
+	Priority = 3
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sText = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sText = ""
 		
-		# return sText	
+		Surprises = WordList(['velociraptor attack','space alien invasion','Martian invasion','T-Rex attack',
+								'man-eating tiger attack','zombie invasion','polar bear attack',
+								'Great White Shark attack','giant spider attack','venemous snake attack',
+								'shape-shifting alien invasion','spitting cobra attack',
+								'boa constrictor attack','water buffalo stampede','Viking invasion'])
+		Alerts = WordList(['~SPOILER ALERT~','**SPOILER ALERT**','~*SPOILER ALERT*~','[SPOILER ALERT]',
+							'~SPOILER WARNING~','**SPOILER WARNING**','~*SPOILER WARNING*~','[SPOILER WARNING]',
+							'~SPOILERS~','**SPOILERS**','~*SPOILERS*~','[SPOILERS]'])
+							
+		iRand = randint(1,5)
+		if iRand == 1:
+			sText = "I have to tell you, I did not expect the " + Alerts.GetWord() + " " + Surprises.GetWord() + "!"
+		elif iRand == 2:
+			sText = "The part with the " + Alerts.GetWord() + " " + Surprises.GetWord() + " was very unexpected!"
+		elif iRand == 3:
+			sText = "I did not see the part with the " + Alerts.GetWord() + " " + Surprises.GetWord() + " coming!"
+		elif iRand == 4:
+			sText = "I was definitely caught off guard when the " + Alerts.GetWord() + " " + Surprises.GetWord() + " happened!"
+		else:
+			sText = "I was certainly surprised by the unexpected twist with the " + Alerts.GetWord() + " " + Surprises.GetWord() + "!"
+
 		
-# class TweetTxtGen40(TweetTxtGen):
-	# The sexy read that was BANNED on Amazon! Now available on Smashwords
-	# ID = 40
-	# Priority = 2
+		return sText	
+		
+class TweetTxtGen40(TweetTxtGen):
+	# More steamy lesbian vampire wife-swapping erotica from author Ivana Schaft-Hyman!
+	ID = 40
+	Priority = 3
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sText = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sText = ""
 		
-		# return sText	
+		Adjs = WordList(['steamy','hot','naughty','dirty','ground-breaking','filthy','raunchy',
+						 'exciting','thrilling'])
+		EroticaNiches = WordList(["anal fisting","dwarf lactation","wife-swapping","lesbian fisting",
+								  "lesbian lactation","lesbian anal","trans age-play","cuckquean lactation",
+								  "werewolf fisting","vampire age-play","vampire lactation",
+								  "anal exhibitionism","vampire knotting","BDSM lactation","vampire menage",
+								  "anal menage","lactation menage","cuckquean psuedo-incest",
+								  "pseudo-incest lactation","pseudo-incest fisting","vampire fisting",
+								  "pseudo-incest age-play","BDSM cuckolding","interracial fisting",
+								  "interracial vampire menage","vampire exhibitionism",
+								  "interracial pseudo-incest","trans pseudo-incest","interracial cuckqueaning",
+								  "interracial age-play","pseudo-incest anal fisting","interracial anal fisting",
+								  "interracial gangbang","interracial anal gangbang",
+								  "interracial pseudo-incest anal gangbang","interracial lesbian voyeurism",
+								  "interracial pseudo-incest BDSM","non-consensual vampire fisting",
+								  "interracial lesbian anal menage","trans mer-man age-play",
+								  "trans mer-man BDSM","pseudo-incest gangbang voyeurism",
+								  "trans cuckquean BDSM", "interracial trans lactation",
+								  "interracial anal cuckolding","non-consensual nipple play",
+								  "pseudo-incest lesbian nipple play","interracial anal fem-dom",
+								  "interracial vampire fem-dom","trans pseudo-incest fem-dom",
+								  "non-consensual fem-dom lactation", "male lactation",
+								  "interracial futanari pseudo-incest","interracial futanari gangbang",
+								  "interracial futanari anal","interracial futanari lactation",
+								  "interracial futa wife-swapping", "interracial lesbian wife-swapping",
+								  "anal mer-man exhibitionism", "interracial MILF nipple-play",
+								  "psuedo-incest anal cuck-quean", "non-consensual foot fetish",
+								  "pseudo-incest vampire menage", "lesbian vampire fisting",
+								  "werewolf foot-fetish fem-dom", "reverse gangbang anal fisting",
+								  "anal vampire reverse gangbang", "trans anal foot-fetish",
+								  "pseudo-incest werewolf foot-fetish", "trans vampire anal wife-swapping"])
+								  
+		sText = "Get the latest " + Adjs.GetWord() + " ebook from " + WordList(['noted','celebrated','leading','best-selling']).GetWord() + " " + EroticaNiches.GetWord() + " author " + AuthorBuilder() + "!"
+		
+		return sText	
 		
 # class TweetTxtGen41(TweetTxtGen):
 	# The sexy read that was BANNED on Amazon! Now available on Smashwords
@@ -1068,9 +1153,10 @@ class TweetTxtGenSelector():
 		if len(self.GeneratorList) > 0:
 
 			Generator = self.GeneratorList[randint(0, len(self.GeneratorList) - 1)][1]
+			
 			while not Generator.Type in AllowedTypes:
 				Generator = self.GeneratorList[randint(0, len(self.GeneratorList) - 1)][1]
-				
+						
 		return Generator 
 		
 	def GetGenerator(self, iGen):
@@ -1114,6 +1200,7 @@ def GetImgTweetText(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = None, Tw
 	
 	if not gen is None:
 		sText = gen.GenerateTweet()
+		print("Tweet text gen # " + str(gen.ID))
 	else:
 		print("Generator not found.")
 		sText = ""

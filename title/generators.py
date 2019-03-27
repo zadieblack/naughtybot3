@@ -437,7 +437,7 @@ class Generator14(Generator):
 class Generator17(Generator):
 	# Enslaved: The Ebony Older Woman & The Mountain Man Biker Gang 
 	ID = 17
-	Priority = 2
+	Priority = 4
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -446,15 +446,16 @@ class Generator17(Generator):
 		GirlNotList = ["Recently-Divorced","Sassy","Tanned","Kitten","Harem","Ice Queen","MILF"]
 		Subtitles = []
 		
-		Master = MaleChar(iNumMaxCBits = 2)
+		Master = MaleChar(iNumMaxCBits = 3)
 		Gang = MaleGangChar(iNumMaxCBits = 3)
 		
-		sTweet = self.VerbsBy.GetWord() + ":\n"
+		VerbNotList = ['Taken']
+		sTweet = self.VerbsBy.GetWord(NotList = VerbNotList) + ":\n"
 		
 		Girl = FemaleChar(iNumMaxCBits = 3, Type = GirlType.Good, NotList = GirlNotList, bAllowClothing = False, bAllowSexuality = False, bAllowGenMod = False, bAllowSpecies = False, bAllowTitle = False)
 		Subtitles.append("The " + Girl.Desc + "\n& The " + Gang.Desc)
-		Subtitles.append("The " + Master.Desc + "'s\n" + Girl.Desc)
-		Subtitles.append(AddArticles(Girl.Desc) + "\n" + self.SubtitleCoda.GetWord())
+		Subtitles.append("The " + Girl.Desc + "\n& The " + Master.Desc)
+		Subtitles.append(AddArticles(Girl.Desc) + "\n" + WordList(['Adventure','Encounter','Liason','Experience','Episode','Rendezvous']).GetWord())
 		
 		sTweet += Subtitles[randint(0, len(Subtitles) - 1)]
 		
@@ -500,8 +501,8 @@ class Generator19(Generator):
 			else:
 				sTweet = WordList(["Stripped Bare", "Stripped Naked", "Stripped in Public", "Commanded to Strip", "Commanded to Strip in Public", "Forced to Go Naked in Public", "Ordered to Strip"]).GetWord() + " " + WordList(["By\nThe", "By\nMy"]).GetWord() + " " + Master.Desc
 		
-		if CoinFlip():
-			sTweet += ":\n" + WordList(["An " + self._getFMs_(), "A BDSM", "A Taboo", "A Forbidden", "A Secret", "A Submissive"]).GetWord() + " " + self.SubtitleCoda.GetWord()
+		# if CoinFlip():
+			# sTweet += ":\n" + WordList(["An " + self._getFMs_(), "A BDSM", "A Taboo", "A Forbidden", "A Secret", "A Submissive"]).GetWord() + " " + self.SubtitleCoda.GetWord()
 		
 		return sTweet
 		
@@ -2127,7 +2128,7 @@ class Generator69(Generator):
 		Girl = title.misc.NiceGirl()
 		sNiceGirl = Girl.Desc
 		
-		Man = MaleChar(iNumMaxCBits = 3, bAddArticle = False, bAllowRelate = False, bAllowSpecies = False, bAllowMaritalStatus = True, bAllowGang = False, bAllowTitle = True)
+		Man = MaleChar(iNumMaxCBits = 3, bAddArticle = False, bAllowRelate = False, bAllowMaritalStatus = True, bAllowGang = False, bAllowTitle = True)
 		
 		iRand = randint(1,3)
 		if iRand == 1:
@@ -2337,7 +2338,7 @@ class Generator77(Generator):
 		ManAdjs = WordList(["Naked","Strapping","Nudist","Well-Hung","Virile","Muscular","Burly",
 							 "Hunky","Bald","Well-Endowed","Beefcake","Girthy","Handsome","Mustachioed",
 							 "Rock-Hard","Horny","Wicked","Kinky","Sensual","Naughty","Throbbing"])
-		ManNouns = WordList(["Sheikh","Shah","Prince","Sultan","King","Vizir","Chieftain","Maharaja"])
+		ManNouns = WordList(["Sheikh","Shah","Prince","Sultan","King","Vizir","Maharaja"])
 		sManAdj = ManAdjs.GetWord()
 		Man = MaleChar(iNumMaxCBits = 2, NotList = [sManAdj], bAddArticle = False, bAllowRelate = False, bAllowSpecies = False, bAllowMaritalStatus = False, bAllowGang = False, bAllowTitle = False, bAllowNation = False, bAddEndNoun = False)
 
@@ -2625,7 +2626,7 @@ class Generator85(Generator):
 		
 		ManNotList = (["Teenage","Young","College","Visibly Erect","Space"])
 		
-		Man = MaleChar(iNumMaxCBits = 4, bAddArticle = False, NotList = ManNotList, bAllowRelate = False, bAllowSpecies = False, bAllowMaritalStatus = False, bAllowGang = False, bAllowTitle = False, bAllowTrope = False, bAllowGenMod = False)
+		Man = MaleChar(iNumMaxCBits = 4, bAddArticle = False, NotList = ManNotList, bAllowRelate = False, bAllowMaritalStatus = False, bAllowGang = False, bAllowTitle = False, bAllowGenMod = False)
 
 		if CoinFlip():
 			sTweet = "I Lost My Virginity\n"
@@ -2658,7 +2659,7 @@ class Generator86(Generator):
 		ManNotList = ["Space","Gladiator","Knight","Viking","Warrior","Shape-Shifting","Ghost"]
 		WomanNotList = ["Wife","Girlfriend","Fiancé","Virgin","Harem","Slave Girl","Damsel"]
 		
-		Man = MaleChar(iNumMaxCBits = 4, bAddArticle = False, NotList = ManNotList, bAllowRelate = False, bAllowSpecies = False, bAllowMaritalStatus = False, bAllowGang = False, bAllowTitle = False, bAllowTrope = True, bAllowGenMod = False)
+		Man = MaleChar(iNumMaxCBits = 4, bAddArticle = False, NotList = ManNotList, bAllowRelate = False, bAllowMaritalStatus = False, bAllowGang = False, bAllowTitle = False, bAllowGenMod = False)
 		Girl = FemaleChar(iNumMaxCBits = 3, Type = GirlType.Good, NotList = WomanNotList, bAddArticle = False, bAllowClothing = False, bAllowRelate = False, bAllowSexuality = False, bAllowSpecies = False, bAllowMaritalStatus = False, bAllowTitle = False, bAllowGenMod = False, bAddEndNoun = False)
 		
 		sTweet = "\"I Shared My " + Girl.Desc + " Wife\n"
@@ -3162,15 +3163,30 @@ class Generator103(Generator):
 
 		return sTweet	
 		
-# class Generator104(Generator):
-	# ID = 104
-	# Priority = 2
+# Claimed on the Coffee Table
+# by a Burly Centaur Sailor
+class Generator104(Generator):
+	ID = 104
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		Verbs = WordList(['Claimed','Claimed Forcefully','Claimed Hard','Deflowered','Impregnated','Knocked Up',
+							'Motor-Boated','Mounted','Paddled','Pleasured','Ravished','Ravished','Satisfied',
+							'Taken','Taken Forcefully','Taken From Behind','Taken Roughly'])
+		Location = WordList(['On the Coffee Table','On the Bathroom Floor','On the Kitchen Counter',
+							 'In the Back Seat','On a Park Bench','On the Washing Machine',
+							 'Under a Jungle Gym','On a Merry-Go-Round','On an Elliptical Machine',
+							 'On a Treadmill','On a Trampoline','In a Kiddie Pool','On a See-Saw',
+							 'On the Dining Room Table','On an Ikea Futon'])
+		ManNotList = ['Single']
+		Man = MaleChar(iNumMaxCBits = 3, bAddArticle = False, bAllowGang = False, bAllowTitle = False)
+		
+		sTweet = Verbs.GetWord() + " " + Location.GetWord() + "\nby " + AddArticles(Man.Desc)
 
-		# return sTweet	
+		return sTweet	
 		
 # class Generator105(Generator):
 	# ID = 105

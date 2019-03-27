@@ -304,12 +304,22 @@ class FemaleChar(Character):
 			
 		if bAddEndNoun:
 			if not bFoundNoun:
+				NounList = []
+					
+				if bAllowProf:
+					NounList.append(ProfFemale(Type = Type))
+					NounList.append(ProfFemale(Type = Type))
+					NounList.append(ProfFemale(Type = Type))
+				if bAllowSpecies:
+					NounList.append(SpeciesFemale())
 				if bAllowTrope:
-					BitGetList.append(TropeFemale(Type = Type).Get(NotList = NotList))
-				elif bAllowProf:
-					BitGetList.append(ProfFemale(Type = Type).Get(NotList = NotList))
-				else:
-					BitGetList.append(WordList(["Girl","Woman"]).GetWord(NotList = NotList))
+					NounList.append(TropeFemale())
+				if bAllowRelate:
+					NounList.append(RelateFemale())
+				if bAllowTitle:
+					NounList.append(TitleFemale())
+					
+				BitGetList.append(NounList[randint(0,len(NounList) - 1)].Get(NotList = NotList))
 		
 		sDesc = ""
 		for x in range(0, len(BitGetList)):
@@ -679,10 +689,22 @@ class MaleRegChar(Character):
 		if bAddEndNoun:
 			if not bFoundNoun:
 				if bAddEndNoun:
+					NounList = []
+					
+					if bAllowProf:
+						NounList.append(ProfMale())
+						NounList.append(ProfMale())
+						NounList.append(ProfMale())
+					if bAllowSpecies:
+						NounList.append(SpeciesMale())
 					if bAllowTrope:
-						BitGetList.append(TropeMale().Get(NotList = NotList))
-					else:
-						BitGetList.append("Man")
+						NounList.append(TropeMale())
+					if bAllowRelate:
+						NounList.append(RelateMale())
+					if bAllowTitle:
+						NounList.append(TitleMale())
+						
+					BitGetList.append(NounList[randint(0,len(NounList) - 1)].Get(NotList = NotList))
 		
 		sDesc = ""
 		for x in range(0, len(BitGetList)):
