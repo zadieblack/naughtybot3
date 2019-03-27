@@ -186,7 +186,7 @@ def CreateImg(sText):
 	
 	color = 'rgb(255, 255, 255)' # black color
 	
-	ImgTxt = DrawText(ImgBase.size, sText, color)
+	ImgTxt = DrawText(ImgBase.size, sText.strip(), color)
 	 
 	# composite the text and base images
 	ImgOut = Image.alpha_composite(ImgBase, ImgTxt)

@@ -247,7 +247,14 @@ class TweetTxtGen8(TweetTxtGen):
 		super().GenerateTweet()
 		sText = ""
 		
-		sText = "The " + WordList(["anal", "anal", "orgy", "gangbang", "fisting", "reverse gangbang", "double gangbang", "triple penetration", "deep throat", "incest", "foursome", "fivesome", "MILF orgy", "lesbian orgy", "gay bathhouse", "bukkake", "forced feminization", "choking", "twincest", "Dirty Sanchez", "pee drinking", "wife swapping"]).GetWord() + " scene is " 
+		SexActs = WordList(["anal", "orgy", "gangbang", "fisting", "reverse gangbang", "double gangbang", 
+							"triple penetration", "deep throat", "incest", "foursome", "fivesome", 
+							"MILF orgy", "lesbian orgy", "bukkake", "forced feminization", "choking", 
+							"twincest", "Dirty Sanchez", "pee drinking", "wife swapping",
+							"erotic asphyxiation", "cum swapping", "forced feminization",
+							"anal hook", "leather bondage", "steel dildo", "ball punishment"])
+		
+		sText = "The " + SexActs.GetWord() + " scene is " 
 		sText += WordList(["surprisingly", "actually surprisingly", "really surprisingly", "actually very", "really quite", "actually unexpectedly", "unexpectedly"]).GetWord() + " " 
 		sText += WordList(["tasteful", "tasteful", "loving", "affectionate", "sweet", "heartfelt", "classy", "subdued", "discrete", "charming", "endearing", "thoughtful", "tactful", "wistful"]).GetWord() 
 		
@@ -262,9 +269,22 @@ class TweetTxtGen9(TweetTxtGen):
 		super().GenerateTweet()
 		sText = ""
 		
+		Creatures = WordList(["unicorn", "centaur", "werewolf", "mermaid", "merman", "mer-MILF", "dragon", "orc", "goat man", 
+							  "dwarf", "futanari", "alien", "tentacle monster", "pirate", "lumberjack", "trapeze artist", 
+							  "clown", "sumo wrestler", "were-horse", "gorilla", "dinosaur", "dinosaur", "zombie",
+							  "pro wrestler", "vampire", "velociraptor", "goblin", "elf", "reality TV star",
+							  "shape-shifter"])
+		SexActs = WordList(["nipple play", "incest", "threesomes", "fisting", "foursomes", "fivesomes", "bukkake", "bukkake", 
+							"forced feminization", "spanking", "rope play", "water-sports", "wife swapping", 
+							"choking play", "orgies", "gangbangs", "reverse gangbangs", "harems", "lactation",
+							"fem-dom", "race play", "cuckolding", "cuck-queaning", "raw dogging", "sixty-nining",
+							"erotic asphyxiation", "pee drinking", "cream pies", "anal play", "butt stuff",
+							"voyeurism", "wife swapping", "domination", "double penetration", "triple penetration",
+							"handjobs", "nipple play"])
+		
 		sText = "If you only read one book this " + WordList(["year", "year", "year", "month", "month", "decade", "week", "week", "century"]).GetWord() + " about "
-		sText += WordList(["unicorn", "centaur", "werewolf", "mermaid", "merman", "mer-MILF", "dragon", "orc", "goat man", "dwarf", "futanari", "alien", "tentacle monster", "pirate", "lumberjack", "trapeze artist", "clown", "sumo wrestler", "were-horse", "gorilla", "dinosaur", "dinosaur"]).GetWord() + " "
-		sText += WordList(["nipple play", "incest", "threesomes", "fisting", "foursomes", "fivesomes", "bukkake", "bukkake", "forced feminization", "spanking", "rope play", "water-sports", "wife swapping", "69ing", "choking play", "orgies", "gangbangs", "reverse gangbangs", "harems", "lactation"]).GetWord() + ", " 
+		sText += Creatures.GetWord() + " "
+		sText += SexActs.GetWord() + ", " 
 		sText += WordList(["it should be", "make sure it is", "I heartily recommend"]).GetWord() + " this one!" 
 
 		
@@ -279,9 +299,9 @@ class TweetTxtGen10(TweetTxtGen):
 		super().GenerateTweet()
 		sText = ""
 		
-		sSuitor1 = Master = MaleChar(iNumMaxCBits = 1, bAddArticle = True).Desc
-		sSuitor2 = Master = MaleChar(iNumMaxCBits = 1, bAddArticle = True).Desc
-		sText = "Who will " + NamesFemale().FirstName() + " choose, " + sSuitor1.lower() + " or " + sSuitor2.lower() + "? I was on the edge of my seat! " 
+		sSuitor1 = Master = MaleChar(iNumMaxCBits = 1, bAddArticle = True, bAllowGang = False).Desc
+		sSuitor2 = Master = MaleChar(iNumMaxCBits = 1, bAddArticle = True, bAllowGang = False).Desc
+		sText = "Who will " + NamesFemale().FirstName() + " choose, " + NamesMale().FirstName() + " " + sSuitor1.lower() + " or " + NamesMale().FirstName() + " " + sSuitor2.lower() + "? I was on the edge of my seat! " 
 		if CoinFlip():
 			if CoinFlip():
 				sText += "#Team" + sSuitor1.replace(" ", "").replace("The", "").replace("Her", "").replace("-", "")
@@ -299,9 +319,17 @@ class TweetTxtGen11(TweetTxtGen):
 		super().GenerateTweet()
 		sText = ""
 		
-		sText = "Include one little "
-		sText += WordList(["unicorn", "centaur", "werewolf", "mermaid", "merman", "mer-MILF", "dragon", "orc", "goat-man", "dwarf", "futanari", "alien", "tentacle monster", "pirate", "lumberjack", "trapeze artist", "clown", "sumo wrestler", "were-horse", "gorilla", "dinosaur", "dinosaur", "velociraptor", "pro-wrestler"]).GetWord() + " "
-		sText += WordList(["anal", "double anal", "nipple play", "fisting", "incest", "twincest", "threesome", "foursome", "fivesome", "bukkake", "bukkake", "feminization", "paddling", "rope play", "water-sports", "wife swapping", "69", "erotic asphyxiation", "orgy", "gangbang", "reverse gangbang", "lactation", "double penetration", "triple penetration", "pee-drinking", "Dirty Sanchez"]).GetWord() + " scene, " 
+		sText = "Include one little " + WordList(['non-consensual','interracial','pseudo-incest']).GetWord() + " "
+		sText += WordList(["unicorn", "centaur", "werewolf", "mermaid", "merman", "mer-MILF", "dragon", "orc", "goat-man", 
+						   "dwarf", "futanari", "space alien", "tentacle monster", "clown", "sumo wrestler", "were-horse", 
+						   "gorilla", "dinosaur", "dinosaur", "velociraptor", "zombie", "bodybuilder",
+						   "pro-wrestler"]).GetWord() + " "
+		sText += WordList(["anal", "double anal", "nipple play", "fisting", "incest", "twincest", "threesome", 
+							"foursome", "fivesome", "bukkake", "feminization", "paddling", "rope play", 
+							"water-sports", "wife swapping", "69", "erotic asphyxiation", "orgy", "gangbang", 
+							"reverse gangbang", "milking", "double penetration", "triple penetration", 
+							"pee-drinking", "Dirty Sanchez", "sodomy", "age play", "BDSM", "fisting",
+							"anal fisting", "fem-dom"]).GetWord() + " scene, " 
 		sText += "and they ban you from Amazon" 
 		if CoinFlip():
 			sText += " for life"
@@ -327,7 +355,7 @@ class TweetTxtGen12(TweetTxtGen):
 class TweetTxtGen13(TweetTxtGen):
 	# Honestly, these books don't really get going until the 16th book in the series.
 	ID = 13
-	Priority = 3
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -340,7 +368,7 @@ class TweetTxtGen13(TweetTxtGen):
 class TweetTxtGen14(TweetTxtGen):
 	# CONTENT WARNING: book contains graphic depictions of veganism.
 	ID = 14
-	Priority = 3
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -355,14 +383,26 @@ class TweetTxtGen14(TweetTxtGen):
 class TweetTxtGen15(TweetTxtGen):
 	# I honestly had no idea that I was into bald centaurs until I read this book.
 	ID = 15
-	Priority = 3
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
 		sText = ""
 		
-		sText = "I honestly had no idea that I was into " + WordList(["sexy", "sexy", "sexy", "kinky", "well-hung", "well-endowed", "naughty", "naughty", "gay", "bisexual", "bearded", "bald", "short", "mustachioed", "constantly-aroused", "repressed", "stay-at-home", "stay-at-home", "blue-collar", "Asian", "cuckolded", "lactating", "submissive", "dominant", "well-dressed", "flannel-wearing", "vegan"]).GetWord() + " "
-		sText += WordList(["unicorns", "centaurs", "werewolves", "mermen", "dwarves", "dragons", "orcs", "popes", "trolls", "goat-men", "futanari", "aliens", "tentacle monsters", "pirates", "lumberjacks", "trapeze artists", "clowns", "sumo wrestlers", "were-horses", "gorillas", "dinosaurs", "dinosaurs", "blacksmiths", "Japanese businessmen", "guys named Steve"]).GetWord() + " "
+		Fetishes = WordList(["kinky", "well-hung", "well-endowed", "naughty", "gay", "bisexual", "bearded", "bald", 
+							 "short", "mustachioed", "constantly-aroused", "repressed", "stay-at-home", 
+							 "blue-collar", "Asian", "cuckolded", "lactating", "submissive", "dominant", 
+							 "well-dressed", "flannel-wearing", "vegan", "dad bod", "pansexual", "hairless",
+							 "chubby", "black", "redheaded", "freckled", "lumber-sexual", "hipster",
+							 "husky", "mature", "retiree"])
+		Creatures = WordList(["unicorns", "centaurs", "werewolves", "mermen", "dwarves", "dragons", "orcs", "popes", 
+							  "trolls", "goat-men", "futanari", "aliens", "tentacle monsters", "pirates", 
+							  "lumberjacks", "trapeze artists", "clowns", "sumo wrestlers", "were-horses", 
+							  "gorillas", "dinosaurs", "dinosaurs", "blacksmiths", "Japanese businessmen", 
+							  "guys named Steve", "zombies", "rodeo clowns", "elves", "Italians",
+							  "porn stars", "furries", "male nurses", "space aliens", "dads", "step-dads"])
+		sText = "I honestly had no idea that I was into " + Fetishes.GetWord() + " "
+		sText += Creatures.GetWord() + " "
 		sText += "until I read this book." 
 		
 		return sText
@@ -377,8 +417,26 @@ class TweetTxtGen16(TweetTxtGen):
 		sText = ""
 		
 		sText = "SPOILER ALERT: at the end, " + NamesFemale().FirstName() + " " 
-		sText += WordList(["has anal sex with", "gets fisted by", "has her toes sucked by", "tries nipple play with", "has a threesome", "has a foursome with", "has a fivesome with", "gets bukkaked by", "tries rope play with", "tries water-sports with", "becomes a cuck-quean for", "sixty-nines", "gets erotically asphyxiated by", "rims", "joins an orgy with", "gets gangbanged by", "tries a reverse gangbang with", "tries a double gangbang with", "gets double penetrated by", "gets triple penetrated by", "films a porno with", "tries BDSM with", "gets tied up by", "gets dominated by", "gets a Dirty Sanchez from", "gets hot-wifed to", "lets the guys in the gym watch her with", "walks naked through Times Square with", "gets her ass eaten by", "spreads her legs for", "spreads her cheeks for", "bends over for", "deep-throats", "gets tea-bagged by", "gets fisted by"]).GetWord() + " "
-		sText += WordList(["a lumberjack", "a fireman", "a policeman", "a lifeguard", "a stunt man", "a bull rider", "a park ranger", "a fighter pilot", "a Chippendales dancer", "an astronaut", "a Navy SEAL", "a Green Beret", "a cowboy", "a guitar player", "an olympic gold medalist", "a pro surfer", "a private eye", "a paramedic", "a mechanic", "a biker", "a life drawing model", "a pirate captain", "a highwayman", "a troubador", "a Viking warrior"]).GetWord() 
+		sText += WordList(["has anal sex with", "gets fisted by", "has her toes sucked by", "tries nipple play with", 
+							"tries rope play with", "gets peed on by", "becomes a cuck-quean for", 
+							"sixty-nines", "gets erotically asphyxiated by", "rims", "joins an orgy with", 
+							"gets gangbanged by", "tries a reverse gangbang with", 
+							"tries a double gangbang with", "gets double penetrated by", 
+							"gets triple penetrated by", "films a porno with", "tries BDSM with", 
+							"gets tied up by", "gets dominated by", "gets a Dirty Sanchez from", 
+							"gets hot-wifed to", "lets the guys in the gym watch her with", 
+							"gets her ass eaten by", "gives a foot-job to", "pegs",
+							"spreads her legs for", "spreads her cheeks for", "bends over for", 
+							"deep-throats", "gets tea-bagged by", "gets fisted by"]).GetWord() + " "
+		sText += WordList(["a lumberjack", "a fireman", "a policeman", "a lifeguard", "a stunt man", "a bull rider",  
+							"a fighter pilot", "a Chippendales dancer", "an astronaut", "a Navy SEAL", 
+							"a Green Beret", "a cowboy", "a guitar player", "an olympic gold medalist", 
+							"a pro surfer", "a private eye", "a paramedic", "a mechanic", "a biker", 
+							"a pirate captain", "a highwayman", "a troubador", "a Viking warrior",
+							"a jockey", "a sumo wrestler", "a bodybuilder", "a contortionist",
+							"a Brony", "a reality TV star", "a taxidermist", "a pro wrestler"]).GetWord() 
+		if CoinFlip():
+			sText += " from " + title.misc.DullPlaces().GetWord()
 		
 		return sText
 		
@@ -650,7 +708,7 @@ class TweetTxtGen31(TweetTxtGen):
 		sText += "He " + WordList(["is your long lost twin brother", 
 									"is secretly married to " + sHerName2, 
 									"used to be a woman named " + sHerName2, 
-									"is the serial killer that's been terrorizing " + WordList(["Tulsa", "Tuscaloosa", "Scranton", "Hull", "Livepool", "Huddersfield", "Jacksonville", "Plano", "Fort Wayne", "Calgary"]).GetWord(),
+									"is the serial killer that's been terrorizing " + title.misc.DullPlaces().GetWord(),
 									"just wants you for your " + WordList(["millions", "billions", "bitcoin", "successful fondue restaurant", "enormous titties"]).GetWord(), 
 									"is the brother your parents hid from you", 
 									"has a secret family with " + sHerName2, 
@@ -713,15 +771,7 @@ class TweetTxtGen32(TweetTxtGen):
 								  "pseudo-incest werewolf foot-fetish", "trans vampire anal wife-swapping"])
 		sType = EroticaNiches.GetWord()
 		
-		Places = WordList(['Tulsa','Tuscaloosa','Scranton','Ithaca','Flagstaff','East Lansing','Duluth',
-							'Syracuse','Fargo','Provo','South Bend','Ann Arbor','Des Moines','Reno',
-							'Billings','Spokane','Deltona','St. Petersburg','Sioux Falls',
-							'Cedar Rapids','Peoria','Sunnyvale','Elk Grove','North Myrtle Beach',
-							'Modesto','Pensacola','El Paso','East Lansing','Dayton','Albuquerque',
-							'Toledo','Shreveport','Wichita','Fresno','Blackpool','Hull',
-							'Wolverhampton','Norwich','Derby','Doncaster','Portsmouth','Southampton',
-							'Santa Fe','Norwich','West Bromwich','Poole','Plano','Fort Wayne','Sussex',
-							'Essex','Cardiff'])
+		Places = title.misc.DullPlaces()
 		sPlace = ""
 		if CoinFlip():
 			sPlace += "in " 
@@ -988,15 +1038,7 @@ class TweetTxtGen38(TweetTxtGen):
 							   "Funeral Planner","Professional Hand Model","Sculptor","Car Wash Manager",
 							   "Loan Officer"
 							   ])
-		Places = WordList(['Tulsa','Tuscaloosa','Scranton','Ithaca','Flagstaff','East Lansing','Duluth',
-							'Syracuse','Fargo','Provo','South Bend','Ann Arbor','Des Moines','Reno',
-							'Billings','Spokane','Deltona','St. Petersburg','Sioux Falls',
-							'Cedar Rapids','Peoria','Sunnyvale','Elk Grove','North Myrtle Beach',
-							'Modesto','Pensacola','El Paso','East Lansing','Dayton','Albuquerque',
-							'Toledo','Shreveport','Wichita','Fresno','Blackpool','Hull',
-							'Wolverhampton','Norwich','Derby','Doncaster','Portsmouth','Southampton',
-							'Santa Fe','Norwich','West Bromwich','Poole','Plano','Fort Wayne','Sussex',
-							'Essex','Cardiff'])
+		Places = title.misc.DullPlaces()
 		
 		if CoinFlip():
 			# male

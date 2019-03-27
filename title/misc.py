@@ -150,6 +150,57 @@ class BookSellers(WordList):
 			'Smashwords',
 			'WattPad'])
 			
+class DullPlaces(WordList):
+	def __init__(self):
+		super().__init__(['Albuquerque',
+			'Ann Arbor',
+			'Billings',
+			'Blackpool',
+			'Calgary'
+			'Cardiff',
+			'Cedar Rapids',
+			'Dayton',
+			'Deltona',
+			'Derby',
+			'Des Moines',
+			'Doncaster',
+			'Duluth',
+			'East Lansing',
+			'El Paso',
+			'Elk Grove',
+			'Essex',
+			'Fargo',
+			'Flagstaff',
+			'Fort Wayne',
+			'Fresno',
+			'Hull',
+			'Ithaca',
+			'Modesto',
+			'Norwich',
+			'Pensacola',
+			'Peoria',
+			'Plano',
+			'Poole',
+			'Portsmouth',
+			'Provo',
+			'Reno',
+			'Santa Fe',
+			'Scranton',
+			'Shreveport',
+			'Sioux Falls',
+			'South Bend',
+			'Southampton',
+			'Spokane',
+			'Sunnyvale',
+			'Sussex',
+			'Syracuse',
+			'Toledo',
+			'Tulsa',
+			'Tuscaloosa',
+			'West Bromwich',
+			'Wichita',
+			'Wolverhampton'])
+			
 # mature, young, teenager, MILF, etc
 class AgeFemaleNoun(WordList):
 	def __init__(self):
