@@ -3187,26 +3187,95 @@ class Generator104(Generator):
 		sTweet = Verbs.GetWord() + " " + Location.GetWord() + "\nby " + AddArticles(Man.Desc)
 
 		return sTweet	
-		
-# class Generator105(Generator):
-	# ID = 105
-	# Priority = 2
-	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
 
-		# return sTweet	
-		
-# class Generator106(Generator):
-	# ID = 106
-	# Priority = 2
+# Brigitte Gets Claimed by 
+# The Well-Hung Naked Manor Lord 
+# On the Back of a Horse		
+class Generator105(Generator):
+	ID = 105
+	Priority = 3
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		Adjs = WordList(['Lustily','Vigorously','Ardently','Passionately','From Behind','Fearlessly',
+						'Fervently','Forcefully','Repeatedly','Anally'])
+		GirlNames = WordList(['Alice','Alina','Amelia','Anastasia','Anna','Anabel','Beatrice','Belle',
+							  'Brigitte','Carmina','Charity','Chastity','Clover','Colette',
+							  'Constance','Cordelia','Daphne','Delilah','Delores','Eleanor',
+							  'Elizabeth','Emma','Esmerelda','Estelle','Felicia','Felicity',
+							  'Fiona','Greta','Isabelle','Josephine','Juliette','Lilah','Margaret',
+							  'Mary','Molly','Morgan','Nell','Olive','Ophelia','Rosaline','Rose',
+							  'Saffron','Sarah','Sophie','Violet'])
+		MaleNouns = WordList(['Barbarian','Warrior','Knight','Bandit','Highwayman','Prince','Duke',
+								'Paladin','Monk','Rogue','Thief','Warlock','Hunter','Swordsman','Soldier',
+								'Troubador','Woodsman','Blacksmith','Manor Lord','Marquis','Baron','Pirate',
+								'Nobleman','Ruffian','Knave','Wizard','Sorcerer','Viking Warrior',
+								'Crusader','Cavalier'])
+		Suffixes = WordList(['On the Back of a Horse','In the Ruins of a Castle','In the Castle Dungeon',
+							 'On Top of a Hay Stack','Behind the Chicken Coop','Behind the Cow Shed',
+							 'While her Entire Village Watches',
+							 'and His Band of ' + str(randint(3,12)) + ' Merry Men',
+							 'and His Band of ' + str(randint(3,12)) + ' Merry Men',
+							 'and He Doesn\'t Pull Out!','Even Though She\'s a Nun',
+							 'Even Though She\'s a Virgin','In the Enchanted Forest',
+							 'And Then By His Brother','In the Royal Bedchamber',
+							 'In the Castle Privy','In the Great Hall','Using a Magic Spell',
+							 'Using a Broomstick','Wearing a Leather Condom Atop His Cock',
+							 'On the Back of a Donkey','Using Forbidden Sex Magic',
+							 'in a Turnip Field','in the Village Church','in a Monastary',
+							 'and They Live Happily Ever After','and She Finds It Quite Agreeable',
+							 'Who is Secretly the King','In the Smithy','In the Tannery',
+							 'And He Doth Pleasure Her Greatly','And Verily! she is Well Satisfied',
+							 'While a Unicorn Watches','On the Deck of a Pirate Ship',
+							 'In the Old Castle Ruins','After They Meet on Tinder',
+							 'With a Very Comely Cock','Using a Leather Condom for Protection',
+							 'Wearing an Enchanted Cock Ring'])
+							 
+		ManNotList = ['S.W.A.T. Team','Cyborg','Alien','Single','Taboo','Bareback']
+		Man = MaleChar(iNumMaxCBits = 2, iNumMinCBits = 1, bAddEndNoun = False, bAddArticle = True, NotList = ManNotList,
+						bAllowAge = False, bAllowRelate = False, bAllowProf = False, bAllowTrope = False, bAllowNation = False, bAllowTitle = False, bAllowMaritalStatus = False)
+		sDesc = Man.Desc.strip()
+		
+		sTweet = GirlNames.GetWord() + " is Claimed " + Adjs.GetWord() + "\n"
+		sTweet += "by " + sDesc + " " + MaleNouns.GetWord()
+		sTweet += "\n" + Suffixes.GetWord()
 
-		# return sTweet	
+		return sTweet	
+		
+class Generator106(Generator):
+	ID = 106
+	Priority = 2
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		Adjs = WordList(['Lustily','Vigorously','Ardently','Passionately','From Behind','Fearlessly',
+						'Fervently','Forcefully','Repeatedly','Anally'])
+		GirlNames = WordList(['Alice','Alina','Amelia','Anastasia','Anna','Anabel','Beatrice','Belle',
+							  'Brigitte','Carmina','Charity','Chastity','Clover','Colette',
+							  'Constance','Cordelia','Daphne','Delilah','Delores','Eleanor',
+							  'Elizabeth','Emma','Esmerelda','Estelle','Felicia','Felicity',
+							  'Fiona','Greta','Isabelle','Josephine','Juliette','Lilah','Margaret',
+							  'Mary','Molly','Morgan','Nell','Olive','Ophelia','Rosaline','Rose',
+							  'Saffron','Sarah','Sophie','Violet'])
+		MaleNouns = WordList(['Barbarian','Warrior','Knight','Bandit','Highwayman','Prince','Duke',
+								'Paladin','Monk','Rogue','Thief','Warlock','Hunter','Swordsman','Soldier',
+								'Troubador','Woodsman','Blacksmith','Manor Lord','Marquis','Baron','Pirate',
+								'Nobleman','Ruffian','Knave','Wizard','Sorcerer','Viking Warrior',
+								'Crusader','Cavalier'])
+							 
+		ManNotList = ['S.W.A.T. Team','Cyborg','Alien','Single','Taboo','Bareback']
+		Man = MaleChar(iNumMaxCBits = 2, iNumMinCBits = 1, bAddEndNoun = False, bAddArticle = True, NotList = ManNotList,
+						bAllowAge = False, bAllowRelate = False, bAllowProf = False, bAllowTrope = False, bAllowNation = False, bAllowTitle = False, bAllowMaritalStatus = False)
+		sDesc = Man.Desc.strip()
+		
+		sTweet = GirlNames.GetWord() + " is Claimed " + Adjs.GetWord() + "\n"
+		sTweet += "by " + sDesc + " " + MaleNouns.GetWord()
+
+		return sTweet	
 		
 # class Generator100(Generator):
 	# ID = 107
