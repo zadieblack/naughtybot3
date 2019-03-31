@@ -39,8 +39,8 @@ def AuthorBuilder(Gender = Gender.Neuter):
 	Alphabet = "AAAABBBCCDDDEEEEFFFGGGGHHHIIJJJJKKLLLMNOOPPPQRRRRSSSSTTTTUVVWWWXYZ"
 	
 	FirstNames = []
-	MaleNames = NamesMale()
-	FemNames = NamesFemale()
+	MaleNames = AuthorNamesMale()
+	FemNames = AuthorNamesFemale()
 	
 	sName = ""
 	for _ in range(2):
@@ -62,6 +62,9 @@ def AuthorBuilder(Gender = Gender.Neuter):
 			
 		for _ in range(2):
 			FirstNames.append(MaleNames.FirstName() + " " + Alphabet[randint(0, len(Alphabet) - 1)] + ".")
+			
+		for _ in range(2):
+			FirstNames.append("AAEIIUBCP"[randint(0, 8)] + ". " + MaleNames.FirstName())
 		
 	if Gender == Gender.Female or Gender == Gender.Neuter:
 		for _ in range(5):
@@ -78,6 +81,9 @@ def AuthorBuilder(Gender = Gender.Neuter):
 			
 		for _ in range(2):
 			FirstNames.append(FemNames.FirstName() + " " + Alphabet[randint(0, len(Alphabet) - 1)] + ".")
+			
+		for _ in range(2):
+			FirstNames.append("AAEIIUBCP"[randint(0, 8)] + ". " + FemNames.FirstName())
 		
 	sAName = FirstNames[randint(0, len(FirstNames) - 1)]
 	
@@ -1008,7 +1014,7 @@ class TweetTxtGen37(TweetTxtGen):
 class TweetTxtGen38(TweetTxtGen):
 	# By day, erotica author Ben Dover is a Wedding Photographer from Scranton.
 	ID = 38
-	Priority = 4
+	Priority = 400
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1023,7 +1029,7 @@ class TweetTxtGen38(TweetTxtGen):
 							 "9th Grade Teacher","Zoology Professor","Retiree","US Army Ranger",
 							 "Auto Mechanic","HVAC Technician","Zoomba Instructor","Life Coach",
 							 "Vice Principal","Truck Driver","Materials Engineer","Uber Driver",
-							 "Cable Installer","Bouncer","Zamboni Driver","Windshield Installer"
+							 "Cable Installer","Bouncer","Zamboni Driver","Windshield Installer",
 							 "Tiler Grouter","Forklift Operator","Air Traffic Controller"
 							 ])
 		FemaleJobs = WordList(["Bank Teller","Gourmet Chef","Physical Therapist","Nurse","Dental Hygenist",
@@ -1045,7 +1051,7 @@ class TweetTxtGen38(TweetTxtGen):
 			sText = "By day, erotica author " + AuthorBuilder(Gender = Gender.Male) + " is " + AddArticles(MaleJobs.GetWord()).lower() + " from " + Places.GetWord() + "."	
 		else:
 			# female
-			"By day, erotica author " + AuthorBuilder(Gender = Gender.Female) + " is " + AddArticles(FemaleJobs.GetWord()).lower() + " from " + Places.GetWord() + "."
+			sText = "By day, erotica author " + AuthorBuilder(Gender = Gender.Female) + " is " + AddArticles(FemaleJobs.GetWord()).lower() + " from " + Places.GetWord() + "."
 		
 		return sText	
 

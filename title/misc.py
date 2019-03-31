@@ -156,7 +156,7 @@ class DullPlaces(WordList):
 			'Ann Arbor',
 			'Billings',
 			'Blackpool',
-			'Calgary'
+			'Calgary',
 			'Cardiff',
 			'Cedar Rapids',
 			'Dayton',

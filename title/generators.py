@@ -3277,15 +3277,65 @@ class Generator106(Generator):
 
 		return sTweet	
 		
-# class Generator100(Generator):
-	# ID = 107
-	# Priority = 2
+# Claimed at Castle Tittyfuck
+class Generator107(Generator):
+	ID = 107
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
-
-		# return sTweet	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		Prefix = WordList(["Claimed at", "Enslaved at", "Taken at", "Imprisoned at", "Claimed at","The Dungeons of",
+							"The Halls of","The Prisoner of","The Princess of","The Master of","The Baron of",
+							"Deflowered at","Despoiled at","Ravished at","Seduced at","The Knight of",
+							"The Lady of","The Virgins of"])
+		
+		FirstNouns = WordList(["cock","cunt","puss","vaj","slut","twat","spunk","prick","butt","tit",
+							"squirt","scrotum","taint","bum","face","cunny","labia","bitch","clit","cum",
+							"ball","sack","breast","meat","fuck","anus","sphincter","lip","shaft",
+							"rack","prick","wang","milk","maiden","splooge","popper","sucker","crotch",
+							"titty","milf","dick","lady","fudge","anal","wife"])
+		SecNouns = WordList(["cocks","cunts","puss","boobs","sluts","twats","spunk","pricks","butts",
+							"tits","titties","squirts","taints","fucker","bitch","clits","slits","cum",
+							"balls","sacks","meat","fucks","sphincter","lips","shafts","rack","wangs",
+							"milk","maidens","splooge","popper","sucker","crotch","sucker","milf","dicks",
+							"thrust","eater","swallow","head","spreader","groper","licker"])
+		Adjs = WordList(["hard","wet","great","fat","pink","uber","fucker","goode","thick","max","porn",
+							"bound","bone","tall","dinky","young","teen","spread","stiff","tight",
+							"deep","black","dark","long","moist","gay","cuck"])
+		Verbs = WordList(["fuck","bang","spunk","smash","piss","cum","grope","squeeze","spurt","rut","pound",
+							"wank","milk","suck","splooge","bone","slap","thrust","rub","swallow","cuck"])
+		
+		sTweet = Prefix.GetWord() + " Castle "
+		iRand = randint(1,5)
+		if iRand == 1:
+			sWord1 = FirstNouns.GetWord()
+			sWord2 = Verbs.GetWord(NotList = [sWord1])
+			
+			sTweet += sWord1.capitalize() + sWord2
+		elif iRand == 2:
+			sWord1 = FirstNouns.GetWord()
+			sWord2 = SecNouns.GetWord(NotList = [sWord1])
+			
+			sTweet += sWord1.capitalize() + sWord2
+		elif iRand == 3:
+			sWord1 = Adjs.GetWord()
+			sWord2 = FirstNouns.GetWord(NotList = [sWord1])
+			
+			sTweet += sWord1.capitalize() + sWord2
+		elif iRand == 4:
+			sWord1 = Adjs.GetWord()
+			sWord2 = SecNouns.GetWord(NotList = [sWord1])
+			
+			sTweet += sWord1.capitalize() + sWord2
+		else:
+			sWord1 = Verbs.GetWord()
+			sWord2 = FirstNouns.GetWord(NotList = [sWord1])
+			
+			sTweet += sWord1.capitalize() + sWord2
+			
+		return sTweet	
 		
 # class Generator108(Generator):
 	# ID = 108
