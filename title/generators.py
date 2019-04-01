@@ -3295,15 +3295,16 @@ class Generator107(Generator):
 							"squirt","scrotum","taint","bum","face","cunny","labia","bitch","clit","cum",
 							"ball","sack","breast","meat","fuck","anus","sphincter","lip","shaft",
 							"rack","prick","wang","milk","maiden","splooge","popper","sucker","crotch",
-							"titty","milf","dick","lady","fudge","anal","wife"])
+							"titty","milf","dick","lady","fudge","anal","wife","sex"])
 		SecNouns = WordList(["cocks","cunts","puss","boobs","sluts","twats","spunk","pricks","butts",
 							"tits","titties","squirts","taints","fucker","bitch","clits","slits","cum",
 							"balls","sacks","meat","fucks","sphincter","lips","shafts","rack","wangs",
 							"milk","maidens","splooge","popper","sucker","crotch","sucker","milf","dicks",
-							"thrust","eater","swallow","head","spreader","groper","licker"])
-		Adjs = WordList(["hard","wet","great","fat","pink","uber","fucker","goode","thick","max","porn",
+							"thrust","eater","swallow","head","spreader","groper","licker","humper","sex",
+							"bottom"])
+		Adjs = WordList(["hard","wet","great","fat","pink","uber","fucker","goode","thick","porn",
 							"bound","bone","tall","dinky","young","teen","spread","stiff","tight",
-							"deep","black","dark","long","moist","gay","cuck"])
+							"deep","black","dark","long","moist","gay","cuck","sex","round"])
 		Verbs = WordList(["fuck","bang","spunk","smash","piss","cum","grope","squeeze","spurt","rut","pound",
 							"wank","milk","suck","splooge","bone","slap","thrust","rub","swallow","cuck"])
 		
