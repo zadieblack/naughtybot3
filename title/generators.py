@@ -3280,7 +3280,7 @@ class Generator106(Generator):
 # Claimed at Castle Tittyfuck
 class Generator107(Generator):
 	ID = 107
-	Priority = 2
+	Priority = 4
 	
 	def WordCombiner(self, sFirstWord, sSecWord):
 		sCombined = ""
