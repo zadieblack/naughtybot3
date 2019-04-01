@@ -1990,19 +1990,18 @@ class Generator58(Generator):
 			sActualName = "Baby " + sHisName
 		
 		if CoinFlip():
-			sTweet = sHerName + " undid " + sHisName + "'s heavy belt buckle and pulled his blue jeans down his " + WordList(["lean", "bony", "muscular", "narrow", "powerful"]).GetWord() + " hips.\n"
+			sTweet = sHerName + " undid " + sHisName + "'s heavy belt buckle and pulled his blue jeans down his " + WordList(["lean", "bony", "muscular", "narrow", "powerful"]).GetWord() + " hips. "
 		else:
-			sTweet = sHerName + " unzipped " + sHisName + "'s zipper and reached down the front of his pants.\n"
-		sTweet += "'Ooh, baby, what do we have here?' she " + WordList(["purred", "cooed", "growled sexily"]).GetWord() + ". 'Is it " + AddArticles('*' + sShort1 + '*') + "? " + AddArticles('*' + sShort2 + '*').capitalize() + "? Maybe it's " + AddArticles('*' + sShort3 + '*') + "!' "
+			sTweet = sHerName + " unzipped " + sHisName + "'s zipper and reached down the front of his pants. "
+		sTweet += "\"Ooh, baby, what do we have here?\" she " + WordList(["purred", "cooed", "growled sexily"]).GetWord() + ". \"Is it " + AddArticles("'" + sShort1 + "'") + "? " + AddArticles("'" + sShort2 + "'").capitalize() + "? Maybe it's " + AddArticles("'" + sShort3 + "'") + "!\"\n"
 		sTweet += "She took it in her hand and began to fondle it with delicate fingers. " 
-		sTweet += sHisName + " felt himself growing " + WordList(["harder", "stiffer", "tumescent", "engorged"]).GetWord() + " beneath her touch. "
-		sTweet += "'It's growing " + WordList(['bigger','longer','thicker']).GetWord() + " now,' she said. 'Maybe it's " + AddArticles('*' + sMedium1 + '*') + " or " + AddArticles('*' + sMedium2 + '*') + "?'\n"
+		sTweet += "\"It's growing " + WordList(['bigger','longer','thicker']).GetWord() + " now,\" she said. \"Maybe it's " + AddArticles("'" + sMedium1 + "'") + " or " + AddArticles("'" + sMedium2 + "'") + "?\" "
 		sTweet += "She planted a moist kiss on his " + Cock.Head.FloweryDescription() + ". Then she gave the underside of the shaft a long, slow lick with her tongue. "
 		sTweet += sHisName + " groaned with pleasure.\n"
-		sTweet += "'C'mon baby,' she coaxed. 'Tell me what you like to call your junk. Ooh, I know... you call it your *" + sSilly1 + "* don't you? Wait, no. I've got it: *" + sRidic + "*!' "
+		sTweet += "\"Ooh, I know... you call it your '" + sSilly1 + "' don't you? No, I've got it: '" + sRidic + "'!\" "
 		sTweet += "He shook his head and moaned. "
-		sTweet += "'Tell me and I'll " + WordList(["suck you off", "deep throat you", "let you cum all over my tongue", "let you throat fuck me", "let you nut in my mouth"]).GetWord() + ",' she purred.\n"
-		sTweet += "'I just call it my... *" + sActualName + "*' he " + WordList(['whispered','whimpered','breathed']).GetWord() + "."
+		sTweet += "\"Tell me and I'll " + WordList(["suck you off", "deep throat you", "let you cum all over my tongue", "let you throat fuck me", "let you nut in my mouth", "suck your hairy balls", "let you splooge on my tits"]).GetWord() + ", " + sHisName +"!\" she purred.\n"
+		sTweet += "\"I just call it my... '" + sActualName + "!'\" he " + WordList(['whispered','whimpered','moaned','groaned','gasped']).GetWord() + "."
 
 		return sTweet
 		
