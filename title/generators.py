@@ -3282,6 +3282,29 @@ class Generator107(Generator):
 	ID = 107
 	Priority = 2
 	
+	def WordCombiner(self, sFirstWord, sSecWord):
+		sCombined = ""
+		
+		if len(sFirstWord) > 2 and len(sSecWord) > 2:
+			if sFirstWord[-2:-1] == sFirstWord[-1:] and sFirstWord[-1:] == sSecWord[0]:
+				# if the last two characters of the first word are the same and they are the same as the second word, remove one 
+				sCombined = sFirstWord[:-1] + sSecWord
+			elif sFirstWord[-2:] == "er" and sSecWord[-2:] == "er":
+				# if both words end in 'er', remove the first 'er'
+				sCombined = sFirstWord[:-2] + sSecWord
+			elif sFirstWord[-1:] == "a" and sSecWord[0] == "a":
+				# if the first word ends in 'a' and the second word begins with it, remove one
+				sCombined = sFirstWord[:-1] + sSecWord
+			elif sFirstWord[-1:] == "r" and sSecWord[0] == "r":
+				# if the first word ends in 'r' and the second word begins with it, remove one
+				sCombined = sFirstWord[:-1] + sSecWord
+			else:
+				sCombined = sFirstWord + sSecWord 
+		else:
+			sCombined = sFirstWord + sSecWord
+			
+		return sCombined
+	
 	def GenerateTweet(self):
 		super().GenerateTweet()
 		sTweet = ""
@@ -3289,52 +3312,61 @@ class Generator107(Generator):
 		Prefix = WordList(["Claimed at", "Enslaved at", "Taken at", "Imprisoned at", "Claimed at","The Dungeons of",
 							"The Halls of","The Prisoner of","The Princess of","The Master of","The Baron of",
 							"Deflowered at","Despoiled at","Ravished at","Seduced at","The Knight of",
-							"The Lady of","The Virgins of"])
+							"The Lady of","The Virgins of","The Baroness of","The Dutchess of",
+							"Naked at","The Harem Girls of","The Maidens of","The Queen of",
+							"The Mistress of","The Wizard of","Betrayed at"])
 		
 		FirstNouns = WordList(["cock","cunt","puss","vaj","slut","twat","spunk","prick","butt","tit",
 							"squirt","scrotum","taint","bum","face","cunny","labia","bitch","clit","cum",
 							"ball","sack","breast","meat","fuck","anus","sphincter","lip","shaft",
 							"rack","prick","wang","milk","maiden","splooge","popper","sucker","crotch",
-							"titty","milf","dick","lady","fudge","anal","wife","sex"])
+							"titty","milf","dick","lady","fudge","anal","wife","sex","cooch","gagging",
+							"groping","coitus","pissing","shafting","man","cherry","cream","coochy",
+							"hoar","sucking","anus","rimming"])
 		SecNouns = WordList(["cocks","cunts","puss","boobs","sluts","twats","spunk","pricks","butts",
 							"tits","titties","squirts","taints","fucker","bitch","clits","slits","cum",
 							"balls","sacks","meat","fucks","sphincter","lips","shafts","rack","wangs",
 							"milk","maidens","splooge","popper","sucker","crotch","sucker","milf","dicks",
 							"thrust","eater","swallow","head","spreader","groper","licker","humper","sex",
-							"bottom"])
-		Adjs = WordList(["hard","wet","great","fat","pink","uber","fucker","goode","thick","porn",
-							"bound","bone","tall","dinky","young","teen","spread","stiff","tight",
-							"deep","black","dark","long","moist","gay","cuck","sex","round"])
+							"bottom","cooch","rider","flower","girth","hymen","wood","boner","wood",
+							"wood","rump","cream","cooter","hoar","nut","tongue","rimmer"])
+		Adjs = WordList(["hard","wet","great","fat","pink","uber","fucker","good","thick","porn",
+							"bound","bone","dinky","young","teen","spread","stiff","tight",
+							"deep","black","dark","long","moist","gay","cuck","sex",
+							"loose","sweet","steel","hard","dark","black","good","iron","harder"])
 		Verbs = WordList(["fuck","bang","spunk","smash","piss","cum","grope","squeeze","spurt","rut","pound",
-							"wank","milk","suck","splooge","bone","slap","thrust","rub","swallow","cuck"])
+							"wank","milk","suck","splooge","bone","slap","thrust","rub","swallow","cuck",
+							"hump","screw","schtup","bonk","jill","gag","wanna","nut","spank","suck"])
 		
 		sTweet = Prefix.GetWord() + " Castle "
+		
+		sWord1 = ""
+		sWord2 = ""
+		
 		iRand = randint(1,5)
 		if iRand == 1:
 			sWord1 = FirstNouns.GetWord()
 			sWord2 = Verbs.GetWord(NotList = [sWord1])
-			
-			sTweet += sWord1.capitalize() + sWord2
 		elif iRand == 2:
 			sWord1 = FirstNouns.GetWord()
 			sWord2 = SecNouns.GetWord(NotList = [sWord1])
-			
-			sTweet += sWord1.capitalize() + sWord2
 		elif iRand == 3:
 			sWord1 = Adjs.GetWord()
 			sWord2 = FirstNouns.GetWord(NotList = [sWord1])
-			
-			sTweet += sWord1.capitalize() + sWord2
 		elif iRand == 4:
 			sWord1 = Adjs.GetWord()
 			sWord2 = SecNouns.GetWord(NotList = [sWord1])
-			
-			sTweet += sWord1.capitalize() + sWord2
+		elif iRand == 5:
+			sWord1 = Verbs.GetWord()
+			sWord2 = "alot"
+		elif iRand == 6:
+			sWord1 = Adjs.GetWord()
+			sWord2 = Verbs.GetWord(NotList = [sWord1])
 		else:
 			sWord1 = Verbs.GetWord()
 			sWord2 = FirstNouns.GetWord(NotList = [sWord1])
 			
-			sTweet += sWord1.capitalize() + sWord2
+		sTweet += self.WordCombiner(sWord1, sWord2).capitalize()
 			
 		return sTweet	
 		
