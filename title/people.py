@@ -692,19 +692,23 @@ class MaleRegChar(Character):
 					NounList = []
 					
 					if bAllowProf:
-						NounList.append(ProfMale())
-						NounList.append(ProfMale())
-						NounList.append(ProfMale())
+						NounList.append([ProfMale(), False])
+						NounList.append([ProfMale(), False])
+						NounList.append([ProfMale(), False])
 					if bAllowSpecies:
-						NounList.append(SpeciesMale())
+						NounList.append([SpeciesMale(), False])
 					if bAllowTrope:
-						NounList.append(TropeMale())
+						NounList.append([TropeMale(), False])
 					if bAllowRelate:
-						NounList.append(RelateMale())
+						NounList.append([RelateMale(), True])
 					if bAllowTitle:
-						NounList.append(TitleMale())
+						NounList.append([TitleMale(), False])
 						
-					BitGetList.append(NounList[randint(0,len(NounList) - 1)].Get(NotList = NotList))
+					Noun = NounList[randint(0,len(NounList) - 1)]
+					if Noun[1]:
+						bIsRelate = True
+						
+					BitGetList.append(Noun[0].Get(NotList = NotList))
 		
 		sDesc = ""
 		for x in range(0, len(BitGetList)):

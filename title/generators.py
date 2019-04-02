@@ -2602,19 +2602,54 @@ class Generator83(Generator):
 
 		return sTweet	
 		
-# Forsooth My Lord, I See Thou Art Horny!
-# The Nubile Princess 
-# and the
-# Beefy Well-Hung Marquis
-# class Generator84(Generator):
-	# ID = 84
-	# Priority = 2
+# Busty Princess Sophie
+# Gets Tea-Bagged by the Goat Men
+class Generator84(Generator):
+	ID = 84
+	Priority = 5
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		AdjNotList = ['Small-Town','Sun-Baked','Tanned','Natural','Succubus','Eager','Hot','Bronzed']
+		SpecialAdjs = ['MILF','Virgin','Young','Teenage','Teen','Nubile','Supermodel','Submissive','Party Girl',
+						'Goth','Tomboy','Schoolgirl','Co-ed','Daddy\'s Girl','BBW','Pixie','Chocolate','Wealthy',
+						'Wealthy','Millionaire','Stuck-up','Haughty','Snooty','Snobbish','Rich','Bashful',
+						'Blushing']
+		Adjs = WordList(SpecialAdjs + title.misc.AttitudeGoodFemale().List + title.misc.NationFemale().List + title.misc.PhysCharFemale().List + title.misc.SkinHairColorFemale().List + title.misc.SpeciesFemale().List)
+		Titles = WordList(['Princess','Princess','Princess','Heiress','Heiress','Queen','Duchess','First Lady','Lady',
+							'Countess','Contessa'])
+		VerbsBy = WordList(['Tea-Bagged','Paddled','Peed On','Used','Stripped in Public','Deflowered',
+							'Anally Deflowered','Fisted','Anal Fisted','Beaten with a Belt','Enslaved',
+							'Claimed in Public','Dominated in the Dungeon','Impregnated','Knocked Up',
+							'Imprisoned in the Sex Dungeon','Milked','Motor-Boated','Mounted Bareback',
+							'Paddled','Shaved','Pounded','Spanked','Spanked in Public','Spanked with a Belt',
+							'Publically Whipped','Caught on Video','Gagged','Ball-Gagged','Ridden Bareback',
+							'Deep Throated','Her Ass Eaten','Her Nipples Pierced','Her Clit Pierced',
+							'Penetrated','Her Titties Sucked','Bound and Whipped','Bent Over','Spread-Eagled'])
+		GangVerbs = WordList(['Peed On','Used','Bukkaked','Deflowered','Anally Deflowered',
+							'Impregnated','Knocked Up','Imprisoned in the Sex Dungeon','Mounted Bareback',
+							'Paddled','Pounded','Spanked','Spanked in Public','Ridden Bareback',
+							'Double Penetrated','Triple Penetrated','Spit-Roasted','Bukkaked','Shared',
+							'Gang-Banged','Bound and Whipped'])
+		MaleNotList = ['Business Man','Charming','Sensitive']
+		Master = MaleChar(iNumMinCBits = 1, iNumMaxCBits = 2, bAddArticle = True, sPosArticle = "Her", NotList = MaleNotList, bAllowGang = False,
+							bAllowTrope = False, bAllowTitle = False, bAllowRelate = True)
+		Gang = MaleGangChar(iNumMinCBits = 1, iNumMaxCBits = 2, bAddArticle = True, sPosArticle = "Her", NotList = MaleNotList, 
+							bAllowTrope = False, bAllowProf = False)
+		
+		if CoinFlip():
+			sTweet = self.HerName + " the " + Adjs.GetWord(NotList = AdjNotList) + " " + Titles.GetWord() + "\n"
+		else:
+			sTweet = Adjs.GetWord(NotList = AdjNotList) + " " + Titles.GetWord() + " " + self.HerName + "\n"
+			
+		if CoinFlip():
+			sTweet += "Gets " + VerbsBy.GetWord() + " by " + Master.Desc
+		else:
+			sTweet += "Gets " + GangVerbs.GetWord() + " by " + Gang.Desc
 
-		# return sTweet	
+		return sTweet	
 
 class Generator85(Generator):
 	ID = 85
