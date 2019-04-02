@@ -543,7 +543,7 @@ class Generator21(Generator):
 		
 		Girl = FemaleChar(iNumMaxCBits = 3)
 		sTweet = self.VerbsBy.GetWord()  + " By\n"
-		sTweet += Master.Desc + ":\n"
+		sTweet += Master.Desc 
 		#sTweet += AddArticles(Girl.Desc) + " " + self.SubtitleCoda.GetWord()
 		
 		return sTweet
