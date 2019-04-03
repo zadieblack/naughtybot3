@@ -3456,7 +3456,7 @@ class Generator109(Generator):
 							'Korean','Latina','Mexican','Russian','Small-Town','Swedish',
 							'Spanish','Mid-Western'])
 		Jobs = title.misc.ProfGoodFemale()
-		SexyAdjs = WordList(['Sexy','Naughty','Erotic','Dirty','Steamy'])
+		SexyAdjs = WordList(['Sexy','Naughty','Erotic','Dirty','Steamy','Filthy','Shameless'])
 		Man = MaleChar(iNumMinCBits = 1, iNumMaxCBits = 3, bAllowGang = False, bAddArticle = False, bAllowRelate = False)
 		
 		sGirl = ""
@@ -3464,31 +3464,39 @@ class Generator109(Generator):
 			sGirl += FemAdjs.GetWord(NotList = FemAdjNotList) + " "
 		if CoinFlip():
 			sGirl += Nations.GetWord(NotList = FemAdjNotList) + " "
+		if not sGirl:
+			if CoinFlip():
+				sGirl += FemAdjs.GetWord(NotList = FemAdjNotList) + " "
+			else:
+				sGirl += Nations.GetWord(NotList = FemAdjNotList) + " "
 		sGirl += Jobs.GetWord()
 		
-		iRand = randint(1,7)
+		iRand = randint(1,9)
 		if iRand == 1:
 			sTweet = "The " + sGirl + "\n"
 			sTweet += "Does " + AddArticles(SexyAdjs.GetWord()) + " Strip-Tease"
 		elif iRand == 2:
 			sTweet = "The " + sGirl + "\n"
-			sTweet += WordList(["Goes Down on","Bends Over for","Drops Her Panties for","Does a Strip-tease for", 
-								"Blows"]).GetWord() + " " 
+			sTweet += WordList(["Goes Down on","Bends Over for","Drops Her Panties for",
+								"Does " + AddArticles(SexyAdjs.GetWord()) + " Strip-tease for", 
+								"Gets Naked for","Blows"]).GetWord() + " " 
 			sTweet += self.HisName
 			if CoinFlip():
-				sTweet += "\nand " + NamesMale().FirstName()
+				sTweet += "\nand also " + NamesMale().FirstName() + "!"
 		elif iRand == 3:
 			sTweet = "The " + sGirl + "\n"
 			sTweet += "Tries " + WordList(["a Butt Plug","an Anal Hook","Leather Bondage","Lesbian Sex",
 										   "Butt Stuff","Auto-erotic Asphyxiation","Choking Play",
 										   "a Sex Swing","Scissoring","Tribbing","Deep Throat",
-										   "a Glory Hole","a Swingers Party","Fisting"]).GetWord()
+										   "a Glory Hole","a Swingers Party","Fisting","an Enema",
+										   "Nude Wrestling","Bareback Sex","Doggy Style","Anal"]).GetWord() + "!"
 		elif iRand == 4:
 			sTweet = "My " + sGirl + "\n"
 			sTweet += "Isn't Wearing Any Panties!"
 		elif iRand == 5:
 			sTweet = AddArticles(sGirl) + "\n"
-			sTweet += WordList(['Scissors','Eats Out','Fists','Finger Bangs','Goes Down On']).GetWord() + " "
+			sTweet += WordList(['Scissors','Eats Out','Fists','Finger Bangs','Goes Down On','Seduces',
+								'Has ' + SexyAdjs.GetWord() + ' Lesbian Sex With']).GetWord(NotList = ['Sexy']) + " "
 			sTweet += self.HerName 
 		elif iRand == 6:
 			sTweet = "My " + sGirl + "\n"
@@ -3498,10 +3506,22 @@ class Generator109(Generator):
 												'a Ball Gag','a Sheer Bodystocking','a Fishnet Bodystocking',
 												'a Chastity Belt','a Leather Bustier','Sexy Lingerie',
 												'a Dog Collar','a Leash','a Seethru Bikini']).GetWord() + "!"
+		elif iRand == 7:
+			sTweet = "The " + sGirl + "\n"
+			sTweet += "Plays " + WordList(['Nude','Naked']).GetWord() + " " 
+			sTweet += WordList(["Football","Volleyball","Volleyball","Basketball","Soccer","Golf","Frisbee",
+								"Capture the Flag","Hide-and-Seek","Twister","Tennis","Polo","Rugby",
+								"Curling","Lacrosse","Baseball","Quidditch","Roller Derby"]).GetWord() + "!"
+		elif iRand == 8:
+			sTweet = "My " + sGirl + "\n"
+			sTweet += "Is " + AddArticles(WordList(['Willing','Wanton','Open-Minded','Naughty','Adventurous',
+													'Horny','Sexy','Lustful','Experienced','Excited',
+													'Fertile','Shameless']).GetWord()) + " Hotwife!" 
 		else:
 			sTweet = "The " + sGirl + "\n"
-			sTweet += WordList(['Pees on','Fists','Spanks','Paddles','Whips','Ties Up','Handcuffs','Pegs',
-								'Takes a Shit on','Urinates on','Punishes']).GetWord() + " " 
+			sTweet += WordList(['Pees on','Fists','Paddles','Whips','Ties Up','Pegs','Uses a Steel Dildo on',
+								'Uses a Riding Crop on','Takes a Shit on','Urinates on','Punishes',
+								'Chokes']).GetWord() + " " 
 			sTweet += self.HisName + "!"
 
 		return sTweet	
