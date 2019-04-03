@@ -3443,7 +3443,232 @@ class Generator108(Generator):
 		
 class Generator109(Generator):
 	ID = 109
-	Priority = 4
+	Priority = 1
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		FemAdjNotList = ['Naked','Nudist']
+		FemAdjs = WordList(title.misc.AttitudeGoodFemale().List + title.misc.PhysCharFemale().List)
+		Nations = WordList(['All-American','Asian','Brazillian','Columbian','Country','Czech',
+							'Eastern European','French','German','Irish','Italian','Japanese',
+							'Korean','Latina','Mexican','Russian','Small-Town','Swedish',
+							'Spanish','Mid-Western'])
+		Jobs = title.misc.ProfGoodFemale()
+		SexyAdjs = WordList(['Sexy','Naughty','Erotic','Dirty','Steamy','Filthy','Shameless'])
+		
+		sGirl = ""
+		if CoinFlip():
+			sGirl += FemAdjs.GetWord(NotList = FemAdjNotList) + " "
+		if CoinFlip():
+			sGirl += Nations.GetWord(NotList = FemAdjNotList) + " "
+		if not sGirl:
+			if CoinFlip():
+				sGirl += FemAdjs.GetWord(NotList = FemAdjNotList) + " "
+			else:
+				sGirl += Nations.GetWord(NotList = FemAdjNotList) + " "
+		sGirl += Jobs.GetWord()
+		
+		sTweet = "The " + sGirl + "\n"
+		sTweet += "Does " + AddArticles(SexyAdjs.GetWord()) + " Strip-Tease"
+
+		return sTweet	
+		
+class Generator110(Generator):
+	ID = 110
+	Priority = 1
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		FemAdjNotList = ['Naked','Nudist']
+		FemAdjs = WordList(title.misc.AttitudeGoodFemale().List + title.misc.PhysCharFemale().List)
+		Nations = WordList(['All-American','Asian','Brazillian','Columbian','Country','Czech',
+							'Eastern European','French','German','Irish','Italian','Japanese',
+							'Korean','Latina','Mexican','Russian','Small-Town','Swedish',
+							'Spanish','Mid-Western'])
+		Jobs = title.misc.ProfGoodFemale()
+		SexyAdjs = WordList(['Sexy','Naughty','Erotic','Dirty','Steamy','Filthy','Shameless'])
+		
+		sGirl = ""
+		if CoinFlip():
+			sGirl += FemAdjs.GetWord(NotList = FemAdjNotList) + " "
+		if CoinFlip():
+			sGirl += Nations.GetWord(NotList = FemAdjNotList) + " "
+		if not sGirl:
+			if CoinFlip():
+				sGirl += FemAdjs.GetWord(NotList = FemAdjNotList) + " "
+			else:
+				sGirl += Nations.GetWord(NotList = FemAdjNotList) + " "
+		sGirl += Jobs.GetWord()
+		
+		sTweet = "The " + sGirl + "\n"
+		sTweet += WordList(["Goes Down on","Bends Over for","Drops Her Panties for","Spreads her Cheeks for",
+							"Does " + AddArticles(SexyAdjs.GetWord()) + " Strip-tease for", 
+							"Gets Naked for","Blows","Gives a Handjob to","Lubes Herself Up for",
+							"Flashes her Titties at","Flashes her Coochie at","Pulls Down her Top for",
+							"Shaves Her Muff for"]).GetWord() + " " 
+		sTweet += self.HisName
+		if CoinFlip():
+			sTweet += "\nand also " + NamesMale().FirstName() 
+			
+			if CoinFlip():
+				sTweet += "\nAND " + NamesMale().FirstName() 
+				
+			sTweet += "!"
+
+		return sTweet	
+		
+class Generator111(Generator):
+	ID = 111
+	Priority = 2
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		FemAdjNotList = ['Naked','Nudist']
+		FemAdjs = WordList(title.misc.AttitudeGoodFemale().List + title.misc.PhysCharFemale().List)
+		Nations = WordList(['All-American','Asian','Brazillian','Columbian','Country','Czech',
+							'Eastern European','French','German','Irish','Italian','Japanese',
+							'Korean','Latina','Mexican','Russian','Small-Town','Swedish',
+							'Spanish','Mid-Western'])
+		Jobs = title.misc.ProfGoodFemale()
+		
+		sGirl = ""
+		if CoinFlip():
+			sGirl += FemAdjs.GetWord(NotList = FemAdjNotList) + " "
+		if CoinFlip():
+			sGirl += Nations.GetWord(NotList = FemAdjNotList) + " "
+		if not sGirl:
+			if CoinFlip():
+				sGirl += FemAdjs.GetWord(NotList = FemAdjNotList) + " "
+			else:
+				sGirl += Nations.GetWord(NotList = FemAdjNotList) + " "
+		sGirl += Jobs.GetWord()
+		
+		sTweet = "The " + sGirl + "\n"
+		sTweet += "Tries " + WordList(["a Butt Plug","an Anal Hook","Leather Bondage","Lesbian Sex",
+									   "Butt Stuff","Auto-erotic Asphyxiation","Choking Play",
+									   "a Sex Swing","Scissoring","Tribbing","Deep Throat",
+									   "a Glory Hole","a Swingers Party","Fisting","an Enema",
+									   "Nude Wrestling","Bareback Sex","Doggy Style","Anal"]).GetWord() + "!"
+
+		return sTweet	
+		
+class Generator112(Generator):
+	ID = 112
+	Priority = 1
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		FemAdjNotList = ['Naked','Nudist']
+		FemAdjs = WordList(title.misc.AttitudeGoodFemale().List + title.misc.PhysCharFemale().List)
+		Nations = WordList(['All-American','Asian','Brazillian','Columbian','Country','Czech',
+							'Eastern European','French','German','Irish','Italian','Japanese',
+							'Korean','Latina','Mexican','Russian','Small-Town','Swedish',
+							'Spanish','Mid-Western'])
+		Jobs = title.misc.ProfGoodFemale()
+		
+		sGirl = ""
+		if CoinFlip():
+			sGirl += FemAdjs.GetWord(NotList = FemAdjNotList) + " "
+		if CoinFlip():
+			sGirl += Nations.GetWord(NotList = FemAdjNotList) + " "
+		if not sGirl:
+			if CoinFlip():
+				sGirl += FemAdjs.GetWord(NotList = FemAdjNotList) + " "
+			else:
+				sGirl += Nations.GetWord(NotList = FemAdjNotList) + " "
+		sGirl += Jobs.GetWord()
+		
+		sTweet = "My " + sGirl + "\n"
+		sTweet += "Isn't Wearing Any Panties!"
+
+		return sTweet	
+		
+class Generator113(Generator):
+	ID = 113
+	Priority = 1
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+
+		FemAdjNotList = ['Naked','Nudist']
+		FemAdjs = WordList(title.misc.AttitudeGoodFemale().List + title.misc.PhysCharFemale().List)
+		Nations = WordList(['All-American','Asian','Brazillian','Columbian','Country','Czech',
+							'Eastern European','French','German','Irish','Italian','Japanese',
+							'Korean','Latina','Mexican','Russian','Small-Town','Swedish',
+							'Spanish','Mid-Western'])
+		Jobs = title.misc.ProfGoodFemale()
+		SexyAdjs = WordList(['Sexy','Naughty','Erotic','Dirty','Steamy','Filthy','Shameless'])
+		
+		sGirl = ""
+		if CoinFlip():
+			sGirl += FemAdjs.GetWord(NotList = FemAdjNotList) + " "
+		if CoinFlip():
+			sGirl += Nations.GetWord(NotList = FemAdjNotList) + " "
+		if not sGirl:
+			if CoinFlip():
+				sGirl += FemAdjs.GetWord(NotList = FemAdjNotList) + " "
+			else:
+				sGirl += Nations.GetWord(NotList = FemAdjNotList) + " "
+		sGirl += Jobs.GetWord()
+		
+		sTweet = AddArticles(sGirl) + "\n"
+		sTweet += WordList(['Scissors','Eats Out','Fists','Finger Bangs','Goes Down On','Seduces',
+							'Has ' + SexyAdjs.GetWord() + ' Lesbian Sex With']).GetWord(NotList = ['Sexy']) + " "
+		sTweet += self.HerName 
+			
+		return sTweet	
+		
+class Generator114(Generator):
+	ID = 114
+	Priority = 1
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		FemAdjNotList = ['Naked','Nudist']
+		FemAdjs = WordList(title.misc.AttitudeGoodFemale().List + title.misc.PhysCharFemale().List)
+		Nations = WordList(['All-American','Asian','Brazillian','Columbian','Country','Czech',
+							'Eastern European','French','German','Irish','Italian','Japanese',
+							'Korean','Latina','Mexican','Russian','Small-Town','Swedish',
+							'Spanish','Mid-Western'])
+		Jobs = title.misc.ProfGoodFemale()
+		SexyAdjs = WordList(['Sexy','Naughty','Erotic','Dirty','Steamy','Filthy','Shameless'])
+		
+		sGirl = ""
+		if CoinFlip():
+			sGirl += FemAdjs.GetWord(NotList = FemAdjNotList) + " "
+		if CoinFlip():
+			sGirl += Nations.GetWord(NotList = FemAdjNotList) + " "
+		if not sGirl:
+			if CoinFlip():
+				sGirl += FemAdjs.GetWord(NotList = FemAdjNotList) + " "
+			else:
+				sGirl += Nations.GetWord(NotList = FemAdjNotList) + " "
+		sGirl += Jobs.GetWord()
+		
+		sTweet = "My " + sGirl + "\n"
+		sTweet += "Is Wearing " + WordList(['a Strap-On','a Latex Bodysuit','a Chainmail Bikini','a Thong',
+											'a Micro Bikini','a Butt Plug','Nipple Clamps',
+											'Crotchless Panties','Assless Chaps','a Ponytail Butt Plug',
+											'a Ball Gag','a Sheer Bodystocking','a Fishnet Bodystocking',
+											'a Chastity Belt','a Leather Bustier','Sexy Lingerie',
+											'a Dog Collar','a Leash','a Seethru Bikini']).GetWord() + "!"
+
+		return sTweet	
+		
+class Generator115(Generator):
+	ID = 115
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3471,63 +3696,145 @@ class Generator109(Generator):
 				sGirl += Nations.GetWord(NotList = FemAdjNotList) + " "
 		sGirl += Jobs.GetWord()
 		
-		iRand = randint(1,9)
-		if iRand == 1:
-			sTweet = "The " + sGirl + "\n"
-			sTweet += "Does " + AddArticles(SexyAdjs.GetWord()) + " Strip-Tease"
-		elif iRand == 2:
-			sTweet = "The " + sGirl + "\n"
-			sTweet += WordList(["Goes Down on","Bends Over for","Drops Her Panties for",
-								"Does " + AddArticles(SexyAdjs.GetWord()) + " Strip-tease for", 
-								"Gets Naked for","Blows"]).GetWord() + " " 
-			sTweet += self.HisName
-			if CoinFlip():
-				sTweet += "\nand also " + NamesMale().FirstName() + "!"
-		elif iRand == 3:
-			sTweet = "The " + sGirl + "\n"
-			sTweet += "Tries " + WordList(["a Butt Plug","an Anal Hook","Leather Bondage","Lesbian Sex",
-										   "Butt Stuff","Auto-erotic Asphyxiation","Choking Play",
-										   "a Sex Swing","Scissoring","Tribbing","Deep Throat",
-										   "a Glory Hole","a Swingers Party","Fisting","an Enema",
-										   "Nude Wrestling","Bareback Sex","Doggy Style","Anal"]).GetWord() + "!"
-		elif iRand == 4:
-			sTweet = "My " + sGirl + "\n"
-			sTweet += "Isn't Wearing Any Panties!"
-		elif iRand == 5:
-			sTweet = AddArticles(sGirl) + "\n"
-			sTweet += WordList(['Scissors','Eats Out','Fists','Finger Bangs','Goes Down On','Seduces',
-								'Has ' + SexyAdjs.GetWord() + ' Lesbian Sex With']).GetWord(NotList = ['Sexy']) + " "
-			sTweet += self.HerName 
-		elif iRand == 6:
-			sTweet = "My " + sGirl + "\n"
-			sTweet += "Is Wearing " + WordList(['a Strap-On','a Latex Bodysuit','a Chainmail Bikini','a Thong',
-												'a Micro Bikini','a Butt Plug','Nipple Clamps',
-												'Crotchless Panties','Assless Chaps','a Ponytail Butt Plug',
-												'a Ball Gag','a Sheer Bodystocking','a Fishnet Bodystocking',
-												'a Chastity Belt','a Leather Bustier','Sexy Lingerie',
-												'a Dog Collar','a Leash','a Seethru Bikini']).GetWord() + "!"
-		elif iRand == 7:
-			sTweet = "The " + sGirl + "\n"
-			sTweet += "Plays " + WordList(['Nude','Naked']).GetWord() + " " 
-			sTweet += WordList(["Football","Volleyball","Volleyball","Basketball","Soccer","Golf","Frisbee",
-								"Capture the Flag","Hide-and-Seek","Twister","Tennis","Polo","Rugby",
-								"Curling","Lacrosse","Baseball","Quidditch","Roller Derby"]).GetWord() + "!"
-		elif iRand == 8:
-			sTweet = "My " + sGirl + "\n"
-			sTweet += "Is " + AddArticles(WordList(['Willing','Wanton','Open-Minded','Naughty','Adventurous',
-													'Horny','Sexy','Lustful','Experienced','Excited',
-													'Fertile','Shameless']).GetWord()) + " Hotwife!" 
-		else:
-			sTweet = "The " + sGirl + "\n"
-			sTweet += WordList(['Pees on','Fists','Paddles','Whips','Ties Up','Pegs','Uses a Steel Dildo on',
-								'Uses a Riding Crop on','Takes a Shit on','Urinates on','Punishes',
-								'Chokes']).GetWord() + " " 
-			sTweet += self.HisName + "!"
+		sTweet = "The " + sGirl + "\n"
+		sTweet += "Plays " + WordList(['Nude','Naked']).GetWord() + " " 
+		sTweet += WordList(["Football","Volleyball","Volleyball","Basketball","Soccer","Golf","Frisbee",
+							"Capture the Flag","Hide-and-Seek","Twister","Tennis","Polo","Rugby",
+							"Curling","Lacrosse","Baseball","Quidditch","Roller Derby"]).GetWord() + "!"
 
 		return sTweet	
 		
-# class Generator110(Generator):
-	# ID = 110
+class Generator116(Generator):
+	ID = 116
+	Priority = 1
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		FemAdjNotList = ['Naked','Nudist','Unshaven']
+		FemAdjs = WordList(title.misc.AttitudeGoodFemale().List + title.misc.PhysCharFemale().List)
+		Nations = WordList(['All-American','Asian','Brazillian','Columbian','Country','Czech',
+							'Eastern European','French','German','Irish','Italian','Japanese',
+							'Korean','Latina','Mexican','Russian','Small-Town','Swedish',
+							'Spanish','Mid-Western'])
+		Jobs = title.misc.ProfGoodFemale()
+
+		sGirl = ""
+		sGirl += FemAdjs.GetWord(NotList = FemAdjNotList) + " "
+		if CoinFlip():
+			sGirl += Nations.GetWord(NotList = FemAdjNotList) + " "
+		sGirl += Jobs.GetWord()
+		
+		sTweet = "My " + sGirl + "\n"
+		sTweet += "Is " + AddArticles(WordList(['Willing','Wanton','Open-Minded','Naughty','Adventurous',
+												'Horny','Sexy','Lustful','Experienced','Excited',
+												'Fertile','Shameless']).GetWord()) + " Hotwife!" 
+
+		return sTweet	
+		
+class Generator117(Generator):
+	ID = 117
+	Priority = 1
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		FemAdjNotList = ['Naked','Nudist']
+		FemAdjs = WordList(title.misc.AttitudeGoodFemale().List + title.misc.PhysCharFemale().List)
+		Nations = WordList(['All-American','Asian','Brazillian','Columbian','Country','Czech',
+							'Eastern European','French','German','Irish','Italian','Japanese',
+							'Korean','Latina','Mexican','Russian','Small-Town','Swedish',
+							'Spanish','Mid-Western'])
+		Jobs = title.misc.ProfGoodFemale()
+
+		sGirl = ""
+		if CoinFlip():
+			sGirl += FemAdjs.GetWord(NotList = FemAdjNotList) + " "
+		if CoinFlip():
+			sGirl += Nations.GetWord(NotList = FemAdjNotList) + " "
+		if not sGirl:
+			if CoinFlip():
+				sGirl += FemAdjs.GetWord(NotList = FemAdjNotList) + " "
+			else:
+				sGirl += Nations.GetWord(NotList = FemAdjNotList) + " "
+		sGirl += Jobs.GetWord()
+		
+	
+		sTweet = AddArticles(sGirl) + "\n"
+		sTweet += WordList(['Pees on','Fists','Paddles','Whips','Ties Up','Pegs','Uses a Steel Dildo on',
+							'Uses a Riding Crop on','Takes a Shit on','Urinates on','Punishes',
+							'Chokes']).GetWord() + " " 
+		sTweet += self.HisName + "!"
+
+		return sTweet	
+	
+# I Found Out I Was a Lesbian
+# When an Oiled-Up Flight Attendant Ate My Ass 	
+class Generator118(Generator):
+	ID = 118
+	Priority = 3
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		CharNotList = ['Uptight','Virgin','Male Model','Quarterback','Male Stripper','Camp Counselor','Business Man','Slave',
+						'Defensive Lineman','Virtuous']
+		Lesbian1 = FemaleChar(iNumMinCBits = 1, iNumMaxCBits = 2, bAddArticle = False, bAddEndNoun = False, NotList = CharNotList,
+								bAllowMaritalStatus = False, bAllowSexuality = False, bAllowPregState = False, bAllowTitle = False)
+		Lesbian2 = FemaleChar(iNumMinCBits = 1, iNumMaxCBits = 1, bAddArticle = False, bAddEndNoun = False, NotList = CharNotList,
+								bAllowMaritalStatus = False, bAllowSexuality = False, bAllowPregState = False, bAllowProf = False, bAllowTitle = False)
+		GirlJobs = title.misc.ProfFemale()
+		GuyJobs = title.misc.ProfMale()
+								
+		sTweet = "I Found Out I Was a Lesbian When\n"
+		if CoinFlip():
+			sTweet += AddArticles(Lesbian1.Desc) + " " + GirlJobs.GetWord()
+		else:
+			sTweet += AddArticles(Lesbian2.Desc) + " Lady " + GuyJobs.GetWord()
+		sTweet += "\n" + WordList(["Ate My Ass", "Ate Me Out", "Ate My Pussy", "Licked My Snatch", "Scissored Me",
+								   "Rode My Face", "Rode Me With a Strap-On", "Fisted Me", "Fisted My Butt",
+								   "Sucked My Tits", "Ate My Snatch", "Rimmed My Butthole",
+								   "Sucked My Titties"]).GetWord()
+								   
+		return sTweet	
+		
+class Generator119(Generator):
+	ID = 119
+	Priority = 3
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		GirlNotList = ['Single']
+		Girl = FemaleChar(iNumMinCBits = 2, iNumMaxCBits = 3, bAddArticle = True, Type = GirlType.Good, NotList = GirlNotList,
+							bAllowSexuality = False)
+		
+		sTweet = Girl.Desc + "\nGets An Enema"
+
+		return sTweet	
+		
+class Generator120(Generator):
+	ID = 120
+	Priority = 1
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		GuyNotList = ['Single']
+		Guy = MaleChar(iNumMinCBits = 2, iNumMaxCBits = 3, bAddArticle = True, bAllowGang = False, NotList = GuyNotList,
+						bAllowTrope = False, bAllowTitle = False, bAllowSpecies = False)
+		
+		sTweet = Guy.Desc + "\nGets An Enema"
+
+		return sTweet	
+		
+# class Generator100(Generator):
+	# ID = 100
 	# Priority = 2
 	
 	# def GenerateTweet(self):
@@ -3536,8 +3843,28 @@ class Generator109(Generator):
 
 		# return sTweet	
 		
-# class Generator111(Generator):
-	# ID = 111
+# class Generator100(Generator):
+	# ID = 100
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator100(Generator):
+	# ID = 100
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator100(Generator):
+	# ID = 100
 	# Priority = 2
 	
 	# def GenerateTweet(self):
@@ -3585,6 +3912,37 @@ class Generator109(Generator):
 		# sTweet = ""
 
 		# return sTweet	
+		
+# class Generator100(Generator):
+	# ID = 100
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator100(Generator):
+	# ID = 100
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
+# class Generator100(Generator):
+	# ID = 100
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
+		
 # class Generator100(Generator):
 	# ID = 100
 	# Priority = 2
