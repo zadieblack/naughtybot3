@@ -3922,15 +3922,19 @@ class Generator126(Generator):
 		
 		return sTweet
 		
-# class Generator100(Generator):
-	# ID = 100
-	# Priority = 2
+class Generator127(Generator):
+	ID = 127
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		Gang = MaleGangChar(iNumMinCBits = 2, iNumMaxCBits = 3)
+		
+		sTweet = self.HerName + " Gets Naked for the " + Gang.Desc 
 
-		# return sTweet	
+		return sTweet	
 		
 # class Generator100(Generator):
 	# ID = 100
