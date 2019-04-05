@@ -155,7 +155,7 @@ class Generator1(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		Master = MaleChar(iNumMaxCBits = 5, bAddArticle = True, bAllowGang = False)
+		Master = MaleChar(iNumMaxCBits = 5, bAddArticle = True, bAllowGang = False, bAllowRelate = True)
 	
 		sTweet = self.VerbsBy.GetWord() + " By\n" + Master.Desc
 		
@@ -170,7 +170,7 @@ class Generator2(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		Master = MaleChar(iNumMaxCBits = 3, bAddArticle = True, sPosArticle = "Her")
+		Master = MaleChar(iNumMaxCBits = 3, bAddArticle = True, sPosArticle = "Her", bAllowRelate = True)
 		
 		sTweet = self.HerName + " Gets " + self.VerbsBy.GetWord(NotList = ["Sexually Harrassed At My Workplace"]) + " by\n" + Master.Desc
 		
@@ -185,7 +185,7 @@ class Generator3(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		Master = MaleChar(iNumMaxCBits = 3, bAddArticle = True, sPosArticle = "My")
+		Master = MaleChar(iNumMaxCBits = 3, bAddArticle = True, sPosArticle = "My", bAllowRelate = True)
 			
 		sTweet = self.VerbsTo.GetWord() + " To " + Master.Desc
 		# if CoinFlip():
@@ -204,7 +204,7 @@ class Generator4(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		Master = MaleChar(iNumMaxCBits = 3, bAddArticle = True, sPosArticle = "Her")
+		Master = MaleChar(iNumMaxCBits = 3, bAddArticle = True, sPosArticle = "Her", bAllowRelate = True)
 		
 		sTweet = self.HerName + " Gets " + self.VerbsTo.GetWord() + " to \n" + Master.Desc
 		
@@ -593,27 +593,23 @@ class Generator23(Generator):
 		
 		return sTweet
 		
-# class Generator24(Generator):
-	# # Deflowered Live on the Internet: An Amish Futa Princess Experience 
-	# ID = 24
-	# Priority = 1
+class Generator24(Generator):
+	# Deep-Throating My Well-Hung Sumo-Wrestler Step-Dad
+	ID = 24
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
 		
-		# Girl = FemaleChar(Type = GirlType.Good, NotList = ["Pregnant", "Mom", "MILF", "Concubine", "Wife", "Divorced"])
+		Gerunds = WordList(['Cuddling','Deep-Throating','Double-Teaming','Dry-Humping','Fellating','Going Down on',
+							'Hooking Up With','Humping','Jerking Off','Licking','Pegging','Rimming','Shagging',
+							'Showering With','Sixty-Nining','Sleeping With','Spooning','Teasing'])
+		Master = MaleChar(iNumMaxCBits = 4, bAddArticle = True, bAllowRelate = True)
+	
+		sTweet = Gerunds.GetWord() + "\n" + Master.Desc
 		
-		# sTweet = "Deflowered Live"
-		# if CoinFlip():
-			# sTweet += "!\n"
-		# else:
-			# if CoinFlip():
-				# sTweet += " on the Interet:\n"
-			# else:
-				# sTweet += " on Television:\n"
-		# sTweet += AddArticles(Girl.Desc) + "\n" + self.SubtitleCoda.GetWord()
-		# return sTweet
+		return sTweet
 		
 class Generator25(Generator):
 	# Greg Gets Pounded In The Butt By The Motorcycle Gang
@@ -717,42 +713,7 @@ class Generator29(Generator):
 			sTweet += "Lesbian " + Girl.Desc + " " + WordList(["Wife", "Girlfriend"]).GetWord()
 		
 		return sTweet
-		
-# class Generator30(Generator):
-	# # Hot Ménage a Trois: Dick and Lily and The Well-Hung Bodyguard Sumo-Wrestler
-	# ID = 30
-	# Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
-		
-		# sHisName1 = NamesMale().FirstName()
-		# sHisName2 = NamesMale().FirstName()
-		# sHerName1 = NamesFemale().FirstName()
-		# sHerName2 = NamesFemale().FirstName()
-		# sLastName = LastNames().GetWord()
-		
-		# Girl = FemaleChar(iNumMaxCBits = 3)
-		# Lesbo = LesbianChar(iNumMaxCBits = 3)
-		# Master = MaleChar(iNumMaxCBits = 3, bAllowGang = False)
-		# Gay = GayChar(iNumMaxCBits = 3)
-		
-		# Menages = []
-		
-		# sTweet = SexyAdjs().GetWord().capitalize() + " " + WordList(["Ménage", "Ménage a Trois", "Threesome", "Three-Way"]).GetWord() + ":\n"
-		
-		# Menages.append(sHisName1 + " and " + sHerName1 + "\nand\nthe " + Girl.Desc)
-		# Menages.append(sHisName1 + " and " + sHerName1 + "\nand\nthe " + Master.Desc)
-		# Menages.append(sHerName1 + " and " + sHerName2 + "\nand\nthe " + Lesbo.Desc)
-		# Menages.append(sHerName1 + " and " + sHerName2 + "\nand\nthe " + Master.Desc)
-		# Menages.append(sHisName1 + " and " + sHisName2 + "\nand\nthe " + Gay.Desc)
-		# Menages.append("Mr. & Mrs. " + sLastName + "\nand\nthe " + Girl.Desc)
-		# Menages.append("Mr. & Mrs. " + sLastName + "\nand\nthe " + Master.Desc)
-		
-		# sTweet += Menages[randint(0, len(Menages) -1)]
-
-		# return sTweet
 		
 class Generator30(Generator):
 	#Wanton & Willing: My Naked Lesbian Futa Princess
@@ -3916,8 +3877,9 @@ class Generator124(Generator):
 							'Charlton Heston','Hugh Hefner','Yul Brynner','Carl Sagan','Yuri Gagarin','Jerry Lewis',
 							'Benny Hill','Bob Ross','Joe DiMaggio','Don Knotts','Vincent Price','Adam West',
 							'Frank Sinatra','Casey Kasem','Karl Marx','Jacques Cousteau'])
-		Verbs = WordList(['Plowed','Banged','Porked','Drilled','Humped','Made Love to','Nailed',
-						  'Screwed','Shagged','Stuffed','Cream-pied','Ravished','Ate Out','Sixty-nined'])
+		Verbs = WordList(['Plowed','Banged','Porked','Drilled','Humped','Made Love to','Nailed','Reamed',
+						  'Screwed','Shagged','Stuffed','Cream-pied','Ravished','Ate Out','Sixty-nined',
+						  'Boned',])
 		
 		GirlNotList = ['Single','Mature Woman','Virgin','Unshaven','Maiden','Married','Recently-Divorced']
 		Girl = FemaleChar(iNumMinCBits = 1, iNumMaxCBits = 2, bAddArticle = False, bAddEndNoun = False, NotList = GirlNotList,
@@ -3929,15 +3891,36 @@ class Generator124(Generator):
 
 		return sTweet	
 		
-# class Generator100(Generator):
-	# ID = 100
-	# Priority = 2
+class Generator125(Generator):
+	ID = 125
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
-
-		# return sTweet	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		Girl = title.misc.NiceGirl()
+		
+		Master = MaleChar(iNumMaxCBits = 2, bAddArticle = True, sPosArticle = "Her", bAllowRelate = True)
+		
+		sTweet = "The " + Girl.Desc + "\nGets " + self.VerbsBy.GetWord(NotList = ["Sexually Harrassed At My Workplace","Cuddled"]) + " by " + Master.Desc
+		
+		return sTweet	
+		
+class Generator126(Generator):
+	# Sitting On My Well-Hung Sumo-Wrestler Step-Dad's Face
+	ID = 126
+	Priority = 1
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		Master = MaleChar(iNumMaxCBits = 4, bAddArticle = True, bAllowGang = False, bAllowRelate = True)
+	
+		sTweet = "Sitting on " + Master.Desc + "'s Face"
+		
+		return sTweet
 		
 # class Generator100(Generator):
 	# ID = 100
