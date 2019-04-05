@@ -830,6 +830,7 @@ class PhysCharMale(WordList):
 			'Chiseled',
 			'Clean-Cut',
 			'Clean-Shaven','Clean-Shaven',
+			'Craggy',
 			'Dad-Bod',
 			'Fine',
 			'Fit',
@@ -839,6 +840,7 @@ class PhysCharMale(WordList):
 			'Hulking',
 			'Hunky',
 			'Husky',
+			'Lanky',
 			'Muscled',
 			'Muscular','Muscular',
 			'Mustachioed',
@@ -847,7 +849,8 @@ class PhysCharMale(WordList):
 			'Strapping',
 			'Strong',
 			'Tall','Tall',
-			'Tattooed'])
+			'Tattooed'
+			'Ugly'])
 			
 class DickCharMale(WordList):
 	def __init__(self):

@@ -602,12 +602,12 @@ class Generator24(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		Gerunds = WordList(['Cuddling','Deep-Throating','Double-Teaming','Dry-Humping','Fellating','Going Down on',
-							'Hooking Up With','Humping','Jerking Off','Licking','Pegging','Rimming','Shagging',
-							'Showering With','Sixty-Nining','Sleeping With','Spooning','Teasing'])
+		Gerunds = WordList(['Bedding','Cuddling','Deep-Throating','Double-Teaming','Dry-Humping','Fellating','Going Down on',
+							'Hooking Up With','Humping','Jerking Off','Licking','Pegging','Riding','Rimming','Shagging',
+							'Showering With','Sixty-Nining','Sleeping With','Spooning','Straddling','Teasing'])
 		Master = MaleChar(iNumMaxCBits = 4, bAddArticle = True, bAllowRelate = True)
 	
-		sTweet = Gerunds.GetWord() + "\n" + Master.Desc
+		sTweet = Gerunds.GetWord() + " " + Master.Desc
 		
 		return sTweet
 		
@@ -3918,7 +3918,7 @@ class Generator126(Generator):
 		
 		Master = MaleChar(iNumMaxCBits = 4, bAddArticle = True, bAllowGang = False, bAllowRelate = True)
 	
-		sTweet = "Sitting on " + Master.Desc + "'s Face"
+		sTweet = WordList(["Sitting on","Riding","Straddling"]).GetWord() + " " + Master.Desc + "'s Face"
 		
 		return sTweet
 		
