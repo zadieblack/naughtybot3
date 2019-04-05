@@ -849,7 +849,7 @@ class PhysCharMale(WordList):
 			'Strapping',
 			'Strong',
 			'Tall','Tall',
-			'Tattooed'
+			'Tattooed',
 			'Ugly'])
 			
 class DickCharMale(WordList):
@@ -924,7 +924,9 @@ class ProfMale(WordList):
 			'Minister',
 			'Mossad Agent',
 			'MMA Fighter',
+			'Naval Officer',
 			'Navy Seal',
+			'Personal Trainer',
 			'Pirate',
 			'Pirate Captain',
 			'Preacher',
@@ -944,6 +946,7 @@ class ProfMale(WordList):
 			'Stuntman',
 			'Sumo Wrestler',
 			'Surfer',
+			'Surgeon',
 			'Tattoo Artist',
 			'Trucker',
 			'Undercover Cop'])
