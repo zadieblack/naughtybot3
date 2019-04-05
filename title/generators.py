@@ -666,7 +666,7 @@ class Generator27(Generator):
 		Girl = FemaleChar(iNumMaxCBits = 3, NotList = ["Leather", "Latex", "High-Heeled", "Nude", "Naked", "Nudist", "Latex", "Leather"], bAddArticle = True, bAllowRelate = True)
 		
 		sTweet = Girl.Desc + "\nWore " + WordList(["Leather", "Latex", "Red", "Black", "Fishnets", "Spiked Heels", "A Strap-On"]).GetWord() + ":\n"
-		sTweet += "A " + WordList(["FemDom", "Dominatrix", "BDSM", "Cuckold"]).GetWord() + " " + self.SubtitleCoda.GetWord()
+		sTweet += "A " + WordList(["FemDom", "Dominatrix", "BDSM", "Cuckold", "MILF"]).GetWord() + " " + self.SubtitleCoda.GetWord()
 
 		return sTweet
 
@@ -684,7 +684,7 @@ class Generator28(Generator):
 		if CoinFlip():
 			sTweet = "Cuckolded By My\n" + Girl.Desc + " " + WordList(['Wife', 'Wife', 'Hotwife', 'Fiancé', 'Girlfriend', 'Mistress']).GetWord()
 		else:
-			sTweet = "My " + WordList(['Wife', 'Wife', 'Hotwife']).GetWord() + " And The\n" + MaleChar(bAllowMaritalStatus = False).Desc + ":\nA Cuckold " + self.SubtitleCoda.GetWord()
+			sTweet = "My " + WordList(['Wife', 'Wife', 'Hotwife', 'MILF']).GetWord() + " And The\n" + MaleChar(bAllowMaritalStatus = False).Desc + ":\nA Cuckold " + self.SubtitleCoda.GetWord()
 		
 		return sTweet
 		
@@ -3833,15 +3833,59 @@ class Generator120(Generator):
 
 		return sTweet	
 		
-# class Generator100(Generator):
-	# ID = 100
-	# Priority = 2
+class Generator121(Generator):
+	ID = 121
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		Gerunds = WordList(['Blackmailing','Dominating','Enslaving','Fisting','Hot-Dogging','Licking',
+							'Massaging','Milking','Mind Controlling','Motor-Boating','Motor-Boating',
+							'Mounting','Paddling','Riding','Rimming','Sixty-nining','Showering With',
+							'Showering With','Spanking','Stripping','Undressing','Videoing',
+							'Whipping','Filling','Drilling','Pounding','Servicing','Satisfying',
+							'Nailing','Caning','Humping'])
+							
+		MILFNotList = ['Virgin','Virginal','Maiden','Chaste','Sheltered','Sparkling','Straight','Spirited',
+					   'Sweet','Virtuous','Anal Virgin','Angelic','Small-Town Girl','Tomboy','Lesbian',
+					   'Little']
+		MILF = FemaleChar(iNumMinCBits = 1, iNumMaxCBits = 2, bAddArticle = False, bAddEndNoun = False, NotList = MILFNotList,
+							bAllowAge = False, bAllowMaritalStatus = False, bAllowPregState = False, bAllowProf = False,
+							bAllowRelate = False, bAllowTitle = False, bAllowTrope = False)
+							
+		sTweet = Gerunds.GetWord() + " Mrs. " + LastNames().GetWord() + ":\n"
+		sTweet += AddArticles(MILF.Desc) + " MILF " + WordList(['Story','Encounter','Rendevous','Affair','Adventure']).GetWord()
 
-		# return sTweet	
+		return sTweet	
+		
+class Generator122(Generator):
+	ID = 122
+	Priority = 2
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		NaughtyStuff = WordList(['Anal Beads','Anal Hook','Ball Gag','Butt Plug','Clit Clamp','Clit Pump',
+								 'Steel Dildo','12-inch Dildo','Double-Ended Dildo','Gimp Mask',
+								 'Nipple Clamps','Pearl Necklace','Sex Swing','Spreader Bar','Speculum',
+								 'Strap-On','Sybian','Anal Dildo','Anal Vibe','Butt Stuff','Fisting',
+								 'Anal Fisting','Bondage Play','Dog Collar','Chastity Belt',
+								 'Pony Play','Ponytail Anal Plug','Horse Whip','Gang Bang',
+								 'Public Nudity'])
+								 
+		MILFNotList = ['Virgin','Virginal','Maiden','Chaste','Sheltered','Sparkling','Straight','Spirited',
+					   'Sweet','Virtuous','Anal Virgin','Angelic','Small-Town Girl','Tomboy','Lesbian',
+					   'Little']
+		MILF = FemaleChar(iNumMinCBits = 1, iNumMaxCBits = 2, bAddArticle = False, bAddEndNoun = False, NotList = MILFNotList,
+							bAllowAge = False, bAllowMaritalStatus = False, bAllowPregState = False, bAllowProf = False,
+							bAllowRelate = False, bAllowTitle = False, bAllowTrope = False)
+							
+		sTweet = NaughtyStuff.GetWord() + " for the " + MILF.Desc + " MILF"
+
+		return sTweet	
 		
 # class Generator100(Generator):
 	# ID = 100
@@ -3853,25 +3897,37 @@ class Generator120(Generator):
 
 		# return sTweet	
 		
-# class Generator100(Generator):
-	# ID = 100
-	# Priority = 2
+# The Ghost of Richard Nixon
+# Ploughed My Girlfriend 
+class Generator124(Generator):
+	ID = 124
+	Priority = 4
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
-
-		# return sTweet	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
 		
-# class Generator100(Generator):
-	# ID = 100
-	# Priority = 2
-	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+		Undead = WordList(['Undead','The Ghost of','Zombie','Vampire','Werewolf'])
+		Celebs = WordList(['Richard Nixon','JFK','Abraham Lincoln','Elvis Presley','Winston Churchill','Mahatma Gandhi',
+							'Jim Morrison','Tupac','Buddy Holly','George Washington','Albert Einstein','Mao Zedong',
+							'Humphrey Bogart','Babe Ruth','Colonel Sanders','Napoleon','Bela Lugosi','Groucho Marx',
+							'Steve Jobs','Mr Rogers','Marlon Brando','Bing Crosby','Jimmy Stewart','Clark Gable',
+							'James Dean','H.P. Lovecraft','Orson Welles','Henry Kissinger','Sonny Bono','Jimmy Hoffa',
+							'Charlton Heston','Hugh Hefner','Yul Brynner','Carl Sagan','Yuri Gagarin','Jerry Lewis',
+							'Benny Hill','Bob Ross','Joe DiMaggio','Don Knotts','Vincent Price','Adam West',
+							'Frank Sinatra','Casey Kasem','Karl Marx','Jacques Cousteau'])
+		Verbs = WordList(['Plowed','Banged','Porked','Drilled','Humped','Made Love to','Nailed',
+						  'Screwed','Shagged','Stuffed','Cream-pied','Ravished','Ate Out','Sixty-nined'])
+		
+		GirlNotList = ['Single','Mature Woman','Virgin','Unshaven','Maiden','Married','Recently-Divorced']
+		Girl = FemaleChar(iNumMinCBits = 1, iNumMaxCBits = 2, bAddArticle = False, bAddEndNoun = False, NotList = GirlNotList,
+			bAllowProf = False, bAllowPregState = False, bAllowClothing = False, bAllowAttitude = False, bAllowSpecies = False,
+			bAllowTitle = False, bAllowTrope = False, bAllowGenMod = False, bAllowSexuality = False, 
+			bAllowMaritalStatus = False,)
+		
+		sTweet = Undead.GetWord() + " " + Celebs.GetWord() + " " + Verbs.GetWord() + " My " + Girl.Desc + " " + WordList(["Wife","Wife","Girlfriend"]).GetWord() + "!"					
 
-		# return sTweet	
+		return sTweet	
 		
 # class Generator100(Generator):
 	# ID = 100
