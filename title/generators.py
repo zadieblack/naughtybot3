@@ -3936,15 +3936,44 @@ class Generator127(Generator):
 
 		return sTweet	
 		
-# class Generator100(Generator):
-	# ID = 100
-	# Priority = 2
+# Pounded by the Alien Space Trucker Men
+# on Uranus
+class Generator128(Generator):
+	ID = 128
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		Verbs = WordList(['Boned','Bred','Claimed','Cream-Pied','Drilled','Fisted','Humped','Mounted',
+						  'Nailed','Pleasured','Plowed','Porked','Ravished','Reamed','Punished',
+						  'Rimmed','Spanked','Shagged','Shaved','Stuffed','Taken','Whipped','Licked',
+						  'Pegged'])
+		AlienPrefixes = WordList(['Alien','Space','Space Alien'])
+		AlienNouns = WordList(['Body Builders','Bull Riders','Chippendales Dancers','Coal Miners',
+								'Construction Workers','Cops','Cowboys','Defensive Linemen','Doctors',
+								'Fire Fighters','Frat Boys','Long Haul Truckers','Lumberjacks',
+								'Male Escorts','Male Models','Male Nurses','Male Strippers',
+								'Matadors','Pirates','Roadies','Rodeo Clowns','Sailors','Stuntmen',
+								'Sumo Wrestlers','Surfers','Surgeons','Biker Gang','DILFs','Jocks',
+								'Billionaires','Millionaires','Sugar Daddies','Leather Daddies',
+								'Bounty Hunters','Barbarians','Businessmen','Werewolves',
+								'Drag Queens','Muscle Marys'])
+		MaleNotList = ['Space']
+		Alien1 = MaleChar(iNumMinCBits = 1, iNumMaxCBits = 2, bAddArticle = False, bAddEndNoun = False, bAllowGang = False, NotList = MaleNotList,
+			bAllowMaritalStatus = False, bAllowProf = False, bAllowTitle = False, bAllowTrope = False, bAllowNation = False)
+		Alien2 = MaleChar(iNumMinCBits = 1, iNumMaxCBits = 2, bAddArticle = False, bAddEndNoun = True, bAllowGang = False, NotList = MaleNotList,
+			bAllowMaritalStatus = False, bAllowProf = True, bAllowTitle = False, bAllowTrope = False, bAllowNation = False)
+		
+		sTweet = Verbs.GetWord() + " by the "
+		if CoinFlip():
+			sTweet += Alien1.Desc + " " + AlienPrefixes.GetWord() + " " + AlienNouns.GetWord() + " "
+		else:
+			sTweet += Alien2.Desc + " Space Men "
+		sTweet += "on Uranus!"
 
-		# return sTweet	
+		return sTweet	
 		
 # class Generator100(Generator):
 	# ID = 100
