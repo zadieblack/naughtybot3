@@ -1113,7 +1113,7 @@ class Generator38(Generator):
 	# A tall black woman stepped thru the bathroom door. Her sumptuous breasts were full and heavy and her pussy was shaved bare.
 	# 'THIS is your birthday present,' Marsha said.
 	ID = 38
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1403,7 +1403,7 @@ class Generator44(Generator):
 		
 class Generator45(Generator):
 	ID = 45
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1454,7 +1454,16 @@ class Generator46(Generator):
 		return sTweet
 		
 class Generator47(Generator):
-	#Sable could feel the swollen head of Geoffrey's cock against the tight ring of her anus. 'Oh, go slowly Geoffrey!'\n\n'I am, my love,' he replied. Gently but firmly, he eased his turgid 8 1/2" cock into her entrance.\n\n'Oh!' Sable gasped. 'Wow! Don't stop Geoffrey, please.'\n\nGeoffrey took his time and used lots of lube until at last he was balls deep inside her tush. 'Oh god, baby, you're so tight!' he gasped as he began to piston into her.\n\n''I've let dozens of men fuck my pussy, babe,' said Sable, 'But you're the only man who will ever plough my sphincter.']
+	#Sable could feel the swollen head of Geoffrey's cock against the tight ring of her anus. 'Oh, go slowly Geoffrey!'
+	#
+	#'I am, my love,' he replied. Gently but firmly, he eased his turgid 8 1/2" cock into her entrance.
+	#
+	#'Oh!' Sable gasped. 'Wow! Don't stop Geoffrey, please.'
+	#
+	#Geoffrey took his time and used lots of lube until at last he was balls deep inside her tush. 'Oh god, baby, you're so 
+	#tight!' he gasped as he began to piston into her.
+	#
+	#'I've let dozens of men fuck my pussy, babe,' said Sable, 'But you're the only man who will ever plough my sphincter.'
 	ID = 47
 	Priority = 1
 	
@@ -1517,7 +1526,8 @@ class Generator48(Generator):
 		return sTweet
 		
 class Generator49(Generator):
-	#'Now remember,' Veronica said, 'when you meet my parents, you can't tell them that you're a dishwasher at Applebee's and that we met when you titty-fucked me behind a club. You're a successful chiropractor and your name is Reginald.'
+	#'Now remember,' Veronica said, 'when you meet my parents, you can't tell them that you're a dishwasher at Applebee's 
+	#and that we met when you titty-fucked me behind a club. You're a successful chiropractor and your name is Reginald.'
 	ID = 49
 	Priority = 1
 	
