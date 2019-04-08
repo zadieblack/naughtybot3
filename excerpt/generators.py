@@ -13,6 +13,7 @@ from excerpt.names import *
 from excerpt.locations import *
 from excerpt.people import *
 from excerpt.texttoimg import *
+from title.people import *
 
 PromoHistoryQ = excerpt.util.HistoryQ(2)
 	
@@ -2007,25 +2008,110 @@ class Generator58(Generator):
 		
 # Candice walked stiffly down the stairs, groaning with every step. "Oh god," she said. "That's the last time I
 # let a burly Italian construction worker fist my anus!"
-# class Generator59(Generator):
-	# ID = 59
-	# Priority = 1
+class Generator59(Generator):
+	ID = 59
+	Priority = 1
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
-
-		# return sTweet
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
 		
-# class Generator60(Generator):
-	# ID = 60
-	# Priority = 1
-	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+		Man = title.people.MaleChar(iNumMinCBits = 2, iNumMaxCBits = 3, bAllowGang = False, bAddArticle = False,
+									bAllowAttitude = False, bAllowGenMod = False, bAllowTrope = False, 
+									bAllowMaritalStatus = False, bAllowTitle = False)
+		Verbs = WordList(['fist','fist','cream pie','stuff','ream','pound','nail','plow','drill','ram','pop'])
+		Anus = self.FemBodyParts.Ass.Anus 
+		
+		sTweet += self.FemaleName.FirstName() + " walked stiffly down the " + WordList(['stairs','steps','hall','sidewalk','street']).GetWord()
+		sTweet += ", groaning with every step. \"" + self.Exclamation.GetWord(bExMk = False, bHappy = False).capitalize() + ",\" " 
+		sTweet += "she said. \"That's the last time I let " + AddArticles(Man.Desc).lower() + " " 
+		sTweet += Verbs.GetWord() + " my " + Anus.ShortDescription(sNot = 'fissure') + "!\""
 
-		# return sTweet
+		return sTweet
+		
+# "Wizard!" called out the little bosomy princess in an imperious voice, "I have come for your aid. You must give me a magical 
+# talisman with which I can free my younger sister from the Tentacle Beast!" She swept into the room in a long plum gown 
+# which left little to the imagination. The Wizard was dazed by the beauty of her full, sweet lips; her yielding flesh; and 
+# her pert behind.
+#
+# "Yes your highness, I have just the thing," he said. He handed her a strange, be-jeweled object. "You must wear this at all 
+# times," he said.
+# 
+# "What is this?" she asked.
+#
+# "'Tis the legendary anal hook of Devaxatar!"
+class Generator60(Generator):
+	ID = 60
+	Priority = 1
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		sMage = WordList(['Wizard','Sorcerer','Warlock','Enchanter']).GetWord()
+		PrincessAdjs1 = WordList(['young','nubile','beautiful','sexy','virginal','vivacious','ripe','teenage',
+								  'little','cute','tender','regal','noble','sumptuous'])
+		PrincessAdjs2 = WordList(['pale','black','slender','willowy','curvy','voluptuous','ample-bosomed',
+								  'apple-bottomed','full-figured','bosomy','bubble-butt','curvaceous',
+								  'jiggling','flexible','nubile','young','ripe','petite','plump',
+								  'round-bottomed','Rubenesque','shapely','tender','tight-bodied',
+								  'top-heavy','pale','black','black','redheaded','blonde','brunette'])
+		sPrincessAdj1 = PrincessAdjs1.GetWord()
+		sPrincessAdj2 = PrincessAdjs2.GetWord(NotList = [sPrincessAdj1])
+		
+		Evils = WordList(["defeat the Dark Lord",
+						  "free my younger sister from the Tentacle Beast",
+						  "return my father the king to human form",
+						  "stop the Goblin King from taking our women",
+						  "stop the evil queen from stealing the seed of the kingdom's young men",
+						  "free my sister from the horny dragon",
+						  "free my sister from the horny barbarian horde",
+						  "free the queen from the horny barbarian horde",
+						  "restore the queen's virtue",
+						  "restore my sister's virtue",
+						  "free the village women from Marfang's wicked sex dungeons",
+						  "free the queen from the humiliating mind control spell",
+						  "free my father the king from the Curse of Eternal Horniness",
+						  "free my brother the prince from the Curse of Eternal Horniness",
+						  "stop the evil queen from stealing the seed of my brother the prince",
+						  "stop the evil queen from seducing my brother the prince",
+						  "free my brother the prince from the curse of the everlasting erection",
+						  "free my father the king from the curse of the everlasting erection",
+						  "stop the libidinous spirits from invading my tender sister's chambers each night",
+						  "stop my evil twin brother from making me his bride"])
+						  
+		DressAdjs = WordList(['long','floor-length','diaphanous','gauzy','revealing','strapless','plunging',
+							  'sumptuous','translucent','slinky','form-fitting','daring'])
+		DressColors = WordList(['red','crimson','ruby','scarlet','coral','maroon','rose','cerise','fuchsia','garnet','russet','vermillion',
+								'cerulean','azure','sapphire','indigo',
+								'emerald','sea green','chartreuse','jade','viridian',
+								'mauve','violet','lavender','lilac','periwinkle','plum',
+								'yellow','lemon','cream','ivory','alabaster','umber',
+								'silver','gold'])
+								
+		sArtifactAdj = WordList(['magical','enchanted','legendary','ancient','arcane','mystic','runic','sorcerous','spellbound']).GetWord()
+		sArtifact = WordList(['butt plug','anal beads','dildo','vibrator','ben wa balls','clit clamp','speculum','ball gag',
+							  'pony tail anal plug','chastity belt','strap-on','anal hook','nipple clamps','dog collar',
+							  'spreader bar']).GetWord()
+		sMagicWord = WordList(['Aether','Theophilus','Zanotar','Xholus','Endomius','Sokranos','Devaxatar','Elphias','Tamsin',
+							   'Gorth','Evanora','Locasta','Minerva','Morrigan','Alatar','Gwydion','Ommin','Grimmassi','Rasputin']).GetWord()
+		
+		sTweet += "\"" + sMage.capitalize() + "!\" "
+		sTweet += "called out the " + sPrincessAdj1 + " " + sPrincessAdj2 + " princess in " + WordList(['a commanding','a high','an imperious','a thrilling']).GetWord() + " voice, "
+		sTweet += "\"I have come for your aid. You must give me a magical talisman with which I can " + Evils.GetWord() + "!\" "
+		sTweet += "She swept into the room in a " + DressAdjs.GetWord() + " " + DressColors.GetWord() + " gown which left little to the imagination. "
+		sTweet += "The " + sMage + " was " + WordList(['stunned','awed','astounded','dazed','overwhelmed']).GetWord() + " by the beauty of "
+		Parts = self.FemBodyParts.GetRandomBodyParts(iNum = 3, bIncludeInners = False, bIncludeIntimate = False)
+		for part in Parts:
+			if not part == Parts[len(Parts) - 1]:
+				sTweet += "her " + part + "; "
+			else:
+				sTweet += "and her " + part + ".\n\n"
+		sTweet += "\"Yes your highness, I have just the thing,\" he said. He handed her a strange, " + WordList(['be-jeweled','gleaming','shiny','lustrous','sparkling']).GetWord() + " object. \"You must wear this at all times,\" he said.\n\n"
+		sTweet += "\"What is this?\" she asked.\n\n"
+		sTweet +=  "\"'Tis the " + sArtifactAdj + " " + sArtifact + " of " + sMagicWord + "!\""
+
+		return sTweet
 		
 # class Generator61(Generator):
 	# ID = 61

@@ -999,7 +999,7 @@ class BodyFemale(BodyParts):
 		self.Vagina = Vagina()
 		self.Ass = AssFemale()
 		
-	def GetRandomBodyParts(self, iNum, bIncludeInners = False, bAllowShortDesc = False):
+	def GetRandomBodyParts(self, iNum, bIncludeInners = False, bIncludeIntimate = True, bAllowShortDesc = False):
 		Parts = []
 		AllParts = []
 		
@@ -1021,7 +1021,7 @@ class BodyFemale(BodyParts):
 			AllParts.append(self.Vagina.OuterLabia.RandomDescription(bAllowShortDesc = bAllowShortDesc))
 			AllParts.append(self.Vagina.InnerLabia.RandomDescription(bAllowShortDesc = bAllowShortDesc))
 			AllParts.append(self.Vagina.InnerVag.RandomDescription(bAllowShortDesc = bAllowShortDesc))
-		else:
+		elif bIncludeIntimate:
 			AllParts.append(self.Face.RandomDescription(bAllowShortDesc = bAllowShortDesc))
 			AllParts.append(self.Eyes.RandomDescription(bAllowShortDesc = bAllowShortDesc))
 			AllParts.append(self.Lips.RandomDescription(bAllowShortDesc = bAllowShortDesc))
@@ -1035,6 +1035,17 @@ class BodyFemale(BodyParts):
 			AllParts.append(self.Thighs.RandomDescription(bAllowShortDesc = bAllowShortDesc))
 			AllParts.append(self.Ass.RandomDescription(bAllowShortDesc = bAllowShortDesc))
 			AllParts.append(self.Vagina.RandomDescription(bAllowShortDesc = bAllowShortDesc))
+		else:
+			AllParts.append(self.Face.RandomDescription(bAllowShortDesc = bAllowShortDesc))
+			AllParts.append(self.Eyes.RandomDescription(bAllowShortDesc = bAllowShortDesc))
+			AllParts.append(self.Lips.RandomDescription(bAllowShortDesc = bAllowShortDesc))
+			AllParts.append(self.Hair.RandomDescription(bAllowShortDesc = bAllowShortDesc))
+			AllParts.append(self.Skin.RandomDescription(bAllowShortDesc = bAllowShortDesc))
+			AllParts.append(self.RandomDescription(bAllowShortDesc = bAllowShortDesc))
+			AllParts.append(self.Hips.RandomDescription(bAllowShortDesc = bAllowShortDesc))
+			AllParts.append(self.Legs.RandomDescription(bAllowShortDesc = bAllowShortDesc))
+			AllParts.append(self.Breasts.RandomDescription(bAllowShortDesc = bAllowShortDesc))
+			AllParts.append(self.Ass.RandomDescription(bAllowShortDesc = bAllowShortDesc))
 			
 		for x in sorted(sample(range(0, len(AllParts)), iNum)):
 			Parts.append(AllParts[x])

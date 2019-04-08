@@ -995,6 +995,7 @@ class SpeciesMale(WordList):
 			'Mer-man','Mer-man',
 			'Swamp Creature',
 			'Tentacle Monster',
+			'Undead',
 			'Uniporn',
 			'Vampire','Vampire',
 			'Were-Horse',
@@ -1284,6 +1285,7 @@ class BookVerbsBy(WordList):
 			'Tied Up in the Basement',
 			'Tempted',
 			'Secretly Watched',
+			'Used as a Sex Doll',
 			'Whipped',
 			'Whipped in Public'])
 			
