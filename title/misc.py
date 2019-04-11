@@ -335,7 +335,6 @@ class GenModFemale(WordList):
 class MaritalStatusFemale(WordList):
 	def __init__(self):
 		super().__init__(['Recently-Divorced',
-			'Concubine',
 			'Married','Married','Married',
 			'Single','Single','Single','Single'])
 
@@ -397,8 +396,6 @@ class PhysCharFemale(WordList):
 			'Leggy',
 			'Little','Little','Little',
 			'Naked',
-			'Narrow-Waisted',
-			'Natural',
 			'Nubile',
 			'Nude',
 			'Oiled Up',
@@ -407,7 +404,6 @@ class PhysCharFemale(WordList):
 			'Ripe',
 			'Round-Bottomed',
 			'Rubenesque',
-			'Sun-Baked',
 			'Shapely',
 			'Shaved Bare',
 			'Skinny',
@@ -415,14 +411,12 @@ class PhysCharFemale(WordList):
 			'Sporty',
 			'Stacked',
 			'Statuesque',
-			'Supple',
 			'Tender',
 			'Thick',
 			'Thicc',
 			'Tight',
 			'Tight-Bodied',
 			'Top-Heavy',
-			'Unshaven',
 			'Voluptuous',
 			'Wide-Bottomed',
 			'Young'])
@@ -495,8 +489,6 @@ class ProfBadFemale(WordList):
 			'Pole Dancer',
 			'Porn Star',
 			'Secretary',
-			'Slave','Slave','Slave',
-			'Starlet',
 			'Stripper','Stripper',
 			'Supermodel',
 			'Whore'])
@@ -767,13 +759,13 @@ class AttitudeMale(WordList):
 class GenModMale(WordList):
 	def __init__(self):
 		super().__init__(['Barbarian',
-			'Bareback',
 			'BDSM',
 			'Dapper',
 			'Heart-Throb',
 			'Heavily Tattooed',
 			'Manly',
 			'Masked',
+			'Massive',
 			'Mysterious',
 			'Naked',
 			'Nudist',
@@ -818,9 +810,10 @@ class NationMale(WordList):
 class PhysCharMale(WordList):
 	def __init__(self):
 		super().__init__(['Athletic',
-			'Bald',
-			'Bare-Chested','Bare-Chested',
-			'Bearded','Bearded',
+			'Bald','Bald',
+			'Balding',
+			'Bare-Chested',
+			'Bearded',
 			'Beefcake',
 			'Beefy','Beefy',
 			'Big','Big',
@@ -829,10 +822,9 @@ class PhysCharMale(WordList):
 			'Burly',
 			'Chiseled',
 			'Clean-Cut',
-			'Clean-Shaven','Clean-Shaven',
+			'Clean-Shaven',
 			'Craggy',
 			'Dad-Bod',
-			'Fine',
 			'Fit',
 			'Giant',
 			'Hairy','Hairy',
@@ -848,7 +840,7 @@ class PhysCharMale(WordList):
 			'Shape-Shifting',
 			'Strapping',
 			'Strong',
-			'Tall','Tall',
+			'Tall',
 			'Tattooed',
 			'Ugly'])
 			
@@ -987,7 +979,6 @@ class SpeciesMale(WordList):
 			'Dinosaur','Dinosaur',
 			'Dwarf',
 			'Gargoyle',
-			'Giant',
 			'Goat-Man',
 			'Man-o-taur',
 			'MANtelope',

@@ -3876,7 +3876,7 @@ class Generator124(Generator):
 							'James Dean','H.P. Lovecraft','Orson Welles','Henry Kissinger','Sonny Bono','Jimmy Hoffa',
 							'Charlton Heston','Hugh Hefner','Yul Brynner','Carl Sagan','Yuri Gagarin','Jerry Lewis',
 							'Benny Hill','Bob Ross','Joe DiMaggio','Don Knotts','Vincent Price','Adam West',
-							'Frank Sinatra','Casey Kasem','Karl Marx','Jacques Cousteau'])
+							'Frank Sinatra','Casey Kasem','Karl Marx','Jacques Cousteau','Salvador Dali'])
 		Verbs = WordList(['Plowed','Banged','Porked','Drilled','Humped','Made Love to','Nailed','Reamed',
 						  'Screwed','Shagged','Stuffed','Cream-pied','Ravished','Ate Out','Sixty-nined',
 						  'Boned',])
@@ -3975,25 +3975,98 @@ class Generator128(Generator):
 
 		return sTweet	
 		
-# class Generator100(Generator):
-	# ID = 100
-	# Priority = 2
+class Generator129(Generator):
+	ID = 129
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
-
-		# return sTweet	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
 		
-# class Generator100(Generator):
-	# ID = 100
-	# Priority = 2
-	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+		Race = WordList(['Black','Black','Black','White','White','Asian','Asian'])
+		
+		GirlNotList = ['Call-Girl','Escort','Slave','Whore']
+		GirlAdj = FemaleChar(iNumMinCBits = 1, iNumMaxCBits = 1, bAddArticle = False, bAddEndNoun = False, NotList = GirlNotList,
+			bAllowAge = False, bAllowMaritalStatus = False, bAllowPregState = False, bAllowNation = False, bAllowRelate = False,
+			bAllowSexuality = False, bAllowSkinHairColor = False, bAllowSpecies = False, bAllowTitle = False, bAllowProf = False, 
+			bAllowTrope = False)
+		GirlNoun = WordList(title.misc.TitlesFemale().List + title.misc.TropesFemale().List + title.misc.ProfFemale().List)
+		GirlSpecies = WordList(['Mermaid','Succubus','Futa','Undead','Zombie','Vampire','Fairy','Elf'])
+		
+		sHerRace = WordList(['Black','Black','Black','White','White','Asian','Asian','Latina','Latina']).GetWord()
+		sHerSpecies = GirlSpecies.GetWord()
+		
+		ManNotList = ['Bob']
+		Man = MaleChar(iNumMinCBits = 1, iNumMaxCBits = 1, bAddArticle = False, bAllowGang = False, NotList = ManNotList,
+					   bAllowAge = False, bAllowAttitude = False, bAllowGenMod = False, bAllowMaritalStatus = False,
+					   bAllowPhysChar = False, bAllowDickChar = False, bAllowNation = False, bAllowSpecies = False,
+					   bAllowSkinHairColor = False, bAllowRelate = False)
+		ManSpecies = WordList(['Merman','Centaur','Minotaur','Zombie','Werewolf','Dwarf',
+							   'Demon','Gargoyle','Were-Shark','Zombie','Goat Man'])
 
-		# return sTweet	
+		ManRace = WordList(['Black','Black','Black','White','White','Asian','Asian','Latino','Latino'])
+		sHisRace = ManRace.GetWord(NotList = [sHerRace])
+		sHisSpecies = ManSpecies.GetWord(NotList = [sHerSpecies])
+		
+		while sHisRace == 'Latino' and sHerRace == 'Latina':
+			sHisRace = ManRace.GetWord(NotList = [sHisRace])
+							
+		iRand = randint(1,3)
+		if iRand == 1:
+			print("<A>")
+			sTweet = GirlAdj.Desc + " " + sHerRace + " " + GirlNoun.GetWord(NotList = GirlNotList) + " for the " + sHisRace + " " + Man.Desc
+		elif iRand == 2:
+			print("<B>")
+			sTweet = GirlAdj.Desc + " " + sHerSpecies + " " + GirlNoun.GetWord(NotList = GirlNotList) + " for the " + sHisRace + " " + Man.Desc
+		else:
+			print("<C>")
+			sTweet = sHerRace + " " + sHerSpecies + " " + GirlNoun.GetWord(NotList = GirlNotList) + " for the " + sHisRace + " " + Man.Desc
+
+		return sTweet	
+		
+class Generator130(Generator):
+	ID = 130
+	Priority = 2
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		GirlNotList = ['Call-Girl','Escort','Slave','Whore']
+		GirlNoun = WordList(title.misc.TropesFemale().List + title.misc.ProfFemale().List)
+		GirlSpecies = WordList(['Mermaid','Succubus','Futa','Undead','Zombie'])
+		
+		sHerRace = WordList(['Black','Black','Black','White','White','Asian','Asian','Latina','Latina']).GetWord()
+		sHerSpecies = GirlSpecies.GetWord()
+		
+		ManNotList = ['Bob']
+		ManAdj = MaleChar(iNumMinCBits = 1, iNumMaxCBits = 1, bAddArticle = False, bAddEndNoun = False, bAllowGang = False, NotList = ManNotList,
+					   bAllowAge = False, bAllowAttitude = True, bAllowGenMod = True, bAllowMaritalStatus = False,
+					   bAllowPhysChar = True, bAllowDickChar = True, bAllowNation = False, bAllowSpecies = False,
+					   bAllowSkinHairColor = False, bAllowRelate = False, bAllowProf = False, bAllowTrope = False,
+					   bAllowTitle = False)
+		ManNoun = WordList(title.misc.TropesMale().List + title.misc.ProfMale().List + title.misc.TitlesMale().List)
+		ManSpecies = WordList(['Merman','Centaur','Minotaur','Zombie','Werewolf','Dwarf',
+							   'Demon','Gargoyle','Were-Shark','Zombie','Goat Man'])
+		ManRace = WordList(['Black','Black','Black','White','White','Asian','Asian','Latino','Latino'])
+		sHisRace = ManRace.GetWord(NotList = [sHerRace])
+		sHisSpecies = ManSpecies.GetWord(NotList = [sHerSpecies])
+		while sHisRace == 'Latino' and sHerRace == 'Latina':
+			sHisRace = ManRace.GetWord(NotList = [sHisRace])
+		
+		iRand = randint(1,3)
+		if iRand == 1:
+			print("<A>")
+			sTweet = ManAdj.Desc + " " + sHisRace + " " + ManNoun.GetWord(NotList = ManNotList) + " for the " + sHerRace + " " + GirlNoun.GetWord(NotList = GirlNotList)
+		elif iRand == 2:
+			print("<B>")
+			sTweet = ManAdj.Desc + " " + sHisSpecies + " " + ManNoun.GetWord(NotList = ManNotList) + " for the " + sHerRace + " " + GirlNoun.GetWord(NotList = GirlNotList)
+		else:
+			print("<C>")
+			sTweet = sHisRace + " " + sHisSpecies + " " + ManNoun.GetWord(NotList = ManNotList) + " for the " + sHerRace + " " + GirlNoun.GetWord(NotList = GirlNotList)
+
+
+		return sTweet	
 		
 # class Generator100(Generator):
 	# ID = 100
