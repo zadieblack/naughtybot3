@@ -1865,7 +1865,7 @@ class Generator56(Generator):
 			sHerName2 = self.FemaleName.FirstName()
 		
 		sHerSkinHair1 = WordList(['blonde', 'brunette', 'redhead', 'Asian', 'black girl', 'latina']).GetWord()
-		sHerSkinHair2 = WordList(['blonde', 'brunette', 'redhead', 'Asian', 'black girl', 'latina']).GetWord(sNot = sHerSkinHair1)
+		sHerSkinHair2 = WordList(['blonde', 'brunette', 'redhead', 'Asian', 'black girl', 'latina']).GetWord(NotList = [sHerSkinHair1])
 
 		SceneForeplay = SceneSelector().GetScene(Tags = {TAG_FOREPLAY}, sHisName = sHisName, sHerName = sHerName2)
 		ScenePosition = SceneSelector().GetScene(Tags = {TAG_POSITION}, sHisName = sHisName, sHerName = sHerName2)

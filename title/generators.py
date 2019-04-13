@@ -3627,6 +3627,8 @@ class Generator114(Generator):
 
 		return sTweet	
 		
+# The Perky Flight Attendant
+# Plays Naked Football!
 class Generator115(Generator):
 	ID = 115
 	Priority = 1
@@ -3664,7 +3666,9 @@ class Generator115(Generator):
 							"Curling","Lacrosse","Baseball","Quidditch","Roller Derby"]).GetWord() + "!"
 
 		return sTweet	
-		
+
+# My Flirty Italian Milk Maid
+# Is A Wanton Hotwife!
 class Generator116(Generator):
 	ID = 116
 	Priority = 1
@@ -3694,6 +3698,8 @@ class Generator116(Generator):
 
 		return sTweet	
 		
+# A Big-Titty German Waitress
+# Urinates on Dick!
 class Generator117(Generator):
 	ID = 117
 	Priority = 1
@@ -3794,6 +3800,8 @@ class Generator120(Generator):
 
 		return sTweet	
 		
+# Massaging Mrs. Mountcox:
+# A Sadistic Bisexual MILF Story
 class Generator121(Generator):
 	ID = 121
 	Priority = 2
@@ -3814,13 +3822,14 @@ class Generator121(Generator):
 					   'Little']
 		MILF = FemaleChar(iNumMinCBits = 1, iNumMaxCBits = 2, bAddArticle = False, bAddEndNoun = False, NotList = MILFNotList,
 							bAllowAge = False, bAllowMaritalStatus = False, bAllowPregState = False, bAllowProf = False,
-							bAllowRelate = False, bAllowTitle = False, bAllowTrope = False)
+							bAllowRelate = False, bAllowTitle = False, bAllowTrope = False, bAllowSpecies = False)
 							
 		sTweet = Gerunds.GetWord() + " Mrs. " + LastNames().GetWord() + ":\n"
 		sTweet += AddArticles(MILF.Desc) + " MILF " + WordList(['Story','Encounter','Rendevous','Affair','Adventure']).GetWord()
 
 		return sTweet	
 		
+# Speculum for the Horny Mexican MILF
 class Generator122(Generator):
 	ID = 122
 	Priority = 2
@@ -3922,6 +3931,7 @@ class Generator126(Generator):
 		
 		return sTweet
 		
+# Isabelle Gets Naked for the Fully-Engorged Dinosaur S.W.A.T. Team
 class Generator127(Generator):
 	ID = 127
 	Priority = 2
@@ -4000,7 +4010,7 @@ class Generator129(Generator):
 		Man = MaleChar(iNumMinCBits = 1, iNumMaxCBits = 1, bAddArticle = False, bAllowGang = False, NotList = ManNotList,
 					   bAllowAge = False, bAllowAttitude = False, bAllowGenMod = False, bAllowMaritalStatus = False,
 					   bAllowPhysChar = False, bAllowDickChar = False, bAllowNation = False, bAllowSpecies = False,
-					   bAllowSkinHairColor = False, bAllowRelate = False)
+					   bAllowSkinHairColor = False, bAllowRelate = False, bAllowTitle = False)
 		ManSpecies = WordList(['Merman','Centaur','Minotaur','Zombie','Werewolf','Dwarf',
 							   'Demon','Gargoyle','Were-Shark','Zombie','Goat Man'])
 
@@ -4024,9 +4034,10 @@ class Generator129(Generator):
 
 		return sTweet	
 		
+# Black Merman Quarterback for the White Playboy Centerfold
 class Generator130(Generator):
 	ID = 130
-	Priority = 2
+	Priority = 3
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
