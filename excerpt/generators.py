@@ -1414,7 +1414,7 @@ class Generator45(Generator):
 		
 		BadWeatherAdjs = WordList(["bleak", "chilly", "cold", "damp", "dark", "freezing", "frosty", "raining", "snowing", "stormy", "tempestuous", "wet", "wild", "windswept", "windy", "wintry"])
 		sBWAdj1 = BadWeatherAdjs.GetWord()
-		sBWAdj2 = BadWeatherAdjs.GetWord(sNot = sBWAdj1)
+		sBWAdj2 = BadWeatherAdjs.GetWord(NotList = [sBWAdj1])
 		
 		sTweet = "It was " + sBWAdj1 + " and " + sBWAdj2 + " " + WordList(["in the forest", "in the old manor house", "on the moor", "in the ruins of the castle", "on the shore of the frozen lake", "along the rocky beach", "atop the cliff", "among the craggy hills", "beneath the stars", "in the heart of the mountains"]).GetWord() + ".\n\n'We had best huddle together for warmth, " + sHerName + ",' said " + sHisName + ". She curled up against him and he wrapped his " + self.MaleBodyParts.Arms.GetAdj() + " arms around her.\n\n'Oh! What is that?' " + sHerName + " exclaimed."
 
@@ -1536,6 +1536,7 @@ class Generator49(Generator):
 		sTweet = ""
 		
 		Location = excerpt.locations.LocationSelector().Location(PubPrivType = LocPubPrivType.Public)
+
 		Scene = SceneSelector().GetScene("", "", Tags = {TAG_DONE_TO_HER}, NotTags = {TAG_CLIMAX}, Location = Location)
 		sShortScene = Scene.SceneShortDesc1PHer
 		
@@ -1545,7 +1546,7 @@ class Generator49(Generator):
 		sBlueCollarJob = self.BlueCollar.GetPerson()
 		sWhiteCollar = self.WhiteCollar.GetPerson()
 		
-		sTweet = "'Now remember', " + sHerName + " said, 'When you meet my parents, you can't tell them that you're a " + sBlueCollarJob + " and that we met when " + sShortScene + " " + Location.NamePrep + ". You are a successful " + sWhiteCollar + " and your name is " + sHisName + ".'"
+		sTweet = "'Now remember', " + sHerName + " said, 'When you meet my parents, you can't tell them that you're " + AddArticles(sBlueCollarJob) + " and that we met when " + sShortScene + " " + Location.NamePrep + ". You are a successful " + sWhiteCollar + " and your name is " + sHisName + ".'"
 		
 		return sTweet
 
