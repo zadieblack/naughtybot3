@@ -4138,8 +4138,8 @@ class Generator131(Generator):
 		return sTweet	
 		
 # In Love With
-# My Innocent Amish Maid's 
-# Enormous Coconuts 
+# My Dentist's 
+# Magnificent Meat-Missile
 class Generator132(Generator):
 	ID = 132
 	Priority = 2
