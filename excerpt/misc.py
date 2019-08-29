@@ -291,7 +291,7 @@ class BookGirls(WordList):
 			'Teacher',
 			'Virgin',
 			'Wallflower',
-			'Waitress'
+			'Waitress',
 			'Wife',
 			'Woman'])
 			

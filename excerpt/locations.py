@@ -2,16 +2,19 @@
 # -*- coding: utf-8 -*-
 # Locations module
 
-import excerpt.bodyparts
+
 
 from random import *
-from enum import * 
-from excerpt.util import *
+#from enum import * 
+
+import excerpt.util as exutil
+from excerpt.util import CoinFlip
+import excerpt.bodyparts
 
 class Location():
 	Name = ""
 	NamePrep = ""
-	Loc = LocInOutType.Indoors
+	Loc = exutil.LocInOutType.Indoors
 	BeginDesc = ""
 	EndDesc = ""
 	BentOver = ""
@@ -122,7 +125,7 @@ class Alley(PublicLocation):
 class Balcony(PublicLocation):
 	Name = "the hotel balcony"
 	NamePrep = "on the hotel balcony"
-	Loc = LocInOutType.Outdoors
+	Loc = exutil.LocInOutType.Outdoors
 	BeginDesc = "The city spread out below them and the horizon was blue ocean."
 	Despite = "the fact that they were exposed to anyone who looked up"
 	BentOver = "the balcony rail"
@@ -143,7 +146,7 @@ class Balcony(PublicLocation):
 class Beach(PublicLocation):
 	Name = "the beach"
 	NamePrep = "at the beach"
-	Loc = LocInOutType.Outdoors
+	Loc = exutil.LocInOutType.Outdoors
 	BeginDesc = "A hot sun shone down as blue waves lapped at the sand."
 	Despite = "the sand that got into every crack"
 	BentOver = "the sand dune"
@@ -187,7 +190,7 @@ class Bedroom(PrivateLocation):
 class CampingTent(PrivateLocation):
 	Name = "a tent"
 	NamePrep = "in a tent"
-	Loc = LocInOutType.Indoors
+	Loc = exutil.LocInOutType.Indoors
 	Despite = "the thin canvas walls of the tent"
 	BeginDesc = "The tent was just big enough for two."
 	BentOver = "her heavy backpack"
@@ -263,7 +266,7 @@ class ClubParkingLot(PublicLocation):
 class Den(PrivateLocation):
 	Name = "the den"
 	NamePrep = "in the den"
-	Loc = LocInOutType.Indoors
+	Loc = exutil.LocInOutType.Indoors
 	Despite = "a little shyness"
 	BeginDesc = "A fire was crackling in the fireplace of the cozy den."
 	BentOver = "the arm of the couch"
@@ -319,7 +322,7 @@ class DressingRoom(PublicLocation):
 class Farm(PrivateLocation):	
 	Name = "the farm"
 	NamePrep = "on a farm"
-	Loc = LocInOutType.Outdoors
+	Loc = exutil.LocInOutType.Outdoors
 	Despite = "the mooing of nearby cows"
 	BeginDesc = "A rambling wood fence encircled a field dotted with hay bales."
 	BentOver = "a wood fence"
@@ -335,7 +338,7 @@ class Farm(PrivateLocation):
 class Hottub(PrivateLocation):
 	Name = "the hot tub"
 	NamePrep = "in the hot tub"
-	Loc = LocInOutType.Outdoors
+	Loc = exutil.LocInOutType.Outdoors
 	Despite = "the heat"
 	BeginDesc = "They slipped into the warm water of the hot tub."
 	BentOver = "the side of the tub"
@@ -367,7 +370,7 @@ class Gym(PublicLocation):
 class HikingTrail(PublicLocation):
 	Name = "the hiking trail"
 	NamePrep = "on the side of a mountain"
-	Loc = LocInOutType.Outdoors
+	Loc = exutil.LocInOutType.Outdoors
 	BeginDesc = "The hike up the mountain had been exhausting, but the stunning view was worth it."
 	Despite = "the dirt and mosquitos"
 	BentOver = "a large boulder"
@@ -501,7 +504,7 @@ class ParkAfterDark(PublicLocation):
 class PoolPatio(PrivateLocation):
 	Name = "the pool patio"
 	NamePrep = "beside the pool"
-	Loc = LocInOutType.Outdoors
+	Loc = exutil.LocInOutType.Outdoors
 	Despite = "some fumbling awkwardness"
 	BeginDesc = "The sun was high in the sky and the pool water looked cool and inviting."
 	BentOver = "the pool steps"
@@ -514,7 +517,7 @@ class PoolPatio(PrivateLocation):
 class PrivateBeach(PrivateLocation):
 	Name = "a private beach"
 	NamePrep = "on a private beach"
-	Loc = LocInOutType.Outdoors
+	Loc = exutil.LocInOutType.Outdoors
 	BeginDesc = "The beach was lovely, and so private that she felt free to go topless."
 	Despite = "the sand that got into every crack"
 	BentOver = "a sand dune"
@@ -530,7 +533,7 @@ class PrivateBeach(PrivateLocation):
 class Shower(PrivateLocation):
 	Name = "the shower"
 	NamePrep = "in the shower"
-	Loc = LocInOutType.Indoors
+	Loc = exutil.LocInOutType.Indoors
 	Despite = "the slippery floor"
 	BeginDesc = "The hot shower water rained down on them."
 	BentOver = "against the wall"
@@ -562,7 +565,7 @@ class StarbucksBathroom(PublicLocation):
 class Surf(PublicLocation):
 	Name = "the surf"
 	NamePrep = "in the water at the beach"
-	Loc = LocInOutType.Outdoors
+	Loc = exutil.LocInOutType.Outdoors
 	BeginDesc = "A hot sun shone down as the waves crested against their bodies."
 	Despite = "the breaking waves"
 	BentOver = "in the water"
@@ -583,7 +586,7 @@ class Surf(PublicLocation):
 class Woods(PublicLocation):
 	Name = "the woods"
 	NamePrep = "out in the woods"
-	Loc = LocInOutType.Outdoors
+	Loc = exutil.LocInOutType.Outdoors
 	BeginDesc = "The leafy trees were thick in every direction."
 	Despite = "the dirt and mosquitos"
 	BentOver = "a mossy log"
@@ -601,7 +604,7 @@ class Woods(PublicLocation):
 class YogaStudio(PrivateLocation):
 	Name = "a yoga studio"
 	NamePrep = "in a yoga studio"
-	Loc = LocInOutType.Indoors
+	Loc = exutil.LocInOutType.Indoors
 	BeginDesc = "The relaxing drone of zen meditation music filled the warm studio."
 	Despite = "not having stretched properly"
 	BentOver = "a large yoga ball"
@@ -622,33 +625,50 @@ class LocationSelector():
 		for sub in PrivateLocation.__subclasses__():
 			self.Locations.append(sub())
 	
-	def Location(self, InOut = LocInOutType.Either, PubPrivType = LocPubPrivType.Either):
+	def Location(self, InOut = exutil.LocInOutType.Either, PubPrivType = exutil.LocPubPrivType.Either):
 		ThisLoc = Location()
 		MatchingLocations = []
 		
 		if InOut == None:
-			InOut = LocInOutType.Either
+			InOut = exutil.LocInOutType.Either
 		if PubPrivType == None:
 			PubPrivType = LocPubPrivType.Either
+		#print("PubPrivType class is [" + str(PubPrivType.__class__) + "]")
+		#print("LocPubPrivType.Public is [" + str(exutil.LocPubPrivType.Public) + "]")
+		#print("PubPrivType is LocPubPrivType.Public is <" + str(PubPrivType is exutil.LocPubPrivType.Public) + ">!")
 		
-		#print("Getting a " + str(PubPrivType) + "location and .")
+		#print("Getting a location that is PubPrivType " + str(PubPrivType) + " and InOut type " + str(InOut) + ".")
 		#print("Length of self.Locations[] is " + str(len(self.Locations)))
 		
 		if not self.Locations is None and len(self.Locations) > 0:
 			for loc in self.Locations:
+				#print("loc class is " + str(loc.__class__))
 				#print("Loc [" + loc.Name + "] is " + str(loc.Loc) + " and " + loc.__class__.__name__)
-				if InOut == LocInOutType.Either or loc.Loc == InOut:
-					if PubPrivType == LocPubPrivType.Public and isinstance(loc, PublicLocation):
+				if InOut == exutil.LocInOutType.Either or loc.Loc == InOut:
+					# print("[loc is " + str(loc.__class__) + "\n" + 
+						  # " PubPrivType = " + str(PubPrivType) + "\n"
+					      # " isinstance of class PublicLocation = " + str(isinstance(loc, PublicLocation)) + "\n" +
+						  # " isinstance of class PrivateLocation = " + str(isinstance(loc, PrivateLocation)) + "]")
+					#if PubPrivType == LocPubPrivType.Public:
+						#print("PubPrivType is definitely LocPubPrivType.Public!")
+					#else:
+						#print("Whoops! PubPrivType is *NOT* LocPubPrivType.Public!")
+					#if isinstance(loc, PublicLocation):
+						#print("isinstance(loc, PublicLocation) is definitely True!")
+					#else:
+						#print("Whoops! isinstance(loc, PublicLocation) is *NOT* True!")
+					
+					if PubPrivType == exutil.LocPubPrivType.Public and isinstance(loc, PublicLocation):
 						MatchingLocations.append(loc)
-						#print("Public location added to list.")
-					elif PubPrivType == LocPubPrivType.Private and isinstance(loc, PrivateLocation):
+						#print("Public Location added to list.")
+					elif PubPrivType == exutil.LocPubPrivType.Private and isinstance(loc, PrivateLocation):
 						MatchingLocations.append(loc)
-						#print("Private location added to list.")
-					elif PubPrivType == LocPubPrivType.Either:
+						#print("Private Location added to list.")
+					elif PubPrivType == exutil.LocPubPrivType.Either:
 						MatchingLocations.append(loc)
-						#print("Any type location added to list.")
+						#print("Any Type Location added to list.")
 			
-			#print("Length of MatchingLocations[] is " + str(len(MatchingLocations)))
+			print("Length of MatchingLocations[] is " + str(len(MatchingLocations)))
 			if len(MatchingLocations) > 0:
 				iRand = randint(0, len(MatchingLocations) - 1)
 				ThisLoc = MatchingLocations[iRand]

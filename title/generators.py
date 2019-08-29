@@ -2944,7 +2944,8 @@ class Generator96(Generator):
 		
 		Girl = title.misc.NiceGirl(NotList = ['Wife','Girlfriend'])
 		SizeAdj = WordList(['Enormous','Gigantic','Titantic','Humongous','Massive','Sumptuous','Milky','Giant',
-							'Honking','Juicy','Jiggling','Double D','Magnificent','Gargantuan','Jumbo'])
+							'Honking','Juicy','Jiggling','Double D','Magnificent','Gargantuan','Jumbo',
+							'Heavenly'])
 		Breasts = WordList(['Coconuts','Tatas','Breasticles','Gazongas','Titties','Mammaries','Melons',
 							'Cantaloups','Jugs','Fun-Bags','Jubblies','Knockers','Hooters','Bazooms','Bosoms',
 							'Milk Balloons','Juice-Bags','Sweater-Zeppelins','Grapefruits','Pumpkins',
@@ -4079,15 +4080,110 @@ class Generator130(Generator):
 
 		return sTweet	
 		
-# class Generator100(Generator):
-	# ID = 100
-	# Priority = 2
+# I watched my wife and an Italian cowboy dinosaur make a porno!
+class Generator131(Generator):
+	ID = 131
+	Priority = 5
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		MaleNotList = ["Taboo"]
+		FemRelative = WordList(["Sister", "Wife", "Bride", "Girlfriend", "Lesbian Bride", "Daughter", "Step-daughter",
+								 "Mother-in-Law", "Mom", "Fiancé", "Young Wife", "New Bride", "Highschool Sweetheart",
+								 "Teenage Daughter","Blushing Bride","Virgin Girlfriend","Conservative Girlfriend",
+								 "Conservative Step-Mom", "Hot Sister", "Hot Step-Sister", "Gay Dad","Gay Step-Dad",
+								 "Religious Step-Mom","Gay Husband","Gay Boyfriend","Uptight Wife", "Uptight Fiancé"]).GetWord()
+			
+		sTweet = "I Watched My " + FemRelative + "\n"
+		
+		if CoinFlip():
+			MalePornStar = MaleChar(iNumMinCBits = 2, iNumMaxCBits = 3, bAddArticle = False, bAllowGang = False, NotList = MaleNotList,
+				bAllowTitle = False, bAllowAttitude= False, bAllowMaritalStatus = False, bAllowProf = True, 
+				bAllowTrope = True, bAllowNation = True)
+			
+			sTweet += "and " + AddArticles(MalePornStar.Desc) + "\n"
+			sTweet += "Make a Porno"
+		else:
+			GangNotList = ["Taboo"]
+			MaleGang = WordList(['Basketball Players','Bikers','Carnies','Chippendales Dancers','Coal Miners',
+								 'Construction Workers','Cops','Cowboys','DILFs','Dwarves','Firemen',
+								 'Gangstas','Goblins','Centaurs','Hockey Players','Rugby Players',
+								 'Long Haul Truckers','Men at the Gym','Frat Brothers','Mer-men',
+								 'Mountain Men','Navy Seals','Pirates','Pro Wrestlers','Roadies',
+								 'Men of Seal Team Six','Scottsmen','Sumo Wrestlers','Vikings','Werewolves'
+								 'Lawyers','Navy Boys','Bad Boys','Jocks','Surfers','Luchadors','Lumberjacks',
+								 'Male Strippers','MMA Fighters','Rodeo Clowns','Dinosaurs','T-Rexes']).GetWord()
+			GangNotList = GangNotList + [MaleGang]
+			MaleGangAdjs = MaleGangChar(iNumMinCBits = 1, iNumMaxCBits = 2, bAddEndNoun = False, NotList = GangNotList, 
+				bAllowAttitude= False, bAllowProf = True, bAllowTrope = False, bAllowNation = True)
+			
+			
+			sNum = WordList(["Two","Two","Three","Three","Four", "Five","Seven", "Nine", "Ten","A Dozen", "17", 
+							 "Two Dozen", "Hundreds of"]).GetWord()
+			
+			sTweet += "Make a Porno\n"
+			if CoinFlip():
+				sAdjs = MaleGangAdjs.Desc
+				if not sAdjs == "":
+					sTweet += "with " + sNum + " " + MaleGangAdjs.Desc + " " + MaleGang 
+				else:
+					sTweet += "with " + sNum + " " + MaleGang 
+			else:
+				sTweet += "with " + sNum + " " + MaleGang 
+			
+		
+		
+		return sTweet	
+		
+# In Love With
+# My Innocent Amish Maid's 
+# Enormous Coconuts 
+class Generator132(Generator):
+	ID = 132
+	Priority = 2
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		Guy = WordList(['Attorney','Blind Date','Body Guard','Boss','Camp Counselor','Captain','Coach','Date',
+						'Doctor','Duke','Gym Coach','King','Marriage Counselor','Manor Lord','Mechanic',
+						'Minister','New Boyfriend','Pastor','Personal Trainer','Plumber','Priest','Pool Boy',
+						'Prince','Professor','Step-brother','Step-father','Step-son','Teacher',
+						'Divorce Attorney','Yoga Teacher','Physical Therapist','Dentist']).GetWord()
+		CockSizeAdj = WordList(['Engorged','Enormous','Gigantic','Titantic','Humongous','Massive','Regal','Giant',
+								'Big Honking','Magnificent','Gargantuan','Jumbo','Super-Sized','Lengthy','Turgid',
+								'Pulsating','Throbbing','Rock-hard','Towering','Turgid','Tumescent','Girthy',
+								'Donkey-Sized','Horse-Sized','King-Sized','Tumescent','XL','Arm-length',
+								'Black','Big Black','Enormous Fucking','8-inch','10-inch','12-inch',
+								'Handsome','Beautiful','Glistening']).GetWord()
+		Cock = WordList(['Beef Bayonette','Boner','Cock','Cocksickle','Dick','Erection','Hard-on','Joystick','Knob',
+						 'Meat','Meat-Missile','Member','Package','Penis','Phallus','Sausage','Schlong','Shaft',
+						 'Tool','Trouser Snake','Disco Stick','Prick','Banana']).GetWord(NotList = [CockSizeAdj])
+		BallSizeAdj = WordList(['Enormous','Gigantic','Grapefruit-Sized','Huge','Humungous','Jumbo',
+								'Low-hanging','Massive','Pendulous','Swollen','Heavy','XL','XXL',
+								'Swaying','Hairy']).GetWord()
+		Balls = WordList(['Balls','Ballsack','Nuts','Scrotum','Silk Purse','Testicles']).GetWord(NotList = [BallSizeAdj])
+							
+		sTweet = WordList(["In Love With","Falling For","Head-Over-Heels For","Captivated By",
+						   "Bewitched By","Entranced By","Enraptured By","Spellbound By",
+						   "Enchanted By","Charmed By","Surprised By","Dazzled By","Flustered By",
+						   "Shook By","Overcome By","Astonished By","Breathless From",
+						   "Hypnotized By","Delighted By","Beguiled By","Transfixed By",
+						   "Seduced By","Ensorcelled By","Gaga About","Infatuated With",
+						   "Enamoured By","Swept Away By","Transfixed By"]).GetWord()
+						   
+		sTweet += "\nMy " + Guy + "'s\n"
+		
+		iRand = randint(1,3)
+		if iRand == 1:
+			sTweet += BallSizeAdj + " " + Balls
+		else:
+			sTweet += CockSizeAdj + " " + Cock
 
-		# return sTweet	
+		return sTweet	
 		
 # class Generator100(Generator):
 	# ID = 100

@@ -904,6 +904,7 @@ class ProfMale(WordList):
 			'Killer-for-Hire',
 			'Lawyer',
 			'Long Haul Trucker',
+			'Luchador',
 			'Lumberjack',
 			'Olympic Gold Medalist',
 			'Outlaw',
@@ -1116,6 +1117,7 @@ class GangsMale(WordList):
 			'Knights of the Round Table',
 			'Lesbian Harem',
 			'Long Haul Truckers',
+			'Luchadors',
 			'Men at the Gym',
 			'Men of Kappa Omega Kappa',
 			'Men\'s Volleyball Team',
@@ -1139,6 +1141,7 @@ class GangsMale(WordList):
 			'Truckers',
 			'Viking Horde',
 			'Vampire Coven',
+			'Varsity Athletes',
 			'Werewolf Pack'])
 			
 class GayMaleAdj(WordList):

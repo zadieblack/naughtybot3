@@ -4,18 +4,21 @@
  
 import sys, argparse, datetime, threading, traceback
 
-import excerpt.bodyparts
-import excerpt.locations
-import excerpt.names
-import excerpt.people
-import excerpt.verbs
-import excerpt.misc
-import excerpt.scenes
+#import excerpt.bodyparts
+#import excerpt.names
+#from excerpt.locations import *
+#import excerpt.people
+#import excerpt.verbs
+#import excerpt.misc
+#import excerpt.scenes
 
 from io import BytesIO
 from random import *
-from excerpt.util import *
-from excerpt.generators import *
+#from excerpt.util import *
+#import excerpt.util
+import excerpt.util as exutil
+#from excerpt.generators import *
+import excerpt.generators as generators 
 from excerpt.twitter_stuff import *
 	
 def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorNo = -1):
@@ -25,7 +28,7 @@ def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorN
 	sTweet = ""
 	bTest = False 
 	
-	excerpt.util.TweetHistoryQ = HistoryQWithLog(excerpt.util.HISTORYQ_FILENAME)
+	exutil.TweetHistoryQ = exutil.HistoryQWithLog(exutil.HISTORYQ_FILENAME)
 	
 	try:
 		

@@ -884,10 +884,13 @@ class GayChar(Character):
 		self.Desc = sDesc
 
 class Person(WordList):
-	def GetPerson(self):
+	def GetPerson(self, NotList = None):
+		if NotList is None:
+			NotList = []
+			
 		sPerson = ""
 		
-		sPerson = self.GetWord()
+		sPerson = self.GetWord(NotList)
 		
 		return sPerson
 		

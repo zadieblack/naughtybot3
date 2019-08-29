@@ -435,21 +435,25 @@ class VerbSexActsByMale(Verb):
 		"eat out",
 		"facial",
 		"finger bang",
+		"fist",
 		"rim",
 		"sixty-nine",
 		"tea-bag",
-		"titty fuck"]
+		"titty fuck",
+		"throat fuck"]
 		
 	PastList = ["ass fucked",
 		"cream-pied",
 		"dry humped",
 		"ate out",
 		"facialed",
+		"fisted",
 		"finger banged",
 		"rim-jobbed",
 		"sixty-nined",
 		"tea-bagged",
-		"titty fucked"]
+		"titty fucked",
+		"throat fucked"]
 		
 	GerundList = ["ass fucking",
 		"cream-pieing",
@@ -457,9 +461,11 @@ class VerbSexActsByMale(Verb):
 		"eating out",
 		"facialing",
 		"finger banging",
+		"fisting",
 		"rimming",
 		"sixty-nining",
 		"tea-bagging",
+		"throat fucking",
 		"titty fucking"]
 		
 class VerbSexActsByFemale(Verb):

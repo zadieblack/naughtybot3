@@ -3,7 +3,6 @@
 # Scenes module
 
 import excerpt.bodyparts
-import excerpt.locations
 import excerpt.names
 import excerpt.people
 import excerpt.verbs
