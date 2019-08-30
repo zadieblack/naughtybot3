@@ -2332,35 +2332,192 @@ class Generator62(Generator):
 		
 		return sTweet
 		
-# class Generator62(Generator):
-	# ID = 62
-	# Priority = 1
+class Generator63(Generator):
+	ID = 63
+	Priority = 6
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
-
-		# return sTweet
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
 		
-# class Generator63(Generator):
-	# ID = 63
-	# Priority = 1
-	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
-
-		# return sTweet
+		bUsedBonus = False 
+		iRand = randint(1,4)
 		
-# class Generator63(Generator):
-	# ID = 63
-	# Priority = 1
-	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+		sHisName = self.MaleName.FirstName()
+		sHerName = self.FemaleName.FirstName()
+		
+		sSemenAdj = WordList(['sweet','milky','burning','salty','white hot','silken','virile']).GetWord()
+		sSemen = WordList(['seed','seed','cream','jizm','milk','man-milk']).GetWord()
+		sPenisAdj = WordList(['stiff','erect','burning','lengthy','throbbing','virile']).GetWord()
+		sPenis = WordList(['manhood','phallus','member','flesh sword','rod']).GetWord()
+		sWombAdj = WordList(['aching','welcoming','fertile','gushing','lusty']).GetWord()
+		
+		#Line: exclamations
+		sTweet = "\"Oh " + sHisName + "!\" \"Oh " + sHerName + "!\" "
+		
+		#Line 1
+		if CoinFlip():
+			sTweet += "The two young lovers writhed naked on the " + WordList(['silk','satin','velvet']).GetWord() + " "
+			sTweet += "covers, their limbs " + WordList(['entangled','intertwined','entwined']).GetWord() 
+		else:
+			sTweet += "Their lips met as they embraced naked " + WordList(['beneath the trees','in the soft grass','in the shadow of the tower','on softly scented heather','in their secret bower']).GetWord() + ", "
+			sTweet += "their " + WordList(['bodies','bodies','flesh','skin']).GetWord() + " " 
+			sTweet += WordList(['glistening','gleaming']).GetWord() + " "
+			sTweet += "with " + WordList(['sweat','dew','oil']).GetWord()
+		sTweet += ".\n\n"
+		
+		#Line 2
+		sPassion = WordList(['passion','desire','ardour','lust','sinful longing']).GetWord()
+		if CoinFlip():
+			sTweet += "\"My loins are inflamed with " + sPassion + " for you!\" "
+		else:
+			sTweet += "\"Your " 
+			if CoinFlip():
+				sTweet += WordList(["very touch","nubile naked body","sweet derrier","plump backside","virgin cherry","sweet little rump","round bottom","wanton manner","shaved twat"]).GetWord() + " "
+				sTweet += WordList(['ignites','swells','fires']).GetWord() + " "
+			else:
+				sTweet += WordList(["pale thighs","taut nipples","wanton ways","wanton curves","womanly delights","dangling labia","succulent tits","erect nipples"]).GetWord() + " "
+				sTweet += WordList(['ignite','swell','fire','engorge']).GetWord() + " "
+			sTweet += "my loins with " + sPassion + "!\" " 
+		sTweet +=  WordList(['whispered','breathed']).GetWord() + " " + sHisName + ". "
+		
+		if iRand == 1:
+			#do bonus line
+			sTweet += "He " + WordList(['tenderly','gently','softly']).GetWord() + " "
+			sTweet += WordList(['carressed','touched','stroked']).GetWord() + " her "
+			sTweet += WordList(['ripe','fulsome','nubile','supple','plump','quivering','budding']).GetWord() + " breasts."
+		sTweet += "\n"
+			
+		#Line 3
+		if CoinFlip():
+			sTweet += "\"" + WordList(['Slay','Take','Ravish']).GetWord() + " me with your "
+			sTweet += WordList(['meat lance','flesh sword','lady dagger','sturdy wood','fuck-staff','flesh serpent','hard wood','man sword','meat pole','man-snake','jizz cannon','man cannon','cream cannon']).GetWord()
+			sTweet += "!\" "
+		elif CoinFlip():
+			sTweet += "\"I want you to fill my " 
+			if CoinFlip():
+				sTweet += "virgin "
+			sTweet += WordList(['womanhood','passage','womb','quim','hole','snatch','sex']).GetWord() + ",\" "
+		else:
+			sTweet += "\"" + WordList(["My body is", "My young body is", "My loins are", "My virgin body is"]).GetWord() + " "
+			sTweet += WordList(['consumed','aching','burning','horny']).GetWord() + " with " 
+			sTweet += WordList(['passion','desire','need','hunger','lust']).GetWord() + " for you, "
+			sTweet += WordList(['my sweet','my love','my sweet love','daddy']).GetWord() + ",\" "
+		sTweet += WordList(['sighed','gasped','breathed','moaned']).GetWord() + " " + sHerName + ". "
+		
+		if iRand == 2:
+			#do bonus line
+			sTweet += "Her " + WordList(['tender','unsullied','secret','womanly','down-thatched','shaven','sinful','lustful']).GetWord() + " "
+			sTweet += WordList(['flower was','petals were','nether-lips were','flesh blossom was']).GetWord() + " "
+			sTweet += WordList(['wet','moist','glistening','sopping','gushing']).GetWord() + " with the "
+			sTweet += WordList(['dew','honey','sweet juices','juices']).GetWord() + " of her desire. "
+			
+		#Line 4
+		if CoinFlip():
+			sTweet += "She " + WordList(['gasped','moaned','sighed','cried out','wailed','whimpered']).GetWord() + " "
+			sTweet += "as he " + WordList(['entered her','delved into her','thrust into her','defiled her','impaled her']).GetWord() + " "
+		else:
+			sTweet += "She opened to him and he " + WordList(['eagerly','ardently','vigorously','willingly']).GetWord() + " "
+			sTweet += WordList(['thrust','burrowed','delved']).GetWord() + " into her "
+		sTweet += "with his " + sPenisAdj + " " + sPenis 
+		
+		if iRand == 3:
+			#do bonus line
+			if CoinFlip():
+				sTweet += ", as if he would rend her assunder"
+			else:
+				sTweet += ", parting her tender flesh-curtains"
+		sTweet += ". "
+		
+		# #Line 5
+		# sBodies = WordList(['forms','flesh','bodies']).GetWord()
+		# sTweet += WordList(["Stars burst in their eyes","Desire racked their " + sBodies,"Their " + sBodies + " burned with desire","Waves of pleasure racked their " + sBodies]).GetWord() + " "
+		# sTweet += "as " + WordList(["they were joined as one","they consummated their love","they stoked the fires of their love"]).GetWord() 
+		
+		# if iRand == 4:
+			# #do bonus line
+			# if CoinFlip():
+				# sTweet += " beneath the silver moon"
+			# else:
+				# sTweet += " beneath the cerulean sky"
+		# sTweet += ". "
+		
+		#Line 6
+		sTweet += "Before long, " + sHisName + " reached his " + WordList(['climax','climax','zenith']).GetWord() + " and "
+		if CoinFlip():
+			sTweet += "his " + sSemenAdj + " " + sSemen + " " + WordList(['burst','erupted']).GetWord() + " "
+			sTweet += "deep within her " + sWombAdj + " womb"
+		else:
+			sTweet += WordList(['poured','pumped','ejaculated']).GetWord() + " his " + sSemenAdj + " " + sSemen + " "
+			sTweet += "into her " + sWombAdj + " womb"
+		sTweet += ".\n\n"
+		
+		#Line 7
+		sTweet += "\"Delilah,\" he panted, "
+		sTweet += "\"I want to be with you " + WordList(['forever','always','for eternity']).GetWord() + "!\"\n"
+		
+		#Line 8
+		sTweet += "\"But you know we cannot,\" she said, \""
+		if CoinFlip():
+			sTweet += "You're " + WordList(["my step-brother","my cousin","my step-father","a priest","shorter than I am","shorter than I am","my sister's husband","a commoner","a bastard","a dwarf","an orc","just a commoner","just a peasant"]).GetWord()
+		elif CoinFlip():
+			sTweet += "I am " + WordList(['betrothed to','pledged to','married to','fucking']).GetWord() + " "
+			sTweet += WordList(["your brother","your twin brother","your father","your best friend","your enemy","your landlord","your rival","your son","your step-son","the well-hung goblin chief","a horny dragon"]).GetWord()
+		else:
+			sTweet += "I am pregnant with " + WordList(["your father's","your brother's","your son's","your best friend's","the Orc King's","the Dark Lord's","the Dragon's","the Barbarian Chief's"]).GetWord() + " baby"
+		sTweet += "!\""
+		
+		# "Oh Rogan!" "Oh Delilah!" 
+		
+		# 1.
+		# The two young lovers writhed naked on the {silk/satin} covers, their limbs {entangled/intertwined/entwined}.
+		
+		# Their lips met as they embraced naked {beneath the trees/in the soft grass/in the shadow of the tower/on softly scented heather}, their bodies {glistening/gleaming} with sweat.
+		
+		# 2.
+		# "My loins are inflamed with {passion/desire} for you!" {whispered/breathed} Rogan. 
+		
+		# "Your very touch ignites my loins with {passion/desire}!" {whispered/breathed} Rogan.
+		
+		# {He {tenderly/gently/softly} caressed her {ripe/fulsome/nubile} breasts.}
+		
+		# 3.
+		# "Oh Rogan, I want you to fill my virgin {womanhood/passage/womb}!" {sighed/gasped} Delilah.
+		
+		# "My body is consumed with {passion/desire/need} for you, my {sweet/love}!" {sighed/gasped} Delilah.
+		
+		# {Her {tender/unsullied/secret} {flower was/petals were/nether lips were} {wet/moist/glistening/sopping} with {her dewey desire/the juices of her desire}}
+		
+		# 4. 
+		# She {gasped/moaned/sighed} as he {entered her/delved into her}...
+		
+		# She opened to him and he {eagerly/ardently/vigorusly} {delved/burrowed/thrust} into her... 
+		
+		# with his {stiff/erect/burning/lengthy/throbbing/virile} {manhood/phallus/member}
+		
+		# {as if he would rend her asunder/parting her tender, fleshy curtains}.
+		
+		# 5.
+		# {Stars burst in their eyes/Desire racked their {forms/flesh/bodies} /Their {forms/flesh/bodies} burned with desire}...
+		# as {they were joined as one/they consummated their love/as they stoked the fires of their love}...
+		# {beneath the silver moon/beneath the azure sky}.
+		
+		# 6. 
+		# At last, Rogan's passion reached its climax and...
+		# {his {sweet/milky/burning/white hot} {seed/cream/jizm/milk} {burst/erupted} deep within her {aching/welcoming/fertile} womb}
+		# {filled her with his {sweet/milky/burning/white hot} {seed/cream/jizm/milk}
+		# {he {poured/pumped/ejaculated} his {sweet/milky/burning/white hot} {seed/cream/jizm/milk} into her {aching/welcoming/fertile} womb}.
+		
+		# 7. 
+		# "Delilah," he panted, spent from his exertions, "I love you. I want to be with you {forever/always/for eternity}."
+		
+		# "As do I. But you know we cannot be together," she said. 
+		
+		# {You're {my step-brother/my cousin/my step-father/a priest/shorter than I am/my sister's husband/a commoner/a bastard}!
+		
+		# /I'm {betrothed/pledged} to {your brother/your father/your best friend/your enemy/your landlord/your rival}!}
 
-		# return sTweet
+		return sTweet
 		
 # class Generator64(Generator):
 	# ID = 64
@@ -2414,6 +2571,66 @@ class Generator62(Generator):
 				
  # class Generator69(Generator):
 	# ID = 69
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+ # class Generator70(Generator):
+	# ID = 70
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+ # class Generator71(Generator):
+	# ID = 71
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+ # class Generator72(Generator):
+	# ID = 72
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+ # class Generator73(Generator):
+	# ID = 73
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+ # class Generator74(Generator):
+	# ID = 74
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+ # class Generator75(Generator):
+	# ID = 75
 	# Priority = 1
 	
 	# def GenerateTweet(self):
