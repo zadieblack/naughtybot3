@@ -2350,7 +2350,7 @@ class Generator63(Generator):
 		sSemen = WordList(['seed','seed','cream','jizm','milk','man-milk']).GetWord()
 		sPenisAdj = WordList(['stiff','erect','burning','lengthy','throbbing','virile']).GetWord()
 		sPenis = WordList(['manhood','phallus','member','flesh sword','rod']).GetWord()
-		sWombAdj = WordList(['aching','welcoming','fertile','gushing','lusty']).GetWord()
+		sWombAdj = WordList(['aching','welcoming','fertile','gushing','lusty','yearning']).GetWord()
 		
 		#Line: exclamations
 		sTweet = "\"Oh " + sHisName + "!\" \"Oh " + sHerName + "!\" "
@@ -2384,13 +2384,13 @@ class Generator63(Generator):
 		if iRand == 1:
 			#do bonus line
 			sTweet += "He " + WordList(['tenderly','gently','softly']).GetWord() + " "
-			sTweet += WordList(['carressed','touched','stroked']).GetWord() + " her "
+			sTweet += WordList(['carressed','touched','stroked','kissed','sucked on']).GetWord() + " her "
 			sTweet += WordList(['ripe','fulsome','nubile','supple','plump','quivering','budding']).GetWord() + " breasts."
-		sTweet += "\n"
+		sTweet += "\n\n"
 			
 		#Line 3
 		if CoinFlip():
-			sTweet += "\"" + WordList(['Slay','Take','Ravish']).GetWord() + " me with your "
+			sTweet += "\"" + WordList(['Slay','Take','Ravish','Impale']).GetWord() + " me with your "
 			sTweet += WordList(['meat lance','flesh sword','lady dagger','sturdy wood','fuck-staff','flesh serpent','hard wood','man sword','meat pole','man-snake','jizz cannon','man cannon','cream cannon']).GetWord()
 			sTweet += "!\" "
 		elif CoinFlip():
@@ -2400,14 +2400,14 @@ class Generator63(Generator):
 			sTweet += WordList(['womanhood','passage','womb','quim','hole','snatch','sex']).GetWord() + ",\" "
 		else:
 			sTweet += "\"" + WordList(["My body is", "My young body is", "My loins are", "My virgin body is"]).GetWord() + " "
-			sTweet += WordList(['consumed','aching','burning','horny']).GetWord() + " with " 
+			sTweet += WordList(['consumed','aching','burning','horny','yearning']).GetWord() + " with " 
 			sTweet += WordList(['passion','desire','need','hunger','lust']).GetWord() + " for you, "
 			sTweet += WordList(['my sweet','my love','my sweet love','daddy']).GetWord() + ",\" "
 		sTweet += WordList(['sighed','gasped','breathed','moaned']).GetWord() + " " + sHerName + ". "
 		
 		if iRand == 2:
 			#do bonus line
-			sTweet += "Her " + WordList(['tender','unsullied','secret','womanly','down-thatched','shaven','sinful','lustful']).GetWord() + " "
+			sTweet += "Her " + WordList(['tender','unsullied','secret','womanly','down-thatched','shaven','sinful','lustful','delicate','forbidden']).GetWord() + " "
 			sTweet += WordList(['flower was','petals were','nether-lips were','flesh blossom was']).GetWord() + " "
 			sTweet += WordList(['wet','moist','glistening','sopping','gushing']).GetWord() + " with the "
 			sTweet += WordList(['dew','honey','sweet juices','juices']).GetWord() + " of her desire. "
@@ -2453,8 +2453,9 @@ class Generator63(Generator):
 		sTweet += ".\n\n"
 		
 		#Line 7
-		sTweet += "\"Delilah,\" he panted, "
-		sTweet += "\"I want to be with you " + WordList(['forever','always','for eternity']).GetWord() + "!\"\n"
+		sTweet += "\"" + sHerName + ",\" he panted, "
+		sTweet += "\"I want to be with you " + WordList(['forever','always','for eternity']).GetWord() + "!\""
+		sTweet += "\n\n"
 		
 		#Line 8
 		sTweet += "\"But you know we cannot,\" she said, \""
@@ -2464,7 +2465,7 @@ class Generator63(Generator):
 			sTweet += "I am " + WordList(['betrothed to','pledged to','married to','fucking']).GetWord() + " "
 			sTweet += WordList(["your brother","your twin brother","your father","your best friend","your enemy","your landlord","your rival","your son","your step-son","the well-hung goblin chief","a horny dragon"]).GetWord()
 		else:
-			sTweet += "I am pregnant with " + WordList(["your father's","your brother's","your son's","your best friend's","the Orc King's","the Dark Lord's","the Dragon's","the Barbarian Chief's"]).GetWord() + " baby"
+			sTweet += "I am pregnant with " + WordList(["your father's","your brother's","your son's","your best friend's","the Orc King's","the Dark Lord's","the Dragon's","the Barbarian Chief's", "the Cyclops's","Grond the Giant's","the Manor Lord's"]).GetWord() + " baby"
 		sTweet += "!\""
 		
 		# "Oh Rogan!" "Oh Delilah!" 
