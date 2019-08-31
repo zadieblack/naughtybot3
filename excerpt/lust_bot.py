@@ -63,7 +63,7 @@ def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorN
 				print("[" + sTweet + "]")
 				if len(sText) > 0:
 					print("Tweet text: [" + sText + "]")
-					#CreateImg(sTweet).save(exutil.GenerateFileName(), format = 'PNG')
+					CreateImg(sTweet).save(exutil.GenerateFileName(), format = 'PNG')
 					
 				currentDT = datetime.datetime.now()
 				if bTweet:

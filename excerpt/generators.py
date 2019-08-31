@@ -2472,48 +2472,62 @@ class Generator63(Generator):
 		
 class Generator64(Generator):
 	ID = 64
-	Priority = 1
+	Priority = 5
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		sMaleName = WordList(['Grondor','Kron','Mallek','Murg','Prongus','Shmoop','Prickle','Gurj','Jango',
-							  'Skrom','Maggoth','Mantor','Yontar','Draeg','Ishka','Armtar','Splooj',
-							  'Nuz','Flark','Orto','Yort','Jort','Prong','Varkus','Obax','Kloo']).GetWord()
-		Species = WordList([['Minotaur','Man-o-Taurs','muscle-bound'],
-							['Centaur','Centaurs','handsome'],
-							['Cyclops','Cylopses','terrifying'],
-							['Ogre','Ogres','enormous'],
-							['Half-Dragon','Half-Dragons','scaly'],
-							['Elf','Elves','strange'],
-							['Dwarf','Dwarves','stocky'],
-							['Gnome','Gnomes','little'],
-							['Goblin','Goblins','green-skinned'],
-							['Hobgoblin','Hobgoblins','red-eyed'],
-							['Bugbear','Bugbears','red-eyed'],
-							['Troll','Trolls','enormous'],
-							['Goat Man','Goat Men','horny'],
-							['Merman','Mermen','glistening'],
-							['Werewolf','Werewolves','hairy'],
-							['Vampire','Vampires','pale'],
+		Species = WordList([['minotaur','minotaurs','muscle-bound'],
+							['centaur','centaurs','handsome'],
+							['cyclops','cylopses','huge'],
+							['ogre','ogres','enormous'],
+							['half-dragon','half-dragons','scaly'],
+							['elf','elves','strange'],
+							['dwarf','dwarves','stocky'],
+							['gnome','gnomes','little'],
+							['goblin','goblins','green-skinned'],
+							['hobgoblin','hobgoblins','red-eyed'],
+							['bugbear','bugbears','red-eyed'],
+							['troll','trolls','enormous'],
+							['goat man','goat men','horny'],
+							['merman','mermen','glistening'],
+							['werewolf','werewolves','hairy'],
+							['vampire','vampires','pale'],
 							['Martian','Martians','green-skinned'],
-							['Gargoyle','Gargoyles','stone-skinned'],
-							['Demon','Demons','horned'],
-							['Dark Elf','Dark Elves','pale-skinned'],
-							['Kobold','Kobolds','scaly little'],
-							['Griffin','Griffins','powerful']
+							['gargoyle','gargoyles','stone-skinned'],
+							['demon','demons','horned'],
+							['dark elf','dark elves','pale-skinned'],
+							['kobold','kobolds','scaly little'],
+							['griffin','griffins','powerful'],
+							['cat person','cat people','furry'],
+							['yeti','yeties','furry'],
+							['sasquatch','sasquatches','hairy'],
+							['golem','golems','clay'],
+							['leprechaun','leprechauns','mischievous'],
+							['gremlin','gremlins','mischievous'],
+							['imp','imp','yellow-eyed'],
+							['red cap','red caps','red-capped'],
+							['incubus','incubi','horned'],
+							['faun','fauns','be-hooved'],
+							['ent','ents','tree-like'],
+							['djinn','djinni','blue'],
+							['mothman','mothmen','winged'],
+							['angel','angels','winged'],
+							['sphinx','sphinxes','mysterious'],
+							['zombie','zombies','decaying'],
+							['wraith','wraiths','ghastly']
 						]).GetWord()
 		sCreatureSingle = Species[0]
 		sCreaturePlural = Species[1]
 		sCreatureAdj = Species[2]
 		
 		sGirlType = WordList(['princess','princess','maid','maiden','milk maid','wench']).GetWord()
-		GirlAttitudes = WordList(['saucy','cheeky','impertinent','naughty','meddlesome','brazen','bold'])
+		GirlAttitudes = WordList(['saucy','cheeky','impertinent','naughty','meddlesome','brazen','bold','feisty'])
 		
 		sPenisTextures = WordList(["scaly","smooth","lumpy","hairy","fuzzy","feathered","oily","veiny",
 								  "glistening","pulsating","glowing","throbbing","warty","pimpled",
-								  "rough","spike-studded","sticky","shiny"
+								  "rough","spike-studded","sticky","shiny","spiny"
 								  ]).GetWord()
 		sPenisColors = WordList(["scarlet","orange","green","purple","yellow","jet black","pale","red",
 								"bright orange","bright green","dark purple","bright yellow","bright red",
@@ -2523,7 +2537,8 @@ class Generator64(Generator):
 						      ]).GetWord()
 		sTipColors = WordList(["scarlet","orange","green","purple","yellow","jet black","pale","red",
 							  "bright orange","bright green","dark purple","bright yellow","bright red"]).GetWord(NotList = [sPenisColors])
-		sPenisShapes = WordList(["crooked","bulbous","serpentine","narrow","fat","long","drooping","gnarled"]).GetWord()
+		sPenisShapes = WordList(["crooked","bulbous","serpentine","narrow","fat","long","drooping",
+								 "gnarled","bent","rigid","ridged"]).GetWord()
 		sBallAdjs = WordList(["pendulous","extremely low-hanging","massive","engorged","swollen","hairy","warty",
 							 "enormous","shiny","veiny","pulsating","glowing","throbbing","pimpled",
 							 "spike-studded","gleaming","over-sized","tiny","shrunken","vestigal",
@@ -2531,55 +2546,71 @@ class Generator64(Generator):
 		sHerName = self.FemaleName.FirstName()
 		
 		#Line 1
-		sTweet = sHerName + " " + WordList(['looked','stared','gazed']).GetWord() + " at him wide-eyed. \""
-		if CoinFlip():
-			sTweet += "You're the first " + sCreatureSingle + " I've ever met!"
-		else:
-			sTweet += "I've never met " + AddArticles(sCreatureSingle) + " before!"
-		sTweet += "\" The " + sGirlType + " said.\n\n"
+		sTweet = sHerName + " " + WordList(['looked','stared','gazed']).GetWord() + " wide-eyed at the " + sCreatureSingle + ". "
+		sTweet += "\""
+		
+		sTweet += WordList(["Might I ask you something, sir?",
+							"Might I be so bold as to ask you a question?",
+							"If... if I may sir... may I ask you something?",
+							"Would you... do you think you might answer me one question?",
+							"May I ask a question about your kind, sir?",
+							"Might I inquire about something?",
+							"I've always wondered whether " + sCreaturePlural + ", well...",
+							"I've always been curious about whether " + sCreaturePlural + ", well..."
+						  ]).GetWord()
+		sTweet += "\" the " + sGirlType + " said. "
 		
 		#Line 2
-		sTweet += "\"" + WordList(["Well, one is here now","Well, now you have","I am as you see me",
-									 "I am much like all the others","I hope I'm everything you imagined",
-									 "My kind is not so rare in these parts",
-									 "My kind are few these days, 'tis true",
-									 "My kind mostly prefer to remain unseen"]).GetWord()
-		sTweet += ",\" said the " + sCreatureAdj + " creature.\n"
-
+		if CoinFlip():
+			sTweet += "\"" 
+			sTweet += "You're the first " + WordList([sCreatureSingle,"one"]).GetWord() + " I've ever met!"
+		else:
+			sTweet += "\""
+			sTweet += "I've never met " + AddArticles(sCreatureSingle) + " before!"
+		sTweet += "\"\n\n"
+		
 		#Line 3
-		sTweet += "\"" + WordList(["I wish to ask you something,","Might I ask you something?",
-								   "Might I be so bold as to ask you a question?","If... if I may sir... may I ask you something?",
-								   "Would you... do you think you might answer me one question?",
-								   "I have a small question about your kind, sir,",
-								   "Might I inquire about something?","I have always wondered whether " + sCreaturePlural.lower() + ", well..."
-								 ]).GetWord()
-		sTweet += "\" she asked.\n"
+		sTweet += "\"" + WordList(["I am as you see me",
+								   "I am much like all the others",
+								   "I hope I'm everything you imagined",
+								   "My kind are scarce in these lands",
+								   "My kind are few these days, 'tis true",
+								   "My kind mostly prefer to remain unseen"]).GetWord()
+		sTweet += ",\" "
+		sTweet += WordList(['rumbled','growled','said','laughed','replied','chuckled','purred']).GetWord() + " "
+		sTweet += "the " + sCreatureAdj + " " + sCreatureSingle + ". \""
 		
 		#Line 4
-		sTweet += "\""
-		sTweet += WordList(["Ask","Ask your question","Inquire away","You may ask","I'll try my best to answer",
-							"You're " + AddArticles(GirlAttitudes.GetWord()) + " one"]).GetWord() + ", "
+		sTweet += WordList(["Ask","Ask your question","Inquire away","You may ask your question",
+							"I'll try my best to answer your question","You may ask",
+							"I'll try my best to satisfy your curiosity",
+						  ]).GetWord() + ", "
 		sWomanAdj = WordList(['little','young','tiny','mortal','human','small','pretty','tasty','lovely'] + GirlAttitudes.List).GetWord()
-		sWomanNoun = WordList(['female','creature','thing','woman','girl','human','morsel','woman']).GetWord(NotList = [sWomanAdj])
-		sTweet += sWomanAdj + " " + sWomanNoun + "!\" "
-		sTweet += WordList(['rumbled','growled','said','laughed','replied','chuckled','purred']).GetWord() + " "
-		sTweet += "the " + sCreatureSingle + ".\n"
+		sWomanNoun = WordList(['female','creature','thing','woman','girl','human','morsel','woman','nymph']).GetWord(NotList = [sWomanAdj])
+		sTweet += sWomanAdj + " " + sWomanNoun + "!\"\n\n"
 		
 		#Line 5
 		if CoinFlip():
-			sTweet += "\"" + WordList(["Are... are you like","Do... do your parts resemble","Do you have parts like",
+			sTweet += "\"" + WordList(["Are... are you like","Do you have parts like",
 									   "Are you equipped like","Are you hung as is"]).GetWord() + " "
-			sTweet += WordList(['a human man','a mortal man','a human male',]).GetWord() + "? " 
-			sTweet += "*Down There* I mean?\" she asked " + WordList(['tremulously','timidly','hesitantly','shyly']).GetWord()
+			sTweet += WordList(['a human man','a mortal man','a human male','a man']).GetWord() + " "
+			sTweet += "down there?\""
 		else:
 			sPenises = WordList(['cocks','dicks','dongs','pricks','schlongs']).GetWord()
-			sTweet += "\"Is it true what they say about " + sCreatureSingle.lower() + " " + sPenises + "?\""
-		sTweet += ".\n\n"
-	
+			sTweet += "\"Is it true what they say about " + sCreatureSingle + " " + sPenises + "?\" "
+		
+		sTweet += "she asked " + WordList(['tremulously','timidly','hesitantly','shyly']).GetWord() + "\n\n"
+		
 		#Line 6
 		sTweet += "\"" + WordList(["See for yourself","Look for yourself","You tell me","Decide for yourself"]).GetWord() + ",\" "
-		sTweet += "the " + sCreatureSingle + " replied. He " 
-		sTweet += WordList(["unbuckled his belt and pulled down his trousers","opened his trousers","pulled aside his loincloth","pulled off his codpiece"]).GetWord() + ", "
+		sTweet += "he replied. He " 
+		sTweet += WordList(["unbuckled his belt and pulled down his trousers",
+							"opened his trousers",
+							"pulled aside his loincloth",
+							"tore off his loincloth",
+							"lifted his loincloth",
+							"tore off his codpiece",
+							"pulled off his codpiece"]).GetWord() + ", "
 		sTweet += WordList(["revealing","unfurling","exposing"]).GetWord() + " "
 		
 		sGenitalia = ""
@@ -2608,22 +2639,17 @@ class Generator64(Generator):
 			
 		sGenitalia += " "
 		if iRand % 2 == 0:
-			sGenitalia += WordList(['cocks','dicks','dongs','members','penises','phalluses','pricks']).GetWord() 
+			sGenitalia += WordList(['cocks','dicks','dongs','members','penises','phalluses','pricks']).GetWord() + " "
+			sGenitalia += "sprouting " + WordList(['from his groin','from his crotch','between his legs']).GetWord() 
 		else:
 			sGenitalia += WordList(['cock','dick','dong','member','penis','phallus','prick']).GetWord() 
-			
-		if iRand %3 == 0:
-		#divisible by 3	{3,6,9,12,15,18)
-			if iRand % 2 == 0:
-				sGenitalia += " with " + sTipColors + " tips"
-			else:
-				sGenitalia += " with " + AddArticles(sTipColors) + " tip"
 				
 		if iRand <= 10:
 			if iRand % 2 == 0:
-				sGenitalia += " " + WordList(["that dangled to his knees","dangling flacidly",
-											  "with a drop of viscous fluid dangling from each cock-hole",
-											  "with a wisp of smoke coming from each cock-hole",
+				sGenitalia += " " + WordList(["that dangled to his knees",
+											  "with a drop of viscous fluid clinging to each cock-hole",
+											  "with wisps of smoke escaping each cock-hole",
+											  "each with a drop of pre-cum on the tip",
 											  "that were all fully engorged",
 											  "that all sprang up fully erect",
 											  "with a large golden ring around the base of each",
@@ -2632,9 +2658,11 @@ class Generator64(Generator):
 											  "that were covered in sorcerous runes",
 											  "that were tattooed with strange runes"]).GetWord()
 			else:
-				sGenitalia += " " + WordList(["that dangled to his knees","dangling flacidly",
-											  "with a drop of viscous fluid dangling from the cock-hole",
-											  "with a wisp of smoke coming from the cock-hole",
+				sGenitalia += " " + WordList(["that dangled to his knees",
+											  "dangling flacidly","hanging limply",
+											  "with a drop of viscous fluid clinging to the cock-hole",
+											  "with a drop of pre-cum on the tip",
+											  "with a wisp of smoke escaping the cock-hole",
 											  "that was fully engorged",
 											  "which immediately sprang up fully erect",
 											  "which immediately began to grow turgid",
@@ -2643,17 +2671,28 @@ class Generator64(Generator):
 											  "that was oozing a thick, creamy fluid",
 											  "that was covered in sorcerous runes",
 											  "that was tattooed with strange runes"]).GetWord()
-			
-		sGenitalia += ". He had "
-		if iRand > 5:
-			sGenitalia += WordList(["two","two","two","three","three","four","five","six","eight",
-									"at least a dozen"]).GetWord() + " "
-			sGenitalia += sBallAdjs + " " + WordList(['ballsacks','bollocks','gonads','testicles']).GetWord()
-		else:
-			sGenitalia += "a single " + sBallAdjs + " "
-			sGenitalia += WordList(['ballsack','scrotum','testicle']).GetWord()
 		
-		sTweet += sGenitalia + ".\n\n"
+		if iRand %3 == 0:
+		#divisible by 3	{3,6,9,12,15,18)
+			if iRand % 2 == 0:
+				sGenitalia += ". Each one had " + AddArticles(sTipColors) + " tip"
+			else:
+				sGenitalia += ". It had " + AddArticles(sTipColors) + " tip"
+			
+		sGenitalia += ". "
+		if CoinFlip():
+			sGenitalia += "He had "
+			if iRand > 5:
+				sGenitalia += WordList(["two","two","two","three","three","four","five","six","eight",
+										"at least a dozen"]).GetWord() + " "
+				sGenitalia += sBallAdjs + " " + WordList(['ballsacks','bollocks','gonads','testicles']).GetWord()
+				sGenitalia += "."
+			else:
+				sGenitalia += "a single " + sBallAdjs + " "
+				sGenitalia += WordList(['ballsack','scrotum','testicle']).GetWord()
+				sGenitalia += "."
+		
+		sTweet += sGenitalia + "\n\n"
 				
 		#Line 7
 		iRand = randint(1,3)
@@ -2661,64 +2700,92 @@ class Generator64(Generator):
 		#she bends over for him
 			Ass = self.FemBodyParts.Ass 
 			Vag = self.FemBodyParts.Vagina
-			sTweet += sHerName + " turned around, hiked up her skirts, and bent over. "
+			if CoinFlip():
+				sTweet += sHerName + " "
+			else:
+				sTweet += "The " + sGirlType + " "
+			sTweet += "turned around, hiked up her skirts, and bent over. "
 			sTweet += "She spread apart her " + Ass.RandomDescription() + " "
 			sTweet += "with her hands to " + WordList(['reveal','expose','bare','show him','display']).GetWord() + " "
 			if CoinFlip():
-				sTweet += "her " + Vag.RandomDescription(bAllowShortDesc = False)
+				sTweet += "her " + Vag.ShortDescription()
 			else:
-				sTweet += "her " + Ass.Anus.RandomDescription(bAllowShortDesc = False) 
+				sTweet += "her " + Ass.Anus.ShortDescription() 
 			sTweet += ". \"" + WordList(["Nothing ventured, nothing gained","I can work with that","I've had worse",
 										 "Let's see what you can do","Fuck it, I'm horny!",
 										 "I want you to pound my filthy holes with that thing!",
 										 "Oh daddy, I'm such a horny little slut!",
-										 "Put a little " + sCreatureSingle.lower() + " in me, daddy!",
-										 "I like my hair pulled while I'm getting fucked,",
+										 "Put a baby " + sCreatureSingle + " in me, daddy!",
+										 "Pull my hair while you fuck me,",
 										 "I like to be spanked while I'm getting fucked,",
 										 "Promise you'll pull out, okay?",
-										 Vag.ShortDescription() + " only, no butt stuff,",
+										 Vag.ShortDescription().capitalize() + " only, no butt stuff,",
 										 "Ever fucked a human female?",
+										 "Fuck me!",
+										 "You showed me yours, now let me show you mine,",
+										 "Be gentle, it's my first time,",
+										 "I want you to " + WordList(["violate","defile"]).GetWord() + " my " + Ass.Anus.ShortDescription() + ",",
+										 "I want you to " + WordList(["violate","defile","deflower"]).GetWord() + " my " + Vag.ShortDescription() + ",",	
+										 "Fill my holes with that nasty thing,",
 										 "Don't hold back, I like it rough!","At last I've found a real man!",
 										 "I've been a naughty little girl, Mr. " + sCreatureSingle + "!",
-										 "Pound me like I'm your little " + sCreatureSingle.lower() + " bitch",
-										 "Do you " + sCreaturePlural.lower() + " like to do it in the pussy or the ass?"
+										 "Pound me like I'm your little " + sCreatureSingle + " bitch,",
+										 "Pound me like one of your " + sCreatureSingle	+ " girls!",
+										 "Do you " + sCreaturePlural + " like to do it in the pussy or the ass?"
 									    ]).GetWord()
-			sTweet += "!\" she said."
+			sTweet += "\" she said."
 		elif iRand == 2:
 		#she goes down on her knees for him
 			Tits = self.FemBodyParts.Breasts
 			Mouth = self.FemBodyParts.Lips
-			sTweet += sHerName + " dropped to her knees, opened her " + Mouth.RandomDescription() + " "
+			Penis = self.MaleBodyParts.Penis
+			if CoinFlip():
+				sTweet += sHerName + " "
+			else:
+				sTweet += "The " + sGirlType + " "
+			sTweet += "dropped to her knees, opened her " + Mouth.RandomDescription() + " "
 			sTweet += "and stuck out her tongue. \"" 
-			sTweet += WordList(["Let me suck on it,","Can I have a taste, daddy?","I want you to cum in my throat,",
-								"I want you to cover my tits in cum,","I'll bet I've tasted worse,",
+			sTweet += WordList(["Let me suck on it,","Can I have a taste, daddy?",
+							    "Fill my mouth with " + sCreatureSingle + " cum,",
+								"Cover my tits in " + sCreatureSingle + " cum,",
+								"I'll bet I've tasted worse,",
 								"Nothing ventured, nothing gained","Try not to get cum in my hair,",
-								"I'm thirsty for some " + self.Semen.ShortDescription() + "!",
+								"I'm thirsty for some " + sCreatureSingle + " " + self.Semen.ShortDescription() + "!",
 								"May I please suck it?","Gag me with it!",
+								"Put that " + sCreatureSingle + " " + Penis.ShortDescription() + " in my mouth!",
+								"I give " + WordList(['excellent','amazing','incredible']).GetWord() + " head,"
 								"Us human girls give excellent head!",
-								"Us human females are really good at sucking cock,"
-								"Ever had your cock sucked by a human?"
+								"Us human females are really good at sucking " + Penis.ShortDescription() + ","
+								"Ever had your " + Penis.ShortDescription() + " sucked by a human?",
+								"I've always wanted a taste of " + sCreatureSingle + " " + Penis.ShortDescription() + "!"
 							   ]).GetWord()
 			sTweet += "\" she said."
 		else:
 		#she spreads her legs for him 
 			Legs = self.FemBodyParts.Legs 
 			Vag = self.FemBodyParts.Vagina 
-			sTweet += sHerName + " took off her clothes, lay back and spread her " + Legs.RandomDescription() + ". "
+			if CoinFlip():
+				sTweet += sHerName + " "
+			else:
+				sTweet += "The " + sGirlType + " "
+			sTweet += "took off her clothes, lay back and spread her " + Legs.RandomDescription() + ". "
 			sTweet += "\"" + WordList(["Nothing ventured, nothing gained!","I can work with that!","I've had worse,",
 									   "Let's see what you can do,","Fuck it, I'm horny!",
 									   "Go slow, I'm a virgin,",
+									   "Be gentle, it's my first time,",
 									   "I want you in my virgin " + Vag.ShortDescription() + "!",
 									   "I'm a " + WordList(['filthy','dirty','naughty']).GetWord() + " " + WordList(['slut','whore']).GetWord() + " for " + sCreaturePlural.lower() + ",",
 									   "Won't you pound my " + Vag.RandomDescription() + ", sir?",
 									   "Won't you stuff my " + Vag.RandomDescription() + ", sir?",
 									   "Now, you're not allowed to cum inside me,",
 									   "Can't be worse than my husband,",
-									   "Put a baby " + sCreatureSingle.lower() + " in me, daddy!",
+									   "Put a baby " + sCreatureSingle + " in me, daddy!",
 									   "Promise you'll pull out, okay?",
-									   "Pound me like I'm your little " + sCreatureSingle.lower() + " bitch!",
-									   "Do you know what to do with one of these?",
-									   "You're clearly a " + sCreatureSingle.lower() + ", but are you also a man?"
+									   "You showed me yours, now let me show you mine,",
+									   "Pound me like I'm your little " + sCreatureSingle + " bitch!",
+									   "Do you know what to do with " + AddArticles(Vag.ShortDescription()) + "?",
+									   "You're clearly a " + sCreatureSingle + ", but are you also a man?",
+									   "Do me like one of your " + sCreatureSingle + " girls!"
 									 ]).GetWord()
 			sTweet += "\" she said."
 		
