@@ -1062,7 +1062,7 @@ class Generator35(Generator):
 							  "you to do porn with black men","you to wear a ball gag",
 							  "to watch you have sex with a girl","to do you in front of your brother",
 							  "you to wear a gimp suit during sex","you to suck on my hairy balls",
-							  "you to get your clit pierced"]).GetWord()
+							  "you to get your clit pierced","to fist your poop-chute"]).GetWord()
 			sTweet += "'I want " + sFilthyAct + ",' he said."
 		else:
 			sTweet += "'I want you to lick my " + self.FemBodyParts.Ass.Anus.ShortDescription() + ",' he said."
@@ -2481,7 +2481,7 @@ class Generator64(Generator):
 		Species = WordList([['minotaur','minotaurs','muscle-bound'],
 							['centaur','centaurs','handsome'],
 							['cyclops','cylopses','huge'],
-							['ogre','ogres','enormous'],
+							['ogre','ogres','hulking'],
 							['half-dragon','half-dragons','scaly'],
 							['elf','elves','strange'],
 							['dwarf','dwarves','stocky'],
@@ -2489,7 +2489,7 @@ class Generator64(Generator):
 							['goblin','goblins','green-skinned'],
 							['hobgoblin','hobgoblins','red-eyed'],
 							['bugbear','bugbears','red-eyed'],
-							['troll','trolls','enormous'],
+							['troll','trolls','hulking'],
 							['goat man','goat men','horny'],
 							['merman','mermen','glistening'],
 							['werewolf','werewolves','hairy'],
@@ -2515,6 +2515,10 @@ class Generator64(Generator):
 							['mothman','mothmen','winged'],
 							['angel','angels','winged'],
 							['sphinx','sphinxes','mysterious'],
+							['ghoul','ghouls','chilling'],
+							['orc','orcs','muscular'],
+							['weretiger','weretigers','fearsome'],
+							['werebear','werebear','massive'],
 							['zombie','zombies','decaying'],
 							['wraith','wraiths','ghastly']
 						]).GetWord()
@@ -2752,6 +2756,7 @@ class Generator64(Generator):
 								"Nothing ventured, nothing gained","Try not to get cum in my hair,",
 								"I'm thirsty for some " + sCreatureSingle + " " + self.Semen.ShortDescription() + "!",
 								"May I please suck it?","Gag me with it!",
+								"Don't mind if I do!",
 								"Put that " + sCreatureSingle + " " + Penis.ShortDescription() + " in my mouth!",
 								"I give " + WordList(['excellent','amazing','incredible']).GetWord() + " head,"
 								"Us human girls give excellent head!",
@@ -2791,6 +2796,9 @@ class Generator64(Generator):
 		
 		return sTweet
 		
+# "Oh Vicenzo!" she gasped as he nibbled gently on her lush, firm globes. "I must tell you something!"
+# "What is it, my sweet?" he said, squeezing her ripe buttocks.
+# "I'm secretly married - to your father!"
 # class Generator65(Generator):
 	# ID = 65
 	# Priority = 1
@@ -2800,7 +2808,11 @@ class Generator64(Generator):
 		# sTweet = ""
 
 		# return sTweet
-		
+
+# Raoul rapped on the door and a woman opened it. "I've been waiting for you!" she purred.
+# Raoul's jaw dropped open. She was stark naked, with tan skin and perfect lush DD tatas. A clit piercing winked at him
+# between her legs. 
+# "Ah, here's your deep-dish pizza with banana peppers and double meat," he stammered. 
 # class Generator66(Generator):
 	# ID = 66
 	# Priority = 1
@@ -2811,6 +2823,10 @@ class Generator64(Generator):
 
 		# return sTweet
 		
+# Karina leaned back on the {bed/toilet/bathroom floor}. Her skirt was hiked up over her waist and her panties were 
+# wadded up around one ankle. With one hand she tweaked her erect right nipple. With the other she was {plunging 
+# {two/three} fingers {or a whole fist} in and out of her {tight pussy/pert asshole} as the naughty scene played out 
+# in her imagination. "Ohh, Mr. Jefferson!" she moaned. "You're the best Algebra teacher ever!"
  # class Generator67(Generator):
 	# ID = 67
 	# Priority = 1

@@ -47,11 +47,13 @@ def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorN
 					
 				currentDT = datetime.datetime.now()
 				
-				ImgFile = BytesIO() 
-				CreateImg(sTweet).save(ImgFile, format = 'PNG')
+				#CreateImg(sTweet).save(GenerateFileName(), format = 'PNG')
 				
 				if bTweet:
 					status = None
+					
+					ImgFile = BytesIO() 
+					CreateImg(sTweet).save(ImgFile, format = 'PNG')
 						
 					if status == None:
 						# pass

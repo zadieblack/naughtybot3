@@ -4185,15 +4185,55 @@ class Generator132(Generator):
 
 		return sTweet	
 		
-# class Generator100(Generator):
-	# ID = 100
-	# Priority = 2
+# Forbidden Heat
+# A pseudo-incest gorilla double anal story
+class Generator133(Generator):
+	ID = 133
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		sTitle1 = WordList(['Forbidden','Taboo','Lustful','Secret','Dirty','Naked','Sinful','Wicked',
+							'Dangerous','Indecent','Twisted','Throbbing','Hard','Untamed',
+							'Sexual','Steamy','Naked','Bound',
+							'Passionate','Devil\'s','Lesbian','Sizzling','Caged','Desperate',
+							'Cocky','Scandalous','Professional','Submissive'
+						  ]).GetWord()
+		sTitle2 = WordList(['Desire','Heat','Secret','Virgin','Sins','Pleasures','Temptation','Cowboy',
+							'Lust','Release','Danger','Rendevous','Obsession','Persuasion','Embrace',
+							'Kiss','Lovers','Passion','Daddy','Bachelor','Shame','Scoundrel',
+							'Seduction','Surrender','Angel','Bad Boy','Possession','Climax',
+							'Beauty','Touch','Gentleman','Princess','Flower',
+							'Diaries','Lies','Fire','Desperado','Liason','Tease',
+							'Secretary','Fantasy','Outlaw'
+						  ]).GetWord(NotList = [sTitle1])
+						  
+		sSubTitle1 = WordList(['Non-Consensual','Interracial','Pseudo-Incest','Dominant','Submissive',
+							   'Twincest','Cuckold','BDSM','Lesbian','Exhibitionist','Trans','Anal']).GetWord(NotList = [sTitle1,sTitle2])
+		sSubTitle2 = WordList(["Unicorn", "Centaur", "Werewolf", "Mermaid", "Merman", "Mer-MILF", "Dragon", "Orc", "Goat-Man", 
+								"Dwarf", "Futanari", "Space Alien", "Tentacle Monster", "Clown", "Sumo Wrestler", "Were-Horse", 
+								"Gorilla", "Dinosaur", "Dinosaur", "Velociraptor", "Zombie", "Bodybuilder","Martian",
+								"Troll","Goblin","Vampire","Step-Dad","Dwarf","Housewife","Cheerleader","Hotwife",
+								"Lumberjack","Biker","Viking","Gargoyle","Construction Worker","Cowboy","Fireman",
+								"Pro-Wrestler","Priest","Luchador","Furry","Japanese Schoolgirl","Teacher","Viking",
+								"Nun"]).GetWord(NotList = [sTitle1,sTitle2,sSubTitle1])
+		sSubTitle3 = WordList(["Anal", "Double Anal", "Nipple Play", "Fisting", "Incest", "Twincest", "Threesome", 
+							   "Foursome", "Fivesome", "Bukkake", "Feminization", "Paddling", "Rope Play", 
+							   "Water-Sports", "Wife Swapping", "Sixty-Nine", "Erotic Asphyxiation", "Orgy", "Gangbang", 
+							   "Reverse Gangbang", "Milking", "Double Penetration", "Triple Penetration", 
+							   "Pee-Drinking", "Dirty Sanchez", "Sodomy", "Age Play", "BDSM", "Fisting","Toe Sucking",
+							   "Anal Fisting", "Fem-dom","Tea-Bagging","Spanking","Lactation","Cuckolding",
+							   "Cuck-Queaning","Enema","Rimming", "Leather Bondage","Public Humiliation","Cum-Drinking",
+							   "Fellatio","Choking","Glory Hole","Cum-Swapping","Analingus","Ass-Eating","Ass-to-Ass",
+							   "Menage","Lactation","Frottage"
+							   ]).GetWord(NotList = [sTitle1,sTitle2,sSubTitle1,sSubTitle2])
 
-		# return sTweet	
+		sTweet = "~" + sTitle1.upper() + " " + sTitle2.upper() + "~\n\n"
+		sTweet += AddArticles(sSubTitle1).lower() + " " + sSubTitle2.lower() + " " + sSubTitle3.lower() + " story"
+		
+		return sTweet	
 		
 # class Generator100(Generator):
 	# ID = 100
