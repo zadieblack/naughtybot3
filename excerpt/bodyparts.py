@@ -142,7 +142,7 @@ class Skin(BodyParts):
 	def __init__(self):
 		super().__init__()
 		
-		self.NounList = ['skin',
+		self.NounList = ['skin','skin','skin',
 			'flesh']
 			
 		self.AdjList = ['almond-colored',

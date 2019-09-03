@@ -3054,16 +3054,119 @@ class Generator69(Generator):
 
 		return sTweet
 		
- # class Generator70(Generator):
-	# ID = 70
-	# Priority = 1
-	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+# Brad undid his buckle and unzipped pants, freeing his dick. "Suck it," he commanded. Obediently, Sarah wrapped her 
+# red lips around his meaty member. "Let's see how deep you can take it," he said. Sarah supressed her gag reflex as 
+# she felt his fat fuck-pole going down her throat. Brad began thrusting in and out, fucking her mouth forcefully. 
+# Streaks of eyeliner were running down her face. Brad groaned and then began to pump his hot jizz down her throat and
+# into her belly.
 
-		# return sTweet
+# Sarah sat bolt upright in the tangled sheets of her bed. "Fuck!" she said. "That was only a dream??"		
+class Generator70(Generator):
+	ID = 70
+	Priority = 1
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
 		
+		sHisName = self.MaleName.FirstName()
+		sHerName = self.FemaleName.FirstName()
+		
+		Penis = self.MaleBodyParts.Penis 
+		Tip = self.MaleBodyParts.Penis.Head 
+		Mouth = self.FemBodyParts.Mouth 
+		Semen = self.Semen 
+		
+		SemenNoun = WordList(['jizm','jizz','load','man-milk','man-seed','seed','semen','semen',
+							  'sperm','sperm','splooge','spunk'])
+		SemenAdjs = WordList(['creamy','gooey','milky','nasty','oozing','ropy','salty',
+							  'sloppy','sticky','thick','warm','white-hot','hot'])
+		sSemenNoun1 = SemenNoun.GetWord()
+		sSemenNoun2 = SemenNoun.GetWord(NotList = [sSemenNoun1])
+		
+		sNutsNoun = Penis.Testicles.ShortDescription()
+		
+		sVCumming = self.VEjac.Gerund()
+		
+		bAddLenCheck = False 
+		
+		sTweet = sHisName + " "
+		if CoinFlip():
+			sTweet += "undid his belt buckle and pulled his dick out of his pants. "
+		else:
+			sTweet += "unzipped and pulled his pants down. He held his dick in front of her face. "
+		sTweet += "\"" + WordList(['Suck it','Suck on it','Take me in your mouth','Suck me off',
+								   'Put my ' + Penis.ShortDescription() + ' in your mouth',
+								   'Suck on my ' + Penis.RandomDescription(bAllowLongDesc = False),
+								   'Service me with your mouth']).GetWord() + ",\" he commanded. "
+		sTweet += sHerName + " " + WordList(['obediently','submissively']).GetWord() + " "
+		sTweet += "wrapped her " + WordList(['full','red','cherry red','moist','black-painted','scarlet']).GetWord() + " "
+		sTweet += "lips around his " + Tip.RandomDescription(bAllowShortDesc = False) + ". "
+		sTweet += "\"" + WordList(["Let's see how deep you can take it,",
+								   "I want you to gag on it,",
+								   "C'mon, choke on it,",
+								   "Good girl. Take it deep,",
+								   "Take it deep in your throat like a good little slut,",
+								   "You want more, don't you little slut?",
+								   "I want you to take it all, little cock-sock,"]).GetWord() + "\" he said. "
+		sTweet += "She nearly " + WordList(['gagged','choked']).GetWord() + " "
+		sTweet += "as he shoved his " + Penis.MediumDescription(bAddLen = True) + " " 
+		sTweet += WordList(['down','deeper into','further down','further into','deeper down']).GetWord() + " her throat. "
+		
+		sTweet += "He began thrusting in and out, "
+		sTweet += "fucking her " + WordList(['face','mouth']).GetWord() + " " 
+		sTweet += WordList(['forcefully','vigorously','powerfully','furiously','hard']).GetWord() + ". " 
+		sTweet += "His " + WordList(['hairy','wrinkled','pendulous']).GetWord() + " "
+		if sNutsNoun[-1:] == 's':
+			sTweet += sNutsNoun + " were slapping against her chin. "
+		else:
+			sTweet += sNutsNoun + " was slapping against her chin. "
+		sTweet += WordList(['Tears of black eyeliner were dripping down her face.',
+							'Saliva was dribbling down it.']).GetWord() + " "
+		sTweet += "\n\n"
+		sTweet += sHisName + " groaned and started " + sVCumming + ". "
+		sTweet += "He was pumping " + SemenAdjs.GetWord() + " " + sSemenNoun1 + " down her throat. "
+		sTweet += "She couldn't take it all! She was " + WordList(['choking on','gagging on']).GetWord() + " " 
+		sTweet += "his " + sSemenNoun2 + "!\n\n"
+		
+		sTweet += sHerName + " sat bolt upright in bed, panting hard. "
+		
+		iRand = randint(1,3)
+		if iRand == 1:
+			sTweet += "\"" + self.Exclamation.GetWord().capitalize() + " "
+			sTweet += "What " + WordList(['a filthy','a nasty','a twisted','a sick','a disgusting']).GetWord() + " dream!\" "
+			sTweet += "she said. \"" + WordList(["I loved it!","So fucking hot!","Now I'm fucking wet!",
+												 "I need to get fucking laid!",
+												 "Where's my fucking vibrator?",
+												 "Now I've got to rub one out."
+											    ]).GetWord() + "\""
+		elif iRand == 2:
+			sTweet += "\"" + self.Exclamation.GetWord().capitalize() + "\" she exclaimed. "
+			sTweet += "\"Another dream about "
+			sTweet += WordList(["my sister's boyfriend","my BFF's boyfriend","my new step-dad",
+								"my pastor","my step-son","my pool boy","my brother",
+								"my English teacher","my biology professor",
+								"my boss","my manager","my mom's boyfriend","my algebra teacher",
+								"my accountant","my sister's hubby"]).GetWord()+ "!\""
+		else:
+			sTweet += "\"" + self.Exclamation.GetWord().capitalize() + "\" she exclaimed. "
+			sTweet += "\"Another dream about that " + WordList(['sexy','hot','cute']).GetWord() + " "
+			sTweet += WordList(['pool boy','barista at the coffee shop',
+			                    'new teacher','guy at the gym','male nurse',
+								'waiter at the sushi bar','personal trainer',
+								'bartender at Mike\'s','massage therapist',
+								'yoga instructor','lifeguard',
+								'guy at Burger King',
+								'new guy at work','pizza delivery guy',
+								'Amazon delivery guy','guy at the carwash']).GetWord()+ "!\""
+		
+		return sTweet
+		
+ # "Brad," said Sarah as they shared a milkshake, "We've been going together for months now. I've never felt like 
+ # this about any other guy before. I love you, and I'm ready to do something special with you, something that I've 
+ # never done with any other guy. 
+ 
+ # I want you to fuck my heinie hole."
  # class Generator71(Generator):
 	# ID = 71
 	# Priority = 1
