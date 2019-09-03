@@ -317,22 +317,21 @@ class Legs(BodyParts):
 			'legs',
 			'limbs']
 			
-		self.AdjList = ['agile',
-			'athletic',
+		self.AdjList = ['athletic',
 			'coltish',
 			'elegant',
-			'flexible',
 			'graceful',
 			'lithe',
 			'limber',
 			'lissome',
 			'lithesome',
-			'long',
+			'long','long',
 			'muscular',
 			'pliant',
 			'shapely',
+			'shaved',
 			'smooth',
-			'silken']
+			'smooth-shaven']
 		
 		self.DefaultNoun = "legs"
 		
@@ -830,11 +829,8 @@ class AnusFemale(BodyParts):
 			'butthole',
 			'butt hole',
 			'corn hole',
-			'crack',
-			'crevice',
 			'dirt-pipe',
 			'fart blaster',
-			'fissure',
 			'heinie hole',
 			'hole',
 			'knot',

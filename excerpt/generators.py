@@ -2797,7 +2797,7 @@ class Generator64(Generator):
 		return sTweet
 		
 # "Oh Vicenzo!" she gasped as he nibbled gently on her lush, firm globes. "I must tell you something!"
-# "What is it, my sweet?" he said, squeezing her ripe buttocks.
+# "What is it, my sweet?" he asked, squeezing her ripe buttocks.
 # "I'm secretly married - to your father!"
 # class Generator65(Generator):
 	# ID = 65
@@ -2813,15 +2813,126 @@ class Generator64(Generator):
 # Raoul's jaw dropped open. She was stark naked, with tan skin and perfect lush DD tatas. A clit piercing winked at him
 # between her legs. 
 # "Ah, here's your deep-dish pizza with banana peppers and double meat," he stammered. 
-# class Generator66(Generator):
-	# ID = 66
-	# Priority = 1
+class Generator66(Generator):
+	ID = 66
+	Priority = 1
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
-
-		# return sTweet
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		sHisName = self.MaleName.FirstName()
+		
+		sPizzaType = WordList(['deep dish','extra-large','stuffed crust']).GetWord()
+		PizzaMeatToppings = WordList(['beef','meatballs','pepperoni','sausage','salami','hot dog', 'meat lovers'])
+		PizzaExtraToppings = WordList(['eggplant','anchovies','banana peppers','broccoli','garlic','jalapeno peppers','onions','pineapples','spinach','parmsesan cheese'])
+		PizzaBonus = WordList(['double cheese','double meat','cheesy breadsticks','sausage on the side','creamy ranch dressing'])
+		
+		sPizza = sPizzaType + " " + PizzaMeatToppings.GetWord() + " pizza with " + PizzaExtraToppings.GetWord() + " and " + PizzaBonus.GetWord()
+		
+		WomanBody = self.FemBodyParts 
+		WomanSkin = self.FemBodyParts.Skin 
+		WomanTits = self.FemBodyParts.Breasts
+		WomanNips = self.FemBodyParts.Breasts.Nipples
+		WomanLegs = self.FemBodyParts.Legs 
+		WomanAss = self.FemBodyParts.Ass 
+		WomanPussy = self.FemBodyParts.Vagina
+		
+		AssNPs = WordList(['ass','ass','backside','bottom','butt','heinie','rump'])
+		AssAdjs = WordList(['broad','bubble-shaped','curvaceous','cute','nubile','pert',
+							'plump','ripe','round','shapely','thick','trim','round, full',
+							'ripe and round','very shapely','juicy'])
+		sAss = AssAdjs.GetWord() + " " + AssNPs .GetWord()
+		
+		NippAdjs = WordList(['chocolate','dark','enormous','erect','inch-long','eraser','pert','perky',
+							  'puffy','rosebud','rose-colored','stiff','succulent','swollen','tiny',
+							  'wide','large'])
+							  
+		BreastAdjs = WordList(['bouncy','bountiful','double-D','enormous fake','full','heavy','jiggling',
+								'juicy','luscious','lush','magnificent','nubile','pendulous','perky','pert',
+								'petite','plump','proud','ripe','ripe, nubile','round','statuesque','stunning',
+								'sumptuous','supple','swollen','voluptuous','full, pendulous','small, perky',
+								'bouncy double-D', 'fake double-D','large, jiggling','big juicy','tight',
+								'grapefruit-sized','ripe, swelling','heavy, juicy','heavy, luscious',
+								'round, heavy','pillowy'])
+								
+		PussyAdjs = WordList(['bare','dewy','downy','down-thatched','fat','fat','flushed',
+								   'fur-lined','girlish','hairless','lush','naked','peach-fuzzed','pink',
+								   'plump','puffy','shameless','shaved','shaven','silken','slick',
+								   'smooth','sweet','swollen','tender','lewd','tight'])
+		
+		SkinAdjs = WordList(['bronzed','freckled','pale','glistening','porcelain','flawless','sun-kissed',
+							 'youthed','tanned', 'creamy'])
+							 
+		LegsAdjs = WordList(['athletic','coltish','elegant','graceful','lithe','long','long',
+							 'muscular','shapely','smooth','smooth-shaven','toned'])
+		
+		sTweet = sHisName + " " + WordList(['rapped','knocked','banged']).GetWord() + " on the door and "
+		sTweet += "a " + WordList(['redheaded','blonde','brunette']).GetWord() + " woman opened it. "
+		#sTweet += "\"I've been waiting for you!\" she " + WordList(['purred','purred','growled','growled','said throatily','moaned']).GetWord() + ".\n\n"
+		sTweet += "She " + WordList(['was stark naked','was buck naked','was completely naked',
+									 'was in nothing but her birthday suit','wasn\'t wearing a stitch of clothing',
+									 'had no clothes on','was stripped to the skin',
+									 'wearing nothing but a pair of red heels',
+									 'was shamelessly naked']).GetWord() 
+		sTweet += ". "
+		
+		iRand = randint(1,6)
+		
+		if iRand == 1:
+			sTweet += "His wide eyes took in every inch of her bare, " + SkinAdjs.GetWord() + " skin, " 
+			sTweet += "from her " + BreastAdjs.GetWord() + " " + WomanTits.ShortDescription() + " "
+			sTweet += "down to her " + LegsAdjs.GetWord() + " legs "
+			sTweet += "and the " + WordList(['patch of dark pubes','trim triangle of pubes',
+											 'thatch of soft pubes','curly pubes', 
+											 'peach-fuzzed pubic mound']).GetWord() + " "
+			sTweet += "nestled between them."
+		elif iRand == 2:
+			sPussyAdj1 = PussyAdjs.GetWord() 
+			sTweet += "Her " + AssNPs.GetWord() + " was " + AssAdjs.GetWord() + " "
+			sTweet += "and her " + WomanTits.ShortDescription() + " " + BreastAdjs.GetWord() + ". "
+			sTweet += "Her " + WomanPussy.ShortDescription() + " was " + sPussyAdj1 + " and " + PussyAdjs.GetWord(NotList = [sPussyAdj1]) + ". "
+			sTweet += "She had steel rings piercing her " + NippAdjs.GetWord() + " nipples. "
+		elif iRand == 3:
+			sTweet += "He had never seen a woman with such "
+			sTweet += BreastAdjs.GetWord() + " " + WomanTits.ShortDescription() + " "
+			sTweet += "or such " + WomanLegs.MediumDescription() + ". "
+			sTweet += "He could clearly see her " + PussyAdjs.GetWord() + " " + WomanPussy.ShortDescription() + ". "
+			sTweet += "It looked good enough to eat. "
+			sTweet += "For that matter, so did her " + AssAdjs.GetWord() + " " + WomanAss.ShortDescription() + ". "
+		elif iRand == 4:
+			sLegsAdj1 = LegsAdjs.GetWord()
+			sTweet += "She was young and her body was extremely fit. "
+			sTweet += "Her " + WordList(['small','petite','budding','pert','perky','nubile','ripe']).GetWord() + " "
+			sTweet += WordList(['breasts','tits','titties','boobs']).GetWord() + " "
+			sTweet += "were high and tight. "
+			sTweet += "Her legs were " + sLegsAdj1 + " and " + LegsAdjs.GetWord(NotList = [sLegsAdj1]) + " "
+			sTweet += "and her " + WomanAss.ShortDescription() + " " + AssAdjs.GetWord() + "."
+		elif iRand == 5:
+			sBreastAdj1 = BreastAdjs.GetWord()
+			sAssAdj1 = AssAdjs.GetWord()
+			sPussyAdj1 = PussyAdjs.GetWord()
+			sTweet += "His jaw dropped at the sight of her smooth, " + SkinAdjs.GetWord() + " skin, "
+			sTweet += "her " + sBreastAdj1 + ", " + BreastAdjs.GetWord(NotList = [sBreastAdj1]) + " " + WomanTits.ShortDescription() + ", "
+			sTweet += "her " + sAssAdj1 + ", " + AssAdjs.GetWord(NotList = [sAssAdj1]) + " " + AssNPs.GetWord() + ", "
+			sTweet += "and her shameless, " + sPussyAdj1 + ", " + PussyAdjs.GetWord(NotList = [sPussyAdj1]) + " " + WomanPussy.ShortDescription() + ". "
+		else:
+			sPussyAdj1 = PussyAdjs.GetWord()
+			sTweet += "Her nude body was stunning. She had " + BreastAdjs.GetWord() + " " + WomanTits.ShortDescription() + " "
+			sTweet += "with " + NippAdjs.GetWord() + " nipples, "
+			sTweet += "a " + sAss + ", and her legs were long and " + LegsAdjs.GetWord(NotList = ['long']) + ". "
+			sTweet += "She was standing with legs apart "
+			sTweet += "and he could clearly see her shameless, " + sPussyAdj1 + ", " + PussyAdjs.GetWord(NotList = [sPussyAdj1]) + " " + WomanPussy.ShortDescription() + " "
+			if CoinFlip():
+				sTweet += "and the " + WordList(['little folds','purple lips','pink ruffle']).GetWord() + " of her labia dangling from it. "
+			else:
+				sTweet += "and a shiny metal clit piercing which seemed to wink at him." 
+		
+		sTweet += "\n\n"
+		sTweet += "\"I've been waiting for you!\" she " + WordList(['purred','purred','growled','said in a sultry growl','said throatily','moaned','purred in a sultry voice']).GetWord() + ".\n\n"
+		sTweet += "\"" + WordList(["Uhhh","Umm","Er","Ah","Uhhh, ma'am","Uhhh, thank you for choosing Big Dave's Pizza Shack"]).GetWord() + ", "
+		sTweet += "here's your " + sPizza + ",\" he said."
+		return sTweet
 		
 # Karina leaned back on the {bed/toilet/bathroom floor}. Her skirt was hiked up over her waist and her panties were 
 # wadded up around one ankle. With one hand she tweaked her erect right nipple. With the other she was {plunging 
@@ -2837,25 +2948,111 @@ class Generator64(Generator):
 
 		# return sTweet
 				
- # class Generator68(Generator):
-	# ID = 68
-	# Priority = 1
+# "We can't tell my husband about this," said {Karen/Bill} to the three naked black sailors that were taking turns pounding
+# her ass.
+class Generator68(Generator):
+	ID = 68
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		sMenAdj1 = WordList(['Bearded','Beefcake','Beefy','Brawny','Burly','Chiseled','Hairy','Handsome','Handsome',
+							 'Hulking','Hunky','Muscular','Muscular','Mustachioed','Sexy','Strapping','Strong',
+							 'Tall','Tattooed',"Donkey-Dicked",'Girthy','Hard','Horse-Cock','Hung','Rock-Hard',
+							 'well-endowed','well-hung']).GetWord().lower()
+		sMenAdj2 = WordList(['black','black','blonde','copper-tanned','Italian','latino','Scottish',
+							 'Scandanavian']).GetWord()
+		sMen = WordList(["businessmen","Chippendales dancers","coal miners","construction workers","cops",
+						 "cowboys","dwarves","farm hands","football players","frat boys","gangstas",
+						 "long haul truckers","lumberjacks","army boys","MMA fighters","plumbers","roadies",
+						 "sailors","sumo wrestlers"]).GetWord()
+		sNum = WordList(["two","two","three","three","three","four","four","five","ten","twenty","three dozen"]).GetWord()
+		sVerb = self.VThrust.Gerund()
+		
+		if CoinFlip():
+		#woman 
+			sHerName = self.FemaleName.FirstName()
+			
+			sTweet += "\"We can't let my husband find out about this,\" said " + sHerName + " to the "
+			sTweet += sNum + " " + WordList([sMenAdj1,sMenAdj1 + " " + sMenAdj2,sMenAdj2]).GetWord() + " " + sMen + " "
+			sTweet += "that were taking turns " + sVerb + " her "
+			if CoinFlip():
+				Pussy = self.FemBodyParts.Vagina
+				sTweet += Pussy.ShortDescription() 
+			else:
+				Ass = self.FemBodyParts.Ass
+				sTweet += Ass.ShortDescription()
+			sTweet += "."
+		else:
+		#man 
+			sHisName = self.MaleName.FirstName()
+			Ass = self.MaleBodyParts.Ass
+			
+			sTweet += "\"We can't let my wife find out about this,\" said " + sHisName + " to the "
+			sTweet += sNum + " " + WordList([sMenAdj1,sMenAdj1 + " " + sMenAdj2,sMenAdj2]).GetWord() + " " + sMen + " "
+			sTweet += "that were taking turns " + sVerb + " his " + Ass.ShortDescription() + "."
 
-		# return sTweet
+		return sTweet
+		
+# "Make love to me, Vicenzo!" Delilah said. "Make love to me right here in this Starbucks bathroom! Make love to my 
+# sweet wet cunt!"		
+class Generator69(Generator):
+	ID = 69
+	Priority = 2
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		Location = locations.LocationSelector().Location(PubPrivType = exutil.LocPubPrivType.Public)
+		Location.NamePrep 
+		
+		sHisName = self.MaleName.FirstName()
+		sHerName = self.FemaleName.FirstName()
+		
+		sTweet = "\"Make love to me, " + sHisName + "!\" " + sHerName + " said. "
+		sTweet += "\"Make love to me right now, right here " + Location.NamePrep + "! " 
+		
+		iRand = randint(1,4)
+		
+		if iRand == 1:
+		#tits
+			Tits = self.FemBodyParts.Breasts
+			Dick = self.MaleBodyParts.Penis 
+			
+			if CoinFlip():
+				sTweet += "Rub your " + Dick.FloweryDescription() + " all over my " + Tits.RandomDescription() + "!\""
+			else:
+				sThrust = WordList(['fuck','ravish','thrust into']).GetWord()
 				
- # class Generator69(Generator):
-	# ID = 69
-	# Priority = 1
-	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+				sTweet += sThrust.capitalize() + " my " + Tits.RandomDescription() + " with your " + Dick.RandomDescription() + "!\""
+		elif iRand == 2:
+		#pussy 
+			Pussy = self.FemBodyParts.Vagina
+			sThrust = self.VThrust.Present()
+			
+			if CoinFlip():
+				sTweet += "Bend me over and "
+				sTweet += sThrust + " my " + Pussy.FloweryDescription() + "!\""
+			else: 
+				sTweet += "Spread my legs and "
+				sTweet += sThrust + " my " + Pussy.FloweryDescription() + "!\""
+		elif iRand == 3:
+		#ass 
+			Ass = self.FemBodyParts.Ass
+			sThrust = self.VThrust.Present()
+			
+			sTweet += sThrust.capitalize()  + " my " + Ass.FloweryDescription() + "!\""
+		else:
+		#asshole 
+			Ass = self.FemBodyParts.Ass
+			Asshole = self.FemBodyParts.Ass.Anus
+			
+			sTweet += "Spread my " + Ass.ShortDescription() + " and make love to my " + Asshole.FloweryDescription() + "!\""
 
-		# return sTweet
+		return sTweet
 		
  # class Generator70(Generator):
 	# ID = 70

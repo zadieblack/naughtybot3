@@ -65,13 +65,10 @@ def AddArticles(sNounPhrase):
 			break
 	
 	if len(sNounPhrase) > 0:
-		if not sNounPhrase[len(sNounPhrase) - 1] == 's':
-			if sNounPhrase[iStartChar].lower() in ['a','e','i','o','u']:
-				sUpdatedPhrase = 'an ' + sNounPhrase
-			else:
-				sUpdatedPhrase = 'a ' + sNounPhrase
+		if sNounPhrase[iStartChar].lower() in ['a','e','i','o','u']:
+			sUpdatedPhrase = 'an ' + sNounPhrase
 		else:
-			sUpdatedPhrase = sNounPhrase
+			sUpdatedPhrase = 'a ' + sNounPhrase
 			
 	return sUpdatedPhrase
 	
