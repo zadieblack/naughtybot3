@@ -2938,15 +2938,62 @@ class Generator66(Generator):
 # wadded up around one ankle. With one hand she tweaked her erect right nipple. With the other she was {plunging 
 # {two/three} fingers {or a whole fist} in and out of her {tight pussy/pert asshole} as the naughty scene played out 
 # in her imagination. "Ohh, Mr. Jefferson!" she moaned. "You're the best Algebra teacher ever!"
- # class Generator67(Generator):
-	# ID = 67
-	# Priority = 1
-	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+class Generator67(Generator):
+	ID = 67
+	Priority = 1
 
-		# return sTweet
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		sPanted = WordList(['panted','gasped','moaned','sighed aloud']).GetWord()
+		sHerName = self.FemaleName.FirstName()
+		
+		Tits = self.FemBodyParts.Breasts 
+		Vag = self.FemBodyParts.Vagina
+		Ass = self.FemBodyParts.Ass
+		
+		sTweet = sHerName + " leaned back on " + WordList(['the mattress','the toilet','the bathroom floor',
+															   'the gravel hiking trail','the washing machine',
+															   'her parents bed','the carpet',
+															   'the locker room floor']).GetWord() + ". "
+		sTweet += "Her " + WordList(['skirt was hiked up over her waist',
+									 'panties were in a wad on the floor',
+									 'panties were around one ankle',
+									 'clothes were on the floor and she was naked',
+									 'cutoff shorts were pulled down around her thighs',
+									 'thong was pulled to one side']).GetWord() + ". "
+		sTweet += "With her left hand " + WordList(['she tweaked the erect nub of her nipple',
+												    'she squeezed her ' + Tits.ShortDescription(),
+												    'she rubbed her clit',
+												    'she fingered her ' + Ass.Anus.MediumDescription()]).GetWord() + ". "
+		sTweet += "With her right " + WordList(['hand she had two fingers in',
+												'hand she had three fingers in',
+												'she shoved her entire fist deep into',
+												'she inserted a steel dildo into',
+												'she inserted the handle of her hairbrush deep into',
+												'she thrust a 13-inch black dildo deep into']).GetWord() + " "
+		sTweet += "her " + Vag.RandomDescription() + " "
+		sTweet += "as she lost herself in " + WordList(['lustful','naughty','forbidden','shameless','wanton','filthy',
+														'dirty','illicit']).GetWord() + " fantasy."
+		sTweet += "\n\n"
+		
+		if CoinFlip():
+			sTweet += "\"Oh " + WordList(['daddy','step-dad','uncle','step-brother','grand-dad']).GetWord() + "!\" "
+			sTweet += "she " + sPanted + ", \""
+			sTweet += "I've wanted you for so long!\""
+		else:			
+			sTweet += "\"Oh Mr. " + WordList(['Johnson','Smith','Williams','Wilson','Jones','Jackson','Stevens',
+											  'Adams','Walker','Patterson','Jenkins','Long','Lee','Simmons']).GetWord() + "!\" "
+			sTweet += "she " + sPanted + ", \""
+			sTweet += "You're the best " + WordList(['algebra teacher','English teacher','gym coach',
+													 'Sunday School teacher','boss','professor',
+													 'guidance counselor','sex ed teacher',
+													 'youth pastor','principal','minister']).GetWord() + " "
+			sTweet += "ever!\""
+							
+		
+		return sTweet
 				
 # "We can't tell my husband about this," said {Karen/Bill} to the three naked black sailors that were taking turns pounding
 # her ass.

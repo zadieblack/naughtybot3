@@ -4235,16 +4235,26 @@ class Generator133(Generator):
 		
 		return sTweet	
 		
-# class Generator100(Generator):
-	# ID = 100
-	# Priority = 2
+# Taken by her Lesbian Centaur Boss
+class Generator134(Generator):
+	ID = 134
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
-
-		# return sTweet	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
 		
+		sVerb = self.VerbsBy.GetWord()
+		sTweet = sVerb + " by "
+		if CoinFlip():
+		#gay male
+			sTweet += "his "
+		else:
+		#lesbian female
+			sTweet += "her "
+		return sTweet	
+		
+# MILKED by my biker step-son
 # class Generator100(Generator):
 	# ID = 100
 	# Priority = 2
