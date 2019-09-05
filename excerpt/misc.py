@@ -789,6 +789,7 @@ class Punchline():
 			self.FemalePunchlines.append("'I've never done it " + Location.NamePrep + " before', she said.")
 			self.FemalePunchlines.append("'Do you always take your girls " + Location.NamePrep + "?', she asked.")
 			self.FemalePunchlines.append("'I'll bet you brought the last " + FemaleFWB.GetPerson() + " here too,' she said teasingly.")
+			self.FemalePunchlines.append("'Well, cross that off my bucket list,' she said.")
 			
 			#Male location-specific exclamations
 		
@@ -809,6 +810,7 @@ class Punchline():
 		self.FemalePunchlines.append("'I can't let my " + self.MaleSO.GetWord() + " know that I'm screwing my " + self.JobBlueCollar.GetPerson() + "!' she said.")
 		self.FemalePunchlines.append("'Hang on,' she said, 'I need to Snap Chat this.'")
 		self.FemalePunchlines.append("'I usually only do this for money,' she said.")
+		self.FemalePunchlines.append("'I can't wait to tell my husband all about this,' she said.")
 		
 		
 		#Male exclamations
@@ -818,6 +820,10 @@ class Punchline():
 		self.MalePunchlines.append("'You can't tell anyone that I'm a " + self.JobWealthyMale.GetPerson() + ",' he said, seriously.")
 		self.MalePunchlines.append("'Same time next Tuesday?' he asked.")
 		self.MalePunchlines.append("'You remind me so much of my ex-wife,' he said.")
+		self.MalePunchlines.append("'I can't wait to tell my " + self.FemaleSO.GetWord() + " about this,' he said.")
+		self.MalePunchlines.append("'Fuck, interracial sex really IS hot!' he said.")
+		self.MalePunchlines.append("'Here's my business card,' he said. 'Call me.'")
+		
 		
 	def GetPunchline(self, gender):
 		sPunchline = ""

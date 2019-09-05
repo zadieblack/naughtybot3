@@ -448,6 +448,22 @@ class MensRoom(PublicLocation):
 	Excuse = "'Busy!' he shouted back."
 	Ground = "tiled floor"
 	FemaleBottomClothing = "thong"
+	
+class MovieTheater(PublicLocation):
+	Name = "the movie theater"
+	NamePrep = "in the movie theater"
+	BeginDesc = "They had the darkened back row of the movie theater to themselves."
+	Despite = "being in a public movie theater"
+	BentOver = "the seat"
+	KneelingOn = "the seat"
+	SittingOn = "a seat"
+	LyingOn = "the theater seats"
+	HurryReason = "people will notice"
+	Caught = "The middle aged woman in the row in front of them turned and stared."
+	AuthorityFigure = "the audience member"
+	Excuse = "'Just watch the movie!' he snapped."
+	Consequence = "the woman got up from her seat and stomped out of the theater"
+	Ground = "the floor"
 
 class Office(PublicLocation):
 	Name = "the office"
@@ -501,6 +517,23 @@ class ParkAfterDark(PublicLocation):
 	Consequence = "the watchman enjoyed the view"
 	Ground = "the ground"
 	
+class ParkBench(PublicLocation):
+	Name = "a park bench"
+	NamePrep = "on a park bench"
+	BeginDesc = "There seemed to be no-one nearby the secluded little park-bench."
+	Despite = "being in a public park"
+	BentOver = "a park bench"
+	KneelingOn = "the edge of a park bench"
+	SittingOn = "a park bench"
+	LyingOn = "on a park bench"
+	HurryReason = "we'll get caught"
+	Caught = "They heard footsteps. A jogger came running around the corner and pulled up short."
+	AuthorityFigure = "a jogger"
+	Excuse = "'I'm not stopping now, baby!' he panted."
+	Consequence = "the jogger looked on with surprise"
+	Ground = "the ground"
+	FemaleTopClothing = "sundress"
+	
 class PoolPatio(PrivateLocation):
 	Name = "the pool patio"
 	NamePrep = "beside the pool"
@@ -512,7 +545,7 @@ class PoolPatio(PrivateLocation):
 	SittingOn = "a deck chair"
 	LyingOn = "a patio chair"
 	Ground = "the pool deck"
-	FemaleBottomClothing = "bikin bottoms"
+	FemaleBottomClothing = "bikini bottoms"
 	
 class PrivateBeach(PrivateLocation):
 	Name = "a private beach"

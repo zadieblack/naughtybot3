@@ -262,7 +262,8 @@ class Generator6(Generator):
 		return sTweet
 		
 class Generator7(Generator):
-	# Charity bit her lip as Tristan fondled her heaving bosoms. 'Oh god,' she said, 'What would my pastor say if he saw that I was letting my pool boy pump into my crack?'	
+	# Charity bit her lip as Tristan fondled her heaving bosoms. 'Oh god,' she said, 'What would my pastor say 
+	# if he saw that I was letting my pool boy pump into my crack?'	
 	
 	ID = 7
 	Priority = 1
@@ -665,7 +666,12 @@ class Generator23(Generator):
 		return sTweet
 		
 class Generator24(Generator):
-	#Whispering and giggling, they locked themselves in the dressing room. In moments, the man had Angelica bent over the bench in the dressing room, and the two were banging passionately. He was soon exploding deep within her trim entrance as an intense orgasm wracked her body. Warm beads of cream hung from Angelica's lustful cunt and onto the rubber mat. She scooped some up with her fingers and tasted it. Angelica got down on her knees and began to lick the silken cock-snot from his thick erection. Angelica wiggled into her panties.
+	#Whispering and giggling, they locked themselves in the dressing room. In moments, the man had Angelica 
+	#bent over the bench in the dressing room, and the two were banging passionately. He was soon exploding 
+	#deep within her trim entrance as an intense orgasm wracked her body. Warm beads of cream hung from 
+	#Angelica's lustful cunt and onto the rubber mat. She scooped some up with her fingers and tasted it. 
+	#Angelica got down on her knees and began to lick the silken cock-snot from his thick erection. Angelica 
+	#wiggled into her panties.
 	#'Hell, yes! I can't believe I'm not a virgin anymore,' she said.
 	ID = 24
 	Priority = 3
@@ -693,7 +699,7 @@ class Generator24(Generator):
 			if bMale:
 				sTweet += sHisName + " took the " + self.WomanAdjs.GetWord() + " woman in his " + self.MaleBodyParts.Arms.MediumDescription() + ". "
 			else: 
-				sTweet += sHerName + " carressed the man's " + self.MaleBodyParts.MediumDescription() + ". "
+				sTweet += sHerName + " sighed as " + sHisName + " began to squeeze her " + self.FemBodyParts.Breasts.MediumDescription() + " and kiss the nape of her neck. "
 			Scene1 = SceneSelect.GetScene(Tags = {exutil.TAG_DONE_TO_HER}, NotTags = {exutil.TAG_CLIMAX}, sHisName = sHisName, sHerName = sHerName, Location = Location)
 			
 			sTweet += "First " + Scene1.SceneShortDesc3P + ", then "
@@ -3223,16 +3229,85 @@ class Generator70(Generator):
 		# sTweet = ""
 
 		# return sTweet
-		
- # class Generator72(Generator):
-	# ID = 72
-	# Priority = 1
-	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
 
-		# return sTweet
+# Dave walked into the {apartment/house}. "Janet, I'm home!" he announced. 
+#
+# The bedroom door opened and a woman walked out. She had {sexy body} description and her naked body gleamed with 
+# baby oil.
+# "Janet's not here," she said. "{And unlike her, I do anal./I guess you'll have to fuck me, instead./
+# But she says to tell you Happy Birthday./So are you gonna BE a pussy or EAT a pussy?/So take off your pants
+# and let me get to work on that cock./So why don't you get naked and join me in the shower?/It's just you,
+# me, and your big cock./It's just you, me, and my twin sister./Just me. And I'm horny and dripping wet./
+# But I'll bet my pussy feels as good as hers./So bend me over that couch and put a baby in me./And unlike her,
+# I give excellent head./Now pull your pants down so I can suck that cock.
+class Generator72(Generator):
+	ID = 72
+	Priority = 1
+
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		sHisName = self.MaleName.FirstName() 
+		sHerName = WordList(['Alice','Ann','Barbara','Beth','Carol','Christy','Cindy','Cynthia','Darlene',
+							 'Debbie','Gladys','Jane','Janet','Jenny','Jill','Joyce','Karen','Kimberly',
+							 'Lisa','Marsha','Martha','Nancy','Patricia','Patty','Sarah','Sharon','Sherry',
+							 'Susan','Suzie','Tammy','Wendy']).GetWord()
+		
+		sPenis = self.MaleBodyParts.Penis.ShortDescription()
+		sLabia = self.FemBodyParts.Vagina.OuterLabia.RandomDescription(bAllowShortDesc = False)
+		
+		sTweet = sHisName + " walked into the " + WordList(['apartment','house']).GetWord() + ". "
+		sTweet += "\"" + sHerName + ", I'm home!\" he " + WordList(['announced','called out','called','shouted']).GetWord() + ".\n\n"
+		sTweet += "The bedroom door opened and " + WordList(['a naked woman','a completely nude woman',
+															 'a woman wearing nothing but red heels',
+															 'a woman who was completely nude except for a pair of sneakers',
+															 'a woman wearing nothing but an open bathrobe',
+															 'a woman in a see-thru negligee']).GetWord() + " walked out. "
+		sTweet += "She had " 
+		for part in self.FemBodyParts.GetRandomBodyParts(iNum = 4, bIncludeInners = False):
+			if part[-1:] == 's':
+				sTweet += part + "; "
+			else:
+				bFound = False
+				for item in ['hair','skin','flesh']:
+					if item in part:
+						bFound = True
+				if not bFound:
+					sTweet += AddArticles(part) + "; "
+				else:
+					sTweet += part + "; "
+					
+		sTweet += "and " + WordList(["a clit piercing",
+									 "a tattoo that read 'slut'",
+									 sLabia,
+									 "her skin was dripping with oil"]).GetWord() + ".\n\n"
+		sTweet += "\"" + sHerName + " isn't here,\" she purred. "
+		sTweet += "\"" + WordList(["And unlike her, I do anal.",
+								 "I guess you'll have to fuck me, instead.",
+								 "But she says to tell you Happy Birthday.",
+								 "So are you gonna BE a pussy or EAT a pussy?",
+								 "So take off your pants and let me get to work on that " + sPenis + ".",
+								 "So why don't you get naked and join me in the shower?",
+								 "So it's time to spend some quality time with your " + WordList(['mother-in-law','sister-in-law','step-daughter','housekeeper']).GetWord() + ".",
+								 "So why don't you get naked and join me in the shower?",
+								 "It's just you, me, and your big " + sPenis + ".",
+								 "It's just you, me, and my twin sister.",
+								 "Just me. And I'm dripping wet and horny as hell.",
+								 "But I'll bet my pussy feels as good as hers.",
+								 "So bend me over that sofa and put a baby in me.",
+								 "And unlike her, I give excellent head.",
+								 "And unlike her, I'm not banging your nextdoor neighbor.",
+								 "Now pull your pants down so I can suck that " + sPenis + ".",
+								 "Now pull your pants down so I can put that " + sPenis + " in my mouth.",
+								 "Just me. And I'm SURE you wouldn't be interested in fucking a pornstar.",
+								 "But I'm much more fun than that little whore.",
+								 "She'll watch us on the webcam.",
+								 "Now do you want to " + self.VSex.Present() + " my " + self.FemBodyParts.Ass.Anus.ShortDescription() + " or not?"
+							   ]).GetWord() + "\""
+		
+
+		return sTweet
 		
  # class Generator73(Generator):
 	# ID = 73
