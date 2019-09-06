@@ -831,7 +831,9 @@ class Generator26(Generator):
 		return sTweet
 		
 class Generator27(Generator):
-	# 'You're such a slut, Veronica,' he said. 'I *am* a slut,' she said. 'I'm one for *you*, James. I'm a slut for your hard cock in my mouth.' 'You're also a slut because you let me fuck your backdoor in the bathroom at Starbucks,' he said.
+	# 'You're such a slut, Veronica,' he said. 'I *am* a slut,' she said. 'I'm one for *you*, James. 
+	# I'm a slut for your hard cock in my mouth.' 'You're also a slut because you let me fuck your 
+	# backdoor in the bathroom at Starbucks,' he said.
 	ID = 27
 	Priority = 1
 	
@@ -958,7 +960,10 @@ class Generator31(Generator):
 		return sTweet
 		
 class Generator32(Generator):
-	#I've got a present for you, she said. What's that? he asked her. She [bent over and pulled her panties aside, revealing her little starfish.] [lifted up her short skirt revealing that she wasn't wearing any panties. He could clearly see her smooth pussy lips and her inner folds.] [pulled her titties out of her blouse. They were large and gleaming with oil.]
+	#I've got a present for you, she said. What's that? he asked her. She [bent over and pulled her panties aside, 
+	#revealing her little starfish.] [lifted up her short skirt revealing that she wasn't wearing any panties. He 
+	#could clearly see her smooth pussy lips and her inner folds.] [pulled her titties out of her blouse. They 
+	#were large and gleaming with oil.]
 	ID = 32
 	Priority = 1
 	
@@ -1307,7 +1312,10 @@ class Generator40(Generator):
 		return sTweet
 		
 class Generator41(Generator):
-	#Adam walked into the bedroom and froze. His wife and another man were rolling on the bed and their clothes were strewn about the room.\n\n{sex act}\n\n{'My god, Marsha', he said angrily. 'You and the MaleFWB??' / 'Oh Marsha,' he sighed, 'This is revenge for when I titty-fucked my FemaleFWB, isn't it?' / }
+	#Adam walked into the bedroom and froze. His wife and another man were rolling on the bed and their 
+	#clothes were strewn about the room.\n\n{sex act}\n\n{'My god, Marsha', he said angrily. 'You and 
+	#the MaleFWB??' / 'Oh Marsha,' he sighed, 'This is revenge for when I titty-fucked my 
+	#FemaleFWB, isn't it?' / }
 	ID = 41
 	Priority = 1
 	Type = exutil.GeneratorType.Test
@@ -2337,7 +2345,17 @@ class Generator62(Generator):
 		
 		
 		return sTweet
-		
+
+# "Oh Quinn!" "Oh Kaitlyn!" The two young lovers writhed naked on the satin covers, their limbs entwined.
+
+# "Your plump backside ignites my loins with ardour!" breathed Quinn.
+
+# "I want you to fill my quim," breathed Kaitlyn. She whimpered as he entered her with his erect rod. Before 
+# long, Quinn reached his zenith and pumped his salty seed into her gushing womb.
+
+# "Kaitlyn," he panted, "I want to be with you always!"
+
+# "But you know we cannot," she said, "You're shorter than I am!"
 class Generator63(Generator):
 	ID = 63
 	Priority = 6
@@ -2434,21 +2452,8 @@ class Generator63(Generator):
 			else:
 				sTweet += ", parting her tender flesh-curtains"
 		sTweet += ". "
-		
-		# #Line 5
-		# sBodies = WordList(['forms','flesh','bodies']).GetWord()
-		# sTweet += WordList(["Stars burst in their eyes","Desire racked their " + sBodies,"Their " + sBodies + " burned with desire","Waves of pleasure racked their " + sBodies]).GetWord() + " "
-		# sTweet += "as " + WordList(["they were joined as one","they consummated their love","they stoked the fires of their love"]).GetWord() 
-		
-		# if iRand == 4:
-			# #do bonus line
-			# if CoinFlip():
-				# sTweet += " beneath the silver moon"
-			# else:
-				# sTweet += " beneath the cerulean sky"
-		# sTweet += ". "
-		
-		#Line 6
+			
+		#Line 5
 		sTweet += "Before long, " + sHisName + " reached his " + WordList(['climax','climax','zenith']).GetWord() + " and "
 		if CoinFlip():
 			sTweet += "his " + sSemenAdj + " " + sSemen + " " + WordList(['burst','erupted']).GetWord() + " "
@@ -2458,12 +2463,12 @@ class Generator63(Generator):
 			sTweet += "into her " + sWombAdj + " womb"
 		sTweet += ".\n\n"
 		
-		#Line 7
+		#Line 6
 		sTweet += "\"" + sHerName + ",\" he panted, "
 		sTweet += "\"I want to be with you " + WordList(['forever','always','for eternity']).GetWord() + "!\""
 		sTweet += "\n\n"
 		
-		#Line 8
+		#Line 7
 		sTweet += "\"But you know we cannot,\" she said, \""
 		if CoinFlip():
 			sTweet += "You're " + WordList(["my step-brother","my cousin","my step-father","a priest","shorter than I am","shorter than I am","my sister's husband","a commoner","a bastard","a dwarf","an orc","just a commoner","just a peasant"]).GetWord()
@@ -2604,7 +2609,7 @@ class Generator64(Generator):
 			sTweet += "\"" + WordList(["Are... are you like","Do you have parts like",
 									   "Are you equipped like","Are you hung as is"]).GetWord() + " "
 			sTweet += WordList(['a human man','a mortal man','a human male','a man']).GetWord() + " "
-			sTweet += "down there?\""
+			sTweet += "down there?\" "
 		else:
 			sPenises = WordList(['cocks','dicks','dongs','pricks','schlongs']).GetWord()
 			sTweet += "\"Is it true what they say about " + sCreatureSingle + " " + sPenises + "?\" "
@@ -2764,9 +2769,9 @@ class Generator64(Generator):
 								"May I please suck it?","Gag me with it!",
 								"Don't mind if I do!",
 								"Put that " + sCreatureSingle + " " + Penis.ShortDescription() + " in my mouth!",
-								"I give " + WordList(['excellent','amazing','incredible']).GetWord() + " head,"
+								"I give " + WordList(['excellent','amazing','incredible']).GetWord() + " head,",
 								"Us human girls give excellent head!",
-								"Us human females are really good at sucking " + Penis.ShortDescription() + ","
+								"Us human females are really good at sucking " + Penis.ShortDescription() + ",",
 								"Ever had your " + Penis.ShortDescription() + " sucked by a human?",
 								"I've always wanted a taste of " + sCreatureSingle + " " + Penis.ShortDescription() + "!"
 							   ]).GetWord()
@@ -3220,15 +3225,43 @@ class Generator70(Generator):
  # never done with any other guy. 
  
  # I want you to fuck my heinie hole."
- # class Generator71(Generator):
-	# ID = 71
-	# Priority = 1
+class Generator71(Generator):
+	ID = 71
+	Priority = 1
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		sHerName = self.FemaleName.FirstName()
+		sHisName = self.MaleName.FirstName()
+		
+		sVerb = WordList(['desecrate','defile','do','do','drill','fuck','fuck','fuck','fuck',
+						  'impale','jackhammer','nail','pound','pound','pound','ravish','ream','ream',
+						  'stuff','stuff','violate','deflower','deflower','cum in','cream-pie','gape',
+						  'ass-fuck','rape','fuck the shit out of','butt-fuck']).GetWord()
+						  
+		sAss = WordList(self.FemBodyParts.Ass.Anus.NounList + ['ass','heinie','rump','tushie','butt']).GetWord(NotList = [sVerb,'knot','bowels'])
+		
+		#print("\nsVerb = " + sVerb)
+		#print("\nsAss = " + str(sAss))
+		
+		sTweet += "\"" + sHisName + ",\" said " + sHerName + " " + WordList(['earnestly','sincerely','ardently']).GetWord() + " "
+		sTweet += "as they " + WordList(['shared a milkshake','sat beneath the starry sky','walked along the river',
+										  'walked along the beach','snuggled in front of the fire',
+										  'snuggled in front of the television','walked through the park holding hands',
+										  'shared a cup of hot choolate','lay on the bed looking up at the ceiling',
+										  'sat holding hands','walked hand-in-hand through the park',
+										  'held hands at the beach','kissed on the front step'
+										]).GetWord() + ", "
+		sTweet += "\"We've been " + WordList(['going together','dating','seeing each other','together','going steady']).GetWord() + " "
+		sTweet += "for almost " + WordList(["three days","six weeks","four months","six months","eight months","nine months","a year","two years"]).GetWord() + " now. "
+		sTweet += "You're not like any guy I've ever " + WordList(['dated','met']).GetWord() + ". "
+		sTweet += "I think I'm finally ready.\"\n\n"
+		sTweet += "\"Ready for what?\" asked " + sHisName + ".\n\n"
+		sTweet += "\"I want you to " + sVerb + " my " + sAss + ".\""
 
-		# return sTweet
+		return sTweet
 
 # Dave walked into the {apartment/house}. "Janet, I'm home!" he announced. 
 #
@@ -3308,7 +3341,11 @@ class Generator72(Generator):
 		
 
 		return sTweet
-		
+
+ # "I forbid you to see Chad any more," raged Candy's father.
+ #
+ # "I'm eighteen now, you can't stop me!" retorted Candy. "I'm going to let Chad anally deflower me in public, and
+ # that's final!"
  # class Generator73(Generator):
 	# ID = 73
 	# Priority = 1
@@ -3331,6 +3368,66 @@ class Generator72(Generator):
 		
  # class Generator75(Generator):
 	# ID = 75
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator76(Generator):
+	# ID = 76
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator77(Generator):
+	# ID = 77
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator79(Generator):
+	# ID = 79
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator80(Generator):
+	# ID = 80
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator81(Generator):
+	# ID = 81
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator82(Generator):
+	# ID = 82
 	# Priority = 1
 	
 	# def GenerateTweet(self):
