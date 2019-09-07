@@ -187,7 +187,7 @@ class Generator2(Generator):
 	# Jordan!' she screamed. 'Pound me like your wife!'	
 		
 	ID = 2
-	Priority = 1
+	Priority = 3
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -236,7 +236,7 @@ class Generator4(Generator):
 class Generator5(Generator):
 	# 'Oh, Leon,' she moaned, 'I'm so thirsty for your glossy spunk!' 'But Ophelia,' he said, 'You're my mother-in-law!'
 	ID = 5
-	Priority = 1
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -266,7 +266,7 @@ class Generator7(Generator):
 	# if he saw that I was letting my pool boy pump into my crack?'	
 	
 	ID = 7
-	Priority = 1
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -399,8 +399,8 @@ class Generator11(Generator):
 		return sTweet
 		
 class Generator12(Generator):
-	# Ginger's robe fell to the floor, and his heart skipped a beat. She had a shapely form with ripe boobs, wide hips, and a 
-	# well-used hole. "I can't believe you're my sister," he said.	
+	# Ginger's robe fell to the floor, and his heart skipped a beat. She had a shapely form with ripe boobs, 
+	# wide hips, and a well-used hole. "I can't believe you're my sister," he said.	
 	ID = 12
 	Priority = 1
 	
@@ -513,7 +513,7 @@ class Generator16(Generator):
 	# hole. 'My god,' whispered Grant, stroking his meat sword, 'I can't believe I'm watching my wife fuck an opthamologist!'"
 		
 	ID = 16
-	Priority = 1
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -566,7 +566,9 @@ class Generator18(Generator):
 		return sTweet
 		
 class Generator19(Generator):
-	#Unaware Roxanne was watching him, Nicolas pulled his tshirt and jeans off, revealing his broad shoulders, powerful chest, and sinewy thighs. But what made Roxanne's mouth water was the massive, throbbing tool between his legs.	
+	#Unaware Roxanne was watching him, Nicolas pulled his tshirt and jeans off, revealing his broad 
+	#shoulders, powerful chest, and sinewy thighs. But what made Roxanne's mouth water was the massive, 
+	#throbbing tool between his legs.	
 	ID = 19
 	Priority = 1
 	
@@ -587,7 +589,9 @@ class Generator19(Generator):
 		return sTweet
 		
 class Generator20(Generator):
-	#Xavier approached the bed, completely naked. A thrill ran through Constance at the sight of his broad shoulders, powerful chest, sinewy thighs, muscular buttocks and swollen man meat. She could hardly believe that in a few minutes this man would be stuffing her virgin pussy.
+	#Xavier approached the bed, completely naked. A thrill ran through Constance at the sight of his broad  
+	#shoulders, powerful chest, sinewy thighs, muscular buttocks and swollen man meat. She could hardly 
+	#believe that in a few minutes this man would be stuffing her virgin pussy.
 	ID = 20
 	Priority = 1
 	
@@ -631,7 +635,7 @@ class Generator22(Generator):
 	# John's robe fell to the floor, and Ginger's heart skipped a beat. He had a compact athletic physic with wide shoulders, brawny arms, tight buns, and a 
 	# lengthy penis. "I can't believe you're my brother-in-law," she said.	
 	ID = 22
-	Priority = 1
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1038,7 +1042,7 @@ class Generator35(Generator):
 	#'Oh baby,' she said. 'I love you so much. I just want to be with you and make you happy. Tell me what I can do,' she said, giving him a peck on the lips.
 	#'I want {to fuck your big titties / to put my finger in your butthole / to put my balls in your mouth / you to eat out my starfish },' he said.
 	ID = 35
-	Priority = 1
+	Priority = 3
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1269,7 +1273,7 @@ class Generator39(Generator):
 		
 class Generator40(Generator):
 	ID = 40
-	Priority = 1
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1317,7 +1321,7 @@ class Generator41(Generator):
 	#the MaleFWB??' / 'Oh Marsha,' he sighed, 'This is revenge for when I titty-fucked my 
 	#FemaleFWB, isn't it?' / }
 	ID = 41
-	Priority = 1
+	Priority = 3
 	Type = exutil.GeneratorType.Test
 	
 	def GenerateTweet(self):
@@ -1436,7 +1440,7 @@ class Generator43(Generator):
 		
 class Generator44(Generator):
 	ID = 44
-	Priority = 1
+	Priority = 4
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1452,7 +1456,7 @@ class Generator44(Generator):
 		sTweet = "'You like my outfit?' " + self.FemaleName.FirstName() + " asked.\n\n"
 		sTweet += "'It's stunning, babe,' " + self.MaleName.FirstName() + " said.\n\n"
 		
-		if CoinFlip():
+		if CoinFlip() and CoinFlip():
 		#do breasts
 			if CoinFlip():
 				sTweet += "He slid one strap of her " + DressAdj + " " + DressColor + " dress off her shoulder. Then he boldly pulled out one of her " + Breasts.RandomDescription() + ". He squeezed it " + WordList(["gently", "tenderly", "delicately", "softly", "lovingly"]).GetWord() 
@@ -1473,7 +1477,28 @@ class Generator44(Generator):
 				sTweet += Vagina.OuterLabia.RandomDescription()
 			sTweet += ".\n\n"
 			
-			sTweet += WordList(["'Now remember,' she said, 'Just the tip.'", "'And what do you think of my " + Ass.Anus.ShortDescription() + "?' she asked.", "'Pick a hole, baby,' she said.", "'Remember, no butt stuff', she said.", "'The trick is not to wear anything underneath,' she said.", "'I even shaved my " + Vagina.ShortDescription() + " for you,' she said.", "'And what do you think of my " + Vagina.ShortDescription() + "?', she asked."]).GetWord()
+			sTweet += WordList(["'Now remember,' she said, 'Just the tip.'", 
+								"'Put your finger in my " + Ass.Anus.ShortDescription() + ",' she said.",
+								"'Do you want to do me in my " + Vagina.ShortDescription() + " or my " + Ass.Anus.ShortDescription() + "?' she asked.",
+								"'Pick a hole, daddy,' she said.", 
+								"'My " + Vagina.ShortDescription() + " is yours, daddy,' she said.",
+								"'My " + Ass.Anus.ShortDescription() + " is yours, daddy,' she said.",
+								"'Remember, no butt stuff', she said.", 
+								"'Take me hard, daddy,' she said.",
+								"'I want you to pop my anal cherry, baby,' she said.",
+								"'Come here and eat my ass,' she said.",
+								"'Use me like a whore,' she whispered.",
+								"'Spank me hard, I've been very naughty, daddy!' she said.",
+								"'I like it rough, daddy,' she purred.",
+								"'Lube me up, daddy,' she purred.",
+								"'Cum fill me with your " + self.Semen.RandomDescription() + ",' she moaned.",
+								"'Come lube up my " + Ass.Anus.ShortDescription() + ",' she said.",
+								"'All my holes are yours, daddy,' she purred.",
+								"'Now I want you to stuff me with that big " + self.MaleBodyParts.Penis.ShortDescription() + ",' she said.", 
+								"'The trick is not to wear anything underneath,' she said.", 
+								"'I need you to bang me like a screen door, baby,' she said.",
+								"'I even shaved my " + Vagina.ShortDescription() + " for you, daddy,' she said."
+							  ]).GetWord()
 			
 		
 		return sTweet
@@ -1542,7 +1567,7 @@ class Generator47(Generator):
 	#
 	#'I've let dozens of men fuck my pussy, babe,' said Sable, 'But you're the only man who will ever plough my sphincter.'
 	ID = 47
-	Priority = 1
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1608,7 +1633,7 @@ class Generator49(Generator):
 	#'Now remember,' Veronica said, 'when you meet my parents, you can't tell them that you're a dishwasher at Applebee's 
 	#and that we met when you titty-fucked me behind a club. You're a successful chiropractor and your name is Reginald.'
 	ID = 49
-	Priority = 1
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1745,7 +1770,7 @@ class Generator51(Generator):
 		
 class Generator52(Generator):
 	ID = 52
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1834,7 +1859,7 @@ class Generator52(Generator):
 		
 class Generator53(Generator):
 	ID = 53
-	Priority = 1
+	Priority = 2
 	Type = exutil.GeneratorType.Test
 	
 	def GenerateTweet(self):
@@ -1860,7 +1885,7 @@ class Generator53(Generator):
 # cream, right here, right now, at the gym!'
 class Generator54(Generator):
 	ID = 54
-	Priority = 1
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1884,7 +1909,7 @@ class Generator55(Generator):
 	# 'No,' thought Nora, 'I can never forgive Brad for sleeping with my twin sister. I have to cut him out of my life 
 	# once and for all. No more will I stare at his picture. No more will I think about his lengthy, virile beef snake. 
 	ID = 55
-	Priority = 1
+	Priority = 4
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1894,42 +1919,113 @@ class Generator55(Generator):
 		sHerName = self.FemaleName.FirstName()
 		VDrip = verbs.VerbDrip()
 		
-		sTweet = "'No,', thought " + sHerName + ". 'I can never forgive " + sHisName + " for "
-		sTweet += WordList(["sleeping with my twin sister", "having anal sex with my step-mom", "rimming my best friend", "drilling the entire cheerleading squad",
-			"spooning naked with my sister-in-law", "stepping on my cat", "refusing to go down on me", "drop-kicking my Pomeranian",
-			"playing Fantasy Football on our anniversary", "fingering his secretary", "what happened during the threesome", "fingering his step-daughter's butt-hole",
-			"showing up drunk to my niece's Bat Mitzvah", "asking me to get implants", "giving me a wet willy", "mistaking my twin sister for me in the shower",
-			"getting drunk at my sister's wedding", "getting that tattoo", "giving me that awful tattoo", "telling my ex I was into water sports",
-			"giving the pool boy a blowjob", "losing the wedding ring", "calling my mother a fat whore", "titty-fucking my best friend Sarah",
-			"sexting my sister", "showing everyone those pictures", "letting my labradoodle escape", "refusing to marry me",
-			"suggesting I get breast enhancement surgery", "ruining my favorite dress with semen stains", "puking in my mom's spaghetti",
-			"shaving his chest hair", "wearing my lingerie", "farting in my face while we 69'd", "showering with our neighbor",
-			"investing in cryptocurrency", "what he did in the sauna with Raoul", "refusing to eat my ass", "getting cum in my eye at church",
-			"not being able to find my clitoris", "what he wrote in my yearbook", "ogling my step-mom's tits", "using my dildo without telling me",
-			"giving me chlamydia", "calling me 'Karen' in bed", "shaving my maltipoo", "dying my pubes purple", "sharing my mom's nude selfies online",
-			"eating out that model", "calling them my 'piss-flaps'", "calling my mother 'a raging thunder cunt'", "putting it in my pooper"]).GetWord() + ". "
+		Fantasies = WordList(["rugged jaw", "broad chest", "brawny shoulders", "full lips", "silken blonde hair", 
+							  "chiseled abs", "tanned skin", "tall, handsome build", "soulful blue eyes"])
+		sFantasy1 = Fantasies.GetWord()
+		sFantasy2 = Fantasies.GetWord(NotList = [sFantasy1])
+		
+		sTweet = "'No,' thought " + sHerName + ", 'I can never forgive " + sHisName + " for "
+		sTweet += WordList(["fucking my twin sister", 
+							"having anal sex with my step-mom", 
+							"rimming my best friend", 
+							"drilling the entire cheerleading squad",
+							"suggesting we have a threesome with my sister",
+							"spooning naked with my sister", 
+							"stepping on my cat", 
+							"refusing to go down on me", 
+							"drop-kicking my Pomeranian",
+							"playing Fantasy Football on our anniversary", 
+							"finger-banging his secretary", 
+							"what happened during the threesome", 
+							"what happened during the orgy",
+							"fingering his step-daughter's butt-hole",
+							"showing up drunk to the Bat Mitzvah", 
+							"asking me to get implants", 
+							"giving me a wet willy", 
+							"mistaking my twin sister for me in the shower",
+							"getting that full-body tattoo", 
+							"giving me that awful tattoo", 
+							"telling my ex I was into water sports",
+							"giving the pool boy a blowjob", 
+							"getting an erection during church",
+							"calling my mother a fat whore", 
+							"titty-fucking my best friend",
+							"sexting my sister", 
+							"showing everyone those pictures", 
+							"letting my labradoodle escape", 
+							"refusing to marry me",
+							"suggesting I get breast implants", 
+							"ruining my favorite dress with semen stains", 
+							"puking in my mom's spaghetti",
+							"shaving his chest hair", 
+							"shaving his pubes",
+							"putting it in the wrong hole",
+							"wearing my lingerie", 
+							"farting in my face during sex", 
+							"using my favorite panties as a cum rag",
+							"showering with the neighbor",
+							"investing our savings in Bitcoin", 
+							"what he did in the sauna with Raoul", 
+							"forgetting our three-month anniversary",
+							"refusing to eat my ass", 
+							"getting cum in my eye at church",
+							"not being able to find my clitoris", 
+							"what he wrote in my yearbook", 
+							"staring at my mom's tits", 
+							"using my vibrator without telling me",
+							"giving me chlamydia", 
+							"calling me 'Karen' in bed", 
+							"buying me a Nickleback album for my birthday",
+							"shaving my maltipoo", 
+							"dying my pubes purple", 
+							"unfollowing me on Facebook",
+							"sharing my mom's nude selfies online",
+							"giving the Uber driver a blowjob",
+							"eating out that bikini model", 
+							"calling them my 'piss-flaps'", 
+							"calling them my 'meat balloons'",
+							"calling my mother 'a raging thunder-cunt'", 
+							"putting it in my pooper"]).GetWord() + ". "
 		sTweet += WordList(["I have to cut him out of my life once and for all.", 
-			"This time we are really through.",
-			"This time he has gone too far. We are finished.",
-			"I never want to see him again, ever.",
-			"I have to let him go, once and for all."]).GetWord() + " "
-		sTweet += "No more will I stare at his picture. No more will I think about his "
-		sTweet += WordList(["rugged jaw", "broad chest", "brawny shoulders", "full lips", "silken blonde hair", "chiseled abs"]).GetWord() + " or his "
+							"This time we are really through.",
+							"This time he has gone too far. We are finished.",
+							"I never want to see him again, ever.",
+							"I have to let him go, once and for all."]).GetWord() + " "
+		sTweet += "No more will I stare at his picture. I must forget about his "
+		sTweet += sFantasy1 + ", " + sFantasy2 + ", "
 		
 		if CoinFlip():
 			#penis
-			sTweet += self.MaleBodyParts.Penis.FloweryDescription(bAddLen = True)
+			sTweet += "and his " + self.MaleBodyParts.Penis.FloweryDescription(bAddLen = True)
 			if CoinFlip():
-				sTweet += " and the way " + self.Semen.RandomDescription() + " " + VDrip.Past() + " from the " + self.MaleBodyParts.Penis.Head.FloweryDescription() 
+				sTweet += " and the way " + self.Semen.RandomDescription() + " " + VDrip.Past() + " from its " + self.MaleBodyParts.Penis.Head.FloweryDescription() 
+		elif CoinFlip():
+			#testicles
+			sTweet += "and his " + self.MaleBodyParts.Penis.FloweryDescription(bAddLen = True) + " and his "
+			sTweet += self.MaleBodyParts.Penis.Testicles.FloweryDescription()
+		elif CoinFlip():
+			#ass
+			sTweet += Fantasies.GetWord(NotList = [sFantasy1,sFantasy2]) + ", and his " + self.MaleBodyParts.Ass.FloweryDescription()
 		else:
-			if CoinFlip():
-				#ass
-				sTweet += self.MaleBodyParts.Ass.FloweryDescription()
-			else:
-				#testicles
-				sTweet += self.MaleBodyParts.Penis.Testicles.FloweryDescription()
+			#sexing 
+			sTweet += self.MaleBodyParts.Ass.FloweryDescription() + ", "
+			sTweet += "and the way he " + WordList(["fucked me on the kitchen table",
+												   "bent me over the billiard table and fucked me",
+												   "fucked me on top of a grand piano",
+												   "pulled my hair when he did me doggy-style",
+												   "fucked me on my parents waterbed",
+												   "would spurt his load all over my tits",
+												   "would make love to me while we listened to Nickleback",
+												   "would nibble my sensitive nipples",
+												   "looked when he fucked me that one night at the gym",
+												   "went down on me in the back of an Uber",
+												   "looked having sex with that guy from Craigslist",
+												   "fingered me at last summer's pool party",
+												   "pushed me up against the wall and fingered my pussy",
+												   "made love to me in the janitor's closet in high school"]).GetWord()
+
 			
-		sTweet += "."
+		sTweet += ".\""
 		
 		return sTweet
 		
@@ -2109,7 +2205,7 @@ class Generator58(Generator):
 # let a burly Italian construction worker fist my anus!"
 class Generator59(Generator):
 	ID = 59
-	Priority = 1
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -2141,7 +2237,7 @@ class Generator59(Generator):
 # "'Tis the legendary anal hook of Devaxatar!"
 class Generator60(Generator):
 	ID = 60
-	Priority = 1
+	Priority = 3
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -2218,7 +2314,7 @@ class Generator61(Generator):
 # buttocks with every thrust.
 # 'My god, Desmond', he shouted angrily. 'You and your volleyball coach??']
 	ID = 61
-	Priority = 1
+	Priority = 3
 	Type = exutil.GeneratorType.Test
 	
 	def GenerateTweet(self):
@@ -2358,7 +2454,7 @@ class Generator62(Generator):
 # "But you know we cannot," she said, "You're shorter than I am!"
 class Generator63(Generator):
 	ID = 63
-	Priority = 6
+	Priority = 4
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -2483,7 +2579,7 @@ class Generator63(Generator):
 		
 class Generator64(Generator):
 	ID = 64
-	Priority = 5
+	Priority = 3
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -2826,7 +2922,7 @@ class Generator64(Generator):
 # "Ah, here's your deep-dish pizza with banana peppers and double meat," he stammered. 
 class Generator66(Generator):
 	ID = 66
-	Priority = 1
+	Priority = 4
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -2951,7 +3047,7 @@ class Generator66(Generator):
 # in her imagination. "Ohh, Mr. Jefferson!" she moaned. "You're the best Algebra teacher ever!"
 class Generator67(Generator):
 	ID = 67
-	Priority = 1
+	Priority = 4
 
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3010,7 +3106,7 @@ class Generator67(Generator):
 # her ass.
 class Generator68(Generator):
 	ID = 68
-	Priority = 2
+	Priority = 4
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3058,7 +3154,7 @@ class Generator68(Generator):
 # sweet wet cunt!"		
 class Generator69(Generator):
 	ID = 69
-	Priority = 2
+	Priority = 4
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3121,7 +3217,7 @@ class Generator69(Generator):
 # Sarah sat bolt upright in the tangled sheets of her bed. "Fuck!" she said. "That was only a dream??"		
 class Generator70(Generator):
 	ID = 70
-	Priority = 1
+	Priority = 4
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3227,7 +3323,7 @@ class Generator70(Generator):
  # I want you to fuck my heinie hole."
 class Generator71(Generator):
 	ID = 71
-	Priority = 1
+	Priority = 3
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()

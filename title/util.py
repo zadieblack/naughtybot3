@@ -288,22 +288,25 @@ def GetNextFavTitleFromFile(sFileName = ""):
 	Titles = [""]
 	iTitleCount = 0
 		
-	with open(sFileName, 'r') as infile:
-		for line in infile:
-			if line.strip() != FAVTITLE_DIVIDER:
-				Titles[iTitleCount] += line.replace('&amp;','&')
-			else:
-				Titles.append("")
-				iTitleCount += 1
-				
-	print("iTitleCount = " + str(iTitleCount))
+	try:
+		with open(sFileName, 'r') as infile:
+			for line in infile:
+				if line.strip() != FAVTITLE_DIVIDER:
+					Titles[iTitleCount] += line.replace('&amp;','&')
+				else:
+					Titles.append("")
+					iTitleCount += 1
+		
+		with open(sFileName, 'w') as outfile:	
+			for x in range(1, len(Titles)):
+				outfile.write(Titles[x] + FAVTITLE_DIVIDER + "\n")
+		
+		sFavTitle = Titles[0].strip()
+		
+	except OSError as err:
+		print("**File IO ERROR: " + str(err) + "**\n")
+		print("File Output:\n\n" + sFileOutput)
 	
-	with open(sFileName, 'w') as outfile:	
-		for x in range(1, len(Titles)):
-			outfile.write(Titles[x] + FAVTITLE_DIVIDER + "\n")
-	
-	sFavTitle = Titles[0].strip()
-	print("Saved fav tweet is [" + sFavTitle + "]")
 	
 	return sFavTitle.strip()
 				
