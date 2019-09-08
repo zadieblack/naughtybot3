@@ -3580,7 +3580,7 @@ class Generator75(Generator):
 							"calling your mother 'a raging thunder-cunt'"])
 		
 		SceneSelect = SceneSelector()
-		Scene1 = SceneSelect.GetScene(Tags = {exutil.TAG_DONE_TO_HER}, NotTags = {exutil.TAG_CLIMAX},sHisName = sHisName, sHerName = sHerName)
+		Scene1 = SceneSelect.GetScene(Tags = {exutil.TAG_DONE_TO_HER}, NotTags = {exutil.TAG_CLIMAX}, sHisName = sHisName, sHerName = sHerName)
 		#Scene1 = SceneSelect.GetScene(Tags = {exutil.TAG_DONE_TO_HER}, NotTags = {exutil.TAG_CLIMAX}, sHisName = sHisName, sHerName = sHerName, Location = Location)		
 		
 		sTweet = "Their makeup sex was passionate and intense. "
