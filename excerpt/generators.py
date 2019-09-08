@@ -1917,6 +1917,9 @@ class Generator55(Generator):
 		
 		sHisName = self.MaleName.FirstName()
 		sHerName = self.FemaleName.FirstName()
+		
+		FuckUp = misc.GuyFuckups()
+		
 		VDrip = verbs.VerbDrip()
 		
 		Fantasies = WordList(["rugged jaw", "broad chest", "brawny shoulders", "full lips", "silken blonde hair", 
@@ -3452,8 +3455,8 @@ class Generator72(Generator):
 
 		# return sTweet
 		
- # "Hush, my {love/sweet}," said Ronson. "No one can hear us. You know that the {King/Emperor/Duke} has forbidden 
- # anal sex." With that he carefully eased his tumescent meat-snake into her tight pooper.
+# "Hush, my {love/sweet}," said Ronson. "No one can hear us. You know that the {King/Emperor/Duke} has forbidden 
+# anal sex." With that he carefully eased his tumescent meat-snake into her tight pooper.
 class Generator74(Generator):
 	ID = 74
 	Priority = 3
@@ -3516,15 +3519,76 @@ class Generator74(Generator):
 
 		return sTweet
 		
- # class Generator75(Generator):
-	# ID = 75
-	# Priority = 1
-	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+class Generator75(Generator):
+	ID = 75
+	Priority = 1
 
-		# return sTweet
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		sHisName = self.MaleName.FirstName()
+		sHerName = self.FemaleName.FirstName()
+		
+		Moan = self.VMoan 
+		
+		Fuckup = WordList(["fucking your twin sister", 
+							"having anal sex with your step-mom", 
+							"eating your best friend's ass", 
+							"drilling the entire cheerleading squad",
+							"stepping on your cat", 
+							"drop-kicking your Pomeranian",
+							"finger-banging my secretary", 
+							"finger-banging your sister in the butt-hole",
+							"mistaking your twin sister for you in the shower",
+							"telling your ex that you liked water sports",
+							"giving the pool boy a blowjob", 
+							"getting an erection during church",
+							"calling your mother a 'fat whore'", 
+							"titty-fucking your best friend",
+							"sexting with your sister", 
+							"showing all my friends those pictures", 
+							"sending your best friend my dick pics",
+							"letting your labradoodle escape", 
+							"suggesting you get breast implants", 
+							"puking in your mom's spaghetti",
+							"putting it in your pooper without permission",
+							"wearing your lingerie", 
+							"farting in your face during sex", 
+							"using your favorite panties as a cum rag",
+							"showering with the hot next-door neighbor",
+							"investing our savings in Bitcoin", 
+							"what I did in the sauna with Raoul", 
+							"refusing to eat your ass", 
+							"getting cum in your eye at church",
+							"not being able to find your g-spot", 
+							"staring at your mom's tits", 
+							"puting your vibrator up my ass",
+							"giving you chlamydia", 
+							"tea-bagging you in your sleep",
+							"screwing your maid of honor",
+							"fucking all the bridesmaids",
+							"calling you 'Karen' in bed", 
+							"buying you a Nickleback album for your birthday",
+							"shaving your maltipoo", 
+							"dying your pubes purple", 
+							"sharing your mom's nude selfies online",
+							"telling your ex you put a shampoo bottle in your ass",
+							"giving the Uber driver a blowjob",
+							"eating out that hot bikini model", 
+							"getting a handjob from your mother",
+							"calling your mother 'a raging thunder-cunt'"])
+		
+		SceneSelect = SceneSelector()
+		Scene1 = SceneSelect.GetScene(Tags = {exutil.TAG_DONE_TO_HER}, NotTags = {exutil.TAG_CLIMAX},sHisName = sHisName, sHerName = sHerName)
+		#Scene1 = SceneSelect.GetScene(Tags = {exutil.TAG_DONE_TO_HER}, NotTags = {exutil.TAG_CLIMAX}, sHisName = sHisName, sHerName = sHerName, Location = Location)		
+		
+		sTweet = "Their makeup sex was passionate and intense. "
+		sTweet += Scene1.Scene() + "\n\n"
+		sTweet += "\"I love you so much, baby,\" he " + Moan.Past() + ", "
+		sTweet += "\"Can you ever forgive me for " + Fuckup.GetWord() + "?\""
+
+		return sTweet
 		
 # class Generator76(Generator):
 	# ID = 76
