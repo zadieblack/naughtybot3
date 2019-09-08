@@ -3452,15 +3452,69 @@ class Generator72(Generator):
 
 		# return sTweet
 		
- # class Generator74(Generator):
-	# ID = 74
-	# Priority = 1
-	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+ # "Hush, my {love/sweet}," said Ronson. "No one can hear us. You know that the {King/Emperor/Duke} has forbidden 
+ # anal sex." With that he carefully eased his tumescent meat-snake into her tight pooper.
+class Generator74(Generator):
+	ID = 74
+	Priority = 3
 
-		# return sTweet
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		sHisName = self.MaleName.FirstName()
+		sHerName = self.FemaleName.FirstName()
+		
+		sTweet = "\"" + WordList(['Hush','Quiet',]).GetWord() + " my " + WordList(['love','sweet']).GetWord() + ",\" said " + sHisName + ". "
+		sTweet += "\"We must let no one hear us. You know that the " + WordList(['King','Duke','Emperor','Sultan','God-King',
+																				 'High Council','Overlord','Queen','Empress',
+																				 'Queen Mother']).GetWord() + " "
+		sTweet += WordList(["has forbidden all","has outlawed all","has banned all"]).GetWord() + " "
+		
+		iRand = randint(1,4)
+		if iRand == 1:
+		#anal sex 
+			Dick = self.MaleBodyParts.Penis 
+			Ass = self.FemBodyParts.Ass.Anus
+			sTweet += "anal sex.\" With that he " + WordList(['carefully','gently','softly']).GetWord() + " "
+			sTweet += "eased his " + Dick.FloweryDescription() + " into her " + Ass.RandomDescription()
+		
+		elif iRand == 2:
+		#tit-fucking
+			Tits = self.FemBodyParts.Breasts 
+			Dick = self.MaleBodyParts.Penis 
+			sTweet += "titty-fucking.\" With that he began to " + WordList(['thrust','piston','jackhammer']).GetWord() + " "
+			sTweet += "his " + Dick.FloweryDescription() + " "
+			sTweet += "between her " + WordList(['large','juicy','enormous','heavy','glorious','heaving',
+												 'magnificent','generous','pendulous','plump','ripe',
+												 'succulent','voluptuous']).GetWord() + ", " 
+			sTweet += "oiled-up " + Tits.ShortDescription() 
+			
+		 
+		elif iRand == 3:
+		#oral sex 
+			Dick = self.MaleBodyParts.Penis 
+			
+			sTweet += "oral sex.\" " + sHerName + " nodded. "
+			sTweet += "Then she opened her " + WordList(['greedy mouth','full lips','candy-colored lips','red lips',
+														 'luscious lips','sensual mouth','sweet little mouth',
+														 'cherry lips','succulent lips','innocent mouth']).GetWord() + " and "
+			sTweet += "took his " + Dick.FloweryDescription() + " down her throat"
+		
+		else:
+		#fisting 
+			sTweet += "fisting.\" With that he began to " + WordList(['carefully','gently','slowly']).GetWord() + " "
+			sTweet += "insert his four fingers into her " 
+			if CoinFlip():
+				Asshole = self.FemBodyParts.Ass.Anus 
+				sTweet += Asshole.RandomDescription() 
+			else:
+				Vag = self.FemBodyParts.Vagina
+				sTweet += Vag.RandomDescription()
+		
+		sTweet += ". "
+
+		return sTweet
 		
  # class Generator75(Generator):
 	# ID = 75

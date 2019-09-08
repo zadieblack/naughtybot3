@@ -213,6 +213,7 @@ class Lips(BodyParts):
 		self.NounList = ['lips']
 			
 		self.AdjList = ['candy-colored',
+			'red',
 			'collagen-injected',
 			'full',
 			'inviting',
@@ -220,7 +221,6 @@ class Lips(BodyParts):
 			'luscious',
 			'red',
 			'sensual',
-			'smooth',
 			'sweet']
 		
 		self.DefaultNoun = "lips"

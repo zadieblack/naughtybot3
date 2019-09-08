@@ -305,7 +305,6 @@ def GetNextFavTitleFromFile(sFileName = ""):
 		
 	except OSError as err:
 		print("**File IO ERROR: " + str(err) + "**\n")
-		print("File Output:\n\n" + sFileOutput)
 	
 	
 	return sFavTitle.strip()

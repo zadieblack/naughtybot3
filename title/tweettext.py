@@ -1282,9 +1282,9 @@ def GetImgTweetText(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = None, Tw
 	
 	if not gen is None:
 		sText = gen.GenerateTweet()
-		print("Tweet text gen # " + str(gen.ID))
+		#print("Tweet text gen # " + str(gen.ID))
 	else:
-		print("Generator not found.")
+		#print("Generator not found.")
 		sText = ""
 
 	# bots using hashtags can lead to shadowbans. so we have to use sparingly.
