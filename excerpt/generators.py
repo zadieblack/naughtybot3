@@ -2909,15 +2909,77 @@ class Generator64(Generator):
 # "Oh Vicenzo!" she gasped as he nibbled gently on her lush, firm globes. "I must tell you something!"
 # "What is it, my sweet?" he asked, squeezing her ripe buttocks.
 # "I'm secretly married - to your father!"
-# class Generator65(Generator):
-	# ID = 65
-	# Priority = 1
+class Generator65(Generator):
+	ID = 65
+	Priority = 1
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		sHisName = self.MaleName.FirstName()
+		sHerName = self.FemaleName.FirstName()
+		
+		Location = locations.LocationSelector().Location()
+		Scene = SceneSelector().GetScene(sHisName = sHisName, sHerName = sHerName, Tags = {exutil.TAG_DONE_TO_HER}, NotTags = {exutil.TAG_CLIMAX,exutil.TAG_PEN}, Location = Location)
+		sScene1 = Scene.SceneShortDesc3P
+		
+		sGerund = self.VForeplay.Gerund()
+		sPornoType = WordList(['ass-to-ass','ass-to-mouth','anal gape','public humiliation','gang-bang','interracial gang-bang',
+							   'furry','furry gang-bang','interracial anal','double anal penetration']).GetWord()
+		
+		BodyParts = self.FemBodyParts
+		SelectedPart = WordList([BodyParts.Breasts,BodyParts.Breasts.Nipples,BodyParts.Vagina,BodyParts.Vagina.OuterLabia,
+							     BodyParts.Vagina.InnerLabia,BodyParts.Ass,BodyParts.Ass.Anus,BodyParts.Thighs,
+								 BodyParts.Vagina.InnerVag,BodyParts.Vagina.Clitoris]).GetWord()
 
-		# return sTweet
+		sMaleRelation = WordList(['father','son','brother','best friend','boss']).GetWord()
+		sFemaleRelation = WordList(['mother','step-mother','sister','step-sister','step-daughter']).GetWord()
+		sSecret = WordList(["I'm secretly married - to your " + sMaleRelation, 
+							"I'm pregnant - with your " + sMaleRelation + "'s baby",
+							"I had a threesome - with your " + sMaleRelation + " and a hooker",
+							"I let your " + sMaleRelation + " ride me bareback - and now I'm pregnant",
+							"I slept with your " + sMaleRelation + " - and he gave me chlamydia",
+							"Last night your " + sFemaleRelation + " went down on me - and I think I might be a lesbian",
+							"Last night I ate your " + sFemaleRelation + "'s pussy - and she came on my face",
+							"Last night I went down on your " + sFemaleRelation + " - and now we're getting married",
+							"I sucked your " + sMaleRelation + "'s dick - " + Location.NamePrep,
+							"I fucked your " + sMaleRelation + " - " + Location.NamePrep,
+							"I went down on a woman " + Location.NamePrep + " - and it was your " + sFemaleRelation,
+							"I gave a blowjob to a guy " + Location.NamePrep + " - and it was your " + sMaleRelation,
+							"Your " + sMaleRelation + " has been inside my ass" ,
+							"I let men pee in my mouth - for money",
+							"I'm not " + sHerName + " - I'm her twin sister",
+							"After last night's game - I let the entire " + WordList(['football team','hockey team','basketball team','bowling team','baseball team']).GetWord() + " ride me bareback",
+							"I'm being black-mailed by your " + sMaleRelation + " - for anal sex",
+							"The DNA test came back - and it says that I'm your " + WordList(['mother','sister','first cousin','daughter']).GetWord(),
+							"Someone leaked a sex tape of me - giving a blowjob to your " + sMaleRelation,
+							"Someone leaked a sex tape of me - sixty-nining your " + sFemaleRelation,
+							"I lied about being a virgin - I'm having sex with your " + sMaleRelation,
+							"I'm not a virgin anymore - I fucked your " + sMaleRelation + " " + Location.NamePrep,
+							"I let your " + sMaleRelation + " do my " + WordList(['bunghole','cornhole','dirt-pipe','fart blaster','heinie hole','poop-chute','poop-trap','pooper']).GetWord() + " - and he gave me chlamydia",
+							"I'm not really a virgin - your " + sMaleRelation + " rode me bareback",
+							"I do porn - and it's " + sPornoType + " porn",
+							"I starred in a porno - and it was " + sPornoType + " porn",
+							"I starred in a " + sPornoType + " porno - with your " + sFemaleRelation,
+							"I'm black-mailing your " + WordList([sMaleRelation,sFemaleRelation]).GetWord() + " - for sexual favors!"
+						  ]).GetWord()
+
+		sTweet += "\"Oh " + sHisName + "!\" she " + self.VMoan.Past() + " "
+		sTweet += "as " + sScene1 + ". "
+		sTweet += "\"I must tell you something!\"\n\n"
+		sTweet += "\"What is it, my " + WordList(["sweet","honey muffin","dumpling","bon bon","coco bean","honey pot",
+												  "cream puff","lambchop","love muffin","muppet","puddin' pop",
+												  "poopsie","darling","smooch pickle","sugar plum","sweat pea",
+												  "angel","apple pie","baby girl","boo bear","sugar bunny",
+												  "honey bunny","buttercup","cupcake","dove","gum drop","honey bunch",
+												  "June bug","lovey dovey","peach","peaches-and-cream","pumpkin",
+												  "turtle dove","wifey"
+												]).GetWord().title() + "?\" he asked, "
+		sTweet += sGerund + " her " + SelectedPart.RandomDescription(bAllowLongDesc = False) + ".\n\n"
+		sTweet += "\"" + sSecret + "!\""
+
+		return sTweet
 
 # Raoul rapped on the door and a woman opened it. "I've been waiting for you!" she purred.
 # Raoul's jaw dropped open. She was stark naked, with tan skin and perfect lush DD tatas. A clit piercing winked at him

@@ -496,7 +496,7 @@ class BookVerbsBy(WordList):
 			'Claimed',
 			'Conquered',
 			'Charmed',
-			'Deflowered'
+			'Deflowered',
 			'Dominated',
 			'Enslaved',
 			'Exposed in Public',
