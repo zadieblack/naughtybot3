@@ -45,24 +45,34 @@ class Location():
 			
 	def RemoveFemaleClothing(self):
 		Vagina = excerpt.bodyparts.Vagina()
+		Ass = excerpt.bodyparts.AssFemale()
 		Breasts = excerpt.bodyparts.Breasts()
 
 		sTakeItOff = ""
 		
-		if not self.FemaleTopClothing == "":
+		if not self.FemaleTopClothing == "" and not self.FemaleBottomClothing == "":
 			if CoinFlip():
-				sTakeItOff += "slipped out of her " + self.FemaleTopClothing + " and pulled down her " + self.FemaleBottomClothing + ", revealing her " + Vagina.RandomDescription(bAllowLongDesc = False)
+				sTakeItOff += "pulled off her " + self.FemaleTopClothing + " and slipped out of her " + self.FemaleBottomClothing + ", "
+				if CoinFlip():
+					sTakeItOff += "baring her " + Vagina.RandomDescription(bAllowLongDesc = False)
+				else:
+					sTakeItOff += "revealing her " + Ass.RandomDescription(bAllowLongDesc = False)
 			else:
-				sTakeItOff += "pulled down her " + self.FemaleBottomClothing + " and slipped out of her " + self.FemaleTopClothing + ", revealing her " + Breasts.RandomDescription(bAllowLongDesc = False)
-		elif not FemaleBottomClothing == "":
-			sTakeItOff = "pulled down her " + self.FemaleBottomClothing + ", revealing her " + Vagina.RandomDescription(bAllowLongDesc = False)
-		else:
-			sTakeItOff += "was naked, her " 
+				sTakeItOff += "slipped out of her " + self.FemaleBottomClothing + " and pulled off her " + self.FemaleTopClothing + ", revealing her " + Breasts.RandomDescription(bAllowLongDesc = False)
+		elif not self.FemaleBottomClothing == "":
 			if CoinFlip():
-				sTakeItOff += Breasts.RandomDescription(bAllowLongDesc = False) 
+				sTakeItOff += "pulled down her " + self.FemaleBottomClothing + ", baring her " + Vagina.RandomDescription(bAllowLongDesc = False)
+			else:
+				sTakeItOff += "pulled down her " + self.FemaleBottomClothing + ", revealing her " + Ass.RandomDescription(bAllowLongDesc = False)
+		elif not self.FemaleTopClothing == "":
+			sTakeItOff += "pulled off her " + self.FemaleTopClothing + ", revealing her " + Breasts.RandomDescription(bAllowLongDesc = False)
+		else:
+			sTakeItOff += "was naked, her " + Breasts.RandomDescription(bAllowLongDesc = False) + " and "
+			if CoinFlip():
+				sTakeItOff += Ass.RandomDescription(bAllowLongDesc = False)
 			else:
 				sTakeItOff += Vagina.RandomDescription(bAllowLongDesc = False)
-			sTakeItOff += " on full display"
+			sTakeItOff += " exposed in all their glory"
 			
 		return sTakeItOff
 			
@@ -174,6 +184,10 @@ class Boat(PrivateLocation):
 	SittingOn = "on the stern of the boat"
 	LyingOn = "the deck"
 	Ground = "deck"
+	MaleTopClothing = ""
+	MaleBottomClothing = "swim trunks"
+	FemaleTopClothing = "skimpy bikini top"
+	FemaleBottomClothing = "bikini bottoms"
 	
 class Bedroom(PrivateLocation):
 	Name = "the bedroom"
@@ -185,6 +199,7 @@ class Bedroom(PrivateLocation):
 	SittingOn = "a stack of cushions"
 	LyingOn = "the king-sized bed"
 	Ground = "the thick comforter"
+	FemaleTopClothing = "lacy bra"
 	FemaleBottomClothing = "sheer panties"
 	
 class CampingTent(PrivateLocation):
@@ -198,6 +213,8 @@ class CampingTent(PrivateLocation):
 	SittingOn = "a bedroll"
 	LyingOn = "a sleeping bag"
 	Ground = "the thick sleeping bag"
+	FemaleTopClothing = "cute litte sweater"
+	FemaleBottomClothing = "tight bluejeans"
 	
 class CarBackseat(PublicLocation):
 	Name = "the backseat of the car"
@@ -214,6 +231,8 @@ class CarBackseat(PublicLocation):
 	AuthorityFigure = "a policeman"
 	Consequence = "the cop shone his flashlight through the window"
 	Ground = "leather upholstery"
+	FemaleTopClothing = "tight blouse"
+	FemaleBottomClothing = "short skirt"
 	
 class Church(PublicLocation):
 	Name = "the church"
@@ -230,6 +249,8 @@ class Church(PublicLocation):
 	Excuse = "'We were just praying!' he replied."
 	Consequence = "as the minister looked on in horror"
 	Ground = "soft carpet"
+	FemaleTopClothing = "black dress"
+	FemaleBottomClothing = "thong panties"
 	
 class Classroom(PublicLocation):
 	Name = "the classroom"
@@ -246,6 +267,8 @@ class Classroom(PublicLocation):
 	Excuse = "'This isn't what it looks like!' he said."
 	Consequence = "the student tugged feverishly at his crotch"
 	Ground = "the floor"
+	FemaleTopClothing = "white button-down blouse"
+	FemaleBottomClothing = "short plaid skirt"
 	
 class ClubParkingLot(PublicLocation):
 	Name = "the club parking lot"
@@ -262,6 +285,8 @@ class ClubParkingLot(PublicLocation):
 	AuthorityFigure = "a bouncer"
 	Consequence = "as the bouncer watched them"
 	Ground = "the hood of the car"
+	FemaleTopClothing = "blouse with a plunging neckline"
+	FemaleBottomClothing = "tight short skirt"
 	
 class Den(PrivateLocation):
 	Name = "the den"
@@ -274,6 +299,7 @@ class Den(PrivateLocation):
 	SittingOn = "a thick cushion"
 	LyingOn = "the sofa"
 	Ground = "the thick fur rug"
+	FemaleTopClothing = "tight leather corseet"
 	FemaleBottomClothing = "lacy silk panties"
 	
 class DoctorsOffice(PublicLocation):
@@ -291,6 +317,8 @@ class DoctorsOffice(PublicLocation):
 	AuthorityFigure = "the nurse"
 	Consequence = "a cute nurse in scrubs looked on in shock"
 	Ground = "the floor"
+	FemaleTopClothing = "yellow dress"
+	FemaleBottomClothing = "lacy silk panties"
 	
 class DormRoom(PrivateLocation):
 	Name = "the dorm room"
@@ -302,6 +330,8 @@ class DormRoom(PrivateLocation):
 	SittingOn = "on the edge of the bed"
 	LyingOn = "on the tiny bed"
 	Ground = "the thin carpet"
+	FemaleTopClothing = "thin t-shirt"
+	FemaleBottomClothing = "tight bluejeans"
 	
 class DressingRoom(PublicLocation):
 	Name = "the dressing room"
@@ -318,6 +348,8 @@ class DressingRoom(PublicLocation):
 	AuthorityFigure = "the store clerk"
 	Consequence = "the clerk shouted 'I'm calling security'"
 	Ground = "the carpet"
+	FemaleTopClothing = "revealing red dress"
+	FemaleBottomClothing = "thong panties"
 	
 class Farm(PrivateLocation):	
 	Name = "the farm"
@@ -330,8 +362,8 @@ class Farm(PrivateLocation):
 	SittingOn = "a square hay bale" 
 	LyingOn = "the lush green grass"
 	Ground = "the grass"
-	FemaleTopClothing = "overalls"
-	FemaleBottomClothing = "panties"
+	FemaleTopClothing = "midriff-baring t-shirt"
+	FemaleBottomClothing = "bluejeans"
 	MaleTopClothing = "tshirt"
 	MaleBottomClothing = "jeans"
 	
@@ -346,7 +378,7 @@ class Hottub(PrivateLocation):
 	SittingOn = "a seat in the tub" 
 	LyingOn = "the side of the tub"
 	Ground = "steaming water"
-	FemaleTopClothing = "bikini"
+	FemaleTopClothing = "skimpy bikini"
 	FemaleBottomClothing = "bikini bottoms"
 	MaleTopClothing = ""
 	MaleBottomClothing = "swimming trunks"
@@ -366,6 +398,8 @@ class Gym(PublicLocation):
 	Consequence = "the girl with the leotard watched open-mouthed"
 	AuthorityFigure = "someone"
 	Ground = "rubber mat"
+	FemaleTopClothing = "sports bra"
+	FemaleBottomClothing = "tight spandex yoga pants"
 	
 class HikingTrail(PublicLocation):
 	Name = "the hiking trail"
@@ -383,6 +417,7 @@ class HikingTrail(PublicLocation):
 	Consequence = "a bearded hiker looked on in surprise"
 	AuthorityFigure = "a park ranger"
 	Ground = "the rocky mountainside"
+	FemaleTopClothing = "sports bra"
 	FemaleBottomClothing = "spandex shorts"
 	
 class Kitchen(PrivateLocation):
@@ -398,7 +433,7 @@ class Kitchen(PrivateLocation):
 	MaleTopClothing = ""
 	MaleBottomClothing = "briefs"
 	FemaleTopClothing = "oversized tshirt"
-	FemaleBottomClothing = "panties"
+	FemaleBottomClothing = "frilly panties"
 	
 class Library(PublicLocation):
 	Name = "the library"
@@ -415,7 +450,8 @@ class Library(PublicLocation):
 	Excuse = "'We are just about to check out!' he called back."
 	AuthorityFigure = "the librarian"
 	Ground = "soft carpet"
-	FemaleBottomClothing = "thong"
+	FemaleTopClothing = "unbuttoned blouse"
+	FemaleBottomClothing = "extremely short skirt"
 	
 class MassageRoom(PrivateLocation):
 	Name = "a massage room"
@@ -427,8 +463,7 @@ class MassageRoom(PrivateLocation):
 	SittingOn = "on the massage table"
 	LyingOn = "on the massage table"
 	Ground = "soft carpet"
-	FemaleTopClothing = ""
-	FemaleBottomClothing = "towel"
+	FemaleTopClothing = "towel"
 	MaleTopClothing = ""
 	MaleBottomClothing = "towel"
 	
@@ -447,7 +482,8 @@ class MensRoom(PublicLocation):
 	AuthorityFigure = "some strange man"
 	Excuse = "'Busy!' he shouted back."
 	Ground = "tiled floor"
-	FemaleBottomClothing = "thong"
+	FemaleTopClothing = "unbuttoned blouse"
+	FemaleBottomClothing = "extremely short skirt"
 	
 class MovieTheater(PublicLocation):
 	Name = "the movie theater"
@@ -464,6 +500,8 @@ class MovieTheater(PublicLocation):
 	Excuse = "'Just watch the movie!' he snapped."
 	Consequence = "the woman got up from her seat and stomped out of the theater"
 	Ground = "the floor"
+	FemaleTopClothing = "tight sweater"
+	FemaleBottomClothing = "hip-hugging pants"
 
 class Office(PublicLocation):
 	Name = "the office"
@@ -500,6 +538,8 @@ class OpenWindow(PublicLocation):
 	Excuse = "'Let them,' he replied."
 	Consequence = "the people next door looked on"
 	Ground = "thick carpet"
+	FemaleTopClothing = "lacy bra"
+	FemaleBottomClothing = "red silk panties"
 	
 class ParkAfterDark(PublicLocation):
 	Name = "the park"
@@ -516,6 +556,8 @@ class ParkAfterDark(PublicLocation):
 	Excuse = "'This isn't what it looks like!' he shouted."
 	Consequence = "the watchman enjoyed the view"
 	Ground = "the ground"
+	FemaleTopClothing = "tight sweater"
+	FemaleBottomClothing = "hip-hugging bluejeans"
 	
 class ParkBench(PublicLocation):
 	Name = "a park bench"
@@ -545,13 +587,14 @@ class PoolPatio(PrivateLocation):
 	SittingOn = "a deck chair"
 	LyingOn = "a patio chair"
 	Ground = "the pool deck"
-	FemaleBottomClothing = "bikini bottoms"
+	FemaleTopClothing = "skimpy bikini top"
+	FemaleBottomClothing = "g-string"
 	
 class PrivateBeach(PrivateLocation):
 	Name = "a private beach"
 	NamePrep = "on a private beach"
 	Loc = exutil.LocInOutType.Outdoors
-	BeginDesc = "The beach was lovely, and so private that she felt free to go topless."
+	BeginDesc = "Waves rolled onto the sand. They had the beach all to themselves."
 	Despite = "the sand that got into every crack"
 	BentOver = "a sand dune"
 	KneelingOn = "on the beach towel"
@@ -561,6 +604,7 @@ class PrivateBeach(PrivateLocation):
 	MaleTopClothing = ""
 	MaleBottomClothing = "speedo"
 	FemaleTopClothing = ""
+	FemaleTopClothing = "skimpy bikini top"
 	FemaleBottomClothing = "g-string"
 	
 class Shower(PrivateLocation):
@@ -594,6 +638,8 @@ class StarbucksBathroom(PublicLocation):
 	Consequence = "someone called, 'I think they're having sex in the Starbucks bathroom'"
 	AuthorityFigure = "a Starbucks barista"
 	Ground = "tiled floor"
+	FemaleTopClothing = "gray pencil dress"
+	FemaleBottomClothing = "thong panties"
 	
 class Surf(PublicLocation):
 	Name = "the surf"
@@ -632,7 +678,8 @@ class Woods(PublicLocation):
 	Consequence = "the homeless man watched them and masturbated"
 	AuthorityFigure = "someone"
 	Ground = "thick carpet of leaves"
-	FemaleBottomClothing = "thong"
+	FemaleTopClothing = "cute flannel top"
+	FemaleBottomClothing = "bluejeans"
 	
 class YogaStudio(PrivateLocation):
 	Name = "a yoga studio"
@@ -645,7 +692,8 @@ class YogaStudio(PrivateLocation):
 	SittingOn = "a balance ball"
 	LyingOn = "a yoga mat"
 	Ground = "the purple yoga mat"
-	FemaleBottomClothing = "tight yoga pants"
+	FemaleTopClothing = "sports bra"
+	FemaleBottomClothing = "spandex yoga pants"
 
 	
 class LocationSelector():

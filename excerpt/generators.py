@@ -3652,15 +3652,65 @@ class Generator75(Generator):
 
 		return sTweet
 		
-# class Generator76(Generator):
-	# ID = 76
-	# Priority = 1
+class Generator76(Generator):
+	ID = 76
+	Priority = 1
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
-
-		# return sTweet
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		sHisName = self.MaleName.FirstName()
+		
+		Location = locations.LocationSelector().Location(PubPrivType = exutil.LocPubPrivType.Private)
+		
+		Tits = self.FemBodyParts.Breasts 
+		Ass = self.FemBodyParts.Ass 
+		
+		sTweet += Location.BeginDesc + " "
+		# sTweet += "The girl was wearing "
+		# sTweet += WordList(["a dress with a neckline that plunged to her navel. Her " + Tits.RandomDescription() + " threatened to tumble out at any moment",
+							# "a tiny pair of Daisy Dukes that rode high up the curve of her " + Ass.RandomDescription(),
+							# "a thin t-shirt. Her " + Tits.Nipples.RandomDescription() + " strained against the fabric",
+							# "a pair of denim overalls, with nothing on underneath. The straps just managed to hide her " + Tits.Nipples.RandomDescription()
+						  # ]).GetWord() + ". "
+		sTweet += "The girl " + Location.RemoveFemaleClothing() + ". "
+		sTweet += sHisName + " swallowed the lump in his throat.\n\n"
+		
+		iRand = randint(1,6)
+		if iRand == 1:
+		#Anal Annie
+			sHerName = WordList(['Annie','Anne','Alana','Alice','Alexis','Amber','Amy','Anastasia','Angie','Anita','Annabel','Aria','Ava']).GetWord()
+			sTweet += "She turned around, bent over, and spread her " + Ass.RandomDescription() + ", revealing her " + Ass.Anus.RandomDescription() + ". "
+			sTweet += "\"Wanna know why they call me 'Anal " + sHerName + "'?\" she asked."
+		elif iRand == 2:
+		#Blowjob Betsy
+			sHerName = WordList(['Babs','Barbara','Beatrice','Beatrix','Bella','Beth','Betsy','Bianca','Brenda','Brielle','Brigitte','Britney']).GetWord()
+			sTweet += "She dropped to her knees and began unbuckling his pants. "
+			sTweet += "\"Wanna know why they call me 'Blowjob " + sHerName + "'?\" she asked."
+		
+		elif iRand == 3:
+		#Hand-job Harriet
+			sHerName = WordList(['Harmony','Heather','Heidi','Hailey','Harriet','Hatty','Heaven','Honey','Holly']).GetWord()
+			sTweet += "She dropped to her knees and began unbuckling his pants. "
+			sTweet += "\"Wanna know why they call me 'Handjob " + sHerName + "'?\" she asked."
+		elif iRand == 4:
+		#Deep-throat Donna 
+			sHerName = WordList(['Daisy','Dalia','Dani','Danielle','Daphne','Deanna','Delilah','Delores','Donna','Dorothy','Deanna']).GetWord()
+			sTweet += "She dropped to her knees and began unbuckling his pants. "
+			sTweet += "\"Wanna know why they call me 'Deep-Throat " + sHerName + "'?\" she asked."
+		elif iRand == 5:
+		#Facial Fannie
+			sHerName = WordList(['Felicity','Fiona','Flora','Francisca','Frida','Fannie','Flo','Florence','Farah']).GetWord()
+			sTweet += "She dropped to her knees and began unbuckling his pants. "
+			sTweet += "\"Wanna know why they call me 'Facial " + sHerName + "'?\" she asked."
+		else:
+		#Tit-job Tanya
+			sHerName = WordList(['Tabitha','Tamara','Tammy','Tanya','Tasha','Tawny','Teresa','Terri','Tia','Tiffany','Tilda','Tori','Tracy','Trish']).GetWord()
+			sTweet += "She squeezed her " + Tits.RandomDescription(bAllowLongDesc = False) + " together. "
+			sTweet += "\"Wanna know why they call me 'Tit-job " + sHerName + "'?\" she asked."
+							
+		return sTweet
 		
 # class Generator77(Generator):
 	# ID = 77
