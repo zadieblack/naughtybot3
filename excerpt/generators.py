@@ -1918,8 +1918,6 @@ class Generator55(Generator):
 		sHisName = self.MaleName.FirstName()
 		sHerName = self.FemaleName.FirstName()
 		
-		FuckUp = misc.GuyFuckups()
-		
 		VDrip = verbs.VerbDrip()
 		
 		Fantasies = WordList(["rugged jaw", "broad chest", "brawny shoulders", "full lips", "silken blonde hair", 
