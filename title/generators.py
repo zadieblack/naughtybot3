@@ -2449,7 +2449,7 @@ class Generator81(Generator):
 			"In the Back Seat of a Volvo","In the Back of a Movie Theater"
 			])
 		Retailers = WordList(["In-n-Out Burger","Whole Foods","Wal-Mart","Starbucks","Gold's Gym","LA Fitness","Krispy Kreme",
-							  "CVS","Target","Chipotle","Burger King","the Mall","IHOP","the Multiplex"])
+							  "CVS","Target","Chipotle","Burger King","the Mall","IHOP","the Multiplex","an Apple Store"])
 		
 		Man = MaleChar(iNumMaxCBits = 4, bAddArticle = False, NotList = ManNotList, bAllowRelate = False, bAllowSpecies = False, bAllowMaritalStatus = False, bAllowGang = False, bAllowTitle = False, bAllowTrope = False, bAllowGenMod = False)
 

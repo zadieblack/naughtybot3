@@ -1167,27 +1167,71 @@ class TweetTxtGen40(TweetTxtGen):
 		
 		return sText	
 		
-# class TweetTxtGen41(TweetTxtGen):
-	# The sexy read that was BANNED on Amazon! Now available on Smashwords
-	# ID = 41
-	# Priority = 2
+class TweetTxtGen41(TweetTxtGen):
+	# The sex scenes in this book were so grounded and realistic!
+	ID = 41
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sText = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sText = ""
 		
-		# return sText	
+		RealAdjs = WordList(['grounded','realistic','plausible','earthy',
+							 'down-to-earth','believable','authentic',
+							 'emotional','touching','gritty','genuine',
+							 'tasteful','heartfelt','tender','sweet',
+							 'heart-warming'])
+		sRealAdj1 = RealAdjs.GetWord()
+		sRealAdj2 = RealAdjs.GetWord(NotList = [sRealAdj1])
 		
-# class TweetTxtGen42(TweetTxtGen):
-	# The sexy read that was BANNED on Amazon! Now available on Smashwords
-	# ID = 42
-	# Priority = 2
+		sText = WordList(["The sex scenes in this book were so " + sRealAdj1 + " and " + sRealAdj2 + "!"
+						 ,"The love scenes in this book were so " + sRealAdj1 + " and " + sRealAdj2 + "!"
+						 ,"The sex in this book was surprisingly " + sRealAdj1 + " and " + sRealAdj2 + "!"
+						 ,"The love-making in this story is really quite " + sRealAdj1 + "!"
+						 ,"I was surprised by how " + sRealAdj1 + " and " + sRealAdj2 + " the sex scenes were!"
+						 ]).GetWord()
+		
+		return sText	
+		
+class TweetTxtGen42(TweetTxtGen):
+	# LEGAL DISCLAIMER: Wal-Mart does not condone cum-swapping or genital piercings.
+	ID = 42
+	Priority = 3
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sText = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sText = ""
 		
-		# return sText	
+		SexActs = WordList(["unprotected anal sex","double anal penetration","fisting",
+							"anal fisting","twincest","tribbing","pee drinking",
+							"cum-swapping","bukkake","public gang bangs",
+							"anal gangbangs","urinating in the mouth of another person",
+							"pee-drinking","erotic asphyxiation","double penetration",
+							"triple penetration","forced orgasm","public nudity",
+							"ball torture","forced feminization","wife-swapping",
+							"leather bondage","tea-bagging","full-frontal massage",
+							"enemas","pegging","butt stuff","sodomy","premarital sex",
+							"spanking","paddling","adult diapers","choke play",
+							"genital piercings","extreme vaginal insertion",
+							"cum drinking","extreme anal insertion",
+							"interracial gang-bangs"])
+		sAct1 = SexActs.GetWord()
+		sAct2 = SexActs.GetWord(NotList = [sAct1])
+		
+		sText = "LEGAL DISCLAIMER: " 
+		sText += WordList(["Wal-Mart","Outback Steakhouse","Bank of America",
+							"Whole Foods","CVS Pharmacy","Applebee's",
+							"Pizza Hut","Starbucks","Chipotle","Barnes & Noble",
+							"The International House of Pancakes",
+							"The Walt Disney Corporation","The Apple Store",
+							"Famous Footwear","Men's Wearhouse",
+							"The Cheesecake Factory","Subway Sandwiches",
+							"Olive Garden","Cracker Barrel","Red Lobster",
+							"Tesco","Best Buy"
+						  ]).GetWord() + " "
+		sText += "does not condone " + sAct1 + " or " + sAct2 + "."
+		
+		return sText	
 		
 # class TweetTxtGen43(TweetTxtGen):
 	# The sexy read that was BANNED on Amazon! Now available on Smashwords
