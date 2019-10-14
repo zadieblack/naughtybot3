@@ -3710,25 +3710,198 @@ class Generator76(Generator):
 							
 		return sTweet
 		
-# class Generator77(Generator):
-	# ID = 77
-	# Priority = 1
+# "Mrs. Philmore!" gasped Todd to his next-door neighbor, "Your bunghole is so tight!"
+class Generator77(Generator):
+	ID = 77
+	Priority = 1
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
-
-		# return sTweet
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
 		
-# class Generator79(Generator):
-	# ID = 79
-	# Priority = 1
-	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+		sHisName = self.MaleName.FirstName()
+		
+		LastNames = WordList(["Bangs","Beaver","Benz","Bottoms","Church","Cox","Cummings","Dix","Faulks","Goodebody",
+					 "Gozinya","Hancock","Hill","Johnson","Jones","King","Knightly","Knox","Koch",
+					 "Long","Milfinger","Moore","Moorecox","Moorehead","Mountcox","Mountford",
+					 "Muncher","Muffin","Nippell","Peach","Pearl","Peckwood","Peters","Philmore",
+					 "Polk","Popper","Sachs","Sacks","Schaft","Snatch","Spunk","Stroker",
+					 "Swallows","Wang","Weinermeister","Wilde","Wood"])
+					 
+		Women = WordList(["next-door neighbor","best friend's mom","math teacher","chemistry teacher",
+						  "biology teacher","sex ed teacher","land lady","boss","new step-mom",
+						  "new step-mother","mother-in-law","nurse","friend's mom","girlfriend's mom",
+						  "librarian","math tutor","French teacher","Spanish teacher","nanny",
+						  "secretary","wedding planner"])
+						  
+		NaughtyHoles = WordList(['anus','arse-cunt','asshole','backdoor','bunghole','butthole',
+								 'butt hole','corn hole','dirt-pipe','heinie hole','poop-chute',
+								 'poop-trap','pooper','rectum','coochie','cunny','cunt',
+								 'fuckhole','pussy','snatch','twat','vagina','cock-sock',
+								 'cunt-hole','fuck-tunnel','honey hole','keyhole','love-tunnel',
+								 'vag','cooter','hoo-hah','clam','cupcake','clunge','lady-cave',
+								 'sex cave','pie','brown star','bum hole','booty hole',
+								 'chocolate pocket','pink pocket','fish taco','arsehole'])
+								 
+				 
+		sTweet = "\"Mrs. " + LastNames.GetWord() + "!\" " + sHisName + " " + WordList(['panted','gasped']).GetWord() + " to his " + Women.GetWord() + ", "
+		sTweet += "\"Your " + NaughtyHoles.GetWord() + " feels so tight!\""
 
-		# return sTweet
+		return sTweet
+
+# Woman walks through a public place looking uncomfortable. A man says, "Can I help you with something, miss?"
+# "Ggggghhhhhhhuh" she says, as the remote-controlled vibrator in her {ass/pussy} began to buzz again.
+class Generator78(Generator):
+	ID = 78
+	Priority = 1
+	
+	def GetLetterStr(self, sLetter, iMaxNum):
+		sReturn = ""
+		iNum = randint (3, iMaxNum)
+		for i in range(iNum):
+			sReturn += sLetter 
+			
+		return sReturn 
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		sHerName = self.FemaleName.FirstName()
+		
+		Places = WordList([["Starbucks","barista"],
+						   ["Applebee's","waiter"],
+						   ["office","receptionist"],
+						   ["hotel","bellhop"],
+						   ["The Gap","salesman"],
+						   ["the bank","teller"],
+						   ["CVS Pharmacy","pharmacist"],
+						   ["Olive Garden","waiter"],
+						   ["Barnes & Noble","sales associate"],
+						   ["Apple Store", "genius"],
+						   ["Whole Foods", "stock boy"],
+						   ["Best Buy", "sales associate"],
+						   ["gym", "personal trainer"],
+						   ["mall", "security guard"],
+						   ["store", "sales clerk"],
+						   ["restaurant", "waiter"],
+						   ["pub","bartender"],
+						   ["drug store","sales clerk"],
+						   ["movie theater","usher"],
+						   ["grocery store", "bag boy"],
+						   ["McDonald's","cashier"],
+						   ["Red Lobster","waiter"],
+						   ["menswear section","sales associate"],
+						   ["pool area","lifeguard"],
+						   ["men's room","man"],
+						   ["men's locker room","man"],
+						   ["used car lot","salesman"],
+						   ["library","librarian"],
+						   ["computer lab","student"],
+						   ["shopping center","salesman"],
+						   ["pool area","cabana boy"],
+						   ["department store","salesman"],
+						   ["fancy restaurant","waiter"],
+						   ["church","priest"],
+						   ["study room","student"],
+						   ["student lounge","RA"],
+						   ["church","minister"],
+						   ["auto-parts store", "sales clerk"],
+						   ["doctor's waiting room","male nurse"],
+						   ["Wal-Mart","clerk"],
+						   ["sporting goods section","sales associate"]]).GetWord()
+		
+		sPlace = Places[0]
+		sMan = Places[1]
+						   
+		sManDescriptor = WordList(["an earnest","a sandy-haired","a gray-haired","a red-haired","a serious",
+								   "a flabby","a pale","a freckled","a teenage","a polite","a young",
+								   "a grizzled","a nervous","a harried-looking","a bored","a surprised",
+								   "a uniformed","a rumpled-looking","a bearded","a tubby","a tall, awkward",
+								   "a sleepy","a startled","a homely","a friendly","a leering","a greasy",
+								   "a pimply","a wide-eyed"]).GetWord()
+								   
+		sFillWords = WordList(["Excuse me", "Uh", "Uhhhh", "Er", "Errrr", "Um", "Ummmm","Ah","Ahhh"]).GetWord()
+		sMoveAdjs = WordList(["slowly","gingerly","carefully","hesitantly","nervously","dazedly"]).GetWord()
+		sAttitude = WordList(["hoping no one would notice her",
+							   "biting her lip",
+							   "completely naked",
+							   "covering her bare breasts with her arms",
+							   "trying desperately to cover her naked body",
+							   "her hands clasped over her shaved, dripping-wet pussy",
+							   "her hands clenched over her moist, pulsating pussy",
+							   "her erect nipples clearly visible through her thin white t-shirt",
+							   "wishing she was wearing underwear",
+							   "her legs shaking",
+							   "biting her lip in agonized pleasure",
+							   "red-faced and naked",
+							   "red-faced and naked from the waist down",
+							   "wearing nothing but red high-heels",
+							   "panting slightly",
+							   "her face flushed red",
+							   "her knees wobbling",
+							   "lost in a haze of pleasure",
+							   "a trickle of moisture running down her thigh",
+							   "a trickle of goo running down her thigh",
+							   "trying to avoid eye-contact",
+							   "trying to be as quiet as possible",
+							   "her hand clasped to her crotch",
+							   "as she tried to choke down a moan of pleasure",
+							   "biting her tongue to keep from moaning",
+							   "hoping no one would notice the damp patch on her crotch",
+							   "trying to cover herself as casually as possible",
+							   "as she tried to supress another moan"]).GetWord()
+		sMoan = WordList(["moaned","whimpered","gasped","panted","cried","shrieked","exclaimed","groaned"]).GetWord()
+		sHole1 = WordList(["coochie","pussy","quim","twat","vag","vagina","ass","asshole",
+						   "back-passage","backdoor","back passage","butthole","rear entrance",
+						   "rectum"]).GetWord()
+		sHole2 = WordList(["coochie","pussy","quim","twat","vag","vagina","ass","ass","asshole",
+						   "cunt","butt","fuck-hole","tush","butthole","rear","rectum","bum"]).GetWord()
+							   
+		sTweet = sHerName + " "
+		sTweet += "walked " + sMoveAdjs + " "
+		sTweet += "through the " + sPlace + ", " 
+		sTweet += sAttitude + ".\n\n"
+		sTweet += "\"" + sFillWords + ", can I help you miss?\" asked " + sManDescriptor + " " + sMan + ".\n\n"
+		
+		sExclamation = ""
+		if CoinFlip():
+		#tell man that she is wearing a vibe  
+			sVerb = WordList(["shoved up","stuffed up","jammed up","in","jammed in","inserted up"]).GetWord()
+			sTweet += "\"I've got a vibrator " + sVerb + " my " + sHole2 + ",\" she " + sMoan + "." 
+		else:
+		#nonsense words as vibe buzzes 
+			Nonsense = []
+			Nonsense.append("Oh God")
+			Nonsense.append("O" + self.GetLetterStr("h",5) + " God")
+			Nonsense.append("Oh fuck")
+			Nonsense.append("Holy shit")
+			Nonsense.append("Holy motherfucking shit")
+			Nonsense.append("Holy motherfucking s" + self.GetLetterStr("h",5) + self.GetLetterStr("i",9) + "t")
+			Nonsense.append("Oh fuck! Baby")
+			Nonsense.append("Oh fuck " + self.GetLetterStr("ohfuck",5))
+			Nonsense.append("Oh fuck me")
+			Nonsense.append("Oh fuck m" + self.GetLetterStr("e",10))
+			Nonsense.append("Oh fuck I'm cummin" + self.GetLetterStr("g",8))
+			Nonsense.append("Shit! Oh God")
+			Nonsense.append("Oh fuck! Ye" + self.GetLetterStr("s",6))
+			Nonsense.append("Oh shit! Oh god" + self.GetLetterStr("ohgod",6))
+			Nonsense.append("A" + self.GetLetterStr("h",10))
+			Nonsense.append("Oh G" + self.GetLetterStr("o",10) + "d")
+			Nonsense.append("Sh" + self.GetLetterStr("i",10) + "t")
+			Nonsense.append("Oh f" + self.GetLetterStr("u",10) + "ck")
+			Nonsense.append("H" + self.GetLetterStr("n",10) + "g")
+			Nonsense.append("G" + self.GetLetterStr("u",10) + "hh")
+			Nonsense.append("Mmm-h" + self.GetLetterStr("m",10))
+			Nonsense.append("N" + self.GetLetterStr("n",5) + self.GetLetterStr("o",5))
+			Nonsense.append("Y" + self.GetLetterStr("e",5) + self.GetLetterStr("s",7))
+			Nonsense.append("I'm comi" + self.GetLetterStr("n",6) + self.GetLetterStr("g",3))
+			
+			sExclamation = Nonsense[randint(1,len(Nonsense) - 1)]
+			
+			sTweet += "\"" + sExclamation + "!\" she " + sMoan + " as the remote-controlled vibrator in her " + sHole1 + " began to buzz again."
+
+		return sTweet
 		
 # class Generator80(Generator):
 	# ID = 80
