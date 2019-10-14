@@ -3753,7 +3753,7 @@ class Generator77(Generator):
 # "Ggggghhhhhhhuh" she says, as the remote-controlled vibrator in her {ass/pussy} began to buzz again.
 class Generator78(Generator):
 	ID = 78
-	Priority = 1
+	Priority = 4
 	
 	def GetLetterStr(self, sLetter, iMaxNum):
 		sReturn = ""

@@ -12,7 +12,7 @@ MAX_GENERATOR_NO = 44
 MAX_SEARCH_LOOPS = 8
 TWIT_USERNAME = 'bot_lust'
 
-Q_SIZE = 20
+Q_SIZE = 25
 HISTORYQ_FILENAME = 'excerpt/history_q.txt'
 
 TAG_PEN = "sex act with penetration scene"
