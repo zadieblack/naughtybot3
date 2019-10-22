@@ -4299,16 +4299,121 @@ class Generator134(Generator):
 		# sTweet = ""
 
 		# return sTweet	
-		
-# class Generator100(Generator):
-	# ID = 100
-	# Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+#Ass Eating 101:
+# My date with the principal
+class Generator136(Generator):
+	ID = 136
+	Priority = 2
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		LastNames = WordList(['Beaver',
+							  'Bell',
+							  'Bottoms',
+							  'Brown',
+							  'Butts',
+							  'Chang',
+							  'Church',
+							  'Clark',
+							  'Cox',
+							  'Cummings',
+							  'Davis',
+							  'Devlyn',
+							  'Goodbody',
+							  'Gray',
+							  'Green',
+							  'Hancock',
+							  'Hill',
+							  'Jefferson',
+							  'Johnson',
+							  'Jones',
+							  'King',
+							  'Lee',
+							  'Long',
+							  'Lopez',
+							  'Moore',
+							  'Moorecox',
+							  'Muncher',
+							  'Peach',
+							  'Pearl',
+							  'Peckwood',
+							  'Peters',
+							  'Philmore',
+							  'Popper',
+							  'Robinson',
+							  'Rogers',
+							  'Ross',
+							  'Sanderson',
+							  'Smith',
+							  'St. Claire',
+							  'Taylor',
+							  'Wang',
+							  'White',
+							  'Williams',
+							  'Wilson',
+							  'Woody'
+							])
+		
+		SexActs = WordList(['Analingus',
+							'Anal Fisting',
+							'Anal Insertion',
+							'Anal Sex',
+						    'Ass Eating',
+							'Breast Play',
+							'Cum Swapping',
+							'Muff-Diving',
+							'Deep Throating',
+							'Double Penetration',
+							'Face-Sitting',
+							'Fingering',
+							'Forced Orgasm',
+							'Giving Head',
+							'Glory Holes',
+							'Hand-jobs',
+							'Hot-Dogging',
+							'Ménage à Trois',
+							'Motor-boating',
+							'Rimming',
+							'Road Head',
+							'Sixty-Nining',
+							'Sodomy',
+							'Threesomes',
+							'Tribbing'
+						  ])
 
-		# return sTweet	
+		ElderJobs = WordList(["Algebra Teacher",
+							 "Anatomy Professor",
+							 "Anatomy Teacher",
+							 "Biology Professor",
+							 "Biology Teacher",
+							 "French Teacher",
+							 "Guidance Counselor",
+							 "Gym Coach",
+							 "History Teacher",
+							 "Lit Professor",
+							 "Math Teacher",
+							 "Music Teacher",
+							 "Personal Tutor",
+							 "Principal",
+							 "Professor",
+							 "Sex-Ed Teacher",
+							 "Spanish Teacher"
+						   ])
+		
+		sTweet = SexActs.GetWord() + " 101:\n"
+		sTweet += "My Date With "
+		
+		Dates = []
+		Dates.append("My " + ElderJobs.GetWord())
+		Dates.append("Mr. " + LastNames.GetWord() + ", My " + ElderJobs.GetWord(NotList = ['Professor']) + ")")
+		Dates.append("Ms. " + LastNames.GetWord() + ", My " + ElderJobs.GetWord(NotList = ['Professor']))
+		
+		sTweet += Dates[randint(1,len(Dates) - 1)]
+
+		return sTweet	
 		
 # class Generator100(Generator):
 	# ID = 100
