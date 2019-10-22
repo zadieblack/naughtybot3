@@ -4411,7 +4411,7 @@ class Generator136(Generator):
 		Dates.append("Mr. " + LastNames.GetWord() + ", My " + ElderJobs.GetWord(NotList = ['Professor']) + ")")
 		Dates.append("Ms. " + LastNames.GetWord() + ", My " + ElderJobs.GetWord(NotList = ['Professor']))
 		
-		sTweet += Dates[randint(1,len(Dates) - 1)]
+		sTweet += Dates[randint(0,len(Dates) - 1)]
 
 		return sTweet	
 		
