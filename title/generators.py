@@ -4358,14 +4358,15 @@ class Generator136(Generator):
 							])
 		
 		SexActs = WordList(['Analingus',
+							'Anal Creampie',
 							'Anal Fisting',
 							'Anal Insertion',
 							'Anal Sex',
 						    'Ass Eating',
 							'Breast Play',
 							'Cum Swapping',
-							'Muff-Diving',
 							'Deep Throating',
+							'Doggy Style',
 							'Double Penetration',
 							'Face-Sitting',
 							'Fingering',
@@ -4376,10 +4377,13 @@ class Generator136(Generator):
 							'Hot-Dogging',
 							'Ménage à Trois',
 							'Motor-boating',
+							'Muff-Diving',
+							'Reverse Cowgirl',
 							'Rimming',
 							'Road Head',
 							'Sixty-Nining',
 							'Sodomy',
+							'Strap-Ons',
 							'Threesomes',
 							'Tribbing'
 						  ])
@@ -4389,6 +4393,7 @@ class Generator136(Generator):
 							 "Anatomy Teacher",
 							 "Biology Professor",
 							 "Biology Teacher",
+							 "Criminal Law Professor",
 							 "French Teacher",
 							 "Guidance Counselor",
 							 "Gym Coach",
@@ -4400,7 +4405,8 @@ class Generator136(Generator):
 							 "Principal",
 							 "Professor",
 							 "Sex-Ed Teacher",
-							 "Spanish Teacher"
+							 "Spanish Teacher",
+							 "Women's Studies Professor"
 						   ])
 		
 		sTweet = SexActs.GetWord() + " 101:\n"

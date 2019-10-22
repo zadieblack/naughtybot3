@@ -3902,16 +3902,116 @@ class Generator78(Generator):
 			sTweet += "\"" + sExclamation + "!\" she " + sMoan + " as the remote-controlled vibrator in her " + sHole1 + " began to buzz again."
 
 		return sTweet
-		
-# class Generator80(Generator):
-	# ID = 80
-	# Priority = 1
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
-
-		# return sTweet
+# "No! This is so wrong!" protested Todd. 
+# "It feels so good though, doesn't it baby?" cooed Sapphire. "Come on. Fuck me hard with that big 7-inch 
+# cock of yours. Fill me with your cream."
+# "Oh shit. Yes! Yes!!!" moaned Todd. Then he bucked his hips and began to fill his step-mom's asshole with cum.
+class Generator79(Generator):
+	ID = 79
+	Priority = 1
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		sHisName = self.MaleName.FirstName()
+		sHerName = self.FemaleName.FirstName()
+		
+		sHoney = WordList(['honey','sweetie','sugar','baby']).GetWord()
+		sForbiddenLover = WordList(["step-mom","step-mother","mother-in-law","cousin","step-sister",
+								"adopted sister","sister-in-law","sister-in-law","girlfriend's mom",
+								"girlfriend's sister","girlfriend's twin sister","step-daughter",
+								"math teacher","English teacher","boss","boss's wife",
+								"daughter's best friend","wife's best friend","brother's girlfriend",
+								"father's girlfriend","son's girlfriend","nextdoor neighbor",
+								"babysitter","brother's wife"]).GetWord()
+		
+		Vag = self.FemBodyParts.Vagina 
+		Anus = self.FemBodyParts.Ass.Anus 
+		Cock = self.MaleBodyParts.Penis
+		
+		sTweet = "\""
+		
+		# Male Protests
+		Protests = []
+		Protests.append("We shouldn't be doing this! It's wrong!")
+		Protests.append("No! This is so wrong! We should stop!")
+		Protests.append("We should stop! This is wrong!")
+		Protests.append("No. We should stop. This isn't right!")
+		Protests.append("We'd better stop. This isn't right!")
+		Protests.append("We'd better stop. We shouldn't be doing this!")
+		Protests.append("We shouldn't be doing this! It's wrong!")
+		Protests.append("This isn't right. We'd better stop.")
+		Protests.append("This is wrong, " + sHerName + ". Let's stop before we go any further!")
+		Protests.append("This isn't right, " + sHerName + "! We'd better stop!")
+		Protests.append("We shouldn't be doing this, " + sHerName + "! It's wrong!")
+		Protests.append("This isn't right, " + sHerName + "! We have to stop!")
+		Protests.append("No more. This isn't right. Let's stop before we go too far!")
+		
+		sTweet += Protests[randint(0,len(Protests) - 1)] + "\" protested " + sHisName + ". "
+		sTweet += "The two of them were in bed, their naked bodies " + WordList(['heaving','writhing','sweaty','flushed','glistening']).GetWord() + " with " 
+		sTweet += WordList(['passion','lust','desire','forbidden passion','forbidden lust', 'forbidden desire']).GetWord () + ".\n\n"
+		
+		#Female temptations
+		Tempt = []
+		Tempt.append("It feels so good though, doesn't it " + sHoney + "?")
+		Tempt.append("Don't you like this, " + sHoney + "? Doesn't it feel good?")
+		Tempt.append("Don't stop, " + sHoney + ". It feels so good!")
+		Tempt.append("I know you want this, " + sHoney + ". You've wanted it for a long time,")
+		Tempt.append("Don't you like this, " + sHoney + "? Doesn't it feel good?")
+		Tempt.append("Don't you want me? Don't I make you feel good, " + sHoney + "?")
+		Tempt.append("Come on " + sHoney + ", I know you want this. You want it so bad, don't you?")
+		Tempt.append("But you want this so bad, don't you " + sHoney + "?")
+		Tempt.append("But you want this bad, don't you " + sHoney + "?")
+		Tempt.append("But you want this, don't you " + sHoney + "?")
+		
+		sTweet += "\"" + Tempt[randint(0,len(Tempt) - 1)] + "\" "
+		sTweet += WordList(['cooed','purred']).GetWord() + " " + sHerName + ". \"" 
+		sTweet += WordList(["Fuck me hard", "Fuck me like a whore", "Fuck my brains out",
+							"Pound me hard", "Pound me", "Pound me like a whore",
+							"Fill me","Impale me","Stuff me","Ravish me","Nail me",
+							"Cum inside me","Defile me","Take me hard","Fill me up",
+							"Stuff my hole","Fill my hole","Defile my hole",
+							"Impale my hole","Stuff my filthy hole","Give it to me hard",
+							"Use my hole","Use me like a whore",
+							"Impale my naughty hole"]).GetWord() + " with that "
+		
+		#Cock description 
+		CockDesc = []
+		CockDesc.append("big " + Cock.ShortDescription())
+		CockDesc.append("big, " + Cock.MediumDescription())
+		CockDesc.append(Cock.FloweryDescription())
+		sTweet += CockDesc[randint(0,len(CockDesc) - 1)] + " of yours!\"\n\n"
+		
+		sTweet += sHisName + " could hold back no longer. "
+		
+		#Man says he's going to cum 
+		sTweet += "\"Oh " + WordList(['shit','fuck','god','Jesus Christ', 'hell yes','shit yes','fuck yes']).GetWord() + "! " 
+		sTweet +=  WordList(["Yes! Yes!!","Yes! I'm cumming","I'm gonna cum","Yes! I'm gonna cum","I'm cumming",
+							 sHerName + "! I'm cumming!", "Oh " + sHerName + "! I'm cumming!",
+							 sHerName + "! Oh yes! I'm cumming!", "Oh " + sHerName + "! Yes!"]).GetWord() + "!\" he moaned. "
+		
+		sHole = ""
+		if CoinFlip():
+		#pussy 
+			if CoinFlip():
+				sHole += Vag.InnerVag.ShortDescription() 
+			else:
+				sHole += Vag.ShortDescription()
+		else:
+		#ass
+			sHole += WordList(['ass','anus','asshole','butt-hole','rear-entrance','rectum','bowels']).GetWord() 
+		
+		#Climax
+		if CoinFlip():
+			sTweet += "Then he " + WordList(["bucked his hips", "thrust deep"]).GetWord() + " and began to fill his "
+			sTweet += sForbiddenLover + "'s " + sHole + " with his " + self.Semen.RandomDescription() + "."
+		else:
+			sTweet += "Then he began to pump " + self.Semen.RandomDescription() + " deep into "
+			sTweet += "his " + sForbiddenLover + "'s " + sHole + "."
+							
+		return sTweet
 		
 # class Generator81(Generator):
 	# ID = 81
