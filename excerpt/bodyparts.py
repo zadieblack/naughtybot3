@@ -896,7 +896,6 @@ class AssFemale(BodyParts):
 		self.AdjList = ['ample',
 			'bountiful',
 			'broad',
-			'bubble',
 			'bubble-shaped',
 			'chubby',
 			'curvaceous',

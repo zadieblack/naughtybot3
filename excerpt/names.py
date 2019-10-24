@@ -221,6 +221,7 @@ class NamesFemale(Names):
 			'Olivia',
 			'Ophelia',
 			'Paris',
+			'Penelope',
 			'Phoebe',
 			'Piper',
 			'Rachael',

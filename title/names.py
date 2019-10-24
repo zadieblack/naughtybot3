@@ -255,6 +255,7 @@ class NamesFemale(Names):
 			'Olive',
 			'Olivia',
 			'Paris',
+			'Penelope',
 			'Phillippa',
 			'Phoebe',
 			'Piper',

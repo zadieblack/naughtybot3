@@ -169,6 +169,7 @@ def GetTweet(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = None):
 	return gen
 	
 class Generator1(Generator):
+	# The baron desecrated Jacinda's well-used muffin with his thick pole.	
 	ID = 1
 	Priority = 1
 	
@@ -176,7 +177,6 @@ class Generator1(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		# The baron desecrated Jacinda's well-used muffin with his thick pole.	
 		sVerb = self.VForeplay.Present()
 		sTweet = "The " + self.WealthyMan.GetPerson() + " " + self.VThrust.Past() + " " + self.FemaleName.FirstName() + "'s " + self.FemBodyParts.GetRandomHole(bIncludeMouth = False) + " with his " + self.MaleBodyParts.Penis.RandomDescription() + ".\n\n'" + sVerb.capitalize() + " my " + self.FemBodyParts.Breasts.RandomDescription() + "!' she " + self.VMoan.Past() + ". '" + sVerb.capitalize() + " them and fill me with your " + self.Semen.FloweryDescription() + "!'"
 		
@@ -193,14 +193,37 @@ class Generator2(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		self.MaleBodyParts = bodyparts.BodyMale()
-		self.FemBodyParts = bodyparts.BodyFemale()
-		self.MaleName = names.NamesMale()
-		self.FemaleName = names.NamesFemale() 
-		self.VThrust = verbs.VerbThrust()
+		sHisName = self.MaleName.FirstName()
+		sHerName = self.FemaleName.FirstName()
 		
-		sTweet = "Spreading open " + self.FemaleName.FirstName() + "'s " + self.FemBodyParts.Ass.RandomDescription() + " with his rough hands, he " + self.VThrust.Past() + " her " + self.FemBodyParts.Ass.Anus.RandomDescription() + " with his " + self.MaleBodyParts.Penis.RandomDescription() + ".\n\n"
-		sTweet += "'Do me, " + self.MaleName.FirstName() + "!\' she " + self.VMoan.Past() + ". '" + self.VThrust.Present().capitalize() + " me like I'm your " + self.FFWB.GetPerson() + "!'"
+		Penis = self.MaleBodyParts.Penis
+		Ass = self.FemBodyParts.Ass
+		
+		sHole1 = self.FemBodyParts.Ass.Anus.RandomDescription()
+		sHole2 = self.FemBodyParts.Ass.Anus.RandomDescription()
+		while sHole2 in sHole1:
+			sHole2 = self.FemBodyParts.Ass.Anus.RandomDescription()
+			
+		sVerb1 = self.VThrust.Past()
+		sVerb2 = ""
+		
+		sTweet = "Spreading open " + sHerName + "'s " + Ass.RandomDescription() + " "
+		sTweet += "with his " + WordList(['rough','strong','calloused','gentle-but-firm']).GetWord() + " hands, "
+		sTweet += "he " + sVerb1 + " her " + sHole1 + " with his " + Penis.RandomDescription() + ".\n\n"
+		sTweet += "'Fuck me, " + sHisName + "!\' she " + self.VMoan.Past() + ". "
+		
+		if CoinFlip():
+			sVerb = WordList(['Fuck','Do','Pound','Stuff','Ravish','Hammer','Impale','Ream','Plough']).GetWord()
+			
+			sTweet += "'" + sVerb + " me like I'm your " + self.FFWB.GetPerson() + "!'"
+		else:
+			sVerb = WordList(['Fuck','Do','Pound','Stuff','Ravish','Hammer','Impale',
+							  'Ream','Jack-hammer','Plough','Pump Into','Desecrate',
+							  'Defile','Stretch','Probe','Fill']).GetWord()
+			sHole = WordList(['anus','ass','asshole','back-door','bowels','bunghole','butthole','corn-hole',
+							  'dirt-pipe','fart-blaster','heinie-hole','poop-chute','poop-trap','rectum']).GetWord()
+							  
+			sTweet += "'" + sVerb + " my " + sHole + " like I'm your " + self.FFWB.GetPerson() + "!'"
 		
 		return sTweet
 
@@ -212,11 +235,45 @@ class Generator3(Generator):
 	def GenerateTweet(self):
 		super().GenerateTweet()
 		sTweet = ""
+		
+		Watchers = WordList(['my boss','the mailman','the minister','the pizza delivery boy','the pool boy',
+							 'the principal','the rest of the class','my step-son',
+							 'my yoga class','the other librarians','the neighbors','the tourists',
+							 'my in-laws','my coworkers','the chess club','the cheer squad',
+							 'my students','the other moms','the lifeguard','the babysitter',
+							 'your step-mom','your friends','your girlfriend','the dog','the cat',
+							 'the Jeffersons','the Smiths','the Joneses',
+							 'those construction workers','the other nurses','the servants',
+							 'the other shoppers','the truck drivers','the janitor','the tour bus',
+							 'my sorority sisters','my classmates','the ranch hands','the TV crew',
+							 'the youth group','those frat boys','the roadies','mom and dad',
+							 'those golfers','the marching band','the dean','the bridesmaids',
+							 'the groomsmen','the other flight attendants','the rest of the dojo',
+							 'the parade','the ladies from church','my sunday school class',
+							 'the nuns','the hockey team','the football team','the judge'])
+							 
+		Moans = WordList(['cried out','gasped','moaned','panted','whimpered','whispered'])
+							 
+		Verbs = WordList(['bored into','desecrated','drilled','eagerly filled','fucked','hammered',
+						  'penetrated','pistoned into','ploughed','pounded','pumped into',
+						  'rammed relentlessly into','ravished','reamed','stuffed',
+						  'thrust deep into','licked','sucked on','tongued','fingered','ate out',
+						  'rubbed','lubed up','dildoed','massaged','oiled up',
+						  'inserted a finger into','inserted two fingers into',
+						  'inserted three fingers into','inserted his fist into',
+						  'rubbed his ' + self.MaleBodyParts.Penis.RandomDescription(bAllowLongDesc = False) + ' against',
+						  'eased his ' + self.MaleBodyParts.Penis.Head.RandomDescription(bAllowLongDesc = False) + ' into'])
 			
-		sTweet = "'Please, no!' " + self.FemaleName.FirstName() + " " + self.VMoan.Past() + ", squirming with pleasure "
-		sTweet += "as " + self.MaleName.FirstName() + " " + self.VThrust.Past() + " "
-		sTweet += "her " + self.FemBodyParts.GetRandomHole(bIncludeMouth = False) + ". "
-		sTweet += "'Not while my " + self.MFWB.GetPerson() +" is watching!'"
+		sTweet = "'Please!' " + self.FemaleName.FirstName() + " " + Moans.GetWord() + ", squirming with pleasure "
+		sTweet += "as " + self.MaleName.FirstName() + " " + Verbs.GetWord() + " "
+		if CoinFlip():
+			sTweet += "her " + self.FemBodyParts.Vagina.RandomDescription(bAllowLongDesc = False) + ". "
+		else:
+			if CoinFlip():
+				sTweet += "her " + self.FemBodyParts.Ass.RandomDescription(bAllowLongDesc = False) + ". "
+			else:
+				sTweet += "her " + self.FemBodyParts.Ass.Anus.RandomDescription(bAllowLongDesc = False) + ". "
+		sTweet += "'Not here where " + Watchers.GetWord() + " can see us!'"
 		
 		return sTweet
 
@@ -256,8 +313,26 @@ class Generator6(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
+		PenisAdjs = WordList(['beautiful','beefy','enormous','fat','hairy','hard','magnificient',
+							  'massive','meaty','rock-hard','smooth','tasty','thick','juicy',
+							  'yummy','stiff','tasty'])
+		PenisNouns = WordList(['boner','cock','cock','cock meat','cocksicle','dick','goo-gun',
+							   'hard-on','hot-rod','joystick','love-gun','penis','pole',
+							   'popsicle','prick','ramrod','schlong','tool'])
+		PenisSizes = WordList(['seven-inch','eight-inch','nine-inch','ten-inch','eleven-inch',
+							  'foot-long','13-inch','14-inch'])
+		
 		sRivalName = self.MaleName.FirstName()
-		sTweet = "'You don't have to hide the truth from me, " + self.FemaleName.FirstName() + ",' he said, '" + sRivalName + " is a successful " + self.WhiteCollar.GetPerson() + " and I'm just a lowly " + self.BlueCollar.GetPerson() + "!'\n\n'I don't care about " + sRivalName + ",' she said, 'You're the one I want. And anyway, you have a " + self.MaleBodyParts.Penis.ShortDescription(bAddLen = True) + "!'"
+		sTweet = "'You don't have to hide the truth from me, " + self.FemaleName.FirstName() + ",' he said, "
+		sTweet += "'" + sRivalName + " is a successful " + self.WhiteCollar.GetPerson() + " "
+		sTweet += "and I'm just a lowly " + self.BlueCollar.GetPerson() + "!'\n\n"
+		sTweet += "'I don't care about " + sRivalName + ",' she said, 'He doesn't have what I want. "
+		sTweet += "Now hurry up and " + WordList(['stuff','fill','do','plough','ravish','pound','fuck']).GetWord() + " me with that "
+		
+		if CoinFlip():
+			sTweet += PenisAdjs.GetWord() + " " + PenisSizes.GetWord() + " " + PenisNouns.GetWord() + " of yours!'"
+		else:
+			sTweet += PenisAdjs.GetWord() + " " + PenisSizes.GetWord() + " " + self.MaleBodyParts.Penis.BuildAPenis() + " of yours!'"
 		
 		return sTweet
 		
