@@ -347,12 +347,34 @@ class Generator7(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
+		Verbs = WordList(['bang','do','drill','fuck','gape','hammer','impale','nail','plough','pound','ravish','ream','stuff','violate'])
 		Location = locations.LocationSelector().Location()
 		
-		if CoinFlip():
-			sTweet = self.FemaleName.FirstName() + " bit her lip. She lay on " + Location.LyingOn + ", her " + self.FemBodyParts.Breasts.RandomDescription() + " " + WordList(["heaving", "quivering", "trembling", "shuddering", "rising and falling"]).GetWord() + " as " + self.MaleName.FirstName() + " lubed up her " + self.FemBodyParts.Ass.Anus.RandomDescription() + ". '" + self.Exclamation.GetWord().capitalize() + "' she " + self.VMoan.Past() + ", 'What would Father " + self.MaleName.FirstName() + " say if he knew that my " + self.MFWB.GetPerson() + " was " + self.VThrust.Gerund() + " my " + self.FemBodyParts.Ass.ShortDescription() + " " + Location.NamePrep + "?'"
+		iRand = randint(1,3)
+		if iRand == 1:
+			sTweet = self.FemaleName.FirstName() + " bit her lip. She lay on "
+			sTweet += Location.LyingOn + ", her " + self.FemBodyParts.Breasts.RandomDescription() + " " 
+			sTweet += WordList(["heaving", "quivering", "trembling", "shuddering", "rising and falling"]).GetWord() + " "
+			sTweet += "as " + self.FemaleName.FirstName() + " lubed up a " 
+			sTweet += str(randint(8,16)) + " 1/2\" " + WordList(["black", "pink", "steel", "vibrating"]).GetWord() + " strap-on. "
+			sTweet += "'" + self.Exclamation.GetWord().capitalize() + "' she said, "
+			sTweet += "'What would Father " + self.MaleName.FirstName() + " say if he knew that "
+			sTweet += "my lesbian lover was about to " 
 		else:
-			sTweet = self.FemaleName.FirstName() + " bit her lip. She lay on " + Location.LyingOn + ", her " + self.FemBodyParts.Breasts.RandomDescription() + " " + WordList(["heaving", "quivering", "trembling", "shuddering", "rising and falling"]).GetWord() + " as " + self.FemaleName.FirstName() + " lubed up a " + str(randint(8,16)) + " 1/2\" " + WordList(["black", "pink", "steel", "vibrating"]).GetWord() + " strap-on. '" + self.Exclamation.GetWord().capitalize() + "' she " + self.VMoan.Past() + ", 'What would Father " + self.MaleName.FirstName() + " say if he knew that my " + self.FFWB.GetPerson() + " was " + self.VThrust.Gerund() + " my " + self.FemBodyParts.Ass.ShortDescription() + " " + Location.NamePrep + "?'"
+			sTweet = self.FemaleName.FirstName() + " bit her lip. She lay on " + Location.LyingOn + ", "
+			sTweet += "her " + self.FemBodyParts.Breasts.RandomDescription() + " " 
+			sTweet += WordList(["heaving", "quivering", "trembling", "shuddering", "rising and falling"]).GetWord() + " "
+			sTweet += "as " + self.MaleName.FirstName() + " lubed up her " + self.FemBodyParts.Ass.Anus.RandomDescription() + ". "
+			sTweet += "'" + self.Exclamation.GetWord().capitalize() + "' she said, "
+			sTweet += "'What would Father " + self.MaleName.FirstName() + " say if he knew that "
+			sTweet += "my " + self.MFWB.GetPerson() + " was about to " 
+		
+		if CoinFlip():
+		#ass 
+			sTweet += Verbs.GetWord(NotList = ['hammer','impale','nail']) + " my ass " + Location.NamePrep + "?'"
+		else:
+		#asshole 
+			sTweet += Verbs.GetWord(NotList = ['bang','do']) + " my " + self.FemBodyParts.Ass.Anus.ShortDescription() + " " + Location.NamePrep + "?'"
 		
 		return sTweet
 
@@ -4088,8 +4110,333 @@ class Generator79(Generator):
 							
 		return sTweet
 		
-# class Generator81(Generator):
-	# ID = 81
+# "Marry me, Simone!" he moaned. 
+# "But we are married!" she replied in confusion.
+# "Yes," he said, "but not to each other."
+class Generator80(Generator):
+	ID = 80
+	Priority = 1
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		sHisName = self.MaleName.FirstName()
+		sHerName = self.FemaleName.FirstName()
+		
+		Location = locations.LocationSelector().Location()
+		# Tags = {exutil.TAG_DONE_TO_HER}, NotTags = {exutil.TAG_CLIMAX,exutil.TAG_PEN}
+		
+		sTweet = Location.BeginDesc + " "
+		
+		if CoinFlip():
+		#he proposes
+			sTweet += SceneSelector().GetScene(sHisName = sHisName, sHerName = sHerName, Tags = {exutil.TAG_DONE_TO_HIM}, Location = Location).Scene() + "\n\n"
+			sTweet += "\"Marry me, " + sHerName + ",\" he " + self.VMoan.Past() + ".\n\n"
+			sTweet += "\"But we ARE married!\" she replied in confusion.\n\n"
+			sTweet += "\"Yes,\" he said, \"but not to each other.\""
+		else: 
+		#she proposes 
+			sTweet += SceneSelector().GetScene(sHisName = sHisName, sHerName = sHerName, Tags = {exutil.TAG_DONE_TO_HER}, Location = Location).Scene() + "\n\n"
+			sTweet += "\"Marry me, " + sHisName + ",\" she " + self.VMoan.Past() + ".\n\n"
+			sTweet += "\"But we ARE married!\" he replied in confusion.\n\n"
+			sTweet += "\"Yes,\" she said, \"but not to each other!\""
+
+		return sTweet
+		
+# interracial
+class Generator81(Generator):
+	ID = 81
+	Priority = 1
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		GirlRace = WordList(["an Asian girl","a black girl","a Japanese girl",
+							 "a redhead","a white chick","a fiery latina",
+							 "a plus-sized woman","a black chick",
+							 "a hispanic chick","a mature woman",
+							 "your best friend's mom","your teacher",
+							 "your boss","your boss's wife","your step-mom",
+							 "a MILF","a black MILF","your mother-in-law"
+							 "your black mother-in-law","your hispanic maid",
+							 "a big black girl","a hispanic girl",
+							 "a Japanese schoolgirl","a firecrotch",
+							 "a blonde chick","a sweet little Asian girl",
+							 "your Asian secretary"
+							])
+							 
+		sHisName = self.MaleName.FirstName()
+		sHerName = self.FemaleName.FirstName()
+		
+		ProtestReasons = WordList(["I have a girlfriend!","I'm engaged to be married!","I'm a married man!","I have a wife!"])
+		SexyVoice = WordList(["purred","growled throatily","said in a husky voice","growled in a husky voice"])
+		VerbFuck = WordList(["to be with","to do it with","to fuck","to bang","to make love to",
+							 "to screw","to bone","to screw"])
+		
+		iRand = randint(1,3)
+		
+		if iRand == 1:
+		# she bends over and takes off her panties
+			sTweet += sHerName + " bent over in front of " + sHisName + ", "
+			sTweet += "giving him an excellent view of her " + self.FemBodyParts.Ass.ShortDescription() + ". "
+			sTweet += "She sensually slipped her " + WordList(['panties','cute pink panties','lacey panties',
+															'red silk panties','skimpy thong',
+															'skimpy bikini bottom']).GetWord() + " "
+			sTweet += "over her " + self.FemBodyParts.Hips.GetAdj() + " hips, "
+			sTweet += "exposing her " + self.FemBodyParts.Vagina.RandomDescription() + ".\n\n"
+			sTweet += sHisName + " swallowed the lump in his throat. \"Oh God!\" he said. "
+			sTweet += "\"You're so fucking " + WordList(['hot','sexy']).GetWord() + "! "
+			sTweet += "But I can't! " + ProtestReasons.GetWord() + "\"\n\n"
+			sTweet += "\"Come on baby,\" she " + SexyVoice.GetWord() + ", shaking her " + self.FemBodyParts.Ass.RandomDescription() + ". "
+		
+		elif iRand == 2:
+		# she pulls his dick out and starts to give him a blowjob
+			sTweet += sHerName + " knelt in front of him and " + WordList(["unbuckled his belt","pulled down his zipper"]).GetWord() + ". "
+			sTweet += "Then she pulled his pants down, exposing his " + self.MaleBodyParts.Penis.ShortDescription() + ". "
+			sTweet += WordList(["It was already hard","It was already turgid with excitement",
+								"It was already engorged with anticipation",
+								"It was already erect, and a bead of precum hung from the tip",
+								"It was already stiffly erect"
+							  ]).GetWord() + ".\n\n"
+			sTweet += sHisName + " swallowed the lump in his throat. \"Oh God!\" he said. "
+			sTweet += "\"You're so fucking " + WordList(['hot','sexy']).GetWord() + "! "
+			sTweet += "But I can't! " + ProtestReasons.GetWord() + "\"\n\n"
+			sTweet += "\"Come on baby,\" she " + SexyVoice.GetWord() + ", placing a kiss on his " + self.MaleBodyParts.Penis.RandomDescription() + ". "
+		
+		else:
+		# she takes her top off and shows him her breasts
+			sTweet += sHerName + " pulled her " + WordList(["sports bra","lacey bra","thin white t-shirt","skimpy bikini top"]).GetWord() + " "
+			sTweet += "over her head, exposing her " + self.FemBodyParts.Breasts.RandomDescription() + ". "
+			sTweet += sHisName + " swallowed the lump in his throat. \"Oh God!\" he said. "
+			sTweet += "\"You're so fucking " + WordList(['hot','sexy']).GetWord() + "! "
+			sTweet += "But I can't! " + ProtestReasons.GetWord() + "\"\n\n"
+			sTweet += "\"Come on baby,\" she " + SexyVoice.GetWord() + ", taking both his hands and guiding them to her " + self.FemBodyParts.Breasts.ShortDescription() + ". "
+		
+		Temptations = []
+		Temptations.append("\"I know you've always wanted " + VerbFuck.GetWord() + " " + GirlRace.GetWord() + "!\"")
+		Temptations.append("\"I won't tell. This could be your one chance " + VerbFuck.GetWord() + " " + GirlRace.GetWord() + "!\"")
+		Temptations.append("\"Don't you want to know what it's like " + VerbFuck.GetWord() + " " + GirlRace.GetWord() + "?\"")
+		Temptations.append("\"Haven't you always fantasized about " + WordList(["banging","fucking","sleeping with","doing it with","being with"]).GetWord() + " " + GirlRace.GetWord() + "?\"")
+		Temptations.append("\"Don't tell me you're going to pass up the chance " + VerbFuck.GetWord() + " " + GirlRace.GetWord() + "?\"")
+		
+		sTweet += Temptations[randint(0,len(Temptations) - 1)]
+
+		return sTweet
+		
+# class Generator82(Generator):
+	# ID = 82
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator82(Generator):
+	# ID = 82
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator82(Generator):
+	# ID = 82
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator82(Generator):
+	# ID = 82
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator82(Generator):
+	# ID = 82
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator82(Generator):
+	# ID = 82
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator82(Generator):
+	# ID = 82
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator82(Generator):
+	# ID = 82
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+
+# class Generator82(Generator):
+	# ID = 82
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator82(Generator):
+	# ID = 82
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator82(Generator):
+	# ID = 82
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator82(Generator):
+	# ID = 82
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator82(Generator):
+	# ID = 82
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator82(Generator):
+	# ID = 82
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator82(Generator):
+	# ID = 82
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator82(Generator):
+	# ID = 82
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator82(Generator):
+	# ID = 82
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator82(Generator):
+	# ID = 82
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator82(Generator):
+	# ID = 82
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator82(Generator):
+	# ID = 82
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+
+# class Generator82(Generator):
+	# ID = 82
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet
+		
+# class Generator82(Generator):
+	# ID = 82
 	# Priority = 1
 	
 	# def GenerateTweet(self):
