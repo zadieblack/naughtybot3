@@ -1094,8 +1094,11 @@ class Generator32(Generator):
 		return sTweet
 		
 class Generator33(Generator):
-	#'I own you now,' he said to the babysitter. "I own your your pretty mouth, I own your lickable tits, I own the dripping folds of your cunt and I even own..." He leaned forward, and whispered in her ear, "Your tight little starfish."
-	#"Ooh, yes general," she said.
+	# 'I own you now,' he said to Cherry. "Your pretty mouth belongs to me. So do your lickable tits, 
+	# and the dripping folds of your cunt. Even your tight little asshole is mine now.' and I even own..." 
+	# He leaned forward, and whispered in her ear, "Your tight little starfish."
+	# "Ooh, yes {sir/master/daddy}," she said. "Make me your fuck toy! But wait," she added. 
+	# "Am I still your babysitter?"
 	ID = 33
 	Priority = 1
 	
@@ -1103,8 +1106,70 @@ class Generator33(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		sTweet = "'I own you now,' said " + self.MaleName.FirstName() + " to his " + self.FFWB.GetPerson() + ". 'I own your " + self.FemBodyParts.Lips.RandomDescription() + ", I own your " + self.FemBodyParts.Breasts.RandomDescription() + ", I own the " + self.FemBodyParts.Vagina.InnerLabia.RandomDescription() + " of your " + self.FemBodyParts.Vagina.ShortDescription() + ", and I even own...' He leaned in and whispered in her ear, 'Your " + self.FemBodyParts.Ass.Anus.RandomDescription() + ".'\n\n"
-		sTweet += "'Ooh, yes sir!' she " + self.VMoan.Past() + "."
+		sHerName = self.FemaleName.FirstName()
+		LastNames = WordList(['Beaver','Bell','Bottoms','Brown','Butts','Chang','Church','Clark',
+							  'Cox','Cummings','Davis','Devlyn','Goodbody','Gray','Green','Hancock',
+							  'Hill','Jefferson','Johnson','Jones','King','Lee','Long','Lopez',
+							  'Moore','Moorecox','Muncher','Peach','Pearl','Peckwood','Peters',
+							  'Philmore','Popper','Robinson','Rogers','Ross','Sanderson',
+							  'Smith','St. Claire','Taylor','Wang','White','Williams','Wilson',
+							  'Woody','Black'])
+		Jobs = WordList(['babysitter','barista','English teacher','guidance counselor','maid',
+						  'marriage counselor','math tutor','parole officer','secretary',
+						  'Sunday School teacher','teacher','psychiatrist','teacher\'s aid',
+						  'office manager','research assistant','real estate agent',
+						  'coach','wife\'s pregnancy surrogate','life drawing model',
+						  'student','pupil','house maid','nanny','nurse','yoga instructor',
+						  'therapist''personal assistant'])
+						  
+		Others = WordList(['mom','dad','my husband','your wife','your girlfriend','your fiancé',
+						   'my boyfriend','my fiancé','your brother-in-law','your other employees',
+						   'the rest of the class','the other nurses'])
+						   
+		MouthPhrases = WordList(['dirty little mouth','insatiable mouth','filthy little mouth',
+								 'insolent mouth','whore mouth','full lips','cherry lips',
+								 'sweet lips','innocent mouth','dick-sucking lips',
+								 'cock-sucking lips','cock-hungry mouth','soft lips'])
+		sMouthPhrase = MouthPhrases.GetWord()
+		sMouthOwnVerb = ""
+		if "lips" in sMouthPhrase:
+			sMouthOwnVerb = "belong"
+		else:
+			sMouthOwnVerb = "belongs"
+		
+		VagNames = WordList(['cunt','flower','love-muffin','pussy','quim','sex','snatch','twat','vagina','womanhood'])
+		SubAdjs = WordList(['little','little','dirty','nasty','dirty','filthy','little black','little blonde',
+							'little Asian','little redheaded','little white','shameless','little brown'])
+		SubNouns = WordList(["cum slut","fuck toy","cum rag","whore","sex slave","slave girl","fuck bunny","slut","cock-slut"])
+		
+		sTweet = "\"I own you now,\" he said to " + sHerName + ". "
+		sTweet += "\"Your " + sMouthPhrase + " " + sMouthOwnVerb + " to me now. "
+		sTweet += "So do your " + self.FemBodyParts.Breasts.GetAdj() + " " + WordList(["tits","boobs","titties","breasts","melons"]).GetWord() + " "
+		sTweet += "and the " + self.FemBodyParts.Vagina.InnerLabia.RandomDescription() + " of your " + VagNames.GetWord() + ". "
+		sTweet += "Even your " + self.FemBodyParts.Ass.RandomDescription() + " is mine now to do with as I please.\"\n\n"
+		
+		if CoinFlip():
+			sTweet += "\"Ooh, yes " + WordList(['master','daddy','sir']).GetWord() + "!\" said " + sHerName + ". "
+			sTweet += "\"Make me your " + SubAdjs.GetWord() + " " + SubNouns.GetWord() + "! "
+			
+			if CoinFlip():
+				sTweet += "But hang on,\" she added. \"Am I still going to be your " + Jobs.GetWord() + "?\""
+			else:
+				sTweet += "But hang on,\" she added. \"What do we tell " + Others.GetWord() + "?\""
+		else:
+			sLastName = LastNames.GetWord()
+			
+			sTweet += "\"Ooh, yes Mr. " + sLastName + "!\" she said. "
+			sTweet += "\"Make me your " + SubAdjs.GetWord() + " " + SubNouns.GetWord() + "! "
+			sTweet += "But hang on,\" she added. \"What about Mrs. " + sLastName + "?\""
+
+		
+		# sTweet = "'I own you now,' said " + self.MaleName.FirstName() + " to his " 
+		# + self.FFWB.GetPerson() + ". 'I own your " + self.FemBodyParts.Lips.RandomDescription() + 
+		# ", I own your " + self.FemBodyParts.Breasts.RandomDescription() + ", 
+		# I own the " + self.FemBodyParts.Vagina.InnerLabia.RandomDescription() + " of your " + self.FemBodyParts.Vagina.ShortDescription() + ", 
+		# and I even own...' He leaned in and whispered in her ear, 'Your " + self.FemBodyParts.Ass.Anus.RandomDescription() + ".'\n\n"
+		# sTweet += "'Ooh, yes sir!' she " + self.VMoan.Past() + "."
 		
 		return sTweet
 		
