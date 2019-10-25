@@ -230,7 +230,7 @@ class Generator2(Generator):
 class Generator3(Generator):
 	# 'Please, no!' she said, squirming as he bayonetted her pink cooch. 'Not while my yoga teacher is watching!'
 	ID = 3
-	Priority = 1
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -307,7 +307,7 @@ class Generator6(Generator):
 	# 'You don't have to hide the truth from me, Honey,' he said, 'Tom is a successful opthamologist and I'm just a lowly roadie!' 
 	# 'That's true,' she said, 'But YOU have a 8 1/2 inch fuck-pole!'	
 	ID = 6
-	Priority = 1
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1419,7 +1419,6 @@ class Generator41(Generator):
 	#FemaleFWB, isn't it?' / }
 	ID = 41
 	Priority = 3
-	Type = exutil.GeneratorType.Test
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1462,7 +1461,7 @@ class Generator41(Generator):
 		
 class Generator42(Generator):
 	ID = 42
-	Priority = 1
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1537,7 +1536,7 @@ class Generator43(Generator):
 		
 class Generator44(Generator):
 	ID = 44
-	Priority = 4
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -2006,7 +2005,7 @@ class Generator55(Generator):
 	# 'No,' thought Nora, 'I can never forgive Brad for sleeping with my twin sister. I have to cut him out of my life 
 	# once and for all. No more will I stare at his picture. No more will I think about his lengthy, virile beef snake. 
 	ID = 55
-	Priority = 4
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -2177,7 +2176,7 @@ class Generator56(Generator):
 		
 class Generator57(Generator):
 	ID = 57
-	Priority = 1
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -2335,7 +2334,7 @@ class Generator59(Generator):
 # "'Tis the legendary anal hook of Devaxatar!"
 class Generator60(Generator):
 	ID = 60
-	Priority = 3
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -2412,7 +2411,7 @@ class Generator61(Generator):
 # buttocks with every thrust.
 # 'My god, Desmond', he shouted angrily. 'You and your volleyball coach??']
 	ID = 61
-	Priority = 3
+	Priority = 4
 	Type = exutil.GeneratorType.Test
 	
 	def GenerateTweet(self):
@@ -2490,7 +2489,7 @@ class Generator61(Generator):
 # cream, right here, right now, at the gym!'
 class Generator62(Generator):
 	ID = 62
-	Priority = 1
+	Priority = 3
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -2552,7 +2551,7 @@ class Generator62(Generator):
 # "But you know we cannot," she said, "You're shorter than I am!"
 class Generator63(Generator):
 	ID = 63
-	Priority = 4
+	Priority = 3
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3006,7 +3005,7 @@ class Generator64(Generator):
 # "I'm secretly married - to your father!"
 class Generator65(Generator):
 	ID = 65
-	Priority = 1
+	Priority = 4
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3207,7 +3206,7 @@ class Generator66(Generator):
 # in her imagination. "Ohh, Mr. Jefferson!" she moaned. "You're the best Algebra teacher ever!"
 class Generator67(Generator):
 	ID = 67
-	Priority = 4
+	Priority = 2
 
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3266,7 +3265,7 @@ class Generator67(Generator):
 # her ass.
 class Generator68(Generator):
 	ID = 68
-	Priority = 4
+	Priority = 3
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3314,7 +3313,7 @@ class Generator68(Generator):
 # sweet wet cunt!"		
 class Generator69(Generator):
 	ID = 69
-	Priority = 4
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3377,7 +3376,7 @@ class Generator69(Generator):
 # Sarah sat bolt upright in the tangled sheets of her bed. "Fuck!" she said. "That was only a dream??"		
 class Generator70(Generator):
 	ID = 70
-	Priority = 4
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3483,7 +3482,7 @@ class Generator70(Generator):
  # I want you to fuck my heinie hole."
 class Generator71(Generator):
 	ID = 71
-	Priority = 3
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3531,7 +3530,7 @@ class Generator71(Generator):
 # I give excellent head./Now pull your pants down so I can suck that cock.
 class Generator72(Generator):
 	ID = 72
-	Priority = 1
+	Priority = 3
 
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3678,7 +3677,7 @@ class Generator74(Generator):
 		
 class Generator75(Generator):
 	ID = 75
-	Priority = 1
+	Priority = 4
 
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3749,7 +3748,7 @@ class Generator75(Generator):
 		
 class Generator76(Generator):
 	ID = 76
-	Priority = 1
+	Priority = 4
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3810,7 +3809,7 @@ class Generator76(Generator):
 # "Mrs. Philmore!" gasped Todd to his next-door neighbor, "Your bunghole is so tight!"
 class Generator77(Generator):
 	ID = 77
-	Priority = 1
+	Priority = 4
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3850,7 +3849,7 @@ class Generator77(Generator):
 # "Ggggghhhhhhhuh" she says, as the remote-controlled vibrator in her {ass/pussy} began to buzz again.
 class Generator78(Generator):
 	ID = 78
-	Priority = 4
+	Priority = 3
 	
 	def GetLetterStr(self, sLetter, iMaxNum):
 		sReturn = ""
@@ -4006,7 +4005,7 @@ class Generator78(Generator):
 # "Oh shit. Yes! Yes!!!" moaned Todd. Then he bucked his hips and began to fill his step-mom's asshole with cum.
 class Generator79(Generator):
 	ID = 79
-	Priority = 1
+	Priority = 4
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -4115,7 +4114,7 @@ class Generator79(Generator):
 # "Yes," he said, "but not to each other."
 class Generator80(Generator):
 	ID = 80
-	Priority = 1
+	Priority = 4
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -4147,7 +4146,7 @@ class Generator80(Generator):
 # interracial
 class Generator81(Generator):
 	ID = 81
-	Priority = 1
+	Priority = 4
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
