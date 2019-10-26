@@ -4421,25 +4421,84 @@ class Generator136(Generator):
 
 		return sTweet	
 		
-# class Generator100(Generator):
-	# ID = 100
-	# Priority = 2
+# Taken in the Graveyard by the Strapping Truck-Driver Zombie 
+class Generator137(Generator):
+	ID = 137
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
-
-		# return sTweet	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
 		
-# class Generator100(Generator):
-	# ID = 100
-	# Priority = 2
-	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+		Verbs = WordList(["Bedded",
+			"Claimed", "Claimed",
+			"Deflowered",
+			"Mounted",
+			"Pleasured",
+			"Ravished",
+			"Taken","Taken","Taken"])
+			
+		Adverbs = WordList(["Hard","Hard","Hard",
+			"Forcefully",
+			"Passionately",
+			"Roughly",
+			"Ruthlessly",
+			"Vigorously"])
+			
+		sVerbPhrase = Verbs.GetWord()
+		if CoinFlip():
+			sVerbPhrase += " " + Adverbs.GetWord()
+			
+		Places = WordList(['in the Graveyard','in the Graveyard','in the Mausoleum',
+						   'in the Sepulcher','in the Morgue','in the Mortuary',
+						   'in the Haunted House','at the Tomb','in a Casket',
+						   'in a Coffin'])
+			
+		MaleNotList = ['copper']
+		Man = MaleChar(iNumMinCBits = 1, iNumMaxCBits = 3, bAddArticle = True, bAddEndNoun = False, bAllowGang = False, NotList = MaleNotList,
+				bAllowTitle = True, bAllowAttitude= False, bAllowMaritalStatus = False, bAllowProf = False, 
+				bAllowTrope = True, bAllowNation = False, bAllowSpecies = False, bAllowAge = False)
+				
+		ManNouns = WordList(['Ghost','Zombie','Vampire','Werewolf','Ghoul','Skeleton','Mummy','Corpse',
+							 'Serial Killer'])
+							 
+		sTweet = sVerbPhrase + "\n" + Places.GetWord() + " by the\n" + Man.Desc + " " + ManNouns.GetWord()
 
-		# return sTweet	
+		return sTweet	
+		
+#I Was Scissored by a Witch, and I Liked It!
+class Generator138(Generator):
+	ID = 138
+	Priority = 2
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		Verbs = WordList(["Ravished","Fingered","Milked","Scissored","Fisted",
+						  "Kissed","Eaten Out","Sixty-Nined","Finger-Banged",
+						  "French Kissed","Taken with a Broomstick",
+						  "Penetrated with a Broomstick",
+						  "Defiled with a Broomstick",
+						  "Ravished with a Broomstick"])
+			
+		if CoinFlip():
+			NotFemList = ['anal','tease','virgin','fertile','small-town','tender','revealing','mature woman']
+			Girl = FemaleChar(iNumMinCBits = 1, iNumMaxCBits = 3, Type = GirlType.Bad, bAddArticle = False, bAddEndNoun = False, NotList = NotFemList,
+								bAllowSexuality = False, bAllowMaritalStatus = False, bAllowProf = False, bAllowTitle = False,
+								bAllowGenMod = False)
+								
+			sTweet = "I Was " + Verbs.GetWord() + " by " + AddArticles(Girl.Desc) + " Witch, And I Liked It!"
+								
+		else:
+			NotFemList = ['anal','devlish','tease','virgin','fertile','small-town','submissive','tender','masseuse','mature','little']
+			Girl = FemaleChar(iNumMinCBits = 1, iNumMaxCBits = 2, Type = GirlType.Bad, bAddEndNoun = True, NotList = NotFemList,
+								bAllowSexuality = False, bAllowMaritalStatus = False, bAllowAttitude = False, 
+								bAllowGenMod = False, bAllowSpecies = False, bAllowTitle = False)
+			
+			sTweet = "I Was " + Verbs.GetWord() + " by an Undead " + Girl.Desc + ", And I Liked It!"
+
+		return sTweet	
 		
 # class Generator100(Generator):
 	# ID = 100

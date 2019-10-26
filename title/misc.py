@@ -1022,7 +1022,6 @@ class TropesMale(WordList):
 			'BBC',
 			'Biker',
 			'Billionaire',
-			'Bitcoin Billionaire',
 			'Boss',
 			'Breeding Stud',
 			'Casanova',
@@ -1074,7 +1073,6 @@ class TropesMale(WordList):
 class TropesMale(WordList):
 	def __init__(self):
 		super().__init__(['Billionaire',
-			'Bitcoin Billionaire',
 			'Gazillionaire',
 			'Millionaire',
 			'Multi-Billionaire',
