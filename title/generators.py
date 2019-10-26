@@ -4431,6 +4431,7 @@ class Generator137(Generator):
 		sTweet = ""
 		
 		Verbs = WordList(["Bedded",
+			"Boned",
 			"Claimed", "Claimed",
 			"Deflowered",
 			"Mounted",
@@ -4438,12 +4439,12 @@ class Generator137(Generator):
 			"Ravished",
 			"Taken","Taken","Taken"])
 			
-		Adverbs = WordList(["Hard","Hard","Hard",
+		Adverbs = WordList(["Hard","Hard",
 			"Forcefully",
 			"Passionately",
 			"Roughly",
 			"Ruthlessly",
-			"Vigorously"])
+			"Vigorously","Vigorously"])
 			
 		sVerbPhrase = Verbs.GetWord()
 		if CoinFlip():
@@ -4455,7 +4456,7 @@ class Generator137(Generator):
 						   'in a Coffin'])
 			
 		MaleNotList = ['copper']
-		Man = MaleChar(iNumMinCBits = 1, iNumMaxCBits = 3, bAddArticle = True, bAddEndNoun = False, bAllowGang = False, NotList = MaleNotList,
+		Man = MaleChar(iNumMinCBits = 1, iNumMaxCBits = 3, bAddArticle = False, bAddEndNoun = False, bAllowGang = False, NotList = MaleNotList,
 				bAllowTitle = True, bAllowAttitude= False, bAllowMaritalStatus = False, bAllowProf = False, 
 				bAllowTrope = True, bAllowNation = False, bAllowSpecies = False, bAllowAge = False)
 				
