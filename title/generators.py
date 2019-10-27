@@ -4500,16 +4500,47 @@ class Generator138(Generator):
 			sTweet = "I Was " + Verbs.GetWord() + " by an Undead " + Girl.Desc + ", And I Liked It!"
 
 		return sTweet	
-		
-# class Generator100(Generator):
-	# ID = 100
-	# Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+# My Innocent Sheltered Step-Mom 
+# Wore a Butt Plug
+# To Church	
+class Generator139(Generator):
+	ID = 139
+	Priority = 2
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		NiceGirlAdjs = WordList(['Amish','Chaste','Christian','Conservative','Innocent','Modest',
+								 'Mormon','Sheltered','Shy','Small-Town','Uptight','Wholesome'])
+		PhysAdjs = WordList(['Busty','Bubble-Butt','Curvy','Bikini-Bod','Stacked','Slender',
+							 'Full-Bodied','Large Breasted','Round-Bottomed','Petite',
+							 'Statuesque','Fat-Bottomed'])
+		NiceGirlNouns = WordList(['Housewife','Nanny','Step-Mother','Secretary','Step-Daughter',
+								  'Step-Sister','Yoga Instructor','Girlfriend','Fiancé','Wife',
+								  'Mom','Sister','Sister-in-Law','Babysitter'])
+	
+								
+		KinkNouns = WordList(['Wore Anal Beads','Wore an Anal Hook','Wore a Ball Gag',
+								'Wore a Butt Plug','Went Commando','Wore a Clit Clamp',
+								'Wore a Clit Pump','Wore Crotchless Panties','Wore a Chastity Belt',
+								'Wore Nipple Clamps','Wore a Remote Controlled Vibrator',
+								'Wore a Rubber Fetish Suit','Wore a Speculum','Wore a Strap-On',
+								'Wore a Cupless Bra','Went Topless','Went Nude',
+								'Wore a See-Thru Dress','Wore a Dog Collar','Wore Nothing But High Heels',
+								'Went Stark Naked','Wore Nipple Pasties',
+								'Wore a Skirt With No Panties'])
+								
+		sTweet = "My " + NiceGirlAdjs.GetWord() + " "
+		if randint(1,3) == 3:
+			sTweet += PhysAdjs.GetWord() + " "
+		sTweet += NiceGirlNouns.GetWord() + "\n"
+		sTweet += KinkNouns.GetWord() + "\n" 
+		sTweet += WordList(["To Church","To Church","To the Office","To Class","To the Grocery Store",
+							"To the Gym","To Sunday School","To Our Yoga Class"]).GetWord()
 
-		# return sTweet	
+		return sTweet	
 		
 # class Generator100(Generator):
 	# ID = 100
