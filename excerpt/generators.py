@@ -123,6 +123,7 @@ class Generator():
 		self.MaleName = names.NamesMale()
 		self.BadGirlName = misc.BadGirlNames()
 		
+		self.VDrip = verbs.VerbDrip()
 		self.VEjac = verbs.VerbEjaculate()
 		self.VForeplay = verbs.VerbForeplay()
 		self.VMakeLove = verbs.VerbMakeLove()
@@ -527,15 +528,20 @@ class Generator11(Generator):
 		
 		Endings = []
 		Endings.append("with my " + self.MaleBodyParts.Penis.GetRandomPenisPart() + " in your " + self.FemBodyParts.Mouth.RandomDescription(bAllowShortDesc = True))
-		Endings.append("with my " + self.Semen.MediumDescription() + " on your " + WordList(["angelic", "innocent", "pretty","sweet"]).GetWord() + " face")
+		Endings.append("with my " + self.Semen.MediumDescription() + " on your " + WordList(["angelic", "innocent", "pretty","sweet","cute","adorable"]).GetWord() + " little face")
 		Endings.append("with my " + self.Semen.MediumDescription() + " dripping from your chin")
 		Endings.append("with my " + self.Semen.MediumDescription() + " on your " + self.FemBodyParts.Breasts.RandomDescription() + "")
 		Endings.append("with my " + self.MaleBodyParts.Penis.Testicles.RandomDescription() + " slapping against your chin")
 		Endings.append("with your " + WordList(['red','cherry','full','slutty']).GetWord () + " lips around my " + self.MaleBodyParts.Penis.RandomDescription(bAllowShortDesc = True) + "")
-		Endings.append("at me when I'm " + WordList(['balls-deep','buried to the hilt','deep','stuffing','pounding']).GetWord() + " inside " + WordList(["your sister","your twin-sister","your step-sister","your best friend","the babysitter","your step-mom","my secretary","the yoga instructor","that stripper Wendy","some college slut I picked up at the club"]).GetWord())
+		Endings.append("at me when I'm " + WordList(['balls-deep in','buried to the hilt inside','deep inside','stuffing','pounding']).GetWord() + " " + WordList(["your sister","your twin-sister","your step-sister","your best friend","the babysitter","your step-mom","my secretary","the yoga instructor","that stripper Wendy","some college slut I picked up at the club"]).GetWord())
 		Endings.append("with my " + self.MaleBodyParts.Penis.Testicles.MediumDescription() + " stuffed in your mouth")
+		Endings.append("when I spank your ass with a riding crop")
+		Endings.append("with your " + WordList(['sphincter','anus','asshole','bunghole']).GetWord() + " raw and gaping after I've fucked your ass")
+		Endings.append("with my " + self.Semen.MediumDescription() + " " + self.VDrip.Gerund() + " out of your freshly-fucked " + WordList(['sphincter','anus','asshole','bunghole','dirt pipe','pooper']).GetWord())
+		Endings.append("with a ball-gag in your mouth")
+		Endings.append("with your black eyeliner running as you deep throat me")
 		
-		sTweet += Endings[randint(0,len(Endings)) - 1] + ".'"
+		sTweet += Endings[randint(0,len(Endings)) - 1] + ".\""
 		
 		return sTweet
 		
@@ -549,15 +555,45 @@ class Generator12(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		sTweet = self.FemaleName.FirstName() + "'s robe fell to the floor, and his heart skipped a beat. His lustful gaze took in her "
+		sHisName = self.MaleName.FirstName()
+		sHerName = self.FemaleName.FirstName()
 		
-		Parts = self.FemBodyParts.GetRandomBodyParts(iNum = 5, bIncludeInners = False)
-		for part in Parts:
-			if not part == Parts[len(Parts) - 1]:
-				sTweet += part + "; "
-			else:
-				sTweet += "and her " + part
-		sTweet += ".\n\n'" + self.Exclamation.GetWord(bHappy = True).capitalize() + " I can't believe you're my " + self.FFWB.GetPerson() + "!' he " + self.VMoan.Past() + "."
+		Parts = self.FemBodyParts
+		
+		sTweet = sHerName + "'s robe fell to the floor, and his heart skipped a beat. "
+		sTweet += "She had "
+		
+		sSkin = Parts.Skin.GetAdj() + " skin, "
+		sLegs = Parts.Legs.GetAdj() + " legs, "
+		sThighs =  Parts.Thighs.GetAdj() + " thighs, "
+		sAss = "a " + Parts.GetAdj() + " " + WordList(['ass','ass','booty','bottom','behind','butt','tush']).GetWord() + ", "
+		sBody = "a " + Parts.GetAdj() + " body, "
+		sTits = Parts.Breasts.GetAdj() + " breasts, "
+		sVag = "and a " + Parts.Vagina.RandomDescription(bAllowShortDesc = False)
+		
+		PartsDescs = []
+		PartsDescs.append(sSkin + sLegs + sTits + sThighs + sVag)
+		PartsDescs.append(sBody + sLegs + sTits + sThighs + sVag)
+		PartsDescs.append(sSkin + sLegs + sTits + sThighs + sVag)
+		PartsDescs.append(sSkin + sLegs + sAss + sThighs + sVag)
+		PartsDescs.append(sBody + sLegs + sThighs + sAss + sVag)
+		PartsDescs.append(sSkin + sLegs + sTits + sAss + sVag)
+		PartsDescs.append(sLegs + sThighs + sTits + sAss + sVag)
+		PartsDescs.append(sBody + sLegs + sTits + sAss + sVag)
+		PartsDescs.append(sSkin + sBody + sTits + sAss + sVag)
+		
+		sTweet += PartsDescs[randint(0, len(PartsDescs) - 1)] + ".\n\n\""
+		
+		sTweet += self.Exclamation.GetWord(bHappy = True).capitalize() + " "
+		
+		sMoan = WordList(['gasped','moaned','exclaimed']).GetWord()
+		Endings = []
+		Endings.append("I can't believe you're really my " + self.FFWB.GetPerson() + "!\"")
+		Endings.append("I can't believe I get to " + WordList(["do","fuck","bang","have sex with"]).GetWord() + " my " + self.FFWB.GetPerson() + "!\"")
+		Endings.append("I've always fantasized about " + WordList(["doing","fucking","banging","having sex with"]).GetWord() + " my " + self.FFWB.GetPerson() + "!\"")
+		
+		sTweet += Endings[randint(0,len(Endings)) - 1] + " " + sHisName + " " + sMoan + "."
+		
 		
 		return sTweet
 		

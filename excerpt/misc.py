@@ -126,20 +126,20 @@ class Exclamations(WordList):
 		'fuck me',
 		'fuck me',
 		'hell',
+		'holy fuck',
 		'holy shit',
 		'God',
 		'God',
-		'god damn',
+		'goddam',
 		'gosh',
 		'jeez',
-		'Jiminy Christmas',
 		'holy motherfucking shit',
 		'lord',
 		'oh goodness',
 		'oh my',
+		'oh my god',
 		'shit',
 		'shit',
-		'sweet Mother Mary',
 		'tits'])
 		
 	def GetWord(self, bHappy = False, bSad = False, bExMk = True):
