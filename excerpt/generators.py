@@ -4383,15 +4383,75 @@ class Generator81(Generator):
 
 		# return sTweet
 		
-# class Generator82(Generator):
-	# ID = 82
-	# Priority = 1
+# "Oh, I'll never find love!" wept Mary Jane. "What man would want a {plain-looking/chubby}, {nerdy/geeky} 
+# {waitress/barista/accountant}, especially one with a pair of enormous, swollen, DDD breasts???"
+# fallen arches? 
+class Generator83(Generator):
+	ID = 83
+	Priority = 1
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		Tits = self.FemBodyParts.Breasts 
+		sTitsAdj1 = Tits.GetAdj()
+		sTitsAdj2 = Tits.GetAdj() 
+		while sTitsAdj2 in sTitsAdj1 or sTitsAdj1 in sTitsAdj2:
+			sTitsAdj2 = Tits.GetAdj() 
+			
+		Ass = self.FemBodyParts.Ass
+		sAss = Ass.ShortDescription()
+		
+		sAssAdj1 = Ass.GetAdj()
+		sAssAdj2 = Ass.GetAdj() 
+		while sAssAdj1 in sAssAdj2 or sAssAdj2 in sAssAdj1:
+			sAssAdj2 = Ass.GetAdj()
+			
+		sAssArticle = ""
+		if sAssAdj1[0] in ['aeiou']:
+			sAssArticle = "an "
+		elif sAss not in ['buttocks','buns','cheeks']:
+			sAssArticle = "a " 
+		
+		sHerName = names.NamesFemalePlain().FirstName()
+		
+		PlainAdj1 = WordList(['chubby','freckled','frumpy','plain-looking','short','skinny'])
+		sPlainAdj1 = PlainAdj1.GetWord()
+		PlainAdj2 = WordList([str(randint(27,48)) + '-year-old','awkward','bookish','ginger','inexperienced',
+							 'geeky','nerdy','shy','uptight','curly-haired'])
+		sPlainAdj2 = PlainAdj2.GetWord() 
+		BoringJobs = WordList(['accountant','barista','civil servant','clerk','dog walker',
+							   'grad student','librarian','nail technician','office manager','secretary',
+							   'shift supervisor','teaching assistant','third-grade teacher','Uber driver',
+							   'Wal-Mart greeter','waitress'])
+		sBoringJob = BoringJobs.GetWord()
 
-		# return sTweet
+		
+		sTweet = "\"Oh! I shall never find " + WordList(['love','romance','the man of my dreams','true love','true romance']).GetWord() + "!\" "
+		sTweet += WordList(['sighed','cried','wept']).GetWord() + " " + sHerName + ". "
+		sTweet += "\"What man would want " + AddArticles(sPlainAdj1) + ", " + sPlainAdj2 + " " + sBoringJob + ", "
+		sTweet += "especially one with a pair of " + sTitsAdj1 + ", " + sTitsAdj2 + " "  
+		sTweet += WordList(['D-cup','DD-cup','DDD-cup','double-D','triple-D']).GetWord() + " " + Tits.ShortDescription() + " "
+		
+		
+		Endings = []
+		Endings.append("and " + sAssArticle + sAssAdj1 + ", " + sAssAdj2 + " " + sAss)
+		Endings.append("and " + sAssArticle + sAssAdj1 + ", " + sAssAdj2 + " " + sAss)
+		Endings.append("who is really into anal sex")
+		Endings.append("who is extremely skilled at deep-throating")
+		Endings.append("who is always thinking about sex")
+		Endings.append("who is constantly horny for dick")
+		Endings.append("who loves to suck dick")
+		Endings.append("who loves to go topless")
+		Endings.append("who is also an erotic nude model")
+		Endings.append("and an open-minded twin sister")
+		Endings.append("who gives incredible tit-jobs")
+		Endings.append("who loves threesomes")
+		
+		sTweet += Endings[randint(0,len(Endings)-1)] + "??\""
+
+		return sTweet
 		
 # class Generator82(Generator):
 	# ID = 82

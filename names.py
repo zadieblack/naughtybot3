@@ -10,11 +10,8 @@ class Names:
 	
 	def FirstName(self):
 		sFirstName = ""
-		iRandIndex = 0
 		
-		iRandIndex = randint(0, len(self.FirstNamesList) - 1)
-		
-		sFirstName = self.FirstNamesList[iRandIndex]
+		sFirstName = self.FirstNamesList[randint(0, len(self.FirstNamesList) - 1)]
 		
 		return sFirstName
 
