@@ -97,6 +97,7 @@ class NamesMale(Names):
 			'Roberto',
 			'Rogan',
 			'Roland',
+			'Romeo',
 			'Ronson',
 			'Rowan',
 			'Royce',

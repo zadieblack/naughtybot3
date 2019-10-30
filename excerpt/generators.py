@@ -3921,33 +3921,33 @@ class Generator76(Generator):
 		#Anal Annie
 			sHerName = WordList(['Annie','Anne','Alana','Alice','Alexis','Amber','Amy','Anastasia','Angie','Anita','Annabel','Aria','Ava']).GetWord()
 			sTweet += "She turned around, bent over, and spread her " + Ass.RandomDescription() + ", revealing her " + Ass.Anus.RandomDescription() + ". "
-			sTweet += "\"Wanna know why they call me 'Anal " + sHerName + "'?\" she asked."
+			sTweet += "\"Wanna find out why they call me 'Anal " + sHerName + "'?\" she asked."
 		elif iRand == 2:
 		#Blowjob Betsy
 			sHerName = WordList(['Babs','Barbara','Beatrice','Beatrix','Bella','Beth','Betsy','Bianca','Brenda','Brielle','Brigitte','Britney']).GetWord()
 			sTweet += "She dropped to her knees and began unbuckling his pants. "
-			sTweet += "\"Wanna know why they call me 'Blowjob " + sHerName + "'?\" she asked."
+			sTweet += "\"Wanna find out why they call me 'Blowjob " + sHerName + "'?\" she asked."
 		
 		elif iRand == 3:
 		#Hand-job Harriet
 			sHerName = WordList(['Harmony','Heather','Heidi','Hailey','Harriet','Hatty','Heaven','Honey','Holly']).GetWord()
 			sTweet += "She dropped to her knees and began unbuckling his pants. "
-			sTweet += "\"Wanna know why they call me 'Handjob " + sHerName + "'?\" she asked."
+			sTweet += "\"Wanna find out why they call me 'Handjob " + sHerName + "'?\" she asked."
 		elif iRand == 4:
 		#Deep-throat Donna 
 			sHerName = WordList(['Daisy','Dalia','Dani','Danielle','Daphne','Deanna','Delilah','Delores','Donna','Dorothy','Deanna']).GetWord()
 			sTweet += "She dropped to her knees and began unbuckling his pants. "
-			sTweet += "\"Wanna know why they call me 'Deep-Throat " + sHerName + "'?\" she asked."
+			sTweet += "\"Wanna find out why they call me 'Deep-Throat " + sHerName + "'?\" she asked."
 		elif iRand == 5:
 		#Facial Fannie
 			sHerName = WordList(['Felicity','Fiona','Flora','Francisca','Frida','Fannie','Flo','Florence','Farah']).GetWord()
 			sTweet += "She dropped to her knees and began unbuckling his pants. "
-			sTweet += "\"Wanna know why they call me 'Facial " + sHerName + "'?\" she asked."
+			sTweet += "\"Wanna find out why they call me 'Facial " + sHerName + "'?\" she asked."
 		else:
 		#Tit-job Tanya
 			sHerName = WordList(['Tabitha','Tamara','Tammy','Tanya','Tasha','Tawny','Teresa','Terri','Tia','Tiffany','Tilda','Tori','Tracy','Trish']).GetWord()
 			sTweet += "She squeezed her " + Tits.RandomDescription(bAllowLongDesc = False) + " together. "
-			sTweet += "\"Wanna know why they call me 'Tit-job " + sHerName + "'?\" she asked."
+			sTweet += "\"Wanna find out why they call me 'Tit-job " + sHerName + "'?\" she asked."
 							
 		return sTweet
 		
@@ -4461,20 +4461,88 @@ class Generator83(Generator):
 		sTweet += Endings[randint(0,len(Endings)-1)] + "??\""
 
 		return sTweet
-		
-# class Generator84(Generator):
-	# ID = 84
-	# Priority = 1
-	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
 
-		
 # "Oh baby," said Brad passionately, "I want you so bad!" Calliope was naked in his arms. 
 # He put his hand between her pale thighs and spread them apart. He ground his fat hard-on against her moist vagina.
 # "No Brad, wait!" said Calliope breathlessly. "I'm saving my pussy for marriage. But I'll let you fuck my 
-# virgin ass."
+# virgin ass."		
+class Generator84(Generator):
+	ID = 84
+	Priority = 1
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		sHisName = self.MaleName.FirstName()
+		sHerName = self.FemaleName.FirstName()
+		
+		Tits = self.FemBodyParts.Breasts
+		Dick = self.MaleBodyParts.Penis 
+		Pussy = self.FemBodyParts.Vagina 
+		Thighs = self.FemBodyParts.Thighs 
+		Legs = self.FemBodyParts.Legs
+		Ass = self.FemBodyParts.Ass 
+		
+		sPussy = Pussy.ShortDescription(NotList = ['flower'])
+		sDick = Dick.RandomDescription(bAllowLongDesc = False, NotList = ['beautiful'])
+		sAss = Ass.RandomDescription(NotList = ['cheeks','buns','buttocks','fuckable','sweet','bountiful','glistening'])
+		sAnus = Ass.Anus.ShortDescription(NotList = ['knot']) 
+		
+		ToENotList = ['dear']
+		sToE1 = self.TermsOfEndearment.GetWord(NotList = ToENotList)
+		sToE2 = self.TermsOfEndearment.GetWord(NotList = ToENotList)
+		sToE3 = self.TermsOfEndearment.GetWord(NotList = ToENotList)
+		
+		sTweet = "\"Oh " + sToE1 + ",\" "
+		sTweet += "said " + sHisName + " " + WordList(['passionately','ardently','huskily']).GetWord() + ", "
+		sTweet += "\"" + WordList(["I want you so bad","I need you so bad","I want you right now",
+								   "I want to take you right now","I want to deflower you right now",
+								   "I want to pop your cherry right now",
+								   "You're so fucking sexy"]).GetWord() + "!\" "
+		sTweet += sHerName + " was naked underneath him. "
+		if CoinFlip():
+			if CoinFlip():
+				sTweet += "He put his hand between her " + Thighs.RandomDescription() + " "
+				sTweet += "and spread them apart.\n\n"
+			else:
+				sTweet += "He put his hand between her " + Legs.RandomDescription(bAllowLongDesc = False) + " "
+				sTweet += "and spread them apart.\n\n"
+		else:
+			if CoinFlip():
+				sTweet += "He squeezed her " + Tits.RandomDescription() + " " 
+			else:
+				sTweet += "He kissed her " + Tits.RandomDescription() + " " 
+			sTweet += "and then began to suck eagerly on her " + Tits.Nipples.RandomDescription() + ".\n\n"
+		sTweet += sHerName + " felt his " + sDick + " "
+		if CoinFlip():
+			sTweet += "probing her " + Pussy.InnerLabia.RandomDescription(bAllowLongDesc = False) + ". "
+		else: 
+			sTweet += "pressing against her " + Pussy.OuterLabia.RandomDescription(bAllowLongDesc = False) + ". "
+		sTweet += "\"No " + sHisName + ", wait!\" she said breathlessly. "
+		sTweet += "\"I'm saving my " + sPussy + " for marriage.\"\n\n"
+		sTweet += "\"" + WordList(["Awww, please, " + sToE2,"Awww, c'mon " + sToE2,
+								  "But " + sToE2 + ", I want you so bad",
+								  "But " + sToE2 + ", I want you so bad",
+								  "But " + sToE2 + ", please",
+								  "C'mon " + sToE2 + ", I'm so horny for you",
+								  "But " + sToE2 + ", I'm so hard",
+								  "C'mon " + sToE2 + ", I'll just put the tip in",
+								  "C'mon " + sToE2 + ", I'm ready to go"]).GetWord() + "!\" he whined.\n\n"
+		sTweet += "\"It's okay, " + sToE3 + ",\" she said. \""
+		sTweet += WordList(["You can stick it inside my " + sAnus,
+						    "You may put it inside my " + sAnus,
+							"You can stick it inside my " + sAnus,
+							"You may stuff my " + sAnus,
+							"You may fuck my " + sAnus,
+							"You may fuck me in the " + sAnus,
+							"You may fuck me in my ass",
+							"You may fuck my " + sAss]).GetWord()
+		sTweet += " instead!\""
+		
+		return sTweet 
+		
+
 # class Generator85(Generator):
 	# ID = 85
 	# Priority = 1

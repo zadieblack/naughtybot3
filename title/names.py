@@ -134,6 +134,7 @@ class NamesMale(Names):
 			'Roberto',
 			'Rod',
 			'Roland',
+			'Romeo',
 			'Rowan',
 			'Royce',
 			'Ruben',

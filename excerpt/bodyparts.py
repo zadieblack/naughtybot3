@@ -382,10 +382,7 @@ class Legs(BodyParts):
 	def __init__(self):
 		super().__init__()
 		
-		self.NounList =(['legs',
-			'legs',
-			'legs',
-			'limbs'])
+		self.NounList(['legs'])
 			
 		self.AdjList(['athletic',
 			'coltish',
@@ -792,14 +789,17 @@ class Vagina(BodyParts):
 		super().__init__()
 		
 		self.NounList(['cherry pie',
+					'cock-sock',
 					'cooch',
 					'coochie',
 					'cunny',
 					'cunt',
+					'cunt-hole',
 					'flower',
 					'fuckhole',
 					'fur-burger',
 					'hole',
+					'honey-hole',
 					'honeypot',
 					'love-muffin',
 					'muff',
@@ -893,7 +893,6 @@ class AnusFemale(BodyParts):
 			'dirt-pipe',
 			'fart blaster',
 			'heinie hole',
-			'hole',
 			'knot',
 			'poop-chute',
 			'poop-trap',
