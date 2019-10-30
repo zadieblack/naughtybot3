@@ -154,22 +154,24 @@ class BodyParts:
 		iRand = randint(0, 12)
 		
 		if iRand in range(0, 3):
+		#short desc if allowed 
 			if bAllowShortDesc:
+				#use noun from the list or default noun
 				if CoinFlip():
 					sRandomDesc = self.ShortDescription(sNot = sNot, NotList = NotList)
 				else:
 					sRandomDesc = self.GetDefaultNoun()
 			else:
 				sRandomDesc = self.MediumDescription(sNot = sNot, NotList = NotList)
-		elif iRand in range(3, 9):
+		elif iRand in range(3,6):
+		#medium desc 
+			sRandomDesc = self.MediumDescription(sNot = sNot, NotList = NotList)
+		else:
+		#flowery desc if allowed
 			if bAllowLongDesc:
 				sRandomDesc = self.FloweryDescription(sNot = sNot, NotList = NotList)
 			else:
 				sRandomDesc = self.MediumDescription(sNot = sNot, NotList = NotList)
-		elif iRand in range(9, 12):
-			sRandomDesc = self.MediumDescription(sNot = sNot, NotList = NotList)
-		else:
-			sRandomDesc = self.MediumDescription(sNot = sNot, NotList = NotList)
 			
 		return sRandomDesc
 
