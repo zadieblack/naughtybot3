@@ -4229,29 +4229,38 @@ class Generator79(Generator):
 		
 		#Man says he's going to cum 
 		sTweet += "\"Oh " + WordList(['shit','fuck','god','Jesus Christ', 'hell yes','shit yes','fuck yes']).GetWord() + "! " 
-		sTweet +=  WordList(["Yes! Yes!!","Yes! I'm cumming","I'm gonna cum","Yes! I'm gonna cum","I'm cumming",
-							 sHerName + "! I'm cumming!", "Oh " + sHerName + "! I'm cumming!",
-							 sHerName + "! Oh yes! I'm cumming!", "Oh " + sHerName + "! Yes!"]).GetWord() + "!\" he moaned. "
-		
-		sHole = ""
 		if CoinFlip():
-		#pussy 
+			sTweet +=  WordList(["Yes! Yes!!","Yes! I'm cumming","I'm gonna cum","Yes! I'm gonna cum","I'm cumming",
+								 sHerName + "! I'm cumming!", "Oh " + sHerName + "! I'm cumming!",
+								 sHerName + "! Oh yes! I'm cumming!", "Oh " + sHerName + "! Yes!"]).GetWord() 
+							 
+		
+			sTweet += "!\" he moaned. "
+			
+			sHole = ""
 			if CoinFlip():
-				sHole += Vag.InnerVag.ShortDescription() 
+			#pussy 
+				if CoinFlip():
+					sHole += Vag.InnerVag.ShortDescription() 
+				else:
+					sHole += Vag.ShortDescription()
 			else:
-				sHole += Vag.ShortDescription()
-		else:
-		#ass
-			sHole += WordList(['ass','anus','asshole','butt-hole','rear-entrance','rectum','bowels']).GetWord() 
-		
-		#Climax
-		if CoinFlip():
-			sTweet += "Then he " + WordList(["bucked his hips", "thrust deep"]).GetWord() + " and began to fill his "
-			sTweet += sForbiddenLover + "'s " + sHole + " with his " + self.Semen.RandomDescription() + "."
-		else:
-			sTweet += "Then he began to pump " + self.Semen.RandomDescription() + " deep into "
-			sTweet += "his " + sForbiddenLover + "'s " + sHole + "."
-							
+			#ass
+				sHole += WordList(['ass','anus','asshole','butt-hole','rear-entrance','rectum','bowels']).GetWord() 
+			
+			#Climax
+			if CoinFlip():
+				sTweet += "Then he " + WordList(["bucked his hips", "thrust deep"]).GetWord() + " and began to fill his "
+				sTweet += sForbiddenLover + "'s " + sHole + " with his " + self.Semen.RandomDescription() + "."
+			else:
+				sTweet += "Then he began to pump " + self.Semen.RandomDescription() + " deep into "
+				sTweet += "his " + sForbiddenLover + "'s " + sHole + "."
+		else: 
+			sTweet += WordList(["Yes! Yes!!","I'm gonna cum","Yes! I'm gonna cum",
+								 sHerName + "! I'm gonna cum!", "Oh " + sHerName + "! I'm gonna cum!",
+								 sHerName + "! Oh yes! I'm gonna cum!", "Oh " + sHerName + "! Yes!"]).GetWord() 
+								 
+			sTweet += "! I'm gonna cum inside my " + sForbiddenLover + "!!\""
 		return sTweet
 		
 # "Marry me, Simone!" he moaned. 
@@ -4303,7 +4312,7 @@ class Generator81(Generator):
 							 "a hispanic chick","a mature woman",
 							 "your best friend's mom","your teacher",
 							 "your boss","your boss's wife","your step-mom",
-							 "a MILF","a black MILF","your mother-in-law"
+							 "a MILF","a black MILF","your mother-in-law",
 							 "your black mother-in-law","your hispanic maid",
 							 "a big black girl","a hispanic girl",
 							 "a Japanese schoolgirl","a firecrotch",
@@ -4388,7 +4397,7 @@ class Generator81(Generator):
 # fallen arches? 
 class Generator83(Generator):
 	ID = 83
-	Priority = 1
+	Priority = 3
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -4453,8 +4462,21 @@ class Generator83(Generator):
 
 		return sTweet
 		
-# class Generator82(Generator):
-	# ID = 82
+# class Generator84(Generator):
+	# ID = 84
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		
+# "Oh baby," said Brad passionately, "I want you so bad!" Calliope was naked in his arms. 
+# He put his hand between her pale thighs and spread them apart. He ground his fat hard-on against her moist vagina.
+# "No Brad, wait!" said Calliope breathlessly. "I'm saving my pussy for marriage. But I'll let you fuck my 
+# virgin ass."
+# class Generator85(Generator):
+	# ID = 85
 	# Priority = 1
 	
 	# def GenerateTweet(self):
@@ -4463,8 +4485,8 @@ class Generator83(Generator):
 
 		# return sTweet
 		
-# class Generator82(Generator):
-	# ID = 82
+# class Generator86(Generator):
+	# ID = 86
 	# Priority = 1
 	
 	# def GenerateTweet(self):
@@ -4473,8 +4495,8 @@ class Generator83(Generator):
 
 		# return sTweet
 		
-# class Generator82(Generator):
-	# ID = 82
+# class Generator87(Generator):
+	# ID = 87
 	# Priority = 1
 	
 	# def GenerateTweet(self):
@@ -4483,18 +4505,8 @@ class Generator83(Generator):
 
 		# return sTweet
 		
-# class Generator82(Generator):
-	# ID = 82
-	# Priority = 1
-	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
-
-		# return sTweet
-		
-# class Generator82(Generator):
-	# ID = 82
+# class Generator88(Generator):
+	# ID = 88
 	# Priority = 1
 	
 	# def GenerateTweet(self):
@@ -4714,10 +4726,10 @@ def GetImgTweetText(gen):
 		TweetText.append(sText)
 	#=============================
 	
-	FavWord.List += bodyparts.AnusFemale().NounList
-	FavWord.List += bodyparts.Penis().NounList
-	FavWord.List += bodyparts.Vagina().AdjList
-	FavWord.List += bodyparts.Testicles().NounList 
+	FavWord.List += bodyparts.AnusFemale().GetNounList()
+	FavWord.List += bodyparts.Penis().GetNounList()
+	FavWord.List += bodyparts.Vagina().GetAdjList()
+	FavWord.List += bodyparts.Testicles().GetNounList ()
 	FavWord.List += ['bunghole', 'crevice', 'fissure', 'pendulous', 'beefy', 'ravish', 'ample', 'nubile', 'panties', 'lust', 'throbbing', 'turgid', 'tumescent', 'meat', 'gooey', 'juicy', 'moist', 'taint', 'labia', 'pubes', 'scrotal']
 
 	if CoinFlip():

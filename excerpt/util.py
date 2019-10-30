@@ -208,53 +208,47 @@ class WordList:
 			NotList.append(sNot)
 		
 		if not self.List == None and len(self.List) > 0:
+			i = 0
 			sWord = self.List[randint(0, len(self.List) - 1)]
 		
 			if SomeHistoryQ is None:
-				i = 0
 				while self.FoundIn(sWord, NotList) and i < MAX_SEARCH_LOOPS:
 					#print("Collision! '" + sWord + "' in NotList, trying again.")
 					sWord = self.List[randint(0, len(self.List) - 1)]
 					i += 1
 			else:
-				i = 0
 				while (not SomeHistoryQ.PushToHistoryQ(sWord) or self.FoundIn(sWord, NotList)) and i < MAX_SEARCH_LOOPS:
 					#print("Collision! '" + sWord + "' in NotList, trying again.")
 					sWord = self.List[randint(0, len(self.List) - 1)]
 					i += 1
 					
+			if i == MAX_SEARCH_LOOPS:
+				print("*Maximum loops reached*\n*Selecting " + sWord + "*\n")
+					
 		return sWord
 		
 class NounAdjList:
-	def __init__(self, NewNounList = None, NewAdjList = None):
-		if NewNounList == None:
-			self.NounList = []
-		else:
-			self.NounList = NewNounList
-			
-		if NewAdjList == None:
-			self.AdjList = []
-		else:
-			self.AdjList = NewAdjList
-			
+	def __init__(self):			
+		self._NounList = WordList([])
+		self._AdjList = WordList([])
+		
 		self.NounHistoryQ = HistoryQ(3)
 		self.AdjHistoryQ = HistoryQ(3)
 			
 		self.DefaultNoun = ""
 		self.DefaultAdj = ""
-	
-	def GetNoun(self, NotList = None):
-		sNoun = ""
 		
-		if NotList is None:
+	def NounList(self, NewList):
+		if NotList == None:
 			NotList = []
 		
-		if not self.NounList == None and len(self.NounList) > 0:
-			sNoun = self.NounList[randint(0, len(self.NounList) - 1)]
-			while not self.NounHistoryQ.PushToHistoryQ(sNoun) or sNoun in NotList:
-				sNoun = self.NounList[randint(0, len(self.NounList) - 1)]
-			
-		return sNoun
+		self._NounList = WordList(NewList)
+	
+	def GetNAdj(self, NotList = None):
+		if NotList == None:
+			NotList = []
+		
+		return self._AdjList.GetWord(NotList = NotList)
 		
 	def GetAdj(self, NotList = None):
 		sAdj = ""
@@ -262,12 +256,7 @@ class NounAdjList:
 		if NotList is None:
 			NotList = []
 			
-		if not self.AdjList == None and len(self.AdjList) > 0:
-			sAdj = self.AdjList[randint(0, len(self.AdjList) - 1)]
-			while not self.AdjHistoryQ.PushToHistoryQ(sAdj) or sAdj in NotList:
-				sAdj = self.AdjList[randint(0, len(self.AdjList) - 1)]
-			
-		return sAdj
+		return self._AdjList.GetWord(NotList = NotList)
 	
 	def GetWord(self, NotList = None):
 		sWord = ""
@@ -275,6 +264,6 @@ class NounAdjList:
 		if NotList is None:
 			NotList = []
 					
-		sWord = self.GetAdj(NotList) + " " + self.GetNoun(NotList)
+		sWord = self.GetAdj(NotList = NotList) + " " + self.GetNoun(NotList = NotList)
 		
 		return sWord
