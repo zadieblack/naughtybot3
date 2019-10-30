@@ -4468,7 +4468,7 @@ class Generator83(Generator):
 # virgin ass."		
 class Generator84(Generator):
 	ID = 84
-	Priority = 1
+	Priority = 3
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
