@@ -307,7 +307,7 @@ class TweetTxtGen9(TweetTxtGen):
 		sText += "@erotica_ebooks for more " 
 		sText += WordList(["made-up ebook titles", "bot-generated erotica ebook titles", 
 						   "machine-generated book titles", "algorithmically-generated ebook titles",
-						   "random #EroticaBookTitles", "steamy bot-generated book titles"]).GetWord() + "."
+						   "random #EroticaBookTitles", "steamy bot-generated book titles"]).GetWord() + "!"
 		
 		return sText
 		
