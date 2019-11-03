@@ -1,4 +1,4 @@
-#!/usr/bin/python3.6
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # Utilities module
 
@@ -10,23 +10,9 @@ from enum import *
 MAX_TWITTER_CHARS = 280
 MAX_GENERATOR_NO = 44
 MAX_SEARCH_LOOPS = 8
-TWIT_USERNAME = 'bot_lust'
+TWIT_CONTROLLER = 'zadieblack'
 
-Q_SIZE = 25
-HISTORYQ_FILENAME = 'excerpt/history_q.txt'
-TWEETTXT_HISTORYQ_FILENAME = 'title/tweettxt_history_q.txt'
-
-TAG_PEN = "sex act with penetration scene"
-TAG_NON_PEN = "non-penetrative sex act scene"
-TAG_DONE_TO_HER = "done to her scene"
-TAG_DONE_TO_HIM = "done to him scene"
-TAG_CLIMAX = "orgasm scene"
-TAG_POSITION = "sex position scene"
-TAG_FOREPLAY = "foreplay scene"
-TAG_ABOVE_BELT = "above-the-belt sex act scene"
-TAG_BELOW_BELT = "below-the-belt sex act scene"
-TAG_ORAL = "oral sex scene"
-TAG_CLOTHED = "scene where they still have clothes on"
+Q_SIZE = 40
 
 TweetHistoryQ = None
 	
@@ -55,24 +41,12 @@ class GeneratorType(Enum):
 	Promo = 2
 	Test = 3
 	BookTitle = 4
+	
+class GirlType(Enum):
+	Good = 1
+	Bad = 2
+	Neutral = 3
 
-def AddArticles(sNounPhrase):
-	sUpdatedPhrase = ""
-	
-	iStartChar = 0
-	for x in range(0, len(sNounPhrase) - 1):
-		iStartChar = x 
-		if sNounPhrase[x].isalpha():
-			break
-	
-	if len(sNounPhrase) > 0:
-		if sNounPhrase[iStartChar].lower() in ['a','e','i','o','u']:
-			sUpdatedPhrase = 'an ' + sNounPhrase
-		else:
-			sUpdatedPhrase = 'a ' + sNounPhrase
-			
-	return sUpdatedPhrase
-	
 HeartEmoji = ['\U00002764','\U0001F49A','\U0001F499','\U0001F49C','\U0001F49B','\U0001F9E1','\U0001F5A4']
 
 def GetHeartEmoji(iNum = 1):
@@ -95,8 +69,8 @@ def GetEmoji(iNum = 1):
 
 def CoinFlip():
 	bHeads = True 
-	iRand = randint(1,2)
-	if iRand == 2:
+
+	if randint(1,2) == 2:
 		bHeads = False
 		
 	return bHeads 
@@ -199,65 +173,73 @@ class WordList:
 				
 		return bFound 
 	
-	def GetWord(self, sNot = "", NotList = None, SomeHistoryQ = None):
+	def GetWord(self, NotList = None, SomeHistoryQ = None):
 		sWord = ""
 		
-		if NotList == None:
+		if NotList is None:
 			NotList = []
-		
-		if sNot != "":
-			NotList.append(sNot)
-		
+			
 		if not self.List == None and len(self.List) > 0:
-			i = 0
 			sWord = self.List[randint(0, len(self.List) - 1)]
-		
+			
 			if SomeHistoryQ is None:
+				i = 0
 				while self.FoundIn(sWord, NotList) and i < MAX_SEARCH_LOOPS:
 					#print("Collision! '" + sWord + "' in NotList, trying again.")
 					sWord = self.List[randint(0, len(self.List) - 1)]
 					i += 1
 			else:
+				i = 0
 				while (not SomeHistoryQ.PushToHistoryQ(sWord) or self.FoundIn(sWord, NotList)) and i < MAX_SEARCH_LOOPS:
 					#print("Collision! '" + sWord + "' in NotList, trying again.")
 					sWord = self.List[randint(0, len(self.List) - 1)]
 					i += 1
-					
-			if i == MAX_SEARCH_LOOPS:
-				print("*Maximum loops reached*\n*Selecting " + sWord + "*\n")
-					
+				
 		return sWord
 		
 class NounAdjList:
-	def __init__(self):			
-		self._NounList = WordList([])
-		self._AdjList = WordList([])
-		
+	def __init__(self, NewNounList = None, NewAdjList = None):
+		if NewNounList == None:
+			self.NounList = []
+		else:
+			self.NounList = NewNounList
+			
+		if NewAdjList == None:
+			self.AdjList = []
+		else:
+			self.AdjList = NewAdjList
+			
 		self.NounHistoryQ = HistoryQ(3)
 		self.AdjHistoryQ = HistoryQ(3)
 			
 		self.DefaultNoun = ""
 		self.DefaultAdj = ""
-		
-	def NounList(self, NewList):
-		if NotList == None:
-			NotList = []
-		
-		self._NounList = WordList(NewList)
 	
-	def GetNAdj(self, NotList = None):
-		if NotList == None:
+	def GetNoun(self, NotList = None):
+		sNoun = ""
+		
+		if NotList is None:
 			NotList = []
 		
-		return self._AdjList.GetWord(NotList = NotList)
+		if not self.NounList == None and len(self.NounList) > 0:
+			sNoun = self.NounList[randint(0, len(self.NounList) - 1)]
+			while not self.NounHistoryQ.PushToHistoryQ(sNoun) or sNoun in NotList:
+				sNoun = self.NounList[randint(0, len(self.NounList) - 1)]
+			
+		return sNoun
 		
 	def GetAdj(self, NotList = None):
 		sAdj = ""
 		
 		if NotList is None:
 			NotList = []
+		
+		if not self.AdjList == None and len(self.AdjList) > 0:
+			sAdj = self.AdjList[randint(0, len(self.AdjList) - 1)]
+			while not self.AdjHistoryQ.PushToHistoryQ(sAdj) or sAdj in NotList:
+				sAdj = self.AdjList[randint(0, len(self.AdjList) - 1)]
 			
-		return self._AdjList.GetWord(NotList = NotList)
+		return sAdj
 	
 	def GetWord(self, NotList = None):
 		sWord = ""
@@ -265,6 +247,8 @@ class NounAdjList:
 		if NotList is None:
 			NotList = []
 					
-		sWord = self.GetAdj(NotList = NotList) + " " + self.GetNoun(NotList = NotList)
+		sWord = self.GetAdj(NotList) + " " + self.GetNoun(NotList)
 		
 		return sWord
+		
+	

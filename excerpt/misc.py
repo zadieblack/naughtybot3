@@ -50,70 +50,69 @@ class Events(WordList):
 class Hashtags(WordList):
 	def __init__(self):
 		super().__init__(['50shades',
+			'amreading',
 			'amwriting',
 			'BDSM',
-			#'bitcoin',
-			#'blockchain',
+			'bookboost',
+			'bookblast',
 			'bot',
 			'botALLY'
-			'botlife',
 			'botlove',
-			'eartg',
-			'eartg',
+			'dirtybooks',
+			'dirtyreads',
 			'erotica',
 			'erotica',
+			'eroticromance',
 			'fantasy',
 			'fiftyshades',
 			'filthy',
-			#'litecoin',
+			'kink',
 			'lovestory',
-			'lprtg',
-			'lprtg',
-			'mrbrtg',
 			'naughty',
+			'naughtybooks',
+			'naughtyreads',
+			'naughtybot',
 			'nsfw',
 			'PleaseRT',
-			'scifi',
 			'romance',
 			'smut',
 			'sorrynotsorry',
 			'ssrtg',
 			'ssrtg',
 			'taboo',
+			'toosexy',
 			'truelove',
-			'twitterbot',
-			'twitterbot',
-			'wprtg'])
+			'ThanksIHateIt',
+			'twitterbot','twitterbot',
+			'writingcommunity',
+			'writingprompt'])
 		
-class BadGirlNames(NounAdjList):
+class BadGirlAdjs(WordList):
 	def __init__(self):
-		super().__init__()
-		
-		DefaultNoun = 'slut'
-		DefaultAdj = 'little'
-		
-		self.NounList = ['hussy',
-			'minx',
-			'nympho',
-			'skank',
-			'slut',
-			'slut',
-			'slut',
-			'tart',
-			'tramp',
-			'trollop',
-			'whore',
-			'whore']
-			
-		self.AdjList = ['brazen',
-			'cheeky',
-			'filthy',
-			'little',
-			'nasty',
-			'outrageous',
-			'saucy',
-			'shameless',
-			'wanton']
+		super().__init__(['hussy',
+						'minx',
+						'nympho',
+						'skank',
+						'slut',
+						'slut',
+						'slut',
+						'tart',
+						'tramp',
+						'trollop',
+						'whore',
+						'whore'])
+						
+class BadGirlNouns(WordList):
+	def __init__(self):
+		super().__init__(['brazen',
+						'cheeky',
+						'filthy',
+						'little',
+						'nasty',
+						'outrageous',
+						'saucy',
+						'shameless',
+						'wanton'])
 		
 class Exclamations(WordList):
 	def __init__(self):

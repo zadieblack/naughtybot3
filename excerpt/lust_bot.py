@@ -14,13 +14,11 @@ import sys, argparse, datetime, threading, traceback
 
 from io import BytesIO
 from random import *
-#from excerpt.util import *
-#import excerpt.util
 import excerpt.util as exutil
-#from excerpt.generators import *
 import excerpt.generators as generators 
+from excerpt.tweettext import *
 from excerpt.twitter_stuff import *
-from excerpt.texttoimg import *
+import excerpt.texttoimg 
 	
 def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorNo = -1):
 	print("=*=*=*= FLAMING LUST BOT IS RUNNING (@bot_lust) =*=*=*=\n\n")
@@ -30,6 +28,7 @@ def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorN
 	bTest = False 
 	
 	exutil.TweetHistoryQ = exutil.HistoryQWithLog(exutil.HISTORYQ_FILENAME)
+	exutil.TweetTxtHistoryQ = exutil.HistoryQWithLog(exutil.TWEETTXT_HISTORYQ_FILENAME, iQSize = 4)
 	
 	try:
 		
@@ -57,7 +56,7 @@ def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorN
 			sTweet = Gen.GenerateTweet()
 			if len(sTweet) > 0:
 				if Gen.Type != GeneratorType.Promo:
-					sText = GetImgTweetText(Gen)
+					sText = GetImgTweetText(bTest = False, TweetTxtHistoryQ = exutil.TweetTxtHistoryQ)
 				
 				print("\n===Here is your " + str(len(sTweet)) + " char tweet (" + str(i + 1) + " of " + str(iTweets) + ")===")
 				print("[" + sTweet + "]")

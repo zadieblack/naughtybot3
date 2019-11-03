@@ -121,7 +121,8 @@ class Generator():
 	
 		self.FemaleName = names.NamesFemale()
 		self.MaleName = names.NamesMale()
-		self.BadGirlName = misc.BadGirlNames()
+		self.BadGirlNoun = misc.BadGirlNouns()
+		self.BadGirlAdj = misc.BadGirlAdjs()
 		
 		self.VDrip = verbs.VerbDrip()
 		self.VEjac = verbs.VerbEjaculate()
@@ -1022,7 +1023,7 @@ class Generator27(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		sBadGirlName = self.BadGirlName.GetWord() 
+		sBadGirlName = self.BadGirlNoun.GetWord() 
 		Location = LocationSelector().Location(PubPrivType = exutil.LocPubPrivType.Public)
 		sHisName = self.MaleName.FirstName()
 		sHerName = self.FemaleName.FirstName()
@@ -1406,7 +1407,7 @@ class Generator37(Generator):
 		sTweet += "'Please don't tell him,' she said, looking up at him " + WordList(["pitifully", "hopefully", "wretchedly", "wistfully", "dejectedly", "breathlessly"]).GetWord() + ". He had " + sManEyes + " and his " + WordList(['brawny','broad','mighty','muscular','powerful','rugged','strong','sturdy','well-built','wide']).GetWord() + " shoulders filled out his sharply-tailored " + WordList(["tuxedo", "three-piece suit", "black suit", "button-down silk shirt", "sport coat", "gray suit"]).GetWord() + " nicely. 'I'll do anything.'\n\n"
 		if CoinFlip():
 			sTweet += "'You must be punished, Miss " + sHerName + ",' he said. 'Will you do as I say?' She nodded.\n\n"
-			sTweet += "'Then bend over and lift your skirt.' " + sHerName + " flushed, but she knew she had no choice. She bent lifted the hem, exposing her bare " + self.FemBodyParts.Ass.MediumDescription(sNot = "bare") + " and her " + self.FemBodyParts.Vagina.RandomDescription() + ". 'No panties?' said the " + sWealthyMan + ", 'My, my, you *are* a " + self.BadGirlName.GetWord() + ".' He unbuckled his belt and pulled it off. She tensed as he approached. He put one hand on her " + self.FemBodyParts.Ass.RandomDescription() + " and raised the belt in his fist.\n\n"
+			sTweet += "'Then bend over and lift your skirt.' " + sHerName + " flushed, but she knew she had no choice. She bent lifted the hem, exposing her bare " + self.FemBodyParts.Ass.MediumDescription(sNot = "bare") + " and her " + self.FemBodyParts.Vagina.RandomDescription() + ". 'No panties?' said the " + sWealthyMan + ", 'My, my, you *are* a " + self.BadGirlNoun.GetWord() + ".' He unbuckled his belt and pulled it off. She tensed as he approached. He put one hand on her " + self.FemBodyParts.Ass.RandomDescription() + " and raised the belt in his fist.\n\n"
 			sTweet += "'I'd tell you this will only sting a little,' he said, 'But " + WordList(["we both know that it is going to hurt", "that would be a lie", "I would never lie to a beautiful woman", "this will definitely leave a mark", "if it didn't hurt, it wouldn't be a punishment"]).GetWord() + ".'"
 		else:
 			sTweet += "'Anything?' he asked, arching an eyebrow. She nodded mutely. 'On your knees, then,' he said. "
@@ -1586,7 +1587,7 @@ class Generator41(Generator):
 			if iRand == 1:
 				sTweet += "'My god, " + sHerName + "', " + sHisName + " shouted angrily. 'You and your " + self.MFWB.GetPerson() + "??'"
 			elif iRand == 2:
-				sTweet += "'" + sHerName + " you " + self.BadGirlName.GetAdj() + " " + self.BadGirlName.GetWord() + "!', " + sHisName + " said. 'I can't believe you two started without me!'"
+				sTweet += "'" + sHerName + " you " + self.BadGirlAdj.GetWord() + " " + self.BadGirlNoun.GetWord() + "!', " + sHisName + " said. 'I can't believe you two started without me!'"
 			else:
 				sTweet += "'Oh " + sHerName + ",' " + sHisName + " sighed, 'This is revenge for when I " + self.VSexActByMale.Past() + " my " + self.FFWB.GetPerson() + ", isn't it?'"
 		else:
@@ -1652,7 +1653,7 @@ class Generator43(Generator):
 		
 		sHisName = self.MaleName.FirstName()
 		sHerName = self.FemaleName.FirstName()
-		sSkankDesc = self.BadGirlName.GetAdj() + " " + self.BadGirlName.GetWord()
+		sSkankDesc = self.BadGirlAdj.GetWord() + " " + self.BadGirlNoun.GetWord()
 		
 		sTweet = "'Tell me the truth, " + sHisName + ",' she said. 'Tell me you're not seeing that " + sSkankDesc + " " + sHerName + " again.'\n\n"
 		sTweet += "'I promise, my dear,' he said."
@@ -1830,7 +1831,8 @@ class Generator47(Generator):
 		
 		if iRand == 1:
 			Location = LocationSelector().Location(PubPrivType = exutil.LocPubPrivType.Public)
-			sTweet += "'" + self.Exclamation.GetWord(bHappy = True, bExMk = False).capitalize() + ", " + sHisName + ",' she " + self.VMoan.Past() + ". 'Make me an anal-" + self.BadGirlName.GetNoun() + " right here " + Location.NamePrep + "!'"
+			sTweet += "'" + self.Exclamation.GetWord(bHappy = True, bExMk = False).capitalize() + ", " + sHisName + ",' she " + self.VMoan.Past() + ". 'Make me an anal-" + self.BadGirlNoun.GetWord()
+			Noun.GetWord() + " right here " + Location.NamePrep + "!'"
 		elif iRand == 2:
 			Location = locations.LocationSelector().Location(InOut = exutil.LocInOutType.Outdoors)
 			sTweet += "'" + self.Exclamation.GetWord(bHappy = True).capitalize() + "' she " + self.VMoan.Past() + ". 'I love the feeling of " + WordList(["doing anal", "getting butt-fucked", "getting ass-fucked", "having my asshole pounded", "anal penetration"]).GetWord() + " " + Location.NamePrep + "!'"
@@ -3641,7 +3643,7 @@ class Generator71(Generator):
 						  'stuff','stuff','violate','deflower','deflower','cum in','cream-pie','gape',
 						  'ass-fuck','rape','fuck the shit out of','butt-fuck']).GetWord()
 						  
-		sAss = WordList(self.FemBodyParts.Ass.Anus.NounList + ['ass','heinie','rump','tushie','butt']).GetWord(NotList = [sVerb,'knot','bowels'])
+		sAss = WordList(self.FemBodyParts.Ass.Anus.GetNounList() + ['ass','heinie','rump','tushie','butt']).GetWord(NotList = [sVerb,'knot','bowels'])
 		
 		#print("\nsVerb = " + sVerb)
 		#print("\nsAss = " + str(sAss))
@@ -4743,84 +4745,84 @@ class Generator84(Generator):
 
 		# return sTweet
 		
-def GetImgTweetText(gen):
-	#the bot's images are the random parts but we need to be careful that this isn't constantly generating static duplicate text. twitter won't like that.
-	sText = ""
+# def GetImgTweetText(gen):
+	## the bot's images are the random parts but we need to be careful that this isn't constantly generating static duplicate text. twitter won't like that.
+	# sText = ""
 	
-	TweetText = []
-	TitleBuilder = misc.BookTitleBuilder()
-	BookSeller = misc.BookSellers()
-	Hashtag = misc.Hashtags()
-	SexyAdj = misc.SexyAdjs()
-	FavWord = WordList()
+	# TweetText = []
+	# TitleBuilder = misc.BookTitleBuilder()
+	# BookSeller = misc.BookSellers()
+	# Hashtag = misc.Hashtags()
+	# SexyAdj = misc.SexyAdjs()
+	# FavWord = WordList()
 		
-	if gen.Type != exutil.GeneratorType.BookTitle:
-		sText = "'" + TitleBuilder.GetTitle() + "' is coming soon on " + BookSeller.GetWord() + "!"
-		for _ in range(4):
-			TweetText.append(sText)
-		#=============================
+	# if gen.Type != exutil.GeneratorType.BookTitle:
+		# sText = "'" + TitleBuilder.GetTitle() + "' is coming soon on " + BookSeller.GetWord() + "!"
+		# for _ in range(4):
+			# TweetText.append(sText)
+		# =============================
 
-		sText = "Check out this " + SexyAdj.GetWord() + " excerpt from '" + TitleBuilder.GetTitle() + "', available soon on " + BookSeller.GetWord() + "!"
-		for _ in range(4):
-			TweetText.append(sText)
-		#=============================
+		# sText = "Check out this " + SexyAdj.GetWord() + " excerpt from '" + TitleBuilder.GetTitle() + "', available soon on " + BookSeller.GetWord() + "!"
+		# for _ in range(4):
+			# TweetText.append(sText)
+		# =============================
 		
-	sText = WordList(["Don't hate", "Don't be hatin'", "Don't be hatin' on", "Don't hate on"]).GetWord() + " " + WordList(["me because I'm", "Flaming Lust Bot because it's", "@bot_lust because its", "this bot because it's"]).GetWord() + " " + WordList(["beautiful", "sexy", "hot", "sexxxaaayyyy", "sexy af", "sexxxy", "the hotness", "totes sexy", "sexy for reals"]).GetWord() + ". " + exutil.GetEmoji()
-	TweetText.append(sText)
-	#=============================
+	# sText = WordList(["Don't hate", "Don't be hatin'", "Don't be hatin' on", "Don't hate on"]).GetWord() + " " + WordList(["me because I'm", "Flaming Lust Bot because it's", "@bot_lust because its", "this bot because it's"]).GetWord() + " " + WordList(["beautiful", "sexy", "hot", "sexxxaaayyyy", "sexy af", "sexxxy", "the hotness", "totes sexy", "sexy for reals"]).GetWord() + ". " + exutil.GetEmoji()
+	# TweetText.append(sText)
+	# =============================
 	
-	if CoinFlip():
-		sText = "This tweet brought to you by"
-	else: 
-		sText = "Brought to you by"
-	sText += " the letters 'S', 'E', and 'X', and by the number 69. " + exutil.GetEmoji()
-	TweetText.append(sText)
-	#=============================
+	# if CoinFlip():
+		# sText = "This tweet brought to you by"
+	# else: 
+		# sText = "Brought to you by"
+	# sText += " the letters 'S', 'E', and 'X', and by the number 69. " + exutil.GetEmoji()
+	# TweetText.append(sText)
+	# =============================
 	
-	sText = "\U0001F525I know " + WordList(["you like reading these", "you're into this", "you freaky", "you're into this bot", "you love these", "these kinda get you off", ]).GetWord() + ".\U0001F525 " + WordList(["Don't worry, I won't tell", "Don't worry, your secret is safe with me", "It's cool, it will be our little secret", "No one has to know", "Don't worry, it can stay between you and me"]).GetWord() + ". " + exutil.GetEmoji()
-	TweetText.append(sText)
-	#=============================
+	# sText = "\U0001F525I know " + WordList(["you like reading these", "you're into this", "you freaky", "you're into this bot", "you love these", "these kinda get you off", ]).GetWord() + ".\U0001F525 " + WordList(["Don't worry, I won't tell", "Don't worry, your secret is safe with me", "It's cool, it will be our little secret", "No one has to know", "Don't worry, it can stay between you and me"]).GetWord() + ". " + exutil.GetEmoji()
+	# TweetText.append(sText)
+	# =============================
 
-	sText = WordList(["The sex acts", "The sexual positions", "The " + misc.SexyAdjs().GetWord() + " scenarios"]).GetWord() + " depicted are " + WordList(["computer-generated", "algorithmically generated", "entirely fictional", "bot-generated", "extremely hot"]).GetWord() + " and have not been approved by " + WordList(["a doctor","a physician", "a licensed medical practicitioner", "the AMA", "a licensed physician", "a licensed professional"]).GetWord() + ". Do not attempt."
-	TweetText.append(sText)
-	#=============================
+	# sText = WordList(["The sex acts", "The sexual positions", "The " + misc.SexyAdjs().GetWord() + " scenarios"]).GetWord() + " depicted are " + WordList(["computer-generated", "algorithmically generated", "entirely fictional", "bot-generated", "extremely hot"]).GetWord() + " and have not been approved by " + WordList(["a doctor","a physician", "a licensed medical practicitioner", "the AMA", "a licensed physician", "a licensed professional"]).GetWord() + ". Do not attempt."
+	# TweetText.append(sText)
+	# =============================
 	
-	sText = WordList(["You have to retweet this", "Please retweet this", "Favorite this", "Fave this", "You have to favorite this"]).GetWord() + " if it " + WordList(["made you giggle", "made you laugh", "made you smile", "got you hot", "made you blush", "made you grin", "made your privates all tingly", "made your naught bits all tingly", "turned you on", "made you feel hot", "got you going", "did it for you", "made your naughty bits feel good"]).GetWord() + ". " + WordList(["Seriously.", "For real.", "Seriously, though.", "For real, though.", "Okay?", "Pinky swear?"]).GetWord() 
-	TweetText.append(sText)
-	#=============================
+	# sText = WordList(["You have to retweet this", "Please retweet this", "Favorite this", "Fave this", "You have to favorite this"]).GetWord() + " if it " + WordList(["made you giggle", "made you laugh", "made you smile", "got you hot", "made you blush", "made you grin", "made your privates all tingly", "made your naught bits all tingly", "turned you on", "made you feel hot", "got you going", "did it for you", "made your naughty bits feel good"]).GetWord() + ". " + WordList(["Seriously.", "For real.", "Seriously, though.", "For real, though.", "Okay?", "Pinky swear?"]).GetWord() 
+	# TweetText.append(sText)
+	# =============================
 	
-	sText = WordList(["Check out", "Follow", "Visit", "Take a look at"]).GetWord() + " @erotica_ebooks for more " + WordList(["made-up ebook titles", "funny erotica titles", "machine-generated silliness", "#botlaughs", "ridiculousness", "steamy bot-generated content"]).GetWord() + "!"
-	for _ in range(2):
-		TweetText.append(sText)
-	#=============================
+	# sText = WordList(["Check out", "Follow", "Visit", "Take a look at"]).GetWord() + " @erotica_ebooks for more " + WordList(["made-up ebook titles", "funny erotica titles", "machine-generated silliness", "#botlaughs", "ridiculousness", "steamy bot-generated content"]).GetWord() + "!"
+	# for _ in range(2):
+		# TweetText.append(sText)
+	# =============================
 	
-	FavWord.List += bodyparts.AnusFemale().GetNounList()
-	FavWord.List += bodyparts.Penis().GetNounList()
-	FavWord.List += bodyparts.Vagina().GetAdjList()
-	FavWord.List += bodyparts.Testicles().GetNounList ()
-	FavWord.List += ['bunghole', 'crevice', 'fissure', 'pendulous', 'beefy', 'ravish', 'ample', 'nubile', 'panties', 'lust', 'throbbing', 'turgid', 'tumescent', 'meat', 'gooey', 'juicy', 'moist', 'taint', 'labia', 'pubes', 'scrotal']
+	# FavWord.List += bodyparts.AnusFemale().GetNounList()
+	# FavWord.List += bodyparts.Penis().GetNounList()
+	# FavWord.List += bodyparts.Vagina().GetAdjList()
+	# FavWord.List += bodyparts.Testicles().GetNounList ()
+	# FavWord.List += ['bunghole', 'crevice', 'fissure', 'pendulous', 'beefy', 'ravish', 'ample', 'nubile', 'panties', 'lust', 'throbbing', 'turgid', 'tumescent', 'meat', 'gooey', 'juicy', 'moist', 'taint', 'labia', 'pubes', 'scrotal']
 
-	if CoinFlip():
-		sText = "My favorite word is '" + FavWord.GetWord() + "'"
-	else:
-		sText = "The password is '" + FavWord.GetWord() + "'"
-	for _ in range(4):
-		TweetText.append(sText)
-	#=============================
+	# if CoinFlip():
+		# sText = "My favorite word is '" + FavWord.GetWord() + "'"
+	# else:
+		# sText = "The password is '" + FavWord.GetWord() + "'"
+	# for _ in range(4):
+		# TweetText.append(sText)
+	# =============================
 
-	# it seems that adding any kind of hashtag at all to a bot may lead to shadowbans. so for now I'm not using this.
-	iRand = randint(1,6)
-	if iRand == 6:
-		sText = TweetText[randint(0, len(TweetText) - 1)] + " #" + Hashtag.GetWord()
-		while exutil.IsTweetTooLong(sText):
-			sText = TweetText[randint(0, len(TweetText) - 1)] + " #" + Hashtag.GetWord()
-	else:
-		sText = TweetText[randint(0, len(TweetText) - 1)] 
+	## it seems that adding any kind of hashtag at all to a bot may lead to shadowbans. so for now I'm not using this.
+	# iRand = randint(1,6)
+	# if iRand == 6:
+		# sText = TweetText[randint(0, len(TweetText) - 1)] + " #" + Hashtag.GetWord()
+		# while exutil.IsTweetTooLong(sText):
+			# sText = TweetText[randint(0, len(TweetText) - 1)] + " #" + Hashtag.GetWord()
+	# else:
+		# sText = TweetText[randint(0, len(TweetText) - 1)] 
 		
-	while exutil.IsTweetTooLong(sText):
-		sText = TweetText[randint(0, len(TweetText) - 1)] 
+	# while exutil.IsTweetTooLong(sText):
+		# sText = TweetText[randint(0, len(TweetText) - 1)] 
 	
-	return sText 
+	# return sText 
 				
 class GeneratorSelector():
 	GeneratorList = []

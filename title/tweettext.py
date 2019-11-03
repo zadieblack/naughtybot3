@@ -7,7 +7,7 @@ from random import *
 from title.util import *
 from title.misc import *
 from title.generators import *
-from title.names import *
+from names import *
 from title.people import *
 from title.texttoimg import *
 
@@ -21,8 +21,8 @@ def LastNameBuilder(NotList = None):
 	if NotList == None:
 		NotList = []
 	
-	sName1 = LastNames().GetWord(NotList = NotList)
-	sName2 = LastNames().GetWord(NotList = [sName1] + NotList)
+	sName1 = AuthorLastNames().GetWord(NotList = NotList)
+	sName2 = AuthorLastNames().GetWord(NotList = [sName1] + NotList)
 	
 	for _ in range(3):
 		Names.append(sName1)
@@ -99,6 +99,196 @@ def AddHashtag(Tweets):
 			Tweets[len(Tweets) - 1] += sHashtag
 
 	return Tweets
+	
+class BookTitleBuilder():
+	def __init__(self):
+		self.Girls = BookGirls()
+		self.GirlAdjs = BookGirlAdjs()
+		self.Masters = BookMasters()
+		self.MasterAdjs = BookMasterAdjs()
+		self.VerbsBy = BookVerbsBy()
+		self.VerbsTo = BookVerbsTo()
+
+	
+	def GetMaster(self, bLong = False):
+		sMaster = ""
+		
+		sMaster = self.Masters.GetWord()
+		
+		sMasterAdj = self.MasterAdjs.GetWord()
+		while sMasterAdj != "" and sMasterAdj in sMaster:
+			sMasterAdj = self.MasterAdjs.GetWord()
+		
+		if CoinFlip():
+			if bLong:
+				sMaster = sMasterAdj + " " + sMaster
+		else:
+			sMaster = sMasterAdj + " " + sMaster
+			
+		return sMaster
+		
+	def GetGirl(self, bLong = False):
+		sGirl = ""
+		
+		iRand = randint(1,7)
+		sGirl = self.Girls.GetWord()
+		sGirlAdj = self.GirlAdjs.GetWord()
+		while sGirlAdj != "" and sGirlAdj in sGirl:
+			sGirlAdj = self.GirlAdjs.GetWord()
+			
+		if iRand <= 3:
+			if bLong:
+				sGirl = sGirlAdj + " " + sGirl
+		elif iRand > 3 and iRand < 7:
+			sGirl = sGirlAdj + " " + sGirl
+		elif iRand == 7:
+			sGirl = sGirlAdj + " " + sGirl
+			
+			sGirlAdj = self.GirlAdjs.GetWord()
+			while sGirlAdj != "" and sGirlAdj in sGirl:
+				sGirlAdj = self.GirlAdjs.GetWord()
+				
+			sGirl = sGirlAdj + " " + sGirl
+			
+		return sGirl
+		
+	def _getFMs_(self):
+		FMs = ""
+		
+		iRandLen = randint(4,10)
+		for x in range(1, iRandLen):
+			iRandChoice = randint(1,3)
+			if iRandChoice == 1:
+				FMs += "F"
+			else:
+				FMs += "M"
+				
+		if "M" not in FMs:
+			FMs += "M"
+		elif "F" not in FMs:
+			FMs += "F"
+		
+		return FMs
+		
+	def GetTitle(self):
+		sTitle = ""
+
+		sVerbBy = self.VerbsBy.GetWord()
+		sVerbTo = self.VerbsTo.GetWord()
+		
+		sHerName = excerpt.names.NamesFemale().FirstName()
+		
+		Titles = []
+		
+		sGirl = self.GetGirl()
+		sMaster = self.GetMaster()
+		# make sure that both the girl and the master arent just one word b/c thats usually boring
+		while len(sGirl.split(" ")) < 2 and len(sMaster.split(" ")) < 2:
+			sGirl = self.GetGirl()
+			sMaster = self.GetMaster()
+		
+		# Blackmailed by the Billionaire Mountain Man 
+		sTitle = sVerbBy + " by the " + sMaster
+		Titles.append(sTitle)
+		# =========================
+
+		# Married to the Alpha Wolf
+		sTitle = sVerbTo + " to the " + self.GetMaster(bLong = True)
+		if CoinFlip():
+			if CoinFlip():
+				sTitle += ": A " + self._getFMs_() + " Romance"
+			else:
+				sTitle += ": A BDSM Romance"
+		Titles.append(sTitle)
+		# =========================
+		
+		# The President's Girl
+		sTitle = "The " + self.GetMaster(bLong = True) + "'s " + sGirl
+		if CoinFlip():
+			if CoinFlip():
+				sTitle += ": A BDSM Romance"
+			else:
+				sTitle += ": A Hot Ménage"
+		Titles.append(sTitle)
+		# =========================
+				
+		# The Secretary and the Space Werewolf 
+		sTitle = "The " + sGirl + " & the " + sMaster
+		if CoinFlip():
+			if CoinFlip():
+				sTitle += ": A BDSM Romance"
+			else:
+				sTitle += ": A " + self._getFMs_() + " Romance"
+		Titles.append(sTitle)
+		# =========================
+				
+		# Baby for the Stay-at-Home Manticore
+		sTitle = "Baby for the " + self.GetMaster(bLong = True) 
+		if CoinFlip():
+			sTitle += ": A " + self._getFMs_() + " Romance"
+		Titles.append(sTitle)
+		# =========================
+				
+		# The Millionaire Sherrif's Virgin
+		sTitle = "The " + sMaster + "'s " + sGirl
+		Titles.append(sTitle)
+		# =========================
+				
+		# Babysitter to the Billionaire Uniporn
+		sTitle = sGirl + " to the " + sMaster
+		Titles.append(sTitle)
+		# =========================
+				
+		# Babysitter for the Billionaire Uniporn
+		sTitle = sGirl + " for the " + sMaster
+		if CoinFlip():
+			if CoinFlip():
+				sTitle += ": An " + self._getFMs_() + " Adventure"
+			else:
+				sTitle += ": A BDSM Romance"
+		Titles.append(sTitle)
+		# =========================
+				
+		# The Small-Town Virgin's First Time
+		sTitle = "The " + self.GetGirl(bLong = True) + "'s First Time"
+		if CoinFlip():
+			if CoinFlip():
+				sTitle += ": A " + self._getFMs_() + " Romance"
+			else:
+				sTitle += ": A BDSM Romance"
+		Titles.append(sTitle)
+		# =========================
+				
+		# Full Frontal for the Shy Amish Virgin: A BDSM Romance
+		if CoinFlip():
+			sTitle = "Full Frontal Nudity for the "
+			if CoinFlip():
+				sTitle += self.GetMaster(bLong = True)
+			else:
+				sTitle += self.GetGirl(bLong = True)
+		else:
+			sTitle = "Naked for the " + self.GetMaster(bLong = True)
+		if CoinFlip():
+			if CoinFlip():
+				sTitle += ": An " + self._getFMs_() + " Adventure"
+			else:
+				sTitle += ": A BDSM Romance"
+		Titles.append(sTitle)
+		# =========================
+				
+		# The Amish Virgin and the Taboo MILF: A Lesbian Love Story 
+		sTitle = "The " + sGirl + " and the " + self.GetGirl()
+		if CoinFlip():
+			sTitle += ": A Lesbian Love Story"
+		else:
+			sTitle += ": A Secret Lesbian Affair"
+		Titles.append(sTitle)
+		# =========================
+		
+		#print(Titles)
+		sTitle = Titles[randint(0, len(Titles) - 1)]
+		
+		return sTitle
 	
 class TweetTxtGen():
 	ID = -1
