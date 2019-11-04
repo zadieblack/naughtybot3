@@ -19,6 +19,7 @@ import excerpt.generators as generators
 from excerpt.tweettext import *
 from excerpt.twitter_stuff import *
 import excerpt.texttoimg 
+from excerpt.texttoimg import CreateImg
 	
 def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorNo = -1):
 	print("=*=*=*= FLAMING LUST BOT IS RUNNING (@bot_lust) =*=*=*=\n\n")
