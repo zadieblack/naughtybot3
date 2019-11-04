@@ -50,7 +50,7 @@ def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorN
 			
 			Gen = GetTweet(bTest, iGeneratorNo, bAllowPromo = True)
 			#print("Generator ID: " + str(Gen.ID))
-			while bTweet and not excerpt.util.TweetHistoryQ.PushToHistoryQ(Gen.ID):
+			while bTweet and not exutil.TweetHistoryQ.PushToHistoryQ(Gen.ID):
 				Gen = GetTweet(bTest, iGeneratorNo, bAllowPromo = True)
 			
 			sTweet = Gen.GenerateTweet()
@@ -77,7 +77,7 @@ def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorN
 							status = UpdateStatus(api, sTweet)
 						else:
 							ImgFile = BytesIO() 
-							CreateImg(sTweet).save(ImgFile, format = 'PNG')
+							exutil.CreateImg(sTweet).save(ImgFile, format = 'PNG')
 							
 							status = UpdateStatusWithImage(api, sText, ImgFile)		
 					else:
