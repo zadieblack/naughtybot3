@@ -6,7 +6,7 @@ import sys, threading, traceback
 from random import *
 from title.util import *
 from title.misc import *
-from title.names import *
+from names import *
 from title.people import *
 from title.texttoimg import *
 
@@ -1005,7 +1005,7 @@ class Generator35(Generator):
 			'Whipping']).GetWord()
 		
 		Master = MaleChar(iNumMinCBits = 2, bAllowGang = False)
-		sTweet = sVerb + " Mr. " + LastNames().GetWord() + ":\n"
+		sTweet = sVerb + " Mr. " + AuthorLastNames().GetWord() + ":\n"
 		sTweet += "My " + self.SubtitleCoda.GetWord(NotList = ['Story']) + " With A\n" + Master.Desc
 
 		return sTweet
@@ -3826,7 +3826,7 @@ class Generator121(Generator):
 							bAllowAge = False, bAllowMaritalStatus = False, bAllowPregState = False, bAllowProf = False,
 							bAllowRelate = False, bAllowTitle = False, bAllowTrope = False, bAllowSpecies = False)
 							
-		sTweet = Gerunds.GetWord() + " Mrs. " + LastNames().GetWord() + ":\n"
+		sTweet = Gerunds.GetWord() + " Mrs. " + AuthorLastNames().GetWord() + ":\n"
 		sTweet += AddArticles(MILF.Desc) + " MILF " + WordList(['Story','Encounter','Rendevous','Affair','Adventure']).GetWord()
 
 		return sTweet	
