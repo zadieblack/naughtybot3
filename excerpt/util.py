@@ -191,11 +191,15 @@ class WordList:
 	def FoundIn(self, sWord, ListStrings):
 		bFound = False 
 		
+		if not isinstance(sWord,str):
+			sWord = ""
+		
 		if not ListStrings is None and len(ListStrings) > 0:
-			for str in ListStrings:
-				if str.lower() in sWord.lower() or sWord.lower() in str.lower():
-					bFound = True
-					break
+			for s in ListStrings:
+				if isinstance(s,str):
+					if s.lower() in sWord.lower() or sWord.lower() in s.lower():
+						bFound = True
+						break
 				
 		return bFound 
 	

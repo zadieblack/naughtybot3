@@ -296,7 +296,7 @@ class TweetTxtGen9(TweetTxtGen):
 	def __init__(self):
 		super().__init__()
 		self.ID = 9
-		self.Priority = 200
+		self.Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -304,10 +304,10 @@ class TweetTxtGen9(TweetTxtGen):
 		
 		sText = "from \"" + BookTitleBuilder() + "\"\n\n" 
 		sText += WordList(["Check out", "Follow", "Visit", "Take a look at"]).GetWord() + " "
-		sText += "@erotica_ebooks for more " 
-		sText += WordList(["made-up ebook titles", "bot-generated erotica ebook titles", 
-						   "machine-generated book titles", "algorithmically-generated ebook titles",
-						   "random #EroticaBookTitles", "steamy bot-generated book titles"]).GetWord() + "!"
+		sText += "@erotica_ebooks for more " + self.SexyAdjs.GetWord() + " "
+		sText += WordList(["made-up","bot-generated","machine-generated","algorithmically-generated",
+						   "randomly generated"]).GetWord() + " "
+		sText += WordList(["ebook titles", "book titles","#EroticaBookTitles"]).GetWord() + "!"
 		
 		return sText
 		
@@ -542,7 +542,7 @@ class TweetTxtGen18(TweetTxtGen):
 	def __init__(self):
 		super().__init__()
 		self.ID = 18
-		self.Priority = 200
+		self.Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -615,7 +615,7 @@ class TweetTxtGen19(TweetTxtGen):
 								  "pseudo-incest werewolf foot-fetish", "trans vampire anal wife-swapping"])
 		sType = EroticaNiches.GetWord()
 		
-		Places = title.misc.DullPlaces()
+		Places = DullPlaces()
 		sPlace = ""
 		if CoinFlip():
 			sPlace += "in " 

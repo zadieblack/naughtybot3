@@ -658,7 +658,6 @@ class VaginaInner(BodyParts):
 				'tight',
 				'velvet',
 				'velvet',
-				'virginal',
 				'wanton',
 				'well-used'])
 			
@@ -741,7 +740,9 @@ class VaginaInnerLabia(BodyParts):
 							 'nether-lips',
 							 'petals',
 							 'piss-flaps',
+							 'pussy-flaps',
 							 'pussy lips',
+							 'sex flaps',
 							 'sex-lips',
 							 'wizard sleeve'])
 		self.AdjList(['beefy',
@@ -800,7 +801,6 @@ class Vagina(BodyParts):
 					'flower',
 					'fuckhole',
 					'fur-burger',
-					'hole',
 					'honey-hole',
 					'honeypot',
 					'love-muffin',
@@ -862,7 +862,6 @@ class Vagina(BodyParts):
 					'trim',
 					'unsullied',
 					'velvet',
-					'virginal',
 					'wanton',
 					'well-used',
 					'willing'])
@@ -925,7 +924,6 @@ class AnusFemale(BodyParts):
 			'taboo',
 			'tender',
 			'tight',
-			'virginal',
 			'wanton',
 			'well-used',
 			'willing',
@@ -985,7 +983,6 @@ class AssFemale(BodyParts):
 			'tender',
 			'thick',
 			'trim',
-			'virginal',
 			'voluptuous',
 			'womanly'])
 		

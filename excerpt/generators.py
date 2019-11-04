@@ -1243,14 +1243,6 @@ class Generator33(Generator):
 			sTweet += "\"Ooh, yes Mr. " + sLastName + "!\" she said. "
 			sTweet += "\"Make me your " + SubAdjs.GetWord() + " " + SubNouns.GetWord() + "! "
 			sTweet += "But hang on,\" she added. \"What about Mrs. " + sLastName + "?\""
-
-		
-		# sTweet = "'I own you now,' said " + self.MaleName.FirstName() + " to his " 
-		# + self.FFWB.GetPerson() + ". 'I own your " + self.FemBodyParts.Lips.RandomDescription() + 
-		# ", I own your " + self.FemBodyParts.Breasts.RandomDescription() + ", 
-		# I own the " + self.FemBodyParts.Vagina.InnerLabia.RandomDescription() + " of your " + self.FemBodyParts.Vagina.ShortDescription() + ", 
-		# and I even own...' He leaned in and whispered in her ear, 'Your " + self.FemBodyParts.Ass.Anus.RandomDescription() + ".'\n\n"
-		# sTweet += "'Ooh, yes sir!' she " + self.VMoan.Past() + "."
 		
 		return sTweet
 		
@@ -1824,26 +1816,50 @@ class Generator47(Generator):
 		
 		sTweet = sHerName + " felt the " + Penis.Head.RandomDescription(bAllowShortDesc = True) + " of " + sHisName + "'s " + Penis.ShortDescription() + " against the tight ring of her " + Anus.ShortDescription(sNot = "anus") + ". 'Oh, go slowly!' she " + self.VMoan.Past() + ".\n\n"
 		sTweet += WordList(["Gently", "Tenderly", "Carefully", "Lovingly", "Patiently"]).GetWord() + " but " + WordList(["firmly", "forcefully", "powerfully", "unwaveringly", "decisively"]).GetWord() + ", applying lots of lube, " + sHisName + " eased his " + Penis.RandomDescription(bAddLen = True) + " into her " + Anus.RandomDescription(bAllowLongDesc = False) + ". "
-		sTweet += " At last he was " + WordList(["balls-deep", "buried to the hilt", "up to his " + Penis.Testicles.RandomDescription(bAllowShortDesc = True)]).GetWord() + " inside her " + Ass.RandomDescription(bAllowShortDesc = True) + ". "
-		sTweet += "'" + self.Exclamation.GetWord(bHappy = True, bExMk = False) + ", " + self.TermsOfEndearment.GetWord() + ", you're so tight!' he " + self.VMoan.Past() + ".\n\n"
+		sTweet += " At last he was " + WordList(["balls-deep", "buried to the hilt", 
+												 "up to his " + Penis.Testicles.RandomDescription(bAllowShortDesc = True)]).GetWord() + " "
+		sTweet += "inside her " + Ass.RandomDescription(bAllowShortDesc = True, NotList = ['behind','buns','buttocks','cheeks']) + ". "
+		sTweet += "'" + self.Exclamation.GetWord(bHappy = True, bExMk = False).capitalize() + ", " 
+		sTweet += self.TermsOfEndearment.GetWord() + ", you're so tight!' "
+		sTweet += "he " + self.VMoan.Past(NotList = ['purr','sigh','wail']) + ".\n\n"
 		
 		iRand = randint(1,6)
 		
 		if iRand == 1:
 			Location = LocationSelector().Location(PubPrivType = exutil.LocPubPrivType.Public)
-			sTweet += "'" + self.Exclamation.GetWord(bHappy = True, bExMk = False).capitalize() + ", " + sHisName + ",' she " + self.VMoan.Past() + ". 'Make me an anal-" + self.BadGirlNoun.GetWord()
-			Noun.GetWord() + " right here " + Location.NamePrep + "!'"
+			sTweet += "'" + self.Exclamation.GetWord(bHappy = True, bExMk = False).capitalize() + ", " 
+			sTweet += sHisName + ",' she " + self.VMoan.Past() + ". "
+			sTweet += "'Make me an anal-" + self.BadGirlNoun.GetWord(NotList = ['wanton']) + " right here " + Location.NamePrep + "!'"
 		elif iRand == 2:
 			Location = locations.LocationSelector().Location(InOut = exutil.LocInOutType.Outdoors)
-			sTweet += "'" + self.Exclamation.GetWord(bHappy = True).capitalize() + "' she " + self.VMoan.Past() + ". 'I love the feeling of " + WordList(["doing anal", "getting butt-fucked", "getting ass-fucked", "having my asshole pounded", "anal penetration"]).GetWord() + " " + Location.NamePrep + "!'"
+			sTweet += "'" + self.Exclamation.GetWord(bHappy = True).capitalize() + "' "
+			sTweet += "she " + self.VMoan.Past() + ". 'I love the feeling of " 
+			sTweet += WordList(["doing anal", "getting butt-fucked", "getting ass-fucked", "having my asshole pounded", 
+								"anal penetration"]).GetWord() + " " 
+			sTweet += Location.NamePrep + "!'"
 		elif iRand == 3:
-			sTweet += "'I've let at least " + WordList(['a dozen','twenty','two dozen','three dozen','fifty','sixty-nine','a hundred','two hundred']).GetWord() + " guys " + self.VThrust.Present() + " my " + self.FemBodyParts.Vagina.ShortDescription() + ", " + self.TermsOfEndearment.GetWord() + ",' she said. 'But you're the only one I'll ever let " + self.VThrust.Present() + " my " + Anus.ShortDescription() + "!'"
+			sFuck1 = WordList(['fucked','creamed','stuffed','pounded','banged']).GetWord()
+			sFuck2 = WordList(['fuck','cream','stuff','pound','nail','ravish','do','ream',
+							   'violate','fist','bang','impale','gape']).GetWord(NotList = [sFuck1])
+			sTweet += "'" + WordList(['Dozens of','At least twenty','More than two dozen','More than three dozen',
+									  'Over fifty','At least sixty-nine','Over a hundred',
+									  'Over two hundred','Dozens and dozens of']).GetWord() + " "
+			sTweet += "men have " + sFuck1 + " "
+			sTweet += "my " + self.FemBodyParts.Vagina.ShortDescription() + ", " 
+			sTweet += self.TermsOfEndearment.GetWord() + ",' she said. "
+			sTweet += "'But you're the only one I'll ever let " + sFuck2 + " my " + Anus.ShortDescription() + "!'"
 		elif iRand == 4:
-			sTweet += sHerName + " " + WordList(["squeezed","clenched","contracted","constricted"]).GetWord() + " her " + WordList(["sphincter", "bowels", "anus", "rectum", "asshole"]).GetWord() + " tightly around his " + Penis.ShortDescription() + ". " + sHisName + " " + self.VMoan.Past() + " aloud. 'That means \"I love you\" " + self.TermsOfEndearment.GetWord() + ",' she said to him."
+			sTweet += sHerName + " " + WordList(["squeezed","clenched","contracted","constricted"]).GetWord() + " "
+			sTweet += "her " + WordList(["sphincter", "bowels", "anus", "rectum", "asshole"]).GetWord() + " "
+			sTweet += "tightly around his " + Penis.ShortDescription() + ". " 
+			sTweet += sHisName + " " + WordList(['gasped','moaned']).GetWord() + " aloud. "
+			sTweet += "'That means \"I love you\" " + self.TermsOfEndearment.GetWord() + ",' she said to him."
 		elif iRand == 5:
-			sTweet += "'Whoops! " + self.Exclamation.GetWord(bHappy = False, bExMk = True).capitalize() + "' " + sHerName + " said. 'Hand me that toilet paper, baby.'"
+			sTweet += "'Whoops! " + self.Exclamation.GetWord(bHappy = False, bExMk = True).capitalize() + "' " 
+			sTweet += sHerName + " said. 'Hand me that toilet paper, baby.'"
 		else:
-			sTweet += "'Hurry up and " + self.VEjac.Present() + ", " + self.TermsOfEndearment.GetWord() + ",' she said. '" + self.MaleName.FirstName() + "'s turn is next.'"
+			sTweet += "'Hurry up and " + self.VEjac.Present() + ", " + self.TermsOfEndearment.GetWord() + ",' she said. "
+			sTweet += "'" + self.MaleName.FirstName() + "'s turn is next.'"
 		
 		return sTweet
 		

@@ -87,7 +87,7 @@ class Hashtags(WordList):
 			'writingcommunity',
 			'writingprompt'])
 		
-class BadGirlAdjs(WordList):
+class BadGirlNouns(WordList):
 	def __init__(self):
 		super().__init__(['hussy',
 						'minx',
@@ -102,7 +102,7 @@ class BadGirlAdjs(WordList):
 						'whore',
 						'whore'])
 						
-class BadGirlNouns(WordList):
+class BadGirlAdjs(WordList):
 	def __init__(self):
 		super().__init__(['brazen',
 						'cheeky',
