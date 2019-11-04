@@ -78,7 +78,7 @@ def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorN
 							status = UpdateStatus(api, sTweet)
 						else:
 							ImgFile = BytesIO() 
-							exutil.CreateImg(sTweet).save(ImgFile, format = 'PNG')
+							CreateImg(sTweet).save(ImgFile, format = 'PNG')
 							
 							status = UpdateStatusWithImage(api, sText, ImgFile)		
 					else:
