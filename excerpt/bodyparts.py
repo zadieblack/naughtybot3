@@ -630,7 +630,7 @@ class VaginaInner(BodyParts):
 				'vestibule',
 				'womanhood'])
 				
-		self.AdjList = (['cherry',
+		self.AdjList(['cherry',
 				'cherry red',
 				'clenched',
 				'deep',

@@ -1939,8 +1939,7 @@ class Generator50(Generator):
 		
 class Generator51(Generator):
 	ID = 51
-	Priority = 1
-	Type = exutil.GeneratorType.Test
+	Priority = 3
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1950,16 +1949,32 @@ class Generator51(Generator):
 		sHerName = self.FemaleName.FirstName()
 		
 		Location = locations.LocationSelector().Location(PubPrivType = exutil.LocPubPrivType.Public)
-		SceneForeplay = scenes.SceneSelector().GetScene(Tags = {exutil.TAG_FOREPLAY}, sHisName = sHisName, sHerName = sHerName, Location = Location)
-		ScenePosition = SceneSelector().GetScene(Tags = {exutil.TAG_POSITION}, sHisName = sHisName, sHerName = sHerName, Location = Location)
-		SceneClimax = SceneSelector().GetScene(Tags = {exutil.TAG_CLIMAX}, sHisName = sHisName, sHerName = sHerName, Location = Location)
+		SceneFuck = None
+		SceneOrgasm = None
 		
 		sTweet += Location.BeginDesc + " " 
-		sTweet += SceneForeplay.Scene() + " "
-		sTweet += ScenePosition.Scene() + " "
-		sTweet += SceneClimax.Scene() + "\n\n"
+		
+		iRand = randint(1,4)
+		if iRand == 1:
+		#blowjob 
+			SceneFuck = scenes.SceneBlowjob(sHisName = sHisName, sHerName = sHerName, Location = Location)
+			SceneOrgasm = scenes.SceneFacial(sHisName = sHisName, sHerName = sHerName, Location = Location)
+		elif iRand == 2:
+		#cowgirl
+			SceneFuck = scenes.SceneCowgirl(sHisName = sHisName, sHerName = sHerName, Location = Location)
+			SceneOrgasm = scenes.SceneCreamPie(sHisName = sHisName, sHerName = sHerName, Location = Location)
+		
+		elif iRand == 3:
+		#doggy 
+			SceneFuck = scenes.SceneDoggy(sHisName = sHisName, sHerName = sHerName, Location = Location)
+			SceneOrgasm = scenes.SceneCreamPie(sHisName = sHisName, sHerName = sHerName, Location = Location)
+		else:
+		#missionary
+			SceneFuck = scenes.SceneMissionary(sHisName = sHisName, sHerName = sHerName, Location = Location)
+			SceneOrgasm = scenes.SceneFacial(sHisName = sHisName, sHerName = sHerName, Location = Location)
+		
+		sTweet = SceneFuck.Scene() + " " + SceneOrgasm.Scene() + "\n\n"
 		sTweet += self.AfterSexPunchline.GetPunchline(exutil.Gender.Male)
-	
 
 		return sTweet
 		
@@ -2052,6 +2067,7 @@ class Generator52(Generator):
 
 		return sTweet
 		
+#generator for testing scenes 
 class Generator53(Generator):
 	ID = 53
 	Priority = 2
@@ -2061,16 +2077,23 @@ class Generator53(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		sHisName = self.MaleName.FirstName()
-		sHerName = self.FemaleName.FirstName()
+		# sHisName = self.MaleName.FirstName()
+		# sHerName = self.FemaleName.FirstName()
 		
-		Location = locations.LocationSelector().Location()
-		MyScene = scenes.SceneRimjobHim(sHisName = sHisName, sHerName = sHerName, Location = Location)
+		# Location = locations.LocationSelector().Location()
+		# MyScene = scenes.SceneRimjobHim(sHisName = sHisName, sHerName = sHerName, Location = Location)
 		
-		sTweet = Location.BeginDesc + " "
+		# sTweet = Location.BeginDesc + " "
 		
-		sTweet += MyScene.Scene()
+		# sTweet += MyScene.Scene()
 		#sTweet += "\n\n" + TitFuckScene.ShortScene()
+		
+		Vag = self.FemBodyParts.Vagina
+		sTweet += "Vag: " + Vag.RandomDescription() + "!\n"
+		sTweet += "Inner Vag: " + Vag.InnerVag.RandomDescription() + "!\n"
+		sTweet += "Outer Labia: " + Vag.OuterLabia.RandomDescription() + "!\n"
+		sTweet += "Inner Labia: " + Vag.InnerLabia.RandomDescription() + "!\n"
+		sTweet += "Clit: " + Vag.Clitoris.RandomDescription() + "!\n"
 		
 		return sTweet
 		
@@ -2303,13 +2326,13 @@ class Generator57(Generator):
 						 "a plunger", "a crucifix", "a toothpaste tube", "a bowling pin", "a broomstick",
 						 "my flute", "my clarinet", "my giant foam finger"]).GetWord()
 		sHole = Vag.InnerVag.RandomDescription()
-		
+
 		sTweet += sHerName + " flung herself down on the bed. Lifting her hips she " + WordList(["pulled", "slid"]).GetWord() + " down her panties. "
 		sTweet += "Then she began to "
 		sTweet += WordList(["gently", "tenderly", "vigorously", "energetically", "ardently", "fervently"]).GetWord() + " "
 		sTweet += WordList(["massage", "pleasure", "rub", "caress", "stroke", "stimulate", "masturbate", "fondle", "finger"]).GetWord() + " "
 		sTweet += "her " + Vag.RandomDescription() + ". She spread apart her " + Vag.OuterLabia.RandomDescription() + " and gently teased her " + Vag.Clitoris.RandomDescription() + ".\n\n"
-		sTweet += sHerName + " " + WordList(["reached under her pillow", "felt under the covers", "reached behind the night-stand"]).GetWord() + " and found the toy. "
+		sTweet += sHerName + " " + WordList(["reached under her pillow", "felt under the covers", "reached behind the night-stand"]).GetWord() + " and found her favorite object. "
 		sTweet += "Carefully, she inserted it into her " + Vag.InnerVag.RandomDescription() + " and then began to "
 		sTweet += WordList(["thrust it forcefully and repeatedly into her " + sHole,
 							"saw it in and out of her " + sHole, 
@@ -2327,7 +2350,7 @@ class Generator57(Generator):
 		else:
 			sTweet += WordList(["mom", "step-mom", "sister", "step-sister", "college roommate", "best friend"]).GetWord() + " walked in.\n\n"
 			sTweet += "\"" + sShockedExclaim + "!\" she " + sEjaculated + ". "
-			sTweet += "\"Is that " + sToy + "?!?\""
+			sTweet += "\"Are you using " + sToy + "?!?\""
 
 		return sTweet
 		
@@ -3522,11 +3545,8 @@ class Generator70(Generator):
 								   "You want more, don't you little slut?",
 								   "I want you to take it all, little cock-sock,"]).GetWord() + "\" he said. "
 		sTweet += "She nearly " + WordList(['gagged','choked']).GetWord() + " "
-		sTweet += "as he shoved his " + Penis.MediumDescription(bAddLen = True) + " " 
-		sTweet += WordList(['down','deeper into','further down','further into','deeper down']).GetWord() + " her throat. "
-		
-		sTweet += "He began thrusting in and out, "
-		sTweet += "fucking her " + WordList(['face','mouth']).GetWord() + " " 
+		sTweet += "as he thrust his " + Penis.MediumDescription(bAddLen = True) + " " 
+		sTweet += "down her throat. He began fucking her " + WordList(['face','mouth']).GetWord() + " " 
 		sTweet += WordList(['forcefully','vigorously','powerfully','furiously','hard']).GetWord() + ". " 
 		sTweet += "His " + WordList(['hairy','wrinkled','pendulous']).GetWord() + " "
 		if sNutsNoun[-1:] == 's':
@@ -3536,41 +3556,35 @@ class Generator70(Generator):
 		sTweet += WordList(['Tears of black eyeliner were dripping down her face.',
 							'Saliva was dribbling down it.']).GetWord() + " "
 		sTweet += "\n\n"
-		sTweet += sHisName + " groaned and started " + sVCumming + ". "
-		sTweet += "He was pumping " + SemenAdjs.GetWord() + " " + sSemenNoun1 + " down her throat. "
+		sTweet += "\"" + WordList(["I'm cumming!","I'm gonna cum!","Oh fuck I'm cumming!"]).GetWord() + "\" "
+		sTweet += "he " + WordList(['gasped','groaned','moaned','cried']).GetWord() + ". "
+		sTweet += "She felt him pumping " + SemenAdjs.GetWord() + " " + sSemenNoun1 + " down her throat. "
 		sTweet += "She couldn't take it all! She was " + WordList(['choking on','gagging on']).GetWord() + " " 
 		sTweet += "his " + sSemenNoun2 + "!\n\n"
 		
-		sTweet += sHerName + " sat bolt upright in bed, panting hard. "
+		sTweet += ". . .\n\n"
 		
-		iRand = randint(1,3)
-		if iRand == 1:
-			sTweet += "\"" + self.Exclamation.GetWord().capitalize() + " "
-			sTweet += "What " + WordList(['a filthy','a nasty','a twisted','a sick','a disgusting']).GetWord() + " dream!\" "
-			sTweet += "she said. \"" + WordList(["I loved it!","So fucking hot!","Now I'm fucking wet!",
-												 "I need to get fucking laid!",
-												 "Where's my fucking vibrator?",
-												 "Now I've got to rub one out."
-											    ]).GetWord() + "\""
-		elif iRand == 2:
-			sTweet += "\"" + self.Exclamation.GetWord().capitalize() + "\" she exclaimed. "
-			sTweet += "\"Another dream about "
-			sTweet += WordList(["my sister's boyfriend","my BFF's boyfriend","my new step-dad",
-								"my pastor","my step-son","my pool boy","my brother",
-								"my English teacher","my biology professor",
-								"my boss","my manager","my mom's boyfriend","my algebra teacher",
-								"my accountant","my sister's hubby"]).GetWord()+ "!\""
-		else:
-			sTweet += "\"" + self.Exclamation.GetWord().capitalize() + "\" she exclaimed. "
-			sTweet += "\"Another dream about that " + WordList(['sexy','hot','cute']).GetWord() + " "
-			sTweet += WordList(['pool boy','barista at the coffee shop',
-			                    'new teacher','guy at the gym','male nurse',
-								'waiter at the sushi bar','personal trainer',
-								'bartender at Mike\'s','massage therapist',
-								'yoga instructor','lifeguard',
-								'guy at Burger King',
-								'new guy at work','pizza delivery guy',
-								'Amazon delivery guy','guy at the carwash']).GetWord()+ "!\""
+		sTweet += sHerName + " sat bolt upright in bed. "
+		sTweet += "\"" + WordList(["What the fuck!","Oh my god!","Holy shit!","Fuck me!"]).GetWord() + "\" she "
+		sTweet += WordList(['gasped','panted','exclaimed','said']).GetWord() + ". "
+		
+		sTweet += "\"Did I just have a sex dream about "
+		sTweet += WordList(["my sister's boyfriend","my best friend's boyfriend","my new step-dad",
+							"my pastor","my priest","my step-son","my pool boy","my brother",
+							"my English teacher","my biology professor","my father-in-law",
+							"my boss","my manager","my mom's boyfriend","my algebra teacher",
+							"my accountant","my sister's husband","my brother-in-law",
+							"my step-brother","my co-worker","my gym coach","psychiatrist",
+							"one of my son's friend","the guy from accounting",
+							"one of my students","one of my husband's friends",
+							"the IT guy","the drywall installer","the handy man",
+							"my biology teacher","my history teacher","my orthodontist",
+							"my mom's boyfriend","my daughter's boyfriend","youth pastor",
+							"my best friend's husband","my French teacher","my Uber driver",
+							"Dr. " + names.RegularLastNames().GetWord(),
+							"Mr. " + names.RegularLastNames().GetWord(),
+							"Professor " + names.RegularLastNames().GetWord()
+							]).GetWord() + "?!?\""
 		
 		return sTweet
 		
@@ -4529,16 +4543,68 @@ class Generator85(Generator):
 		sTweet += "!\""
 		
 		return sTweet
-		
-# class Generator86(Generator):
-	# ID = 86
-	# Priority = 1
-	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
 
-		# return sTweet
+# Same as 57, but in the ass		
+class Generator86(Generator):
+	ID = 86
+	Priority = 4
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		sHerName = self.FemaleName.FirstName()
+		
+		sEjaculated = WordList(["gasped", "exclaimed", "blurted", "burst out"]).GetWord()
+		sShockedExclaim = WordList(["Oh fuck", "Shit", "What the fuck", "Holy shit", "Holy fuck", "Holy fucking shit", "Oh shit", "Fuck"]).GetWord()
+		Vag = self.FemBodyParts.Vagina
+		Clit = self.FemBodyParts.Vagina.Clitoris
+		Face = self.FemBodyParts.Face 
+		Ass = self.FemBodyParts.Ass
+		Anus = Ass.Anus 
+		Breasts = self.FemBodyParts.Breasts
+		Nipples = Breasts.Nipples 
+		Clit = Vag.Clitoris 
+		Hips = self.FemBodyParts.Hips
+		
+		sRelation = WordList(["mom", "dad", "older brother", "step-mom", "step-dad", "sister", "roommate"]).GetWord()
+		sToy = WordList(["a curling iron", "a Ken doll", "a spatula", "a banana", "a pickle", "a cucumber", 
+						 "a candle", "an electric toothbrush", "my toothbrush", "a rolled up magazine", 
+						 "a rolling pin", "a screwdriver", "a baguette", "a shampoo bottle", 
+						 "a baseball bat", "my TV remote", "an eggplant", "corn on the cob", "Coke bottle", 
+						 "a plunger", "a crucifix", "a toothpaste tube", "a bowling pin", "a broomstick",
+						 "my flute", "my clarinet", "my giant foam finger"]).GetWord()
+		sHole = Vag.InnerVag.RandomDescription()
+		
+		sTweet += sHerName + " lay back on the bed and moaned as she "
+		sTweet += WordList(["gently", "tenderly", "vigorously", "energetically", "ardently", "fervently"]).GetWord() + " "
+		sTweet += WordList(["massaged", "pleasured", "rubbed", "caressed", "stroked", "stimulated", "masturbated", 
+							"fondled", "fingered"]).GetWord() + " "
+		sTweet += "her " + Vag.RandomDescription() + ". "
+		sTweet += "She spread apart her " + Vag.OuterLabia.RandomDescription() + " "
+		sTweet += "and gently teased her " + Vag.Clitoris.RandomDescription() + ".\n\n"
+		sTweet += "She " + WordList(["reached under her pillow", "felt under the covers", "reached behind the night-stand"]).GetWord() + " "
+		sTweet += "and found her favorite object and a bottle of lube. "
+		sTweet += "After lubing it up, she very carefully inserted it into her " + Anus.RandomDescription() + ". "
+		sTweet += "She " + WordList(["moaned","sighed","gasped"]).GetWord() + " with pleasure as she "
+		sTweet += WordList(["thrust it forcefully in and out",
+							"slid it gently in and out",
+							"impaled herself with it",
+							"plunged it deep inside",
+							"shoved it deeper", 
+							"stuffed it deeper and deeper"]).GetWord() + ".\n\n"
+							
+		sTweet += "Suddenly, the door flew open and her " 
+		if CoinFlip():
+			sTweet += WordList(["older brother", "dad", "step-dad", "step-brother", "step-son"]).GetWord() + " walked in.\n\n"
+			sTweet += "\"" + sShockedExclaim + ", " + sHerName + "!\" he " + sEjaculated + ", "
+			
+		else:
+			sTweet += WordList(["mom", "step-mom", "sister", "step-sister", "college roommate", "best friend"]).GetWord() + " walked in.\n\n"
+			sTweet += "\"" + sShockedExclaim + ", " + sHerName + "!\" she " + sEjaculated + ", "
+
+		sTweet += "\"Do you have " + sToy + " in your ass?!?"
+		return sTweet
 		
 # class Generator87(Generator):
 	# ID = 87

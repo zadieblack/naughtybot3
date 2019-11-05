@@ -116,40 +116,45 @@ class BadGirlAdjs(WordList):
 		
 class Exclamations(WordList):
 	def __init__(self):
-		super().__init__(['baby',
+		super().__init__(['baby','oh baby',
 		'damn',
-		'fuck',
-		'fuck',
-		'fuck',
-		'fuck',
-		'fuck me',
-		'fuck me',
-		'hell',
-		'holy fuck',
-		'holy shit',
-		'God',
-		'God',
-		'goddam',
+		'fuck','fuck','fuck','fuck',
+		'oh fuck','oh fuck',
+		'fuck me','fuck me',
+		'hell','hell',
+		'oh hell',
+		'holy fuck','holy fuck',
+		'oh holy fuck',
+		'holy shit','holy shit',
+		'oh holy shit',
+		'god','god',
+		'oh god','oh god',
 		'gosh',
-		'jeez',
+		'oh gosh',
 		'holy motherfucking shit',
+		'holy tits','holy tits',
+		'holy fucking tits',
 		'lord',
-		'oh goodness',
+		'oh lord',
 		'oh my',
 		'oh my god',
 		'shit',
 		'shit',
-		'tits'])
+		'oh shit',
+		'tits',
+		'oh tits',
+		'you\'ve got to be kidding me'
+		'you\'re fucking kidding me'])
 		
 	def GetWord(self, bHappy = False, bSad = False, bExMk = True):
 		sExclamation = ""
 		iRand = 1
 		
-		sExclamation = super().GetWord()
-		
-		iRand = randint(1, 3)
-		if iRand == 1 and not "oh " in sExclamation:
-			sExclamation = "oh " + sExclamation
+		sExclamation = ""
+		if bSad:
+			sExclamation = super().GetWord(NotList = ['baby'])
+		else:
+			sExclamation = super().GetWord(NotList = ['kidding'])
 			
 		iRand = randint(1, 3)
 		if iRand == 1 and bHappy:
@@ -157,8 +162,6 @@ class Exclamations(WordList):
 				sExclamation += ", yes"
 			else:
 				sExclamation += ", yeah"
-		elif iRand == 1 and bSad:
-			sExclamation += ", no"
 			
 		if bExMk:
 			sExclamation += "!"
