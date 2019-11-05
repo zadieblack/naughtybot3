@@ -204,6 +204,7 @@ class InnuendoNamesFemale(Names):
 		self.SetFirstNames(['Amanda','Amanda','Amanda',
 							'Anita','Anita','Anita','Anita',
 							'Anna',
+							'Anna L.','Anna L.','Ana L.',
 							'Candy',
 							'Carrie',
 							'Chastity',
@@ -211,7 +212,7 @@ class InnuendoNamesFemale(Names):
 							'Deepa',
 							'Dixie',
 							'Eden','Eden','Eden',
-							'Fonda','Fonda',
+							'Fonda','Fonda','I.M. Fonda',
 							'Hilda',
 							'Honey',
 							'Ida',
@@ -220,22 +221,23 @@ class InnuendoNamesFemale(Names):
 							'Issa','Issa',
 							'Ivana','Ivana','Ivana','Ivana',
 							'Jackie',
-							'Jill',
+							'Jill','Jill N.','Jill N.',
 							'Juanita',
 							'Kari',
-							'Maya',
+							'Maya','Maya P.','Maya C.',
 							'Misty',
 							'Muffy',
 							'Nastya',
 							#'Nell',
 							'Olive',
+							'Olive R.','Olive R.',
 							'Olivia','Olivia',
 							'Ophelia','Ophelia','Ophelia',
-							'Rhoda','Rhoda','Rhoda','Rhoda',
+							'Rhoda','Rhoda','Rhoda','I. Rhoda',
 							'Rosie',
 							'Sandy',
 							'Satin',
-							'Sharon','Sharon','Sharon',
+							'Sharon','Sharon','Sharon','I.M. Sharon',
 							'Tara',
 							'Tina',
 							'Tonya',
@@ -251,7 +253,7 @@ class AuthorNamesFemale(Names):
 	def __init__(self):
 		super().__init__()
 		
-		self.SetFirstNames(ClassyNamesFemale().GetFirstNamesList() + InnuendoNamesFemale().GetFirstNamesList())
+		self.SetFirstNames(InnuendoNamesFemale().GetFirstNamesList())
 
 class PlainNamesMale(Names):
 	def __init__(self):
@@ -407,6 +409,7 @@ class InnuendoNamesMale(Names):
 		
 		self.SetFirstNames(['Barry',
 			'Ben','Ben',
+			'Bone R.',
 			'Buster',
 			'Dewey','Dewey',
 			'Dick','Dick','Dick',
@@ -418,8 +421,8 @@ class InnuendoNamesMale(Names):
 			'Holden','Holden',
 			'Howie',
 			'Hugh','Hugh',
-			'Jack','Jack',
-			'Juan',
+			'Jack','Jack','Jack N.','Jack N.',
+			'Juan','I. Juan','I. Juan','Juan A.',
 			'Kanye',
 			'Lance','Lance',
 			'Major',
@@ -428,26 +431,27 @@ class InnuendoNamesMale(Names):
 			'Neil',
 			'Oliver','Oliver',
 			'Otto',
-			'Pat','Pat',
+			'Pat','Pat','I. Pat','Pat N.',
+			'Penn S.',
 			'Peter','Peter',
-			'Phil',
+			'Phil','Phil M.'
 			'Philip',
 			'Philmore',
 			'Randy',
 			'Rich','Rich',
 			'Rod',
 			'Ryder',
-			'Sawyer','Sawyer',
-			'Seymour','Seymour','Seymour',
-			'Willie','Willie',
-			'Woody','Woody'
+			'Sawyer','Sawyer','Sawyer P.','I. Sawyer',
+			'Seymour','Seymour','Seymour','I. Seymour',
+			'Willie','Willie','Will E.','Will I.',
+			'Woody','Woody','Woody U.'
 			])
 			
 class AuthorNamesMale(Names):
 	def __init__(self):
 		super().__init__()
 		
-		self.SetFirstNames(InnuendoNamesMale().GetFirstNamesList() + ClassyNamesMale().GetFirstNamesList())
+		self.SetFirstNames(InnuendoNamesMale().GetFirstNamesList())
 		
 class DiverseNamesMale(Names):
 	def __init__(self):
@@ -502,6 +506,7 @@ class InnuendoLastNames(WordList):
 			"Dix",
 			"Djerkov",
 			"Djiz",
+			"Fatone",
 			"Fatt",
 			"Faulks",
 			"Felch",
@@ -550,9 +555,11 @@ class InnuendoLastNames(WordList):
 			"Long",
 			"Lust",
 			"Mann",
+			"Mannlove",
 			"McCreviss",
 			"Mehoff",
 			"Mellck",
+			"Melons",
 			"Milfinger",
 			"Minx",
 			"Moon",
@@ -585,6 +592,7 @@ class InnuendoLastNames(WordList):
 			"Posey",
 			"Pu",
 			"Rack",
+			"Racks",
 			"Rohdd",
 			"Rimmer",
 			"Rubber",
@@ -706,3 +714,83 @@ class RegularLastNames(WordList):
 		super().__init__()
 		
 		self.List = PlainLastNames().List + ClassyLastNames().List
+		
+def LastNameBuilder(NotList = None):
+	sLName = ""
+	
+	Names = []
+	
+	if NotList == None:
+		NotList = []
+	
+	sName1 = AuthorLastNames().GetWord(NotList = NotList)
+	sName2 = AuthorLastNames().GetWord(NotList = [sName1] + NotList)
+	
+	for _ in range(3):
+		Names.append(sName1)
+	
+	Names.append(sName1 + "-" + sName2)
+	
+	sLName = Names[randint(0, len(Names) - 1)]
+	
+	return sLName
+		
+def AuthorBuilder(Gender = Gender.Neuter):
+	sAName = ""
+	
+	Alphabet = "AAAABBBCCDDDEEEEFFFGGGGHHHIIJJJJKKLLLMNOOPPPQRRRRSSSSTTTTUVVWWWXYZ"
+	
+	FirstNames = []
+	MaleNames = AuthorNamesMale()
+	FemNames = AuthorNamesFemale()
+	
+	sName = ""
+	for _ in range(2):
+		sName += Alphabet[randint(0, len(Alphabet) - 1)] + "."
+	FirstNames.append(sName)
+	
+	if Gender == Gender.Male or Gender == Gender.Neuter:
+		for _ in range(5):
+			FirstNames.append(MaleNames.FirstName())
+			
+		sName1 = ""
+		sName2 = ""
+		for _ in range(4):
+			sName1 = MaleNames.FirstName()
+			FirstNames.append(sName1)
+			
+		for _ in range(2):
+			sMaleFirstName = MaleNames.FirstName()
+			if not '.' in sMaleFirstName:
+				FirstNames.append(sMaleFirstName + " " + Alphabet[randint(0, len(Alphabet) - 1)] + ".")
+			
+		for _ in range(2):
+			sMaleFirstName = MaleNames.FirstName()
+			if not '.' in sMaleFirstName:
+				FirstNames.append("AAEIIUBCP"[randint(0, 8)] + ". " + sMaleFirstName)
+		
+	if Gender == Gender.Female or Gender == Gender.Neuter:
+		for _ in range(5):
+			FirstNames.append(FemNames.FirstName())
+			
+		sName1 = ""
+		sName2 = ""
+		for _ in range(4):
+			sName1 = FemNames.FirstName()
+			FirstNames.append(sName1)
+			
+		for _ in range(2):
+			sFemFirstName = FemNames.FirstName()
+			if '.' not in sFemFirstName:
+				FirstNames.append(sFemFirstName + " " + Alphabet[randint(0, len(Alphabet) - 1)] + ".")
+			
+		for _ in range(2):
+			sFemFirstName = FemNames.FirstName()
+			if '.' not in sFemFirstName:
+				FirstNames.append("AAEIIUBCP"[randint(0, 8)] + ". " + sFemFirstName)
+		
+	sAName = FirstNames[randint(0, len(FirstNames) - 1)]
+	
+	sAName += " " + LastNameBuilder(NotList = [sAName])
+	
+	return sAName

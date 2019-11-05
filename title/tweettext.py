@@ -4,92 +4,11 @@
 
 import sys, threading, traceback
 from random import *
-from title.util import *
-from title.misc import *
-from title.generators import *
+from util import *
+from misc import *
 from names import *
 from title.people import *
 from title.texttoimg import *
-
-
-
-def LastNameBuilder(NotList = None):
-	sLName = ""
-	
-	Names = []
-	
-	if NotList == None:
-		NotList = []
-	
-	sName1 = AuthorLastNames().GetWord(NotList = NotList)
-	sName2 = AuthorLastNames().GetWord(NotList = [sName1] + NotList)
-	
-	for _ in range(3):
-		Names.append(sName1)
-	
-	Names.append(sName1 + "-" + sName2)
-	
-	sLName = Names[randint(0, len(Names) - 1)]
-	
-	return sLName
-		
-def AuthorBuilder(Gender = Gender.Neuter):
-	sAName = ""
-	
-	Alphabet = "AAAABBBCCDDDEEEEFFFGGGGHHHIIJJJJKKLLLMNOOPPPQRRRRSSSSTTTTUVVWWWXYZ"
-	
-	FirstNames = []
-	MaleNames = AuthorNamesMale()
-	FemNames = AuthorNamesFemale()
-	
-	sName = ""
-	for _ in range(2):
-		sName += Alphabet[randint(0, len(Alphabet) - 1)] + "."
-	FirstNames.append(sName)
-	
-	if Gender == Gender.Male or Gender == Gender.Neuter:
-		for _ in range(5):
-			FirstNames.append(MaleNames.FirstName())
-			
-		sName1 = ""
-		sName2 = ""
-		for _ in range(4):
-			sName1 = MaleNames.FirstName()
-			# sName2 = MaleNames.FirstName()
-			# while sName2 in sName1:
-				# sName2 = MaleNames.FirstName()
-			FirstNames.append(sName1)
-			
-		for _ in range(2):
-			FirstNames.append(MaleNames.FirstName() + " " + Alphabet[randint(0, len(Alphabet) - 1)] + ".")
-			
-		for _ in range(2):
-			FirstNames.append("AAEIIUBCP"[randint(0, 8)] + ". " + MaleNames.FirstName())
-		
-	if Gender == Gender.Female or Gender == Gender.Neuter:
-		for _ in range(5):
-			FirstNames.append(FemNames.FirstName())
-			
-		sName1 = ""
-		sName2 = ""
-		for _ in range(4):
-			sName1 = FemNames.FirstName()
-			# sName2 = FemNames.FirstName()
-			# while sName2 in sName1:
-				# sName2 = FemNames.FirstName()
-			FirstNames.append(sName1)
-			
-		for _ in range(2):
-			FirstNames.append(FemNames.FirstName() + " " + Alphabet[randint(0, len(Alphabet) - 1)] + ".")
-			
-		for _ in range(2):
-			FirstNames.append("AAEIIUBCP"[randint(0, 8)] + ". " + FemNames.FirstName())
-		
-	sAName = FirstNames[randint(0, len(FirstNames) - 1)]
-	
-	sAName += " " + LastNameBuilder(NotList = [sAName])
-	
-	return sAName
 
 def AddHashtag(Tweets):
 	# if the last tweet has left over space, append a random hashtag to it: eartg, lprtg, wprtg, ssrtg, imabot, smut, erotica, etc
@@ -99,196 +18,6 @@ def AddHashtag(Tweets):
 			Tweets[len(Tweets) - 1] += sHashtag
 
 	return Tweets
-	
-class BookTitleBuilder():
-	def __init__(self):
-		self.Girls = BookGirls()
-		self.GirlAdjs = BookGirlAdjs()
-		self.Masters = BookMasters()
-		self.MasterAdjs = BookMasterAdjs()
-		self.VerbsBy = BookVerbsBy()
-		self.VerbsTo = BookVerbsTo()
-
-	
-	def GetMaster(self, bLong = False):
-		sMaster = ""
-		
-		sMaster = self.Masters.GetWord()
-		
-		sMasterAdj = self.MasterAdjs.GetWord()
-		while sMasterAdj != "" and sMasterAdj in sMaster:
-			sMasterAdj = self.MasterAdjs.GetWord()
-		
-		if CoinFlip():
-			if bLong:
-				sMaster = sMasterAdj + " " + sMaster
-		else:
-			sMaster = sMasterAdj + " " + sMaster
-			
-		return sMaster
-		
-	def GetGirl(self, bLong = False):
-		sGirl = ""
-		
-		iRand = randint(1,7)
-		sGirl = self.Girls.GetWord()
-		sGirlAdj = self.GirlAdjs.GetWord()
-		while sGirlAdj != "" and sGirlAdj in sGirl:
-			sGirlAdj = self.GirlAdjs.GetWord()
-			
-		if iRand <= 3:
-			if bLong:
-				sGirl = sGirlAdj + " " + sGirl
-		elif iRand > 3 and iRand < 7:
-			sGirl = sGirlAdj + " " + sGirl
-		elif iRand == 7:
-			sGirl = sGirlAdj + " " + sGirl
-			
-			sGirlAdj = self.GirlAdjs.GetWord()
-			while sGirlAdj != "" and sGirlAdj in sGirl:
-				sGirlAdj = self.GirlAdjs.GetWord()
-				
-			sGirl = sGirlAdj + " " + sGirl
-			
-		return sGirl
-		
-	def _getFMs_(self):
-		FMs = ""
-		
-		iRandLen = randint(4,10)
-		for x in range(1, iRandLen):
-			iRandChoice = randint(1,3)
-			if iRandChoice == 1:
-				FMs += "F"
-			else:
-				FMs += "M"
-				
-		if "M" not in FMs:
-			FMs += "M"
-		elif "F" not in FMs:
-			FMs += "F"
-		
-		return FMs
-		
-	def GetTitle(self):
-		sTitle = ""
-
-		sVerbBy = self.VerbsBy.GetWord()
-		sVerbTo = self.VerbsTo.GetWord()
-		
-		sHerName = excerpt.names.NamesFemale().FirstName()
-		
-		Titles = []
-		
-		sGirl = self.GetGirl()
-		sMaster = self.GetMaster()
-		# make sure that both the girl and the master arent just one word b/c thats usually boring
-		while len(sGirl.split(" ")) < 2 and len(sMaster.split(" ")) < 2:
-			sGirl = self.GetGirl()
-			sMaster = self.GetMaster()
-		
-		# Blackmailed by the Billionaire Mountain Man 
-		sTitle = sVerbBy + " by the " + sMaster
-		Titles.append(sTitle)
-		# =========================
-
-		# Married to the Alpha Wolf
-		sTitle = sVerbTo + " to the " + self.GetMaster(bLong = True)
-		if CoinFlip():
-			if CoinFlip():
-				sTitle += ": A " + self._getFMs_() + " Romance"
-			else:
-				sTitle += ": A BDSM Romance"
-		Titles.append(sTitle)
-		# =========================
-		
-		# The President's Girl
-		sTitle = "The " + self.GetMaster(bLong = True) + "'s " + sGirl
-		if CoinFlip():
-			if CoinFlip():
-				sTitle += ": A BDSM Romance"
-			else:
-				sTitle += ": A Hot Ménage"
-		Titles.append(sTitle)
-		# =========================
-				
-		# The Secretary and the Space Werewolf 
-		sTitle = "The " + sGirl + " & the " + sMaster
-		if CoinFlip():
-			if CoinFlip():
-				sTitle += ": A BDSM Romance"
-			else:
-				sTitle += ": A " + self._getFMs_() + " Romance"
-		Titles.append(sTitle)
-		# =========================
-				
-		# Baby for the Stay-at-Home Manticore
-		sTitle = "Baby for the " + self.GetMaster(bLong = True) 
-		if CoinFlip():
-			sTitle += ": A " + self._getFMs_() + " Romance"
-		Titles.append(sTitle)
-		# =========================
-				
-		# The Millionaire Sherrif's Virgin
-		sTitle = "The " + sMaster + "'s " + sGirl
-		Titles.append(sTitle)
-		# =========================
-				
-		# Babysitter to the Billionaire Uniporn
-		sTitle = sGirl + " to the " + sMaster
-		Titles.append(sTitle)
-		# =========================
-				
-		# Babysitter for the Billionaire Uniporn
-		sTitle = sGirl + " for the " + sMaster
-		if CoinFlip():
-			if CoinFlip():
-				sTitle += ": An " + self._getFMs_() + " Adventure"
-			else:
-				sTitle += ": A BDSM Romance"
-		Titles.append(sTitle)
-		# =========================
-				
-		# The Small-Town Virgin's First Time
-		sTitle = "The " + self.GetGirl(bLong = True) + "'s First Time"
-		if CoinFlip():
-			if CoinFlip():
-				sTitle += ": A " + self._getFMs_() + " Romance"
-			else:
-				sTitle += ": A BDSM Romance"
-		Titles.append(sTitle)
-		# =========================
-				
-		# Full Frontal for the Shy Amish Virgin: A BDSM Romance
-		if CoinFlip():
-			sTitle = "Full Frontal Nudity for the "
-			if CoinFlip():
-				sTitle += self.GetMaster(bLong = True)
-			else:
-				sTitle += self.GetGirl(bLong = True)
-		else:
-			sTitle = "Naked for the " + self.GetMaster(bLong = True)
-		if CoinFlip():
-			if CoinFlip():
-				sTitle += ": An " + self._getFMs_() + " Adventure"
-			else:
-				sTitle += ": A BDSM Romance"
-		Titles.append(sTitle)
-		# =========================
-				
-		# The Amish Virgin and the Taboo MILF: A Lesbian Love Story 
-		sTitle = "The " + sGirl + " and the " + self.GetGirl()
-		if CoinFlip():
-			sTitle += ": A Lesbian Love Story"
-		else:
-			sTitle += ": A Secret Lesbian Affair"
-		Titles.append(sTitle)
-		# =========================
-		
-		#print(Titles)
-		sTitle = Titles[randint(0, len(Titles) - 1)]
-		
-		return sTitle
 	
 class TweetTxtGen():
 	ID = -1
@@ -932,29 +661,27 @@ class TweetTxtGen31(TweetTxtGen):
 		sHisName = NamesMale().FirstName()
 		
 		sHerName2 = NamesFemale().FirstName()
-		sHisName2 = NamesMale().FirstName()
+		sHisName2 = PlainNamesMale().FirstName()
 		
-		sText = "ME, " + WordList(["YELLING", "YELLING", "SCREAMING"]).GetWord() + " AT THE " + WordList(["BOOK", "BOOK", "PAGE", "MAIN CHARACTER"]).GetWord() + ": No " + sHerName + "! You can't " + WordList(["sleep with", "sleep with", "have sex with", "hook up with"]).GetWord () + " " + sHisName + "! "
+		sText = "ME, " + WordList(["YELLING", "YELLING", "SCREAMING"]).GetWord() + " AT THE " + WordList(["BOOK", "BOOK", "PAGE", "MAIN CHARACTER"]).GetWord() + ": No " + sHerName + "! Don't " + WordList(["sleep with", "sleep with", "have sex with", "hook up with"]).GetWord () + " " + sHisName + "! "
 		sText += "He " + WordList(["is your long lost twin brother", 
 									"is secretly married to " + sHerName2, 
-									"used to be a woman named " + sHerName2, 
 									"is the serial killer that's been terrorizing " + title.misc.DullPlaces().GetWord(),
 									"just wants you for your " + WordList(["millions", "billions", "bitcoin", "successful fondue restaurant", "enormous titties"]).GetWord(), 
-									"is the brother your parents hid from you", 
-									"has a secret family with " + sHerName2, 
-									"is the mysterious man in black that shot your father",
-									"is an imposter named " + sHisName2 + " and he's really from " + WordList(["Alabama", "Hull", "Essex", "Sussex", "Florida", "Arkansas", "Scranton", "Northampton", "Jacksonville", "Liverpool", "Plano", "Cardiff", "New Jersey"]).GetWord(),
-									"is your brother whom you forgot about due to your amnesia",
-									"is secretly a " + WordList(["werewolf", "were-horse", "were-shark", "were-gorilla", "were-dinosaur"]).GetWord(),
-									"is being mind-controlled by Majestic 12",
+									"is the mysterious " + WordList(["man in black","masked man","drifter","hit man","assassin","vigilante"]).GetWord() + " that shot your father",
+									"is an imposter named " + sHisName2 + " and he's really from " + DullPlaces().GetWord(),
+									"is secretly a " + WordList(["werewolf", "were-horse", "were-shark", "were-gorilla", "were-dinosaur","vampire","zombie","ghost"]).GetWord(),
+									"is being mind-controlled by Dr. " + InnuendoLastNames().GetWord(),
 									"is an evil clone",
 									"is the father you've never met",
+									"is your " + WordList(["father","long lost father","real dad","biological father"]).GetWord(),
 									"is a hitman for the " + WordList(["Italian", "Irish", "Russian", "French", "Canadian", "French-Canadian", "Sicilian", "Japanese", "Hawaiian", "Belgian"]).GetWord() + " mafia",
-									"has a secret prosthetic " + WordList(["nose", "nose", "ear", "nipple", "ass", "penis", "dick", "cock"]).GetWord(),
-									"is secretly from " + WordList(["Alabama", "Canada", "Essex", "Sussex", "Florida", "Arkansas", "Scranton", "Northampton", "Cardiff", "New Jersey"]).GetWord(),
+									"has a prosthetic " + WordList(["nose", "nose", "ear", "nipple", "ass", "penis", "dick", "cock"]).GetWord(),
+									"is secretly from " + DullPlaces().GetWord(),
 									"is in love with " + sHerName2,
-									"is in love with " + sHisName2,
-									"is blackmailing your " + WordList(["brother", "dad", "mom", "step-brother", "sister", "sister-in-law", "step-dad"]).GetWord(),
+									"is a spy for " + WordList(["your wicked step-mother","your evil step-brother","your evil clone","the Russians","the Chinese","your scheming boss","the Nazis", "the alien invaders"]).GetWord(),
+									"is sleeping with your " + WordList(["sister","half-sister","mom","step mom","friend","best friend","daughter","mother-in-law","sister-in-law","twin sister"]).GetWord(),
+									"is blackmailing your " + WordList(["brother","dad","mom","step-brother","sister","sister-in-law","step-dad"]).GetWord(),
 									"has no sense of smell"]).GetWord() + "!"
 		
 		return sText
@@ -1243,39 +970,17 @@ class TweetTxtGen38(TweetTxtGen):
 	def GenerateTweet(self):
 		super().GenerateTweet()
 		sText = ""
-		MaleJobs = WordList(["Accountant","Graphic Designer","Bank Manager","Fry Cook","Golf Caddy",
-							 "Drywall Installer","Physical Therapist","Dentist","Building Inspector",
-							 "Used Car Salesman","Mortician","Drummer","Opthamologist",
-							 "IT Technician","Male Nurse","Cat Sitter","Dog Walker",
-							 "Wedding Photographer","Warehouse Manager","SCUBA Supplier",
-							 "8th Grade Teacher","College Adjunct","Business Analyst",
-							 "Call Center Employee","Grad Student","Beekeeper","Piano Tuner",
-							 "9th Grade Teacher","Zoology Professor","Retiree","US Army Ranger",
-							 "Auto Mechanic","HVAC Technician","Zoomba Instructor","Life Coach",
-							 "Vice Principal","Truck Driver","Materials Engineer","Uber Driver",
-							 "Cable Installer","Bouncer","Zamboni Driver","Windshield Installer",
-							 "Tiler Grouter","Forklift Operator","Air Traffic Controller"
-							 ])
-		FemaleJobs = WordList(["Bank Teller","Gourmet Chef","Physical Therapist","Nurse","Dental Hygenist",
-							   "Receptionist","English Teacher","Spanish Teacher","Lexicographer",
-							   "Dermatologist","Graphic Designer","Church Pianist","3rd Grade Teacher",
-							   "Tax Accountant","Cat Sitter","Dog Walker","Pigeon Trainer","Intern",
-							   "Grad Student","Beekeeper","Produce Buyer","Electrical Engineer",
-							   "Mommy Blogger","Stay-at-Home Mom","Guidance Counselor",
-							   "Yoga Instructor","Lyft Driver","Librarian","Podcast Host","Police Officer",
-							   "Speech Therapist","Beautician","Manicurist","Wedding Planner","Hostess",
-							   "Cocktail Waitress","Kindergarten Teacher","Tutor","House Maid",
-							   "Funeral Planner","Professional Hand Model","Sculptor","Car Wash Manager",
-							   "Loan Officer"
-							   ])
-		Places = title.misc.DullPlaces()
+		
+		sMaleJob = DullJobsMale().GetWord()
+		sFemaleJob = DullJobsFemale().GetWord()
+		sPlace = DullPlaces().GetWord()
 		
 		if CoinFlip():
 			# male
-			sText = "By day, erotica author " + AuthorBuilder(Gender = Gender.Male) + " is " + AddArticles(MaleJobs.GetWord()).lower() + " from " + Places.GetWord() + "."	
+			sText = "By day, erotica author " + AuthorBuilder(Gender = Gender.Male) + " is " + AddArticles(sMaleJob).lower() + " from " + sPlace + "."	
 		else:
 			# female
-			sText = "By day, erotica author " + AuthorBuilder(Gender = Gender.Female) + " is " + AddArticles(FemaleJobs.GetWord()).lower() + " from " + Places.GetWord() + "."
+			sText = "By day, erotica author " + AuthorBuilder(Gender = Gender.Female) + " is " + AddArticles(sFemaleJob).lower() + " from " + sPlace + "."
 		
 		return sText	
 

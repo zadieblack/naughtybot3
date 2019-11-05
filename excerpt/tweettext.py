@@ -439,10 +439,12 @@ class TweetTxtGen14(TweetTxtGen):
 	def GenerateTweet(self):
 		super().GenerateTweet()
 		sText = ""
+		sText = "\"" + BookTitleBuilder() + "\" by " + AuthorBuilder() + ", "
 		
-		sText = "\"" + BookTitleBuilder() + "\" by " + AuthorBuilder() + ", page " + str(randint(6,349))
-		sText = "\"" + BookTitleBuilder() + "\" by " + AuthorBuilder() + ", page " + str(randint(6,349))
-		
+		if CoinFlip():
+			sText += "page " + str(randint(6,349))
+		else:
+			sText += "chapter " + str(randint(2,46))
 		return sText
 
 class TweetTxtGen15(TweetTxtGen):
@@ -823,51 +825,25 @@ class TweetTxtGen23(TweetTxtGen):
 		super().GenerateTweet()
 		sText = ""
 		
-		MaleJobs = WordList(["Accountant","Graphic Designer","Bank Manager","Fry Cook","Golf Caddy",
-							 "Drywall Installer","Physical Therapist","Dentist","Building Inspector",
-							 "Used Car Salesman","Mortician","Drummer","Opthamologist",
-							 "IT Technician","Male Nurse","Cat Sitter","Dog Walker",
-							 "Wedding Photographer","Warehouse Manager","SCUBA Supplier",
-							 "8th Grade Teacher","College Adjunct","Business Analyst",
-							 "Call Center Employee","Grad Student","Beekeeper","Piano Tuner",
-							 "9th Grade Teacher","Zoology Professor","Retiree","US Army Ranger",
-							 "Auto Mechanic","HVAC Technician","Zoomba Instructor","Life Coach",
-							 "Vice Principal","Truck Driver","Materials Engineer","Uber Driver",
-							 "Cable Installer","Bouncer","Zamboni Driver","Windshield Installer",
-							 "Tiler Grouter","Forklift Operator","Air Traffic Controller"
-							 ])
-		FemaleJobs = WordList(["Bank Teller","Gourmet Chef","Physical Therapist","Nurse","Dental Hygenist",
-							   "Receptionist","English Teacher","Spanish Teacher","Lexicographer",
-							   "Dermatologist","Graphic Designer","Church Pianist","3rd Grade Teacher",
-							   "Tax Accountant","Cat Sitter","Dog Walker","Pigeon Trainer","Intern",
-							   "Grad Student","Beekeeper","Produce Buyer","Electrical Engineer",
-							   "Mommy Blogger","Stay-at-Home Mom","Guidance Counselor",
-							   "Yoga Instructor","Lyft Driver","Librarian","Podcast Host","Police Officer",
-							   "Speech Therapist","Beautician","Manicurist","Wedding Planner","Hostess",
-							   "Cocktail Waitress","Kindergarten Teacher","Tutor","House Maid",
-							   "Funeral Planner","Professional Hand Model","Sculptor","Car Wash Manager",
-							   "Loan Officer"
-							   ])
-		Places = DullPlaces()
+		sMaleJob = DullJobsMale().GetWord()
+		sFemaleJob = DullJobsFemale().GetWord()
+		sPlace = DullPlaces().GetWord()
 		
 		if CoinFlip():
 			# male
-			sText = "By day, erotica author " + AuthorBuilder(Gender = Gender.Male) + " is " 
-			sText += AddArticles(MaleJobs.GetWord()).lower() + " from " + Places.GetWord() + "."	
+			sText = "By day, erotica author " + AuthorBuilder(Gender = Gender.Male) + " is " + AddArticles(sMaleJob).lower() + " from " + sPlace + "."	
 		else:
 			# female
-			sText = "By day, erotica author " + AuthorBuilder(Gender = Gender.Female) + " is " 
-			sText += AddArticles(FemaleJobs.GetWord()).lower() + " from " + Places.GetWord() + "."
+			sText = "By day, erotica author " + AuthorBuilder(Gender = Gender.Female) + " is " + AddArticles(sFemaleJob).lower() + " from " + sPlace + "."
 		
-		
-		return sText
+		return sText	
 		
 class TweetTxtGen24(TweetTxtGen):
 	# LEGAL DISCLAIMER: Wal-Mart does not condone cum-swapping or genital piercings.
 	def __init__(self):
 		super().__init__()
 		self.ID = 24
-		self.Priority = 200
+		self.Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -904,18 +880,38 @@ class TweetTxtGen24(TweetTxtGen):
 		
 		return sText			
 		
-# class TweetTxtGen24(TweetTxtGen):
-	# # Out soon from Ben Dover
-	# def __init__(self):
-		# super().__init__()
-		# self.ID = 24
-		# self.Priority = 2
+class TweetTxtGen25(TweetTxtGen):
+	# from Part 3 of Ben Dover's 12-book "Baby For the Ugly Werewolf" series
+	def __init__(self):
+		super().__init__()
+		self.ID = 25
+		self.Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sText = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sText = ""
 		
-		# return sText	
+		Series = WordList([[3,"three"],
+						   [4,"four"],
+						   [5,"five"],
+						   [6,"six"],
+						   [7,"seven"],
+						   [8,"eight"],
+						   [10,"ten"],
+						   [12,"twelve"],
+						   [13,"thirteen"],
+						   [16,"sixteen"],
+						   [20,"twenty"],
+						   [69,"sixty-nine"]]).GetWord()
+		
+		sText = "from Part " + str(randint(2,Series[0] - 1)) + " "
+		sText += "of " + AuthorBuilder(Gender = Gender.Neuter) + "'s "
+		sText += WordList(["epic","epic","ambitious","momentous","seminal","classic","critically-acclaimed"]).GetWord() + " "
+		sText += Series[1] + "-book "
+		sText += "\"" + BookTitleBuilder() + "\" "
+		sText += WordList(['series','saga','cycle','trilogy']).GetWord()
+		
+		return sText	
 
 # class TweetTxtGen24(TweetTxtGen):
 	# # Out soon from Ben Dover

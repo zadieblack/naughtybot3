@@ -250,5 +250,3 @@ class NounAdjList:
 		sWord = self.GetAdj(NotList) + " " + self.GetNoun(NotList)
 		
 		return sWord
-		
-	
