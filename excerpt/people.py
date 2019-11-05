@@ -125,6 +125,7 @@ class MaleFWB(Person):
 class JobBlueCollar(Person):
 	def __init__(self):
 		super().__init__(['aluminum can recycler',
+		'Amazon delivery guy',
 		'bag boy',
 		'baggage handler',
 		'ball boy',
@@ -203,9 +204,7 @@ class JobBlueCollar(Person):
 		'used car salesman',
 		'waiter',
 		'Wal-Mart greeter',
-		'wedding DJ',
-		'writer of erotic romances',
-		'zoo keeper'])
+		'wedding DJ'])
 		
 class JobWhiteCollar(Person):
 	def __init__(self):

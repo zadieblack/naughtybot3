@@ -160,7 +160,7 @@ class BodyParts:
 				if CoinFlip():
 					sRandomDesc = self.ShortDescription(sNot = sNot, NotList = NotList)
 				else:
-					sRandomDesc = self.GetDefaultNoun()
+					sRandomDesc = self.GetDefaultNoun(NotList = NotList)
 			else:
 				sRandomDesc = self.MediumDescription(sNot = sNot, NotList = NotList)
 		elif iRand in range(3,6):
@@ -1427,7 +1427,7 @@ class Penis(BodyParts):
 		return sLength
 			
 	def ShortDescription(self, sNot = "", NotList = None, bAddLen = False):
-		sDesc = super().ShortDescription(sNot = sNot)
+		sDesc = super().ShortDescription(sNot = "", NotList = NotList)
 		if NotList == None:
 			NotList = []
 		
@@ -1442,7 +1442,7 @@ class Penis(BodyParts):
 		return sDesc
 		
 	def MediumDescription(self, sNot = "",  NotList = None, bAddLen = False):
-		sDesc = super().MediumDescription(sNot = sNot)
+		sDesc = super().MediumDescription(sNot = sNot, NotList = NotList)
 		
 		if NotList == None:
 			NotList = []
@@ -1458,7 +1458,7 @@ class Penis(BodyParts):
 		return sDesc 
 		
 	def FloweryDescription(self, sNot = "", NotList = None, bAddLen = False):
-		sDesc = super().FloweryDescription(sNot = sNot)
+		sDesc = super().FloweryDescription(sNot = sNot, NotList = NotList)
 		
 		if NotList == None:
 			NotList = []
@@ -1474,7 +1474,7 @@ class Penis(BodyParts):
 		return sDesc 
 		
 	def RandomDescription(self, sNot = "", NotList = None, bAllowShortDesc = True, bAllowLongDesc = True, bAddLen = False):
-		sDesc = super().RandomDescription(sNot = sNot, bAllowShortDesc = bAllowShortDesc, bAllowLongDesc = bAllowLongDesc)
+		sDesc = super().RandomDescription(sNot = sNot, NotList = NotList, bAllowShortDesc = bAllowShortDesc, bAllowLongDesc = bAllowLongDesc)
 		
 		if NotList == None:
 			NotList = []

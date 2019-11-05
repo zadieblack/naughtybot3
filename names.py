@@ -259,11 +259,13 @@ class PlainNamesMale(Names):
 	def __init__(self):
 		super().__init__()
 		
-		self.SetFirstNames(['Allen',
+		self.SetFirstNames(['Al',
+							'Allen',
 							   'Ben',
 							   'Bob',
 							   'Chuck',
 							   'Dan',
+							   'Dave',
 							   'Dick',
 							   'Doug',
 							   'Duane',

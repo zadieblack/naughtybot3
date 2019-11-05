@@ -26,6 +26,7 @@ from excerpt.scenes import SceneSelector
 
 import excerpt.bodyparts as bodyparts
 import excerpt.verbs as verbs
+import misc as sharedmisc
 import excerpt.misc as misc
 import excerpt.scenes as scenes
 
@@ -4606,15 +4607,67 @@ class Generator86(Generator):
 		sTweet += "\"Do you have " + sToy + " in your ass?!?"
 		return sTweet
 		
-# class Generator87(Generator):
-	# ID = 87
-	# Priority = 1
+class Generator87(Generator):
+	ID = 87
+	Priority = 1
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		BlueCollarNotList = ['serf','stable boy','peasant','paige','tax payer','page']
+		PenisNotList = ['carefully','man-scaped','package','massively','burning','unfurled',
+					    'naked','lovingly','member','hardening']
+		VagNotList = ['womanhood','flower']
+		sHisFakeName = names.ClassyNamesMale().FirstName()
+		sHisPlainName = names.PlainNamesMale().FirstName()
+		BigCities = WordList(['New York','Paris','Los Angeles','London','Dubai','Milan','San Francisco','Prague',
+							  'Hong Kong','Ibiza','Macao','Havanna','Berlin'])
+							  
+		sTweet += "\"The truth is, I'm not really " + sHisFakeName + " from " + BigCities.GetWord() + ",\""
+		sTweet += " he " + WordList(['admitted','confessed']).GetWord() + ". "
+		sTweet += "\"My name is " + sHisPlainName + ", "
+		sTweet += "and I'm a " + self.BlueCollar.GetWord(NotList = BlueCollarNotList) + " "
+		sTweet += "from " + sharedmisc.DullPlaces().GetWord() + ".\"\n\n"
+		if CoinFlip():
+			sTweet += "\"I don't care where you're from,\" she said. "
+		else: 
+			sTweet += "\"I don't care what your name is,\" she said. "
+		sTweet += "\"I'm " + WordList(['all revved up','hot and ready','hot and horny','horny AF',
+									   'horny as fuck','all turned on','wet as fuck','all warmed up',
+									   'crazy horny']).GetWord() + " right now"
+		sTweet += ", so I need you to "
+		if CoinFlip():
+			sTweet += "pull out that " + self.MaleBodyParts.Penis.RandomDescription(NotList = PenisNotList) + " of yours "
+			sTweet += WordList(["so I can suck you off","and put it in my mouth","and fuck my mouth with it",
+								"and put it between my tits","and tit-fuck me",
+								"and stick it down my throat",
+								"and cover my titties in " + self.Semen.ShortDescription(),
+								"and fuck my brains out with it","and pound me til I can't walk",
+								"and fuck the shit out of me with it",
+								"an start filling my holes with it",
+								"and stuff it in my ass"
+							   ]).GetWord() + "."
+		else:
+			sTweet += "" + WordList(["bend me over","pull my hair","rip my panties off",
+									 "suck on my titties","play with my tits","squeeze my ass",
+									 "grab me around the neck","pull my panties down",
+									 "rip this dress off me","lube up","lube me up"]).GetWord() + " and "
+			sTweet += WordList(["pound","stuff","ream","plough","jackhammer","fuck","bang"]).GetWord() + " "
+			if CoinFlip():
+				sTweet += "my " + self.FemBodyParts.Vagina.ShortDescription(NotList = VagNotList) + " "
+			else:
+				sTweet += "my " + WordList(['ass','anus','asshole','butthole','rectal cavity','starfish','bunghole',
+											'corn hole','dirt-pipe','fart blaster','heinie hole','poop-chute',
+											'poop-trap','shit-hole']).GetWord() + " "
+			sTweet += WordList(["until I can't walk","until my legs shake","until I'm dizzy",
+								"until I can't walk straight","until it's raw","until I can't see straight",
+								"until the " + self.Semen.ShortDescription() + " runs down my thighs",
+								"until I cum","until I squirt","until I scream"]).GetWord() + "."
+				
+		sTweet += "\""
 
-		# return sTweet
+		return sTweet
 		
 # class Generator88(Generator):
 	# ID = 88

@@ -129,6 +129,7 @@ class DullJobsMale(WordList):
 	
 	def __init__(self):
 		super().__init__(["Accountant",
+						  "Amazon delivery guy",
 						  "Graphic Designer",
 						  "Bank Manager",
 						  "Fry Cook",
