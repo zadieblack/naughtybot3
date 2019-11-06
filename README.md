@@ -7,12 +7,14 @@ This bot was coded in python. It uses the **tweepy** library to access Twitter's
 ***WARNING***
 *This bot generates explicit adult content! You must be 18+ to use or modify this bot!*
 
-Flaming Lust Bot does its thing on twitter at [@bot_lust](https://twitter.com/bot_lust).
+Flaming Lust Bot on Twitter is [@bot_lust](https://twitter.com/bot_lust). Erotica Ebooks is [@erotica_ebooks](https://twitter.com/erotica_ebooks/)
 
 ## why combine?
-erotica_ebooks and flaming lust bot were orignally separate. They were also multi-threaded so that they could offer a feature that allowed them to tweet back when someone @'d them on twitter. In an effort to continue to maintain the bots on free hosting I have made the decision to combine them and to remove the tweet back feature (which was seldom used anyway). 
+erotica_ebooks and flaming lust bot were orignally separate. They were also multi-threaded so that they could offer a feature that allowed them to tweet back when someone @'d them on twitter. In an effort to continue to maintain the bots on free hosting I have made the decision to combine them and to remove the tweet back feature (which was seldom used). 
 
-If you are interested in forking the code to write your own python-based bot, you might be better off forking one of the originals. You can find them here:
+I have continued to make improvements on the combined codebase.
+
+However, if you are interested in the multi-threaded reply capabilities of the originals, you might be better off forking one of them. You can find them here:
 
 * https://github.com/zadieblack/flaminglustbot
 * https://github.com/zadieblack/erotica_ebooks
