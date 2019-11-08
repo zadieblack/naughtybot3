@@ -4623,20 +4623,28 @@ class Generator87(Generator):
 		sHisPlainName = names.PlainNamesMale().FirstName()
 		BigCities = WordList(['New York','Paris','Los Angeles','London','Dubai','Milan','San Francisco','Prague',
 							  'Hong Kong','Ibiza','Macao','Havanna','Berlin'])
+		HornyTerms = WordList(['all revved up','hot and ready','hot and horny','horny AF',
+									   'horny as fuck','all turned on','wet as fuck','all warmed up',
+									   'crazy horny'])
 							  
 		sTweet += "\"The truth is, I'm not really " + sHisFakeName + " from " + BigCities.GetWord() + ",\""
 		sTweet += " he " + WordList(['admitted','confessed']).GetWord() + ". "
 		sTweet += "\"My name is " + sHisPlainName + ", "
 		sTweet += "and I'm a " + self.BlueCollar.GetWord(NotList = BlueCollarNotList) + " "
 		sTweet += "from " + sharedmisc.DullPlaces().GetWord() + ".\"\n\n"
-		if CoinFlip():
+		
+		iRand = randint(1,3)
+		if iRand == 1:
 			sTweet += "\"I don't care where you're from,\" she said. "
+		elif iRand == 2: 
+			sTweet += "\"I don't give a fuck,\" she said. "
 		else: 
 			sTweet += "\"I don't care what your name is,\" she said. "
-		sTweet += "\"I'm " + WordList(['all revved up','hot and ready','hot and horny','horny AF',
-									   'horny as fuck','all turned on','wet as fuck','all warmed up',
-									   'crazy horny']).GetWord() + " right now"
-		sTweet += ", so I need you to "
+		
+		if iRand == 2:
+			sTweet += "\"I'm " + HornyTerms.GetWord() + ", so right now your 'job' is to "
+		else:
+			sTweet += "\"I'm " + HornyTerms.GetWord() + " right now, so I need you to "
 		if CoinFlip():
 			sTweet += "pull out that " + self.MaleBodyParts.Penis.RandomDescription(NotList = PenisNotList) + " of yours "
 			sTweet += WordList(["so I can suck you off","and put it in my mouth","and fuck my mouth with it",
@@ -4645,7 +4653,7 @@ class Generator87(Generator):
 								"and cover my titties in " + self.Semen.ShortDescription(),
 								"and fuck my brains out with it","and pound me til I can't walk",
 								"and fuck the shit out of me with it",
-								"an start filling my holes with it",
+								"and start filling my holes with it",
 								"and stuff it in my ass"
 							   ]).GetWord() + "."
 		else:
@@ -4676,6 +4684,12 @@ class Generator87(Generator):
 	# def GenerateTweet(self):
 		# super().GenerateTweet()
 		# sTweet = ""
+		
+		# sTweet += "This is a bot.\n\n"
+		# sTweet += "Every few hours it generates a 'sex scene' based on a template filled in with some randomized phrases. Then it posts it to this twitter.\n\n"
+		# sTweet += "Sometimes the results are nonsense. Or funny. Or sexy. Or wildly inappropriate. You never know what the bot will do next.\n\n"
+		# sTweet += "Liking and retweeting the bot keeps twitter from flagging it as a spam bot. Thank you for doing that.\n\n"
+		# sTweet += "Follow if you dare!"
 
 		# return sTweet
 		

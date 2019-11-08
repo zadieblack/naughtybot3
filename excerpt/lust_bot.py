@@ -66,6 +66,7 @@ def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorN
 					#CreateImg(sTweet).save(exutil.GenerateFileName(), format = 'PNG')
 					
 				currentDT = datetime.datetime.now()
+
 				if bTweet:
 					print("* Tweeted at " + currentDT.strftime("%H:%M:%S"))
 						

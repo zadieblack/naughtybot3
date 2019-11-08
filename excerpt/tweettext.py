@@ -6,7 +6,7 @@ from title.generators import GetTweet
 import excerpt.bodyparts
 from excerpt.util import AddArticles
 
-MAX_EXCERPT_BOOKTITLE_LEN = 75
+MAX_EXCERPT_BOOKTITLE_LEN = 65
 
 def LastNameBuilder(NotList = None):
 	sLName = ""
@@ -95,9 +95,15 @@ def AddHashtag(Tweets):
 
 	return Tweets
 	
-def BookTitleBuilder():
+def BookTitleBuilder(maxlen = None):
+	if maxlen is None:
+		maxlen = MAX_EXCERPT_BOOKTITLE_LEN
+		
+	if not isinstance(maxlen, int):
+		maxlen = MAX_EXCERPT_BOOKTITLE_LEN
+		
 	sTitle = GetTweet(bTest = False, bTweet = False, bAllowPromo = False, bAllowFavTweets = False)
-	while len(sTitle) > MAX_EXCERPT_BOOKTITLE_LEN:
+	while len(sTitle) > maxlen:
 		sTitle = GetTweet(bTest = False, bTweet = False, bAllowPromo = False, bAllowFavTweets = False)
 		
 	sTitle = sTitle.replace('\n',' ').replace(':',' - ').replace('\"','')
@@ -885,7 +891,7 @@ class TweetTxtGen25(TweetTxtGen):
 	def __init__(self):
 		super().__init__()
 		self.ID = 25
-		self.Priority = 2
+		self.Priority = 200
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -908,7 +914,7 @@ class TweetTxtGen25(TweetTxtGen):
 		sText += "of " + AuthorBuilder(Gender = Gender.Neuter) + "'s "
 		sText += WordList(["epic","epic","ambitious","momentous","seminal","classic","critically-acclaimed"]).GetWord() + " "
 		sText += Series[1] + "-book "
-		sText += "\"" + BookTitleBuilder() + "\" "
+		sText += "\"" + BookTitleBuilder(maxlen = 60) + "\" "
 		sText += WordList(['series','saga','cycle','trilogy']).GetWord()
 		
 		return sText	
