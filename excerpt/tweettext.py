@@ -891,7 +891,7 @@ class TweetTxtGen25(TweetTxtGen):
 	def __init__(self):
 		super().__init__()
 		self.ID = 25
-		self.Priority = 200
+		self.Priority = 3
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
