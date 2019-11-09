@@ -4618,7 +4618,7 @@ class Generator87(Generator):
 		BlueCollarNotList = ['serf','stable boy','peasant','paige','tax payer','page']
 		PenisNotList = ['carefully','man-scaped','package','massively','burning','unfurled',
 					    'naked','lovingly','member','hardening']
-		VagNotList = ['womanhood','flower']
+		VagNotList = ['womanhood','flower','muff','peach']
 		sHisFakeName = names.ClassyNamesMale().FirstName()
 		sHisPlainName = names.PlainNamesMale().FirstName()
 		BigCities = WordList(['New York','Paris','Los Angeles','London','Dubai','Milan','San Francisco','Prague',
