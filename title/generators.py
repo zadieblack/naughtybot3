@@ -4542,15 +4542,87 @@ class Generator139(Generator):
 
 		return sTweet	
 		
-# class Generator100(Generator):
-	# ID = 100
-	# Priority = 2
+# I Sucked On My Mother-in-Law's Massive Mammaries 
+class Generator140(Generator):
+	ID = 140
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		FemRelations = WordList(['Mother-in-Law','Sister-in-Law','Daughter-in-Law','Step-Mom',
+								 'Friend\'s Mom','English Teacher','Babysitter','Boss',
+								 'Boss\'s Wife','Mom','Teacher','Secretary'])
 
-		# return sTweet	
+		TitsAdjB = WordList(['Bare','Big','Boobalicious','Bouncing','Bountiful'])
+		TitsAdjC = WordList(['Collossal','Creamy'])
+		TitsAdjD = WordList(['Delicious','Double-D'])
+		TitsAdjF = WordList(['Firm','Fulsome'])
+		TitsAdjG = WordList(['Gargantuan','Gigantic','Generous'])
+		TitsAdjH = WordList(['Heaving','Heavy','Huge'])
+		TitsAdjJ = WordList(['Giant','Gigantic','Generous','Jiggling','Juicy','Jumbo'])
+		TitsAdjK = WordList(['Nubile','Nibble-able','Naughty'])
+		TitsAdjL = WordList(['Lickable','Lovely','Luscious'])
+		TitsAdjM = WordList(['Magnificent','Massive'])
+		TitsAdjN = WordList(['Nubile','Nibble-able','Naughty','Nude'])
+		TitsAdjP = WordList(['Plush','Plump','Pendulous','Perky'])
+		TitsAdjR = WordList(['Ripe','Robust','Round'])
+		TitsAdjSw = WordList(['Sweet','Swollen','Sumptuous','Succulent','Supple'])
+		TitsAdjT = WordList(['Tasty','Titanic','Tender','Tremendous'])
+							
+		TitsNouns = WordList(['Bangers','Bazooms','Boobies','Boobs','Bosoms','Breasts','Cantaloups','Coconuts','Dumplings','Gazongas',
+							  'Globes','Hams','Hooters','Honkers','Jugs','Knockers','Love Balloons',
+							  'Mammaries','Meat Melons','Melons','Pillows','Puppies','Rack',
+							  'Sweater-Puppies','Sweater-Zeppelins','Tatas','Tits','Titties'])
+							  
+		sTitsNoun = TitsNouns.GetWord()
+		sTitsAdj = ""
+		if sTitsNoun[0].lower() == 'b':
+			sTitsAdj = TitsAdjB.GetWord()
+			
+			
+		elif sTitsNoun[0].lower() == 'c':
+			sTitsAdj = TitsAdjC.GetWord()
+			
+		elif sTitsNoun[0].lower() == 'd':
+			sTitsAdj = TitsAdjD.GetWord()
+			
+		elif sTitsNoun[0].lower() == 'g':
+			sTitsAdj = TitsAdjG.GetWord()
+			
+		elif sTitsNoun[0].lower() == 'h':
+			sTitsAdj = TitsAdjH.GetWord()
+			
+		elif sTitsNoun[0].lower() == 'j':
+			sTitsAdj = TitsAdjJ.GetWord()
+			
+		elif sTitsNoun[0].lower() == 'k':
+			sTitsAdj = TitsAdjK.GetWord()
+			
+		elif sTitsNoun[0].lower() == 'm':
+			sTitsAdj = TitsAdjM.GetWord()
+			
+		elif sTitsNoun[0].lower() == 'n':
+			sTitsAdj = TitsAdjN.GetWord()
+			
+		elif sTitsNoun[0].lower() == 'p':
+			sTitsAdj = TitsAdjP.GetWord()
+		
+		elif sTitsNoun[0].lower() == 'r':
+			sTitsAdj = TitsAdjR.GetWord()
+			
+		elif sTitsNoun[0:2].lower() == 'sw':
+			sTitsAdj = TitsAdjSw.GetWord()
+			
+		else: 
+			sTitsAdj = TitsAdjT.GetWord()
+		
+							  
+		sTweet += "I " + WordList(['Motor-boated','Played with','Sucked on','Sucked','Milked','Fooled Around With']).GetWord() + " My "
+		sTweet += FemRelations.GetWord() + "'s " + sTitsAdj + " " + sTitsNoun 
+
+		return sTweet	
 		
 # class Generator100(Generator):
 	# ID = 100
