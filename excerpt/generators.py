@@ -659,7 +659,7 @@ class Generator18(Generator):
 	# "'Jacinda, my dear, I wrote you a poem,' he said. 'What is it about?' asked Jacinda. 'It's about you, my love: your golden 
 	# hair, your generous tits, your smooth legs, your dangling labia.' 'Oh Brad!' she sighed."
 	ID = 18
-	Priority = 20
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -668,15 +668,35 @@ class Generator18(Generator):
 		sGirlfriendName = self.FemaleName.FirstName()
 		sTweet = "'" + sGirlfriendName + ", my dear, I wrote you a poem,' he said.\n\n"
 		sTweet += "'What about?' she asked.\n\n"
-		sTweet += "'It's about you, my love,' he said. 'It's about your "
-		Parts = self.FemBodyParts.GetRandomBodyParts(iNum = 5, bIncludeInners = True)
-		for part in Parts:
-			if not part == Parts[len(Parts) - 1]:
-				sTweet += part + "; "
-			else:
-				sTweet += "and your " + part
+		sTweet += "'It's about you, my love,' he said. 'It's about "
+		sTweet += self.FemBodyParts.DescRandomClothedBodyParts(iNum = 5, sDivideChar = ';', bAllowLongDesc = True, sPossessive = "your") + ". "
+		sTweet += "And, of course, your " 
+		
+		iRand = randint(1,6)
+		if iRand == 1:
+			#Ass
+			sTweet += self.FemBodyParts.Ass.FloweryDescription(NotList = ['backside','cheeks','rear','bottom'])
+		elif iRand == 2:
+			#Asshole
+			sTweet += self.FemBodyParts.Ass.Anus.FloweryDescription(NotList = ['back','butt','behind'])
+		elif iRand == 3:
+			#Vag
+			sTweet += self.FemBodyParts.Vagina.FloweryDescription(NotList = ['vag','virgin','mound'])
+		elif iRand == 4:
+			#Inner labia
+			sTweet += self.FemBodyParts.Vagina.InnerLabia.FloweryDescription(NotList = ['virgin','petals'])
+		elif iRand == 5:
+			#Vaginal canal
+			sTweet += self.FemBodyParts.Vagina.InnerVag.FloweryDescription(NotList = ['virgin','vestibule','tunnel','passage'])
+		else:
+			#Outer labia
+			sTweet += self.FemBodyParts.Vagina.OuterLabia.FloweryDescription(NotList = ['virgin','mons pubis','petals','mound'])
+		
 		sTweet += ".'\n\n"
-		sTweet += "'Oh " + self.MaleName.FirstName() + "!' she sighed."
+		if CoinFlip():
+			sTweet += "'Oh " + self.MaleName.FirstName() + "!' she sighed."
+		else:
+			sTweet += "'Ravish me, " + self.MaleName.FirstName() + "!' she exclaimed."
 		
 		return sTweet
 		
@@ -725,26 +745,26 @@ class Generator20(Generator):
 		
 		return sTweet
 		
-class Generator21(Generator):
-	#Candy stroked Lorenzo's turgid meat vigorously. Suddenly his engorged head swelled and spurted gobs of white hot semen on her lips, on her breasts, on her thighs, on her pussy. 'Oh God', she said, 'it's all over my nice Easter Sunday outfit!'
-	ID = 21
-	Priority = 100
+# class Generator21(Generator):
+	# #Candy stroked Lorenzo's turgid meat vigorously. Suddenly his engorged head swelled and spurted gobs of white hot semen on her lips, on her breasts, on her thighs, on her pussy. 'Oh God', she said, 'it's all over my nice Easter Sunday outfit!'
+	# ID = 21
+	# Priority = 2
 	
-	def GenerateTweet(self):
-		super().GenerateTweet()
-		sTweet = ""
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
 		
-		sTweet = self.FemaleName.FirstName() + " stroked " + self.MaleName.FirstName() + "'s " + self.MaleBodyParts.Penis.RandomDescription() + " vigorously. Suddenly its " + self.MaleBodyParts.Penis.Head.RandomDescription() + " swelled and he " + self.VEjac.Past() + ", sending gobs of " + self.Semen.RandomDescription() + " all over her "
+		# sTweet = self.FemaleName.FirstName() + " stroked " + self.MaleName.FirstName() + "'s " + self.MaleBodyParts.Penis.RandomDescription() + " vigorously. Suddenly its " + self.MaleBodyParts.Penis.Head.RandomDescription() + " swelled and he " + self.VEjac.Past() + ", sending gobs of " + self.Semen.RandomDescription() + " all over her "
 		
-		Parts = self.FemBodyParts.GetRandomBodyParts(iNum = 3, bIncludeInners = False)
-		for part in Parts:
-			if not part == Parts[len(Parts) - 1]:
-				sTweet += part + "; "
-			else:
-				sTweet += "and her " + part + ".\n\n"
-		sTweet += "'" + self.Exclamation.GetWord().capitalize() + "' she said. 'You've ruined my nice " + self.Event.GetWord(bRemoveMy = True) + " dress!'"
+		# Parts = self.FemBodyParts.GetRandomBodyParts(iNum = 3, bIncludeInners = False)
+		# for part in Parts:
+			# if not part == Parts[len(Parts) - 1]:
+				# sTweet += part + "; "
+			# else:
+				# sTweet += "and her " + part + ".\n\n"
+		# sTweet += "'" + self.Exclamation.GetWord().capitalize() + "' she said. 'You've ruined my nice " + self.Event.GetWord(bRemoveMy = True) + " dress!'"
 		
-		return sTweet
+		# return sTweet
 		
 class Generator22(Generator):
 	# John's robe fell to the floor, and Ginger's heart skipped a beat. He had a compact athletic physic with wide shoulders, brawny arms, tight buns, and a 
@@ -1058,7 +1078,7 @@ class Generator30(Generator):
 class Generator31(Generator):
 	# Trevor walked in and froze. His step-sister lay on the bed totally nude. His wide eyes took in her heavy tits, wide hips, sticky folds, and puckered sphincter. The naked guy next to her was idly diddling her peach. He looked up at Trevor. 'You want in?' he asked.
 	ID = 31
-	Priority = 1
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1067,14 +1087,12 @@ class Generator31(Generator):
 		sHisName = self.MaleName.FirstName()
 		sFFWB = self.FFWB.GetPerson()
 		
-		sTweet = sHisName + " walked in and froze. His " + sFFWB + " lay on the bed totally nude. His wide eyes took in her "
-		Parts = self.FemBodyParts.GetRandomBodyParts(iNum = 4, bIncludeInners = True)
-		for part in Parts:
-			if not part == Parts[len(Parts) - 1]:
-				sTweet += part + ", "
-			else:
-				sTweet += "and " + part + ".\n\n"
-		sTweet += "The naked guy next to her was idly " + self.VForeplay.Gerund() + " her " + self.FemBodyParts.GetRandomHole(bIncludeMouth = False) + ". He looked up at " + sHisName + ". 'You want in?' he asked."
+		sTweet = sHisName + " walked in and froze. His " + sFFWB + " lay on the bed totally nude. His wide eyes took in "
+		sTweet += self.FemBodyParts.DescRandomNakedParts(bPussy = True, bAss = True, bAllowLongDesc = True, sPossessive = "her") + ".\n\n"
+		sTweet += "The naked guy next to her was idly " + self.VForeplay.Gerund() + " her " + self.FemBodyParts.GetRandomHole(bIncludeMouth = False) + ". "
+		"He looked up at " + sHisName + ".\n\n"
+		sTweet += "\"" + WordList(["Oh hey, bruh","Wassup, bruh","Oh, hey dude","Wassup, my dude"]).GetWord() + ",\" "
+		sTweet += "he said. \"You want in?\""
 		
 		return sTweet
 		
@@ -1357,7 +1375,7 @@ class Generator38(Generator):
 	# A tall black woman stepped thru the bathroom door. Her sumptuous breasts were full and heavy and her pussy was shaved bare.
 	# 'THIS is your birthday present,' Marsha said.
 	ID = 38
-	Priority = 100
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1374,12 +1392,7 @@ class Generator38(Generator):
 		
 			sTweet = sBirthdayName + " entered the bedroom. " + sGiverName + " was lying on the bed wearing nothing but " + WordList(["a leather corset", "a jeweled butt-plug", "a red garter around her thigh", "crotchless panties", "red high heels"]).GetWord() + ". His gaze lingered on her "
 			
-			Parts = self.FemBodyParts.GetRandomBodyParts(iNum = 3, bIncludeInners = False)
-			for part in Parts:
-				if not part == Parts[len(Parts) - 1]:
-					sTweet += part + "; "
-				else:
-					sTweet += "and " + part
+			sTweet += self.FemBodyParts.DescRandomNakedParts(iNum = 4, bAllowLongDesc = True, bPussy = True, bAss = True, sPossessive = "her")
 			sTweet += ". 'This is a great birthday present, babe,' he said.\n\n"
 			sTweet += "'This isn't your present,' said " + sGiverName + "."
 			
@@ -2093,9 +2106,18 @@ class Generator53(Generator):
 		sTweet += "She had " + self.FemBodyParts.DescRandomClothedBodyParts(3,sDivideChar = ';') + ". [3/any]\n"
 		sTweet += "She had " + self.FemBodyParts.DescRandomClothedBodyParts(4,sDivideChar = ';') + ". [4/any]\n"
 		sTweet += "She had " + self.FemBodyParts.DescRandomClothedBodyParts(5,sDivideChar = ';') + ". [5/any]\n"
-		sTweet += "She had " + self.FemBodyParts.DescRandomClothedBodyParts(3,sDivideChar = ',',bAllowLongDesc = False) + ". [3/short]\n"
-		sTweet += "She had " + self.FemBodyParts.DescRandomClothedBodyParts(4,sDivideChar = ',',bAllowLongDesc = False) + ". [4/short]\n"
-		sTweet += "She had " + self.FemBodyParts.DescRandomClothedBodyParts(5,sDivideChar = ',',bAllowLongDesc = False) + ". [5/short]\n"
+		# sTweet += "She had " + self.FemBodyParts.DescRandomClothedBodyParts(3,sDivideChar = ',',bAllowLongDesc = False) + ". [3/short]\n"
+		# sTweet += "She had " + self.FemBodyParts.DescRandomClothedBodyParts(4,sDivideChar = ',',bAllowLongDesc = False) + ". [4/short]\n"
+		# sTweet += "She had " + self.FemBodyParts.DescRandomClothedBodyParts(5,sDivideChar = ',',bAllowLongDesc = False) + ". [5/short]\n"
+		sTweet += "She had " + self.FemBodyParts.DescRandomNakedParts(3,sDivideChar = ';') + ". [3/any]\n"
+		sTweet += "She had " + self.FemBodyParts.DescRandomNakedParts(4,sDivideChar = ';') + ". [4/any]\n"
+		sTweet += "She had " + self.FemBodyParts.DescRandomNakedParts(5,sDivideChar = ';') + ". [5/any]\n"
+		sTweet += "She had " + self.FemBodyParts.DescRandomNakedParts(3,sDivideChar = ',',bAllowLongDesc = False) + ". [3/short]\n"
+		sTweet += "She had " + self.FemBodyParts.DescRandomNakedParts(4,sDivideChar = ',',bAllowLongDesc = False) + ". [4/short]\n"
+		sTweet += "She had " + self.FemBodyParts.DescRandomNakedParts(5,sDivideChar = ',',bAllowLongDesc = False) + ". [5/short]\n"
+		sTweet += "She had " + self.FemBodyParts.DescRandomNakedParts(4,sDivideChar = ',',bAss = True) + ". [4/bAss=True]\n"
+		sTweet += "She had " + self.FemBodyParts.DescRandomNakedParts(5,sDivideChar = ',',bPussy = True) + ". [5/bPussy=True]\n"
+		sTweet += "She had " + self.FemBodyParts.DescRandomNakedParts(5,sDivideChar = ',',bPussy = True,bAss = True) + ". [5/bAss&bPussy=True]\n"
 		
 		return sTweet
 		
@@ -2509,20 +2531,17 @@ class Generator60(Generator):
 		sArtifact = WordList(['butt plug','anal beads','dildo','vibrator','ben wa balls','clit clamp','speculum','ball gag',
 							  'pony tail anal plug','chastity belt','strap-on','anal hook','nipple clamps','dog collar',
 							  'spreader bar']).GetWord()
-		sMagicWord = WordList(['Aether','Theophilus','Zanotar','Xholus','Endomius','Sokranos','Devaxatar','Elphias','Tamsin',
-							   'Gorth','Evanora','Locasta','Minerva','Morrigan','Alatar','Gwydion','Ommin','Grimmassi','Rasputin']).GetWord()
+		sMagicWord = WordList(['Aether','Theophilus','Zanotar','Xholus','Endomius','Sokranos','Devaxatar',
+							   'Gorth','Evanora','Locasta','Minerva','Morrigan','Alatar','Gwydion','Ommin',
+							   'G','Rasputin','Gloompa','Ishabar','Ashtar','Djinnana','Nimh',
+							   'Gongor','Hogfarts','Dogwarts','Glindolf','Dimpledoor','Dirth Vater','Fred']).GetWord()
 		
 		sTweet += "\"" + sMage.capitalize() + "!\" "
 		sTweet += "called out the " + sPrincessAdj1 + " " + sPrincessAdj2 + " princess in " + WordList(['a commanding','a high','an imperious','a thrilling']).GetWord() + " voice, "
 		sTweet += "\"I have come for your aid. You must give me a magical talisman with which I can " + Evils.GetWord() + "!\" "
 		sTweet += "She swept into the room in a " + DressAdjs.GetWord() + " " + DressColors.GetWord() + " gown which left little to the imagination. "
 		sTweet += "The " + sMage + " was " + WordList(['stunned','awed','astounded','dazed','overwhelmed']).GetWord() + " by the beauty of "
-		Parts = self.FemBodyParts.GetRandomBodyParts(iNum = 3, bIncludeInners = False, bIncludeIntimate = False)
-		for part in Parts:
-			if not part == Parts[len(Parts) - 1]:
-				sTweet += "her " + part + "; "
-			else:
-				sTweet += "and her " + part + ".\n\n"
+		sTweet += self.FemBodyParts.DescRandomNakedParts(iNum = 3, bAss = True, sPossessive = "her") + ".\n\n"
 		sTweet += "\"Yes your highness, I have just the thing,\" he said. He handed her a strange, " + WordList(['be-jeweled','gleaming','shiny','lustrous','sparkling']).GetWord() + " object. \"You must wear this at all times,\" he said.\n\n"
 		sTweet += "\"What is this?\" she asked.\n\n"
 		sTweet +=  "\"'Tis the " + sArtifactAdj + " " + sArtifact + " of " + sMagicWord + "!\""
@@ -3668,23 +3687,11 @@ class Generator72(Generator):
 															 'a woman wearing nothing but an open bathrobe',
 															 'a woman in a see-thru negligee']).GetWord() + " walked out. "
 		sTweet += "She had " 
-		for part in self.FemBodyParts.GetRandomBodyParts(iNum = 4, bIncludeInners = False):
-			if part[-1:] == 's':
-				sTweet += part + "; "
-			else:
-				bFound = False
-				for item in ['hair','skin','flesh']:
-					if item in part:
-						bFound = True
-				if not bFound:
-					sTweet += AddArticles(part) + "; "
-				else:
-					sTweet += part + "; "
-					
-		sTweet += "and " + WordList(["a clit piercing",
-									 "a tattoo that read 'slut'",
-									 sLabia,
-									 "her skin was dripping with oil"]).GetWord() + ".\n\n"
+		sTweet += self.FemBodyParts.DescRandomNakedParts(iNum = 4, bAllowLongDesc = True, sDivideChar = ";", bAss = True, bPussy = True) + ". "
+		sTweet += WordList(["She was wearing a clit piercing",
+									 "She had a tattoo above her pussy that read '" + WordList(['slut','whore','fuck-hole','fuck me','Daddy\'s Hole']).GetWord() + "'",
+									 "He could clearly see her " + sLabia,
+									 "Her skin was gleaming with baby oil"]).GetWord() + ".\n\n"
 		sTweet += "\"" + sHerName + " isn't here,\" she purred. "
 		sTweet += "\"" + WordList(["And unlike her, I do anal.",
 								 "I guess you'll have to fuck me, instead.",

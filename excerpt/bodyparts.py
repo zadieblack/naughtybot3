@@ -5,6 +5,7 @@
 from random import *
 from util import *
 
+BodyPartHistoryQ = HistoryQ(10)
 
 class BodyParts:
 	def __init__(self):
@@ -82,7 +83,7 @@ class BodyParts:
 		if sNot != "":
 			NotList.append(sNot)
 				
-		return self._NounList.GetWord(sNot = sNot, NotList = NotList)
+		return self._NounList.GetWord(sNot = sNot, NotList = NotList, SomeHistoryQ = BodyPartHistoryQ)
 	
 	def GetAdj(self, sNot = "", NotList = None):
 		if NotList == None:
@@ -91,7 +92,7 @@ class BodyParts:
 		if sNot != "":
 			NotList.append(sNot)
 				
-		return self._AdjList.GetWord(sNot = sNot, NotList = NotList)
+		return self._AdjList.GetWord(sNot = sNot, NotList = NotList, SomeHistoryQ = BodyPartHistoryQ)
 		
 	def GetColor(self, sNot = "", NotList = None):
 		if NotList == None:
@@ -100,7 +101,7 @@ class BodyParts:
 		if sNot != "":
 			NotList.append(sNot)
 				
-		return self._ColorList.GetWord(sNot = sNot, NotList = NotList)
+		return self._ColorList.GetWord(sNot = sNot, NotList = NotList, SomeHistoryQ = BodyPartHistoryQ)
 		
 	def GetNounList(self):
 		return self._NounList.List 
@@ -275,14 +276,17 @@ class Skin(BodyParts):
 						'chocolate',
 						'chocolate-colored',
 						'coffee-colored',
+						'creamy',
 						'dark',
 						'fresh pink',
 						'honeyed',
 						'pale',
 						'pink',
 						'porcelain',
+						'rosy',
 						'sun-browned',
 						'sun-kissed'])
+						
 		self.AdjList([
 			'bare',
 			'delicate',
@@ -350,6 +354,7 @@ class Lips(BodyParts):
 			'sweet'])
 			
 		self.ColorList(['candy-colored',
+						'dark',
 						'red','red',
 						'rose-colored',
 						'rouge',
@@ -368,23 +373,28 @@ class Eyes(BodyParts):
 		self.AdjList(['alluring',
 			'beautiful',
 			'bewitching',
-			'brown',
+			'bright',
 			'captivating',
-			'dark',
+			'clear',
 			'dazzling',
 			'earnest',
 			'electric',
 			'electrifying',
 			'enchanting',
+			'kind',
+			'large',
 			'mischievous',
 			'soulful',
-			'sweet'])
+			'sparkling',
+			'sweet',
+			'wide'])
 			
-		self.AdjList(['blue','blue',
+		self.ColorList(['blue','blue',
 					  'brown',
 					  'gray',
 					  'green',
-					  'hazel'])
+					  'hazel',
+					  'pale'])
 		
 		self.DefaultNoun("eyes")
 		self.DefaultAdj("bewitching")
@@ -756,6 +766,7 @@ class VaginaOuterLabia(BodyParts):
 							'dripping',
 							'fat',
 							'fat',
+							'fleshy',
 							'flushed',
 							'fur-lined',
 							'girlish',
@@ -787,6 +798,7 @@ class VaginaOuterLabia(BodyParts):
 							'tender',
 							'trim',
 							'wet'])
+							
 			
 		self.DefaultNoun("mons pubis")
 
@@ -819,26 +831,19 @@ class VaginaInnerLabia(BodyParts):
 		self.AdjList(['beefy',
 							'chewy',
 							'dangling',
-							'dark',
 							'delicate',
 							'dewy',
 							'dewy',
 							'dripping',
-							'drooping',
-							'droopy',
 							'gleaming wet',
 							'glistening',
 							'gossamer',
 							'honeyed',
 							'juicy',
 							'lickable',
-							'little',
-							'long',
 							'lush',
 							'meaty',
 							'moist',
-							'pink',
-							'purple',
 							'ruffled',
 							'secret',
 							'shameless',
@@ -848,9 +853,20 @@ class VaginaInnerLabia(BodyParts):
 							'sticky',
 							'succulent',
 							'suckable',
-							'tender',
-							'trim',
-							'velvet'])
+							'trim'])
+							
+		self.ColorList(['dark',
+						'drooping',
+						'droopy',
+						'little',
+						'lengthy',
+						'long',
+						'meaty',
+						'pink',
+						'purple',
+						'tender',
+						'velvet'])
+						
 		self.DefaultNoun("inner labia")
 			
 class Vagina(BodyParts):
@@ -1034,7 +1050,9 @@ class AssFemale(BodyParts):
 			'fuckable',
 			'generous',
 			'glistening',
+			'huge',
 			'honeyed',
+			'jiggling',
 			'juicy',
 			'lush',
 			'luscious',
@@ -1042,9 +1060,9 @@ class AssFemale(BodyParts):
 			'pert',
 			'plump',
 			'ripe',
-			'rosy',
 			'rotund',
 			'round',
+			'rounded',
 			'shameless',
 			'shapely',
 			'smooth',
@@ -1052,10 +1070,24 @@ class AssFemale(BodyParts):
 			'supple',
 			'sweet',
 			'tender',
-			'thick',
+			'thick','thick',
 			'trim',
 			'voluptuous',
-			'womanly'])
+			'womanly',
+			'well-rounded'])
+			
+		self.ColorList(['bronzed',
+						'black',
+						'brown',
+						'coffee-colored',
+						'creamy',
+						'dark',
+						'pale',
+						'pink',
+						'rosy',
+						'sun-kissed',
+						'tanned'
+					   ])
 		
 		self.DefaultNoun("ass")
 		
@@ -1133,14 +1165,17 @@ class BodyFemale(BodyParts):
 	# woman random body parts used by gen 8 (one instance), 18,21,31,38,60,72
 	# man random body parts used by gen 19, 20, 22,38
 	
-	def GetClothedBodyPartDesc(self, part, bAllowLongDesc):
+	def GetClothedBodyPartDesc(self, part, bAllowLongDesc, sPossessive = None):
 		sPartDesc = ""
+		
+		if sPossessive is None:
+			sPossessive = ""
 		
 		PartNotList = ['naked','nude','bare','exposed']
 		bAddArticles = True
 		
 		if isinstance(part, Skin):
-			PartNotList.append(['warm','tender'])
+			PartNotList += ['warm','tender']
 			bAddArticles = False 
 		elif isinstance(part, Hair): 
 			bAddArticles = False 
@@ -1148,22 +1183,37 @@ class BodyFemale(BodyParts):
 			bAddArticles = False 
 		elif isinstance(part, Mouth):
 			bAddArticles = True 
-			PartNotList.append(['mouth-hole','lewd','insatiable','willing'])
+			PartNotList += ['open','mouth-hole','lewd','insatiable','willing']
 		elif isinstance(part, Lips):
 			bAddArticles = False 
 		elif isinstance(part, Hips):
 			bAddArticles = False 
 		elif isinstance(part, Legs):
 			bAddArticles = False 
-		
-		sPartDesc = part.RandomDescription(bAllowShortDesc = False, bAllowLongDesc = bAllowLongDesc, NotList = PartNotList)
-		if bAddArticles:
-			sPartDesc = AddArticles(sPartDesc)
+		elif isinstance(part, Breasts):
+			PartNotList += ['boobies','boobs','buds','coconuts','dumplings','gazongas',
+								'globes','jugs','knockers','mammaries','melons','teats','titties',
+								'delicious','gentle','girlish','jiggling','lus','nubile',
+								'pendulous','pert','quivering','ripe','sensual','surgic',
+								'sweet','swollen','tender']
+			bAddArticles = False 
+			
+		#print(" - PartNotList is [" + str(PartNotList) + "]\n")
+		if not sPossessive == "":
+			bAddArticles = False 
+			sPartDesc = sPossessive + " " + part.RandomDescription(bAllowShortDesc = False, bAllowLongDesc = bAllowLongDesc, NotList = PartNotList)
+		else:
+			sPartDesc = part.RandomDescription(bAllowShortDesc = False, bAllowLongDesc = bAllowLongDesc, NotList = PartNotList)
+			if bAddArticles:
+				sPartDesc = AddArticles(sPartDesc)
 		
 		return sPartDesc
 	
-	def DescRandomClothedBodyParts(self, iNum = 3, sDivideChar = ',', bAllowLongDesc = True):
+	def DescRandomClothedBodyParts(self, iNum = 3, sDivideChar = ',', bAllowLongDesc = True, sPossessive = None):
 		sBodyDesc = ""
+		
+		if sPossessive is None:
+			sPossessive = ""
 		
 		if iNum < 3:
 			iNum = 3
@@ -1197,7 +1247,8 @@ class BodyFemale(BodyParts):
 						  [legs,5],
 						  [hips,5],
 						  [skin,6],
-						  [body,6]]
+						  [body,6],
+						  [boobs,7]]
 		
 		PartGroups = []
 		
@@ -1209,41 +1260,6 @@ class BodyFemale(BodyParts):
 							if part3[1] > part2[1] or (part3[1] == part2[1] and not part3[0] == part2[0]):
 								PartGroups.append([part1[0],part2[0],part3[0]])
 					
-			# PartGroups.append([hair,eyes,face])
-			# PartGroups.append([hair,eyes,mouth])
-			# PartGroups.append([hair,eyes,body])
-			# PartGroups.append([hair,face,eyes])
-			# PartGroups.append([hair,face,mouth])
-			# PartGroups.append([hair,face,body])
-			# PartGroups.append([hair,mouth,legs])
-			# PartGroups.append([hair,mouth,hips])
-			# PartGroups.append([hair,mouth,legs])
-			# PartGroups.append([hair,mouth,skin])
-			# PartGroups.append([hair,mouth,body])
-			# PartGroups.append([eyes,face,mouth])
-			# PartGroups.append([eyes,face,hips])
-			# PartGroups.append([eyes,face,legs])
-			# PartGroups.append([eyes,face,skin])
-			# PartGroups.append([eyes,face,body])
-			# PartGroups.append([face,eyes,mouth])
-			# PartGroups.append([face,eyes,hips])
-			# PartGroups.append([face,eyes,legs])
-			# PartGroups.append([face,eyes,skin])
-			# PartGroups.append([face,eyes,body])
-			# PartGroups.append([face,eyes,mouth])
-			# PartGroups.append([face,eyes,mouth])
-			# PartGroups.append([skin,hips,legs])
-			# PartGroups.append([skin,legs,hips])
-			# PartGroups.append([skin,hips,body])
-			# PartGroups.append([skin,legs,body])
-			# PartGroups.append([body,legs,hips])
-			# PartGroups.append([body,legs,skin])
-			# PartGroups.append([body,hips,legs])
-			# PartGroups.append([body,hips,skin])
-			# PartGroups.append([body,hair,eyes])
-			# PartGroups.append([body,hair,mouth])
-			# PartGroups.append([body,eyes,hair])
-			# PartGroups.append([body,eyes,mouth])
 		elif iNum == 4:
 			for part1 in PartPriorities:
 				for part2 in PartPriorities[PartPriorities.index(part1) + 1:]:
@@ -1253,47 +1269,7 @@ class BodyFemale(BodyParts):
 								for part4 in PartPriorities[PartPriorities.index(part3) + 1:]:
 									if part4[1] > part3[1] or (part4[1] == part3[1] and not part4[0] == part3[0]):
 										PartGroups.append([part1[0],part2[0],part3[0],part4[0]])
-			# PartGroups.append([hair,eyes,face,mouth])
-			# PartGroups.append([hair,eyes,face,hips])
-			# PartGroups.append([hair,eyes,face,legs])
-			# PartGroups.append([hair,eyes,face,skin])
-			# PartGroups.append([hair,eyes,face,body])
-			# PartGroups.append([hair,eyes,mouth,hips])
-			# PartGroups.append([hair,eyes,mouth,legs])
-			# PartGroups.append([hair,eyes,mouth,skin])
-			# PartGroups.append([hair,eyes,mouth,body])
-			# PartGroups.append([hair,face,eyes,mouth])
-			# PartGroups.append([hair,face,eyes,hips])
-			# PartGroups.append([hair,face,eyes,legs])
-			# PartGroups.append([hair,face,eyes,mouth])
-			# PartGroups.append([hair,face,eyes,skin])
-			# PartGroups.append([hair,face,mouth,hips])
-			# PartGroups.append([hair,face,mouth,legs])
-			# PartGroups.append([hair,face,mouth,skin])
-			# PartGroups.append([hair,mouth,legs,hips])
-			# PartGroups.append([hair,mouth,legs,skin])
-			# PartGroups.append([hair,mouth,hips,legs])
-			# PartGroups.append([hair,mouth,hips,skin])
-			# PartGroups.append([eyes,face,mouth,hips])
-			# PartGroups.append([eyes,face,mouth,legs])
-			# PartGroups.append([eyes,face,mouth,skin])
-			# PartGroups.append([eyes,face,skin,hips])
-			# PartGroups.append([eyes,face,skin,legs])
-			# PartGroups.append([eyes,face,skin,body])
-			# PartGroups.append([eyes,mouth,hips,legs])
-			# PartGroups.append([eyes,mouth,hips,skin])
-			# PartGroups.append([eyes,mouth,hips,body])
-			# PartGroups.append([eyes,mouth,legs,hips])
-			# PartGroups.append([eyes,mouth,legs,skin])
-			# PartGroups.append([eyes,mouth,legs,body])
-			# PartGroups.append([eyes,skin,hips,legs])
-			# PartGroups.append([eyes,skin,hips,body])
-			# PartGroups.append([eyes,skin,legs,hips])
-			# PartGroups.append([eyes,skin,legs,body])
-			# PartGroups.append([skin,legs,hips,body])
-			# PartGroups.append([skin,hips,legs,body])
-			# PartGroups.append([body,skin,hips,legs])
-			# PartGroups.append([body,skin,legs,hips])
+	
 		else:
 			for part1 in PartPriorities:
 				for part2 in PartPriorities[PartPriorities.index(part1) + 1:]:
@@ -1305,56 +1281,135 @@ class BodyFemale(BodyParts):
 										for part5 in PartPriorities[PartPriorities.index(part4) + 1:]:
 											if part5[1] > part4[1] or (part5[1] == part4[1] and not part5[0] == part4[0]):
 												PartGroups.append([part1[0],part2[0],part3[0],part4[0],part5[0]])
-			# PartGroups.append([hair,eyes,face,mouth,hips])
-			# PartGroups.append([hair,eyes,face,mouth,legs])
-			# PartGroups.append([hair,eyes,face,mouth,skin])
-			# PartGroups.append([hair,eyes,face,mouth,body])
-			# PartGroups.append([hair,eyes,face,hips])
-			# PartGroups.append([hair,eyes,face,legs])
-			# PartGroups.append([hair,eyes,face,skin])
-			# PartGroups.append([hair,eyes,face,body])
-			# PartGroups.append([hair,eyes,mouth,hips])
-			# PartGroups.append([hair,eyes,mouth,legs])
-			# PartGroups.append([hair,eyes,mouth,skin])
-			# PartGroups.append([hair,eyes,mouth,body])
-			# PartGroups.append([hair,face,eyes,mouth])
-			# PartGroups.append([hair,face,eyes,hips])
-			# PartGroups.append([hair,face,eyes,legs])
-			# PartGroups.append([hair,face,eyes,mouth])
-			# PartGroups.append([hair,face,eyes,skin])
-			# PartGroups.append([hair,face,mouth,hips])
-			# PartGroups.append([hair,face,mouth,legs])
-			# PartGroups.append([hair,face,mouth,skin])
-			# PartGroups.append([hair,mouth,legs,hips])
-			# PartGroups.append([hair,mouth,legs,skin])
-			# PartGroups.append([hair,mouth,hips,legs])
-			# PartGroups.append([hair,mouth,hips,skin])
-			# PartGroups.append([eyes,face,mouth,hips])
-			# PartGroups.append([eyes,face,mouth,legs])
-			# PartGroups.append([eyes,face,mouth,skin])
-			# PartGroups.append([eyes,face,skin,hips])
-			# PartGroups.append([eyes,face,skin,legs])
-			# PartGroups.append([eyes,face,skin,body])
-			# PartGroups.append([eyes,mouth,hips,legs])
-			# PartGroups.append([eyes,mouth,hips,skin])
-			# PartGroups.append([eyes,mouth,hips,body])
-			# PartGroups.append([eyes,mouth,legs,hips])
-			# PartGroups.append([eyes,mouth,legs,skin])
-			# PartGroups.append([eyes,mouth,legs,body])
-			# PartGroups.append([eyes,skin,hips,legs])
-			# PartGroups.append([eyes,skin,hips,body])
-			# PartGroups.append([eyes,skin,legs,hips])
-			# PartGroups.append([eyes,skin,legs,body])
-			# PartGroups.append([skin,legs,hips,body])
-			# PartGroups.append([skin,hips,legs,body])
-			# PartGroups.append([body,skin,hips,legs])
-			# PartGroups.append([body,skin,legs,hips])
 		
 		SelectedParts = PartGroups[randint(0,len(PartGroups) - 1)]
 		
 		iLoops = 0
 		while iLoops < iNum:
-			sBodyDesc += self.GetClothedBodyPartDesc(SelectedParts[iLoops], bAllowLongDesc)
+			sBodyDesc += self.GetClothedBodyPartDesc(SelectedParts[iLoops], bAllowLongDesc, sPossessive = sPossessive)
+			if iLoops == iNum - 2:  
+				sBodyDesc += sDivideChar + " and "
+			elif iLoops < iNum - 2:
+				sBodyDesc += sDivideChar + " "
+			iLoops = iLoops + 1
+			
+		return sBodyDesc
+		
+	def GetNakedBodyPartDesc(self, part, bAllowLongDesc, sPossessive = None):
+		sPartDesc = ""
+		
+		if sPossessive is None:
+			sPossessive = ""
+		
+		PartNotList = []
+		bAddArticles = True
+		
+		if isinstance(part, Hips):
+			bAddArticles = False 
+		elif isinstance(part, Skin):
+			bAddArticles = False 
+		elif isinstance(part, Legs):
+			bAddArticles = False 
+		elif isinstance(part, Thighs):
+			bAddArticles = False 
+		elif isinstance(part, Breasts):
+			bAddArticles = False 
+		
+		if not sPossessive == "":
+			bAddArticles = False 
+			sPartDesc = sPossessive + " " + part.RandomDescription(bAllowShortDesc = False, bAllowLongDesc = bAllowLongDesc, NotList = PartNotList)
+		else:
+			sPartDesc = part.RandomDescription(bAllowShortDesc = False, bAllowLongDesc = bAllowLongDesc, NotList = PartNotList)
+		
+		if bAddArticles:
+			sPartDesc = AddArticles(sPartDesc)
+		
+		return sPartDesc
+	
+	def DescRandomNakedParts(self, iNum = 3, sDivideChar = ',', bBoobs = True, bPussy = False, bAss = False, bAllowLongDesc = True, sPossessive = None):
+		sBodyDesc = ""
+		
+		if sPossessive is None:
+			sPossessive = ""
+			sPossessive = ""
+		
+		if iNum < 3:
+			iNum = 3
+		if iNum > 5:
+			iNum = 5
+			
+		hair = self.Hair
+		face = self.Face 
+		eyes = self.Eyes 
+		if CoinFlip():
+			mouth = self.Lips 
+		else:
+			mouth = self.Mouth 
+		hips = self.Hips 
+		legs = self.Legs 
+		skin = self.Skin
+		thighs = self.Thighs 
+		nipples = self.Breasts.Nipples
+		boobs = self.Breasts 
+		pussy = self.Vagina 
+		innerlabia = self.Vagina.InnerLabia
+		outerlabia = self.Vagina.OuterLabia
+		cunthole = self.Vagina.InnerVag 
+		ass = self.Ass 
+		asshole = self.Ass.Anus 
+		body = self
+		
+		PartPriorities = [[legs,1],
+						  [hips,1],
+						  [thighs,2],
+						  [skin,3],
+						  [body,3]]
+		
+		if bBoobs:
+			PartPriorities.append([boobs,4])
+			PartPriorities.append([nipples,5])
+		if bAss:
+			PartPriorities.append([ass,6])
+		if bPussy:
+			PartPriorities.append([pussy,6])
+		
+		PartGroups = []
+		
+		if iNum == 3:
+			for part1 in PartPriorities: #skin 6
+				for part2 in PartPriorities[PartPriorities.index(part1) + 1:]:
+					if part2[1] == part1[1] and not part2[0] == part1[0]:
+						for part3 in PartPriorities[PartPriorities.index(part2) + 1:]:
+							if part3[1] > part2[1] or (part3[1] == part2[1] and not part3[0] == part2[0]):
+								PartGroups.append([part1[0],part2[0],part3[0]])
+					
+		elif iNum == 4:
+			for part1 in PartPriorities:
+				for part2 in PartPriorities[PartPriorities.index(part1) + 1:]:
+					if part2[1] > part1[1] or (part2[1] == part1[1] and not part2[0] == part1[0]):
+						for part3 in PartPriorities[PartPriorities.index(part2) + 1:]:
+							if part3[1] > part2[1] or (part3[1] == part2[1] and not part3[0] == part2[0]):
+								for part4 in PartPriorities[PartPriorities.index(part3) + 1:]:
+									if part4[1] > part3[1] or (part4[1] == part3[1] and not part4[0] == part3[0]):
+										PartGroups.append([part1[0],part2[0],part3[0],part4[0]])
+	
+		else:
+			for part1 in PartPriorities:
+				for part2 in PartPriorities[PartPriorities.index(part1) + 1:]:
+					if part2[1] > part1[1] or (part2[1] == part1[1] and not part2[0] == part1[0]):
+						for part3 in PartPriorities[PartPriorities.index(part2) + 1:]:
+							if part3[1] > part2[1] or (part3[1] == part2[1] and not part3[0] == part2[0]):
+								for part4 in PartPriorities[PartPriorities.index(part3) + 1:]:
+									if part4[1] > part3[1] or (part4[1] == part3[1] and not part4[0] == part3[0]):
+										for part5 in PartPriorities[PartPriorities.index(part4) + 1:]:
+											if part5[1] > part4[1] or (part5[1] == part4[1] and not part5[0] == part4[0]):
+												PartGroups.append([part1[0],part2[0],part3[0],part4[0],part5[0]])
+		
+		SelectedParts = PartGroups[randint(0,len(PartGroups) - 1)]
+		
+		iLoops = 0
+		while iLoops < iNum:
+			sBodyDesc += self.GetNakedBodyPartDesc(SelectedParts[iLoops], bAllowLongDesc, sPossessive = sPossessive)
 			if iLoops == iNum - 2:  
 				sBodyDesc += sDivideChar + " and "
 			elif iLoops < iNum - 2:
@@ -1364,9 +1419,12 @@ class BodyFemale(BodyParts):
 		return sBodyDesc
 		
 	
-	def GetRandomBodyParts(self, iNum, bIncludeInners = False, bIncludeIntimate = True, bAllowShortDesc = False):
+	def GetRandomBodyParts(self, iNum, bIncludeInners = False, bIncludeIntimate = True, bAllowShortDesc = False, sPossessive = None):
 		Parts = []
 		AllParts = []
+		
+		if sPossessive is None:
+			sPossessive = ""
 		
 		if bIncludeInners:
 			AllParts.append(self.Face.RandomDescription(bAllowShortDesc = bAllowShortDesc))
