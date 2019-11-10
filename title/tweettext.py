@@ -41,7 +41,7 @@ class TweetTxtGen():
 class TweetTxtGen1(TweetTxtGen):
 	# The sexy read that was BANNED on Amazon! Now available on Smashwords
 	ID = 1
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -57,7 +57,7 @@ class TweetTxtGen1(TweetTxtGen):
 class TweetTxtGen2(TweetTxtGen):
 	# Available soon on Amazon and Smashwords. By Ben Dover
 	ID = 2
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -76,7 +76,7 @@ class TweetTxtGen2(TweetTxtGen):
 class TweetTxtGen3(TweetTxtGen):
 	# Watch for this naughty ebook on Wattpad and Kobo. By Ben Dover 
 	ID = 3
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -96,7 +96,7 @@ class TweetTxtGen3(TweetTxtGen):
 class TweetTxtGen4(TweetTxtGen):
 	# Coming soon to discerning readers on Amazon and Smashwords. By Ben Dover 
 	ID = 4
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -115,7 +115,7 @@ class TweetTxtGen4(TweetTxtGen):
 class TweetTxtGen5(TweetTxtGen):
 	# Ben Dover's Patreon supporters get instant access to all his filthy reads!
 	ID = 5
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -140,7 +140,7 @@ class TweetTxtGen5(TweetTxtGen):
 class TweetTxtGen6(TweetTxtGen):
 	# Get excited! The wait is over for Ben Dover's latest sexy release!
 	ID = 6
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -153,7 +153,7 @@ class TweetTxtGen6(TweetTxtGen):
 class TweetTxtGen7(TweetTxtGen):
 	# Out soon from Ben Dover
 	ID = 7
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -166,7 +166,7 @@ class TweetTxtGen7(TweetTxtGen):
 class TweetTxtGen8(TweetTxtGen):
 	# The fisting scene is really surprisingly tasteful!
 	ID = 8
-	Priority = 4
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -188,7 +188,7 @@ class TweetTxtGen8(TweetTxtGen):
 class TweetTxtGen9(TweetTxtGen):
 	# If you only read one book this year about clown bukkake, make sure it is this one!
 	ID = 9
-	Priority = 4
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -218,7 +218,7 @@ class TweetTxtGen9(TweetTxtGen):
 class TweetTxtGen10(TweetTxtGen):
 	# Who will Emily choose, the rodeo clown or her step-dad? I was on the edge of my seat! #teamstepdad
 	ID = 10
-	Priority = 4
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -238,7 +238,7 @@ class TweetTxtGen10(TweetTxtGen):
 class TweetTxtGen11(TweetTxtGen):
 	# Include one little sumo wrestler fisting scene and they ban you from Amazon for life!
 	ID = 11
-	Priority = 3
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -265,7 +265,7 @@ class TweetTxtGen11(TweetTxtGen):
 class TweetTxtGen12(TweetTxtGen):
 	# Ben Dover is truly the Hemmingway of triple penetration!
 	ID = 12
-	Priority = 4
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -335,7 +335,7 @@ class TweetTxtGen15(TweetTxtGen):
 class TweetTxtGen16(TweetTxtGen):
 	# SPOILER ALERT: Amber winds up deep-throating a biker
 	ID = 16
-	Priority = 3
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -368,7 +368,7 @@ class TweetTxtGen16(TweetTxtGen):
 class TweetTxtGen17(TweetTxtGen):
 	# This was a good read, but was the lesbian anal scene really necessary?
 	ID = 17
-	Priority = 3
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -449,7 +449,7 @@ class TweetTxtGen21(TweetTxtGen):
 class TweetTxtGen22(TweetTxtGen):
 	# Features a beautiful interracial relationship between a stegosaur and a reverse merman
 	ID = 22
-	Priority = 3
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -466,7 +466,7 @@ class TweetTxtGen22(TweetTxtGen):
 class TweetTxtGen23(TweetTxtGen):
 	# The edging scene goes on for 97 pages
 	ID = 23
-	Priority = 3
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -486,7 +486,7 @@ class TweetTxtGen23(TweetTxtGen):
 class TweetTxtGen24(TweetTxtGen):
 	# I had some trouble keeping the characters straight. Is Gary the blonde fireman with the 7" schlong or the brunette fireman with the 8" schlong?
 	ID = 24
-	Priority = 4
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -515,7 +515,7 @@ class TweetTxtGen24(TweetTxtGen):
 class TweetTxtGen25(TweetTxtGen):
 	# Why don't I ever meet any horny, well-hung lumberjacks in real life?
 	ID = 25
-	Priority = 3
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -534,7 +534,7 @@ class TweetTxtGen25(TweetTxtGen):
 class TweetTxtGen26(TweetTxtGen):
 	# Experts recommend wearing a condom while you read this book
 	ID = 26
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -549,7 +549,7 @@ class TweetTxtGen26(TweetTxtGen):
 class TweetTxtGen27(TweetTxtGen):
 	# I mean, who among us hasn't had a secret affair with our curvaceous cheerleader step-daughter?
 	ID = 27
-	Priority = 3
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -565,7 +565,7 @@ class TweetTxtGen27(TweetTxtGen):
 class TweetTxtGen28(TweetTxtGen):
 	# Of course in real life you should never attempt centaur bukkake without strict medical supervision.
 	ID = 28
-	Priority = 4
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -585,7 +585,7 @@ class TweetTxtGen28(TweetTxtGen):
 class TweetTxtGen29(TweetTxtGen):
 	# I was hoping that Emily would hook up with Brad, but then SURPRISE! anal threesome with Jack!
 	ID = 29
-	Priority = 3
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -628,7 +628,7 @@ class TweetTxtGen29(TweetTxtGen):
 class TweetTxtGen30(TweetTxtGen):
 	# I was stunned when it was revealed that Jack the handsome Cowboy was actually a gazillionaire!
 	ID = 30
-	Priority = 3
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -651,7 +651,7 @@ class TweetTxtGen30(TweetTxtGen):
 class TweetTxtGen31(TweetTxtGen):
 	# ME YELLING AT THE MAIN CHARACTER: No Emily! You can't sleep with Jack! He's your long-lost twin brother!
 	ID = 31
-	Priority = 3
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -689,7 +689,7 @@ class TweetTxtGen31(TweetTxtGen):
 class TweetTxtGen32(TweetTxtGen):
 	# Ben Dover is definitely the best erotica author working in Tuscaloosa!
 	ID = 32
-	Priority = 4
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -796,7 +796,7 @@ class TweetTxtGen33(TweetTxtGen):
 class TweetTxtGen34(TweetTxtGen):
 	# This is widely considered to be the Lord of the Rings of anal fisting books.
 	ID = 34
-	Priority = 4
+	Priority = 3
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -840,7 +840,7 @@ class TweetTxtGen34(TweetTxtGen):
 class TweetTxtGen35(TweetTxtGen):
 	# I really identified with the protagonist. I too would like to be spooned by a naked lumberjack.
 	ID = 35
-	Priority = 3
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -867,7 +867,7 @@ class TweetTxtGen35(TweetTxtGen):
 class TweetTxtGen36(TweetTxtGen):
 	# Extremely educational. I learned so much about clit clamps and lactation.
 	ID = 36
-	Priority = 3
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -891,7 +891,7 @@ class TweetTxtGen36(TweetTxtGen):
 class TweetTxtGen37(TweetTxtGen):
 	# This was Ben Dover's last book before he was banned from Amazon for writing a scene involving a goat man and bukkake.
 	ID = 37
-	Priority = 5
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -965,7 +965,7 @@ class TweetTxtGen37(TweetTxtGen):
 class TweetTxtGen38(TweetTxtGen):
 	# By day, erotica author Ben Dover is a Wedding Photographer from Scranton.
 	ID = 38
-	Priority = 400
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -987,7 +987,7 @@ class TweetTxtGen38(TweetTxtGen):
 # I have to tell you, I did not expect the ~SPOILER ALERT~ velociraptor attack!		
 class TweetTxtGen39(TweetTxtGen):
 	ID = 39
-	Priority = 3
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1020,7 +1020,7 @@ class TweetTxtGen39(TweetTxtGen):
 class TweetTxtGen40(TweetTxtGen):
 	# More steamy lesbian vampire wife-swapping erotica from author Ivana Schaft-Hyman!
 	ID = 40
-	Priority = 3
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1128,16 +1128,82 @@ class TweetTxtGen42(TweetTxtGen):
 		
 		return sText	
 		
-# class TweetTxtGen43(TweetTxtGen):
-	# The sexy read that was BANNED on Amazon! Now available on Smashwords
-	# ID = 43
-	# Priority = 2
+class TweetTxtGen43(TweetTxtGen):
+	# I was so surprised when it turned out that Vaughn the dumpy plumber had a 12-inch schlong!
+	ID = 43
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sText = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sText = ""
 		
-		# return sText	
+		sHisName = DiverseNamesMale().FirstName()
+		
+		BadAdj = WordList(['awkward','bald','dumpy','fat','nerdy','pimply','short','ugly'])
+		Dick = WordList(['boner','dick','erection','hot-rod','joystick','package','penis',
+						 'popsicle','prick','rod','schlong','thing','tool','woody',
+						 'pocket-rocket','johnson','weiner'])
+		DickSize = WordList(['a twelve-inch','a foot-long','a thirteen-inch','a fourteen-inch','a ten-inch',
+							 'a nine-inch','a giant','an eleven-inch','a super-size','a massive',
+							 'a jumbo'])
+							 
+		sText = "I was so surprised when it turned out that " + sHisName + " "
+		sText += "the " + BadAdj.GetWord() + " " + JobBlueCollar().GetWord() + " "
+		sText += "had " + DickSize.GetWord() + " " + Dick.GetWord() + "!"
+		
+		return sText	
+		
+class TweetTxtGen44(TweetTxtGen):
+	# I *knew* that Viola shouldn't trust Jack! Not after he called her vagina a 'fish taco'!
+	ID = 44
+	Priority = 2
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sText = ""
+		
+		sHisName = NamesMale().FirstName()
+		sHerName = NamesFemale().FirstName()
+		
+		VagNames = WordList(["a 'bearded clam'","a 'furry taco'","a 'tuna taco'","a 'fur burger'","a 'fur pie'",
+							 "a 'meat sleeve'","a 'hair pie'","a 'cock-sock'","a 'panty hamster'","her 'front butt'",
+							 "a 'pink taco'","her 'fish lips'","a 'cock garage'","a 'cock pocket'","a 'cum dumpster'",
+							 "a 'goop chute'","a 'vertical bacon sandwich'","a 'cock squeezer'",
+							 "a 'whisker biscuit'","a 'banana basket'","a 'hot pocket'","a 'sausage wallet'",
+							 "a 'penis fly trap'","a 'bacon hole'","a 'cockpit'","a 'fish mitten'","'tuna town",
+							 "a 'black hole'","a 'cream canal'","a 'beaver'","a 'fuck hole'","a 'Sarlacc pit'",
+							 "her piss flaps","the Bat-cave","her 'french fry dip'","her 'U.S.P. Port'",
+							 "a 'clit pit'","a 'spunk trunk'"])
+
+		sText = "I *knew* that " + sHerName + " shouldn't trust " + sHisName + "! "
+		if randint(1,10) == 10:
+			sText += "Not after he refused to eat her ass!"
+		else:
+			sText += "Not after he called her vagina " + VagNames.GetWord() + "!"
+		
+		return sText	
+
+class TweetTxtGen45(TweetTxtGen):
+	# I was rooting for Vance to get together with Vanessa, so it was quite a shock when he ran off with Pedro!
+	ID = 45
+	Priority = 2
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sText = ""
+		
+		sHerName = NamesFemale().FirstName()
+		sHisName1 = NamesMale().FirstName()
+		sHisName2 = NamesMale().FirstName()
+		
+		sText = "I was " + WordList(["rooting for", "hoping for"]).GetWord() + " "
+		sText += sHisName1 + " to " + WordList(["get together with","hookup with"]).GetWord() + " "
+		sText += sHerName + ", so " + WordList(["it was quite a shock when","I was stunned when"]).GetWord() + " "
+		sText += "he " + WordList(["ran off with","shagged","spent the night with","got it on with",
+						   "banged","had a booty call with","Netflix-and-chilled with","blew"]).GetWord() + " " 
+		sText += sHisName2 + " instead!"
+		
+		return sText
 		
 # class TweetTxtGen44(TweetTxtGen):
 	# The sexy read that was BANNED on Amazon! Now available on Smashwords
@@ -1150,6 +1216,105 @@ class TweetTxtGen42(TweetTxtGen):
 		
 		# return sText	
 
+# class TweetTxtGen44(TweetTxtGen):
+	# The sexy read that was BANNED on Amazon! Now available on Smashwords
+	# ID = 44
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sText = ""
+		
+		# return sText
+
+# class TweetTxtGen44(TweetTxtGen):
+	# The sexy read that was BANNED on Amazon! Now available on Smashwords
+	# ID = 44
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sText = ""
+		
+		# return sText	
+
+# class TweetTxtGen44(TweetTxtGen):
+	# The sexy read that was BANNED on Amazon! Now available on Smashwords
+	# ID = 44
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sText = ""
+		
+		# return sText		
+		
+# class TweetTxtGen44(TweetTxtGen):
+	# The sexy read that was BANNED on Amazon! Now available on Smashwords
+	# ID = 44
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sText = ""
+		
+		# return sText	
+
+# class TweetTxtGen44(TweetTxtGen):
+	# The sexy read that was BANNED on Amazon! Now available on Smashwords
+	# ID = 44
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sText = ""
+		
+		# return sText
+		
+# class TweetTxtGen44(TweetTxtGen):
+	# The sexy read that was BANNED on Amazon! Now available on Smashwords
+	# ID = 44
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sText = ""
+		
+		# return sText	
+
+# class TweetTxtGen44(TweetTxtGen):
+	# The sexy read that was BANNED on Amazon! Now available on Smashwords
+	# ID = 44
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sText = ""
+		
+		# return sText
+
+# class TweetTxtGen44(TweetTxtGen):
+	# The sexy read that was BANNED on Amazon! Now available on Smashwords
+	# ID = 44
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sText = ""
+		
+		# return sText	
+
+# class TweetTxtGen44(TweetTxtGen):
+	# The sexy read that was BANNED on Amazon! Now available on Smashwords
+	# ID = 44
+	# Priority = 2
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sText = ""
+		
+		# return sText	
+		
 class TweetTxtGenSelector():
 	GeneratorList = []
 	
