@@ -1073,6 +1073,7 @@ class JobBlueCollar(Person):
 		'home theater installer',
 		'hot dog vendor',
 		'high school history teacher',
+		'intern',
 		'janitor',
 		'junk scavenger',
 		'lawn maintenance man',
@@ -1109,9 +1110,7 @@ class JobBlueCollar(Person):
 		'short-order cook',
 		'stable boy',
 		'stand-up comedian',
-		'starving artist',
 		'Whole Foods stock boy',
-		'tax payer',
 		'taxidermist',
 		'third-grade teacher',
 		'ticket stub collector',
@@ -1122,8 +1121,7 @@ class JobBlueCollar(Person):
 		'waiter',
 		'Wal-Mart greeter',
 		'wedding DJ',
-		'writer of erotic romances',
-		'zoo keeper'])
+		'writer of erotic romances'])
 		
 class JobWhiteCollar(Person):
 	def __init__(self):

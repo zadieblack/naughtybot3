@@ -849,7 +849,7 @@ class TweetTxtGen35(TweetTxtGen):
 		sJobGuy = title.misc.ProfMale().GetWord().lower()
 		sText = "I really identified with the " + WordList(["protagonist","main character","lead character","mc"]).GetWord() + ". "
 		
-		iRand = randint(1,5)
+		iRand = randint(1,6)
 		if iRand == 1:
 			sText += "I too would like to be spooned by a naked " + sJobGuy + "."
 		elif iRand == 2:
@@ -859,8 +859,10 @@ class TweetTxtGen35(TweetTxtGen):
 			sText += "I would also like to soap up a handsome, rugged " + sJobGuy + " in the shower."
 		elif iRand == 4:
 			sText += "I too would like to cover a naked " + sJobGuy + " with flavored lube."
+		elif iRand == 5:
+			sText += "I too would like to rub baby oil all over a naked " + sJobGuy + "."
 		else:
-			sText += "I too would like to meet " + AddArticles(sJobGuy) + " who looks good naked and likes to eat ass."
+			sText += "I too would like to meet " + AddArticles(sJobGuy).lower() + " who looks good naked and likes to eat ass."
 		
 		return sText
 
@@ -1137,6 +1139,7 @@ class TweetTxtGen43(TweetTxtGen):
 		super().GenerateTweet()
 		sText = ""
 		
+		BlueCollarNotList = ['serf','peasant','farm','paige']
 		sHisName = DiverseNamesMale().FirstName()
 		
 		BadAdj = WordList(['awkward','bald','dumpy','fat','nerdy','pimply','short','ugly'])
@@ -1148,7 +1151,7 @@ class TweetTxtGen43(TweetTxtGen):
 							 'a jumbo'])
 							 
 		sText = "I was so surprised when it turned out that " + sHisName + " "
-		sText += "the " + BadAdj.GetWord() + " " + JobBlueCollar().GetWord() + " "
+		sText += "the " + BadAdj.GetWord() + " " + JobBlueCollar().GetWord(NotList = BlueCollarNotList) + " "
 		sText += "had " + DickSize.GetWord() + " " + Dick.GetWord() + "!"
 		
 		return sText	
@@ -1197,10 +1200,11 @@ class TweetTxtGen45(TweetTxtGen):
 		sHisName2 = NamesMale().FirstName()
 		
 		sText = "I was " + WordList(["rooting for", "hoping for"]).GetWord() + " "
-		sText += sHisName1 + " to " + WordList(["get together with","hookup with"]).GetWord() + " "
-		sText += sHerName + ", so " + WordList(["it was quite a shock when","I was stunned when"]).GetWord() + " "
+		sText += sHisName1 + " to get together with " + sHerName + ", "
+		sText += "so " + WordList(["it was quite a shock when","I was stunned when"]).GetWord() + " "
 		sText += "he " + WordList(["ran off with","shagged","spent the night with","got it on with",
-						   "banged","had a booty call with","Netflix-and-chilled with","blew"]).GetWord() + " " 
+								   "banged","had a booty call with","Netflix-and-chilled with","blew",
+								   "hooked up with"]).GetWord() + " " 
 		sText += sHisName2 + " instead!"
 		
 		return sText

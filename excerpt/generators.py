@@ -1293,62 +1293,62 @@ class Generator36(Generator):
 		
 		return sTweet
 		
-class Generator37(Generator):
-	ID = 37
-	Priority = 1
+# class Generator37(Generator):
+	# ID = 37
+	# Priority = 1
 	
-	def GenerateTweet(self):
-		super().GenerateTweet()
-		sTweet = ""
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
 		
-		Penis = self.MaleBodyParts.Penis 
+		# Penis = self.MaleBodyParts.Penis 
 		
-		sManEyes = ""
-		sManPenis = ""
-		sManTip = ""
-		sManBalls = ""
-		sManSize = str(randint(7,12))
-		sWealthyMan = self.WealthyMan.GetPerson()
-		sManAdjs = WordList(["tall", "muscular", "bearded"])
+		# sManEyes = ""
+		# sManPenis = ""
+		# sManTip = ""
+		# sManBalls = ""
+		# sManSize = str(randint(7,12))
+		# sWealthyMan = self.WealthyMan.GetPerson()
+		# sManAdjs = WordList(["tall", "muscular", "bearded"])
 		
-		if CoinFlip():
-			#wealthy man is a BBC
-			sWealthyMan = "black " + sWealthyMan
-			sManEyes = "dark, smoldering eyes"
-			sManPenis = "black, " + Penis.GetAdj(sNot="black") + " " + Penis.ShortDescription()
-			sManTip = "dark, " + Penis.Head.GetAdj(sNot="dark") + " " + Penis.Head.ShortDescription()
-			sManBalls = "ebony " + Penis.Testicles.ShortDescription()
-		else:
-			sManEyes = self.MaleBodyParts.Eyes.RandomDescription()
-			sManPenis = Penis.RandomDescription()
-			sManTip = Penis.Head.RandomDescription()
-			sManBalls = Penis.Testicles.ShortDescription()
+		# if CoinFlip():
+			# #wealthy man is a BBC
+			# sWealthyMan = "black " + sWealthyMan
+			# sManEyes = "dark, smoldering eyes"
+			# sManPenis = "black, " + Penis.GetAdj(sNot="black") + " " + Penis.ShortDescription()
+			# sManTip = "dark, " + Penis.Head.GetAdj(sNot="dark") + " " + Penis.Head.ShortDescription()
+			# sManBalls = "ebony " + Penis.Testicles.ShortDescription()
+		# else:
+			# sManEyes = self.MaleBodyParts.Eyes.RandomDescription()
+			# sManPenis = Penis.RandomDescription()
+			# sManTip = Penis.Head.RandomDescription()
+			# sManBalls = Penis.Testicles.ShortDescription()
 			
-		if CoinFlip():
-			sManSize += " & 1/2\""
-		else:
-			sManSize += "\""
+		# if CoinFlip():
+			# sManSize += " & 1/2\""
+		# else:
+			# sManSize += "\""
 		
-		sHisName = self.MaleName.FirstName()
-		sHerName = self.FemaleName.FirstName()
+		# sHisName = self.MaleName.FirstName()
+		# sHerName = self.FemaleName.FirstName()
 		
-		sTweet = "'I'm afraid, Miss " + sHerName + ",' said the " + sWealthyMan + ", 'that I'm going to have to tell your " + self.MaleSO.GetPerson() + " about your little... indiscretion.'\n\n"
-		sTweet += "'Please don't tell him,' she said, looking up at him " + WordList(["pitifully", "hopefully", "wretchedly", "wistfully", "dejectedly", "breathlessly"]).GetWord() + ". He had " + sManEyes + " and his " + WordList(['brawny','broad','mighty','muscular','powerful','rugged','strong','sturdy','well-built','wide']).GetWord() + " shoulders filled out his sharply-tailored " + WordList(["tuxedo", "three-piece suit", "black suit", "button-down silk shirt", "sport coat", "gray suit"]).GetWord() + " nicely. 'I'll do anything.'\n\n"
-		if CoinFlip():
-			sTweet += "'You must be punished, Miss " + sHerName + ",' he said. 'Will you do as I say?' She nodded.\n\n"
-			sTweet += "'Then bend over and lift your skirt.' " + sHerName + " flushed, but she knew she had no choice. She bent lifted the hem, exposing her bare " + self.FemBodyParts.Ass.MediumDescription(sNot = "bare") + " and her " + self.FemBodyParts.Vagina.RandomDescription() + ". 'No panties?' said the " + sWealthyMan + ", 'My, my, you *are* a " + self.BadGirlNoun.GetWord() + ".' He unbuckled his belt and pulled it off. She tensed as he approached. He put one hand on her " + self.FemBodyParts.Ass.RandomDescription() + " and raised the belt in his fist.\n\n"
-			sTweet += "'I'd tell you this will only sting a little,' he said, 'But " + WordList(["we both know that it is going to hurt", "that would be a lie", "I would never lie to a beautiful woman", "this will definitely leave a mark", "if it didn't hurt, it wouldn't be a punishment"]).GetWord() + ".'"
-		else:
-			sTweet += "'Anything?' he asked, arching an eyebrow. She nodded mutely. 'On your knees, then,' he said. "
-			if CoinFlip():
-				sTweet += "He slowly unbuckled his belt. Then he "
-			else:
-				sTweet += "He "
-			sTweet += "unzipped his trousers. "	+ sHerName + "'s eyes widened as his " + sManSize + " " + sManPenis + " unfurled. His " + sManBalls + " was " + Penis.Testicles.GetAdj() + " and " + Penis.Testicles.GetAdj() + ", and his " + sManTip + " was inches from her face.\n\n"
-			sTweet += WordList(["'You can start by sucking my " + Penis.ShortDescription() + ",' he said.", "'You can start by deep-throating this,' he said.", "'Now suck on my " + Penis.Testicles.MediumDescription() + ",' he said.", "'You will do what I say,' he said, 'and right now I say suck my " + Penis.ShortDescription() + ".'"]).GetWord()
+		# sTweet = "'I'm afraid, Miss " + sHerName + ",' said the " + sWealthyMan + ", 'that I'm going to have to tell your " + self.MaleSO.GetPerson() + " about your little... indiscretion.'\n\n"
+		# sTweet += "'Please don't tell him,' she said, looking up at him " + WordList(["pitifully", "hopefully", "wretchedly", "wistfully", "dejectedly", "breathlessly"]).GetWord() + ". He had " + sManEyes + " and his " + WordList(['brawny','broad','mighty','muscular','powerful','rugged','strong','sturdy','well-built','wide']).GetWord() + " shoulders filled out his sharply-tailored " + WordList(["tuxedo", "three-piece suit", "black suit", "button-down silk shirt", "sport coat", "gray suit"]).GetWord() + " nicely. 'I'll do anything.'\n\n"
+		# if CoinFlip():
+			# sTweet += "'You must be punished, Miss " + sHerName + ",' he said. 'Will you do as I say?' She nodded.\n\n"
+			# sTweet += "'Then bend over and lift your skirt.' " + sHerName + " flushed, but she knew she had no choice. She bent lifted the hem, exposing her bare " + self.FemBodyParts.Ass.MediumDescription(sNot = "bare") + " and her " + self.FemBodyParts.Vagina.RandomDescription() + ". 'No panties?' said the " + sWealthyMan + ", 'My, my, you *are* a " + self.BadGirlNoun.GetWord() + ".' He unbuckled his belt and pulled it off. She tensed as he approached. He put one hand on her " + self.FemBodyParts.Ass.RandomDescription() + " and raised the belt in his fist.\n\n"
+			# sTweet += "'I'd tell you this will only sting a little,' he said, 'But " + WordList(["we both know that it is going to hurt", "that would be a lie", "I would never lie to a beautiful woman", "this will definitely leave a mark", "if it didn't hurt, it wouldn't be a punishment"]).GetWord() + ".'"
+		# else:
+			# sTweet += "'Anything?' he asked, arching an eyebrow. She nodded mutely. 'On your knees, then,' he said. "
+			# if CoinFlip():
+				# sTweet += "He slowly unbuckled his belt. Then he "
+			# else:
+				# sTweet += "He "
+			# sTweet += "unzipped his trousers. "	+ sHerName + "'s eyes widened as his " + sManSize + " " + sManPenis + " unfurled. His " + sManBalls + " was " + Penis.Testicles.GetAdj() + " and " + Penis.Testicles.GetAdj() + ", and his " + sManTip + " was inches from her face.\n\n"
+			# sTweet += WordList(["'You can start by sucking my " + Penis.ShortDescription() + ",' he said.", "'You can start by deep-throating this,' he said.", "'Now suck on my " + Penis.Testicles.MediumDescription() + ",' he said.", "'You will do what I say,' he said, 'and right now I say suck my " + Penis.ShortDescription() + ".'"]).GetWord()
 			
 		
-		return sTweet
+		# return sTweet
 		
 class Generator38(Generator):
 	# Brad entered the bedroom. Marsha was lying on the bed wearing nothing but red high heels. His gaze lingered on her pert breasts, rounded hips, and lush tush. 

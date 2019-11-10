@@ -4553,7 +4553,7 @@ class Generator140(Generator):
 		
 		FemRelations = WordList(['Mother-in-Law','Sister-in-Law','Daughter-in-Law','Step-Mom',
 								 'Friend\'s Mom','English Teacher','Babysitter','Boss',
-								 'Boss\'s Wife','Mom','Teacher','Secretary'])
+								 'Boss\'s Wife','Mom','Teacher','Secretary','Best Friend'])
 
 		TitsAdjB = WordList(['Bare','Big','Boobalicious','Bouncing','Bountiful'])
 		TitsAdjC = WordList(['Collossal','Creamy'])
@@ -4619,7 +4619,8 @@ class Generator140(Generator):
 			sTitsAdj = TitsAdjT.GetWord()
 		
 							  
-		sTweet += "I " + WordList(['Motor-boated','Played with','Sucked on','Sucked','Milked','Fooled Around With']).GetWord() + " My "
+		sTweet += "I " + WordList(['Motor-boated','Played with','Sucked on','Sucked','Milked',
+									'Fooled Around With']).GetWord() + " My "
 		sTweet += FemRelations.GetWord() + "'s " + sTitsAdj + " " + sTitsNoun 
 
 		return sTweet	
