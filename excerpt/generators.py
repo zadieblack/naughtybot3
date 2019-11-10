@@ -321,7 +321,7 @@ class Generator8(Generator):
 	#Bianca bit her lip as he caressed her youthful thighs. 'Ferdinand!' she said, 'My orthodontist is in the next room!' 
 	#'Should we invite him?' he asked innocently, inserting a finger into her love channel.	
 	ID = 8
-	Priority = 100
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -770,7 +770,7 @@ class Generator22(Generator):
 	# John's robe fell to the floor, and Ginger's heart skipped a beat. He had a compact athletic physic with wide shoulders, brawny arms, tight buns, and a 
 	# lengthy penis. "I can't believe you're my brother-in-law," she said.	
 	ID = 22
-	Priority = 100 #2
+	Priority = 2 #2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -2480,7 +2480,7 @@ class Generator59(Generator):
 # "'Tis the legendary anal hook of Devaxatar!"
 class Generator60(Generator):
 	ID = 60
-	Priority = 100 #2
+	Priority = 2 #2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3664,7 +3664,7 @@ class Generator71(Generator):
 # I give excellent head./Now pull your pants down so I can suck that cock.
 class Generator72(Generator):
 	ID = 72
-	Priority = 100 #3
+	Priority = 2 #3
 
 	def GenerateTweet(self):
 		super().GenerateTweet()
