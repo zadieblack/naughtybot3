@@ -457,6 +457,7 @@ class ProfGoodFemale(WordList):
 			'Secretary','Secretary',
 			'Servant',
 			'Schoolgirl',
+			'School-marm',
 			'Stay-at-Home Mom',
 			'Supermodel',
 			'Teacher',

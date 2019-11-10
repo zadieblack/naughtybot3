@@ -321,7 +321,7 @@ class Generator8(Generator):
 	#Bianca bit her lip as he caressed her youthful thighs. 'Ferdinand!' she said, 'My orthodontist is in the next room!' 
 	#'Should we invite him?' he asked innocently, inserting a finger into her love channel.	
 	ID = 8
-	Priority = 1
+	Priority = 100
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -659,7 +659,7 @@ class Generator18(Generator):
 	# "'Jacinda, my dear, I wrote you a poem,' he said. 'What is it about?' asked Jacinda. 'It's about you, my love: your golden 
 	# hair, your generous tits, your smooth legs, your dangling labia.' 'Oh Brad!' she sighed."
 	ID = 18
-	Priority = 1
+	Priority = 20
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -685,7 +685,7 @@ class Generator19(Generator):
 	#shoulders, powerful chest, and sinewy thighs. But what made Roxanne's mouth water was the massive, 
 	#throbbing tool between his legs.	
 	ID = 19
-	Priority = 1
+	Priority = 50
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -708,7 +708,7 @@ class Generator20(Generator):
 	#shoulders, powerful chest, sinewy thighs, muscular buttocks and swollen man meat. She could hardly 
 	#believe that in a few minutes this man would be stuffing her virgin pussy.
 	ID = 20
-	Priority = 1
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -728,7 +728,7 @@ class Generator20(Generator):
 class Generator21(Generator):
 	#Candy stroked Lorenzo's turgid meat vigorously. Suddenly his engorged head swelled and spurted gobs of white hot semen on her lips, on her breasts, on her thighs, on her pussy. 'Oh God', she said, 'it's all over my nice Easter Sunday outfit!'
 	ID = 21
-	Priority = 1
+	Priority = 100
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -750,7 +750,7 @@ class Generator22(Generator):
 	# John's robe fell to the floor, and Ginger's heart skipped a beat. He had a compact athletic physic with wide shoulders, brawny arms, tight buns, and a 
 	# lengthy penis. "I can't believe you're my brother-in-law," she said.	
 	ID = 22
-	Priority = 2
+	Priority = 100 #2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1357,7 +1357,7 @@ class Generator38(Generator):
 	# A tall black woman stepped thru the bathroom door. Her sumptuous breasts were full and heavy and her pussy was shaved bare.
 	# 'THIS is your birthday present,' Marsha said.
 	ID = 38
-	Priority = 1
+	Priority = 100
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -2089,12 +2089,13 @@ class Generator53(Generator):
 		# sTweet += MyScene.Scene()
 		#sTweet += "\n\n" + TitFuckScene.ShortScene()
 		
-		Vag = self.FemBodyParts.Vagina
-		sTweet += "Vag: " + Vag.RandomDescription() + "!\n"
-		sTweet += "Inner Vag: " + Vag.InnerVag.RandomDescription() + "!\n"
-		sTweet += "Outer Labia: " + Vag.OuterLabia.RandomDescription() + "!\n"
-		sTweet += "Inner Labia: " + Vag.InnerLabia.RandomDescription() + "!\n"
-		sTweet += "Clit: " + Vag.Clitoris.RandomDescription() + "!\n"
+		#sTweet += "AddArticles('excited, beautiful face'): " + AddArticles('excited, beautiful face') + "\n"
+		sTweet += "She had " + self.FemBodyParts.DescRandomClothedBodyParts(3,sDivideChar = ';') + ". [3/any]\n"
+		sTweet += "She had " + self.FemBodyParts.DescRandomClothedBodyParts(4,sDivideChar = ';') + ". [4/any]\n"
+		sTweet += "She had " + self.FemBodyParts.DescRandomClothedBodyParts(5,sDivideChar = ';') + ". [5/any]\n"
+		sTweet += "She had " + self.FemBodyParts.DescRandomClothedBodyParts(3,sDivideChar = ',',bAllowLongDesc = False) + ". [3/short]\n"
+		sTweet += "She had " + self.FemBodyParts.DescRandomClothedBodyParts(4,sDivideChar = ',',bAllowLongDesc = False) + ". [4/short]\n"
+		sTweet += "She had " + self.FemBodyParts.DescRandomClothedBodyParts(5,sDivideChar = ',',bAllowLongDesc = False) + ". [5/short]\n"
 		
 		return sTweet
 		
@@ -2457,7 +2458,7 @@ class Generator59(Generator):
 # "'Tis the legendary anal hook of Devaxatar!"
 class Generator60(Generator):
 	ID = 60
-	Priority = 2
+	Priority = 100 #2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3644,7 +3645,7 @@ class Generator71(Generator):
 # I give excellent head./Now pull your pants down so I can suck that cock.
 class Generator72(Generator):
 	ID = 72
-	Priority = 3
+	Priority = 100 #3
 
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -4693,15 +4694,17 @@ class Generator87(Generator):
 
 		# return sTweet
 		
-# class Generator82(Generator):
-	# ID = 82
-	# Priority = 1
+# "I'm a sheltered Amish school-marm," she thought. "What am I doing giving giving a full-frontal massage to 
+# a handsome muscular Italian hitman on my parent's bed?"
+class Generator82(Generator):
+	ID = 89
+	Priority = 1
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
 
-		# return sTweet
+		return sTweet
 
 # class Generator82(Generator):
 	# ID = 82

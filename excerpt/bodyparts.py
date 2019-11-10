@@ -3,13 +3,14 @@
 # Body Parts module
 
 from random import *
-from excerpt.util import *
+from util import *
 
 
 class BodyParts:
 	def __init__(self):
 		self._NounList = WordList([])
 		self._AdjList = WordList([])
+		self._ColorList = WordList([])
 		self._DefaultNoun = ""
 		self._DefaultAdj = "naked"
 		
@@ -31,6 +32,14 @@ class BodyParts:
 			SetAdjList = NewAdjList
 			
 		self._AdjList = WordList(SetAdjList)
+		
+	def ColorList(self, NewColorList = None):
+		if NewColorList == None:
+			SetColorList = []
+		else:
+			SetColorList = NewColorList
+			
+		self._ColorList = WordList(SetColorList)
 		
 	def DefaultNoun(self, NewNoun = None):
 		if NewNoun == None:
@@ -84,12 +93,33 @@ class BodyParts:
 				
 		return self._AdjList.GetWord(sNot = sNot, NotList = NotList)
 		
+	def GetColor(self, sNot = "", NotList = None):
+		if NotList == None:
+			NotList = []
+		
+		if sNot != "":
+			NotList.append(sNot)
+				
+		return self._ColorList.GetWord(sNot = sNot, NotList = NotList)
+		
 	def GetNounList(self):
 		return self._NounList.List 
 		
 	def GetAdjList(self):
 		return self._AdjList.List
+		
+	def GetColorList(self):
+		return self._ColorList.List
+		
+	def HasColors(self):
+		bHasColors = False 
+		
+		if len(self._ColorList.List) > 0:
+			bHasColors = True
+			
+		return bHasColors
 
+	#noun only ("hair")
 	def ShortDescription(self, sNot = "", NotList = None):
 		#print("ShortDesc sNot = " + str(sNot))
 		if NotList == None:
@@ -100,20 +130,27 @@ class BodyParts:
 			
 		return self.GetNoun(sNot = sNot, NotList = NotList)
 	
+	#adjective noun ("red hair")
 	def MediumDescription(self, sNot = "", NotList = None):
+		sMediumDesc = ""
+		
 		if NotList == None:
 			NotList = []
 		
 		if sNot != "":
 			NotList.append(sNot)
 		
-		sMediumDesc = self.GetAdj(sNot = sNot, NotList = NotList) + " " + self.GetNoun(sNot = sNot, NotList = NotList)
+		if self.HasColors() and CoinFlip():
+			sMediumDesc = self.GetColor(sNot = sNot, NotList = NotList)
+		else:
+			sMediumDesc = self.GetAdj(sNot = sNot, NotList = NotList)
+		sMediumDesc += " " + self.GetNoun(sNot = sNot, NotList = NotList)
 			
 		return sMediumDesc
 	
+	#adjective1 adjective2 adjective3 noun ("long, wavy, red hair")
 	def FloweryDescription(self, sNot = "", NotList = None):
 		sFloweryDesc = ""
-		#print("FloweryDesc sNot = " + str(sNot))
 		
 		if NotList == None:
 			NotList = []
@@ -122,23 +159,33 @@ class BodyParts:
 			NotList.append(sNot)
 		
 		iNumAdjs = randint(1, 3)
-		x = randint(1, 6)
 		
-		if x == 6 and iNumAdjs < 3:
-			sFloweryDesc += self.GetDefaultAdj(NotList = NotList) + " "
+		sAdj1 = ""
+		sAdj2 = ""
+			
+		if iNumAdjs == 3:
+			sAdj1 = self.GetAdj(sNot = sNot, NotList = NotList)
+			sAdj2 = self.GetAdj(sNot = sNot, NotList = NotList + [sAdj1])
+			sAdj3 = ""
+			if self.HasColors():
+				sAdj3 += self.GetColor(sNot = sNot, NotList = NotList + [sAdj1,sAdj2])
+			else:
+				sAdj3 += self.GetAdj(sNot = sNot, NotList = NotList + [sAdj1,sAdj2])
+			sFloweryDesc += sAdj1 + ", " + sAdj2 + ", " + sAdj3
+		elif iNumAdjs == 2:
+			sAdj1 += self.GetAdj(sNot = sNot, NotList = NotList) 
+			if self.HasColors():
+				sAdj2 += self.GetColor(sNot = sNot, NotList = NotList + [sAdj1])
+			else: 
+				sAdj2 += self.GetAdj(sNot = sNot, NotList = NotList + [sAdj1]) 
+			sFloweryDesc += sAdj1 + ", " + self.GetAdj(sNot = sNot, NotList = NotList + [sAdj1])
 		else:
-			for i in range(0, iNumAdjs):
-				sAdj = self.GetAdj(sNot = sNot, NotList = NotList)
-				NotList.append(sAdj)
+			if self.HasColors() and CoinFlip():
+				sFloweryDesc += self.GetColor(sNot = sNot, NotList = NotList)
+			else:
+				sFloweryDesc += self.GetAdj(sNot = sNot, NotList = NotList)
 				
-				sFloweryDesc += sAdj
-								
-				if i < iNumAdjs - 1:
-					sFloweryDesc += ", "
-				elif i == iNumAdjs - 1:
-					sFloweryDesc += " "
-				
-		sFloweryDesc += self.GetNoun(sNot = sNot, NotList = NotList)
+		sFloweryDesc += " " + self.GetNoun(sNot = sNot, NotList = NotList)
 			
 		return sFloweryDesc
 	
@@ -192,22 +239,25 @@ class Face(BodyParts):
 			'delicate',
 			'elegant',
 			'excited',
-			# 'gorgeous',
-			# 'flushed',
-			# 'freckled',
-			# 'heart-shaped',
-			# 'innocent',
-			# 'lovely',
-			# 'oval',
-			# 'pale',
-			# 'pretty',
-			# 'rosy',
-			# 'round',
+			'gentle',
+			'gorgeous',
+			'flushed',
+			'freckled',
+			'heart-shaped',
+			'innocent',
+			'lovely',
+			'oval',
+			'pale',
+			'pretty',
+			'radiant',
+			'rosy',
+			'round',
 			# 'sculpted',
-			# 'smiling',
-			# 'startled',
+			'smiling',
+			'startled',
 			# 'surprised',
 			'sweet',
+			'warm',
 			'wide-eyed'])
 			
 		self.DefaultNoun('face')
@@ -216,15 +266,25 @@ class Skin(BodyParts):
 	def __init__(self):
 		super().__init__()
 		
-		self.NounList(['skin','skin','skin',
+		self.NounList(['skin','skin','skin','skin',
 			'flesh'])
 			
-		self.AdjList(['almond-colored',
+		self.ColorList(['almond-colored',
+						'brown',
+						'bronzed',
+						'chocolate',
+						'chocolate-colored',
+						'coffee-colored',
+						'dark',
+						'fresh pink',
+						'honeyed',
+						'pale',
+						'pink',
+						'porcelain',
+						'sun-browned',
+						'sun-kissed'])
+		self.AdjList([
 			'bare',
-			'bronzed',
-			'chocolate',
-			'coffee-colored',
-			'dark',
 			'delicate',
 			'exposed',
 			'freckled',
@@ -233,17 +293,12 @@ class Skin(BodyParts):
 			'glistening',
 			'glowing',
 			'gossamer',
-			'honeyed',
 			'luscious',
 			'naked',
-			'pale',
 			'perfect',
-			'porcelain',
 			'silken',
 			'soft',
 			'smooth',
-			'sun-browned',
-			'sun-kissed',
 			'supple',
 			'sweet',
 			'tender',
@@ -286,19 +341,23 @@ class Lips(BodyParts):
 		
 		self.NounList(['lips'])
 			
-		self.AdjList(['candy-colored',
-			'red',
-			'collagen-injected',
+		self.AdjList(['collagen-injected',
 			'full',
 			'inviting',
 			'insolent',
 			'luscious',
-			'red',
 			'sensual',
 			'sweet'])
+			
+		self.ColorList(['candy-colored',
+						'red','red',
+						'rose-colored',
+						'rouge',
+						'painted black'
+					  ])
 		
 		self.DefaultNoun("lips")
-		self.DefaultAdj("red")
+		self.DefaultAdj("full")
 		
 class Eyes(BodyParts):
 	def __init__(self):
@@ -309,18 +368,23 @@ class Eyes(BodyParts):
 		self.AdjList(['alluring',
 			'beautiful',
 			'bewitching',
-			'blue','blue',
 			'brown',
 			'captivating',
 			'dark',
 			'dazzling',
+			'earnest',
+			'electric',
+			'electrifying',
 			'enchanting',
-			'green','green',
-			'gray',
-			'hazel','hazel',
 			'mischievous',
 			'soulful',
 			'sweet'])
+			
+		self.AdjList(['blue','blue',
+					  'brown',
+					  'gray',
+					  'green',
+					  'hazel'])
 		
 		self.DefaultNoun("eyes")
 		self.DefaultAdj("bewitching")
@@ -357,25 +421,29 @@ class Hair(BodyParts):
 			'hair',
 			'locks'])
 			
-		self.AdjList(['black',
-			'blue-dyed',
-			'punk blue',
-			'blonde',
-			'brunette',
-			'curly',
-			'dark',
-			'flaming-red',
-			'glossy blonde',
-			'glossy red',
-			'glossy brown',
-			'golden',
-			'kinky black-girl',
-			'long, luxuriant',
-			'red',
-			'silken blonde',
-			'short blonde',
-			'vibrant red',
-			'wavy blonde'])
+		self.AdjList(['curly',
+			'glossy',
+			'long',
+			'luxuriant',
+			'silken',
+			'short',
+			'vibrant',
+			'wavy'])
+			
+		self.ColorList(['black','black',
+						'blonde','blonde',
+						'blue-dyed',
+						'brunette',
+						'dark',
+						'dyed green',
+						'flaming-red',
+						'golden',
+						'kinky black-girl',
+						'platinum blonde',
+						'punk blue',
+						'sandy',
+						'red'])
+						
 		
 		self.DefaultNoun("hair")
 		self.DefaultAdj("flowing")
@@ -455,9 +523,7 @@ class Nipples(BodyParts):
 			
 		self.AdjList(['blossoming',
 			'budding',
-			'chocolate',
 			'dainty',
-			'dark',
 			'enormous',
 			'erect',
 			'exposed',
@@ -468,8 +534,6 @@ class Nipples(BodyParts):
 			'pert',
 			'pokey',
 			'puffy',
-			'rosebud',
-			'rose-colored',
 			'ripe',
 			'sensitive',
 			'shameless',
@@ -481,6 +545,13 @@ class Nipples(BodyParts):
 			'tender',
 			'tiny',
 			'wide'])
+			
+		self.ColorList(['chocolate',
+						'dark',
+						'pink',
+						'rosebud',
+						'rose-colored'
+						])
 		
 		self.DefaultNoun("nipples")
 		self.DefaultAdj("erect")
@@ -999,7 +1070,6 @@ class BodyFemale(BodyParts):
 			'body',
 			'curves',
 			'figure',
-			'flesh',
 			'form',
 			'physique'])
 			
@@ -1034,6 +1104,15 @@ class BodyFemale(BodyParts):
 			'womanly',
 			'young',
 			'youthful'])
+			
+		self.ColorList(['black',
+						'brown',
+						'coffee-colored',
+						'mocha',
+						'pale',
+						'pink',
+						'tanned'
+					   ])
 		
 		self.DefaultNoun("body")
 		self.DefaultAdj("nubile")
@@ -1051,6 +1130,240 @@ class BodyFemale(BodyParts):
 		self.Vagina = Vagina()
 		self.Ass = AssFemale()
 		
+	# woman random body parts used by gen 8 (one instance), 18,21,31,38,60,72
+	# man random body parts used by gen 19, 20, 22,38
+	
+	def GetClothedBodyPartDesc(self, part, bAllowLongDesc):
+		sPartDesc = ""
+		
+		PartNotList = ['naked','nude','bare','exposed']
+		bAddArticles = True
+		
+		if isinstance(part, Skin):
+			PartNotList.append(['warm','tender'])
+			bAddArticles = False 
+		elif isinstance(part, Hair): 
+			bAddArticles = False 
+		elif isinstance(part, Eyes):
+			bAddArticles = False 
+		elif isinstance(part, Mouth):
+			bAddArticles = True 
+			PartNotList.append(['mouth-hole','lewd','insatiable','willing'])
+		elif isinstance(part, Lips):
+			bAddArticles = False 
+		elif isinstance(part, Hips):
+			bAddArticles = False 
+		elif isinstance(part, Legs):
+			bAddArticles = False 
+		
+		sPartDesc = part.RandomDescription(bAllowShortDesc = False, bAllowLongDesc = bAllowLongDesc, NotList = PartNotList)
+		if bAddArticles:
+			sPartDesc = AddArticles(sPartDesc)
+		
+		return sPartDesc
+	
+	def DescRandomClothedBodyParts(self, iNum = 3, sDivideChar = ',', bAllowLongDesc = True):
+		sBodyDesc = ""
+		
+		if iNum < 3:
+			iNum = 3
+		if iNum > 5:
+			iNum = 5
+			
+		hair = self.Hair
+		face = self.Face 
+		eyes = self.Eyes 
+		if CoinFlip():
+			mouth = self.Lips 
+		else:
+			mouth = self.Mouth 
+		hips = self.Hips 
+		legs = self.Legs 
+		skin = self.Skin
+		thighs = self.Thighs 
+		boobs = self.Breasts 
+		pussy = self.Vagina 
+		innerlabia = self.Vagina.InnerLabia
+		outerlabia = self.Vagina.OuterLabia
+		cunthole = self.Vagina.InnerVag 
+		ass = self.Ass 
+		asshole = self.Ass.Anus 
+		body = self
+		
+		PartPriorities = [[hair,1],
+						  [eyes,2],
+						  [face,3],
+						  [mouth,4],
+						  [legs,5],
+						  [hips,5],
+						  [skin,6],
+						  [body,6]]
+		
+		PartGroups = []
+		
+		if iNum == 3:
+			for part1 in PartPriorities: #skin 6
+				for part2 in PartPriorities[PartPriorities.index(part1) + 1:]:
+					if part2[1] == part1[1] and not part2[0] == part1[0]:
+						for part3 in PartPriorities[PartPriorities.index(part2) + 1:]:
+							if part3[1] > part2[1] or (part3[1] == part2[1] and not part3[0] == part2[0]):
+								PartGroups.append([part1[0],part2[0],part3[0]])
+					
+			# PartGroups.append([hair,eyes,face])
+			# PartGroups.append([hair,eyes,mouth])
+			# PartGroups.append([hair,eyes,body])
+			# PartGroups.append([hair,face,eyes])
+			# PartGroups.append([hair,face,mouth])
+			# PartGroups.append([hair,face,body])
+			# PartGroups.append([hair,mouth,legs])
+			# PartGroups.append([hair,mouth,hips])
+			# PartGroups.append([hair,mouth,legs])
+			# PartGroups.append([hair,mouth,skin])
+			# PartGroups.append([hair,mouth,body])
+			# PartGroups.append([eyes,face,mouth])
+			# PartGroups.append([eyes,face,hips])
+			# PartGroups.append([eyes,face,legs])
+			# PartGroups.append([eyes,face,skin])
+			# PartGroups.append([eyes,face,body])
+			# PartGroups.append([face,eyes,mouth])
+			# PartGroups.append([face,eyes,hips])
+			# PartGroups.append([face,eyes,legs])
+			# PartGroups.append([face,eyes,skin])
+			# PartGroups.append([face,eyes,body])
+			# PartGroups.append([face,eyes,mouth])
+			# PartGroups.append([face,eyes,mouth])
+			# PartGroups.append([skin,hips,legs])
+			# PartGroups.append([skin,legs,hips])
+			# PartGroups.append([skin,hips,body])
+			# PartGroups.append([skin,legs,body])
+			# PartGroups.append([body,legs,hips])
+			# PartGroups.append([body,legs,skin])
+			# PartGroups.append([body,hips,legs])
+			# PartGroups.append([body,hips,skin])
+			# PartGroups.append([body,hair,eyes])
+			# PartGroups.append([body,hair,mouth])
+			# PartGroups.append([body,eyes,hair])
+			# PartGroups.append([body,eyes,mouth])
+		elif iNum == 4:
+			for part1 in PartPriorities:
+				for part2 in PartPriorities[PartPriorities.index(part1) + 1:]:
+					if part2[1] > part1[1] or (part2[1] == part1[1] and not part2[0] == part1[0]):
+						for part3 in PartPriorities[PartPriorities.index(part2) + 1:]:
+							if part3[1] > part2[1] or (part3[1] == part2[1] and not part3[0] == part2[0]):
+								for part4 in PartPriorities[PartPriorities.index(part3) + 1:]:
+									if part4[1] > part3[1] or (part4[1] == part3[1] and not part4[0] == part3[0]):
+										PartGroups.append([part1[0],part2[0],part3[0],part4[0]])
+			# PartGroups.append([hair,eyes,face,mouth])
+			# PartGroups.append([hair,eyes,face,hips])
+			# PartGroups.append([hair,eyes,face,legs])
+			# PartGroups.append([hair,eyes,face,skin])
+			# PartGroups.append([hair,eyes,face,body])
+			# PartGroups.append([hair,eyes,mouth,hips])
+			# PartGroups.append([hair,eyes,mouth,legs])
+			# PartGroups.append([hair,eyes,mouth,skin])
+			# PartGroups.append([hair,eyes,mouth,body])
+			# PartGroups.append([hair,face,eyes,mouth])
+			# PartGroups.append([hair,face,eyes,hips])
+			# PartGroups.append([hair,face,eyes,legs])
+			# PartGroups.append([hair,face,eyes,mouth])
+			# PartGroups.append([hair,face,eyes,skin])
+			# PartGroups.append([hair,face,mouth,hips])
+			# PartGroups.append([hair,face,mouth,legs])
+			# PartGroups.append([hair,face,mouth,skin])
+			# PartGroups.append([hair,mouth,legs,hips])
+			# PartGroups.append([hair,mouth,legs,skin])
+			# PartGroups.append([hair,mouth,hips,legs])
+			# PartGroups.append([hair,mouth,hips,skin])
+			# PartGroups.append([eyes,face,mouth,hips])
+			# PartGroups.append([eyes,face,mouth,legs])
+			# PartGroups.append([eyes,face,mouth,skin])
+			# PartGroups.append([eyes,face,skin,hips])
+			# PartGroups.append([eyes,face,skin,legs])
+			# PartGroups.append([eyes,face,skin,body])
+			# PartGroups.append([eyes,mouth,hips,legs])
+			# PartGroups.append([eyes,mouth,hips,skin])
+			# PartGroups.append([eyes,mouth,hips,body])
+			# PartGroups.append([eyes,mouth,legs,hips])
+			# PartGroups.append([eyes,mouth,legs,skin])
+			# PartGroups.append([eyes,mouth,legs,body])
+			# PartGroups.append([eyes,skin,hips,legs])
+			# PartGroups.append([eyes,skin,hips,body])
+			# PartGroups.append([eyes,skin,legs,hips])
+			# PartGroups.append([eyes,skin,legs,body])
+			# PartGroups.append([skin,legs,hips,body])
+			# PartGroups.append([skin,hips,legs,body])
+			# PartGroups.append([body,skin,hips,legs])
+			# PartGroups.append([body,skin,legs,hips])
+		else:
+			for part1 in PartPriorities:
+				for part2 in PartPriorities[PartPriorities.index(part1) + 1:]:
+					if part2[1] > part1[1] or (part2[1] == part1[1] and not part2[0] == part1[0]):
+						for part3 in PartPriorities[PartPriorities.index(part2) + 1:]:
+							if part3[1] > part2[1] or (part3[1] == part2[1] and not part3[0] == part2[0]):
+								for part4 in PartPriorities[PartPriorities.index(part3) + 1:]:
+									if part4[1] > part3[1] or (part4[1] == part3[1] and not part4[0] == part3[0]):
+										for part5 in PartPriorities[PartPriorities.index(part4) + 1:]:
+											if part5[1] > part4[1] or (part5[1] == part4[1] and not part5[0] == part4[0]):
+												PartGroups.append([part1[0],part2[0],part3[0],part4[0],part5[0]])
+			# PartGroups.append([hair,eyes,face,mouth,hips])
+			# PartGroups.append([hair,eyes,face,mouth,legs])
+			# PartGroups.append([hair,eyes,face,mouth,skin])
+			# PartGroups.append([hair,eyes,face,mouth,body])
+			# PartGroups.append([hair,eyes,face,hips])
+			# PartGroups.append([hair,eyes,face,legs])
+			# PartGroups.append([hair,eyes,face,skin])
+			# PartGroups.append([hair,eyes,face,body])
+			# PartGroups.append([hair,eyes,mouth,hips])
+			# PartGroups.append([hair,eyes,mouth,legs])
+			# PartGroups.append([hair,eyes,mouth,skin])
+			# PartGroups.append([hair,eyes,mouth,body])
+			# PartGroups.append([hair,face,eyes,mouth])
+			# PartGroups.append([hair,face,eyes,hips])
+			# PartGroups.append([hair,face,eyes,legs])
+			# PartGroups.append([hair,face,eyes,mouth])
+			# PartGroups.append([hair,face,eyes,skin])
+			# PartGroups.append([hair,face,mouth,hips])
+			# PartGroups.append([hair,face,mouth,legs])
+			# PartGroups.append([hair,face,mouth,skin])
+			# PartGroups.append([hair,mouth,legs,hips])
+			# PartGroups.append([hair,mouth,legs,skin])
+			# PartGroups.append([hair,mouth,hips,legs])
+			# PartGroups.append([hair,mouth,hips,skin])
+			# PartGroups.append([eyes,face,mouth,hips])
+			# PartGroups.append([eyes,face,mouth,legs])
+			# PartGroups.append([eyes,face,mouth,skin])
+			# PartGroups.append([eyes,face,skin,hips])
+			# PartGroups.append([eyes,face,skin,legs])
+			# PartGroups.append([eyes,face,skin,body])
+			# PartGroups.append([eyes,mouth,hips,legs])
+			# PartGroups.append([eyes,mouth,hips,skin])
+			# PartGroups.append([eyes,mouth,hips,body])
+			# PartGroups.append([eyes,mouth,legs,hips])
+			# PartGroups.append([eyes,mouth,legs,skin])
+			# PartGroups.append([eyes,mouth,legs,body])
+			# PartGroups.append([eyes,skin,hips,legs])
+			# PartGroups.append([eyes,skin,hips,body])
+			# PartGroups.append([eyes,skin,legs,hips])
+			# PartGroups.append([eyes,skin,legs,body])
+			# PartGroups.append([skin,legs,hips,body])
+			# PartGroups.append([skin,hips,legs,body])
+			# PartGroups.append([body,skin,hips,legs])
+			# PartGroups.append([body,skin,legs,hips])
+		
+		SelectedParts = PartGroups[randint(0,len(PartGroups) - 1)]
+		
+		iLoops = 0
+		while iLoops < iNum:
+			sBodyDesc += self.GetClothedBodyPartDesc(SelectedParts[iLoops], bAllowLongDesc)
+			if iLoops == iNum - 2:  
+				sBodyDesc += sDivideChar + " and "
+			elif iLoops < iNum - 2:
+				sBodyDesc += sDivideChar + " "
+			iLoops = iLoops + 1
+			
+		return sBodyDesc
+		
+	
 	def GetRandomBodyParts(self, iNum, bIncludeInners = False, bIncludeIntimate = True, bAllowShortDesc = False):
 		Parts = []
 		AllParts = []
@@ -1193,6 +1506,11 @@ class PenisHead(BodyParts):
 			'swollen',
 			'throbbing',
 			'tumescent'])
+			
+		self.ColorList(['black',
+			'brown',
+			'purple',
+			'red'])
 		
 		self.DefaultNoun("head")
 		self.IsPlural = False
@@ -1516,12 +1834,9 @@ class Semen(BodyParts):
 			'delicious',
 			'glossy',
 			'gooey',
-			'milky',
 			'nasty',
 			'nourishing',
 			'oozing',
-			'pearlescent',
-			'pearly',
 			'ropy',
 			'salty',
 			'silken',
@@ -1533,6 +1848,13 @@ class Semen(BodyParts):
 			'warm',
 			'white-hot',
 			'yummy'])
+			
+		self.ColorList(['cream-colored',
+						'milky',
+						'pearly',
+						'pearlescent',
+						'white'
+					  ])
 		
 		self.DefaultNoun("semen")
 		self.DefaultAdj("gooey")
@@ -1591,10 +1913,7 @@ class SkinMale(BodyParts):
 			'hide'])
 			
 		self.AdjList(['bare',
-			'bronzed',
-			'coffee-colored',
-			'dark',
-			'ebony',
+			'cream-colored',
 			'exposed',
 			'freckled',
 			'glistening',
@@ -1603,11 +1922,20 @@ class SkinMale(BodyParts):
 			'rough',
 			'rugged',
 			'smooth',
-			'sun-browned',
 			'supple',
 			'tough',
 			'warm',
 			'youthful'])
+			
+		self.ColorList(['bronzed',
+						'brown',
+						'coffee-colored',
+						'dark',
+						'ebony',
+						'pale',
+						'sun-browned',
+						'tanned'
+					   ])
 		
 		self.DefaultNoun("skin")
 		self.DefaultAdj("rugged")
@@ -1621,7 +1949,6 @@ class ShouldersMale(BodyParts):
 		self.AdjList(['bare',
 			'brawny',
 			'broad',
-			'bronzed',
 			'freckled',
 			'mighty',
 			'muscular',
@@ -1630,9 +1957,17 @@ class ShouldersMale(BodyParts):
 			'rugged',
 			'strong',
 			'sturdy',
-			'sun-browned',
 			'well-built',
 			'wide'])
+			
+		self.ColorList(['bronzed',
+						'brown',
+						'coffee-colored',
+						'dark',
+						'ebony',
+						'sun-browned',
+						'tanned'
+					   ])
 		
 		self.DefaultNoun("shoulders")
 		self.DefaultAdj("broad")
@@ -1650,7 +1985,6 @@ class ChestMale(BodyParts):
 		self.AdjList(['bare',
 			'brawny',
 			'broad',
-			'bronzed',
 			'burly',
 			'compact',
 			'dark-thatched',
@@ -1674,6 +2008,15 @@ class ChestMale(BodyParts):
 			'well-built',
 			'well-defined',
 			'well-oiled'])
+			
+		self.ColorList(['bronzed',
+						'brown',
+						'coffee-colored',
+						'dark',
+						'ebony',
+						'sun-browned',
+						'tanned'
+					   ])
 		
 		self.DefaultNoun("chest")
 		self.DefaultAdj = "broad"
@@ -1721,22 +2064,27 @@ class EyesMale(BodyParts):
 		self.NounList(['eyes'])
 			
 		self.AdjList(['beautiful',
-			'blue',
 			'brooding',
-			'brown',
 			'captivating',
-			'dark',
 			'dazzling',
-			'green',
-			'gray',
-			'icy blue',
+			'deep',
 			'kind',
 			'mischievous',
 			'penetrating',
 			'soulful',
-			'steely-blue',
+			'steely',
 			'stern',
 			'youthful'])
+			
+		self.ColorList(['blue',
+						'brown',
+						'dark',
+						'gray',
+						'green',
+						'hazel',
+						'icy-blue',
+						'steely-blue'
+					   ])
 		
 		self.DefaultNoun("eyes")
 		self.DefaultAdj("penetrating")
