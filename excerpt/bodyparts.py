@@ -263,6 +263,41 @@ class Face(BodyParts):
 			
 		self.DefaultNoun('face')
 		
+class BackFemale(BodyParts):
+	def __init__(self):
+		super().__init__()
+		
+		self.NounList(['back','back','back','back',
+			'spine'])
+		
+		self.AdjList(['arched','arched',
+			'arching',
+			'bare',
+			'carved',
+			'concave',
+			'curved','curved',
+			'deliate',
+			'feminine',
+			'flexible',
+			'gently curved',
+			'graceful','graceful',
+			'lissome',
+			'lithe','lithe',
+			'long',
+			'naked',
+			'sculpted',
+			'sexy',
+			'sleek',
+			'slender','slender',
+			'slim','slim',
+			'smooth',
+			'tapered','tapered','tapered',
+			'tapering','tapering',
+			'well-defined',
+			'willowy','willowy'])
+			
+		self.DefaultNoun('back')
+		
 class Skin(BodyParts):
 	def __init__(self):
 		super().__init__()
@@ -1158,6 +1193,7 @@ class BodyFemale(BodyParts):
 		self.Lips = Lips()
 		self.Mouth = Mouth()
 		self.Hips = Hips()
+		self.Back = BackFemale()
 		self.Legs = Legs()
 		self.Skin = Skin()
 		self.Thighs = Thighs()
@@ -1165,8 +1201,6 @@ class BodyFemale(BodyParts):
 		self.Vagina = Vagina()
 		self.Ass = AssFemale()
 		
-	# woman random body parts used by gen 8 (one instance), 18,21,31,38,60,72
-	# man random body parts used by gen 19, 20, 22,38
 	
 	def GetClothedBodyPartDesc(self, part, bAllowLongDesc, sPossessive = None):
 		sPartDesc = ""
@@ -1231,24 +1265,19 @@ class BodyFemale(BodyParts):
 		else:
 			mouth = self.Mouth 
 		hips = self.Hips 
+		back = self.Back
 		legs = self.Legs 
 		skin = self.Skin
-		thighs = self.Thighs 
 		boobs = self.Breasts 
-		pussy = self.Vagina 
-		innerlabia = self.Vagina.InnerLabia
-		outerlabia = self.Vagina.OuterLabia
-		cunthole = self.Vagina.InnerVag 
-		ass = self.Ass 
-		asshole = self.Ass.Anus 
 		body = self
 		
 		PartPriorities = [[hair,1],
-						  [eyes,2],
-						  [face,3],
-						  [mouth,4],
-						  [legs,5],
-						  [hips,5],
+						  [eyes,1],
+						  [face,2],
+						  [mouth,3],
+						  [legs,4],
+						  [hips,4],
+						  [back,5],
 						  [skin,6],
 						  [body,6],
 						  [boobs,7]]
@@ -1349,6 +1378,7 @@ class BodyFemale(BodyParts):
 		else:
 			mouth = self.Mouth 
 		hips = self.Hips 
+		back = self.Back
 		legs = self.Legs 
 		skin = self.Skin
 		thighs = self.Thighs 
@@ -1365,21 +1395,22 @@ class BodyFemale(BodyParts):
 		PartPriorities = [[legs,1],
 						  [hips,1],
 						  [thighs,2],
-						  [skin,3],
-						  [body,3]]
+						  [back,3],
+						  [skin,4],
+						  [body,4]]
 		
 		if bBoobs:
-			PartPriorities.append([boobs,4])
-			PartPriorities.append([nipples,5])
+			PartPriorities.append([boobs,5])
+			PartPriorities.append([nipples,6])
 		if bAss:
-			PartPriorities.append([ass,6])
+			PartPriorities.append([ass,7])
 		if bPussy:
-			PartPriorities.append([pussy,6])
+			PartPriorities.append([pussy,7])
 		if bExplicit:
-			PartPriorities.append([innerlabia,7])
-			PartPriorities.append([outerlabia,7])
-			PartPriorities.append([cunthole,7])
-			PartPriorities.append([asshole,8])
+			PartPriorities.append([innerlabia,8])
+			PartPriorities.append([outerlabia,8])
+			PartPriorities.append([cunthole,8])
+			PartPriorities.append([asshole,9])
 		
 		PartGroups = []
 		
@@ -2408,11 +2439,7 @@ class BodyMale(BodyParts):
 		elif isinstance(part, MusclesMale):
 			bAddArticles = False 
 		elif isinstance(part, ArmsMale):
-			PartNotList += ['boobies','boobs','buds','coconuts','dumplings','gazongas',
-								'globes','jugs','knockers','mammaries','melons','teats','titties',
-								'delicious','gentle','girlish','jiggling','lus','nubile',
-								'pendulous','pert','quivering','ripe','sensual','surgic',
-								'sweet','swollen','tender']
+			PartNotList += ['boobies']
 			bAddArticles = False 
 			
 		if not sPossessive == "":

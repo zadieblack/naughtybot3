@@ -717,6 +717,12 @@ class RegularLastNames(WordList):
 		
 		self.List = PlainLastNames().List + ClassyLastNames().List
 		
+class AllLastNames(WordList):
+	def __init__(self):
+		super().__init__()
+		
+		self.List = PlainLastNames().List + ClassyLastNames().List + InnuendoLastNames().List
+		
 def LastNameBuilder(NotList = None):
 	sLName = ""
 	

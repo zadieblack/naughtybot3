@@ -692,10 +692,10 @@ class Generator18(Generator):
 		sTweet += self.FemBodyParts.DescRandomClothedBodyParts(iNum = 5, sDivideChar = ';', bAllowLongDesc = True, sPossessive = "your") + ". "
 		sTweet += "And, of course, your " 
 		
-		iRand = randint(1,6)
+		iRand = randint(1,5)
 		if iRand == 1:
 			#Ass
-			sTweet += self.FemBodyParts.Ass.FloweryDescription(NotList = ['backside','cheeks','rear','bottom'])
+			sTweet += self.FemBodyParts.Ass.FloweryDescription(NotList = ['backside','cheeks','rear','bottom','behind'])
 		elif iRand == 2:
 			#Asshole
 			sTweet += self.FemBodyParts.Ass.Anus.FloweryDescription(NotList = ['back','butt','behind'])
@@ -705,12 +705,9 @@ class Generator18(Generator):
 		elif iRand == 4:
 			#Inner labia
 			sTweet += self.FemBodyParts.Vagina.InnerLabia.FloweryDescription(NotList = ['virgin','petals'])
-		elif iRand == 5:
-			#Vaginal canal
-			sTweet += self.FemBodyParts.Vagina.InnerVag.FloweryDescription(NotList = ['virgin','vestibule','tunnel','passage'])
 		else:
 			#Outer labia
-			sTweet += self.FemBodyParts.Vagina.OuterLabia.FloweryDescription(NotList = ['virgin','mons pubis','petals','mound'])
+			sTweet += self.FemBodyParts.Vagina.OuterLabia.FloweryDescription(NotList = ['virgin','mons pubis','petals','mound','vulva'])
 		
 		sTweet += ".'\n\n"
 		if CoinFlip():
@@ -3763,15 +3760,74 @@ class Generator72(Generator):
  #
  # "I'm eighteen now, you can't stop me!" retorted Candy. "I'm going to let Chad anally deflower me in public, and
  # that's final!"
- # class Generator73(Generator):
-	# ID = 73
-	# Priority = 1
+class Generator73(Generator):
+	ID = 73
+	Priority = 4
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		sHerName = self.FemaleName.FirstName()
+		sHisName = self.MaleName.FirstName()
+		
+		sTweet = "\"I forbid you from seeing " + sHisName + " "
+		sTweet += WordList(["any more","any longer","again","ever again"]).GetWord() + "!\" "
+		sTweet += WordList(["raged","roared","yelled","fumed"]).GetWord() + " " 
+		sTweet += sHerName + "'s father.\n\n"
+		
+		sTweet += "\"" + WordList(["I'm eighteen now","I'm a grown woman now","You're not my real dad",
+								   "I'm eighteen years old","I'm not a little girl anymore",
+								   "I'm 18 now and I can make my own decisions",
+								   "I'm an adult and I can make my own decisions"]).GetWord() + ", "
+		sTweet += "you can't stop me!\" retorted " + sHerName + ". "
+		sTweet += "\"" + sHisName + " and I are in love! "
+		sTweet += WordList(["I'm going to let him deflower me in public",
+						    "I'm giving him my anal virginity",
+							"He's taking my anal virginity",
+						    "I'm getting a tattoo of his face on my ass",
+						    "I'm getting his name tattooed on my ass",
+						    "I'm starring in a porn video with him",
+							"I'm starring in the porno he's making",
+						    "I'm getting his tattoo of his name on my face",
+						    "He's taking my anal virginity at the prom",
+						    "I'm getting gang-banged by his " + str(randint(2,20)) + " friends",
+						    "I'm getting a full-sized tattoo of his " + self.MaleBodyParts.Penis.ShortDescription(),
+						    "I'm getting his name tattooed around my " + self.FemBodyParts.Ass.Anus.ShortDescription(),
+						    "I'm trying hardcore bondage with him at the underground sex dungeon",
+							"I'm going with him to the underground sex club",
+						    "I'm wearing this butt plug with his name carved on it",
+						    "I'm getting silicon breast implants",
+							"I'm getting a silicon butt implant",
+						    "I'm joining the " + WordList(["three","six","seven","ten","two dozen"]).GetWord() + " other wives in his harem",
+						    "I'm joining his nudist colony",
+						    "I'm joining his weird sex cult",
+							"I'm marrying a " + str(randint(45,97)) + "-year old man",
+							"I'm marrying a " + str(randint(45,97)) + "-year old man",
+							"He is going to deflower me live on the internet",
+							"We're having a threesome with a prostitute",
+							"We are doing a gangbang together",
+							"I'm having a threesome with him and his brother",
+							"I'm sleeping with him and his girlfriend",
+							"I'm sleeping with him and his wife",
+							"I'm getting my clit pierced",
+							"I'm getting those labia piercings",
+							"I'm getting nipple rings",
+							"I'm buying him a motorbike with my college savings",
+							"I'm wearing a thong to prom",
+							"I'm marrying him so he can get his green card",
+							"He's popping my cherry at the prom",
+							"We're signing a fifty-year variable-rate mortgage",
+							"I'm moving out so I can live with him in his Volkswagon Bus",
+							"I'm not wearing my chastity belt anymore",
+							"I'm not wearing panties to the club",
+							"I'm wearing " + WordList(["a sheer latext bodysuit","a sheer body-stocking","a latex nun outfit",
+													   "a transparent latex dress","latex fetish gear",
+													   "a red latext dress"]).GetWord() + " to prom"
+						   ]).GetWord() + " "
+		sTweet += "and that's final!\""
 
-		# return sTweet
+		return sTweet
 		
 # "Hush, my {love/sweet}," said Ronson. "No one can hear us. You know that the {King/Emperor/Duke} has forbidden 
 # anal sex." With that he carefully eased his tumescent meat-snake into her tight pooper.
@@ -3898,8 +3954,7 @@ class Generator75(Generator):
 							"calling your mother 'a raging thunder-cunt'"])
 		
 		SceneSelect = SceneSelector()
-		Scene1 = SceneSelect.GetScene(Tags = {exutil.TAG_DONE_TO_HER}, NotTags = {exutil.TAG_CLIMAX}, sHisName = sHisName, sHerName = sHerName)
-		#Scene1 = SceneSelect.GetScene(Tags = {exutil.TAG_DONE_TO_HER}, NotTags = {exutil.TAG_CLIMAX}, sHisName = sHisName, sHerName = sHerName, Location = Location)		
+		Scene1 = SceneSelect.GetScene(Tags = {exutil.TAG_DONE_TO_HER}, NotTags = {exutil.TAG_CLIMAX}, sHisName = sHisName, sHerName = sHerName)	
 		
 		sTweet = "Their makeup sex was passionate and intense. "
 		sTweet += Scene1.Scene() + "\n\n"
@@ -3924,12 +3979,6 @@ class Generator76(Generator):
 		Ass = self.FemBodyParts.Ass 
 		
 		sTweet += Location.BeginDesc + " "
-		# sTweet += "The girl was wearing "
-		# sTweet += WordList(["a dress with a neckline that plunged to her navel. Her " + Tits.RandomDescription() + " threatened to tumble out at any moment",
-							# "a tiny pair of Daisy Dukes that rode high up the curve of her " + Ass.RandomDescription(),
-							# "a thin t-shirt. Her " + Tits.Nipples.RandomDescription() + " strained against the fabric",
-							# "a pair of denim overalls, with nothing on underneath. The straps just managed to hide her " + Tits.Nipples.RandomDescription()
-						  # ]).GetWord() + ". "
 		sTweet += "The girl " + Location.RemoveFemaleClothing() + ". "
 		sTweet += sHisName + " swallowed the lump in his throat.\n\n"
 		
@@ -4394,15 +4443,55 @@ class Generator81(Generator):
 # "Oh fuck, that feels amazing," she said. "Tell me, Brad... do you give happy endings?"
 # Brad squirted more oil into his hands and rubbed them together. "For you Mrs Johnson, anything," he said. 
 # Then he spread her legs open and began to tenderly finger her anus.
-# class Generator82(Generator):
-	# ID = 82
-	# Priority = 1
+class Generator82(Generator):
+	ID = 82
+	Priority = 4
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		ManNotList = ['hung','thatched','taut','tight','husky']
+		
+		sHerName = self.FemaleName.FirstName()
+		sHisName = self.MaleName.FirstName()
+		
+		sManAdj1 = self.MaleBodyParts.GetAdj(NotList = ManNotList)
+		sManAdj2 = self.MaleBodyParts.GetAdj(NotList = ManNotList + [sManAdj1])
+		
+		sTweet += sHerName + " " + WordList(["moaned","groaned","sighed"]).GetWord() + " with pleasure as "
+		sTweet += "her " + sManAdj1 + ", " + sManAdj2 + " massage therapist "
+		sTweet += WordList(["rubbed","massaged","kneaded","rubbed down"]).GetWord() + " "
+		sTweet += "her " + WordList(["sore","aching"]).GetWord() + ", naked " 
+		sTweet += WordList(["body","body","ass","thighs"]).GetWord() + ". "
+		sTweet += "\"" + self.Exclamation.GetWord(bHappy = True).capitalize() + "\" "
+		sTweet += "she " + WordList(["exclaimed","sighed"]).GetWord() + ", "
+		sTweet += "\"that feels " + WordList(["amazing","divine","incredible","so good","wonderful"]).GetWord() + "! "
+		sTweet += "Tell me, " + sHisName + "... do you give happy endings?\"\n\n"
+		sTweet += sHisName + " squirted more " + WordList(["oil","lotion"]).GetWord() + " "
+		sTweet += "into his hands and rubbed them together. "
+		sTweet += "\"For you Mrs. " + names.AllLastNames().GetWord() + ", anything,\" he said. "
+		if CoinFlip():
+			
+			if CoinFlip():
+				sTweet += "Then he spread her " + self.FemBodyParts.Legs.RandomDescription(bAllowLongDesc = False) + " apart and "
+				sTweet += "began to " + WordList(["tenderly","gently","sensually"]).GetWord() + " "
+				sTweet += WordList(["lick","finger","rub","stroke","carress","fist","insert two fingers into","eat","tongue"]).GetWord() + " her "
+				sTweet += self.FemBodyParts.Vagina.RandomDescription()
+			else:
+				sTweet += "Then he spread her " + self.FemBodyParts.Ass.RandomDescription(bAllowLongDesc = False) + " apart and "
+				sTweet += WordList(["tenderly","gently","sensually"]).GetWord() + " began to "
+				sTweet += WordList(["lick","finger","rub","stroke","carress","fist","insert two fingers into","eat","rim"]).GetWord() + " her "
+				sTweet += self.FemBodyParts.Ass.Anus.RandomDescription()
+		else:
+			sTweet += "Then he began to " + WordList(["rub","carress","squeeze","massage","rub oil onto","massage oil into"]).GetWord() + " "
+			sTweet += "her " + self.FemBodyParts.Breasts.RandomDescription()
+			if CoinFlip():
+				sTweet += " and her " + self.FemBodyParts.Breasts.Nipples.RandomDescription()
+		sTweet += "."
+			
 
-		# return sTweet
+		return sTweet
 		
 # "Oh, I'll never find love!" wept Mary Jane. "What man would want a {plain-looking/chubby}, {nerdy/geeky} 
 # {waitress/barista/accountant}, especially one with a pair of enormous, swollen, DDD breasts???"
