@@ -384,7 +384,7 @@ class BookGerunds(WordList):
 			'Whipping'])
 			
 class SubtitleCoda(WordList):
-	WordHistoryQ = HistoryQ(3)
+	
 	
 	def __init__(self):
 		super().__init__(['Adventure', 
@@ -395,4 +395,81 @@ class SubtitleCoda(WordList):
 			'Romance','Romance','Romance',
 			'Rendezvous',
 			'Story'])
+			
+		self.WordHistoryQ = HistoryQ(3)
+			
+class VaginaSlang(WordList):
+	def __init__(self):
+		super().__init__(["bacon hole",
+						   "banana basket",
+						   "Bat Cave",
+						   "bearded clam",
+						   "beaver",
+						   "beef",
+						   "beef-flaps",
+						   "beef taco",
+						   "black hole",
+						   "box",
+						   "cherry pie",
+						   "clam",
+						   "clit pit",
+						   "cock-sock",
+						   "cock-garage",
+						   "cock-pocket",
+						   "cock-squeezer",
+						   "cooch",
+						   "coochie",
+						   "cooter",
+						   "cream canal",
+						   "cum dumpster",
+						   "cunny",
+						   "cunt",
+						   "cunt-hole",
+						   "fish lips",
+						   "fish wallet",
+						   "flower",
+						   "frenchfry dip",
+						   "front butt",
+						   "fuck-hole",
+						   "fur burger",
+						   "fur pie",
+						   "furry taco",
+						   "goop chute",
+						   "hair pie",
+						   "honey hole",
+						   "honey pot",
+						   "hot pocket",
+						   "lady bits",
+						   "lady parts",
+						   "love muffin",
+						   "kitty",
+						   "meat flaps",
+						   "meat sleave",
+						   "muff",
+						   "muffin",
+						   "panty hamster",
+						   "penis fly trap",
+						   "pie",
+						   "pink taco",
+						   "piss flaps",
+						   "puss",
+						   "pussy",
+						   "quim",
+						   "Sarlacc pit",
+						   "sausage wallet",
+						   "snatch",
+						   "spunk trunk",
+						   "twat",
+						   "tuna taco",
+						   "U.S.P. Port",
+						   "vag",
+						   "vaj",
+						   "vajayjay",
+						   "vertical bacon sandwich",
+						   "vertical smile",
+						   "whisker biscuit",
+						   "womanhood"
+						   ])
+		
+
 			

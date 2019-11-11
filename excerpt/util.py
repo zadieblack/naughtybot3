@@ -12,7 +12,7 @@ MAX_GENERATOR_NO = 44
 MAX_SEARCH_LOOPS = 8
 TWIT_USERNAME = 'bot_lust'
 
-Q_SIZE = 5
+Q_SIZE = 30
 HISTORYQ_FILENAME = 'excerpt/history_q.txt'
 TWEETTXT_HISTORYQ_FILENAME = 'title/tweettxt_history_q.txt'
 

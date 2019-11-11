@@ -1159,7 +1159,7 @@ class TweetTxtGen43(TweetTxtGen):
 class TweetTxtGen44(TweetTxtGen):
 	# I *knew* that Viola shouldn't trust Jack! Not after he called her vagina a 'fish taco'!
 	ID = 44
-	Priority = 2
+	Priority = 3
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1168,21 +1168,15 @@ class TweetTxtGen44(TweetTxtGen):
 		sHisName = NamesMale().FirstName()
 		sHerName = NamesFemale().FirstName()
 		
-		VagNames = WordList(["a 'bearded clam'","a 'furry taco'","a 'tuna taco'","a 'fur burger'","a 'fur pie'",
-							 "a 'meat sleeve'","a 'hair pie'","a 'cock-sock'","a 'panty hamster'","her 'front butt'",
-							 "a 'pink taco'","her 'fish lips'","a 'cock garage'","a 'cock pocket'","a 'cum dumpster'",
-							 "a 'goop chute'","a 'vertical bacon sandwich'","a 'cock squeezer'",
-							 "a 'whisker biscuit'","a 'banana basket'","a 'hot pocket'","a 'sausage wallet'",
-							 "a 'penis fly trap'","a 'bacon hole'","a 'cockpit'","a 'fish mitten'","'tuna town",
-							 "a 'black hole'","a 'cream canal'","a 'beaver'","a 'fuck hole'","a 'Sarlacc pit'",
-							 "her piss flaps","the Bat-cave","her 'french fry dip'","her 'U.S.P. Port'",
-							 "a 'clit pit'","a 'spunk trunk'"])
+		VagNotList = ['box','cooch','cooter','flower','honey','lady','kitty','muff','pie','puss',
+					  'quim','vag','womanhood']
+		sVagName = VaginaSlang().GetWord(NotList = VagNotList)
 
 		sText = "I *knew* that " + sHerName + " shouldn't trust " + sHisName + "! "
 		if randint(1,10) == 10:
 			sText += "Not after he refused to eat her ass!"
 		else:
-			sText += "Not after he called her vagina " + VagNames.GetWord() + "!"
+			sText += "Not after he called her vagina her \"" + sVagName + "\"!"
 		
 		return sText	
 
