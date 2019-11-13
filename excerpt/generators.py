@@ -1439,7 +1439,7 @@ class Generator38(Generator):
 		
 			sTweet = sBirthdayName + " entered the bedroom. " + sGiverName + " was wearing nothing but " + WordList(["a cowboy hat", "a leather jacket", "a cock ring", "a bowtie", "a pair of cowboy boots", "a leather body harness"]).GetWord() + " and his " + self.MaleBodyParts.RandomDescription() + " gleamed with oil. Her gazed lingered on his "
 			
-			Parts = self.MaleBodyParts.GetRandomBodyParts(iNum = 3, bIncludeInners = False)
+			Parts = self.MaleBodyParts.DescRandomNakedParts(iNum = 3, bAss = True, bPenis = True, sDivideChar = ";")
 			for part in Parts:
 				if not part == Parts[len(Parts) - 1]:
 					sTweet += part + "; "
@@ -1608,7 +1608,7 @@ class Generator42(Generator):
 			else:
 				sTweet += "kiss you all over your " + self.FemBodyParts.Skin.MediumDescription()
 			
-			sTweet += " forever. I want to " + self.VSexActByMale.Present() + " you all night long.'"
+			sTweet += " forever. I want to " + self.VSexActByMale.Present(NotList = ['jerk off']) + " you all night long.'"
 		
 		else:
 			sTweet = "'Oh " + sHisName + "', she sighed as he held her in his " + self.MaleBodyParts.Arms.GetAdj() + " " + self.MaleBodyParts.Arms.GetNoun() + " " + Location.NamePrep + ", 'I never want this moment to end. I want to stare into your " + self.MaleBodyParts.Eyes.MediumDescription() + " and "
@@ -2743,6 +2743,12 @@ class Generator63(Generator):
 		sHisName = self.MaleName.FirstName()
 		sHerName = self.FemaleName.FirstName()
 		
+		MaleRelations = WordList(["father","brother","best friend","son","twin brother",
+								  "step-brother","step-son","uncle","grandfather","cousin"])
+		Occupations = WordList(["Blacksmith","Tanner","Brewer","Woodsman","Fisherman","Baker","Candlemaker",
+								"Minstrel","Bricklayer","Jester"])
+		Disqualifiers = WordList(["a priest","shorter than I am","a dwarf","an orc"])
+		
 		sSemenAdj = WordList(['sweet','milky','burning','salty','white hot','silken','virile']).GetWord()
 		sSemen = WordList(['seed','seed','cream','jizm','milk','man-milk']).GetWord()
 		sPenisAdj = WordList(['stiff','erect','burning','lengthy','throbbing','virile','girthy','lusty']).GetWord()
@@ -2843,13 +2849,20 @@ class Generator63(Generator):
 		
 		#Line 7
 		sTweet += "\"But you know we cannot,\" she said, \""
-		if CoinFlip():
-			sTweet += "You're " + WordList(["my step-brother","my cousin","my step-father","a priest","shorter than I am","shorter than I am","my sister's husband","a commoner","a bastard","a dwarf","an orc","just a commoner","just a peasant"]).GetWord()
-		elif CoinFlip():
-			sTweet += "I am " + WordList(['betrothed to','pledged to','married to','fucking']).GetWord() + " "
-			sTweet += WordList(["your brother","your twin brother","your father","your best friend","your enemy","your landlord","your rival","your son","your step-son","the well-hung goblin chief","a horny dragon","the Ogre Chief"]).GetWord()
-		else:
-			sTweet += "I am pregnant with " + WordList(["your father's","your brother's","your son's","your best friend's","the Orc King's","the Dark Lord's","the Dragon's","the Barbarian Chief's", "the Cyclops's","Grond the Giant's","the Manor Lord's","Grond the Oger's"]).GetWord() + " baby"
+		sTweet += WordList(["I am married to your " + MaleRelations.GetWord(),
+							  "I am fucking " + sharedmisc.PlainNamesMale().FirstName() + " the " + Occupations.GetWord(),
+							  "I am married to " + sharedmisc.PlainNamesMale().FirstName() + " the " + Occupations.GetWord(),
+							  "I am having " + sharedmisc.PlainNamesMale().FirstName() + " the " + Occupations.GetWord(),
+							  "I am pregnant with your " + MaleRelations.GetWord() + "'s baby",
+							  "I am pregnant with the king's baby",
+							  "You're my " + MaleRelations.GetWord(),
+							  "You're only a poor " + Occupations.GetWord(),
+							  "You're a priest",
+							  "I'm a nun",
+							  "You are shorter than I am",
+							  "You're a dwarf",
+							  "You're not Jewish"
+							])
 		sTweet += "!\""
 		
 		return sTweet
@@ -3821,9 +3834,9 @@ class Generator73(Generator):
 							"I'm moving out so I can live with him in his Volkswagon Bus",
 							"I'm not wearing my chastity belt anymore",
 							"I'm not wearing panties to the club",
-							"I'm wearing " + WordList(["a sheer latext bodysuit","a sheer body-stocking","a latex nun outfit",
+							"I'm wearing " + WordList(["a sheer latex bodysuit","a sheer body-stocking","a latex nun outfit",
 													   "a transparent latex dress","latex fetish gear",
-													   "a red latext dress"]).GetWord() + " to prom"
+													   "a red latex dress"]).GetWord() + " to prom"
 						   ]).GetWord() + " "
 		sTweet += "and that's final!\""
 
@@ -3833,7 +3846,7 @@ class Generator73(Generator):
 # anal sex." With that he carefully eased his tumescent meat-snake into her tight pooper.
 class Generator74(Generator):
 	ID = 74
-	Priority = 3
+	Priority = 2
 
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3965,7 +3978,7 @@ class Generator75(Generator):
 		
 class Generator76(Generator):
 	ID = 76
-	Priority = 4
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -4329,7 +4342,7 @@ class Generator79(Generator):
 # "Yes," he said, "but not to each other."
 class Generator80(Generator):
 	ID = 80
-	Priority = 4
+	Priority = 3
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -4361,7 +4374,7 @@ class Generator80(Generator):
 # interracial
 class Generator81(Generator):
 	ID = 81
-	Priority = 4
+	Priority = 3
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -4445,7 +4458,7 @@ class Generator81(Generator):
 # Then he spread her legs open and began to tenderly finger her anus.
 class Generator82(Generator):
 	ID = 82
-	Priority = 4
+	Priority = 3
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -4647,7 +4660,7 @@ class Generator84(Generator):
 # and I will be married, and my name will be MRS Ivana Seymour-Butts!"
 class Generator85(Generator):
 	ID = 85
-	Priority = 6
+	Priority = 3
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -4685,7 +4698,7 @@ class Generator85(Generator):
 # Same as 57, but in the ass		
 class Generator86(Generator):
 	ID = 86
-	Priority = 4
+	Priority = 3
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -4746,7 +4759,7 @@ class Generator86(Generator):
 		
 class Generator87(Generator):
 	ID = 87
-	Priority = 1
+	Priority = 3
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()

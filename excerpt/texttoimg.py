@@ -9,9 +9,9 @@ from excerpt.util import *
 
 PATH = "excerpt/resources/"
 FONT = "NoticiaText-Regular.ttf"
-MAX_IMG_NUM = 38
+MAX_IMG_NUM = 76
 
-BGImgQ = HistoryQ(iQSize = 5)
+BGImgQ = HistoryQ(iQSize = 35)
 
 def SaveImg(img, filename = ""):
 	try:
@@ -164,10 +164,10 @@ def GetBGImg(iPicNo = 0):
 	BGImg = None 
 	
 	if iPicNo == 0:
-		iPicNo = randint(1, MAX_IMG_NUM)
+		iPicNo = randint(38, MAX_IMG_NUM)
 
 		while not BGImgQ.PushToHistoryQ(iPicNo):
-			iPicNo = randint(1, MAX_IMG_NUM)
+			iPicNo = randint(38, MAX_IMG_NUM)
 
 	try:
 		BGImg = Image.open(PATH + "bg_" + str(iPicNo) + ".jpg").convert('RGBA')
