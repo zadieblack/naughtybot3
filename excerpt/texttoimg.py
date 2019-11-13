@@ -9,7 +9,7 @@ from excerpt.util import *
 
 PATH = "excerpt/resources/"
 FONT = "NoticiaText-Regular.ttf"
-MAX_IMG_NUM = 37
+MAX_IMG_NUM = 38
 
 BGImgQ = HistoryQ(iQSize = 5)
 
