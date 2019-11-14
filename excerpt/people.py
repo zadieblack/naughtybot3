@@ -49,7 +49,6 @@ class FemaleFWB(Person):
 		'girlfriend\'s sister',
 		'guidance counselor',
 		'land lady',
-		'life drawing model',
 		'English lit student',
 		'maid',
 		'math teacher',

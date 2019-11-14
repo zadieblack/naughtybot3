@@ -33,11 +33,6 @@ TAG_CLOTHED = "scene where they still have clothes on"
 
 TweetHistoryQ = None
 	
-class Gender(Enum):
-	Male = 1
-	Female = 2
-	Neuter = 3
-	
 class Tense(Enum):
 	Present = 1
 	Past = 2

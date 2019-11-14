@@ -127,11 +127,11 @@ class TweetTxtGen5(TweetTxtGen):
 		
 		if CoinFlip():
 			# male
-			sText = AuthorBuilder(Gender = Gender.Male) + "'s "
+			sText = AuthorBuilder(Gender.Male) + "'s "
 			sText += Supporters.GetWord() + " get " + Access.GetWord() + " to all his " + self.SexyAdj.GetWord() + " " + Reads.GetWord() + "!"
 		else:
 			# female
-			sText = AuthorBuilder(Gender = Gender.Female) + "'s "
+			sText = AuthorBuilder(Gender.Female) + "'s "
 			sText += Supporters.GetWord() + " get " + Access.GetWord() + " to all her " + self.SexyAdj.GetWord() + " " + Reads.GetWord() + "!"
 
 		
@@ -642,7 +642,7 @@ class TweetTxtGen30(TweetTxtGen):
 						   "park ranger", "pilot", "Chippendales dancer", "astronaut", "Navy SEAL", 
 						   "Green Beret", "cowboy", "guitar player", "olympic gold medalist", 
 						   "pro surfer", "private eye", "paramedic", "mechanic", "biker", 
-						   "life drawing model", "pirate captain", "highwayman", "troubador", 
+						   "nude model", "pirate captain", "highwayman", "troubador", 
 						   "Viking warrior", "family man"]).GetWord() + " "
 		sText += "was " + WordList(["really", "actually", "in fact"]).GetWord() + " a " + WordList(["millionaire", "multi-millionaire", "billionaire", "trillionaire", "gazillionaire", "king", "prince", "duke", "marquis", "manor lord", "sheikh", "pope", "crown prince", "CEO"]).GetWord() + "!"
 		
@@ -920,12 +920,12 @@ class TweetTxtGen37(TweetTxtGen):
 		
 		if CoinFlip():
 			# male
-			sText = "This was " + AuthorBuilder(Gender = Gender.Male) + "'s last book before "
+			sText = "This was " + AuthorBuilder(Gender.Male) + "'s last book before "
 			sText += "he was banned from Amazon for " + AddArticles(Adjs.GetWord()).lower() + " scene involving "
 			
 		else:
 			# female
-			sText = "This was " + AuthorBuilder(Gender = Gender.Female) + "'s final book before "
+			sText = "This was " + AuthorBuilder(Gender.Female) + "'s final book before "
 			sText += "she was banned from Amazon for " + AddArticles(Adjs.GetWord()).lower() + " scene involving "
 			
 		iRand = randint(1,5)
@@ -979,10 +979,10 @@ class TweetTxtGen38(TweetTxtGen):
 		
 		if CoinFlip():
 			# male
-			sText = "By day, erotica author " + AuthorBuilder(Gender = Gender.Male) + " is " + AddArticles(sMaleJob).lower() + " from " + sPlace + "."	
+			sText = "By day, erotica author " + AuthorBuilder(Gender.Male) + " is " + AddArticles(sMaleJob).lower() + " from " + sPlace + "."	
 		else:
 			# female
-			sText = "By day, erotica author " + AuthorBuilder(Gender = Gender.Female) + " is " + AddArticles(sFemaleJob).lower() + " from " + sPlace + "."
+			sText = "By day, erotica author " + AuthorBuilder(Gender.Female) + " is " + AddArticles(sFemaleJob).lower() + " from " + sPlace + "."
 		
 		return sText	
 

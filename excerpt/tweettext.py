@@ -28,63 +28,8 @@ def LastNameBuilder(NotList = None):
 	
 	return sLName
 		
-def AuthorBuilder(Gender = Gender.Neuter):
-	sAName = ""
-	
-	Alphabet = "AAAABBBCCDDDEEEEFFFGGGGHHHIIJJJJKKLLLMNOOPPPQRRRRSSSSTTTTUVVWWWXYZ"
-	
-	FirstNames = []
-	MaleNames = AuthorNamesMale()
-	FemNames = AuthorNamesFemale()
-	
-	sName = ""
-	for _ in range(2):
-		sName += Alphabet[randint(0, len(Alphabet) - 1)] + "."
-	FirstNames.append(sName)
-	
-	if Gender == Gender.Male or Gender == Gender.Neuter:
-		for _ in range(5):
-			FirstNames.append(MaleNames.FirstName())
-			
-		sName1 = ""
-		sName2 = ""
-		for _ in range(4):
-			sName1 = MaleNames.FirstName()
-			# sName2 = MaleNames.FirstName()
-			# while sName2 in sName1:
-				# sName2 = MaleNames.FirstName()
-			FirstNames.append(sName1)
-			
-		for _ in range(2):
-			FirstNames.append(MaleNames.FirstName() + " " + Alphabet[randint(0, len(Alphabet) - 1)] + ".")
-			
-		for _ in range(2):
-			FirstNames.append("AAEIIUBCP"[randint(0, 8)] + ". " + MaleNames.FirstName())
-		
-	if Gender == Gender.Female or Gender == Gender.Neuter:
-		for _ in range(5):
-			FirstNames.append(FemNames.FirstName())
-			
-		sName1 = ""
-		sName2 = ""
-		for _ in range(4):
-			sName1 = FemNames.FirstName()
-			# sName2 = FemNames.FirstName()
-			# while sName2 in sName1:
-				# sName2 = FemNames.FirstName()
-			FirstNames.append(sName1)
-			
-		for _ in range(2):
-			FirstNames.append(FemNames.FirstName() + " " + Alphabet[randint(0, len(Alphabet) - 1)] + ".")
-			
-		for _ in range(2):
-			FirstNames.append("AAEIIUBCP"[randint(0, 8)] + ". " + FemNames.FirstName())
-		
-	sAName = FirstNames[randint(0, len(FirstNames) - 1)]
-	
-	sAName += " " + LastNameBuilder(NotList = [sAName])
-	
-	return sAName
+def AuthorBuilder(gender = Gender.Neuter):
+	return GetInnName(gender)
 
 def AddHashtag(Tweets):
 	# if the last tweet has left over space, append a random hashtag to it: eartg, lprtg, wprtg, ssrtg, imabot, smut, erotica, etc
@@ -776,12 +721,12 @@ class TweetTxtGen22(TweetTxtGen):
 		
 		if CoinFlip():
 			# male
-			sText = "This was " + AuthorBuilder(Gender = Gender.Male) + "'s last book before "
+			sText = "This was " + AuthorBuilder(Gender.Male) + "'s last book before "
 			sText += "he was banned from Amazon for " + Adjs.GetWord() + " scene involving "
 			
 		else:
 			# female
-			sText = "This was " + AuthorBuilder(Gender = Gender.Female) + "'s final book before "
+			sText = "This was " + AuthorBuilder(Gender.Female) + "'s final book before "
 			sText += "she was banned from Amazon for " + Adjs.GetWord() + " scene involving "
 			
 		iRand = randint(1,5)
@@ -837,10 +782,10 @@ class TweetTxtGen23(TweetTxtGen):
 		
 		if CoinFlip():
 			# male
-			sText = "By day, erotica author " + AuthorBuilder(Gender = Gender.Male) + " is " + AddArticles(sMaleJob).lower() + " from " + sPlace + "."	
+			sText = "By day, erotica author " + AuthorBuilder(Gender.Male) + " is " + AddArticles(sMaleJob).lower() + " from " + sPlace + "."	
 		else:
 			# female
-			sText = "By day, erotica author " + AuthorBuilder(Gender = Gender.Female) + " is " + AddArticles(sFemaleJob).lower() + " from " + sPlace + "."
+			sText = "By day, erotica author " + AuthorBuilder(Gender.Female) + " is " + AddArticles(sFemaleJob).lower() + " from " + sPlace + "."
 		
 		return sText	
 		
@@ -911,7 +856,7 @@ class TweetTxtGen25(TweetTxtGen):
 						   [69,"sixty-nine"]]).GetWord()
 		
 		sText = "from Part " + str(randint(2,Series[0] - 1)) + " "
-		sText += "of " + AuthorBuilder(Gender = Gender.Neuter) + "'s "
+		sText += "of " + AuthorBuilder(Gender.Neuter) + "'s "
 		sText += WordList(["epic","epic","ambitious","momentous","seminal","classic","critically-acclaimed"]).GetWord() + " "
 		sText += Series[1] + "-book "
 		sText += "\"" + BookTitleBuilder(maxlen = 60) + "\" "

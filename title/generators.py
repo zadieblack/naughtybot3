@@ -2510,7 +2510,7 @@ class Generator82(Generator):
 		
 		sInnocentAdj = WordList(title.misc.NiceGirlGoodAdjs().List + ["Sweet"]).GetWord()
 		
-		GirlNotList = ['MILF','Older','Fertile','Slave Girl','Life Drawing Model','Bikini Model','HuCow','Supermodel','Harem Princess',sInnocentAdj]
+		GirlNotList = ['MILF','Older','Fertile','Slave Girl','Bikini Model','HuCow','Supermodel','Harem Princess',sInnocentAdj]
 		Girl = FemaleChar(iNumMaxCBits = 3, iNumMinCBits = 1, NotList = GirlNotList, Type = GirlType.Good, bAddArticle = False, bAllowRelate = False, bAllowAttitude = False, bAllowSpecies = False, bAllowSkinHairColor = False, bAllowTitle = False, bAllowNation = True, bAllowGenMod = False, bAllowClothing = False, bAllowPhysChar = False, bAllowSexuality = False, bAllowMaritalStatus = False)
 
 		ManNotList = ['Shape-Shifting']
@@ -4625,15 +4625,27 @@ class Generator140(Generator):
 
 		return sTweet	
 		
-# class Generator100(Generator):
-	# ID = 100
-	# Priority = 2
+class Generator999(Generator):
+	ID = 999
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		iNum = 0
+		
+		if iNum != 0:
+		
+			sTweet += "Female: " + GetInnName(Gender.Female,iNum)
+			sTweet += "\n"
+			sTweet += "Male: " + GetInnName(Gender.Male,iNum)
+		else:
+			sTweet += "Female: " + GetInnName(Gender.Female)
+			sTweet += "\n"
+			sTweet += "Male: " + GetInnName(Gender.Male)
 
-		# return sTweet	
+		return sTweet	
 		
 # class Generator100(Generator):
 	# ID = 100

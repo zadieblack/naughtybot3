@@ -1191,7 +1191,7 @@ class Generator33(Generator):
 						  'marriage counselor','math tutor','parole officer','secretary',
 						  'Sunday School teacher','teacher','psychiatrist','teacher\'s aid',
 						  'office manager','research assistant','real estate agent',
-						  'coach','wife\'s pregnancy surrogate','life drawing model',
+						  'coach','wife\'s pregnancy surrogate',
 						  'student','pupil','house maid','nanny','nurse','yoga instructor',
 						  'therapist''personal assistant'])
 						  
@@ -2760,7 +2760,7 @@ class Generator63(Generator):
 		
 		#Line 1
 		if CoinFlip():
-			sTweet += "The two young lovers writhed naked on the " + WordList(['silk','satin','velvet']).GetWord() + " "
+			sTweet += "The two star-crossed lovers writhed naked on the " + WordList(['silk','satin','velvet']).GetWord() + " "
 			sTweet += "covers, their limbs " + WordList(['entangled','intertwined','entwined']).GetWord() 
 		else:
 			sTweet += "Their lips met as they embraced naked " + WordList(['beneath the trees','in the soft grass','in the shadow of the tower','on softly scented heather','in their secret bower']).GetWord() + ", "
@@ -2850,9 +2850,9 @@ class Generator63(Generator):
 		#Line 7
 		sTweet += "\"But you know we cannot,\" she said, \""
 		sTweet += WordList(["I am married to your " + MaleRelations.GetWord(),
-							  "I am fucking " + sharedmisc.PlainNamesMale().FirstName() + " the " + Occupations.GetWord(),
-							  "I am married to " + sharedmisc.PlainNamesMale().FirstName() + " the " + Occupations.GetWord(),
-							  "I am having " + sharedmisc.PlainNamesMale().FirstName() + " the " + Occupations.GetWord(),
+							  "I am fucking " + names.PlainNamesMale().FirstName() + " the " + Occupations.GetWord(),
+							  "I am married to " + names.PlainNamesMale().FirstName() + " the " + Occupations.GetWord(),
+							  "I am having " + names.PlainNamesMale().FirstName() + " the " + Occupations.GetWord() + "'s baby",
 							  "I am pregnant with your " + MaleRelations.GetWord() + "'s baby",
 							  "I am pregnant with the king's baby",
 							  "You're my " + MaleRelations.GetWord(),
@@ -2862,7 +2862,7 @@ class Generator63(Generator):
 							  "You are shorter than I am",
 							  "You're a dwarf",
 							  "You're not Jewish"
-							])
+							]).GetWord()
 		sTweet += "!\""
 		
 		return sTweet
@@ -4667,11 +4667,9 @@ class Generator85(Generator):
 		sTweet = ""
 		
 		sBFFName = names.PlainNamesFemale().FirstName()
-		sBrideFirstName = names.InnuendoNamesFemale().FirstName(NotList = [sBFFName])
-		sRegularMaleFirstName = names.DiverseNamesMale().FirstName()
-		sInnuendoMaleFirstName = names.InnuendoNamesMale().FirstName()
-		sLastName1 = names.InnuendoLastNames().GetWord()
-		sLastName2 = names.InnuendoLastNames().GetWord(NotList = [sLastName1])
+		sRegularMaleFirstName = self.MaleName.FirstName()
+		sBrideName = names.GetInnName(shutil.Gender.Female)
+		sHusbandName = names.GetInnName(shutil.Gender.Male)
 		
 		if CoinFlip():
 			sTweet = "\"Just think,\" she gushed excitedly to her best friend " + sBFFName + ", "
@@ -4683,14 +4681,10 @@ class Generator85(Generator):
 								   "by next Sunday"]).GetWord() + " "
 		if CoinFlip(): 
 		#male first name
-			sTweet += "I'll be married and I'll offically be MRS. " + sInnuendoMaleFirstName + " " + sLastName1
-			if CoinFlip():
-				sTweet += "-" + sLastName2
+			sTweet += "I'll be married and I'll offically be MRS. " + sHusbandName
 		else:
 		#female first name
-			sTweet += sRegularMaleFirstName + " and I will be married and my name will be MRS. " + sBrideFirstName + " " + sLastName1
-			if CoinFlip():
-				sTweet += "-" + sLastName2
+			sTweet += sRegularMaleFirstName + " and I will be married and my name will be MRS. " + sBrideName
 		sTweet += "!\""
 		
 		return sTweet

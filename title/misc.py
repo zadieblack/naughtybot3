@@ -445,7 +445,6 @@ class ProfGoodFemale(WordList):
 			'Housewife',
 			'Intern',
 			'Librarian',
-			'Life Drawing Model',
 			'Masseuse',	
 			'Maid',
 			'Milk Maid',

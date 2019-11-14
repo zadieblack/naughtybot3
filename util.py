@@ -103,7 +103,7 @@ def AddArticles(sNounPhrase, bMakeUpper = False):
 		if sNPNounPhrase[0:2].lower() in ['f.','h.','l.','m.','n.','r.','s.','x.']:
 			#print(" - sNPNounPhrase[0:2] is " + sNPNounPhrase[0:2] + "\n")
 			sArticle = 'an'
-		if sNPNounPhrase[0:3].lower() in ['uni','one']:
+		if sNPNounPhrase[0:3].lower() in ['uni','one','uro']:
 			#print(" - sNPNounPhrase[0:3] is " + sNPNounPhrase[0:3] + "\n")
 			sArticle = 'a'
 		elif sNPNounPhrase[0:4].lower() in ['hour']:
@@ -226,6 +226,9 @@ class WordList:
 			
 		self.DefaultWord = ""
 		
+	def AddWord(self, word):
+		self.List.append(word)
+		
 	def FoundIn(self, sWord, ListStrings):
 		bFound = False 
 		
@@ -264,6 +267,22 @@ class WordList:
 					i += 1
 				
 		return sWord
+		
+	def Length(self):
+		iLen = 0
+		
+		if isinstance(self.List, list):
+			iLen = len(self.List)
+			
+		return iLen
+		
+	def IsEmpty(self):
+		bIsEmpty = True 
+		
+		if self.Length() > 0:
+			bIsEmpty = False 
+		
+		return bIsEmpty
 		
 class NounAdjList:
 	def __init__(self, NewNounList = None, NewAdjList = None):

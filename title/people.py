@@ -4,6 +4,7 @@
 
 from random import *
 from title.util import *
+from util import Gender
 
 import title.misc
 
@@ -938,7 +939,6 @@ class FemaleFWB(Person):
 		'intern',
 		'land lady',
 		'librarian',
-		'life drawing model',
 		'English lit student',
 		'maid',
 		'math teacher',

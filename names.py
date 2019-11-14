@@ -5,6 +5,8 @@
 from random import *
 from util import *
 
+InnNameHistoryQ = HistoryQ(2)
+
 class Names:
 	def __init__(self):
 		self._FirstNamesList = WordList()
@@ -483,6 +485,7 @@ class InnuendoLastNames(WordList):
 			"Blower",
 			"Blush",
 			"Bodie",
+			"Bone",
 			"Brest","Bresst",
 			"Broad",
 			"Brownie",
@@ -743,62 +746,720 @@ def LastNameBuilder(NotList = None):
 	
 	return sLName
 		
-def AuthorBuilder(Gender = Gender.Neuter):
-	sAName = ""
+def AuthorBuilder(gender = Gender.Neuter):
+	return GetInnName(gender)
 	
-	Alphabet = "AAAABBBCCDDDEEEEFFFGGGGHHHIIJJJJKKLLLMNOOPPPQRRRRSSSSTTTTUVVWWWXYZ"
 	
-	FirstNames = []
-	MaleNames = AuthorNamesMale()
-	FemNames = AuthorNamesFemale()
+class InnName():
+	def __init__(self, NewNameVariantsList = None, NewPrefInitList = None, NewSuffInitList = None):
+		if NewNameVariantsList is None:
+			NewNameVariantsList = []
+			
+		if NewPrefInitList is None:
+			NewPrefInitList = []
 	
+		if NewSuffInitList is None:
+			NewSuffInitList = []	
+			
+		self._NameVariants = WordList(NewNameVariantsList)
+		self._PrefInitList = WordList(NewPrefInitList)
+		self._SuffInitList = WordList(NewSuffInitList)
+		
+		self._Gender = Gender.Neuter 
+		
+	def GetNameVariant(self):
+		return self._NameVariants.GetWord()
+		
+	def GetPrefInitial(self):
+		return self._PrefInitList.GetWord()
+		
+	def GetSuffInitial(self):
+		return self._SuffInitList.GetWord()
+	
+	def GetNameVariantsList(self):
+		return self._NameVariants.List 
+		
+	def GetPrefInitialList(self):
+		return self._PrefInitList.List
+		
+	def GetSuffInitialList(self):
+		return self._SuffInitList.List
+		
+	def IsNameVariantListEmpty(self):
+		return self._NameVariants.IsEmpty()
+		
+	def IsPrefInitListEmpty(self):
+		return self._PrefInitList.IsEmpty()
+		
+	def IsSuffInitListEmpty(self):
+		return self._SuffInitList.IsEmpty()
+		
+	def SetGender(self, gender):
+		if isinstance(gender, Gender):
+			self._Gender = gender
+		
+	def IsMale(self):
+		return self._Gender == Gender.Male 
+		
+	def IsFemale(self):
+		return self._Gender == Gender.Female
+		
+	def IsNeuter(self):
+		return self._Gender == Gender.Neuter
+		
+
+class InnFirstName(InnName):	
+	def GetName(self):
+		sFirstName = ""
+		
+		PossibleNameVariants = WordList() 
+		if not self.IsNameVariantListEmpty():
+			i = 0
+			while i < 3:
+				PossibleNameVariants.AddWord(self.GetNameVariant())
+				i = i + 1
+			
+			if not self.IsPrefInitListEmpty():
+				PossibleNameVariants.AddWord(self.GetPrefInitial() + ". " + self.GetNameVariant())
+			
+			if not self.IsSuffInitListEmpty():
+				PossibleNameVariants.AddWord(self.GetNameVariant() + " " + self.GetSuffInitial() + ".")
+	
+		if not PossibleNameVariants.IsEmpty():
+			sFirstName = PossibleNameVariants.GetWord()
+			
+		return sFirstName
+		
+class InnFirstNameFemale(InnFirstName):	
+	def __init__(self, NewNameVariantsList = None, NewPrefInitList = None, NewSuffInitList = None):
+		super().__init__(NewNameVariantsList = NewNameVariantsList, NewPrefInitList = NewPrefInitList, NewSuffInitList = NewSuffInitList)	
+			
+		self.SetGender(Gender.Female)
+
+class InnFirstNameMale(InnFirstName):	
+	def __init__(self, NewNameVariantsList = None, NewPrefInitList = None, NewSuffInitList = None):
+		super().__init__(NewNameVariantsList = NewNameVariantsList, NewPrefInitList = NewPrefInitList, NewSuffInitList = NewSuffInitList)	
+			
+		self.SetGender(Gender.Male)	
+
+class InnLastName(InnName):
+	def GetName(self):
+		sLastName = ""
+		
+		PossibleNameVariants = WordList() 
+		if not self.IsNameVariantListEmpty():
+			i = 0
+			while i < 3:
+				PossibleNameVariants.AddWord(self.GetNameVariant())
+				i = i + 1
+			
+			if not self.IsPrefInitListEmpty():
+				PossibleNameVariants.AddWord(self.GetPrefInitial() + ". " + self.GetNameVariant())
+	
+		if not PossibleNameVariants.IsEmpty():
+			sLastName = PossibleNameVariants.GetWord()
+			
+		return sLastName
+		
+class DefaultLastName(Enum):
+	FirstLastName = 1
+	SecondLastName = 2
+		
+class InnNameGenerator():
+	def __init__(self, id = 0, priority = 1):	
+		self.ID = id
+		self.Priority = priority
+		
+		self._Default = DefaultLastName.FirstLastName
+		
+		self._FirstNameFemaleList = WordList()
+		self._FirstNameMaleList = WordList()
+		self._FirstLastNameList = WordList()
+		self._SecondLastNameList = WordList()
+		self._LastNameList = WordList()
+		
+	def FirstNameFemaleList(self, NewList = None):
+		if NewList is None:
+			NewList = []
+			
+		self._FirstNameFemaleList = WordList(NewList) 
+		
+	def FirstNameMaleList(self, NewList = None):
+		if NewList is None:
+			NewList = []
+			
+		self._FirstNameMaleList = WordList(NewList) 
+		
+	def FirstLastNameList(self, NewList = None):
+		if NewList is None:
+			NewList = []
+			
+		self._FirstLastNameList = WordList(NewList) 
+		
+	def SecondLastNameList(self, NewList = None):
+		if NewList is None:
+			NewList = []
+			
+		self._SecondLastNameList = WordList(NewList) 
+		
+	def GetName(self, gend):
+		sName = "" 
+		
+		#print("Gender is class " + str(gend) + ", repr: " + repr(gend) + "\n")
+		if not isinstance(gend, Gender):
+			gend = Gender.Female 
+			
+		sLastName = ""
+		if self._Default is DefaultLastName.FirstLastName:
+			if not self._FirstLastNameList.IsEmpty():
+				if randint(1,3) == 3 and not self._SecondLastNameList.IsEmpty():
+					sLastName = self._FirstLastNameList.GetWord().GetName() + "-" + self._SecondLastNameList.GetWord().GetName()
+				else:
+					sLastName = self._FirstLastNameList.GetWord().GetName()
+		else:
+			if not self._SecondLastNameList.IsEmpty():
+				if randint(1,3) == 3 and not self._FirstLastNameList.IsEmpty():
+					sLastName = self._FirstLastNameList.GetWord().GetName() + "-" + self._SecondLastNameList.GetWord().GetName()
+				else:
+					sLastName = self._SecondLastNameList.GetWord().GetName()
+		
+		if gend == Gender.Female and (not self._FirstNameFemaleList.IsEmpty()):
+			if sLastName:
+				sName = self._FirstNameFemaleList.GetWord().GetName() + " " + sLastName
+			else:
+				sName = self._FirstNameFemaleList.GetWord().GetName()
+				
+		elif gend == Gender.Male and (not self._FirstNameMaleList.IsEmpty()):
+			if sLastName:
+				sName = self._FirstNameMaleList.GetWord().GetName() + " " + sLastName
+			else:
+				sName = self._FirstNameMaleList.GetWord().GetName()
+				
+		return sName 
+		
+	# def FirstNameFemale(self):
+		# return self._FirstNameFemaleList.GetWord()
+		
+	# def FirstNameMale(self):
+		# return self._FirstNameMaleList.GetWord()
+		
+	# def LastName(self):
+		# return self._LastNameList.GetWord()
+		
+
+# Name: Verb/Adjective - Noun(genitals)
+class InnNameGen1(InnNameGenerator):
+	def __init__(self):
+		super().__init__(id = 1,priority = 1)
+		
+		self._Default = DefaultLastName.SecondLastName
+		
+		self.FirstNameFemaleList([   InnFirstNameFemale(['Anita','Anita C.']),
+									 InnFirstNameFemale(['Eden']),
+									 InnFirstNameFemale(['Honey']),
+									 InnFirstNameFemale(['Ivana','Ivana C.']),
+									 InnFirstNameFemale(['Juana','Juana C.']),
+									 InnFirstNameFemale(['Juanita']),
+									 InnFirstNameFemale(['Lotta']),
+									 InnFirstNameFemale(['Misty']),
+									 InnFirstNameFemale(['C. Mya','C. Maya']),
+									 InnFirstNameFemale(['Maya C.']),
+									 InnFirstNameFemale(['Muffy']),
+									 InnFirstNameFemale(['Nastya']),
+									 InnFirstNameFemale(['Olive','Olivia','Olive R.']),
+									 InnFirstNameFemale(['Ophelia']),
+									 InnFirstNameFemale(['Rosie']),
+									 InnFirstNameFemale(['Sandy']),
+									 InnFirstNameFemale(['Satin']),
+									 InnFirstNameFemale(['P. Inya','Inya']),
+									 InnFirstNameFemale(['Onya','P. Onya']),
+									 InnFirstNameFemale(['Tara'])
+								 ])
+
+		self.FirstNameMaleList([InnFirstNameMale(['Deepa']),
+									 InnFirstNameMale(['Dewey']),
+									 InnFirstNameMale(['Dixon']),
+									 InnFirstNameMale(['Harry']),
+									 InnFirstNameMale(['Hugh']),
+									 InnFirstNameMale(['I.C.']),
+									 InnFirstNameMale(['Juan','I. Juan']),
+									 InnFirstNameMale(['Phil','Phil N.','Philmore']),
+									 InnFirstNameMale(['Major']),
+									 InnFirstNameMale(['Max']),
+									 InnFirstNameMale(['Minnie']),
+									 InnFirstNameMale(['Randy']),
+									 InnFirstNameMale(['Rich']),
+									 InnFirstNameMale(['Ryder']),
+									 InnFirstNameMale(['Sawyer','I. Sawyer']),
+									 InnFirstNameMale(['Oliver']),
+									 InnFirstNameMale(['Juan A.'])
+									])
+
+		self.FirstLastNameList([	 InnLastName(['Bare']),
+									 InnLastName(['Bigg']),
+									 InnLastName(['Black']),
+									 InnLastName(['Broad']),
+									 InnLastName(['Fatt']),
+									 InnLastName(['Goode']),
+									 InnLastName(['Hard']),
+									 InnLastName(['Hung']),
+									 InnLastName(['Long']),
+									 InnLastName(['Major']),
+									 InnLastName(['Pink']),
+									 InnLastName(['White'])
+									])
+									
+		self.SecondLastNameList([InnLastName(['Balls']),
+									 InnLastName(['Beaver']),
+									 InnLastName(['Bone']),
+									 InnLastName(['Brest','Bresst']),
+									 InnLastName(['Broad']),
+									 InnLastName(['Blower']),
+									 InnLastName(['Bottom','Bottoms']),
+									 InnLastName(['Brownie']),
+									 InnLastName(['Buhnz']),
+									 InnLastName(['Butts']),
+									 InnLastName(['Cheeks']),
+									 InnLastName(['Cherry']),
+									 InnLastName(['Clam','Clamm','Clams','Clamms','Clamz','Clammz']),
+									 InnLastName(['Cooter']),
+									 InnLastName(['Cox']),
+									 InnLastName(['Cracks']),
+									 InnLastName(['Dick','Dicks','Dix','Dickons']),
+									 InnLastName(['Fatone']),
+									 InnLastName(['Furrows']),
+									 InnLastName(['Grotch']),
+									 InnLastName(['Hyman']),
+									 InnLastName(['Knockers']),
+									 InnLastName(['Janus']),
+									 InnLastName(['Johnson']),
+									 InnLastName(['Knott']),
+									 InnLastName(['Knuttz']),
+									 InnLastName(['Koch']),
+									 InnLastName(['Kootch']),
+									 InnLastName(['Krevises']),
+									 InnLastName(['Kuntz']),
+									 InnLastName(['Lipps']),
+									 InnLastName(['McCreviss']),
+									 InnLastName(['Melons']),
+									 InnLastName(['Moon']),
+									 InnLastName(['Muff','Muffin']),
+									 InnLastName(['Nippel']),
+									 InnLastName(['Peach','Peaches']),
+									 InnLastName(['Pearl']),
+									 InnLastName(['Pecker']),
+									 InnLastName(['Pohl']),
+									 InnLastName(['Puss']),
+									 InnLastName(['Posey']),
+									 InnLastName(['Rack','Racks']),
+									 InnLastName(['Rodd','Rohdd']),
+									 InnLastName(['Sachs','Sachs','Sax']),
+									 InnLastName(['Schaft','Shaft']),
+									 InnLastName(['Schlong']),
+									 InnLastName(['Snatch']),
+									 InnLastName(['Stiffy']),
+									 InnLastName(['Wang']),
+									 InnLastName(['Weiner']),
+									 InnLastName(['Wood'])
+									])
+									
+# Name: Adjective Adverb-Verber
+class InnNameGen2(InnNameGenerator):
+	def __init__(self):
+		super().__init__(id = 2,priority = 1)
+		
+		self.FirstNameFemaleList([	 InnFirstNameFemale(['A. Nell']),
+									 InnFirstNameFemale(['Ana L.','Anna L.']),
+									 InnFirstNameFemale(['Fonda','I.M. Fonda']),
+									 InnFirstNameFemale(['Amanda']),
+									 InnFirstNameFemale(['Anita']),
+									 InnFirstNameFemale(['Cherry']),
+									 InnFirstNameFemale(['Ima']),
+									 InnFirstNameFemale(['Ivana']),
+									 InnFirstNameFemale(['Juana','I. Juana']),
+									 InnFirstNameFemale(['Kitty']),
+									 InnFirstNameFemale(['Lady']),
+									 InnFirstNameFemale(['May','May I.','Maya','I. May']),
+									 InnFirstNameFemale(['Muffy']),
+									 InnFirstNameFemale(['Sweetie']),
+									 InnFirstNameFemale(['Wanda'])
+								 ])
+									
+		self.FirstNameMaleList([	 InnFirstNameMale(['Deepa']),
+									 InnFirstNameMale(['Otto']),
+									 InnFirstNameMale(['Gunnar','I. Gunnar']),
+									 InnFirstNameMale(['Harry']),
+									 InnFirstNameMale(['Gaylord']),
+									 InnFirstNameMale(['Howie']),
+									 InnFirstNameMale(['Hugh']),
+									 InnFirstNameMale(['Kanye']),
+									 InnFirstNameMale(['Major']),
+									 InnFirstNameMale(['Otto']),
+									 InnFirstNameMale(['Penn S.']),
+									 InnFirstNameMale(['Peter']),
+									 InnFirstNameMale(['Rod']),
+									 InnFirstNameMale(['Woody','Woody U.']),
+									 InnFirstNameMale(['Will E.','Will I.','Willy','Willie','Will U.'])
+									 
+									])
+
+	 # Verb: 'Bendz','Benz','Creams','Djiz','Faulks','Feltch','Hardin','Holden','Hump','Mount','Peckwood','Swallows','Stroke','Throat'
+# Answer: 'Blush','Blower','Cream','Creamer','Dichter','Djerkov','Djiz','Handler','Milfinger'
+#'Rimmer','Rubber','Spreader','Stuffer','Topper'
+		self.FirstLastNameList([InnLastName(['Bangs','Banger']),
+									 InnLastName(['Bender']),
+									 InnLastName(['Black']),
+									 InnLastName(['Creamer']),
+									 InnLastName(['Cummings']),
+									 InnLastName(['Dicker','Dickens']),
+									 InnLastName(['Djerkov']),
+									 InnLastName(['Faulks']),
+									 InnLastName(['Feltcher']),
+									 InnLastName(['Fokker','Focker']),
+									 InnLastName(['Humper']),
+									 InnLastName(['Jakov','Jackov']),
+									 InnLastName(['Liquor','Lickor']),
+									 InnLastName(['Gaper']),
+									 InnLastName(['Mounter']),
+									 InnLastName(['Philmore']),
+									 InnLastName(['Polk','Poke','Poker']),
+									 InnLastName(['Porker']),
+									 InnLastName(['Popper']),
+									 InnLastName(['Pu']),
+									 InnLastName(['Rimmer']),
+									 InnLastName(['Rubber']),
+									 InnLastName(['Spreader']),
+									 InnLastName(['Stuffer']),
+									 InnLastName(['Swallower']),
+									 InnLastName(['Stroker']),
+									 InnLastName(['Topper']),
+									 InnLastName(['White'])
+									])
+		
+		#'Daley','Freely','Gayley','Hard','Harder','Knightly','Moore','Shyly','Stiffley','Kootch','Krevises',Kuntz',
+		self.SecondLastNameList([InnLastName(['Daley']),
+									 InnLastName(['Freely']),
+									 InnLastName(['Gayley']),
+									 InnLastName(['Hard','Harder']),
+									 InnLastName(['Knightly']),
+									 InnLastName(['Stiffley']),
+									 InnLastName(['Beaver']),
+									 InnLastName(['Bodie']),
+									 InnLastName(['Bresst','Brest']),
+									 InnLastName(['Clam','Clamm','Clams','Clamms','Clamz','Clammz']),
+									 InnLastName(['Cracks']),
+									 InnLastName(['Cherry']),
+									 InnLastName(['Furrow']),
+									 InnLastName(['Hole']),
+									 InnLastName(['Holston']),
+									 InnLastName(['Hyman']),
+									 InnLastName(['Knockers']),
+									 InnLastName(['Kootch']),
+									 InnLastName(['Krevises']),
+									 InnLastName(['Kuntz']),
+									 InnLastName(['Melons']),
+									 InnLastName(['Muffy','Muffin']),
+									 InnLastName(['Peach']),
+									 InnLastName(['Puss'])
+									])
+	
+# Name: Amanda Faulk
+class InnNameGen3(InnNameGenerator):
+	def __init__(self):
+		super().__init__(id = 3,priority = 1)
+		
+		self.FirstNameFemaleList([	 InnFirstNameFemale(['Amanda']),
+									 InnFirstNameFemale(['Amanda']),
+									 InnFirstNameFemale(['Anita']),
+									 InnFirstNameFemale(['Ivana']),
+									 InnFirstNameFemale(['Juana','I. Juana','Juanita']),
+									 InnFirstNameFemale(['Olive','Olivia']),
+									 InnFirstNameFemale(['Ophelia']),
+									 InnFirstNameFemale(['Wanda']),
+								 ])
+									
+		self.FirstNameMaleList([	 InnFirstNameMale(['Deepa']),
+									 InnFirstNameMale(['Gunnar','I. Gunnar']),
+									 InnFirstNameMale(['Gaylord']),
+									 InnFirstNameMale(['Juan A.']),
+									 InnFirstNameMale(['Penn S.']),
+									 InnFirstNameMale(['Peter']),
+									 InnFirstNameMale(['Kanye']),
+									 InnFirstNameMale(['Major']),
+									 InnFirstNameMale(['Otto']),
+									 InnFirstNameMale(['Peter']),
+									 InnFirstNameMale(['Rod']),
+									 InnFirstNameMale(['Woody','Woody U.']),
+									 InnFirstNameMale(['Will E.','Will I.','Willy','Willie','Will U.'])
+									 
+									])
+
+		self.FirstLastNameList([	 InnLastName(['Blow']),
+									 InnLastName(['Cream']),
+									 InnLastName(['Cummings']),
+									 InnLastName(['Dick','Dickens']),
+									 InnLastName(['Djerkov']),
+									 InnLastName(['Djiz']),
+									 InnLastName(['Faulk']),
+									 InnLastName(['Feltch']),
+									 InnLastName(['Gaylord']),
+									 InnLastName(['Hump']),
+									 InnLastName(['Jakov','Jackov']),
+									 InnLastName(['Gape']),
+									 InnLastName(['Mount']),
+									 InnLastName(['Philmore']),
+									 InnLastName(['Swallow']),
+									 InnLastName(['Stroke']),
+									 InnLastName(['Throat'])
+									])
+		
+		#'Moorehard
+		self.SecondLastNameList([	 InnLastName(['Bottoms']),
+									 InnLastName(['Butts']),
+									 InnLastName(['Clam','Clamm','Clams','Clamms','Clamz','Clammz']),
+									 InnLastName(['Daley']),
+									 InnLastName(['Freely']),
+									 InnLastName(['Gayley']),
+									 InnLastName(['Hard','Harder']),
+									 InnLastName(['Knightly']),
+									 InnLastName(['Moore']),
+									 InnLastName(['Moorehard']),
+									 InnLastName(['Onnum']),
+									 InnLastName(['Stiffley']),
+									])
+									
+									
+# Verb: 'Barry','Bone R.','Buster','Holden','Lance','Pat','Pat N.','Phil','Phil N.','Philip','Philmore','Ryder',
+	  # 'Seymour','I. Seymour'
+# Verb (being): 'Ben','I. Ben'
+class InnNameGen4(InnNameGenerator):
+	def __init__(self):
+		super().__init__(id = 4,priority = 1)
+		
+		self._Default = DefaultLastName.SecondLastName
+		
+		#'Carrie','Eden','Kari','Rhoda','Sharon','I'.M. Sharon'
+		self.FirstNameFemaleList([	 InnFirstNameFemale(['A. Nell']),
+									 InnFirstNameFemale(['Ana L.','Anna L.']),
+									 InnFirstNameFemale(['Fonda','I.M. Fonda']),
+									 InnFirstNameFemale(['Carrie']),
+									 InnFirstNameFemale(['Eden U.']),
+									 InnFirstNameFemale(['C. Cherry','Cherry','Cherry P.']),
+									 InnFirstNameFemale(['Rhoda U.']),
+									 InnFirstNameFemale(['Sharon','I.M. Sharon'])
+								 ])
+									
+		self.FirstNameMaleList([	 InnFirstNameMale(['Bone R.','I. Bone','Bone U.']),
+									 InnFirstNameMale(['Buster',]),
+									 InnFirstNameMale(['C. Dick','Dick','Dick U.']),
+									 InnFirstNameMale(['Holden','Holden P.']),
+									 InnFirstNameMale(['Jack','Jack N.']),
+									 InnFirstNameMale(['Lance','I. Lance','U. Lance']),
+									 InnFirstNameMale(['Pat','Pat N.','Pat U.']),
+									 InnFirstNameMale(['Phil','Phil N.','Philip','I. Philip']),
+									 InnFirstNameMale(['Philmore','I. Philmore']),
+									 InnFirstNameMale(['Ryder','I. Ryder']),
+									 InnFirstNameMale(['Seymour','I. Seymour'])
+									 
+									])
+									
+		self.FirstLastNameList([	 InnLastName(['Beaver']),
+									 InnLastName(['Bone','Boner','Bones']),
+									 InnLastName(['Brest','Bresst']),
+									 InnLastName(['Bottom','Bottoms']),
+									 InnLastName(['Brownie']),
+									 InnLastName(['Buhnz']),
+									 InnLastName(['Butts']),
+									 InnLastName(['Cheeks']),
+									 InnLastName(['Clam','Clamm','Clams','Clamms','Clamz','Clammz']),
+									 InnLastName(['Cox']),
+									 InnLastName(['Cracks']),
+									 InnLastName(['Dick','Dicks','Dix','Dickons']),
+									 InnLastName(['Fatone']),
+									 InnLastName(['Furrows']),
+									 InnLastName(['Grotch']),
+									 InnLastName(['Knockers']),
+									 InnLastName(['Janus']),
+									 InnLastName(['Johnson']),
+									 InnLastName(['Knott']),
+									 InnLastName(['Knuttz']),
+									 InnLastName(['Koch']),
+									 InnLastName(['Kootch']),
+									 InnLastName(['Krevises']),
+									 InnLastName(['Kuntz']),
+									 InnLastName(['Mann']),
+									 InnLastName(['Mannlove']),
+									 InnLastName(['McCreviss']),
+									 InnLastName(['Melons']),
+									 InnLastName(['Moon']),
+									 InnLastName(['Pecker']),
+									 InnLastName(['Pohl']),
+									 InnLastName(['Rack','Racks']),
+									 InnLastName(['Rodd','Rohdd']),
+									 InnLastName(['Sachs','Sachs','Sax']),
+									 InnLastName(['Schaft','Shaft']),
+									 InnLastName(['Schlong']),
+									 InnLastName(['Wang']),
+									 InnLastName(['Weiner']),
+									 InnLastName(['Wood'])
+									])
+									
+		self.SecondLastNameList([InnLastName(['Daley']),
+									 InnLastName(['Freely']),
+									 InnLastName(['Gayley']),
+									 InnLastName(['Hard','Harder']),
+									 InnLastName(['Knightly']),
+									 InnLastName(['Stiffley'])
+									])
+									
+# Name: Noun - Adjective
+class InnNameGen5(InnNameGenerator):
+	def __init__(self):
+		super().__init__(id = 5,priority = 1)
+		
+		self.FirstNameFemaleList([   InnFirstNameFemale(['Ima']),
+									 InnFirstNameFemale(['Ophelia'])
+								 ])
+		#'Dick','Gaylord','Hans','Penn S.','Peter','Rod','Willie','Willy'
+		self.FirstNameMaleList([	 InnFirstNameMale(['Ben','I. Ben']),
+									 InnFirstNameMale(['Dick']),
+									 InnFirstNameMale(['Gaylord']),
+									 InnFirstNameMale(['Juan U.']),
+									 InnFirstNameMale(['Major']),
+									 InnFirstNameMale(['Max']),
+									 InnFirstNameMale(['Penn S.']),
+									 InnFirstNameMale(['Peter']),
+									 InnFirstNameMale(['Rod']),
+									 InnFirstNameMale(['Sawyer','I. Sawyer']),
+									 InnFirstNameMale(['Seymour','I. Seymour']),
+									 InnFirstNameMale(['Willie','Willy'])
+									])
+
+		#'Bear','Blush','Biggs','Clozov','Cummer','Fatt','Goode','Hancock','Hancocke','Hard',
+		   # 'Humper','Hung','Hunter','Inya','Long','Manlove','Moorehard','Oxhard','Pink','Stiffy',
+		   # 'Stiffington'
+		self.FirstLastNameList([InnLastName(['Bare', 'S. Bare']),
+									 InnLastName(['Blushing', 'S. Blushing']),
+									 InnLastName(['Biggs', 'S. Biggs']),
+									 InnLastName(['Clozov']),
+									 InnLastName(['Cumming', 'S. Cumming']),
+									 InnLastName(['Fatt', 'S. Fatt']),
+									 InnLastName(['Goode', 'S. Goode']),
+									 InnLastName(['Hancock', 'S. Hancock']),
+									 InnLastName(['Hard','Harder', 'S. Hard']),
+									 InnLastName(['Hung', 'S. Hung']),
+									 InnLastName(['Inya', 'S. Inya']),
+									 InnLastName(['Long', 'S. Long']),
+									 InnLastName(['Manlove', 'S. Manlove']),
+									 InnLastName(['Moorehard', 'S. Moorehard']),
+									 InnLastName(['Onya', 'S. Onya']),
+									 InnLastName(['Oxhard', 'S. Oxhard']),
+									 InnLastName(['Pink', 'S. Pink']),
+									 InnLastName(['Stiffy']),
+									 InnLastName(['Stiffington', 'S. Stiffington'])
+									])
+									
+# Name: Ima Ho
+class InnNameGen6(InnNameGenerator):
+	def __init__(self):
+		super().__init__(id = 6,priority = 1)
+		
+		self._Default = DefaultLastName.SecondLastName
+		
+		self.FirstNameFemaleList([   InnFirstNameFemale(['Anita']),
+									 InnFirstNameFemale(['Ima']),
+									 InnFirstNameFemale(['Issa']),
+									 InnFirstNameFemale(['Juana','I. Juana','U. Juana']),
+									 InnFirstNameFemale(['Rhoda','I. Rhoda','U. Rhoda']),
+									 InnFirstNameFemale(['Wanda','I. Wanda'])
+								 ])
+		#'Dick','Gaylord','Hans','Penn S.','Peter','Rod','Willie','Willy'
+		self.FirstNameMaleList([	 InnFirstNameMale(['Ben A.','I. Ben']),
+									 InnFirstNameMale(['Dick','Dick A.','I. Dick']),
+									 InnFirstNameMale(['Juan A.']),
+									 InnFirstNameMale(['Major','U. Major','I. Major']),
+									 InnFirstNameMale(['Penn S.']),
+									 InnFirstNameMale(['Peter']),
+									 InnFirstNameMale(['Sawyer','I. Sawyer'])
+									])
+
+		self.FirstLastNameList([	 InnLastName(['Bigg']),
+									 InnLastName(['Black']),
+									 InnLastName(['Daley']),
+									 InnLastName(['Fatt']),
+									 InnLastName(['Free']),
+									 InnLastName(['Goode']),
+									 InnLastName(['Free']),
+									 InnLastName(['Knightly']),
+									 InnLastName(['White']) 
+ 
+									])
+									
+		self.SecondLastNameList([	 InnLastName(['Analicker']),
+									 InnLastName(['Djerkov']),
+									 InnLastName(['Ho']),
+									 InnLastName(['Hoar']),
+									 InnLastName(['Jackov','Jakov']),
+									 InnLastName(['Liquor']),
+									 InnLastName(['Mann','Mannlova'])
+									])
+									
+class InnNameGenSelector():
+	GeneratorList = []
+	
+	def __init__(self):
+		for subclass in InnNameGenerator.__subclasses__():
+			item = subclass()
+			for x in range(0, item.Priority):
+				self.GeneratorList.append([item.ID, item])
+			
+	def RandomGenerator(self,):
+		Generator = None
+		
+		Generator = self.GeneratorList[randint(0, len(self.GeneratorList) - 1)][1]
+						
+		return Generator 
+		
+	def GetGenerator(self, iGen):
+		Generator = None 
+		
+		if len(self.GeneratorList) > 0:
+			for gen in self.GeneratorList :
+				if gen[1].ID == iGen:
+					Generator = gen[1]
+					break
+					
+		return Generator 
+					
+
+		
+def GetInnName(gender, iGeneratorNo = 0):
 	sName = ""
-	for _ in range(2):
-		sName += Alphabet[randint(0, len(Alphabet) - 1)] + "."
-	FirstNames.append(sName)
 	
-	if Gender == Gender.Male or Gender == Gender.Neuter:
-		for _ in range(5):
-			FirstNames.append(MaleNames.FirstName())
-			
-		sName1 = ""
-		sName2 = ""
-		for _ in range(4):
-			sName1 = MaleNames.FirstName()
-			FirstNames.append(sName1)
-			
-		for _ in range(2):
-			sMaleFirstName = MaleNames.FirstName()
-			if not '.' in sMaleFirstName:
-				FirstNames.append(sMaleFirstName + " " + Alphabet[randint(0, len(Alphabet) - 1)] + ".")
-			
-		for _ in range(2):
-			sMaleFirstName = MaleNames.FirstName()
-			if not '.' in sMaleFirstName:
-				FirstNames.append("AAEIIUBCP"[randint(0, 8)] + ". " + sMaleFirstName)
-		
-	if Gender == Gender.Female or Gender == Gender.Neuter:
-		for _ in range(5):
-			FirstNames.append(FemNames.FirstName())
-			
-		sName1 = ""
-		sName2 = ""
-		for _ in range(4):
-			sName1 = FemNames.FirstName()
-			FirstNames.append(sName1)
-			
-		for _ in range(2):
-			sFemFirstName = FemNames.FirstName()
-			if '.' not in sFemFirstName:
-				FirstNames.append(sFemFirstName + " " + Alphabet[randint(0, len(Alphabet) - 1)] + ".")
-			
-		for _ in range(2):
-			sFemFirstName = FemNames.FirstName()
-			if '.' not in sFemFirstName:
-				FirstNames.append("AAEIIUBCP"[randint(0, 8)] + ". " + sFemFirstName)
-		
-	sAName = FirstNames[randint(0, len(FirstNames) - 1)]
+	Generator = None
+	GenType = None 
+	HistoryQ = None 
 	
-	sAName += " " + LastNameBuilder(NotList = [sAName])
+	if gender == Gender.Neuter:
+		if CoinFlip():
+			gender = Gender.Female
+		else:
+			gender = Gender.Male
 	
-	return sAName
+	if not InnNameHistoryQ is None:
+		HistoryQ = InnNameHistoryQ
+	
+	GenSel = InnNameGenSelector()
+	if iGeneratorNo != 0:
+		gen = GenSel.GetGenerator(iGeneratorNo)
+	else:
+		gen = GenSel.RandomGenerator()
+		while not HistoryQ.PushToHistoryQ(gen.ID):
+			gen = GenSel.RandomGenerator()
+	
+	if not gen is None:
+		print("Innuendo name generator #" + str(gen.ID) + " selected for " + str(gender))
+		sName = gen.GetName(gender)
+
+	
+	return sName 
