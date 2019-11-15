@@ -976,7 +976,8 @@ class InnNameGen1(InnNameGenerator):
 									 InnFirstNameFemale(['Tara'])
 								 ])
 
-		self.FirstNameMaleList([InnFirstNameMale(['Deepa']),
+		self.FirstNameMaleList([	 InnFirstNameMale(['Craven']),
+									 InnFirstNameMale(['Deepa']),
 									 InnFirstNameMale(['Dewey']),
 									 InnFirstNameMale(['Dixon']),
 									 InnFirstNameMale(['Harry']),
@@ -1251,6 +1252,7 @@ class InnNameGen4(InnNameGenerator):
 									
 		self.FirstNameMaleList([	 InnFirstNameMale(['Bone R.','I. Bone','Bone U.']),
 									 InnFirstNameMale(['Buster',]),
+									 InnFirstNameMale(['Craven','I.M. Craven']),
 									 InnFirstNameMale(['C. Dick','Dick','Dick U.']),
 									 InnFirstNameMale(['Holden','Holden P.']),
 									 InnFirstNameMale(['Jack','Jack N.']),
@@ -1375,6 +1377,7 @@ class InnNameGen6(InnNameGenerator):
 								 ])
 		#'Dick','Gaylord','Hans','Penn S.','Peter','Rod','Willie','Willy'
 		self.FirstNameMaleList([	 InnFirstNameMale(['Ben A.','I. Ben']),
+									 InnFirstNameMale(['Craven','I.M. Craven']),
 									 InnFirstNameMale(['Dick','Dick A.','I. Dick']),
 									 InnFirstNameMale(['Juan A.']),
 									 InnFirstNameMale(['Major','U. Major','I. Major']),
