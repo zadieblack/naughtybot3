@@ -864,18 +864,61 @@ class TweetTxtGen25(TweetTxtGen):
 		
 		return sText	
 
-# class TweetTxtGen24(TweetTxtGen):
-	# # Out soon from Ben Dover
-	# def __init__(self):
-		# super().__init__()
-		# self.ID = 24
-		# self.Priority = 2
+class TweetTxtGen26(TweetTxtGen):
+	# Out soon from Ben Dover
+	def __init__(self):
+		super().__init__()
+		self.ID = 26
+		self.Priority = 5
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sText = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sText = ""
 		
-		# return sText	
+		Literature = WordList([["Lord of the Rings","J.R.R. Tolkien"],
+								["Pride and Predjuice","Jane Austin"],
+								["Wuthering Heights","Emily Brontë"],
+								["Sense and Sensibility","Jane Austin"],
+								["One Hundred Years of Solitude","Gabriel García Márquez"],
+								["The Bell Jar","Sylvia Plath"],
+								["The Great Gatsby","F. Scott Fitzgerald"],
+								["The Grapes of Wrath","John Steinbeck"],
+								["War and Peace", "Leo Tolstoy"],
+								["Anna Karenina","Leo Tolstoy"],
+								["The Sun Also Rises","Earnest Hemmingway"],
+								["Jane Eyre","Charlotte Brontë"],
+								["Heart of Darkness","Joseph Conrad"],
+								["Finnegan's Wake","James Joyce"],
+								["Ulysses","James Joyce"],
+								["Moby Dick","Herman Melville"],
+								["To Kill A Mockingbird","Harper Lee"],
+								["1984","George Orwell"],
+								["The Catcher in the Rye", "J.D. Salinger"],
+								["The Brothers Karamazov","Fyodor Dostoyevsky"],
+								["The Scarlet Letter","Nathaniel Hawthorne"],
+								["Don Quixote","Miguel de Cervantes"],
+								["Les Misérables","Victor Hugo"],
+								["Of Mice and Men","John Steinbeck"],
+								["A Tale of Two Cities","Charles Dickens"],
+								["Charlotte's Web","E.B. White"],
+								["The Wind in the Willows","Kenneth Grahame"],
+								["All Quiet on the Western Front","Erich Maria Remarque"],
+								["Rememberance of Things Past","Marcel Proust"],
+								["The Call of the Wild","Jack London"],
+								["Portnoy's Complaint","Philip Roth"],
+								["The Sound & The Fury","William Faulkner"],
+								["Madame Bovary","Gustave Flaubert"],
+								["Harry Potter and the Deathly Hallows","J.K. Rowling"],
+								["Are You There God? It's Me, Margaret","Judy Bloom"],
+								["The Unbearable Lightness of Being","Milan Kundera"],]).GetWord()
+								
+		sText = " ~ \"" + Literature[0] + ",\" by " + Literature[1] + ", "
+		if CoinFlip():
+			sText += "chapter " + str(randint(4,69))
+		else:
+			sText += "page " + str(randint(101,950))
+		
+		return sText	
 
 # class TweetTxtGen24(TweetTxtGen):
 	# # Out soon from Ben Dover

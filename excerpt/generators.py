@@ -820,7 +820,7 @@ class Generator22(Generator):
 		sTweet += "she thought to herself. "
 		sTweet += "\"My " + self.MFWB.GetPerson() + " "
 		sTweet += "is " + WordList(["a sex god","such a snacck","a total dreamboat","such a DILF",
-									"such a hunk","is fucking sexy","a total hearthrob",
+									"such a hunk","fucking sexy","a total hearthrob",
 									"a hunk of beefcake"]).GetWord() + "!\""
 		
 		return sTweet
