@@ -1104,9 +1104,6 @@ class InnNameGen2(InnNameGenerator):
 									 
 									])
 
-	 # Verb: 'Bendz','Benz','Creams','Djiz','Faulks','Feltch','Hardin','Holden','Hump','Mount','Peckwood','Swallows','Stroke','Throat'
-# Answer: 'Blush','Blower','Cream','Creamer','Dichter','Djerkov','Djiz','Handler','Milfinger'
-#'Rimmer','Rubber','Spreader','Stuffer','Topper'
 		self.FirstLastNameList([InnLastName(['Bangs','Banger']),
 									 InnLastName(['Bender']),
 									 InnLastName(['Black']),

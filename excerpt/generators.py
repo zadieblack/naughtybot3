@@ -839,9 +839,23 @@ class Generator23(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
+		FFWBNotList = ['babysitter','best friend\'s wife','boss\'s wife','roommate','daughter\'s best friend','land lady',
+						'English lit student','maid','maid','math teacher','math tutor','mom\'s best friend',
+						'sister\'s hot friend']
+		
 		sWhiteCollar = self.WhiteCollar.GetPerson()
-		sTweet = "'My " + self.FFWB.GetPerson() + " thinks " + AddArticles(sWhiteCollar) + " and his " + self.FFWB.GetPerson() + " can never find love together,' said " + self.MaleName.FirstName() + " as " + self.FemaleName.FirstName() + " lay exhausted in his " + self.MaleBodyParts.Arms.MediumDescription() + ".\n\n"
-		sTweet += "'You're no " + sWhiteCollar + ",' she replied, panting. 'You're the mayor of " + WordList(["do", "fill", "fuck", "hammer", "hump", "jizz", "nail", "plough", "pound", "ravage", "ream", "slam", "stuff"]).GetWord().capitalize() + " My " + self.FemBodyParts.GetRandomHole(bAllowShortDesc = True, bAllowLongDesc = False, bIncludeMouth = False).title() + " City!'"
+		sFFWB1 = self.FFWB.GetPerson()
+		sFFWB2 = self.FFWB.GetPerson() 
+		while sFFWB1 == sFFWB2:
+			sFFWB2 = self.FFWB.GetPerson() 
+		sTweet = "'My " + sFFWB1 + " thinks " + AddArticles(sWhiteCollar) + " and his " + sFFWB2 + " can never find love together,' said " + self.MaleName.FirstName() + " as " + self.FemaleName.FirstName() + " lay exhausted in his " + self.MaleBodyParts.Arms.MediumDescription() + ".\n\n"
+		sTweet += "'You're no " + sWhiteCollar + ",' she replied, panting. "
+		sTweet += "'You're the mayor of " + WordList(["do", "fill", "fuck", "hammer", "hump", "jizz", "nail", 
+													  "plough", "pound", "ravage", "ream", "slam", "stuff"]).GetWord().capitalize() + " "
+		if CoinFlip():
+			sTweet += "My " + self.FemBodyParts.Vagina.ShortDescription().title() + " City!'"
+		else:
+			sTweet += "My " + self.FemBodyParts.Vagina.MediumDescription().title() + " City!'"
 		
 		return sTweet
 		
@@ -1090,7 +1104,9 @@ class Generator29(Generator):
 		return sTweet
 		
 class Generator30(Generator):
-	#'C'mere baby,' she said. 'I want you to suck on my inch-long nipples. I want to feel your fevered package against my bottom and then I want you to fill my silk womb with your semen.' 'Ooooh, yes,' sighed Julian. 'But my priest says it's wrong to do this with my teacher.'
+	#'C'mere baby,' she said. 'I want you to suck on my inch-long nipples. I want to feel your fevered package
+	#against my bottom and then I want you to fill my silk womb with your semen.' 'Ooooh, yes,' sighed Julian. 
+	#'But my priest says it's wrong to do this with my teacher.'
 	ID = 30
 	Priority = 1
 	
@@ -1910,7 +1926,7 @@ class Generator50(Generator):
 	# 'That's too bad,' she said. 'Then I guess you have no interest in *this*.' She pulled the crotch of her tight shorts aside. Her pussy lips were tanned and hairless, and a metal piercing gleamed in her clit.
 	# 'Oh, fuck!' moaned Pablo.
 	ID = 50
-	Priority = 1
+	Priority = 3
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
