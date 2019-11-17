@@ -4627,7 +4627,7 @@ class Generator140(Generator):
 		
 class Generator999(Generator):
 	ID = 999
-	Priority = 2
+	Priority = 0
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()

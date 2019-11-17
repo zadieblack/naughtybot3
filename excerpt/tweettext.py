@@ -825,7 +825,7 @@ class TweetTxtGen24(TweetTxtGen):
 							"Famous Footwear","Men's Wearhouse",
 							"The Cheesecake Factory","Subway Sandwiches",
 							"Olive Garden","Cracker Barrel","Red Lobster",
-							"Tesco","Best Buy"
+							"Tesco","Best Buy","Costco"
 						  ]).GetWord() + " "
 		sText += "does not condone " + sAct1 + " or " + sAct2 + "."
 		
