@@ -869,7 +869,7 @@ class TweetTxtGen26(TweetTxtGen):
 	def __init__(self):
 		super().__init__()
 		self.ID = 26
-		self.Priority = 500
+		self.Priority = 4
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
