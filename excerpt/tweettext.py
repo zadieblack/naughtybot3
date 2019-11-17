@@ -869,7 +869,7 @@ class TweetTxtGen26(TweetTxtGen):
 	def __init__(self):
 		super().__init__()
 		self.ID = 26
-		self.Priority = 5
+		self.Priority = 500
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -912,11 +912,12 @@ class TweetTxtGen26(TweetTxtGen):
 								["Are You There God? It's Me, Margaret","Judy Bloom"],
 								["The Unbearable Lightness of Being","Milan Kundera"],]).GetWord()
 								
-		sText = " ~ \"" + Literature[0] + ",\" by " + Literature[1] + ", "
+		sText = "From \"" + Literature[0] + ",\" by " + Literature[1] + ". "
 		if CoinFlip():
-			sText += "chapter " + str(randint(4,69))
+			sText += "Chapter " + str(randint(4,69)) 
 		else:
-			sText += "page " + str(randint(101,950))
+			sText += "Page " + str(randint(101,950))
+		sText += "."
 		
 		return sText	
 

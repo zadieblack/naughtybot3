@@ -830,32 +830,46 @@ class Generator22(Generator):
 		return sTweet
 		
 class Generator23(Generator):
-	# 'My mother thinks an opthamolgist and a librarian can never find love together,' said Raoul as Esmerelda lay exhausted in his strong arms.\r\n
-	# 'You're no opthamologist,' she replied, panting. 'You're the mayor of Ream My Ass City!'
+	# 'My mother thinks an opthamolgist and his step-sister can never find love together,' said Raoul 
+	# as Esmerelda lay exhausted in his strong arms.\r\n
+	# 'You're no opthamologist,' she replied, panting. 'You're the mayor of Ream My Fjcking Ass City!'
 	ID = 23
-	Priority = 1
+	Priority = 2
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		FFWBNotList = ['babysitter','best friend\'s wife','boss\'s wife','roommate','daughter\'s best friend','land lady',
-						'English lit student','maid','maid','math teacher','math tutor','mom\'s best friend',
-						'sister\'s hot friend']
+		FemRelations = WordList(['mother','step-mom','ex-wife','ex-girlfriend','therapist','sister','step-sister',
+					    'twin sister','wife','aunt','grandmother','boss','pastor','priest',
+						'Sunday-School teacher','twin sister','sister-in-law'])
+		ForbiddenLoves = WordList(["babysitter","best friend's wife","boss","boss's wife","daughter's best friend",
+						  "English lit student","pupil","urologist","psychiatrist","therapist","sister",
+						  "step-sister","twin sister","aunt","grandma","boss","sister's hot friend",
+						  "mom's best friend","step-daughter","daughter-in-law","dad's girlfriend",
+						  "massage therapist","parole officer","wedding planner","niece",
+						  "favorite stripper","niece","best friend's wife","son's girlfriend",
+						  "son's fiancé","dad's fiancé","brother's fiancé"])
+		Verbs = WordList(["do", "fuck","fuck","fuck","hammer","jizz","nail", 
+						  "wreck", "ruin","plow","pound","pound","ream", 
+						  "stuff","stuff","bang","eat","ride","cream",
+						  "screw","frig"])
+						  
+		sVerb = Verbs.GetWord()
 		
 		sWhiteCollar = self.WhiteCollar.GetPerson()
-		sFFWB1 = self.FFWB.GetPerson()
-		sFFWB2 = self.FFWB.GetPerson() 
-		while sFFWB1 == sFFWB2:
-			sFFWB2 = self.FFWB.GetPerson() 
+		sFFWB1 = FemRelations.GetWord()
+		sFFWB2 = ForbiddenLoves.GetWord(NotList = [sFFWB1])
 		sTweet = "'My " + sFFWB1 + " thinks " + AddArticles(sWhiteCollar) + " and his " + sFFWB2 + " can never find love together,' said " + self.MaleName.FirstName() + " as " + self.FemaleName.FirstName() + " lay exhausted in his " + self.MaleBodyParts.Arms.MediumDescription() + ".\n\n"
 		sTweet += "'You're no " + sWhiteCollar + ",' she replied, panting. "
-		sTweet += "'You're the mayor of " + WordList(["do", "fill", "fuck", "hammer", "hump", "jizz", "nail", 
-													  "plough", "pound", "ravage", "ream", "slam", "stuff"]).GetWord().capitalize() + " "
+		sTweet += "'You're the mayor of " + sVerb.capitalize() + " My "
+		if not shutil.FoundIn(sVerb,"fuck") and randint(1,3) == 3:
+			sTweet += "Fucking "
 		if CoinFlip():
-			sTweet += "My " + self.FemBodyParts.Vagina.ShortDescription().title() + " City!'"
+			sTweet += self.FemBodyParts.Vagina.ShortDescription(NotList = ['womanhood','flower','cooch','honey','sex','muff']).title() 
 		else:
-			sTweet += "My " + self.FemBodyParts.Vagina.MediumDescription().title() + " City!'"
+			sTweet += self.FemBodyParts.Ass.ShortDescription().title()
+		sTweet += " City!'"
 		
 		return sTweet
 		

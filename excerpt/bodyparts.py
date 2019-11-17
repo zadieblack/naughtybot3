@@ -1057,11 +1057,64 @@ class AnusFemale(BodyParts):
 		self.DefaultNoun("anus")
 		self.IsPlural = False
 		
+class ButtocksFemale(BodyParts):
+	def __init__(self):
+		super().__init__()
+	
+		self.NounList(['buns',
+			'butt-cheeks',
+			'buttocks',
+			'cheeks'])
+			
+		self.AdjList(['ample',
+			'chubby',
+			'curvaceous',
+			'curvy',
+			'cute',
+			'fat',
+			'honeyed',
+			'jiggling',
+			'juicy',
+			'luscious',
+			'muscular',
+			'plump',
+			'rotund',
+			'round',
+			'rounded',
+			'shapely','shapely','shapely',
+			'smooth',
+			'squeezable','squeezable',
+			'succulent',
+			'supple',
+			'sweet',
+			'tender',
+			'thick','thick','thick',
+			'tight',
+			'trim',
+			'voluptuous',
+			'well-rounded'])
+			
+		self.ColorList(['bronzed',
+						'black',
+						'brown',
+						'coffee-colored',
+						'creamy',
+						'dark',
+						'pale',
+						'pink',
+						'rosy',
+						'sun-kissed',
+						'tanned'
+					   ])
+		
+		self.DefaultNoun("buttocks")
+		
 class AssFemale(BodyParts):
 	def __init__(self):
 		super().__init__()
 		
 		self.Anus = AnusFemale()
+		self.Buttocks = ButtocksFemale()
 		
 		self.NounList(['ass',
 			'backside',
@@ -1069,10 +1122,8 @@ class AssFemale(BodyParts):
 			'booty',
 			'bottom',
 			'bum',
-			'buns',
 			'butt',
-			'buttocks',
-			'cheeks',
+			'gluteous maximus',
 			'heinie',
 			'rump',
 			'tush',
@@ -1085,6 +1136,8 @@ class AssFemale(BodyParts):
 			'chubby',
 			'curvaceous',
 			'curvy',
+			'cute little',
+			'fat',
 			'fuckable',
 			'generous',
 			'glistening',
@@ -1094,6 +1147,7 @@ class AssFemale(BodyParts):
 			'juicy',
 			'lush',
 			'luscious',
+			'muscular',
 			'nubile',
 			'pert',
 			'plump',
@@ -1103,12 +1157,12 @@ class AssFemale(BodyParts):
 			'rounded',
 			'shameless',
 			'shapely',
-			'smooth',
 			'succulent',
 			'supple',
 			'sweet',
 			'tender',
 			'thick','thick',
+			'tight',
 			'trim',
 			'voluptuous',
 			'womanly',
@@ -1128,6 +1182,67 @@ class AssFemale(BodyParts):
 					   ])
 		
 		self.DefaultNoun("ass")
+		
+	def ShortDescription(self, sNot = "", NotList = None, bAllowButtocks = False):
+		sDesc = super().ShortDescription(sNot = "", NotList = NotList)
+		if NotList == None:
+			NotList = []
+		
+		if sNot != "":
+			NotList.append(sNot)
+
+		if bAllowButtocks:
+			if randint(1,15) > 11:
+				self.Buttocks.ShortDescription(sNot = sNot, NotList = NotList)
+		
+		return sDesc
+		
+	def MediumDescription(self, sNot = "",  NotList = None, bAllowButtocks = False):
+		sDesc = super().MediumDescription(sNot = sNot, NotList = NotList)
+		
+		if NotList == None:
+			NotList = []
+		
+		if sNot != "":
+			NotList.append(sNot)
+		
+		if bAllowButtocks:
+			if randint(1,15) > 11:
+				self.Buttocks.MediumDescription(sNot = sNot, NotList = NotList)
+			
+		return sDesc 
+		
+	def FloweryDescription(self, sNot = "", NotList = None, bAllowButtocks = False):
+		sDesc = super().FloweryDescription(sNot = sNot, NotList = NotList)
+		
+		if NotList == None:
+			NotList = []
+		
+		if sNot != "":
+			NotList.append(sNot)
+		
+		if bAllowButtocks:
+			if randint(1,15) > 11:
+				self.Buttocks.FloweryDescription(sNot = sNot, NotList = NotList)
+		
+		return sDesc 
+		
+	def RandomDescription(self, sNot = "", NotList = None, bAllowShortDesc = True, bAllowLongDesc = True, bAllowButtocks = False):
+		sDesc = super().RandomDescription(sNot = sNot, NotList = NotList, bAllowShortDesc = bAllowShortDesc, bAllowLongDesc = bAllowLongDesc)
+		
+		if NotList == None:
+			NotList = []
+		
+		if sNot != "":
+			NotList.append(sNot)
+			
+		if bAllowButtocks:
+			if randint(1,15) > 11:
+				self.Buttocks.RandomDescription(sNot = sNot, NotList = NotList, 
+												bAllowShortDesc = bAllowShortDesc, 
+												bAllowLongDesc = bAllowLongDesc)
+		
+		return sDesc 
 		
 class BodyFemale(BodyParts):
 	def __init__(self):

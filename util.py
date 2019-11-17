@@ -216,7 +216,23 @@ class HistoryQWithLog(HistoryQ):
 				WriteHistoryQ.write(str(item) + "\n")
 		#print("Wrote HistoryQ:")
 		#print(self.HistoryQ)
+	
+def FoundIn(sWord, SearchTarget):
+	bFound = False 
+	
+	if isinstance(SearchTarget,str):
+		SearchTarget = [SearchTarget]
+	
+	if isinstance(sWord, str) and isinstance(SearchTarget,list):
+		if len(SearchTarget) > 0:
+			for s in SearchTarget:
+				if isinstance(s, str):
+					if s.lower() in sWord.lower() or sWord.lower() in s.lower():
+						bFound = True
+						break
 			
+	return bFound 
+		
 class WordList:
 	def __init__(self, NewList = None):
 		if NewList == None:
@@ -228,18 +244,6 @@ class WordList:
 		
 	def AddWord(self, word):
 		self.List.append(word)
-		
-	def FoundIn(self, sWord, ListStrings):
-		bFound = False 
-		
-		if not ListStrings is None and len(ListStrings) > 0:
-			for s in ListStrings:
-				if isinstance(s, str):
-					if s.lower() in sWord.lower() or sWord.lower() in s.lower():
-						bFound = True
-						break
-				
-		return bFound 
 	
 	def GetWord(self, sNot = "", NotList = None, SomeHistoryQ = None):
 		sWord = ""
@@ -255,13 +259,13 @@ class WordList:
 			
 			if SomeHistoryQ is None:
 				i = 0
-				while self.FoundIn(sWord, NotList) and i < MAX_SEARCH_LOOPS:
+				while FoundIn(sWord, NotList) and i < MAX_SEARCH_LOOPS:
 					#print("Collision! '" + sWord + "' in NotList, trying again.")
 					sWord = self.List[randint(0, len(self.List) - 1)]
 					i += 1
 			else:
 				i = 0
-				while (not SomeHistoryQ.PushToHistoryQ(sWord) or self.FoundIn(sWord, NotList)) and i < MAX_SEARCH_LOOPS:
+				while (not SomeHistoryQ.PushToHistoryQ(sWord) or FoundIn(sWord, NotList)) and i < MAX_SEARCH_LOOPS:
 					#print("Collision! '" + sWord + "' in NotList, trying again.")
 					sWord = self.List[randint(0, len(self.List) - 1)]
 					i += 1
