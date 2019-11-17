@@ -7,7 +7,7 @@ import excerpt.verbs
 import excerpt.names 
 
 from random import *
-from excerpt.util import *
+from util import *
 		
 class Events(WordList):
 	def __init__(self):
@@ -729,17 +729,6 @@ class BookTitleBuilder():
 		sTitle = Titles[randint(0, len(Titles) - 1)]
 		
 		return sTitle
-		
-class TweetReplyBuilder():
-	def GetReply(self):
-		sReply = ""
-		sBookTitle = BookTitleBuilder().GetTitle()
-		sSeller = BookSellers().GetWord()
-		sSexyAdj = SexyAdjs().GetWord()
-		
-		sReply = "Look for my " + sSexyAdj + " story '" + sBookTitle + "' available soon on " + sSeller
-		
-		return sReply
 
 class Punchline():
 	Location = None

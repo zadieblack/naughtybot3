@@ -517,46 +517,53 @@ class Generator12(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		sHisName = self.MaleName.FirstName()
+		sHisName = names.PlainNamesMale().FirstName()
 		sHerName = self.FemaleName.FirstName()
 		
-		Parts = self.FemBodyParts
+		sToE = WordList(self.TermsOfEndearment.GetWordList() + ['daddy']).GetWord(NotList = ["love","dear"])
 		
-		sTweet = sHerName + "'s robe fell to the floor, and his heart skipped a beat. "
-		sTweet += "She had "
+		FWBNotList = ['wife','roommate']
+		#BodyNotList = ['naked','nude','leaky','body']
+		Intros = WordList(["'s towel dropped to the floor, revealing her naked body",
+							" opened her bathrobe to reveal her naked body",
+							"'s panties fell to the floor",
+							" pushed the bed-sheets aside, revealing her naked body"])
+		Seductions = WordList(["This is all for you, " + sToE + ",",
+							   "I'm so horny for your " + self.MaleBodyParts.Penis.ShortDescription() + ", " + sToE + ",",
+							   "Let's play a little game, " + sToE + ",",
+							   sToE.title() + ", do you think my little body is sexy?",
+							   "Come to mommy, " + sToE + ",",
+							   "I'm bored, " + sToE + ". Want to play a game with me?",
+							   "Oops! Looks like I dropped something! I'll just bend over and pick that up,",
+							   "I haven't had a man in such a long time, and I'm SO horny,",
+							   "I've been waiting so long for this, " + sToE + ",",
+							   "Mommy needs a little favor, " + sToE + ",",
+							   "Could you do me a teensy favor and rub me down baby oil?"
+							  ])
 		
-		sSkin = Parts.Skin.GetAdj() + " skin, "
-		sLegs = Parts.Legs.GetAdj() + " legs, "
-		sThighs =  Parts.Thighs.GetAdj() + " thighs, "
-		sAss = "a " + Parts.GetAdj() + " " + WordList(['ass','ass','booty','bottom','behind','butt','tush']).GetWord() + ", "
-		sBody = "a " + Parts.GetAdj() + " body, "
-		sTits = Parts.Breasts.GetAdj() + " breasts, "
-		sVag = "and a " + Parts.Vagina.RandomDescription(bAllowShortDesc = False)
+		sTweet = sHerName + Intros.GetWord() + ". " 
 		
-		PartsDescs = []
-		PartsDescs.append(sSkin + sLegs + sTits + sThighs + sVag)
-		PartsDescs.append(sBody + sLegs + sTits + sThighs + sVag)
-		PartsDescs.append(sSkin + sLegs + sTits + sThighs + sVag)
-		PartsDescs.append(sSkin + sLegs + sAss + sThighs + sVag)
-		PartsDescs.append(sBody + sLegs + sThighs + sAss + sVag)
-		PartsDescs.append(sSkin + sLegs + sTits + sAss + sVag)
-		PartsDescs.append(sLegs + sThighs + sTits + sAss + sVag)
-		PartsDescs.append(sBody + sLegs + sTits + sAss + sVag)
-		PartsDescs.append(sSkin + sBody + sTits + sAss + sVag)
-		
-		sTweet += PartsDescs[randint(0, len(PartsDescs) - 1)] + ".\n\n\""
-		
-		sTweet += self.Exclamation.GetWord(bHappy = True).capitalize() + " "
-		
-		sMoan = WordList(['gasped','moaned','exclaimed']).GetWord()
-		Endings = []
-		Endings.append("I can't believe you're really my " + self.FFWB.GetPerson() + "!\"")
-		Endings.append("I can't believe I get to " + WordList(["do","fuck","bang","have sex with"]).GetWord() + " my " + self.FFWB.GetPerson() + "!\"")
-		Endings.append("I've always fantasized about " + WordList(["doing","fucking","banging","having sex with"]).GetWord() + " my " + self.FFWB.GetPerson() + "!\"")
-		
-		sTweet += Endings[randint(0,len(Endings)) - 1] + " " + sHisName + " " + sMoan + "."
-		
-		
+		sTweet += sHisName + "'s " + WordList(["heart skipped a beat","stomach did a somersault","jaw dropped"]).GetWord() + ". "
+		sTweet += "She had " + self.FemBodyParts.DescRandomNakedParts(iNum = 5, sDivideChar = ';', 
+																	  bPussy = True, bAss = True, bBoobs = True, bExplicit = False,
+																	  bAllowLongDesc = True)  + ".\n\n"
+		sTweet += "\"" + Seductions.GetWord() + "\" she said in a " + WordList(['deep, sexy voice','husky voice','throaty growl','sexy growl']).GetWord() + ".\n\n"
+		sTweet += ". . .\n\n"
+		sTweet += "\"And that's how I wound up " + WordList(["banging","fucking","going down on","having sex with",
+															 "getting a hand-job from","getting a blow-job from",
+															 "eating out","fingering","sixty-nining",
+															 "tea-bagging","losing my virginity to",
+															 "making a sex-tape with",
+															 "getting an enema from",
+															 "getting herpes from","impregnating",
+															 "getting plugged with a strap-on by",
+															 "paying $1200 to","having my face ridden by",
+															 "eating the ass of","getting peed on by",
+															 "getting a rim-job from","doing","boning","stuffing",
+															 "doing doggy style with","having anal sex with",
+															 "tit-fucking","giving a facial to","marrying"]).GetWord() + " "
+		sTweet += "my " + self.FFWB.GetPerson(NotList = FWBNotList) + "!\" explained " + sHisName + "."
+
 		return sTweet
 		
 class Generator13(Generator):	

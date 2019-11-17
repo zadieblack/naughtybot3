@@ -751,7 +751,6 @@ class VaginaInner(BodyParts):
 				
 		self.AdjList(['cherry',
 				'cherry red',
-				'clenched',
 				'deep',
 				'deep',
 				'dripping',

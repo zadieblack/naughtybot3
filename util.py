@@ -288,6 +288,9 @@ class WordList:
 		
 		return bIsEmpty
 		
+	def GetWordList(self):
+		return self.List
+		
 class NounAdjList:
 	def __init__(self, NewNounList = None, NewAdjList = None):
 		if NewNounList == None:
