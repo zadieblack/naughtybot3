@@ -27,7 +27,7 @@ if not is_lock_free():
 	
 def SetGetArgs():
 	Parser = argparse.ArgumentParser(prog='naughtybots',description='Run Flaming Lust Bot & erotica_ebooks for Twitter.')
-	Parser.add_argument('-tweettimer', type=int, default=3600, help='num of seconds to wait before next tweet')
+	Parser.add_argument('-tweettimer', type=int, default=12000, help='num of seconds to wait before next tweet')
 	
 	return Parser.parse_args()
 
