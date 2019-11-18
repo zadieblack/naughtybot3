@@ -5,7 +5,7 @@
 import os, sys, time
 from PIL import Image, ImageDraw, ImageFont
 from random import *
-from title.util import *
+from util import *
 
 PATH = "title/resources/"
 FONT = "Florsn35.ttf"

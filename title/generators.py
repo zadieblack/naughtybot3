@@ -4,6 +4,7 @@
 
 import sys, threading, traceback
 from random import *
+from util import *
 from title.util import *
 from title.misc import *
 from names import *
@@ -43,15 +44,6 @@ class Generator():
 		return FMs
 	
 	def GenerateTweet(self):
-		#self.Girls = BookGirls()
-		#self.GirlsBasic = BookGirlsBasic()
-		#self.GirlAdjs = BookGirlAdjs()
-		#self.GirlCompAdjs = BookGirlCompAdjs()
-		#self.Masters = BookMasters()
-		#self.MastersBasic = BookMastersBasic()
-		#self.MasterGangs = BookMasterGangs()
-		#self.MasterAdjs = BookMasterAdjs()
-		#self.MasterCompAdjs = BookMasterCompAdjs()
 		self.VerbsBy = BookVerbsBy()
 		self.VerbsTo = BookVerbsTo()
 		self.Gerunds = BookGerunds()
@@ -86,7 +78,7 @@ def GetTweetGenerator(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = None):
 def GetTweet(bTest, bTweet, iGeneratorNo = 0, bAllowPromo = True, Type = None, TweetHistoryQ = None, bAllowFavTweets = True):
 	sTweet = ""
 	if not bTest and bAllowFavTweets:
-		sTweet = title.util.GetNextFavTitleFromFile()
+		sTweet = GetNextFavTitleFromFile()
 		
 	if sTweet == "":
 		Gen = GetTweetGenerator(bTest, iGeneratorNo, bAllowPromo = True)
@@ -1807,7 +1799,7 @@ class Generator58(Generator):
 		Man = MaleChar(iNumMaxCBits = 4, NotList = ManNotList, bAddArticle = False, bAllowRelate = True, bAllowSpecies = True, bAllowMaritalStatus = False, bAllowGang = False, bAllowTitle = False)
 		sMan = Man.Desc 
 		
-		if MaleRelatives.FoundIn(sMan, MaleRelatives.List):
+		if FoundIn(sMan, MaleRelatives.List):
 			sTweet = "I " + HookUpPhrases.GetWord() +" My " + sMan + "\nAnd Now I'm Pregnant!"
 		else:
 			sTweet = "I " + HookUpPhrases.GetWord() +" " + AddArticles(sMan) + "\nAnd Now I'm Pregnant!"

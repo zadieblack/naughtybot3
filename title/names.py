@@ -3,7 +3,7 @@
 # Names module
 
 from random import *
-from title.util import *
+from util import *
 
 class Names:
 	def __init__(self):

@@ -2,9 +2,12 @@
 # -*- coding: utf-8 -*-
  
 import sys, argparse, datetime, threading, traceback
+import util as util
+import title.util as titutil
 
 from io import BytesIO
 from random import *
+from util import *
 from title.util import *
 from title.generators import *
 from title.tweettext import *
@@ -17,8 +20,8 @@ def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorN
 	sTweet = ""
 	bTest = False 
 	
-	TweetHistoryQ = HistoryQWithLog(HISTORYQ_FILENAME)
-	TweetTxtHistoryQ = HistoryQWithLog(TWEETTXT_HISTORYQ_FILENAME, iQSize = 4)
+	titutil.TweetHistoryQ = util.HistoryQWithLog(titutil.HISTORYQ_FILENAME)
+	titutil.TweetTxtHistoryQ = util.HistoryQWithLog(titutil.TWEETTXT_HISTORYQ_FILENAME, iQSize = 4)
 	
 	try:
 		api = InitTweepy()
@@ -34,10 +37,10 @@ def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorN
 			sTweet = ""
 			sText = ""
 			
-			sTweet = GetTweet(bTest, bTweet, iGeneratorNo, bAllowPromo = True, TweetHistoryQ = TweetHistoryQ)
+			sTweet = GetTweet(bTest, bTweet, iGeneratorNo, bAllowPromo = True, TweetHistoryQ = titutil.TweetHistoryQ, bAllowFavTweets = False)
 			
 			if len(sTweet) > 0:
-				sText = GetImgTweetText(bTest = False, TweetTxtHistoryQ = TweetTxtHistoryQ)
+				sText = GetImgTweetText(bTest = False, TweetTxtHistoryQ = titutil.TweetTxtHistoryQ)
 				
 				print("\n===Here is your " + str(len(sTweet)) + " char tweet (" + str(i + 1) + " of " + str(iTweets) + ")===")
 				print("[" + sTweet + "]")
@@ -68,22 +71,15 @@ def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorN
 						status = UpdateStatusWithImage(api, sText, ImgFile, status.id)	
 					print("* Tweeted at " + currentDT.strftime("%H:%M:%S"))
 					
-					TweetHistoryQ.LogHistoryQ()
-					TweetTxtHistoryQ.LogHistoryQ()
+					titutil.TweetHistoryQ.LogHistoryQ()
+					titutil.TweetTxtHistoryQ.LogHistoryQ()
 					
 	
 				# else:
 					# with open(GenerateFileName(), 'wb') as file:
 						# file.write(ImgFile.getvalue())
 			i += 1
-		
-		# Look for replies from controller Twitter account
-		print("Looking for 'more' requests from controller account.")
-		RespondToMoreRequests(api, TWIT_CONTROLLER)
-		
-		# Look for replies from controller indicating that a suggestion is a favorite
-		print("Looking for 'yes' tweet favs from controller account.")
-		SaveFavorites(api, TWIT_CONTROLLER)
+
 	except KeyboardInterrupt:
 		print("Ending program ...")
 	finally:

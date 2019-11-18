@@ -4,7 +4,7 @@
 
 from random import *
 from title.util import *
-from util import Gender
+from util import *
 
 import title.misc
 

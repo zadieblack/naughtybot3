@@ -7,7 +7,7 @@ import title.verbs
 import title.names 
 
 from random import *
-from title.util import *
+from util import *
 		
 class Events(WordList):
 	def __init__(self):
