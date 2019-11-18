@@ -839,7 +839,7 @@ class Generator22(Generator):
 class Generator23(Generator):
 	# 'My mother thinks an opthamolgist and his step-sister can never find love together,' said Raoul 
 	# as Esmerelda lay exhausted in his strong arms.\r\n
-	# 'You're no opthamologist,' she replied, panting. 'You're the mayor of Ream My Fjcking Ass City!'
+	# 'You're no opthamologist,' she replied, panting. 'You're the mayor of Ream My Fucking Ass City!'
 	ID = 23
 	Priority = 2
 	
@@ -1056,14 +1056,52 @@ class Generator27(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
+		VThrustNotList = ["delve","thrust","fill","burrow","defile"]
+		sBadGirlAdj = self.BadGirlAdj.GetWord()
 		sBadGirlName = self.BadGirlNoun.GetWord() 
-		Location = LocationSelector().Location(PubPrivType = exutil.LocPubPrivType.Public)
 		sHisName = self.MaleName.FirstName()
 		sHerName = self.FemaleName.FirstName()
 		
-		sTweet = "'You're such " + AddArticles(sBadGirlName).lower() + ", " + sHerName + ",' he said.\n\n"
-		sTweet += "'I *am* " + AddArticles(sBadGirlName).lower() + ",' she said. 'I'm one for *you*, " + sHisName + ". I'm " + AddArticles(sBadGirlName) + " for your " + self.MaleBodyParts.Penis.RandomDescription(bAddLen = True) + " in my " + self.FemBodyParts.Mouth.RandomDescription(bAllowLongDesc = False) + ".'\n\n"
-		sTweet += "'You're also " + AddArticles(sBadGirlName).lower() + " because you let me " + self.VThrust.Present() + " your " + self.FemBodyParts.Ass.Anus.ShortDescription() + " " + Location.NamePrep + ",' he said."
+		Locations = WordList(["in the back seat of his truck","in a Taco Bell bathroom","in the back seat of my car",
+							  "in your dad's room","behind the pub","in the locker room","behind the gym",
+							  "at the truck stop","in the outdoors department at Wal-Mart","in the hot tub",
+							  "in the back of the bus","on the fire escape","in the airplane bathroom",
+							  "on the hotel balcony","in the dorm showers","behind the Chinese take-out place",
+							  "in the church bathroom","at the DMV","on a park bench","at the bus stop",
+							  "in the changing room at Men's Wearhouse","at a Motel 6","in a gas station restroom",
+							  "in the parking lot of a 7/11","on your parent's bed","at a frat party",
+							  "in the office conference room","in the Whole Foods parking lot","at a gay bar",
+							  "in the bushes by the playground","at a coin laundry-mat"
+							 ])
+		
+		sTweet = "\"You're such " + AddArticles(sBadGirlAdj + " " + sBadGirlName).lower() + ", " + sHerName + ",\" he said.\n\n"
+		sTweet += "\"I *am* " + AddArticles(sBadGirlName).lower() + ",\" she said. "
+		sTweet += "\"I'm one for *you*, " + sHisName + ". "
+		sTweet += "I'm " + AddArticles(sBadGirlName) + " for "
+		sTweet += "your " + self.MaleBodyParts.Penis.RandomDescription(bAddLen = True) + " "
+		sTweet += "in my " + self.FemBodyParts.GetRandomHole(bIncludeMouth = True, bAllowShortDesc = True, bAllowLongDesc = False) + ".\"\n\n"
+		sTweet += "\"You're also " + AddArticles(sBadGirlName).lower() + " because "
+		if CoinFlip():
+			if CoinFlip():
+				sTweet += "you let " + AddArticles(self.BlueCollar.GetPerson()) + " "
+				sTweet += self.VThrust.Present(NotList = VThrustNotList) + " "
+				sTweet += "your " + self.FemBodyParts.Ass.Anus.ShortDescription() + " " 
+				sTweet += Locations.GetWord() + ",\" he said."
+			else:
+				sTweet += "you let " + AddArticles(self.BlueCollar.GetPerson()) + " "
+				sTweet += WordList(["motor-boat","titty-fuck"]).GetWord() + " "
+				sTweet += "your " + self.FemBodyParts.Breasts.ShortDescription() + " " 
+				sTweet += Locations.GetWord() + ",\" he said."
+		else:
+			if CoinFlip():
+				sTweet += "you gave " + AddArticles(self.BlueCollar.GetPerson()) + " "
+				sTweet += WordList(["a blowjob","a handjob","head"]).GetWord() + " "
+				sTweet += Locations.GetWord() + ",\" he said."
+			else:
+				sTweet += "you " + WordList(["went down on","blew","fellated","sucked off","deep throated"]).GetWord() + " "
+				sTweet += AddArticles(self.BlueCollar.GetPerson()) + " "
+				sTweet += Locations.GetWord() + ",\" he said."
+
 		
 		return sTweet
 		
@@ -3456,7 +3494,7 @@ class Generator66(Generator):
 		sTweet += "She " + WordList(['was stark naked','was buck naked','was completely naked',
 									 'was in nothing but her birthday suit','wasn\'t wearing a stitch of clothing',
 									 'had no clothes on','was stripped to the skin',
-									 'wearing nothing but a pair of red heels',
+									 'was wearing nothing but a pair of red heels',
 									 'was shamelessly naked']).GetWord() 
 		sTweet += ". "
 		

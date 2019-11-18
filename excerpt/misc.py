@@ -89,9 +89,11 @@ class Hashtags(WordList):
 		
 class BadGirlNouns(WordList):
 	def __init__(self):
-		super().__init__(['hussy',
+		super().__init__(['ho',
+						'hussy',
 						'minx',
 						'nympho',
+						'thot',
 						'skank',
 						'slut',
 						'slut',
@@ -112,6 +114,7 @@ class BadGirlAdjs(WordList):
 						'outrageous',
 						'saucy',
 						'shameless',
+						'thirsty',
 						'wanton'])
 		
 class Exclamations(WordList):
