@@ -3,7 +3,7 @@
 # People module
 
 from random import *
-from excerpt.util import *
+from util import *
 
 class Person(WordList):
 	def GetPerson(self, sNot = "", NotList = None):

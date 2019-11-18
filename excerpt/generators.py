@@ -11,7 +11,7 @@ import excerpt.locations as locations
 
 from util import CoinFlip
 from util import WordList
-from excerpt.util import AddArticles
+from util import AddArticles
 
 from excerpt.locations import LocationSelector
 
@@ -34,7 +34,7 @@ import excerpt.people as people
 import excerpt.texttoimg as texttoimg
 import title.people as titpeople
 
-PromoHistoryQ = exutil.HistoryQ(2)
+PromoHistoryQ = shutil.HistoryQ(2)
 	
 class Generator():
 	ID = -1
@@ -968,10 +968,10 @@ class Generator24(Generator):
 		
 		if bMale:
 			sTweet += sHisName + " " + Location.PutOnMaleClothing(bBottomOnly = True) + "."
-			sTweet += " " + self.AfterSexPunchline.GetPunchline(exutil.Gender.Male)
+			sTweet += " " + self.AfterSexPunchline.GetPunchline(shutil.Gender.Male)
 		else: 
 			sTweet += sHerName + " " + Location.PutOnFemaleClothing(bBottomOnly = True) + "."
-			sTweet += " " + self.AfterSexPunchline.GetPunchline(exutil.Gender.Female)
+			sTweet += " " + self.AfterSexPunchline.GetPunchline(shutil.Gender.Female)
 		
 		return sTweet
 		
@@ -2149,7 +2149,7 @@ class Generator51(Generator):
 			SceneOrgasm = scenes.SceneFacial(sHisName = sHisName, sHerName = sHerName, Location = Location)
 		
 		sTweet = SceneFuck.Scene() + " " + SceneOrgasm.Scene() + "\n\n"
-		sTweet += self.AfterSexPunchline.GetPunchline(exutil.Gender.Male)
+		sTweet += self.AfterSexPunchline.GetPunchline(shutil.Gender.Male)
 
 		return sTweet
 		

@@ -4,7 +4,7 @@ from misc import *
 from names import *
 from title.generators import GetTweet
 import excerpt.bodyparts
-from excerpt.util import AddArticles
+from util import AddArticles
 
 MAX_EXCERPT_BOOKTITLE_LEN = 65
 

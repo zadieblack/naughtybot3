@@ -5,7 +5,7 @@
 import os, sys, time
 from PIL import Image, ImageDraw, ImageFont
 from random import *
-from excerpt.util import *
+from util import *
 
 PATH = "excerpt/resources/"
 FONT = "NoticiaText-Regular.ttf"

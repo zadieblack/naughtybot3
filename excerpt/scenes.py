@@ -9,6 +9,7 @@ import excerpt.verbs
 import excerpt.misc
 
 from random import * 
+from util import *
 from excerpt.util import *
 
 class Scene():

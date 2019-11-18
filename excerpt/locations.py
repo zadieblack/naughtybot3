@@ -8,7 +8,7 @@ from random import *
 #from enum import * 
 
 import excerpt.util as exutil
-from excerpt.util import CoinFlip
+from util import CoinFlip
 import excerpt.bodyparts
 
 class Location():

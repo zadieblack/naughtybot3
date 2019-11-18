@@ -14,6 +14,7 @@ import sys, argparse, datetime, threading, traceback
 
 from io import BytesIO
 from random import *
+import util as util 
 import excerpt.util as exutil
 import excerpt.generators as generators 
 from excerpt.tweettext import *
@@ -28,8 +29,8 @@ def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorN
 	sTweet = ""
 	bTest = False 
 	
-	exutil.TweetHistoryQ = exutil.HistoryQWithLog(exutil.HISTORYQ_FILENAME)
-	exutil.TweetTxtHistoryQ = exutil.HistoryQWithLog(exutil.TWEETTXT_HISTORYQ_FILENAME, iQSize = 4)
+	exutil.TweetHistoryQ = util.HistoryQWithLog(exutil.HISTORYQ_FILENAME)
+	exutil.TweetTxtHistoryQ = util.HistoryQWithLog(exutil.TWEETTXT_HISTORYQ_FILENAME, iQSize = 4)
 	
 	try:
 		
