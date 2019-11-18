@@ -12,7 +12,7 @@ import tweepy
 import excerpt.twitterauth
 
 from random import *
-from excerpt.util import *
+from util import *
 
 REPLIES_FILE_NAME = "excerpt/reply_ids.txt"
 HASHTAG_LOVESCENE = "#lovescene"

@@ -19,7 +19,7 @@ import tweepy
 import title.twitterauth
 
 from random import *
-from title.util import *
+from util import *
 
 NUM_MORE_REPLIES = 7
 REPLIES_FILE_NAME = "title/reply_ids.txt"
