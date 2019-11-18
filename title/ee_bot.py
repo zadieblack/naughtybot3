@@ -7,8 +7,6 @@ import title.util as titutil
 
 from io import BytesIO
 from random import *
-from util import *
-from title.util import *
 from title.generators import *
 from title.tweettext import *
 from title.twitter_stuff import *

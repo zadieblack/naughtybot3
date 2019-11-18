@@ -869,6 +869,7 @@ class InnNameGenerator():
 	def __init__(self, id = 0, priority = 1):	
 		self.ID = id
 		self.Priority = priority
+		self.Type = GeneratorType.Normal
 		
 		self._Default = DefaultLastName.FirstLastName
 		
@@ -1419,6 +1420,26 @@ class InnNameGenSelector():
 		Generator = self.GeneratorList[randint(0, len(self.GeneratorList) - 1)][1]
 						
 		return Generator 
+		
+	def GetGeneratorsSequential(self, bAllowPromo = True, Type = None):
+		GeneratorList = []
+		AllowedTypes = []
+		
+		if not Type is None:
+			AllowedTypes = [Type] 
+		else:
+			AllowedTypes = [GeneratorType.Normal, GeneratorType.BookTitle]
+		
+		if bAllowPromo:
+			AllowedTypes.append(GeneratorType.Promo)
+
+		for subclass in InnNameGenerator.__subclasses__():
+			gen = subclass()
+
+			if gen.Type in AllowedTypes:
+				GeneratorList.append(gen)
+			
+		return GeneratorList  
 		
 	def GetGenerator(self, iGen):
 		Generator = None 

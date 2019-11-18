@@ -79,14 +79,14 @@ def GetTweet(bTest, bTweet, iGeneratorNo = 0, bAllowPromo = True, Type = None, T
 	sTweet = ""
 	if not bTest and bAllowFavTweets:
 		sTweet = GetNextFavTitleFromFile()
-		
-	if sTweet == "":
-		Gen = GetTweetGenerator(bTest, iGeneratorNo, bAllowPromo = True)
+	else:
+		Gen = GetTweetGenerator(bTest, iGeneratorNo, bAllowPromo = bAllowPromo)
 		# print("Generator ID: " + str(Gen.ID))
-		while bTweet and not TweetHistoryQ.PushToHistoryQ(Gen.ID):
-			# print("Generator ID " + str(Gen.ID) + " already in Q")
-			Gen = GetTweetGenerator(bTest, iGeneratorNo, bAllowPromo = True)
-			# print("New generator ID: " + str(Gen.ID))
+		if not TweetHistoryQ is None:
+			while bTweet and not TweetHistoryQ.PushToHistoryQ(Gen.ID):
+				# print("Generator ID " + str(Gen.ID) + " already in Q")
+				Gen = GetTweetGenerator(bTest, iGeneratorNo, bAllowPromo = bAllowPromo)
+				# print("New generator ID: " + str(Gen.ID))
 	
 		print("Generator ID: " + str(Gen.ID))
 		sTweet = Gen.GenerateTweet()
@@ -4771,6 +4771,26 @@ class GeneratorSelector():
 				Generator = self.GeneratorList[randint(0, len(self.GeneratorList) - 1)][1]
 				
 		return Generator 
+		
+	def GetGeneratorsSequential(self, bAllowPromo = True, Type = None):
+		GeneratorList = []
+		AllowedTypes = []
+		
+		if not Type is None:
+			AllowedTypes = [Type] 
+		else:
+			AllowedTypes = [GeneratorType.Normal, GeneratorType.BookTitle]
+		
+		if bAllowPromo:
+			AllowedTypes.append(GeneratorType.Promo)
+
+		for subclass in Generator.__subclasses__():
+			gen = subclass()
+
+			if gen.Type in AllowedTypes:
+				GeneratorList.append(gen)
+			
+		return GeneratorList  
 		
 	def GetGenerator(self, iGen):
 		Generator = None 

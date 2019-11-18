@@ -5190,6 +5190,26 @@ class GeneratorSelector():
 				
 		return Generator 
 		
+	def GetGeneratorsSequential(self, bAllowPromo = True, Type = None):
+		GeneratorList = []
+		AllowedTypes = []
+		
+		if not Type is None:
+			AllowedTypes = [Type] 
+		else:
+			AllowedTypes = [exutil.GeneratorType.Normal, exutil.GeneratorType.BookTitle]
+		
+		if bAllowPromo:
+			AllowedTypes.append(exutil.GeneratorType.Promo)
+
+		for subclass in Generator.__subclasses__():
+			gen = subclass()
+
+			if gen.Type in AllowedTypes:
+				GeneratorList.append(gen)
+			
+		return GeneratorList  
+		
 	def GetGenerator(self, iGen):
 		Generator = None 
 		
