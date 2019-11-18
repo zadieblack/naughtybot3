@@ -1115,12 +1115,54 @@ class Generator29(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		sHisName = self.MaleName.FirstName()
-		sHerName = self.FemaleName.FirstName()
 		
-		sTweet = sHisName + " found " + sHerName + " lying on her bed in her nightgown with her nose in a book and one hand down her lacy panties. She was frigging her " + self.FemBodyParts.GetRandomHole(bIncludeMouth = False, bAllowShortDesc = True) + " with urgent fingers.\n\n"
-		sTweet += "'What are you reading?' he asked.\n\n"
-		sTweet += "'" + misc.BookTitleBuilder().GetTitle() + ",' " + sHerName + " " + self.VMoan.Past() + "."
+		sHerName = self.FemaleName.FirstName()
+		sHisName = self.MaleName.FirstName()
+		sHerName2 = self.FemaleName.FirstName()
+		
+		CombinedNotList = ['cock','bowels','folds']
+		
+		bFemale = False 
+		if randint(1,3) == 3:
+			bFemale = True 
+		
+		if bFemale:
+			sHerName2 + " found " + sHerName + " "
+		else:
+			sTweet += sHisName + " found " + sHerName + " "
+
+		iRand = randint(1,3)
+		if iRand == 1:
+			sTweet += "lying on her bed in her nightgown "
+			sTweet += "With her nose in a book and one hand down her lacy panties. She was "
+		elif iRand == 2:
+			sTweet += "naked in the bathtub, surrounded by candles, with a paperback book in one hand. "
+			sTweet += "With her other hand she was "
+		else:
+			sTweet += "lying on her bed naked "
+			sTweet += "with her nose in a book and one hand between her thighs. She was "
+		sTweet += WordList(["frigging","massaging","rubbing","stroking","playing with",
+							"carressing","fingering"]).GetWord() + " "
+		
+		iRand = randint(1,5)
+		if iRand == 1:
+			sTweet += "her " + self.FemBodyParts.Vagina.InnerLabia.ShortDescription(NotList = CombinedNotList)
+		elif iRand == 2:
+			sTweet += "her " + self.FemBodyParts.Vagina.OuterLabia.ShortDescription(NotList = CombinedNotList)
+		elif iRand == 3:
+			sTweet += "her " + self.FemBodyParts.Ass.Anus.ShortDescription(NotList = CombinedNotList)
+		elif iRand == 3:
+			sTweet += "her " + self.FemBodyParts.Vagina.Clitoris.ShortDescription(NotList = CombinedNotList)
+		else: 
+			sTweet += "her " + self.FemBodyParts.Vagina.ShortDescription(NotList = CombinedNotList)
+		sTweet += " with " + WordList(["urgent","naughty","sensual","moistened"]).GetWord() + " fingers.\n\n"
+		sTweet += "\"What " + WordList(["the hell", "the fuck", "in gods name"]).GetWord() + " are you reading?\" "
+		if bFemale:
+			sTweet += "she "
+		else:
+			sTweet += "he "
+		sTweet += "asked.\n\n"
+		sTweet += "\"" + misc.BookTitleBuilder().GetTitle() + ",\" " + sHerName + " " + self.VMoan.Past() + "."
 		
 		return sTweet
 		
@@ -1134,6 +1176,8 @@ class Generator30(Generator):
 	def GenerateTweet(self):
 		super().GenerateTweet()
 		sTweet = ""
+		
+		FWBNotList = ['roommate','ex','land lady','maid','next-door','hot friend','wife','Avon']
 		
 		sTweet = "'C'mere baby,' she said. 'I want you to suck on my "
 		if CoinFlip():
@@ -1149,7 +1193,7 @@ class Generator30(Generator):
 		else:
 			sTweet += "and then I want you to fill my " + self.FemBodyParts.Vagina.InnerVag.RandomDescription() + " with your " + self.Semen.RandomDescription() + ".'\n\n"
 		
-		sTweet += "'Ooooh, yes,' " + self.VMoan.Past() + " " + self.MaleName.FirstName() + ". 'But my priest says it's wrong to do this with my " + self.FFWB.GetPerson() + ".'"
+		sTweet += "'Ooooh, yes,' " + self.VMoan.Past() + " " + self.MaleName.FirstName() + ". 'But my priest says it's wrong to do this with my " + self.FFWB.GetPerson(NotList = FWBNotList) + ".'"
 		
 		return sTweet
 		

@@ -4625,6 +4625,29 @@ class Generator140(Generator):
 
 		return sTweet	
 		
+class Generator141(Generator):
+	ID = 141
+	Priority = 2
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		ForbiddenFems = WordList(["Mom","Step-Mom","Step-Sister","Mother-in-Law","Aunt","Sister-in-Law",
+								  "Daughter","Step-Daughter","Teacher","Secretary","Maid","Nurse",
+								  "Twin Sister","Co-ed Student"])
+		BodyParts = WordList(["Ass","Ass","Ass","Thighs","Thighs","Boobs","Tits","Melons","Knockers","Hips","Nipples","Nips",
+							  "Coconuts","Titties","Jugs","Sweater-Puppies","Sweater-Zeppelins","Buns",
+							  "Booty","Tush","Buttocks","Behind"])
+		Adjs = WordList(["Thick","Chubby","Juicy","Ample","Fat","Jiggling","Generous","Ripe",
+						 "Voluptuous","Wide","Shapely","Smooth","Phat","Enormous","Rippling",
+						 "Big","Chunky","Large","Curvy","Milky","Quivering"])
+		sTweet += "Hypnotized by her " + ForbiddenFems.GetWord() + "'s\n"
+		sTweet += Adjs.GetWord() + " "
+		sTweet += "Lesbian " + BodyParts.GetWord()
+
+		return sTweet	
+		
 class Generator999(Generator):
 	ID = 999
 	Priority = 0
