@@ -1550,9 +1550,12 @@ class Generator38(Generator):
 			sGiverName = self.FemaleName.FirstName()
 			sBirthdayName = self.MaleName.FirstName()
 		
-			sTweet = sBirthdayName + " entered the bedroom. " + sGiverName + " was lying on the bed wearing nothing but " + WordList(["a leather corset", "a jeweled butt-plug", "a red garter around her thigh", "crotchless panties", "red high heels"]).GetWord() + ". His gaze lingered on her "
+			sTweet = sBirthdayName + " entered the bedroom. " + sGiverName + " was lying on the bed wearing nothing "
+			sTweet += "but " + WordList(["a leather corset","a jeweled butt-plug","a red garter around her thigh", 
+										"crotchless panties", "red high heels"]).GetWord() + ". His gaze lingered on "
 			
-			sTweet += self.FemBodyParts.DescRandomNakedParts(iNum = 4, bAllowLongDesc = True, bPussy = True, bAss = True, sPossessive = "her")
+			sTweet += self.FemBodyParts.DescRandomNakedParts(iNum = 4, bAllowLongDesc = True, bPussy = True, bAss = True, 
+															 sPossessive = "her", sDivideChar = ";")
 			sTweet += ". 'This is a great birthday present, babe,' he said.\n\n"
 			sTweet += "'This isn't your present,' said " + sGiverName + "."
 			
@@ -1560,14 +1563,13 @@ class Generator38(Generator):
 			sGiverName = self.MaleName.FirstName()
 			sBirthdayName = self.FemaleName.FirstName()
 		
-			sTweet = sBirthdayName + " entered the bedroom. " + sGiverName + " was wearing nothing but " + WordList(["a cowboy hat", "a leather jacket", "a cock ring", "a bowtie", "a pair of cowboy boots", "a leather body harness"]).GetWord() + " and his " + self.MaleBodyParts.RandomDescription() + " gleamed with oil. Her gazed lingered on his "
+			sTweet = sBirthdayName + " entered the bedroom. " + sGiverName + " was wearing nothing "
+			sTweet += "but " + WordList(["a cowboy hat","a leather jacket","a cock ring","a bowtie",
+										"a pair of cowboy boots", "a leather body harness"]).GetWord() + " "
+			sTweet += "and his " + self.MaleBodyParts.RandomDescription() + " gleamed with oil. Her gazed lingered on "
 			
-			Parts = self.MaleBodyParts.DescRandomNakedParts(iNum = 3, bAss = True, bPenis = True, sDivideChar = ";")
-			for part in Parts:
-				if not part == Parts[len(Parts) - 1]:
-					sTweet += part + "; "
-				else:
-					sTweet += "and " + part
+			sTweet += self.MaleBodyParts.DescRandomNakedParts(iNum = 4, bAss = True, bPenis = True, 
+															  sPossessive = "his", sDivideChar = ";")
 			sTweet += ". 'This is a great birthday present, babe,' she said.\n\n"
 			sTweet += "'This isn't your present,' said " + sGiverName + "."
 			
