@@ -6,11 +6,11 @@ import sys, threading, traceback
 from random import *
 from util import *
 from title.util import *
-from title.misc import *
 from names import *
 from title.people import *
 from title.texttoimg import *
 import misc
+import title.misc as titmisc
 
 PromoHistoryQ = HistoryQ(2)
 
@@ -50,7 +50,7 @@ class Generator():
 		self.Gerunds = misc.BookGerunds()
 		self.HerName = NamesFemale().FirstName()
 		self.HisName = NamesMale().FirstName()
-		self.SubtitleCoda = SubtitleCoda()
+		self.SubtitleCoda = titmisc.SubtitleCoda()
 		
 		return ""
 
@@ -4619,6 +4619,7 @@ class Generator141(Generator):
 class Generator999(Generator):
 	ID = 999
 	Priority = 0
+	Type = GeneratorType.Test
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -4635,6 +4636,42 @@ class Generator999(Generator):
 			sTweet += "Female: " + GetInnName(Gender.Female)
 			sTweet += "\n"
 			sTweet += "Male: " + GetInnName(Gender.Male)
+
+		return sTweet	
+		
+class Generator1000(Generator):
+	ID = 1000
+	Priority = 1
+	Type = GeneratorType.Test
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		FemAdjList = titmisc.AgeFemaleNoun().List + titmisc.AgeFemaleAdj().List + titmisc.AttitudeFemale().List + titmisc.ClothingFemale().List + titmisc.GenModFemale().List + titmisc.MaritalStatusFemale().List + titmisc.NationFemale().List + titmisc.PhysCharFemale().List + titmisc.PregState().List + titmisc.SexualityFemale().List + titmisc.SkinHairColorFemale().List
+		FemNounList = titmisc.ProfFemale().List + titmisc.RelateFemale().List + titmisc.SpeciesFemale().List + titmisc.TropesFemale().List
+		#List1 = titmisc.SpeciesFemale().List
+
+		#List2 = sorted(List1)
+		
+		# List1 = ["strict","stuffy","surly","pseudonymous"]
+		# List2 = ["buddy","stranger","psycho"]
+		
+		aFemResult = GetRhymingPair(FemAdjList,FemNounList)
+		sTweet = "Female: " + aFemResult[0] + " " + aFemResult[1] + "\n"
+		
+		ManAdjList = titmisc.AgeMaleAdj().List + titmisc.AttitudeMale().List + titmisc.GenModMale().List + titmisc.MaritalStatusMale().List + titmisc.NationMale().List + titmisc.PhysCharMale().List + titmisc.DickCharMale().List + titmisc.SkinHairColorMale() .List
+		ManNounList = titmisc.ProfMale().List + titmisc.RelateMale().List + titmisc.SpeciesMale().List + titmisc.TitlesMale().List + titmisc.TropesMale().List + titmisc.TropesMale().List 
+		
+		aManResult = GetRhymingPair(ManAdjList,ManNounList)
+		sTweet += "Male: " + aManResult[0] + " " + aManResult[1] + "\n"
+		# sNoun = NounList[randint(0,len(NounList) - 1)]
+		# sAdj = GetRhymingWord(word = sNoun, list = AdjList)
+		
+		# if sAdj:
+			# sTweet = "Rhyming phrase: [" + sAdj + " " + sNoun + "]"
+		# else:
+			# sTweet = "No rhyme found for " + sNoun 
 
 		return sTweet	
 		

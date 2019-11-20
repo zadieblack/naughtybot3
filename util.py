@@ -351,7 +351,6 @@ def SmartLower(phrase):
 		aOldPhrase = sResult.split()
 		aNewPhrase = []
 		for item in aOldPhrase:
-			#print("Item is " + item + ", length is " + str(len(item)) + ", and item[1].isupper() = " + str(item[1].isupper()))
 			if len(item) > 1 and not item[1].isupper():
 				aNewPhrase.append(item.lower())
 			else:
@@ -360,78 +359,196 @@ def SmartLower(phrase):
 		
 	return sResult
 
+def len_alpha_key(str):
+	return -len(str), str.lower()
 	
 class Sound():
 	def __init__(self, newlist):
-		self._SoundList = sorted(newlist)
+		self._SoundList = sorted(newlist,key=len_alpha_key)
+		if len(self._SoundList) > 0:
+			self.Length = len(self._SoundList[0])
+			# print("Sound list is " + str(self._SoundList))
+			# print("Length = " + str(self.Length))
+		else:
+			self.Length = 0
+			# print("Sound list [empty]. Length = 0")
 		
 	def SoundsLike(self, word):
 		bSoundsLike = False 
 		
+		#print("-- SoundsLike() checking word \"" + word + "\" against SoundList [" + str(self._SoundList) + "]")
 		if isinstance(self._SoundList, list) and isinstance(word,str):
 			for item in self._SoundList:
 				iSoundLen = len(item)
+				#print("-- SoundsLike() item \"" + item.lower() + "\" == \"" + word.lower() + "\"?")
 				if item.lower()[0:iSoundLen] == word.lower()[0:iSoundLen]:
 					bSoundsLike = True 
+					#print("-- SoundsLike() MATCH!!!")
+					break
 	
 		return bSoundsLike
-				
-
-def MatchedSound(word1,word2):
-	sounds = []
-	sounds.append(Sound(['b']))
-	sounds.append(Sound(['bl']))
-	sounds.append(Sound(['br']))
-	sounds.append(Sound(['bw']))
-	sounds.append(Sound(['c','k']))
-	sounds.append(Sound(['ch']))
-	sounds.append(Sound(['cl','kl']))
-	sounds.append(Sound(['cr','kr']))
-	sounds.append(Sound(['cw','kw','qu']))
-	sounds.append(Sound(['d']))
-	sounds.append(Sound(['dr']))
-	sounds.append(Sound(['dw']))
-	sounds.append(Sound(['f']))
-	sounds.append(Sound(['fl']))
-	sounds.append(Sound(['fr']))
-	sounds.append(Sound(['g','gh']))
-	sounds.append(Sound(['gl']))
-	sounds.append(Sound(['gn','kn','n']))
-	sounds.append(Sound(['gr']))
-	sounds.append(Sound(['gw']))
-	sounds.append(Sound(['h','wh']))
-	sounds.append(Sound(['j']))
-	sounds.append(Sound(['l',]))
-	sounds.append(Sound(['m']))
-	sounds.append(Sound(['n']))
-	sounds.append(Sound(['p']))
-	sounds.append(Sound(['pl']))
-	sounds.append(Sound(['pr']))
-	sounds.append(Sound(['ps','s']))
-	sounds.append(Sound(['r','wr']))
-	sounds.append(Sound(['sc','sch','sk']))
-	sounds.append(Sound(['sl']))
-	sounds.append(Sound(['sm']))
-	sounds.append(Sound(['sn']))
-	sounds.append(Sound(['sp']))
-	sounds.append(Sound(['squ','scw','skw']))
-	sounds.append(Sound(['st']))
-	sounds.append(Sound(['sw']))
-	sounds.append(Sound(['t']))
-	sounds.append(Sound(['th']))
-	sounds.append(Sound(['tw']))
-	sounds.append(Sound(['v']))
-	sounds.append(Sound(['w','jua']))
-	sounds.append(Sound(['x','z']))
-
-def GetRhymingPair(list1, list2):
-	resultpair = [None,None]
+		
 	
-	shufflist1 = random.shuffle(list1)
-	for item1 in shufflist1:
-		for item2 in list2:
-			if MatchedSound(item1,item2):
-				resultpair = [item1,item2]
-				break 
+	
+class ConsonantSounds():
+	def sound_key(self,sound):
+		return -sound.Length,sound._SoundList[0].lower()
+	
+	def __init__(self):
+		self.sounds = []
+	
+		self.sounds.append(Sound(['b']))
+		self.sounds.append(Sound(['bl']))
+		self.sounds.append(Sound(['br']))
+		self.sounds.append(Sound(['bw']))
+		self.sounds.append(Sound(['c','k']))
+		self.sounds.append(Sound(['ch']))
+		self.sounds.append(Sound(['cl','kl']))
+		self.sounds.append(Sound(['cr','kr','chr']))
+		self.sounds.append(Sound(['cw','kw','qu']))
+		self.sounds.append(Sound(['d']))
+		self.sounds.append(Sound(['dr']))
+		self.sounds.append(Sound(['dw']))
+		self.sounds.append(Sound(['f']))
+		self.sounds.append(Sound(['fl']))
+		self.sounds.append(Sound(['fr']))
+		self.sounds.append(Sound(['g','gh']))
+		self.sounds.append(Sound(['gl']))
+		self.sounds.append(Sound(['gn','kn','n']))
+		self.sounds.append(Sound(['gr']))
+		self.sounds.append(Sound(['gw']))
+		self.sounds.append(Sound(['gy','ji']))
+		self.sounds.append(Sound(['h','wh']))
+		self.sounds.append(Sound(['j']))
+		self.sounds.append(Sound(['l',]))
+		self.sounds.append(Sound(['m']))
+		self.sounds.append(Sound(['n']))
+		self.sounds.append(Sound(['p']))
+		self.sounds.append(Sound(['pl']))
+		self.sounds.append(Sound(['pr']))
+		self.sounds.append(Sound(['ps','s']))
+		self.sounds.append(Sound(['r','wr','rh']))
+		self.sounds.append(Sound(['sc','sch','sk']))
+		self.sounds.append(Sound(['scr','schr']))
+		self.sounds.append(Sound(['sl']))
+		self.sounds.append(Sound(['sm']))
+		self.sounds.append(Sound(['sn']))
+		self.sounds.append(Sound(['sp']))
+		self.sounds.append(Sound(['squ','scw','skw']))
+		self.sounds.append(Sound(['st']))
+		self.sounds.append(Sound(['str']))
+		self.sounds.append(Sound(['sw']))
+		self.sounds.append(Sound(['t']))
+		self.sounds.append(Sound(['th']))
+		self.sounds.append(Sound(['tw']))
+		self.sounds.append(Sound(['v']))
+		self.sounds.append(Sound(['w','jua']))
+		self.sounds.append(Sound(['x','z']))
+		
+		
+		self.sounds.append(Sound(['am']))
+		self.sounds.append(Sound(['an']))
+		self.sounds.append(Sound(['au','ah']))
+		self.sounds.append(Sound(['ath']))
+		self.sounds.append(Sound(['at','att']))
+		self.sounds.append(Sound(['air','aer','are']))
+		self.sounds.append(Sound(['ar']))
+		self.sounds.append(Sound(['in','inn']))
+		self.sounds.append(Sound(['er','ear']))
+		self.sounds.append(Sound(['ex']))
+		self.sounds.append(Sound(['oi']))
+		self.sounds.append(Sound(['ol']))
+		self.sounds.append(Sound(['out']))
+		self.sounds.append(Sound(['u']))
+		self.sounds.append(Sound(['uni']))
+		self.sounds.append(Sound(['un','unn']))
+		
+		self.sounds.append(Sound(['ur']))
+		
+		self.sounds = sorted(self.sounds,key=self.sound_key)
+		
+		# sSoundsList = ""
+		# sSoundsList += "All sounds sorted:\n[ " 
+		# for sound in self.sounds:
+			# sSoundsList += " " + str(sound._SoundList) + "\n"
+		# sSoundsList += "]\n"
+		
+		#print(sSoundsList)
+		
+		
+	def __iter__(self):
+		return iter(self.sounds)
+
+Sounds = ConsonantSounds()
+
+# def MatchLen(word1, word2):
+	# iMatchLen = 0
+	
+	# if isinstance(word1, str) and isinstance(word2,str):
+		# if len(word1) > 0
+			# icount = 0
+			# while icount < len(word1):
+				# if word1[0:icount] == word2[0:icount]:
+					# iMatchLen = icount 
+
+	# return iMatchLen
+
+def GradeSoundMatch(word1,word2):
+	iMatchGrade = 0
+	
+	sounds = Sounds
+	
+	word1sound = Sound([])
+
+	# find a matching sound for the first word 
+	for sound in sounds:
+		if sound.SoundsLike(word1):	
+			word1sound = sound 
+			break
+	#print("- GradeSoundMatch() decided that [" + str(word1sound._SoundList) + "] is the sound that matches \"" + word1 + "\"")
+	# compare the matched sound to the second word 
+	if word1sound.SoundsLike(word2):
+		iMatchGrade = word1sound.Length
+		#print("- GradeSoundMatch() decided that \"" + word2 + "\" and \"" + word1 + "\" match. Match Grade = " + str(iMatchGrade) + ".")
+	#else:
+		#print("- GradeSoundMatch() decided that \"" + word1 + "\" and \"" + word2 + "\" do not match. Match Grade = 0.")
+		
+	return iMatchGrade
+
+def GetRhymingWord(word, list):
+	shuffle(list)
+	
+	bestmatchlen = 0
+	bestmatch = ""
+
+	for item in list:
+		#print("GetRhymingWord() Checking if \"" + word + "\" == \"" + str(item) + "\"")
+		itemgrade = GradeSoundMatch(item,word)
+		if itemgrade > bestmatchlen:
+			#print("GetRhymingWord() matched \"" + word + "\" & \"" + item + "\"")
+			#print("GetRhymingWord() decided \"" + word + "\" is a better match for \"" + item + "\" than \"" + bestmatch + "\"")
+			bestmatchlen = itemgrade
+			bestmatch = item
+			# if len(item[0]) > bestmatchlen:
+				# print("GetRhymingWord() decided \"" + item[0] + "\" is a better match for \"" + item[1] + "\" than \"" + bestmatch[0] + "\"")
+				# bestmatchlen = len(item[0])
+				# bestmatch = item
+			# else:
+				# print("GetRhymingWord() decided \"" + item[0] + "\" is the best match for \"" + item[1] + "\" so far")
+			
 				
-	return resultpair
+	return bestmatch
+	
+def GetRhymingPair(list1, list2):
+	rhymingpair = ["",""]
+	shuffle(list1)
+	
+	srhyme = ""
+	for item in list1:
+		srhyme = GetRhymingWord(item, list2)
+		if len(srhyme) > 0 and not srhyme == item[0:len(srhyme)] and not srhyme[0:len(item)] == item:
+			rhymingpair = [item,srhyme]
+			break
+
+				
+	return rhymingpair

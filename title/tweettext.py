@@ -226,7 +226,7 @@ class TweetTxtGen10(TweetTxtGen):
 		
 		sSuitor1 = Master = MaleChar(iNumMaxCBits = 1, bAddArticle = True, bAllowGang = False).Desc
 		sSuitor2 = Master = MaleChar(iNumMaxCBits = 1, bAddArticle = True, bAllowGang = False).Desc
-		sText = "Who will " + NamesFemale().FirstName() + " choose, " + NamesMale().FirstName() + " " + sSuitor1.lower() + " or " + NamesMale().FirstName() + " " + sSuitor2.lower() + "? I was on the edge of my seat! " 
+		sText = "Who will " + NamesFemale().FirstName() + " choose, " + NamesMale().FirstName() + " " + SmartLower(sSuitor1) + " or " + NamesMale().FirstName() + " " + SmartLower(sSuitor2) + "? I was on the edge of my seat! " 
 		if CoinFlip():
 			if CoinFlip():
 				sText += "#Team" + sSuitor1.replace(" ", "").replace("The", "").replace("Her", "").replace("-", "")
@@ -456,8 +456,8 @@ class TweetTxtGen22(TweetTxtGen):
 		sText = ""
 		
 		Creatures = WordList(["Unicorn", "Centaur", "Man-o-taur", "Gargoyle", "Werewolf", "Merman", "Dwarf", "Dragon", "Orc", "Pope", "Troll", "Goat-man", "Futanari", "Alien", "Tentacle Monster", "Clown", "Sumo Wrestler", "Were-horse", "T-Rex", "Velociraptor", "Stegosaur", "Plesiosaur", "Pterodactyl", "Reverse Merman", "Cyborg", "Vampire", "Zombie", "Were-shark", "Demon", "Incubus"])
-		sSpecies1 = Creatures.GetWord().lower()
-		sSpecies2 = Creatures.GetWord(NotList = [sSpecies1]).lower()
+		sSpecies1 = SmartLower(Creatures.GetWord())
+		sSpecies2 = SmartLower(Creatures.GetWord(NotList = [sSpecies1]))
 		
 		sText = "Features a " + WordList(['beautiful', 'tender', 'loving', 'sweet', 'touching', 'heartfelt', 'heart-warming']).GetWord() + " interracial relationship between a " + sSpecies1 + " and a " + sSpecies2 
 		
@@ -495,7 +495,7 @@ class TweetTxtGen24(TweetTxtGen):
 		sText = "I had " + WordList(["a hard time", "some trouble", "a bit of a problem", "some difficulty"]).GetWord() + " keeping the characters straight. "
 		if CoinFlip():
 			sName = NamesFemale().FirstName()
-			Lady = WordList(title.misc.TropesBadFemale().List + title.misc.TropesGoodFemale().List + title.misc.ProfFemale().List).GetWord().lower()
+			Lady = SmartLower(WordList(title.misc.TropesBadFemale().List + title.misc.TropesGoodFemale().List + title.misc.ProfFemale().List).GetWord())
 			iLength = WordList([32,34,36]).GetWord()
 			sCupSize = WordList(['D', 'DD']).GetWord()
 			BoobNames = WordList(['boobs', 'tits', 'gazongas', 'coconuts', 'melons', 'bazookas', 'hooters', 'tatas', 'jugs', 'rack', 'titties', 'cantalopes', 'grapefruits', 'pom-poms'])
@@ -504,7 +504,7 @@ class TweetTxtGen24(TweetTxtGen):
 			sText += "Was " + sName + " the blonde " + Lady + " with the " + str(iLength) + sCupSize + " " + sBoobName + " or the brunette " + Lady + " with the " + str(iLength + 2) + sCupSize + "D " + sBoobName + "?"
 		else:
 			sName = NamesMale().FirstName()
-			Dude = WordList(title.misc.SpeciesMale().List + title.misc.ProfMale().List + title.misc.TropesMale().List).GetWord().lower()
+			Dude = SmartLower(WordList(title.misc.SpeciesMale().List + title.misc.ProfMale().List + title.misc.TropesMale().List).GetWord())
 			iLength = randint (6, 12)
 			PenisNames = WordList(['schlong', 'dick', 'bagpipe', 'rod', 'pole', 'willy', 'johnson', 'dingus', 'dong', 'package', 'prick', 'sausage', 'slim jim', 'stiffy', 'swizzle stick', 'tool', 'trouser snake', 'wiener'])
 			sPenisName = PenisNames.GetWord()
@@ -557,7 +557,7 @@ class TweetTxtGen27(TweetTxtGen):
 		
 		sText = WordList(["Really", "I mean", "Honestly", "Let's get real", "Seriously", "For real though"]).GetWord() + ", "
 		sText += "who among us hasn't " + WordList(["had a secret affair with", "secretly impregnated", "started a secret family with", "had a secret baby with", "accidentally showered with", "mistaken our girlfriend for", "gotten drunk and gotten a handjob from", "gotten drunk and eaten the ass of", "masturbated in the dressing room with", "played doctor with", "helped fertilize the eggs of", "spooned naked with", "watched a porno with"]).GetWord() + " "
-		sText += "our " + title.misc.PhysCharFemale().GetWord().lower() + " " + title.misc.ProfGoodFemale().GetWord().lower() + " "
+		sText += "our " + SmartLower(title.misc.PhysCharFemale().GetWord()) + " " + SmartLower(title.misc.ProfGoodFemale().GetWord()) + " "
 		sText += WordList(["step-daughter", "step-mom", "step-sister", "cousin", "sister-in-law", "daughter-in-law", "aunt", "niece", "neighbor", "MILF", "teacher"]).GetWord() + "?"
 		
 		return sText
@@ -616,12 +616,12 @@ class TweetTxtGen29(TweetTxtGen):
 		if CoinFlip():
 			sText += sTheirName + "!!"
 		else:
-			sText += "a " + WordList(["Unicorn", "Centaur", "Man-o-taur", "Gargoyle", "Werewolf", "Merman", 
+			sText += "a " + SmartLower(WordList(["Unicorn", "Centaur", "Man-o-taur", "Gargoyle", "Werewolf", "Merman", 
 									  "Dwarf", "Dragon", "Orc", "Pope", "Troll", "Goat-man", "Futanari", 
 									  "Alien", "Tentacle Monster", "Clown", "Sumo Wrestler", "Were-horse", 
 									  "T-Rex", "Velociraptor", "Stegosaur", "Plesiosaur", "Pterodactyl", 
 									  "Reverse Merman", "Cyborg", "Vampire", "Zombie", "Were-shark", 
-									  "Demon", "Incubus"]).GetWord().lower() + "!!"
+									  "Demon", "Incubus"]).GetWord()) + "!!"
 		
 		return sText
 
@@ -846,7 +846,7 @@ class TweetTxtGen35(TweetTxtGen):
 		super().GenerateTweet()
 		sText = ""
 		
-		sJobGuy = title.misc.ProfMale().GetWord().lower()
+		sJobGuy = SmartLower(title.misc.ProfMale().GetWord())
 		sText = "I really identified with the " + WordList(["protagonist","main character","lead character","mc"]).GetWord() + ". "
 		
 		iRand = randint(1,6)
@@ -862,7 +862,7 @@ class TweetTxtGen35(TweetTxtGen):
 		elif iRand == 5:
 			sText += "I too would like to rub baby oil all over a naked " + sJobGuy + "."
 		else:
-			sText += "I too would like to meet " + AddArticles(sJobGuy).lower() + " who looks good naked and likes to eat ass."
+			sText += "I too would like to meet " + AddArticles(sJobGuy) + " who looks good naked and likes to eat ass."
 		
 		return sText
 
@@ -921,20 +921,20 @@ class TweetTxtGen37(TweetTxtGen):
 		if CoinFlip():
 			# male
 			sText = "This was " + AuthorBuilder(Gender.Male) + "'s last book before "
-			sText += "he was banned from Amazon for " + AddArticles(Adjs.GetWord()).lower() + " scene involving "
+			sText += "he was banned from Amazon for " + SmartLower(AddArticles(Adjs.GetWord())) + " scene involving "
 			
 		else:
 			# female
 			sText = "This was " + AuthorBuilder(Gender.Female) + "'s final book before "
-			sText += "she was banned from Amazon for " + AddArticles(Adjs.GetWord()).lower() + " scene involving "
+			sText += "she was banned from Amazon for " + SmartLower(AddArticles(Adjs.GetWord())) + " scene involving "
 			
 		iRand = randint(1,5)
 		if iRand == 1:
 			sText += SexToys.GetWord() + " and "
 			if CoinFlip():
-				sText += AddArticles("underage " + Species.GetWord()).lower()
+				sText += SmartLower(AddArticles("underage " + Species.GetWord()))
 			else:
-				sText += AddArticles(Species.GetWord()).lower()
+				sText += SmartLower(AddArticles(Species.GetWord()))
 		elif iRand == 2:
 			sText += SexToys.GetWord() + " and "
 			if CoinFlip():
@@ -942,9 +942,9 @@ class TweetTxtGen37(TweetTxtGen):
 			sText += SexActs.GetWord() 
 		elif iRand == 3:
 			if CoinFlip():
-				sText += AddArticles("underage " + Species.GetWord()).lower()
+				sText += SmartLower(AddArticles("underage " + Species.GetWord()))
 			else:
-				sText += AddArticles(Species.GetWord()).lower()
+				sText += SmartLower(AddArticles(Species.GetWord()))
 			sText += " and " 
 			if CoinFlip():
 				sText += WordList(['underage','non-consensual','extreme']).GetWord() + " "
@@ -979,10 +979,10 @@ class TweetTxtGen38(TweetTxtGen):
 		
 		if CoinFlip():
 			# male
-			sText = "By day, erotica author " + AuthorBuilder(Gender.Male) + " is " + AddArticles(sMaleJob).lower() + " from " + sPlace + "."	
+			sText = "By day, erotica author " + AuthorBuilder(Gender.Male) + " is " + SmartLower(AddArticles(sMaleJob)) + " from " + sPlace + "."	
 		else:
 			# female
-			sText = "By day, erotica author " + AuthorBuilder(Gender.Female) + " is " + AddArticles(sFemaleJob).lower() + " from " + sPlace + "."
+			sText = "By day, erotica author " + AuthorBuilder(Gender.Female) + " is " + SmartLower(AddArticles(sFemaleJob)) + " from " + sPlace + "."
 		
 		return sText	
 
