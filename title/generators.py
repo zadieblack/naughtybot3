@@ -10,6 +10,7 @@ from title.misc import *
 from names import *
 from title.people import *
 from title.texttoimg import *
+import misc
 
 PromoHistoryQ = HistoryQ(2)
 
@@ -44,9 +45,9 @@ class Generator():
 		return FMs
 	
 	def GenerateTweet(self):
-		self.VerbsBy = BookVerbsBy()
-		self.VerbsTo = BookVerbsTo()
-		self.Gerunds = BookGerunds()
+		self.VerbsBy = misc.BookVerbsBy()
+		self.VerbsTo = misc.BookVerbsTo()
+		self.Gerunds = misc.BookGerunds()
 		self.HerName = NamesFemale().FirstName()
 		self.HisName = NamesMale().FirstName()
 		self.SubtitleCoda = SubtitleCoda()
@@ -297,7 +298,7 @@ class Generator9(Generator):
 		Master = MaleChar(iNumMaxCBits = 2, NotList = ["BDSM"], bAllowRelate = True)
 		
 		sTweet = "The " + Girl.Desc + "\nand\nThe " + Master.Desc 
-		sTweet += ":\nA " + WordList([self._getFMs_(), "BDSM", title.misc.SexyAdjs().GetWord().capitalize()]).GetWord() + " " + self.SubtitleCoda.GetWord()
+		sTweet += ":\nA " + WordList([self._getFMs_(), "BDSM", misc.SexyAdjs().GetWord().capitalize()]).GetWord() + " " + self.SubtitleCoda.GetWord()
 		
 		return sTweet
 		
@@ -706,43 +707,11 @@ class Generator29(Generator):
 			sTweet += "Lesbian " + Girl.Desc + " " + WordList(["Wife", "Girlfriend"]).GetWord()
 		
 		return sTweet
-	
-		
-class Generator30(Generator):
-	#Wanton & Willing: My Naked Lesbian Futa Princess
-	ID = 30
-	Priority = 2
-	
-	def GenerateTweet(self):
-		super().GenerateTweet()
-		sTweet = ""
-		
-		sAdj1 = ""
-		sAdj2 = ""
-		if CoinFlip():
-			sAdj1 = title.misc.PhysCharFemale().GetWord()
-			sAdj2 = title.misc.AttitudeGoodFemale().GetWord()
-		else:
-			sAdj1 = title.misc.AttitudeGoodFemale().GetWord()
-			sAdj2 = title.misc.PhysCharFemale().GetWord()
-			
-		sHerName = NamesFemale().FirstName()
-		
-		sTweet = sAdj1 + " & " + sAdj2 + ":\n"
-		
-		if CoinFlip():
-			Girl = FemaleChar(iNumMinCBits = 2)
-			sTweet += "My " + Girl.Desc
-		else:
-			Girl = FemaleChar()
-			sTweet += sHerName + " the " + Girl.Desc
-
-		return sTweet
 		
 class Generator30(Generator):
 	# Bubbly & Plump: 
-	# My Chaste Small-Town Girl Barista 
-	# Gets a Veiny 9" Surprise
+	# The Chaste Small-Town Girl Barista 
+	# Rides a Veiny 9-inch Dick
 	ID = 30
 	Priority = 2
 	
@@ -750,54 +719,61 @@ class Generator30(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		NotGirlList = ["Harem Princess"]
-		Girl = FemaleChar(iNumMinCBits = 3, Type = GirlType.Good, NotList = NotGirlList, bAllowSpecies = False, bAllowSexuality = False)
+		NotGirlList = ["Harem Princess","Slave","Queen","Heiress","Divorced"]
+		AdjNotList = ["Bikini-Bod","Anal Virgin","Shave","Big-Titty","Little"]
+		
+		PhysChars = title.misc.PhysCharFemale()
 
-		sAdj1 = ""
-		sAdj2 = ""
-		if CoinFlip():
-			sAdj1 = title.misc.PhysCharFemale().GetWord()
-			sAdj2 = title.misc.AttitudeGoodFemale().GetWord(NotList = ["Anal Virgin"])
-		else:
-			sAdj1 = title.misc.AttitudeGoodFemale().GetWord(NotList = ["Anal Virgin"])
-			sAdj2 = title.misc.PhysCharFemale().GetWord()
+		sAdj1 = title.misc.AttitudeGoodFemale().GetWord(NotList = AdjNotList)
+		sAdj2 = PhysChars.GetWord(NotList = AdjNotList + [sAdj1])
 			
-		sHerName = NamesFemale().FirstName()
+		NotGirlList = NotGirlList + [sAdj1,sAdj2]
+		Girl = FemaleChar(iNumMinCBits = 1, iNumMaxCBits = 3, Type = GirlType.Good, NotList = NotGirlList,
+							bAllowSpecies = False, bAllowSexuality = False, bAllowClothing = False, bAllowTitle = False, 
+							bAllowAttitude = False, bAllowPhysChar = False,
+							bAddArticle = True) 
 		
 		sTweet = sAdj1 + " & " + sAdj2 + ":\n"
-		
-		if CoinFlip():
-			sTweet += "My " + Girl.Desc + "\n"
-		else:
-			sTweet += sHerName + " the " + Girl.Desc + "\n"
+		sTweet += Girl.Desc + "\n"
 			
-		iRand = randint(1,13)
+		iRand = randint(1,15)
 		if iRand < 3:
-			ErectAdjs = WordList(["Swollen","Engorged","Turgid","Rock Hard","Bulging","Fully Erect","Hugely Erect","Veiny",
-						  "Throbbing","Meaty","Burning","Dripping","Purple","Red","Fleshy","Lustful","Passionate",
-						  "Throbbing","Pulsating","Vigorous","Virile","Moist","Black","Stiff","Girthy"])
-			sTweet += "Gets a " + ErectAdjs.GetWord() + " " + str(randint(7,12)) + "\" Surprise"
+			sTweet += "Exposes Her Naked Body " + WordList(["in a Wal-Mart","on Main Street","at the Grocery Store",
+															"at the Mall","Downtown","on Campus","in Traffic",
+															"at the Office","on the Beach","at the Park",
+															"at Disneyland","on the Jumbotron"]).GetWord()
 		elif iRand == 3:
-			sTweet += "Makes Her First Porno"
+			sTweet += "Has Her First " + WordList(["Threesome","Three-Way","Orgy"]).GetWord()
 		elif iRand == 4:
-			sTweet += "Tries Anal"
+			sTweet += "Has a " + WordList(["4","5","6","8","10","12","20","30","60"]).GetWord() + "-guy Gangbang"
 		elif iRand == 5:
-			sTweet += "Exposes Her Naked Body in Public"
-		elif iRand == 6:
-			sTweet += "Has Her First " + WordList(["Threesome","Foursome","Fivesome"]).GetWord()
-		elif iRand == 7:
-			sTweet += "Sits On My Face"
-		elif iRand == 8:
-			sTweet += "Cleans My House Nude"
-		elif iRand == 9:
 			sTweet += "Gets Her Cherry Popped"
-		elif iRand == 10:
+		elif iRand == 6:
 			sTweet += "Gets Her Anal Cherry Popped"
-		elif iRand > 10 and iRand < 12:
-			sTweet += WordList(["Wants","Craves","Is Horny for","Begs for"]).GetWord() + " " 
-			sTweet += WordList(["Dick","The D","Cock","Some Dick","A Hard Cock","a Fat Boner"]).GetWord()
-		else: 
+		elif iRand == 7:
+			sTweet += "Goes Down On " + WordList(["a Butch Lesbian","Another Woman","Her Best Friend","Her Lesbian Boss",
+												  "Her Maid of Honor","Her Bridesmaid","Her Mother-in-Law"]).GetWord()
+		elif iRand == 8:
+			sTweet += "Makes a Porno"
+		elif iRand == 9:
+			sTweet += "Tries Anal"
+		elif iRand == 10:
 			sTweet += "Wears a Butt Plug"
+		elif iRand == 11:
+			sTweet += "Tries a Glory Hole"
+		elif iRand == 12:
+			sTweet += "Pounds " + NamesMale().FirstName() + " with a Strap-On"
+		else:
+			ErectAdjs = WordList(["Swollen","Engorged","Turgid","Rock Hard","Bulging","Fully Erect","Hugely Erect","Veiny",
+						  "Throbbing","Meaty","Burning","Dripping","Lustful","Passionate","Massive","Fat",
+						  "Throbbing","Pulsating","Dripping","Black","Stiff","Girthy"])
+			sTweet += WordList(["Rides","Sucks","Mounts","Takes"]).GetWord() + " "
+			sTweet += AddArticles(ErectAdjs.GetWord()) + " " 
+			sTweet += WordList(["Seven","Seven 1/2","Eight","Eight 1/2","Nine","Nine 1/2","Ten","Ten 1/2",
+								"Eleven","Eleven 1/2","Twelve","Thirteen","Fourteen"]).GetWord() + "-inch "
+			sTweet += WordList(["Dick","Cock","Boner","Prick","Tool"]).GetWord()
+			
+			
 
 		return sTweet
 		
@@ -4105,7 +4081,7 @@ class Generator131(Generator):
 								 'Gangstas','Goblins','Centaurs','Hockey Players','Rugby Players',
 								 'Long Haul Truckers','Men at the Gym','Frat Brothers','Mer-men',
 								 'Mountain Men','Navy Seals','Pirates','Pro Wrestlers','Roadies',
-								 'Men of Seal Team Six','Scottsmen','Sumo Wrestlers','Vikings','Werewolves'
+								 'Men of Seal Team Six','Scottsmen','Sumo Wrestlers','Vikings','Werewolves',
 								 'Lawyers','Navy Boys','Bad Boys','Jocks','Surfers','Luchadors','Lumberjacks',
 								 'Male Strippers','MMA Fighters','Rodeo Clowns','Dinosaurs','T-Rexes']).GetWord()
 			GangNotList = GangNotList + [MaleGang]

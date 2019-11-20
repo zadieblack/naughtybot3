@@ -12,6 +12,7 @@ import excerpt.locations as locations
 from util import CoinFlip
 from util import WordList
 from util import AddArticles
+from util import SmartLower
 
 from excerpt.locations import LocationSelector
 
@@ -5058,15 +5059,61 @@ class Generator90(Generator):
 
 		return sTweet
 		
-# class Generator82(Generator):
-	# ID = 82
-	# Priority = 1
+class Generator91(Generator):
+	ID = 91
+	Priority = 1
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		sHerName = names.PlainNamesFemale().FirstName()
+		
+		NotGirlList = ["Harem Princess","Slave","Queen","Heiress","Divorced","Maiden","Anal","MILF",
+					   "angelic","ditzy","flirty","sexy","sparkling","sporty","straight","fertile",
+					   "bride","bronzed","lactating","naked","nude","nubile","jiggling","pregnant",
+					   "big-titty","hucow","shave"]
+		Girl = titpeople.FemaleChar(iNumMinCBits = 2, iNumMaxCBits = 3, Type = shutil.GirlType.Good, NotList = NotGirlList,
+									bAllowSpecies = False, bAllowSexuality = False, bAllowClothing = False, bAllowTitle = False,
+									bAllowPregState = False, bAllowNation = False, bAllowAge = False)
+		
+									
+		sTweet += sHerName + " reflected on what " + WordList(['a strange','an unusual','an odd']).GetWord() + " day it had been. "
+		sTweet += "She was just another " + SmartLower(Girl.Desc) + ". "
+		sTweet += "How " + WordList(["in the world ","on Earth ",""]).GetWord() + "had she wound up "
+		sTweet += WordList(["panties down,","stripped naked,","naked, slathered in baby oil, and",
+							"with her skirt around her ankles,","with her thong pulled to one side,",
+							"wearing crotchless panties and","naked, covered in whipped cream, and",
+							"nude from the waist down,","stripped from the waist down,",
+							"naked, wearing body paint, and","buck naked,",
+							"with her jeans around her ankles,","wearing nothing but red stiletto heels and",
+							"wearing assless chaps, dripping with lube, and"]).GetWord() + " "
+		sTweet += "bent over " 
+		sTweet += WordList(["the coffee table","a piano bench","the end of the bed","a park bench","her parent's bed",
+							"her dad's sofa","the hood of a car","the kitchen table","in a bathroom stall",
+							"a classroom desk","in a dorm shower stall","in the men's locker room",
+							"behind the gym","a grand piano","a conference room table",
+							"an examination table"]).GetWord() + " "
+		if CoinFlip() and CoinFlip():
+			Man = titpeople.MaleGangChar(iNumMinCBits = 1,iNumMaxCBits = 2)
+			sTweet += "as the " + SmartLower(Man.Desc) + " took turns "
+			sTweet += WordList(["furiously","vigorously","savagely","ardently","passionately","breathlessly"]).GetWord() + " "
+			sTweet += WordList(["pounding","slamming","fucking","drilling","hammering","jack-hammering"
+								,"stuffing","penetrated"]).GetWord() + " "
+		else:
+			Man = titpeople.MaleChar(iNumMinCBits = 1,iNumMaxCBits = 2, bAllowSpecies = False, bAllowGang = False)
+			sTweet += "as " + AddArticles(SmartLower(Man.Desc)) + " " 
+			sTweet += WordList(["furiously","vigorously","savagely","ardently","passionately"
+								,"breathlessly"]).GetWord() + " "
+			sTweet += WordList(["pounded","slammed","fucked","drilled","hammered","jack-hammered"
+								,"stuffed","rode"]).GetWord() + " "
+			
+		#sTweet += "her " + WordList(["ass","ass","pussy","pussy","cunt","cunt","twat","hole","holes"]).GetWord() + " doggy-style?"
+		sTweet += "her " + WordList(["hole ","holes ","ass ","","","","",""]).GetWord() + "doggy-style?"
+		if CoinFlip() and CoinFlip():
+			sTweet += " Yet again?!?"
 
-		# return sTweet
+		return sTweet
 		
 # class Generator82(Generator):
 	# ID = 82

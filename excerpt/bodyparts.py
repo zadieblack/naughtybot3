@@ -2681,14 +2681,14 @@ class BodyMale(BodyParts):
 			bAddArticles = False 
 		elif isinstance(part, MusclesMale):
 			bAddArticles = False 
+			
 		if not sPossessive == "":
-			bAddArticles = False 
 			sPartDesc = sPossessive + " " + part.RandomDescription(bAllowShortDesc = False, bAllowLongDesc = bAllowLongDesc, NotList = PartNotList)
 		else:
 			sPartDesc = part.RandomDescription(bAllowShortDesc = False, bAllowLongDesc = bAllowLongDesc, NotList = PartNotList)
 		
-		if bAddArticles:
-			sPartDesc = AddArticles(sPartDesc)
+			if bAddArticles:
+				sPartDesc = AddArticles(sPartDesc)
 		
 		return sPartDesc
 	
@@ -2771,16 +2771,17 @@ class BodyMale(BodyParts):
 												PartGroups.append([part1[0],part2[0],part3[0],part4[0],part5[0]])
 		
 		SelectedParts = PartGroups[randint(0,len(PartGroups) - 1)]
-		
+
 		iLoops = 0
 		while iLoops < iNum:
 			sBodyDesc += self.GetNakedBodyPartDesc(SelectedParts[iLoops], bAllowLongDesc, sPossessive = sPossessive)
+			
 			if iLoops == iNum - 2:  
 				sBodyDesc += sDivideChar + " and "
 			elif iLoops < iNum - 2:
 				sBodyDesc += sDivideChar + " "
 			iLoops = iLoops + 1
-			
+
 		return sBodyDesc
 		
 	

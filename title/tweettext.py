@@ -361,7 +361,7 @@ class TweetTxtGen16(TweetTxtGen):
 							"a jockey", "a sumo wrestler", "a bodybuilder", "a contortionist",
 							"a Brony", "a reality TV star", "a taxidermist", "a pro wrestler"]).GetWord() 
 		if CoinFlip():
-			sText += " from " + title.misc.DullPlaces().GetWord()
+			sText += " from " + DullPlaces().GetWord()
 		
 		return sText
 		
@@ -666,7 +666,7 @@ class TweetTxtGen31(TweetTxtGen):
 		sText = "ME, " + WordList(["YELLING", "YELLING", "SCREAMING"]).GetWord() + " AT THE " + WordList(["BOOK", "BOOK", "PAGE", "MAIN CHARACTER"]).GetWord() + ": No " + sHerName + "! Don't " + WordList(["sleep with", "sleep with", "have sex with", "hook up with"]).GetWord () + " " + sHisName + "! "
 		sText += "He " + WordList(["is your long lost twin brother", 
 									"is secretly married to " + sHerName2, 
-									"is the serial killer that's been terrorizing " + title.misc.DullPlaces().GetWord(),
+									"is the serial killer that's been terrorizing " + DullPlaces().GetWord(),
 									"just wants you for your " + WordList(["millions", "billions", "bitcoin", "successful fondue restaurant", "enormous titties"]).GetWord(), 
 									"is the mysterious " + WordList(["man in black","masked man","drifter","hit man","assassin","vigilante"]).GetWord() + " that shot your father",
 									"is an imposter named " + sHisName2 + " and he's really from " + DullPlaces().GetWord(),
@@ -728,7 +728,7 @@ class TweetTxtGen32(TweetTxtGen):
 								  "pseudo-incest werewolf foot-fetish", "trans vampire anal wife-swapping"])
 		sType = EroticaNiches.GetWord()
 		
-		Places = title.misc.DullPlaces()
+		Places = DullPlaces()
 		sPlace = ""
 		if CoinFlip():
 			sPlace += "in " 

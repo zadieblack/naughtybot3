@@ -191,6 +191,11 @@ def TestAllGens(bExcerpts = False, bExcTweetTxts = False, bTitles = False, bTitT
 			print("\n" + summary[0] + " generators that *!FAILED!*: [" + str(summary[2]) + "]")
 		else:
 			print("!Empty summary!")
+			
+	if len(summary[2]) > 0:
+		print("\n<=> * ! WARNING ! * " + str(len(summary[2])) + " Errors Found <=>")
+	else:
+		print("\n<=>SUCCESS! 0 Errors Detected!<=>")
 		
 # Execute functions!
 Args = SetGetArgs()	

@@ -314,7 +314,7 @@ class FemaleChar(Character):
 				if bAllowSpecies:
 					NounList.append(SpeciesFemale())
 				if bAllowTrope:
-					NounList.append(TropeFemale())
+					NounList.append(TropeFemale(Type = Type))
 				if bAllowRelate:
 					NounList.append(RelateFemale())
 				if bAllowTitle:

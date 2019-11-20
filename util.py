@@ -344,3 +344,94 @@ class NounAdjList:
 		sWord = self.GetAdj(NotList) + " " + self.GetNoun(NotList)
 		
 		return sWord
+		
+def SmartLower(phrase):
+	sResult = phrase
+	if isinstance(sResult,str):
+		aOldPhrase = sResult.split()
+		aNewPhrase = []
+		for item in aOldPhrase:
+			#print("Item is " + item + ", length is " + str(len(item)) + ", and item[1].isupper() = " + str(item[1].isupper()))
+			if len(item) > 1 and not item[1].isupper():
+				aNewPhrase.append(item.lower())
+			else:
+				aNewPhrase.append(item)
+		sResult = ' '.join(aNewPhrase)
+		
+	return sResult
+
+	
+class Sound():
+	def __init__(self, newlist):
+		self._SoundList = sorted(newlist)
+		
+	def SoundsLike(self, word):
+		bSoundsLike = False 
+		
+		if isinstance(self._SoundList, list) and isinstance(word,str):
+			for item in self._SoundList:
+				iSoundLen = len(item)
+				if item.lower()[0:iSoundLen] == word.lower()[0:iSoundLen]:
+					bSoundsLike = True 
+	
+		return bSoundsLike
+				
+
+def MatchedSound(word1,word2):
+	sounds = []
+	sounds.append(Sound(['b']))
+	sounds.append(Sound(['bl']))
+	sounds.append(Sound(['br']))
+	sounds.append(Sound(['bw']))
+	sounds.append(Sound(['c','k']))
+	sounds.append(Sound(['ch']))
+	sounds.append(Sound(['cl','kl']))
+	sounds.append(Sound(['cr','kr']))
+	sounds.append(Sound(['cw','kw','qu']))
+	sounds.append(Sound(['d']))
+	sounds.append(Sound(['dr']))
+	sounds.append(Sound(['dw']))
+	sounds.append(Sound(['f']))
+	sounds.append(Sound(['fl']))
+	sounds.append(Sound(['fr']))
+	sounds.append(Sound(['g','gh']))
+	sounds.append(Sound(['gl']))
+	sounds.append(Sound(['gn','kn','n']))
+	sounds.append(Sound(['gr']))
+	sounds.append(Sound(['gw']))
+	sounds.append(Sound(['h','wh']))
+	sounds.append(Sound(['j']))
+	sounds.append(Sound(['l',]))
+	sounds.append(Sound(['m']))
+	sounds.append(Sound(['n']))
+	sounds.append(Sound(['p']))
+	sounds.append(Sound(['pl']))
+	sounds.append(Sound(['pr']))
+	sounds.append(Sound(['ps','s']))
+	sounds.append(Sound(['r','wr']))
+	sounds.append(Sound(['sc','sch','sk']))
+	sounds.append(Sound(['sl']))
+	sounds.append(Sound(['sm']))
+	sounds.append(Sound(['sn']))
+	sounds.append(Sound(['sp']))
+	sounds.append(Sound(['squ','scw','skw']))
+	sounds.append(Sound(['st']))
+	sounds.append(Sound(['sw']))
+	sounds.append(Sound(['t']))
+	sounds.append(Sound(['th']))
+	sounds.append(Sound(['tw']))
+	sounds.append(Sound(['v']))
+	sounds.append(Sound(['w','jua']))
+	sounds.append(Sound(['x','z']))
+
+def GetRhymingPair(list1, list2):
+	resultpair = [None,None]
+	
+	shufflist1 = random.shuffle(list1)
+	for item1 in shufflist1:
+		for item2 in list2:
+			if MatchedSound(item1,item2):
+				resultpair = [item1,item2]
+				break 
+				
+	return resultpair

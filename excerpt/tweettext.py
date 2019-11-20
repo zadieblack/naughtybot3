@@ -233,12 +233,9 @@ class TweetTxtGen8(TweetTxtGen):
 						  "You have to favorite this"]).GetWord() + " "
 		sText += "if it " + WordList(["made you giggle", "made you laugh", "made you smile", "got you hot", 
 									"made you blush", "made you grin", "made your privates all tingly", 
-									"made your naught bits all tingly", "turned you on", "made you feel hot", 
+									"made your naughty bits all tingly", "turned you on", "made you feel hot", 
 									"got you going", "did it for you", "made your naughty bits feel good"]).GetWord() + ". " 
-		
-		if CoinFlip():
-			sText += WordList(["Seriously.", "For real.", "Seriously, though.", "For real, though.", "Okay?", "Pinky swear?"]).GetWord() 
-		
+
 		return sText
 	
 # Follow @erotica_ebooks for more #botlaughs 
