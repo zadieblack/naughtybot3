@@ -918,18 +918,23 @@ class TweetTxtGen26(TweetTxtGen):
 		
 		return sText	
 
-# class TweetTxtGen24(TweetTxtGen):
-	# # Out soon from Ben Dover
-	# def __init__(self):
-		# super().__init__()
-		# self.ID = 24
-		# self.Priority = 2
+class TweetTxtGen27(TweetTxtGen):
+	# Out soon from Ben Dover
+	def __init__(self):
+		super().__init__()
+		self.ID = 27
+		self.Priority = 3
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sText = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sText = ""
 		
-		# return sText	
+		sText += "From the " + WordList(["fertile","kinky","deranged","horny","unique","dirty","filthy",
+										 "demented","creative","extraordinary"]).GetWord() + " "
+		sText += WordList(["mind","mind","brain","imagination","imaginings"]).GetWord() + " "
+		sText += "of " + WordList(["writer","author"]).GetWord() + " " +  AuthorBuilder(Gender.Neuter) + ":"
+		
+		return sText	
 
 # class TweetTxtGen24(TweetTxtGen):
 	# # Out soon from Ben Dover

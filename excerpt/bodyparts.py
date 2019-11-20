@@ -1896,7 +1896,7 @@ class Penis(BodyParts):
 		sLength = str(randint(6, 13))
 		if CoinFlip():
 			sLength += " 1/2"
-		sLength += "\""
+		sLength += "-inch"
 		
 		return sLength
 			
@@ -2012,11 +2012,45 @@ class Semen(BodyParts):
 		self.DefaultNoun("semen")
 		self.DefaultAdj("gooey")
 		
+class ButtocksMale(BodyParts):
+	def __init__(self):
+		super().__init__()
+		
+		self.NounList(['buns',
+			'butt cheeks',
+			'buttocks',
+			'glutes'])
+			
+		self.AdjList(['beefy',
+			'broad',
+			'bronzed',
+			'chiseled',
+			'compact',
+			'hairy',
+			'lean',
+			'manly',
+			'masculine',
+			'muscular',
+			'rock-hard',
+			'sexy',
+			'smooth',
+			'strapping',
+			'swole',
+			'taut',
+			'tan',
+			'tight','tight',
+			'trim',
+			'virile',
+			'well-defined'])
+		
+		self.DefaultNoun("buttocks")
+		
 class AssMale(BodyParts):
 	def __init__(self):
 		super().__init__()
 		
 		self.Anus = AnusFemale()
+		self.Buttocks = ButtocksMale()
 		
 		self.NounList(['ass',
 			'backside',
@@ -2025,9 +2059,6 @@ class AssMale(BodyParts):
 			'bum',
 			'buns',
 			'butt',
-			'butt cheeks',
-			'buttocks',
-			'glutes',
 			'gluteous maximus',
 			'rump',
 			'tush'])

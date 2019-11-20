@@ -439,68 +439,28 @@ class Generator11(Generator):
 		
 		Parts = self.FemBodyParts
 		
-		sTweet = "\"" + WordList(["Oh fuck", "Oh god", "Goddam", "Holy fuck", "Oh baby", "Oh god", "Oh fuck","Holy shit"]).GetWord() + ", "
-		sTweet += self.FemaleName.FirstName() + ",\" he " + WordList(["moaned","gasped","exclaimed","whispered","cried"]).GetWord() + ", \"You are so " + WordList(['beautiful','sexy','perfect','fucking sexy','hot and sexy','fucking perfect']).GetWord() + ". I love your "
+		sTweet = "\"" + WordList(["Oh fuck", "Oh god", "Oh baby","Oh mama"]).GetWord() + ", "
+		sTweet += self.FemaleName.FirstName() + ",\" "
+		sTweet += self.MaleName.FirstName() + " "
+		sTweet += WordList(["moaned","gasped","exclaimed","whispered","cried"]).GetWord() + ", "
+		sTweet += "\"You are " + WordList(['so beautiful','so sexy','perfect','so hot and sexy','such a woman','such a beautiful woman']).GetWord() + ". "
+		sTweet += "I love " + self.FemBodyParts.DescRandomNakedParts(iNum = 4, sPossessive = "your", bAllowLongDesc = False, bBoobs = True, bAss = True, bPussy = True)
 			
-		sHair = "your " + Parts.Hair.GetAdj() + " hair, "
-		sEyes = "your " + Parts.Eyes.GetAdj() + " eyes, "
-		sMouth = "" 
-		if CoinFlip():
-		#mouth 
-			sMouth += "your " + Parts.Mouth.GetAdj() + " mouth, "
-		else:
-		#lips 
-			sMouth += "your " + Parts.Lips.GetAdj() + " lips, "
-		sSkin = "your " + Parts.Skin.GetAdj() + " skin, "
-		sLegs = "your " + Parts.Legs.GetAdj() + " legs, "
-		sThighs = "your " + Parts.Thighs.GetAdj() + " thighs, "
-		sAss = "your " + Parts.Ass.MediumDescription() + ", "
-		sBody = "your " + Parts.GetAdj() + " body, "
-		sTits = "your " + Parts.Breasts.GetAdj() + " breasts, "
-			
-		PartsDescs = []
-		PartsDescs.append(sHair + sEyes + sBody + sTits)
-		PartsDescs.append(sHair + sEyes + sSkin + sTits)
-		PartsDescs.append(sHair + sEyes + sLegs + sTits)
-		PartsDescs.append(sHair + sMouth + sBody + sTits)
-		PartsDescs.append(sHair + sMouth + sSkin + sTits)
-		PartsDescs.append(sHair + sMouth + sLegs + sTits)
-		PartsDescs.append(sHair + sLegs + sThighs + sTits)
-		PartsDescs.append(sEyes + sMouth + sBody + sTits)
-		PartsDescs.append(sEyes + sMouth + sSkin + sTits)
-		PartsDescs.append(sEyes + sMouth + sLegs + sTits)
-		PartsDescs.append(sEyes + sSkin + sBody + sTits)
-		PartsDescs.append(sEyes + sSkin + sLegs + sTits)
-		
-		PartsDescs.append(sHair + sEyes + sBody + sAss)
-		PartsDescs.append(sHair + sEyes + sSkin + sAss)
-		PartsDescs.append(sHair + sEyes + sLegs + sAss)
-		PartsDescs.append(sHair + sMouth + sBody + sAss)
-		PartsDescs.append(sHair + sMouth + sSkin + sAss)
-		PartsDescs.append(sHair + sMouth + sLegs + sAss)
-		PartsDescs.append(sHair + sLegs + sThighs + sAss)
-		PartsDescs.append(sEyes + sMouth + sBody + sAss)
-		PartsDescs.append(sEyes + sMouth + sSkin + sAss)
-		PartsDescs.append(sEyes + sMouth + sLegs + sAss)
-		PartsDescs.append(sEyes + sSkin + sBody + sAss)
-		PartsDescs.append(sEyes + sSkin + sLegs + sAss)
-	
-		sTweet += PartsDescs[randint(0, len(PartsDescs) - 1)] + "and "
-		
-		sTweet += "the way you look " 
+		sTweet += ". But most of all I love the way you " 
 		
 		Endings = []
-		Endings.append("with my " + self.MaleBodyParts.Penis.GetRandomPenisPart() + " in your " + self.FemBodyParts.Mouth.RandomDescription(bAllowShortDesc = True))
-		Endings.append("with my " + self.Semen.MediumDescription() + " on your " + WordList(["angelic", "innocent", "pretty","sweet","cute","adorable"]).GetWord() + " little face")
-		Endings.append("with my " + self.Semen.MediumDescription() + " dripping from your chin")
-		Endings.append("with my " + self.Semen.MediumDescription() + " on your " + self.FemBodyParts.Breasts.RandomDescription() + "")
-		Endings.append("with my " + self.MaleBodyParts.Penis.Testicles.RandomDescription() + " slapping against your chin")
-		Endings.append("with your " + WordList(['red','cherry','full','slutty']).GetWord () + " lips around my " + self.MaleBodyParts.Penis.RandomDescription(bAllowShortDesc = True) + "")
-		Endings.append("at me when I'm " + WordList(['balls-deep in','buried to the hilt inside','deep inside','stuffing','pounding']).GetWord() + " " + WordList(["your sister","your twin-sister","your step-sister","your best friend","the babysitter","your step-mom","my secretary","the yoga instructor","that stripper Wendy","some college slut I picked up at the club"]).GetWord())
-		Endings.append("with my " + self.MaleBodyParts.Penis.Testicles.MediumDescription() + " stuffed in your mouth")
-		Endings.append("when I spank your ass with a riding crop")
-		Endings.append("with your " + WordList(['sphincter','anus','asshole','bunghole']).GetWord() + " raw and gaping after I've fucked your ass")
-		Endings.append("with my " + self.Semen.MediumDescription() + " " + self.VDrip.Gerund() + " out of your freshly-fucked " + WordList(['sphincter','anus','asshole','bunghole','dirt pipe','pooper']).GetWord())
+		Endings.append("look with my " + self.MaleBodyParts.Penis.GetRandomPenisPart() + " in your " + self.FemBodyParts.Mouth.RandomDescription(bAllowShortDesc = True))
+		Endings.append("look with my " + self.Semen.MediumDescription() + " on your " + WordList(["angelic", "innocent", "pretty","sweet","cute","adorable"]).GetWord() + " little face")
+		Endings.append("look with my " + self.Semen.MediumDescription() + " dripping from your chin")
+		Endings.append("look with my " + self.Semen.MediumDescription() + " on your " + self.FemBodyParts.Breasts.RandomDescription() + "")
+		Endings.append("look with my " + self.MaleBodyParts.Penis.Testicles.RandomDescription() + " slapping against your chin")
+		Endings.append("look with my " + self.MaleBodyParts.Penis.Testicles.RandomDescription() + " in your mouth")
+		Endings.append("look with your " + WordList(['red','cherry','full','slutty']).GetWord () + " lips around my " + self.MaleBodyParts.Penis.RandomDescription(bAllowShortDesc = True) + "")
+		Endings.append("look at me when I'm " + WordList(['balls-deep in','buried to the hilt inside','deep inside','stuffing','pounding']).GetWord() + " " + WordList(["your sister","your twin-sister","your step-sister","your best friend","the babysitter","your step-mom","my secretary","the yoga instructor","that stripper Wendy","some college slut I picked up at the club"]).GetWord())
+		Endings.append("look with my " + self.MaleBodyParts.Penis.Testicles.MediumDescription() + " stuffed in your mouth")
+		Endings.append("shriek when I spank your ass with a riding crop")
+		Endings.append("let me " + WordList(['pound','drill','fuck','gape','stuff','finger','violate','cream','cream-pie']).GetWord() + " your little " + WordList(['sphincter','anus','asshole','bunghole','dirt pipe','pooper']).GetWord())
+		Endings.append("look with a butt-plug in your " + WordList(['sphincter','anus','asshole','bunghole','dirt pipe','pooper']).GetWord())
 		Endings.append("with a ball-gag in your mouth")
 		Endings.append("with your black eyeliner running as you deep throat me")
 		
@@ -5114,16 +5074,72 @@ class Generator91(Generator):
 			sTweet += " Yet again?!?"
 
 		return sTweet
-		
-# class Generator82(Generator):
-	# ID = 82
-	# Priority = 1
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+# "I'll say one thing for Quentin," said Cherry, "he is surprisingly toned for a meter maid!"
+# "God sweetie, do we have to talk about your ex right now?!?" gasped Jerry as he pounded her from behind."	
+class Generator92(Generator):
+	ID = 92
+	Priority = 1
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		bod = self.MaleBodyParts
+		sHisName1 = names.PlainNamesMale().FirstName()
+		sHisName2 = self.MaleName.FirstName()
+		sHerName = self.FemaleName.FirstName()
+		sJob = self.BlueCollar.GetPerson()
+		MaleRelate = WordList(["father","step-father",
+							   "brother","twin brother","step-brother","younger brother",
+							   "ex","ex-boyfriend","ex-husband",
+							   "son","step-son","son-in-law",
+							   "boss","co-worker","husband","roommate"
+							 ])
+		PenisNotList = ["wood","boner","snake","stem","manhood","member","hardness","goo-gun","phallus",
+						"organ","serpent"]
+						
+		sTweet += "\"I'll say one thing about " + sHisName1 + ",\" said " + sHerName + ", "
+		sTweet += "\"He may only be " + AddArticles(sJob) + ", but "
+		
+		ManDesc = []
+		ManDesc.append("his ass is " + bod.Ass.GetAdj(NotList = ["naked"]).upper())
+		ManDesc.append("he has the body of " + AddArticles(WordList(["sex god","male model","weight lifter",
+																		  "male stripper","Chippendales Dancer",
+																		  "movie star","porn star"]).GetWord()))
+		ManDesc.append("with his shirt off he is " + WordList(["ripped","swole","sexy","hot","fine","tasty",
+															   "bangable","shredded","hard"]).GetWord() + " as fuck")
+		ManDesc.append("he is hung like " + AddArticles(WordList(["horse","donkey","gorilla","porn star",
+																	   "stallion","bull","black guy","black man"]).GetWord()))
+		ManDesc.append("his " + bod.Ass.Buttocks.GetNoun() + " are tight as fuck")
+		ManDesc.append("his " + bod.Penis.GetNoun(NotList = PenisNotList) + " is " 
+							  + WordList(["huge","enormous","massive","magnificent","beautiful","impressive",
+										  "mouth-watering","spectacular","breath-taking"]).GetWord())
+		ManDesc.append("his " + bod.Penis.GetNoun(NotList = PenisNotList) + " must be like " 
+							  + WordList(["seven","eight","nine","ten","eleven","twelve","fifteen"]).GetWord() 
+							  + "-inches long")										
+		
+		sTweet += ManDesc[randint(0,len(ManDesc) - 1)] + "!\"\n\n"
+		sTweet += "\"" + WordList(["God","Fuck","Oh my god","Seriously","Jesus"]).GetWord() + ", "
+		if CoinFlip():
+			sTweet += self.TermsOfEndearment.GetWord(NotList = ["dear","darling","love"]) + ", "
+		else:
+			sTweet += sHerName + ", "
+		sTweet += "do we really have to talk about your " + MaleRelate.GetWord() + " right now?!?\" "
+		sTweet += WordList(["gasped","panted","puffed"]).GetWord() + " " + sHisName2 + " "
+		sTweet += "as he " + WordList([WordList(["pounded","jack-hammered","fucked","drilled"]).GetWord() + " her " 
+												+ WordList(["from behind","doggy-style","holes"]).GetWord(),
+									   "tit-fucked her lubed-up " + self.FemBodyParts.Breasts.ShortDescription() + " vigorously",
+									   "fucked her on the " + WordList(["kitchen counter","kitchen table",
+																		"water-bed","coffee table",
+																		"filthy mattress","bathroom floor",
+																		"sex swing","examination table",
+																		"treadmill","hood of the car",
+																		"backseat of the car","hotel bed"]).GetWord()
+									  ]).GetWord()
+		sTweet += "."
 
-		# return sTweet
+		return sTweet
 		
 # class Generator82(Generator):
 	# ID = 82

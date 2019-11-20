@@ -367,23 +367,17 @@ class Sound():
 		self._SoundList = sorted(newlist,key=len_alpha_key)
 		if len(self._SoundList) > 0:
 			self.Length = len(self._SoundList[0])
-			# print("Sound list is " + str(self._SoundList))
-			# print("Length = " + str(self.Length))
 		else:
 			self.Length = 0
-			# print("Sound list [empty]. Length = 0")
 		
 	def SoundsLike(self, word):
 		bSoundsLike = False 
 		
-		#print("-- SoundsLike() checking word \"" + word + "\" against SoundList [" + str(self._SoundList) + "]")
 		if isinstance(self._SoundList, list) and isinstance(word,str):
 			for item in self._SoundList:
 				iSoundLen = len(item)
-				#print("-- SoundsLike() item \"" + item.lower() + "\" == \"" + word.lower() + "\"?")
 				if item.lower()[0:iSoundLen] == word.lower()[0:iSoundLen]:
 					bSoundsLike = True 
-					#print("-- SoundsLike() MATCH!!!")
 					break
 	
 		return bSoundsLike
@@ -467,31 +461,11 @@ class ConsonantSounds():
 		
 		self.sounds = sorted(self.sounds,key=self.sound_key)
 		
-		# sSoundsList = ""
-		# sSoundsList += "All sounds sorted:\n[ " 
-		# for sound in self.sounds:
-			# sSoundsList += " " + str(sound._SoundList) + "\n"
-		# sSoundsList += "]\n"
-		
-		#print(sSoundsList)
-		
 		
 	def __iter__(self):
 		return iter(self.sounds)
 
 Sounds = ConsonantSounds()
-
-# def MatchLen(word1, word2):
-	# iMatchLen = 0
-	
-	# if isinstance(word1, str) and isinstance(word2,str):
-		# if len(word1) > 0
-			# icount = 0
-			# while icount < len(word1):
-				# if word1[0:icount] == word2[0:icount]:
-					# iMatchLen = icount 
-
-	# return iMatchLen
 
 def GradeSoundMatch(word1,word2):
 	iMatchGrade = 0
@@ -505,13 +479,10 @@ def GradeSoundMatch(word1,word2):
 		if sound.SoundsLike(word1):	
 			word1sound = sound 
 			break
-	#print("- GradeSoundMatch() decided that [" + str(word1sound._SoundList) + "] is the sound that matches \"" + word1 + "\"")
+			
 	# compare the matched sound to the second word 
 	if word1sound.SoundsLike(word2):
 		iMatchGrade = word1sound.Length
-		#print("- GradeSoundMatch() decided that \"" + word2 + "\" and \"" + word1 + "\" match. Match Grade = " + str(iMatchGrade) + ".")
-	#else:
-		#print("- GradeSoundMatch() decided that \"" + word1 + "\" and \"" + word2 + "\" do not match. Match Grade = 0.")
 		
 	return iMatchGrade
 
@@ -522,20 +493,10 @@ def GetRhymingWord(word, list):
 	bestmatch = ""
 
 	for item in list:
-		#print("GetRhymingWord() Checking if \"" + word + "\" == \"" + str(item) + "\"")
 		itemgrade = GradeSoundMatch(item,word)
 		if itemgrade > bestmatchlen:
-			#print("GetRhymingWord() matched \"" + word + "\" & \"" + item + "\"")
-			#print("GetRhymingWord() decided \"" + word + "\" is a better match for \"" + item + "\" than \"" + bestmatch + "\"")
 			bestmatchlen = itemgrade
 			bestmatch = item
-			# if len(item[0]) > bestmatchlen:
-				# print("GetRhymingWord() decided \"" + item[0] + "\" is a better match for \"" + item[1] + "\" than \"" + bestmatch[0] + "\"")
-				# bestmatchlen = len(item[0])
-				# bestmatch = item
-			# else:
-				# print("GetRhymingWord() decided \"" + item[0] + "\" is the best match for \"" + item[1] + "\" so far")
-			
 				
 	return bestmatch
 	
