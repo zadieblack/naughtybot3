@@ -11,6 +11,7 @@ from title.people import *
 from title.texttoimg import *
 import misc
 import title.misc as titmisc
+import title.characters as char
 
 PromoHistoryQ = HistoryQ(2)
 
@@ -4675,15 +4676,19 @@ class Generator1000(Generator):
 
 		return sTweet	
 		
-# class Generator100(Generator):
-	# ID = 100
-	# Priority = 2
+class Generator1001(Generator):
+	ID = 1001
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		Girl = char.FemaleChar()
+		
+		sTweet += Girl.Desc + " Gets Sexed the Hell Up!"
 
-		# return sTweet	
+		return sTweet	
 		
 # class Generator100(Generator):
 	# ID = 100
