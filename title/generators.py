@@ -9,9 +9,10 @@ from title.util import *
 from names import *
 from title.people import *
 from title.texttoimg import *
+from title.characters import TempType
 import misc
 import title.misc as titmisc
-import title.characters as char
+import title.chargenerator as char
 
 PromoHistoryQ = HistoryQ(2)
 
@@ -4684,9 +4685,11 @@ class Generator1001(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		Girl = char.FemaleChar()
+		#print("Generator1001.GenerateTweet() started")
+		Girl = char.FemaleChar(TempType = TempType.Flowery, SelectTemplateID = 12)
 		
-		sTweet += Girl.Desc + " Gets Sexed the Hell Up!"
+		#print("Generator1001.GenerateTweet() FemaleChar created, building tweet")
+		sTweet += AddArticles(Girl.Desc, bMakeUpper = True) + " Gets Sexed the Hell Up!"
 
 		return sTweet	
 		

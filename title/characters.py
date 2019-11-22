@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# People module
+# Characters module
 
 from random import *
 from util import *
@@ -8,6 +8,8 @@ from util import *
 import title.util as titutil
 import title.misc as titmisc
 import misc as misc
+
+MAX_CHARACTER_CHARBITS = 5
 
 FemCBitHistoryQ = HistoryQ(10)
 MaleCBitHistoryQ = HistoryQ(10)
@@ -20,17 +22,18 @@ class TempType(Enum):
 
 class CharBit():
 	def __init__(self, charlist, gen = Gender.Neuter):
+		#print("CharBit started")
 		self.Gender = gen 
 		
 		if isinstance(charlist,str):			#initialize with a string
 			self._CharList = WordList([charlist])
-			#print("CharBit().__init__(): Initialized with a string")
+			#print("CharBit().__init__(): Initialized with a string, \"" + charlist + "\"")
 		elif isinstance(charlist,list):			#initialize with a list
 			self._CharList = WordList(charlist)
-			#print("CharBit().__init__(): Initialized with a List")
+			#print("CharBit().__init__(): Initialized with a List, " + str(charlist))
 		elif isinstance(charlist,WordList):		#initialize with a WordList
 			self._CharList = charlist
-			#print("CharBit().__init__(): Initialized with a WordList")
+			#print("CharBit().__init__(): Initialized with a WordList, " + str(charlist.GetWordList()))
 		else:									#shrug
 			self._CharList = WordList([])
 			#print("CharBit().__init__(): Initialized with other")
@@ -48,26 +51,115 @@ class CharBit():
 		
 		# print("CharBit().Get(): " + sResult + ".")
 		return sResult
-		
+
+class CTEntry():
+	def __init__(self, charbits, orderno):
+		#print("CTEntry started, order no = " + str(orderno) + ", charbits = " + str(charbits))
+		if isinstance(charbits, list):
+			self.CharBits = WordList()
+			for item in charbits:
+				self.CharBits.AddWord(item())
+			
+		else:
+			self.CharBits = WordList([])
+
+		if isinstance(orderno, (int)):
+			self.OrderNo = orderno 
+		else:
+			self.OrderNo = 0
+			
+	def PickOne(self):
+		return self.CharBits.GetWord()
+	
+#MAX_CHARACTER_CHARBITS = 5
 class CharTemplate():
-	def __init__(self, id = 0, gen = Gender.Neuter, temptype = TempType.Flowery):
-		self._CharBitList = []
-		self.Gender = gen 
-		self.TempType = temptype 
-		self.ID = id
+	def entry_key(self,entry):
+		return entry.OrderNo
 		
-	def GetDesc(self):
+	def __init__(self, noun, 
+					   id = 0, 
+					   adjlist = [], 
+					   gen = Gender.Neuter, 
+					   priority = 1, 
+					   NotList = None):
+		#print("CharTemplate started")
+		if NotList is None:
+			NotList = []
+			
+		self.Gender = gen 
+		self.ID = id
+		self.Priority = priority
+		self.NotList = NotList
+		
+		self.Noun = noun
+		
+		adjlist.sort(key = self.entry_key)
+		
+		self._AdjList = adjlist 
+	
+	def GetShortVariant(self):
+		#print("CharTemplate.GetShortVariant() started")
+		variant = []
+		variant.append(self.Noun)
+		return variant
+			
+	def GetMediumVariant(self):
+		#print("CharTemplate.GetMediumVariant() started")
+		variant = []
+		if isinstance(self._AdjList, list):
+			if len(self._AdjList) > 1:
+				variant.append(self.Noun)
+				variant.append(choice(self._AdjList).PickOne())
+				
+			else:
+				variant.append(GetShortVariant())
+				
+		variant.reverse()
+		
+		return variant
+			
+	def GetFloweryVariant(self):
+		#print("CharTemplate.GetFloweryVariant() started")
+		variant = []
+		if isinstance(self._AdjList, list):
+			if len(self._AdjList) > 2:
+				#variant.append(self.Noun)							#get the noun
+				#print("CharTemplate.GetFloweryVariant() noun is \"" + str(variant[0]) +"\"")
+				iMaxCharbits = MAX_CHARACTER_CHARBITS - 1			#get the max allowed charbits in one description string
+				if len(self._AdjList) < MAX_CHARACTER_CHARBITS:
+					iMaxCharbits = len(self._AdjList) - 1
+				#print("CharTemplate.GetFloweryVariant() iMaxCharbits = " + str(iMaxCharbits))
+				
+				iTotal = randint(2,iMaxCharbits)					#pick a number >= the max but > short or medium variants 
+				#print("CharTemplate.GetFloweryVariant() iTotal = " + str(iTotal))
+
+																	#get a random selection from the adjectives list,sort
+				selections = sorted(sample(self._AdjList, k = iTotal), key = self.entry_key, reverse = True)
+				
+				for item in selections:								#append to variant, selecting one option at random if there are 
+					variant.append(item.PickOne())					#  multiple options for the same order #
+				variant.append(self.Noun)							#get the noun
+			else:
+				variant = GetMediumVariant()
+		
+		return variant
+			
+	def GetDesc(self, temptype = TempType.Flowery):
 		sDesc = ""
-		#print("GetDesc() description for template " + str(self.ID) + ". _CharBitList is [" + str(self._CharBitList) + "]")
-		for item in self._CharBitList:
-			print("Getting CharBit() " + str(item))
+		variant = None
+
+		if temptype == TempType.Short:
+			variant = self.GetShortVariant()
+		elif temptype == TempType.Medium:
+			variant = self.GetMediumVariant()
+		else:
+			variant = self.GetFloweryVariant()
+		
+		for charbit in variant:
+			#print("CharTemplate.GetDesc() charbit is " + str(charbit))
 			if sDesc != "":
-				sDesc += " " 
-			if isinstance(item, CharBit):
-				#print("CharTemplate().GetDesc(): item = " + str(item))
-				sDesc += item.Get()
-			# else:
-				# print("CharTemplate().GetDesc(): item class not CharBit. item is " + str(item))
+				sDesc += " "
+			sDesc += charbit.Get()
 			
 		return sDesc
 		
@@ -81,19 +173,48 @@ class CharTemplate():
 			
 		return bHasCharBit
 		
-class Character():
-	def __init__(self, gen = Gender.Neuter):
-		self.Gender = gen
+class FemCharTemplate(CharTemplate):
+	def __init__(self, noun, 
+					   id = 0, 
+					   adjlist = [], 
+					   priority = 1, 
+					   girltype = GirlType.Neutral,
+					   NotList = None):
+		if NotList is None:
+			NotList = []
+			
+		super().__init__(noun = noun, id = id,  adjlist = adjlist, gen = Gender.Female, priority = priority, NotList = NotList)
+
+		self.GirlType = girltype
 		
+class FemTropeTemplate(CharTemplate):
+	def __init__(self, noun, 
+					   id = 0, 
+					   adjlist = [], 
+					   priority = 1, 
+					   girltype = GirlType.Neutral,
+					   NotList = None):
+		if NotList is None:
+			NotList = []
+			
+		super().__init__(noun = noun, id = id,  adjlist = adjlist, priority = priority, NotList = NotList)
+		
+		self.GirlType = girltype
+
+				
 class FemCharBit(CharBit):
 	def __init__(self, charlist, girltype = GirlType.Neutral):
 		super().__init__(charlist,gen = Gender.Female)
 			
 		self.GirlType = girltype
-		
+
 class AgeNounFemale(FemCharBit):
 	def __init__(self):
 		super().__init__(titmisc.AgeFemaleNoun())
+		
+class AgeAdjFemale(FemCharBit):
+	def __init__(self):
+		super().__init__(titmisc.AgeFemaleAdj())
 		
 class AgeAdjFemale(FemCharBit):
 	def __init__(self):
@@ -102,22 +223,34 @@ class AgeAdjFemale(FemCharBit):
 class AttitudeGoodFemale(FemCharBit):
 	def __init__(self):
 		super().__init__(titmisc.AttitudeGoodFemale(),girltype = GirlType.Good)
-		
+			
 class AttitudeBadFemale(FemCharBit):
 	def __init__(self):
 		super().__init__(titmisc.AttitudeBadFemale(),girltype = GirlType.Bad)
+		
+class AttitudeFemale(FemCharBit):
+	def __init__(self):
+		super().__init__(titmisc.AttitudeGoodFemale())
+		
+class ClothingFemale(FemCharBit):
+	def __init__(self):
+		super().__init__(titmisc.ClothingFemale(),girltype = GirlType.Bad)
+		
+class GenModFemale(FemCharBit):
+	def __init__(self):
+		super().__init__(titmisc.GenModFemale(),girltype = GirlType.Bad)
 		
 class MaritalStatusFemale(FemCharBit):
 	def __init__(self):
 		super().__init__(titmisc.MaritalStatusFemale())
 		
-class NationFemale(FemCharBit):
-	def __init__(self):
-		super().__init__(titmisc.NationFemale())
-		
 class PhysCharFemale(FemCharBit):
 	def __init__(self):
 		super().__init__(titmisc.PhysCharFemale())
+		
+class PregState(FemCharBit):
+	def __init__(self):
+		super().__init__(titmisc.PregState())
 		
 class ProfGoodFemale(FemCharBit):
 	def __init__(self):
@@ -127,6 +260,10 @@ class ProfBadFemale(FemCharBit):
 	def __init__(self):
 		super().__init__(titmisc.ProfBadFemale(),girltype = GirlType.Bad)
 		
+class ProfFemale(FemCharBit):
+	def __init__(self):
+		super().__init__(titmisc.ProfFemale())
+		
 class MaritalStatusFemale(FemCharBit):
 	def __init__(self):
 		super().__init__(titmisc.MaritalStatusFemale())
@@ -134,6 +271,14 @@ class MaritalStatusFemale(FemCharBit):
 class NationFemale(FemCharBit):
 	def __init__(self):
 		super().__init__(titmisc.NationFemale())
+		
+class RelateFemale(FemCharBit):
+	def __init__(self):
+		super().__init__(titmisc.RelateFemale())
+		
+class SexualityFemale(FemCharBit):
+	def __init__(self):
+		super().__init__(titmisc.SexualityFemale(),girltype = GirlType.Bad)
 		
 class SkinHairColorFemale(FemCharBit):
 	def __init__(self):
@@ -143,126 +288,25 @@ class SpeciesFemale(FemCharBit):
 	def __init__(self):
 		super().__init__(titmisc.SpeciesFemale())
 		
-class RelateFemale(FemCharBit):
+class TitlesFemale(FemCharBit):
 	def __init__(self):
-		super().__init__(titmisc.RelateFemale())
+		super().__init__(titmisc.TitlesFemale())
 		
-class TropeFemale(FemCharBit):
+class TropeBitFemale(FemCharBit):
+	def __init__(self, trope, girltype = GirlType.Neutral):
+		super().__init__(trope,girltype = girltype)
+	
+class TropeBitBadFemale(TropeBitFemale):
+	def __init__(self, trope):
+		super().__init__(trope, girltype = GirlType.Bad)
+	
+class TropeBitGoodFemale(TropeBitFemale):
+	def __init__(self, trope):
+		super().__init__(trope, girltype = GirlType.Good)
+	
+class Character():
 	pass
+	
 		
-class TropeSmallTownGirl(TropeFemale):
-	def __init__(self):
-		super().__init__("Small-Town Girl",girltype = GirlType.Good)
-		
-class TropeAmishMaiden(TropeFemale):
-	def __init__(self):
-		super().__init__("Amish Maiden",girltype = GirlType.Good)
-		
-class TropeCatholicSchoolGirl(TropeFemale):
-	def __init__(self):
-		super().__init__("Catholic Schoolgirl")
-		
-class TropeSoccerMom(TropeFemale):
-	def __init__(self):
-		super().__init__("Small-Town Girl",girltype = GirlType.Good)
-
-class TropePregnantStripper(TropeFemale):
-	def __init__(self):
-		super().__init__("Pregnant Stripper",girltype = GirlType.Bad)
-
-class TropeSorityGirl(TropeFemale):
-	def __init__(self):
-		super().__init__("Sorority Girl",girltype = GirlType.Bad)
-
-class TropeSexKitten(TropeFemale):
-	def __init__(self):
-		super().__init__("Sex Kitten",girltype = GirlType.Bad)	
-
-class FemCharTemplate(CharTemplate):
-	def __init__(self, charbits = [], id = 0, temptype = TempType.Flowery, girltype = GirlType.Neutral):
-		super().__init__(id = id, temptype = temptype, gen = Gender.Female)
-		
-		self.GirlType = girltype 
-		for item in charbits:
-			self._CharBitList.append(item()) 
-			
-		self.GirlType = girltype
-		
-class FemTemplate1(FemCharTemplate):
-	def __init__(self):
-		super().__init__([AttitudeGoodFemale,
-						PhysCharFemale,
-						ProfGoodFemale
-						], id = 1, temptype = TempType.Flowery,girltype = GirlType.Good)
-
-class FemTemplate2(FemCharTemplate):
-	def __init__(self):
-		super().__init__([AttitudeBadFemale,
-						PhysCharFemale,
-						ProfBadFemale
-						], id = 2, temptype = TempType.Flowery,girltype = GirlType.Bad)
-						
-class FemTemplate3(FemCharTemplate):
-	def __init__(self):
-		super().__init__([PhysCharFemale,
-						SkinHairColorFemale,
-						ProfGoodFemale
-						], id = 3, temptype = TempType.Flowery,girltype = GirlType.Good)
-									
-
-									
-class FemTemplate4(FemCharTemplate):
-	def __init__(self):
-		super().__init__([AttitudeGoodFemale,
-						 PhysCharFemale,
-						 SkinHairColorFemale,
-						 TropeAmishMaiden
-						], id = 4, temptype = TempType.Flowery,girltype = GirlType.Good)
-
-class FemTemplate5(FemCharTemplate):
-	def __init__(self):
-		super().__init__([AttitudeBadFemale,
-						 PhysCharFemale,
-						 TropePregnantStripper
-						], id = 5, temptype = TempType.Flowery,girltype = GirlType.Good)		
-
-class FemTemplate6(FemCharTemplate):
-	def __init__(self):
-		super().__init__([AttitudeBadFemale,
-						 NationFemale,
-						 TropePregnantStripper
-						], id = 6, temptype = TempType.Flowery,girltype = GirlType.Good)							
 								
 		
-class FemaleChar(Character):
-	def __init__(self, Type = GirlType.Neutral, NotList = None, bAddArticle = False, sPosArticle = "My", bAddEndNoun = True,
-		bAllowAttitude = True, bAllowPhysChar = True, bAllowSkinHairColor = True, bAllowGenMod = True, bAllowClothing = True, bAllowAge = True, 
-		bAllowPregState = True, bAllowMaritalStatus = True,	bAllowNation = True, bAllowProf = True, bAllowSpecies = True, 
-		bAllowSexuality = True, bAllowTrope = True, bAllowRelate = False, bAllowTitle = True):
-		super().__init__()
-		print("Initializing FemaleChar()")
-		if NotList is None:
-			NotList = []
-		
-		self.Gender = Gender.Female 
-		
-		self.GirlType = Type
-		print("Getting templates")
-		TemplateList = []
-		for subclass in FemCharTemplate.__subclasses__():
-			template = subclass()
-			if template.Gender == Gender.Female or template.Gender == Gender.Neutral:
-				if Type == GirlType.Neutral or template.GirlType == Type:
-					TemplateList.append([template.ID, template])
-			# if template.HasCharBit(charbit = PhysCharFemale):
-				# print("FemaleChar().__init__(): Template " + str(template) + " contains PhysCharFemale charbit!")
-				
-		#pick a template at random from the list 
-		print(str(len(TemplateList)) + " templates found")
-		SelCharTemplate = TemplateList[randint(0,len(TemplateList) - 1)][1]
-		print("Selected random template: " + str(SelCharTemplate))
-			
-		bIsRelate = False
-
-		self.Desc = SelCharTemplate.GetDesc()
-	

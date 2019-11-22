@@ -617,11 +617,8 @@ class TweetTxtGen20(TweetTxtGen):
 			sText += "\"*" + BookTitleBuilder() + "* is " + sAdj1 + " and " + sAdj2 + "!\"\n"
 		elif iRand == 2:
 			sAdj = Adjs.GetWord()
-			sText = "\"*" + BookTitleBuilder() + "* "
-			if sAdj[0] in ('a','e','i','o','u'):
-				sText += "is an " + sAdj1 + " fuckfest!\"\n"
-			else: 
-				sText += "a " + sAdj1 + " fuckfest!\"\n"
+			sText = "\"*" + BookTitleBuilder() + "* is "
+			sText += AddArticles(sAdj1 + " fuckfest!") + "\"\n"
 		elif iRand == 3:
 			sAdj = Adjs.GetWord()
 			sText += "\"*" + BookTitleBuilder() + "* is " + sAdj1 + " AF!\"\n"
