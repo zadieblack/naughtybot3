@@ -26,25 +26,29 @@ class FemaleChar(Character):
 		for subclass in FemCharTemplate.__subclasses__():
 			template = subclass()
 			if Type == GirlType.Neutral or template.GirlType == Type:
-				TemplateList.append([template.ID, template])
+				TemplateList.append(template)
 			# if template.HasCharBit(charbit = PhysCharFemale):
 				# print("FemaleChar().__init__(): Template " + str(template) + " contains PhysCharFemale charbit!")
 		
-		# if bAllowTrope:
-			# for subclass in FemTropeTemplate.__subclasses__():
-				# template = subclass()
-				# TemplateList.append([template.ID, template])
+		if bAllowTrope:
+			for subclass in FemTropeTemplate.__subclasses__():
+				template = subclass()
+				
+				TemplateList.append(template)
 		
 		SelCharTemplate	= None		
 		#pick a template at random from the list 
+		print("SelectTemplateID = " + str(SelectTemplateID))
 		if SelectTemplateID > 0:
 			for template in TemplateList:
-				if template[0] == SelectTemplateID:
-					SelCharTemplate = template[1]
+				SelCharTemplate = template
+				if template.ID == SelectTemplateID:
+					break
+					
 		else:
-			SelCharTemplate = choice(TemplateList)[1]
-		#SelCharTemplate = TemplateList[6][1] # testing sex kitten trope
-		print("CharGenerator.FemaleChar() selected random template: " + str(SelCharTemplate.ID))
+			SelCharTemplate = choice(TemplateList)
+
+		print("CharGenerator.FemaleChar() selected random template # " + str(SelCharTemplate.ID) + ", " + str(SelCharTemplate))
 			
 		bIsRelate = False
 
