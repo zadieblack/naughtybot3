@@ -1049,7 +1049,7 @@ class TropesMale(WordList):
 			'Voyeur',
 			'Warrior'])
 			
-class TropesMale(WordList):
+class TropesWealthyMale(WordList):
 	def __init__(self):
 		super().__init__(['Billionaire',
 			'Gazillionaire',

@@ -4686,12 +4686,12 @@ class Generator1001(Generator):
 		sTweet = ""
 		
 		#print("Generator1001.GenerateTweet() started")
-		#Girl = char.FemaleChar(TempType = TempType.Flowery, SelectTemplateID = 304)
-		Guy = char.MaleChar(TempType = TempType.Flowery, bAllowTrope = True, SelectTemplateID = 105)
+		Girl = char.FemaleChar(TempType = TempType.Flowery, bAddArticle = True, bAllowTrope = True)
+		Guy = char.MaleChar(TempType = TempType.Flowery, bAddArticle = True, bAllowTrope = True, SelectTemplateID = 113)
 		
 		#print("Generator1001.GenerateTweet() FemaleChar created, building tweet")
-		#sTweet += AddArticles(Girl.Desc, bMakeUpper = True) + " Gets Sexed the Hell Up!\n"
-		sTweet += AddArticles(Guy.Desc, bMakeUpper = True) + " Takes Anna Hard From Behind!\n"
+		sTweet += Girl.Desc + " Gets Sexed the Hell Up!\n"
+		sTweet += Guy.Desc + " Takes My Wife Hard From Behind!\n"
 
 		return sTweet	
 		

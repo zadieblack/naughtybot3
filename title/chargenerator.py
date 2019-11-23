@@ -101,7 +101,14 @@ class FemaleChar(Character):
 			
 		bIsRelate = False
 
-		self.Desc = SelCharTemplate.GetDesc(temptype = TempType)
+		if bAddArticle:
+			if SelCharTemplate.IsPersonal:
+				self.Desc = sPosArticle + " " + SelCharTemplate.GetDesc(temptype = TempType)
+			else:
+				self.Desc = AddArticles(SelCharTemplate.GetDesc(temptype = TempType), bMakeUpper = True)
+		else:
+			self.Desc = SelCharTemplate.GetDesc(temptype = TempType)
+		
 		
 
 class MaleChar(Character):
@@ -148,5 +155,11 @@ class MaleChar(Character):
 			
 		bIsRelate = False
 
-		self.Desc = SelCharTemplate.GetDesc(temptype = TempType)
+		if bAddArticle:
+			if SelCharTemplate.IsPersonal:
+				self.Desc = sPosArticle + " " + SelCharTemplate.GetDesc(temptype = TempType)
+			else:
+				self.Desc = AddArticles(SelCharTemplate.GetDesc(temptype = TempType), bMakeUpper = True)
+		else:
+			self.Desc = SelCharTemplate.GetDesc(temptype = TempType)
 	

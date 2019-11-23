@@ -85,6 +85,7 @@ class CharTemplate():
 					   adjlist = [], 
 					   gen = Gender.Neuter, 
 					   priority = 1, 
+					   bpersonal = False,
 					   NotList = None):
 		#print("CharTemplate started")
 		if NotList is None:
@@ -100,6 +101,11 @@ class CharTemplate():
 		adjlist.sort(key = self.entry_key)
 		
 		self._AdjList = adjlist 
+		
+		if bpersonal:
+			self.IsPersonal = True
+		else:
+			self.IsPersonal = False 
 	
 	def GetShortVariant(self):
 		#print("CharTemplate.GetShortVariant() started")
@@ -190,13 +196,14 @@ class FemCharTemplate(CharTemplate):
 	def __init__(self, noun, 
 					   id = 0, 
 					   adjlist = [], 
-					   priority = 1, 
+					   priority = 1,  
+					   bpersonal = False,
 					   girltype = GirlType.Neutral,
 					   NotList = None):
 		if NotList is None:
 			NotList = []
 			
-		super().__init__(noun = noun, id = id,  adjlist = adjlist, gen = Gender.Female, priority = priority, NotList = NotList)
+		super().__init__(noun = noun, id = id,  adjlist = adjlist, gen = Gender.Female, priority = priority, bpersonal = bpersonal, NotList = NotList)
 
 		self.GirlType = girltype
 		
@@ -205,12 +212,13 @@ class FemTropeTemplate(CharTemplate):
 					   id = 0, 
 					   adjlist = [], 
 					   priority = 1, 
+					   bpersonal = False,
 					   girltype = GirlType.Neutral,
 					   NotList = None):
 		if NotList is None:
 			NotList = []
 			
-		super().__init__(noun = noun, id = id,  adjlist = adjlist, priority = priority, NotList = NotList)
+		super().__init__(noun = noun, id = id,  adjlist = adjlist, priority = priority, bpersonal = bpersonal, NotList = NotList)
 		
 		self.GirlType = girltype
 
@@ -219,22 +227,24 @@ class MaleCharTemplate(CharTemplate):
 					   id = 0, 
 					   adjlist = [], 
 					   priority = 1, 
+					   bpersonal = False,
 					   NotList = None):
 		if NotList is None:
 			NotList = []
 			
-		super().__init__(noun = noun, id = id,  adjlist = adjlist, gen = Gender.Male, priority = priority, NotList = NotList)
+		super().__init__(noun = noun, id = id,  adjlist = adjlist, gen = Gender.Male, priority = priority, bpersonal = bpersonal, NotList = NotList)
 
 class MaleTropeTemplate(CharTemplate):
 	def __init__(self, noun, 
 					   id = 0, 
 					   adjlist = [], 
 					   priority = 1, 
+					   bpersonal = False,
 					   NotList = None):
 		if NotList is None:
 			NotList = []
 			
-		super().__init__(noun = noun, id = id,  adjlist = adjlist, priority = priority, NotList = NotList)
+		super().__init__(noun = noun, id = id,  adjlist = adjlist, priority = priority, bpersonal = bpersonal, NotList = NotList)
 
 class FemCharBit(CharBit):
 	def __init__(self, charlist, girltype = GirlType.Neutral):
@@ -395,6 +405,10 @@ class TitlesMale(MaleCharBit):
 	def __init__(self):
 		super().__init__(titmisc.TitlesMale())		
 
+class TropesWealthyMale(MaleCharBit):
+	def __init__(self):
+		super().__init__(titmisc.TropesWealthyMale())		
+		
 class TypeModMale(MaleCharBit):
 	def __init__(self):
 		super().__init__(titmisc.TypeModMale())		
