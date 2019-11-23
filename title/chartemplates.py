@@ -521,8 +521,8 @@ class FemGoodTropeTemplate26(FemTropeTemplate):
 										], 
 							girltype = GirlType.Good,
 							NotList = ["mom","virgin","MILF","wife","succubus","nymph"])
+							
 						
-
 
 # === Bad Trope templates ===
 
@@ -556,11 +556,136 @@ class FemBadTropeTemplate2(FemTropeTemplate):
 							girltype = GirlType.Bad,
 							NotList = ["braless","stylish","leather","latex","country","modest","bashful","conservative",
 										"straight-laced","shy","chaste","sheltered","uptight","pale","fetish"])
+										
+class FemBadTropeTemplate3(FemTropeTemplate):
+	def __init__(self):
+		super().__init__(	 noun = TropeBitBadFemale("Bitch"),
+							 id = 203, 
+							 adjlist = 	[ CTEntry([PhysCharFemale],7),
+										  CTEntry([AgeAdjFemale],4),
+										  CTEntry([NationFemale,SkinHairColorFemale],5),
+										  CTEntry([SexualityFemale],3),
+										  CTEntry([ProfFemale,RelateFemale,TitlesFemale],1)
+										], 
+							girltype = GirlType.Bad,
+							NotList = ["Maiden","Tender","Soft"])
 							
+class FemBadTropeTemplate4(FemTropeTemplate):
+	def __init__(self):
+		super().__init__(	 noun = TropeBitBadFemale("Brat"),
+							 id = 204, 
+							 adjlist = 	[ 
+										  CTEntry([AttitudeBadFemale],9),
+										  CTEntry([PhysCharFemale],6),
+										  CTEntry([ClothingFemale],5),
+										  CTEntry([NationFemale,SkinHairColorFemale],4),
+										  CTEntry([SexualityFemale],2),
+										  CTEntry([RelateFemale,TitlesFemale],1)
+										], 
+							girltype = GirlType.Bad,
+							NotList = ["fashionable","stylish","willing","attractive","gorgeous","soft","queen","mom","marm",
+										"statuesque"])
+										
+class FemBadTropeTemplate5(FemTropeTemplate):
+	def __init__(self):
+		super().__init__(	 noun = TropeBitBadFemale("Anal Bimbo"),
+							 id = 205, 
+							 adjlist = 	[ 
+										  CTEntry([GenModFemale],10),
+										  CTEntry([AttitudeBadFemale],7),
+										  CTEntry([PhysCharFemale],6),
+										  CTEntry([ClothingFemale],5),
+										  CTEntry([MaritalStatusFemale,AgeAdjFemale],4),
+										  CTEntry([NationFemale],3),
+										  CTEntry([SexualityFemale],2),
+										  CTEntry([ProfBadFemale],1)
+										], 
+							girltype = GirlType.Bad,
+							NotList = ["anal","BDSM"])
+							
+class FemBadTropeTemplate6(FemTropeTemplate):
+	def __init__(self):
+		super().__init__(	 noun = TropeBitBadFemale("Bimbo"),
+							 id = 206, 
+							 adjlist = 	[ 
+										  CTEntry([GenModFemale],10),
+										  CTEntry([AttitudeBadFemale],7),
+										  CTEntry([PhysCharFemale],6),
+										  CTEntry([ClothingFemale],5),
+										  CTEntry([MaritalStatusFemale,AgeAdjFemale],4),
+										  CTEntry([NationFemale],3),
+										  CTEntry([SexualityFemale],2),
+										  CTEntry([ProfBadFemale],1)
+										], 
+							girltype = GirlType.Bad,
+							NotList = ["BDSM"])
+
+class FemBadTropeTemplate7(FemTropeTemplate):
+	def __init__(self):
+		super().__init__(	 noun = TropeBitBadFemale("Cougar"),
+							 id = 207, 
+							 adjlist = 	[ 
+										  CTEntry([GenModFemale],10),
+										  CTEntry([AttitudeBadFemale],7),
+										  CTEntry([PhysCharFemale],6),
+										  CTEntry([ClothingFemale],5),
+										  CTEntry([MaritalStatusFemale],4),
+										  CTEntry([SkinHairColorFemale],3)
+										], 
+							girltype = GirlType.Bad,
+							NotList = ["young","skinny","slender"])
+							
+class FemBadTropeTemplate8(FemTropeTemplate):
+	def __init__(self):
+		super().__init__(	 noun = TropeBitBadFemale("Femme Fatale"),
+							 id = 208, 
+							 adjlist = 	[ 
+										  CTEntry([AttitudeBadFemale],7),
+										  CTEntry([PhysCharFemale],6),
+										  CTEntry([ClothingFemale],5),
+										  CTEntry([MaritalStatusFemale],4),
+										  CTEntry([SkinHairColorFemale],3),
+										  CTEntry([SexualityFemale],2),
+										  CTEntry([ProfFemale],1)
+										], 
+							girltype = GirlType.Bad,
+							NotList = ["anal","BDSM","Porn Star","Mormon","Christian","Country","cheer","small-town",
+									   "chubby","soft","single","mom","wild","yoga","thick","braless","co-ed","teen",
+									   "elvish","intern","curious","nudist"])
+							
+class FemBadTropeTemplate9(FemTropeTemplate):
+	def __init__(self):
+		super().__init__(	 noun = TropeBitBadFemale("Goth Girl"),
+							 id = 209, 
+							 adjlist = 	[ 
+										  CTEntry([GenModFemale],10),
+										  CTEntry([PhysCharFemale],6),
+										  CTEntry([ClothingFemale],5),
+										  CTEntry([SexualityFemale],2),
+										  CTEntry([ProfBadFemale],1)
+										], 
+							girltype = GirlType.Bad,
+							NotList = ["Penthouse","Centerfold","cheerleader","housewife","marm","hooter",
+										"sporty""tender","soft","nudist","gymnast"])
+
 class FemBadTropeTemplate10(FemTropeTemplate):
 	def __init__(self):
-		super().__init__(	 noun = TropeBitBadFemale("Porn Star"),
+		super().__init__(	 noun = TropeBitBadFemale("Harem Princess"),
 							 id = 210, 
+							 adjlist = 	[ 
+										  CTEntry([GenModFemale],10),
+										  CTEntry([AttitudeGoodFemale],7),
+										  CTEntry([PhysCharFemale],6),
+										  CTEntry([PregState],4),
+										  CTEntry([NationFemale,SkinHairColorFemale],3)
+										], 
+							girltype = GirlType.Bad,
+							NotList = [])
+							
+class FemBadTropeTemplate20(FemTropeTemplate):
+	def __init__(self):
+		super().__init__(	 noun = TropeBitBadFemale("Porn Star"),
+							 id = 220, 
 							 adjlist = 	[ 
 										  CTEntry([GenModFemale],11),
 										  CTEntry([GenModFemale],10),
@@ -577,10 +702,10 @@ class FemBadTropeTemplate10(FemTropeTemplate):
 							girltype = GirlType.Bad,
 							NotList = ["virgin","stripper","dancer","lingerie","soft","braless","revealing"])
 							
-class FemBadTropeTemplate11(FemTropeTemplate):
+class FemBadTropeTemplate21(FemTropeTemplate):
 	def __init__(self):
 		super().__init__(	 noun = TropeBitBadFemale("Sex Kitten"),
-							 id = 211, 
+							 id = 221, 
 							 adjlist = 	[CTEntry([GenModFemale],7),
 										  CTEntry([AttitudeBadFemale],6),
 										  CTEntry([PhysCharFemale],5),
@@ -591,8 +716,147 @@ class FemBadTropeTemplate11(FemTropeTemplate):
 										], 
 							girltype = GirlType.Bad,
 							NotList = ['Christian','Mormon'])	
+				
+# === Species templates ===
+
+class FemGoodSpeciesTemplate1(FemTropeTemplate):
+	def __init__(self):
+		super().__init__(	 noun = TropeBitBadFemale("Elf"),
+							 id = 301, 
+							 adjlist = 	[CTEntry([AttitudeFemale],6),
+										  CTEntry([PhysCharFemale],5),
+										  CTEntry([SkinHairColorFemale],3),
+										  CTEntry([SexualityFemale],2)
+										], 
+							girltype = GirlType.Neutral,
+							NotList = ["Bashful","Shy","Big Bottomed","Ditzy","Juicy","boob","plump","chubby","curvy"])
 							
-	
+class FemGoodSpeciesTemplate2(FemTropeTemplate):
+	def __init__(self):
+		super().__init__(	 noun = TropeBitBadFemale("Elf Princess"),
+							 id = 302, 
+							 adjlist = 	[CTEntry([AttitudeFemale],6),
+										  CTEntry([PhysCharFemale],5),
+										  CTEntry([ClothingFemale],4),
+										  CTEntry([SkinHairColorFemale],3),
+										  CTEntry([SexualityFemale],2)
+										], 
+							girltype = GirlType.Neutral,
+							NotList = ["Bashful","Shy","Big Bottomed","Ditzy","Juicy","boob","plump","chubby","curvy"])
+							
+class FemGoodSpeciesTemplate3(FemTropeTemplate):
+	def __init__(self):
+		super().__init__(	 noun = TropeBitBadFemale("Fairy"),
+							 id = 303, 
+							 adjlist = 	[CTEntry([AttitudeFemale],6),
+										  CTEntry([PhysCharFemale],5),
+										  CTEntry([ClothingFemale],4),
+										  CTEntry([SkinHairColorFemale],3),
+										  CTEntry([SexualityFemale],2),
+										  CTEntry([TitlesFemale],1)
+										], 
+							girltype = GirlType.Neutral,
+							NotList = ["MILF","heiress"])
+
+class FemGoodSpeciesTemplate4(FemTropeTemplate):
+	def __init__(self):
+		super().__init__(	 noun = TropeBitBadFemale("Futa"),
+							 id = 304, 
+							 adjlist = 	[CTEntry([AttitudeFemale],6),
+										  CTEntry([PhysCharFemale],5),
+										  # include DickCharMale
+										  CTEntry([ClothingFemale],4),
+										  CTEntry([NationFemale,SkinHairColorFemale],3),
+										  CTEntry([TitlesFemale,ProfBadFemale,ProfGoodFemale],1)
+										], 
+							girltype = GirlType.Neutral,
+							NotList = ["MILF"])
+							
+class FemGoodSpeciesTemplate5(FemTropeTemplate):
+	def __init__(self):
+		super().__init__(	 noun = TropeBitBadFemale("Green-Skinned Alien"),
+							 id = 305, 
+							 adjlist = 	[CTEntry([AttitudeFemale],6),
+										  CTEntry([PhysCharFemale],5),	
+										  CTEntry([AgeAdjFemale,MaritalStatusFemale],4),	
+										  CTEntry([ClothingFemale],3),
+										  CTEntry([SexualityFemale],2)
+										], 
+							girltype = GirlType.Neutral,
+							NotList = ["Skin"])
+
+class FemGoodSpeciesTemplate6(FemTropeTemplate):
+	def __init__(self):
+		super().__init__(	 noun = TropeBitBadFemale("Mermaid"),
+							 id = 306, 
+							 adjlist = 	[CTEntry([AttitudeGoodFemale,AttitudeBadFemale],7),
+										  CTEntry([PhysCharFemale],6),	
+										  CTEntry([AgeAdjFemale,MaritalStatusFemale],5),	
+										  CTEntry([ClothingFemale],4),
+										  CTEntry([SkinHairColorFemale],3),
+										  CTEntry([SexualityFemale],2),
+										  CTEntry([ProfFemale,TitlesFemale],1)
+										], 
+							girltype = GirlType.Neutral,
+							NotList = ["Skin"])
+							
+class FemGoodSpeciesTemplate7(FemTropeTemplate):
+	def __init__(self):
+		super().__init__(	 noun = TropeBitBadFemale("Nymph"),
+							 id = 307, 
+							 adjlist = 	[CTEntry([AttitudeGoodFemale,AttitudeBadFemale],7),
+										  CTEntry([PhysCharFemale],6),		
+										  CTEntry([ClothingFemale],4),
+										  CTEntry([SkinHairColorFemale],3),
+										  CTEntry([SexualityFemale],2),
+										  CTEntry([ProfGoodFemale],1)
+										], 
+							girltype = GirlType.Neutral,
+							NotList = ["big","mom","nymph"])
+
+class FemGoodSpeciesTemplate8(FemTropeTemplate):
+	def __init__(self):
+		super().__init__(	 noun = TropeBitBadFemale("Succubus"),
+							 id = 308, 
+							 adjlist = 	[CTEntry([GenModFemale],8),
+										  CTEntry([AttitudeBadFemale],7),
+										  CTEntry([PhysCharFemale],6),		
+										  CTEntry([ClothingFemale],5),
+										  CTEntry([AgeAdjFemale],4),
+										  CTEntry([NationFemale,SkinHairColorFemale],3),
+										  CTEntry([SexualityFemale],2),
+										  CTEntry([ProfFemale],1)
+										], 
+							girltype = GirlType.Bad,
+							NotList = ["succubus","virgin","amish","christian","mormon","jewish"])
+
+class FemGoodSpeciesTemplate9(FemTropeTemplate):
+	def __init__(self):
+		super().__init__(	 noun = TropeBitBadFemale("Vampire"),
+							 id = 309, 
+							 adjlist = 	[CTEntry([GenModFemale],8),
+										  CTEntry([AttitudeBadFemale],7),
+										  CTEntry([PhysCharFemale],6),		
+										  CTEntry([ClothingFemale],5),
+										  CTEntry([NationFemale,SkinHairColorFemale],3),
+										  CTEntry([SexualityFemale],2),
+										], 
+							girltype = GirlType.Bad,
+							NotList = ["vampire","virgin","amish","christian","mormon","jewish","amish"])
+
+class FemGoodSpeciesTemplate10(FemTropeTemplate):
+	def __init__(self):
+		super().__init__(	 noun = TropeBitBadFemale("Vampire Queen"),
+							 id = 310, 
+							 adjlist = 	[CTEntry([GenModFemale],8),
+										  CTEntry([AttitudeBadFemale],7),
+										  CTEntry([PhysCharFemale],6),		
+										  CTEntry([ClothingFemale],5),
+										  CTEntry([NationFemale,SkinHairColorFemale],3),
+										  CTEntry([SexualityFemale],2),
+										], 
+							girltype = GirlType.Bad,
+							NotList = ["vampire","virgin","amish","christian","mormon","jewish","queen","amish"])						
 # Adj:		AgeAdjFemale, AttitudeGoodFemale, AttitudeBadFemale, AttitudeFemale,
 # 			ClothingFemale, GenModFemale, MaritalStatusFemale, NationFemale, PhysCharFemale
 #			PregState, SexualityFemale, SkinHairColorFemale, SpeciesFemale

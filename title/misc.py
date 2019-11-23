@@ -177,6 +177,7 @@ class AttitudeGoodFemale(WordList):
 			'Gentle',
 			'Innocent','Innocent','Innocent',
 			'Kind',
+			'Lonely',
 			'Modest','Modest',
 			'Perky','Perky',
 			'Sexy',
@@ -263,6 +264,7 @@ class GenModFemale(WordList):
 		'Fetish',
 		'Horny',
 		'Naughty',
+		'Scandalous',
 		'Sexy','Sexy',
 		'Taboo',
 		'Tattooed'])

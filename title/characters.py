@@ -209,20 +209,32 @@ class FemTropeTemplate(CharTemplate):
 		
 		self.GirlType = girltype
 
-				
+class MaleCharTemplate(CharTemplate):
+	def __init__(self, noun, 
+					   id = 0, 
+					   adjlist = [], 
+					   priority = 1, 
+					   NotList = None):
+		if NotList is None:
+			NotList = []
+			
+		super().__init__(noun = noun, id = id,  adjlist = adjlist, gen = Gender.Male, priority = priority, NotList = NotList)
+
+
 class FemCharBit(CharBit):
 	def __init__(self, charlist, girltype = GirlType.Neutral):
 		super().__init__(charlist,gen = Gender.Female)
 			
 		self.GirlType = girltype
+		
+class MaleCharBit(CharBit):
+	def __init__(self, charlist):
+		super().__init__(charlist,gen = Gender.Male)
+
 
 class AgeNounFemale(FemCharBit):
 	def __init__(self):
 		super().__init__(titmisc.AgeFemaleNoun())
-		
-class AgeAdjFemale(FemCharBit):
-	def __init__(self):
-		super().__init__(titmisc.AgeFemaleAdj())
 		
 class AgeAdjFemale(FemCharBit):
 	def __init__(self):
@@ -238,7 +250,7 @@ class AttitudeBadFemale(FemCharBit):
 		
 class AttitudeFemale(FemCharBit):
 	def __init__(self):
-		super().__init__(titmisc.AttitudeGoodFemale())
+		super().__init__(titmisc.AttitudeFemale())
 		
 class ClothingFemale(FemCharBit):
 	def __init__(self):
