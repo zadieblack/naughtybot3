@@ -159,7 +159,9 @@ class CharTemplate():
 		else:
 			variant = self.GetFloweryVariant()
 		
-		for charbit in variant:
+		sNoun = variant[len(variant) - 1].Get(NotList = self.NotList)
+		self.NotList.append(re.findall(r"[\w']+", sNoun))
+		for charbit in variant[:-1]:
 			#print("CharTemplate.GetDesc() charbit is " + str(charbit))
 			if sDesc != "":
 				sDesc += " "
@@ -167,6 +169,9 @@ class CharTemplate():
 			for s in re.findall(r"[\w']+",sAdj):
 				self.NotList.append(s)
 			sDesc += sAdj
+		if sDesc != "":
+			sDesc += " " 
+		sDesc += sNoun 
 			
 		#print("Final NotList is " + str(self.NotList))
 		return sDesc
@@ -220,6 +225,16 @@ class MaleCharTemplate(CharTemplate):
 			
 		super().__init__(noun = noun, id = id,  adjlist = adjlist, gen = Gender.Male, priority = priority, NotList = NotList)
 
+class MaleTropeTemplate(CharTemplate):
+	def __init__(self, noun, 
+					   id = 0, 
+					   adjlist = [], 
+					   priority = 1, 
+					   NotList = None):
+		if NotList is None:
+			NotList = []
+			
+		super().__init__(noun = noun, id = id,  adjlist = adjlist, priority = priority, NotList = NotList)
 
 class FemCharBit(CharBit):
 	def __init__(self, charlist, girltype = GirlType.Neutral):
@@ -331,6 +346,10 @@ class AgeAdjMale(MaleCharBit):
 class AttitudeMale(MaleCharBit):
 	def __init__(self):
 		super().__init__(titmisc.AttitudeMale())
+		
+class ClothesMale(MaleCharBit):
+	def __init__(self):
+		super().__init__(titmisc.ClothesMale())	
 
 class GenModMale(MaleCharBit):
 	def __init__(self):
@@ -344,6 +363,10 @@ class NationMale(MaleCharBit):
 	def __init__(self):
 		super().__init__(titmisc.NationMale())
 
+class NationNounMale(MaleCharBit):
+	def __init__(self):
+		super().__init__(titmisc.NationNounMale())
+		
 class PhysCharMale(MaleCharBit):
 	def __init__(self):
 		super().__init__(titmisc.PhysCharMale())
@@ -371,6 +394,13 @@ class SpeciesMale(MaleCharBit):
 class TitlesMale(MaleCharBit):
 	def __init__(self):
 		super().__init__(titmisc.TitlesMale())		
+
+class TypeModMale(MaleCharBit):
+	def __init__(self):
+		super().__init__(titmisc.TypeModMale())		
+		
+class TropeBitMale(MaleCharBit):
+	pass
 		
 class Character():
 	pass

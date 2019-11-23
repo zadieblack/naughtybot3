@@ -662,6 +662,7 @@ class AttitudeMale(WordList):
 			'Charming',
 			'Cocky','Cocky',
 			'Clever',
+			'Dapper',
 			'Devil-May-Care',
 			'Dominant',
 			'Eager',
@@ -682,7 +683,7 @@ class AttitudeMale(WordList):
 			'Rakish',
 			'Randy',
 			'Raunchy',
-			'Rebel',
+			'Rebellious',
 			'Renegade',
 			'Roguish',
 			'Savage',
@@ -693,6 +694,7 @@ class AttitudeMale(WordList):
 			'Slick',
 			'Sly',
 			'Smooth',
+			'Stylish',
 			'Suave','Suave',
 			'Thrill-Seeking',
 			'Wanton',
@@ -701,34 +703,49 @@ class AttitudeMale(WordList):
 		
 class GenModMale(WordList):
 	def __init__(self):
+		super().__init__(['Heavily Tattooed',
+			'Masked',
+			'Mysterious',
+			'Tattooed',
+			'Sexy',	
+			'Studly'])
+			
+class ClothesMale(WordList):
+	def __init__(self):
+		super().__init__(['Business Casual',
+			'Dark-Suited',
+			'Naked',
+			'Oiled-Up',
+			'Pantsless',
+			'Shirtless',
+			'Tuxedoed',
+			'Uniformed'])
+			
+class TypeModMale(WordList):
+	def __init__(self):
 		super().__init__(['Barbarian',
 			'BDSM',
 			'Dapper',
 			'Heart-Throb',
-			'Heavily Tattooed',
 			'Manly',
-			'Masked',
-			'Massive',
 			'Mysterious',
 			'Naked',
 			'Nudist',
 			'Pantsless',
-			'Tattooed',
-			'Secret',
+			'Rebel',
 			'Sex Addict',
 			'Shirtless',
 			'Stay-at-Home',	
 			'Studly',
-			'Stylish',
 			'Taboo',
 			'S.W.A.T. Team',
 			'Vegan',
-			'Virile',
 			'Wealthy'])
 		
 class MaritalStatusMale(WordList):
 	def __init__(self):
-		super().__init__(['Divorced',
+		super().__init__(['Bachelor',
+			'Divorced',
 			'Married','Married','Married','Married',
 			'Single','Single','Single',
 			'Widowed','Widowed'])
@@ -749,6 +766,25 @@ class NationMale(WordList):
 			'Scottish','Scottish',
 			'Space',
 			'Spanish'])
+			
+class NationNounMale(WordList):
+	def __init__(self):
+		super().__init__(['All-American Guy',
+			'African Man',
+			'Arabic Man',
+			'Australian',
+			'Brit',
+			'Frenchman','Frenchman',
+			'Greek',
+			'Highlander','Highlander',
+			'Irishman',
+			'Italian','Italian',
+			'Japanese Man',
+			'Latino','Latino',
+			'Norwegian',
+			'Scotsman','Scotsman',
+			'Space Man',
+			'Spanish Lothario'])
 		
 class PhysCharMale(WordList):
 	def __init__(self):

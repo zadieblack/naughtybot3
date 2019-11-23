@@ -766,9 +766,9 @@ class FemGoodSpeciesTemplate4(FemTropeTemplate):
 							 id = 304, 
 							 adjlist = 	[CTEntry([AttitudeFemale],6),
 										  CTEntry([PhysCharFemale],5),
-										  # include DickCharMale
-										  CTEntry([ClothingFemale],4),
-										  CTEntry([NationFemale,SkinHairColorFemale],3),
+										  CTEntry([DickCharMale],4),
+										  CTEntry([ClothingFemale],3),
+										  CTEntry([NationFemale,SkinHairColorFemale],2),
 										  CTEntry([TitlesFemale,ProfBadFemale,ProfGoodFemale],1)
 										], 
 							girltype = GirlType.Neutral,
@@ -785,7 +785,7 @@ class FemGoodSpeciesTemplate5(FemTropeTemplate):
 										  CTEntry([SexualityFemale],2)
 										], 
 							girltype = GirlType.Neutral,
-							NotList = ["Skin"])
+							NotList = ["Skin","wet"])
 
 class FemGoodSpeciesTemplate6(FemTropeTemplate):
 	def __init__(self):
@@ -872,46 +872,138 @@ class MaleTemplate1(MaleCharTemplate):
 	def __init__(self):
 		super().__init__(	noun = ProfMale(),
 							 id = 1, 
-							 adjlist = 	[ CTEntry([AttitudeMale],10),
+							 adjlist = 	[ CTEntry([GenModMale],11),
+										  CTEntry([AttitudeMale],10),
 										  CTEntry([PhysCharMale],9),
-										  CTEntry([DickCharMale],8),
-										  CTEntry([GenModMale],6),
+										  CTEntry([PhysCharMale,DickCharMale],8),
+										  CTEntry([TypeModMale],6),
 										  CTEntry([AgeAdjMale,MaritalStatusMale],5),
 										  CTEntry([SkinHairColorMale,NationMale],3),
-										  CTEntry([SpeciesMale],1),
+										  CTEntry([SpeciesMale,ProfMale],1)
 										])
 
+# Male Relative 
+class MaleTemplate2(MaleCharTemplate):
+	def __init__(self):
+		super().__init__(	noun = RelateMale(),
+							 id = 2, 
+							 adjlist = 	[ CTEntry([GenModMale],11), 
+										  CTEntry([AttitudeMale],10),
+										  CTEntry([PhysCharMale],9),
+										  CTEntry([PhysCharMale,DickCharMale],8),
+										  CTEntry([TypeModMale],6),
+										  CTEntry([AgeAdjMale],5),
+										  CTEntry([SkinHairColorMale,NationMale],3),
+										  CTEntry([SpeciesMale],2),
+										  CTEntry([ProfMale],1)
+										])
+
+# Male Royalty
 class MaleTemplate3(MaleCharTemplate):
 	def __init__(self):
-		super().__init__(	noun = ProfMale(),
+		super().__init__(	noun = TitlesMale(),
 							 id = 3, 
-							 adjlist = 	[ CTEntry([AttitudeMale],10),
+							 adjlist = 	[ CTEntry([GenModMale],11),
+										  CTEntry([AttitudeMale],10),
 										  CTEntry([PhysCharMale],9),
 										  CTEntry([DickCharMale],8),
 										  CTEntry([SkinHairColorMale],7),
-										  CTEntry([GenModMale],6),
-										  CTEntry([AgeAdjMale,MaritalStatusMale],5),
+										  CTEntry([TypeModMale],6),
 										  CTEntry([NationMale],3),
-										  CTEntry([GenModMale],2),
-										  CTEntry([RelateMale, SpeciesMale],1),
+										  CTEntry([SpeciesMale],1)
 										])
-										
+# Male of some Nation
 class MaleTemplate4(MaleCharTemplate):
 	def __init__(self):
-		super().__init__(	noun = ProfMale(),
+		super().__init__(	noun = NationNounMale(),
 							 id = 4, 
-							 adjlist = 	[ CTEntry([AttitudeMale],10),
+							 adjlist = 	[ CTEntry([GenModMale],11),
+										  CTEntry([AttitudeMale],10),
+										  CTEntry([PhysCharMale],9),
+										  CTEntry([DickCharMale],8),
+										  CTEntry([TypeModMale],6)
+										])
+										
+class MaleTropeTemplate1(MaleTropeTemplate):
+	def __init__(self):
+		super().__init__(	noun = TropeBitMale("Alpha"),
+							 id = 101, 
+							 adjlist = 	[ CTEntry([GenModMale],11),
+										  CTEntry([AttitudeMale],10),
 										  CTEntry([PhysCharMale],9),
 										  CTEntry([DickCharMale],8),
 										  CTEntry([SkinHairColorMale],7),
-										  CTEntry([GenModMale],6),
+										  CTEntry([TypeModMale],6),
+										  CTEntry([AgeAdjMale],5),
+										  CTEntry([NationMale],4),
+										  CTEntry([SpeciesMale,ProfMale],2),
+										  CTEntry([ProfMale],1),
+										],
+							NotList = ["male","fashionable","dapper","gentlemanly"])	
+
+class MaleTropeTemplate2(MaleTropeTemplate):
+	def __init__(self):
+		super().__init__(	noun = TropeBitMale("Alpha Male"),
+							 id = 102, 
+							 adjlist = 	[ CTEntry([GenModMale],11),
+										  CTEntry([AttitudeMale],10),
+										  CTEntry([PhysCharMale],9),
+										  CTEntry([DickCharMale],8),
+										  CTEntry([SkinHairColorMale],7),
+										  CTEntry([TypeModMale],6),
+										  CTEntry([AgeAdjMale],5),
+										  CTEntry([NationMale],4),
+										  CTEntry([SpeciesMale,ProfMale],2),
+										  CTEntry([ProfMale],1),
+										],
+							NotList = ["male","fashionable","dapper","gentlemanly"])
+
+class MaleTropeTemplate3(MaleTropeTemplate):
+	def __init__(self):
+		super().__init__(	noun = TropeBitMale("Bachelor"),
+							 id = 103, 
+							 adjlist = 	[ CTEntry([GenModMale],11),
+										  CTEntry([AttitudeMale],10),
+										  CTEntry([PhysCharMale],9),
+										  CTEntry([DickCharMale],8),
+										  CTEntry([SkinHairColorMale,NationMale],7),
+										  CTEntry([TypeModMale],6),
+										  CTEntry([AgeAdjMale],5),
+										  CTEntry([SpeciesMale],2)
+										],
+							NotList = ["teen","taboo","savage"])	
+
+
+class MaleTropeTemplate4(MaleTropeTemplate):
+	def __init__(self):
+		super().__init__(	noun = TropeBitMale("Bad Boy"),
+							 id = 104, 
+							 adjlist = 	[ CTEntry([GenModMale],11),
+										  CTEntry([AttitudeMale],10),
+										  CTEntry([PhysCharMale],9),
+										  CTEntry([DickCharMale],8),
+										  CTEntry([SkinHairColorMale,NationMale],7),
+										  CTEntry([TypeModMale],6)
+										],
+							NotList = ["mature","bald"])		
+
+class MaleTropeTemplate5(MaleTropeTemplate):
+	def __init__(self):
+		super().__init__(	noun = TropeBitMale("Barbarian"),
+							 id = 105, 
+							 adjlist = 	[ CTEntry([GenModMale],11),
+										  CTEntry([AttitudeMale],10),
+										  CTEntry([PhysCharMale],9),
+										  CTEntry([DickCharMale],8),
+										  CTEntry([SkinHairColorMale],7),
+										  CTEntry([TypeModMale],6),
 										  CTEntry([AgeAdjMale,MaritalStatusMale],5),
-										  CTEntry([NationMale],3),
-										  CTEntry([GenModMale],2),
-										  CTEntry([RelateMale, SpeciesMale],1),
-										])										
-# Adjs:		AttitudeMale, PhysCharMale, DickCharMale, SkinHairColorMale, GenModMale
-#			AgeAdjMale, MaritalStatusMale, NationMale
+										  CTEntry([SpeciesMale],2)
+										],
+							NotList = ["dapper","gentlemanly","stay-at-home"])	
+							
+# Adjs:		GenModMale, AttitudeMale, PhysCharMale, DickCharMale, TypeModMale,
+#			SkinHairColorMale, AgeAdjMale, MaritalStatusMale, NationMale
 # Nouns:	ProfMale, RelateMale, SpeciesMale, TitlesMale
 
 # CharBitList.append(AttitudeMale())

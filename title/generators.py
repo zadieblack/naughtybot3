@@ -4679,15 +4679,15 @@ class Generator1000(Generator):
 		
 class Generator1001(Generator):
 	ID = 1001
-	Priority = 0
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
 		sTweet = ""
 		
 		#print("Generator1001.GenerateTweet() started")
-		#Girl = char.FemaleChar(TempType = TempType.Flowery, SelectTemplateID = 305)
-		Guy = char.MaleChar(TempType = TempType.Flowery, bAllowTrope = False, SelectTemplateID = 1)
+		#Girl = char.FemaleChar(TempType = TempType.Flowery, SelectTemplateID = 304)
+		Guy = char.MaleChar(TempType = TempType.Flowery, bAllowTrope = True, SelectTemplateID = 105)
 		
 		#print("Generator1001.GenerateTweet() FemaleChar created, building tweet")
 		#sTweet += AddArticles(Girl.Desc, bMakeUpper = True) + " Gets Sexed the Hell Up!\n"
