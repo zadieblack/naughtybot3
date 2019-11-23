@@ -665,12 +665,14 @@ class AttitudeMale(WordList):
 			'Dapper',
 			'Devil-May-Care',
 			'Dominant',
+			'Disciplined',
 			'Eager',
 			'Experienced','Experienced',
 			'Fashionable',
 			'Foxy',
 			'Frisky',
 			'Gentlemanly',
+			'Graying',
 			'Gruff',
 			'Hard-Drinking',
 			'Hardened',
@@ -694,6 +696,7 @@ class AttitudeMale(WordList):
 			'Slick',
 			'Sly',
 			'Smooth',
+			'Stern',
 			'Stylish',
 			'Suave','Suave',
 			'Thrill-Seeking',
@@ -703,7 +706,7 @@ class AttitudeMale(WordList):
 		
 class GenModMale(WordList):
 	def __init__(self):
-		super().__init__(['Heavily Tattooed',
+		super().__init__(['Heavily-Tattooed',
 			'Masked',
 			'Mysterious',
 			'Tattooed',
@@ -712,12 +715,14 @@ class GenModMale(WordList):
 			
 class ClothesMale(WordList):
 	def __init__(self):
-		super().__init__(['Business Casual',
+		super().__init__(['Black Leather',
+			'Business Casual',
 			'Dark-Suited',
 			'Naked',
 			'Oiled-Up',
 			'Pantsless',
 			'Shirtless',
+			'Thong-Wearing',
 			'Tuxedoed',
 			'Uniformed'])
 			
@@ -946,6 +951,7 @@ class SkinHairColorMale(WordList):
 			'Copper-Skinned',
 			'Curly-Haired',
 			'Ebony',
+			'Graying',
 			'Red-Headed','Red-Headed',
 			'Tanned','Tanned'])
 		

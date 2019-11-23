@@ -1146,7 +1146,71 @@ class MaleTropeTemplate13(MaleTropeTemplate):
 										],
 							bpersonal = True,
 							NotList = ["teen","college","young"])
-							
+
+class MaleTropeTemplate14(MaleTropeTemplate):
+	def __init__(self):
+		super().__init__(	noun = TropeBitMale("Daddy Dom"),
+							 id = 114, 
+							 adjlist = 	[ CTEntry([GenModMale],11),
+										  CTEntry([AttitudeMale],10),
+										  CTEntry([PhysCharMale],9),
+										  CTEntry([DickCharMale],8),
+										  CTEntry([ClothesMale],6),
+										  CTEntry([NationMale,SkinHairColorMale],5),
+										  CTEntry([TypeModMale],4),
+										  CTEntry([AgeAdjMale],3),
+										  CTEntry([TropesWealthyMale],1)
+										],
+							NotList = ["teen","college","young"])	
+
+class MaleTropeTemplate115(MaleTropeTemplate):
+	def __init__(self):
+		super().__init__(	noun = TropeBitMale("DILF"),
+							 id = 115, 
+							 adjlist = 	[ CTEntry([AttitudeMale],10),
+										  CTEntry([PhysCharMale,DickCharMale],9),
+										  CTEntry([SkinHairColorMale],5),
+										  CTEntry([TypeModMale],4),
+										  CTEntry([AgeAdjMale,MaritalStatusMale],3)
+										],
+							NotList = ["teen","college","young","tattoo","taboo","raunchy","brazen","bronzed",
+									   "tanned","savage","mysterious","masked","barbarian","bdsm","brooding",
+									   "studly","bachelor","S.W.A.T.","hard-drinking","rakish","sly","slick",
+									   "roguish","renegade","rebel","eligible","sex addict","thrill-seeking",
+									   "powerful","dapper","smooth","fashionable","stylish"])	
+
+class MaleTropeTemplate116(MaleTropeTemplate):
+	def __init__(self):
+		super().__init__(	noun = TropeBitMale("Dirty Old Man"),
+							 id = 116, 
+							 adjlist = 	[ CTEntry([AttitudeMale],10),
+										  CTEntry([PhysCharMale],9),
+										  CTEntry([DickCharMale],8),
+										  CTEntry([SkinHairColorMale],5),
+										],
+							NotList = ["teen","college","young","tattoo","taboo","bronzed",
+									   "barbarian","bdsm","studly","bachelor","S.W.A.T.",
+									   "renegade","rebel","eligible","sex addict","powerful",
+									   "dapper","smooth","fashionable","stylish","red-headed",
+									   "black-bearded","sensual","suave","athletic","blonde",
+									   "clean-cut","handsome","sensitive","seductive",
+									   "clean-shaven"])	
+
+class MaleTropeTemplate17(MaleTropeTemplate):
+	def __init__(self):
+		super().__init__(	noun = TropeBitMale("Don Juan"),
+							 id = 117, 
+							 adjlist = 	[ CTEntry([AttitudeMale],10),
+										  CTEntry([PhysCharMale,DickCharMale],8),
+										  CTEntry([ClothesMale],7),
+										  CTEntry([AgeAdjMale],6),
+										  CTEntry([NationMale],5),
+										  CTEntry([TypeModMale],4),										  
+										  CTEntry([SpeciesMale,TropesWealthyMale],1)
+										],
+							NotList = ["american","stay-at-home"])
+
+
 # Adjs:		GenModMale, AttitudeMale, ClothesMale, PhysCharMale, DickCharMale, TypeModMale,
 #			SkinHairColorMale, AgeAdjMale, MaritalStatusMale, NationMale
 # Nouns:	ProfMale, RelateMale, SpeciesMale, TitlesMale, TropesWealthyMale
