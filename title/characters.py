@@ -323,10 +323,58 @@ class TropeBitBadFemale(TropeBitFemale):
 class TropeBitGoodFemale(TropeBitFemale):
 	def __init__(self, trope):
 		super().__init__(trope, girltype = GirlType.Good)
-	
+		
+class AgeAdjMale(MaleCharBit):
+	def __init__(self):
+		super().__init__(titmisc.AgeMaleAdj())
+
+class AttitudeMale(MaleCharBit):
+	def __init__(self):
+		super().__init__(titmisc.AttitudeMale())
+
+class GenModMale(MaleCharBit):
+	def __init__(self):
+		super().__init__(titmisc.GenModMale())
+
+class MaritalStatusMale(MaleCharBit):
+	def __init__(self):
+		super().__init__(titmisc.MaritalStatusMale())
+
+class NationMale(MaleCharBit):
+	def __init__(self):
+		super().__init__(titmisc.NationMale())
+
+class PhysCharMale(MaleCharBit):
+	def __init__(self):
+		super().__init__(titmisc.PhysCharMale())
+
+class DickCharMale(MaleCharBit):
+	def __init__(self):
+		super().__init__(titmisc.DickCharMale())
+
+class ProfMale(MaleCharBit):
+	def __init__(self):
+		super().__init__(titmisc.ProfMale())
+
+class RelateMale(MaleCharBit):
+	def __init__(self):
+		super().__init__(titmisc.RelateMale())
+
+class SkinHairColorMale(MaleCharBit):
+	def __init__(self):
+		super().__init__(titmisc.SkinHairColorMale())
+
+class SpeciesMale(MaleCharBit):
+	def __init__(self):
+		super().__init__(titmisc.SpeciesMale())
+
+class TitlesMale(MaleCharBit):
+	def __init__(self):
+		super().__init__(titmisc.TitlesMale())		
+		
 class Character():
 	pass
 	
 		
-								
+
 		

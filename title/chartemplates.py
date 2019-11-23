@@ -5,6 +5,8 @@
 from title.characters import *
 from util import *
 
+# === Female templates ===
+
 # Good Female Profession
 class FemTemplate1(FemCharTemplate):
 	def __init__(self):
@@ -863,4 +865,68 @@ class FemGoodSpeciesTemplate10(FemTropeTemplate):
 # Nouns: 	AgeNounFemale, SpeciesFemale, ProfGoodFemale, ProfBadFemale, ProfFemale, RelateFemale,TitlesFemale						
 	
 
-			
+# === Male templates ===		
+
+# Male Profession
+class MaleTemplate1(MaleCharTemplate):
+	def __init__(self):
+		super().__init__(	noun = ProfMale(),
+							 id = 1, 
+							 adjlist = 	[ CTEntry([AttitudeMale],10),
+										  CTEntry([PhysCharMale],9),
+										  CTEntry([DickCharMale],8),
+										  CTEntry([GenModMale],6),
+										  CTEntry([AgeAdjMale,MaritalStatusMale],5),
+										  CTEntry([SkinHairColorMale,NationMale],3),
+										  CTEntry([SpeciesMale],1),
+										])
+
+class MaleTemplate3(MaleCharTemplate):
+	def __init__(self):
+		super().__init__(	noun = ProfMale(),
+							 id = 3, 
+							 adjlist = 	[ CTEntry([AttitudeMale],10),
+										  CTEntry([PhysCharMale],9),
+										  CTEntry([DickCharMale],8),
+										  CTEntry([SkinHairColorMale],7),
+										  CTEntry([GenModMale],6),
+										  CTEntry([AgeAdjMale,MaritalStatusMale],5),
+										  CTEntry([NationMale],3),
+										  CTEntry([GenModMale],2),
+										  CTEntry([RelateMale, SpeciesMale],1),
+										])
+										
+class MaleTemplate4(MaleCharTemplate):
+	def __init__(self):
+		super().__init__(	noun = ProfMale(),
+							 id = 4, 
+							 adjlist = 	[ CTEntry([AttitudeMale],10),
+										  CTEntry([PhysCharMale],9),
+										  CTEntry([DickCharMale],8),
+										  CTEntry([SkinHairColorMale],7),
+										  CTEntry([GenModMale],6),
+										  CTEntry([AgeAdjMale,MaritalStatusMale],5),
+										  CTEntry([NationMale],3),
+										  CTEntry([GenModMale],2),
+										  CTEntry([RelateMale, SpeciesMale],1),
+										])										
+# Adjs:		AttitudeMale, PhysCharMale, DickCharMale, SkinHairColorMale, GenModMale
+#			AgeAdjMale, MaritalStatusMale, NationMale
+# Nouns:	ProfMale, RelateMale, SpeciesMale, TitlesMale
+
+# CharBitList.append(AttitudeMale())
+# CharBitList.append(PhysCharMale())
+# CharBitList.append(DickCharMale())
+# CharBitList.append(SkinHairColorMale())
+# CharBitList.append(GenModMale())
+# CharBitList.append(AgeAdjMale())
+# CharBitList.append(MaritalStatusMale())
+# CharBitList.append(NationMale())
+# CharBitList.append(ProfMale())
+# CharBitList.append(SpeciesMale())
+# CharBitList.append(TropeMale())
+# CharBitList.append(RelateMale())
+# CharBitList.append(TitleMale())
+
+
+	
