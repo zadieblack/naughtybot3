@@ -318,6 +318,7 @@ class PhysCharFemale(WordList):
 			'Bubble Butt',
 			'Busty',
 			'Buxom',
+			'Chubby',
 			'Comely',
 			'Curvy',
 			'Curvaceous',

@@ -425,14 +425,53 @@ class FemGoodTropeTemplate19(FemTropeTemplate):
 	def __init__(self):
 		super().__init__(	 noun = TropeBitBadFemale("Single Mom"),
 							 id = 118, 
-							 adjlist = 	[CTEntry([AttitudeGoodFemale],5),
-										  CTEntry([PhysCharFemale],4),
+							 adjlist = 	[CTEntry([AttitudeGoodFemale],6),
+										  CTEntry([PhysCharFemale],5),
+										  CTEntry([MaritalStatusFemale],4),
 										  CTEntry([NationFemale,SkinHairColorFemale],3),
 										  CTEntry([PregState],2),
 										  CTEntry([ProfGoodFemale],1), 
 										], 
 							girltype = GirlType.Good,
-							NotList = ["mom","asian","japanese","amish","russian","columbian","bronzed","tanned","czech","brazillian","swedish"])
+							NotList = ["single","mom","asian","japanese","amish","russian","columbian","bronzed","tanned","czech","brazillian","swedish"])
+							
+class FemGoodTropeTemplate20(FemTropeTemplate):
+	def __init__(self):
+		super().__init__(	 noun = TropeBitBadFemale("Slave Girl"),
+							 id = 119, 
+							 adjlist = 	[CTEntry([AttitudeGoodFemale],5),
+										  CTEntry([PhysCharFemale],4),
+										  CTEntry([PregState],3),
+										  CTEntry([NationFemale,SkinHairColorFemale],2),
+										  CTEntry([ProfBadFemale],1)
+										], 
+							girltype = GirlType.Good,
+							NotList = ["black","ebony","dark-skinned","town","American","porn","fashion","queen","housewife","nurse","country"])
+							
+class FemGoodTropeTemplate21(FemTropeTemplate):
+	def __init__(self):
+		super().__init__(	 noun = TropeBitBadFemale("Small-town Girl"),
+							 id = 120, 
+							 adjlist = 	[ CTEntry([AttitudeGoodFemale],5),
+										  CTEntry([MaritalStatusFemale],4),
+										  CTEntry([PhysCharFemale],3),
+										  CTEntry([SkinHairColorFemale,PregState],2),
+										  CTEntry([ProfGoodFemale],1)
+										], 
+							girltype = GirlType.Good,
+							NotList = ["schoolgirl"])
+							
+class FemGoodTropeTemplate22(FemTropeTemplate):
+	def __init__(self):
+		super().__init__(	 noun = TropeBitBadFemale("Snow Bunny"),
+							 id = 121, 
+							 adjlist = 	[CTEntry([AttitudeGoodFemale],5),
+										  CTEntry([PhysCharFemale],4),
+										  CTEntry([SkinHairColorFemale,],3),
+										  CTEntry([NationFemale,],2),
+										], 
+							girltype = GirlType.Good,
+							NotList = ["mom","town","straight-laced","amish","mormon","christian","modest","shy","demure","conservative","virtuous","uptight","bashful","sheltered"])
 							
 # Adj:		AgeAdjFemale, AttitudeGoodFemale, AttitudeBadFemale, AttitudeFemale,
 # 			ClothingFemale, GenModFemale, MaritalStatusFemale, NationFemale, PhysCharFemale

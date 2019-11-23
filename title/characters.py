@@ -4,6 +4,7 @@
 
 from random import *
 from util import *
+import re
 
 import title.util as titutil
 import title.misc as titmisc
@@ -95,7 +96,6 @@ class CharTemplate():
 		self.NotList = NotList
 		
 		self.Noun = noun
-		self.NotList.append(self.Noun)
 		
 		adjlist.sort(key = self.entry_key)
 		
@@ -164,9 +164,11 @@ class CharTemplate():
 			if sDesc != "":
 				sDesc += " "
 			sAdj = charbit.Get(NotList = self.NotList)
-			self.NotList.append(sAdj)
+			for s in re.findall(r"[\w']+",sAdj):
+				self.NotList.append(s)
 			sDesc += sAdj
 			
+		#print("Final NotList is " + str(self.NotList))
 		return sDesc
 		
 	def HasCharBit(self, charbit):
