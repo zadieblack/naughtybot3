@@ -207,7 +207,7 @@ class FemTemplate13(FemCharTemplate):
 class FemGoodTropeTemplate1(FemTropeTemplate):
 	def __init__(self):
 		super().__init__(	 noun = TropeBitBadFemale("Amish Maiden"),
-							 id = 100, 
+							 id = 101, 
 							 adjlist = 	[CTEntry([AttitudeGoodFemale],4),
 										  CTEntry([PhysCharFemale],3),
 										  CTEntry([SkinHairColorFemale,PregState],2),
@@ -219,7 +219,7 @@ class FemGoodTropeTemplate1(FemTropeTemplate):
 class FemGoodTropeTemplate2(FemTropeTemplate):
 	def __init__(self):
 		super().__init__(	 noun = TropeBitBadFemale("BBW"),
-							 id = 101, 
+							 id = 102, 
 							 adjlist = 	[CTEntry([AttitudeGoodFemale],4),
 										  CTEntry([MaritalStatusFemale,AgeAdjFemale,PregState],3),
 										  CTEntry([SkinHairColorFemale],2),  
@@ -232,7 +232,7 @@ class FemGoodTropeTemplate2(FemTropeTemplate):
 class FemGoodTropeTemplate3(FemTropeTemplate):
 	def __init__(self):
 		super().__init__(	 noun = TropeBitBadFemale("Beauty"),
-							 id = 102, 
+							 id = 103, 
 							 adjlist = 	[CTEntry([AttitudeGoodFemale],5),
 										  CTEntry([PhysCharFemale],4),
 										  CTEntry([MaritalStatusFemale,AgeAdjFemale,PregState],3),
@@ -245,7 +245,7 @@ class FemGoodTropeTemplate3(FemTropeTemplate):
 class FemGoodTropeTemplate4(FemTropeTemplate):
 	def __init__(self):
 		super().__init__(	 noun = TropeBitBadFemale("Beauty Queen"),
-							 id = 103, 
+							 id = 104, 
 							 adjlist = 	[CTEntry([AttitudeGoodFemale],3),
 										  CTEntry([PhysCharFemale],2),
 										  CTEntry([NationFemale,SkinHairColorFemale],1),   
@@ -256,7 +256,7 @@ class FemGoodTropeTemplate4(FemTropeTemplate):
 class FemGoodTropeTemplate5(FemTropeTemplate):
 	def __init__(self):
 		super().__init__(	 noun = TropeBitBadFemale("Bride"),
-							 id = 104, 
+							 id = 105, 
 							 adjlist = 	[CTEntry([AttitudeGoodFemale],5),
 										  CTEntry([PhysCharFemale],4),
 										  CTEntry([AgeAdjFemale,PregState],3),
@@ -267,7 +267,7 @@ class FemGoodTropeTemplate5(FemTropeTemplate):
 class FemGoodTropeTemplate6(FemTropeTemplate):
 	def __init__(self):
 		super().__init__(	 noun = TropeBitBadFemale("Catholic School-girl"),
-							 id = 105, 
+							 id = 106, 
 							 adjlist = 	[CTEntry([AttitudeGoodFemale],5),
 										  CTEntry([PhysCharFemale],4),
 										  CTEntry([PregState],3),
@@ -280,7 +280,7 @@ class FemGoodTropeTemplate6(FemTropeTemplate):
 class FemGoodTropeTemplate7(FemTropeTemplate):
 	def __init__(self):
 		super().__init__(	 noun = TropeBitBadFemale("Chaste Nun"),
-							 id = 106, 
+							 id = 107, 
 							 adjlist = 	[CTEntry([AttitudeGoodFemale],5),
 										  CTEntry([PhysCharFemale],4),
 										  CTEntry([NationFemale],2)
@@ -291,7 +291,7 @@ class FemGoodTropeTemplate7(FemTropeTemplate):
 class FemGoodTropeTemplate8(FemTropeTemplate):
 	def __init__(self):
 		super().__init__(	 noun = TropeBitBadFemale("Cheer-Squad Captain"),
-							 id = 107, 
+							 id = 108, 
 							 adjlist = 	[CTEntry([PhysCharFemale],4),
 										  CTEntry([PregState],3),
 										  CTEntry([SkinHairColorFemale],2),  
@@ -303,7 +303,7 @@ class FemGoodTropeTemplate8(FemTropeTemplate):
 class FemGoodTropeTemplate9(FemTropeTemplate):
 	def __init__(self):
 		super().__init__(	 noun = TropeBitBadFemale("Damsel-in-Distress"),
-							 id = 108, 
+							 id = 109, 
 							 adjlist = 	[ CTEntry([AttitudeGoodFemale],5),
 										  CTEntry([PhysCharFemale],4),
 										  CTEntry([SkinHairColorFemale],2),  
@@ -315,7 +315,7 @@ class FemGoodTropeTemplate9(FemTropeTemplate):
 class FemGoodTropeTemplate10(FemTropeTemplate):
 	def __init__(self):
 		super().__init__(	 noun = TropeBitBadFemale("Farmer's Daughter"),
-							 id = 109, 
+							 id = 110, 
 							 adjlist = 	[ CTEntry([AttitudeGoodFemale],5),
 										  CTEntry([PhysCharFemale],4),
 										  CTEntry([SkinHairColorFemale],2)
@@ -326,7 +326,7 @@ class FemGoodTropeTemplate10(FemTropeTemplate):
 class FemGoodTropeTemplate11(FemTropeTemplate):
 	def __init__(self):
 		super().__init__(	 noun = TropeBitBadFemale("Hippy Chick"),
-							 id = 110, 
+							 id = 111, 
 							 adjlist = 	[CTEntry([AttitudeGoodFemale],5),
 										  CTEntry([PhysCharFemale],4),
 										  CTEntry([MaritalStatusFemale,AgeAdjFemale,PregState],3),
@@ -338,7 +338,7 @@ class FemGoodTropeTemplate11(FemTropeTemplate):
 class FemGoodTropeTemplate12(FemTropeTemplate):
 	def __init__(self):
 		super().__init__(	 noun = TropeBitBadFemale("HuCow"),
-							 id = 111, 
+							 id = 112, 
 							 adjlist = 	[ CTEntry([AttitudeGoodFemale],6),
 										  CTEntry([PhysCharFemale],5),
 										  CTEntry([MaritalStatusFemale,AgeAdjFemale],4),
@@ -352,7 +352,7 @@ class FemGoodTropeTemplate12(FemTropeTemplate):
 class FemGoodTropeTemplate13(FemTropeTemplate):
 	def __init__(self):
 		super().__init__(	 noun = TropeBitBadFemale("Kitten"),
-							 id = 112, 
+							 id = 113, 
 							 adjlist = 	[CTEntry([AttitudeGoodFemale],3),
 										  CTEntry([NationFemale,SkinHairColorFemale],2), 
 										  CTEntry([ProfGoodFemale],1),  
@@ -363,7 +363,7 @@ class FemGoodTropeTemplate13(FemTropeTemplate):
 class FemGoodTropeTemplate14(FemTropeTemplate):
 	def __init__(self):
 		super().__init__(	 noun = TropeBitBadFemale("Pastor's Wife"),
-							 id = 113, 
+							 id = 114, 
 							 adjlist = 	[CTEntry([AttitudeGoodFemale],5),
 										  CTEntry([PhysCharFemale],4),
 										  CTEntry([PregState],3),
@@ -375,7 +375,7 @@ class FemGoodTropeTemplate14(FemTropeTemplate):
 class FemGoodTropeTemplate15(FemTropeTemplate):
 	def __init__(self):
 		super().__init__(	 noun = TropeBitBadFemale("Pixie"),
-							 id = 114, 
+							 id = 115, 
 							 adjlist = 	[ CTEntry([AttitudeGoodFemale],4),
 										  CTEntry([PhysCharFemale],3),
 										  CTEntry([NationFemale,SkinHairColorFemale],2), 
@@ -387,7 +387,7 @@ class FemGoodTropeTemplate15(FemTropeTemplate):
 class FemGoodTropeTemplate16(FemTropeTemplate):
 	def __init__(self):
 		super().__init__(	 noun = TropeBitBadFemale("Princess"),
-							 id = 115, 
+							 id = 116, 
 							 adjlist = 	[CTEntry([AttitudeGoodFemale],5),
 										  CTEntry([PhysCharFemale],4),
 										  CTEntry([SkinHairColorFemale],3),
@@ -400,7 +400,7 @@ class FemGoodTropeTemplate16(FemTropeTemplate):
 class FemGoodTropeTemplate17(FemTropeTemplate):
 	def __init__(self):
 		super().__init__(	 noun = TropeBitBadFemale("Prom Queen"),
-							 id = 116, 
+							 id = 117, 
 							 adjlist = 	[CTEntry([AttitudeGoodFemale],5),
 										  CTEntry([PhysCharFemale],4),
 										  CTEntry([PregState],3),
@@ -412,7 +412,7 @@ class FemGoodTropeTemplate17(FemTropeTemplate):
 class FemGoodTropeTemplate18(FemTropeTemplate):
 	def __init__(self):
 		super().__init__(	 noun = TropeBitBadFemale("School-girl"),
-							 id = 117, 
+							 id = 118, 
 							 adjlist = 	[ CTEntry([AttitudeGoodFemale],4),
 										  CTEntry([PhysCharFemale],3),
 										  CTEntry([NationFemale,SkinHairColorFemale,PregState],2),
@@ -424,7 +424,7 @@ class FemGoodTropeTemplate18(FemTropeTemplate):
 class FemGoodTropeTemplate19(FemTropeTemplate):
 	def __init__(self):
 		super().__init__(	 noun = TropeBitBadFemale("Single Mom"),
-							 id = 118, 
+							 id = 119, 
 							 adjlist = 	[CTEntry([AttitudeGoodFemale],6),
 										  CTEntry([PhysCharFemale],5),
 										  CTEntry([MaritalStatusFemale],4),
@@ -438,7 +438,7 @@ class FemGoodTropeTemplate19(FemTropeTemplate):
 class FemGoodTropeTemplate20(FemTropeTemplate):
 	def __init__(self):
 		super().__init__(	 noun = TropeBitBadFemale("Slave Girl"),
-							 id = 119, 
+							 id = 120, 
 							 adjlist = 	[CTEntry([AttitudeGoodFemale],5),
 										  CTEntry([PhysCharFemale],4),
 										  CTEntry([PregState],3),
@@ -451,7 +451,7 @@ class FemGoodTropeTemplate20(FemTropeTemplate):
 class FemGoodTropeTemplate21(FemTropeTemplate):
 	def __init__(self):
 		super().__init__(	 noun = TropeBitBadFemale("Small-town Girl"),
-							 id = 120, 
+							 id = 121, 
 							 adjlist = 	[ CTEntry([AttitudeGoodFemale],5),
 										  CTEntry([MaritalStatusFemale],4),
 										  CTEntry([PhysCharFemale],3),
@@ -464,7 +464,7 @@ class FemGoodTropeTemplate21(FemTropeTemplate):
 class FemGoodTropeTemplate22(FemTropeTemplate):
 	def __init__(self):
 		super().__init__(	 noun = TropeBitBadFemale("Snow Bunny"),
-							 id = 121, 
+							 id = 122, 
 							 adjlist = 	[CTEntry([AttitudeGoodFemale],5),
 										  CTEntry([PhysCharFemale],4),
 										  CTEntry([SkinHairColorFemale,],3),
@@ -476,7 +476,7 @@ class FemGoodTropeTemplate22(FemTropeTemplate):
 class FemGoodTropeTemplate23(FemTropeTemplate):
 	def __init__(self):
 		super().__init__(	 noun = TropeBitBadFemale("Soccer Mom"),
-							 id = 122, 
+							 id = 123, 
 							 adjlist = 	[CTEntry([AttitudeGoodFemale],6),
 										  CTEntry([PhysCharFemale],5),
 										  CTEntry([SkinHairColorFemale],3),
@@ -487,7 +487,7 @@ class FemGoodTropeTemplate23(FemTropeTemplate):
 class FemGoodTropeTemplate24(FemTropeTemplate):
 	def __init__(self):
 		super().__init__(	 noun = TropeBitBadFemale("Southern Bell"),
-							 id = 123, 
+							 id = 124, 
 							 adjlist = 	[CTEntry([AttitudeGoodFemale],5),
 										  CTEntry([MaritalStatusFemale],4),
 										  CTEntry([PhysCharFemale],3),
@@ -500,7 +500,7 @@ class FemGoodTropeTemplate24(FemTropeTemplate):
 class FemGoodTropeTemplate25(FemTropeTemplate):
 	def __init__(self):
 		super().__init__(	 noun = TropeBitBadFemale("Tomboy"),
-							 id = 124, 
+							 id = 125, 
 							 adjlist = 	[ CTEntry([AttitudeGoodFemale],5),
 										  CTEntry([PhysCharFemale],3),
 										  CTEntry([NationFemale,SkinHairColorFemale],2)
@@ -512,7 +512,7 @@ class FemGoodTropeTemplate25(FemTropeTemplate):
 class FemGoodTropeTemplate26(FemTropeTemplate):
 	def __init__(self):
 		super().__init__(	 noun = TropeBitBadFemale("Virgin"),
-							 id = 125, 
+							 id = 126, 
 							 adjlist = 	[CTEntry([AttitudeGoodFemale],6),
 										  CTEntry([PhysCharFemale],5),
 										  CTEntry([SkinHairColorFemale,AgeAdjFemale],4),
@@ -521,39 +521,71 @@ class FemGoodTropeTemplate26(FemTropeTemplate):
 										], 
 							girltype = GirlType.Good,
 							NotList = ["mom","virgin","MILF","wife","succubus","nymph"])
-							
-							
-# Adj:		AgeAdjFemale, AttitudeGoodFemale, AttitudeBadFemale, AttitudeFemale,
-# 			ClothingFemale, GenModFemale, MaritalStatusFemale, NationFemale, PhysCharFemale
-#			PregState, SexualityFemale, SkinHairColorFemale, SpeciesFemale
-# Nouns: 	AgeNounFemale, SpeciesFemale, ProfGoodFemale, ProfBadFemale, ProfFemale, RelateFemale,TitlesFemale
+						
 
 
 # === Bad Trope templates ===
 
 class FemBadTropeTemplate1(FemTropeTemplate):
 	def __init__(self):
-		super().__init__(	 noun = TropeBitBadFemale("Porn Star"),
-							 id = 200, 
-							 adjlist = 	[ 
+		super().__init__(	 noun = TropeBitBadFemale("Bad Girl"),
+							 id = 201, 
+							 adjlist = 	[ CTEntry([GenModFemale],10),
 										  CTEntry([AttitudeBadFemale],7),
 										  CTEntry([PhysCharFemale],6),
 										  CTEntry([ClothingFemale],5),
-										  CTEntry([NationFemale,SkinHairColorFemale],4),
+										  CTEntry([SkinHairColorFemale],4),
 										  CTEntry([AgeAdjFemale],3),
-										  CTEntry([SexualityFemale],2),  
-										  CTEntry([SpeciesFemale],1),
+										  CTEntry([SexualityFemale],2)
 										], 
-							girltype = GirlType.Bad	)
+							girltype = GirlType.Bad,
+							NotList = ["MILF","Mature","Older"])
 							
 class FemBadTropeTemplate2(FemTropeTemplate):
 	def __init__(self):
+		super().__init__(	 noun = TropeBitBadFemale("Beach Bunny"),
+							 id = 202, 
+							 adjlist = 	[ 
+										  CTEntry([GenModFemale],10),
+										  CTEntry([AttitudeFemale],7),
+										  CTEntry([PhysCharFemale],6),
+										  CTEntry([ClothingFemale,NationFemale],5),
+										  CTEntry([SkinHairColorFemale],4),
+										  CTEntry([SexualityFemale],2)
+										], 
+							girltype = GirlType.Bad,
+							NotList = ["braless","stylish","leather","latex","country","modest","bashful","conservative",
+										"straight-laced","shy","chaste","sheltered","uptight","pale","fetish"])
+							
+class FemBadTropeTemplate10(FemTropeTemplate):
+	def __init__(self):
+		super().__init__(	 noun = TropeBitBadFemale("Porn Star"),
+							 id = 210, 
+							 adjlist = 	[ 
+										  CTEntry([GenModFemale],11),
+										  CTEntry([GenModFemale],10),
+										  CTEntry([AttitudeBadFemale],9),
+										  CTEntry([PhysCharFemale],8),
+										  CTEntry([ClothingFemale],7),
+										  CTEntry([NationFemale,SkinHairColorFemale],6),
+										  CTEntry([AgeAdjFemale],5),
+										  CTEntry([PregState],4),
+										  CTEntry([SexualityFemale],3),  
+										  CTEntry([SpeciesFemale],2),
+										  CTEntry([ProfBadFemale,ProfGoodFemale],1)
+										], 
+							girltype = GirlType.Bad,
+							NotList = ["virgin","stripper","dancer","lingerie","soft","braless","revealing"])
+							
+class FemBadTropeTemplate11(FemTropeTemplate):
+	def __init__(self):
 		super().__init__(	 noun = TropeBitBadFemale("Sex Kitten"),
-							 id = 201, 
+							 id = 211, 
 							 adjlist = 	[CTEntry([GenModFemale],7),
 										  CTEntry([AttitudeBadFemale],6),
 										  CTEntry([PhysCharFemale],5),
 										  CTEntry([ClothingFemale],4),
+										  CTEntry([PregState],4),
 										  CTEntry([SkinHairColorFemale],3),
 										  CTEntry([SpeciesFemale],1),
 										], 
@@ -561,7 +593,10 @@ class FemBadTropeTemplate2(FemTropeTemplate):
 							NotList = ['Christian','Mormon'])	
 							
 	
-						
+# Adj:		AgeAdjFemale, AttitudeGoodFemale, AttitudeBadFemale, AttitudeFemale,
+# 			ClothingFemale, GenModFemale, MaritalStatusFemale, NationFemale, PhysCharFemale
+#			PregState, SexualityFemale, SkinHairColorFemale, SpeciesFemale
+# Nouns: 	AgeNounFemale, SpeciesFemale, ProfGoodFemale, ProfBadFemale, ProfFemale, RelateFemale,TitlesFemale						
 	
 
 			

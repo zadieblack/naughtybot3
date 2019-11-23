@@ -4686,7 +4686,7 @@ class Generator1001(Generator):
 		sTweet = ""
 		
 		#print("Generator1001.GenerateTweet() started")
-		Girl = char.FemaleChar(TempType = TempType.Flowery, SelectTemplateID = 125)
+		Girl = char.FemaleChar(TempType = TempType.Flowery, SelectTemplateID = 210)
 		
 		#print("Generator1001.GenerateTweet() FemaleChar created, building tweet")
 		sTweet += AddArticles(Girl.Desc, bMakeUpper = True) + " Gets Sexed the Hell Up!"
