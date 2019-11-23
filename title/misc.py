@@ -187,6 +187,7 @@ class AttitudeGoodFemale(WordList):
 			'Sparkling',
 			'Spirited',
 			'Sporty',
+			'Spunky',
 			'Straight',
 			'Straight-laced',
 			'Sweet','Sweet',

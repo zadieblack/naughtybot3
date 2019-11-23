@@ -473,6 +473,56 @@ class FemGoodTropeTemplate22(FemTropeTemplate):
 							girltype = GirlType.Good,
 							NotList = ["mom","town","straight-laced","amish","mormon","christian","modest","shy","demure","conservative","virtuous","uptight","bashful","sheltered"])
 							
+class FemGoodTropeTemplate23(FemTropeTemplate):
+	def __init__(self):
+		super().__init__(	 noun = TropeBitBadFemale("Soccer Mom"),
+							 id = 122, 
+							 adjlist = 	[CTEntry([AttitudeGoodFemale],6),
+										  CTEntry([PhysCharFemale],5),
+										  CTEntry([SkinHairColorFemale],3),
+										], 
+							girltype = GirlType.Good,
+							NotList = ["single"])
+							
+class FemGoodTropeTemplate24(FemTropeTemplate):
+	def __init__(self):
+		super().__init__(	 noun = TropeBitBadFemale("Southern Bell"),
+							 id = 123, 
+							 adjlist = 	[CTEntry([AttitudeGoodFemale],5),
+										  CTEntry([MaritalStatusFemale],4),
+										  CTEntry([PhysCharFemale],3),
+										  CTEntry([SkinHairColorFemale],2),
+										  CTEntry([ProfGoodFemale],1)
+										], 
+							girltype = GirlType.Good,
+							NotList = ["fishy"])
+							
+class FemGoodTropeTemplate25(FemTropeTemplate):
+	def __init__(self):
+		super().__init__(	 noun = TropeBitBadFemale("Tomboy"),
+							 id = 124, 
+							 adjlist = 	[ CTEntry([AttitudeGoodFemale],5),
+										  CTEntry([PhysCharFemale],3),
+										  CTEntry([NationFemale,SkinHairColorFemale],2)
+										], 
+							girltype = GirlType.Good,
+							NotList = ["Gentle","Kind","Statuesque","Stacked","Bashful","Shy","Big Bottomed","Ditzy",
+									   "Juicy","Demure","Tender","Soft","boob","plump","chubby","curvy"])
+							
+class FemGoodTropeTemplate26(FemTropeTemplate):
+	def __init__(self):
+		super().__init__(	 noun = TropeBitBadFemale("Virgin"),
+							 id = 125, 
+							 adjlist = 	[CTEntry([AttitudeGoodFemale],6),
+										  CTEntry([PhysCharFemale],5),
+										  CTEntry([SkinHairColorFemale,AgeAdjFemale],4),
+										  CTEntry([NationFemale,SpeciesFemale],3),
+										  CTEntry([ProfGoodFemale],1)
+										], 
+							girltype = GirlType.Good,
+							NotList = ["mom","virgin","MILF","wife","succubus","nymph"])
+							
+							
 # Adj:		AgeAdjFemale, AttitudeGoodFemale, AttitudeBadFemale, AttitudeFemale,
 # 			ClothingFemale, GenModFemale, MaritalStatusFemale, NationFemale, PhysCharFemale
 #			PregState, SexualityFemale, SkinHairColorFemale, SpeciesFemale
