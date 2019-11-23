@@ -68,8 +68,11 @@ class CTEntry():
 		else:
 			self.OrderNo = 0
 			
-	def PickOne(self):
-		return self.CharBits.GetWord()
+	def PickOne(self, NotList = None):
+		if NotList is None:
+			NotList = []
+			
+		return self.CharBits.GetWord(NotList = NotList)
 	
 #MAX_CHARACTER_CHARBITS = 5
 class CharTemplate():
@@ -92,6 +95,7 @@ class CharTemplate():
 		self.NotList = NotList
 		
 		self.Noun = noun
+		self.NotList.append(self.Noun)
 		
 		adjlist.sort(key = self.entry_key)
 		
@@ -109,7 +113,7 @@ class CharTemplate():
 		if isinstance(self._AdjList, list):
 			if len(self._AdjList) > 1:
 				variant.append(self.Noun)
-				variant.append(choice(self._AdjList).PickOne())
+				variant.append(choice(self._AdjList).PickOne(NotList = self.NotList))
 				
 			else:
 				variant.append(GetShortVariant())
@@ -137,7 +141,7 @@ class CharTemplate():
 				selections = sorted(sample(self._AdjList, k = iTotal), key = self.entry_key, reverse = True)
 				
 				for item in selections:								#append to variant, selecting one option at random if there are 
-					variant.append(item.PickOne())					#  multiple options for the same order #
+					variant.append(item.PickOne(NotList = self.NotList))	#  multiple options for the same order #
 				variant.append(self.Noun)							#get the noun
 			else:
 				variant = GetMediumVariant()
@@ -159,7 +163,9 @@ class CharTemplate():
 			#print("CharTemplate.GetDesc() charbit is " + str(charbit))
 			if sDesc != "":
 				sDesc += " "
-			sDesc += charbit.Get()
+			sAdj = charbit.Get(NotList = self.NotList)
+			self.NotList.append(sAdj)
+			sDesc += sAdj
 			
 		return sDesc
 		
