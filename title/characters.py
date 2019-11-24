@@ -74,6 +74,19 @@ class CTEntry():
 			NotList = []
 			
 		return self.CharBits.GetWord(NotList = NotList)
+		
+	def HasCharBit(self, charbit):
+		bHasCharBit = False 
+		
+		if self.CharBits is not None and isinstance(self.CharBits, WordList):
+			for item in self.CharBits.GetWordList():
+				#print("Checking excluded item " + str(charbit.__class__) + " against charbit " + str(item.__class__) + ".\n")
+				if charbit.__class__ == item.__class__:
+					bHasCharBit = True
+					#print("==<< Excluded CTEntry (adj) match found! >>==")
+					break
+					
+		return bHasCharBit
 	
 #MAX_CHARACTER_CHARBITS = 5
 class CharTemplate():
@@ -182,14 +195,30 @@ class CharTemplate():
 		#print("Final NotList is " + str(self.NotList))
 		return sDesc
 		
-	def HasCharBit(self, charbit):
+	def HasCharBit(self, charbits):
 		bHasCharBit = False 
-		charbit = charbit() 
 		
-		for item in self._CharBitList:
-			if item.__class__ == charbit.__class__:
-				bHasCharBit = True 
-			
+		if isinstance(charbits, CharBit):
+			charbits = [charbit()]
+
+		if isinstance(charbits, list):
+			for checkitem in charbits:
+				checknoun = None
+				if isinstance(self.Noun.__class__, CTEntry):
+					checknoun = self.Noun.CharBit 
+				else:
+					checknoun = self.Noun 
+				#print("Checking excluded class \"" + str(checkitem.__class__) + "\" against template Noun, \"" + str(checknoun.__class__) + "\"\n")
+				if checkitem.__class__ == checknoun.__class__:
+					bHasCharBit = True 
+					#print("==<< Excluded noun match found! >>==")
+					break 
+				for myitem in self._AdjList:
+					#print("Checking excluded class \"" + str(checkitem.__class__) + "\" against adj, \"" + str(myitem.CharBit.__class__) + "\"")
+					if myitem.HasCharBit(checkitem):
+						bHasCharBit = True 
+						break
+		#print("CharTemplate.HasCharBit() returning " + str(bHasCharBit))
 		return bHasCharBit
 		
 class FemCharTemplate(CharTemplate):
@@ -385,6 +414,34 @@ class DickCharMale(MaleCharBit):
 	def __init__(self):
 		super().__init__(titmisc.DickCharMale())
 
+class ProfBlueCollarMale(MaleCharBit):
+	def __init__(self):
+		super().__init__(titmisc.ProfBlueCollarMale())
+		
+class ProfWhiteCollarMale(MaleCharBit):
+	def __init__(self):
+		super().__init__(titmisc.ProfWhiteCollarMale())
+		
+class ProfFantasyMale(MaleCharBit):
+	def __init__(self):
+		super().__init__(titmisc.ProfFantasyMale())
+		
+class ProfAthleteMale(MaleCharBit):
+	def __init__(self):
+		super().__init__(titmisc.ProfAthleteMale())
+		
+class ProfRockstarMale(MaleCharBit):
+	def __init__(self):
+		super().__init__(titmisc.ProfRockstarMale())
+		
+class ProfNormalMale(MaleCharBit):
+	def __init__(self):
+		super().__init__(titmisc.ProfMale())
+		
+class ProfAspirationalMale(MaleCharBit):
+	def __init__(self):
+		super().__init__(titmisc.ProfMale())
+		
 class ProfMale(MaleCharBit):
 	def __init__(self):
 		super().__init__(titmisc.ProfMale())

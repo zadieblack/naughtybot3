@@ -1163,7 +1163,7 @@ class MaleTropeTemplate14(MaleTropeTemplate):
 										],
 							NotList = ["teen","college","young"])	
 
-class MaleTropeTemplate115(MaleTropeTemplate):
+class MaleTropeTemplate15(MaleTropeTemplate):
 	def __init__(self):
 		super().__init__(	noun = TropeBitMale("DILF"),
 							 id = 115, 
@@ -1179,7 +1179,7 @@ class MaleTropeTemplate115(MaleTropeTemplate):
 									   "roguish","renegade","rebel","eligible","sex addict","thrill-seeking",
 									   "powerful","dapper","smooth","fashionable","stylish"])	
 
-class MaleTropeTemplate116(MaleTropeTemplate):
+class MaleTropeTemplate16(MaleTropeTemplate):
 	def __init__(self):
 		super().__init__(	noun = TropeBitMale("Dirty Old Man"),
 							 id = 116, 
@@ -1208,13 +1208,109 @@ class MaleTropeTemplate17(MaleTropeTemplate):
 										  CTEntry([TypeModMale],4),										  
 										  CTEntry([SpeciesMale,TropesWealthyMale],1)
 										],
-							NotList = ["american","stay-at-home"])
+							NotList = ["american","stay-at-home","barbarian"])
 
+class MaleTropeTemplate18(MaleTropeTemplate):
+	def __init__(self):
+		super().__init__(	noun = TropeBitMale("Ex-con"),
+							 id = 118, 
+							 adjlist = 	[ CTEntry([GenModMale],11),
+										  CTEntry([AttitudeMale],10),
+										  CTEntry([PhysCharMale],9),
+										  CTEntry([DickCharMale],8),
+										  CTEntry([NationMale,SkinHairColorMale],5),
+										  CTEntry([TypeModMale],4),
+										  CTEntry([AgeAdjMale],3)
+										],
+							NotList = ["teen","stay-at-home","college","black","african","barbarian","bdsm",
+										"young","S.W.A.T.","eligible","dapper","stylish","fashionable",
+										"space","christian"])
 
+class MaleTropeTemplate19(MaleTropeTemplate):
+	def __init__(self):
+		super().__init__(	noun = TropeBitMale("Family Man"),
+							 id = 119, 
+							 adjlist = 	[ CTEntry([AttitudeMale],10),
+										  CTEntry([PhysCharMale,DickCharMale],9),
+										  CTEntry([SkinHairColorMale],5),
+										  CTEntry([TypeModMale],4),
+										  CTEntry([AgeAdjMale,],3),
+										  CTEntry([MaritalStatusMale],2),
+										],
+							NotList = ["teen","college","young","tattoo","taboo","raunchy","brazen","bronzed",
+									   "tanned","savage","mysterious","masked","barbarian","bdsm","brooding",
+									   "studly","bachelor","S.W.A.T.","hard-drinking","rakish","sly","slick",
+									   "roguish","renegade","rebel","eligible","sex addict","thrill-seeking",
+									   "powerful","dapper","smooth","fashionable","stylish","single",
+									   "wicked","wanton","naughty"])	
+
+class MaleTropeTemplate20(MaleTropeTemplate):
+	def __init__(self):
+		super().__init__(	noun = TropeBitMale("Gangsta"),
+							 id = 120, 
+							 adjlist = 	[ CTEntry([GenModMale],11),
+										  CTEntry([AttitudeMale],10),
+										  CTEntry([PhysCharMale],9),
+										  CTEntry([DickCharMale],8),
+										  CTEntry([NationMale,SkinHairColorMale],5),
+										  CTEntry([TypeModMale],4),
+										  CTEntry([TropesWealthyMale,ProfMale,SpeciesMale],3)
+										],
+							NotList = ["barbarian","bdsm","S.W.A.T.","eligible","dapper","stylish",
+										"blonde","red-headed","nudist","addict"])
+
+class MaleTropeTemplate21(MaleTropeTemplate):
+	def __init__(self):
+		super().__init__(	 noun = TropeBitMale("Gay-for-Pay Porn Star"),
+							 id = 121, 
+							 adjlist = 	[ CTEntry([GenModMale],11),
+										  CTEntry([AttitudeMale],10),
+										  CTEntry([PhysCharMale],9),
+										  CTEntry([DickCharMale],8),
+										  CTEntry([NationMale,SkinHairColorMale],5),
+										  CTEntry([TypeModMale],4),
+										  CTEntry([ProfBlueCollarMale],3)
+										],
+							NotList = ["gay"])
+
+class MaleTropeTemplate22(MaleTropeTemplate):
+	def __init__(self):
+		super().__init__(	noun = TropeBitMale("Gentleman"),
+							 id = 122, 
+							 adjlist = 	[ CTEntry([AttitudeMale],10),
+										  CTEntry([PhysCharMale,DickCharMale],9),
+										  CTEntry([ClothesMale],8),
+										  CTEntry([AgeAdjMale],7),
+										  CTEntry([MaritalStatusMale],6),
+										  CTEntry([SkinHairColorMale,NationMale],5),
+										  CTEntry([TypeModMale],4),
+										  CTEntry([SpeciesMale,TropesWealthyMale],2)
+										],
+							NotList = ["american","stay-at-home","barbarian","leather","shirtless",
+										"teen","college","young","tattoo","taboo","raunchy","brazen","bronzed",
+									   "tanned","savage","barbarian","brooding","oiled","beefy",
+									   "S.W.A.T.","hard-drinking","sly","slick",
+									   "renegade","rebel"])
+									   
+class MaleTropeTemplate23(MaleTropeTemplate):
+	def __init__(self):
+		super().__init__(	noun = TropeBitMale("Ghost"),
+							 id = 123, 
+							 adjlist = 	[ CTEntry([AttitudeMale],10),
+										  CTEntry([PhysCharMale],9),
+										  CTEntry([DickCharMale],8),
+										  CTEntry([ClothesMale],6),
+										  CTEntry([TropesWealthyMale,ProfFantasyMale,TitlesMale],1)
+										],
+							NotList = ["taboo","nudist","farmer","peasant","hairy","young","college",
+									   "oiled","burly","beef","brawny","buff","giant","hulking"])
+
+							
 # Adjs:		GenModMale, AttitudeMale, ClothesMale, PhysCharMale, DickCharMale, TypeModMale,
 #			SkinHairColorMale, AgeAdjMale, MaritalStatusMale, NationMale
 # Nouns:	ProfMale, RelateMale, SpeciesMale, TitlesMale, TropesWealthyMale
-
+# Jobs:		ProfBlueCollarMale,ProfWhiteCollarMale,ProfFantasyMale,ProfAthleteMale,ProfRockstarMale,
+#			ProfNormalMale,ProfAspirationalMale,ProfMale
 # CharBitList.append(AttitudeMale())
 # CharBitList.append(PhysCharMale())
 # CharBitList.append(DickCharMale())

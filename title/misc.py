@@ -796,7 +796,6 @@ class PhysCharMale(WordList):
 		super().__init__(['Athletic',
 			'Bald','Bald',
 			'Balding',
-			'Bare-Chested',
 			'Bearded',
 			'Beefcake',
 			'Beefy','Beefy',
@@ -825,7 +824,6 @@ class PhysCharMale(WordList):
 			'Strapping',
 			'Strong',
 			'Tall',
-			'Tattooed',
 			'Ugly'])
 			
 class DickCharMale(WordList):
@@ -848,86 +846,167 @@ class DickCharMale(WordList):
 			'Well-Endowed','Well-Endowed',
 			'Virile'])
 		
-class ProfMale(WordList):
+class ProfBlueCollarMale(WordList):
 	def __init__(self):
-		super().__init__(['Airline Pilot',
-			'Artist',
-			'Astronaut',
-			'Assassin',
-			'Athlete',
-			'Attorney',
-			'Blacksmith',
-			'Body Builder',
-			'Bodyguard',
-			'Boxer',
-			'Brain Surgeon',
-			'Bull Rider',
-			'Business Man', 'Business Man',
-			'Camp Counselor',
-			'Chippendales Dancer',
-			'CIA Agent',
+		super().__init__(['Baggage Handler',
+			'Carnie',
+			'Cattle Wrangler',
 			'Coal Miner',
 			'Construction Worker',
 			'Cop',
 			'Cowboy',
-			'Defensive Lineman',
-			'Doctor',
-			'Dom',
+			'Farmer',
+			'Fire Fighter',
+			'Garbage Man',
+			'Gym Coach',
+			'Long Haul Trucker',
+			'Lumberjack',
+			'Mailman',
+			'Male Nurse',
+			'Mechanic',
+			'Pizza Delivery Guy',
+			'Plumber',
+			'Postman',
+			'Roadie',
+			'Sailor',
+			'Tattoo Artist',
+			'Trucker'])
+
+
+class ProfWhiteCollarMale(WordList):
+	def __init__(self):
+		super().__init__(['Airline Pilot',
+			'Architect',
+			'Artist',
+			'Attorney',
+			'Brain Surgeon',
+			'Business Man', 'Business Man',
+			'Chef',
+			'Classical Violinist',
+			'Doctor','Doctor',
+			'Engineer',
 			'Fashion Photographer',
 			'FBI Agent',
-			'Fighter Pilot','Fighter Pilot',
-			'Fire Fighter',
+			'Fifth-grade Teacher',
 			'Frat Boy',
+			'Gynecologist',
+			'Heart Surgeon',
+			'High-School Teacher',
+			'Investment Banker',
+			'Lawyer',
+			'Musician',
+			'Minister',
+			'Neurosurgeon',
+			'Personal Trainer',
+			'Plastic Surgeon',
+			'Preacher',
+			'Priest',
+			'Professor',
+			'Psychiatrist',
+			'Rocket Scientist',
+			'Surgeon',
+			'Stockbroker',
+			'Writer'])
+			
+			
+class ProfFantasyMale(WordList):
+	def __init__(self):
+		super().__init__(['Assassin',	
+			'Baker',
+			'Blacksmith',
+			'Butler',
+			'Farmer',
 			'Gladiator',
+			'Huntsman',
+			'Knight',
+			'Ninja',
+			'Peasant',
+			'Pirate',
+			'Pirate Captain',
+			'Samurai',
+			'Stable Boy'])
+			
+
+class ProfAthleteMale(WordList):
+	def __init__(self):
+		super().__init__(['Athlete',	
+			'Body Builder',
+			'Bodyguard',
+			'Bouncer',
+			'Boxer',
+			'Bull Rider',
+			'Defensive Lineman',
+			'Dive Instructor',
+			'Olympic Gold Medalist',
+			'Male Gymnast',
+			'MMA Fighter',
+			'Pro Basketball Player',
+			'Pro Footballer',
+			'Pro Soccer Player',
+			'Quarterback',
+			'Rodeo Clown',
+			'Sumo Wrestler',
+			'Tennis Coach'])
+
+class ProfRockstarMale(WordList):
+	def __init__(self):
+		super().__init__(['Astronaut',
+			'Author',
+			'Chippendales Dancer',
+			'CIA Agent',
+			'Detective',
+			'DJ',
+			'Dom',
+			'Fighter Pilot','Fighter Pilot',
 			'Green Beret',
 			'Gunslinger',
-			'Gym Coach',
-			'Heart Surgeon',
 			'Hitman',
-			'Investment Banker',
 			'Killer-for-Hire',
-			'Lawyer',
-			'Long Haul Trucker',
+			'Lifeguard',
 			'Luchador',
-			'Lumberjack',
-			'Olympic Gold Medalist',
 			'Outlaw',
 			'Male Escort',
+			'Male Masseuse',
 			'Male Model',
-			'Male Nurse',
 			'Male Stripper',
 			'Matador',
 			'MI5 Agent',
-			'Minister',
 			'Mossad Agent',
-			'MMA Fighter',
 			'Naval Officer',
 			'Navy Seal',
-			'Personal Trainer',
-			'Pirate',
-			'Pirate Captain',
-			'Preacher',
-			'Priest',
+			'Photographer',
 			'Private Eye',
-			'Professor',
-			'Quarterback',
+			'Rancher',
 			'Rock Guitarist',
-			'Rodeo Clown',
-			'Sailor',
 			'Secret Agent',
 			'Secret Service Agent',
 			'Sheriff',
 			'Snowboarder',
 			'Spy',
-			'Stockbroker',
+			'Stand-up Comedian',
 			'Stuntman',
-			'Sumo Wrestler',
 			'Surfer',
-			'Surgeon',
-			'Tattoo Artist',
-			'Trucker',
 			'Undercover Cop'])
+
 		
+class ProfMale(WordList):
+	def __init__(self):
+		super().__init__(ProfBlueCollarMale().GetWordList() + 
+						 ProfWhiteCollarMale().GetWordList() +
+						 ProfAthleteMale().GetWordList() +
+						 ProfFantasyMale().GetWordList() +
+						 ProfRockstarMale().GetWordList())
+						 
+class ProfNormalMale(WordList):
+	def __init__(self):
+		super().__init__(ProfBlueCollarMale().GetWordList() + 
+						 ProfWhiteCollarMale().GetWordList())
+
+class ProfAspirationalMale(WordList):
+	def __init__(self):
+		super().__init__(ProfAthleteMale().GetWordList() + 
+						 ProfRockstarMale().GetWordList())
+					 
 class RelateMale(WordList):
 	def __init__(self):
 		super().__init__(['Adopted Brother',
