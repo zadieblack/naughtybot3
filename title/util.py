@@ -20,6 +20,11 @@ FAVTITLE_FILENAME = 'title/fav_titles.txt'
 FAVTITLE_DIVIDER = '///'
 
 TweetHistoryQ = None
+
+class TempType(Enum):
+	Short = 1
+	Medium = 2
+	Flowery = 3
 	
 class Tense(Enum):
 	Present = 1

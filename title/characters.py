@@ -4,6 +4,7 @@
 
 from random import *
 from util import *
+from title.util import TempType
 import re
 
 import title.util as titutil
@@ -15,10 +16,7 @@ MAX_CHARACTER_CHARBITS = 5
 FemCBitHistoryQ = HistoryQ(10)
 MaleCBitHistoryQ = HistoryQ(10)
 
-class TempType(Enum):
-	Short = 1
-	Medium = 2
-	Flowery = 3
+
 
 
 class CharBit():
@@ -39,6 +37,24 @@ class CharBit():
 			self._CharList = WordList([])
 			#print("CharBit().__init__(): Initialized with other")
 		#print("CharBit()__init__(): _CharList = " + str(self._CharList) + ".")
+		self._IsNoun = False 
+		
+	def IsNoun(self):
+		return self._IsNoun
+		
+	def SetNoun(self):
+		self._IsNoun = True 
+		
+	def HasCharBit(self, charbits):
+		bHasCharBit = False 
+		
+		if isinstance(charbits, CharBit):
+			#print("CharBit: checking self \"" + str(self.__class__) + "\" against \"" + str(charbits.__class__) + "\"")
+			if self.__class__ == charbits.__class__:
+				#print("==<< CharBit Excluded charbit match found! >>==")
+				bHasCharBit = True 
+				
+		return bHasCharBit
 		
 	def Get(self, NotList = None):
 		sResult = ""
@@ -80,10 +96,10 @@ class CTEntry():
 		
 		if self.CharBits is not None and isinstance(self.CharBits, WordList):
 			for item in self.CharBits.GetWordList():
-				#print("Checking excluded item " + str(charbit.__class__) + " against charbit " + str(item.__class__) + ".\n")
+				#print("CTEntry: Checking excluded item " + str(charbit.__class__) + " against charbit " + str(item.__class__) + ".\n")
 				if charbit.__class__ == item.__class__:
 					bHasCharBit = True
-					#print("==<< Excluded CTEntry (adj) match found! >>==")
+					#print("==<< CTEntry: Excluded adjective match found! >>==")
 					break
 					
 		return bHasCharBit
@@ -109,6 +125,7 @@ class CharTemplate():
 		self.Priority = priority
 		self.NotList = NotList
 		
+		noun.SetNoun()
 		self.Noun = noun
 		
 		adjlist.sort(key = self.entry_key)
@@ -204,21 +221,22 @@ class CharTemplate():
 		if isinstance(charbits, list):
 			for checkitem in charbits:
 				checknoun = None
-				if isinstance(self.Noun.__class__, CTEntry):
+				if isinstance(self.Noun, CTEntry):
 					checknoun = self.Noun.CharBit 
 				else:
 					checknoun = self.Noun 
-				#print("Checking excluded class \"" + str(checkitem.__class__) + "\" against template Noun, \"" + str(checknoun.__class__) + "\"\n")
+				#print("CharTemplate: Checking excluded class \"" + str(checkitem.__class__) + "\" against template Noun, \"" + str(checknoun.__class__) + "\"\n")
 				if checkitem.__class__ == checknoun.__class__:
 					bHasCharBit = True 
-					#print("==<< Excluded noun match found! >>==")
+					#print("==<< CharTemplate: Excluded noun match found! >>==\n")
 					break 
 				for myitem in self._AdjList:
-					#print("Checking excluded class \"" + str(checkitem.__class__) + "\" against adj, \"" + str(myitem.CharBit.__class__) + "\"")
+					#print("CharTemplate: Checking excluded class \"" + str(checkitem.__class__) + "\" against adj, \"" + str(myitem.__class__) + "\"")
 					if myitem.HasCharBit(checkitem):
 						bHasCharBit = True 
+						#print("==<< CharTemplate: Excluded adjective match found! >>==\n")
 						break
-		#print("CharTemplate.HasCharBit() returning " + str(bHasCharBit))
+		#print("CharTemplate returning " + str(bHasCharBit))
 		return bHasCharBit
 		
 class FemCharTemplate(CharTemplate):
@@ -237,6 +255,21 @@ class FemCharTemplate(CharTemplate):
 		self.GirlType = girltype
 		
 class FemTropeTemplate(CharTemplate):
+	def __init__(self, noun, 
+					   id = 0, 
+					   adjlist = [], 
+					   priority = 1, 
+					   bpersonal = False,
+					   girltype = GirlType.Neutral,
+					   NotList = None):
+		if NotList is None:
+			NotList = []
+			
+		super().__init__(noun = noun, id = id,  adjlist = adjlist, priority = priority, bpersonal = bpersonal, NotList = NotList)
+		
+		self.GirlType = girltype
+
+class FemSpeciesTemplate(CharTemplate):
 	def __init__(self, noun, 
 					   id = 0, 
 					   adjlist = [], 
@@ -274,6 +307,19 @@ class MaleTropeTemplate(CharTemplate):
 			NotList = []
 			
 		super().__init__(noun = noun, id = id,  adjlist = adjlist, priority = priority, bpersonal = bpersonal, NotList = NotList)
+
+class MaleSpeciesTemplate(CharTemplate):
+	def __init__(self, noun, 
+					   id = 0, 
+					   adjlist = [], 
+					   priority = 1, 
+					   bpersonal = False,
+					   NotList = None):
+		if NotList is None:
+			NotList = []
+			
+		super().__init__(noun = noun, id = id,  adjlist = adjlist, priority = priority, bpersonal = bpersonal, NotList = NotList)
+
 
 class FemCharBit(CharBit):
 	def __init__(self, charlist, girltype = GirlType.Neutral):
@@ -353,6 +399,10 @@ class RelateFemale(FemCharBit):
 class SexualityFemale(FemCharBit):
 	def __init__(self):
 		super().__init__(titmisc.SexualityFemale(),girltype = GirlType.Bad)
+
+class SexualityNounFemale(FemCharBit):
+	def __init__(self):
+		super().__init__(titmisc.SexualityNounFemale(),girltype = GirlType.Bad)
 		
 class SkinHairColorFemale(FemCharBit):
 	def __init__(self):
@@ -474,8 +524,51 @@ class TropeBitMale(MaleCharBit):
 	pass
 		
 class Character():
-	pass
-	
+	def __init__(self):
 		
+		self.Gender = Gender.Neuter
+		
+	def BuildTemplateList(self):
+		pass
+		
+	def IsTemplateExcluded(self, template, exclusionlist):
+		bIsTemplateExcluded = False 
+		
+		for item in exclusionlist:
+			if template.HasCharBit(exclusionlist):
+				bIsTemplateExcluded = True 
+				#print("==<<COLLISION!! IsVariantExcluded found " + str(item) + " == " + str(template) + " >>==")
+				break
+		
+		return bIsTemplateExcluded
+		
+	def DescribeTemplateVariant(self, variant, bAddEndNoun = True, NotList = None):
+		sDesc = ""
+		
+		if NotList is None:
+			NotList = []
+			
+		#print(NotList)
+		if isinstance(variant, list):
+			
+			sNounDesc = ""
+			Noun = variant[len(variant) - 1] 
+			if bAddEndNoun and isinstance(Noun, CharBit):
+				sNounDesc = Noun.Get(NotList = NotList)
+				NotList.append(re.findall(r"[\w']+", sNounDesc))
+	
+			for charbit in variant[:-1]:
+				#print("CharTemplate.GetDesc() charbit is " + str(charbit))
+				if sDesc != "":
+					sDesc += " "
+				sAdjDesc = charbit.Get(NotList = NotList)
+				for s in re.findall(r"[\w']+",sAdjDesc):
+					NotList.append(s)
+				sDesc += sAdjDesc
+			if sDesc != "" and sNounDesc != "":
+				sDesc += " " 
+			sDesc += sNounDesc 
+				
+		return sDesc
 
 		

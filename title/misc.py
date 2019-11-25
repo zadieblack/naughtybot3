@@ -502,6 +502,15 @@ class SexualityFemale(WordList):
 			'Lesbian','Lesbian','Lesbian',
 			'Pansexual',
 			'Trans'])
+			
+class SexualityNounFemale(WordList):
+	def __init__(self):
+		super().__init__(['Bi-Curious Girl','Bi-Curious Woman',
+			'Bisexual','Bisexual',
+			'Lesbian','Lesbian','Lesbian','Lesbo',
+			'Pansexual',
+			'Queer Girl','Queer Woman',
+			'Trans Girl','Trans Woman'])
 	
 # black, ebony
 class SkinHairColorFemale(WordList):

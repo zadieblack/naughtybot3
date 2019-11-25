@@ -69,65 +69,67 @@ def GetEmoji(iNum = 1):
 	
 #combined version
 def AddArticles(sNounPhrase, bMakeUpper = False):
+	sUpdatedPhrase = sNounPhrase
 	sArticle = ""
 	sNPNounPhrase = "" #Noun phrase without any 'decoration' characters
 	
-	# Find first alphanumeric character
-	iFirstAlphaPos = 0
-	for x in range(0, len(sNounPhrase) - 1):
-		iFirstAlphaPos = x 
-		if sNounPhrase[x].isalpha():
-			break
-			
-	sNPNounPhrase = sNounPhrase[x:]
-			
-	bDoArticle = True 
-	
-	#print(" - sNPNounPhrase is " + sNPNounPhrase + "\n")
-	# Make sure we haven't created an empty string
-	if len(sNPNounPhrase) == 0:
-		bDoArticle = False
-	
-	# Check for words that look plural but aren't (such as 'ass')
-	if sNPNounPhrase[-2:].lower() == 'ss':
-		#print(" - sNPNounPhrase[-2:] is " + sNPNounPhrase[-2:] + "\n")
-		bDoArticle = True 
-	elif sNPNounPhrase[-1:].lower() == 's':
-		#print(" - sNPNounPhrase[-1:] is " + sNPNounPhrase[-1:] + "\n")
-		bDoArticle = False 
-	else:
-		bDoArticle = True 
-	
-	if bDoArticle:
-		# check for words that start with a vowel but actually have a consonant sound
-		if sNPNounPhrase[0:2].lower() in ['f.','h.','l.','m.','n.','r.','s.','x.']:
-			#print(" - sNPNounPhrase[0:2] is " + sNPNounPhrase[0:2] + "\n")
-			sArticle = 'an'
-		if sNPNounPhrase[0:3].lower() in ['uni','one','uro']:
-			#print(" - sNPNounPhrase[0:3] is " + sNPNounPhrase[0:3] + "\n")
-			sArticle = 'a'
-		elif sNPNounPhrase[0:4].lower() in ['hour']:
-			#print(" - sNPNounPhrase[0:4] is " + sNPNounPhrase[0:4] + "\n")
-			sArticle = 'an'
-		elif sNPNounPhrase[0:5].lower() in ['honor']:
-			#print(" - sNPNounPhrase[0:5] is " + sNPNounPhrase[0:5] + "\n")
-			sArticle = 'an'
-		elif sNPNounPhrase[0].lower() in ['a','e','i','o','u']:
-			#print(" - sNPNounPhrase[0] " + sNPNounPhrase[0] + "\n")
-			sArticle = 'an'
-		else:
-			sArticle = 'a'
+	if isinstance(sUpdatedPhrase, str) and len(sUpdatedPhrase) > 0:
+		# Find first alphanumeric character
+		iFirstAlphaPos = 0
+		for x in range(0, len(sNounPhrase) - 1):
+			iFirstAlphaPos = x 
+			if sNounPhrase[x].isalpha():
+				break
 				
-	if len(sArticle) > 0 and bMakeUpper:
-		if sArticle == 'a':
-			sArticle = 'A'
-		else:
-			sArticle = 'An'
+		sNPNounPhrase = sNounPhrase[x:]
 				
-	if len(sArticle) > 0:
-		sUpdatedPhrase = sArticle + " " + sNounPhrase
-	else:
-		sUpdatedPhrase = sNounPhrase
+		bDoArticle = True 
+		
+		#print(" - sNPNounPhrase is " + sNPNounPhrase + "\n")
+		# Make sure we haven't created an empty string
+		if len(sNPNounPhrase) == 0:
+			bDoArticle = False
+		
+		# Check for words that look plural but aren't (such as 'ass')
+		if sNPNounPhrase[-2:].lower() == 'ss':
+			#print(" - sNPNounPhrase[-2:] is " + sNPNounPhrase[-2:] + "\n")
+			bDoArticle = True 
+		elif sNPNounPhrase[-1:].lower() == 's':
+			#print(" - sNPNounPhrase[-1:] is " + sNPNounPhrase[-1:] + "\n")
+			bDoArticle = False 
+		else:
+			bDoArticle = True 
+		
+		if bDoArticle:
+			# check for words that start with a vowel but actually have a consonant sound
+			if sNPNounPhrase[0:2].lower() in ['f.','h.','l.','m.','n.','r.','s.','x.']:
+				#print(" - sNPNounPhrase[0:2] is " + sNPNounPhrase[0:2] + "\n")
+				sArticle = 'an'
+			if sNPNounPhrase[0:3].lower() in ['uni','one','uro']:
+				#print(" - sNPNounPhrase[0:3] is " + sNPNounPhrase[0:3] + "\n")
+				sArticle = 'a'
+			elif sNPNounPhrase[0:4].lower() in ['hour']:
+				#print(" - sNPNounPhrase[0:4] is " + sNPNounPhrase[0:4] + "\n")
+				sArticle = 'an'
+			elif sNPNounPhrase[0:5].lower() in ['honor']:
+				#print(" - sNPNounPhrase[0:5] is " + sNPNounPhrase[0:5] + "\n")
+				sArticle = 'an'
+			elif sNPNounPhrase[0].lower() in ['a','e','i','o','u']:
+				#print(" - sNPNounPhrase[0] " + sNPNounPhrase[0] + "\n")
+				sArticle = 'an'
+			else:
+				sArticle = 'a'
+					
+		if len(sArticle) > 0 and bMakeUpper:
+			if sArticle == 'a':
+				sArticle = 'A'
+			else:
+				sArticle = 'An'
+					
+		if len(sArticle) > 0:
+			sUpdatedPhrase = sArticle + " " + sNounPhrase
+		else:
+			sUpdatedPhrase = sNounPhrase
 			
 	return sUpdatedPhrase
 

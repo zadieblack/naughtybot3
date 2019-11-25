@@ -309,6 +309,7 @@ class BookVerbsBy(WordList):
 			'Taken Hard',
 			'Taken Hard in Public',
 			'Taken in Public',
+			'Taken in the Rear',
 			'Tea-Bagged',
 			'Tied to the Bed',
 			'Tied Up',
