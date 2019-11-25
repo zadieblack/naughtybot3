@@ -126,18 +126,21 @@ class FemaleChar(Character):
 		TemplateList = []
 		
 		for subclass in FemCharTemplate.__subclasses__():
+			template = subclass()
 			if self.GirlType == GirlType.Neutral or template.GirlType == self.GirlType:
-				TemplateList.append(subclass())
+				TemplateList.append(template)
 	
 		if bAllowTrope:
 			for subclass in FemTropeTemplate.__subclasses__():
+				template = subclass()
 				if self.GirlType == GirlType.Neutral or template.GirlType == self.GirlType:
-					TemplateList.append(subclass())
+					TemplateList.append(template)
 	
 		if bAllowSpecies:
 			for subclass in FemSpeciesTemplate.__subclasses__():
+				template = subclass()
 				if self.GirlType == GirlType.Neutral or template.GirlType == self.GirlType:
-					TemplateList.append(subclass())
+					TemplateList.append(template)
 		
 		return TemplateList
 

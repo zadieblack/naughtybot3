@@ -334,7 +334,7 @@ class Generator10(Generator):
 		return sTweet
 		
 # class Generator11(Generator):
-	The Millionaire Sherrif's Virgin
+	## The Millionaire Sherrif's Virgin
 	# ID = 11
 	# Priority = 2
 	
@@ -365,23 +365,23 @@ class Generator10(Generator):
 		
 		# return sTweet
 		
-# class Generator13(Generator):	
-	# # Babysitter for the Billionaire Uniporn
-	# ID = 13
-	# Priority = 3
+class Generator13(Generator):	
+	# Babysitter for the Billionaire Uniporn
+	ID = 13
+	Priority = 3
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
 		
-		# Girl = FemaleChar(iNumMaxCBits = 2)
-		# Master = MaleChar(iNumMaxCBits = 2, bAddArticle = True)
+		Girl = char.FemaleChar(TempType = TempType.Medium, Type = GirlType.Bad,
+								bAllowAttitude = False, bAllowGenMod = False, bAllowMaritalStatus = False,
+								bAllowNation = False, sPosArticle = "My")
+		Master = char.MaleChar(bAddAnArticle = True)
 		
-		# sTweet = Girl.Desc + "\nfor\n" + Master.Desc
-		# if CoinFlip():
-			# sTweet += ":\n" + WordList(["An " + self._getFMs_(),"A BDSM","A Forbidden"]).GetWord() + " " + self.SubtitleCoda.GetWord()
-		
-		# return sTweet
+		sTweet = "I Was " + AddArticles(Girl.Desc) + "\nfor\n" + Master.Desc
+
+		return sTweet
 	
 class Generator14(Generator):
 	# The Virgin Call-Girl's Gang Bang
