@@ -254,26 +254,30 @@ class Generator6(Generator):
 		
 		return sTweet
 		
-# class Generator7(Generator):
-	# # The Virgin, The Werewolf, and The Billionaire Manticore: A Hot Menage	
+class Generator7(Generator):
+	# A Buff Tuxedoed Italian Dinosaur Took My Wife Hard From Behind!
 	
-	# ID = 7
-	# Priority = 1
+	ID = 7
+	Priority = 1
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
 		
-		# Master1 = MaleChar(iNumMaxCBits = 2, bAllowGang = False)
-		# Master2 = MaleChar(iNumMaxCBits = 3, bAddArticle = True)
-		# Girl = FemaleChar(iNumMaxCBits = 2)
-		# sTweet = "The " + Girl.Desc + ",\nThe " + Master1.Desc + ",\n& " + Master2.Desc + ":\n"
-		# if CoinFlip():
-			# sTweet += "A Hot Ménage"
-		# else:
-			# sTweet += "A " + self._getFMs_() + " " + self.SubtitleCoda.GetWord()
+		Master = char.MaleChar(TempType = TempType.Flowery, 
+								bAllowRelate = True, 
+								bAllowTrope = True,
+								bAddAnArticle = True, 
+								sPosArticle = "My")
+		Verbs = WordList(["Took","Claimed","Ravished","Mounted"])
 		
-		# return sTweet
+		sTweet = Master.Desc  + "\n"
+		sTweet += Verbs.GetWord() + " My Wife From Behind"
+		if CoinFlip():
+			sTweet += "\n" + WordList(["And They Let Me Watch", "And I Watched","And I Got To Watch"]).GetWord()
+		sTweet += "!"
+
+		return sTweet
 
 class Generator8(Generator):
 	# My Boyfriend is a Secret Daddy Dom 
@@ -4700,14 +4704,20 @@ class Generator1001(Generator):
 		sTweet = ""
 		
 		#print("Generator1001.GenerateTweet() started")
-		Girl = char.FemaleChar(TempType = TempType.Flowery, bAddTheArticle = False, bAllowTrope = True, SelectTemplateID = 14)
-		Guy = char.MaleChar(TempType = TempType.Flowery, bAddTheArticle = False, bAllowTrope = True, bAllowRelate = True, bAllowAge = False, bAllowMaritalStatus = False, bAddEndNoun = False)
-		
+		Girl = char.FemaleChar(TempType = TempType.Flowery, 
+								bAddTheArticle = False, 
+								bAllowTrope = True, 
+								SelectTemplateID = 14)
+		Guy =char.MaleChar(TempType = TempType.Flowery, 
+							bAddTheArticle = False, 
+							bAllowTrope = True, 
+							SelectTemplateID = 308)
+
 		
 		
 		#print("Generator1001.GenerateTweet() FemaleChar created, building tweet")
-		sTweet += Girl.Desc + " Gets Sexed the Hell Up!\n"
-		sTweet += Guy.Desc + " Takes My Wife Hard From Behind!\n"
+		sTweet += AddArticles(Girl.Desc, bMakeUpper = True) + " Gets Sexed the Hell Up!\n"
+		sTweet += AddArticles(Guy.Desc, bMakeUpper = True) + " Took My Wife Hard From Behind!\n"
 
 		return sTweet	
 		

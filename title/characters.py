@@ -486,11 +486,11 @@ class ProfRockstarMale(MaleCharBit):
 		
 class ProfNormalMale(MaleCharBit):
 	def __init__(self):
-		super().__init__(titmisc.ProfMale())
+		super().__init__(titmisc.ProfNormalMale())
 		
 class ProfAspirationalMale(MaleCharBit):
 	def __init__(self):
-		super().__init__(titmisc.ProfMale())
+		super().__init__(titmisc.ProfAspirationalMaleMale())
 		
 class ProfMale(MaleCharBit):
 	def __init__(self):

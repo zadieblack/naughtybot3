@@ -651,17 +651,17 @@ class LesFemaleNoun(WordList):
 			'Pillow Princess',
 			'Rug Muncher',
 			'Stud',
-			'U-Haul Lesbian'])
-			
-	
-class AgeMaleAdj(WordList):
+			'U-Haul Lesbian'])			
+
+
+class GenModMale(WordList):
 	def __init__(self):
-		super().__init__(['College',
-			'Older','Older','Older',
-			'Mature',
-			'Middle-Aged',
-			'Teenage',
-			'Young'])
+		super().__init__(['Heavily-Tattooed',
+			'Masked',
+			'Mysterious',
+			'Tattooed',
+			'Sexy',	
+			'Studly'])
 		
 class AttitudeMale(WordList):
 	def __init__(self):
@@ -710,42 +710,89 @@ class AttitudeMale(WordList):
 			'Suave','Suave',
 			'Thrill-Seeking',
 			'Wanton',
-			'Wicked',
-			'Virile'])
-		
-class GenModMale(WordList):
-	def __init__(self):
-		super().__init__(['Heavily-Tattooed',
-			'Masked',
-			'Mysterious',
-			'Tattooed',
-			'Sexy',	
-			'Studly'])
-			
+			'Wicked'])
+						
 class ClothesMale(WordList):
 	def __init__(self):
-		super().__init__(['Black Leather',
+		super().__init__(['Black Leather-Wearing',
 			'Business Casual',
 			'Dark-Suited',
 			'Naked',
 			'Oiled-Up',
+			'Leather-Jacketed',
 			'Pantsless',
 			'Shirtless',
 			'Thong-Wearing',
 			'Tuxedoed',
 			'Uniformed'])
+		
+class PhysCharMale(WordList):
+	def __init__(self):
+		super().__init__(['Athletic',
+			'Bald','Bald',
+			'Balding',
+			'Bearded',
+			'Beefcake',
+			'Beefy','Beefy',
+			'Big','Big',
+			'Brawny',
+			'Buff',
+			'Burly',
+			'Chiseled',
+			'Clean-Cut',
+			'Clean-Shaven',
+			'Craggy',
+			'Dad-Bod',
+			'Fit',
+			'Giant',
+			'Hairy','Hairy',
+			'Handsome','Handsome',
+			'Hulking',
+			'Hunky',
+			'Husky',
+			'Lanky',
+			'Muscled',
+			'Muscular','Muscular',
+			'Mustachioed',
+			'Rangy',
+			'Sexy',			
+			'Shape-Shifting',
+			'Strapping',
+			'Strong',
+			'Tall',
+			'Ugly'])
 			
+class DickCharMale(WordList):
+	def __init__(self):
+		super().__init__(['Donkey-Dicked',
+			'Engorged',
+			'Erect',
+			'Fully Erect',
+			'Girthy',
+			'Hard',
+			'Horse-Cock',
+			'Hugely Erect',
+			'Hung','Hung',
+			'Massively Erect',
+			'Rock-Hard',
+			'Throbbing',
+			'Visibly Aroused',
+			'Visibly Erect',
+			'Well-Hung','Well-Hung',
+			'Well-Endowed','Well-Endowed',
+			'Virile'])
+
 class TypeModMale(WordList):
 	def __init__(self):
 		super().__init__(['Barbarian',
 			'BDSM',
-			'Dapper',
 			'Heart-Throb',
+			'Hipster',
 			'Manly',
+			'Millennial',
 			'Mysterious',
 			'Naked',
 			'Nudist',
-			'Pantsless',
 			'Rebel',
 			'Sex Addict',
 			'Shirtless',
@@ -756,6 +803,28 @@ class TypeModMale(WordList):
 			'Vegan',
 			'Wealthy'])
 		
+class SkinHairColorMale(WordList):
+	def __init__(self):
+		super().__init__(['Black','Black','Black',
+			'Black-Bearded',
+			'Blonde','Blonde',
+			'Bronzed',
+			'Copper-Skinned',
+			'Curly-Haired',
+			'Ebony',
+			'Graying',
+			'Red-Headed','Red-Headed',
+			'Tanned','Tanned'])
+							
+class AgeMaleAdj(WordList):
+	def __init__(self):
+		super().__init__(['College',
+			'Older','Older','Older','Older',
+			'Mature','Mature',
+			'Middle-Aged','Middle-Aged',
+			'Teenage',
+			'Young','Young'])
+
 class MaritalStatusMale(WordList):
 	def __init__(self):
 		super().__init__(['Bachelor',
@@ -800,61 +869,6 @@ class NationNounMale(WordList):
 			'Space Man',
 			'Spanish Lothario'])
 		
-class PhysCharMale(WordList):
-	def __init__(self):
-		super().__init__(['Athletic',
-			'Bald','Bald',
-			'Balding',
-			'Bearded',
-			'Beefcake',
-			'Beefy','Beefy',
-			'Big','Big',
-			'Brawny',
-			'Buff',
-			'Burly',
-			'Chiseled',
-			'Clean-Cut',
-			'Clean-Shaven',
-			'Craggy',
-			'Dad-Bod',
-			'Fit',
-			'Giant',
-			'Hairy','Hairy',
-			'Handsome','Handsome',
-			'Hulking',
-			'Hunky',
-			'Husky',
-			'Lanky',
-			'Muscled',
-			'Muscular','Muscular',
-			'Mustachioed',
-			'Sexy',			
-			'Shape-Shifting',
-			'Strapping',
-			'Strong',
-			'Tall',
-			'Ugly'])
-			
-class DickCharMale(WordList):
-	def __init__(self):
-		super().__init__(['Donkey-Dicked',
-			'Engorged',
-			'Erect',
-			'Fully Erect',
-			'Girthy',
-			'Hard',
-			'Horse-Cock',
-			'Hugely Erect',
-			'Hung','Hung',
-			'Massively Erect',
-			'Rock-Hard',
-			'Throbbing',
-			'Visibly Aroused',
-			'Visibly Erect',
-			'Well-Hung','Well-Hung',
-			'Well-Endowed','Well-Endowed',
-			'Virile'])
-		
 class ProfBlueCollarMale(WordList):
 	def __init__(self):
 		super().__init__(['Baggage Handler',
@@ -880,7 +894,6 @@ class ProfBlueCollarMale(WordList):
 			'Sailor',
 			'Tattoo Artist',
 			'Trucker'])
-
 
 class ProfWhiteCollarMale(WordList):
 	def __init__(self):
@@ -917,7 +930,6 @@ class ProfWhiteCollarMale(WordList):
 			'Stockbroker',
 			'Writer'])
 			
-			
 class ProfFantasyMale(WordList):
 	def __init__(self):
 		super().__init__(['Assassin',	
@@ -935,7 +947,6 @@ class ProfFantasyMale(WordList):
 			'Samurai',
 			'Stable Boy'])
 			
-
 class ProfAthleteMale(WordList):
 	def __init__(self):
 		super().__init__(['Athlete',	
@@ -996,8 +1007,7 @@ class ProfRockstarMale(WordList):
 			'Stuntman',
 			'Surfer',
 			'Undercover Cop'])
-
-		
+	
 class ProfMale(WordList):
 	def __init__(self):
 		super().__init__(ProfBlueCollarMale().GetWordList() + 
@@ -1029,20 +1039,7 @@ class RelateMale(WordList):
 			'Step-Brother',
 			'Step-Dad',
 			'Widower'])
-		
-class SkinHairColorMale(WordList):
-	def __init__(self):
-		super().__init__(['Black','Black','Black',
-			'Black-Bearded',
-			'Blonde','Blonde',
-			'Bronzed',
-			'Copper-Skinned',
-			'Curly-Haired',
-			'Ebony',
-			'Graying',
-			'Red-Headed','Red-Headed',
-			'Tanned','Tanned'])
-		
+
 class SpeciesMale(WordList):
 	def __init__(self):
 		super().__init__(['Alien',
@@ -1054,6 +1051,7 @@ class SpeciesMale(WordList):
 			'Dwarf',
 			'Gargoyle',
 			'Goat-Man',
+			'Incubus',
 			'Man-o-taur',
 			'MANtelope',
 			'MANticore',

@@ -82,8 +82,8 @@ class FemaleChar(Character):
 		if SelectTemplateID > 0:
 			ExclusionList = []
 			
-			if isinstance(self.TemplateList, list):
-				for item in self.TemplateList:
+			if isinstance(TemplateList, list):
+				for item in TemplateList:
 					SelCharTemplate = item
 					if item.ID == SelectTemplateID:
 						break
@@ -97,7 +97,9 @@ class FemaleChar(Character):
 				iTryCounter = iTryCounter + 1
 				#print("==<<COLLISION!! Template had an excluded type! New selected template is + " + str(SelCharTemplate) + ">>==")
 
-			print("Template selected, it took " + str(iTryCounter) + " tries.\n")
+			print("Template " + str(SelCharTemplate) + " selected, it took " + str(iTryCounter) + " tries.\n")
+		
+		NotList = NotList + SelCharTemplate.NotList 
 		
 		variant = None 
 		if TempType == TempType.Short:
@@ -128,19 +130,28 @@ class FemaleChar(Character):
 		for subclass in FemCharTemplate.__subclasses__():
 			template = subclass()
 			if self.GirlType == GirlType.Neutral or template.GirlType == self.GirlType:
-				TemplateList.append(template)
+				i = 0
+				while i < template.Priority:
+					TemplateList.append(template)
+					i = i + 1
 	
 		if bAllowTrope:
 			for subclass in FemTropeTemplate.__subclasses__():
 				template = subclass()
 				if self.GirlType == GirlType.Neutral or template.GirlType == self.GirlType:
-					TemplateList.append(template)
+					i = 0
+					while i < template.Priority:
+						TemplateList.append(template)
+						i = i + 1
 	
 		if bAllowSpecies:
 			for subclass in FemSpeciesTemplate.__subclasses__():
 				template = subclass()
 				if self.GirlType == GirlType.Neutral or template.GirlType == self.GirlType:
-					TemplateList.append(template)
+					i = 0
+					while i < template.Priority:
+						TemplateList.append(template)
+						i = i + 1
 		
 		return TemplateList
 
@@ -218,8 +229,8 @@ class MaleChar(Character):
 		if SelectTemplateID > 0:
 			ExclusionList = []
 			
-			if isinstance(self.TemplateList, list):
-				for item in self.TemplateList:
+			if isinstance(TemplateList, list):
+				for item in TemplateList:
 					SelCharTemplate = item
 					if item.ID == SelectTemplateID:
 						break
@@ -233,7 +244,9 @@ class MaleChar(Character):
 				iTryCounter = iTryCounter + 1
 				#print("==<<COLLISION!! Template had an excluded type! New selected template is + " + str(SelCharTemplate) + ">>==")
 
-			print("Template selected, it took " + str(iTryCounter) + " tries.\n")
+			print("Template " + str(SelCharTemplate) + " selected, it took " + str(iTryCounter) + " tries.\n")
+		
+		NotList = NotList + SelCharTemplate.NotList 
 		
 		variant = None 
 		if TempType == TempType.Short:
@@ -262,14 +275,26 @@ class MaleChar(Character):
 		TemplateList = []
 		
 		for subclass in MaleCharTemplate.__subclasses__():
-			TemplateList.append(subclass())
+			template = subclass()
+			i = 0
+			while i < template.Priority:
+				TemplateList.append(template)
+				i = i + 1
 		
 		if bAllowTrope:
 			for subclass in MaleTropeTemplate.__subclasses__():
-				TemplateList.append(subclass())
+				template = subclass()
+				i = 0
+				while i < template.Priority:
+					TemplateList.append(template)
+					i = i + 1
 			
 		if bAllowSpecies:
 			for subclass in MaleSpeciesTemplate.__subclasses__():
-				TemplateList.append(subclass())
+				template = subclass()
+				i = 0
+				while i < template.Priority:
+					TemplateList.append(template)
+					i = i + 1
 			
 		return TemplateList

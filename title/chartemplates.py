@@ -20,7 +20,8 @@ class FemTemplate1(FemCharTemplate):
 										  CTEntry([NationFemale, SkinHairColorFemale],2),
 										  CTEntry([SpeciesFemale],1),
 										], 
-							girltype = GirlType.Good)
+							girltype = GirlType.Good,
+							priority = 3)
 		
 # Bad Female Profession		
 class FemTemplate2(FemCharTemplate):
@@ -37,7 +38,8 @@ class FemTemplate2(FemCharTemplate):
 										  CTEntry([SexualityFemale],2),  
 										  CTEntry([SpeciesFemale],1),
 										], 
-							girltype = GirlType.Bad)
+							girltype = GirlType.Bad,
+							priority = 3)
 					
 # Good (Pregnant) Female Profession					
 class FemTemplate3(FemCharTemplate):
@@ -50,7 +52,8 @@ class FemTemplate3(FemCharTemplate):
 										  CTEntry([PregState],2),
 										  CTEntry([SpeciesFemale],1),
 										], 
-							girltype = GirlType.Good)
+							girltype = GirlType.Good,
+							priority = 3)
 				
 # Bad (Pregnant) Female Profession				
 class FemTemplate4(FemCharTemplate):
@@ -66,7 +69,8 @@ class FemTemplate4(FemCharTemplate):
 										  CTEntry([SexualityFemale],2),  
 										  CTEntry([SpeciesFemale],1),
 										], 
-							girltype = GirlType.Bad)
+							girltype = GirlType.Bad,
+							priority = 3)
 						
 # Good Female Royalty						
 class FemTemplate5(FemCharTemplate):
@@ -80,7 +84,8 @@ class FemTemplate5(FemCharTemplate):
 										  CTEntry([NationFemale, SkinHairColorFemale],2),
 										  CTEntry([SpeciesFemale],1),
 										], 
-							girltype = GirlType.Good)
+							girltype = GirlType.Good,
+							priority = 3)
 
 # Bad Female Royalty
 class FemTemplate6(FemCharTemplate):
@@ -97,7 +102,8 @@ class FemTemplate6(FemCharTemplate):
 										  CTEntry([SexualityFemale],2),  
 										  CTEntry([SpeciesFemale],1),
 										], 
-							girltype = GirlType.Bad)
+							girltype = GirlType.Bad,
+							priority = 3)
 
 # Good Female Relation					
 class FemTemplate8(FemCharTemplate):
@@ -110,7 +116,8 @@ class FemTemplate8(FemCharTemplate):
 										  CTEntry([SpeciesFemale],1),
 										], 
 							bpersonal = True,
-							girltype = GirlType.Good)
+							girltype = GirlType.Good,
+							priority = 3)
 
 # Bad Female Relation 
 class FemTemplate9(FemCharTemplate):
@@ -126,7 +133,8 @@ class FemTemplate9(FemCharTemplate):
 										  CTEntry([SpeciesFemale],1),
 										], 
 							bpersonal = True,
-							girltype = GirlType.Bad
+							girltype = GirlType.Bad,
+							priority = 3
 							)
 
 # Female Good Profession + Bad Profession 			
@@ -143,7 +151,8 @@ class FemTemplate10(FemCharTemplate):
 										  CTEntry([SpeciesFemale],2),
 										  CTEntry([ProfGoodFemale],1),
 										], 
-							girltype = GirlType.Bad)
+							girltype = GirlType.Bad,
+							priority = 3)
 
 # Good Female of a Certain Age
 class FemTemplate11(FemCharTemplate):
@@ -154,7 +163,8 @@ class FemTemplate11(FemCharTemplate):
 										  CTEntry([PhysCharFemale],2),
 										  CTEntry([NationFemale,SkinHairColorFemale],1),
 										], 
-							girltype = GirlType.Good)
+							girltype = GirlType.Good,
+							priority = 3)
 			
 # Bad Female of a Certain Age 			
 class FemTemplate9(FemCharTemplate):
@@ -168,7 +178,8 @@ class FemTemplate9(FemCharTemplate):
 										  CTEntry([NationFemale,SkinHairColorFemale],2),
 										  CTEntry([SexualityFemale],1),  
 										], 
-							girltype = GirlType.Bad)
+							girltype = GirlType.Bad,
+							priority = 3)
 
 # Good Female of a Certain Age
 class FemTemplate11(FemCharTemplate):
@@ -179,7 +190,8 @@ class FemTemplate11(FemCharTemplate):
 										  CTEntry([PhysCharFemale],2),
 										  CTEntry([NationFemale,SkinHairColorFemale],1),
 										], 
-							girltype = GirlType.Good)
+							girltype = GirlType.Good,
+							priority = 3)
 							
 # Bad Female of a Fantasy Species 			
 class FemTemplate12(FemCharTemplate):
@@ -193,7 +205,8 @@ class FemTemplate12(FemCharTemplate):
 										  CTEntry([SexualityFemale],2),
 										  CTEntry([ProfBadFemale,ProfGoodFemale],1)
 										], 
-							girltype = GirlType.Bad)
+							girltype = GirlType.Bad,
+							priority = 3)
 
 # Good Female of a Fantasy Species
 class FemTemplate13(FemCharTemplate):
@@ -206,7 +219,8 @@ class FemTemplate13(FemCharTemplate):
 										  CTEntry([ProfGoodFemale],1)
 										], 
 							girltype = GirlType.Good,
-							NotList = ["succubus"])
+							NotList = ["succubus"],
+							priority = 3)
 
 # Bad Female of a Sexual Orientation 			
 class FemTemplate14(FemCharTemplate):
@@ -220,7 +234,8 @@ class FemTemplate14(FemCharTemplate):
 										  CTEntry([NationFemale,SkinHairColorFemale],3),
 										  CTEntry([ProfBadFemale,ProfGoodFemale],1)
 										], 
-							girltype = GirlType.Bad)
+							girltype = GirlType.Bad,
+							priority = 3)
 
 # Good Female of a Sexual Orientation
 class FemTemplate15(FemCharTemplate):
@@ -234,7 +249,8 @@ class FemTemplate15(FemCharTemplate):
 										  CTEntry([ProfGoodFemale],1)
 										], 
 							girltype = GirlType.Good,
-							NotList = ["succubus"])
+							NotList = ["succubus"],
+							priority = 3)
 	
 # Good Female Profession No Species 
 class FemTemplate16(FemCharTemplate):
@@ -247,7 +263,8 @@ class FemTemplate16(FemCharTemplate):
 										  CTEntry([MaritalStatusFemale],3),
 										  CTEntry([NationFemale, SkinHairColorFemale],2),
 										], 
-							girltype = GirlType.Good)
+							girltype = GirlType.Good,
+							priority = 3)
 		
 # Bad Female Profession	No Species
 class FemTemplate17(FemCharTemplate):
@@ -263,7 +280,8 @@ class FemTemplate17(FemCharTemplate):
 										  CTEntry([NationFemale,SkinHairColorFemale],3),
 										  CTEntry([SexualityFemale],2),  
 										], 
-							girltype = GirlType.Bad)
+							girltype = GirlType.Bad,
+							priority = 3)
 							
 # Good Female Profession No MaritalStatus 
 class FemTemplate18(FemCharTemplate):
@@ -276,7 +294,8 @@ class FemTemplate18(FemCharTemplate):
 										  CTEntry([NationFemale, SkinHairColorFemale],2),
 										  CTEntry([SpeciesFemale],1)
 										], 
-							girltype = GirlType.Good)
+							girltype = GirlType.Good,
+							priority = 3)
 		
 # Bad Female Profession	No MaritalStatus
 class FemTemplate19(FemCharTemplate):
@@ -292,7 +311,8 @@ class FemTemplate19(FemCharTemplate):
 										  CTEntry([SexualityFemale],2), 
 										  CTEntry([SpeciesFemale],1),										  
 										], 
-							girltype = GirlType.Bad)							
+							girltype = GirlType.Bad,
+							priority = 3)							
 
 # Good Female Profession No Age 
 class FemTemplate20(FemCharTemplate):
@@ -305,7 +325,8 @@ class FemTemplate20(FemCharTemplate):
 										  CTEntry([NationFemale, SkinHairColorFemale],2),
 										  CTEntry([SpeciesFemale],1)
 										], 
-							girltype = GirlType.Good)
+							girltype = GirlType.Good,
+							priority = 3)
 		
 # Bad Female Profession	No Age
 class FemTemplate21(FemCharTemplate):
@@ -321,7 +342,8 @@ class FemTemplate21(FemCharTemplate):
 										  CTEntry([SexualityFemale],2), 
 										  CTEntry([SpeciesFemale],1)										  
 										], 
-							girltype = GirlType.Bad)									
+							girltype = GirlType.Bad,
+							priority = 3)									
 							
 # Good Female Profession No Attitude
 class FemTemplate22(FemCharTemplate):
@@ -334,7 +356,8 @@ class FemTemplate22(FemCharTemplate):
 										  CTEntry([NationFemale, SkinHairColorFemale],2),
 										  CTEntry([SpeciesFemale],1)
 										], 
-							girltype = GirlType.Good)
+							girltype = GirlType.Good,
+							priority = 3)
 		
 # Bad Female Profession No Attitude
 class FemTemplate23(FemCharTemplate):
@@ -350,7 +373,8 @@ class FemTemplate23(FemCharTemplate):
 										  CTEntry([SexualityFemale],2),  
 										  CTEntry([SpeciesFemale],1)
 										], 
-							girltype = GirlType.Bad)
+							girltype = GirlType.Bad,
+							priority = 3)
 							
 # Good Female Profession No PhysChars
 class FemTemplate24(FemCharTemplate):
@@ -363,7 +387,8 @@ class FemTemplate24(FemCharTemplate):
 										  CTEntry([NationFemale, SkinHairColorFemale],2),
 										  CTEntry([SpeciesFemale],1)
 										], 
-							girltype = GirlType.Good)
+							girltype = GirlType.Good,
+							priority = 3)
 		
 # Bad Female Profession No PhysChars
 class FemTemplate25(FemCharTemplate):
@@ -379,7 +404,8 @@ class FemTemplate25(FemCharTemplate):
 										  CTEntry([SexualityFemale],2),  
 										  CTEntry([SpeciesFemale],1)
 										], 
-							girltype = GirlType.Bad)
+							girltype = GirlType.Bad,
+							priority = 3)
 
 # Good Female Profession Minimalist
 class FemTemplate26(FemCharTemplate):
@@ -390,7 +416,8 @@ class FemTemplate26(FemCharTemplate):
 										  CTEntry([PhysCharFemale],4),
 										  CTEntry([SkinHairColorFemale],2)
 										], 
-							girltype = GirlType.Good)
+							girltype = GirlType.Good,
+							priority = 3)
 		
 # Bad Female Profession Minimalist
 class FemTemplate27(FemCharTemplate):
@@ -402,7 +429,8 @@ class FemTemplate27(FemCharTemplate):
 										  CTEntry([SkinHairColorFemale],3),
 										  CTEntry([SexualityFemale],2)
 										], 
-							girltype = GirlType.Bad)
+							girltype = GirlType.Bad,
+							priority = 3)
 
 # Good Female Profession Minimalist 2 
 class FemTemplate28(FemCharTemplate):
@@ -413,7 +441,8 @@ class FemTemplate28(FemCharTemplate):
 										  CTEntry([MaritalStatusFemale],3),
 										  CTEntry([NationFemale, SkinHairColorFemale],2)
 										], 
-							girltype = GirlType.Good)
+							girltype = GirlType.Good,
+							priority = 3)
 		
 # Bad Female Profession Minimalist 2
 class FemTemplate29(FemCharTemplate):
@@ -425,7 +454,8 @@ class FemTemplate29(FemCharTemplate):
 										  CTEntry([NationFemale, SkinHairColorFemale],2),  
 										  CTEntry([SpeciesFemale],1),
 										], 
-							girltype = GirlType.Bad)
+							girltype = GirlType.Bad,
+							priority = 3)
 
 # Good Female Profession
 class FemTemplate30(FemCharTemplate):
@@ -437,7 +467,8 @@ class FemTemplate30(FemCharTemplate):
 										  CTEntry([SkinHairColorFemale],2),
 										  CTEntry([SpeciesFemale],1),
 										], 
-							girltype = GirlType.Good)
+							girltype = GirlType.Good,
+							priority = 3)
 		
 # Bad Female Profession		
 class FemTemplate31(FemCharTemplate):
@@ -451,7 +482,8 @@ class FemTemplate31(FemCharTemplate):
 										  CTEntry([SexualityFemale],2),  
 										  CTEntry([SpeciesFemale],1),
 										], 
-							girltype = GirlType.Bad)
+							girltype = GirlType.Bad,
+							priority = 3)
 
 # Good Female Royalty No Attitude					
 class FemTemplate32(FemCharTemplate):
@@ -463,7 +495,8 @@ class FemTemplate32(FemCharTemplate):
 										  CTEntry([SkinHairColorFemale],2),
 										  CTEntry([NationFemale],21)
 										], 
-							girltype = GirlType.Good)
+							girltype = GirlType.Good,
+							priority = 3)
 
 # Bad Female Royalty No Attitude
 class FemTemplate33(FemCharTemplate):
@@ -476,7 +509,8 @@ class FemTemplate33(FemCharTemplate):
 										  CTEntry([SkinHairColorFemale],3),
 										  CTEntry([NationFemale],2)
 										], 
-							girltype = GirlType.Bad)
+							girltype = GirlType.Bad,
+							priority = 3)
 
 	
 # === Good Trope templates ===
@@ -1157,7 +1191,8 @@ class MaleTemplate1(MaleCharTemplate):
 										  CTEntry([AgeAdjMale,MaritalStatusMale],5),
 										  CTEntry([SkinHairColorMale,NationMale],3),
 										  CTEntry([SpeciesMale,ProfMale],1)
-										])
+										],
+							priority = 3)
 
 # Male Relative 
 class MaleTemplate2(MaleCharTemplate):
@@ -1174,7 +1209,8 @@ class MaleTemplate2(MaleCharTemplate):
 										  CTEntry([SpeciesMale],2),
 										  CTEntry([ProfMale],1)
 										],
-							bpersonal = True)
+							bpersonal = True,
+							priority = 3)
 
 # Male Royalty
 class MaleTemplate3(MaleCharTemplate):
@@ -1189,7 +1225,8 @@ class MaleTemplate3(MaleCharTemplate):
 										  CTEntry([TypeModMale],6),
 										  CTEntry([NationMale],3),
 										  CTEntry([SpeciesMale],1)
-										])
+										],
+							priority = 3)
 # Male of some Nation
 class MaleTemplate4(MaleCharTemplate):
 	def __init__(self):
@@ -1200,7 +1237,8 @@ class MaleTemplate4(MaleCharTemplate):
 										  CTEntry([PhysCharMale],9),
 										  CTEntry([DickCharMale],8),
 										  CTEntry([TypeModMale],6)
-										])
+										],
+							priority = 3)
 # Male Millionaire
 class MaleTemplate5(MaleCharTemplate):
 	def __init__(self):
@@ -1215,7 +1253,8 @@ class MaleTemplate5(MaleCharTemplate):
 										  CTEntry([AgeAdjMale,MaritalStatusMale],5),
 										  CTEntry([SpeciesMale],1),
 										  CTEntry([ProfMale],1)
-										])
+										],
+							priority = 3)
 
 # === Male tropes ===	
 										
@@ -1576,7 +1615,130 @@ class MaleTropeTemplate23(MaleTropeTemplate):
 							NotList = ["taboo","nudist","farmer","peasant","hairy","young","college",
 									   "oiled","burly","beef","brawny","buff","giant","hulking"])
 
-							
+class MaleSpeciesTemplate1(MaleTropeTemplate):
+	def __init__(self):
+		super().__init__(	noun = TropeBitMale("Space Alien"),
+							 id = 301, 
+							 adjlist = 	[ CTEntry([GenModMale],11),
+										  CTEntry([AttitudeMale],10),
+										  CTEntry([PhysCharMale],9),
+										  CTEntry([DickCharMale],8),
+										  CTEntry([ClothesMale],6),
+										  CTEntry([TypeModMale,AgeAdjMale],4),
+										  CTEntry([ProfMale,TropesWealthyMale,TitlesMale],1)
+										],
+							bpersonal = True,
+							NotList = ["bald","hairy","graying","shah","shave","beard"])
+
+class MaleSpeciesTemplate2(MaleTropeTemplate):
+	def __init__(self):
+		super().__init__(	noun = TropeBitMale("Centaur"),
+							 id = 302, 
+							 adjlist = 	[ CTEntry([GenModMale],11),
+										  CTEntry([AttitudeMale],10),
+										  CTEntry([PhysCharMale],9),
+										  CTEntry([PhysCharMale],8),
+										  CTEntry([DickCharMale],7),
+										  CTEntry([AgeAdjMale],4),
+ 										  CTEntry([NationMale,SkinHairColorMale],3),
+										  CTEntry([TypeModMale],2),
+										  CTEntry([TitlesMale,TropesWealthyMale,ProfWhiteCollarMale,ProfFantasyMale],1)
+										],
+							NotList = ["S.W.A.T.","nudist","college","young","teen","fashion","stylish",
+										"peasant","butler","farmer","stable boy"])
+
+class MaleSpeciesTemplate3(MaleTropeTemplate):
+	def __init__(self):
+		super().__init__(	noun = TropeBitMale("Cyborg"),
+							 id = 303, 
+							 adjlist = 	[ CTEntry([GenModMale],11),
+										  CTEntry([ClothesMale],10),
+										  CTEntry([PhysCharMale],9),
+										  CTEntry([DickCharMale],7),
+										  CTEntry([TypeModMale],5),
+										  CTEntry([AgeAdjMale],4),
+ 										  CTEntry([NationMale,SkinHairColorMale],3),
+										  CTEntry([ProfBlueCollarMale,ProfAthleteMale,ProfRockstarMale],1)
+										],
+							NotList = ["college","young","teen","fashion","stylish",
+										"peasant","butler","farmer","stable boy","rebel",
+										"barbarian","dapper"])										
+
+class MaleSpeciesTemplate4(MaleCharTemplate):
+	def __init__(self):
+		super().__init__(	noun = TropeBitMale("Demon"),
+							 id = 304, 
+							 adjlist = 	[ CTEntry([GenModMale],11),
+										  CTEntry([AttitudeMale],10),
+										  CTEntry([ClothesMale],9),
+										  CTEntry([PhysCharMale],8),
+										  CTEntry([DickCharMale],7),
+										  CTEntry([TypeModMale],6)
+										],
+							NotList = ["rebel","young","teen","college","bald"])
+
+class MaleSpeciesTemplate5(MaleCharTemplate):
+	def __init__(self):
+		super().__init__(	noun = TropeBitMale("Dinosaur"),
+							 id = 305, 
+							 adjlist = 	[ CTEntry([GenModMale],11), 
+										  CTEntry([AttitudeMale],10),
+										  CTEntry([ClothesMale],9),
+										  CTEntry([PhysCharMale],8),
+										  CTEntry([PhysCharMale,DickCharMale],7),
+										  CTEntry([TypeModMale],6),
+										  CTEntry([AgeAdjMale,MaritalStatusMale],5),
+										  CTEntry([NationMale],3),
+										  CTEntry([ProfMale],1)
+										],
+							NotList = ["man","boy","beard","shave","clean-cut","hairy",
+										"single"])
+
+class MaleSpeciesTemplate6(MaleCharTemplate):
+	def __init__(self):
+		super().__init__(	noun = TropeBitMale("Dwarf"),
+							 id = 306, 
+							 adjlist = 	[ CTEntry([GenModMale],11), 
+										  CTEntry([AttitudeMale],10),
+										  CTEntry([ClothesMale],9),
+										  CTEntry([PhysCharMale],8),
+										  CTEntry([DickCharMale],7),
+										  CTEntry([TypeModMale],6),
+										  CTEntry([NationMale,SkinHairColorMale],3),
+										  CTEntry([TitlesMale,TropesWealthyMale,ProfMale],1)
+										],
+							NotList = ["boy","shave","shaved","shaven","clean-cut","hairy",
+										"single"])
+
+class MaleSpeciesTemplate7(MaleCharTemplate):
+	def __init__(self):
+		super().__init__(	noun = TropeBitMale("Gargoyle"),
+							 id = 307, 
+							 adjlist = 	[ CTEntry([GenModMale],11), 
+										  CTEntry([AttitudeMale],10),
+										  CTEntry([PhysCharMale],8),
+										  CTEntry([DickCharMale],7),
+										  CTEntry([TypeModMale],6),
+										  CTEntry([NationMale],3),
+										  CTEntry([TropesWealthyMale,ProfMale,SpeciesMale],1)
+										],
+							NotList = ["boy","shave","shaved","shaven","clean-cut","hairy",
+										"stay-at-home","hard-drinking","tattooed","bald"
+										"fashionable","stylish","bearded","lanky","taboo",
+										"peasant","rangy"])
+
+class MaleSpeciesTemplate8(MaleTropeTemplate):
+	def __init__(self):
+		super().__init__(	noun = TropeBitMale("Goat-Man"),
+							 id = 308, 
+							 adjlist = 	[ CTEntry([GenModMale],11),
+										  CTEntry([PhysCharMale],9),
+										  CTEntry([DickCharMale],7),
+										  CTEntry([TypeModMale],5),
+ 										  CTEntry([SkinHairColorMale],3)
+										],
+							NotList = [])	
+										
 # Adjs:		GenModMale, AttitudeMale, ClothesMale, PhysCharMale, DickCharMale, TypeModMale,
 #			SkinHairColorMale, AgeAdjMale, MaritalStatusMale, NationMale
 # Nouns:	ProfMale, RelateMale, SpeciesMale, TitlesMale, TropesWealthyMale
