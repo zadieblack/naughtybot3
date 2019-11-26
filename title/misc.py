@@ -656,12 +656,17 @@ class LesFemaleNoun(WordList):
 
 class GenModMale(WordList):
 	def __init__(self):
-		super().__init__(['Heavily-Tattooed',
+		super().__init__(['Experienced',
+			'Heavily-Tattooed',
+			'Highly-Eligible',
+			'Horny',
 			'Masked',
 			'Mysterious',
 			'Tattooed',
 			'Sexy',	
-			'Studly'])
+			'Shameless',
+			'Studly',
+			'Wanton'])
 		
 class AttitudeMale(WordList):
 	def __init__(self):
@@ -676,7 +681,6 @@ class AttitudeMale(WordList):
 			'Dominant',
 			'Disciplined',
 			'Eager',
-			'Experienced','Experienced',
 			'Fashionable',
 			'Foxy',
 			'Frisky',
@@ -685,8 +689,6 @@ class AttitudeMale(WordList):
 			'Gruff',
 			'Hard-Drinking',
 			'Hardened',
-			'Highly Eligible',
-			'Horny',
 			'Kinky',
 			'Lustful',
 			'Naughty',
@@ -701,7 +703,6 @@ class AttitudeMale(WordList):
 			'Seductive',
 			'Sensitive',
 			'Sensual',
-			'Shameless',
 			'Slick',
 			'Sly',
 			'Smooth',
@@ -709,7 +710,7 @@ class AttitudeMale(WordList):
 			'Stylish',
 			'Suave','Suave',
 			'Thrill-Seeking',
-			'Wanton',
+			'Urbane',
 			'Wicked'])
 						
 class ClothesMale(WordList):
@@ -724,7 +725,8 @@ class ClothesMale(WordList):
 			'Shirtless',
 			'Thong-Wearing',
 			'Tuxedoed',
-			'Uniformed'])
+			'Uniformed',
+			'Well-Dressed'])
 		
 class PhysCharMale(WordList):
 	def __init__(self):
@@ -793,6 +795,7 @@ class TypeModMale(WordList):
 			'Mysterious',
 			'Naked',
 			'Nudist',
+			'Playboy',
 			'Rebel',
 			'Sex Addict',
 			'Shirtless',
@@ -800,7 +803,8 @@ class TypeModMale(WordList):
 			'Studly',
 			'Taboo',
 			'S.W.A.T. Team',
-			'Vegan',
+			'Vegan','Vegan',
+			'Veteran',
 			'Wealthy'])
 		
 class SkinHairColorMale(WordList):
@@ -994,6 +998,7 @@ class ProfRockstarMale(WordList):
 			'Mossad Agent',
 			'Naval Officer',
 			'Navy Seal',
+			'N.Y.P.D. Officer',
 			'Photographer',
 			'Private Eye',
 			'Rancher',
@@ -1132,6 +1137,7 @@ class TropesMale(WordList):
 			'Single Dad',
 			'Silver Fox',
 			'Smooth Operator',
+			'Space',
 			'Stallion',
 			'Stalker',
 			'Stud',

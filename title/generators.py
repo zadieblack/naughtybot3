@@ -4710,8 +4710,7 @@ class Generator1001(Generator):
 							bAddAnArticle = True, 
 							bAllowGang = False,
 							bAllowTrope = True,
-							bAllowPhysChar = False,
-							bAllowAttitude = False)
+							SelectTemplateID = 136)
 		Gang = char.MaleChar(TempType = TempType.Flowery,
 							 bAddAnArticle = True,
 							 bAllowGang = True)
@@ -4721,7 +4720,7 @@ class Generator1001(Generator):
 		sTweet += AddArticles(Girl.Desc, bMakeUpper = True) + " Gets Sexed the Hell Up!\n"
 		#sTweet += AddArticles(Guy.Desc, bMakeUpper = True) + " Took My Wife Hard From Behind!\n"
 		sTweet += Guy.Desc + " Took My Wife Hard From Behind!\n"
-		sTweet += Gang.Desc + " Took Turns With My Wife!"
+		#sTweet += Gang.Desc + " Took Turns With My Wife!"
 
 		return sTweet	
 		

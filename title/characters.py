@@ -501,7 +501,7 @@ class ProfNormalMale(MaleCharBit):
 		
 class ProfAspirationalMale(MaleCharBit):
 	def __init__(self):
-		super().__init__(titmisc.ProfAspirationalMaleMale())
+		super().__init__(titmisc.ProfAspirationalMale())
 		
 class ProfMale(MaleCharBit):
 	def __init__(self):
@@ -603,8 +603,7 @@ class Character():
 			if bAddEndNoun and isinstance(Noun, CharBit):
 				sNounDesc = Noun.Get(NotList = NotList)
 
-				NotList.append(re.findall(r"[\w']+", sNounDesc))
-	
+				NotList = NotList + (re.findall(r"[\w']+", sNounDesc))
 			for charbit in variant[:-1]:
 				if sDesc != "":
 					sDesc += " "
