@@ -6,6 +6,7 @@ from title.characters import TempType
 from title.chartemplates import *
 from util import *
 from title.util import TempType
+from title.util import MaleCharType 
 		
 class FemaleChar(Character):
 	def __init__(self, TempType = TempType.Flowery,
@@ -79,50 +80,12 @@ class FemaleChar(Character):
 		#print("CharGenerator.FemaleChar() Getting templates")
 		TemplateList = self.BuildTemplateList(bAllowTrope = bAllowTrope, bAllowSpecies = bAllowSpecies)
 		
-		if SelectTemplateID > 0:
-			ExclusionList = []
-			
-			if isinstance(TemplateList, list):
-				for item in TemplateList:
-					SelCharTemplate = item
-					if item.ID == SelectTemplateID:
-						break
-		else:
-			SelCharTemplate = choice(TemplateList)
-			
-			#print("Selected first template is + " + str(SelCharTemplate))
-			iTryCounter = 1
-			while self.IsTemplateExcluded(SelCharTemplate, ExclusionList):
-				SelCharTemplate = choice(TemplateList)
-				iTryCounter = iTryCounter + 1
-				#print("==<<COLLISION!! Template had an excluded type! New selected template is + " + str(SelCharTemplate) + ">>==")
-
-			print("Template " + str(SelCharTemplate) + " selected, it took " + str(iTryCounter) + " tries.\n")
-		
-		NotList = NotList + SelCharTemplate.NotList 
-		
-		variant = None 
-		if TempType == TempType.Short:
-			variant = SelCharTemplate.GetShortVariant()
-		elif TempType == TempType.Medium:
-			variant = SelCharTemplate.GetMediumVariant()
-		else:
-			variant = SelCharTemplate.GetFloweryVariant()
-
-		sDesc = self.DescribeTemplateVariant(variant, bAddEndNoun = bAddEndNoun, NotList = NotList)
-
-		if bAddTheArticle:
-			if SelCharTemplate.IsPersonal:
-				sDesc = sPosArticle + " " + sDesc
-			else:
-				sDesc = "The " + sDesc 
-		elif bAddAnArticle:
-			if SelCharTemplate.IsPersonal:
-				sDesc = sPosArticle + " " + sDesc
-			else:
-				sDesc = AddArticles(sDesc, bMakeUpper = True)
-		
-		self.Desc = sDesc
+		self.SetCharDesc(TemplateList, ExclusionList, 
+						 NotList = NotList, 
+						 bAddEndNoun = bAddEndNoun,
+						 bAddTheArticle = bAddTheArticle,
+						 bAddAnArticle = bAddAnArticle,
+						 SelectTemplateID = SelectTemplateID)
 		
 	def BuildTemplateList(self, bAllowTrope, bAllowSpecies):
 		TemplateList = []
@@ -154,9 +117,93 @@ class FemaleChar(Character):
 						i = i + 1
 		
 		return TemplateList
-
-
+		
 class MaleChar(Character):
+	def __init__(self, MaleCharType = MaleCharType.Straight,
+					   TempType = TempType.Flowery,
+					   NotList = None, 
+					   bAddTheArticle = False, 
+					   bAddAnArticle = False,
+					   sPosArticle = "My", 
+					   bAddEndNoun = True,
+					   bAllowGang = False,
+					   bAllowAttitude = True, 
+					   bAllowPhysChar = True, 
+					   bAllowDickChar = True, 
+					   bAllowSkinHairColor = True, 
+					   bAllowGenMod = True, 
+					   bAllowTypeMod = True,
+					   bAllowClothing = True,
+					   bAllowAge = True, 
+					   bAllowMaritalStatus = True,
+					   bAllowNation = True, 
+					   bAllowProf = True, 
+					   bAllowSpecies = True, 
+					   bAllowTrope = True, 
+					   bAllowRelate = False,
+					   bAllowTitle = True,
+					   SelectTemplateID = 0):
+		super().__init__()
+			
+		bShowGangChar = self.ShowGangChar(bAllowGang)
+		
+		if (MaleCharType == MaleCharType.Straight and bShowGangChar and bAddAnArticle) or MaleCharType == MaleCharType.GangSingular:
+		# show singular gang character 
+			Char = GangMaleChar(TempType = TempType, MaleCharType = MaleCharType.GangSingular, 
+										 NotList = NotList, bAddTheArticle = bAddTheArticle,
+										 bAddAnArticle = bAddAnArticle, sPosArticle = sPosArticle, 
+										 bAddEndNoun = bAddEndNoun, bAllowPhysChar = bAllowPhysChar, 
+										 bAllowDickChar = bAllowDickChar, bAllowGenMod = bAllowGenMod,
+										 bAllowTypeMod = bAllowTypeMod,bAllowClothing = bAllowClothing,
+										 bAllowNation = bAllowNation, bAllowProf = bAllowProf, 
+										 bAllowSpecies = bAllowSpecies, SelectTemplateID = SelectTemplateID) 
+		elif (MaleCharType == MaleCharType.Straight and bShowGangChar and bAddTheArticle) or MaleCharType == MaleCharType.GangAny:
+		# show any gang character 
+			Char = GangMaleChar(TempType = TempType, MaleCharType = MaleCharType.GangAny, 
+										 NotList = NotList, bAddTheArticle = bAddTheArticle,
+										 bAddAnArticle = bAddAnArticle, sPosArticle = sPosArticle, 
+										 bAddEndNoun = bAddEndNoun, bAllowPhysChar = bAllowPhysChar, 
+										 bAllowDickChar = bAllowDickChar, bAllowGenMod = bAllowGenMod,
+										 bAllowTypeMod = bAllowTypeMod,bAllowClothing = bAllowClothing,
+										 bAllowNation = bAllowNation, bAllowProf = bAllowProf, 
+										 bAllowSpecies = bAllowSpecies, SelectTemplateID = SelectTemplateID) 
+		elif MaleCharType == MaleCharType.GangSingular or MaleCharType == MaleCharType.GangPlural:
+		# show gang character depending on parameter passed in
+			Char = GangMaleChar(TempType = TempType, MaleCharType = MaleCharType, 
+										 NotList = NotList, bAddTheArticle = bAddTheArticle,
+										 bAddAnArticle = bAddAnArticle, sPosArticle = sPosArticle, 
+										 bAddEndNoun = bAddEndNoun, bAllowPhysChar = bAllowPhysChar, 
+										 bAllowDickChar = bAllowDickChar, bAllowGenMod = bAllowGenMod,
+										 bAllowTypeMod = bAllowTypeMod,bAllowClothing = bAllowClothing,
+										 bAllowNation = bAllowNation, bAllowProf = bAllowProf, 
+										 bAllowSpecies = bAllowSpecies, SelectTemplateID = SelectTemplateID) 
+		else:
+		# show a normal straight character
+			Char = StraightMaleChar(TempType = TempType, NotList = NotList, bAddTheArticle = bAddTheArticle,
+										 bAddAnArticle = bAddAnArticle, sPosArticle = sPosArticle, 
+										 bAddEndNoun = bAddEndNoun, bAllowAttitude = bAllowAttitude, 
+										 bAllowPhysChar = bAllowPhysChar, bAllowDickChar = bAllowDickChar, 
+										 bAllowSkinHairColor = bAllowSkinHairColor, bAllowGenMod = bAllowGenMod,
+										 bAllowTypeMod = bAllowTypeMod,bAllowClothing = bAllowClothing,
+										 bAllowAge = bAllowAge, bAllowMaritalStatus = bAllowMaritalStatus,
+										 bAllowNation = bAllowNation, bAllowProf = bAllowProf, 
+										 bAllowSpecies = bAllowSpecies, bAllowTrope = bAllowTrope, 
+										 bAllowRelate = bAllowRelate,bAllowTitle = bAllowTitle,
+										 SelectTemplateID = SelectTemplateID) 
+	
+		
+		self.Desc = Char.Desc
+
+	def ShowGangChar(self, bAllowGangChar):
+		bShowGangChar = False 
+		
+		if bAllowGangChar:
+			if randint(1,2) == 1:
+				bShowGangChar = True
+		
+		return bShowGangChar
+			
+class StraightMaleChar(Character):
 	def __init__(self, TempType = TempType.Flowery,
 					   NotList = None, 
 					   bAddTheArticle = False, 
@@ -226,50 +273,12 @@ class MaleChar(Character):
 		
 		TemplateList = self.BuildTemplateList(bAllowTrope = bAllowTrope, bAllowSpecies = bAllowSpecies)
 		
-		if SelectTemplateID > 0:
-			ExclusionList = []
-			
-			if isinstance(TemplateList, list):
-				for item in TemplateList:
-					SelCharTemplate = item
-					if item.ID == SelectTemplateID:
-						break
-		else:
-			SelCharTemplate = choice(TemplateList)
-			
-			#print("Selected first template is + " + str(SelCharTemplate))
-			iTryCounter = 1
-			while self.IsTemplateExcluded(SelCharTemplate, ExclusionList):
-				SelCharTemplate = choice(TemplateList)
-				iTryCounter = iTryCounter + 1
-				#print("==<<COLLISION!! Template had an excluded type! New selected template is + " + str(SelCharTemplate) + ">>==")
-
-			print("Template " + str(SelCharTemplate) + " selected, it took " + str(iTryCounter) + " tries.\n")
-		
-		NotList = NotList + SelCharTemplate.NotList 
-		
-		variant = None 
-		if TempType == TempType.Short:
-			variant = SelCharTemplate.GetShortVariant()
-		elif TempType == TempType.Medium:
-			variant = SelCharTemplate.GetMediumVariant()
-		else:
-			variant = SelCharTemplate.GetFloweryVariant()
-
-		sDesc = self.DescribeTemplateVariant(variant, bAddEndNoun = bAddEndNoun, NotList = NotList)
-
-		if bAddTheArticle:
-			if SelCharTemplate.IsPersonal:
-				sDesc = sPosArticle + " " + sDesc
-			else:
-				sDesc = "The " + sDesc 
-		elif bAddAnArticle:
-			if SelCharTemplate.IsPersonal:
-				sDesc = sPosArticle + " " + sDesc
-			else:
-				sDesc = AddArticles(sDesc, bMakeUpper = True)
-		
-		self.Desc = sDesc
+		self.SetCharDesc(TemplateList, ExclusionList, 
+						 NotList = NotList, 
+						 bAddEndNoun = bAddEndNoun,
+						 bAddTheArticle = bAddTheArticle,
+						 bAddAnArticle = bAddAnArticle,
+						 SelectTemplateID = SelectTemplateID)
 
 	def BuildTemplateList(self, bAllowTrope, bAllowSpecies):
 		TemplateList = []
@@ -297,4 +306,73 @@ class MaleChar(Character):
 					TemplateList.append(template)
 					i = i + 1
 			
+		return TemplateList
+
+class GangMaleChar(Character):
+	def __init__(self, TempType = TempType.Flowery,
+					   MaleCharType = MaleCharType.GangAny,
+					   NotList = None, 
+					   bAddTheArticle = False, 
+					   bAddAnArticle = False,
+					   sPosArticle = "My", 
+					   bAddEndNoun = True,  
+					   bAllowPhysChar = True, 
+					   bAllowDickChar = True, 
+					   bAllowGenMod = True, 
+					   bAllowTypeMod = True,
+					   bAllowClothing = True,
+					   bAllowNation = True, 
+					   bAllowProf = True, 
+					   bAllowSpecies = True,
+					   SelectTemplateID = 0):
+		super().__init__()
+
+		if NotList is None:
+			NotList = []
+		
+		self.Gender = Gender.Male 
+		
+		ExclusionList = []
+		if not bAllowGenMod:
+			ExclusionList.append(GenModMale())
+		if not bAllowTypeMod:
+			ExclusionList.append(TypeModMale())
+		if not bAllowPhysChar:
+			ExclusionList.append(PhysCharMale())
+		if not bAllowDickChar:
+			ExclusionList.append(DickCharMale())
+		if not bAllowClothing:
+			ExclusionList.append(ClothingMale())
+		if not bAllowNation:
+			ExclusionList.append(NationMale())
+		if not bAllowProf:
+			ExclusionList.append(ProfBlueCollarMale())
+			ExclusionList.append(ProfWhiteCollarMale())
+			ExclusionList.append(ProfFantasyMale())
+			ExclusionList.append(ProfAthleteMale())
+			ExclusionList.append(ProfRockstarMale())
+			ExclusionList.append(ProfNormalMale())
+			ExclusionList.append(ProfAspirationalMale())
+			ExclusionList.append(ProfMale())
+		if not bAllowSpecies:
+			ExclusionList.append(SpeciesMale())
+		
+		TemplateList = self.BuildTemplateList(MaleCharType)
+		self.SetCharDesc(TemplateList, ExclusionList, 
+						 NotList = NotList, 
+						 bAddEndNoun = bAddEndNoun,
+						 bAddTheArticle = bAddTheArticle,
+						 bAddAnArticle = bAddAnArticle,
+						 SelectTemplateID = SelectTemplateID)
+
+	def BuildTemplateList(self, malechartype):
+		TemplateList = []
+		
+		if malechartype == MaleCharType.GangSingular or malechartype == MaleCharType.GangAny:
+			TemplateList.append(MaleGangSingularTemplate())
+		if malechartype == MaleCharType.GangPlural or malechartype == MaleCharType.GangAny:
+			TemplateList.append(MaleGangPluralTemplate())
+		if malechartype == MaleCharType.GangAny:
+			TemplateList.append(MaleGangAnyTemplate())
+				
 		return TemplateList

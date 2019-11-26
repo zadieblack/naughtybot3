@@ -1152,22 +1152,42 @@ class TropesWealthyMale(WordList):
 			'Playboy Billionaire',
 			'Trillionaire'
 			])
-			
-class GangsMale(WordList):
+
+class GangsMaleSingular(WordList):
 	def __init__(self):
-		super().__init__(['Baby Daddies',
-			'Bandits',
-			'Barbarian Horde',
-			'Barbarians',
+		super().__init__(['Barbarian Horde',
 			'Basketball Team',
 			'Biker Gang',
 			'Billionaires Club',
 			'Men\'s Locker Room',
 			'Boy\'s School',
+			'Chain Gang',
+			'Football Team',
+			'Goblin Horde',
+			'Herd of Centaurs',
+			'Hockey Team',
+			'Identical Twin Brothers',
+			'Men\'s Volleyball Team',
+			'Mongol Horde',
+			'Orc Horde',
+			'Police Force',
+			'Rock Band',
+			'Rugby Team',
+			'S.W.A.T. Team',
+			'Street Gang',
+			'Viking Horde',
+			'Vampire Coven',
+			'Werewolf Pack'])
+			
+
+class GangsMalePlural(WordList):
+	def __init__(self):
+		super().__init__(['Barbarians',
+			'Baby Daddies',
+			'Bandits',
 			'Brothers',
 			'Businessmen',
 			'Carnies',
-			'Chain Gang',
 			'Chippendales Dancers',
 			'Coal Miners',
 			'Construction Workers',
@@ -1176,42 +1196,29 @@ class GangsMale(WordList):
 			'DILFs',
 			'Dwarves',
 			'Firemen',
-			'Football Team',
 			'Gangstas',
 			'Goat Men',
-			'Goblin Horde',
-			'Herd of Centaurs',
-			'Hockey Team',
-			'Identical Twin Brothers',
 			'Knights of the Round Table',
-			'Lesbian Harem',
 			'Long Haul Truckers',
 			'Luchadors',
 			'Men at the Gym',
 			'Men of Kappa Omega Kappa',
-			'Men\'s Volleyball Team',
 			'Mer-men',
-			'Mongol Horde',
 			'Mountain Men',
 			'Navy Seals',
-			'Orc Horde',
 			'Pirates',
-			'Police Force',
 			'Pro Wrestlers',
 			'Roadies',
-			'Rock Band',
-			'Rugby Team',
 			'Men of Seal Team Six',
-			'S.W.A.T. Team',
 			'Scottsmen',
 			'Sperm Donors',
-			'Street Gang',
 			'Sumo Wrestlers',
 			'Truckers',
-			'Viking Horde',
-			'Vampire Coven',
-			'Varsity Athletes',
-			'Werewolf Pack'])
+			'Varsity Athletes'])
+		
+class GangsMale(WordList):
+	def __init__(self):
+		super().__init__(GangsMaleSingular().GetWordList() + GangsMalePlural().GetWordList())
 			
 class GayMaleAdj(WordList):
 	def __init__(self):

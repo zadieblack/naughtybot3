@@ -51,6 +51,13 @@ class GirlType(Enum):
 	Good = 1
 	Bad = 2
 	Neutral = 3
+	
+class MaleCharType(Enum):
+	Straight = 1
+	GangAny = 2
+	GangSingular = 3
+	GangPlural = 4
+	Gay = 5
 
 		
 def GetNextFavTitleFromFile(sFileName = ""):

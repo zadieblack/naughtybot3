@@ -151,7 +151,7 @@ class Generator1(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		Master = char.MaleChar(TempType = TempType.Flowery, bAddTheArticle = True, bAllowTrope = True, bAllowRelate = True)
+		Master = char.MaleChar(TempType = TempType.Flowery, bAddTheArticle = True, bAllowGang = True, bAllowTrope = True, bAllowRelate = True)
 		
 		sTweet = self.VerbsBy.GetWord() + " By\n" + Master.Desc
 		
@@ -168,7 +168,7 @@ class Generator2(Generator):
 		
 		#Master = MaleChar(iNumMaxCBits = 3, bAddArticle = True, sPosArticle = "Her", bAllowRelate = True)
 		#Girl = char.FemaleChar(TempType = TempType.Flowery, bAddArticle = False, bAllowTrope = True)
-		Master = char.MaleChar(TempType = TempType.Flowery, bAddTheArticle = True, sPosArticle = "Her", bAllowRelate = True, bAllowTrope = True)
+		Master = char.MaleChar(TempType = TempType.Flowery, bAddTheArticle = True, sPosArticle = "Her", bAllowGang = True, bAllowRelate = True, bAllowTrope = True)
 		
 		sTweet = self.HerName + " Gets " + self.VerbsBy.GetWord(NotList = ["Sexually Harrassed At My Workplace"]) + " by\n" + Master.Desc
 		
@@ -183,7 +183,7 @@ class Generator3(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		Master = char.MaleChar(TempType = TempType.Flowery, bAddTheArticle = True, sPosArticle = "Her", bAllowRelate = True, bAllowTrope = True)
+		Master = char.MaleChar(TempType = TempType.Flowery, bAddTheArticle = True, sPosArticle = "Her", bAllowGang = True, bAllowRelate = True, bAllowTrope = True)
 			
 		sTweet = self.VerbsTo.GetWord() + " To\n" + Master.Desc
 
@@ -193,16 +193,14 @@ class Generator4(Generator):
 	# Veronica Gets Married to the Alpha Wolf	
 	ID = 4
 	Priority = 2
-	
-	Master = MaleChar()
-	
+
 	def GenerateTweet(self):
 		super().GenerateTweet()
 		sTweet = ""
 		
 		#Master = MaleChar(iNumMaxCBits = 3, bAddArticle = True, sPosArticle = "Her", bAllowRelate = True)
 		#Girl = char.FemaleChar(TempType = TempType.Flowery, bAddArticle = False, bAllowTrope = True)
-		Master = char.MaleChar(TempType = TempType.Flowery, bAddTheArticle = True, sPosArticle = "Her", bAllowRelate = True, bAllowTrope = True)
+		Master = char.MaleChar(TempType = TempType.Flowery, bAddTheArticle = True, sPosArticle = "Her", bAllowGang = True, bAllowRelate = True, bAllowTrope = True)
 		
 		sTweet = self.HerName + " Gets " + self.VerbsTo.GetWord() + " to \n" + Master.Desc
 		
@@ -4708,16 +4706,22 @@ class Generator1001(Generator):
 								bAddTheArticle = False, 
 								bAllowTrope = True, 
 								SelectTemplateID = 14)
-		Guy =char.MaleChar(TempType = TempType.Flowery, 
-							bAddTheArticle = False, 
-							bAllowTrope = True, 
-							SelectTemplateID = 308)
-
+		Guy = char.MaleChar(TempType = TempType.Flowery, 
+							bAddAnArticle = True, 
+							bAllowGang = False,
+							bAllowTrope = True,
+							bAllowPhysChar = False,
+							bAllowAttitude = False)
+		Gang = char.MaleChar(TempType = TempType.Flowery,
+							 bAddAnArticle = True,
+							 bAllowGang = True)
 		
 		
 		#print("Generator1001.GenerateTweet() FemaleChar created, building tweet")
 		sTweet += AddArticles(Girl.Desc, bMakeUpper = True) + " Gets Sexed the Hell Up!\n"
-		sTweet += AddArticles(Guy.Desc, bMakeUpper = True) + " Took My Wife Hard From Behind!\n"
+		#sTweet += AddArticles(Guy.Desc, bMakeUpper = True) + " Took My Wife Hard From Behind!\n"
+		sTweet += Guy.Desc + " Took My Wife Hard From Behind!\n"
+		sTweet += Gang.Desc + " Took Turns With My Wife!"
 
 		return sTweet	
 		

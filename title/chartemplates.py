@@ -1627,7 +1627,6 @@ class MaleSpeciesTemplate1(MaleTropeTemplate):
 										  CTEntry([TypeModMale,AgeAdjMale],4),
 										  CTEntry([ProfMale,TropesWealthyMale,TitlesMale],1)
 										],
-							bpersonal = True,
 							NotList = ["bald","hairy","graying","shah","shave","beard"])
 
 class MaleSpeciesTemplate2(MaleTropeTemplate):
@@ -1731,13 +1730,51 @@ class MaleSpeciesTemplate8(MaleTropeTemplate):
 	def __init__(self):
 		super().__init__(	noun = TropeBitMale("Goat-Man"),
 							 id = 308, 
-							 adjlist = 	[ CTEntry([GenModMale],11),
-										  CTEntry([PhysCharMale],9),
-										  CTEntry([DickCharMale],7),
-										  CTEntry([TypeModMale],5),
- 										  CTEntry([SkinHairColorMale],3)
+							 adjlist = 	[ CTEntry([GenModMale],7),
+										  CTEntry([ClothesMale,PhysCharMale,DickCharMale],6),
+										  CTEntry([TypeModMale],3),
+ 										  CTEntry([NationMale],2),
+										  CTEntry([ProfMale,SpeciesMale],1)
 										],
 							NotList = [])	
+							
+class MaleGangAnyTemplate(MaleGangTemplate):
+	def __init__(self):
+		super().__init__(	noun = GangsMale(),
+							 id = 401, 
+							 adjlist = 	[ CTEntry([GenModMale],7),
+										  CTEntry([ClothesMale,PhysCharMale,DickCharMale],6),
+										  CTEntry([TypeModMale],3),
+ 										  CTEntry([NationMale],2),
+										  CTEntry([ProfMale,SpeciesMale],1)
+										],
+							NotList = ["Man"])	
+							
+class MaleGangSingularTemplate(MaleGangTemplate):
+	def __init__(self):
+		super().__init__(	noun = GangsMaleSingular(),
+							 id = 402, 
+							 adjlist = 	[ CTEntry([GenModMale],7),
+										  CTEntry([ClothesMale,PhysCharMale,DickCharMale],6),
+										  CTEntry([TypeModMale],3),
+ 										  CTEntry([NationMale],2),
+										  CTEntry([ProfMale,SpeciesMale],1)
+										],
+							NotList = ["Man"])
+							
+class MaleGangPluralTemplate(MaleGangTemplate):
+	def __init__(self):
+		super().__init__(	noun = GangsMalePlural(),
+							 id = 403, 
+							 adjlist = 	[ CTEntry([GenModMale],7),
+										  CTEntry([ClothesMale],6),
+										  CTEntry([PhysCharMale],5),
+										  CTEntry([DickCharMale],4),
+										  CTEntry([TypeModMale],3),
+ 										  CTEntry([NationMale],2),
+										  CTEntry([ProfMale,SpeciesMale],1)
+										],
+							NotList = ["Man"])
 										
 # Adjs:		GenModMale, AttitudeMale, ClothesMale, PhysCharMale, DickCharMale, TypeModMale,
 #			SkinHairColorMale, AgeAdjMale, MaritalStatusMale, NationMale

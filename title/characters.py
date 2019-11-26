@@ -45,15 +45,16 @@ class CharBit():
 	def SetNoun(self):
 		self._IsNoun = True 
 		
-	def HasCharBit(self, charbits):
+	def HasCharBit(self, exclusionlist):
 		bHasCharBit = False 
-		
-		if isinstance(charbits, CharBit):
-			#print("CharBit: checking self \"" + str(self.__class__) + "\" against \"" + str(charbits.__class__) + "\"")
-			if self.__class__ == charbits.__class__:
-				#print("==<< CharBit Excluded charbit match found! >>==")
-				bHasCharBit = True 
-				
+		#print("CharBit.HasCharBit() started. excludedcarbits: " + str(excludedcharbits))
+		if isinstance(exclusionlist, list):
+			for item in exclusionlist:
+				#print("CharBit: checking self \"" + str(self.__class__) + "\" against \"" + str(item.__class__) + "\"")
+				if self.__class__ == item.__class__:
+					#print("==<< CharBit Excluded charbit match found! >>==")
+					bHasCharBit = True 
+					
 		return bHasCharBit
 		
 	def Get(self, NotList = None):
@@ -163,8 +164,6 @@ class CharTemplate():
 		variant = []
 		if isinstance(self._AdjList, list):
 			if len(self._AdjList) > 2:
-				#variant.append(self.Noun)							#get the noun
-				#print("CharTemplate.GetFloweryVariant() noun is \"" + str(variant[0]) +"\"")
 				iMaxCharbits = MAX_CHARACTER_CHARBITS - 1			#get the max allowed charbits in one description string
 				if len(self._AdjList) < MAX_CHARACTER_CHARBITS:
 					iMaxCharbits = len(self._AdjList) - 1
@@ -309,6 +308,18 @@ class MaleTropeTemplate(CharTemplate):
 		super().__init__(noun = noun, id = id,  adjlist = adjlist, priority = priority, bpersonal = bpersonal, NotList = NotList)
 
 class MaleSpeciesTemplate(CharTemplate):
+	def __init__(self, noun, 
+					   id = 0, 
+					   adjlist = [], 
+					   priority = 1, 
+					   bpersonal = False,
+					   NotList = None):
+		if NotList is None:
+			NotList = []
+			
+		super().__init__(noun = noun, id = id,  adjlist = adjlist, priority = priority, bpersonal = bpersonal, NotList = NotList)
+
+class MaleGangTemplate(CharTemplate):
 	def __init__(self, noun, 
 					   id = 0, 
 					   adjlist = [], 
@@ -515,6 +526,18 @@ class TitlesMale(MaleCharBit):
 class TropesWealthyMale(MaleCharBit):
 	def __init__(self):
 		super().__init__(titmisc.TropesWealthyMale())		
+
+class GangsMaleSingular(MaleCharBit):
+	def __init__(self):
+		super().__init__(titmisc.GangsMaleSingular())		
+
+class GangsMalePlural(MaleCharBit):
+	def __init__(self):
+		super().__init__(titmisc.GangsMalePlural())		
+
+class GangsMale(MaleCharBit):
+	def __init__(self):
+		super().__init__(titmisc.GangsMale())		
 		
 class TypeModMale(MaleCharBit):
 	def __init__(self):
@@ -530,6 +553,17 @@ class Character():
 		
 	def BuildTemplateList(self):
 		pass
+	
+	def GetVariantFromTemplate(self, Template, TempType):
+		variant = None 
+		if TempType == TempType.Short:
+			variant = Template.GetShortVariant()
+		elif TempType == TempType.Medium:
+			variant = Template.GetMediumVariant()
+		else:
+			variant = Template.GetFloweryVariant()
+			
+		return variant 
 		
 	def IsTemplateExcluded(self, template, exclusionlist):
 		bIsTemplateExcluded = False 
@@ -542,23 +576,36 @@ class Character():
 		
 		return bIsTemplateExcluded
 		
-	def DescribeTemplateVariant(self, variant, bAddEndNoun = True, NotList = None):
+	def IsVariantExcluded(self, variant, exclusionlist):
+		bIsVariantExcluded = False 
+		
+		if isinstance(variant, list) and isinstance(exclusionlist, list):
+			for item in exclusionlist:
+				for varitem in variant:
+					if varitem.HasCharBit(exclusionlist):
+						bIsVariantExcluded = True
+						break 
+				if bIsVariantExcluded:
+					break
+			
+		return bIsVariantExcluded
+		
+	def DescribeTemplateVariant(self, variant, bAddEndNoun, NotList = None):
 		sDesc = ""
 		
 		if NotList is None:
 			NotList = []
 			
-		#print(NotList)
 		if isinstance(variant, list):
 			
 			sNounDesc = ""
 			Noun = variant[len(variant) - 1] 
 			if bAddEndNoun and isinstance(Noun, CharBit):
 				sNounDesc = Noun.Get(NotList = NotList)
+
 				NotList.append(re.findall(r"[\w']+", sNounDesc))
 	
 			for charbit in variant[:-1]:
-				#print("CharTemplate.GetDesc() charbit is " + str(charbit))
 				if sDesc != "":
 					sDesc += " "
 				sAdjDesc = charbit.Get(NotList = NotList)
@@ -568,7 +615,62 @@ class Character():
 			if sDesc != "" and sNounDesc != "":
 				sDesc += " " 
 			sDesc += sNounDesc 
+			
+			return sDesc
+			
+	def SetCharDesc(self, TemplateList, 
+						  ExclusionList, 
+						  NotList = None, 
+						  bAddEndNoun = True, 
+						  bAddAnArticle = False, 
+						  bAddTheArticle = False, 
+						  sPosArticle = "My",
+					SelectTemplateID = 0):	
+		SelCharTemplate = None 
+		variant = None
+		
+		if SelectTemplateID > 0:
+			ExclusionList = []
+			
+			if isinstance(TemplateList, list):
+				for item in TemplateList:
+					SelCharTemplate = item
+					if item.ID == SelectTemplateID:
+						break
+						
+				variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
+		else:
+			SelCharTemplate = choice(TemplateList)
+			
+			variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
+			#print("Selected first template is + " + str(SelCharTemplate))
+			iTryCounter = 1
+			#while self.IsTemplateExcluded(SelCharTemplate, ExclusionList):
+			while self.IsVariantExcluded(variant, ExclusionList):
+				SelCharTemplate = choice(TemplateList)
 				
-		return sDesc
+				iTryCounter = iTryCounter + 1
+				
+				variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
+				#print("==<<COLLISION!! Template had an excluded type! New selected template is + " + str(SelCharTemplate) + ">>==")
+
+			print("Template " + str(SelCharTemplate) + " selected, it took " + str(iTryCounter) + " tries.\n")
+			
+		NotList = NotList + SelCharTemplate.NotList 
+
+		sDesc = self.DescribeTemplateVariant(variant, bAddEndNoun = bAddEndNoun, NotList = NotList)
+
+		if bAddTheArticle:
+			if SelCharTemplate.IsPersonal:
+				sDesc = sPosArticle + " " + sDesc
+			else:
+				sDesc = "The " + sDesc 
+		elif bAddAnArticle:
+			if SelCharTemplate.IsPersonal:
+				sDesc = sPosArticle + " " + sDesc
+			else:
+				sDesc = AddArticles(sDesc, bMakeUpper = True)
+		
+		self.Desc = sDesc
 
 		
