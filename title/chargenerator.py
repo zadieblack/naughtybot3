@@ -81,10 +81,12 @@ class FemaleChar(Character):
 		TemplateList = self.BuildTemplateList(bAllowTrope = bAllowTrope, bAllowSpecies = bAllowSpecies)
 		
 		self.SetCharDesc(TemplateList, ExclusionList, 
+						 TempType = TempType,
 						 NotList = NotList, 
 						 bAddEndNoun = bAddEndNoun,
 						 bAddTheArticle = bAddTheArticle,
 						 bAddAnArticle = bAddAnArticle,
+						 sPosArticle = sPosArticle,
 						 SelectTemplateID = SelectTemplateID)
 		
 	def BuildTemplateList(self, bAllowTrope, bAllowSpecies):
@@ -198,7 +200,7 @@ class MaleChar(Character):
 		bShowGangChar = False 
 		
 		if bAllowGangChar:
-			if randint(1,2) == 1:
+			if randint(1,4) == 1:
 				bShowGangChar = True
 		
 		return bShowGangChar
@@ -247,7 +249,7 @@ class StraightMaleChar(Character):
 		if not bAllowSkinHairColor:
 			ExclusionList.append(SkinHairColorMale())
 		if not bAllowClothing:
-			ExclusionList.append(ClothingMale())
+			ExclusionList.append(ClothesMale())
 		if not bAllowMaritalStatus:
 			ExclusionList.append(MaritalStatusMale())
 		if not bAllowNation:
@@ -274,10 +276,12 @@ class StraightMaleChar(Character):
 		TemplateList = self.BuildTemplateList(bAllowTrope = bAllowTrope, bAllowSpecies = bAllowSpecies)
 		
 		self.SetCharDesc(TemplateList, ExclusionList, 
+						 TempType = TempType,
 						 NotList = NotList, 
 						 bAddEndNoun = bAddEndNoun,
 						 bAddTheArticle = bAddTheArticle,
 						 bAddAnArticle = bAddAnArticle,
+						 sPosArticle = sPosArticle,
 						 SelectTemplateID = SelectTemplateID)
 
 	def BuildTemplateList(self, bAllowTrope, bAllowSpecies):
@@ -342,7 +346,7 @@ class GangMaleChar(Character):
 		if not bAllowDickChar:
 			ExclusionList.append(DickCharMale())
 		if not bAllowClothing:
-			ExclusionList.append(ClothingMale())
+			ExclusionList.append(ClothesMale())
 		if not bAllowNation:
 			ExclusionList.append(NationMale())
 		if not bAllowProf:
@@ -359,10 +363,12 @@ class GangMaleChar(Character):
 		
 		TemplateList = self.BuildTemplateList(MaleCharType)
 		self.SetCharDesc(TemplateList, ExclusionList, 
+						 TempType = TempType,
 						 NotList = NotList, 
 						 bAddEndNoun = bAddEndNoun,
 						 bAddTheArticle = bAddTheArticle,
 						 bAddAnArticle = bAddAnArticle,
+						 sPosArticle = sPosArticle,
 						 SelectTemplateID = SelectTemplateID)
 
 	def BuildTemplateList(self, malechartype):

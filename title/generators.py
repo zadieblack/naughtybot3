@@ -215,12 +215,17 @@ class Generator5(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		GenNotList = ["BDSM"]
-		Girl = char.FemaleChar(TempType = TempType.Medium, bAllowTrope = True, NotList = GenNotList)
-		Master = char.MaleChar(TempType = TempType.Flowery, bAllowRelate = True, bAllowTrope = True,NotList = GenNotList)
-		#Girl = FemaleChar(iNumMaxCBits = 2, NotList = ['BDSM'])
-		#Master = MaleChar(iNumMaxCBits = 2, NotList = ['BDSM'], bAllowGang = False)
+		Girl = None
+		Master = None
 			
-		sTweet = "The " + Master.Desc + "'s\n" + Girl.Desc
+		if CoinFlip():
+			Girl = char.FemaleChar(TempType = TempType.Medium, bAllowTrope = True, NotList = GenNotList)
+			Master = char.MaleChar(TempType = TempType.Flowery, bAllowRelate = True, bAllowTrope = True,NotList = GenNotList)
+		else: 
+			Girl = char.FemaleChar(TempType = TempType.Flowery, Type = GirlType.Good, bAllowTrope = True, NotList = GenNotList)
+			Master = char.MaleChar(TempType = TempType.Medium, bAllowRelate = True, bAllowTrope = True,NotList = GenNotList)
+		
+		sTweet += "The " + Master.Desc + "'s\n" + Girl.Desc
 		if CoinFlip():
 			if CoinFlip():
 				sTweet += ":\nA BDSM " + self.SubtitleCoda.GetWord()
@@ -267,7 +272,7 @@ class Generator7(Generator):
 								bAllowTrope = True,
 								bAddAnArticle = True, 
 								sPosArticle = "My")
-		Verbs = WordList(["Took","Claimed","Ravished","Mounted"])
+		Verbs = WordList(["Took","Claimed","Ravished","Mounted", "Plowed"])
 		
 		sTweet = Master.Desc  + "\n"
 		sTweet += Verbs.GetWord() + " My Wife From Behind"
@@ -309,7 +314,7 @@ class Generator9(Generator):
 		sTweet = ""
 		
 		NotList = ["BDSM"]
-		Girl = char.FemaleChar(TempType = TempType.Medium, bAllowRelate = True, bAllowTrope = True, bAllowSpecies = False, NotList = NotList)
+		Girl = char.FemaleChar(TempType = TempType.Medium, bAllowRelate = True, bAllowTrope = True, bAllowSpecies = False, bAllowTitle = False, NotList = NotList)
 		Master = char.MaleChar(TempType = TempType.Flowery, bAllowRelate = True, bAllowTrope = True, bAddTheArticle = True, sPosArticle = "Her", NotList = NotList)
 		
 		sTweet = "The " + Girl.Desc + "\nand\n" + Master.Desc 
@@ -329,9 +334,10 @@ class Generator10(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		Master = char.MaleChar(bAddTheArticle = True, sPosArticle = "My", bAllowRelate = True)
+		Master = char.MaleChar(bAddAnArticle = True, sPosArticle = "My", bAllowRelate = True, bAllowDickChar = False, 
+								NotList = ["naked","nude"])
 
-		sTweet = "Baby For " + Master.Desc
+		sTweet = "\"I'm Having a Baby For\n" + Master.Desc + "!\""
 
 		return sTweet
 		
@@ -368,7 +374,7 @@ class Generator10(Generator):
 		# return sTweet
 		
 class Generator13(Generator):	
-	# Babysitter for the Billionaire Uniporn
+	# I Was an Escort for a Billionaire Uniporn
 	ID = 13
 	Priority = 3
 	
@@ -396,37 +402,46 @@ class Generator14(Generator):
 		
 		GangNot = ["Dapper","Gang-Bang"]
 		
-		GoodGirl = FemaleChar(iNumMaxCBits = 3, Type = GirlType.Good, bAddArticle = True, bAllowClothing = False, bAllowSexuality = False, bAllowSpecies = False)
-		BadGirl = FemaleChar(iNumMaxCBits = 3, Type = GirlType.Bad, bAddArticle = True)
-		MasterGang = MaleGangChar(iNumMaxCBits = 3, NotList = GangNot, bAllowAttitude = False)
+		GirlShort = char.FemaleChar(Type = GirlType.Good, TempType = TempType.Medium, bAddTheArticle = True, bAllowClothing = False, bAllowSpecies = False)
+		GirlLong = char.FemaleChar(Type = GirlType.Good, TempType = TempType.Flowery, bAddTheArticle = True, bAllowClothing = False, bAllowSpecies = False)
+		GangSingShort = char.GangMaleChar(TempType = TempType.Medium,MaleCharType = MaleCharType.GangSingular, bAllowClothing = False,NotList = GangNot)
+		GangSingLong = char.GangMaleChar(TempType = TempType.Flowery,MaleCharType = MaleCharType.GangSingular, bAllowClothing = False,NotList = GangNot)
+		GangPlurShort = char.GangMaleChar(TempType = TempType.Medium,MaleCharType = MaleCharType.GangPlural, bAllowClothing = False,NotList = GangNot)
+		GangPlurLong = char.GangMaleChar(TempType = TempType.Flowery,MaleCharType = MaleCharType.GangPlural, bAllowClothing = False,NotList = GangNot)
+		
+		GangSize = WordList(["Three","Four","Five","Seven","Nine","Ten","A Dozen","Twenty","Two-Dozen","Fifty","One-Hundred"])
 		
 		Tweets = []
 		
-		Tweets.append(GoodGirl.Desc + "\nHas a Gang Bang with\nThe " + MasterGang.Desc) 
-		Tweets.append(BadGirl.Desc + "\nHas a Gang Bang with\nThe " + MasterGang.Desc )
-		Tweets.append(GoodGirl.Desc + "\nGets " + WordList(["Shared","Gang-Banged"]).GetWord() + " By\nThe " + MasterGang.Desc)
-		Tweets.append(BadGirl.Desc + "\nGets " + WordList(["Shared","Gang-Banged"]).GetWord() + " By\nThe " + MasterGang.Desc)
+		Tweets.append(GirlShort.Desc + "\nHas a Gang Bang with\n" + GangSize.GetWord() + " " + GangPlurLong.Desc) 
+		Tweets.append(GirlLong.Desc + "\nHas a Gang Bang with\n" + GangSize.GetWord() + " " + GangPlurShort.Desc)
+		Tweets.append(GirlShort.Desc + "\nGets " + WordList(["Shared","Gang-Banged"]).GetWord() + " By\nThe " + GangSingLong.Desc)
+		Tweets.append(GirlLong.Desc + "\nGets " + WordList(["Shared","Gang-Banged"]).GetWord() + " By\nThe " + GangSingShort.Desc)
+		Tweets.append(GirlShort.Desc + "\nGets " + WordList(["Shared","Gang-Banged"]).GetWord() + " By\n" + GangSize.GetWord() + " " + GangPlurLong.Desc)
+		Tweets.append(GirlLong.Desc + "\nGets " + WordList(["Shared","Gang-Banged"]).GetWord() + " By\n" + GangSize.GetWord() + " " + GangPlurShort.Desc)
 		
 		sTweet = Tweets[randint(0, len(Tweets) - 1)]
 		
 		return sTweet
 		
-# class Generator15(Generator):
-	# # The Small-Town Virgin's First Porno
-	# ID = 15
-	# Priority = 2
+class Generator15(Generator):
+	# The Small-Town Virgin's First Porno
+	ID = 15
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
 		
-		# Girl = FemaleChar(iNumMaxCBits = 3, Type = GirlType.Good, bAddArticle = True, bAllowClothing = False, bAllowSexuality = False, bAllowTitle = False)
+		Girl = char.FemaleChar(Type = GirlType.Good, bAddTheArticle = True, bAllowTitle = False)
 		
-		# sTweet = Girl.Desc + "'s\nFirst Porno"
-		# if CoinFlip():
-			# sTweet += ":\nAn " + self._getFMs_() + " " + self.SubtitleCoda.GetWord()
+		sTweet = Girl.Desc + "\n" + WordList(["Makes a Porno","Makes an Anal Porn Flick",
+											  "Makes a Gangbang Porn Flick","Makes an Interracial Gangbang Porno",
+											  "Becomes an Anal Porn Star","Becomes a Gangbang Porn Star"]).GetWord()
+		if CoinFlip():
+			sTweet += ":\nAn " + self._getFMs_() + " " + self.SubtitleCoda.GetWord()
 
-		# return sTweet
+		return sTweet
 		
 # class Generator16(Generator):
 	# # The Small-Town Virgin's First Time
@@ -458,13 +473,13 @@ class Generator17(Generator):
 		GirlNotList = ["Recently-Divorced","Sassy","Tanned","Kitten","Harem","Ice Queen","MILF"]
 		Subtitles = []
 		
-		Master = MaleChar(iNumMaxCBits = 3)
-		Gang = MaleGangChar(iNumMaxCBits = 3)
+		Master = char.MaleChar()
+		Gang = char.GangMaleChar()
 		
 		VerbNotList = ['Taken']
 		sTweet = self.VerbsBy.GetWord(NotList = VerbNotList) + ":\n"
 		
-		Girl = FemaleChar(iNumMaxCBits = 3, Type = GirlType.Good, NotList = GirlNotList, bAllowClothing = False, bAllowSexuality = False, bAllowGenMod = False, bAllowSpecies = False, bAllowTitle = False)
+		Girl = char.FemaleChar(Type = GirlType.Good, NotList = GirlNotList, bAllowSpecies = False, bAllowTitle = False)
 		Subtitles.append("The " + Girl.Desc + "\n& The " + Gang.Desc)
 		Subtitles.append("The " + Girl.Desc + "\n& The " + Master.Desc)
 		Subtitles.append(AddArticles(Girl.Desc) + "\n" + WordList(['Adventure','Encounter','Liason','Experience','Episode','Rendezvous']).GetWord())
@@ -482,41 +497,42 @@ class Generator18(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		GirlNotList = ["Sex", "Lesbian","BDSM","Tanned","Recently-Divorced","Sassy","Tanned","Kitten","Harem","Ice Queen","MILF"]
-		Girl = FemaleChar(iNumMaxCBits = 3, Type = GirlType.Good, NotList = GirlNotList, bAddEndNoun = False, bAllowMaritalStatus = False, bAllowClothing = False, bAllowSexuality = False, bAllowSpecies = False, bAllowTitle = False)
+		GirlNotList = ["Sex", "Lesbian","BDSM","Tanned","Recently-Divorced","Sassy","Tanned",
+						"Kitten","Harem","Ice Queen","MILF","Nude","Lactating","Lonely","Bare"]
+		Girl = char.FemaleChar(Type = GirlType.Good, NotList = GirlNotList, bAddEndNoun = False, bAllowMaritalStatus = False, bAllowSpecies = False, bAllowTitle = False)
 		
-		sTweet += "\"" + WordList(["S@*#!", "Oh No!", "Uh Oh!", "Whoops!", "WTF?!?", "Oh F*@%!"]).GetWord() + " " 
-		sTweet += "My\n" + Girl.Desc + " " + WordList(["Girlfriend", "Bride", "Wife", "Fiancé", "Daughter", "Step-Daughter", "Sister", "Step-Sister", "Twin Sister", "Mom", "Wife"]).GetWord() + "\n"
+		sTweet += "\"" + WordList(["S@*#!", "Oh No!", "WTF?!?", "Oh F*@%!"]).GetWord() + "\n" 
+		sTweet += "My " + Girl.Desc + " " + WordList(["Girlfriend", "Bride", "Wife", "Fiancé", "Daughter", "Step-Daughter", "Sister", "Step-Sister", "Twin Sister", "Mom", "Wife"]).GetWord() + "\n"
 		sTweet += "Is " + WordList(["A Porn Star", "A Lesbian", "A Call-Girl", "A Stripper", "A Whore", "A Dominatrix", "An Anal Whore", 
 									"An Anal Porn Star", "An Erotic Model", "A Kinky Fetish Model", "A Slut", "A Butt Slut", "A High-Class Hooker",
 									"A Slutty Bikini Model", "A Wanton Slut", "An Erotica Author"]).GetWord() + "!\""
 		
 		return sTweet
 		
-class Generator19(Generator):
-	# Full Frontal for the Shy Amish Virgin: A BDSM Romance
-	ID = 19
-	Priority = 1
+# class Generator19(Generator):
+	# # Full Frontal for the Shy Amish Virgin: A BDSM Romance
+	# ID = 19
+	# Priority = 1
 	
-	def GenerateTweet(self):
-		super().GenerateTweet()
-		sTweet = ""
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
 		
-		Girl = FemaleChar(iNumMaxCBits = 3, Type = GirlType.Good, NotList = ["Naked", "Nude", "Nudist"], bAddArticle = True)
-		Master = MaleChar(iNumMaxCBits = 3)
-		
-		if CoinFlip():
-			sTweet = "Full Frontal Nudity for\n" + Girl.Desc
-		else:
-			if CoinFlip():
-				sTweet = WordList(["Naked in Public", "Stripped Bare", "Stripped Naked", "Stripped in Public", "Commanded to Strip", "Commanded to Strip in Public", "Forced to Go Naked in Public", "Ordered to Strip"]).GetWord() + " " + WordList(["For\nThe", "For\nMy"]).GetWord() + " " + Master.Desc
-			else:
-				sTweet = WordList(["Stripped Bare", "Stripped Naked", "Stripped in Public", "Commanded to Strip", "Commanded to Strip in Public", "Forced to Go Naked in Public", "Ordered to Strip"]).GetWord() + " " + WordList(["By\nThe", "By\nMy"]).GetWord() + " " + Master.Desc
+		# Girl = char.FemaleChar(Type = GirlType.Good, NotList = ["Naked", "Nude", "Nudist"], bAddTheArticle = True, bAllowRelate = True)
+		# Master = char.MaleChar()
 		
 		# if CoinFlip():
-			# sTweet += ":\n" + WordList(["An " + self._getFMs_(), "A BDSM", "A Taboo", "A Forbidden", "A Secret", "A Submissive"]).GetWord() + " " + self.SubtitleCoda.GetWord()
+			# sTweet = "Full Frontal Nudity for\n" + Girl.Desc
+		# else:
+			# if CoinFlip():
+				# sTweet = WordList(["Naked in Public", "Stripped Bare", "Stripped Naked", "Stripped in Public", "Commanded to Strip", "Commanded to Strip in Public", "Forced to Go Naked in Public", "Ordered to Strip"]).GetWord() + " " + WordList(["For\nThe", "For\nMy"]).GetWord() + " " + Master.Desc
+			# else:
+				# sTweet = WordList(["Stripped Bare", "Stripped Naked", "Stripped in Public", "Commanded to Strip", "Commanded to Strip in Public", "Forced to Go Naked in Public", "Ordered to Strip"]).GetWord() + " " + WordList(["By\nThe", "By\nMy"]).GetWord() + " " + Master.Desc
 		
-		return sTweet
+		if CoinFlip():
+			sTweet += ":\n" + WordList(["An " + self._getFMs_(), "A BDSM", "A Taboo", "A Forbidden", "A Secret", "A Submissive"]).GetWord() + " " + self.SubtitleCoda.GetWord()
+		
+		# return sTweet
 		
 class Generator20(Generator):
 	# I Was Stripped In Public, And I Liked It
@@ -526,8 +542,8 @@ class Generator20(Generator):
 	def GenerateTweet(self):
 		super().GenerateTweet()
 		
-		Master = MaleChar(iNumMaxCBits = 3, bAllowGang = False, bAddArticle = False, bAllowRelate = False)
-		Gang = MaleGangChar(iNumMaxCBits = 3, bAddArticle = False)
+		Master = char.MaleChar(bAllowGang = False, bAddAnArticle = True, bAllowRelate = True)
+		Gang = char.GangMaleChar(bAddAnArticle = True)
 		
 		sTweet = ""
 
@@ -535,10 +551,10 @@ class Generator20(Generator):
 		sTweet = "\"I Was " + sVerbBy
 		sTweet += " By\n"
 		if CoinFlip():
-			sTweet += AddArticles(Master.Desc)
+			sTweet += Master.Desc
 		else:
 			sTweet += Gang.Desc
-		sTweet += ",\nAnd I Liked It\""
+		sTweet += ",\nAnd I Liked It!\""
 
 		return sTweet
 		
@@ -551,12 +567,10 @@ class Generator21(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		Master = MaleChar(iNumMaxCBits = 3, bAddArticle = True)
+		Master = char.MaleChar(bAddTheArticle = True, bAllowRelate = True)
 		
-		Girl = FemaleChar(iNumMaxCBits = 3)
 		sTweet = self.VerbsBy.GetWord()  + " By\n"
 		sTweet += Master.Desc 
-		#sTweet += AddArticles(Girl.Desc) + " " + self.SubtitleCoda.GetWord()
 		
 		return sTweet
 		
@@ -4710,7 +4724,7 @@ class Generator1001(Generator):
 							bAddAnArticle = True, 
 							bAllowGang = False,
 							bAllowTrope = True,
-							SelectTemplateID = 136)
+							SelectTemplateID = 140)
 		Gang = char.MaleChar(TempType = TempType.Flowery,
 							 bAddAnArticle = True,
 							 bAllowGang = True)

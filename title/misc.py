@@ -1137,7 +1137,6 @@ class TropesMale(WordList):
 			'Single Dad',
 			'Silver Fox',
 			'Smooth Operator',
-			'Space',
 			'Stallion',
 			'Stalker',
 			'Stud',

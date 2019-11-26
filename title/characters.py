@@ -129,9 +129,15 @@ class CharTemplate():
 		noun.SetNoun()
 		self.Noun = noun
 		
-		adjlist.sort(key = self.entry_key)
+		#adjlist.sort(key = self.entry_key)
+		self._AdjList = []
+		i = 0
+		while i < len(adjlist):
+			adjlist[i].priority = i
+			self._AdjList.append(adjlist[i])
+			i = i + 1
 		
-		self._AdjList = adjlist 
+		#self._AdjList = adjlist 
 		
 		if bpersonal:
 			self.IsPersonal = True
@@ -565,17 +571,6 @@ class Character():
 			
 		return variant 
 		
-	def IsTemplateExcluded(self, template, exclusionlist):
-		bIsTemplateExcluded = False 
-		
-		for item in exclusionlist:
-			if template.HasCharBit(exclusionlist):
-				bIsTemplateExcluded = True 
-				#print("==<<COLLISION!! IsVariantExcluded found " + str(item) + " == " + str(template) + " >>==")
-				break
-		
-		return bIsTemplateExcluded
-		
 	def IsVariantExcluded(self, variant, exclusionlist):
 		bIsVariantExcluded = False 
 		
@@ -619,6 +614,8 @@ class Character():
 			
 	def SetCharDesc(self, TemplateList, 
 						  ExclusionList, 
+						  TempType = TempType.Flowery,
+						  GirlType = GirlType.Neutral,
 						  NotList = None, 
 						  bAddEndNoun = True, 
 						  bAddAnArticle = False, 
