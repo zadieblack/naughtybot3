@@ -21,22 +21,17 @@ MaleCBitHistoryQ = HistoryQ(10)
 
 class CharBit():
 	def __init__(self, charlist, gen = Gender.Neuter):
-		#print("CharBit started")
 		self.Gender = gen 
 		
 		if isinstance(charlist,str):			#initialize with a string
 			self._CharList = WordList([charlist])
-			#print("CharBit().__init__(): Initialized with a string, \"" + charlist + "\"")
 		elif isinstance(charlist,list):			#initialize with a list
 			self._CharList = WordList(charlist)
-			#print("CharBit().__init__(): Initialized with a List, " + str(charlist))
 		elif isinstance(charlist,WordList):		#initialize with a WordList
 			self._CharList = charlist
-			#print("CharBit().__init__(): Initialized with a WordList, " + str(charlist.GetWordList()))
 		else:									#shrug
 			self._CharList = WordList([])
-			#print("CharBit().__init__(): Initialized with other")
-		#print("CharBit()__init__(): _CharList = " + str(self._CharList) + ".")
+
 		self._IsNoun = False 
 		
 	def IsNoun(self):
@@ -47,12 +42,10 @@ class CharBit():
 		
 	def HasCharBit(self, exclusionlist):
 		bHasCharBit = False 
-		#print("CharBit.HasCharBit() started. excludedcarbits: " + str(excludedcharbits))
+		
 		if isinstance(exclusionlist, list):
 			for item in exclusionlist:
-				#print("CharBit: checking self \"" + str(self.__class__) + "\" against \"" + str(item.__class__) + "\"")
 				if self.__class__ == item.__class__:
-					#print("==<< CharBit Excluded charbit match found! >>==")
 					bHasCharBit = True 
 					
 		return bHasCharBit
@@ -64,15 +57,11 @@ class CharBit():
 			
 		if isinstance(self._CharList, WordList):
 			sResult = self._CharList.GetWord(NotList = NotList)
-		# else:
-			# print("CharBit().Get(): WARNING: _CharList is not a WordList. Type is " + str(self_.CharList))
-		
-		# print("CharBit().Get(): " + sResult + ".")
+
 		return sResult
 
 class CTEntry():
 	def __init__(self, charbits, orderno):
-		#print("CTEntry started, order no = " + str(orderno) + ", charbits = " + str(charbits))
 		if isinstance(charbits, list):
 			self.CharBits = WordList()
 			for item in charbits:
@@ -97,10 +86,8 @@ class CTEntry():
 		
 		if self.CharBits is not None and isinstance(self.CharBits, WordList):
 			for item in self.CharBits.GetWordList():
-				#print("CTEntry: Checking excluded item " + str(charbit.__class__) + " against charbit " + str(item.__class__) + ".\n")
 				if charbit.__class__ == item.__class__:
 					bHasCharBit = True
-					#print("==<< CTEntry: Excluded adjective match found! >>==")
 					break
 					
 		return bHasCharBit
@@ -145,13 +132,11 @@ class CharTemplate():
 			self.IsPersonal = False 
 	
 	def GetShortVariant(self):
-		#print("CharTemplate.GetShortVariant() started")
 		variant = []
 		variant.append(self.Noun)
 		return variant
 			
 	def GetMediumVariant(self):
-		#print("CharTemplate.GetMediumVariant() started")
 		variant = []
 		if isinstance(self._AdjList, list):
 			if len(self._AdjList) > 1:
@@ -166,7 +151,6 @@ class CharTemplate():
 		return variant
 			
 	def GetFloweryVariant(self):
-		#print("CharTemplate.GetFloweryVariant() started")
 		variant = []
 		if isinstance(self._AdjList, list):
 			if len(self._AdjList) > 2:
@@ -599,13 +583,14 @@ class Character():
 				sNounDesc = Noun.Get(NotList = NotList)
 
 				NotList = NotList + (re.findall(r"[\w']+", sNounDesc))
-			for charbit in variant[:-1]:
-				if sDesc != "":
-					sDesc += " "
-				sAdjDesc = charbit.Get(NotList = NotList)
-				for s in re.findall(r"[\w']+",sAdjDesc):
-					NotList.append(s)
-				sDesc += sAdjDesc
+			if len(variant) > 1:	
+				for charbit in variant[:-1]:
+					if sDesc != "":
+						sDesc += " "
+					sAdjDesc = charbit.Get(NotList = NotList)
+					for s in re.findall(r"[\w']+",sAdjDesc):
+						NotList.append(s)
+					sDesc += sAdjDesc
 			if sDesc != "" and sNounDesc != "":
 				sDesc += " " 
 			sDesc += sNounDesc 

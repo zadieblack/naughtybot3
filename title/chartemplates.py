@@ -1629,7 +1629,7 @@ class MaleTropeTemplate140(MaleTropeTemplate):
 
 # === Male Species Templates ===	
 							
-class MaleSpeciesTemplate1(MaleTropeTemplate):
+class MaleSpeciesTemplate1(MaleSpeciesTemplate):
 	def __init__(self):
 		super().__init__(	noun = TropeBitMale("Space Alien"),
 							 id = 301, 
@@ -1643,7 +1643,7 @@ class MaleSpeciesTemplate1(MaleTropeTemplate):
 										],
 							NotList = ["bald","hairy","graying","shah","shave","beard"])
 
-class MaleSpeciesTemplate2(MaleTropeTemplate):
+class MaleSpeciesTemplate2(MaleSpeciesTemplate):
 	def __init__(self):
 		super().__init__(	noun = TropeBitMale("Centaur"),
 							 id = 302, 
@@ -1660,7 +1660,7 @@ class MaleSpeciesTemplate2(MaleTropeTemplate):
 							NotList = ["S.W.A.T.","nudist","college","young","teen","fashion","stylish",
 										"peasant","butler","farmer","stable boy"])
 
-class MaleSpeciesTemplate3(MaleTropeTemplate):
+class MaleSpeciesTemplate3(MaleSpeciesTemplate):
 	def __init__(self):
 		super().__init__(	noun = TropeBitMale("Cyborg"),
 							 id = 303, 
@@ -1677,7 +1677,7 @@ class MaleSpeciesTemplate3(MaleTropeTemplate):
 										"peasant","butler","farmer","stable boy","rebel",
 										"barbarian","dapper"])										
 
-class MaleSpeciesTemplate4(MaleCharTemplate):
+class MaleSpeciesTemplate4(MaleSpeciesTemplate):
 	def __init__(self):
 		super().__init__(	noun = TropeBitMale("Demon"),
 							 id = 304, 
@@ -1690,7 +1690,7 @@ class MaleSpeciesTemplate4(MaleCharTemplate):
 										],
 							NotList = ["rebel","young","teen","college","bald"])
 
-class MaleSpeciesTemplate5(MaleCharTemplate):
+class MaleSpeciesTemplate5(MaleSpeciesTemplate):
 	def __init__(self):
 		super().__init__(	noun = TropeBitMale("Dinosaur"),
 							 id = 305, 
@@ -1707,7 +1707,7 @@ class MaleSpeciesTemplate5(MaleCharTemplate):
 							NotList = ["man","boy","beard","shave","clean-cut","hairy",
 										"single"])
 
-class MaleSpeciesTemplate6(MaleCharTemplate):
+class MaleSpeciesTemplate6(MaleSpeciesTemplate):
 	def __init__(self):
 		super().__init__(	noun = TropeBitMale("Dwarf"),
 							 id = 306, 
@@ -1723,7 +1723,7 @@ class MaleSpeciesTemplate6(MaleCharTemplate):
 							NotList = ["boy","shave","shaved","shaven","clean-cut","hairy",
 										"single"])
 
-class MaleSpeciesTemplate7(MaleCharTemplate):
+class MaleSpeciesTemplate7(MaleSpeciesTemplate):
 	def __init__(self):
 		super().__init__(	noun = TropeBitMale("Gargoyle"),
 							 id = 307, 
@@ -1740,7 +1740,7 @@ class MaleSpeciesTemplate7(MaleCharTemplate):
 										"fashionable","stylish","bearded","lanky","taboo",
 										"peasant","rangy"])
 
-class MaleSpeciesTemplate8(MaleTropeTemplate):
+class MaleSpeciesTemplate8(MaleSpeciesTemplate):
 	def __init__(self):
 		super().__init__(	noun = TropeBitMale("Goat-Man"),
 							 id = 308, 

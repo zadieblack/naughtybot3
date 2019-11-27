@@ -341,37 +341,42 @@ class Generator10(Generator):
 
 		return sTweet
 		
-# class Generator11(Generator):
-	## The Millionaire Sherrif's Virgin
-	# ID = 11
-	# Priority = 2
+class Generator11(Generator):
+	# The Millionaire Sherrif's Virgin
+	ID = 11
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
 		
-		# Master = char.MaleChar(TempType = TempType.Medium)
-		# Girl = char.FemaleChar(bAllowRelate = True)
+		Relations = title.misc.RelateFemale()
+		Gerunds = self.Gerunds
 		
-		# sTweet = "The " + Master.Desc + "'s\n" + Girl.Desc
+		sTweet = Gerunds.GetWord() + " My " + char.FemaleChar(bAddEndNoun = False, bAllowSpecies = False, 
+																bAllowRelate = False, bAllowAge = False).Desc + " " 
+		sTweet += Relations.GetWord(NotList = ['Girlfriend', 'Wife', 'Mistress','Concubine'])
 
-		# return sTweet
+		return sTweet
 		
-# class Generator12(Generator):
-	# # Babysitter to the Billionaire Uniporn
-	# ID = 12
-	# Priority = 2
+class Generator12(Generator):
+	# Babysitter to the Billionaire Uniporn
+	ID = 12
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
 		
-		# Girl = FemaleChar(iNumMaxCBits = 2)
-		# Master = MaleChar(iNumMaxCBits = 2, bAddArticle = True)
-		
-		# sTweet = Girl.Desc + "\nto\n" + Master.Desc
-		
-		# return sTweet
+		RelNotList = NotList = ["Wife","Girlfriend","Mistress","Concubine","Daughter's Best Friend"]
+		Relations = title.misc.RelateFemale()
+		Gerunds = self.Gerunds
+
+		sTweet = Gerunds.GetWord() + " "  + self.HerName + ":\n" 
+		sTweet += AddArticles(Relations.GetWord(NotList = RelNotList), bMakeUpper = True) + " " 
+		sTweet += self.SubtitleCoda.GetWord()
+
+		return sTweet
 		
 class Generator13(Generator):	
 	# I Was an Escort for a Billionaire Uniporn
@@ -443,23 +448,42 @@ class Generator15(Generator):
 
 		return sTweet
 		
-# class Generator16(Generator):
-	# # The Small-Town Virgin's First Time
+class Generator16(Generator):
+	# The Small-Town Virgin's First Time
 		
-	# ID = 16
-	# Priority = 2
+	ID = 16
+	Priority = 2
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
 		
-		# Girl = FemaleChar(iNumMaxCBits = 3, Type = GirlType.Good, NotList = ["MILF", "Concubine", "Wife", "Pregnant", "Mom", "Sex", "Divorced", "Virgin"], bAddArticle = True, bAddEndNoun = False, bAllowMaritalStatus = False, bAllowTitle = False)
-
-		# sTweet = Girl.Desc + " " + WordList(["Virgin", "Virgin", "Virgin", "Anal Virgin"]).GetWord() + "'s\nFirst Time"
-		# if CoinFlip():
-			# sTweet += ":\n" + WordList(["A " + self._getFMs_(), "A BDSM", "A Secret", "An S&M", "A Rough Sex", "An Anal", "A Gang-Bang"]).GetWord() + " " + self.SubtitleCoda.GetWord()
-
-		# return sTweet
+		# My New Step-Dad Is A Visibly-Erect Centaur
+	ID = 38
+	Priority = 3
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		Tweets = []
+		
+		RelNotList = ['Wife', 'Girlfriend', 'Fiancé','Concubine','Mistress']
+		Relations = title.misc.RelateFemale()
+		Verbs = WordList(["Boned","Banged","Humped","Had Sex With","Went Down On","Sixty-Nined","Ate Out",
+						  "Boinked","Jizzed On","Finger-Banged","Fisted","Did"])
+		FemNotList = ["BDSM","little"]
+		StepMom = char.FemaleChar(TempType = TempType.Medium, bAddEndNoun = False, NotList = FemNotList,
+									bAllowMaritalStatus = False, bAllowRelate = False, bAllowSpecies = False,
+									bAllowAge = False)
+		
+		sTweet += "\"Oh No! I Went to " + WordList(["an Orgy","a Swinger's Party","a Wild Sex Party"]).GetWord() + "\n"
+		if randint(1,4) == 1:
+			sTweet += "And I Accidentally\nAte My " + StepMom.Desc + " " + Relations.GetWord(NotList = RelNotList) + "'s Ass!\""
+		else:
+			sTweet += "And I Accidentally\n" + Verbs.GetWord() + " " 
+			sTweet += "My " + StepMom.Desc + " " + Relations.GetWord(NotList = RelNotList) + "!\""
+		return sTweet
 		
 class Generator17(Generator):
 	# Enslaved: The Ebony Older Woman & The Mountain Man Biker Gang 
@@ -786,7 +810,7 @@ class Generator30(Generator):
 		Girl = char.FemaleChar(Type = GirlType.Good, NotList = NotGirlList,
 							bAllowSpecies = False, bAllowSexuality = False, bAllowClothing = False, bAllowTitle = False, 
 							bAllowAttitude = False, bAllowPhysChar = False,
-							bAddArticle = True) 
+							bAddTheArticle = True) 
 		
 		sTweet = sAdj1 + " & " + sAdj2 + ":\n"
 		sTweet += Girl.Desc + "\n"
@@ -1061,7 +1085,7 @@ class Generator36(Generator):
 		return sTweet
 		
 class Generator37(Generator):
-	# Showering With My Step-Mom
+	# 
 	ID = 37
 	Priority = 3
 	
@@ -1069,18 +1093,20 @@ class Generator37(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		Tweets = []
-		
-		Relations = title.misc.RelateFemale()
+		NotList = ['Husband', 'Boyfriend', 'Hubby', 'Widower', 'Fiancé']
+		Relations = title.misc.RelateMale()
+		DickWords = WordList(["Boner","Cock","Dick","Penis","Schlong","Tool","Package","Erection"])
 		Gerunds = self.Gerunds
+		Dad = char.MaleChar(bAddEndNoun = True, bAllowGang = False, 
+							bAllowMaritalStatus = False, bAllowRelate = False,
+							bAllowAge = False, bAllowDickChar = False)
 		
-		Tweets.append("My " + FemaleChar(bAddEndNoun = False).Desc + " " + Relations.GetWord(NotList = ['Girlfriend', 'Wife', 'Mistress']) + ":\n" + AddArticles(WordList(['Taboo', 'Taboo', 'Naughty', 'Forbidden', 'Secret', 'Erotic', 'Steamy']).GetWord()) + " " + self.SubtitleCoda.GetWord())
-		Tweets.append(Gerunds.GetWord() + " My " + FemaleChar(bAddEndNoun = False).Desc + " " + Relations.GetWord(NotList = ['Girlfriend', 'Wife', 'Mistress']))
-		Tweets.append("My " + Relations.GetWord() + "\nIs A\n" + FemaleChar(bAddEndNoun = True).Desc)
-		Tweets.append(Gerunds.GetWord() + " "  + self.HerName + ":\n" + AddArticles(Relations.GetWord(NotList = ['Wife','Girlfriend', 'Mistress'])) + " " + self.SubtitleCoda.GetWord())
-		
-		
-		sTweet = Tweets[randint(0, len(Tweets) - 1)]
+		sTweet += "My New " + Relations.GetWord(NotList = NotList) + " Is\n" + AddArticles(Dad.Desc, bMakeUpper = True)
+		if CoinFlip():
+			sTweet += "\nand " + WordList(["He's Hung Like a Horse",
+											"He Has a Massive " + DickWords.GetWord(),
+											"His " + DickWords.GetWord() + " is ENORMOUS"]).GetWord()
+		sTweet += "!"
 
 		return sTweet
 		
@@ -1097,16 +1123,14 @@ class Generator38(Generator):
 		
 		NotList = ['Husband', 'Boyfriend', 'Hubby', 'Widower', 'Fiancé']
 		Relations = title.misc.RelateMale()
-		Gerunds = self.Gerunds
+		VerbsBy = WordList(["I'm In Love With", "I Have A Crush On", "I Slept With", "I'm Being Blackmailed By", 
+							"I'm Horny For", "I'm Turned On By","I Showered Naked With",
+							"I Did a Strip-Tease For","I French-Kissed", "I Sexted"])
+		Dad = char.MaleChar(bAddEndNoun = False, bAllowGang = False, bAllowMaritalStatus = False)
 		
-		Tweets.append("Me And My\n" + MaleChar(bAddEndNoun = False, bAllowGang = False, bAllowMaritalStatus = False).Desc + " " + Relations.GetWord(NotList = NotList) + ":\n" + AddArticles(WordList(['Taboo', 'Taboo', 'Naughty', 'Forbidden', 'Secret', 'Erotic', 'Steamy']).GetWord()) + " " + self.SubtitleCoda.GetWord())
-		Tweets.append(self.VerbsBy.GetWord() + " By My " + MaleChar(bAddEndNoun = False, bAllowGang = False, bAllowMaritalStatus = False).Desc + " " + Relations.GetWord(NotList = NotList))
-		Tweets.append(self.VerbsTo.GetWord() + " To My " + MaleChar(bAddEndNoun = False, bAllowGang = False, bAllowMaritalStatus = False).Desc + " " + Relations.GetWord(NotList = NotList))
-		Tweets.append("My New " + Relations.GetWord() + "\nIs A\n" + MaleChar(bAddEndNoun = True, bAllowGang = False, bAllowMaritalStatus = False).Desc)
-		Tweets.append(self.VerbsBy.GetWord() + " By My " + Relations.GetWord(NotList = NotList) + ":\n" + AddArticles(MaleChar(bAllowGang = False, bAllowMaritalStatus = False).Desc) + " " + self.SubtitleCoda.GetWord())
-		Tweets.append("\"Oh No! " + WordList(["I'm In Love With", "I Have A Crush On", "I Slept With", "I'm Being Blackmailed By", "I'm Horny For", "I'm Turned On By"]).GetWord() + " My " + MaleChar(bAddEndNoun = False, bAllowGang = False, bAllowMaritalStatus = False).Desc + " " + Relations.GetWord(NotList = NotList) + "\"!")
-		
-		sTweet = Tweets[randint(0, len(Tweets) - 1)]
+		sTweet += "\"Oh No! " + VerbsBy.GetWord() + " "
+		sTweet += "My " + Dad.Desc + " " 
+		sTweet += Relations.GetWord(NotList = NotList) + "!\""
 
 		return sTweet
 		
@@ -1120,17 +1144,24 @@ class Generator39(Generator):
 		sTweet = ""
 		
 		Tweets = []
-		NotList = ["Big", "Black", "BBC"]
+		NotList = ["Big", "Black", "BBC", "Cock"]
+		BBCNoNoun = char.MaleChar(bAddEndNoun = False, TempType = TempType.Flowery, NotList = NotList, 
+									bAllowAge = False, bAllowNation = False, bAllowSkinHairColor = False, 
+									bAllowSpecies = False, bAllowDickChar = False)
+		BBCNoun = char.MaleChar(TempType = TempType.Short, NotList = NotList, 
+									bAllowAge = False, bAllowNation = False, bAllowSkinHairColor = False, 
+									bAllowSpecies = False, bAllowDickChar = False)
+		InnocentGirl = char.FemaleChar(Type = GirlType.Good, NotList = ["Black", "Ebony"], bAllowSpecies = False)
 		
-		Tweets.append(self.VerbsBy.GetWord() + " by the\nBig Black " + MaleChar(NotList = NotList, bAllowAge = False, bAllowNation = False, bAllowSkinHairColor = False).Desc)
-		Tweets.append(self.VerbsTo.GetWord() + " to the\nBig Black " + MaleChar(NotList = NotList, bAllowAge = False, bAllowNation = False, bAllowSkinHairColor = False).Desc)
-		Tweets.append(self.HerName + " Gets " + self.VerbsBy.GetWord() + "\nby the\nBig Black " + MaleChar(NotList = NotList, bAllowAge = False, bAllowNation = False, bAllowSkinHairColor = False).Desc)
-		Tweets.append(self.HerName + " Gets " + self.VerbsTo.GetWord() + "\nto the\nBig Black " + MaleChar(NotList = NotList, bAllowAge = False, bAllowNation = False, bAllowSkinHairColor = False).Desc)
-		Tweets.append(self.HerName + " and the\nBig Black " + MaleChar(NotList = NotList, bAllowAge = False, bAllowNation = False, bAllowSkinHairColor = False).Desc)
-		Tweets.append(self.HerName + " Goes Black for the\n" + MaleChar(NotList = NotList, bAddEndNoun = False, bAllowAge = False, bAllowNation = False, bAllowSkinHairColor = False).Desc + " BBC")
-		Tweets.append(FemaleChar(Type = GirlType.Good, bAddArticle = True, NotList = ["Black", "Ebony"]).Desc + "\nGoes Black")
+		Tweets.append(self.VerbsBy.GetWord() + " by the\n" + BBCNoNoun.Desc + " Big Black Cock " + BBCNoun.Desc)
+		Tweets.append(self.VerbsTo.GetWord() + " to the\n" + BBCNoNoun.Desc + " Big Black Cock " + BBCNoun.Desc)
+		Tweets.append(self.HerName + " Gets " + self.VerbsBy.GetWord() + "\nby the\n" + BBCNoNoun.Desc + " Big Black Cock " + BBCNoun.Desc)
+		Tweets.append(self.HerName + " Gets " + self.VerbsTo.GetWord() + "\nto the\n" + BBCNoNoun.Desc + " Big Black Cock " + BBCNoun.Desc)
+		Tweets.append(self.HerName + " and the\n" + BBCNoNoun.Desc + " Big Black Cock " + BBCNoun.Desc)
+		Tweets.append(self.HerName + " Goes Black for the\n" + BBCNoNoun.Desc + " Big Black Cock " + BBCNoun.Desc)
+		Tweets.append("The " + InnocentGirl.Desc + "\nGoes Black")
 
-		sTweet = Tweets[randint(0, len(Tweets) - 1)]
+		sTweet = choice(Tweets)
 		
 		return sTweet
 
@@ -1173,7 +1204,7 @@ class Generator41(Generator):
 		return sTweet
 		
 class Generator42(Generator):
-	# Charmed by the Hot Italian Count
+	# Deflowered in the Pleasure Gardens of the Studly Bare-Chested Pirate Count
 	ID = 42
 	Priority = 2
 	
@@ -1181,19 +1212,19 @@ class Generator42(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		NotList = ["Sold", "Hotwifed", "Humiliated", "Massaged"]
+		VNotList = ["Sold", "Hotwifed", "Humiliated", "Massaged"]
 		Nation = title.misc.NationMale()
 		Title = title.misc.TitlesMale()
+		SexPlaces = WordList(["Bed", "Dungeon", "Sex Dungeon", "Pleasure Gardens", "Harem"])
+		Master = char.MaleChar(bAddEndNoun = False, bAllowTrope = False, bAllowRelate = False, 
+								bAllowMaritalStatus = False, bAllowAge = False, bAllowProf = False, 
+								bAllowSpecies = False,bAllowTypeMod = False, bAllowTitle = False)
 		
-		Master = MaleChar(iNumMaxCBits = 2, bAddEndNoun = False, bAllowRelate = False, bAllowMaritalStatus = False, bAllowNation = False, bAllowTitle = False, bAllowAge = False, bAllowProf = False)
-		
-		Tweets = []
-		
-		Tweets.append(self.VerbsBy.GetWord(NotList = ["Sold", "Hotwifed", "Humiliated", "Massaged"]) + "\nby the\n" + Master.Desc + " " + Nation.GetWord() + " " + Title.GetWord())
-		Tweets.append("In the " + WordList(["Bed", "Bed", "Dungeon", "Sex Dungeon", "Pleasure Gardens", "Harem"]).GetWord() + " of the\n" + Master.Desc + " " + Nation.GetWord() + " " + Title.GetWord())
-		Tweets.append(self.VerbsBy.GetWord(NotList = ["Sold", "Hotwifed", "Public"]) + "\nin the " + WordList(["Bed", "Bed", "Dungeon", "Sex Dungeon", "Pleasure Gardens", "Harem"]).GetWord() + " of the\n" + Master.Desc + " " + Nation.GetWord() + " " + Title.GetWord())
+		sTweet = self.VerbsBy.GetWord(NotList = ["Sold", "Hotwifed", "Public"]).upper() + "\n"
+		sTweet += "in the " + SexPlaces.GetWord() + " of the\n" 
+		sTweet += Master.Desc + " " + Title.GetWord()
 
-		return Tweets[randint(0, len(Tweets) - 1)]
+		return sTweet
 
 class Generator43(Generator):
 	# Secret Baby for the Well-Hung Italian Count 
