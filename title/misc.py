@@ -753,7 +753,6 @@ class PhysCharMale(WordList):
 			'Hunky',
 			'Husky',
 			'Lanky',
-			'Muscled',
 			'Muscular','Muscular',
 			'Mustachioed',
 			'Rangy',
