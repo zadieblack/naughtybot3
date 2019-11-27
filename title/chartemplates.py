@@ -756,6 +756,20 @@ class FemBadTropeTemplate21(FemTropeTemplate):
 										], 
 							girltype = GirlType.Bad,
 							NotList = ['Christian','Mormon'])	
+
+class FemBadTropeTemplate22(FemTropeTemplate):
+	def __init__(self):
+		super().__init__(	 noun = TropeBitBadFemale("Nymphomaniac"),
+							 id = 222, 
+							 adjlist = 	[ 
+										  CTEntry([AttitudeBadFemale],9),
+										  CTEntry([PhysCharFemale],8),
+										  CTEntry([ClothingFemale],7),
+										  CTEntry([NationFemale,SkinHairColorFemale],6),
+										  CTEntry([SexualityFemale],3)
+										], 
+							girltype = GirlType.Bad,
+							NotList = ["virgin"])
 				
 # === Species templates ===
 
