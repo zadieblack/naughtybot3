@@ -374,15 +374,31 @@ class PregState(WordList):
 # nurse, flight-attendant, etc
 class ProfGoodFemale(WordList):
 	def __init__(self):
+		super().__init__(ProfNeutralFemale().GetWordList())
+			
+class ProfFantasyFemale(WordList):
+	def __init__(self):
+		super().__init__(['Lady',
+			'Maid',
+			'Milk Maid',
+			'Servant',
+			'Slave Girl'])
+			
+
+# porn star, call girl, escort, etc
+class ProfNeutralFemale(WordList):
+	def __init__(self):
 		super().__init__(['Airline Stewardess',
-			'Babysitter',
 			'Ballerina',
+			'Babysitter',
 			'Barista',
+			'Bikini Model',
 			'Cheerleader',
 			'Co-ed',
 			'College Girl',
 			'Fashion Model',
 			'Flight Attendant',
+			'French Maid',
 			'Gymnast',
 			'House Maid',
 			'Housewife',
@@ -390,16 +406,14 @@ class ProfGoodFemale(WordList):
 			'Librarian',
 			'Masseuse',	
 			'Maid',
-			'Milk Maid',
 			'Mommy Blogger',
 			'Nanny',
 			'Nun',
 			'Nurse','Nurse',
 			'Nursing Student',
-			'Secretary','Secretary',
-			'Servant',
 			'Schoolgirl',
 			'School-marm',
+			'Secretary','Secretary',
 			'Stay-at-Home Mom',
 			'Supermodel',
 			'Teacher',
@@ -407,39 +421,55 @@ class ProfGoodFemale(WordList):
 			'Yoga Instructor'])
 			
 # porn star, call girl, escort, etc
-class ProfBadFemale(WordList):
+class ProfVeryBadFemale(WordList):
 	def __init__(self):
 		super().__init__(['Amateur Porn Star',
-			'Anal Whore',
-			'Bikini Model',
+			'Anal Whore',		
 			'Call-Girl','Call-Girl',
-			'Club Dancer',
-			'Cheerleader',
+			'Club Dancer',		
 			'Dominatrix',
-			'Escort',
-			'Fashion Model',
+			'Escort',		
 			'Fetish Model',
-			'French Maid',
-			'Gymnast',
-			'Hooter\'s Waitress',
-			'Housewife',
+			'Hooter\'s Waitress',		
 			'Lingerie Model',
-			'Masseuse',	
-			'Nun',
-			'Nurse',
 			'Penthouse Pet',
 			'Playboy Centerfold',
 			'Pole Dancer',
 			'Porn Star',
-			'Secretary',
 			'Stripper','Stripper',
-			'Supermodel',
 			'Whore'])
+			
+# porn star, call girl, escort, etc
+class ProfBadFemale(WordList):
+	def __init__(self):
+		super().__init__(ProfNeutralFemale().GetWordList() + ProfVeryBadFemale().GetWordList())
 			
 class ProfFemale(WordList):
 	def __init__(self):
 		super().__init__(ProfGoodFemale().List + ProfBadFemale().List)
-		
+
+class NiceGirlNouns(WordList):
+	def __init__(self):
+		super().__init__(["Babysitter",
+						  "Bride",
+						  "Fiancé",
+						  "Girlfriend",
+						  "Governess",
+						  "House Maid",
+						  "Housewife",
+						  "Librarian",
+						  "Maid",
+						  "Piano Teacher",
+						  "Teacher",
+						  "Secretary",
+						  "Schoolgirl",
+						  "Small-Town Girl",
+						  "Stay-at-Home Wife",
+						  "Step-Daughter",
+						  "Step-Mom",
+						  "Step-Sister",
+						  "Wife"])
+						  
 class ProfLesbian(WordList):
 	def __init__(self):
 		super().__init__(['Artist',
