@@ -3368,9 +3368,9 @@ class Generator105(Generator):
 								'Crusader','Cavalier'])
 		Suffixes = WordList(['On the Back of a Horse','In the Ruins of a Castle','In the Castle Dungeon',
 							 'On Top of a Hay Stack','Behind the Chicken Coop','Behind the Cow Shed',
-							 'While her Entire Village Watches',
-							 'and His Band of ' + str(randint(3,12)) + ' Merry Men',
-							 'and His Band of ' + str(randint(3,12)) + ' Merry Men',
+							 'While her Entire Village Watches','On the Back of a Horse',
+							 'and His Band of ' + str(randint(3,20)) + ' Merry Men',
+							 'and His Band of ' + str(randint(3,20)) + ' Merry Men',
 							 'and He Doesn\'t Pull Out!','Even Though She\'s a Nun',
 							 'Even Though She\'s a Virgin','In the Enchanted Forest',
 							 'And Then By His Brother','In the Royal Bedchamber',
@@ -3384,19 +3384,25 @@ class Generator105(Generator):
 							 'While a Unicorn Watches','On the Deck of a Pirate Ship',
 							 'In the Old Castle Ruins','After They Meet on Tinder',
 							 'With a Very Comely Cock','Using a Leather Condom for Protection',
-							 'Wearing an Enchanted Cock Ring'])
+							 'Using a Magical Vibrating Steel Phallus','In the Nunnery',
+							 'Wearing an Enchanted Cock Ring','After He Saves Her From a Flame-Breathing Dragon',
+							 'After He Saves Her From Marrying the Evil Prince'])
 							 
-		ManNotList = ['S.W.A.T. Team','Cyborg','Alien','Single','Taboo','Bareback']
-		Man = MaleChar(iNumMaxCBits = 2, iNumMinCBits = 1, bAddEndNoun = False, bAddArticle = True, NotList = ManNotList,
-						bAllowAge = False, bAllowRelate = False, bAllowProf = False, bAllowTrope = False, bAllowNation = False, bAllowTitle = False, bAllowMaritalStatus = False)
+		ManNotList = ['S.W.A.T. Team','Cyborg','Alien','Single','Taboo','Bareback','Millionaire',
+						'Trillionaire','Gazillionaire','CEO','Billionaire','Hipster']
+		Man = char.MaleChar(bAddEndNoun = False, bAddTheArticle = True, NotList = ManNotList, sPosArticle = "Her",
+							bAllowAge = False, bAllowProf = False, bAllowNation = False, bAllowTitle = False, 
+							bAllowMaritalStatus = False)
 		sDesc = Man.Desc.strip()
 		
-		sTweet = GirlNames.GetWord() + " is Claimed " + Adjs.GetWord() + "\n"
+		sTweet = "Lady " + GirlNames.GetWord() + " is Claimed " + Adjs.GetWord() + "\n"
 		sTweet += "by " + sDesc + " " + MaleNouns.GetWord()
 		sTweet += "\n" + Suffixes.GetWord()
 
 		return sTweet	
-		
+
+# Lady Belle is Claimed Repeatedly
+# by The Tattooed Oiled-Up Barbarian		
 class Generator106(Generator):
 	ID = 106
 	Priority = 2
@@ -3420,12 +3426,15 @@ class Generator106(Generator):
 								'Nobleman','Ruffian','Knave','Wizard','Sorcerer','Viking Warrior',
 								'Crusader','Cavalier'])
 							 
-		ManNotList = ['S.W.A.T. Team','Cyborg','Alien','Single','Taboo','Bareback']
-		Man = MaleChar(iNumMaxCBits = 2, iNumMinCBits = 1, bAddEndNoun = False, bAddArticle = True, NotList = ManNotList,
-						bAllowAge = False, bAllowRelate = False, bAllowProf = False, bAllowTrope = False, bAllowNation = False, bAllowTitle = False, bAllowMaritalStatus = False)
+		ManNotList = ['S.W.A.T. Team','Cyborg','Alien','Single','Taboo','Bareback','Millionaire',
+						'Trillionaire','Gazillionaire','CEO','Billionaire','Hipster']
+		Man = char.MaleChar(bAddEndNoun = False, bAddTheArticle = True, NotList = ManNotList, sPosArticle = "Her",
+							bAllowAge = False, bAllowRelate = False, bAllowProf = False, 
+							bAllowTrope = True, bAllowNation = False, bAllowTitle = False, 
+							bAllowMaritalStatus = False)
 		sDesc = Man.Desc.strip()
 		
-		sTweet = GirlNames.GetWord() + " is Claimed " + Adjs.GetWord() + "\n"
+		sTweet = "Lady " + GirlNames.GetWord() + " is Claimed " + Adjs.GetWord() + "\n"
 		sTweet += "by " + sDesc + " " + MaleNouns.GetWord()
 
 		return sTweet	
@@ -3533,27 +3542,20 @@ class Generator108(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		FemAdjNotList = ['Naked','Nudist', 'Bare-Shaven']
-		Adjs = WordList(title.misc.AttitudeGoodFemale().List + title.misc.PhysCharFemale().List)
-		Nations = WordList(['All-American','Asian','Brazillian','Columbian','Country','Czech',
-							'Eastern European','French','German','Irish','Italian','Japanese',
-							'Korean','Latina','Mexican','Russian','Small-Town','Swedish',
-							'Spanish','Mid-Western'])
-		Jobs = title.misc.ProfGoodFemale()
-		Man = MaleChar(iNumMinCBits = 1, iNumMaxCBits = 3, bAllowGang = False, bAddArticle = False, bAllowRelate = False)
+		FemAdjNotList = ['Naked','Nudist', 'Bare-Shaven','Anal','Polynesian','Japanese','Brazilian',
+						 'Elvish']
+		Girl = char.FemaleChar(SelectTemplateID = 17, bAddTheArticle = True, NotList = FemAdjNotList)
+		Man = char.MaleChar(bAllowGang = False, bAddTheArticle = True, TempType = TempType.Medium, bAllowRelate = False)
 		
-		sTweet = "The "
-		if CoinFlip():
-			sTweet += Adjs.GetWord(NotList = FemAdjNotList) + " "
-		if CoinFlip():
-			sTweet += Nations.GetWord(NotList = FemAdjNotList) + " "
-		sTweet += Jobs.GetWord() + "\n"
+		sTweet = Girl.Desc + "\n"
 		sTweet += WordList(["Makes Love to","Is Ravished by","Jumps into Bed with","Gets Bedded by","Spends the Night with",
-							"Has a Wild Night of Passion with","Has a Forbidden Affair with","Is Claimed by"]).GetWord() + " " 
-		sTweet += AddArticles(Man.Desc) + "!"
+							"Has a Wild Night of Passion with","Has a Forbidden Affair with","Is Claimed by"]).GetWord() + "\n" 
+		sTweet += Man.Desc + "!"
 
 		return sTweet	
-		
+
+# The Modest Swedish Cheerleader
+# Does a Naughty Strip-Tease		
 class Generator109(Generator):
 	ID = 109
 	Priority = 1
@@ -3562,32 +3564,20 @@ class Generator109(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		FemAdjNotList = ['Naked','Nudist']
-		FemAdjs = WordList(title.misc.AttitudeGoodFemale().List + title.misc.PhysCharFemale().List)
-		Nations = WordList(['All-American','Asian','Brazillian','Columbian','Country','Czech',
-							'Eastern European','French','German','Irish','Italian','Japanese',
-							'Korean','Latina','Mexican','Russian','Small-Town','Swedish',
-							'Spanish','Mid-Western'])
-		Jobs = title.misc.ProfGoodFemale()
-		SexyAdjs = WordList(['Sexy','Naughty','Erotic','Dirty','Steamy','Filthy','Shameless'])
+		FemNotList = ['Naked','Nudist','Bikini','Lingerie','Nude']
+		SexyAdjs = WordList(['Sexy','Naughty','Erotic','Dirty','Steamy','Filthy','Shameless','Explicit','X-Rated'])
+		Girl = char.FemaleChar(SelectTemplateID = 17, bAddTheArticle = True, NotList = FemNotList)
 		
-		sGirl = ""
-		if CoinFlip():
-			sGirl += FemAdjs.GetWord(NotList = FemAdjNotList) + " "
-		if CoinFlip():
-			sGirl += Nations.GetWord(NotList = FemAdjNotList) + " "
-		if not sGirl:
-			if CoinFlip():
-				sGirl += FemAdjs.GetWord(NotList = FemAdjNotList) + " "
-			else:
-				sGirl += Nations.GetWord(NotList = FemAdjNotList) + " "
-		sGirl += Jobs.GetWord()
-		
-		sTweet = "The " + sGirl + "\n"
+		sTweet = Girl.Desc + "\n"
 		sTweet += "Does " + AddArticles(SexyAdjs.GetWord()) + " Strip-Tease"
 
 		return sTweet	
 		
+# The Innocent Plump Teacher
+# Deep Throats Al
+# and also Steve
+# AND Chuck
+# not-to-mention Lenny, Will and Zeke!		
 class Generator110(Generator):
 	ID = 110
 	Priority = 1
@@ -3596,44 +3586,47 @@ class Generator110(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		FemAdjNotList = ['Naked','Nudist']
-		FemAdjs = WordList(title.misc.AttitudeGoodFemale().List + title.misc.PhysCharFemale().List)
-		Nations = WordList(['All-American','Asian','Brazillian','Columbian','Country','Czech',
-							'Eastern European','French','German','Irish','Italian','Japanese',
-							'Korean','Latina','Mexican','Russian','Small-Town','Swedish',
-							'Spanish','Mid-Western'])
-		Jobs = title.misc.ProfGoodFemale()
+		FemNotList = ['Naked','Nudist','Nude','Elvish']
+		Girl = char.FemaleChar(SelectTemplateID = 17, bAddTheArticle = True, NotList = FemNotList)
 		SexyAdjs = WordList(['Sexy','Naughty','Erotic','Dirty','Steamy','Filthy','Shameless'])
 		
-		sGirl = ""
-		if CoinFlip():
-			sGirl += FemAdjs.GetWord(NotList = FemAdjNotList) + " "
-		if CoinFlip():
-			sGirl += Nations.GetWord(NotList = FemAdjNotList) + " "
-		if not sGirl:
-			if CoinFlip():
-				sGirl += FemAdjs.GetWord(NotList = FemAdjNotList) + " "
-			else:
-				sGirl += Nations.GetWord(NotList = FemAdjNotList) + " "
-		sGirl += Jobs.GetWord()
-		
-		sTweet = "The " + sGirl + "\n"
-		sTweet += WordList(["Goes Down on","Bends Over for","Drops Her Panties for","Spreads her Cheeks for",
-							"Does " + AddArticles(SexyAdjs.GetWord()) + " Strip-tease for", 
+		sTweet = Girl.Desc + "\n"
+		sTweet += WordList(["Goes Down on","Bends Over for","Drops Her Panties for","Spreads her Ass Cheeks for",
 							"Gets Naked for","Blows","Gives a Handjob to","Lubes Herself Up for",
 							"Flashes her Titties at","Flashes her Coochie at","Pulls Down her Top for",
-							"Shaves Her Muff for"]).GetWord() + " " 
-		sTweet += self.HisName
+							"Shaves Her Muff for","Dry Humps","Twerks her ass for","Twerks Her Bare Ass for",
+							"Gets Claimed Hard by","Gets Taken From Behind by","Does an Erotic Dance for",
+							"Takes Naked Pictures For","Makes a Sex-Tape With","Deep Throats",
+							"Spreads Her Legs For","Sucks Her Own Titties for","Gets Her Bare Bottom Paddled by",
+							"Wears a Remote Vibrator for","Gets Tied Up and Spread for",
+							"Gets Finger-Banged by","Loses Her Virginity to","Showers Naked with",
+							"Gets a Pearl Necklace from","Takes Nude Selfies for",
+							"Plays With Her Titties for","Gives a Rim-Job to","Gets a Facial from",
+							"Gives a Tit-Job to","Gives Head to","Makes Sweet, Sensual Love to",
+							"Has Loving, Passionate Sex with","Shares Her Nubile Young Body with",
+							"Jerks Off","Does Doggy Style with","Shares Her Breast Milk with",
+							"Gets Pounded Hard from Behind by","Shows Her Breast Implants to"]).GetWord() + " " 
+		sName1 = PlainNamesMale().FirstName()
+		sName2 = PlainNamesMale().FirstName(NotList = [sName1])
+		sName3 = PlainNamesMale().FirstName(NotList = [sName1,sName2])
+		sName4 = PlainNamesMale().FirstName(NotList = [sName1,sName2,sName3])
+		sName5 = PlainNamesMale().FirstName(NotList = [sName1,sName2,sName3,sName4])
+		sName6 = PlainNamesMale().FirstName(NotList = [sName1,sName2,sName3,sName4,sName5])
+		
+		sTweet += sName1
+		sTweet += "\nand also " + sName2
+		
 		if CoinFlip():
-			sTweet += "\nand also " + NamesMale().FirstName() 
-			
+			sTweet += "\nAND " + sName3
 			if CoinFlip():
-				sTweet += "\nAND " + NamesMale().FirstName() 
-				
-			sTweet += "!"
+				sTweet += "\nnot-to-mention " + sName4 + ", " + sName5 + " and " + sName6
+			
+		sTweet += "!"
 
 		return sTweet	
-		
+
+# The Bosomy Jewish Teacher
+# Wrestles Another Woman Naked!		
 class Generator111(Generator):
 	ID = 111
 	Priority = 2
@@ -3642,35 +3635,23 @@ class Generator111(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		FemAdjNotList = ['Naked','Nudist']
-		FemAdjs = WordList(title.misc.AttitudeGoodFemale().List + title.misc.PhysCharFemale().List)
-		Nations = WordList(['All-American','Asian','Brazillian','Columbian','Country','Czech',
-							'Eastern European','French','German','Irish','Italian','Japanese',
-							'Korean','Latina','Mexican','Russian','Small-Town','Swedish',
-							'Spanish','Mid-Western'])
-		Jobs = title.misc.ProfGoodFemale()
+		FemNotList = ['Naked','Nudist','Bikini','Lingerie','Nude']
+		SexyAdjs = WordList(['Sexy','Naughty','Erotic','Dirty','Steamy','Filthy','Shameless','Explicit','X-Rated'])
+		Girl = char.FemaleChar(SelectTemplateID = 17, bAddTheArticle = True, NotList = FemNotList)
 		
-		sGirl = ""
-		if CoinFlip():
-			sGirl += FemAdjs.GetWord(NotList = FemAdjNotList) + " "
-		if CoinFlip():
-			sGirl += Nations.GetWord(NotList = FemAdjNotList) + " "
-		if not sGirl:
-			if CoinFlip():
-				sGirl += FemAdjs.GetWord(NotList = FemAdjNotList) + " "
-			else:
-				sGirl += Nations.GetWord(NotList = FemAdjNotList) + " "
-		sGirl += Jobs.GetWord()
-		
-		sTweet = "The " + sGirl + "\n"
-		sTweet += "Tries " + WordList(["a Butt Plug","an Anal Hook","Leather Bondage","Lesbian Sex",
-									   "Butt Stuff","Auto-erotic Asphyxiation","Choking Play",
-									   "a Sex Swing","Scissoring","Tribbing","Deep Throat",
-									   "a Glory Hole","a Swingers Party","Fisting","an Enema",
-									   "Nude Wrestling","Bareback Sex","Doggy Style","Anal"]).GetWord() + "!"
+		sTweet = Girl.Desc + "\n"
+		sTweet += WordList(["Wears a Butt Plug","Wears an Anal Hook","Sixty-Nines Another Woman",
+						    "Does Butt Stuff","Tries Out a Sex Swing","Scissors a Hot Lesbian",
+							"Learns How to Deep Throat","Gives Head Through a Glory Hole",
+							"Attends an Orgy","Gets Fisted","Gets an Enema",
+							"Gets Her Anal Cherry Popped","Takes Off Her Clothes on Stage",
+							"Wrestles Another Woman Naked","Gets Tied Up and Spread",
+							"Goes to Class Naked","Goes to Work Naked","Has Anal Sex"]).GetWord() + "!"
 
 		return sTweet	
-		
+
+# My Tight-Bodied Russian Secretary
+# Isn't Wearing Any Panties!		
 class Generator112(Generator):
 	ID = 112
 	Priority = 1
@@ -3679,31 +3660,17 @@ class Generator112(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		FemAdjNotList = ['Naked','Nudist']
-		FemAdjs = WordList(title.misc.AttitudeGoodFemale().List + title.misc.PhysCharFemale().List)
-		Nations = WordList(['All-American','Asian','Brazillian','Columbian','Country','Czech',
-							'Eastern European','French','German','Irish','Italian','Japanese',
-							'Korean','Latina','Mexican','Russian','Small-Town','Swedish',
-							'Spanish','Mid-Western'])
-		Jobs = title.misc.ProfGoodFemale()
+		FemNotList = ['Naked','Nudist','Bikini','Lingerie','Nude']
+		SexyAdjs = WordList(['Sexy','Naughty','Erotic','Dirty','Steamy','Filthy','Shameless','Explicit','X-Rated'])
+		Girl = char.FemaleChar(SelectTemplateID = 17, NotList = FemNotList)
 		
-		sGirl = ""
-		if CoinFlip():
-			sGirl += FemAdjs.GetWord(NotList = FemAdjNotList) + " "
-		if CoinFlip():
-			sGirl += Nations.GetWord(NotList = FemAdjNotList) + " "
-		if not sGirl:
-			if CoinFlip():
-				sGirl += FemAdjs.GetWord(NotList = FemAdjNotList) + " "
-			else:
-				sGirl += Nations.GetWord(NotList = FemAdjNotList) + " "
-		sGirl += Jobs.GetWord()
-		
-		sTweet = "My " + sGirl + "\n"
+		sTweet = "My " + Girl.Desc + "\n"
 		sTweet += "Isn't Wearing Any Panties!"
 
 		return sTweet	
 		
+# A Wholesome Amish Babysitter
+# Eats Out Jasmine		
 class Generator113(Generator):
 	ID = 113
 	Priority = 1
@@ -3712,34 +3679,21 @@ class Generator113(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 
-		FemAdjNotList = ['Naked','Nudist']
-		FemAdjs = WordList(title.misc.AttitudeGoodFemale().List + title.misc.PhysCharFemale().List)
-		Nations = WordList(['All-American','Asian','Brazillian','Columbian','Country','Czech',
-							'Eastern European','French','German','Irish','Italian','Japanese',
-							'Korean','Latina','Mexican','Russian','Small-Town','Swedish',
-							'Spanish','Mid-Western'])
-		Jobs = title.misc.ProfGoodFemale()
-		SexyAdjs = WordList(['Sexy','Naughty','Erotic','Dirty','Steamy','Filthy','Shameless'])
+		FemNotList = ['Naked','Nudist','Bikini','Lingerie','Nude']
+		SexyAdjs = WordList(['Sexy','Naughty','Erotic','Dirty','Steamy','Filthy','Shameless','Explicit','X-Rated'])
+		Girl = char.FemaleChar(SelectTemplateID = 17, NotList = FemNotList, bAddAnArticle = True)
 		
-		sGirl = ""
-		if CoinFlip():
-			sGirl += FemAdjs.GetWord(NotList = FemAdjNotList) + " "
-		if CoinFlip():
-			sGirl += Nations.GetWord(NotList = FemAdjNotList) + " "
-		if not sGirl:
-			if CoinFlip():
-				sGirl += FemAdjs.GetWord(NotList = FemAdjNotList) + " "
-			else:
-				sGirl += Nations.GetWord(NotList = FemAdjNotList) + " "
-		sGirl += Jobs.GetWord()
-		
-		sTweet = AddArticles(sGirl) + "\n"
+		sTweet = Girl.Desc + "\n"
 		sTweet += WordList(['Scissors','Eats Out','Fists','Finger Bangs','Goes Down On','Seduces',
+							'Eats Out','Showers Naked With','Gives a Rim-Job to','Plays With Her Titties For',
+							'Grinds On','Humps','Gives a Nude Frontal Massage to','Tribs','Fngers',
 							'Has ' + SexyAdjs.GetWord() + ' Lesbian Sex With']).GetWord(NotList = ['Sexy']) + " "
 		sTweet += self.HerName 
 			
 		return sTweet	
-		
+
+# My Classy Eastern European Housewife
+# Is Wearing a Butt Plug!		
 class Generator114(Generator):
 	ID = 114
 	Priority = 1
@@ -3748,39 +3702,23 @@ class Generator114(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		FemAdjNotList = ['Naked','Nudist']
-		FemAdjs = WordList(title.misc.AttitudeGoodFemale().List + title.misc.PhysCharFemale().List)
-		Nations = WordList(['All-American','Asian','Brazillian','Columbian','Country','Czech',
-							'Eastern European','French','German','Irish','Italian','Japanese',
-							'Korean','Latina','Mexican','Russian','Small-Town','Swedish',
-							'Spanish','Mid-Western'])
-		Jobs = title.misc.ProfGoodFemale()
-		SexyAdjs = WordList(['Sexy','Naughty','Erotic','Dirty','Steamy','Filthy','Shameless'])
+		FemNotList = ['Naked','Nudist','Bikini','Lingerie','Nude']
+		Girl = char.FemaleChar(SelectTemplateID = 17, NotList = FemNotList)
 		
-		sGirl = ""
-		if CoinFlip():
-			sGirl += FemAdjs.GetWord(NotList = FemAdjNotList) + " "
-		if CoinFlip():
-			sGirl += Nations.GetWord(NotList = FemAdjNotList) + " "
-		if not sGirl:
-			if CoinFlip():
-				sGirl += FemAdjs.GetWord(NotList = FemAdjNotList) + " "
-			else:
-				sGirl += Nations.GetWord(NotList = FemAdjNotList) + " "
-		sGirl += Jobs.GetWord()
-		
-		sTweet = "My " + sGirl + "\n"
+		sTweet = "My " + Girl.Desc + "\n"
 		sTweet += "Is Wearing " + WordList(['a Strap-On','a Latex Bodysuit','a Chainmail Bikini','a Thong',
 											'a Micro Bikini','a Butt Plug','Nipple Clamps',
 											'Crotchless Panties','Assless Chaps','a Ponytail Butt Plug',
 											'a Ball Gag','a Sheer Bodystocking','a Fishnet Bodystocking',
 											'a Chastity Belt','a Leather Bustier','Sexy Lingerie',
+											'a Remote-Controlled Vibrator','Nipple Clamps',
+											'a Cupless Leather Corset','a See-thru Dress',
 											'a Dog Collar','a Leash','a Seethru Bikini']).GetWord() + "!"
 
 		return sTweet	
 		
 # The Perky Flight Attendant
-# Plays Naked Football!
+# Plays Tackle Football Naked!
 class Generator115(Generator):
 	ID = 115
 	Priority = 1
@@ -3789,34 +3727,24 @@ class Generator115(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		FemAdjNotList = ['Naked','Nudist']
-		FemAdjs = WordList(title.misc.AttitudeGoodFemale().List + title.misc.PhysCharFemale().List)
-		Nations = WordList(['All-American','Asian','Brazillian','Columbian','Country','Czech',
-							'Eastern European','French','German','Irish','Italian','Japanese',
-							'Korean','Latina','Mexican','Russian','Small-Town','Swedish',
-							'Spanish','Mid-Western'])
-		Jobs = title.misc.ProfGoodFemale()
-		SexyAdjs = WordList(['Sexy','Naughty','Erotic','Dirty','Steamy','Filthy','Shameless'])
-		Man = MaleChar(iNumMinCBits = 1, iNumMaxCBits = 3, bAllowGang = False, bAddArticle = False, bAllowRelate = False)
+		FemNotList = ['Naked','Nudist','Bikini','Lingerie','Nude']
+		SexyAdjs = WordList(['Sexy','Naughty','Erotic','Dirty','Steamy','Filthy','Shameless','Explicit','X-Rated'])
+		Girl = char.FemaleChar(SelectTemplateID = 17, NotList = FemNotList, bAddTheArticle = True)
 		
-		sGirl = ""
+		sTweet = Girl.Desc + "\n"
+		sTweet += "Plays " 
 		if CoinFlip():
-			sGirl += FemAdjs.GetWord(NotList = FemAdjNotList) + " "
-		if CoinFlip():
-			sGirl += Nations.GetWord(NotList = FemAdjNotList) + " "
-		if not sGirl:
-			if CoinFlip():
-				sGirl += FemAdjs.GetWord(NotList = FemAdjNotList) + " "
-			else:
-				sGirl += Nations.GetWord(NotList = FemAdjNotList) + " "
-		sGirl += Jobs.GetWord()
-		
-		sTweet = "The " + sGirl + "\n"
-		sTweet += "Plays " + WordList(['Nude','Naked']).GetWord() + " " 
-		sTweet += WordList(["Football","Volleyball","Volleyball","Basketball","Soccer","Golf","Frisbee",
-							"Capture the Flag","Hide-and-Seek","Twister","Tennis","Polo","Rugby",
-							"Curling","Lacrosse","Baseball","Quidditch","Roller Derby"]).GetWord() + "!"
-
+			sTweet += WordList(['Nude','Naked','Strip']).GetWord() + " " 
+			sTweet += WordList(["Football","Volleyball","Volleyball","Basketball","Soccer","Frisbee",
+								"Capture the Flag","Twister","Tennis","Baseball","Quidditch",
+								"Poker"]).GetWord() + "!"
+		else:
+			sTweet += WordList(["Football","Volleyball","Volleyball","Basketball","Soccer","Golf","Frisbee",
+								"Capture the Flag","Hide-and-Seek","Twister","Tennis","Water Polo","Rugby",
+								"Curling","Lacrosse","Baseball","Quidditch","Roller Derby",
+								"Tackle Football"]).GetWord() + " "
+			sTweet += WordList(['Nude','Naked']).GetWord() + "!"
+			
 		return sTweet	
 
 # My Flirty Italian Milk Maid
@@ -3829,21 +3757,10 @@ class Generator116(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		FemAdjNotList = ['Naked','Nudist','Unshaven']
-		FemAdjs = WordList(title.misc.AttitudeGoodFemale().List + title.misc.PhysCharFemale().List)
-		Nations = WordList(['All-American','Asian','Brazillian','Columbian','Country','Czech',
-							'Eastern European','French','German','Irish','Italian','Japanese',
-							'Korean','Latina','Mexican','Russian','Small-Town','Swedish',
-							'Spanish','Mid-Western'])
-		Jobs = title.misc.ProfGoodFemale()
-
-		sGirl = ""
-		sGirl += FemAdjs.GetWord(NotList = FemAdjNotList) + " "
-		if CoinFlip():
-			sGirl += Nations.GetWord(NotList = FemAdjNotList) + " "
-		sGirl += Jobs.GetWord()
+		FemNotList = ['Naked','Nudist','Bikini','Lingerie','Nude','Schoolgirl','Teen']
+		Girl = char.FemaleChar(SelectTemplateID = 17, NotList = FemNotList)
 		
-		sTweet = "My " + sGirl + "\n"
+		sTweet = "My " + Girl.Desc + "\n"
 		sTweet += "Is " + AddArticles(WordList(['Willing','Wanton','Open-Minded','Naughty','Adventurous',
 												'Horny','Sexy','Lustful','Experienced','Excited',
 												'Fertile','Shameless']).GetWord()) + " Hotwife!" 
@@ -3860,31 +3777,14 @@ class Generator117(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		FemAdjNotList = ['Naked','Nudist']
-		FemAdjs = WordList(title.misc.AttitudeGoodFemale().List + title.misc.PhysCharFemale().List)
-		Nations = WordList(['All-American','Asian','Brazillian','Columbian','Country','Czech',
-							'Eastern European','French','German','Irish','Italian','Japanese',
-							'Korean','Latina','Mexican','Russian','Small-Town','Swedish',
-							'Spanish','Mid-Western'])
-		Jobs = title.misc.ProfGoodFemale()
-
-		sGirl = ""
-		if CoinFlip():
-			sGirl += FemAdjs.GetWord(NotList = FemAdjNotList) + " "
-		if CoinFlip():
-			sGirl += Nations.GetWord(NotList = FemAdjNotList) + " "
-		if not sGirl:
-			if CoinFlip():
-				sGirl += FemAdjs.GetWord(NotList = FemAdjNotList) + " "
-			else:
-				sGirl += Nations.GetWord(NotList = FemAdjNotList) + " "
-		sGirl += Jobs.GetWord()
+		FemNotList = ['Naked','Nudist','Bikini','Lingerie','Nude']
+		Girl = char.FemaleChar(SelectTemplateID = 17, NotList = FemNotList, bAddAnArticle = True)
 		
-	
-		sTweet = AddArticles(sGirl) + "\n"
+		sTweet = Girl.Desc + "\n"
 		sTweet += WordList(['Pees on','Fists','Paddles','Whips','Ties Up','Pegs','Uses a Steel Dildo on',
-							'Uses a Riding Crop on','Takes a Shit on','Urinates on','Punishes',
-							'Chokes']).GetWord() + " " 
+							'Uses a Riding Crop on','Takes a Shit on','Urinates on','Chokes',
+							'Forcibly Feminizes','Poops on','Handcuffs',
+							'Puts a Leash and Dog Collar on','Spanks']).GetWord() + " " 
 		sTweet += self.HisName + "!"
 
 		return sTweet	
@@ -3928,9 +3828,8 @@ class Generator119(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		GirlNotList = ['Single']
-		Girl = FemaleChar(iNumMinCBits = 2, iNumMaxCBits = 3, bAddArticle = True, Type = GirlType.Good, NotList = GirlNotList,
-							bAllowSexuality = False)
+		GirlNotList = ['Single','Slave','Nude','Naked','Tanned']
+		Girl = char.FemaleChar(bAddTheArticle = True, Type = GirlType.Good, NotList = GirlNotList)
 		
 		sTweet = Girl.Desc + "\nGets An Enema"
 
@@ -4008,16 +3907,133 @@ class Generator122(Generator):
 		sTweet = NaughtyStuff.GetWord() + " for the " + MILF.Desc + " MILF"
 
 		return sTweet	
-		
-# class Generator100(Generator):
-	# ID = 100
-	# Priority = 2
-	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
 
-		# return sTweet	
+# Lady Constance is Claimed Vigorously
+# by The Gruff Hairy Well-Hung Manor Lord
+# at Bonkalot Keep		
+class Generator123(Generator):
+	ID = 123
+	Priority = 2
+	
+	def WordCombiner(self, sFirstWord, sSecWord):
+		sCombined = ""
+		
+		if len(sFirstWord) > 2 and len(sSecWord) > 2:
+			if sFirstWord[-2:-1] == sFirstWord[-1:] and sFirstWord[-1:] == sSecWord[0]:
+				# if the last two characters of the first word are the same and they are the same as the second word, remove one 
+				sCombined = sFirstWord[:-1] + sSecWord
+			elif sFirstWord[-2:] == "er" and sSecWord[-2:] == "er":
+				# if both words end in 'er', remove the first 'er'
+				sCombined = sFirstWord[:-2] + sSecWord
+			elif sFirstWord[-1:] == "a" and sSecWord[0] == "a":
+				# if the first word ends in 'a' and the second word begins with it, remove one
+				sCombined = sFirstWord[:-1] + sSecWord
+			elif sFirstWord[-1:] == "r" and sSecWord[0] == "r":
+				# if the first word ends in 'r' and the second word begins with it, remove one
+				sCombined = sFirstWord[:-1] + sSecWord
+			else:
+				sCombined = sFirstWord + sSecWord 
+		else:
+			sCombined = sFirstWord + sSecWord
+			
+		return sCombined
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		ClaimAdjs = WordList(['Lustily','Vigorously','Ardently','Passionately','From Behind','Fearlessly',
+							  'Fervently','Forcefully','Repeatedly','Anally','Brazenly'])
+		GirlNames = WordList(['Alice','Alina','Amelia','Anastasia','Anna','Anabel','Beatrice','Belle',
+							  'Brigitte','Carmina','Charity','Chastity','Clover','Colette',
+							  'Constance','Cordelia','Daphne','Delilah','Delores','Eleanor',
+							  'Elizabeth','Emma','Esmerelda','Estelle','Felicia','Felicity',
+							  'Fiona','Greta','Isabelle','Josephine','Juliette','Lilah','Margaret',
+							  'Mary','Molly','Morgan','Nell','Olive','Ophelia','Rosaline','Rose',
+							  'Saffron','Sarah','Sophie','Violet'])
+		MaleNouns = WordList(['Barbarian','Warrior','Knight','Bandit','Highwayman','Prince','Duke',
+								'Paladin','Monk','Rogue','Thief','Warlock','Hunter','Swordsman','Soldier',
+								'Troubador','Woodsman','Blacksmith','Manor Lord','Marquis','Baron','Pirate',
+								'Nobleman','Ruffian','Knave','Wizard','Sorcerer','Viking Warrior',
+								'Crusader','Cavalier'])
+							 
+		ManNotList = ['S.W.A.T. Team','Cyborg','Alien','Single','Taboo','Bareback','Millionaire',
+						'Trillionaire','Gazillionaire','CEO','Billionaire','Hipster','Millennial']
+		Man = char.MaleChar(bAddEndNoun = False, bAddTheArticle = True, NotList = ManNotList, sPosArticle = "Her",
+							bAllowAge = False, bAllowRelate = False, bAllowProf = False, 
+							bAllowTrope = True, bAllowNation = False, bAllowTitle = False, 
+							bAllowMaritalStatus = False)
+		sDesc = Man.Desc.strip()
+		
+		
+		
+		FirstNouns = WordList(["cock","cunt","puss","vaj","slut","twat","spunk","prick","butt","tit",
+							"squirt","scrotum","taint","bum","face","cunny","labia","bitch","clit","cum",
+							"ball","sack","breast","meat","fuck","anus","sphincter","lip","shaft",
+							"rack","prick","wang","milk","maiden","splooge","popper","sucker","crotch",
+							"titty","milf","dick","lady","fudge","anal","wife","sex","cooch","gagging",
+							"groping","coitus","pissing","shafting","man","cherry","cream","coochy",
+							"hoar","sucking","anus","rimming"])
+		SecNouns = WordList(["cocks","cunts","puss","boobs","sluts","twats","spunk","pricks","butts",
+							"tits","titties","squirts","taints","fucker","bitch","clits","slits","cum",
+							"balls","sacks","meat","fucks","sphincter","lips","shafts","rack","wangs",
+							"milk","maidens","splooge","popper","sucker","crotch","sucker","milf","dicks",
+							"thrust","eater","swallow","head","spreader","groper","licker","humper","sex",
+							"bottom","cooch","rider","flower","girth","hymen","wood","boner","wood",
+							"wood","rump","cream","cooter","hoar","nut","tongue","rimmer"])
+		NameAdjs = WordList(["hard","wet","great","fat","pink","uber","fucker","good","thick","porn",
+							 "bound","bone","dinky","young","teen","spread","stiff","tight",
+							 "deep","black","dark","long","moist","gay","cuck","sex",
+							 "loose","sweet","steel","hard","dark","black","good","iron","harder"])
+		Verbs = WordList(["fuck","bang","spunk","smash","piss","cum","grope","squeeze","spurt","rut","pound",
+							"wank","milk","suck","splooge","bone","slap","thrust","rub","swallow","cuck",
+							"hump","screw","schtup","bonk","jill","gag","wanna","nut","spank","suck"])
+
+		
+		sWord1 = ""
+		sWord2 = ""
+		
+		iRand = randint(1,5)
+		if iRand == 1:
+			sWord1 = FirstNouns.GetWord()
+			sWord2 = Verbs.GetWord(NotList = [sWord1])
+		elif iRand == 2:
+			sWord1 = FirstNouns.GetWord()
+			sWord2 = SecNouns.GetWord(NotList = [sWord1])
+		elif iRand == 3:
+			sWord1 = NameAdjs.GetWord()
+			sWord2 = FirstNouns.GetWord(NotList = [sWord1])
+		elif iRand == 4:
+			sWord1 = NameAdjs.GetWord()
+			sWord2 = SecNouns.GetWord(NotList = [sWord1])
+		elif iRand == 5:
+			sWord1 = Verbs.GetWord()
+			sWord2 = "alot"
+		elif iRand == 6:
+			sWord1 = NameAdjs.GetWord()
+			sWord2 = Verbs.GetWord(NotList = [sWord1])
+		else:
+			sWord1 = Verbs.GetWord()
+			sWord2 = FirstNouns.GetWord(NotList = [sWord1])
+			
+		sTweet = "Lady " + GirlNames.GetWord() + " is Claimed " + ClaimAdjs.GetWord() + "\n"
+		sTweet += "by " + sDesc + " " + MaleNouns.GetWord() + "\n"
+		
+		sCastleName = self.WordCombiner(sWord1, sWord2).capitalize()
+		
+		sTweet += WordList(["at Castle " + sCastleName, 
+							"at " + sCastleName + " Keep",
+							"in the Tower of " + sCastleName,
+							"High atop " + sCastleName + " Tower",
+							"at " + sCastleName + " Manor",
+							"in the Dungeons of " + sCastleName,
+							"at " + sCastleName + " Abbey",
+							"in the Forest of " + sCastleName,
+							"in the Bed of " + WordList(["Count","Lord","Sir","Duke","King","Prince"]).GetWord() + " " + sCastleName]).GetWord()
+			
+		
+
+		return sTweet	
 		
 # The Ghost of Richard Nixon
 # Ploughed My Girlfriend 

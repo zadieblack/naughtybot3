@@ -280,6 +280,7 @@ class MaritalStatusFemale(WordList):
 class NationFemale(WordList):
 	def __init__(self):
 		super().__init__(['All-American',
+			'African',
 			'Amish','Amish','Amish',
 			'Asian','Asian',
 			'Brazillian','Brazillian',
@@ -299,10 +300,12 @@ class NationFemale(WordList):
 			'Latina',
 			'Mexican',
 			'Mormon',
+			'Norwegian',
 			'Polynesian',
 			'Russian',
 			'Small-Town',
-			'Swedish'])
+			'Swedish',
+			'Swiss'])
 		
 # big-titty, etc
 class PhysCharFemale(WordList):

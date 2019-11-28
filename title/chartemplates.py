@@ -239,6 +239,19 @@ class FemTemplate16(FemCharTemplate):
 							girltype = GirlType.Good,
 							NotList = ["succubus"],
 							priority = 3)
+							
+# Good Female of a Sexual Orientation
+class FemTemplate17(FemCharTemplate):
+	def __init__(self):
+		super().__init__(	 noun = ProfGoodFemale(),
+							 id = 17, 
+							 adjlist = 	[ CTEntry([AttitudeGoodFemale],6),
+										  CTEntry([PhysCharFemale],5),
+										  CTEntry([NationFemale],3),
+										], 
+							girltype = GirlType.Good,
+							NotList = [],
+							priority = 3)
 	
 # === Good Trope templates ===
 
