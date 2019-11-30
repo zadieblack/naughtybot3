@@ -1141,7 +1141,7 @@ class JobWhiteCollar(Person):
 						'classical violinist',
 						'crossword puzzle writer',
 						'database developer',
-						'dental hygienist'
+						'dental hygienist',
 						'dentist',
 						'dive instructor',
 						'executive producer',

@@ -2017,10 +2017,12 @@ class Generator50(Generator):
 		Breasts = self.FemBodyParts.Breasts
 		Vag = self.FemBodyParts.Vagina
 		Hips = self.FemBodyParts.Hips
+		Penis = bodyparts.Penis(bAllowBAP = False)
 		
 		Teases = []
 		sText1 = ""
 		sText2 = ""
+		sText3 = ""
 		
 			
 		sText1 = "a skimpy " + DressColor.GetWord() + " bikini and matching thong."
@@ -2038,7 +2040,7 @@ class Generator50(Generator):
 		sText2 = "She turned her back to him, showing him her " + Ass.RandomDescription() + ". "
 		sText2 += "Then she yanked her thong down, bent forward and "
 		sText2 += "spread her " + WordList(["buns","buttocks","cheeks"]).GetWord() + " apart. "
-		sText2 += "He saw that she had" 
+		sText2 += "He saw that she had " 
 		sText2 += WordList(["the word '" + sHisName + "'","a heart","the words 'FUCK HOLE'","the words 'DADDY'S HOLE'"]).GetWord() + " "
 		sText2 += "tattooed around her " + Ass.Anus.ShortDescription(NotList = ["bowels"])
 		sText3 = 'this'
@@ -2089,8 +2091,7 @@ class Generator50(Generator):
 		sText1 = "a tight " + DressColor.GetWord() + " t-shirt "
 		sText1 += "and a VERY tight pair of cut-off jean shorts."
 		sText2 = "She unzipped her shorts and pulled out "
-		sText2 += "a " + self.MaleBodyParts.Penis.FloweryDescription() + " "
-		sText2 += "and a pair of " + self.MaleBodyParts.Penis.Testicles.MediumDescription(NotList = ['sack','scrotum','purse'])
+		sText2 += "a " + self.MaleBodyParts.Penis.FloweryDescription() 
 		sText3 = 'this'
 		Teases.append([sText1, sText2, sText3])	
 		
@@ -2108,7 +2109,7 @@ class Generator50(Generator):
 										 "eleven","twelve","nineteen","twenty","twenty-three"]).GetWord() + " children!'\n\n"
 		sTweet += "'That's too bad,' she said. "
 		sTweet += Teases[iRand][1] + ". "
-		sTweet += "'I suppose that means you have no interest in " + Teases[iRand][2].upper() + ".'\n\n"
+		sTweet += "'I suppose that means you have no interest in " + Teases[iRand][2].upper() + ".'"
 		
 		
 		return sTweet

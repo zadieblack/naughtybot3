@@ -252,6 +252,22 @@ class FemTemplate17(FemCharTemplate):
 							girltype = GirlType.Good,
 							NotList = [],
 							priority = 3)
+							
+# Female of a Certain Race [Generator 129]
+class FemTemplate18(FemCharTemplate):
+	def __init__(self):
+		super().__init__(	 noun = TropeBitBadFemale("Woman"),
+							 id = 18, 
+							 adjlist = 	[ CTEntry([GenModFemale],7),
+										  CTEntry([AttitudeGoodFemale],6),
+										  CTEntry([PhysCharFemale],5),
+										  CTEntry([SkinHairColorFemale],4),
+										  CTEntry([ProfGoodFemale,TitlesFemale],3),
+										  CTEntry([SpeciesFemale],4),
+										], 
+							girltype = GirlType.Good,
+							NotList = [],
+							priority = 3)
 	
 # === Good Trope templates ===
 
@@ -783,6 +799,27 @@ class FemBadTropeTemplate22(FemTropeTemplate):
 										], 
 							girltype = GirlType.Bad,
 							NotList = ["virgin"])
+
+class FemBadTropeTemplate23(FemTropeTemplate):
+	def __init__(self):
+		super().__init__(	 noun = TropeBitBadFemale("MILF"),
+							 id = 223, 
+							 adjlist = 	[ 
+										  CTEntry([GenModFemale],9),
+										  CTEntry([AttitudeFemale],9),
+										  CTEntry([PhysCharFemale],8),
+										  CTEntry([ClothingFemale],7),
+										  CTEntry([NationFemale,SkinHairColorFemale],3),
+										  CTEntry([SexualityFemale,PregState,AgeAdjFemale],2),
+										  CTEntry([ProfFemale],1)
+										], 
+							girltype = GirlType.Bad,
+							NotList = ["virgin","younger","teen","co-ed"])
+
+# Adj:		AgeAdjFemale, AttitudeGoodFemale, AttitudeBadFemale, AttitudeFemale,
+# 			ClothingFemale, GenModFemale, MaritalStatusFemale, NationFemale, PhysCharFemale
+#			PregState, SexualityFemale, SkinHairColorFemale, SpeciesFemale
+# Nouns: 	AgeNounFemale, SpeciesFemale, ProfGoodFemale, ProfBadFemale, ProfFemale, RelateFemale,TitlesFemale
 				
 # === Species templates ===
 
@@ -1009,6 +1046,18 @@ class MaleTemplate5(MaleCharTemplate):
 										  CTEntry([ProfMale],1)
 										],
 							priority = 3)
+
+# Male [for Generator 128]
+class MaleTemplate6(MaleCharTemplate):
+	def __init__(self):
+		super().__init__(	noun = TropeBitMale("Male"),
+							 id = 6, 
+							 adjlist = 	[ CTEntry([TypeModMale],6),
+										  CTEntry([ProfBlueCollarMale,ProfWhiteCollarMale,ProfAthleteMale,TitlesMale,SpeciesMale],1)
+										],
+							priority = 1)
+#ProfBlueCollarMale,ProfWhiteCollarMale,ProfFantasyMale,ProfAthleteMale,ProfRockstarMale,
+#			ProfNormalMale,ProfAspirationalMale,ProfMale
 
 # === Male tropes ===	
 										

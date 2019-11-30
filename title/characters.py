@@ -169,7 +169,7 @@ class CharTemplate():
 					variant.append(item.PickOne(NotList = self.NotList))	#  multiple options for the same order #
 				variant.append(self.Noun)							#get the noun
 			else:
-				variant = GetMediumVariant()
+				variant = self.GetMediumVariant()
 		
 		return variant
 			
@@ -546,6 +546,7 @@ class Character():
 	
 	def GetVariantFromTemplate(self, Template, TempType):
 		variant = None 
+
 		if TempType == TempType.Short:
 			variant = Template.GetShortVariant()
 		elif TempType == TempType.Medium:
@@ -606,7 +607,7 @@ class Character():
 						  bAddAnArticle = False, 
 						  bAddTheArticle = False, 
 						  sPosArticle = "My",
-					SelectTemplateID = 0):	
+						  SelectTemplateID = 0):	
 		SelCharTemplate = None 
 		variant = None
 		
@@ -618,8 +619,9 @@ class Character():
 					SelCharTemplate = item
 					if item.ID == SelectTemplateID:
 						break
-						
+				#print("Selected character template is " + str(SelCharTemplate))		
 				variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
+				#print("Selected variant is " + str(variant))
 		else:
 			SelCharTemplate = choice(TemplateList)
 			

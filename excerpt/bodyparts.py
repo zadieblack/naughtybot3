@@ -1741,7 +1741,7 @@ class Penis(BodyParts):
 			
 		return sPenis
 		
-	def __init__(self):
+	def __init__(self, bAllowBAP = True):
 		super().__init__()
 		
 		self.NounList(['boner',
@@ -1871,8 +1871,9 @@ class Penis(BodyParts):
 		self.Head = PenisHead()
 		self.Testicles = Testicles()
 		
-		for i in range(0, int(len(self.GetNounList()) * (2/3))):
-			self.GetNounList().append(self.BuildAPenis())
+		if bAllowBAP:
+			for i in range(0, int(len(self.GetNounList()) * (2/3))):
+				self.GetNounList().append(self.BuildAPenis())
 	
 	def GetRandomPenisPart(self, sNot = None, NotList = None, bAllowShortDesc = False):
 		if NotList == None:

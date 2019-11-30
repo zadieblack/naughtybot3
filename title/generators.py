@@ -145,7 +145,7 @@ class GeneratorPromo(Generator):
 class Generator1(Generator):
 	# Blackmailed by the Billionaire Mountain Man 
 	ID = 1
-	Priority = 3
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -160,7 +160,7 @@ class Generator1(Generator):
 class Generator2(Generator):
 	# Veonica Gets Blackmailed by the Billionaire Mountain Man 
 	ID = 2
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -177,7 +177,7 @@ class Generator2(Generator):
 class Generator3(Generator):
 	# Married to the Alpha Wolf
 	ID = 3
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -192,7 +192,7 @@ class Generator3(Generator):
 class Generator4(Generator):
 	# Veronica Gets Married to the Alpha Wolf	
 	ID = 4
-	Priority = 2
+	Priority = 1
 
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -209,7 +209,7 @@ class Generator4(Generator):
 class Generator5(Generator):
 	# The President's Amish Milkmaid
 	ID = 5
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -237,7 +237,7 @@ class Generator5(Generator):
 class Generator6(Generator):
 	# Seduced in the Bed of the Billionaire	
 	ID = 6
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -285,7 +285,7 @@ class Generator7(Generator):
 class Generator8(Generator):
 	# My Boyfriend is a Secret Daddy Dom 
 	ID = 8
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -328,7 +328,7 @@ class Generator9(Generator):
 class Generator10(Generator):
 	# Baby for the Stay-at-Home Manticore
 	ID = 10
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -344,7 +344,7 @@ class Generator10(Generator):
 class Generator11(Generator):
 	# The Millionaire Sherrif's Virgin
 	ID = 11
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -362,7 +362,7 @@ class Generator11(Generator):
 class Generator12(Generator):
 	# Babysitter to the Billionaire Uniporn
 	ID = 12
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -381,7 +381,7 @@ class Generator12(Generator):
 class Generator13(Generator):	
 	# I Was an Escort for a Billionaire Uniporn
 	ID = 13
-	Priority = 3
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -399,7 +399,7 @@ class Generator13(Generator):
 class Generator14(Generator):
 	# The Virgin Call-Girl's Gang Bang
 	ID = 14
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -432,7 +432,7 @@ class Generator14(Generator):
 class Generator15(Generator):
 	# The Small-Town Virgin's First Porno
 	ID = 15
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -452,7 +452,7 @@ class Generator16(Generator):
 	# The Small-Town Virgin's First Time
 		
 	ID = 16
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -460,7 +460,7 @@ class Generator16(Generator):
 		
 		# My New Step-Dad Is A Visibly-Erect Centaur
 	ID = 38
-	Priority = 3
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -488,7 +488,7 @@ class Generator16(Generator):
 class Generator17(Generator):
 	# Enslaved: The Ebony Older Woman & The Mountain Man Biker Gang 
 	ID = 17
-	Priority = 4
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -515,7 +515,7 @@ class Generator17(Generator):
 class Generator18(Generator):
 	# Oh No! My Step-Daughter is a Porn Star
 	ID = 18
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -561,7 +561,7 @@ class Generator18(Generator):
 class Generator20(Generator):
 	# I Was Stripped In Public, And I Liked It
 	ID = 20
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -585,7 +585,7 @@ class Generator20(Generator):
 class Generator21(Generator):
 	# Pleasured by the Shape-Shifting Single Dad: A Nudist Secretary Story
 	ID = 21
-	Priority = 3
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -601,7 +601,7 @@ class Generator21(Generator):
 class Generator22(Generator):
 	# The Amish Virgin and the Taboo Butch MILF: A Lesbian Love Story 
 	ID = 22
-	Priority = 3
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -623,7 +623,7 @@ class Generator22(Generator):
 class Generator23(Generator):
 	# The Boxer and the Gay Widowed Outlaw Daddy: A Forbidden Love Story 
 	ID = 23
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -646,7 +646,7 @@ class Generator23(Generator):
 class Generator24(Generator):
 	# Deep-Throating My Well-Hung Sumo-Wrestler Step-Dad
 	ID = 24
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -669,7 +669,7 @@ class Generator24(Generator):
 class Generator25(Generator):
 	# Greg Gets Pounded In The Butt By The Motorcycle Gang
 	ID = 25
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -692,7 +692,7 @@ class Generator25(Generator):
 class Generator26(Generator):
 	# Hotwife for Daddy: A BDSM Romance 
 	ID = 26
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -792,7 +792,7 @@ class Generator30(Generator):
 	# The Chaste Small-Town Girl Barista 
 	# Rides a Veiny 9-inch Dick
 	ID = 30
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -861,7 +861,7 @@ class Generator31(Generator):
 	# My Kinky Lesbian Leather-Clad Dominatrix
 	# Pegs Me With a Strap-On
 	ID = 31
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -932,7 +932,7 @@ class Generator31(Generator):
 class Generator32(Generator):
 	#Stripping For My Best Friend's Cocky Coal-Miner Brother 
 	ID = 32
-	Priority = 3
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -978,7 +978,7 @@ class Generator32(Generator):
 class Generator33(Generator):
 	#Milking Marie: A Pan-sexual Cheerleader Affair
 	ID = 33
-	Priority = 3
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -996,7 +996,7 @@ class Generator33(Generator):
 # and her Mom
 class Generator34(Generator):
 	ID = 34
-	Priority = 3
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1015,7 +1015,7 @@ class Generator34(Generator):
 		
 class Generator35(Generator):
 	ID = 35
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1056,7 +1056,7 @@ class Generator35(Generator):
 class Generator36(Generator):
 	#Turned Gay
 	ID = 36
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1087,7 +1087,7 @@ class Generator36(Generator):
 class Generator37(Generator):
 	# 
 	ID = 37
-	Priority = 3
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1113,7 +1113,7 @@ class Generator37(Generator):
 class Generator38(Generator):
 	# My New Step-Dad Is A Visibly-Erect Centaur
 	ID = 38
-	Priority = 3
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1137,7 +1137,7 @@ class Generator38(Generator):
 class Generator39(Generator):
 	# Taken Hard By My Big Black Biker 
 	ID = 39
-	Priority = 3
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1168,7 +1168,7 @@ class Generator39(Generator):
 # class Generator40(Generator):
 	# # I Was Ridden Bareback By A Burly Lumberjack Businessman, And He's Not My Husband!
 	# ID = 40
-	# Priority = 2
+	# Priority = 1
 	
 	# def GenerateTweet(self):
 		# super().GenerateTweet()
@@ -1187,7 +1187,7 @@ class Generator39(Generator):
 class Generator41(Generator):
 	#Seducing Sheryl: The Virginal Nurse and the Big Titty Dominatrix
 	ID = 41
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1206,7 +1206,7 @@ class Generator41(Generator):
 class Generator42(Generator):
 	# Deflowered in the Pleasure Gardens of the Studly Bare-Chested Pirate Count
 	ID = 42
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1230,7 +1230,7 @@ class Generator43(Generator):
 	# Secret Baby for the Well-Hung Italian Count 
 	#		- this is very similar to gen 10.
 	ID = 43
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1252,7 +1252,7 @@ class Generator43(Generator):
 # class Generator44(Generator):
 	# # The Amish French Maid Goes Dogging 
 	# ID = 44
-	# Priority = 2
+	# Priority = 1
 	
 	# def GenerateTweet(self):
 		# super().GenerateTweet()
@@ -1269,7 +1269,7 @@ class Generator45(Generator):
 	# The Sporty Black Farmer's Daughter
 	# Gets Naked at the Museum!]
 	ID = 45
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1293,7 +1293,7 @@ class Generator45(Generator):
 
 class Generator46(Generator):
 	ID = 46
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1318,7 +1318,7 @@ class Generator46(Generator):
 # class Generator47(Generator):
 	# # My Step-Dad Transforms Into A Cocky Gentleman Mer-Man!
 	# ID = 47
-	# Priority = 2
+	# Priority = 1
 	
 	# def GenerateTweet(self):
 		# super().GenerateTweet()
@@ -1339,7 +1339,7 @@ class Generator46(Generator):
 			# - need to add a feature to character generator where
 			  # you can make a specific charbit mandatory
 	# ID = 48
-	# Priority = 2
+	# Priority = 1
 	
 	# def GenerateTweet(self):
 		# super().GenerateTweet()
@@ -1367,7 +1367,7 @@ class Generator49(Generator):
 	# in the Men's Restroom by
 	# The Dominant Donkey-Dicked Italian Vegan Centaur
 	ID = 49
-	Priority = 3
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1594,7 +1594,7 @@ class Generator51(Generator):
 	# Juliana the Nudist Damsel in:
 	# The Kingdom of the Dildo-Bots
 	ID = 51
-	Priority = 3
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1633,7 +1633,7 @@ class Generator51(Generator):
 #  		- needs work
 class Generator52(Generator):
 	ID = 52
-	Priority = 3
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1684,7 +1684,7 @@ class Generator52(Generator):
 #		- also needs work
 class Generator53(Generator):
 	ID = 53
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1783,7 +1783,7 @@ class Generator54(Generator):
 # Kinky Airline Stewardess in the Middle
 class Generator55(Generator):
 	ID = 55
-	Priority = 3
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1874,7 +1874,7 @@ class Generator56(Generator):
 # Muscular Lumberjack Hockey Players
 class Generator57(Generator):
 	ID = 57
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1898,7 +1898,7 @@ class Generator57(Generator):
 # and now I'm pregnant!
 class Generator58(Generator):
 	ID = 58
-	Priority = 3
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -1921,7 +1921,7 @@ class Generator58(Generator):
 # # is secretly a lesbian 	
 # class Generator59(Generator):
 	# ID = 59
-	# Priority = 2
+	# Priority = 1
 	
 	# def GenerateTweet(self):
 		# super().GenerateTweet()
@@ -1946,7 +1946,7 @@ class Generator58(Generator):
 # Magic Butt Plug
 class Generator60(Generator):
 	ID = 60
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -2020,7 +2020,7 @@ class Generator61(Generator):
 # naked!
 class Generator62(Generator):
 	ID = 62
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -2040,7 +2040,7 @@ class Generator62(Generator):
 # Topless Miami Vacation
 class Generator63(Generator):
 	ID = 63
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -2074,7 +2074,7 @@ class Generator63(Generator):
 # Her Ass Looks Amazing! 
 class Generator64(Generator):
 	ID = 64
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -2150,7 +2150,7 @@ class Generator66(Generator):
 # doing anal!"
 class Generator67(Generator):
 	ID = 67
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -2180,7 +2180,7 @@ class Generator67(Generator):
 # just this once!
 class Generator68(Generator):
 	ID = 68
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -2208,7 +2208,7 @@ class Generator68(Generator):
 # for the cocky Italian DILF!
 class Generator69(Generator):
 	ID = 69
-	Priority = 3
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -2235,7 +2235,7 @@ class Generator69(Generator):
 # with a handsome BBC construction worker
 class Generator70(Generator):
 	ID = 70
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -2260,7 +2260,7 @@ class Generator70(Generator):
 		
 class Generator71(Generator):
 	ID = 71
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -2290,7 +2290,7 @@ class Generator71(Generator):
 # and He Sucked My Titties 
 class Generator72(Generator):
 	ID = 72
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -2325,7 +2325,7 @@ class Generator72(Generator):
 		
 class Generator73(Generator):
 	ID = 73
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -2342,7 +2342,7 @@ class Generator73(Generator):
 		
 class Generator74(Generator):
 	ID = 74
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -2386,7 +2386,7 @@ class Generator75(Generator):
 # I Ate Her Out
 class Generator76(Generator):
 	ID = 76
-	Priority = 3
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -2420,7 +2420,7 @@ class Generator76(Generator):
 # for a strapping black cowboy sheikh"
 class Generator77(Generator):
 	ID = 77
-	Priority = 3
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -2462,7 +2462,7 @@ class Generator77(Generator):
 # A Submissive Nubile Black Flight-Attendant Story	
 class Generator78(Generator):
 	ID = 78
-	Priority = 3
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -2485,7 +2485,7 @@ class Generator78(Generator):
 		
 class Generator79(Generator):
 	ID = 79
-	Priority = 3
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -2500,7 +2500,7 @@ class Generator79(Generator):
 
 		SubAdjs = WordList(["Submissive","Submissive","Subservient","Compliant","Slave Girl","Obedient","Kinky"])
 		sSubAdj = SubAdjs.GetWord()
-		Girl = char.FemaleChar(NotList = [sSubAdj], 
+		Girl = char.FemaleChar(NotList = [sSubAdj], TempType = TempType.Medium,
 								bAllowClothing = True, bAllowRelate = True, bAllowSexuality = True, 
 								bAllowSpecies = True, bAllowMaritalStatus = True, bAllowTitle = True)
 		
@@ -2514,7 +2514,7 @@ class Generator79(Generator):
 # # ...and they had wild interracial sex!
 # class Generator80(Generator):
 	# ID = 80
-	# Priority = 2
+	# Priority = 1
 	
 	# def GenerateTweet(self):
 		# super().GenerateTweet()
@@ -2568,7 +2568,7 @@ class Generator79(Generator):
 # And he was my old 7th grade chemistry teacher
 class Generator81(Generator):
 	ID = 81
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -2684,7 +2684,7 @@ class Generator82(Generator):
 #Tries an Interracial Threesome
 class Generator83(Generator):
 	ID = 83
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -2720,7 +2720,7 @@ class Generator83(Generator):
 # Gets Tea-Bagged by the Goat Men
 class Generator84(Generator):
 	ID = 84
-	Priority = 5
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -2766,7 +2766,7 @@ class Generator84(Generator):
 
 class Generator85(Generator):
 	ID = 85
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -2801,7 +2801,7 @@ class Generator85(Generator):
 # A Well-Hung Beefy Fighter Pilot!
 class Generator86(Generator):
 	ID = 86
-	Priority = 3
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -2837,7 +2837,7 @@ class Generator86(Generator):
 # In the Shower
 # class Generator87(Generator):
 	# ID = 87
-	# Priority = 2
+	# Priority = 1
 	
 	# def GenerateTweet(self):
 		# super().GenerateTweet()
@@ -2850,7 +2850,7 @@ class Generator86(Generator):
 # To Eat Her Ass 
 class Generator88(Generator):
 	ID = 88
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -2886,7 +2886,7 @@ class Generator88(Generator):
 # Swollen 8" Purple Dick
 class Generator89(Generator):
 	ID = 89
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -2990,7 +2990,7 @@ class Generator90(Generator):
 # And a Sexy Cheerleader Stripper!
 class Generator91(Generator):
 	ID = 91
-	Priority = 3
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3024,7 +3024,7 @@ class Generator91(Generator):
 # A Full Frontal Massage!"
 # class Generator92(Generator):
 	# ID = 92
-	# Priority = 2
+	# Priority = 1
 	
 	# def GenerateTweet(self):
 		# super().GenerateTweet()
@@ -3036,7 +3036,7 @@ class Generator91(Generator):
 # Let the Hotwife Games Begin! (Bondage/BDSM/Dominatrix)
 # class Generator93(Generator):
 	# ID = 93
-	# Priority = 2
+	# Priority = 1
 	
 	# def GenerateTweet(self):
 		# super().GenerateTweet()
@@ -3049,7 +3049,7 @@ class Generator91(Generator):
 # Spooned Me Hard!"
 # class Generator94(Generator):
 	# ID = 94
-	# Priority = 2
+	# Priority = 1
 	
 	# def GenerateTweet(self):
 		# super().GenerateTweet()
@@ -3089,7 +3089,7 @@ class Generator95(Generator):
 # Enormous Coconuts 
 class Generator96(Generator):
 	ID = 96
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3116,7 +3116,7 @@ class Generator96(Generator):
 # a butt plug		
 class Generator97(Generator):
 	ID = 97
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3136,7 +3136,7 @@ class Generator97(Generator):
 		
 class Generator98(Generator):
 	ID = 98
-	Priority = 3
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3170,7 +3170,7 @@ class Generator98(Generator):
 		
 class Generator99(Generator):
 	ID = 99
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3218,7 +3218,7 @@ class Generator99(Generator):
 # My Nudist Mommy-Blogger Sister-in-Law!		
 class Generator100(Generator):
 	ID = 100
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3246,7 +3246,7 @@ class Generator100(Generator):
 # Biology Professor (Spanish Teacher / Math Tutor)
 # class Generator101(Generator):
 	# ID = 101
-	# Priority = 2
+	# Priority = 1
 	
 	# def GenerateTweet(self):
 		# super().GenerateTweet()
@@ -3259,7 +3259,7 @@ class Generator100(Generator):
 # Jiggling Farmer's Daughter	
 class Generator102(Generator):
 	ID = 102
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3300,7 +3300,7 @@ class Generator102(Generator):
 # and I Got Her Pregnant!
 class Generator103(Generator):
 	ID = 103
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3320,7 +3320,7 @@ class Generator103(Generator):
 # by a Burly Centaur Sailor
 class Generator104(Generator):
 	ID = 104
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3346,7 +3346,7 @@ class Generator104(Generator):
 # On the Back of a Horse		
 class Generator105(Generator):
 	ID = 105
-	Priority = 3
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3405,7 +3405,7 @@ class Generator105(Generator):
 # by The Tattooed Oiled-Up Barbarian		
 class Generator106(Generator):
 	ID = 106
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3442,7 +3442,7 @@ class Generator106(Generator):
 # Claimed at Castle Tittyfuck
 class Generator107(Generator):
 	ID = 107
-	Priority = 4
+	Priority = 1
 	
 	def WordCombiner(self, sFirstWord, sSecWord):
 		sCombined = ""
@@ -3536,7 +3536,7 @@ class Generator107(Generator):
 # Makes Love to a Pirate!	
 class Generator108(Generator):
 	ID = 108
-	Priority = 3
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3629,7 +3629,7 @@ class Generator110(Generator):
 # Wrestles Another Woman Naked!		
 class Generator111(Generator):
 	ID = 111
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3793,7 +3793,7 @@ class Generator117(Generator):
 # When an Oiled-Up Flight Attendant Ate My Ass 	
 class Generator118(Generator):
 	ID = 118
-	Priority = 3
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3822,7 +3822,7 @@ class Generator118(Generator):
 		
 class Generator119(Generator):
 	ID = 119
-	Priority = 3
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3834,7 +3834,9 @@ class Generator119(Generator):
 		sTweet = Girl.Desc + "\nGets An Enema"
 
 		return sTweet	
-		
+
+# The Randy Hairy Vegan Gunslinger Multi-Billionaire
+# Gets An Enema		
 class Generator120(Generator):
 	ID = 120
 	Priority = 1
@@ -3844,8 +3846,8 @@ class Generator120(Generator):
 		sTweet = ""
 		
 		GuyNotList = ['Single']
-		Guy = MaleChar(iNumMinCBits = 2, iNumMaxCBits = 3, bAddArticle = True, bAllowGang = False, NotList = GuyNotList,
-						bAllowTrope = False, bAllowTitle = False, bAllowSpecies = False)
+		Guy = char.MaleChar(bAddTheArticle = True, bAllowGang = False, NotList = GuyNotList,
+							bAllowTitle = False, bAllowSpecies = False)
 		
 		sTweet = Guy.Desc + "\nGets An Enema"
 
@@ -3855,7 +3857,7 @@ class Generator120(Generator):
 # A Sadistic Bisexual MILF Story
 class Generator121(Generator):
 	ID = 121
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3870,20 +3872,18 @@ class Generator121(Generator):
 							
 		MILFNotList = ['Virgin','Virginal','Maiden','Chaste','Sheltered','Sparkling','Straight','Spirited',
 					   'Sweet','Virtuous','Anal Virgin','Angelic','Small-Town Girl','Tomboy','Lesbian',
-					   'Little']
-		MILF = FemaleChar(iNumMinCBits = 1, iNumMaxCBits = 2, bAddArticle = False, bAddEndNoun = False, NotList = MILFNotList,
-							bAllowAge = False, bAllowMaritalStatus = False, bAllowPregState = False, bAllowProf = False,
-							bAllowRelate = False, bAllowTitle = False, bAllowTrope = False, bAllowSpecies = False)
+					   'Little','Schoolgirl','gymnast']
+		MILF = char.FemaleChar(SelectTemplateID = 223, NotList = MILFNotList)
 							
 		sTweet = Gerunds.GetWord() + " Mrs. " + AuthorLastNames().GetWord() + ":\n"
-		sTweet += AddArticles(MILF.Desc) + " MILF " + WordList(['Story','Encounter','Rendevous','Affair','Adventure']).GetWord()
+		sTweet += "My " + MILF.Desc + " " + WordList(['Liason','Encounter','Rendevous','Affair','Adventure']).GetWord()
 
 		return sTweet	
 		
 # Speculum for the Horny Mexican MILF
 class Generator122(Generator):
 	ID = 122
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -3898,13 +3898,11 @@ class Generator122(Generator):
 								 'Public Nudity'])
 								 
 		MILFNotList = ['Virgin','Virginal','Maiden','Chaste','Sheltered','Sparkling','Straight','Spirited',
-					   'Sweet','Virtuous','Anal Virgin','Angelic','Small-Town Girl','Tomboy','Lesbian',
-					   'Little']
-		MILF = FemaleChar(iNumMinCBits = 1, iNumMaxCBits = 2, bAddArticle = False, bAddEndNoun = False, NotList = MILFNotList,
-							bAllowAge = False, bAllowMaritalStatus = False, bAllowPregState = False, bAllowProf = False,
-							bAllowRelate = False, bAllowTitle = False, bAllowTrope = False)
+						'Sweet','Virtuous','Anal Virgin','Angelic','Small-Town Girl','Tomboy','Lesbian',
+						'Little','Schoolgirl','gymnast']
+		MILF = char.FemaleChar(SelectTemplateID = 223, NotList = MILFNotList,bAddTheArticle = True)
 							
-		sTweet = NaughtyStuff.GetWord() + " for the " + MILF.Desc + " MILF"
+		sTweet = NaughtyStuff.GetWord() + " for " + MILF.Desc 
 
 		return sTweet	
 
@@ -3913,7 +3911,7 @@ class Generator122(Generator):
 # at Bonkalot Keep		
 class Generator123(Generator):
 	ID = 123
-	Priority = 2
+	Priority = 1
 	
 	def WordCombiner(self, sFirstWord, sSecWord):
 		sCombined = ""
@@ -4039,7 +4037,7 @@ class Generator123(Generator):
 # Ploughed My Girlfriend 
 class Generator124(Generator):
 	ID = 124
-	Priority = 4
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -4053,24 +4051,27 @@ class Generator124(Generator):
 							'James Dean','H.P. Lovecraft','Orson Welles','Henry Kissinger','Sonny Bono','Jimmy Hoffa',
 							'Charlton Heston','Hugh Hefner','Yul Brynner','Carl Sagan','Yuri Gagarin','Jerry Lewis',
 							'Benny Hill','Bob Ross','Joe DiMaggio','Don Knotts','Vincent Price','Adam West',
-							'Frank Sinatra','Casey Kasem','Karl Marx','Jacques Cousteau','Salvador Dali'])
+							'Frank Sinatra','Casey Kasem','Karl Marx','Jacques Cousteau','Salvador Dali',
+							'Bob Hope'])
 		Verbs = WordList(['Plowed','Banged','Porked','Drilled','Humped','Made Love to','Nailed','Reamed',
 						  'Screwed','Shagged','Stuffed','Cream-pied','Ravished','Ate Out','Sixty-nined',
 						  'Boned',])
 		
 		GirlNotList = ['Single','Mature Woman','Virgin','Unshaven','Maiden','Married','Recently-Divorced']
-		Girl = FemaleChar(iNumMinCBits = 1, iNumMaxCBits = 2, bAddArticle = False, bAddEndNoun = False, NotList = GirlNotList,
-			bAllowProf = False, bAllowPregState = False, bAllowClothing = False, bAllowAttitude = False, bAllowSpecies = False,
-			bAllowTitle = False, bAllowTrope = False, bAllowGenMod = False, bAllowSexuality = False, 
-			bAllowMaritalStatus = False,)
+		Girl = char.FemaleChar(bAddEndNoun = False, NotList = GirlNotList, TempType = TempType.Flowery, Type = GirlType.Good,
+			bAllowProf = False, bAllowPregState = False, bAllowAttitude = False, bAllowSpecies = False,
+			bAllowTitle = False, bAllowMaritalStatus = False,)
 		
-		sTweet = Undead.GetWord() + " " + Celebs.GetWord() + " " + Verbs.GetWord() + " My " + Girl.Desc + " " + WordList(["Wife","Wife","Girlfriend"]).GetWord() + "!"					
+		sTweet = Undead.GetWord() + " " + Celebs.GetWord() + " " + Verbs.GetWord() + " "
+		sTweet += "My " + Girl.Desc + " " + WordList(["Wife","Wife","Girlfriend"]).GetWord() + "!"					
 
 		return sTweet	
 		
+# The Chaste Secretary
+# Gets Deflowered by The Brawny Manly Space Dinosaur Gargoyle		
 class Generator125(Generator):
 	ID = 125
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -4078,9 +4079,11 @@ class Generator125(Generator):
 		
 		Girl = title.misc.NiceGirl()
 		
-		Master = MaleChar(iNumMaxCBits = 2, bAddArticle = True, sPosArticle = "Her", bAllowRelate = True)
+		Master = char.MaleChar(bAddTheArticle = True, sPosArticle = "Her", bAllowRelate = True)
 		
-		sTweet = "The " + Girl.Desc + "\nGets " + self.VerbsBy.GetWord(NotList = ["Sexually Harrassed At My Workplace","Cuddled"]) + " by " + Master.Desc
+		sTweet = "The " + Girl.Desc + "\n"
+		sTweet += "Gets " + self.VerbsBy.GetWord(NotList = ["Sexually Harrassed At My Workplace","Cuddled"]) + " "
+		sTweet += "by " + Master.Desc
 		
 		return sTweet	
 		
@@ -4093,32 +4096,42 @@ class Generator126(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		Master = MaleChar(iNumMaxCBits = 4, bAddArticle = True, bAllowGang = False, bAllowRelate = True)
+		Master = char.MaleChar(bAddAnArticle = True, bAllowGang = False, bAllowRelate = True, sPosArticle = "Her",
+								bAllowDickChar = False, bAllowSpecies = False)
 	
-		sTweet = WordList(["Sitting on","Riding","Straddling"]).GetWord() + " " + Master.Desc + "'s Face"
+		#sTweet = WordList(["Sitting on","Riding","Straddling"]).GetWord() + " " + Master.Desc + "'s Face"
+		sTweet += self.HerName + " Makes Out with\n"
+		sTweet += Master.Desc + " and then\n"
+		sTweet += "She Sits On His Face!"
 		
 		return sTweet
 		
 # Isabelle Gets Naked for the Fully-Engorged Dinosaur S.W.A.T. Team
 class Generator127(Generator):
 	ID = 127
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		Gang = MaleGangChar(iNumMinCBits = 2, iNumMaxCBits = 3)
+		Gang = char.GangMaleChar(bAddTheArticle = True, bAllowGenMod = False, bAllowTypeMod = False, bAllowProf = False,
+									bAllowSpecies = False)
 		
-		sTweet = self.HerName + " Gets Naked for the " + Gang.Desc 
+		sTweet = self.HerName + " " + WordList(["Gets Naked for","Strips Naked for","Twerks Naked for","Undresses for",
+												"Exposes Her Nubile Naked Body to","Shamelessly Strips Naked for",
+												"Goes Skinny-Dipping with","Does a Shameless Strip-Tease for",
+												"Takes All Her Clothes Off in front of","Shows Her Tits to"
+												"Takes Her Top Off for"]).GetWord() + " "
+		sTweet += Gang.Desc 
 
 		return sTweet	
 		
-# Pounded by the Alien Space Trucker Men
-# on Uranus
+# Penetrated by the Well-Endowed Dinosaur Space Alien Rodeo Clowns
+# on Uranus!
 class Generator128(Generator):
 	ID = 128
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -4139,23 +4152,23 @@ class Generator128(Generator):
 								'Bounty Hunters','Barbarians','Businessmen','Werewolves',
 								'Drag Queens','Muscle Marys'])
 		MaleNotList = ['Space']
-		Alien1 = MaleChar(iNumMinCBits = 1, iNumMaxCBits = 2, bAddArticle = False, bAddEndNoun = False, bAllowGang = False, NotList = MaleNotList,
-			bAllowMaritalStatus = False, bAllowProf = False, bAllowTitle = False, bAllowTrope = False, bAllowNation = False)
-		Alien2 = MaleChar(iNumMinCBits = 1, iNumMaxCBits = 2, bAddArticle = False, bAddEndNoun = True, bAllowGang = False, NotList = MaleNotList,
-			bAllowMaritalStatus = False, bAllowProf = True, bAllowTitle = False, bAllowTrope = False, bAllowNation = False)
+		Alien1 = char.MaleChar(bAddEndNoun = False, bAllowGang = False, NotList = MaleNotList,
+			bAllowMaritalStatus = False, bAllowProf = False, bAllowTitle = False, bAllowNation = False)
+		Alien2 = char.MaleChar(bAddEndNoun = True, bAllowGang = False, NotList = MaleNotList,
+			bAllowMaritalStatus = False, bAllowProf = True, bAllowTitle = False, bAllowNation = False)
 		
 		sTweet = Verbs.GetWord() + " by the "
 		if CoinFlip():
-			sTweet += Alien1.Desc + " " + AlienPrefixes.GetWord() + " " + AlienNouns.GetWord() + " "
+			sTweet += Alien1.Desc + " " + AlienPrefixes.GetWord() + " " + AlienNouns.GetWord() 
 		else:
-			sTweet += Alien2.Desc + " Space Men "
-		sTweet += "on Uranus!"
+			sTweet += Alien2.Desc + " Space Men"
+		sTweet += "\non Uranus!"
 
 		return sTweet	
 		
 class Generator129(Generator):
 	ID = 129
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -4163,22 +4176,17 @@ class Generator129(Generator):
 		
 		Race = WordList(['Black','Black','Black','White','White','Asian','Asian'])
 		
-		GirlNotList = ['Call-Girl','Escort','Slave','Whore']
-		GirlAdj = FemaleChar(iNumMinCBits = 1, iNumMaxCBits = 1, bAddArticle = False, bAddEndNoun = False, NotList = GirlNotList,
-			bAllowAge = False, bAllowMaritalStatus = False, bAllowPregState = False, bAllowNation = False, bAllowRelate = False,
-			bAllowSexuality = False, bAllowSkinHairColor = False, bAllowSpecies = False, bAllowTitle = False, bAllowProf = False, 
-			bAllowTrope = False)
-		GirlNoun = WordList(title.misc.TitlesFemale().List + title.misc.TropesFemale().List + title.misc.ProfFemale().List)
+		GirlNotList = ['Call-Girl','Escort','Slave','Whore','Stripper']
+		GirlAdj = char.FemaleChar(SelectTemplateID = 18, bAddEndNoun = False, TempType = TempType.Medium, NotList = GirlNotList)
+		#GirlNoun = WordList(title.misc.TitlesFemale().List + title.misc.TropesFemale().List + title.misc.ProfFemale().List)
+		GirlNoun = char.FemaleChar(TempType = TempType.Short, NotList = GirlNotList, bAllowSpecies = False)
 		GirlSpecies = WordList(['Mermaid','Succubus','Futa','Undead','Zombie','Vampire','Fairy','Elf'])
 		
 		sHerRace = WordList(['Black','Black','Black','White','White','Asian','Asian','Latina','Latina']).GetWord()
 		sHerSpecies = GirlSpecies.GetWord()
 		
 		ManNotList = ['Bob']
-		Man = MaleChar(iNumMinCBits = 1, iNumMaxCBits = 1, bAddArticle = False, bAllowGang = False, NotList = ManNotList,
-					   bAllowAge = False, bAllowAttitude = False, bAllowGenMod = False, bAllowMaritalStatus = False,
-					   bAllowPhysChar = False, bAllowDickChar = False, bAllowNation = False, bAllowSpecies = False,
-					   bAllowSkinHairColor = False, bAllowRelate = False, bAllowTitle = False)
+		Man = char.MaleChar(SelectTemplateID = 6, bAllowGang = False, NotList = ManNotList, bAddEndNoun = False, TempType = TempType.Flowery)
 		ManSpecies = WordList(['Merman','Centaur','Minotaur','Zombie','Werewolf','Dwarf',
 							   'Demon','Gargoyle','Were-Shark','Zombie','Goat Man'])
 
@@ -4192,20 +4200,20 @@ class Generator129(Generator):
 		iRand = randint(1,3)
 		if iRand == 1:
 			print("<A>")
-			sTweet = GirlAdj.Desc + " " + sHerRace + " " + GirlNoun.GetWord(NotList = GirlNotList) + " for the " + sHisRace + " " + Man.Desc
+			sTweet = GirlAdj.Desc + " " + GirlNoun.Desc + " for the " + sHisRace + " " + Man.Desc
 		elif iRand == 2:
 			print("<B>")
-			sTweet = GirlAdj.Desc + " " + sHerSpecies + " " + GirlNoun.GetWord(NotList = GirlNotList) + " for the " + sHisRace + " " + Man.Desc
+			sTweet = GirlAdj.Desc + " " + GirlNoun.Desc + " for the " + sHisRace + " " + Man.Desc
 		else:
 			print("<C>")
-			sTweet = sHerRace + " " + sHerSpecies + " " + GirlNoun.GetWord(NotList = GirlNotList) + " for the " + sHisRace + " " + Man.Desc
+			sTweet = sHerRace + " " + sHerSpecies + " " + GirlNoun.Desc + " for the " + sHisRace + " " + Man.Desc
 
 		return sTweet	
 		
 # Black Merman Quarterback for the White Playboy Centerfold
 class Generator130(Generator):
 	ID = 130
-	Priority = 3
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -4250,7 +4258,7 @@ class Generator130(Generator):
 # I watched my wife and an Italian cowboy dinosaur make a porno!
 class Generator131(Generator):
 	ID = 131
-	Priority = 5
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -4309,7 +4317,7 @@ class Generator131(Generator):
 # Magnificent Meat-Missile
 class Generator132(Generator):
 	ID = 132
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -4356,7 +4364,7 @@ class Generator132(Generator):
 # A pseudo-incest gorilla double anal story
 class Generator133(Generator):
 	ID = 133
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -4405,7 +4413,7 @@ class Generator133(Generator):
 # Taken by her Lesbian Centaur Boss
 class Generator134(Generator):
 	ID = 134
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -4458,7 +4466,7 @@ class Generator134(Generator):
 # MILKED by my biker step-son
 # class Generator100(Generator):
 	# ID = 100
-	# Priority = 2
+	# Priority = 1
 	
 	# def GenerateTweet(self):
 		# super().GenerateTweet()
@@ -4470,7 +4478,7 @@ class Generator134(Generator):
 # My date with the principal
 class Generator136(Generator):
 	ID = 136
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -4590,7 +4598,7 @@ class Generator136(Generator):
 # Taken in the Graveyard by the Strapping Truck-Driver Zombie 
 class Generator137(Generator):
 	ID = 137
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -4622,21 +4630,21 @@ class Generator137(Generator):
 						   'in a Coffin'])
 			
 		MaleNotList = ['copper']
-		Man = MaleChar(iNumMinCBits = 1, iNumMaxCBits = 3, bAddArticle = False, bAddEndNoun = False, bAllowGang = False, NotList = MaleNotList,
+		Man = char.MaleChar(bAddTheArticle = True, bAddEndNoun = False, bAllowGang = False, NotList = MaleNotList,
 				bAllowTitle = True, bAllowAttitude= False, bAllowMaritalStatus = False, bAllowProf = False, 
 				bAllowTrope = True, bAllowNation = False, bAllowSpecies = False, bAllowAge = False)
 				
 		ManNouns = WordList(['Ghost','Zombie','Vampire','Werewolf','Ghoul','Skeleton','Mummy','Corpse',
 							 'Serial Killer'])
 							 
-		sTweet = sVerbPhrase + "\n" + Places.GetWord() + " by the\n" + Man.Desc + " " + ManNouns.GetWord()
+		sTweet = sVerbPhrase + "\n" + Places.GetWord() + " by\n" + Man.Desc + " " + ManNouns.GetWord()
 
 		return sTweet	
 		
 #I Was Scissored by a Witch, and I Liked It!
 class Generator138(Generator):
 	ID = 138
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -4645,21 +4653,23 @@ class Generator138(Generator):
 		Verbs = WordList(["Ravished","Fingered","Milked","Scissored","Fisted",
 						  "Kissed","Eaten Out","Sixty-Nined","Finger-Banged",
 						  "French Kissed","Taken with a Broomstick",
-						  "Penetrated with a Broomstick",
+						  "Penetrated with a Broomstick","Bitten",
 						  "Defiled with a Broomstick",
 						  "Ravished with a Broomstick"])
 			
 		if CoinFlip():
-			NotFemList = ['anal','tease','virgin','fertile','small-town','tender','revealing','mature woman']
-			Girl = FemaleChar(iNumMinCBits = 1, iNumMaxCBits = 3, Type = GirlType.Bad, bAddArticle = False, bAddEndNoun = False, NotList = NotFemList,
+			NotFemList = ['anal','tease','virgin','fertile','small-town','tender','revealing','mature woman',
+							'witch']
+			Girl = char.FemaleChar(Type = GirlType.Bad, bAddAnArticle = True, bAddEndNoun = False, NotList = NotFemList,
 								bAllowSexuality = False, bAllowMaritalStatus = False, bAllowProf = False, bAllowTitle = False,
 								bAllowGenMod = False)
 								
-			sTweet = "I Was " + Verbs.GetWord() + " by " + AddArticles(Girl.Desc) + " Witch, And I Liked It!"
+			sTweet = "I Was " + Verbs.GetWord() + " by " + Girl.Desc + " Witch, And I Liked It!"
 								
 		else:
-			NotFemList = ['anal','devlish','tease','virgin','fertile','small-town','submissive','tender','masseuse','mature','little']
-			Girl = FemaleChar(iNumMinCBits = 1, iNumMaxCBits = 2, Type = GirlType.Bad, bAddEndNoun = True, NotList = NotFemList,
+			NotFemList = ['anal','devlish','tease','virgin','fertile','small-town','submissive',
+						  'tender','masseuse','mature','little']
+			Girl = char.FemaleChar(Type = GirlType.Bad, bAddEndNoun = True, NotList = NotFemList,
 								bAllowSexuality = False, bAllowMaritalStatus = False, bAllowAttitude = False, 
 								bAllowGenMod = False, bAllowSpecies = False, bAllowTitle = False)
 			
@@ -4672,7 +4682,7 @@ class Generator138(Generator):
 # To Church	
 class Generator139(Generator):
 	ID = 139
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -4711,7 +4721,7 @@ class Generator139(Generator):
 # I Sucked On My Mother-in-Law's Massive Mammaries 
 class Generator140(Generator):
 	ID = 140
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -4793,7 +4803,7 @@ class Generator140(Generator):
 		
 class Generator141(Generator):
 	ID = 141
-	Priority = 2
+	Priority = 1
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -4816,7 +4826,7 @@ class Generator141(Generator):
 		
 class Generator999(Generator):
 	ID = 999
-	Priority = 0
+	Priority = 1
 	Type = GeneratorType.Test
 	
 	def GenerateTweet(self):
@@ -4839,7 +4849,7 @@ class Generator999(Generator):
 		
 class Generator1000(Generator):
 	ID = 1000
-	Priority = 0
+	Priority = 1
 	Type = GeneratorType.Test
 	
 	def GenerateTweet(self):
@@ -4876,6 +4886,7 @@ class Generator1000(Generator):
 class Generator1001(Generator):
 	ID = 1001
 	Priority = 1
+	Type = GeneratorType.Test
 	
 	def GenerateTweet(self):
 		super().GenerateTweet()
@@ -4906,7 +4917,7 @@ class Generator1001(Generator):
 		
 # class Generator100(Generator):
 	# ID = 100
-	# Priority = 2
+	# Priority = 1
 	
 	# def GenerateTweet(self):
 		# super().GenerateTweet()
@@ -4916,7 +4927,7 @@ class Generator1001(Generator):
 		
 # class Generator100(Generator):
 	# ID = 100
-	# Priority = 2
+	# Priority = 1
 	
 	# def GenerateTweet(self):
 		# super().GenerateTweet()
@@ -4926,7 +4937,7 @@ class Generator1001(Generator):
 		
 # class Generator100(Generator):
 	# ID = 100
-	# Priority = 2
+	# Priority = 1
 	
 	# def GenerateTweet(self):
 		# super().GenerateTweet()
@@ -4936,7 +4947,7 @@ class Generator1001(Generator):
 		
 # class Generator100(Generator):
 	# ID = 100
-	# Priority = 2
+	# Priority = 1
 	
 	# def GenerateTweet(self):
 		# super().GenerateTweet()
@@ -4946,7 +4957,7 @@ class Generator1001(Generator):
 		
 # class Generator100(Generator):
 	# ID = 100
-	# Priority = 2
+	# Priority = 1
 	
 	# def GenerateTweet(self):
 		# super().GenerateTweet()
@@ -4956,7 +4967,7 @@ class Generator1001(Generator):
 		
 # class Generator100(Generator):
 	# ID = 100
-	# Priority = 2
+	# Priority = 1
 	
 	# def GenerateTweet(self):
 		# super().GenerateTweet()
@@ -4966,7 +4977,7 @@ class Generator1001(Generator):
 		
 # class Generator100(Generator):
 	# ID = 100
-	# Priority = 2
+	# Priority = 1
 	
 	# def GenerateTweet(self):
 		# super().GenerateTweet()
