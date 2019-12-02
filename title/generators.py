@@ -450,17 +450,10 @@ class Generator15(Generator):
 		return sTweet
 		
 class Generator16(Generator):
-	# The Small-Town Virgin's First Time
-		
+# "Oh No! I Went to an Orgy
+# And I Accidentally
+# Finger-Banged My Asian Step-Sister!"
 	ID = 16
-	Priority = 1
-	
-	def GenerateTweet(self):
-		super().GenerateTweet()
-		sTweet = ""
-		
-		# My New Step-Dad Is A Visibly-Erect Centaur
-	ID = 38
 	Priority = 1
 	
 	def GenerateTweet(self):
