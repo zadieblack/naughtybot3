@@ -10,7 +10,7 @@ from names import *
 #from titpeeps import *
 from title.texttoimg import *
 from title.characters import *
-import title.people as titpeeps
+#import title.people as titpeeps
 import misc
 import title.misc as titmisc
 import title.chargenerator as char
@@ -1205,11 +1205,14 @@ class Generator41(Generator):
 		
 		Gerunds = WordList(["Seducing", "Tempting", "Corrupting", "Degrading", "Debauching", "Perverting", "Whipping",
 							"Fisting", "Sixty-Nining", "Scissoring", "Tribbing", "Fingering"])
-		GoodGirl = titpeeps.FemaleChar(Type = GirlType.Good, bAddArticle = True, bAllowClothing = False, bAllowGenMod = False, bAllowPregState = False, bAllowMaritalStatus = False, bAllowSexuality = False, bAllowSpecies = False)
-		BadGirl = titpeeps.FemaleChar(iNumMaxCBits = 4, Type = GirlType.Bad, bAddArticle = True, bAllowAge = False, bAllowMaritalStatus = False, bAllowSpecies = False, bAllowTitle = False)
-		
+
+		GoodGirl = char.FemaleChar(Type = GirlType.Good, TempType = TempType.Medium,
+									ExclList = [PregState, MaritalStatusFemale, SpeciesFemale, TitlesFemale])
+		LesGirl = char.LesbianChar(Type = GirlType.Bad, bAddTheArticle = True, sPosArticle = "Her",
+									ExclList = [AgeAdjFemale, MaritalStatusFemale, SpeciesFemale, TitlesFemale])
+									
 		sTweet = Gerunds.GetWord() + " " + self.HerName + ":\n"
-		sTweet += GoodGirl.Desc + "\nand\n" + BadGirl.Desc 
+		sTweet += "The " + GoodGirl.Desc + "\nand\n" + LesGirl.Desc 
 
 		return sTweet
 		
@@ -3958,7 +3961,8 @@ class Generator123(Generator):
 								'Crusader','Cavalier'])
 							 
 		ManNotList = ['S.W.A.T. Team','Cyborg','Alien','Single','Taboo','Bareback','Millionaire',
-						'Trillionaire','Gazillionaire','CEO','Billionaire','Hipster','Millennial']
+						'Trillionaire','Gazillionaire','CEO','Billionaire','Hipster','Millennial',
+						'N.Y.P.D.']
 		Man = char.MaleChar(bAddEndNoun = False, bAddTheArticle = True, NotList = ManNotList, sPosArticle = "Her",
 							bAllowAge = False, bAllowRelate = False, bAllowProf = False, 
 							bAllowTrope = True, bAllowNation = False, bAllowTitle = False, 
@@ -3971,7 +3975,7 @@ class Generator123(Generator):
 							"squirt","scrotum","taint","bum","face","cunny","labia","bitch","clit","cum",
 							"ball","sack","breast","meat","fuck","anus","sphincter","lip","shaft",
 							"rack","prick","wang","milk","maiden","splooge","popper","sucker","crotch",
-							"titty","milf","dick","lady","fudge","anal","wife","sex","cooch","gagging",
+							"titty","milf","dick","fudge","anal","wife","sex","cooch","gagging",
 							"groping","coitus","pissing","shafting","man","cherry","cream","coochy",
 							"hoar","sucking","anus","rimming"])
 		SecNouns = WordList(["cocks","cunts","puss","boobs","sluts","twats","spunk","pricks","butts",
@@ -4108,7 +4112,7 @@ class Generator126(Generator):
 		
 		return sTweet
 		
-# Isabelle Gets Naked for the Fully-Engorged Dinosaur S.W.A.T. Team
+# Ava Undresses for The Muscular Space Dwarf Rock Band
 class Generator127(Generator):
 	ID = 127
 	Priority = 1
@@ -4154,16 +4158,18 @@ class Generator128(Generator):
 								'Bounty Hunters','Barbarians','Businessmen','Werewolves',
 								'Drag Queens','Muscle Marys'])
 		MaleNotList = ['Space']
-		Alien1 = char.MaleChar(bAddEndNoun = False, bAllowGang = False, NotList = MaleNotList,
-			bAllowMaritalStatus = False, bAllowProf = False, bAllowTitle = False, bAllowNation = False)
-		Alien2 = char.MaleChar(bAddEndNoun = True, bAllowGang = False, NotList = MaleNotList,
-			bAllowMaritalStatus = False, bAllowProf = True, bAllowTitle = False, bAllowNation = False)
+		AlienPref = char.MaleChar(bAddEndNoun = False, bAllowGang = False, NotList = MaleNotList, 
+			ExclList = [MaritalStatusMale, TitlesMale, NationMale, SpeciesMale, AttitudeMale])
+		AlienNoun = char.GangMaleChar(bAddEndNoun = True, NotList = MaleNotList, TempType = TempType.Short,
+			ExclList = [TitlesMale, NationMale, SpeciesMale])	
+		Alien = char.MaleChar(bAddEndNoun = False, bAllowGang = False, NotList = MaleNotList, 
+			ExclList = [MaritalStatusMale, TitlesMale, NationMale,SpeciesMale,AttitudeMale])
 		
 		sTweet = Verbs.GetWord() + " by the "
 		if CoinFlip():
-			sTweet += Alien1.Desc + " " + AlienPrefixes.GetWord() + " " + AlienNouns.GetWord() 
+			sTweet += AlienPref.Desc + " " + AlienPrefixes.GetWord() + " " + AlienNoun.Desc
 		else:
-			sTweet += Alien2.Desc + " Space Men"
+			sTweet += Alien.Desc + " Space Men"
 		sTweet += "\non Uranus!"
 
 		return sTweet	
@@ -4176,50 +4182,35 @@ class Generator129(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		Race = WordList(['Black','Black','Black','White','White','Asian','Asian'])
-		
 		GirlNotList = ['Call-Girl','Escort','Slave','Whore','Stripper','Green-Skinned']
-		# GirlAdj = char.FemaleChar(SelectTemplateID = 18, bAddEndNoun = False, TempType = TempType.Medium, NotList = GirlNotList)
-		# #GirlNoun = WordList(titmisc.TitlesFemale().List + titmisc.TropesFemale().List + titmisc.ProfFemale().List)
-		# GirlNoun = char.FemaleChar(TempType = TempType.Short, NotList = GirlNotList, bAllowSpecies = False)
-		# GirlSpecies = WordList(['Mermaid','Succubus','Futa','Undead','Zombie','Vampire','Fairy','Elf'])
-		
-		# sHerRace = WordList(['Black','Black','Black','White','White','Asian','Asian','Latina','Latina']).GetWord()
-		# sHerSpecies = GirlSpecies.GetWord()
-		
-		ManNotList = ['Curly']
-		# #NationNounMale
-		# Man = char.MaleChar(SelectTemplateID = 6, bAllowGang = False, NotList = ManNotList, bAddEndNoun = False, TempType = TempType.Flowery,
-							# ReqList = [SkinHairColorMale])
-		# ManSpecies = WordList(['Merman','Centaur','Minotaur','Zombie','Werewolf','Dwarf',
-							   # 'Demon','Gargoyle','Were-Shark','Zombie','Goat Man'])
+		ManNotList = ['Million','Billion','Trillion','Gazillionaire']
+			
+		Guy = char.MaleChar(NotList = ManNotList, bAddTheArticle = True, TempType = TempType.Medium, 
+							bAllowTrope = False, bAllowSpecies = False,
+							ReqList = [RaceMale], 
+							ExclList = [SpeciesMale,SkinHairColorMale,NationMale,TitlesMale,ProfRockstarMale])
 
-		# ManRace = WordList(['Black','Black','Black','White','White','Asian','Asian','Latino','Latino'])
-		# sHisRace = ManRace.GetWord(NotList = [sHerRace])
-		# sHisSpecies = ManSpecies.GetWord(NotList = [sHerSpecies])
+		GirlNotList = GirlNotList + Guy.GetWordList()
+		if 'Latino' in GirlNotList:
+			GirlNotList.append('Latina')		
 		
-		# while sHisRace == 'Latino' and sHerRace == 'Latina':
-			# sHisRace = ManRace.GetWord(NotList = [sHisRace])
-							
 		iRand = randint(1,3)
 		if iRand == 1:
 		# Sexy White Girl for the Black Man
 			print("<A>")
 			Girl = char.FemaleChar(ReqList = [RaceFemale], ExclList = [SpeciesFemale,SkinHairColorFemale,NationFemale,SexualityFemale], NotList = GirlNotList)
-			Guy = char.MaleChar(ReqList = [RaceMale], ExclList = [SpeciesMale,SkinHairColorMale,NationMale], NotList = ManNotList)
-			sTweet = Girl.Desc + " for the " + Guy.Desc
+			sTweet = Girl.Desc + " for " + Guy.Desc
 		elif iRand == 2:
 		# Sexy Mermaid for the Black Man
 			print("<B>")
 			Girl = char.FemaleChar(ReqList = [SpeciesFemale], ExclList = [SkinHairColorFemale,NationFemale,SexualityFemale], NotList = GirlNotList)
-			Guy = char.MaleChar(ReqList = [RaceMale], ExclList = [SpeciesMale,SkinHairColorMale,NationMale], NotList = ManNotList)
-			sTweet = Girl.Desc + " for the " + Guy.Desc
+			sTweet = Girl.Desc + " for " + Guy.Desc
 		else:
 		# Black Mermaid Secretary for the Black Man
 			print("<C>")
 			Girl = char.FemaleChar(ReqList = [SpeciesFemale,RaceFemale], ExclList = [SkinHairColorFemale,NationFemale,SexualityFemale], NotList = GirlNotList)
-			Guy = char.MaleChar(ReqList = [RaceMale], ExclList = [SpeciesMale,SkinHairColorMale,NationMale], NotList = ManNotList)
-			sTweet = Girl.Desc + " for the " + Guy.Desc
+			
+			sTweet = Girl.Desc + " for " + Guy.Desc
 
 		return sTweet	
 		
@@ -4233,37 +4224,35 @@ class Generator130(Generator):
 		sTweet = ""
 		
 		GirlNotList = ['Call-Girl','Escort','Slave','Whore']
-		GirlNoun = WordList(titmisc.TropesFemale().List + titmisc.ProfFemale().List)
-		GirlSpecies = WordList(['Mermaid','Succubus','Futa','Undead','Zombie'])
-		
-		sHerRace = WordList(['Black','Black','Black','White','White','Asian','Asian','Latina','Latina']).GetWord()
-		sHerSpecies = GirlSpecies.GetWord()
-		
 		ManNotList = ['Bob']
-		ManAdj = titpeeps.MaleChar(iNumMinCBits = 1, iNumMaxCBits = 1, bAddArticle = False, bAddEndNoun = False, bAllowGang = False, NotList = ManNotList,
-					   bAllowAge = False, bAllowAttitude = True, bAllowGenMod = True, bAllowMaritalStatus = False,
-					   bAllowPhysChar = True, bAllowDickChar = True, bAllowNation = False, bAllowSpecies = False,
-					   bAllowSkinHairColor = False, bAllowRelate = False, bAllowProf = False, bAllowTrope = False,
-					   bAllowTitle = False)
-		ManNoun = WordList(titmisc.TropesMale().List + titmisc.ProfMale().List + titmisc.TitlesMale().List)
-		ManSpecies = WordList(['Merman','Centaur','Minotaur','Zombie','Werewolf','Dwarf',
-							   'Demon','Gargoyle','Were-Shark','Zombie','Goat Man'])
-		ManRace = WordList(['Black','Black','Black','White','White','Asian','Asian','Latino','Latino'])
-		sHisRace = ManRace.GetWord(NotList = [sHerRace])
-		sHisSpecies = ManSpecies.GetWord(NotList = [sHerSpecies])
-		while sHisRace == 'Latino' and sHerRace == 'Latina':
-			sHisRace = ManRace.GetWord(NotList = [sHisRace])
+		
+		Woman = char.FemaleChar(bAddTheArticle = True, TempType = TempType.Medium, 
+								NotList = GirlNotList, bAllowSpecies = False, 
+								ReqList = [RaceFemale],
+								ExclList = [SpeciesFemale])
+		ManNotList = ManNotList + Woman.GetWordList()
+		if 'Latina' in ManNotList:
+			ManNotList.append('Latino')
+		print("ManNotList is " + str(ManNotList))
 		
 		iRand = randint(1,3)
 		if iRand == 1:
+		# Sexy White Trucker for the Black Stay-at-Home Mom
 			print("<A>")
-			sTweet = ManAdj.Desc + " " + sHisRace + " " + ManNoun.GetWord(NotList = ManNotList) + " for the " + sHerRace + " " + GirlNoun.GetWord(NotList = GirlNotList)
+			Man = char.MaleChar(NotList = ManNotList, bAllowSpecies = False,
+								ReqList = [RaceMale])
+			sTweet = Man.Desc + " for " + Woman.Desc
 		elif iRand == 2:
+		# Black Fighter Pilot Cowboy for the Asian Secretary
 			print("<B>")
-			sTweet = ManAdj.Desc + " " + sHisSpecies + " " + ManNoun.GetWord(NotList = ManNotList) + " for the " + sHerRace + " " + GirlNoun.GetWord(NotList = GirlNotList)
+			Man = char.MaleChar(NotList = ManNotList, ReqList = [SpeciesMale])
+			sTweet = Man.Desc + " for " + Woman.Desc
 		else:
+		# Black Centaur Cowboy for the Latina Flight Attendant
 			print("<C>")
-			sTweet = sHisRace + " " + sHisSpecies + " " + ManNoun.GetWord(NotList = ManNotList) + " for the " + sHerRace + " " + GirlNoun.GetWord(NotList = GirlNotList)
+			Man = char.MaleChar(NotList = ManNotList, 
+								ReqList = [SpeciesMale,RaceMale])
+			sTweet = Man.Desc + " for " + Woman.Desc
 
 
 		return sTweet	
@@ -4696,7 +4685,7 @@ class Generator139(Generator):
 		sTweet += NiceGirlNouns.GetWord() + "\n"
 		sTweet += KinkNouns.GetWord() + "\n" 
 		sTweet += WordList(["To Church","To Church","To the Office","To Class","To the Grocery Store",
-							"To the Gym","To Sunday School","To Our Yoga Class"]).GetWord()
+							"To the Gym","To Sunday School","To Our Yoga Class","To Work"]).GetWord()
 
 		return sTweet	
 		
@@ -4913,7 +4902,7 @@ class Generator1001(Generator):
 							bAddAnArticle = True, 
 							bAllowGang = False,
 							bAllowTrope = True,
-							SelectTemplateID = 140)
+							SelectTemplateID = 149)
 		Gang = char.MaleChar(TempType = TempType.Flowery,
 							 bAddAnArticle = True,
 							 bAllowGang = True)

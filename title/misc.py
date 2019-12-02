@@ -881,20 +881,38 @@ class TypeModMale(WordList):
 			'Vegan','Vegan',
 			'Veteran',
 			'Wealthy','Wealthy','Wealthy'])
-		
-class SkinHairColorMale(WordList):
+
+class HairColorMale(WordList):
 	def __init__(self):
-		super().__init__(['Black','Black','Black',
-			'Black-Bearded',
+		super().__init__(['Black-Bearded',
 			'Blonde','Blonde',
-			'Bronzed',
-			'Copper-Skinned',
 			'Curly-Haired',
-			'Ebony',
 			'Graying',
 			'Red-Headed','Red-Headed',
-			'Tanned','Tanned'])
-							
+			'Brown-Haired'])
+			
+class SkinColorPOCMale(WordList):
+	def __init__(self):
+		super().__init__(['Black','Black','Black',
+			'Copper-Skinned',
+			'Dark-Skinned',
+			'Ebony'])
+			
+class SkinColorWhiteMale(WordList):
+	def __init__(self):
+		super().__init__(['Bronzed','Bronzed',
+			'Copper-Skinned',
+			'Pale',
+			'Tanned','Tanned','Tanned'])
+
+class SkinColorMale(WordList):
+	def __init__(self):
+		super().__init__(SkinColorPOCMale().GetWordList() + SkinColorWhiteMale().GetWordList())
+			
+class SkinHairColorMale(WordList):
+	def __init__(self):
+		super().__init__(SkinColorMale().GetWordList() + HairColorMale().GetWordList())
+			
 class AgeMaleAdj(WordList):
 	def __init__(self):
 		super().__init__(['College',

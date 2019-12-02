@@ -578,6 +578,22 @@ class RelateMale(MaleCharBit):
 	def __init__(self):
 		super().__init__(titmisc.RelateMale())
 
+class HairColorMale(MaleCharBit):
+	def __init__(self):
+		super().__init__(titmisc.HairColorMale())
+		
+class SkinColorPOCMale(MaleCharBit):
+	def __init__(self):
+		super().__init__(titmisc.SkinColorPOCMale())
+		
+class SkinColorWhiteMale(MaleCharBit):
+	def __init__(self):
+		super().__init__(titmisc.SkinColorWhiteMale())
+		
+class SkinColorMale(MaleCharBit):
+	def __init__(self):
+		super().__init__(titmisc.SkinColorMale())
+
 class SkinHairColorMale(MaleCharBit):
 	def __init__(self):
 		super().__init__(titmisc.SkinHairColorMale())
@@ -624,7 +640,12 @@ class TropeBitMale(MaleCharBit):
 class Character():
 	def __init__(self):
 		
+		self.Desc = ""
 		self.Gender = Gender.Neuter
+		
+	def GetWordList(self):
+	
+		return re.findall(r"[\w']+", self.Desc)
 		
 	def BuildTemplateList(self):
 		pass
@@ -719,6 +740,7 @@ class Character():
 						  SelectTemplateID = 0):	
 		SelCharTemplate = None 
 		variant = None
+		iTryCounter = 1
 		
 		if SelectTemplateID > 0:
 			# Note: if a specific template ID is requested the exclusion and required lists will be ignored
@@ -728,15 +750,25 @@ class Character():
 					SelCharTemplate = item
 					if item.ID == SelectTemplateID:
 						break
+						
+				if SelCharTemplate is None:
+					SelCharTemplate = TemplateList[0]
+					
 				#print("Selected character template is " + str(SelCharTemplate))		
 				variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
 				#print("Selected variant is " + str(variant))
+				
+				while (not self.DoesVariantMeetReqs(variant, ReqList) or self.IsVariantExcluded(variant, ExclList)) and iTryCounter < MAX_VARIANT_TRIES:
+					iTryCounter = iTryCounter + 1
+					
+					variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
+				
 		else:
 			SelCharTemplate = choice(TemplateList)
 			
 			variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
 			#print("Selected first template is + " + str(SelCharTemplate))
-			iTryCounter = 1
+			
 			#while self.IsTemplateExcluded(SelCharTemplate, ExclList):
 			#print("\nChecking variant " + str(variant) + "\n - against req list " + str(ReqList) + "\n - against excl list " + str(ExclList))
 			while (not self.DoesVariantMeetReqs(variant, ReqList) or self.IsVariantExcluded(variant, ExclList)) and iTryCounter < MAX_VARIANT_TRIES:

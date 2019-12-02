@@ -269,7 +269,7 @@ class FemTemplate17(FemCharTemplate):
 							# NotList = [],
 							# priority = 3)
 							
-# Bad Female (Race) Generator 131		
+# Bad Female (Race) Generators 130 & 131		
 class FemTemplate18(FemCharTemplate):
 	def __init__(self):
 		super().__init__(	 noun = SpeciesFemale(),
@@ -284,7 +284,7 @@ class FemTemplate18(FemCharTemplate):
 							girltype = GirlType.Bad,
 							priority = 3)
 
-# Good Female (Race) Generator 131
+# Good Female (Race) Generators 130 & 131		
 class FemTemplate19(FemCharTemplate):
 	def __init__(self):
 		super().__init__(	 noun = SpeciesFemale(),
@@ -306,7 +306,7 @@ class FemGoodTropeTemplate1(FemTropeTemplate):
 							 id = 101, 
 							 adjlist = 	[CTEntry([AttitudeGoodFemale],4),
 										  CTEntry([PhysCharFemale],3),
-										  CTEntry([SkinHairColorFemale,PregState],2),
+										  CTEntry([SkinColorWhiteFemale,HairColorWhiteFemale,PregState],2),
 										  CTEntry([PregState],1),  
 										], 
 							girltype = GirlType.Good,
@@ -318,7 +318,7 @@ class FemGoodTropeTemplate2(FemTropeTemplate):
 							 id = 102, 
 							 adjlist = 	[CTEntry([AttitudeGoodFemale],4),
 										  CTEntry([MaritalStatusFemale,AgeAdjFemale,PregState],3),
-										  CTEntry([SkinHairColorFemale],2),  
+										  CTEntry([SkinHairColorFemale,RaceFemale],2),  
 										  CTEntry([ProfGoodFemale],1),  
 										  CTEntry([SpeciesFemale],0),
 										], 
@@ -332,7 +332,7 @@ class FemGoodTropeTemplate3(FemTropeTemplate):
 							 adjlist = 	[CTEntry([AttitudeGoodFemale],5),
 										  CTEntry([PhysCharFemale],4),
 										  CTEntry([MaritalStatusFemale,AgeAdjFemale,PregState],3),
-										  CTEntry([NationFemale,SkinHairColorFemale],2), 
+										  CTEntry([NationFemale,SkinHairColorFemale,RaceFemale],2), 
 										  CTEntry([ProfGoodFemale],1),  
 										], 
 							girltype = GirlType.Good,
@@ -344,7 +344,7 @@ class FemGoodTropeTemplate4(FemTropeTemplate):
 							 id = 104, 
 							 adjlist = 	[CTEntry([AttitudeGoodFemale],3),
 										  CTEntry([PhysCharFemale],2),
-										  CTEntry([NationFemale,SkinHairColorFemale],1),   
+										  CTEntry([NationFemale,SkinHairColorFemale,RaceFemale],1),   
 										], 
 							girltype = GirlType.Good,
 							NotList = ["beauty","queen"])
@@ -356,7 +356,7 @@ class FemGoodTropeTemplate5(FemTropeTemplate):
 							 adjlist = 	[CTEntry([AttitudeGoodFemale],5),
 										  CTEntry([PhysCharFemale],4),
 										  CTEntry([AgeAdjFemale,PregState],3),
-										  CTEntry([NationFemale,SkinHairColorFemale],2),   
+										  CTEntry([NationFemale,SkinHairColorFemale,RaceFemale],2),   
 										], 
 							bpersonal = True,
 							girltype = GirlType.Good)
@@ -368,7 +368,7 @@ class FemGoodTropeTemplate6(FemTropeTemplate):
 							 adjlist = 	[CTEntry([AttitudeGoodFemale],5),
 										  CTEntry([PhysCharFemale],4),
 										  CTEntry([PregState],3),
-										  CTEntry([NationFemale,SkinHairColorFemale],2),  
+										  CTEntry([NationFemale,SkinColorWhiteFemale,HairColorWhiteFemale],2),  
 										  CTEntry([SpeciesFemale],1),
 										], 
 							girltype = GirlType.Good,
@@ -380,7 +380,7 @@ class FemGoodTropeTemplate7(FemTropeTemplate):
 							 id = 107, 
 							 adjlist = 	[CTEntry([AttitudeGoodFemale],5),
 										  CTEntry([PhysCharFemale],4),
-										  CTEntry([NationFemale],2)
+										  CTEntry([NationFemale,RaceFemale],2)
 										], 
 							girltype = GirlType.Good,
 							NotList = ["chaste","sexy","bikini","mormon"])
@@ -391,7 +391,7 @@ class FemGoodTropeTemplate8(FemTropeTemplate):
 							 id = 108, 
 							 adjlist = 	[CTEntry([PhysCharFemale],4),
 										  CTEntry([PregState],3),
-										  CTEntry([SkinHairColorFemale],2),  
+										  CTEntry([SkinHairColorFemale,RaceFemale],2),  
 										  CTEntry([SpeciesFemale],1),
 										], 
 							girltype = GirlType.Good,
@@ -427,7 +427,7 @@ class FemGoodTropeTemplate11(FemTropeTemplate):
 							 adjlist = 	[CTEntry([AttitudeGoodFemale],5),
 										  CTEntry([PhysCharFemale],4),
 										  CTEntry([MaritalStatusFemale,AgeAdjFemale,PregState],3),
-										  CTEntry([NationFemale,SkinHairColorFemale],2), 
+										  CTEntry([NationFemale,HairColorWhiteFemale,SkinColorWhiteFemale],2), 
 										  CTEntry([ProfGoodFemale],1),  
 										], 
 							girltype = GirlType.Good)
@@ -440,7 +440,7 @@ class FemGoodTropeTemplate12(FemTropeTemplate):
 										  CTEntry([PhysCharFemale],5),
 										  CTEntry([MaritalStatusFemale,AgeAdjFemale],4),
 										  CTEntry([PregState],3),
-										  CTEntry([NationFemale,SkinHairColorFemale],2), 
+										  CTEntry([NationFemale,SkinHairColorFemale,RaceFemale],2), 
 										  CTEntry([ProfGoodFemale],1), 
 										], 
 							girltype = GirlType.Good,
@@ -451,7 +451,7 @@ class FemGoodTropeTemplate13(FemTropeTemplate):
 		super().__init__(	 noun = TropeBitBadFemale("Kitten"),
 							 id = 113, 
 							 adjlist = 	[CTEntry([AttitudeGoodFemale],3),
-										  CTEntry([NationFemale,SkinHairColorFemale],2), 
+										  CTEntry([NationFemale,SkinHairColorFemale,RaceFemale],2), 
 										  CTEntry([ProfGoodFemale],1),  
 										], 
 							girltype = GirlType.Good,
@@ -464,7 +464,7 @@ class FemGoodTropeTemplate14(FemTropeTemplate):
 							 adjlist = 	[CTEntry([AttitudeGoodFemale],5),
 										  CTEntry([PhysCharFemale],4),
 										  CTEntry([PregState],3),
-										  CTEntry([SkinHairColorFemale],2)
+										  CTEntry([SkinHairColorFemale,RaceFemale],2)
 										], 
 							bpersonal = True,
 							girltype = GirlType.Good,
@@ -476,7 +476,7 @@ class FemGoodTropeTemplate15(FemTropeTemplate):
 							 id = 115, 
 							 adjlist = 	[ CTEntry([AttitudeGoodFemale],4),
 										  CTEntry([PhysCharFemale],3),
-										  CTEntry([NationFemale,SkinHairColorFemale],2), 
+										  CTEntry([NationFemale,SkinColorWhiteFemale,HairColorWhiteFemale],2), 
 										  CTEntry([ProfGoodFemale],1), 
 										], 
 							girltype = GirlType.Good,
@@ -488,7 +488,7 @@ class FemGoodTropeTemplate16(FemTropeTemplate):
 							 id = 116, 
 							 adjlist = 	[CTEntry([AttitudeGoodFemale],5),
 										  CTEntry([PhysCharFemale],4),
-										  CTEntry([SkinHairColorFemale],3),
+										  CTEntry([SkinHairColorFemale,RaceFemale],3),
 										  CTEntry([NationFemale],2), 
 										  CTEntry([SpeciesFemale],1)
 										], 
@@ -502,7 +502,7 @@ class FemGoodTropeTemplate17(FemTropeTemplate):
 							 adjlist = 	[CTEntry([AttitudeGoodFemale],5),
 										  CTEntry([PhysCharFemale],4),
 										  CTEntry([PregState],3),
-										  CTEntry([SkinHairColorFemale],2)
+										  CTEntry([SkinHairColorFemale,RaceFemale],2)
 										], 
 							girltype = GirlType.Good,
 							NotList = ["queen","shy","kind","gentle","bashful","lactating","nursing"])
@@ -526,7 +526,7 @@ class FemGoodTropeTemplate19(FemTropeTemplate):
 							 adjlist = 	[CTEntry([AttitudeGoodFemale],6),
 										  CTEntry([PhysCharFemale],5),
 										  CTEntry([MaritalStatusFemale],4),
-										  CTEntry([NationFemale,SkinHairColorFemale],3),
+										  CTEntry([NationFemale,SkinHairColorFemale,RaceFemale],3),
 										  CTEntry([PregState],2),
 										  CTEntry([ProfGoodFemale],1), 
 										], 
@@ -565,7 +565,7 @@ class FemGoodTropeTemplate22(FemTropeTemplate):
 							 id = 122, 
 							 adjlist = 	[CTEntry([AttitudeGoodFemale],5),
 										  CTEntry([PhysCharFemale],4),
-										  CTEntry([SkinHairColorFemale,],3),
+										  CTEntry([SkinColorWhiteFemale,HairColorWhiteFemale],3),
 										  CTEntry([NationFemale,],2),
 										], 
 							girltype = GirlType.Good,
@@ -577,7 +577,7 @@ class FemGoodTropeTemplate23(FemTropeTemplate):
 							 id = 123, 
 							 adjlist = 	[CTEntry([AttitudeGoodFemale],6),
 										  CTEntry([PhysCharFemale],5),
-										  CTEntry([SkinHairColorFemale],3),
+										  CTEntry([SkinColorWhiteFemale,HairColorWhiteFemale],3),
 										], 
 							girltype = GirlType.Good,
 							NotList = ["single"])
@@ -589,7 +589,7 @@ class FemGoodTropeTemplate24(FemTropeTemplate):
 							 adjlist = 	[CTEntry([AttitudeGoodFemale],5),
 										  CTEntry([MaritalStatusFemale],4),
 										  CTEntry([PhysCharFemale],3),
-										  CTEntry([SkinHairColorFemale],2),
+										  CTEntry([SkinHairColorFemale,RaceFemale],2),
 										  CTEntry([ProfGoodFemale],1)
 										], 
 							girltype = GirlType.Good,
@@ -601,7 +601,7 @@ class FemGoodTropeTemplate25(FemTropeTemplate):
 							 id = 125, 
 							 adjlist = 	[ CTEntry([AttitudeGoodFemale],5),
 										  CTEntry([PhysCharFemale],3),
-										  CTEntry([NationFemale,SkinHairColorFemale],2)
+										  CTEntry([NationFemale,SkinHairColorFemale,RaceFemale],2)
 										], 
 							girltype = GirlType.Good,
 							NotList = ["Gentle","Kind","Statuesque","Stacked","Bashful","Shy","Big Bottomed","Ditzy",
@@ -613,7 +613,7 @@ class FemGoodTropeTemplate26(FemTropeTemplate):
 							 id = 126, 
 							 adjlist = 	[CTEntry([AttitudeGoodFemale],6),
 										  CTEntry([PhysCharFemale],5),
-										  CTEntry([SkinHairColorFemale,AgeAdjFemale],4),
+										  CTEntry([SkinHairColorFemale,RaceFemale,AgeAdjFemale],4),
 										  CTEntry([NationFemale,SpeciesFemale],3),
 										  CTEntry([ProfGoodFemale],1)
 										], 
@@ -632,7 +632,7 @@ class FemBadTropeTemplate1(FemTropeTemplate):
 										  CTEntry([AttitudeBadFemale],7),
 										  CTEntry([PhysCharFemale],6),
 										  CTEntry([ClothingFemale],5),
-										  CTEntry([SkinHairColorFemale],4),
+										  CTEntry([SkinHairColorFemale,RaceFemale],4),
 										  CTEntry([AgeAdjFemale],3),
 										  CTEntry([SexualityFemale],2)
 										], 
@@ -648,7 +648,7 @@ class FemBadTropeTemplate2(FemTropeTemplate):
 										  CTEntry([AttitudeFemale],7),
 										  CTEntry([PhysCharFemale],6),
 										  CTEntry([ClothingFemale,NationFemale],5),
-										  CTEntry([SkinHairColorFemale],4),
+										  CTEntry([SkinColorWhiteFemale,HairColorWhiteFemale],4),
 										  CTEntry([SexualityFemale],2)
 										], 
 							girltype = GirlType.Bad,
@@ -661,7 +661,7 @@ class FemBadTropeTemplate3(FemTropeTemplate):
 							 id = 203, 
 							 adjlist = 	[ CTEntry([PhysCharFemale],7),
 										  CTEntry([AgeAdjFemale],4),
-										  CTEntry([NationFemale,SkinHairColorFemale],5),
+										  CTEntry([NationFemale,SkinHairColorFemale,RaceFemale],5),
 										  CTEntry([SexualityFemale],3),
 										  CTEntry([ProfFemale,RelateFemale,TitlesFemale],1)
 										], 
@@ -676,7 +676,7 @@ class FemBadTropeTemplate4(FemTropeTemplate):
 										  CTEntry([AttitudeBadFemale],9),
 										  CTEntry([PhysCharFemale],6),
 										  CTEntry([ClothingFemale],5),
-										  CTEntry([NationFemale,SkinHairColorFemale],4),
+										  CTEntry([NationFemale,SkinHairColorFemale,RaceFemale],4),
 										  CTEntry([SexualityFemale],2),
 										  CTEntry([RelateFemale,TitlesFemale],1)
 										], 
@@ -694,7 +694,7 @@ class FemBadTropeTemplate5(FemTropeTemplate):
 										  CTEntry([PhysCharFemale],6),
 										  CTEntry([ClothingFemale],5),
 										  CTEntry([MaritalStatusFemale,AgeAdjFemale],4),
-										  CTEntry([NationFemale],3),
+										  CTEntry([SkinColorWhiteFemale,HairColorWhiteFemale,NationFemale],3),
 										  CTEntry([SexualityFemale],2),
 										  CTEntry([ProfBadFemale],1)
 										], 
@@ -759,12 +759,14 @@ class FemBadTropeTemplate9(FemTropeTemplate):
 										  CTEntry([GenModFemale],10),
 										  CTEntry([PhysCharFemale],6),
 										  CTEntry([ClothingFemale],5),
+										  CTEntry([SkinColorWhiteFemale,HairColorWhiteFemale],3),
 										  CTEntry([SexualityFemale],2),
 										  CTEntry([ProfBadFemale],1)
 										], 
 							girltype = GirlType.Bad,
 							NotList = ["Penthouse","Centerfold","cheerleader","housewife","marm","hooter",
-										"sporty""tender","soft","nudist","gymnast"])
+										"sporty""tender","soft","nudist","gymnast","red","blonde",
+										"tanned","bronzed"])
 
 class FemBadTropeTemplate10(FemTropeTemplate):
 	def __init__(self):
@@ -775,7 +777,7 @@ class FemBadTropeTemplate10(FemTropeTemplate):
 										  CTEntry([AttitudeGoodFemale],7),
 										  CTEntry([PhysCharFemale],6),
 										  CTEntry([PregState],4),
-										  CTEntry([NationFemale,SkinHairColorFemale],3)
+										  CTEntry([NationFemale,SkinHairColorFemale,RaceFemale],3)
 										], 
 							girltype = GirlType.Bad,
 							NotList = [])
@@ -790,7 +792,7 @@ class FemBadTropeTemplate20(FemTropeTemplate):
 										  CTEntry([AttitudeBadFemale],9),
 										  CTEntry([PhysCharFemale],8),
 										  CTEntry([ClothingFemale],7),
-										  CTEntry([NationFemale,SkinHairColorFemale],6),
+										  CTEntry([NationFemale,SkinHairColorFemale,RaceFemale],6),
 										  CTEntry([AgeAdjFemale],5),
 										  CTEntry([PregState],4),
 										  CTEntry([SexualityFemale],3),  
@@ -809,7 +811,7 @@ class FemBadTropeTemplate21(FemTropeTemplate):
 										  CTEntry([PhysCharFemale],5),
 										  CTEntry([ClothingFemale],4),
 										  CTEntry([PregState],4),
-										  CTEntry([SkinHairColorFemale],3),
+										  CTEntry([SkinHairColorFemale,RaceFemale],3),
 										  CTEntry([SpeciesFemale],1),
 										], 
 							girltype = GirlType.Bad,
@@ -823,7 +825,7 @@ class FemBadTropeTemplate22(FemTropeTemplate):
 										  CTEntry([AttitudeBadFemale],9),
 										  CTEntry([PhysCharFemale],8),
 										  CTEntry([ClothingFemale],7),
-										  CTEntry([NationFemale,SkinHairColorFemale],6),
+										  CTEntry([NationFemale,SkinHairColorFemale,RaceFemale],6),
 										  CTEntry([SexualityFemale],3)
 										], 
 							girltype = GirlType.Bad,
@@ -838,7 +840,7 @@ class FemBadTropeTemplate23(FemTropeTemplate):
 										  CTEntry([AttitudeFemale],9),
 										  CTEntry([PhysCharFemale],8),
 										  CTEntry([ClothingFemale],7),
-										  CTEntry([NationFemale,SkinHairColorFemale],3),
+										  CTEntry([NationFemale,SkinHairColorFemale,RaceFemale],3),
 										  CTEntry([SexualityFemale,PregState,AgeAdjFemale],2),
 										  CTEntry([ProfFemale],1)
 										], 
@@ -1027,7 +1029,7 @@ class MaleTemplate1(MaleCharTemplate):
 										  CTEntry([PhysCharMale,DickCharMale],8),
 										  CTEntry([TypeModMale],6),
 										  CTEntry([AgeAdjMale,MaritalStatusMale],5),
-										  CTEntry([SkinHairColorMale,NationMale],3),
+										  CTEntry([SkinHairColorMale,NationMale,RaceMale],3),
 										  CTEntry([SpeciesMale,ProfMale],1)
 										],
 							priority = 3)
@@ -1043,7 +1045,7 @@ class MaleTemplate2(MaleCharTemplate):
 										  CTEntry([PhysCharMale,DickCharMale],8),
 										  CTEntry([TypeModMale],6),
 										  CTEntry([AgeAdjMale],5),
-										  CTEntry([SkinHairColorMale,NationMale],3),
+										  CTEntry([SkinHairColorMale,NationMale,RaceMale],3),
 										  CTEntry([SpeciesMale],2),
 										  CTEntry([ProfMale],1)
 										],
@@ -1059,7 +1061,7 @@ class MaleTemplate3(MaleCharTemplate):
 										  CTEntry([AttitudeMale],10),
 										  CTEntry([PhysCharMale],9),
 										  CTEntry([DickCharMale],8),
-										  CTEntry([SkinHairColorMale],7),
+										  CTEntry([SkinHairColorMale,RaceMale],7),
 										  CTEntry([TypeModMale],6),
 										  CTEntry([NationMale],3),
 										  CTEntry([SpeciesMale],1)
@@ -1086,7 +1088,7 @@ class MaleTemplate5(MaleCharTemplate):
 										  CTEntry([AttitudeMale],10),
 										  CTEntry([PhysCharMale],9),
 										  CTEntry([DickCharMale],8),
-										  CTEntry([NationMale,SkinHairColorMale],7),
+										  CTEntry([NationMale,SkinHairColorMale,RaceMale],7),
 										  CTEntry([TypeModMale],6),
 										  CTEntry([AgeAdjMale,MaritalStatusMale],5),
 										  CTEntry([SpeciesMale],1),
@@ -1094,32 +1096,6 @@ class MaleTemplate5(MaleCharTemplate):
 										],
 							priority = 3)
 
-# Male [for Generator 128]
-class MaleTemplate6(MaleCharTemplate):
-	def __init__(self):
-		super().__init__(	noun = ProfMale(),
-							 id = 6, 
-							 adjlist = 	[ CTEntry([TypeModMale],6),
-										  CTEntry([ProfBlueCollarMale,ProfWhiteCollarMale,ProfAthleteMale,TitlesMale,SpeciesMale],1)
-										],
-							priority = 1)
-							
-# Male (Race) Generator 131
-class MaleTemplate5(MaleCharTemplate):
-	def __init__(self):
-		super().__init__(	noun = TropesWealthyMale(),
-							 id = 5, 
-							 adjlist = 	[ CTEntry([GenModMale],11),
-										  CTEntry([AttitudeMale],10),
-										  CTEntry([PhysCharMale],9),
-										  CTEntry([DickCharMale],8),
-										  CTEntry([RaceMale],7),
-										  CTEntry([TypeModMale],6),
-										  CTEntry([AgeAdjMale,MaritalStatusMale],5),
-										  CTEntry([SpeciesMale],1),
-										  CTEntry([ProfMale],1)
-										],
-							priority = 3)
 #ProfBlueCollarMale,ProfWhiteCollarMale,ProfFantasyMale,ProfAthleteMale,ProfRockstarMale,
 #			ProfNormalMale,ProfAspirationalMale,ProfMale
 
@@ -1133,7 +1109,7 @@ class MaleTropeTemplate1(MaleTropeTemplate):
 										  CTEntry([AttitudeMale],10),
 										  CTEntry([PhysCharMale],9),
 										  CTEntry([DickCharMale],8),
-										  CTEntry([SkinHairColorMale],7),
+										  CTEntry([SkinHairColorMale,RaceMale],7),
 										  CTEntry([TypeModMale],6),
 										  CTEntry([AgeAdjMale],5),
 										  CTEntry([NationMale],4),
@@ -1149,7 +1125,7 @@ class MaleTropeTemplate2(MaleTropeTemplate):
 										  CTEntry([AttitudeMale],10),
 										  CTEntry([PhysCharMale],9),
 										  CTEntry([DickCharMale],8),
-										  CTEntry([SkinHairColorMale],7),
+										  CTEntry([SkinHairColorMale,RaceMale],7),
 										  CTEntry([TypeModMale],6),
 										  CTEntry([AgeAdjMale],5),
 										  CTEntry([NationMale],4),
@@ -1166,7 +1142,7 @@ class MaleTropeTemplate3(MaleTropeTemplate):
 										  CTEntry([AttitudeMale],10),
 										  CTEntry([PhysCharMale],9),
 										  CTEntry([DickCharMale],8),
-										  CTEntry([SkinHairColorMale,NationMale],7),
+										  CTEntry([SkinHairColorMale,NationMale,RaceMale],7),
 										  CTEntry([TypeModMale],6),
 										  CTEntry([AgeAdjMale],5),
 										  CTEntry([SpeciesMale],2)
@@ -1182,7 +1158,7 @@ class MaleTropeTemplate4(MaleTropeTemplate):
 										  CTEntry([AttitudeMale],10),
 										  CTEntry([PhysCharMale],9),
 										  CTEntry([DickCharMale],8),
-										  CTEntry([SkinHairColorMale,NationMale],7),
+										  CTEntry([SkinHairColorMale,NationMale,RaceMale],7),
 										  CTEntry([TypeModMale],6)
 										],
 							NotList = ["mature","bald"])		
@@ -1231,20 +1207,20 @@ class MaleTropeTemplate7(MaleTropeTemplate):
 										],
 							NotList = ["motorcycle","stay-at-home"])	
 
-class MaleTropeTemplate8(MaleTropeTemplate):
-	def __init__(self):
-		super().__init__(	noun = TropeBitMale("Biker"),
-							 id = 108, 
-							 adjlist = 	[ CTEntry([GenModMale],11),
-										  CTEntry([AttitudeMale],10),
-										  CTEntry([PhysCharMale],9),
-										  CTEntry([DickCharMale],8),
-										  CTEntry([NationMale,SkinHairColorMale],7),
-										  CTEntry([TypeModMale],6),
-										  CTEntry([AgeAdjMale],4),
-										  CTEntry([ProfMale,SpeciesMale],2)
-										],
-							NotList = ["motorcycle","stay-at-home"])							
+# class MaleTropeTemplate8(MaleTropeTemplate):
+	# def __init__(self):
+		# super().__init__(	noun = TropeBitMale("Biker"),
+							 # id = 108, 
+							 # adjlist = 	[ CTEntry([GenModMale],11),
+										  # CTEntry([AttitudeMale],10),
+										  # CTEntry([PhysCharMale],9),
+										  # CTEntry([DickCharMale],8),
+										  # CTEntry([NationMale,SkinHairColorMale],7),
+										  # CTEntry([TypeModMale],6),
+										  # CTEntry([AgeAdjMale],4),
+										  # CTEntry([ProfMale,SpeciesMale],2)
+										# ],
+							# NotList = ["motorcycle","stay-at-home"])							
 
 class MaleTropeTemplate9(MaleTropeTemplate):
 	def __init__(self):
@@ -1616,7 +1592,8 @@ class MaleTropeTemplate132(MaleTropeTemplate):
 										  CTEntry([DickCharMale],8),
 										  CTEntry([AgeAdjMale,MaritalStatusMale],6),
 										  CTEntry([TypeModMale],4),	
-										  CTEntry([SpeciesMale],3),											  
+										  CTEntry([HairColorMale],3),
+										  CTEntry([SpeciesMale],2),											  
 										  CTEntry([ProfBlueCollarMale,ProfFantasyMale],1)
 										],
 							NotList = ["suave","dapper","gentlemanly","urbane","S.W.A.T.",
@@ -1633,7 +1610,7 @@ class MaleTropeTemplate133(MaleTropeTemplate):
 										  CTEntry([DickCharMale],8),
 										  CTEntry([ClothesMale],7),
 										  CTEntry([MaritalStatusMale],6),
-										  CTEntry([NationMale,SkinHairColorMale],5),
+										  CTEntry([NationMale,SkinHairColorMale,RaceMale],5),
 										  CTEntry([TypeModMale],4)
 										],
 							NotList = ["single","young","millennial","hipster","BDSM",
@@ -1743,6 +1720,131 @@ class MaleTropeTemplate140(MaleTropeTemplate):
 							NotList = ["teen","college","powerful","rebel","rakish","sly","hulking",
 										"savage","tanned","bronzed","playboy","wealthy","renegade",
 										"devil"])
+
+class MaleTropeTemplate141(MaleTropeTemplate):
+	def __init__(self):
+		super().__init__(	noun = TropeBitMale("Silver Fox"),
+							 id = 141, 
+							 adjlist = 	[ CTEntry([GenModMale],11),
+										  CTEntry([AttitudeMale],10),
+										  CTEntry([PhysCharMale],9),
+										  CTEntry([DickCharMale],8),
+										  CTEntry([ClothesMale],7),
+										  CTEntry([AgeAdjMale,MaritalStatusMale],6),
+										  CTEntry([SkinColorMale,RaceMale],5),
+										  CTEntry([TypeModMale],4),										  
+										  CTEntry([ProfWhiteCollarMale],1)
+										],
+							NotList = ["young","teen","college","black","white","tattoo"])	
+
+class MaleTropeTemplate142(MaleTropeTemplate):
+	def __init__(self):
+		super().__init__(	noun = TropeBitMale("Smooth Operator"),
+							 id = 142, 
+							 adjlist = 	[ CTEntry([GenModMale],10),
+										  CTEntry([PhysCharMale],8),
+										  CTEntry([DickCharMale],7),
+										  CTEntry([ClothesMale],6),
+										  CTEntry([AgeAdjMale],5),
+										  CTEntry([TypeModMale],3)
+										],
+							NotList = ["stay-at-home","ugly","teen"])		
+
+class MaleTropeTemplate143(MaleTropeTemplate):
+	def __init__(self):
+		super().__init__(	noun = TropeBitMale("Stallion"),
+							 id = 143, 
+							 adjlist = 	[ CTEntry([GenModMale],12),
+										  CTEntry([AttitudeMale],10),
+										  CTEntry([PhysCharMale],9),
+										  CTEntry([DickCharMale],8),
+										  CTEntry([ClothesMale],7),
+										  CTEntry([NationMale,SkinHairColorMale,RaceMale],5),
+										  CTEntry([TypeModMale],4),											  
+										  CTEntry([ProfRockstarMale,ProfAthleteMale],1)
+										],
+							NotList = ["tuxedo","suit","uniform","stern","disciplined"])
+
+class MaleTemplate144(MaleTropeTemplate):
+	def __init__(self):
+		super().__init__(	noun = TropeBitMale("Stalker"),
+							 id = 144, 
+							 adjlist = 	[ CTEntry([GenModMale],11),
+										  CTEntry([PhysCharMale],9),
+										  CTEntry([PhysCharMale,DickCharMale],8),
+										  CTEntry([AgeAdjMale],5),
+										  CTEntry([SkinHairColorMale,RaceMale],3)
+										],
+							NotList = ["ebony","eligible","dad-bod"])
+							
+class MaleTropeTemplate145(MaleTropeTemplate):
+	def __init__(self):
+		super().__init__(	noun = TropeBitMale("Stud"),
+							 id = 145, 
+							 adjlist = 	[ CTEntry([GenModMale],11),
+										  CTEntry([AttitudeMale],10),
+										  CTEntry([PhysCharMale],9),
+										  CTEntry([DickCharMale],8),
+										  CTEntry([SkinHairColorMale,RaceMale],7),
+										  CTEntry([NationMale],6),
+										  CTEntry([TypeModMale],5),
+										  CTEntry([ProfBlueCollarMale,TropesWealthyMale],2),
+										],
+							NotList = ["stay-at-home","barbarian","disciplined","stern","ugly",
+										"mature","clever","pale","space"])
+
+class MaleTropeTemplate146(MaleTropeTemplate):
+	def __init__(self):
+		super().__init__(	noun = TropeBitMale("Sugar Daddy"),
+							 id = 146, 
+							 adjlist = 	[ CTEntry([GenModMale],11),
+										  CTEntry([AttitudeMale],10),
+										  CTEntry([PhysCharMale,DickCharMale],9),
+										  CTEntry([ClothesMale],7),
+										  CTEntry([NationMale,RaceMale],5),
+										  CTEntry([TypeModMale],4),		
+										  CTEntry([TropesWealthyMale],2),					
+										  CTEntry([SpeciesMale],1)
+										],
+							NotList = ["teen","young"])
+							
+class MaleTropeTemplate147(MaleTropeTemplate):
+	def __init__(self):
+		super().__init__(	noun = TropeBitMale("Viking"),
+							 id = 147, 
+							 adjlist = 	[ CTEntry([GenModMale],11),
+										  CTEntry([PhysCharMale],9),
+										  CTEntry([DickCharMale],8),
+										  CTEntry([SkinHairColorMale,RaceMale,SpeciesMale],7),
+										],
+							NotList = ["dapper","gentlemanly","stay-at-home","stylish","fashionable",
+										"urbane","white","rebel"])	
+							
+class MaleTropeTemplate148(MaleTropeTemplate):
+	def __init__(self):
+		super().__init__(	noun = TropeBitMale("Voyeur"),
+							 id = 148, 
+							 adjlist = 	[ CTEntry([GenModMale],11),
+										  CTEntry([PhysCharMale],9),
+										  CTEntry([PhysCharMale,DickCharMale],8),
+										  CTEntry([AgeAdjMale],5),
+										  CTEntry([SkinHairColorMale,RaceMale],4)
+										],
+							NotList = ["eligible","frat","mature","stay-at-home"])	
+
+class MaleTropeTemplate149(MaleTropeTemplate):
+	def __init__(self):
+		super().__init__(	noun = TropeBitMale("Warrior"),
+							 id = 149, 
+							 adjlist = 	[ CTEntry([GenModMale],11),
+										  CTEntry([PhysCharMale],9),
+										  CTEntry([PhysCharMale,DickCharMale],8),
+										  CTEntry([RaceMale,SkinHairColorMale],7),
+										  CTEntry([TypeModMale],6),
+										  CTEntry([ProfBlueCollarMale,ProfFantasyMale],4),
+										  CTEntry([SpeciesMale],2)
+										],
+							NotList = ["mature","stay-at-home","millennial","college","playboy","wealthy"])	
 							
 # Adjs:		GenModMale, AttitudeMale, ClothesMale, PhysCharMale, DickCharMale, TypeModMale,
 #			SkinHairColorMale, AgeAdjMale, MaritalStatusMale, NationMale
