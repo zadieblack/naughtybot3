@@ -680,17 +680,22 @@ class Generator25(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		sHisName = self.HisName
+		sHisName = PlainNamesMale().FirstName()
+		
+		GayNotList = ['anal']
+		GayGuy = char.GayMaleChar(bAddTheArticle = True, sPosArticle = "His", NotList = GayNotList,
+									ReqList = [GayMaleAdj,DickCharMale])
+		GayGang = char.GangMaleChar(ExclList = [AttitudeMale])
 
 		GayTitles = []
 		
-		GayTitles.append("Pounded In The Butt By\nThe Gay " + titpeeps.MaleGangChar().Desc)
-		GayTitles.append("Pounded In The Butt By\n" + titpeeps.GayChar(bAddArticle = True).Desc)
-		GayTitles.append(sHisName + " Gets " + self.VerbsBy.GetWord(NotList=["Impregnated", "Hotwifed"]) + " By\nThe " + titpeeps.GayChar().Desc)
-		GayTitles.append(sHisName + " and\nThe " + WordList(["Well-Hung", "Well-Endowed"]).GetWord() + " " + titpeeps.GayChar(iNumMaxCBits = 2, NotList = ["Well-Hung", "Well-Endowed"]).Desc)
+		GayTitles.append("Pounded In The Butt By\nThe Gay " + GayGang.Desc)
+		GayTitles.append("Pounded In The Butt By\n" + GayGuy.Desc)
+		GayTitles.append(sHisName + " Gets " + self.VerbsBy.GetWord(NotList=["Impregnated", "Hotwifed"]) + " By\n" + GayGuy.Desc)
+		GayTitles.append(sHisName + " and\n" + GayGuy.Desc)
 		
 		sTweet = GayTitles[randint(0, len(GayTitles) - 1)]
-		sTweet += ":\n" + WordList(["A Gay","A Secret","A Taboo Gay","A Forbidden", "A Gay", "An MM", "An MM"]).GetWord() + " " + self.SubtitleCoda.GetWord()
+		sTweet += ":\n" + WordList(["A Gay","A Secret","A Taboo Gay","A Gay", "An MM", "An MM","An Anal"]).GetWord() + " " + self.SubtitleCoda.GetWord()
 		
 		return sTweet
 		
@@ -1068,27 +1073,34 @@ class Generator36(Generator):
 		sTweet = ""
 		
 		if CoinFlip():
-			Girl = titpeeps.FemaleChar(iNumMaxCBits = 3, Type = GirlType.Good, bAllowSexuality = False)
+			Girl = char.FemaleChar(Type = GirlType.Good, TempType = TempType.Medium,
+									ExclList = [SpeciesMale])
 			
 			if CoinFlip():
-				Lesbian = titpeeps.LesbianChar(bAddArticle = True, NotList = ['wife','girlfriend', 'married'])
+				Lesbian = char.LesbianChar(bAddTheArticle = True, NotList = ['wife','girlfriend', 'married','lesbo'],
+											ExclList = [SpeciesFemale])
 				sTweet = "Turned Lesbo by " + Lesbian.Desc
 			else:
-				Lesbian = titpeeps.LesbianChar(NotList = ['wife','girlfriend', 'married', 'lesbian'])
+				Lesbian = char.LesbianChar(NotList = ['wife','girlfriend', 'married', 'lesbian'],
+											ExclList = [SpeciesFemale])
 				sTweet = "Straight " + Girl.Desc + "\nfor the \nLesbian " + Lesbian.Desc 
 			
 		else:
-			Man = titpeeps.MaleChar(iNumMaxCBits = 3, bAllowGang = False)
+			Man = char.MaleChar(bAllowGang = False, TempType = TempType.Medium,
+								ExclList = [SpeciesFemale])
 			
 			if CoinFlip():
-				Gay = titpeeps.GayChar(bAddArticle = True, NotList = ['husband','boyfriend', 'married'])
+				Gay = char.GayMaleChar(bAddTheArticle = True, NotList = ['husband','boyfriend', 'married','gay'])
 				sTweet = "Turned Gay by " + Gay.Desc
 			else:
-				Gay = titpeeps.GayChar(NotList = ['husband','boyfriend', 'married', 'gay'])
+				Gay = char.GayMaleChar(NotList = ['husband','boyfriend', 'married', 'gay'])
 				sTweet = "Straight " + Man.Desc + "\nfor the\nGay " + Gay.Desc 
 
 		return sTweet
-		
+
+# My New Step-Dad Is
+# A Tattooed Hard-Drinking Vegan Trillionaire
+# and He's Hung Like a Horse!		
 class Generator37(Generator):
 	# 
 	ID = 37
@@ -1297,6 +1309,8 @@ class Generator45(Generator):
 
 		return sTweet
 
+# Secretly In Love With
+# My Elf Supermodel Sister
 class Generator46(Generator):
 	ID = 46
 	Priority = 1
@@ -1340,33 +1354,23 @@ class Generator46(Generator):
 
 		# return sTweet
 		
-# class Generator48(Generator):
+class Generator48(Generator):
 	# Lusting For the Wicked Blonde Fetish Model
-			# - need to add a feature to character generator where
-			  # you can make a specific charbit mandatory
-	# ID = 48
-	# Priority = 1
+	ID = 48
+	Priority = 1
 	
-	# def GenerateTweet(self):
-		# super().GenerateTweet()
-		# sTweet = ""
-		
-		# HairTropes = WordList(["Fiery Redhead", "Wholesome Blonde", "Clueless Blonde", "Nerdy Asian", 
-			# "Asian Schoolgirl", "Spicy Latina", "Haughty Redhead", "Hot-Blooded Italian", "Submissive Asian",
-			# "Brainy Brunette", "Sassy Black", "Bootylicious Black", "Wicked Blonde", "Shy Brunette",
-			# "Muscular Blonde", "Snooty French", "Hot-Blooded Gypsy", "Sensual Russian", "Mysterious Geisha",
-			# "Athletic Brunette","Stacked Blonde","Chubby Redhead","Sporty Brunette","Exotic Dark-Skinned",
-			# "Beautiful Mixed-Race"])
-		# GirlAdjs = char.FemaleChar(bAddEndNoun = False, bAllowAge = False, bAllowAttitude = False, bAllowMaritalStatus = False, 
-								# bAllowPhysChar = False, bAllowRelate = False, bAllowNation = False, 
-								# bAllowSkinHairColor = False, bAllowSpecies = False)
-		# GirlNoun = char.FemaleChar(TempType = TempType.Short, bAllowAge = False, bAllowAttitude = False, bAllowMaritalStatus = False, 
-								# bAllowPhysChar = False, bAllowRelate = False, bAllowNation = False, 
-								# bAllowSkinHairColor = False, bAllowSpecies = False)
-		
-		# sTweet = self.Gerunds.GetWord() + " the " + GirlAdjs.Desc + " " + HairTropes.GetWord() + " " + GirlNoun.Desc 
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
 
-		# return sTweet		
+		GirlNotList = ['elf','skin','tanned','bronzed']
+		Girl = char.FemaleChar(bAddTheArticle = True, NotList = GirlNotList, bAllowSpecies = False,
+								ReqList = [SkinHairColorFemale],
+								ExclList = [AgeAdjFemale,SexualityFemale,MaritalStatusFemale,PregState,NationFemale])
+		
+		sTweet = self.Gerunds.GetWord() + " " + Girl.Desc
+		
+		return sTweet		
 		
 class Generator49(Generator):
 	# Taken Vigorously
@@ -3807,21 +3811,20 @@ class Generator118(Generator):
 		
 		CharNotList = ['Uptight','Virgin','Male Model','Quarterback','Male Stripper','Camp Counselor','Business Man','Slave',
 						'Defensive Lineman','Virtuous']
-		Lesbian1 = titpeeps.FemaleChar(iNumMinCBits = 1, iNumMaxCBits = 2, bAddArticle = False, bAddEndNoun = False, NotList = CharNotList,
-								bAllowMaritalStatus = False, bAllowSexuality = False, bAllowPregState = False, bAllowTitle = False)
-		Lesbian2 = titpeeps.FemaleChar(iNumMinCBits = 1, iNumMaxCBits = 1, bAddArticle = False, bAddEndNoun = False, NotList = CharNotList,
-								bAllowMaritalStatus = False, bAllowSexuality = False, bAllowPregState = False, bAllowProf = False, bAllowTitle = False)
+		Lesbian1 = char.LesbianChar(bAddAnArticle = True, bAddEndNoun = False, NotList = CharNotList,
+									ReqList = [LesFemaleAdj],
+									ExclList = [MaritalStatusFemale, SexualityFemale, PregState, TitlesFemale])
 		GirlJobs = titmisc.ProfFemale()
 		GuyJobs = titmisc.ProfMale()
 								
 		sTweet = "I Found Out I Was a Lesbian When\n"
-		if CoinFlip():
-			sTweet += AddArticles(Lesbian1.Desc) + " " + GirlJobs.GetWord()
-		else:
-			sTweet += AddArticles(Lesbian2.Desc) + " Lady " + GuyJobs.GetWord()
+		# if CoinFlip():
+		sTweet += Lesbian1.Desc + " " + GirlJobs.GetWord()
+		# else:
+			# sTweet += Lesbian2.Desc + " Lady " + GuyJobs.GetWord()
 		sTweet += "\n" + WordList(["Ate My Ass", "Ate Me Out", "Ate My Pussy", "Licked My Snatch", "Scissored Me",
 								   "Rode My Face", "Rode Me With a Strap-On", "Fisted Me", "Fisted My Butt",
-								   "Sucked My Tits", "Ate My Snatch", "Rimmed My Butthole",
+								   "Sucked My Tits", "Ate Out My Snatch", "Rimmed My Butthole",
 								   "Sucked My Titties"]).GetWord()
 								   
 		return sTweet	

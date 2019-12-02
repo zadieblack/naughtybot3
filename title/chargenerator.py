@@ -501,6 +501,7 @@ class GayMaleChar(Character):
 					   bAllowClothing = True,
 					   bAllowNation = True, 
 					   bAllowProf = True, 
+					   bAllowTitle = False,
 					   bAllowSpecies = True,
 					   SelectTemplateID = 0):
 		super().__init__()
@@ -532,6 +533,8 @@ class GayMaleChar(Character):
 			ExclusionList.append(ProfNormalMale())
 			ExclusionList.append(ProfAspirationalMale())
 			ExclusionList.append(ProfMale())
+		if not bAllowSpecies:
+			ExclusionList.append(TitlesMale())
 		if not bAllowSpecies:
 			ExclusionList.append(SpeciesMale())
 		
