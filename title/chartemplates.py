@@ -1096,6 +1096,75 @@ class MaleTemplate5(MaleCharTemplate):
 										],
 							priority = 3)
 
+# Male Rockstar
+class MaleTemplate6(MaleCharTemplate):
+	def __init__(self):
+		super().__init__(	noun = ProfRockstarMale(),
+							 id = 6, 
+							 adjlist = 	[ CTEntry([GenModMale],11),
+										  CTEntry([AttitudeMale],10),
+										  CTEntry([PhysCharMale],9),
+										  CTEntry([PhysCharMale,DickCharMale],8),
+										  CTEntry([ClothesMale],7),
+										  CTEntry([TypeModMale],6),
+										  CTEntry([AgeAdjMale,MaritalStatusMale],5),
+										  CTEntry([SkinHairColorMale,NationMale,RaceMale],3),
+										  CTEntry([SpeciesMale,ProfWhiteCollarMale],1)
+										],
+							priority = 3,
+							NotList = ["dad-bod"])
+							
+# Male Athlete
+class MaleTemplate7(MaleCharTemplate):
+	def __init__(self):
+		super().__init__(	noun = ProfAthleteMale(),
+							 id = 7, 
+							 adjlist = 	[ CTEntry([GenModMale],11),
+										  CTEntry([AttitudeMale],10),
+										  CTEntry([PhysCharMale],9),
+										  CTEntry([PhysCharMale,DickCharMale],8),
+										  CTEntry([ClothesMale],7),
+										  CTEntry([TypeModMale],6),
+										  CTEntry([SkinHairColorMale,NationMale,RaceMale],3),
+										  CTEntry([SpeciesMale],1)
+										],
+							priority = 3,
+							NotList = ["dad-bod","business","tuxedoed","suited"])
+							
+# Male Fantasy Character
+class MaleTemplate8(MaleCharTemplate):
+	def __init__(self):
+		super().__init__(	noun = ProfFantasyMale(),
+							 id = 8, 
+							 adjlist = 	[ CTEntry([GenModMale],11),
+										  CTEntry([AttitudeMale],10),
+										  CTEntry([PhysCharMale],9),
+										  CTEntry([PhysCharMale,DickCharMale],8),
+										  CTEntry([TypeModMale],6),
+										  CTEntry([AgeAdjMale],5),
+										  CTEntry([SkinHairColorMale,NationMale],3),
+										  CTEntry([SpeciesMale],1)
+										],
+							priority = 3,
+							NotList = ["dad-bod","millennial","teen","college","vegan","veteran","asian",
+										"latino","australian","BDSM","rebel"])
+										
+# Male Blue Collar
+class MaleTemplate9(MaleCharTemplate):
+	def __init__(self):
+		super().__init__(	noun = ProfBlueCollarMale(),
+							 id = 9, 
+							 adjlist = 	[ CTEntry([GenModMale],11),
+										  CTEntry([AttitudeMale],10),
+										  CTEntry([PhysCharMale],9),
+										  CTEntry([PhysCharMale,DickCharMale],8),
+										  CTEntry([TypeModMale],6),
+										  CTEntry([AgeAdjMale,MaritalStatusMale],5),
+										  CTEntry([SkinHairColorMale,RaceMale],3)
+										],
+							priority = 3,
+							NotList = ["tuxedoed","suited","wealthy","teen","college","barbarian",
+										"bachelor","S.W.A.T.","stay-at-home","millennial"])										
 #ProfBlueCollarMale,ProfWhiteCollarMale,ProfFantasyMale,ProfAthleteMale,ProfRockstarMale,
 #			ProfNormalMale,ProfAspirationalMale,ProfMale
 

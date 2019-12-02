@@ -284,7 +284,7 @@ class Generator7(Generator):
 		return sTweet
 
 class Generator8(Generator):
-	# My Boyfriend is a Secret Daddy Dom 
+	# My Blind Date is A Uniformed Australian Mer-man Fighter Pilot! 
 	ID = 8
 	Priority = 1
 	
@@ -292,16 +292,14 @@ class Generator8(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		NotList = ["Boyfriend", "Hot Date", "Fiancé", "Husband", "Single"]
-		Girl = char.FemaleChar(TempType = TempType.Medium, bAllowTrope = True, NotList = NotList)
-		Master = char.MaleChar(TempType = TempType.Flowery, bAllowRelate = True, bAllowTrope = True,NotList = NotList,bAddAnArticle = True)
-		#Girl = FemaleChar(iNumMaxCBits = 2)
-		#Master = MaleChar(iNumMaxCBits = 3, bAllowGang = False, NotList = ["Boyfriend", "Hot Date", "Fiancé", "Husband", "Single"])
-		sTweet = "My " + WordList(["Boyfriend", "Hot Date", "Fiancé", "Blind Date", "Kidnapper"]).GetWord() + " is " + Master.Desc
-		if CoinFlip():
-			sTweet += ":\n" + AddArticles(Girl.Desc, bMakeUpper = True) + " " + self.SubtitleCoda.GetWord()
-		else:
-			sTweet += "!"
+		NotList = ["Boyfriend", "Hot Date", "Fiancé", "Husband", "Single", "Ugly", "BDSM", "Comedian"]
+		Master = char.MaleChar(TempType = TempType.Flowery, bAllowRelate = True,NotList = NotList,bAddAnArticle = True,
+								ReqList = [ProfRockstarMale],
+								ExclList = [ProfBlueCollarMale,ProfAthleteMale,ProfWhiteCollarMale,MaritalStatusMale,AttitudeMale])
+
+		sTweet = "My " + WordList(["New Boyfriend", "Hot Date", "New Fiancé", "Blind Date", "Kidnapper", "New Hubby", 
+									"New Husband", "New Man","New Daddy", "New Boss", "New Teacher"]).GetWord() + " "
+		sTweet += "is " + Master.Desc + "!"
 			
 		return sTweet
 		
@@ -4902,7 +4900,7 @@ class Generator1001(Generator):
 							bAddAnArticle = True, 
 							bAllowGang = False,
 							bAllowTrope = True,
-							SelectTemplateID = 149)
+							SelectTemplateID = 9)
 		Gang = char.MaleChar(TempType = TempType.Flowery,
 							 bAddAnArticle = True,
 							 bAllowGang = True)
