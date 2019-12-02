@@ -7,9 +7,10 @@ from random import *
 from util import *
 from title.util import *
 from names import *
-from title.people import *
+#from titpeeps import *
 from title.texttoimg import *
-from title.characters import TempType
+from title.characters import *
+import title.people as titpeeps
 import misc
 import title.misc as titmisc
 import title.chargenerator as char
@@ -350,7 +351,7 @@ class Generator11(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		Relations = title.misc.RelateFemale()
+		Relations = titmisc.RelateFemale()
 		Gerunds = self.Gerunds
 		
 		sTweet = Gerunds.GetWord() + " My " + char.FemaleChar(bAddEndNoun = False, bAllowSpecies = False, 
@@ -369,7 +370,7 @@ class Generator12(Generator):
 		sTweet = ""
 		
 		RelNotList = ["Wife","Girlfriend","Mistress","Concubine","Daughter's Best Friend"]
-		Relations = title.misc.RelateFemale()
+		Relations = titmisc.RelateFemale()
 		Gerunds = self.Gerunds
 
 		sTweet = Gerunds.GetWord() + " "  + self.HerName + ":\n" 
@@ -469,7 +470,7 @@ class Generator16(Generator):
 		Tweets = []
 		
 		RelNotList = ['Wife', 'Girlfriend', 'Fiancé','Concubine','Mistress']
-		Relations = title.misc.RelateFemale()
+		Relations = titmisc.RelateFemale()
 		Verbs = WordList(["Boned","Banged","Humped","Had Sex With","Went Down On","Sixty-Nined","Ate Out",
 						  "Boinked","Jizzed On","Finger-Banged","Fisted","Did"])
 		FemNotList = ["BDSM","little"]
@@ -607,16 +608,16 @@ class Generator22(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		GirlGood = FemaleChar(iNumMaxCBits = 2, Type = GirlType.Good)
-		GirlLes = LesbianChar(iNumMaxCBits = 3)
-		GirlBad = LesbianChar(iNumMaxCBits = 3, Type = GirlType.Bad)
+		GirlGood = char.FemaleChar(TempType = TempType.Medium, Type = GirlType.Good, ExclList = [SpeciesFemale])
+		GirlLes = char.LesbianChar(ReqList = [LesFemaleAdj])
+		GirlBad = char.LesbianChar(ReqList = [LesFemaleAdj], Type = GirlType.Bad)
 
 		
 		if CoinFlip():
 			sTweet = "The " + GirlGood.Desc + "\nand the\n" + GirlLes.Desc
 		else:
 			sTweet = "The " + GirlGood.Desc + "\nand the\n" + GirlBad.Desc
-		sTweet += ":\n" + WordList(["A Lesbian","A Secret Lesbian","A Taboo Lesbian","A Forbidden",  "An FF",]).GetWord() + " " + self.SubtitleCoda.GetWord()
+		sTweet += ":\n" + WordList(["A Lesbian","A Secret Lesbian","A Taboo Lesbian","A Forbidden","An FF",]).GetWord() + " " + self.SubtitleCoda.GetWord()
 		
 		return sTweet
 		
@@ -629,17 +630,21 @@ class Generator23(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		sHisName = title.names.NamesMale().FirstName()
+		sHisName = PlainNamesMale().FirstName()
 
 		GayTitles = []
 		
-		GayTitles.append("The " + MaleChar(iNumMaxCBits = 2, bAllowGang = False).Desc + "\nand\nThe " + GayChar(iNumMaxCBits = 2).Desc)
-		GayTitles.append("The " + GayChar(iNumMaxCBits = 2).Desc + "\nand\nThe " + GayChar().Desc) 
-		GayTitles.append("The " + MaleChar(iNumMaxCBits = 2, bAllowGang = False).Desc + "\nand\nThe " + GayChar().Desc)
-		GayTitles.append(sHisName + " and\nThe " + GayChar().Desc)
+		StraightGuy = char.MaleChar(bAllowGang = False, ExclList = [SpeciesMale])
+		GayGuy1 = char.GayMaleChar(ReqList = [GayMaleAdj])
+		GayGuy2 = char.GayMaleChar(ReqList = [GayMaleAdj])
+		
+		GayTitles.append("The " + StraightGuy.Desc + "\nand\nThe " + GayGuy1.Desc)
+		GayTitles.append("The " + GayGuy1.Desc + "\nand\nThe " + GayGuy2.Desc) 
+		GayTitles.append("The " + StraightGuy.Desc + "\nand\nThe " + GayGuy1.Desc)
+		GayTitles.append(sHisName + " and\nThe " + GayGuy1.Desc)
 		
 		sTweet = GayTitles[randint(0, len(GayTitles) - 1)]
-		sTweet += ":\n" + WordList(["A Gay","A Secret Gay","A Taboo","A Forbidden", "A Gay", "An MM", "An MM"]).GetWord() + " " + self.SubtitleCoda.GetWord()
+		sTweet += ":\n" + WordList(["A Gay","A Secret Gay","A Taboo","A Gay", "An MM", "An MM"]).GetWord() + " " + self.SubtitleCoda.GetWord()
 		
 		return sTweet
 		
@@ -679,10 +684,10 @@ class Generator25(Generator):
 
 		GayTitles = []
 		
-		GayTitles.append("Pounded In The Butt By\nThe Gay " + MaleGangChar().Desc)
-		GayTitles.append("Pounded In The Butt By\n" + GayChar(bAddArticle = True).Desc)
-		GayTitles.append(sHisName + " Gets " + self.VerbsBy.GetWord(NotList=["Impregnated", "Hotwifed"]) + " By\nThe " + GayChar().Desc)
-		GayTitles.append(sHisName + " and\nThe " + WordList(["Well-Hung", "Well-Endowed"]).GetWord() + " " + GayChar(iNumMaxCBits = 2, NotList = ["Well-Hung", "Well-Endowed"]).Desc)
+		GayTitles.append("Pounded In The Butt By\nThe Gay " + titpeeps.MaleGangChar().Desc)
+		GayTitles.append("Pounded In The Butt By\n" + titpeeps.GayChar(bAddArticle = True).Desc)
+		GayTitles.append(sHisName + " Gets " + self.VerbsBy.GetWord(NotList=["Impregnated", "Hotwifed"]) + " By\nThe " + titpeeps.GayChar().Desc)
+		GayTitles.append(sHisName + " and\nThe " + WordList(["Well-Hung", "Well-Endowed"]).GetWord() + " " + titpeeps.GayChar(iNumMaxCBits = 2, NotList = ["Well-Hung", "Well-Endowed"]).Desc)
 		
 		sTweet = GayTitles[randint(0, len(GayTitles) - 1)]
 		sTweet += ":\n" + WordList(["A Gay","A Secret","A Taboo Gay","A Forbidden", "A Gay", "An MM", "An MM"]).GetWord() + " " + self.SubtitleCoda.GetWord()
@@ -801,9 +806,9 @@ class Generator30(Generator):
 		NotGirlList = ["Harem Princess","Slave","Queen","Heiress","Divorced"]
 		AdjNotList = ["Bikini-Bod","Anal Virgin","Shave","Big-Titty","Little"]
 		
-		PhysChars = title.misc.PhysCharFemale()
+		PhysChars = titmisc.PhysCharFemale()
 
-		sAdj1 = title.misc.AttitudeGoodFemale().GetWord(NotList = AdjNotList)
+		sAdj1 = titmisc.AttitudeGoodFemale().GetWord(NotList = AdjNotList)
 		sAdj2 = PhysChars.GetWord(NotList = AdjNotList + [sAdj1])
 			
 		NotGirlList = NotGirlList + [sAdj1,sAdj2]
@@ -873,11 +878,11 @@ class Generator31(Generator):
 		sAdj1 = ""
 		sAdj2 = ""
 		if CoinFlip():
-			sAdj1 = title.misc.PhysCharFemale().GetWord()
-			sAdj2 = title.misc.AttitudeBadFemale().GetWord()
+			sAdj1 = titmisc.PhysCharFemale().GetWord()
+			sAdj2 = titmisc.AttitudeBadFemale().GetWord()
 		else:
-			sAdj1 = title.misc.AttitudeBadFemale().GetWord()
-			sAdj2 = title.misc.PhysCharFemale().GetWord()
+			sAdj1 = titmisc.AttitudeBadFemale().GetWord()
+			sAdj2 = titmisc.PhysCharFemale().GetWord()
 			
 		sHerName = NamesFemale().FirstName()
 		
@@ -1063,23 +1068,23 @@ class Generator36(Generator):
 		sTweet = ""
 		
 		if CoinFlip():
-			Girl = FemaleChar(iNumMaxCBits = 3, Type = GirlType.Good, bAllowSexuality = False)
+			Girl = titpeeps.FemaleChar(iNumMaxCBits = 3, Type = GirlType.Good, bAllowSexuality = False)
 			
 			if CoinFlip():
-				Lesbian = LesbianChar(bAddArticle = True, NotList = ['wife','girlfriend', 'married'])
+				Lesbian = titpeeps.LesbianChar(bAddArticle = True, NotList = ['wife','girlfriend', 'married'])
 				sTweet = "Turned Lesbo by " + Lesbian.Desc
 			else:
-				Lesbian = LesbianChar(NotList = ['wife','girlfriend', 'married', 'lesbian'])
+				Lesbian = titpeeps.LesbianChar(NotList = ['wife','girlfriend', 'married', 'lesbian'])
 				sTweet = "Straight " + Girl.Desc + "\nfor the \nLesbian " + Lesbian.Desc 
 			
 		else:
-			Man = MaleChar(iNumMaxCBits = 3, bAllowGang = False)
+			Man = titpeeps.MaleChar(iNumMaxCBits = 3, bAllowGang = False)
 			
 			if CoinFlip():
-				Gay = GayChar(bAddArticle = True, NotList = ['husband','boyfriend', 'married'])
+				Gay = titpeeps.GayChar(bAddArticle = True, NotList = ['husband','boyfriend', 'married'])
 				sTweet = "Turned Gay by " + Gay.Desc
 			else:
-				Gay = GayChar(NotList = ['husband','boyfriend', 'married', 'gay'])
+				Gay = titpeeps.GayChar(NotList = ['husband','boyfriend', 'married', 'gay'])
 				sTweet = "Straight " + Man.Desc + "\nfor the\nGay " + Gay.Desc 
 
 		return sTweet
@@ -1094,7 +1099,7 @@ class Generator37(Generator):
 		sTweet = ""
 		
 		NotList = ['Husband', 'Boyfriend', 'Hubby', 'Widower', 'Fiancé']
-		Relations = title.misc.RelateMale()
+		Relations = titmisc.RelateMale()
 		DickWords = WordList(["Boner","Cock","Dick","Penis","Schlong","Tool","Package","Erection"])
 		Gerunds = self.Gerunds
 		Dad = char.MaleChar(bAddEndNoun = True, bAllowGang = False, 
@@ -1122,7 +1127,7 @@ class Generator38(Generator):
 		Tweets = []
 		
 		NotList = ['Husband', 'Boyfriend', 'Hubby', 'Widower', 'Fiancé']
-		Relations = title.misc.RelateMale()
+		Relations = titmisc.RelateMale()
 		VerbsBy = WordList(["I'm In Love With", "I Have A Crush On", "I Slept With", "I'm Being Blackmailed By", 
 							"I'm Horny For", "I'm Turned On By","I Showered Naked With",
 							"I Did a Strip-Tease For","I French-Kissed", "I Sexted"])
@@ -1195,8 +1200,8 @@ class Generator41(Generator):
 		
 		Gerunds = WordList(["Seducing", "Tempting", "Corrupting", "Degrading", "Debauching", "Perverting", "Whipping",
 							"Fisting", "Sixty-Nining", "Scissoring", "Tribbing", "Fingering"])
-		GoodGirl = FemaleChar(Type = GirlType.Good, bAddArticle = True, bAllowClothing = False, bAllowGenMod = False, bAllowPregState = False, bAllowMaritalStatus = False, bAllowSexuality = False, bAllowSpecies = False)
-		BadGirl = FemaleChar(iNumMaxCBits = 4, Type = GirlType.Bad, bAddArticle = True, bAllowAge = False, bAllowMaritalStatus = False, bAllowSpecies = False, bAllowTitle = False)
+		GoodGirl = titpeeps.FemaleChar(Type = GirlType.Good, bAddArticle = True, bAllowClothing = False, bAllowGenMod = False, bAllowPregState = False, bAllowMaritalStatus = False, bAllowSexuality = False, bAllowSpecies = False)
+		BadGirl = titpeeps.FemaleChar(iNumMaxCBits = 4, Type = GirlType.Bad, bAddArticle = True, bAllowAge = False, bAllowMaritalStatus = False, bAllowSpecies = False, bAllowTitle = False)
 		
 		sTweet = Gerunds.GetWord() + " " + self.HerName + ":\n"
 		sTweet += GoodGirl.Desc + "\nand\n" + BadGirl.Desc 
@@ -1213,8 +1218,8 @@ class Generator42(Generator):
 		sTweet = ""
 		
 		VNotList = ["Sold", "Hotwifed", "Humiliated", "Massaged"]
-		Nation = title.misc.NationMale()
-		Title = title.misc.TitlesMale()
+		Nation = titmisc.NationMale()
+		Title = titmisc.TitlesMale()
 		SexPlaces = WordList(["Bed", "Dungeon", "Sex Dungeon", "Pleasure Gardens", "Harem"])
 		Master = char.MaleChar(bAddEndNoun = False, bAllowTrope = False, bAllowRelate = False, 
 								bAllowMaritalStatus = False, bAllowAge = False, bAllowProf = False, 
@@ -1236,8 +1241,8 @@ class Generator43(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		Nation = title.misc.NationMale()
-		Title = WordList(title.misc.TitlesMale().GetWordList() + title.misc.TropesWealthyMale().GetWordList())
+		Nation = titmisc.NationMale()
+		Title = WordList(titmisc.TitlesMale().GetWordList() + titmisc.TropesWealthyMale().GetWordList())
 		
 		Master = char.MaleChar(bAddEndNoun = False, TempType = TempType.Medium, bAllowRelate = False, 
 							   bAllowMaritalStatus = False, bAllowNation = False, 
@@ -1284,8 +1289,9 @@ class Generator45(Generator):
 							"Downtown","at Starbucks","at Wal-Mart","at the Mall","at the Ball Game",
 							"at the Stadium","at the Beach","on the Train","on the Subway","in Traffic",
 							"at School"])
-		Girl = char.FemaleChar(Type = GirlType.Good, bAddTheArticle = True, NotList = ["Nudist"], bAllowSpecies = False)
-		
+		Girl = char.FemaleChar(Type = GirlType.Good, bAddTheArticle = True, NotList = ["Nudist"], #bAllowSpecies = False)
+								ReqList = [SkinHairColorFemale],
+								ExclList = [SpeciesFemale,AttitudeGoodFemale])
 		sTweet += Girl.Desc + "\n"
 		sTweet += NudeActions.GetWord() + " " + Places.GetWord() + "!"
 
@@ -1303,14 +1309,14 @@ class Generator46(Generator):
 			Master = char.MaleChar(bAddEndNoun = False, NotList = ["boyfriend"], bAllowRelate = False, 
 									bAllowMaritalStatus = False, bAllowSpecies = False, bAllowAge = False, 
 									bAllowTitle = False, bAllowTrope = False)
-			Relations = title.misc.RelateMale()
+			Relations = titmisc.RelateMale()
 			Prefix = WordList(["Secretly In Love With"])
 			sTweet = Prefix.GetWord() + "\nMy " + Master.Desc + " " + Relations.GetWord(NotList = ["Boyfriend", "Husband", "Hubbie", "Widower", "Fiancé"])
 		else:
 			Girl = char.FemaleChar(bAddEndNoun = False, NotList = ["girlfriend"], bAllowRelate = False, 
 									bAllowMaritalStatus = False, bAllowSpecies = False, bAllowAge = False, 
 									bAllowTitle = False, bAllowTrope = False)
-			Relations = title.misc.RelateFemale()
+			Relations = titmisc.RelateFemale()
 			Prefix = WordList(["Secretly In Love With"])
 			sTweet = Prefix.GetWord() + "\nMy " + Girl.Desc + " " + Relations.GetWord(NotList = ["Girlfriend", "Mistress", "Wife"])
 		return sTweet
@@ -1324,8 +1330,8 @@ class Generator46(Generator):
 		# super().GenerateTweet()
 		# sTweet = ""
 		
-		# Relate = title.misc.RelateMale()
-		# Species = title.misc.SpeciesMale()
+		# Relate = titmisc.RelateMale()
+		# Species = titmisc.SpeciesMale()
 		# VerbTrans = WordList(["Transforms", "Transforms", "Changes", "Shifts", "Morphs", "Metamorphs"])
 		
 		# Master = MaleChar(bAddEndNoun = False, bAllowAge = False, bAllowMaritalStatus = False, bAllowNation = False, bAllowRelate = False, bAllowSpecies = False, bAllowTitle = False)
@@ -1796,7 +1802,7 @@ class Generator55(Generator):
 							   'Marianna','Marilyn','Marsha','Melina','Molly','Natasha','Olivia','Phillippa',
 							   'Phoebe','Piper','Regina','Rosie','Ruby','Ruth','Sabrina','Sharon','Sylvia','Vanessa','Veronica'
 							   ])
-		AllowedProfs = WordList(title.misc.ProfBlueCollarMale().GetWordList() + title.misc.ProfWhiteCollarMale().GetWordList() + title.misc.ProfAthleteMale().GetWordList() + title.misc.ProfRockstarMale().GetWordList())
+		AllowedProfs = WordList(titmisc.ProfBlueCollarMale().GetWordList() + titmisc.ProfWhiteCollarMale().GetWordList() + titmisc.ProfAthleteMale().GetWordList() + titmisc.ProfRockstarMale().GetWordList())
 		sJob1 = AllowedProfs.GetWord()
 		sJob2 = AllowedProfs.GetWord(NotList = [sJob1])
 		
@@ -2199,7 +2205,7 @@ class Generator68(Generator):
 							bAllowMaritalStatus = False, bAllowGang = False, bAllowTitle = False)
 		
 		sTweet = "\"I Know " + WordList(["I'm Married","I'm Married","I'm Engaged","I Have a Boyfriend"]).GetWord() + ", But\n"
-		sTweet += "It Can't Hurt If I " + SexActs.GetWord() + " " + Man.Desc + " " + title.misc.ProfMale().GetWord() + "\n"
+		sTweet += "It Can't Hurt If I " + SexActs.GetWord() + " " + Man.Desc + " " + titmisc.ProfMale().GetWord() + "\n"
 		sTweet += "Just This Once!\""
 
 		return sTweet	
@@ -2215,7 +2221,7 @@ class Generator69(Generator):
 		sTweet = ""
 		
 		Actions = WordList(["Spreads her Legs for","Spreads her Legs for","Bends Over for","Drops Her Panties for","Goes Down On","Lifts her Skirt for","Spreads her Thighs for","Spreads her Cheeks for","Opens Her Legs for","Lubes Herself Up for"])
-		Girl = title.misc.NiceGirl()
+		Girl = titmisc.NiceGirl()
 		sNiceGirl = Girl.Desc
 		
 		Man = char.MaleChar(bAddTheArticle = True, bAllowRelate = False, bAllowMaritalStatus = True, 
@@ -2331,7 +2337,7 @@ class Generator73(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		Girl = title.misc.NiceGirl()
+		Girl = titmisc.NiceGirl()
 		sNiceGirl = Girl.Desc
 						  
 		BadResult = WordList(["an Amateur Porn Star","an Anal Bimbo","a Naughty Bikini Model","a Foul-Mouthed Skank","a High-Class Call Girl","a $1000-an-hour Hooker","a Leather Bondage Submissive",
@@ -2348,7 +2354,7 @@ class Generator74(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		Girl = title.misc.NiceGirl()
+		Girl = titmisc.NiceGirl()
 		sNiceGirl = Girl.Desc
 		
 		NaughtyStuff = WordList(["69ing", "an Anal Hook","Anal Sex","BBC","BDSM","Bukkake","a Butt Plug","a Clit Clamp","a Dirty Sanchez","Double Penetration","Erotic Asphyxiation","a Gang Bang",
@@ -2371,7 +2377,7 @@ class Generator75(Generator):
 		sTweet = ""
 		
 		Exclamations = WordList(["Oh S@*#!", "Oh No!", "WTF?!?", "Oh F*@%!"])
-		Girl = title.misc.NiceGirl()
+		Girl = titmisc.NiceGirl()
 		sNiceGirl = Girl.Desc
 		
 		if CoinFlip():
@@ -2647,7 +2653,7 @@ class Generator82(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		sInnocentAdj = WordList(title.misc.NiceGirlGoodAdjs().List + ["Sweet"]).GetWord()
+		sInnocentAdj = WordList(titmisc.NiceGirlGoodAdjs().List + ["Sweet"]).GetWord()
 		
 		GirlNotList = ['MILF','Older','Fertile','Slave Girl','Bikini Model','HuCow','Supermodel',
 						'Harem Princess','Penthouse','Slave',sInnocentAdj]
@@ -2690,7 +2696,7 @@ class Generator83(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		NiceGirl = title.misc.NiceGirl()
+		NiceGirl = titmisc.NiceGirl()
 		
 		NaughtyStuff = WordList(["69", "an Anal Hook","Anal Sex","BBC","BDSM","a Butt Plug","a Clit Clamp",
 								 "a Dirty Sanchez","Double Penetration","Erotic Asphyxiation",
@@ -2731,7 +2737,7 @@ class Generator84(Generator):
 						'Goth','Tomboy','Schoolgirl','Co-ed','Daddy\'s Girl','BBW','Pixie','Chocolate','Wealthy',
 						'Wealthy','Millionaire','Stuck-up','Haughty','Snooty','Snobbish','Rich','Bashful',
 						'Blushing']
-		Adjs = WordList(SpecialAdjs + title.misc.AttitudeGoodFemale().List + title.misc.NationFemale().List + title.misc.PhysCharFemale().List + title.misc.SkinHairColorFemale().List + title.misc.SpeciesFemale().List)
+		Adjs = WordList(SpecialAdjs + titmisc.AttitudeGoodFemale().List + titmisc.NationFemale().List + titmisc.PhysCharFemale().List + titmisc.SkinHairColorFemale().List + titmisc.SpeciesFemale().List)
 		Titles = WordList(['Princess','Princess','Princess','Heiress','Heiress','Queen','Duchess','First Lady','Lady',
 							'Countess','Contessa'])
 		VerbsBy = WordList(['Tea-Bagged','Paddled','Peed On','Used','Stripped in Public','Deflowered',
@@ -2898,7 +2904,7 @@ class Generator89(Generator):
 							  'Mabel','Mary','Maryanne','Molly','Nancy','Nell','Olive','Phoebe',
 							  'Rosie','Shelly','Sophie','Summer','Virginia'])
 							  
-		Girl = title.misc.NiceGirl()
+		Girl = titmisc.NiceGirl()
 		sNiceGirl = Girl.Desc
 		
 		BigAdjs = WordList(["Massive","Enormous","Girthy","Thick","Lengthy","Oversized","Stacked","Swinging",
@@ -3004,16 +3010,16 @@ class Generator91(Generator):
 							"I Had a Secret Affair with","I Was Ridden Hard by"])
 		
 		ManAdjNotList = ['Fine','Naked','Clever','Highly Eligible','Visibly Erect','Bare-Chested']
-		ManAdjs = WordList(title.misc.AttitudeMale().List + title.misc.SkinHairColorMale().List + title.misc.NationMale().List + title.misc.PhysCharMale().List + title.misc.DickCharMale().List + ['Older','Married','Heavily-Tattooed','Naked'])
+		ManAdjs = WordList(titmisc.AttitudeMale().List + titmisc.SkinHairColorMale().List + titmisc.NationMale().List + titmisc.PhysCharMale().List + titmisc.DickCharMale().List + ['Older','Married','Heavily-Tattooed','Naked'])
 		if CoinFlip():
-			sMan = ManAdjs.GetWord(NotList = ManAdjNotList) + " " + title.misc.ProfMale().GetWord()
+			sMan = ManAdjs.GetWord(NotList = ManAdjNotList) + " " + titmisc.ProfMale().GetWord()
 		else:
 			sManAdj1 = ManAdjs.GetWord(NotList = ManAdjNotList)
 			sManAdj2 = ManAdjs.GetWord(NotList = ManAdjNotList + [sManAdj1])
-			sMan = sManAdj1 + " " + sManAdj2 + " " + title.misc.ProfMale().GetWord()
+			sMan = sManAdj1 + " " + sManAdj2 + " " + titmisc.ProfMale().GetWord()
 		
 		WomanAdjNotList = ['Little','Natural','Desperate','Moist','Wet','Narrow-Waisted','Flat-Chested','Revealing']
-		WomanAdjs = WordList(title.misc.PhysCharFemale().List + title.misc.AttitudeBadFemale().List + ['Older','Pregnant','Cougar','Insatiable','Submissive','Dominant','European','Bisexual','Open-Minded','Pregnant','Teenage','Eager','Nympho','Naughty','Sexy','Horny','Well-Endowed'])
+		WomanAdjs = WordList(titmisc.PhysCharFemale().List + titmisc.AttitudeBadFemale().List + ['Older','Pregnant','Cougar','Insatiable','Submissive','Dominant','European','Bisexual','Open-Minded','Pregnant','Teenage','Eager','Nympho','Naughty','Sexy','Horny','Well-Endowed'])
 		sWoman = WomanAdjs.GetWord(NotList = WomanAdjNotList) + " " + WordList(['Wife','Girlfriend']).GetWord()
 		
 		sTweet = "\"" + Prefix.GetWord() + "\n" + AddArticles(sMan) + "\nand his " + sWoman + "!\""
@@ -3068,7 +3074,7 @@ class Generator95(Generator):
 		
 		Suffixes = WordList(["berg","berg","ville","ville","town"," Town"," City"])
 		sLastName = ""
-		sLastName = title.names.LastNames().GetWord() 
+		sLastName = InnuendoLastNames().GetWord() 
 		
 		if CoinFlip():
 			#For a woman
@@ -3095,7 +3101,7 @@ class Generator96(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		Girl = title.misc.NiceGirl(NotList = ['Wife','Girlfriend'])
+		Girl = titmisc.NiceGirl(NotList = ['Wife','Girlfriend'])
 		SizeAdj = WordList(['Enormous','Gigantic','Titantic','Humongous','Massive','Sumptuous','Milky','Giant',
 							'Honking','Juicy','Jiggling','Double D','Magnificent','Gargantuan','Jumbo',
 							'Heavenly'])
@@ -3154,7 +3160,7 @@ class Generator98(Generator):
 								 "Gives a Rim-Job to","Has Twincest with","Tries Leather Bondage with",
 								 "Gets Peed on by"])
 								 
-		MaleAdjs = WordList(title.misc.PhysCharMale().List + title.misc.DickCharMale().List + ['Giant','Enormous','Black','Black','Married','Heavily-Tattooed','DILF','Naked','Nudist','Virile','Wealthy','Millionaire','Billionaire'])
+		MaleAdjs = WordList(titmisc.PhysCharMale().List + titmisc.DickCharMale().List + ['Giant','Enormous','Black','Black','Married','Heavily-Tattooed','DILF','Naked','Nudist','Virile','Wealthy','Millionaire','Billionaire'])
 		Species = WordList(["Unicorn","Centaur","Werewolf","Merman","Dragon","Goat Man","Dwarf",
 							"Space Alien","Tentacle Monster","Pirate","Trapeze Artist","Clown", 
 							"Sumo Wrestler","Were-Horse","Werewolf","Dinosaur", "Dinosaur",
@@ -3188,7 +3194,7 @@ class Generator99(Generator):
 								 "Gives a Rim-Job to","Has Twincest with","Tries Leather Bondage with",
 								 "Gets Peed on by"])
 								 
-		MaleAdjs = WordList(title.misc.PhysCharMale().List + title.misc.DickCharMale().List + ['Giant','Enormous','Black','Black','Married','Heavily-Tattooed','DILF','Naked','Nudist','Virile','Wealthy','Millionaire','Billionaire'])
+		MaleAdjs = WordList(titmisc.PhysCharMale().List + titmisc.DickCharMale().List + ['Giant','Enormous','Black','Black','Married','Heavily-Tattooed','DILF','Naked','Nudist','Virile','Wealthy','Millionaire','Billionaire'])
 		Species = WordList(["Unicorn","Centaur","Werewolf","Merman","Goat Man","Dwarf",
 							"Space Alien","Tentacle Monster","Pirate","Trapeze Artist","Were-Horse",
 							"Werewolf","Dinosaur", "Dinosaur","Vampire","Martian","Contortionist",
@@ -3210,7 +3216,7 @@ class Generator99(Generator):
 							'Porn Star','Biker','Contortionist'])
 							
 		sTweet = sHerName + "\n" + NaughtyStuff.GetWord() + "\n"
-		sTweet += AddArticles(Species.GetWord() + " " + title.misc.ProfMale().GetWord())
+		sTweet += AddArticles(Species.GetWord() + " " + titmisc.ProfMale().GetWord())
 
 		return sTweet	
 
@@ -3224,8 +3230,8 @@ class Generator100(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		GirlAdj = WordList(title.misc.PhysCharFemale().List + ['Fertile','Naked','Sassy','Saucy','Sexy','Black','Ebony','Bisexual'])
-		GirlNoun = WordList(title.misc.ProfGoodFemale().List + title.misc.SpeciesFemale().List)
+		GirlAdj = WordList(titmisc.PhysCharFemale().List + ['Fertile','Naked','Sassy','Saucy','Sexy','Black','Ebony','Bisexual'])
+		GirlNoun = WordList(titmisc.ProfGoodFemale().List + titmisc.SpeciesFemale().List)
 		Relate = WordList(["Mother-in-Law","Step-Mom","Sister-in-Law","Step-Sister","Half Sister","Step-Daughter",
 							"Daughter-in-Law","Cousin"])
 					
@@ -3801,12 +3807,12 @@ class Generator118(Generator):
 		
 		CharNotList = ['Uptight','Virgin','Male Model','Quarterback','Male Stripper','Camp Counselor','Business Man','Slave',
 						'Defensive Lineman','Virtuous']
-		Lesbian1 = FemaleChar(iNumMinCBits = 1, iNumMaxCBits = 2, bAddArticle = False, bAddEndNoun = False, NotList = CharNotList,
+		Lesbian1 = titpeeps.FemaleChar(iNumMinCBits = 1, iNumMaxCBits = 2, bAddArticle = False, bAddEndNoun = False, NotList = CharNotList,
 								bAllowMaritalStatus = False, bAllowSexuality = False, bAllowPregState = False, bAllowTitle = False)
-		Lesbian2 = FemaleChar(iNumMinCBits = 1, iNumMaxCBits = 1, bAddArticle = False, bAddEndNoun = False, NotList = CharNotList,
+		Lesbian2 = titpeeps.FemaleChar(iNumMinCBits = 1, iNumMaxCBits = 1, bAddArticle = False, bAddEndNoun = False, NotList = CharNotList,
 								bAllowMaritalStatus = False, bAllowSexuality = False, bAllowPregState = False, bAllowProf = False, bAllowTitle = False)
-		GirlJobs = title.misc.ProfFemale()
-		GuyJobs = title.misc.ProfMale()
+		GirlJobs = titmisc.ProfFemale()
+		GuyJobs = titmisc.ProfMale()
 								
 		sTweet = "I Found Out I Was a Lesbian When\n"
 		if CoinFlip():
@@ -4077,7 +4083,7 @@ class Generator125(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		Girl = title.misc.NiceGirl()
+		Girl = titmisc.NiceGirl()
 		
 		Master = char.MaleChar(bAddTheArticle = True, sPosArticle = "Her", bAllowRelate = True)
 		
@@ -4121,7 +4127,7 @@ class Generator127(Generator):
 		sTweet = self.HerName + " " + WordList(["Gets Naked for","Strips Naked for","Twerks Naked for","Undresses for",
 												"Exposes Her Nubile Naked Body to","Shamelessly Strips Naked for",
 												"Goes Skinny-Dipping with","Does a Shameless Strip-Tease for",
-												"Takes All Her Clothes Off in front of","Shows Her Tits to"
+												"Takes All Her Clothes Off in front of","Shows Her Tits to",
 												"Takes Her Top Off for"]).GetWord() + " "
 		sTweet += Gang.Desc 
 
@@ -4176,37 +4182,48 @@ class Generator129(Generator):
 		
 		Race = WordList(['Black','Black','Black','White','White','Asian','Asian'])
 		
-		GirlNotList = ['Call-Girl','Escort','Slave','Whore','Stripper']
-		GirlAdj = char.FemaleChar(SelectTemplateID = 18, bAddEndNoun = False, TempType = TempType.Medium, NotList = GirlNotList)
-		#GirlNoun = WordList(title.misc.TitlesFemale().List + title.misc.TropesFemale().List + title.misc.ProfFemale().List)
-		GirlNoun = char.FemaleChar(TempType = TempType.Short, NotList = GirlNotList, bAllowSpecies = False)
-		GirlSpecies = WordList(['Mermaid','Succubus','Futa','Undead','Zombie','Vampire','Fairy','Elf'])
+		GirlNotList = ['Call-Girl','Escort','Slave','Whore','Stripper','Green-Skinned']
+		# GirlAdj = char.FemaleChar(SelectTemplateID = 18, bAddEndNoun = False, TempType = TempType.Medium, NotList = GirlNotList)
+		# #GirlNoun = WordList(titmisc.TitlesFemale().List + titmisc.TropesFemale().List + titmisc.ProfFemale().List)
+		# GirlNoun = char.FemaleChar(TempType = TempType.Short, NotList = GirlNotList, bAllowSpecies = False)
+		# GirlSpecies = WordList(['Mermaid','Succubus','Futa','Undead','Zombie','Vampire','Fairy','Elf'])
 		
-		sHerRace = WordList(['Black','Black','Black','White','White','Asian','Asian','Latina','Latina']).GetWord()
-		sHerSpecies = GirlSpecies.GetWord()
+		# sHerRace = WordList(['Black','Black','Black','White','White','Asian','Asian','Latina','Latina']).GetWord()
+		# sHerSpecies = GirlSpecies.GetWord()
 		
-		ManNotList = ['Bob']
-		Man = char.MaleChar(SelectTemplateID = 6, bAllowGang = False, NotList = ManNotList, bAddEndNoun = False, TempType = TempType.Flowery)
-		ManSpecies = WordList(['Merman','Centaur','Minotaur','Zombie','Werewolf','Dwarf',
-							   'Demon','Gargoyle','Were-Shark','Zombie','Goat Man'])
+		ManNotList = ['Curly']
+		# #NationNounMale
+		# Man = char.MaleChar(SelectTemplateID = 6, bAllowGang = False, NotList = ManNotList, bAddEndNoun = False, TempType = TempType.Flowery,
+							# ReqList = [SkinHairColorMale])
+		# ManSpecies = WordList(['Merman','Centaur','Minotaur','Zombie','Werewolf','Dwarf',
+							   # 'Demon','Gargoyle','Were-Shark','Zombie','Goat Man'])
 
-		ManRace = WordList(['Black','Black','Black','White','White','Asian','Asian','Latino','Latino'])
-		sHisRace = ManRace.GetWord(NotList = [sHerRace])
-		sHisSpecies = ManSpecies.GetWord(NotList = [sHerSpecies])
+		# ManRace = WordList(['Black','Black','Black','White','White','Asian','Asian','Latino','Latino'])
+		# sHisRace = ManRace.GetWord(NotList = [sHerRace])
+		# sHisSpecies = ManSpecies.GetWord(NotList = [sHerSpecies])
 		
-		while sHisRace == 'Latino' and sHerRace == 'Latina':
-			sHisRace = ManRace.GetWord(NotList = [sHisRace])
+		# while sHisRace == 'Latino' and sHerRace == 'Latina':
+			# sHisRace = ManRace.GetWord(NotList = [sHisRace])
 							
 		iRand = randint(1,3)
 		if iRand == 1:
+		# Sexy White Girl for the Black Man
 			print("<A>")
-			sTweet = GirlAdj.Desc + " " + GirlNoun.Desc + " for the " + sHisRace + " " + Man.Desc
+			Girl = char.FemaleChar(ReqList = [RaceFemale], ExclList = [SpeciesFemale,SkinHairColorFemale,NationFemale,SexualityFemale], NotList = GirlNotList)
+			Guy = char.MaleChar(ReqList = [RaceMale], ExclList = [SpeciesMale,SkinHairColorMale,NationMale], NotList = ManNotList)
+			sTweet = Girl.Desc + " for the " + Guy.Desc
 		elif iRand == 2:
+		# Sexy Mermaid for the Black Man
 			print("<B>")
-			sTweet = GirlAdj.Desc + " " + GirlNoun.Desc + " for the " + sHisRace + " " + Man.Desc
+			Girl = char.FemaleChar(ReqList = [SpeciesFemale], ExclList = [SkinHairColorFemale,NationFemale,SexualityFemale], NotList = GirlNotList)
+			Guy = char.MaleChar(ReqList = [RaceMale], ExclList = [SpeciesMale,SkinHairColorMale,NationMale], NotList = ManNotList)
+			sTweet = Girl.Desc + " for the " + Guy.Desc
 		else:
+		# Black Mermaid Secretary for the Black Man
 			print("<C>")
-			sTweet = sHerRace + " " + sHerSpecies + " " + GirlNoun.Desc + " for the " + sHisRace + " " + Man.Desc
+			Girl = char.FemaleChar(ReqList = [SpeciesFemale,RaceFemale], ExclList = [SkinHairColorFemale,NationFemale,SexualityFemale], NotList = GirlNotList)
+			Guy = char.MaleChar(ReqList = [RaceMale], ExclList = [SpeciesMale,SkinHairColorMale,NationMale], NotList = ManNotList)
+			sTweet = Girl.Desc + " for the " + Guy.Desc
 
 		return sTweet	
 		
@@ -4220,19 +4237,19 @@ class Generator130(Generator):
 		sTweet = ""
 		
 		GirlNotList = ['Call-Girl','Escort','Slave','Whore']
-		GirlNoun = WordList(title.misc.TropesFemale().List + title.misc.ProfFemale().List)
+		GirlNoun = WordList(titmisc.TropesFemale().List + titmisc.ProfFemale().List)
 		GirlSpecies = WordList(['Mermaid','Succubus','Futa','Undead','Zombie'])
 		
 		sHerRace = WordList(['Black','Black','Black','White','White','Asian','Asian','Latina','Latina']).GetWord()
 		sHerSpecies = GirlSpecies.GetWord()
 		
 		ManNotList = ['Bob']
-		ManAdj = MaleChar(iNumMinCBits = 1, iNumMaxCBits = 1, bAddArticle = False, bAddEndNoun = False, bAllowGang = False, NotList = ManNotList,
+		ManAdj = titpeeps.MaleChar(iNumMinCBits = 1, iNumMaxCBits = 1, bAddArticle = False, bAddEndNoun = False, bAllowGang = False, NotList = ManNotList,
 					   bAllowAge = False, bAllowAttitude = True, bAllowGenMod = True, bAllowMaritalStatus = False,
 					   bAllowPhysChar = True, bAllowDickChar = True, bAllowNation = False, bAllowSpecies = False,
 					   bAllowSkinHairColor = False, bAllowRelate = False, bAllowProf = False, bAllowTrope = False,
 					   bAllowTitle = False)
-		ManNoun = WordList(title.misc.TropesMale().List + title.misc.ProfMale().List + title.misc.TitlesMale().List)
+		ManNoun = WordList(titmisc.TropesMale().List + titmisc.ProfMale().List + titmisc.TitlesMale().List)
 		ManSpecies = WordList(['Merman','Centaur','Minotaur','Zombie','Werewolf','Dwarf',
 							   'Demon','Gargoyle','Were-Shark','Zombie','Goat Man'])
 		ManRace = WordList(['Black','Black','Black','White','White','Asian','Asian','Latino','Latino'])
@@ -4271,44 +4288,13 @@ class Generator131(Generator):
 								 "Conservative Step-Mom", "Hot Sister", "Hot Step-Sister", "Gay Dad","Gay Step-Dad",
 								 "Religious Step-Mom","Gay Husband","Gay Boyfriend","Uptight Wife", "Uptight Fiancé"]).GetWord()
 			
+		MalePornStar = char.MaleChar(bAllowGang = False, NotList = MaleNotList, bAddAnArticle = True,
+			ExclList = [TitlesMale, AttitudeMale, MaritalStatusMale],
+			bAllowProf = True, bAllowTrope = True, bAllowNation = True)
+			
 		sTweet = "I Watched My " + FemRelative + "\n"
-		
-		if CoinFlip():
-			MalePornStar = MaleChar(iNumMinCBits = 2, iNumMaxCBits = 3, bAddArticle = False, bAllowGang = False, NotList = MaleNotList,
-				bAllowTitle = False, bAllowAttitude= False, bAllowMaritalStatus = False, bAllowProf = True, 
-				bAllowTrope = True, bAllowNation = True)
-			
-			sTweet += "and " + AddArticles(MalePornStar.Desc) + "\n"
-			sTweet += "Make a Porno"
-		else:
-			GangNotList = ["Taboo"]
-			MaleGang = WordList(['Basketball Players','Bikers','Carnies','Chippendales Dancers','Coal Miners',
-								 'Construction Workers','Cops','Cowboys','DILFs','Dwarves','Firemen',
-								 'Gangstas','Goblins','Centaurs','Hockey Players','Rugby Players',
-								 'Long Haul Truckers','Men at the Gym','Frat Brothers','Mer-men',
-								 'Mountain Men','Navy Seals','Pirates','Pro Wrestlers','Roadies',
-								 'Men of Seal Team Six','Scottsmen','Sumo Wrestlers','Vikings','Werewolves',
-								 'Lawyers','Navy Boys','Bad Boys','Jocks','Surfers','Luchadors','Lumberjacks',
-								 'Male Strippers','MMA Fighters','Rodeo Clowns','Dinosaurs','T-Rexes']).GetWord()
-			GangNotList = GangNotList + [MaleGang]
-			MaleGangAdjs = MaleGangChar(iNumMinCBits = 1, iNumMaxCBits = 2, bAddEndNoun = False, NotList = GangNotList, 
-				bAllowAttitude= False, bAllowProf = True, bAllowTrope = False, bAllowNation = True)
-			
-			
-			sNum = WordList(["Two","Two","Three","Three","Four", "Five","Seven", "Nine", "Ten","A Dozen", "17", 
-							 "Two Dozen", "Hundreds of"]).GetWord()
-			
-			sTweet += "Make a Porno\n"
-			if CoinFlip():
-				sAdjs = MaleGangAdjs.Desc
-				if not sAdjs == "":
-					sTweet += "with " + sNum + " " + MaleGangAdjs.Desc + " " + MaleGang 
-				else:
-					sTweet += "with " + sNum + " " + MaleGang 
-			else:
-				sTweet += "with " + sNum + " " + MaleGang 
-			
-		
+		sTweet += "and " + MalePornStar.Desc + "\n"
+		sTweet += "Make a Porno"
 		
 		return sTweet	
 		
@@ -4822,7 +4808,37 @@ class Generator141(Generator):
 		sTweet += Adjs.GetWord() + " "
 		sTweet += "Lesbian " + BodyParts.GetWord()
 
-		return sTweet	
+		return sTweet
+
+# I Watched My Wife
+# Make a Porno
+# with Nine Shameless Clean-Shaven Horse-Cock Highlander Luchadors
+class Generator142(Generator):
+	ID = 142
+	Priority = 1
+	
+	def GenerateTweet(self):
+		super().GenerateTweet()
+		sTweet = ""
+		
+		FemRelative = WordList(["Sister", "Wife", "Bride", "Girlfriend", "Lesbian Bride", "Daughter", "Step-daughter",
+								 "Mother-in-Law", "Mom", "Fiancé", "Young Wife", "New Bride", "Highschool Sweetheart",
+								 "Teenage Daughter","Blushing Bride","Virgin Girlfriend","Conservative Girlfriend",
+								 "Conservative Step-Mom", "Hot Sister", "Hot Step-Sister", "Gay Dad","Gay Step-Dad",
+								 "Religious Step-Mom","Gay Husband","Gay Boyfriend","Uptight Wife", "Uptight Fiancé"]).GetWord()
+			
+		sTweet = "I Watched My " + FemRelative + "\n"
+		
+		GangNotList = ["Taboo","Millennial"]
+		MaleGang = char.GangMaleChar(MaleCharType = MaleCharType.GangPlural,NotList = GangNotList)
+		
+		Num = WordList(["Two","Two","Three","Three","Four", "Five","Six","Seven","Eight","Nine", "Ten","A Dozen", "17", 
+						 "Two Dozen", "Hundreds of"])
+		
+		sTweet += "Make a Porno\n"
+		sTweet += "with " + Num.GetWord() + " " + MaleGang.Desc 
+		
+		return sTweet		
 		
 class Generator999(Generator):
 	ID = 999

@@ -12,6 +12,7 @@ import title.misc as titmisc
 import misc as misc
 
 MAX_CHARACTER_CHARBITS = 5
+MAX_VARIANT_TRIES = 200
 
 FemCBitHistoryQ = HistoryQ(10)
 MaleCBitHistoryQ = HistoryQ(10)
@@ -40,14 +41,22 @@ class CharBit():
 	def SetNoun(self):
 		self._IsNoun = True 
 		
-	def HasCharBit(self, exclusionlist):
+	def HasCharBit(self, target):
 		bHasCharBit = False 
 		
-		if isinstance(exclusionlist, list):
-			for item in exclusionlist:
-				if self.__class__ == item.__class__:
+		if isinstance(target, list):
+			#print(" - - - - target is a list")
+			for item in target:
+				#print(" - - - - charbit = " + str(self) + ", exclusion list item = " + str(item))
+				if self.__class__ == item:
 					bHasCharBit = True 
-					
+		else:
+			#print(" - - - - target is a {" + str(target) + "}")
+			#print(" - - - - charbit = " + str(self) + ", exclusion list item = " + str(target))
+			if self.__class__ == target:
+				bHasCharBit = True 
+		
+		#print(" - - - - is charbit {" + str(self.__class__) + "} in target {" + str(target) + "}? " + str(bHasCharBit))	
 		return bHasCharBit
 		
 	def Get(self, NotList = None):
@@ -273,6 +282,21 @@ class FemSpeciesTemplate(CharTemplate):
 		
 		self.GirlType = girltype
 
+class FemLesbianTemplate(CharTemplate):
+	def __init__(self, noun, 
+					   id = 0, 
+					   adjlist = [], 
+					   priority = 1, 
+					   bpersonal = False,
+					   girltype = GirlType.Neutral,
+					   NotList = None):
+		if NotList is None:
+			NotList = []
+			
+		super().__init__(noun = noun, id = id,  adjlist = adjlist, priority = priority, bpersonal = bpersonal, NotList = NotList)
+		
+		self.GirlType = girltype
+
 class MaleCharTemplate(CharTemplate):
 	def __init__(self, noun, 
 					   id = 0, 
@@ -320,6 +344,19 @@ class MaleGangTemplate(CharTemplate):
 			NotList = []
 			
 		super().__init__(noun = noun, id = id,  adjlist = adjlist, priority = priority, bpersonal = bpersonal, NotList = NotList)
+
+class MaleGayTemplate(CharTemplate):
+	def __init__(self, noun, 
+					   id = 0, 
+					   adjlist = [], 
+					   priority = 1, 
+					   bpersonal = False,
+					   NotList = None):
+		if NotList is None:
+			NotList = []
+			
+		super().__init__(noun = noun, id = id,  adjlist = adjlist, priority = priority, bpersonal = bpersonal, NotList = NotList)
+
 
 
 class FemCharBit(CharBit):
@@ -392,6 +429,10 @@ class MaritalStatusFemale(FemCharBit):
 class NationFemale(FemCharBit):
 	def __init__(self):
 		super().__init__(titmisc.NationFemale())
+
+class RaceFemale(FemCharBit):
+	def __init__(self):
+		super().__init__(titmisc.RaceFemale())
 		
 class RelateFemale(FemCharBit):
 	def __init__(self):
@@ -404,6 +445,30 @@ class SexualityFemale(FemCharBit):
 class SexualityNounFemale(FemCharBit):
 	def __init__(self):
 		super().__init__(titmisc.SexualityNounFemale(),girltype = GirlType.Bad)
+
+class SkinColorPOCFemale(FemCharBit):
+	def __init__(self):
+		super().__init__(titmisc.SkinColorPOCFemale())
+		
+class SkinColorWhiteFemale(FemCharBit):
+	def __init__(self):
+		super().__init__(titmisc.SkinColorWhiteFemale())		
+		
+class SkinColorFemale(FemCharBit):
+	def __init__(self):
+		super().__init__(titmisc.SkinColorFemale())
+		
+class HairColorWhiteFemale(FemCharBit):
+	def __init__(self):
+		super().__init__(titmisc.HairColorWhiteFemale())
+		
+class HairColorPOCFemale(FemCharBit):
+	def __init__(self):
+		super().__init__(titmisc.HairColorPOCFemale())
+		
+class HairColorFemale(FemCharBit):
+	def __init__(self):
+		super().__init__(titmisc.HairColorFemale())
 		
 class SkinHairColorFemale(FemCharBit):
 	def __init__(self):
@@ -428,6 +493,14 @@ class TropeBitBadFemale(TropeBitFemale):
 class TropeBitGoodFemale(TropeBitFemale):
 	def __init__(self, trope):
 		super().__init__(trope, girltype = GirlType.Good)
+
+class LesFemaleAdj(FemCharBit):
+	def __init__(self):
+		super().__init__(titmisc.LesFemaleAdj())
+		
+class LesFemaleNoun(FemCharBit):
+	def __init__(self):
+		super().__init__(titmisc.LesFemaleNoun())
 		
 class AgeAdjMale(MaleCharBit):
 	def __init__(self):
@@ -497,6 +570,10 @@ class ProfMale(MaleCharBit):
 	def __init__(self):
 		super().__init__(titmisc.ProfMale())
 
+class RaceMale(MaleCharBit):
+	def __init__(self):
+		super().__init__(titmisc.RaceMale())
+		
 class RelateMale(MaleCharBit):
 	def __init__(self):
 		super().__init__(titmisc.RelateMale())
@@ -532,6 +609,14 @@ class GangsMale(MaleCharBit):
 class TypeModMale(MaleCharBit):
 	def __init__(self):
 		super().__init__(titmisc.TypeModMale())		
+
+class GayMaleNoun(MaleCharBit):
+	def __init__(self):
+		super().__init__(titmisc.GayMaleNoun())		
+		
+class GayMaleAdj(MaleCharBit):
+	def __init__(self):
+		super().__init__(titmisc.GayMaleAdj())		
 		
 class TropeBitMale(MaleCharBit):
 	pass
@@ -560,15 +645,38 @@ class Character():
 		bIsVariantExcluded = False 
 		
 		if isinstance(variant, list) and isinstance(exclusionlist, list):
-			for item in exclusionlist:
+			if len(exclusionlist) > 0:
+				# for item in exclusionlist:
 				for varitem in variant:
 					if varitem.HasCharBit(exclusionlist):
 						bIsVariantExcluded = True
+						#print(" - - Found a match for variant item " + str(variant) + " on the excluded list")
 						break 
-				if bIsVariantExcluded:
-					break
-			
+					# if bIsVariantExcluded:
+						# break
+		#print(" - - - IsVariantExcluded() returning " + str(bIsVariantExcluded))
 		return bIsVariantExcluded
+		
+	def DoesVariantMeetReqs(self, variant, reqlist):
+		bDoesVariantMeetReqs = False 
+		ReqFoundList = []
+		
+		if isinstance(variant, list) and isinstance(reqlist, list):
+			if len(reqlist) > 0:
+				for item in reqlist:
+					for varitem in variant:
+						if varitem.HasCharBit(item):
+							ReqFoundList.append(item)
+							#print(" - - Found a match between required item " + str(item) + " and variant item " + str(varitem))
+							break 
+				#print(" - - - DoesVariantMeetReqs() ReqFoundList length = " + str(len(ReqFoundList)) + ", reqlist length = " + str(len(reqlist)))
+				if len(ReqFoundList) == len(reqlist):
+					bDoesVariantMeetReqs = True
+						
+			else:
+				bDoesVariantMeetReqs = True
+		#print(" - - - DoesVariantMeetReqs() returning " + str(bDoesVariantMeetReqs))	
+		return bDoesVariantMeetReqs
 		
 	def DescribeTemplateVariant(self, variant, bAddEndNoun, NotList = None):
 		sDesc = ""
@@ -599,7 +707,8 @@ class Character():
 			return sDesc
 			
 	def SetCharDesc(self, TemplateList, 
-						  ExclusionList, 
+						  ReqList = [],
+						  ExclList = [], 
 						  TempType = TempType.Flowery,
 						  GirlType = GirlType.Neutral,
 						  NotList = None, 
@@ -612,7 +721,7 @@ class Character():
 		variant = None
 		
 		if SelectTemplateID > 0:
-			ExclusionList = []
+			# Note: if a specific template ID is requested the exclusion and required lists will be ignored
 			
 			if isinstance(TemplateList, list):
 				for item in TemplateList:
@@ -628,15 +737,16 @@ class Character():
 			variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
 			#print("Selected first template is + " + str(SelCharTemplate))
 			iTryCounter = 1
-			#while self.IsTemplateExcluded(SelCharTemplate, ExclusionList):
-			while self.IsVariantExcluded(variant, ExclusionList):
+			#while self.IsTemplateExcluded(SelCharTemplate, ExclList):
+			#print("\nChecking variant " + str(variant) + "\n - against req list " + str(ReqList) + "\n - against excl list " + str(ExclList))
+			while (not self.DoesVariantMeetReqs(variant, ReqList) or self.IsVariantExcluded(variant, ExclList)) and iTryCounter < MAX_VARIANT_TRIES:
 				SelCharTemplate = choice(TemplateList)
 				
 				iTryCounter = iTryCounter + 1
 				
 				variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
 				#print("==<<COLLISION!! Template had an excluded type! New selected template is + " + str(SelCharTemplate) + ">>==")
-
+				#print("\nChecking variant " + str(variant) + "\n - against req list " + str(ReqList) + "\n - against excl list " + str(ExclList))
 			print("Template " + str(SelCharTemplate) + " selected, it took " + str(iTryCounter) + " tries.\n")
 			
 		NotList = NotList + SelCharTemplate.NotList 
