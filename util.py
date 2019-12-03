@@ -91,7 +91,7 @@ def AddArticles(sNounPhrase, bMakeUpper = False):
 			bDoArticle = False
 		
 		# Check for words that look plural but aren't (such as 'ass')
-		if sNPNounPhrase[-2:].lower() == 'ss':
+		if sNPNounPhrase[-2:].lower() in ['ss','us']:
 			#print(" - sNPNounPhrase[-2:] is " + sNPNounPhrase[-2:] + "\n")
 			bDoArticle = True 
 		elif sNPNounPhrase[-1:].lower() == 's':
