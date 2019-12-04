@@ -253,22 +253,6 @@ class FemTemplate17(FemCharTemplate):
 							NotList = [],
 							priority = 3)
 							
-# # Female of a Certain Race [Generator 129]
-# class FemTemplate18(FemCharTemplate):
-	# def __init__(self):
-		# super().__init__(	 noun = TropeBitBadFemale("Woman"),
-							 # id = 18, 
-							 # adjlist = 	[ CTEntry([GenModFemale],7),
-										  # CTEntry([AttitudeGoodFemale],6),
-										  # CTEntry([PhysCharFemale],5),
-										  # CTEntry([SkinHairColorFemale],4),
-										  # CTEntry([ProfGoodFemale,TitlesFemale],3),
-										  # CTEntry([SpeciesFemale],4),
-										# ], 
-							# girltype = GirlType.Good,
-							# NotList = [],
-							# priority = 3)
-							
 # Bad Female (Race) Generators 130 & 131		
 class FemTemplate18(FemCharTemplate):
 	def __init__(self):
@@ -282,7 +266,7 @@ class FemTemplate18(FemCharTemplate):
 										  CTEntry([ProfBadFemale,ProfGoodFemale],1)
 										], 
 							girltype = GirlType.Bad,
-							priority = 3)
+							priority = 0)						
 
 # Good Female (Race) Generators 130 & 131		
 class FemTemplate19(FemCharTemplate):
@@ -296,7 +280,21 @@ class FemTemplate19(FemCharTemplate):
 										], 
 							girltype = GirlType.Good,
 							NotList = ["succubus"],
-							priority = 3)
+							priority = 0)
+
+# VERY Bad Female Profession (Generator 53)
+class FemTemplate20(FemCharTemplate):
+	def __init__(self):
+		super().__init__(	 noun = ProfVeryBadFemale(),
+							 id = 20, 
+							 adjlist = 	[ CTEntry([GenModFemale],8),
+										  CTEntry([AttitudeBadFemale],7),
+										  CTEntry([PhysCharFemale],6),
+										  CTEntry([ClothingFemale],5),
+										  CTEntry([SexualityFemale],2)
+										], 
+							girltype = GirlType.Bad,
+							priority = 0)	
 	
 # === Good Trope templates ===
 
@@ -1032,7 +1030,7 @@ class MaleTemplate1(MaleCharTemplate):
 										  CTEntry([SkinHairColorMale,NationMale,RaceMale],3),
 										  CTEntry([SpeciesMale,ProfMale],1)
 										],
-							priority = 3)
+							priority = 4)
 
 # Male Relative 
 class MaleTemplate2(MaleCharTemplate):
@@ -1041,16 +1039,16 @@ class MaleTemplate2(MaleCharTemplate):
 							 id = 2, 
 							 adjlist = 	[ CTEntry([GenModMale],11), 
 										  CTEntry([AttitudeMale],10),
+										  CTEntry([AgeAdjMale],5),
 										  CTEntry([PhysCharMale],9),
 										  CTEntry([PhysCharMale,DickCharMale],8),
 										  CTEntry([TypeModMale],6),
-										  CTEntry([AgeAdjMale],5),
 										  CTEntry([SkinHairColorMale,NationMale,RaceMale],3),
 										  CTEntry([SpeciesMale],2),
 										  CTEntry([ProfMale],1)
 										],
 							bpersonal = True,
-							priority = 3)
+							priority = 4)
 
 # Male Royalty
 class MaleTemplate3(MaleCharTemplate):
@@ -1066,7 +1064,7 @@ class MaleTemplate3(MaleCharTemplate):
 										  CTEntry([NationMale],3),
 										  CTEntry([SpeciesMale],1)
 										],
-							priority = 3)
+							priority = 4)
 # Male of some Nation
 class MaleTemplate4(MaleCharTemplate):
 	def __init__(self):
@@ -1078,7 +1076,7 @@ class MaleTemplate4(MaleCharTemplate):
 										  CTEntry([DickCharMale],8),
 										  CTEntry([TypeModMale],6)
 										],
-							priority = 3)
+							priority = 4)
 # Male Millionaire
 class MaleTemplate5(MaleCharTemplate):
 	def __init__(self):
@@ -1094,7 +1092,7 @@ class MaleTemplate5(MaleCharTemplate):
 										  CTEntry([SpeciesMale],1),
 										  CTEntry([ProfMale],1)
 										],
-							priority = 3)
+							priority = 4)
 
 # Male Rockstar
 class MaleTemplate6(MaleCharTemplate):
@@ -1111,7 +1109,7 @@ class MaleTemplate6(MaleCharTemplate):
 										  CTEntry([SkinHairColorMale,NationMale,RaceMale],3),
 										  CTEntry([SpeciesMale,ProfWhiteCollarMale],1)
 										],
-							priority = 3,
+							priority = 4,
 							NotList = ["dad-bod"])
 							
 # Male Athlete
@@ -1128,7 +1126,7 @@ class MaleTemplate7(MaleCharTemplate):
 										  CTEntry([SkinHairColorMale,NationMale,RaceMale],3),
 										  CTEntry([SpeciesMale],1)
 										],
-							priority = 3,
+							priority = 4,
 							NotList = ["dad-bod","business","tuxedoed","suited"])
 							
 # Male Fantasy Character
@@ -1145,7 +1143,7 @@ class MaleTemplate8(MaleCharTemplate):
 										  CTEntry([SkinHairColorMale,NationMale],3),
 										  CTEntry([SpeciesMale],1)
 										],
-							priority = 3,
+							priority = 4,
 							NotList = ["dad-bod","millennial","teen","college","vegan","veteran","asian",
 										"latino","australian","BDSM","rebel"])
 										
@@ -1162,9 +1160,73 @@ class MaleTemplate9(MaleCharTemplate):
 										  CTEntry([AgeAdjMale,MaritalStatusMale],5),
 										  CTEntry([SkinHairColorMale,RaceMale],3)
 										],
-							priority = 3,
+							priority = 4,
 							NotList = ["tuxedoed","suited","wealthy","teen","college","barbarian",
-										"bachelor","S.W.A.T.","stay-at-home","millennial"])										
+										"bachelor","S.W.A.T.","stay-at-home","millennial"])		
+
+# Male Relative (Generator 38)
+class MaleTemplate10(MaleCharTemplate):
+	def __init__(self):
+		super().__init__(	noun = RelateMale(),
+							 id = 10, 
+							 adjlist = 	[ CTEntry([AttitudeMale],10),
+										  CTEntry([AgeAdjMale],5),
+										  CTEntry([PhysCharMale],9),
+										  CTEntry([DickCharMale],8),
+										  CTEntry([SkinHairColorMale,NationMale,RaceMale],3),
+										  CTEntry([ProfMale],1)
+										],
+							bpersonal = True,
+							priority = 0)
+							
+# Big Black Male Profession
+class MaleTemplate11(MaleCharTemplate):
+	def __init__(self):
+		super().__init__(	noun = ProfMale(),
+							 id = 11, 
+							 adjlist = 	[ CTEntry(TropeBitMale("Big Black"),9),
+										  CTEntry([DickCharMale],8),
+										  CTEntry([TypeModMale],6),
+										  CTEntry([AgeAdjMale,MaritalStatusMale],5)
+										],
+							priority = 1)
+							
+# Big Black Male Relation
+class MaleTemplate12(MaleCharTemplate):
+	def __init__(self):
+		super().__init__(	noun = RelateMale(),
+							 id = 12, 
+							 adjlist = 	[ CTEntry(TropeBitMale("Big Black"),9),
+										  CTEntry([DickCharMale],8),
+										  CTEntry([TypeModMale],6),
+										  CTEntry([AgeAdjMale,MaritalStatusMale],5)
+										],
+							priority = 1)
+							
+# Big Black Male Wealthy
+class MaleTemplate13(MaleCharTemplate):
+	def __init__(self):
+		super().__init__(	noun = TropesWealthyMale(),
+							 id = 13, 
+							 adjlist = 	[ CTEntry(TropeBitMale("Big Black"),9),
+										  CTEntry([DickCharMale],8),
+										  CTEntry([TypeModMale],6),
+										  CTEntry([AgeAdjMale,MaritalStatusMale],5)
+										],
+							priority = 1)
+							
+# Big Black Male Titled
+class MaleTemplate14(MaleCharTemplate):
+	def __init__(self):
+		super().__init__(	noun = TitlesMale(),
+							 id = 14, 
+							 adjlist = 	[ CTEntry(TropeBitMale("Big Black"),9),
+										  CTEntry([DickCharMale],8),
+										  CTEntry([TypeModMale],6),
+										  CTEntry([AgeAdjMale,MaritalStatusMale],5)
+										],
+							priority = 1)
+							
 #ProfBlueCollarMale,ProfWhiteCollarMale,ProfFantasyMale,ProfAthleteMale,ProfRockstarMale,
 #			ProfNormalMale,ProfAspirationalMale,ProfMale
 

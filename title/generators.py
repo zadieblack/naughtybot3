@@ -1129,16 +1129,15 @@ class Generator38(Generator):
 		
 		Tweets = []
 		
-		NotList = ['Husband', 'Boyfriend', 'Hubby', 'Widower', 'Fiancé']
+		NotList = ['Husband', 'Boyfriend', 'Hubby', 'Widower', 'Fiancé','Shape-Shifting']
 		Relations = titmisc.RelateMale()
 		VerbsBy = WordList(["I'm In Love With", "I Have A Crush On", "I Slept With", "I'm Being Blackmailed By", 
 							"I'm Horny For", "I'm Turned On By","I Showered Naked With",
 							"I Did a Strip-Tease For","I French-Kissed", "I Sexted"])
-		Dad = char.MaleChar(bAddEndNoun = False, bAllowGang = False, bAllowMaritalStatus = False)
+		Dad = char.MaleChar(SelectTemplateID = 10, bAllowGang = False, NotList = NotList, bAllowRelate = True)
 		
 		sTweet += "\"Oh No! " + VerbsBy.GetWord() + " "
-		sTweet += "My " + Dad.Desc + " " 
-		sTweet += Relations.GetWord(NotList = NotList) + "!\""
+		sTweet += "My " + Dad.Desc + "!\""
 
 		return sTweet
 		
@@ -1705,11 +1704,8 @@ class Generator53(Generator):
 		
 		RelateGirls = WordList(["Step-Daughter","Daughter"])
 		
-		BadGirlNotList = ['Nun','Nurse','Gymnast','Masseuse','Cheerleader','Starlet','Secretary','Housewife','Fashion Model','French Maid']
-		Girl = char.FemaleChar(Type = GirlType.Bad, NotList = BadGirlNotList, 
-								bAllowAge = False, bAllowClothing = False, bAllowMaritalStatus = False, 
-								bAllowPregState = False, bAllowTrope = False, bAllowPhysChar = False, 
-								bAllowRelate = False)
+		BadGirlNotList = ['MILF','Masseuse','Housewife']
+		Girl = char.FemaleChar(SelectTemplateID = 20, Type = GirlType.Bad, NotList = BadGirlNotList)
 		
 		sTweet = "Daddy Found Out\nThat His " + sNiceAdj1 + " " + sNiceAdj2 + " " + RelateGirls.GetWord() + "\n"
 		sTweet += "Is " + AddArticles(Girl.Desc) + "\nAnd Now He's Pissed!"
@@ -1988,35 +1984,16 @@ class Generator60(Generator):
 		sTweet += "The " + ObjectAdjs.GetWord() + " " + ObjectNouns.GetWord()
 		
 		return sTweet	
-		
-# Transformation:
-# From Sweet Innocent All-American Schoolgirl
-# to
-# Leather-Clad Bondage Slut 
-class Generator61(Generator):
-	ID = 61
-	Priority = 1
-	
-	def GenerateTweet(self):
-		super().GenerateTweet()
-		sTweet = ""
-		
-		GoodGirlNotList = ["Tanned","Concubine","Recently-Divorced","Big Titty","Busty","Hot",
-							"Juicy","Leggy","Naked","Nude","Shaved","Voluptuous","Young",
-							"Pregnant","Jiggling","Wet Nurse","Sassy","Geisha","Baroness",
-							"Duchess","Slave Girl","Slave","MILF","HuCow","Kitten","Lesbian",
-							"Bisexual","Pansexual"]
-		BadGirlNotList = ["Virgin","Married","Nursing"]
-		GoodGirl = char.FemaleChar(Type = GirlType.Good, NotList = GoodGirlNotList, 
-									bAllowRelate = False, bAllowPregState = False, bAllowPhysChar = False,
-									bAllowSpecies = False, bAllowNation = False)
-		BadGirl = char.FemaleChar(Type = GirlType.Bad, NotList = BadGirlNotList, bAllowRelate = False, 
-									bAllowMaritalStatus = False, bAllowSpecies = True, 
-									bAllowNation = False, bAllowTitle = False)
-		
-		sTweet = "Transformed:\nfrom\n" + GoodGirl.Desc + "\nto\n" + BadGirl.Desc
 
-		return sTweet	
+# class Generator61(Generator):
+	# ID = 61
+	# Priority = 1
+	
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
+
+		# return sTweet	
 		
 # Help!
 # A husky investment banker
@@ -2327,22 +2304,15 @@ class Generator72(Generator):
 
 		return sTweet	
 		
-class Generator73(Generator):
-	ID = 73
-	Priority = 1
+# class Generator73(Generator):
+	# ID = 73
+	# Priority = 1
 	
-	def GenerateTweet(self):
-		super().GenerateTweet()
-		sTweet = ""
+	# def GenerateTweet(self):
+		# super().GenerateTweet()
+		# sTweet = ""
 		
-		Girl = titmisc.NiceGirl()
-		sNiceGirl = Girl.Desc
-						  
-		BadResult = WordList(["an Amateur Porn Star","an Anal Bimbo","a Naughty Bikini Model","a Foul-Mouthed Skank","a High-Class Call Girl","a $1000-an-hour Hooker","a Leather Bondage Submissive",
-							  "a Hotwife","a Porn Star","a Sex Addict","a Sex Slave","a Slut","a Shameless Exhibitionist","a Stripper","a Topless Spring Break Party Girl"])									  
-		sTweet = "I Turned My " + sNiceGirl + "\ninto " + BadResult.GetWord() + "!"
-
-		return sTweet	
+		# return sTweet	
 		
 class Generator74(Generator):
 	ID = 74
@@ -4900,7 +4870,7 @@ class Generator1001(Generator):
 							bAddAnArticle = True, 
 							bAllowGang = False,
 							bAllowTrope = True,
-							SelectTemplateID = 319)
+							SelectTemplateID = 14)
 		Gang = char.MaleChar(TempType = TempType.Flowery,
 							 bAddAnArticle = True,
 							 bAllowGang = True)

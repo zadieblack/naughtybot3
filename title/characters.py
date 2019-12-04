@@ -25,6 +25,7 @@ class CharBit():
 		self.Gender = gen 
 		
 		if isinstance(charlist,str):			#initialize with a string
+			print("Initializing CharBit with string \"" + charlist + "\".")
 			self._CharList = WordList([charlist])
 		elif isinstance(charlist,list):			#initialize with a list
 			self._CharList = WordList(charlist)
@@ -65,7 +66,11 @@ class CharBit():
 			NotList = []
 			
 		if isinstance(self._CharList, WordList):
-			sResult = self._CharList.GetWord(NotList = NotList)
+			if self._CharList.Length() > 1:
+				sResult = self._CharList.GetWord(NotList = NotList)
+			else:
+				if self._CharList.GetWordList()[0] not in NotList:
+					sResult = self._CharList.GetWordList()[0]
 
 		return sResult
 
@@ -74,7 +79,11 @@ class CTEntry():
 		if isinstance(charbits, list):
 			self.CharBits = WordList()
 			for item in charbits:
-				self.CharBits.AddWord(item())
+				#print("CTEntry() item is " + str(item))
+				if isinstance(item, CharBit):
+					self.CharBits.AddWord(item)
+				else:
+					self.CharBits.AddWord(item())
 			
 		else:
 			self.CharBits = WordList([])
@@ -414,9 +423,17 @@ class ProfGoodFemale(FemCharBit):
 	def __init__(self):
 		super().__init__(titmisc.ProfGoodFemale(),girltype = GirlType.Good)
 		
+class ProfNeutralFemale(FemCharBit):
+	def __init__(self):
+		super().__init__(titmisc.ProfNeutralFemale(),girltype = GirlType.Bad)
+		
 class ProfBadFemale(FemCharBit):
 	def __init__(self):
 		super().__init__(titmisc.ProfBadFemale(),girltype = GirlType.Bad)
+		
+class ProfVeryBadFemale(FemCharBit):
+	def __init__(self):
+		super().__init__(titmisc.ProfVeryBadFemale(),girltype = GirlType.Bad)
 		
 class ProfFemale(FemCharBit):
 	def __init__(self):
