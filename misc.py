@@ -10,6 +10,7 @@ class Hashtags(WordList):
 			'amreading',
 			'amwriting',
 			'BannedFromAmazon',
+            'githubtest',
 			'bookboost',
 			'bookideas',
 			'bot',
