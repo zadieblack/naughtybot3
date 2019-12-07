@@ -25,7 +25,6 @@ class CharBit():
 		self.Gender = gen 
 		
 		if isinstance(charlist,str):			#initialize with a string
-			print("Initializing CharBit with string \"" + charlist + "\".")
 			self._CharList = WordList([charlist])
 		elif isinstance(charlist,list):			#initialize with a list
 			self._CharList = WordList(charlist)
@@ -46,18 +45,13 @@ class CharBit():
 		bHasCharBit = False 
 		
 		if isinstance(target, list):
-			#print(" - - - - target is a list")
 			for item in target:
-				#print(" - - - - charbit = " + str(self) + ", exclusion list item = " + str(item))
 				if self.__class__ == item:
 					bHasCharBit = True 
 		else:
-			#print(" - - - - target is a {" + str(target) + "}")
-			#print(" - - - - charbit = " + str(self) + ", exclusion list item = " + str(target))
 			if self.__class__ == target:
 				bHasCharBit = True 
-		
-		#print(" - - - - is charbit {" + str(self.__class__) + "} in target {" + str(target) + "}? " + str(bHasCharBit))	
+			
 		return bHasCharBit
 		
 	def Get(self, NotList = None):
@@ -79,12 +73,12 @@ class CTEntry():
 		if isinstance(charbits, list):
 			self.CharBits = WordList()
 			for item in charbits:
-				#print("CTEntry() item is " + str(item))
 				if isinstance(item, CharBit):
 					self.CharBits.AddWord(item)
 				else:
 					self.CharBits.AddWord(item())
-			
+		elif isinstance(charbits, CharBit):
+			self.CharBits = WordList([charbits])
 		else:
 			self.CharBits = WordList([])
 
@@ -245,7 +239,7 @@ class CharTemplate():
 						break
 		#print("CharTemplate returning " + str(bHasCharBit))
 		return bHasCharBit
-		
+
 class FemCharTemplate(CharTemplate):
 	def __init__(self, noun, 
 					   id = 0, 
@@ -365,8 +359,6 @@ class MaleGayTemplate(CharTemplate):
 			NotList = []
 			
 		super().__init__(noun = noun, id = id,  adjlist = adjlist, priority = priority, bpersonal = bpersonal, NotList = NotList)
-
-
 
 class FemCharBit(CharBit):
 	def __init__(self, charlist, girltype = GirlType.Neutral):
@@ -652,7 +644,8 @@ class GayMaleAdj(MaleCharBit):
 		super().__init__(titmisc.GayMaleAdj())		
 		
 class TropeBitMale(MaleCharBit):
-	pass
+	pass		
+
 		
 class Character():
 	def __init__(self):
@@ -770,10 +763,8 @@ class Character():
 						
 				if SelCharTemplate is None:
 					SelCharTemplate = TemplateList[0]
-					
-				#print("Selected character template is " + str(SelCharTemplate))		
+		
 				variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
-				#print("Selected variant is " + str(variant))
 				
 				while (not self.DoesVariantMeetReqs(variant, ReqList) or self.IsVariantExcluded(variant, ExclList)) and iTryCounter < MAX_VARIANT_TRIES:
 					iTryCounter = iTryCounter + 1
@@ -784,18 +775,14 @@ class Character():
 			SelCharTemplate = choice(TemplateList)
 			
 			variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
-			#print("Selected first template is + " + str(SelCharTemplate))
-			
-			#while self.IsTemplateExcluded(SelCharTemplate, ExclList):
-			#print("\nChecking variant " + str(variant) + "\n - against req list " + str(ReqList) + "\n - against excl list " + str(ExclList))
+
 			while (not self.DoesVariantMeetReqs(variant, ReqList) or self.IsVariantExcluded(variant, ExclList)) and iTryCounter < MAX_VARIANT_TRIES:
 				SelCharTemplate = choice(TemplateList)
 				
 				iTryCounter = iTryCounter + 1
 				
 				variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
-				#print("==<<COLLISION!! Template had an excluded type! New selected template is + " + str(SelCharTemplate) + ">>==")
-				#print("\nChecking variant " + str(variant) + "\n - against req list " + str(ReqList) + "\n - against excl list " + str(ExclList))
+
 			print("Template " + str(SelCharTemplate) + " selected, it took " + str(iTryCounter) + " tries.\n")
 			
 		NotList = NotList + SelCharTemplate.NotList 
@@ -815,4 +802,6 @@ class Character():
 		
 		self.Desc = sDesc
 
-		
+
+
+

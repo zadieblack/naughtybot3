@@ -4861,23 +4861,21 @@ class Generator1001(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		#print("Generator1001.GenerateTweet() started")
-		Girl = char.FemaleChar(TempType = TempType.Flowery, 
-								bAddTheArticle = False, 
-								bAllowTrope = True, 
-								SelectTemplateID = 221)
+		#Girl = char.FemaleChar(TempType = TempType.Flowery, 
+		#						bAddTheArticle = False, 
+		#						bAllowTrope = True, 
+		#						SelectTemplateID = 221)
 		Guy = char.MaleChar(TempType = TempType.Flowery, 
 							bAddAnArticle = True, 
 							bAllowGang = False,
 							bAllowTrope = True,
 							SelectTemplateID = 14)
-		Gang = char.MaleChar(TempType = TempType.Flowery,
-							 bAddAnArticle = True,
-							 bAllowGang = True)
+		#Gang = char.MaleChar(TempType = TempType.Flowery,
+		#					 bAddAnArticle = True,
+		#					 bAllowGang = True)
 		
-		
-		#print("Generator1001.GenerateTweet() FemaleChar created, building tweet")
-		sTweet += AddArticles(Girl.Desc, bMakeUpper = True) + " Gets Sexed the Hell Up!\n"
+
+		#sTweet += AddArticles(Girl.Desc, bMakeUpper = True) + " Gets Sexed the Hell Up!\n"
 		#sTweet += AddArticles(Guy.Desc, bMakeUpper = True) + " Took My Wife Hard From Behind!\n"
 		sTweet += Guy.Desc + " Took My Wife Hard From Behind!\n"
 		#sTweet += Gang.Desc + " Took Turns With My Wife!"
