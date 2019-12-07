@@ -751,7 +751,6 @@ class AttitudeMale(WordList):
 			'Brooding',
 			'Charming',
 			'Cocky','Cocky',
-			'Clever',
 			'Dapper',
 			'Devil-May-Care',
 			'Dominant',

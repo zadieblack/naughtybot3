@@ -208,7 +208,7 @@ class Generator4(Generator):
 		return sTweet
 		
 class Generator5(Generator):
-	# The President's Amish Milkmaid
+	# Jackie Shows a Horny French Alpha Wolf her Cunning Stunt
 	ID = 5
 	Priority = 1
 	
@@ -219,19 +219,9 @@ class Generator5(Generator):
 		Girl = None
 		Master = None
 			
-		if CoinFlip():
-			Girl = char.FemaleChar(TempType = TempType.Medium, bAllowTrope = True, NotList = GenNotList)
-			Master = char.MaleChar(TempType = TempType.Flowery, bAllowRelate = True, bAllowTrope = True,NotList = GenNotList)
-		else: 
-			Girl = char.FemaleChar(TempType = TempType.Flowery, Type = GirlType.Good, bAllowTrope = True, NotList = GenNotList)
-			Master = char.MaleChar(TempType = TempType.Medium, bAllowRelate = True, bAllowTrope = True,NotList = GenNotList)
-		
-		sTweet += "The " + Master.Desc + "'s\n" + Girl.Desc
-		if CoinFlip():
-			if CoinFlip():
-				sTweet += ":\nA BDSM " + self.SubtitleCoda.GetWord()
-			else:
-				sTweet += ":\nA Hot Ménage"
+		Master = char.MaleChar(TempType = TempType.Flowery, bAddAnArticle = True, bAllowRelate = True,NotList = GenNotList)
+
+		sTweet = self.HerName + " Shows " + Master.Desc + "\nHer Cunning Stunt" 
 		
 		return sTweet
 		
@@ -245,16 +235,13 @@ class Generator6(Generator):
 		sTweet = ""
 		
 		NotList = ["Pledged", "Public", "Charmed", "Cuckolded", "Hunted", "Harrassed", "Sold", 
-					"Gifted", "Pledged", "Bed", "Sex Dungeon","Basement"]
+					"Gifted", "Pledged", "Bed", "Sex Dungeon","Basement","Dungeon","Surrendered"]
 		
 		#Girl = char.FemaleChar(TempType = TempType.Medium, bAllowTrope = True, NotList = GenNotList)
 		Master = char.MaleChar(TempType = TempType.Flowery, bAllowRelate = True, bAllowTrope = True,bAddTheArticle = True)
 		#Master = MaleChar(iNumMaxCBits = 3, bAllowGang = False, NotList = NotList, bAddArticle = True)
 		
-		if CoinFlip():
-			sTweet = self.VerbsTo.GetWord(NotList = NotList) + " In The Bed Of\n" + Master.Desc 
-		else:
-			sTweet = self.VerbsBy.GetWord(NotList = NotList) + " In The Bed Of\n" + Master.Desc 
+		sTweet += self.VerbsBy.GetWord(NotList = NotList) + " In The Bed Of\n" + Master.Desc 
 		
 		return sTweet
 		
@@ -299,8 +286,14 @@ class Generator8(Generator):
 
 		sTweet = "My " + WordList(["New Boyfriend", "Hot Date", "New Fiancé", "Blind Date", "Kidnapper", "New Hubby", 
 									"New Husband", "New Man","New Daddy", "New Boss", "New Teacher"]).GetWord() + " "
-		sTweet += "is " + Master.Desc + "!"
-			
+		sTweet += "is " + Master.Desc
+        if CoinFlip():
+            DickWords = WordList(["Boner","Cock","Dick","Penis","Schlong","Tool","Package","Erection"])
+		
+            sTweet += "\nand " + WordList(["He's Hung Like a Horse",
+											"He Has a Massive " + DickWords.GetWord(),
+											"His " + DickWords.GetWord() + " is ENORMOUS"]).GetWord()
+        sTweet += "!"
 		return sTweet
 		
 class Generator9(Generator):
@@ -4792,7 +4785,8 @@ class Generator142(Generator):
 		sTweet += "with " + Num.GetWord() + " " + MaleGang.Desc 
 		
 		return sTweet		
-		
+
+# Testing innuendo name generators		
 class Generator999(Generator):
 	ID = 999
 	Priority = 1
@@ -4816,6 +4810,7 @@ class Generator999(Generator):
 
 		return sTweet	
 		
+#Testing rhyming functions
 class Generator1000(Generator):
 	ID = 1000
 	Priority = 1
@@ -4851,7 +4846,8 @@ class Generator1000(Generator):
 			# sTweet = "No rhyme found for " + sNoun 
 
 		return sTweet	
-		
+
+#Testing specific title generators		
 class Generator1001(Generator):
 	ID = 1001
 	Priority = 1
@@ -4861,10 +4857,10 @@ class Generator1001(Generator):
 		super().GenerateTweet()
 		sTweet = ""
 		
-		#Girl = char.FemaleChar(TempType = TempType.Flowery, 
-		#						bAddTheArticle = False, 
-		#						bAllowTrope = True, 
-		#						SelectTemplateID = 221)
+		Girl = char.FemaleChar(TempType = TempType.Flowery, 
+								bAddTheArticle = False, 
+								bAllowTrope = True, 
+								SelectTemplateID = 227)
 		Guy = char.MaleChar(TempType = TempType.Flowery, 
 							bAddAnArticle = True, 
 							bAllowGang = False,
@@ -4875,7 +4871,7 @@ class Generator1001(Generator):
 		#					 bAllowGang = True)
 		
 
-		#sTweet += AddArticles(Girl.Desc, bMakeUpper = True) + " Gets Sexed the Hell Up!\n"
+		sTweet += AddArticles(Girl.Desc, bMakeUpper = True) + " Gets Sexed the Hell Up!\n"
 		#sTweet += AddArticles(Guy.Desc, bMakeUpper = True) + " Took My Wife Hard From Behind!\n"
 		sTweet += Guy.Desc + " Took My Wife Hard From Behind!\n"
 		#sTweet += Gang.Desc + " Took Turns With My Wife!"

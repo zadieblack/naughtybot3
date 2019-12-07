@@ -321,8 +321,7 @@ class BookVerbsTo(WordList):
 				'Enslaved',
 				'Gifted',
 				'Mated',
-				'Sold',
-				'Surrendered'])
+				'Sold'])
 				
 class BookGerunds(WordList):
 	WordHistoryQ = HistoryQ(3)
