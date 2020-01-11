@@ -29,25 +29,25 @@ TAG_ORAL = "oral sex scene"
 TAG_CLOTHED = "scene where they still have clothes on"
 
 TweetHistoryQ = None
-	
+     
 class Tense(Enum):
-	Present = 1
-	Past = 2
-	Gerund = 3
-	
+     Present = 1
+     Past = 2
+     Gerund = 3
+     
 class LocInOutType(Enum):
-	Indoors = 1
-	Outdoors = 2
-	Either = 3
-	
+     Indoors = 1
+     Outdoors = 2
+     Either = 3
+     
 class LocPubPrivType(Enum):
-	Public = 1
-	Private = 2
-	Either = 3
-	
+     Public = 1
+     Private = 2
+     Either = 3
+     
 class GeneratorType(Enum):
-	Normal = 1
-	Promo = 2
-	Test = 3
-	BookTitle = 4
+     Normal = 1
+     Promo = 2
+     Test = 3
+     BookTitle = 4
 
