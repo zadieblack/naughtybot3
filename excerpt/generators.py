@@ -596,11 +596,13 @@ class Generator15(Generator):
           super().GenerateTweet()
           sTweet = ""
           
-          iRand = randint(1,3)
-                    
-          sBoyfriendName = self.MaleName.FirstName()
-          sTweet = "'" + sBoyfriendName + ", my love, where are you?' called " + self.FemaleName.FirstName() + " from the next room.\n\n"
-          sTweet += sBoyfriendName + " looked down at " + self.FemaleName.FirstName() + ". "
+          sHerName = self.FemaleName.FirstName()
+          sHisName = self.MaleName.FirstName()
+
+          sTweet = "'" + sHisName + ", my love, where are you?' called " + self.FemaleName.FirstName() + " from the next room.\n\n"
+          sTweet += sHisName + " looked down at " + sHerName + ". "
+          
+          iRand = randint(1,4)
           if iRand == 1:
                sTweet += "Her head was cupped in his hands as she bobbed up and down on his " + self.MaleBodyParts.Penis.FloweryDescription() + ".\n\n"
           elif iRand == 2:
@@ -611,8 +613,9 @@ class Generator15(Generator):
                sTweet += "Her " + self.FemBodyParts.Lips.GetAdj() + " lips were wrapped around his " + self.MaleBodyParts.Penis.Head.RandomDescription(bAllowShortDesc = True) + " and she was gently massaging his " + self.MaleBodyParts.Penis.Testicles.ShortDescription() + ".\n\n"
           else:
                sTweet += "Her " + self.FemBodyParts.Eyes.RandomDescription() + " were locked on his as she wrapped her " + self.FemBodyParts.Mouth.RandomDescription() + " around his " + self.MaleBodyParts.Penis.FloweryDescription() + ".\n\n"
-          sTweet += "'I'll just be a minute dear,' " + sBoyfriendName + " replied."
           
+          sTweet += "'I'll just be a minute dear,' " + sHisName + " replied."
+
           return sTweet
           
 class Generator16(Generator):
@@ -5244,27 +5247,131 @@ class Generator93(Generator):
            
            sTweet += "\n\n\"Me too, mom,\" said " + sFriendName + "."
            return sTweet
-          
-# class Generator94(Generator):
-     # ID = 94
-     # Priority = 1
-     
-     # def GenerateTweet(self):
-          # super().GenerateTweet()
-          # sTweet = ""
 
-          # return sTweet
-          
-# class Generator95(Generator):
-     # ID = 95
-     # Priority = 1
-     
-     # def GenerateTweet(self):
-          # super().GenerateTweet()
-          # sTweet = ""
+#"Ambrose," called Juan from the next room. "Have you seen my mother, Jacinda?"
 
-          # return sTweet
+#Ambrose looked down at Jacinda. Her sweet, earnest eyes were locked on his as she sucked passionately on his lengthy, erect, silken member.
+
+#"I haven't seen her anywhere," Ambrose shouted back.          
+class Generator94(Generator):
+      ID = 94
+      Priority = 1
+     
+      def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
+
+        sHerName = self.FemaleName.FirstName()
+        sHisName = self.MaleName.FirstName()
+
+        sOtherManName = self.MaleName.FirstName(NotList = [sHisName]) 
+
+        sTweet = "\"" + sHisName + ",\" called " + sOtherManName + " "
+        sTweet += "from the next room. \"Have you seen "
+        sTweet += WordList(["your step-mom","your step-sister","my girlfriend",
+                            "my fiancé","my mom","my wife","my daughter",
+                            "my step-daughter","my secretary","the babysitter",
+                            "dad's girlfriend","my bride","my date",
+                            "your daughter-in-law","her ladyship",
+                            "our math teacher","my twin sister","my mother",
+                            "my bride-to-be","the French exchange student",
+                            "your cousin","your mother-in-law",
+                            "our new intern"]).GetWord() + ", "
+        sTweet += sHerName + "?\"\n\n"
+        sTweet += sHisName + " looked down at " + sHerName + ". "
+        
+        iRand = randint(1,4)
+        if iRand == 1:
+            sTweet += "Saliva was dripping from her chin as she bobbed up and down "
+            sTweet += "on his " + self.MaleBodyParts.Penis.FloweryDescription() + ".\n\n"
+        elif iRand == 2:
+            sTweet += "Tears trailed from her " + self.FemBodyParts.Eyes.RandomDescription() + " "
+            sTweet += "as she " + WordList(["gagged","choked"]).GetWord() + " "
+            sTweet += "on his " + self.MaleBodyParts.Penis.FloweryDescription(bAddLen = True) + ".\n\n"
+        elif iRand == 3:
+            sTweet += "His " + self.MaleBodyParts.Penis.RandomDescription(bAllowShortDesc = True) + " was slapping "
+            sTweet += "against her " + self.FemBodyParts.Face.MediumDescription() + " as she "
+            sTweet += "sucked on his " + self.MaleBodyParts.Penis.Testicles.ShortDescription() + ".\n\n"
+        elif iRand == 4:
+            sTweet += "Her " + self.FemBodyParts.Eyes.RandomDescription() + " were "
+            sTweet += "locked on his as she "
+            sTweet += "sucked " + WordList(["vigorously","passionately","earnestly",
+                                            "skillfully","hungrily"]).GetWord() + " "
+            sTweet += "on his " + self.MaleBodyParts.Penis.FloweryDescription() + ".\n\n"
+        else:
+            sTweet += "Her " + self.FemBodyParts.Eyes.RandomDescription() + " were "
+            sTweet += "locked on his and "
+            sTweet += "her " + self.FemBodyParts.Lips.RandomDescription() + " were wrapped "
+            sTweet += "around his " + self.MaleBodyParts.Penis.FloweryDescription() + ".\n\n"
+        
+        sTweet += "\"I haven't seen her anywhere,\" " + sHisName + " shouted back."
+
+        return sTweet
+    
+
+# As above, but gay
+class Generator95(Generator):
+    ID = 95
+    Priority = 1
+     
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
+
+        sHerName = self.FemaleName.FirstName()
+        sHisName = self.MaleName.FirstName()
+
+        sOtherManName = self.MaleName.FirstName(NotList = [sHisName]) 
+
+        sTweet = "\"" + sHisName + ",\" called " + sHerName + " "
+        sTweet += "from the next room. \"Have you seen "
+        sTweet += WordList(["our step-dad","your step-brother","my boyfriend",
+                            "my fiancé","my dad","my husband","my son",
+                            "my step-son","mom's boyfriend","my date",
+                            "my son-in-law","the Crown Prince","my boss",
+                            "my father","your cousin","your father-in-law",
+                            "my new husband","our new intern","our boss",
+                            "the new professor"]).GetWord() + ", "
+        sTweet += sOtherManName + "?\"\n\n"
+        sTweet += sHisName + " looked down at " + sOtherManName + ". "
+        
+        iRand = randint(1,4)
+        if iRand == 1:
+            sTweet += "Saliva was dripping from his chin as he bobbed up and down "
+            sTweet += "on " + sHisName + "'s " + self.MaleBodyParts.Penis.FloweryDescription() + ".\n\n"
+        elif iRand == 2:
+            sTweet += "Tears trailed from his " + self.MaleBodyParts.Eyes.RandomDescription() + " "
+            sTweet += "as he " + WordList(["gagged","choked"]).GetWord() + " "
+            sTweet += "on " + sHisName + "'s " + self.MaleBodyParts.Penis.FloweryDescription(bAddLen = True) + ".\n\n"
+        elif iRand == 3:
+            sTweet += "His " + self.MaleBodyParts.Penis.RandomDescription(bAllowShortDesc = True) + " was slapping "
+            sTweet += "against " + sOtherManName + "'s "
+            sTweet += WordList(["youthful","handsome","boyish","chiseled"]).GetWord() + " face as he "
+            sTweet += "sucked on his " + self.MaleBodyParts.Penis.Testicles.ShortDescription() + ".\n\n"
+        elif iRand == 4:
+            sTweet += "His " + self.MaleBodyParts.Eyes.RandomDescription() + " were "
+            sTweet += "locked with his as he "
+            sTweet += "sucked " + WordList(["vigorously","passionately","earnestly",
+                                            "skillfully","hungrily"]).GetWord() + " "
+            sTweet += "on " + sHisName + "'s " + self.MaleBodyParts.Penis.FloweryDescription() + ".\n\n"
+        else:
+            sTweet += "His " + self.MaleBodyParts.Eyes.RandomDescription() + " were "
+            sTweet += "locked on his and "
+            sTweet += "his " + WordList(["full","pouty","sensual","moist","wanton"]).GetWord() + " lips were wrapped "
+            sTweet += "around " + sHisName + "'s " + self.MaleBodyParts.Penis.FloweryDescription() + ".\n\n"
+        
+        sTweet += "\"I haven't seen him anywhere,\" " + sHisName + " shouted back."
+
+        return sTweet
           
+# Adele let her thin silk robe fall to the floor, revealing her slim, naked body. 
+# Her breasts were pert and firm and he could see her shaved pussy lips nestled 
+# between her soft supple thighs. "I want you, Chase," she sighed. "Come here
+# and ravish me!"
+# "Please do not tempt me, Adele," he said. "I promised Priscilla I would be faithful
+# to her for all eternity!"
+# "I'll let you put it in my butt," she said.
+# "I suppose just this once couldn't hurt," said Chase.
 # class Generator96(Generator):
      # ID = 96
      # Priority = 1
@@ -5274,7 +5381,9 @@ class Generator93(Generator):
           # sTweet = ""
 
           # return sTweet
-          
+    
+# "Isn't this beach romantic?" asked Brad. "It reminds me of the night we first met."
+# "Oh, you mean the time you lubed me up with butter and fisted my anus?" Anna asked.
 # class Generator97(Generator):
      # ID = 97
      # Priority = 1
