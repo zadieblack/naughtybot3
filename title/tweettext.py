@@ -1206,43 +1206,28 @@ class TweetTxtGen45(TweetTxtGen):
 class TweetTxtGen46(TweetTxtGen):
     # This book taught me the trantric sex technique called the "Mexican Gorilla"
     ID = 46
-    Priority = 200
+    Priority = 5
      
     def GenerateTweet(self):
         super().GenerateTweet()
         sText = ""
 
-        WordOneList = WordList(["Mexican","Chinese","French","Hungry","Pink","Burning",
-                                "Upside-Down","Turkish","Creamy","Thirsty","Magic",
-                                "Spicy","Reverse","Spread-Eagle","Buttered","Lazy",
-                                "Farting","Slippery","Dentist's","Rectal","Drunken",
-                                "Forbidden","Brown","Three-Legged","Tijuana",
-                                "Bangkok","Mongolian","Little","Italian","Egyptian",
-                                "Texas","Polish","Chunky","Disco","Hairy","Dirty",
-                                "Juicy","Puckered","Velvet","Chocolate","Silky",
-                                "Greasy","Whipped"])
-        WordTwoList = WordList(["Mermaid","Lotus","Delight","Corn-Dog","Goat","Row Boat",
-                                "Tornado","Donkey","Basset Hound","Monkey","Nun",
-                                "Milk Maid","Enema","Bronco","Stallion",
-                                "Tuna","Butterfly","Tango","Bulldog","Rodeo","Weasel",
-                                "Baloney","Starfish","Pudding","Sandwich","Ham",
-                                "Hot-Dog","Susan","Peter","Pork","Cherry","Hamster",
-                                "Sailor","Pillow","Thong","Camel","Pony"])
-        sWord1 = WordOneList.GetWord() 
-        sWord2 = WordTwoList.GetWord(NotList = [sWord1])
-
         sSexTechnique = WordList(["the trantric sex technique","the sex technique",
                                    "the sexual position","the sex position",
                                    "the tantric sex position","the sex move"]).GetWord()
-        sDirtyPhrase = sWord1 + " " + sWord2
+        sDirtyPhrase = TantricTechniques().GetWord()
 
-        iRand = randint(1,4)
+        iRand = randint(1,6)
         if iRand == 1:
              sText = "Before I read this book I had never even heard of " + sSexTechnique + " called \"The " + sDirtyPhrase + ".\""
         elif iRand == 2:
-             sText = "Before I read this I didn't even know what " + AddArticles(sDirtyPhrase) + " was."
+             sText = "Before I read this I didn't even know what " + AddArticles(sDirtyPhrase, cBracket = "\"") + " was."
         elif iRand == 3:
-             sText = "I had never heard of " + AddArticles(sDirtyPhrase) + " before but now I want to try it in real life!"
+             sText = "I had never even heard of " + AddArticles(sDirtyPhrase, cBracket = "\"") + " before but now I want to try it in real life!"
+        elif iRand == 4:
+             sText = "I've read about the \"" + sDirtyPhrase + "\" before technique in Cosmo but you need at least three people to try it."
+        elif iRand == 5:
+             sText = "I would love to try " + AddArticles(sDirtyPhrase, cBracket = "\"") + " with my boyfriend but I don't think I'm flexible enough."
         else:
              sText = "This book introduced me to " + sSexTechnique + " known as \"The " + sDirtyPhrase + ".\""
 

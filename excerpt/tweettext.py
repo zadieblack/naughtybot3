@@ -933,18 +933,29 @@ class TweetTxtGen27(TweetTxtGen):
           
           return sText     
 
-# class TweetTxtGen24(TweetTxtGen):
-     # # Out soon from Ben Dover
-     # def __init__(self):
-          # super().__init__()
-          # self.ID = 24
-          # self.Priority = 2
+class TweetTxtGen24(TweetTxtGen):
+    # Out soon from Ben Dover
+    def __init__(self):
+        super().__init__()
+        self.ID = 24
+        self.Priority = 4
      
-     # def GenerateTweet(self):
-          # super().GenerateTweet()
-          # sText = ""
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sText = ""
+
+        sSexTechnique = WordList(["the trantric sex technique","the sex technique",
+                                   "the sexual position","the sex position",
+                                   "the tantric sex position","the sex move"]).GetWord()
+        sDirtyPhrase = TantricTechniques().GetWord()
+
+        iRand = randint(1,2)
+        if iRand == 1:
+             sText = "Before I read this book I had never even heard of " + sSexTechnique + " called \"The " + sDirtyPhrase + ".\""
+        else:
+             sText = "This book introduced me to " + sSexTechnique + " known as \"The " + sDirtyPhrase + ".\""
           
-          # return sText     
+        return sText     
 
 # class TweetTxtGen24(TweetTxtGen):
      # # Out soon from Ben Dover

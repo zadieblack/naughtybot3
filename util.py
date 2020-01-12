@@ -68,7 +68,7 @@ def GetEmoji(iNum = 1):
      return sEmoji
      
 #combined version
-def AddArticles(sNounPhrase, bMakeUpper = False):
+def AddArticles(sNounPhrase, bMakeUpper = False, cBracket = ""):
      sUpdatedPhrase = sNounPhrase
      sArticle = ""
      sNPNounPhrase = "" #Noun phrase without any 'decoration' characters
@@ -127,9 +127,9 @@ def AddArticles(sNounPhrase, bMakeUpper = False):
                     sArticle = 'An'
                          
           if len(sArticle) > 0:
-               sUpdatedPhrase = sArticle + " " + sNounPhrase
+               sUpdatedPhrase = sArticle + " " + cBracket + sNounPhrase + cBracket
           else:
-               sUpdatedPhrase = sNounPhrase
+               sUpdatedPhrase = cBracket + sNounPhrase + cBracket
                
      return sUpdatedPhrase
 
