@@ -5370,7 +5370,8 @@ class Generator95(Generator):
 # and ravish me!"
 # "Please do not tempt me, Adele," he said. "I promised Priscilla I would be faithful
 # to her for all eternity!"
-# "I'll let you put it in my butt," she said.
+# "I'll let you 
+# {put it in my butt,ride me bareback,cum on my face,video us with your phone}," she said. 
 # "I suppose just this once couldn't hurt," said Chase.
 # class Generator96(Generator):
      # ID = 96
