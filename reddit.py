@@ -11,6 +11,7 @@ def PostToReddit(sLinkTitle, sLinkURL, sFlairID):
 
         subreddit = reddit.subreddit(SUBREDDIT_NAME)
 
+        print("subreddit: {" + str(subreddit) + "}\n")
         print("subreddit.title: " + sLinkTitle)
         print("subreddit.url: " + sLinkURL)
         print("subreddit.flair_id: " + sFlairID)
