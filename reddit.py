@@ -6,15 +6,18 @@ import praw
 SUBREDDIT_NAME = 'erotica_ebooks'
 
 def PostToReddit(sLinkTitle, sLinkURL, iFlairID):
-    reddit = praw.Reddit('bot1')
+    try:
+        reddit = praw.Reddit('bot1')
 
-    subreddit = reddit.subreddit(SUBREDDIT_NAME)
+        subreddit = reddit.subreddit(SUBREDDIT_NAME)
 
-    subreddit.submit(title = sLinkTitle, 
-                        url = sLinkURL, 
-                        flair_id = iFlairID, 
-                        nsfw = True,
-                        resubmit = False)
+        subreddit.submit(title = sLinkTitle, 
+                            url = sLinkURL, 
+                            flair_id = iFlairID, 
+                            nsfw = True,
+                            resubmit = False)
+    except praw.exceptions.PRAWException as e:
+        print("* ! PRAW Error: " + e.reason + " ! *")
 
 def PostToReddit_eebot(sLinkTitle, sLinkURL):
     iFlairID = "0968a470-362f-11ea-a7cd-0e19e0d6966d"
