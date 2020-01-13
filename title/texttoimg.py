@@ -192,8 +192,10 @@ def CreateImg(sText):
      ImgOut = Image.alpha_composite(ImgBase, ImgTxt)
       
      # save the edited image
-      
-     return ImgOut.convert('RGB')
+     RGBImgOut = ImgOut.convert('RGB')
+     #RGBImgOut.name = "tweetimg.jpg"
+
+     return RGBImgOut
 
 
 

@@ -361,6 +361,18 @@ def SmartLower(phrase):
           
      return sResult
 
+# https://twitter.com/{status.user.screen_name}/status/{status.id} 
+def ExtractURLFromStatus(status):
+    sURL = ""
+
+    if not status is None:
+        sScreenName = status.user.screen_name 
+        sTweetID = str(status.id)
+
+        sURL = "https://twitter.com/" + sScreenName + "/status/" + sTweetID
+
+    return sURL
+
 def len_alpha_key(str):
      return -len(str), str.lower()
      

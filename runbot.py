@@ -10,6 +10,7 @@ def SetGetArgs():
      Parser.add_argument('-test', type=int, default=-1, help='type of tweet to generate for testing purposes')
      Parser.add_argument('-tweettimer', type=int, default=1800, help='num of seconds to wait before next tweet')
      Parser.add_argument('-testtweettxt', type=int, default=-1, help='tweet text generator # to test')
+     Parser.add_argument('-reddit', action='store_true', help='post generated tweets to reddit? (default is False)')
      
      return Parser.parse_args()
                
@@ -17,7 +18,7 @@ Args = SetGetArgs()
 print(Args)
 
 print("*Running LustBot...*")
-excerpt.lust_bot.InitBot(Args.tweettimer, bTweet = Args.tweet, iTweets = Args.numtweets, bLoop = Args.loop, iGeneratorNo = Args.test)
+excerpt.lust_bot.InitBot(Args.tweettimer, bTweet = Args.tweet, iTweets = Args.numtweets, bLoop = Args.loop, iGeneratorNo = Args.test, bRedditPost = Args.reddit)
 
 print("*Running erotica_ebooks...*")
-title.ee_bot.InitBot(Args.tweettimer, bTweet = Args.tweet, iTweets = Args.numtweets, bLoop = Args.loop, iGeneratorNo = Args.test, iTweetTxtNo = Args.testtweettxt)
+title.ee_bot.InitBot(Args.tweettimer, bTweet = Args.tweet, iTweets = Args.numtweets, bLoop = Args.loop, iGeneratorNo = Args.test, iTweetTxtNo = Args.testtweettxt, bRedditPost = Args.reddit)

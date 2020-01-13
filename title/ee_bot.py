@@ -10,8 +10,9 @@ from random import *
 from title.generators import *
 from title.tweettext import *
 from title.twitter_stuff import *
+from reddit import PostToReddit_eebot
      
-def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorNo = -1, iTweetTxtNo = -1):
+def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorNo = -1, iTweetTxtNo = -1, bRedditPost = False):
      print("=*=*=*= EROTICA_EBOOKS BOT IS RUNNING (@erotica_ebooks) =*=*=*=\n\n")
      print("===InitBot() iTweetTimer=" + str(iTweetTimer) + ", bTweet=" + str(bTweet) + ", iTweets=" + str(iTweets) + ",bLoop=" + str(bLoop) + ",iGeneratorNo=" + str(iGeneratorNo) + "\n")
      
@@ -66,12 +67,17 @@ def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorN
                               ImgFile = BytesIO() 
                               CreateImg(sTweet).save(ImgFile, format = 'PNG')
                               
-                              status = UpdateStatusWithImage(api, sText, ImgFile, status.id)     
+                              status = UpdateStatusWithImage(api, sText, ImgFile, status.id)  
+                              
+                         if bRedditPost and not status is None:
+                            PostToReddit_eebot(sLinkTitle = sText, sLinkURL = util.ExtractURLFromStatus(status))
+
                          print("* Tweeted at " + currentDT.strftime("%H:%M:%S"))
                          
                          titutil.TweetHistoryQ.LogHistoryQ()
                          titutil.TweetTxtHistoryQ.LogHistoryQ()
-                         
+               
+               
      
                     # else:
                          # with open(GenerateFileName(), 'wb') as file:
