@@ -5375,7 +5375,7 @@ class Generator95(Generator):
 # "I suppose just this once couldn't hurt," said Chase.
 class Generator96(Generator):
     ID = 96
-    Priority = 1
+    Priority = 7
      
     def GenerateTweet(self):
         super().GenerateTweet()
