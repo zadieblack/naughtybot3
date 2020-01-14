@@ -5373,15 +5373,81 @@ class Generator95(Generator):
 # "I'll let you 
 # {put it in my butt,ride me bareback,cum on my face,video us with your phone}," she said. 
 # "I suppose just this once couldn't hurt," said Chase.
-# class Generator96(Generator):
-     # ID = 96
-     # Priority = 1
+class Generator96(Generator):
+    ID = 96
+    Priority = 1
      
-     # def GenerateTweet(self):
-          # super().GenerateTweet()
-          # sTweet = ""
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
 
-          # return sTweet
+        sHisName = self.MaleName.FirstName()
+        sHerName = self.FemaleName.FirstName()
+        sColor = sharedmisc.Colors().GetWord().lower()
+
+        Breasts = self.FemBodyParts.Breasts 
+        Ass = self.FemBodyParts.Ass
+        Vagina = self.FemBodyParts.Vagina
+        Hips = self.FemBodyParts.Hips
+        Thighs = self.FemBodyParts.Thighs
+
+        sBreastAdj1 = Breasts.GetAdj()
+        sBreastAdj2 = Breasts.GetAdj(NotList = [sBreastAdj1])
+
+        sTweet += sHerName + " let her "
+        sTweet += WordList([sColor + " silk robe", sColor + " towel",
+                            "skimpy " + sColor + " negligee",
+                            "hip-hugging " + sColor + " dress",
+                            "slinky " + sColor + " gown"]).GetWord() + " "
+        sTweet += "fall to the floor, revealing her "
+        sTweet += WordList(["slim","slender","curvaceous","voluptuous",
+                            "bosomy","nubile","statuesque","shapely",
+                            "mouth-watering","ripe"]).GetWord() + " "
+        sTweet += WordList(["naked","nude"]).GetWord() + " body. "
+        sTweet += "Her breasts were " + sBreastAdj1 + " and " + sBreastAdj2 + ", "
+        if CoinFlip():
+            sTweet += "her nipples were " + WordList(["brown","wide","rosy",
+                                                      "long and stiff",
+                                                      "proudly erect"]).GetWord() + ", "
+        if CoinFlip():
+            sTweet += "her waist was " + WordList(["narrow","slender","thick"]).GetWord() + ", "
+        if CoinFlip():
+            sTweet += "her " + Ass.GetNoun() + " was " + Ass.GetAdj() + ", "
+        sTweet += "and "
+        if CoinFlip():
+            sTweet += "he could see her " + Vagina.MediumDescription() + " "
+            sTweet += "nestled between her " + Thighs.GetAdj() + " thighs"
+        elif CoinFlip():
+            sTweet += "he could see her " + Vagina.OuterLabia.MediumDescription() + " "
+            sTweet += "nestled between her " + Thighs.GetAdj() + " thighs"
+        else: 
+            sTweet += "a silver clit ring winked at him from her "
+            sTweet += Vagina.MediumDescription()
+        sTweet += ".\n\n"
+        sTweet += "\"I want you, " + sHisName + ",\" "
+        sTweet += "she " + WordList(["moaned","breathed","growled",
+                                     "said huskily","purred"]).GetWord() + ". "
+        sTweet += "\"" + WordList(["Come here and ravish me",
+                                   "Take me right now",
+                                   "Come and have your way with me",
+                                   "I want you inside of me"]).GetWord() + "!\"\n\n"
+        sTweet += "\"Do not tempt me, " + sHerName + ",\" " + sHisName + " said. "
+        sTweet += "\"I promised " + self.FemaleName.FirstName(NotList = [sHerName]) + " "
+        sTweet += "that " + WordList(["I would be faithful to her for all eternity",
+                                      "that I would never love another",
+                                      "that my heart would forever be true to her",
+                                      "that my heart would belong only to her for all time"]).GetWord() + "!\"\n\n"
+        sTweet += "\"" + WordList(["I'll let you put it in my ass",
+                                   "We can try anal",
+                                   "I'll let you ride me bareback",
+                                   "I'll let you cum on my face",
+                                   "I know how to deep throat",
+                                   "I'll let you video the whole thing with your phone",
+                                   "I'll let you fuck my titties"]).GetWord() + ",\" "
+        sTweet += "said " + sHerName + ".\n\n"
+        sTweet += "\"I suppose just this once couldn't hurt,\" he said."
+       
+        return sTweet
     
 # "Isn't this beach romantic?" asked Brad. "It reminds me of the night we first met."
 # "Oh, you mean the time you lubed me up with butter and fisted my anus?" Anna asked.
