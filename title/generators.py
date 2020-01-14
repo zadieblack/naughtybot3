@@ -4864,7 +4864,7 @@ class Generator1001(Generator):
           Girl = char.FemaleChar(TempType = TempType.Flowery, 
                                         bAddTheArticle = False, 
                                         bAllowTrope = True, 
-                                        SelectTemplateID = 227)
+                                        SelectTemplateID = 128)
           Guy = char.MaleChar(TempType = TempType.Flowery, 
                                    bAddAnArticle = True, 
                                    bAllowGang = False,

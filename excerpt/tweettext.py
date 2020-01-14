@@ -78,7 +78,8 @@ class TweetTxtGen():
           return ""
           
 class TweetTxtGen1(TweetTxtGen):
-     # "Punished by the handsome Swedish prime minister" is the sexy read that was BANNED on Amazon!
+     # "Punished by the handsome Swedish prime minister" is the sexy read 
+     # that was BANNED on Amazon!
      # Now available on Wattpad from Dick Spunk
      def __init__(self):          
           super().__init__()
@@ -100,7 +101,8 @@ class TweetTxtGen1(TweetTxtGen):
           return sText
           
 class TweetTxtGen2(TweetTxtGen):
-     # "Punished by the handsome Swedish prime minister" is now available on Kindle. By Ben Dover
+     # "Punished by the handsome Swedish prime minister" is now available 
+     # on Kindle. By Ben Dover
      def __init__(self):     
           super().__init__()     
           self.ID = 2
@@ -122,7 +124,8 @@ class TweetTxtGen2(TweetTxtGen):
           return sText
           
 class TweetTxtGen3(TweetTxtGen):
-     # "Punished by the handsome Swedish prime minister" is coming soon to discerning readers on Amazon. By Ben Dover
+     # "Punished by the handsome Swedish prime minister" is coming soon 
+     # to discerning readers on Amazon. By Ben Dover
      def __init__(self):          
           super().__init__()
           self.ID = 3
@@ -142,7 +145,8 @@ class TweetTxtGen3(TweetTxtGen):
           return sText
                     
 class TweetTxtGen4(TweetTxtGen):
-     # Get excited! The wait is over for Ben Dover's latest sexy release, "Punished by the handsome Swedish prime minister"!
+     # Get excited! The wait is over for Ben Dover's latest sexy release, 
+     # "Punished by the handsome Swedish prime minister"!
      def __init__(self):          
           super().__init__()
           self.ID = 4
@@ -174,28 +178,28 @@ class TweetTxtGen5(TweetTxtGen):
           
           return sText
           
-class TweetTxtGen6(TweetTxtGen):
-     # Out soon from Ben Dover
-     def __init__(self):
-          super().__init__()
-          self.ID = 6
-          self.Priority = 2
+#class TweetTxtGen6(TweetTxtGen):
+#     # You have to retweet this if it turned you on.
+#     def __init__(self):
+#          super().__init__()
+#          self.ID = 6
+#          self.Priority = 2
      
-     def GenerateTweet(self):
-          super().GenerateTweet()
-          sText = ""
+#     def GenerateTweet(self):
+#          super().GenerateTweet()
+#          sText = ""
           
-          sText = "\U0001F525"
-          sText += "I know " + WordList(["you like reading these", "you're into this", "you freaky", 
-                                                "you're into this bot", "you love these", "these kinda get you off"
-                                               ]).GetWord() + "."
-          sText += "\U0001F525 " 
-          sText += WordList(["Don't worry, I won't tell", "Don't worry, your secret is safe with me", 
-                                 "It's cool, it will be our little secret", "No one has to know", 
-                                 "Don't worry, it can stay between you and me"]).GetWord() + ". " 
-          sText += GetEmoji()
+#          sText = "\U0001F525"
+#          sText += "I know " + WordList(["you like reading these", "you're into this", "you freaky", 
+#                                                "you're into this bot", "you love these", "these kinda get you off"
+#                                               ]).GetWord() + "."
+#          sText += "\U0001F525 " 
+#          sText += WordList(["Don't worry, I won't tell", "Don't worry, your secret is safe with me", 
+#                                 "It's cool, it will be our little secret", "No one has to know", 
+#                                 "Don't worry, it can stay between you and me"]).GetWord() + ". " 
+#          sText += GetEmoji()
           
-          return sText
+#          return sText
           
 class TweetTxtGen7(TweetTxtGen):
      # The sexual positions depicted are algorithmically generated and have not been approved by 
@@ -259,6 +263,7 @@ class TweetTxtGen9(TweetTxtGen):
           
           return sText
           
+# The password is 'scrotal'
 class TweetTxtGen10(TweetTxtGen):
      # Out soon from Ben Dover
      def __init__(self):
@@ -287,7 +292,8 @@ class TweetTxtGen10(TweetTxtGen):
           return sText
           
 class TweetTxtGen11(TweetTxtGen):
-     # If you only read one book this year about clown bukkake, make sure it is this 'Rodeo Clown for the Bisexual Princess'!
+     # If you only read one book this year about clown bukkake, make 
+     # sure it is 'Black T-Rex for the Bisexual Princess'!
      def __init__(self):
           super().__init__()
           self.ID = 11
@@ -319,7 +325,8 @@ class TweetTxtGen11(TweetTxtGen):
           return sText
           
 class TweetTxtGen12(TweetTxtGen):
-     # Write one little sumo wrestler fisting scene and they ban you from Amazon for life!
+     # Write one little sumo wrestler fisting scene and they ban you 
+     # from Amazon for life!
      def __init__(self):
           super().__init__()
           self.ID = 12
@@ -396,7 +403,8 @@ class TweetTxtGen14(TweetTxtGen):
           return sText
 
 class TweetTxtGen15(TweetTxtGen):
-     # "Teen mom for the Well-Hung Viking" is 'Delightful & provactive!' raves Dwarf Fisting Magazine 
+     # "Teen mom for the Well-Hung Viking" is 'Delightful & provactive!' 
+     # raves Dwarf Fisting Magazine 
      def __init__(self):
           super().__init__()
           self.ID = 15
@@ -488,7 +496,8 @@ class TweetTxtGen17(TweetTxtGen):
           return sText
           
 class TweetTxtGen18(TweetTxtGen):
-     # Of course in real life you should never attempt centaur bukkake without strict medical supervision.
+     # Of course in real life you should never attempt centaur bukkake 
+     # without strict medical supervision.
      def __init__(self):
           super().__init__()
           self.ID = 18
@@ -588,7 +597,8 @@ class TweetTxtGen19(TweetTxtGen):
           return sText
           
 class TweetTxtGen20(TweetTxtGen):
-     # "*Spit-Roasting My Busty Centaur MILF* is a wild fuck-fest!" -Abraham Lincoln
+     # "*Spit-Roasting My Busty Centaur MILF* is a wild fuck-fest!" 
+     # -Abraham Lincoln
      def __init__(self):
           super().__init__()
           self.ID = 20
@@ -634,8 +644,8 @@ class TweetTxtGen20(TweetTxtGen):
           return sText
           
 class TweetTxtGen21(TweetTxtGen):
-     # "Fisted by the Alpha Male Goat-Men on Uranus" is widely considered to be the 'Lord of the Rings' of 
-     # anal fisting books.
+     # "Fisted by the Alpha Male Goat-Men on Uranus" is widely considered to 
+     # be the 'Lord of the Rings' of anal fisting books.
      def __init__(self):
           super().__init__()
           self.ID = 21
@@ -683,7 +693,8 @@ class TweetTxtGen21(TweetTxtGen):
           return sText
           
 class TweetTxtGen22(TweetTxtGen):
-     # This was Ben Dover's last book before he was banned from Amazon for writing a scene involving a goat man and bukkake.
+     # This was Ben Dover's last book before he was banned from Amazon 
+     # for writing a scene involving a goat man and bukkake.
      def __init__(self):
           super().__init__()
           self.ID = 22
@@ -784,7 +795,8 @@ class TweetTxtGen23(TweetTxtGen):
           return sText     
           
 class TweetTxtGen24(TweetTxtGen):
-     # LEGAL DISCLAIMER: Wal-Mart does not condone cum-swapping or genital piercings.
+     # LEGAL DISCLAIMER: Wal-Mart does not condone cum-swapping or genital 
+     # piercings.
      def __init__(self):
           super().__init__()
           self.ID = 24

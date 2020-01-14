@@ -1225,7 +1225,7 @@ class TweetTxtGen46(TweetTxtGen):
         elif iRand == 3:
              sText = "I had never even heard of " + AddArticles(sDirtyPhrase, cBracket = "\"") + " before but now I want to try it in real life!"
         elif iRand == 4:
-             sText = "I've read about the \"" + sDirtyPhrase + "\" before technique in Cosmo but you need at least three people to try it."
+             sText = "I've read about the \"" + sDirtyPhrase + "\" technique before in Cosmo but you need at least three people to try it."
         elif iRand == 5:
              sText = "I would love to try " + AddArticles(sDirtyPhrase, cBracket = "\"") + " with my boyfriend but I don't think I'm flexible enough."
         else:

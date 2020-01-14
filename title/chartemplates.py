@@ -630,6 +630,23 @@ class FemGoodTropeTemplate27(FemTropeTemplate):
                                    bpersonal = True,
                                    girltype = GirlType.Good)                              
 
+class FemGoodTropeTemplate28(FemTropeTemplate):
+     def __init__(self):
+          super().__init__(      noun = TropeBitBadFemale("Teen Mom"),
+                                    id = 128, 
+                                    adjlist =      [CTEntry([AttitudeFemale],8),
+                                                    CTEntry([PhysCharFemale],7),
+                                                    CTEntry([ClothingFemale],6),
+                                                    CTEntry([SkinHairColorFemale,RaceFemale,NationFemale],5),
+                                                    CTEntry([PregState],4),
+                                                    CTEntry([SexualityFemale],3),
+                                                    CTEntry([SpeciesFemale],2),
+                                                    CTEntry([ProfFemale],1)
+                                                  ], 
+                                   girltype = GirlType.Good,
+                                   NotList = ["single","mom","japanese","tanned","swedish","russian","czech",
+                                              "virgin","fertile","fashionable","futa","nasty","housewife",
+                                              "school-marm"])
 # === Bad Trope templates ===
 
 class FemBadTropeTemplate1(FemTropeTemplate):
