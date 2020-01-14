@@ -4982,7 +4982,7 @@ class Generator87(Generator):
 
 class Generator90(Generator):
      ID = 90
-     Priority = 5
+     Priority = 2
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -5025,7 +5025,7 @@ class Generator90(Generator):
           
 class Generator91(Generator):
      ID = 91
-     Priority = 4
+     Priority = 3
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -5079,11 +5079,13 @@ class Generator91(Generator):
 
           return sTweet
      
-# "I'll say one thing for Quentin," said Cherry, "he is surprisingly toned for a meter maid!"
-# "God sweetie, do we have to talk about your ex right now?!?" gasped Jerry as he pounded her from behind."     
+# "I'll say one thing for Quentin," said Cherry, "he is surprisingly toned for 
+# a meter maid!"
+# "God sweetie, do we have to talk about your ex right now?!?" gasped Jerry 
+# as he pounded her from behind."     
 class Generator92(Generator):
      ID = 92
-     Priority = 1
+     Priority = 4
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -5159,7 +5161,7 @@ class Generator93(Generator):
 # she growled into his ear.
 # "Me too, mom," said Chad.
       ID = 93
-      Priority = 1
+      Priority = 5
      
       def GenerateTweet(self):
            super().GenerateTweet()
@@ -5255,7 +5257,7 @@ class Generator93(Generator):
 #"I haven't seen her anywhere," Ambrose shouted back.          
 class Generator94(Generator):
       ID = 94
-      Priority = 1
+      Priority = 3
      
       def GenerateTweet(self):
         super().GenerateTweet()
@@ -5312,7 +5314,7 @@ class Generator94(Generator):
 # As above, but gay
 class Generator95(Generator):
     ID = 95
-    Priority = 1
+    Priority = 2
      
     def GenerateTweet(self):
         super().GenerateTweet()
