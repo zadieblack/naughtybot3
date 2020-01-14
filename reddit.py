@@ -1,8 +1,6 @@
 #!/usr/bin/python3.6
 # -*- coding: utf-8 -*-
 
-import pkg_resources
-pkg_resources.require("praw==6.5.1")
 import praw
 
 SUBREDDIT_NAME = 'erotica_ebooks'
@@ -12,13 +10,6 @@ def PostToReddit(sLinkTitle, sLinkURL, sFlairID):
         reddit = praw.Reddit('bot1')
 
         subreddit = reddit.subreddit(SUBREDDIT_NAME)
-
-        print("subreddit: {" + str(subreddit) + "}\n")
-        print("subreddit.title: " + sLinkTitle)
-        print("subreddit.url: " + sLinkURL)
-        print("subreddit.flair_id: " + sFlairID)
-        print("subreddit.nsfw: " + str(True))
-        print("subreddit.resubmit: " + str(False))
 
         subreddit.submit(title = sLinkTitle, 
                             url = sLinkURL, 
