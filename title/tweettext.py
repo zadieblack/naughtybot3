@@ -1204,7 +1204,7 @@ class TweetTxtGen45(TweetTxtGen):
           return sText
           
 class TweetTxtGen46(TweetTxtGen):
-    # This book taught me the trantric sex technique called the "Mexican Gorilla"
+    # This book taught me the tantric sex technique called the "Mexican Gorilla"
     ID = 46
     Priority = 5
      
@@ -1212,7 +1212,7 @@ class TweetTxtGen46(TweetTxtGen):
         super().GenerateTweet()
         sText = ""
 
-        sSexTechnique = WordList(["the trantric sex technique","the sex technique",
+        sSexTechnique = WordList(["the tantric sex technique","the sex technique",
                                    "the sexual position","the sex position",
                                    "the tantric sex position","the sex move"]).GetWord()
         sDirtyPhrase = TantricTechniques().GetWord()
