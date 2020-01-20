@@ -14,48 +14,85 @@ from title.characters import *
 import misc
 import title.misc as titmisc
 import title.chargenerator as char
+import title.titletemplates as templates
 
 PromoHistoryQ = HistoryQ(2)
 
 class Generator():
-     ID = -1
-     # each generator should have a unique ID
-     Priority = 1
-     # increasing the Priority increases the chances the generator is randomly selected. But it can only be selected again while it is not currently in the history queue
-     Type = GeneratorType.Normal
-     # most generators are Normal. Setting a generator to Test makes sure it can't be selected randomly. Setting a generator to Promo means it won't be selected for reply tweets
+    ID = -1
+    # each generator should have a unique ID
+    Priority = 1
+    # increasing the Priority increases the chances the generator is randomly selected. But it can only be selected again while it is not currently in the history queue
+    Type = GeneratorType.Normal
+    # most generators are Normal. Setting a generator to Test makes sure it can't be selected randomly. Setting a generator to Promo means it won't be selected for reply tweets
      
-     def SetPriority(self, sText, List, iPriority):
-          for x in range(iPriority):
-               List.append(sText)
+    def SetPriority(self, sText, List, iPriority):
+        for x in range(iPriority):
+            List.append(sText)
           
-     def _getFMs_(self):
-          FMs = ""
+    def _getFMs_(self):
+        FMs = ""
           
-          iRandLen = randint(4,10)
-          for x in range(1, iRandLen):
-               iRandChoice = randint(1,3)
-               if iRandChoice == 1:
-                    FMs += "F"
-               else:
-                    FMs += "M"
+        iRandLen = randint(4,10)
+        for x in range(1, iRandLen):
+            iRandChoice = randint(1,3)
+            if iRandChoice == 1:
+                FMs += "F"
+            else:
+                FMs += "M"
                     
-          if "M" not in FMs:
-               FMs += "M"
-          elif "F" not in FMs:
-               FMs += "F"
+        if "M" not in FMs:
+            FMs += "M"
+        elif "F" not in FMs:
+            FMs += "F"
           
-          return FMs
-     
-     def GenerateTweet(self):
-          self.VerbsBy = misc.BookVerbsBy()
-          self.VerbsTo = misc.BookVerbsTo()
-          self.Gerunds = misc.BookGerunds()
-          self.HerName = NamesFemale().FirstName()
-          self.HisName = NamesMale().FirstName()
-          self.SubtitleCoda = titmisc.SubtitleCoda()
-          
-          return ""
+        return FMs
+    
+    def __init__(self, ID = -1):
+        if CoinFlip():
+            self._AuthorGender = Gender.Male 
+        else:
+            self._AuthorGender = Gender.Female
+
+        if not ID == -1:
+            self.ID = ID
+
+        self._TweetImgText = ""
+        self._TweetText = ""
+
+        self._Template = templates.TitleTemplateDefault()
+
+    def AuthorName(self):
+        return self._AuthorName
+
+    def AuthorGender(self):
+        return self._AuthorGender
+
+    def Template(self):
+        return self._Template
+
+    def SetTemplate(self, template):
+        self._Template = template
+
+    def TweetImgTxt(self):
+        return self._TweetImgText
+
+    def SetTweetImgTxt(self, stxt):
+        self._TweetImgText = stxt
+
+    def TweetTxt(self):
+        return self._TweetText
+
+    def SetTweetTxt(self, stxt):
+        self._TweetText = stxt
+
+    def GenerateTweet(self):
+        self.VerbsBy = misc.BookVerbsBy()
+        self.VerbsTo = misc.BookVerbsTo()
+        self.Gerunds = misc.BookGerunds()
+        self.HerName = NamesFemale().FirstName()
+        self.HisName = NamesMale().FirstName()
+        self.SubtitleCoda = titmisc.SubtitleCoda()
 
 def GetTweetGenerator(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = None):
      gen = None
@@ -80,22 +117,24 @@ def GetTweetGenerator(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = None):
      return gen
      
 def GetTweet(bTest, bTweet, iGeneratorNo = 0, bAllowPromo = True, Type = None, TweetHistoryQ = None, bAllowFavTweets = True):
-     sTweet = ""
-     if not bTest and bAllowFavTweets:
-          sTweet = GetNextFavTitleFromFile()
-     else:
-          Gen = GetTweetGenerator(bTest, iGeneratorNo, bAllowPromo = bAllowPromo)
-          # print("Generator ID: " + str(Gen.ID))
-          if not TweetHistoryQ is None:
-               while bTweet and not TweetHistoryQ.PushToHistoryQ(Gen.ID):
-                    # print("Generator ID " + str(Gen.ID) + " already in Q")
-                    Gen = GetTweetGenerator(bTest, iGeneratorNo, bAllowPromo = bAllowPromo)
-                    # print("New generator ID: " + str(Gen.ID))
+    Gen = None
+    sTweet = ""
+    
+    if not bTest and bAllowFavTweets:
+        sTweet = GetNextFavTitleFromFile()
+        Gen = Generator()
+        Gen.SetTweetImgTxt(sTweet)
+    else:
+        Gen = GetTweetGenerator(bTest, iGeneratorNo, bAllowPromo = bAllowPromo)
+
+        if not TweetHistoryQ is None:
+            while bTweet and not TweetHistoryQ.PushToHistoryQ(Gen.ID):
+                Gen = GetTweetGenerator(bTest, iGeneratorNo, bAllowPromo = bAllowPromo)
      
-          print("Generator ID: " + str(Gen.ID))
-          sTweet = Gen.GenerateTweet()
-     
-     return sTweet
+        sTweet = Gen.GenerateTweet()
+        Gen.SetTweetImgTxt(sTweet)
+
+    return Gen
      
 class GeneratorPromo(Generator):
      ID = 0
