@@ -2003,6 +2003,21 @@ class MaleTropeTemplate149(MaleTropeTemplate):
                                                     CTEntry([SpeciesMale],2)
                                                   ],
                                    NotList = ["mature","stay-at-home","millennial","college","playboy","wealthy"])     
+
+class MaleTropeTemplate150(MaleTropeTemplate):
+     def __init__(self):
+          super().__init__(     noun = TropeBitMale("Sex Demon"),
+                                    id = 150, 
+                                    adjlist =      [ CTEntry([GenModMale],11),
+                                                    CTEntry([AttitudeMale],10),
+                                                    CTEntry([ClothesMale],9),
+                                                    CTEntry([PhysCharMale],8),
+                                                    CTEntry([DickCharMale],7),
+                                                    CTEntry([NationMale,SkinHairColorMale,RaceMale],5),
+                                                    CTEntry([TypeModMale],4),
+                                                    CTEntry([ProfMale,TropesWealthyMale],1)
+                                                  ],
+                                   NotList = ["demon"])
                                    
 # Adjs:          GenModMale, AttitudeMale, ClothesMale, PhysCharMale, DickCharMale, TypeModMale,
 #               SkinHairColorMale, AgeAdjMale, MaritalStatusMale, NationMale

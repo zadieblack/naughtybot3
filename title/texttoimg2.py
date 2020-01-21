@@ -9,6 +9,7 @@ from util import *
 
 PATH = "title/cover_stuff/"
 MAX_IMG_NUM = 24
+RESOLUTION = 4.167
 
 BGImgQ = HistoryQ(iQSize = 5)
 
@@ -23,25 +24,35 @@ def WrapText(sText, font, max_line_width):
      bEndOfText = False
      iLastWhtSpc = 0
      iLineStart = 0
+     sLineSoFar = ""
+     sLastValidLine = ""
      while not bEndOfText:
-          width_of_line = 0
+          #width_of_line = 0
           iLastWhtSpc = iLineStart
           
           for charno in range(iLineStart, len(sText)):
                if sText[charno].isspace() or sText[charno] == "-":
                     iLastWhtSpc = charno
-               char_size = font.getsize(sText[charno])
-               width_of_line += char_size[0]
+               #char_size = font.getsize(sText[charno])
+               #width_of_line += char_size[0]
+               sLineSoFar += sText[charno]
+               sLastValidLine = sText[iLineStart:iLastWhtSpc]
                
-               if sText[charno] == "\n" or width_of_line >= max_line_width:
+               # problem: this now breaks the line only after it has 
+               # exceeded the max width.
+               if sText[charno] == "\n" or font.getsize(sLineSoFar)[0] >= max_line_width:
                     if iLastWhtSpc >= iLineStart:
-                         Lines.append(sText[iLineStart:iLastWhtSpc])
+                         Lines.append(sLastValidLine)
                          iLineStart = iLastWhtSpc + 1
+                         sLastValidLine = ""
+                         sLineSoFar = ""
                          break
                     else:
                          iLastWhtSpc = int((charno - iLineStart)/2) 
-                         Lines.append(sText[iLineStart:iLastWhtSpc])
+                         Lines.append(sLastValidLine)
                          iLineStart = iLastWhtSpc + 1
+                         sLastValidLine = ""
+                         sLineSoFar = ""
                          break
                else:
                     if charno == len(sText) - 1:
@@ -120,9 +131,10 @@ class BlockOfText():
 
             self.TotLineHeight = self.CalcTotLineHeight()
 
-def FormatText(sText, BoxWidth, BoxHeight, FontName, Color, iMaxPointSize):
-    Lines = []
-     
+def FormatText(sText, BoxWidth, BoxHeight, FontName, Color, iMaxPointSize = 0):
+    # adjust point size for pixel density
+    iAdjMaxPointSize = int(round(iMaxPointSize * RESOLUTION, 0))
+
     # how much the text in the box is offset from the box
     xOffset = 0     #.027
     yOffset = 0     #.027
@@ -133,7 +145,7 @@ def FormatText(sText, BoxWidth, BoxHeight, FontName, Color, iMaxPointSize):
 
     TextBlock = BlockOfText(sText, 
                             FontName, 
-                            iMaxPointSize,
+                            iAdjMaxPointSize,
                             (offset_width, offset_height))
                
     ImgTxt = Image.new('RGBA', (BoxWidth, BoxHeight))
@@ -147,12 +159,6 @@ def FormatText(sText, BoxWidth, BoxHeight, FontName, Color, iMaxPointSize):
             height = height / 2
         else:
             width, height = TextBlock.Font.getsize(line)
-            width = width - (width * .05) # for some reason width for this font is a little off, so we tack on a 5% fudge
-
-            #draw.text(((offset_width - width)/2, (offset_height - TextBlock.TotalLineHeight)/2 + y_text), 
-            #          TextBlock.Lines[x], 
-            #          font = TextBlock.Font, 
-            #          fill = Color)
 
             draw.text(
                       ((offset_width - width)/2, 
@@ -200,17 +206,21 @@ def CreateImg(TitleTweet):
                                       BoxHeight = 78, 
                                       FontName = "Lapidary 333 Bold Italic.otf",
                                       Color = color,
-                                      iMaxPointSize = 67)
-        #ImgAuthorNameTxt = DrawText(ImgBase.size, 
-        #                            .643,  #571 1600 - 571 = 1029  1029/1600 = .643 
-        #                            .928,   #70  971 - 70 = 901     901/971 = .928                           
-        #                    TitleTweet.AuthorName().strip(), 
-        #                    color)
-
-        ## draw title
-      
+                                      iMaxPointSize = 16)
+        
         # combine the text and base images
         ImgBase.paste(ImgAuthorNameTxt, (55, 540), mask = ImgAuthorNameTxt)
+
+        # draw title
+        ImgTxt = FormatText(' '.join(TitleTweet.ImgTxt().split('\n')),
+                                      BoxWidth = 872,  
+                                      BoxHeight = 392, 
+                                      FontName = "Walpurgis Night.otf",
+                                      Color = color)
+
+        # combine the text and base images
+        ImgBase.paste(ImgTxt, (54, 138), mask = ImgTxt)
+        
       
         # save the edited image
         RGBImgOut = ImgBase.convert('RGB')
