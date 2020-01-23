@@ -17,8 +17,6 @@ RESOLUTION = 4.167
 LOWERTITLETEXTBOUND = 527
 HHMAXHEIGHT = 305
 
-iFinalFontSize = 0
-
 BGImgQ = HistoryQ(iQSize = 5)
 
 def WrapText(sText, font, max_line_width):
@@ -114,10 +112,6 @@ class BlockOfText():
        
         # shrink font until lines do not exceed bounding text box's height
         self.FitTextToBox()
-
-        global iFinalFontSize
-        iFinalFontSize = self.Font.size
-        pass
         
     def CalcTotLineHeight(self):
         iHeight = 0
@@ -174,13 +168,17 @@ def DrawTextBox(sText, FontName, FontMaxSize, MaxRows, BoxWidth, BoxHeight, Colo
             width, height = TextBlock.Font.getsize(line)
 
             draw.text(
-                      ((offset_width - width)/2, 
-                       (offset_height - TextBlock.TotLineHeight)/2 + y_text), 
+                      ((offset_width - width)/2, y_text), 
                       line, 
                       font = TextBlock.Font, 
                       fill = Color)
-        y_text += height
-     
+                      #features=['-vkrn'])
+        y_text = y_text + height + int(round(height/3))
+   
+    #draw2 = ImageDraw.Draw(ImgTxt)  
+    #draw.rectangle([(0, 0), (ImgTxt.width, ImgTxt.height)], outline ="red")
+        #ImgTxt
+
     return ImgTxt
      
 def GetBGImg(BGProfile):
@@ -189,8 +187,44 @@ def GetBGImg(BGProfile):
     try:
         BGImg = Image.open(PATH + BGProfile.BGFileName).convert('RGBA')
     except IOError as e:
-        print("***ERROR***\nFile save failed in SaveImg()\n" + e.strerror)
+        print("***ERROR***\nFile save failed in GetBGImg()\n" + e.strerror)
      
+    return BGImg
+
+def PositionBoxesVertically(BGImg,
+                            Boxes = [], 
+                            ImgTitleBoxHeight = 0, 
+                            ImgTitleBoxWidth = 0,
+                            yOffset = 0,
+                            xOffset = 0):
+    iTotalBoxHeight = 0
+    yVCenterOffset = 0
+    #ImgTitleArea = Image.new('RGBA', (ImgTitleBoxWidth, ImgTitleBoxHeight))
+    #draw = ImageDraw.Draw(ImgTitleArea)
+
+    # add up combined height of boxes
+    for box in Boxes:
+        iTotalBoxHeight = iTotalBoxHeight + box.height
+
+    # calculate off-set required to center vertically
+    # yVCenterOffset = int((ImgTitleBoxHeight - iTotalBoxHeight)/2)
+
+    yLineSpace = 0
+    # calculate space between lines 
+    if iTotalBoxHeight < ImgTitleBoxHeight:
+        #calculate # of vert spaces needed (# boxes - 1)
+        #divide up remaining vert space between boxes
+        yLineSpace = int((ImgTitleBoxHeight - iTotalBoxHeight)/(len(Boxes)))
+    else:
+        yLineSpace = 12
+
+    iyOffsetLine = yOffset
+    # draw the text boxes
+    for box in Boxes:
+        #iyOffsetLine = iyOffsetLine #+ yLineSpace
+        BGImg.paste(box, (xOffset, iyOffsetLine), mask = box)
+        iyOffsetLine = iyOffsetLine + box.height + yLineSpace
+
     return BGImg
 
 def CalcTextSizeScore(sText):
@@ -213,25 +247,11 @@ def CalcTextSizeScore(sText):
     dScore = (iCharCount/4) + (iUpperCaseChars + dAvgWordLen) + (-1 * iWhiteSpaceChars)
     
     return dScore
-    #with open("word_stats.txt", 'a') as StatsLine:
-    #    StatsLine.write(sText + "," 
-    #                    + str(iFinalFontSize) + ","
-    #                    + str(len(sText)) + ","
-    #                    + str(iWhiteSpaceChars) + ","
-    #                    + str(iUpperCaseChars) + ","
-    #                    + str(iNumRealWords) + ","
-    #                    + str(dAvg)
-    #                    + "\n")
-
 
 def CreateImg(ImgTxtGen):
     # create Image object with the input image
     RGBImgOut = None 
     
-    # for testing purposes only! REMOVE!
-    #TitleTweet.SetImgTxt("Punished in Public by the Oiled-Up Hung High-school Teacher BBC from Uranus")
-    iFinalFontSize = 0
-
     # get a random cover profile 
     BGProfile = GetBGProfileGenerator()
 
@@ -263,30 +283,39 @@ def CreateImg(ImgTxtGen):
                                        BoxHeight = AuthorTemplate.MaxHeight, 
                                        Color = BGProfile.AuthorNameColor)
         
+        TitleBoxes = []
+
         for line in ImgTxtGen.Template.Lines:
             # draw title
-            ImgTxt = DrawTextBox(' '.join(ImgTxtGen.ImgTxt.split('\n')),
-                                            FontName = line.FontName,
-                                            FontMaxSize = line.FontMaxSize,
-                                            MaxRows = line.MaxRows,
-                                            BoxWidth = 872,  
-                                            BoxHeight = line.MaxHeight,                                          
-                                            Color = BGProfile.MainTitleColor)
+            ImgTxt = DrawTextBox(line.LineText,
+                                    FontName = line.FontName,
+                                    FontMaxSize = line.FontMaxSize,
+                                    MaxRows = line.MaxRows,
+                                    BoxWidth = 872,  
+                                    BoxHeight = line.MaxHeight,                                          
+                                    Color = BGProfile.MainTitleColor)
 
             # check to see if the textbox is extra tall, requiring us to switch to the
             # plain header 
 
-            if dScore > 23:
-                BGProfile.UsePlainheader()
+            #if dScore > 23:
+            #    BGProfile.UsePlainheader()
 
-            # combine the title text and base images
-            ImgBase.paste(ImgTxt, (54 + width_offset, line.yOffset), mask = ImgTxt)
+            TitleBoxes.append(ImgTxt)
+
+            
+        # combine the title text and base images
+        ImgBase = PositionBoxesVertically(BGImg = ImgBase,
+                                          Boxes = TitleBoxes,
+                                          ImgTitleBoxHeight = 326,
+                                          ImgTitleBoxWidth = 872,
+                                          yOffset = 206,
+                                          xOffset = 54 + width_offset)
+        #ImgBase.paste(ImgTxt, (54 + width_offset, 234), mask = ImgTxt)
 
         # combine the author name and base images
         ImgBase.paste(ImgAuthorNameTxt, (55 + width_offset, 540), mask = ImgAuthorNameTxt)
 
-        
-             
         # save the edited image
         RGBImgOut = ImgBase.convert('RGB')
 

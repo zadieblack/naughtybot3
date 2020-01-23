@@ -165,16 +165,18 @@ class Generator1(Generator):
      # Blackmailed by the Billionaire Mountain Man 
      def __init__(self):
          super().__init__(ID = 1, Priority = 1)
-         self.Template = templates.TitleTemplateHHDefault()
+         self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
           
-          Master = char.MaleChar(TempType = TempType.Flowery, bAddTheArticle = True, bAllowGang = True, bAllowTrope = True, bAllowRelate = True)
+          Master = char.MaleChar(TempType = TempType.Flowery, bAddTheArticle = False, bAllowGang = True, bAllowTrope = True, bAllowRelate = True)
           
-          sTweet = self.VerbsBy.GetWord() + " By\n" + Master.Desc
+          sTweet = self.VerbsBy.GetWord() + "\nBy The\n" + Master.Desc
           
+          self.Template.AddLineText(sTweet)
+
           return sTweet
           
 class Generator2(Generator):

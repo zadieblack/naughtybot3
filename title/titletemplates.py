@@ -8,7 +8,8 @@ class TitleLine():
                  FontMaxSize = 75,
                  MaxHeight = 78, 
                  MaxRows = 1,
-                 yOffset = 234):
+                 yOffset = 234,
+                 AllCaps = False):
         #self.ID = 0
         self.OrderNum = OrderNum
         self.FontName = FontName
@@ -16,6 +17,8 @@ class TitleLine():
         self.MaxHeight = MaxHeight
         self.MaxRows = MaxRows 
         self.yOffset = yOffset
+        self.LineText = ""
+        self.AllCaps = AllCaps
 
 class TitleTemplate():
     def __init__(self, ID):
@@ -30,9 +33,21 @@ class TitleTemplate():
                                     MaxRows = 1,
                                     yOffset = 540)
 
-    def AddLine(self, OrderNum, FontName, FontMaxSize, MaxHeight, MaxRows, yOffset):
-        self.Lines.append(TitleLine(OrderNum,FontName,FontMaxSize,MaxHeight,MaxRows,yOffset))
-        
+    def AddLine(self, OrderNum, FontName, FontMaxSize, MaxHeight, MaxRows, yOffset,AllCaps = False):
+        self.Lines.append(TitleLine(OrderNum,FontName,FontMaxSize,MaxHeight,MaxRows,yOffset,AllCaps = AllCaps))
+    
+    def AddLineText(self, stxt):
+        TxtLines = stxt.split("\n")
+
+        i = 0
+        while i < len(TxtLines) and i < len(self.Lines):
+            if self.Lines[i].AllCaps:
+                self.Lines[i].LineText = TxtLines[i].upper()
+            else:
+                self.Lines[i].LineText = TxtLines[i]
+            i = i + 1
+
+
 class TitleTemplateHHDefault(TitleTemplate):
     def __init__(self):
         super().__init__(ID = 0)
@@ -56,6 +71,31 @@ class TitleTemplatePHDefault(TitleTemplate):
         #Max Height = 392
 
 class TitleTemplate1(TitleTemplate):
-    def __init__(self, ID):
-        super().__init__()
+    def __init__(self):
+        super().__init__(ID = 0)
+
+        self.AddLine(OrderNum = 1,
+                     FontName = "Walpurgis Night.otf",
+                     FontMaxSize = 22,
+                     MaxHeight = 115,
+                     MaxRows = 1,
+                     yOffset = 204)
+
+        self.AddLine(OrderNum = 2,
+                     FontName = "Amaze.ttf",
+                     FontMaxSize = 12,
+                     MaxHeight = 58,
+                     MaxRows = 1,
+                     yOffset = 342)
+
+        self.AddLine(OrderNum = 3,
+                     FontName = "PerpetuaStd.otf",
+                     FontMaxSize = 17,
+                     MaxHeight = 115,
+                     MaxRows = 2,
+                     yOffset = 410,
+                     AllCaps = True)
+
+
+        
 
