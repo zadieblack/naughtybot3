@@ -60,7 +60,7 @@ class Generator():
         self._TweetImgText = ""
         self._TweetText = ""
 
-        self._Template = templates.TitleTemplateDefault()
+        self._Template = templates.TitleTemplateHHDefault()
 
     def AuthorName(self):
         return self._AuthorName

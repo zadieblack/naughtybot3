@@ -3,13 +3,19 @@
 # Text-to-Image module
 
 import os, sys, time
+import re # remove later
 from PIL import Image, ImageDraw, ImageFont
 from random import *
 from util import *
+from title.bgprofiles import *
 
 PATH = "title/cover_stuff/"
 MAX_IMG_NUM = 24
 RESOLUTION = 4.167
+LOWERTITLETEXTBOUND = 527
+HHMAXHEIGHT = 305
+
+iFinalFontSize = 0
 
 BGImgQ = HistoryQ(iQSize = 5)
 
@@ -109,6 +115,10 @@ class BlockOfText():
        
         # shrink font until lines do not exceed bounding text box's height
         self.FitTextToBox()
+
+        global iFinalFontSize
+        iFinalFontSize = self.Font.size
+        pass
         
     def CalcTotLineHeight(self):
         iHeight = 0
@@ -131,7 +141,7 @@ class BlockOfText():
 
             self.TotLineHeight = self.CalcTotLineHeight()
 
-def FormatText(sText, BoxWidth, BoxHeight, FontName, Color, iMaxPointSize = 0):
+def DrawTextBox(sText, BoxWidth, BoxHeight, FontName, Color, iMaxPointSize = 0):
     # adjust point size for pixel density
     iAdjMaxPointSize = int(round(iMaxPointSize * RESOLUTION, 0))
 
@@ -169,61 +179,105 @@ def FormatText(sText, BoxWidth, BoxHeight, FontName, Color, iMaxPointSize = 0):
         y_text += height
      
     return ImgTxt
+     
+def GetBGImg(BGProfile):
+    BGImg = None 
 
-def DrawBoundingTxtBox(BoxWidth, BoxHeight, sText, Color):
-    ImgText = FormatText(sText, BoxWidth, BoxHeight, Color)
+    try:
+        BGImg = Image.open(PATH + BGProfile.BGFileName).convert('RGBA')
+    except IOError as e:
+        print("***ERROR***\nFile save failed in SaveImg()\n" + e.strerror)
      
-    return ImgText
-     
-def GetBGImg(iPicNo = 0):
-     BGImg = None 
-     
-     #if iPicNo == 0:
-     #     iPicNo = randint(1, MAX_IMG_NUM)
+    return BGImg
 
-     #     while not BGImgQ.PushToHistoryQ(iPicNo):
-     #          iPicNo = randint(1, MAX_IMG_NUM)
+def CalcTextSizeScore(sText):
+    dScore = 0.0
+    # = (Char Count /4) +(Upper Case Num + Avg Word Size)+(- White Spaces)
+    # > 23 needs larger template
 
-     try:
-          BGImg = Image.open(PATH + "saxophone_hh.png").convert('RGBA')
-     except IOError as e:
-          print("***ERROR***\nFile save failed in SaveImg()\n" + e.strerror)
-     
-     return BGImg
+    iCharCount = len(sText)
+    words = re.findall(r"[\w']+", sText)
+    iNumWords = len(words)
+    dAvgWordLen = len(sText)/iNumWords
+    
+    iWhiteSpaceChars = len(words) - 1
+
+    iUpperCaseChars = 0
+    for c in sText:
+        if c.isupper():
+            iUpperCaseChars = iUpperCaseChars + 1 
+
+    dScore = (iCharCount/4) + (iUpperCaseChars + dAvgWordLen) + (-1 * iWhiteSpaceChars)
+    
+    return dScore
+    #with open("word_stats.txt", 'a') as StatsLine:
+    #    StatsLine.write(sText + "," 
+    #                    + str(iFinalFontSize) + ","
+    #                    + str(len(sText)) + ","
+    #                    + str(iWhiteSpaceChars) + ","
+    #                    + str(iUpperCaseChars) + ","
+    #                    + str(iNumRealWords) + ","
+    #                    + str(dAvg)
+    #                    + "\n")
+
 
 def CreateImg(TitleTweet):
     # create Image object with the input image
     RGBImgOut = None 
+    
+    # for testing purposes only! REMOVE!
+    #TitleTweet.SetImgTxt("Punished in Public by the Oiled-Up Hung High-school Teacher BBC from Uranus")
+    iFinalFontSize = 0
+
+    # get a random cover profile 
+    BGProfile = GetBGProfileGenerator()
+
+    sFileName = ""
+
+    # cover elements are not perfectly centered. so the text needs to be
+    # slightly off-center as well. just add this when specifying the
+    # coordinates of the text bounding box.
+
+    width_offset = 12
 
     if isinstance(TitleTweet, GeneratedTitleTweet):
-        ImgBase = GetBGImg()
-     
+        # calculate text size score
+        dScore = CalcTextSizeScore(' '.join(TitleTweet.ImgTxt().split('\n')))
+
         # draw author name
         color = 'rgba(0, 0, 0, 255)' # color should eventually come from template
         
-        ImgAuthorNameTxt = FormatText(TitleTweet.AuthorName(),
+        ImgAuthorNameTxt = DrawTextBox(TitleTweet.AuthorName(),
                                       BoxWidth = 861,  
                                       BoxHeight = 78, 
                                       FontName = "Lapidary 333 Bold Italic.otf",
-                                      Color = color,
+                                      Color = BGProfile.AuthorNameColor,
                                       iMaxPointSize = 16)
         
-        # combine the text and base images
-        ImgBase.paste(ImgAuthorNameTxt, (55, 540), mask = ImgAuthorNameTxt)
-
         # draw title
-        ImgTxt = FormatText(' '.join(TitleTweet.ImgTxt().split('\n')),
+        ImgTxt = DrawTextBox(' '.join(TitleTweet.ImgTxt().split('\n')),
                                       BoxWidth = 872,  
                                       BoxHeight = 392, 
+                                      #MaxHeight = LOWERTITLETEXTBOUND - BGProfile.yOffset,
                                       FontName = "Walpurgis Night.otf",
-                                      Color = color)
+                                      Color = BGProfile.MainTitleColor)
 
-        # combine the text and base images
-        ImgBase.paste(ImgTxt, (54, 138), mask = ImgTxt)
-        
-      
+        # check to see if the textbox is extra tall, requiring us to switch to the
+        # plain header 
+
+        if dScore > 23:
+            BGProfile.UsePlainheader()
+
+        # get background image for the current bg profile
+        ImgBase = GetBGImg(BGProfile)
+
+        # combine the author name and base images
+        ImgBase.paste(ImgAuthorNameTxt, (55 + width_offset, 540), mask = ImgAuthorNameTxt)
+
+        # combine the title text and base images
+        ImgBase.paste(ImgTxt, (54 + width_offset, 138), mask = ImgTxt)
+             
         # save the edited image
         RGBImgOut = ImgBase.convert('RGB')
-        #RGBImgOut.name = "tweetimg.jpg"
 
     return RGBImgOut

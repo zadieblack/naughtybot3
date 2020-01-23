@@ -47,6 +47,10 @@ class GirlType(Enum):
      Bad = 2
      Neutral = 3
 
+class HeaderType(Enum):
+     Harlequin = 1
+     Plain = 2
+
 HeartEmoji = ['\U00002764','\U0001F49A','\U0001F499','\U0001F49C','\U0001F49B','\U0001F9E1','\U0001F5A4']
 
 def GetHeartEmoji(iNum = 1):
