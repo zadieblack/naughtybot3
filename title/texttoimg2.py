@@ -7,7 +7,9 @@ import re # remove later
 from PIL import Image, ImageDraw, ImageFont
 from random import *
 from util import *
+from title.titletemplates import *
 from title.bgprofiles import *
+from title.generators import Generator
 
 PATH = "title/cover_stuff/"
 MAX_IMG_NUM = 24
@@ -18,9 +20,6 @@ HHMAXHEIGHT = 305
 iFinalFontSize = 0
 
 BGImgQ = HistoryQ(iQSize = 5)
-
-
-
 
 def WrapText(sText, font, max_line_width):
      # break string into multiple lines that fit max_line_width
@@ -69,10 +68,10 @@ def WrapText(sText, font, max_line_width):
      return Lines
 
 # Guesstimate an initial font size based on the # of characters         
-def GuesstimateFontSize(sText, iMaxPointSize = 0):
+def GuesstimateFontSize(sText, FontMaxSize = 0):
     iFontSize = 3
   
-    if iMaxPointSize == 0:
+    if FontMaxSize == 0:
         iTextLen = len(sText)
         if iTextLen <= 45:
             iFontSize = 75
@@ -95,23 +94,23 @@ def GuesstimateFontSize(sText, iMaxPointSize = 0):
         else: 
             iFontSize = 25
     else:
-        iFontSize = iMaxPointSize 
+        iFontSize = FontMaxSize 
 
     return iFontSize 
 
 class BlockOfText():
-    def __init__(self, sText, sFontName, iMaxPointSize, BoundingBoxSize):
+    def __init__(self, sText, sFontName, FontMaxSize, MaxRows, BoundingBoxSize):
         self.Text = sText 
         self.FontName = sFontName
+        self.MaxRows = MaxRows
         self.BoundingBoxWidth = BoundingBoxSize[0]
         self.BoundingBoxHeight = BoundingBoxSize[1] 
         self.TotLineHeight = 0
         self.DecreaseSizeBy = 3
-        self.FontSize = GuesstimateFontSize(sText, iMaxPointSize)
+        self.FontSize = FontMaxSize # GuesstimateFontSize(sText, FontMaxSize)
         self.Font = ImageFont.truetype(PATH + self.FontName, size = self.FontSize, index = 0)
         
-        # wrap the text based on the bounding text box's width
-        self.Lines = WrapText(self.Text, self.Font, self.BoundingBoxWidth)
+        self.Lines = []
        
         # shrink font until lines do not exceed bounding text box's height
         self.FitTextToBox()
@@ -132,18 +131,21 @@ class BlockOfText():
         return iHeight
 
     def FitTextToBox(self):
+        # wrap the text based on the bounding text box's width
+        self.Lines = WrapText(self.Text, self.Font, self.BoundingBoxWidth)
+
         # calculate the height of the text
         self.TotLineHeight = self.CalcTotLineHeight()
 
-        while self.TotLineHeight > self.BoundingBoxHeight:
+        while self.TotLineHeight > self.BoundingBoxHeight or len(self.Lines) > self.MaxRows:
             self.FontSize = (self.FontSize + (self.DecreaseSizeBy * (-1)))
             self.Font = ImageFont.truetype(PATH + self.FontName, size = self.FontSize, index = 0)
-
+            self.Lines = WrapText(self.Text, self.Font, self.BoundingBoxWidth)
             self.TotLineHeight = self.CalcTotLineHeight()
 
-def DrawTextBox(sText, BoxWidth, BoxHeight, FontName, Color, iMaxPointSize = 0):
+def DrawTextBox(sText, FontName, FontMaxSize, MaxRows, BoxWidth, BoxHeight, Color):
     # adjust point size for pixel density
-    iAdjMaxPointSize = int(round(iMaxPointSize * RESOLUTION, 0))
+    iAdjFontMaxSize = int(round(FontMaxSize * RESOLUTION, 0))
 
     # how much the text in the box is offset from the box
     xOffset = 0     #.027
@@ -155,7 +157,8 @@ def DrawTextBox(sText, BoxWidth, BoxHeight, FontName, Color, iMaxPointSize = 0):
 
     TextBlock = BlockOfText(sText, 
                             FontName, 
-                            iAdjMaxPointSize,
+                            iAdjFontMaxSize,
+                            MaxRows,
                             (offset_width, offset_height))
                
     ImgTxt = Image.new('RGBA', (BoxWidth, BoxHeight))
@@ -221,7 +224,7 @@ def CalcTextSizeScore(sText):
     #                    + "\n")
 
 
-def CreateImg(TitleTweet):
+def CreateImg(ImgTxtGen):
     # create Image object with the input image
     RGBImgOut = None 
     
@@ -240,42 +243,49 @@ def CreateImg(TitleTweet):
 
     width_offset = 12
 
-    if isinstance(TitleTweet, GeneratedTitleTweet):
+    if isinstance(ImgTxtGen, Generator):
         # calculate text size score
-        dScore = CalcTextSizeScore(' '.join(TitleTweet.ImgTxt().split('\n')))
+        dScore = CalcTextSizeScore(' '.join(ImgTxtGen.ImgTxt.split('\n')))
 
-        # draw author name
-        color = 'rgba(0, 0, 0, 255)' # color should eventually come from template
-        
-        ImgAuthorNameTxt = DrawTextBox(TitleTweet.AuthorName(),
-                                      BoxWidth = 861,  
-                                      BoxHeight = 78, 
-                                      FontName = "Lapidary 333 Bold Italic.otf",
-                                      Color = BGProfile.AuthorNameColor,
-                                      iMaxPointSize = 16)
-        
-        # draw title
-        ImgTxt = DrawTextBox(' '.join(TitleTweet.ImgTxt().split('\n')),
-                                      BoxWidth = 872,  
-                                      BoxHeight = 392, 
-                                      #MaxHeight = LOWERTITLETEXTBOUND - BGProfile.yOffset,
-                                      FontName = "Walpurgis Night.otf",
-                                      Color = BGProfile.MainTitleColor)
-
-        # check to see if the textbox is extra tall, requiring us to switch to the
-        # plain header 
-
-        if dScore > 23:
-            BGProfile.UsePlainheader()
+        AuthorTemplate = ImgTxtGen.Template.AuthorLine
 
         # get background image for the current bg profile
         ImgBase = GetBGImg(BGProfile)
 
+        # draw author name
+        color = 'rgba(0, 0, 0, 255)' # color should eventually come from template
+        
+        ImgAuthorNameTxt = DrawTextBox(ImgTxtGen.AuthorName,
+                                       FontName = AuthorTemplate.FontName,
+                                       FontMaxSize = AuthorTemplate.FontMaxSize,
+                                       MaxRows = AuthorTemplate.MaxRows,
+                                       BoxWidth = 872,  
+                                       BoxHeight = AuthorTemplate.MaxHeight, 
+                                       Color = BGProfile.AuthorNameColor)
+        
+        for line in ImgTxtGen.Template.Lines:
+            # draw title
+            ImgTxt = DrawTextBox(' '.join(ImgTxtGen.ImgTxt.split('\n')),
+                                            FontName = line.FontName,
+                                            FontMaxSize = line.FontMaxSize,
+                                            MaxRows = line.MaxRows,
+                                            BoxWidth = 872,  
+                                            BoxHeight = line.MaxHeight,                                          
+                                            Color = BGProfile.MainTitleColor)
+
+            # check to see if the textbox is extra tall, requiring us to switch to the
+            # plain header 
+
+            if dScore > 23:
+                BGProfile.UsePlainheader()
+
+            # combine the title text and base images
+            ImgBase.paste(ImgTxt, (54 + width_offset, line.yOffset), mask = ImgTxt)
+
         # combine the author name and base images
         ImgBase.paste(ImgAuthorNameTxt, (55 + width_offset, 540), mask = ImgAuthorNameTxt)
 
-        # combine the title text and base images
-        ImgBase.paste(ImgTxt, (54 + width_offset, 138), mask = ImgTxt)
+        
              
         # save the edited image
         RGBImgOut = ImgBase.convert('RGB')

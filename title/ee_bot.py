@@ -37,36 +37,24 @@ def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorN
                ImgTxtGen = None 
                TweetTxtGen = None
 
-               TitleTweet = GeneratedTitleTweet()
-
-               gender = Gender.Neuter
-               if CoinFlip():
-                   gender = Gender.Female
-               else:
-                   gender = Gender.Male
-
-               TitleTweet.SetAuthorGender(gender)
-               TitleTweet.SetAuthorName(AuthorBuilder(gender))
-
                ImgTxtGen = GetTweet(bTest, bTweet, iGeneratorNo, bAllowPromo = True, TweetHistoryQ = titutil.TweetHistoryQ, bAllowFavTweets = False)
-               if not ImgTxtGen is None:
+               ImgTxtGen.AuthorName = AuthorBuilder()
+               if not ImgTxtGen.ImgTxt is None:
                     TweetTxtGen = GetTweetText(bTest, 
                                                iGeneratorNo = iGeneratorNo,
                                                TweetTxtHistoryQ = titutil.TweetTxtHistoryQ, 
-                                               sAuthorName = TitleTweet.AuthorName(), 
-                                               AuthorGender = TitleTweet.AuthorGender())
-                    
-                    TitleTweet.SetImgTxt(ImgTxtGen.TweetImgTxt())
-                    TitleTweet.SetTweetTxt(TweetTxtGen.TweetTxt())
+                                               sAuthorName = ImgTxtGen.AuthorName, 
+                                               AuthorGender = ImgTxtGen.AuthorGender)
+                    ImgTxtGen.TweetTxt = TweetTxtGen.TweetTxt()
 
-                    print("\n===Here is your " + str(TitleTweet.ImgTxtLen()) + " char tweet (" + str(i + 1) + " of " + str(iTweets) + ")===")
-                    print("[" + TitleTweet.ImgTxt() + "]")
-                    if TitleTweet.TweetTxtLen() > 0:
-                            print("Tweet text: [" + TitleTweet.TweetTxt() + "]")
+                    print("\n===Here is your " + str(len(ImgTxtGen.ImgTxt)) + " char tweet (" + str(i + 1) + " of " + str(iTweets) + ")===")
+                    print("[" + ImgTxtGen.ImgTxt + "]")
+                    if len(ImgTxtGen.ImgTxt) > 0:
+                            print("Tweet text: [" + ImgTxtGen.TweetTxt + "]")
 
                     currentDT = datetime.datetime.now()
                     
-                    CreateImg(TitleTweet).save(GenerateFileName(), format = 'PNG')
+                    CreateImg(ImgTxtGen).save(GenerateFileName(), format = 'PNG')
                     
                     #if bTweet:
                     if False:

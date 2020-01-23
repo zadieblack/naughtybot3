@@ -365,59 +365,6 @@ def SmartLower(phrase):
           
      return sResult
 
-class TitleTweetTemplate():
-    pass
-
-class GeneratedTitleTweet():
-    def __init__(self, sImgTxt = "", sTweetTxt = "", sAuthorName = "", AuthorGender = Gender.Neuter, Template = None):
-        if Template is None:
-            self.Template = TitleTweetTemplate()
-        else:
-            self._Template = Template
-
-        self._AuthorGender = AuthorGender
-        
-        self._sImgTxt = sImgTxt
-        self._sTweetTxt = sTweetTxt
-        self._sAuthorName = sAuthorName
-        
-    def ImgTxt(self):
-        return self._sImgTxt
-
-    def SetImgTxt(self, stxt):
-        self._sImgTxt = stxt
-
-    def ImgTxtLen(self):
-        return len(self._sImgTxt)
-
-    def TweetTxt(self):
-        return self._sTweetTxt
-
-    def SetTweetTxt(self, stxt):
-        self._sTweetTxt = stxt
-
-    def TweetTxtLen(self):
-        return len(self._sTweetTxt)
-
-    def AuthorName(self):
-        return self._sAuthorName
-
-    def SetAuthorName(self, stxt):
-        self._sAuthorName = stxt
-
-    def AuthorGender(self):
-        return self._AuthorGender
-
-    def SetAuthorGender(self, gender):
-        self._AuthorGender = gender
-
-    def Template(self):
-        return self._Template
-
-    def SetTemplate(self, template):
-        self._Template = template
-
-
 # https://twitter.com/{status.user.screen_name}/status/{status.id} 
 def ExtractURLFromStatus(status):
     sURL = ""

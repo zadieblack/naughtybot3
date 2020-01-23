@@ -48,43 +48,22 @@ class Generator():
           
         return FMs
     
-    def __init__(self, ID = -1):
-        if CoinFlip():
-            self._AuthorGender = Gender.Male 
-        else:
-            self._AuthorGender = Gender.Female
+    def __init__(self, ID = -1, Priority = 1, Template = templates.TitleTemplateHHDefault):
 
         if not ID == -1:
             self.ID = ID
+        self.Priority = 1
 
-        self._TweetImgText = ""
-        self._TweetText = ""
+        self.ImgTxt = ""
+        self.TweetTxt = ""
+        self.AuthorName = ""
 
-        self._Template = templates.TitleTemplateHHDefault()
+        if CoinFlip():
+            self.AuthorGender = Gender.Male 
+        else:
+            self.AuthorGender = Gender.Female
 
-    def AuthorName(self):
-        return self._AuthorName
-
-    def AuthorGender(self):
-        return self._AuthorGender
-
-    def Template(self):
-        return self._Template
-
-    def SetTemplate(self, template):
-        self._Template = template
-
-    def TweetImgTxt(self):
-        return self._TweetImgText
-
-    def SetTweetImgTxt(self, stxt):
-        self._TweetImgText = stxt
-
-    def TweetTxt(self):
-        return self._TweetText
-
-    def SetTweetTxt(self, stxt):
-        self._TweetText = stxt
+        self.Template = None
 
     def GenerateTweet(self):
         self.VerbsBy = misc.BookVerbsBy()
@@ -123,7 +102,7 @@ def GetTweet(bTest, bTweet, iGeneratorNo = 0, bAllowPromo = True, Type = None, T
     if not bTest and bAllowFavTweets:
         sTweet = GetNextFavTitleFromFile()
         Gen = Generator()
-        Gen.SetTweetImgTxt(sTweet)
+        Gen.ImgTxt = sTweet
     else:
         Gen = GetTweetGenerator(bTest, iGeneratorNo, bAllowPromo = bAllowPromo)
 
@@ -132,7 +111,7 @@ def GetTweet(bTest, bTweet, iGeneratorNo = 0, bAllowPromo = True, Type = None, T
                 Gen = GetTweetGenerator(bTest, iGeneratorNo, bAllowPromo = bAllowPromo)
      
         sTweet = Gen.GenerateTweet()
-        Gen.SetTweetImgTxt(sTweet)
+        Gen.ImgTxt = sTweet
 
     return Gen
      
@@ -184,8 +163,9 @@ class GeneratorPromo(Generator):
           
 class Generator1(Generator):
      # Blackmailed by the Billionaire Mountain Man 
-     ID = 1
-     Priority = 1
+     def __init__(self):
+         super().__init__(ID = 1, Priority = 1)
+         self.Template = templates.TitleTemplateHHDefault()
      
      def GenerateTweet(self):
           super().GenerateTweet()
