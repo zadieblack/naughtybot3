@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 # titletemplates module
 
+from util import *
+
 class TitleLine():
     def __init__(self, OrderNum = 1, 
                  FontName = "", 
@@ -9,6 +11,7 @@ class TitleLine():
                  MaxHeight = 78, 
                  MaxRows = 1,
                  yOffset = 234,
+                 ColorType = LineColorType.MainTitle,
                  AllCaps = False):
         #self.ID = 0
         self.OrderNum = OrderNum
@@ -18,6 +21,7 @@ class TitleLine():
         self.MaxRows = MaxRows 
         self.yOffset = yOffset
         self.LineText = ""
+        self.ColorType = ColorType
         self.AllCaps = AllCaps
 
 class TitleTemplate():
@@ -33,8 +37,8 @@ class TitleTemplate():
                                     MaxRows = 1,
                                     yOffset = 540)
 
-    def AddLine(self, OrderNum, FontName, FontMaxSize, MaxHeight, MaxRows, yOffset,AllCaps = False):
-        self.Lines.append(TitleLine(OrderNum,FontName,FontMaxSize,MaxHeight,MaxRows,yOffset,AllCaps = AllCaps))
+    def AddLine(self, OrderNum, FontName, FontMaxSize, MaxHeight, MaxRows, yOffset, ColorType,AllCaps = False):
+        self.Lines.append(TitleLine(OrderNum,FontName,FontMaxSize,MaxHeight,MaxRows,yOffset,ColorType,AllCaps = AllCaps))
     
     def AddLineText(self, stxt):
         TxtLines = stxt.split("\n")
@@ -57,7 +61,8 @@ class TitleTemplateHHDefault(TitleTemplate):
                      FontMaxSize = 24,
                      MaxHeight = 308,
                      MaxRows = 4,
-                     yOffset = 204)
+                     yOffset = 204,
+                     ColorType = LineColorType.MainTitle)
 
 
 class TitleTemplatePHDefault(TitleTemplate):
@@ -79,14 +84,16 @@ class TitleTemplate1(TitleTemplate):
                      FontMaxSize = 22,
                      MaxHeight = 115,
                      MaxRows = 1,
-                     yOffset = 204)
+                     yOffset = 204,
+                     ColorType = LineColorType.MainTitle)
 
         self.AddLine(OrderNum = 2,
                      FontName = "Amaze.ttf",
                      FontMaxSize = 12,
                      MaxHeight = 58,
                      MaxRows = 1,
-                     yOffset = 342)
+                     yOffset = 342,
+                     ColorType = LineColorType.SmallText)
 
         self.AddLine(OrderNum = 3,
                      FontName = "PerpetuaStd.otf",
@@ -94,6 +101,7 @@ class TitleTemplate1(TitleTemplate):
                      MaxHeight = 115,
                      MaxRows = 2,
                      yOffset = 410,
+                     ColorType = LineColorType.SecondTitle,
                      AllCaps = True)
 
 

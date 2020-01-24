@@ -287,13 +287,24 @@ def CreateImg(ImgTxtGen):
 
         for line in ImgTxtGen.Template.Lines:
             # draw title
+            Color = "rgba(0, 0, 0, 255)" 
+            
+            if line.ColorType == LineColorType.MainTitle:
+                Color = BGProfile.MainTitleColor
+            elif line.ColorType == LineColorType.SecondTitle:
+                Color = BGProfile.SecondTitleColor
+            elif line.ColorType == LineColorType.SmallText:
+                Color = BGProfile.SmallTextColor
+            elif line.ColorType == LineColorType.AuthorName:
+                Color = BGProfile.AuthorNameColor
+
             ImgTxt = DrawTextBox(line.LineText,
                                     FontName = line.FontName,
                                     FontMaxSize = line.FontMaxSize,
                                     MaxRows = line.MaxRows,
                                     BoxWidth = 872,  
                                     BoxHeight = line.MaxHeight,                                          
-                                    Color = BGProfile.MainTitleColor)
+                                    Color = Color)
 
             # check to see if the textbox is extra tall, requiring us to switch to the
             # plain header 
