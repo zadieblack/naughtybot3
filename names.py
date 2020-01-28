@@ -1245,7 +1245,8 @@ class InnNameGen4(InnNameGenerator):
                                               InnFirstNameFemale(['Eden U.']),
                                               InnFirstNameFemale(['C. Cherry','Cherry','Cherry P.']),
                                               InnFirstNameFemale(['Rhoda U.']),
-                                              InnFirstNameFemale(['Sharon','I.M. Sharon'])
+                                              InnFirstNameFemale(['Sharon','I.M. Sharon']),
+                                              InnFirstNameFemale(['Yu Mi'])
                                          ])
                                              
           self.FirstNameMaleList([      InnFirstNameMale(['Bone R.','I. Bone','Bone U.']),

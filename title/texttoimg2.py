@@ -16,6 +16,8 @@ MAX_IMG_NUM = 24
 RESOLUTION = 4.167
 LOWERTITLETEXTBOUND = 527
 HHMAXHEIGHT = 305
+MAXWIDTH = 900
+XOFFSET = int(round((971 - MAXWIDTH) / 2))
 
 BGImgQ = HistoryQ(iQSize = 5)
 
@@ -173,10 +175,10 @@ def DrawTextBox(sText, FontName, FontMaxSize, MaxRows, BoxWidth, BoxHeight, Colo
                       font = TextBlock.Font, 
                       fill = Color)
                       #features=['-vkrn'])
-        y_text = y_text + height + int(round(height/3))
+        y_text = y_text + height + int(round(height/5))
    
-    #draw2 = ImageDraw.Draw(ImgTxt)  
-    #draw.rectangle([(0, 0), (ImgTxt.width, ImgTxt.height)], outline ="red")
+    draw2 = ImageDraw.Draw(ImgTxt)  
+    draw.rectangle([(0, 0), (ImgTxt.width, ImgTxt.height)], outline ="red")
         #ImgTxt
 
     return ImgTxt
@@ -223,7 +225,7 @@ def PositionBoxesVertically(BGImg,
     for box in Boxes:
         #iyOffsetLine = iyOffsetLine #+ yLineSpace
         BGImg.paste(box, (xOffset, iyOffsetLine), mask = box)
-        iyOffsetLine = iyOffsetLine + box.height + yLineSpace
+        iyOffsetLine = iyOffsetLine + box.height #+ yLineSpace
 
     return BGImg
 
@@ -302,7 +304,7 @@ def CreateImg(ImgTxtGen):
                                     FontName = line.FontName,
                                     FontMaxSize = line.FontMaxSize,
                                     MaxRows = line.MaxRows,
-                                    BoxWidth = 872,  
+                                    BoxWidth = MAXWIDTH,  
                                     BoxHeight = line.MaxHeight,                                          
                                     Color = Color)
 
@@ -319,13 +321,13 @@ def CreateImg(ImgTxtGen):
         ImgBase = PositionBoxesVertically(BGImg = ImgBase,
                                           Boxes = TitleBoxes,
                                           ImgTitleBoxHeight = 326,
-                                          ImgTitleBoxWidth = 872,
+                                          ImgTitleBoxWidth = MAXWIDTH,
                                           yOffset = 206,
-                                          xOffset = 54 + width_offset)
+                                          xOffset = XOFFSET + width_offset)
         #ImgBase.paste(ImgTxt, (54 + width_offset, 234), mask = ImgTxt)
 
         # combine the author name and base images
-        ImgBase.paste(ImgAuthorNameTxt, (55 + width_offset, 540), mask = ImgAuthorNameTxt)
+        ImgBase.paste(ImgAuthorNameTxt, (XOFFSET + width_offset, 540), mask = ImgAuthorNameTxt)
 
         # save the edited image
         RGBImgOut = ImgBase.convert('RGB')

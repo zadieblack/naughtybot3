@@ -747,6 +747,7 @@ class Character():
                                 bAddAnArticle = False, 
                                 bAddTheArticle = False, 
                                 sPosArticle = "My",
+                                bSplitArticle = False,
                                 SelectTemplateID = 0):     
           SelCharTemplate = None 
           variant = None
@@ -789,16 +790,20 @@ class Character():
 
           sDesc = self.DescribeTemplateVariant(variant, bAddEndNoun = bAddEndNoun, NotList = NotList)
 
+          sArticleSplitter = " "
+          if bSplitArticle:
+              sArticleSplitter = "\n"
+
           if bAddTheArticle:
                if SelCharTemplate.IsPersonal:
-                    sDesc = sPosArticle + " " + sDesc
+                    sDesc = sPosArticle + sArticleSplitter + sDesc
                else:
-                    sDesc = "The " + sDesc 
+                    sDesc = "The"+ sArticleSplitter + sDesc 
           elif bAddAnArticle:
                if SelCharTemplate.IsPersonal:
-                    sDesc = sPosArticle + " " + sDesc
+                    sDesc = sPosArticle + sArticleSplitter + sDesc
                else:
-                    sDesc = AddArticles(sDesc, bMakeUpper = True)
+                    sDesc = AddArticles(sDesc, bMakeUpper = True, bSplitArticle = True)
           
           self.Desc = sDesc
 

@@ -198,16 +198,25 @@ class Generator2(Generator):
 
 class Generator3(Generator):
      # Married to the Alpha Wolf
-     ID = 3
-     Priority = 1
-     
+     def __init__(self):
+         super().__init__(ID = 3, Priority = 1)
+         self.Template = templates.TitleTemplate1()
+       
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
           
-          Master = char.MaleChar(TempType = TempType.Flowery, bAddTheArticle = True, sPosArticle = "Her", bAllowGang = True, bAllowRelate = True, bAllowTrope = True)
+          Master = char.MaleChar(TempType = TempType.Flowery, 
+                                 bAddTheArticle = True, 
+                                 sPosArticle = "Her", 
+                                 bSplitArticle = True,
+                                 bAllowGang = True, 
+                                 bAllowRelate = True, 
+                                 bAllowTrope = True)
                
-          sTweet = self.VerbsTo.GetWord() + " To\n" + Master.Desc
+          sTweet = self.VerbsTo.GetWord() + "\nTo " + Master.Desc
+
+          self.Template.AddLineText(sTweet)
 
           return sTweet
 
@@ -268,9 +277,9 @@ class Generator6(Generator):
           
 class Generator7(Generator):
      # A Buff Tuxedoed Italian Dinosaur Took My Wife Hard From Behind!
-     
-     ID = 7
-     Priority = 1
+     def __init__(self):
+         super().__init__(ID = 3, Priority = 1)
+         self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -289,12 +298,15 @@ class Generator7(Generator):
                sTweet += "\n" + WordList(["And They Let Me Watch", "And I Watched","And I Got To Watch"]).GetWord()
           sTweet += "!"
 
+          self.Template.AddLineText(sTweet)
+
           return sTweet
 
 class Generator8(Generator):
      # My Blind Date is A Uniformed Australian Mer-man Fighter Pilot! 
-     ID = 8
-     Priority = 1
+     def __init__(self):
+         super().__init__(ID = 8, Priority = 1)
+         self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -316,12 +328,16 @@ class Generator8(Generator):
                                               "He has a " + WordList(["Beautiful","Gorgeous"]).GetWord() + " " + DickWords.GetWord(),
                                               "His " + DickWords.GetWord() + " is ENORMOUS"]).GetWord()
           sTweet += "!"
+
+          self.Template.AddLineText(sTweet)
+
           return sTweet
           
 class Generator9(Generator):
-     # The Secretary and the Space Werewolf 
-     ID = 9
-     Priority = 1
+     # The Secretary and the Space Werewolf  
+     def __init__(self):
+         super().__init__(ID = 9, Priority = 1)
+         self.Template = templates.TitleTemplate2()
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -329,13 +345,16 @@ class Generator9(Generator):
           
           NotList = ["BDSM"]
           Girl = char.FemaleChar(TempType = TempType.Medium, bAllowRelate = True, bAllowTrope = True, bAllowSpecies = False, bAllowTitle = False, NotList = NotList)
-          Master = char.MaleChar(TempType = TempType.Flowery, bAllowRelate = True, bAllowTrope = True, bAddTheArticle = True, sPosArticle = "Her", NotList = NotList)
+          Master = char.MaleChar(TempType = TempType.Flowery, bAllowRelate = True, bAllowTrope = True, bAddTheArticle = True, sPosArticle = "Her", bSplitArticle = True, NotList = NotList)
           
-          sTweet = "The " + Girl.Desc + "\nand\n" + Master.Desc 
-          sTweet += ":\n" + AddArticles(WordList([self._getFMs_(), 
-                                                            "BDSM", 
-                                                            misc.SexyAdjs().GetWord().capitalize()]).GetWord()) + " " 
-          sTweet += self.SubtitleCoda.GetWord()
+          sTweet = "The " + Girl.Desc + "\nAnd " + Master.Desc 
+          if len(sTweet) > 60:
+              sTweet += "\n" + AddArticles(WordList([self._getFMs_(), 
+                                                                "BDSM", 
+                                                                misc.SexyAdjs().GetWord().lower()]).GetWord()) + " " 
+              sTweet += self.SubtitleCoda.GetWord().lower()
+
+          self.Template.AddLineText(sTweet)
           
           return sTweet
           

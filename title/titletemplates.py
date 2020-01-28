@@ -72,9 +72,10 @@ class TitleTemplatePHDefault(TitleTemplate):
                                FontName = "Walpurgis Night.otf",
                                MaxRows = 5,
                                MaxHeight = 392))
-        #Max Rows = 5
-        #Max Height = 392
 
+# SHORT TOP LINE
+# transition
+# LONG TWO-ROW BOTTOM LINE
 class TitleTemplate1(TitleTemplate):
     def __init__(self):
         super().__init__(ID = 0)
@@ -104,6 +105,44 @@ class TitleTemplate1(TitleTemplate):
                      ColorType = LineColorType.SecondTitle,
                      AllCaps = True)
 
+# MEDIUM TOP LINE
+# trans
+# MEDIUM BOTTOM LINE
+# possible subtitle
+class TitleTemplate2(TitleTemplate):
+    def __init__(self):
+        super().__init__(ID = 0)
 
+        self.AddLine(OrderNum = 1,
+                     FontName = "Verona-ExtraBold.otf",
+                     FontMaxSize = 24,
+                     MaxHeight = 62,
+                     MaxRows = 1,
+                     yOffset = 204,
+                     ColorType = LineColorType.MainTitle)
+
+        self.AddLine(OrderNum = 2,
+                     FontName = "MutterKrauseNormal.ttf",
+                     FontMaxSize = 12,
+                     MaxHeight = 38,
+                     MaxRows = 1,
+                     yOffset = 260,
+                     ColorType = LineColorType.SmallText)
+
+        self.AddLine(OrderNum = 3,
+                     FontName = "Verona-ExtraBold.otf",
+                     FontMaxSize = 24,
+                     MaxHeight = 116,
+                     MaxRows = 2,
+                     yOffset = 300,
+                     ColorType = LineColorType.MainTitle)
+
+        self.AddLine(OrderNum = 4,
+                     FontName = "MutterKrauseNormal.ttf",
+                     FontMaxSize = 12,
+                     MaxHeight = 38,
+                     MaxRows = 1,
+                     yOffset = 440,
+                     ColorType = LineColorType.SmallText)
         
 

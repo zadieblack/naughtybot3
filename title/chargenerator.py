@@ -16,6 +16,7 @@ class FemaleChar(Character):
                             bAddTheArticle = False, 
                             bAddAnArticle = False,
                             sPosArticle = "My", 
+                            bSplitArticle = False,
                             bAddEndNoun = True,
                             bAllowAttitude = True, 
                             bAllowPhysChar = True, 
@@ -34,8 +35,6 @@ class FemaleChar(Character):
                             bAllowTitle = True,
                             SelectTemplateID = 0):
           super().__init__()
-          
-          #print("CharGenerator.FemaleChar() started")
           if NotList is None:
                NotList = []
           
@@ -75,9 +74,6 @@ class FemaleChar(Character):
           if not bAllowTitle:
                ExclList.append(TitlesFemale())
                
-          #print("ExclusionList is " + str(ExclusionList) + "\n")
-          
-          #print("CharGenerator.FemaleChar() Getting templates")
           TemplateList = self.BuildTemplateList(bAllowTrope = bAllowTrope, bAllowSpecies = bAllowSpecies)
           
           self.SetCharDesc(TemplateList, 
@@ -89,6 +85,7 @@ class FemaleChar(Character):
                                bAddTheArticle = bAddTheArticle,
                                bAddAnArticle = bAddAnArticle,
                                sPosArticle = sPosArticle,
+                               bSplitArticle = bSplitArticle,
                                SelectTemplateID = SelectTemplateID)
           
      def BuildTemplateList(self, bAllowTrope, bAllowSpecies):
@@ -130,6 +127,7 @@ class LesbianChar(Character):
                             bAddTheArticle = False, 
                             bAddAnArticle = False,
                             sPosArticle = "My", 
+                            bSplitArticle = False,
                             bAddEndNoun = True,
                             bAllowAttitude = True, 
                             bAllowPhysChar = True, 
@@ -199,6 +197,7 @@ class LesbianChar(Character):
                                bAddTheArticle = bAddTheArticle,
                                bAddAnArticle = bAddAnArticle,
                                sPosArticle = sPosArticle,
+                               bSplitArticle = bSplitArticle,
                                SelectTemplateID = SelectTemplateID)
           
      def BuildTemplateList(self):
@@ -216,6 +215,7 @@ class MaleChar(Character):
                             bAddTheArticle = False, 
                             bAddAnArticle = False,
                             sPosArticle = "My", 
+                            bSplitArticle = False,
                             bAddEndNoun = True,
                             bAllowGang = False,
                             bAllowAttitude = True, 
@@ -244,7 +244,7 @@ class MaleChar(Character):
                                                    ReqList = ReqList,
                                                    ExclList = ExclList, 
                                                    NotList = NotList, bAddTheArticle = bAddTheArticle,
-                                                   bAddAnArticle = bAddAnArticle, sPosArticle = sPosArticle, 
+                                                   bAddAnArticle = bAddAnArticle, sPosArticle = sPosArticle, bSplitArticle = bSplitArticle,
                                                    bAddEndNoun = bAddEndNoun, bAllowPhysChar = bAllowPhysChar, 
                                                    bAllowDickChar = bAllowDickChar, bAllowGenMod = bAllowGenMod,
                                                    bAllowTypeMod = bAllowTypeMod,bAllowClothing = bAllowClothing,
@@ -255,7 +255,7 @@ class MaleChar(Character):
                Char = GangMaleChar(TempType = TempType, MaleCharType = MaleCharType.GangAny,
                                                    ReqList = ReqList,
                                                    ExclList = ExclList, 
-                                                   NotList = NotList, bAddTheArticle = bAddTheArticle,
+                                                   NotList = NotList, bAddTheArticle = bAddTheArticle, bSplitArticle = bSplitArticle,
                                                    bAddAnArticle = bAddAnArticle, sPosArticle = sPosArticle, 
                                                    bAddEndNoun = bAddEndNoun, bAllowPhysChar = bAllowPhysChar, 
                                                    bAllowDickChar = bAllowDickChar, bAllowGenMod = bAllowGenMod,
@@ -268,7 +268,7 @@ class MaleChar(Character):
                                                    ReqList = ReqList,
                                                    ExclList = ExclList,
                                                    NotList = NotList, bAddTheArticle = bAddTheArticle,
-                                                   bAddAnArticle = bAddAnArticle, sPosArticle = sPosArticle, 
+                                                   bAddAnArticle = bAddAnArticle, sPosArticle = sPosArticle, bSplitArticle = bSplitArticle,
                                                    bAddEndNoun = bAddEndNoun, bAllowPhysChar = bAllowPhysChar, 
                                                    bAllowDickChar = bAllowDickChar, bAllowGenMod = bAllowGenMod,
                                                    bAllowTypeMod = bAllowTypeMod,bAllowClothing = bAllowClothing,
@@ -279,7 +279,7 @@ class MaleChar(Character):
                Char = StraightMaleChar(TempType = TempType, NotList = NotList, bAddTheArticle = bAddTheArticle,
                                                    ReqList = ReqList,
                                                    ExclList = ExclList,
-                                                   bAddAnArticle = bAddAnArticle, sPosArticle = sPosArticle, 
+                                                   bAddAnArticle = bAddAnArticle, sPosArticle = sPosArticle, bSplitArticle = bSplitArticle,
                                                    bAddEndNoun = bAddEndNoun, bAllowAttitude = bAllowAttitude, 
                                                    bAllowPhysChar = bAllowPhysChar, bAllowDickChar = bAllowDickChar, 
                                                    bAllowSkinHairColor = bAllowSkinHairColor, bAllowGenMod = bAllowGenMod,
@@ -310,6 +310,7 @@ class StraightMaleChar(Character):
                             bAddAnArticle = False,
                             sPosArticle = "My", 
                             bAddEndNoun = True,
+                            bSplitArticle = False,
                             bAllowAttitude = True, 
                             bAllowPhysChar = True, 
                             bAllowDickChar = True, 
@@ -382,6 +383,7 @@ class StraightMaleChar(Character):
                                bAddTheArticle = bAddTheArticle,
                                bAddAnArticle = bAddAnArticle,
                                sPosArticle = sPosArticle,
+                               bSplitArticle = bSplitArticle,
                                SelectTemplateID = SelectTemplateID)
 
      def BuildTemplateList(self, bAllowTrope, bAllowSpecies):
@@ -421,6 +423,7 @@ class GangMaleChar(Character):
                             bAddAnArticle = False,
                             sPosArticle = "My", 
                             bAddEndNoun = True,  
+                            bSplitArticle = False,
                             bAllowPhysChar = True, 
                             bAllowDickChar = True, 
                             bAllowGenMod = True, 
@@ -472,6 +475,7 @@ class GangMaleChar(Character):
                                bAddTheArticle = bAddTheArticle,
                                bAddAnArticle = bAddAnArticle,
                                sPosArticle = sPosArticle,
+                               bSplitArticle = bSplitArticle,
                                SelectTemplateID = SelectTemplateID)
 
      def BuildTemplateList(self, malechartype):
@@ -494,6 +498,7 @@ class GayMaleChar(Character):
                             bAddAnArticle = False,
                             sPosArticle = "My", 
                             bAddEndNoun = True,  
+                            bSplitArticle = False,
                             bAllowPhysChar = True, 
                             bAllowDickChar = True, 
                             bAllowGenMod = True, 
@@ -548,6 +553,7 @@ class GayMaleChar(Character):
                                bAddTheArticle = bAddTheArticle,
                                bAddAnArticle = bAddAnArticle,
                                sPosArticle = sPosArticle,
+                               bSplitArticle = bSplitArticle,
                                SelectTemplateID = SelectTemplateID)
 
      def BuildTemplateList(self, malechartype):
