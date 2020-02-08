@@ -5462,16 +5462,16 @@ class Generator96(Generator):
           # sTweet = ""
 
           # return sTweet
-          
-# class Generator98(Generator):
-     # ID = 98
-     # Priority = 1
+        
+class Generator98(Generator):
+    ID = 98
+    Priority = 1
      
-     # def GenerateTweet(self):
-          # super().GenerateTweet()
-          # sTweet = ""
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
 
-          # return sTweet
+        return sTweet
           
 # class Generator99(Generator):
      # ID = 99

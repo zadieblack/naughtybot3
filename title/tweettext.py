@@ -1206,7 +1206,7 @@ class TweetTxtGen45(TweetTxtGen):
 class TweetTxtGen46(TweetTxtGen):
     # This book taught me the tantric sex technique called the "Mexican Gorilla"
     ID = 46
-    Priority = 5
+    Priority = 500
      
     def GenerateTweet(self):
         super().GenerateTweet()
@@ -1217,7 +1217,7 @@ class TweetTxtGen46(TweetTxtGen):
                                    "the tantric sex position","the sex move"]).GetWord()
         sDirtyPhrase = TantricTechniques().GetWord()
 
-        iRand = randint(1,6)
+        iRand = randint(1,9)
         if iRand == 1:
              sText = "Before I read this book I had never even heard of " + sSexTechnique + " called \"The " + sDirtyPhrase + ".\""
         elif iRand == 2:
@@ -1228,6 +1228,15 @@ class TweetTxtGen46(TweetTxtGen):
              sText = "I've read about the \"" + sDirtyPhrase + "\" technique before in Cosmo but you need at least three people to try it."
         elif iRand == 5:
              sText = "I would love to try " + AddArticles(sDirtyPhrase, cBracket = "\"") + " with my boyfriend but I don't think I'm flexible enough."
+        elif iRand == 6:
+             sText = "The part where he gives her " + AddArticles(sDirtyPhrase, cBracket = "\"") + " is the filthiest thing I've ever read in my life."
+        elif iRand == 7:
+             sText = "I want to try " + AddArticles(sDirtyPhrase, cBracket = "\"") + " but my boyfriend thinks its disgusting."
+        elif iRand == 8:
+             sText = "If you haven't heard of " + AddArticles(sDirtyPhrase, cBracket = "\"") + " before, do NOT google it."
+        elif iRand == 9:
+             sProtection = WordList(["a dental dam","protection","condoms","surgical gloves"]).GetWord()
+             sText = "If you're going to try " + AddArticles(sDirtyPhrase, cBracket = "\"") + ", both you and your partner need to wear " + sProtection + "."
         else:
              sText = "This book introduced me to " + sSexTechnique + " known as \"The " + sDirtyPhrase + ".\""
 
