@@ -961,12 +961,18 @@ class TweetTxtGen24(TweetTxtGen):
                                    "the tantric sex position","the sex move"]).GetWord()
         sDirtyPhrase = TantricTechniques().GetWord()
 
-        iRand = randint(1,2)
+        iRand = randint(1,5)
         if iRand == 1:
              sText = "Before I read this book I had never even heard of " + sSexTechnique + " called \"The " + sDirtyPhrase + ".\""
+        elif iRand == 2:
+             sText = "Before I read this I didn't even know what " + AddArticles(sDirtyPhrase, cBracket = "\"") + " was."
+        elif iRand == 3:
+             sText = "I had never even heard of " + AddArticles(sDirtyPhrase, cBracket = "\"") + " before I read this book!"
+        elif iRand == 4:
+             sText = "The part where he gives her " + AddArticles(sDirtyPhrase, cBracket = "\"") + " is the filthiest thing I've ever read in my life."
         else:
-             sText = "This book introduced me to " + sSexTechnique + " known as \"The " + sDirtyPhrase + ".\""
-          
+             sText = "If you haven't heard of " + AddArticles(sDirtyPhrase, cBracket = "\"") + " before, do NOT google it."
+
         return sText     
 
 # class TweetTxtGen24(TweetTxtGen):
