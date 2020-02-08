@@ -1206,7 +1206,7 @@ class TweetTxtGen45(TweetTxtGen):
 class TweetTxtGen46(TweetTxtGen):
     # This book taught me the tantric sex technique called the "Mexican Gorilla"
     ID = 46
-    Priority = 500
+    Priority = 5
      
     def GenerateTweet(self):
         super().GenerateTweet()
