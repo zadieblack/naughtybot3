@@ -36,7 +36,7 @@ def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorN
                sTweet = ""
                sText = ""
                
-               sTweet = GetTweet(bTest, bTweet, iGeneratorNo, bAllowPromo = True, TweetHistoryQ = titutil.TweetHistoryQ, bAllowFavTweets = False)
+               sTweet = GetTweet(bTest, bTweet, iGeneratorNo, bAllowPromo = True, TweetHistoryQ = titutil.TweetHistoryQ, bAllowFavTweets = True)
                
                if len(sTweet) > 0:
                     sText = GetImgTweetText(bTest = False, TweetTxtHistoryQ = titutil.TweetTxtHistoryQ)
