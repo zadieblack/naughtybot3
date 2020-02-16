@@ -79,23 +79,29 @@ def GetTweetGenerator(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = None):
           
      return gen
      
-def GetTweet(bTest, bTweet, iGeneratorNo = 0, bAllowPromo = True, Type = None, TweetHistoryQ = None, bAllowFavTweets = True):
-     sTweet = ""
-     if not bTest and bAllowFavTweets:
-          sTweet = GetNextFavTitleFromFile()
-     else:
-          Gen = GetTweetGenerator(bTest, iGeneratorNo, bAllowPromo = bAllowPromo)
-          # print("Generator ID: " + str(Gen.ID))
-          if not TweetHistoryQ is None:
-               while bTweet and not TweetHistoryQ.PushToHistoryQ(Gen.ID):
+def GetTweet(bTest, bTweet, iGeneratorNo = 0, bAllowPromo = True, Type = None, TweetHistoryQ = None, bAllowFavTweets = True, iMaxLen = 0):
+    sTweet = ""
+
+    iLocMaxLen = 9999
+    if iMaxLen > 0:
+        iLocMaxLen = iMaxLen 
+
+    while len(sTweet) == 0 or len(sTweet) > iLocMaxLen:
+        print("Title tweet text length is " + str(len(sTweet)) + ", generating new tweet.\n")
+        if not bTest and bAllowFavTweets:
+            sTweet = GetNextFavTitleFromFile()
+        else:
+            Gen = GetTweetGenerator(bTest, iGeneratorNo, bAllowPromo = bAllowPromo)
+            # print("Generator ID: " + str(Gen.ID))
+            if not TweetHistoryQ is None:
+                while bTweet and not TweetHistoryQ.PushToHistoryQ(Gen.ID):
                     # print("Generator ID " + str(Gen.ID) + " already in Q")
                     Gen = GetTweetGenerator(bTest, iGeneratorNo, bAllowPromo = bAllowPromo)
                     # print("New generator ID: " + str(Gen.ID))
      
-          print("Generator ID: " + str(Gen.ID))
-          sTweet = Gen.GenerateTweet()
+            sTweet = Gen.GenerateTweet()
      
-     return sTweet
+    return sTweet
      
 class GeneratorPromo(Generator):
      ID = 0

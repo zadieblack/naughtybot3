@@ -4,7 +4,7 @@ from title.generators import *
 import title.misc
 import title.util
 
-def CurateFavorites(iGen = 0):
+def CurateFavorites(iGen = 0, iMaxLen = 0):
      sInput = ""
      iSkipCount = 0
      iAddCount = 0
@@ -13,9 +13,9 @@ def CurateFavorites(iGen = 0):
           # Create Title and output.
           sTweet = ""
           if iGen != 0:
-               sTweet = GetTweet(True, False, iGeneratorNo = iGen, bAllowPromo = False, bAllowFavTweets = False)
+               sTweet = GetTweet(True, False, iGeneratorNo = iGen, bAllowPromo = False, bAllowFavTweets = False, iMaxLen = iMaxLen)
           else:
-               sTweet = GetTweet(False, False, iGeneratorNo = iGen, bAllowPromo = False, bAllowFavTweets = False)
+               sTweet = GetTweet(False, False, iGeneratorNo = iGen, bAllowPromo = False, bAllowFavTweets = False, iMaxLen = iMaxLen)
           print("\nGenerated tweet:\n[" + sTweet + "]")
           
           # Prompt user.
@@ -44,6 +44,7 @@ def CurateFavorites(iGen = 0):
                
 Parser = argparse.ArgumentParser(prog='Curate',description='Curate favorite tweets.')
 Parser.add_argument('-gen', type=int, default=0, help='tweet text generator # to curate')
+Parser.add_argument('-maxlen', type=int, default=0, help='max chars of tweet text to generate')
 Args = Parser.parse_args()
 
 if Args.gen != 0:
@@ -51,4 +52,4 @@ if Args.gen != 0:
 else:
      print("Curating random tweets.")
 
-CurateFavorites(iGen = Args.gen)
+CurateFavorites(iGen = Args.gen, iMaxLen = Args.maxlen)
