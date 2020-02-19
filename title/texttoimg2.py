@@ -21,6 +21,17 @@ XOFFSET = int(round((971 - MAXWIDTH) / 2))
 
 BGImgQ = HistoryQ(iQSize = 5)
 
+def GetTextLineSize(font, sLine):
+    width, height = (0,0)
+
+    width, height = font.getsize(sLine)
+    off_width, off_height = font.getoffset(sLine)
+
+    width = width - off_width 
+    height = height - off_height
+
+    return width, height
+
 def WrapText(sText, font, max_line_width):
      # break string into multiple lines that fit max_line_width
      # and return an array of strings
@@ -31,20 +42,17 @@ def WrapText(sText, font, max_line_width):
      iLineStart = 0
      sLineSoFar = ""
      sLastValidLine = ""
-     while not bEndOfText:
+     while not bEndOfText and len(sText) > 0:
           #width_of_line = 0
           iLastWhtSpc = iLineStart
           
           for charno in range(iLineStart, len(sText)):
                if sText[charno].isspace() or sText[charno] == "-":
                     iLastWhtSpc = charno
-               #char_size = font.getsize(sText[charno])
-               #width_of_line += char_size[0]
+
                sLineSoFar += sText[charno]
                sLastValidLine = sText[iLineStart:iLastWhtSpc]
                
-               # problem: this now breaks the line only after it has 
-               # exceeded the max width.
                if sText[charno] == "\n" or font.getsize(sLineSoFar)[0] >= max_line_width:
                     if iLastWhtSpc >= iLineStart:
                          Lines.append(sLastValidLine)
@@ -120,9 +128,9 @@ class BlockOfText():
 
         for line in self.Lines:
             if line.isspace() or line == "":
-                iHeight += self.Font.getsize("a")[1] / 2
+                iHeight += GetTextLineSize(self.Font, "a")[1] / 2
             else:
-                iHeight += self.Font.getsize(line)[1]
+                iHeight += GetTextLineSize(self.Font, line)[1]
           
         return iHeight
 
@@ -157,17 +165,18 @@ def DrawTextBox(sText, FontName, FontMaxSize, MaxRows, BoxWidth, BoxHeight, Colo
                             MaxRows,
                             (offset_width, offset_height))
                
-    ImgTxt = Image.new('RGBA', (BoxWidth, BoxHeight))
+    ImgTxt = Image.new('RGBA', (offset_width, offset_height), (0, 0, 0, 0))
     draw = ImageDraw.Draw(ImgTxt)
-               
+             
+    iTestCnt = 1 # debug only, delete later
     y_text = 0
     for line in TextBlock.Lines:
         width, height = (0, 0)
         if line.isspace() or line == "":
-            width, height = TextBlock.Font.getsize("a")
+            width, height = GetTextLineSize(TextBlock.Font, "a")
             height = height / 2
         else:
-            width, height = TextBlock.Font.getsize(line)
+            width, height = GetTextLineSize(TextBlock.Font, line)
 
             draw.text(
                       ((offset_width - width)/2, y_text), 
@@ -175,10 +184,14 @@ def DrawTextBox(sText, FontName, FontMaxSize, MaxRows, BoxWidth, BoxHeight, Colo
                       font = TextBlock.Font, 
                       fill = Color)
                       #features=['-vkrn'])
+        #draw.rectangle([((offset_width - width)/2, y_text), (width, height)], outline ="red", width = 5)
+        draw.line([((offset_width - width)/2, y_text),((offset_width - width)/2,height)], fill = "red", width = 5)
+        #print("iTestCnt = " + str(iTestCnt) + ", line [" + line + "]")
         y_text = y_text + height + int(round(height/5))
+        #iTestCnt = iTestCnt + 1
    
-    draw2 = ImageDraw.Draw(ImgTxt)  
-    draw.rectangle([(0, 0), (ImgTxt.width, ImgTxt.height)], outline ="red")
+    #draw2 = ImageDraw.Draw(ImgTxt)  
+    #draw.rectangle([(0, 0), (ImgTxt.width, ImgTxt.height)], outline ="red")
         #ImgTxt
 
     return ImgTxt
@@ -224,7 +237,8 @@ def PositionBoxesVertically(BGImg,
     # draw the text boxes
     for box in Boxes:
         #iyOffsetLine = iyOffsetLine #+ yLineSpace
-        BGImg.paste(box, (xOffset, iyOffsetLine), mask = box)
+        #BGImg.paste(box, (xOffset, iyOffsetLine), mask = box)
+        BGImg.alpha_composite(box, (xOffset, iyOffsetLine))
         iyOffsetLine = iyOffsetLine + box.height #+ yLineSpace
 
     return BGImg
@@ -288,19 +302,20 @@ def CreateImg(ImgTxtGen):
         TitleBoxes = []
 
         for line in ImgTxtGen.Template.Lines:
-            # draw title
-            Color = "rgba(0, 0, 0, 255)" 
+            if not line is None and len(line.LineText) > 0:
+                # draw title
+                Color = "rgba(0, 0, 0, 255)" 
             
-            if line.ColorType == LineColorType.MainTitle:
-                Color = BGProfile.MainTitleColor
-            elif line.ColorType == LineColorType.SecondTitle:
-                Color = BGProfile.SecondTitleColor
-            elif line.ColorType == LineColorType.SmallText:
-                Color = BGProfile.SmallTextColor
-            elif line.ColorType == LineColorType.AuthorName:
-                Color = BGProfile.AuthorNameColor
+                if line.ColorType == LineColorType.MainTitle:
+                    Color = BGProfile.MainTitleColor
+                elif line.ColorType == LineColorType.SecondTitle:
+                    Color = BGProfile.SecondTitleColor
+                elif line.ColorType == LineColorType.SmallText:
+                    Color = BGProfile.SmallTextColor
+                elif line.ColorType == LineColorType.AuthorName:
+                    Color = BGProfile.AuthorNameColor
 
-            ImgTxt = DrawTextBox(line.LineText,
+                ImgTxt = DrawTextBox(line.LineText,
                                     FontName = line.FontName,
                                     FontMaxSize = line.FontMaxSize,
                                     MaxRows = line.MaxRows,
@@ -314,7 +329,7 @@ def CreateImg(ImgTxtGen):
             #if dScore > 23:
             #    BGProfile.UsePlainheader()
 
-            TitleBoxes.append(ImgTxt)
+                TitleBoxes.append(ImgTxt)
 
             
         # combine the title text and base images
@@ -327,7 +342,8 @@ def CreateImg(ImgTxtGen):
         #ImgBase.paste(ImgTxt, (54 + width_offset, 234), mask = ImgTxt)
 
         # combine the author name and base images
-        ImgBase.paste(ImgAuthorNameTxt, (XOFFSET + width_offset, 540), mask = ImgAuthorNameTxt)
+        # ImgBase.paste(ImgAuthorNameTxt, (XOFFSET + width_offset, 540), mask = ImgAuthorNameTxt)
+        ImgBase.alpha_composite(ImgAuthorNameTxt, (XOFFSET + width_offset, 540))
 
         # save the edited image
         RGBImgOut = ImgBase.convert('RGB')

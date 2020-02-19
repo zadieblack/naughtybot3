@@ -1008,6 +1008,8 @@ class InnNameGen1(InnNameGenerator):
                                               InnLastName(['Long']),
                                               InnLastName(['Major']),
                                               InnLastName(['Pink']),
+                                              InnLastName(['Strange']),
+                                              InnLastName(['Thicke']),
                                               InnLastName(['White'])
                                              ])
                                              
@@ -1143,7 +1145,7 @@ class InnNameGen2(InnNameGenerator):
                                               InnLastName(['Knightly']),
                                               InnLastName(['Stiffley']),
                                               InnLastName(['Beaver']),
-                                              InnLastName(['Bodie']),
+                                              InnLastName(['Bodie','Bawdy','Bawdee','Bawdie','Body']),
                                               InnLastName(['Bresst','Brest']),
                                               InnLastName(['Clam','Clamm','Clams','Clamms','Clamz','Clammz']),
                                               InnLastName(['Cracks']),
@@ -1159,7 +1161,8 @@ class InnNameGen2(InnNameGenerator):
                                               InnLastName(['Melons']),
                                               InnLastName(['Muffy','Muffin']),
                                               InnLastName(['Peach']),
-                                              InnLastName(['Puss'])
+                                              InnLastName(['Puss']),
+                                              InnLastName(['Snatch'])
                                              ])
      
 # Name: Amanda Faulk
@@ -1300,12 +1303,14 @@ class InnNameGen4(InnNameGenerator):
                                               InnLastName(['Sachs','Sachs','Sax']),
                                               InnLastName(['Schaft','Shaft']),
                                               InnLastName(['Schlong']),
+                                              InnLastName(['Snatch']),
                                               InnLastName(['Wang']),
                                               InnLastName(['Weiner']),
                                               InnLastName(['Wood'])
                                              ])
                                              
           self.SecondLastNameList([InnLastName(['Daley']),
+                                   InnLastName(['Deeper']),
                                               InnLastName(['Freely']),
                                               InnLastName(['Gayley']),
                                               InnLastName(['Hard','Harder']),
@@ -1386,13 +1391,17 @@ class InnNameGen6(InnNameGenerator):
                                              ])
 
           self.FirstLastNameList([      InnLastName(['Bigg']),
-                                              InnLastName(['Black']),
+                                              InnLastName(['Black','Brown']),
+                                              InnLastName(['Butt']),
+                                              InnLastName(['Cheap']),
                                               InnLastName(['Daley']),
                                               InnLastName(['Fatt']),
                                               InnLastName(['Free']),
                                               InnLastName(['Goode']),
-                                              InnLastName(['Free']),
+                                              InnLastName(['Hard']),
                                               InnLastName(['Knightly']),
+                                              InnLastName(['Rear']),
+                                              InnLastName(['Thicke']),
                                               InnLastName(['White']) 
  
                                              ])

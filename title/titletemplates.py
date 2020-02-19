@@ -51,6 +51,9 @@ class TitleTemplate():
                 self.Lines[i].LineText = TxtLines[i]
             i = i + 1
 
+    def ClearLineText(self):
+        for line in self.Lines:
+            line.LineText = ""
 
 class TitleTemplateHHDefault(TitleTemplate):
     def __init__(self):

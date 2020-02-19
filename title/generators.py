@@ -73,6 +73,13 @@ class Generator():
         self.HisName = NamesMale().FirstName()
         self.SubtitleCoda = titmisc.SubtitleCoda()
 
+    def SetImgText(self,stxt):
+        if self.Template is None:
+            self.Template = templates.TitleTemplateHHDefault
+
+        self.Template.ClearLineText()
+        self.Template.AddLineText(stxt)
+
 def GetTweetGenerator(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = None):
      gen = None
      GenType = None 
@@ -175,7 +182,7 @@ class Generator1(Generator):
           
           sTweet = self.VerbsBy.GetWord() + "\nBy The\n" + Master.Desc
           
-          self.Template.AddLineText(sTweet)
+          self.SetImgText(sTweet)
 
           return sTweet
           
@@ -216,7 +223,7 @@ class Generator3(Generator):
                
           sTweet = self.VerbsTo.GetWord() + "\nTo " + Master.Desc
 
-          self.Template.AddLineText(sTweet)
+          self.SetImgText(sTweet)
 
           return sTweet
 
