@@ -43,7 +43,7 @@ class BGProfile():
 class BGProfileSaxaphone(BGProfile):
     def __init__(self):
         super().__init__(ID = 1,
-                           Priority = 5,
+                           Priority = 12,
                            sHHFileName = "saxophone_hh.png",
                            sPHFileName = "saxophone_ph.png")
         self.MainTitleColor = "rgba(94, 68, 25, 255)"
@@ -52,7 +52,7 @@ class BGProfileSaxaphone(BGProfile):
 class BGProfileBeach(BGProfile):
     def __init__(self):
         super().__init__(ID = 2,
-                           Priority = 5,
+                           Priority = 12,
                            sHHFileName = "beach_hh.png",
                            sPHFileName = "beach_ph.png")
         self.MainTitleColor = "rgba(162, 63, 33, 255)"
@@ -61,7 +61,7 @@ class BGProfileBeach(BGProfile):
 class BGProfileCrotchLevel(BGProfile):
     def __init__(self):
         super().__init__(ID = 3,
-                           Priority = 5,
+                           Priority = 12,
                            sHHFileName = "crotch_level_hh.png",
                            sPHFileName = "crotch_level_ph.png")
         self.MainTitleColor = "rgba(193, 29, 63, 255)"
@@ -71,7 +71,7 @@ class BGProfileCrotchLevel(BGProfile):
 class BGProfileBoatNipples(BGProfile):
     def __init__(self):
         super().__init__(ID = 4,
-                           Priority = 5,
+                           Priority = 12,
                            sHHFileName = "boat_nipples_hh.png",
                            sPHFileName = "boat_nipples_ph.png")
         self.MainTitleColor = "rgba(39, 32, 73, 255)"
@@ -82,7 +82,7 @@ class BGProfileBoatNipples(BGProfile):
 class BGProfileBlueCarFire(BGProfile):
     def __init__(self):
         super().__init__(ID = 5,
-                           Priority = 5,
+                           Priority = 12,
                            sHHFileName = "blue_car_fire_hh.png",
                            sPHFileName = "blue_car_fire_ph.png")
         self.MainTitleColor = "rgba(132, 41, 55, 255)"
@@ -93,7 +93,7 @@ class BGProfileBlueCarFire(BGProfile):
 class BGProfileIndian(BGProfile):
     def __init__(self):
         super().__init__(ID = 6,
-                           Priority = 5,
+                           Priority = 12,
                            sHHFileName = "indian_hh.png",
                            sPHFileName = "indian_ph.png")
         self.MainTitleColor = "rgba(157, 44, 43, 255)"
@@ -104,7 +104,7 @@ class BGProfileIndian(BGProfile):
 class BGProfileNakedFabio(BGProfile):
     def __init__(self):
         super().__init__(ID = 7,
-                           Priority = 5,
+                           Priority = 12,
                            sHHFileName = "naked_fabio_hh.png",
                            sPHFileName = "naked_fabio_ph.png")
         self.MainTitleColor = "rgba(238, 146, 134, 255)"
@@ -115,7 +115,7 @@ class BGProfileNakedFabio(BGProfile):
 class BGProfilePirate(BGProfile):
     def __init__(self):
         super().__init__(ID = 8,
-                           Priority = 5,
+                           Priority = 12,
                            sHHFileName = "pirate_hh.png",
                            sPHFileName = "pirate_ph.png")
         self.MainTitleColor = "rgba(65, 112, 130, 255)"
@@ -126,7 +126,7 @@ class BGProfilePirate(BGProfile):
 class BGProfileAquaTopless(BGProfile):
     def __init__(self):
         super().__init__(ID = 9,
-                           Priority = 5,
+                           Priority = 12,
                            sHHFileName = "aqua_topless_hh.png",
                            sPHFileName = "aqua_topless_ph.png")
         self.MainTitleColor = "rgba(149, 196, 180, 255)"
@@ -137,7 +137,7 @@ class BGProfileAquaTopless(BGProfile):
 class BGProfileGay(BGProfile):
     def __init__(self):
         super().__init__(ID = 10,
-                           Priority = 5,
+                           Priority = 12,
                            sHHFileName = "gay_hh.png",
                            sPHFileName = "gay_ph.png")
         self.MainTitleColor = "rgba(189, 109, 65, 255)"
@@ -148,7 +148,7 @@ class BGProfileGay(BGProfile):
 class BGProfileSunset(BGProfile):
     def __init__(self):
         super().__init__(ID = 11,
-                           Priority = 5,
+                           Priority = 12,
                            sHHFileName = "sunset_hh.png",
                            sPHFileName = "sunset_ph.png")
         self.MainTitleColor = "rgba(178, 27, 44, 255)"
@@ -159,7 +159,7 @@ class BGProfileSunset(BGProfile):
 class BGProfileField(BGProfile):
     def __init__(self):
         super().__init__(ID = 12,
-                           Priority = 5,
+                           Priority = 12,
                            sHHFileName = "field_hh.png",
                            sPHFileName = "field_ph.png")
         self.MainTitleColor = "rgba(214, 149, 123, 255)"
@@ -170,7 +170,7 @@ class BGProfileField(BGProfile):
 class BGProfileRedVelvet(BGProfile):
     def __init__(self):
         super().__init__(ID = 13,
-                           Priority = 5,
+                           Priority = 12,
                            sHHFileName = "red_velvet_hh.png",
                            sPHFileName = "red_velvet_ph.png")
         self.MainTitleColor = "rgba(181,55, 47, 255)"
@@ -181,7 +181,7 @@ class BGProfileRedVelvet(BGProfile):
 class BGProfileRedAndPurple(BGProfile):
     def __init__(self):
         super().__init__(ID = 14,
-                           Priority = 5,
+                           Priority = 12,
                            sHHFileName = "red_and_purple_hh.png",
                            sPHFileName = "red_and_purple_ph.png")
         self.MainTitleColor = "rgba(209, 91, 56, 255)"
@@ -192,7 +192,7 @@ class BGProfileRedAndPurple(BGProfile):
 class BGProfileBlueCarFire(BGProfile):
     def __init__(self):
         super().__init__(ID = 15,
-                           Priority = 5,
+                           Priority = 12,
                            sHHFileName = "blue_car_fire_hh.png",
                            sPHFileName = "blue_car_fire_ph.png")
         self.MainTitleColor = "rgba(132,41, 55, 255)"
@@ -203,7 +203,7 @@ class BGProfileBlueCarFire(BGProfile):
 class BGProfileBlueDress(BGProfile):
     def __init__(self):
         super().__init__(ID = 16,
-                           Priority = 5,
+                           Priority = 12,
                            sHHFileName = "blue_dress_hh.png",
                            sPHFileName = "blue_dress_ph.png")
         self.MainTitleColor = "rgba(181, 79, 75, 255)"
@@ -214,7 +214,7 @@ class BGProfileBlueDress(BGProfile):
 class BGProfileDarkBlueFireSuit(BGProfile):
     def __init__(self):
         super().__init__(ID = 17,
-                           Priority = 5,
+                           Priority = 12,
                            sHHFileName = "dark_blue_fire_suit_hh.png",
                            sPHFileName = "dark_blue_fire_suit_ph.png")
         self.MainTitleColor = "rgba(173, 84, 69, 255)"
@@ -225,7 +225,7 @@ class BGProfileDarkBlueFireSuit(BGProfile):
 class BGProfileDark(BGProfile):
     def __init__(self):
         super().__init__(ID = 18,
-                           Priority = 5,
+                           Priority = 12,
                            sHHFileName = "dark_hh.png",
                            sPHFileName = "dark_ph.png")
         self.MainTitleColor = "rgba(84, 77, 93, 255)"
@@ -236,7 +236,7 @@ class BGProfileDark(BGProfile):
 class BGProfileGold(BGProfile):
     def __init__(self):
         super().__init__(ID = 19,
-                           Priority = 5,
+                           Priority = 12,
                            sHHFileName = "gold_hh.png",
                            sPHFileName = "gold_ph.png")
         self.MainTitleColor = "rgba(106, 118, 47, 255)"
@@ -247,7 +247,7 @@ class BGProfileGold(BGProfile):
 class BGProfileModernBedroom(BGProfile):
     def __init__(self):
         super().__init__(ID = 20,
-                           Priority = 5,
+                           Priority = 12,
                            sHHFileName = "modern_bedroom_hh.png",
                            sPHFileName = "modern_bedroom_ph.png")
         self.MainTitleColor = "rgba(143, 137, 104, 255)"
@@ -258,7 +258,7 @@ class BGProfileModernBedroom(BGProfile):
 class BGProfileShipRomance(BGProfile):
     def __init__(self):
         super().__init__(ID = 21,
-                           Priority = 5,
+                           Priority = 12,
                            sHHFileName = "ship_romance_hh.png",
                            sPHFileName = "ship_romance_ph.png")
         self.MainTitleColor = "rgba(75, 125, 152, 255)"
@@ -618,6 +618,22 @@ class BGProfileDoggyStyle(BGProfile):
         self.SmallTextColor = "rgba(0, 0, 0, 255)"
         self.AuthorNameColor = "rgba(0, 0, 0, 255)"
 
+# this is for debugging bgprofile frequency. delete later.
+def indexof(list, searchobj):
+    iIndex = 0
+    bFound = False
+
+    while iIndex < len(list):
+        if list[iIndex][0][1].BGFileName == searchobj[1].BGFileName:
+            bFound = True
+            break
+        iIndex = iIndex + 1
+    
+    if not bFound:
+        iIndex = -1
+
+    return iIndex
+
 class ProfileSelector():
     def __init__(self):
         self.ProfileList = [] 
@@ -626,7 +642,24 @@ class ProfileSelector():
             item = subclass()
             for x in range(0, item.Priority):
                 self.ProfileList.append([item.ID, item])
-               
+         
+        # this is for debugging bgprofile frequency. delete later.
+
+        #sTable = "[object name]: [count]\n"
+        #ProfileCountTable = []
+        #for profile in self.ProfileList:
+        #    i = indexof(ProfileCountTable, profile)
+        #    if i > -1:
+        #        ProfileCountTable[i][1] = ProfileCountTable[i][1] + 1
+        #    else:
+        #        ProfileCountTable.append([profile, 1])
+
+        #for item in ProfileCountTable:
+        #    sTable += str(item[0][1].BGFileName) + ": " + str(item[1]) + "\n"
+        #sTable += "\n"
+
+        #print(sTable)
+
     def RandomProfile(self):
         Profile = []
 

@@ -244,7 +244,7 @@ def PositionBoxesVertically(BGImg,
         #iyOffsetLine = iyOffsetLine #+ yLineSpace
         #BGImg.paste(box, (xOffset, iyOffsetLine), mask = box)
         BGImg.alpha_composite(box, (xOffset, iyOffsetLine))
-        iyOffsetLine = iyOffsetLine + box.height #+ yLineSpace
+        iyOffsetLine = iyOffsetLine + box.height + yLineSpace
 
     return BGImg
 

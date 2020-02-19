@@ -149,3 +149,85 @@ class TitleTemplate2(TitleTemplate):
                      ColorType = LineColorType.SmallText)
         
 
+# FEMALE NAME
+# Shows A
+# MEDIUM CENTER LINE
+# Her
+# CUNNING STUNT
+class TitleTemplate3(TitleTemplate):
+    def __init__(self):
+        super().__init__(ID = 0)
+
+        self.AddLine(OrderNum = 1,
+                     FontName = "Verona-ExtraBold.otf",
+                     FontMaxSize = 20,
+                     MaxHeight = 63,
+                     MaxRows = 1,
+                     yOffset = 204,
+                     ColorType = LineColorType.MainTitle)
+        
+        self.AddLine(OrderNum = 2,
+                     FontName = "Amaze.ttf",
+                     FontMaxSize = 11,
+                     MaxHeight = 30,
+                     MaxRows = 1,
+                     yOffset = 342,
+                     ColorType = LineColorType.SmallText)
+
+        self.AddLine(OrderNum = 3,
+                     FontName = "MutterKrauseNormal.ttf",
+                     FontMaxSize = 14,
+                     MaxHeight = 50,
+                     MaxRows = 1,
+                     yOffset = 260,
+                     ColorType = LineColorType.SecondTitle)
+
+        self.AddLine(OrderNum = 4,
+                     FontName = "Amaze.ttf",
+                     FontMaxSize = 11,
+                     MaxHeight = 30,
+                     MaxRows = 1,
+                     yOffset = 342,
+                     ColorType = LineColorType.SmallText)
+
+        self.AddLine(OrderNum = 5,
+                     FontName = "Sabado Regular.otf",
+                     FontMaxSize = 16,
+                     MaxHeight = 48,
+                     MaxRows = 1,
+                     yOffset = 440,
+                     ColorType = LineColorType.MainTitle,
+                     AllCaps = True)
+
+# ** Conversational **
+# Medium Top Line
+# Large Middle Line
+# Small Bottom Line
+class TitleTemplate4(TitleTemplate):
+    def __init__(self):
+        super().__init__(ID = 0)
+
+        self.AddLine(OrderNum = 1,
+                     FontName = "Adorable MLSJN.ttf",
+                     FontMaxSize = 16,
+                     MaxHeight = 47,
+                     MaxRows = 1,
+                     yOffset = 204,
+                     ColorType = LineColorType.SecondTitle)
+
+        self.AddLine(OrderNum = 2,
+                     FontName = "Quaint Gothic SG OT Regular.ttf",
+                     FontMaxSize = 20,
+                     #MaxHeight = 192, #for two lines
+                     MaxHeight = 79,
+                     MaxRows = 1,
+                     yOffset = 342,
+                     ColorType = LineColorType.MainTitle)
+
+        self.AddLine(OrderNum = 3,
+                     FontName = "POORICH.ttf",
+                     FontMaxSize = 11,
+                     MaxHeight = 41,
+                     MaxRows = 1,
+                     yOffset = 410,
+                     ColorType = LineColorType.MainTitle)

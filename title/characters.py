@@ -803,7 +803,7 @@ class Character():
                if SelCharTemplate.IsPersonal:
                     sDesc = sPosArticle + sArticleSplitter + sDesc
                else:
-                    sDesc = AddArticles(sDesc, bMakeUpper = True, bSplitArticle = True)
+                    sDesc = AddArticles(sDesc, bMakeUpper = True, bSplitArticle = bSplitArticle)
           
           self.Desc = sDesc
 

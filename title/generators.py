@@ -25,7 +25,8 @@ class Generator():
     # increasing the Priority increases the chances the generator is randomly selected. But it can only be selected again while it is not currently in the history queue
     Type = GeneratorType.Normal
     # most generators are Normal. Setting a generator to Test makes sure it can't be selected randomly. Setting a generator to Promo means it won't be selected for reply tweets
-     
+    Disabled = False
+
     def SetPriority(self, sText, List, iPriority):
         for x in range(iPriority):
             List.append(sText)
@@ -194,6 +195,7 @@ class Generator2(Generator):
      # Veonica Gets Blackmailed by the Billionaire Mountain Man 
      ID = 2
      Priority = 1
+     Disabled = True
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -235,6 +237,7 @@ class Generator4(Generator):
      # Veronica Gets Married to the Alpha Wolf     
      ID = 4
      Priority = 1
+     Disabled = True
 
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -249,27 +252,36 @@ class Generator4(Generator):
           return sTweet
           
 class Generator5(Generator):
-     # Jackie Shows a Horny French Alpha Wolf her Cunning Stunt
-     ID = 5
-     Priority = 1
+    # Jackie Shows a Horny French Alpha Wolf her Cunning Stunt
+    def __init__(self):
+        super().__init__(ID = 5, Priority = 1)
+        self.Template = templates.TitleTemplate3()
      
-     def GenerateTweet(self):
-          super().GenerateTweet()
-          sTweet = ""
-          GenNotList = ["BDSM"]
-          Girl = None
-          Master = None
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
+        GenNotList = ["BDSM"]
+        Girl = None
+        Master = None
                
-          Master = char.MaleChar(TempType = TempType.Flowery, bAddAnArticle = True, bAllowRelate = True,NotList = GenNotList)
+        iMaxMasterChar = 35 
+        Master = char.MaleChar(TempType = TempType.Flowery, bAddAnArticle = True, 
+                                bAllowRelate = True, bSplitArticle = True, 
+                                NotList = GenNotList)
+        while len(Master.Desc) > iMaxMasterChar:
+            Master = char.MaleChar(TempType = TempType.Flowery, bAddAnArticle = True, 
+                                    bAllowRelate = True, bSplitArticle = True, 
+                                    NotList = GenNotList)
 
-          sTweet = self.HerName + " Shows " + Master.Desc + "\nHer Cunning Stunt" 
+        sTweet = self.HerName + "\nShows " + Master.Desc + "\nHer\nCunning Stunt" 
           
-          return sTweet
+        return sTweet
           
 class Generator6(Generator):
      # Seduced in the Bed of the Billionaire     
-     ID = 6
-     Priority = 1
+     def __init__(self):
+        super().__init__(ID = 6, Priority = 1)
+        self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -279,39 +291,39 @@ class Generator6(Generator):
                          "Gifted", "Pledged", "Bed", "Sex Dungeon","Basement","Dungeon","Surrendered"]
           
           #Girl = char.FemaleChar(TempType = TempType.Medium, bAllowTrope = True, NotList = GenNotList)
-          Master = char.MaleChar(TempType = TempType.Flowery, bAllowRelate = True, bAllowTrope = True,bAddTheArticle = True)
+          Master = char.MaleChar(TempType = TempType.Flowery, bAddTheArticle = True,
+                                 bAllowRelate = True, bAllowTrope = True)
           #Master = MaleChar(iNumMaxCBits = 3, bAllowGang = False, NotList = NotList, bAddArticle = True)
           
-          sTweet += self.VerbsBy.GetWord(NotList = NotList) + " In The Bed Of\n" + Master.Desc 
+          sTweet += self.VerbsBy.GetWord(NotList = NotList) + "\nIn the Bed of\n" + Master.Desc 
           
           return sTweet
           
 class Generator7(Generator):
-     # A Buff Tuxedoed Italian Dinosaur Took My Wife Hard From Behind!
-     def __init__(self):
-         super().__init__(ID = 3, Priority = 1)
-         self.Template = templates.TitleTemplate1()
+    # A Buff Tuxedoed Italian Dinosaur Took My Wife Hard From Behind!
+    def __init__(self):
+        super().__init__(ID = 7, Priority = 1)
+        self.Template = templates.TitleTemplate4()
      
-     def GenerateTweet(self):
-          super().GenerateTweet()
-          sTweet = ""
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
           
-          Master = char.MaleChar(TempType = TempType.Flowery, 
-                                        bAllowRelate = True, 
-                                        bAllowTrope = True,
-                                        bAddAnArticle = True, 
-                                        sPosArticle = "My")
-          Verbs = WordList(["Took","Claimed","Ravished","Mounted", "Plowed"])
+        Master = char.MaleChar(TempType = TempType.Flowery, 
+                                    bAllowRelate = True, 
+                                    bAllowTrope = True,
+                                    bAddAnArticle = True, 
+                                    bSplitArticle = False,
+                                    sPosArticle = "My")
+        Verbs = WordList(["Took","Claimed","Ravished","Mounted", "Plowed"])
           
-          sTweet = Master.Desc  + "\n"
-          sTweet += Verbs.GetWord() + " My Wife From Behind"
-          if CoinFlip():
-               sTweet += "\n" + WordList(["And They Let Me Watch", "And I Watched","And I Got To Watch"]).GetWord()
-          sTweet += "!"
+        sTweet = Master.Desc  + "\n"
+        sTweet += Verbs.GetWord() + " My Wife From Behind"
+        if CoinFlip():
+            sTweet += "\n" + WordList(["And They Let Me Watch", "And I Watched","And I Got To Watch"]).GetWord()
+        sTweet += "!"
 
-          self.Template.AddLineText(sTweet)
-
-          return sTweet
+        return sTweet
 
 class Generator8(Generator):
      # My Blind Date is A Uniformed Australian Mer-man Fighter Pilot! 
@@ -5004,63 +5016,64 @@ class Generator1001(Generator):
           # return sTweet     
           
 class GeneratorSelector():
-     GeneratorList = []
+    GeneratorList = []
      
-     def __init__(self):
-          for subclass in Generator.__subclasses__():
-               item = subclass()
-               for x in range(0, item.Priority):
+    def __init__(self):
+        for subclass in Generator.__subclasses__():
+            item = subclass()
+            if not item.Disabled:
+                for x in range(0, item.Priority):
                     self.GeneratorList.append([item.ID, item])
                
-     def RandomGenerator(self, bAllowPromo = True, Type = None):
-          Generator = None
-          AllowedTypes = []
+    def RandomGenerator(self, bAllowPromo = True, Type = None):
+        Generator = None
+        AllowedTypes = []
           
-          if not Type is None:
-               AllowedTypes = [Type] 
-          else:
-               AllowedTypes = [GeneratorType.Normal, GeneratorType.BookTitle]
+        if not Type is None:
+            AllowedTypes = [Type] 
+        else:
+            AllowedTypes = [GeneratorType.Normal, GeneratorType.BookTitle]
           
-          if bAllowPromo:
-               AllowedTypes.append(GeneratorType.Promo)
+        if bAllowPromo:
+            AllowedTypes.append(GeneratorType.Promo)
                
-          #print("RandomGenerator() Allowed types: " + str(AllowedTypes))
-          if len(self.GeneratorList) > 0:
+        #print("RandomGenerator() Allowed types: " + str(AllowedTypes))
+        if len(self.GeneratorList) > 0:
 
-               Generator = self.GeneratorList[randint(0, len(self.GeneratorList) - 1)][1]
-               while not Generator.Type in AllowedTypes:
-                    Generator = self.GeneratorList[randint(0, len(self.GeneratorList) - 1)][1]
+            Generator = self.GeneratorList[randint(0, len(self.GeneratorList) - 1)][1]
+            while not Generator.Type in AllowedTypes:
+                Generator = self.GeneratorList[randint(0, len(self.GeneratorList) - 1)][1]
                     
-          return Generator 
+        return Generator 
           
-     def GetGeneratorsSequential(self, bAllowPromo = True, Type = None):
-          GeneratorList = []
-          AllowedTypes = []
+    def GetGeneratorsSequential(self, bAllowPromo = True, Type = None):
+        GeneratorList = []
+        AllowedTypes = []
           
-          if not Type is None:
-               AllowedTypes = [Type] 
-          else:
-               AllowedTypes = [GeneratorType.Normal, GeneratorType.BookTitle]
+        if not Type is None:
+            AllowedTypes = [Type] 
+        else:
+            AllowedTypes = [GeneratorType.Normal, GeneratorType.BookTitle]
           
-          if bAllowPromo:
-               AllowedTypes.append(GeneratorType.Promo)
+        if bAllowPromo:
+            AllowedTypes.append(GeneratorType.Promo)
 
-          for subclass in Generator.__subclasses__():
-               gen = subclass()
+        for subclass in Generator.__subclasses__():
+            gen = subclass()
 
-               if gen.Type in AllowedTypes:
-                    GeneratorList.append(gen)
+            if gen.Type in AllowedTypes:
+                GeneratorList.append(gen)
                
-          return GeneratorList  
+        return GeneratorList  
           
-     def GetGenerator(self, iGen):
-          Generator = None 
+    def GetGenerator(self, iGen):
+        Generator = None 
           
-          if len(self.GeneratorList) > 0:
-               for gen in self.GeneratorList :
-                    if gen[1].ID == iGen:
-                         Generator = gen[1]
-                         break
+        if len(self.GeneratorList) > 0:
+            for gen in self.GeneratorList :
+                if gen[1].ID == iGen:
+                        Generator = gen[1]
+                        break
                          
-          return Generator
+        return Generator
           

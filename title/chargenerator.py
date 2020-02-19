@@ -33,7 +33,8 @@ class FemaleChar(Character):
                             bAllowTrope = True, 
                             bAllowRelate = False, 
                             bAllowTitle = True,
-                            SelectTemplateID = 0):
+                            SelectTemplateID = 0,
+                            MaxChars = 9999):
           super().__init__()
           if NotList is None:
                NotList = []
@@ -144,7 +145,8 @@ class LesbianChar(Character):
                             bAllowTrope = True, 
                             bAllowRelate = False, 
                             bAllowTitle = True,
-                            SelectTemplateID = 0):
+                            SelectTemplateID = 0,
+                            MaxChars = 9999):
           super().__init__()
 
           if NotList is None:
@@ -233,7 +235,8 @@ class MaleChar(Character):
                             bAllowTrope = True, 
                             bAllowRelate = False,
                             bAllowTitle = True,
-                            SelectTemplateID = 0):
+                            SelectTemplateID = 0,
+                            MaxChars = 9999):
           super().__init__()
                
           bShowGangChar = self.ShowGangChar(bAllowGang)
@@ -326,7 +329,8 @@ class StraightMaleChar(Character):
                             bAllowTrope = True, 
                             bAllowRelate = False,
                             bAllowTitle = True,
-                            SelectTemplateID = 0):
+                            SelectTemplateID = 0,
+                            MaxChars = 9999):
           super().__init__()
           #print("CharGenerator.MaleChar() started")
           if NotList is None:
@@ -432,7 +436,8 @@ class GangMaleChar(Character):
                             bAllowNation = True, 
                             bAllowProf = True, 
                             bAllowSpecies = True,
-                            SelectTemplateID = 0):
+                            SelectTemplateID = 0,
+                            MaxChars = 9999):
           super().__init__()
 
           if NotList is None:
@@ -508,7 +513,8 @@ class GayMaleChar(Character):
                             bAllowProf = True, 
                             bAllowTitle = False,
                             bAllowSpecies = True,
-                            SelectTemplateID = 0):
+                            SelectTemplateID = 0,
+                            MaxChars = 9999):
           super().__init__()
 
           if NotList is None:
