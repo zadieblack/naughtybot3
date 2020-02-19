@@ -86,7 +86,7 @@ class TitleTemplate1(TitleTemplate):
         self.AddLine(OrderNum = 1,
                      FontName = "Walpurgis Night.otf",
                      FontMaxSize = 22,
-                     MaxHeight = 115,
+                     MaxHeight = 109,
                      MaxRows = 1,
                      yOffset = 204,
                      ColorType = LineColorType.MainTitle)

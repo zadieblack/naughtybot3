@@ -65,6 +65,11 @@ class Generator():
 
         self.Template = None
 
+    def Generate(self):
+        sTweet = self.GenerateTweet()
+        self.ImgTxt = sTweet
+        self.SetImgText(sTweet)
+
     def GenerateTweet(self):
         self.VerbsBy = misc.BookVerbsBy()
         self.VerbsTo = misc.BookVerbsTo()
@@ -117,8 +122,7 @@ def GetTweet(bTest, bTweet, iGeneratorNo = 0, bAllowPromo = True, Type = None, T
             while bTweet and not TweetHistoryQ.PushToHistoryQ(Gen.ID):
                 Gen = GetTweetGenerator(bTest, iGeneratorNo, bAllowPromo = bAllowPromo)
      
-        sTweet = Gen.GenerateTweet()
-        Gen.ImgTxt = sTweet
+        Gen.Generate()
 
     return Gen
      
@@ -182,7 +186,7 @@ class Generator1(Generator):
           
           sTweet = self.VerbsBy.GetWord() + "\nBy The\n" + Master.Desc
           
-          self.SetImgText(sTweet)
+          #self.SetImgText(sTweet)
 
           return sTweet
           
@@ -223,7 +227,7 @@ class Generator3(Generator):
                
           sTweet = self.VerbsTo.GetWord() + "\nTo " + Master.Desc
 
-          self.SetImgText(sTweet)
+          #self.SetImgText(sTweet)
 
           return sTweet
 

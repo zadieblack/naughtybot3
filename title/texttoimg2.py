@@ -27,7 +27,7 @@ def GetTextLineSize(font, sLine):
     width, height = font.getsize(sLine)
     off_width, off_height = font.getoffset(sLine)
 
-    width = width - off_width 
+    width = width + off_width 
     height = height - off_height
 
     return width, height
@@ -177,6 +177,9 @@ def DrawTextBox(sText, FontName, FontMaxSize, MaxRows, BoxWidth, BoxHeight, Colo
             height = height / 2
         else:
             width, height = GetTextLineSize(TextBlock.Font, line)
+            # for some reason Pillow will not start drawing the text at (0,0).
+            # you must specify (0, 0 - offset).
+            y_text = y_text - TextBlock.Font.getoffset(line)[1]
 
             draw.text(
                       ((offset_width - width)/2, y_text), 
@@ -184,15 +187,14 @@ def DrawTextBox(sText, FontName, FontMaxSize, MaxRows, BoxWidth, BoxHeight, Colo
                       font = TextBlock.Font, 
                       fill = Color)
                       #features=['-vkrn'])
-        #draw.rectangle([((offset_width - width)/2, y_text), (width, height)], outline ="red", width = 5)
-        draw.line([((offset_width - width)/2, y_text),((offset_width - width)/2,height)], fill = "red", width = 5)
+        
+        #draw.line([((offset_width - width)/2, y_text),((offset_width - width)/2,height)], fill = "red", width = 5)
         #print("iTestCnt = " + str(iTestCnt) + ", line [" + line + "]")
-        y_text = y_text + height + int(round(height/5))
+        y_text = y_text + height + int(round(height/2))
         #iTestCnt = iTestCnt + 1
-   
+
+    #draw.rectangle([(0, 0), (ImgTxt.width, ImgTxt.height)], outline ="blue", width = 2)
     #draw2 = ImageDraw.Draw(ImgTxt)  
-    #draw.rectangle([(0, 0), (ImgTxt.width, ImgTxt.height)], outline ="red")
-        #ImgTxt
 
     return ImgTxt
      
@@ -229,7 +231,10 @@ def PositionBoxesVertically(BGImg,
     if iTotalBoxHeight < ImgTitleBoxHeight:
         #calculate # of vert spaces needed (# boxes - 1)
         #divide up remaining vert space between boxes
-        yLineSpace = int((ImgTitleBoxHeight - iTotalBoxHeight)/(len(Boxes)))
+        if len(Boxes) > 0:
+            yLineSpace = int((ImgTitleBoxHeight - iTotalBoxHeight)/(len(Boxes)))
+        else:
+            yLineSpace = 0
     else:
         yLineSpace = 12
 
@@ -277,7 +282,7 @@ def CreateImg(ImgTxtGen):
     # slightly off-center as well. just add this when specifying the
     # coordinates of the text bounding box.
 
-    width_offset = 12
+    width_offset = 0
 
     if isinstance(ImgTxtGen, Generator):
         # calculate text size score
@@ -289,18 +294,17 @@ def CreateImg(ImgTxtGen):
         ImgBase = GetBGImg(BGProfile)
 
         # draw author name
-        color = 'rgba(0, 0, 0, 255)' # color should eventually come from template
-        
         ImgAuthorNameTxt = DrawTextBox(ImgTxtGen.AuthorName,
                                        FontName = AuthorTemplate.FontName,
                                        FontMaxSize = AuthorTemplate.FontMaxSize,
                                        MaxRows = AuthorTemplate.MaxRows,
-                                       BoxWidth = 872,  
+                                       BoxWidth = MAXWIDTH,  
                                        BoxHeight = AuthorTemplate.MaxHeight, 
                                        Color = BGProfile.AuthorNameColor)
         
         TitleBoxes = []
 
+        #draw title lines
         for line in ImgTxtGen.Template.Lines:
             if not line is None and len(line.LineText) > 0:
                 # draw title
@@ -342,8 +346,7 @@ def CreateImg(ImgTxtGen):
         #ImgBase.paste(ImgTxt, (54 + width_offset, 234), mask = ImgTxt)
 
         # combine the author name and base images
-        # ImgBase.paste(ImgAuthorNameTxt, (XOFFSET + width_offset, 540), mask = ImgAuthorNameTxt)
-        ImgBase.alpha_composite(ImgAuthorNameTxt, (XOFFSET + width_offset, 540))
+        ImgBase.alpha_composite(ImgAuthorNameTxt, (XOFFSET + width_offset, 560))
 
         # save the edited image
         RGBImgOut = ImgBase.convert('RGB')

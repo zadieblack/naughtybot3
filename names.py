@@ -1119,7 +1119,8 @@ class InnNameGen2(InnNameGenerator):
                                               InnLastName(['Fokker','Focker']),
                                               InnLastName(['Humper']),
                                               InnLastName(['Jakov','Jackov']),
-                                              InnLastName(['Liquor','Lickor']),
+                                              InnLastName(['Liquor','Licker','Likker'
+                                                           ]),
                                               InnLastName(['Gaper']),
                                               InnLastName(['Mounter']),
                                               InnLastName(['Philmore']),
@@ -1411,7 +1412,7 @@ class InnNameGen6(InnNameGenerator):
                                               InnLastName(['Ho']),
                                               InnLastName(['Hoar']),
                                               InnLastName(['Jackov','Jakov']),
-                                              InnLastName(['Liquor']),
+                                              InnLastName(['Liquor','Likker','Licker']),
                                               InnLastName(['Mann','Mannlova'])
                                              ])
                                              
