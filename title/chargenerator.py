@@ -87,7 +87,8 @@ class FemaleChar(Character):
                                bAddAnArticle = bAddAnArticle,
                                sPosArticle = sPosArticle,
                                bSplitArticle = bSplitArticle,
-                               SelectTemplateID = SelectTemplateID)
+                               SelectTemplateID = SelectTemplateID,
+                               MaxChars = MaxChars)
           
      def BuildTemplateList(self, bAllowTrope, bAllowSpecies):
           TemplateList = []
@@ -200,7 +201,8 @@ class LesbianChar(Character):
                                bAddAnArticle = bAddAnArticle,
                                sPosArticle = sPosArticle,
                                bSplitArticle = bSplitArticle,
-                               SelectTemplateID = SelectTemplateID)
+                               SelectTemplateID = SelectTemplateID,
+                               MaxChars = MaxChars)
           
      def BuildTemplateList(self):
           TemplateList = []
@@ -252,7 +254,8 @@ class MaleChar(Character):
                                                    bAllowDickChar = bAllowDickChar, bAllowGenMod = bAllowGenMod,
                                                    bAllowTypeMod = bAllowTypeMod,bAllowClothing = bAllowClothing,
                                                    bAllowNation = bAllowNation, bAllowProf = bAllowProf, 
-                                                   bAllowSpecies = bAllowSpecies, SelectTemplateID = SelectTemplateID) 
+                                                   bAllowSpecies = bAllowSpecies, SelectTemplateID = SelectTemplateID,
+                                                   MaxChars = MaxChars) 
           elif (MaleCharType == MaleCharType.Straight and bShowGangChar and bAddTheArticle) or MaleCharType == MaleCharType.GangAny:
           # show any gang character 
                Char = GangMaleChar(TempType = TempType, MaleCharType = MaleCharType.GangAny,
@@ -264,7 +267,8 @@ class MaleChar(Character):
                                                    bAllowDickChar = bAllowDickChar, bAllowGenMod = bAllowGenMod,
                                                    bAllowTypeMod = bAllowTypeMod,bAllowClothing = bAllowClothing,
                                                    bAllowNation = bAllowNation, bAllowProf = bAllowProf, 
-                                                   bAllowSpecies = bAllowSpecies, SelectTemplateID = SelectTemplateID) 
+                                                   bAllowSpecies = bAllowSpecies, SelectTemplateID = SelectTemplateID,
+                                                   MaxChars = MaxChars) 
           elif MaleCharType == MaleCharType.GangSingular or MaleCharType == MaleCharType.GangPlural:
           # show gang character depending on parameter passed in
                Char = GangMaleChar(TempType = TempType, MaleCharType = MaleCharType, 
@@ -276,7 +280,8 @@ class MaleChar(Character):
                                                    bAllowDickChar = bAllowDickChar, bAllowGenMod = bAllowGenMod,
                                                    bAllowTypeMod = bAllowTypeMod,bAllowClothing = bAllowClothing,
                                                    bAllowNation = bAllowNation, bAllowProf = bAllowProf, 
-                                                   bAllowSpecies = bAllowSpecies, SelectTemplateID = SelectTemplateID) 
+                                                   bAllowSpecies = bAllowSpecies, SelectTemplateID = SelectTemplateID,
+                                                   MaxChars = MaxChars) 
           else:
           # show a normal straight character
                Char = StraightMaleChar(TempType = TempType, NotList = NotList, bAddTheArticle = bAddTheArticle,
@@ -291,7 +296,8 @@ class MaleChar(Character):
                                                    bAllowNation = bAllowNation, bAllowProf = bAllowProf, 
                                                    bAllowSpecies = bAllowSpecies, bAllowTrope = bAllowTrope, 
                                                    bAllowRelate = bAllowRelate,bAllowTitle = bAllowTitle,
-                                                   SelectTemplateID = SelectTemplateID) 
+                                                   SelectTemplateID = SelectTemplateID,
+                                                   MaxChars = MaxChars) 
      
           
           self.Desc = Char.Desc
@@ -388,7 +394,8 @@ class StraightMaleChar(Character):
                                bAddAnArticle = bAddAnArticle,
                                sPosArticle = sPosArticle,
                                bSplitArticle = bSplitArticle,
-                               SelectTemplateID = SelectTemplateID)
+                               SelectTemplateID = SelectTemplateID,
+                               MaxChars = MaxChars)
 
      def BuildTemplateList(self, bAllowTrope, bAllowSpecies):
           TemplateList = []
@@ -481,7 +488,8 @@ class GangMaleChar(Character):
                                bAddAnArticle = bAddAnArticle,
                                sPosArticle = sPosArticle,
                                bSplitArticle = bSplitArticle,
-                               SelectTemplateID = SelectTemplateID)
+                               SelectTemplateID = SelectTemplateID,
+                               MaxChars = MaxChars)
 
      def BuildTemplateList(self, malechartype):
           TemplateList = []
@@ -560,7 +568,8 @@ class GayMaleChar(Character):
                                bAddAnArticle = bAddAnArticle,
                                sPosArticle = sPosArticle,
                                bSplitArticle = bSplitArticle,
-                               SelectTemplateID = SelectTemplateID)
+                               SelectTemplateID = SelectTemplateID,
+                               MaxChars = MaxChars)
 
      def BuildTemplateList(self, malechartype):
           TemplateList = []

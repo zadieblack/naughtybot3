@@ -45,7 +45,7 @@ def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorN
                                                TweetTxtHistoryQ = titutil.TweetTxtHistoryQ, 
                                                sAuthorName = ImgTxtGen.AuthorName, 
                                                AuthorGender = ImgTxtGen.AuthorGender)
-                    #ImgTxtGen.SetImgText("Captured\nby the\nStudly Norwegian Cattle-Wrangler Hipster")
+                    #ImgTxtGen.SetImgText("Hunted for Food\nby the\nWanton Sex God")
                     ImgTxtGen.TweetTxt = TweetTxtGen.TweetTxt()
 
                     print("\n===Here is your " + str(len(ImgTxtGen.ImgTxt)) + " char tweet (" + str(i + 1) + " of " + str(iTweets) + ")===")

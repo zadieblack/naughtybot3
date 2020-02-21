@@ -18,6 +18,10 @@ LOWERTITLETEXTBOUND = 527
 HHMAXHEIGHT = 305
 MAXWIDTH = 900
 XOFFSET = int(round((971 - MAXWIDTH) / 2))
+VERT_SEP_PROP = 2                           # proportion of text height to use as 
+                                            # separator between two lines of the 
+                                            # the same type
+                            
 
 BGImgQ = HistoryQ(iQSize = 5)
 
@@ -147,7 +151,18 @@ class BlockOfText():
             self.Lines = WrapText(self.Text, self.Font, self.BoundingBoxWidth)
             self.TotLineHeight = self.CalcTotLineHeight()
 
-def DrawTextBox(sText, FontName, FontMaxSize, MaxRows, BoxWidth, BoxHeight, Color):
+def CalcBoxHeight(sFontName, iMaxFontSize, iMaxRows):
+    iBoxHeight = 0
+
+    Font = ImageFont.truetype(PATH + sFontName, size = iMaxFontSize, index = 0)
+    iLineHeight = GetTextLineSize(Font,"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")[1]
+
+    iBoxHeight = (iLineHeight * iMaxRows) + (int(round(iLineHeight/VERT_SEP_PROP)) * (iMaxRows - 1))
+
+    return iBoxHeight 
+
+
+def DrawTextBox(sText, FontName, FontMaxSize, MaxRows, Color):
     # adjust point size for pixel density
     iAdjFontMaxSize = int(round(FontMaxSize * RESOLUTION, 0))
 
@@ -155,9 +170,9 @@ def DrawTextBox(sText, FontName, FontMaxSize, MaxRows, BoxWidth, BoxHeight, Colo
     xOffset = 0     #.027
     yOffset = 0     #.027
      
-    # set width and height of the bounding text box
-    offset_width = round(BoxWidth - (BoxWidth * xOffset * 2), 0)
-    offset_height = round(BoxHeight - (BoxHeight * yOffset * 2), 0)
+    # calculate width and height of the bounding text box
+    offset_width = round(MAXWIDTH - (MAXWIDTH * xOffset * 2), 0)
+    offset_height = CalcBoxHeight(FontName, iAdjFontMaxSize, MaxRows)
 
     TextBlock = BlockOfText(sText, 
                             FontName, 
@@ -168,9 +183,11 @@ def DrawTextBox(sText, FontName, FontMaxSize, MaxRows, BoxWidth, BoxHeight, Colo
     ImgTxt = Image.new('RGBA', (offset_width, offset_height), (0, 0, 0, 0))
     draw = ImageDraw.Draw(ImgTxt)
              
-    iTestCnt = 1 # debug only, delete later
     y_text = 0
-    for line in TextBlock.Lines:
+    iCount = 0 
+    while iCount < len(TextBlock.Lines):
+        line = TextBlock.Lines[iCount]
+
         width, height = (0, 0)
         if line.isspace() or line == "":
             width, height = GetTextLineSize(TextBlock.Font, "a")
@@ -178,21 +195,26 @@ def DrawTextBox(sText, FontName, FontMaxSize, MaxRows, BoxWidth, BoxHeight, Colo
         else:
             width, height = GetTextLineSize(TextBlock.Font, line)
             # for some reason Pillow will not start drawing the text at (0,0).
-            # you must specify (0, 0 - offset).
-            y_text = y_text - TextBlock.Font.getoffset(line)[1]
+            # you must specify (0, 0 - offset). (does this need to happen every time??)
+            #y_text = y_text - TextBlock.Font.getoffset(line)[1]
 
             draw.text(
                       ((offset_width - width)/2, y_text), 
                       line, 
                       font = TextBlock.Font, 
                       fill = Color)
-                      #features=['-vkrn'])
+                      #features=['-vkrn']) # <-- needs libraqm library? 
         
-        #draw.line([((offset_width - width)/2, y_text),((offset_width - width)/2,height)], fill = "red", width = 5)
-        #print("iTestCnt = " + str(iTestCnt) + ", line [" + line + "]")
-        y_text = y_text + height + int(round(height/2))
-        #iTestCnt = iTestCnt + 1
+        y_text = y_text + height + TextBlock.Font.getoffset(line)[1]
+        if iCount < len(TextBlock.Lines) - 1:
+            y_text = y_text + int(round(height/VERT_SEP_PROP)) 
 
+        iCount = iCount + 1
+        #draw.line([((offset_width - width)/2, y_text),((offset_width - width)/2,height)], fill = "red", width = 5)
+        
+
+    #y_text = y_text + height + int(round(height/2)) - TextBlock.Font.getoffset(line)[1]
+    ImgTxt.crop((0, 0, offset_width, y_text))
     #draw.rectangle([(0, 0), (ImgTxt.width, ImgTxt.height)], outline ="blue", width = 2)
     #draw2 = ImageDraw.Draw(ImgTxt)  
 
@@ -298,8 +320,6 @@ def CreateImg(ImgTxtGen):
                                        FontName = AuthorTemplate.FontName,
                                        FontMaxSize = AuthorTemplate.FontMaxSize,
                                        MaxRows = AuthorTemplate.MaxRows,
-                                       BoxWidth = MAXWIDTH,  
-                                       BoxHeight = AuthorTemplate.MaxHeight, 
                                        Color = BGProfile.AuthorNameColor)
         
         TitleBoxes = []
@@ -322,9 +342,7 @@ def CreateImg(ImgTxtGen):
                 ImgTxt = DrawTextBox(line.LineText,
                                     FontName = line.FontName,
                                     FontMaxSize = line.FontMaxSize,
-                                    MaxRows = line.MaxRows,
-                                    BoxWidth = MAXWIDTH,  
-                                    BoxHeight = line.MaxHeight,                                          
+                                    MaxRows = line.MaxRows,                                       
                                     Color = Color)
 
             # check to see if the textbox is extra tall, requiring us to switch to the
@@ -339,8 +357,6 @@ def CreateImg(ImgTxtGen):
         # combine the title text and base images
         ImgBase = PositionBoxesVertically(BGImg = ImgBase,
                                           Boxes = TitleBoxes,
-                                          ImgTitleBoxHeight = 326,
-                                          ImgTitleBoxWidth = MAXWIDTH,
                                           yOffset = 206,
                                           xOffset = XOFFSET + width_offset)
         #ImgBase.paste(ImgTxt, (54 + width_offset, 234), mask = ImgTxt)

@@ -178,7 +178,7 @@ class TitleTemplate3(TitleTemplate):
                      FontName = "MutterKrauseNormal.ttf",
                      FontMaxSize = 14,
                      MaxHeight = 50,
-                     MaxRows = 1,
+                     MaxRows = 2,
                      yOffset = 260,
                      ColorType = LineColorType.SecondTitle)
 
