@@ -45,7 +45,7 @@ class BGImageHH:
         self.Image = GetBGImg(BGProfile.FileName + "_hh.png")
 
 class BGImagePH:
-    TitleBoxTop_yOffset = 119
+    TitleBoxTop_yOffset = 128
     TitleBoxBottom_yOffset = 523
     FileSuffix = "hh"
 
@@ -217,7 +217,7 @@ class TitleSection:
         
             y_text = y_text + height
             if iCount < len(TextBlock.Lines) - 1:
-                y_text = y_text + self.LineSpacer_yOffset 
+                y_text = y_text + int(self.LineSpacer_yOffset * .5)
 
             iCount = iCount + 1
         
@@ -250,6 +250,13 @@ def CalcTotalBoxHeight(boxes):
 
     return iTotalBoxHeight
 
+def CalcSpaceHeight(iMaxHeight, boxes):
+    iSpaceHeight = 0
+    
+    iSpaceHeight = int((iMaxHeight - CalcTotalBoxHeight(boxes))/(len(boxes)))
+
+    return iSpaceHeight
+
 def PositionBoxesVertically(BGProfile,
                             Boxes = [], 
                             ImgTitleBoxHeight = 0, 
@@ -260,6 +267,8 @@ def PositionBoxesVertically(BGProfile,
     iTotalBoxHeight = 0
     yLineSpace = 0
 
+    MINSPACERHEIGHT = 13
+
     if len(Boxes) > 0:
     # 1. Attempt to fit title sections at max font sizes 
 
@@ -267,28 +276,28 @@ def PositionBoxesVertically(BGProfile,
     #    .5 and try again.
 
         iTotalBoxHeight = CalcTotalBoxHeight(Boxes)
-        if iTotalBoxHeight > bg.MaxHeight:
+        if iTotalBoxHeight > bg.MaxHeight or CalcSpaceHeight(bg.MaxHeight, Boxes) < MINSPACERHEIGHT:
             for box in Boxes:
                 box.ShrinkText(.5)
-            iTotalBoxHeight = CalcTotalBoxHeight(Boxes)
-    
+            iTotalBoxHeight = CalcTotalBoxHeight(Boxes)  
+
     # 3. If title sections don't fit, use plain header background 
     #    and try again.
-        if iTotalBoxHeight > bg.MaxHeight:
-            bg = BGImagePH(BGProfile)
-            yOffset = bg.TitleBoxTop_yOffset
-            iTotalBoxHeight = CalcTotalBoxHeight(Boxes)
+            if iTotalBoxHeight > bg.MaxHeight or CalcSpaceHeight(bg.MaxHeight, Boxes) < MINSPACERHEIGHT:
+                bg = BGImagePH(BGProfile)
+                yOffset = bg.TitleBoxTop_yOffset
+                iTotalBoxHeight = CalcTotalBoxHeight(Boxes)
 
     # 4. If title sections still don't fit, keep shrinking fonts 
     #    proportionately until they do.
-        if iTotalBoxHeight > bg.MaxHeight:
-            while iTotalBoxHeight > bg.MaxHeight:
-                for box in Boxes:
-                    box.ShrinkText(.5)  
-                iTotalBoxHeight = CalcTotalBoxHeight(Boxes)
+                if iTotalBoxHeight > bg.MaxHeight:
+                    while iTotalBoxHeight > bg.MaxHeight:
+                        for box in Boxes:
+                            box.ShrinkText(.5)  
+                        iTotalBoxHeight = CalcTotalBoxHeight(Boxes)
 
     #divide up remaining vert space between boxes
-    yLineSpace = int((bg.MaxHeight - iTotalBoxHeight)/(len(Boxes)))
+    yLineSpace = CalcSpaceHeight(bg.MaxHeight, Boxes)
 
     # draw the text boxes
     BGImg = bg.Image
