@@ -36,7 +36,7 @@ def GetBGImg(sFileName):
     return BGImg
 
 class BGImageHH:
-    TitleBoxTop_yOffset = 201
+    TitleBoxTop_yOffset = 207
     TitleBoxBottom_yOffset = 523
     FileSuffix = "hh"
 
