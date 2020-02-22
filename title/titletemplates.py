@@ -40,8 +40,10 @@ class TitleTemplate():
     def AddLine(self, OrderNum, FontName, FontMaxSize, MaxHeight, MaxRows, yOffset, ColorType,AllCaps = False):
         self.Lines.append(TitleLine(OrderNum,FontName,FontMaxSize,MaxHeight,MaxRows,yOffset,ColorType,AllCaps = AllCaps))
     
-    def AddLineText(self, stxt):
-        TxtLines = stxt.split("\n")
+    def AddLineText(self, stxt = ""):
+        TxtLines = []
+        if len(stxt) > 0:
+            TxtLines = stxt.split("\n")
 
         i = 0
         while i < len(TxtLines) and i < len(self.Lines):
@@ -52,8 +54,9 @@ class TitleTemplate():
             i = i + 1
 
     def ClearLineText(self):
-        for line in self.Lines:
-            line.LineText = ""
+        if len(self.Lines) > 0:
+            for line in self.Lines:
+                line.LineText = ""
 
 class TitleTemplateHHDefault(TitleTemplate):
     def __init__(self):
@@ -77,11 +80,11 @@ class TitleTemplatePHDefault(TitleTemplate):
                                MaxHeight = 392))
 
 # SHORT TOP LINE
-# transition
+# of a
 # LONG TWO-ROW BOTTOM LINE
 class TitleTemplate1(TitleTemplate):
     def __init__(self):
-        super().__init__(ID = 0)
+        super().__init__(ID = 1)
 
         self.AddLine(OrderNum = 1,
                      FontName = "Walpurgis Night.otf",
@@ -109,12 +112,12 @@ class TitleTemplate1(TitleTemplate):
                      AllCaps = True)
 
 # MEDIUM TOP LINE
-# trans
+# of a
 # MEDIUM BOTTOM LINE
 # possible subtitle
 class TitleTemplate2(TitleTemplate):
     def __init__(self):
-        super().__init__(ID = 0)
+        super().__init__(ID = 2)
 
         self.AddLine(OrderNum = 1,
                      FontName = "Verona-ExtraBold.otf",
@@ -156,7 +159,7 @@ class TitleTemplate2(TitleTemplate):
 # CUNNING STUNT
 class TitleTemplate3(TitleTemplate):
     def __init__(self):
-        super().__init__(ID = 0)
+        super().__init__(ID = 3)
 
         self.AddLine(OrderNum = 1,
                      FontName = "Verona-ExtraBold.otf",
@@ -205,7 +208,7 @@ class TitleTemplate3(TitleTemplate):
 # Small Bottom Line
 class TitleTemplate4(TitleTemplate):
     def __init__(self):
-        super().__init__(ID = 0)
+        super().__init__(ID = 4)
 
         self.AddLine(OrderNum = 1,
                      FontName = "Adorable MLSJN.ttf",
@@ -231,3 +234,78 @@ class TitleTemplate4(TitleTemplate):
                      MaxRows = 1,
                      yOffset = 410,
                      ColorType = LineColorType.MainTitle)
+
+# ** Medieval **
+# SHORT TOP LINE
+# transition
+# SHORT BOTTOM LINE
+class TitleTemplate5(TitleTemplate):
+    def __init__(self):
+        super().__init__(ID = 5)
+
+        self.AddLine(OrderNum = 1,
+                     FontName = "CELTG__.ttf",
+                     FontMaxSize = 24,
+                     MaxHeight = 109,
+                     MaxRows = 1,
+                     yOffset = 204,
+                     ColorType = LineColorType.MainTitle,
+                     AllCaps = True)
+
+        self.AddLine(OrderNum = 2,
+                     FontName = "Cry.ttf",
+                     FontMaxSize = 17,
+                     MaxHeight = 58,
+                     MaxRows = 1,
+                     yOffset = 342,
+                     ColorType = LineColorType.SmallText)
+
+        self.AddLine(OrderNum = 3,
+                     FontName = "OLDENGL.ttf",
+                     FontMaxSize = 24,
+                     MaxHeight = 115,
+                     MaxRows = 1,
+                     yOffset = 410,
+                     ColorType = LineColorType.SecondTitle)
+
+# SHORT TOP LINE
+# MEDIUM LINE
+# by the
+# LONG TWO-ROW BOTTOM LINE
+class TitleTemplate6(TitleTemplate):
+    def __init__(self):
+        super().__init__(ID = 6)
+
+        self.AddLine(OrderNum = 1,
+                     FontName = "Walpurgis Night.otf",
+                     FontMaxSize = 30,
+                     MaxHeight = 109,
+                     MaxRows = 1,
+                     yOffset = 204,
+                     ColorType = LineColorType.MainTitle)
+
+        self.AddLine(OrderNum = 2,
+                     FontName = "MutterKrauseNormal.ttf",
+                     FontMaxSize = 12,
+                     MaxHeight = 58,
+                     MaxRows = 1,
+                     yOffset = 342,
+                     ColorType = LineColorType.SmallText,
+                     AllCaps = True)
+
+        #self.AddLine(OrderNum = 3,
+        #             FontName = "Amaze.ttf",
+        #             FontMaxSize = 12,
+        #             MaxHeight = 58,
+        #             MaxRows = 1,
+        #             yOffset = 342,
+        #             ColorType = LineColorType.SmallText)
+
+        self.AddLine(OrderNum = 3,
+                     FontName = "PerpetuaStd.otf",
+                     FontMaxSize = 16,
+                     MaxHeight = 115,
+                     MaxRows = 2,
+                     yOffset = 410,
+                     ColorType = LineColorType.SecondTitle,
+                     AllCaps = True)

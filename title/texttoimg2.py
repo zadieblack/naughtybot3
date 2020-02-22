@@ -36,7 +36,7 @@ def GetBGImg(sFileName):
     return BGImg
 
 class BGImageHH:
-    TitleBoxTop_yOffset = 207
+    TitleBoxTop_yOffset = 215
     TitleBoxBottom_yOffset = 523
     FileSuffix = "hh"
 
@@ -231,16 +231,26 @@ class TitleSection:
         self.Image = self.DrawTextBox()
 
     def ShrinkText(self, iStep, iLineSpace = 0):
+        bSuccess = False 
+
         self.LineSpacer_yOffset = iLineSpace
         if self.FontSize - iStep > 0:
             self.FontSize = self.FontSize - iStep 
             self.Image = self.DrawTextBox()
+            bSuccess = True
+
+        return bSuccess
 
     def GrowText(self, iStep, iLineSpace = 0):
+        bSuccess = False 
+
         self.LineSpacer_yOffset = iLineSpace
         if self.FontSize + iStep < 1000:
             self.FontSize = self.FontSize + iStep 
             self.Image = self.DrawTextBox()
+            bSuccess = True 
+
+        return bSuccess
 
 def CalcTotalBoxHeight(boxes):
     iTotalBoxHeight = 0
@@ -259,11 +269,9 @@ def CalcSpaceHeight(iMaxHeight, boxes):
 
 def PositionBoxesVertically(BGProfile,
                             Boxes = [], 
-                            ImgTitleBoxHeight = 0, 
-                            ImgTitleBoxWidth = 0):
+                            xOffset = 0):
     bg = BGImageHH(BGProfile)
     yOffset = bg.TitleBoxTop_yOffset
-    xOffset = XOFFSET
     iTotalBoxHeight = 0
     yLineSpace = 0
 
@@ -291,10 +299,13 @@ def PositionBoxesVertically(BGProfile,
     # 4. If title sections still don't fit, keep shrinking fonts 
     #    proportionately until they do.
                 if iTotalBoxHeight > bg.MaxHeight:
-                    while iTotalBoxHeight > bg.MaxHeight:
+                    bBreak = False 
+                    while iTotalBoxHeight > bg.MaxHeight or bBreak:
                         for box in Boxes:
-                            box.ShrinkText(.5)  
+                            if not box.ShrinkText(.5):
+                                bBreak = True
                         iTotalBoxHeight = CalcTotalBoxHeight(Boxes)
+
 
     #divide up remaining vert space between boxes
     yLineSpace = CalcSpaceHeight(bg.MaxHeight, Boxes)
@@ -304,7 +315,7 @@ def PositionBoxesVertically(BGProfile,
     iyOffsetLine = bg.TitleBoxTop_yOffset
     for box in Boxes:
         box.DrawText(iLineSpace = yLineSpace)
-        BGImg.alpha_composite(box.Image, (XOFFSET, iyOffsetLine))
+        BGImg.alpha_composite(box.Image, (xOffset, iyOffsetLine))
         iyOffsetLine = iyOffsetLine + box.Image.height + yLineSpace
 
     return BGImg
@@ -340,7 +351,7 @@ def CreateImg(ImgTxtGen):
     sFileName = ""
 
     # use to off-center horizontally.
-    width_offset = 0
+    width_offset = 27
 
     if isinstance(ImgTxtGen, Generator):
         # calculate text size score
@@ -387,7 +398,8 @@ def CreateImg(ImgTxtGen):
 
         # get bg image and combine with text boxes
         ImgBase = PositionBoxesVertically(BGProfile = BGProfile,
-                                          Boxes = TitleBoxes)
+                                          Boxes = TitleBoxes,
+                                          xOffset = XOFFSET + width_offset)
 
         # combine the author name and base images
         ImgBase.alpha_composite(AuthorNameSection.Image, (XOFFSET + width_offset, 560))

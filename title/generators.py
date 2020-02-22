@@ -79,12 +79,13 @@ class Generator():
         self.HisName = NamesMale().FirstName()
         self.SubtitleCoda = titmisc.SubtitleCoda()
 
-    def SetImgText(self,stxt):
+    def SetImgText(self,stxt = ""):
         if self.Template is None:
-            self.Template = templates.TitleTemplateHHDefault
+            self.Template = templates.TitleTemplateHHDefault()
 
-        self.Template.ClearLineText()
-        self.Template.AddLineText(stxt)
+        if not stxt is None:
+            self.Template.ClearLineText()
+            self.Template.AddLineText(stxt)
 
 def GetTweetGenerator(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = None):
      gen = None
@@ -3470,10 +3471,11 @@ class Generator100(Generator):
 # for the 
 # Jiggling Farmer's Daughter     
 class Generator102(Generator):
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 102, Priority = 1)
+         self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -3535,10 +3537,11 @@ class Generator103(Generator):
 # Claimed on the Coffee Table
 # by a Burly Centaur Sailor
 class Generator104(Generator):
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 104, Priority = 1)
+         self.Template = templates.TitleTemplate6()
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -3553,9 +3556,10 @@ class Generator104(Generator):
                                     'On a Treadmill','On a Trampoline','In a Kiddie Pool','On a See-Saw',
                                     'On the Dining Room Table','On an Ikea Futon'])
           ManNotList = ['Single']
-          Man = char.MaleChar(bAddAnArticle = True, bAllowGang = False, bAllowTitle = False)
+          Man = char.MaleChar(bAddAnArticle = True, bAllowGang = False, 
+                              bAllowTitle = False, MaxChars = 32)
           
-          sTweet = Verbs.GetWord() + " " + Location.GetWord() + "\nby " + Man.Desc
+          sTweet = Verbs.GetWord() + "\n" + Location.GetWord() + "\nby " + Man.Desc
 
           return sTweet     
 
@@ -3663,10 +3667,11 @@ class Generator106(Generator):
           
 # Claimed at Castle Tittyfuck
 class Generator107(Generator):
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 107, Priority = 1)
+         self.Template = templates.TitleTemplate5()
      
      def WordCombiner(self, sFirstWord, sSecWord):
           sCombined = ""
@@ -3695,12 +3700,12 @@ class Generator107(Generator):
           super().GenerateTweet()
           sTweet = ""
           
-          Prefix = WordList(["Claimed at", "Enslaved at", "Taken at", "Imprisoned at", "Claimed at","The Dungeons of",
-                                   "The Halls of","The Prisoner of","The Princess of","The Master of","The Baron of",
-                                   "Deflowered at","Despoiled at","Ravished at","Seduced at","The Knight of",
-                                   "The Lady of","The Virgins of","The Baroness of","The Dutchess of",
-                                   "Naked at","The Harem Girls of","The Maidens of","The Queen of",
-                                   "The Mistress of","The Wizard of","Betrayed at"])
+          Prefix = WordList(["Claimed\nat", "Enslaved\nat", "Taken\nat", "Imprisoned\nat", "Claimed\nat","The Dungeons\nof",
+                                   "The Halls\nof","The Prisoner\nof","The Princess\nof","The Master\nof","The Baron\nof",
+                                   "Deflowered\nat","Despoiled\nat","Ravished\nat","Seduced\nat","The Knight\nof",
+                                   "The Lady\nof","The Virgins\nof","The Baroness\nof","The Dutchess\nof",
+                                   "Naked\nat","The Harem Girls\nof","The Maidens\nof","The Queen\nof",
+                                   "The Mistress\nof","The Wizard\nof","Betrayed\nat"])
           
           FirstNouns = WordList(["cock","cunt","puss","vaj","slut","twat","spunk","prick","butt","tit",
                                    "squirt","scrotum","taint","bum","face","cunny","labia","bitch","clit","cum",
@@ -3724,7 +3729,7 @@ class Generator107(Generator):
                                    "wank","milk","suck","splooge","bone","slap","thrust","rub","swallow","cuck",
                                    "hump","screw","schtup","bonk","jill","gag","wanna","nut","spank","suck"])
           
-          sTweet = Prefix.GetWord() + " Castle "
+          sTweet = Prefix.GetWord() + "\nCastle "
           
           sWord1 = ""
           sWord2 = ""

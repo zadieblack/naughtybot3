@@ -40,7 +40,7 @@ def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorN
                ImgTxtGen = GetTweet(bTest, bTweet, iGeneratorNo, bAllowPromo = True, TweetHistoryQ = titutil.TweetHistoryQ, bAllowFavTweets = False)
                ImgTxtGen.AuthorName = AuthorBuilder()
                if not ImgTxtGen.ImgTxt is None:
-                    TweetTxtGen = GetTweetText(bTest, 
+                    TweetTxtGen = GetTweetText(bTest = False, 
                                                iGeneratorNo = iGeneratorNo,
                                                TweetTxtHistoryQ = titutil.TweetTxtHistoryQ, 
                                                sAuthorName = ImgTxtGen.AuthorName, 

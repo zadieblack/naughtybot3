@@ -1537,7 +1537,8 @@ def GetTweetText(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = None,
 
         Gen.SetTweetTxt(sText)
      else:
-        Gen = Generator()
+        Gen = TweetTxtGen()
+        #Gen = Generator()
      
      return Gen  
      
