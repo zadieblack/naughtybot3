@@ -25,6 +25,34 @@ VERT_SEP_PROP = 2                           # proportion of text height to use a
 
 BGImgQ = HistoryQ(iQSize = 5)
 
+def GetBGImg(sFileName):
+    BGImg = None 
+
+    try:
+        BGImg = Image.open(PATH + sFileName).convert('RGBA')
+    except IOError as e:
+        print("***ERROR***\nFile save failed in GetBGImg()\n" + e.strerror)
+     
+    return BGImg
+
+class BGImageHH:
+    TitleBoxTop_yOffset = 201
+    TitleBoxBottom_yOffset = 523
+    FileSuffix = "hh"
+
+    def __init__(self, BGProfile):
+        self.MaxHeight = self.TitleBoxBottom_yOffset - self.TitleBoxTop_yOffset
+        self.Image = GetBGImg(BGProfile.FileName + "_hh.png")
+
+class BGImagePH:
+    TitleBoxTop_yOffset = 119
+    TitleBoxBottom_yOffset = 523
+    FileSuffix = "hh"
+
+    def __init__(self, BGProfile):
+        self.MaxHeight = self.TitleBoxBottom_yOffset - self.TitleBoxTop_yOffset
+        self.Image = GetBGImg(BGProfile.FileName + "_ph.png")
+
 def GetTextLineSize(font, sLine):
     width, height = (0,0)
 
@@ -79,37 +107,6 @@ def WrapText(sText, font, max_line_width):
      
      return Lines
 
-# Guesstimate an initial font size based on the # of characters         
-def GuesstimateFontSize(sText, FontMaxSize = 0):
-    iFontSize = 3
-  
-    if FontMaxSize == 0:
-        iTextLen = len(sText)
-        if iTextLen <= 45:
-            iFontSize = 75
-        elif iTextLen <= 60:
-            iFontSize = 68
-        elif iTextLen <= 75:     #(+  45)
-            iFontSize = 60
-        elif iTextLen <= 90:     #(+  70)
-            iFontSize = 55
-        elif iTextLen <= 110:     #(+  80)
-            iFontSize = 50
-        elif iTextLen <= 150:     #(+ 185)
-            iFontSize = 45
-        elif iTextLen <= 250:
-            iFontSize = 40
-        elif iTextLen <= 400:
-            iFontSize = 33
-        elif iTextLen <= 1000:
-            iFontSize = 29
-        else: 
-            iFontSize = 25
-    else:
-        iFontSize = FontMaxSize 
-
-    return iFontSize 
-
 class BlockOfText():
     def __init__(self, sText, sFontName, FontMaxSize, MaxRows, BoundingBoxSize):
         self.Text = sText 
@@ -161,112 +158,145 @@ def CalcBoxHeight(sFontName, iMaxFontSize, iMaxRows):
 
     return iBoxHeight 
 
+class TitleSection:
+    def __init__(self, sText = "", sFontName = "", iFontSize = 10, iMaxRows = 1, Color = (0,0,0,255)):
+        self.Text = sText
+        self.FontName = sFontName
+        self.FontSize = iFontSize
+        self.MaxRows = iMaxRows
+        self.Color = Color
+        self.VertSepProp = 4
+        self.LineSpacer_yOffset = 0
+        self.Image = Image.new('RGBA', (0,0)) 
 
-def DrawTextBox(sText, FontName, FontMaxSize, MaxRows, Color):
-    # adjust point size for pixel density
-    iAdjFontMaxSize = int(round(FontMaxSize * RESOLUTION, 0))
+    def DrawTextBox(self):
+        ImgTxt_Cropped = None
+        ImgTxt = None 
 
-    # how much the text in the box is offset from the box
-    xOffset = 0     #.027
-    yOffset = 0     #.027
+        # adjust point size for pixel density
+        iAdjFontMaxSize = int(round(self.FontSize * RESOLUTION, 0))
+
+        # how much the text in the box is offset from the box
+        xOffset = 0     #.027
+        yOffset = 0     #.027
      
-    # calculate width and height of the bounding text box
-    offset_width = round(MAXWIDTH - (MAXWIDTH * xOffset * 2), 0)
-    offset_height = CalcBoxHeight(FontName, iAdjFontMaxSize, MaxRows)
+        # calculate width and height of the bounding text box
+        offset_width = round(MAXWIDTH - (MAXWIDTH * xOffset * 2), 0)
+        offset_height = CalcBoxHeight(self.FontName, iAdjFontMaxSize, self.MaxRows)
 
-    TextBlock = BlockOfText(sText, 
-                            FontName, 
-                            iAdjFontMaxSize,
-                            MaxRows,
-                            (offset_width, offset_height))
+        TextBlock = BlockOfText(self.Text, 
+                                self.FontName, 
+                                iAdjFontMaxSize,
+                                self.MaxRows,
+                                (offset_width, offset_height))
                
-    ImgTxt = Image.new('RGBA', (offset_width, offset_height), (0, 0, 0, 0))
-    draw = ImageDraw.Draw(ImgTxt)
+        ImgTxt = Image.new('RGBA', (offset_width, offset_height), (0, 0, 0, 0))
+        draw = ImageDraw.Draw(ImgTxt)
              
-    y_text = 0
-    iCount = 0 
-    while iCount < len(TextBlock.Lines):
-        line = TextBlock.Lines[iCount]
+        y_text = 0
+        iCount = 0 
+        while iCount < len(TextBlock.Lines):
+            line = TextBlock.Lines[iCount]
 
-        width, height = (0, 0)
-        if line.isspace() or line == "":
-            width, height = GetTextLineSize(TextBlock.Font, "a")
-            height = height / 2
-        else:
-            width, height = GetTextLineSize(TextBlock.Font, line)
-            # for some reason Pillow will not start drawing the text at (0,0).
-            # you must specify (0, 0 - offset). (does this need to happen every time??)
-            #y_text = y_text - TextBlock.Font.getoffset(line)[1]
+            width, height = (0, 0)
 
-            draw.text(
-                      ((offset_width - width)/2, y_text), 
-                      line, 
-                      font = TextBlock.Font, 
-                      fill = Color)
-                      #features=['-vkrn']) # <-- needs libraqm library? 
+            if line.isspace() or line == "":
+                width, height = GetTextLineSize(TextBlock.Font, "a")
+                height = height / 2
+            else:
+                width, height = GetTextLineSize(TextBlock.Font, line)
+                
+                # for some reason Pillow will not start drawing the text at (0,0).
+                # you must specify (0, 0 - offset). (does this need to happen every time??)
+                draw.text(
+                          ((offset_width - width)/2, y_text - TextBlock.Font.getoffset(line)[1]), 
+                          line, 
+                          font = TextBlock.Font, 
+                          fill = self.Color)
+                          #features=['-vkrn']) # <-- needs libraqm library? 
         
-        y_text = y_text + height + TextBlock.Font.getoffset(line)[1]
-        if iCount < len(TextBlock.Lines) - 1:
-            y_text = y_text + int(round(height/VERT_SEP_PROP)) 
+            y_text = y_text + height
+            if iCount < len(TextBlock.Lines) - 1:
+                y_text = y_text + self.LineSpacer_yOffset 
 
-        iCount = iCount + 1
-        #draw.line([((offset_width - width)/2, y_text),((offset_width - width)/2,height)], fill = "red", width = 5)
+            iCount = iCount + 1
         
+        ImgTxt_Cropped = ImgTxt.crop((0, 0, offset_width, y_text))
+        #draw.rectangle([(0, 0), (ImgTxt.width, ImgTxt.height)], outline ="blue", width = 2)
 
-    #y_text = y_text + height + int(round(height/2)) - TextBlock.Font.getoffset(line)[1]
-    ImgTxt.crop((0, 0, offset_width, y_text))
-    #draw.rectangle([(0, 0), (ImgTxt.width, ImgTxt.height)], outline ="blue", width = 2)
-    #draw2 = ImageDraw.Draw(ImgTxt)  
+        return ImgTxt_Cropped
 
-    return ImgTxt
-     
-def GetBGImg(BGProfile):
-    BGImg = None 
+    def DrawText(self, iLineSpace = 0):
+        self.LineSpacer_yOffset = iLineSpace
+        self.Image = self.DrawTextBox()
 
-    try:
-        BGImg = Image.open(PATH + BGProfile.BGFileName).convert('RGBA')
-    except IOError as e:
-        print("***ERROR***\nFile save failed in GetBGImg()\n" + e.strerror)
-     
-    return BGImg
+    def ShrinkText(self, iStep, iLineSpace = 0):
+        self.LineSpacer_yOffset = iLineSpace
+        if self.FontSize - iStep > 0:
+            self.FontSize = self.FontSize - iStep 
+            self.Image = self.DrawTextBox()
 
-def PositionBoxesVertically(BGImg,
+    def GrowText(self, iStep, iLineSpace = 0):
+        self.LineSpacer_yOffset = iLineSpace
+        if self.FontSize + iStep < 1000:
+            self.FontSize = self.FontSize + iStep 
+            self.Image = self.DrawTextBox()
+
+def CalcTotalBoxHeight(boxes):
+    iTotalBoxHeight = 0
+
+    for box in boxes:
+        iTotalBoxHeight = iTotalBoxHeight + box.Image.height
+
+    return iTotalBoxHeight
+
+def PositionBoxesVertically(BGProfile,
                             Boxes = [], 
                             ImgTitleBoxHeight = 0, 
-                            ImgTitleBoxWidth = 0,
-                            yOffset = 0,
-                            xOffset = 0):
+                            ImgTitleBoxWidth = 0):
+    bg = BGImageHH(BGProfile)
+    yOffset = bg.TitleBoxTop_yOffset
+    xOffset = XOFFSET
     iTotalBoxHeight = 0
-    yVCenterOffset = 0
-    #ImgTitleArea = Image.new('RGBA', (ImgTitleBoxWidth, ImgTitleBoxHeight))
-    #draw = ImageDraw.Draw(ImgTitleArea)
-
-    # add up combined height of boxes
-    for box in Boxes:
-        iTotalBoxHeight = iTotalBoxHeight + box.height
-
-    # calculate off-set required to center vertically
-    # yVCenterOffset = int((ImgTitleBoxHeight - iTotalBoxHeight)/2)
-
     yLineSpace = 0
-    # calculate space between lines 
-    if iTotalBoxHeight < ImgTitleBoxHeight:
-        #calculate # of vert spaces needed (# boxes - 1)
-        #divide up remaining vert space between boxes
-        if len(Boxes) > 0:
-            yLineSpace = int((ImgTitleBoxHeight - iTotalBoxHeight)/(len(Boxes)))
-        else:
-            yLineSpace = 0
-    else:
-        yLineSpace = 12
 
-    iyOffsetLine = yOffset
+    if len(Boxes) > 0:
+    # 1. Attempt to fit title sections at max font sizes 
+
+    # 2. If title sections don't fit, shrink fonts proportionately by 
+    #    .5 and try again.
+
+        iTotalBoxHeight = CalcTotalBoxHeight(Boxes)
+        if iTotalBoxHeight > bg.MaxHeight:
+            for box in Boxes:
+                box.ShrinkText(.5)
+            iTotalBoxHeight = CalcTotalBoxHeight(Boxes)
+    
+    # 3. If title sections don't fit, use plain header background 
+    #    and try again.
+        if iTotalBoxHeight > bg.MaxHeight:
+            bg = BGImagePH(BGProfile)
+            yOffset = bg.TitleBoxTop_yOffset
+            iTotalBoxHeight = CalcTotalBoxHeight(Boxes)
+
+    # 4. If title sections still don't fit, keep shrinking fonts 
+    #    proportionately until they do.
+        if iTotalBoxHeight > bg.MaxHeight:
+            while iTotalBoxHeight > bg.MaxHeight:
+                for box in Boxes:
+                    box.ShrinkText(.5)  
+                iTotalBoxHeight = CalcTotalBoxHeight(Boxes)
+
+    #divide up remaining vert space between boxes
+    yLineSpace = int((bg.MaxHeight - iTotalBoxHeight)/(len(Boxes)))
+
     # draw the text boxes
+    BGImg = bg.Image
+    iyOffsetLine = bg.TitleBoxTop_yOffset
     for box in Boxes:
-        #iyOffsetLine = iyOffsetLine #+ yLineSpace
-        #BGImg.paste(box, (xOffset, iyOffsetLine), mask = box)
-        BGImg.alpha_composite(box, (xOffset, iyOffsetLine))
-        iyOffsetLine = iyOffsetLine + box.height + yLineSpace
+        box.DrawText(iLineSpace = yLineSpace)
+        BGImg.alpha_composite(box.Image, (XOFFSET, iyOffsetLine))
+        iyOffsetLine = iyOffsetLine + box.Image.height + yLineSpace
 
     return BGImg
 
@@ -300,10 +330,7 @@ def CreateImg(ImgTxtGen):
 
     sFileName = ""
 
-    # cover elements are not perfectly centered. so the text needs to be
-    # slightly off-center as well. just add this when specifying the
-    # coordinates of the text bounding box.
-
+    # use to off-center horizontally.
     width_offset = 0
 
     if isinstance(ImgTxtGen, Generator):
@@ -312,15 +339,13 @@ def CreateImg(ImgTxtGen):
 
         AuthorTemplate = ImgTxtGen.Template.AuthorLine
 
-        # get background image for the current bg profile
-        ImgBase = GetBGImg(BGProfile)
-
         # draw author name
-        ImgAuthorNameTxt = DrawTextBox(ImgTxtGen.AuthorName,
-                                       FontName = AuthorTemplate.FontName,
-                                       FontMaxSize = AuthorTemplate.FontMaxSize,
-                                       MaxRows = AuthorTemplate.MaxRows,
-                                       Color = BGProfile.AuthorNameColor)
+        AuthorNameSection = TitleSection(ImgTxtGen.AuthorName,
+                                     sFontName = AuthorTemplate.FontName,
+                                     iFontSize = AuthorTemplate.FontMaxSize,
+                                     iMaxRows = AuthorTemplate.MaxRows,
+                                     Color = BGProfile.AuthorNameColor)
+        AuthorNameSection.DrawText()
         
         TitleBoxes = []
 
@@ -339,30 +364,24 @@ def CreateImg(ImgTxtGen):
                 elif line.ColorType == LineColorType.AuthorName:
                     Color = BGProfile.AuthorNameColor
 
-                ImgTxt = DrawTextBox(line.LineText,
-                                    FontName = line.FontName,
-                                    FontMaxSize = line.FontMaxSize,
-                                    MaxRows = line.MaxRows,                                       
-                                    Color = Color)
-
-            # check to see if the textbox is extra tall, requiring us to switch to the
-            # plain header 
+                section = TitleSection(line.LineText,
+                                       sFontName = line.FontName,
+                                       iFontSize = line.FontMaxSize,
+                                       iMaxRows = line.MaxRows,
+                                       Color = Color)
+                section.DrawText()
 
             #if dScore > 23:
             #    BGProfile.UsePlainheader()
 
-                TitleBoxes.append(ImgTxt)
+                TitleBoxes.append(section)
 
-            
-        # combine the title text and base images
-        ImgBase = PositionBoxesVertically(BGImg = ImgBase,
-                                          Boxes = TitleBoxes,
-                                          yOffset = 206,
-                                          xOffset = XOFFSET + width_offset)
-        #ImgBase.paste(ImgTxt, (54 + width_offset, 234), mask = ImgTxt)
+        # get bg image and combine with text boxes
+        ImgBase = PositionBoxesVertically(BGProfile = BGProfile,
+                                          Boxes = TitleBoxes)
 
         # combine the author name and base images
-        ImgBase.alpha_composite(ImgAuthorNameTxt, (XOFFSET + width_offset, 560))
+        ImgBase.alpha_composite(AuthorNameSection.Image, (XOFFSET + width_offset, 560))
 
         # save the edited image
         RGBImgOut = ImgBase.convert('RGB')

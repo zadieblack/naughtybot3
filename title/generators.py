@@ -264,7 +264,7 @@ class Generator5(Generator):
         Girl = None
         Master = None
                
-        iMaxMasterChar = 30 
+        iMaxMasterChar = 50
         Master = char.MaleChar(TempType = TempType.Flowery, bAddAnArticle = True, 
                                 bAllowRelate = True, bSplitArticle = False, 
                                 NotList = GenNotList, MaxChars = iMaxMasterChar)
