@@ -1448,29 +1448,33 @@ class Generator45(Generator):
 # Secretly In Love With
 # My Elf Supermodel Sister
 class Generator46(Generator):
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 46, Priority = 1)
+         self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
           
           if CoinFlip():
-               Master = char.MaleChar(bAddEndNoun = False, NotList = ["boyfriend"], bAllowRelate = False, 
-                                             bAllowMaritalStatus = False, bAllowSpecies = False, bAllowAge = False, 
-                                             bAllowTitle = False, bAllowTrope = False)
+               Master = char.MaleChar(bAddEndNoun = False, MaxChars = 32, NotList = ["boyfriend"], 
+                                      bAllowRelate = False, bAllowMaritalStatus = False, 
+                                      bAllowSpecies = False, bAllowAge = False, 
+                                      bAllowTitle = False, bAllowTrope = False)
                Relations = titmisc.RelateMale()
-               Prefix = WordList(["Secretly In Love With"])
-               sTweet = Prefix.GetWord() + "\nMy " + Master.Desc + " " + Relations.GetWord(NotList = ["Boyfriend", "Husband", "Hubbie", "Widower", "Fiancé"])
+               Prefix = WordList(["Secretly In Love\nWith"])
+               sTweet = Prefix.GetWord() + "my\n" + Master.Desc + " " + Relations.GetWord(NotList = ["Boyfriend", "Husband", "Hubbie", "Widower", "Fiancé"])
           else:
-               Girl = char.FemaleChar(bAddEndNoun = False, NotList = ["girlfriend"], bAllowRelate = False, 
-                                             bAllowMaritalStatus = False, bAllowSpecies = False, bAllowAge = False, 
-                                             bAllowTitle = False, bAllowTrope = False)
+               Girl = char.FemaleChar(bAddEndNoun = False, MaxChars = 32, 
+                                      NotList = ["girlfriend"], bAllowRelate = False, 
+                                      bAllowMaritalStatus = False, bAllowSpecies = False, 
+                                      bAllowAge = False, bAllowTitle = False, 
+                                      bAllowTrope = False)
                Relations = titmisc.RelateFemale()
-               Prefix = WordList(["Secretly In Love With"])
-               sTweet = Prefix.GetWord() + "\nMy " + Girl.Desc + " " + Relations.GetWord(NotList = ["Girlfriend", "Mistress", "Wife"])
+               Prefix = WordList(["Secretly In Love\nWith"])
+               sTweet = Prefix.GetWord() + "my\n" + Girl.Desc + " " + Relations.GetWord(NotList = ["Girlfriend", "Mistress", "Wife"])
           return sTweet
           
 # class Generator47(Generator):
@@ -1494,7 +1498,7 @@ class Generator46(Generator):
           
 class Generator48(Generator):
      # Lusting For the Wicked Blonde Fetish Model
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 48, Priority = 1)
@@ -1504,9 +1508,10 @@ class Generator48(Generator):
           sTweet = ""
 
           GirlNotList = ['elf','skin','tanned','bronzed']
-          Girl = char.FemaleChar(bAddTheArticle = True, NotList = GirlNotList, bAllowSpecies = False,
-                                        ReqList = [SkinHairColorFemale],
-                                        ExclList = [AgeAdjFemale,SexualityFemale,MaritalStatusFemale,PregState,NationFemale])
+          Girl = char.FemaleChar(bAddTheArticle = True, NotList = GirlNotList, 
+                                 MaxChars = 32, bAllowSpecies = False,
+                                 ReqList = [SkinHairColorFemale],
+                                 ExclList = [AgeAdjFemale,SexualityFemale,MaritalStatusFemale,PregState,NationFemale])
           
           sTweet = self.Gerunds.GetWord() + " " + Girl.Desc
           
@@ -1582,10 +1587,11 @@ class Generator49(Generator):
           
 class Generator50(Generator):
      # What's a Little Deep Throat Between Bros?
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 50, Priority = 1)
+         # self.Template = templates.TitleTemplate8()
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1786,12 +1792,13 @@ class Generator51(Generator):
 # My Hot Redhead Teacher
 # Is Secretly
 # A Stripper!
-#            - needs work
+#            - needs work: custom char templates
 class Generator52(Generator):
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 52, Priority = 1)
+         self.Template = templates.TitleTemplate2()
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1810,29 +1817,32 @@ class Generator52(Generator):
                                     ])
           sJob = GoodJobs.GetWord()
           
-          GoodGirlNotList = [sSexyAdj,sJob,'Slave Girl','Concubine']
-          GoodGirl = char.FemaleChar(Type = GirlType.Good, NotList = GoodGirlNotList, bAddEndNoun = False,
-                                        bAllowTitle = False, bAllowPregState = False, bAllowSpecies = False, 
+          GoodGirlNotList = [sSexyAdj,sJob,'Slave Girl','Concubine','Fertile',
+                             'Nudist']
+          GoodGirl = char.FemaleChar(Type = GirlType.Good, NotList = GoodGirlNotList, 
+                                     bAddEndNoun = False, TempType = TempType.Medium,
+                                        bAllowTitle = False, bAllowPregState = False, 
+                                        bAllowSpecies = False, 
                                         bAllowMaritalStatus = False, bAllowAge = False)
                                         
           iTempID = choice([222,220,205,2,2,2])
-          print("iTempID = " + str(iTempID))
           
-          BadGirlNotList = [sSexyAdj,sJob,'Slave Girl','Concubine','Naked','Nude','Gymnast','Secretary']
-          print("BadGirlNotList is " + str(BadGirlNotList))
-          BadGirl = char.FemaleChar(TempType = TempType.Medium, NotList = BadGirlNotList, bAddAnArticle = True,
-                                             SelectTemplateID = iTempID)
+          BadGirlNotList = [sSexyAdj,sJob,'Slave Girl','Concubine','Naked',
+                            'Nude','Gymnast','Secretary','Married','Teenage']
+          BadGirl = char.FemaleChar(TempType = TempType.Medium, NotList = BadGirlNotList, 
+                                    bAddAnArticle = True, SelectTemplateID = iTempID)
           
           BadGirlNotList = ['Nun','Nurse','Gymnast','Masseuse','Cheerleader','Starlet','Secretary','Housewife','Fashion Model','French Maid']
-          if CoinFlip():
-               sTweet += Exclamations.GetWord() + " "
+          #if CoinFlip():
+          #     sTweet += Exclamations.GetWord() + " "
           if CoinFlip():     
-               sTweet+= "My " + sSexyAdj + " " + GoodGirl.Desc + " " + sJob + " Is Secretly\n" 
+               sTweet+= "My " + sSexyAdj + " " + GoodGirl.Desc + " " + sJob + "\nIs Secretly\n" 
                sTweet+= BadGirl.Desc + "!"
           else:
-               sTweet+= "My " + sSexyAdj + " " + GoodGirl.Desc + " " + sJob + " Is Secretly\n" 
+               sTweet+= "My " + sSexyAdj + " " + GoodGirl.Desc + " " + sJob + "\nIs Secretly\n" 
                sTweet += BadGirl.Desc + "!"
           
+          print("[" + sTweet + "]\n")
           return sTweet     
           
 # Daddy Found Out
@@ -2040,6 +2050,7 @@ class Generator57(Generator):
 
      def __init__(self):
          super().__init__(ID = 57, Priority = 1)
+         # self.Template = templates.TitleTemplate3()
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -2055,33 +2066,38 @@ class Generator57(Generator):
           Men = char.MaleChar(TempType = TempType.Medium, bAddEndNoun = False, NotList = MenNotList,
                               bAllowAge = False, bAllowAttitude = False, bAllowGenMod = False, bAllowRelate = False, bAllowTitle = False)
      
-          sTweet += Verbs.GetWord() + " in the Locker Room\nby an Entire Team of\n" + Men.Desc + " " + Teams.GetWord()
+          sTweet += Verbs.GetWord() + "\nIn the Locker Room\nBy an Entire Team\nof\n" + Men.Desc + " " + Teams.GetWord()
 
           return sTweet     
           
 # I hooked up with a strapping leather cowboy
 # and now I'm pregnant!
 class Generator58(Generator):
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 58, Priority = 1)
+         # self.Template = templates.TitleTemplate4()
      
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
           
           ManNotList = ["Widowed"]
-          HookUpPhrases = WordList(["Hooked Up With", "Had a One Night Stand With", "Slept With", "Banged", "Had a Quickie With", "Fooled Around With"])
+          HookUpPhrases = WordList(["Hooked Up With", "Had a One Night Stand With", 
+                                    "Slept With", "Banged", "Had a Quickie With", 
+                                    "Fooled Around With"])
           MaleRelatives = WordList(["Step-Dad", "Step-Brother", "Brother", "Brother-in-Law", "Father", "Dad", "Daddy", "Step-Father"])
-          Man = char.MaleChar(NotList = ManNotList, bAllowRelate = True, 
-                                   bAllowSpecies = True, bAllowMaritalStatus = False, bAllowGang = False, bAllowTitle = False)
+          Man = char.MaleChar(NotList = ManNotList, MaxChars = 30,
+                              bAllowRelate = True, bAllowSpecies = True, 
+                              bAllowMaritalStatus = False, bAllowGang = False, 
+                              bAllowTitle = False)
           sMan = Man.Desc 
           
           if FoundIn(sMan, MaleRelatives.List):
-               sTweet = "I " + HookUpPhrases.GetWord() +" My " + sMan + "\nAnd Now I'm Pregnant!"
+               sTweet = "I " + HookUpPhrases.GetWord() +" My " + sMan + " And Now I'm Pregnant!"
           else:
-               sTweet = "I " + HookUpPhrases.GetWord() +" " + AddArticles(sMan) + "\nAnd Now I'm Pregnant!"
+               sTweet = "I " + HookUpPhrases.GetWord() +" " + AddArticles(sMan, bMakeUpper = True) + " And Now I'm Pregnant!"
           return sTweet
      
 # # The hot bikini model prom queen
@@ -2254,10 +2270,11 @@ class Generator64(Generator):
 # Anita Gets Serviced 
 # By Five Naked Cowboys 
 class Generator65(Generator):
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 65, Priority = 1)
+         self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -2274,7 +2291,7 @@ class Generator65(Generator):
                               "Viking Warriors","Bull Riders","Chippendales Dancers","Construction Workers",
                               "Defensive Linemen","Gladiators","MMA Fighters","Sailors","Gentleman","Older Men"])
           
-          sTweet = self.HerName + " Gets " + Verbs.GetWord() + " By\n"
+          sTweet = self.HerName + " Gets " + Verbs.GetWord() + "\nBy\n"
           sTweet += Numbers.GetWord() + " " +Adjs.GetWord() + " Naked " + Men.GetWord()
 
           return sTweet     

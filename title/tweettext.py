@@ -863,7 +863,7 @@ class TweetTxtGen33(TweetTxtGen):
                                    "Salman Rushdie", "Albert Einstein", "Hillary Clinton", "Maya Angelou", "Isaac Asimov", "Jonathan Franzen", 
                                    "Cormac McCarthy", "Ghandi", "Boutros Boutros-Ghali", "Bob Dylan", "The Dalai Lama", "Elon Musk", 
                                    "Warren Buffett", "Stephen King", "Bill Gates", "Billy Graham", "Jimmy Carter", "Oprah Winfrey",
-                                   "Neil Armstrong", "Stephen Hawking", "Al Gore"])
+                                   "Neil Armstrong", "Stephen Hawking", "Al Gore", "Bernie Sanders"])
           
           if CoinFlip():
                sAdj1 = Adjs.GetWord()
