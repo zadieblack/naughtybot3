@@ -166,7 +166,7 @@ class TitleSection:
         self.MaxRows = iMaxRows
         self.Color = Color
         self.VertSepProp = 4
-        self.LineSpacer_yOffset = 0
+        self.TotalLineSpace = 0
         self.Image = Image.new('RGBA', (0,0)) 
 
     def DrawTextBox(self):
@@ -189,7 +189,13 @@ class TitleSection:
                                 iAdjFontMaxSize,
                                 self.MaxRows,
                                 (offset_width, offset_height))
-               
+        
+        iLineSpacer = 0
+        if len(TextBlock.Lines) > 1:
+            iLineSpacer = self.TotalLineSpace / (len(TextBlock.Lines) - 1)
+        else:
+            iLineSpacer = self.TotalLineSpace
+
         ImgTxt = Image.new('RGBA', (offset_width, offset_height), (0, 0, 0, 0))
         draw = ImageDraw.Draw(ImgTxt)
              
@@ -217,7 +223,7 @@ class TitleSection:
         
             y_text = y_text + height
             if iCount < len(TextBlock.Lines) - 1:
-                y_text = y_text + int(self.LineSpacer_yOffset * .5)
+                y_text = y_text + int(iLineSpacer * .5)
 
             iCount = iCount + 1
         
@@ -226,14 +232,14 @@ class TitleSection:
 
         return ImgTxt_Cropped
 
-    def DrawText(self, iLineSpace = 0):
-        self.LineSpacer_yOffset = iLineSpace
+    def DrawText(self, iTotalLineSpace = 0):
+        self.TotalLineSpace = iTotalLineSpace
         self.Image = self.DrawTextBox()
 
-    def ShrinkText(self, iStep, iLineSpace = 0):
+    def ShrinkText(self, iStep, iTotalLineSpace = 0):
         bSuccess = False 
 
-        self.LineSpacer_yOffset = iLineSpace
+        self.TotalLineSpace = iTotalLineSpace
         if self.FontSize - iStep > 0:
             self.FontSize = self.FontSize - iStep 
             self.Image = self.DrawTextBox()
@@ -241,10 +247,10 @@ class TitleSection:
 
         return bSuccess
 
-    def GrowText(self, iStep, iLineSpace = 0):
+    def GrowText(self, iStep, iTotalLineSpace = 0):
         bSuccess = False 
 
-        self.LineSpacer_yOffset = iLineSpace
+        self.TotalLineSpace = iTotalLineSpace
         if self.FontSize + iStep < 1000:
             self.FontSize = self.FontSize + iStep 
             self.Image = self.DrawTextBox()
@@ -293,8 +299,8 @@ def PositionBoxesVertically(BGProfile,
     #    and try again.
             if iTotalBoxHeight > bg.MaxHeight or CalcSpaceHeight(bg.MaxHeight, Boxes) < MINSPACERHEIGHT:
                 bg = BGImagePH(BGProfile)
-                yOffset = bg.TitleBoxTop_yOffset
-                iTotalBoxHeight = CalcTotalBoxHeight(Boxes)
+                #yOffset = bg.TitleBoxTop_yOffset
+                #iTotalBoxHeight = CalcTotalBoxHeight(Boxes)
 
     # 4. If title sections still don't fit, keep shrinking fonts 
     #    proportionately until they do.
@@ -314,7 +320,7 @@ def PositionBoxesVertically(BGProfile,
     BGImg = bg.Image
     iyOffsetLine = bg.TitleBoxTop_yOffset
     for box in Boxes:
-        box.DrawText(iLineSpace = yLineSpace)
+        box.DrawText(iTotalLineSpace = yLineSpace)
         BGImg.alpha_composite(box.Image, (xOffset, iyOffsetLine))
         iyOffsetLine = iyOffsetLine + box.Image.height + yLineSpace
 
@@ -351,7 +357,7 @@ def CreateImg(ImgTxtGen):
     sFileName = ""
 
     # use to off-center horizontally.
-    width_offset = 27
+    width_offset = 17
 
     if isinstance(ImgTxtGen, Generator):
         # calculate text size score

@@ -189,8 +189,6 @@ class Generator1(Generator):
           Master = char.MaleChar(TempType = TempType.Flowery, bAddTheArticle = False, bAllowGang = True, bAllowTrope = True, bAllowRelate = True)
           
           sTweet = self.VerbsBy.GetWord() + "\nBy The\n" + Master.Desc
-          
-          #self.SetImgText(sTweet)
 
           return sTweet
           
@@ -356,17 +354,15 @@ class Generator8(Generator):
                                               "His " + DickWords.GetWord() + " is ENORMOUS"]).GetWord()
           sTweet += "!"
 
-          self.Template.AddLineText(sTweet)
-
           return sTweet
           
 class Generator9(Generator):
      # The Secretary and the Space Werewolf  
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 9, Priority = 1)
-         self.Template = templates.TitleTemplate2()
+         self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -380,10 +376,9 @@ class Generator9(Generator):
           if len(sTweet) > 60:
               sTweet += "\n" + AddArticles(WordList([self._getFMs_(), 
                                                                 "BDSM", 
-                                                                misc.SexyAdjs().GetWord().lower()]).GetWord()) + " " 
+                                                                misc.SexyAdjs().GetWord().lower()]).GetWord(),
+                                           bSplitArticle = True) + " " 
               sTweet += self.SubtitleCoda.GetWord().lower()
-
-          self.Template.AddLineText(sTweet)
           
           return sTweet
           
@@ -2380,17 +2375,24 @@ class Generator69(Generator):
 
      def __init__(self):
          super().__init__(ID = 69, Priority = 1)
+         #self.Template = templates.TitleTemplate4()
      
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
           
-          Actions = WordList(["Spreads her Legs for","Spreads her Legs for","Bends Over for","Drops Her Panties for","Goes Down On","Lifts her Skirt for","Spreads her Thighs for","Spreads her Cheeks for","Opens Her Legs for","Lubes Herself Up for"])
+          Actions = WordList(["Spreads her Legs\nfor","Spreads her Legs\nfor",
+                              "Bends Over\nfor","Drops Her Panties\nfor",
+                              "Lifts her Skirt\nfor",
+                              "Spreads her Thighs\nfor","Spreads her Cheeks\nfor",
+                              "Opens Her Legs\nfor","Lubes Herself Up\nfor"])
           Girl = titmisc.NiceGirl()
           sNiceGirl = Girl.Desc
           
-          Man = char.MaleChar(bAddTheArticle = True, bAllowRelate = False, bAllowMaritalStatus = True, 
-                                   bAllowGang = False, bAllowTitle = True)
+          Man = char.MaleChar(bAddTheArticle = True, MaxChars = 32,
+                              bAllowRelate = False, 
+                              bAllowMaritalStatus = True, 
+                              bAllowGang = False, bAllowTitle = True)
           
           iRand = randint(1,3)
           if iRand == 1:
@@ -2559,10 +2561,11 @@ class Generator75(Generator):
 # and 
 # I Ate Her Out
 class Generator76(Generator):
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 76, Priority = 1)
+         self.Template = templates.TitleTemplate3()
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -2586,7 +2589,7 @@ class Generator76(Generator):
                                          "I Spanked Her Bare Ass With a Steel Paddle","I Rimmed Her Butt-hole",
                                          "I've Seen Her Naked","She Let Me Soap Her Up in the Shower","I Got her Pregnant",
                                          "She Let Me Play With Her Hard Nips","She Let Me Play With Her Nipple Piercings"])
-          sTweet = "\"My " + Relations.GetWord() + " is\n"
+          sTweet = "\"My " + Relations.GetWord() + "\nis\n"
           sTweet += AddArticles(Girl.Desc) + "\n"
           sTweet += "and\n" + NaughtyStuff.GetWord() + "!\""
           
@@ -3260,10 +3263,11 @@ class Generator91(Generator):
           
 # Welcome to Pound Town, Miss Dixon!
 class Generator95(Generator):
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 95, Priority = 1)
+         self.Template = templates.TitleTemplate8()
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -3278,12 +3282,12 @@ class Generator95(Generator):
                Prefixes = WordList(["Drill","Fuchs","Cocks","Pound","Ball","Dix","Pricks","Shafts","Bawl","Cox","Pecker",
                                          "Bang","Peen","Swallow","Pork"])
                                          
-               sTweet = "\"Welcome to " + Prefixes.GetWord() + Suffixes.GetWord() + ", " + WordList(["Miss","Mrs"]).GetWord() + " " + sLastName + "!\""
+               sTweet = "“Welcome to " + Prefixes.GetWord() + Suffixes.GetWord() + ", " + WordList(["Miss","Mrs"]).GetWord() + " " + sLastName + "!\""
           else:
                #For a man
                Prefixes = WordList(["Beaver","Boob","Ass","Buttes","Kuntz","Slutt","Fuchs","Tits","Brest","Blow","Suck",
                                          "Bang","Anal","Muff","Pork","Booty"])
-               sTweet = "\"Welcome to " + Prefixes.GetWord() + Suffixes.GetWord() + ", Mr. " + sLastName + "!\""                
+               sTweet = "“Welcome to " + Prefixes.GetWord() + Suffixes.GetWord() + ", Mr. " + sLastName + "!\""                
 
           return sTweet     
           
@@ -3291,7 +3295,7 @@ class Generator95(Generator):
 # My Innocent Amish Maid's 
 # Enormous Coconuts 
 class Generator96(Generator):
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 96, Priority = 1)
@@ -3309,9 +3313,9 @@ class Generator96(Generator):
                                    'Milk Balloons','Juice-Bags','Sweater-Zeppelins','Grapefruits','Pumpkins',
                                    'Grand Tetons','Hangers','Bongos','Meat-Melons','Love-Pillows','Udders'])
                                    
-          sTweet = WordList(["In Love With","Falling For","Head-Over-Heels For","Captivated By",
-                                 "Bewitched By","Entranced By","Enraptured By","Spellbound By"]).GetWord()
-          sTweet += "\nMy " + Girl.Desc + "'s\n"
+          sTweet = WordList(["In Love with","Falling for","Head-Over-Heels for","Captivated by",
+                                 "Bewitched by","Entranced by","Enraptured by","Spellbound by"]).GetWord()
+          sTweet += " my " + Girl.Desc + "'s "
           sTweet += SizeAdj.GetWord() + " " + Breasts.GetWord()
 
           return sTweet     
@@ -3320,10 +3324,11 @@ class Generator96(Generator):
 # is wearing
 # a butt plug          
 class Generator97(Generator):
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 97, Priority = 1)
+         self.Template = templates.TitleTemplate7()
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -3337,7 +3342,7 @@ class Generator97(Generator):
           
           Lady = char.FemaleChar(SelectTemplateID = 1, TempType = TempType.Medium, bAddTheArticle = True)
 
-          sTweet = Lady.Desc + "\nIs Wearing\n" + Accessories.GetWord()
+          sTweet = Lady.Desc + "\nIs Wearing " + Accessories.GetWord() + "!"
 
           return sTweet     
           
@@ -3428,10 +3433,11 @@ class Generator99(Generator):
 # I Secretly Impregnated 
 # My Nudist Mommy-Blogger Sister-in-Law!          
 class Generator100(Generator):
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 100, Priority = 1)
+         self.Template = templates.TitleTemplate7()
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -3445,12 +3451,12 @@ class Generator100(Generator):
           
           sTweet = "I Secretly Impregnated\nMy " 
           if CoinFlip():
-               FemRelate = char.FemaleChar(SelectTemplateID = randint(8,9),NotList = ['wife','girlfriend','Fiancé','concubine'])
+               FemRelate = char.FemaleChar(SelectTemplateID = randint(8,9),NotList = ['wife','girlfriend','Fiancé','concubine'], MaxChars = 32)
                sTweet += FemRelate.Desc
           else:
-               FemRelate = char.FemaleChar(SelectTemplateID = randint(8,9),NotList = ['sister','mom','mother'])
+               FemRelate = char.FemaleChar(SelectTemplateID = randint(8,9),NotList = ['sister','mom','mother'], MaxChars = 32)
                MaleRelate = WordList(["Best Friend's","Step-Father's","Dad's","Boss's","Neighbor's"])
-               sTweet += MaleRelate.GetWord() + "\n" + FemRelate.Desc
+               sTweet += MaleRelate.GetWord() + " " + FemRelate.Desc
 
           return sTweet     
           
@@ -3515,10 +3521,11 @@ class Generator102(Generator):
 # A Tanned Cheerleader 
 # and I Got Her Pregnant!
 class Generator103(Generator):
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 103, Priority = 1)
+         self.Template = templates.TitleTemplate3()
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -3528,9 +3535,9 @@ class Generator103(Generator):
           Relate = WordList(["Mother-in-Law","Step-Mom","Sister-in-Law","Step-Sister","Half Sister","Step-Daughter",
                                    "Daughter-in-Law","Cousin"])
                               
-          sTweet = "My " + Relate.GetWord() + " is\n"
-          sTweet += AddArticles(Girl.Desc) + ",\n"
-          sTweet += "and " + WordList(["I Got Her Pregnant","I Got Her Pregnant","I Knocked Her Up"]).GetWord() + "!"
+          sTweet = "My " + Relate.GetWord() + "\nis\n"
+          sTweet += AddArticles(Girl.Desc, bMakeUpper = True) + ",\n"
+          sTweet += "and\n" + WordList(["I Got Her Pregnant","I Got Her Pregnant","I Knocked Her Up"]).GetWord() + "!"
 
           return sTweet     
           
@@ -3935,6 +3942,7 @@ class Generator113(Generator):
 
 # My Classy Eastern European Housewife
 # Is Wearing a Butt Plug!          
+# --- Very similar to 124
 class Generator114(Generator):
      Disabled = True
 
@@ -4138,10 +4146,11 @@ class Generator121(Generator):
           
 # Speculum for the Horny Mexican MILF
 class Generator122(Generator):
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 122, Priority = 1)
+         self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -4158,9 +4167,10 @@ class Generator122(Generator):
           MILFNotList = ['Virgin','Virginal','Maiden','Chaste','Sheltered','Sparkling','Straight','Spirited',
                               'Sweet','Virtuous','Anal Virgin','Angelic','Small-Town Girl','Tomboy','Lesbian',
                               'Little','Schoolgirl','gymnast']
-          MILF = char.FemaleChar(SelectTemplateID = 223, NotList = MILFNotList,bAddTheArticle = True)
+          MILF = char.FemaleChar(SelectTemplateID = 223, NotList = MILFNotList,
+                                 bAddTheArticle = True, bSplitArticle = True)
                                    
-          sTweet = NaughtyStuff.GetWord() + " for " + MILF.Desc 
+          sTweet = NaughtyStuff.GetWord() + "\nfor " + MILF.Desc 
 
           return sTweet     
 
