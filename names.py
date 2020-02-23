@@ -1109,7 +1109,6 @@ class InnNameGen2(InnNameGenerator):
 
           self.FirstLastNameList([InnLastName(['Bangs','Banger']),
                                               InnLastName(['Bender']),
-                                              InnLastName(['Black']),
                                               InnLastName(['Creamer']),
                                               InnLastName(['Cummings']),
                                               InnLastName(['Dicker','Dickens']),
@@ -1392,7 +1391,6 @@ class InnNameGen6(InnNameGenerator):
                                              ])
 
           self.FirstLastNameList([      InnLastName(['Bigg']),
-                                              InnLastName(['Black','Brown']),
                                               InnLastName(['Butt']),
                                               InnLastName(['Cheap']),
                                               InnLastName(['Daley']),

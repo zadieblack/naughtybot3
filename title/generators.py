@@ -1184,10 +1184,11 @@ class Generator35(Generator):
 class Generator36(Generator):
      #Turned Gay
      # Pleasured by the Shape-Shifting Single Dad: A Nudist Secretary Story
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 36, Priority = 1)
+         self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1195,27 +1196,31 @@ class Generator36(Generator):
           
           if CoinFlip():
                Girl = char.FemaleChar(Type = GirlType.Good, TempType = TempType.Medium,
-                                             ExclList = [SpeciesMale])
+                                      ExclList = [SpeciesMale])
                
                if CoinFlip():
-                    Lesbian = char.LesbianChar(bAddTheArticle = True, NotList = ['wife','girlfriend', 'married','lesbo'],
-                                                       ExclList = [SpeciesFemale])
-                    sTweet = "Turned Lesbo by " + Lesbian.Desc
+                    Lesbian = char.LesbianChar(bAddTheArticle = True, MaxChars = 28,
+                                              NotList = ['wife','girlfriend', 'married','lesbo'],
+                                              ExclList = [SpeciesFemale])
+                    sTweet = "Turned Lesbo\nby\n" + Lesbian.Desc
                else:
-                    Lesbian = char.LesbianChar(NotList = ['wife','girlfriend', 'married', 'lesbian'],
-                                                       ExclList = [SpeciesFemale])
-                    sTweet = "Straight " + Girl.Desc + "\nfor the \nLesbian " + Lesbian.Desc 
+                    Lesbian = char.LesbianChar(MaxChars = 28,
+                                               NotList = ['wife','girlfriend', 'married', 'lesbian'],
+                                               ExclList = [SpeciesFemale])
+                    sTweet = "Straight " + Girl.Desc + "\nfor\nthe Lesbian " + Lesbian.Desc 
                
           else:
                Man = char.MaleChar(bAllowGang = False, TempType = TempType.Medium,
-                                        ExclList = [SpeciesFemale])
+                                   ExclList = [SpeciesFemale])
                
                if CoinFlip():
-                    Gay = char.GayMaleChar(bAddTheArticle = True, NotList = ['husband','boyfriend', 'married','gay'])
-                    sTweet = "Turned Gay by " + Gay.Desc
+                    Gay = char.GayMaleChar(bAddTheArticle = True, MaxChars = 28,
+                                           NotList = ['husband','boyfriend', 'married','gay'])
+                    sTweet = "Turned Gay\nby\n" + Gay.Desc
                else:
-                    Gay = char.GayMaleChar(NotList = ['husband','boyfriend', 'married', 'gay'])
-                    sTweet = "Straight " + Man.Desc + "\nfor the\nGay " + Gay.Desc 
+                    Gay = char.GayMaleChar(MaxChars = 28, 
+                                           NotList = ['husband','boyfriend', 'married', 'gay'])
+                    sTweet = "Straight " + Man.Desc + "\nfor\nthe Gay " + Gay.Desc 
 
           return sTweet
 
@@ -1223,10 +1228,11 @@ class Generator36(Generator):
 # A Tattooed Hard-Drinking Vegan Trillionaire
 # and He's Hung Like a Horse!          
 class Generator37(Generator):
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 37, Priority = 1)
+         self.Template = templates.TitleTemplate3()
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1236,13 +1242,13 @@ class Generator37(Generator):
           Relations = titmisc.RelateMale()
           DickWords = WordList(["Boner","Cock","Dick","Penis","Schlong","Tool","Package","Erection"])
           Gerunds = self.Gerunds
-          Dad = char.MaleChar(bAddEndNoun = True, bAllowGang = False, 
+          Dad = char.MaleChar(bAddEndNoun = True, MaxChars = 35, bAllowGang = False, 
                                    bAllowMaritalStatus = False, bAllowRelate = False,
                                    bAllowAge = False, bAllowDickChar = False)
           
-          sTweet += "My New " + Relations.GetWord(NotList = NotList) + " Is\n" + AddArticles(Dad.Desc, bMakeUpper = True)
+          sTweet += "My New " + Relations.GetWord(NotList = NotList) + "\nIs\n" + AddArticles(Dad.Desc, bMakeUpper = True)
           if CoinFlip():
-               sTweet += "\nand " + WordList(["He's Hung Like a Horse",
+               sTweet += "\nand\n" + WordList(["He's Hung Like a Horse",
                                                        "He Has a Massive " + DickWords.GetWord(),
                                                        "His " + DickWords.GetWord() + " is ENORMOUS"]).GetWord()
           sTweet += "!"
@@ -1806,43 +1812,37 @@ class Generator52(Generator):
           
           Exclamations = WordList(["Oh S@*#!", "Oh No!", "WTF?!?", "Oh F*@%!"])
 
-          SexyAdjs = WordList(["Hot","Sexy","Cute","Busty","Stacked","Thicc","Tanned","Bikini-Bod",
-                                    "Chesty","Young","Nubile"
-                                   ])
-          sSexyAdj = SexyAdjs.GetWord()
-          GoodJobs = WordList(["Teacher","English Teacher","Yoga Instructor","Librarian","Nanny","Math Tutor","Babysitter",
-                                    "Nurse","Piano Teacher","Dance Teacher","Algebra Teacher","Biology Teacher","Personal Trainer",
-                                    "House Maid","French Maid","Secretary","Intern","Assistant","Physical Therapist","Therapist",
-                                    "Violin Teacher","Dance Instructor","Gym Coach","Volleyball Coach"
-                                    ])
-          sJob = GoodJobs.GetWord()
+          #SexyAdjs = WordList(["Hot","Sexy","Cute","Young","Nubile"])
+          #sSexyAdj = SexyAdjs.GetWord()
+          #GoodJobs = WordList(["Teacher","English Teacher","Yoga Instructor","Librarian","Nanny","Math Tutor","Babysitter",
+          #                          "Nurse","Piano Teacher","Dance Teacher","Algebra Teacher","Biology Teacher","Personal Trainer",
+          #                          "House Maid","French Maid","Secretary","Intern","Assistant","Physical Therapist","Therapist",
+          #                          "Violin Teacher","Dance Instructor","Gym Coach","Volleyball Coach"
+          #                          ])
+          #sJob = GoodJobs.GetWord()
           
-          GoodGirlNotList = [sSexyAdj,sJob,'Slave Girl','Concubine','Fertile',
-                             'Nudist']
-          GoodGirl = char.FemaleChar(Type = GirlType.Good, NotList = GoodGirlNotList, 
-                                     bAddEndNoun = False, TempType = TempType.Medium,
-                                        bAllowTitle = False, bAllowPregState = False, 
-                                        bAllowSpecies = False, 
-                                        bAllowMaritalStatus = False, bAllowAge = False)
+          GoodGirlNotList = ["Co-ed","Mommy Blogger","Model"]
+          GoodGirl = char.FemaleChar(Type = GirlType.Good, SelectTemplateID = 21, 
+                                     NotList = GoodGirlNotList, 
+                                     TempType = TempType.Medium)
                                         
-          iTempID = choice([222,220,205,2,2,2])
+          #iTempID = choice([222,220,205,2,2,2])
           
-          BadGirlNotList = [sSexyAdj,sJob,'Slave Girl','Concubine','Naked',
-                            'Nude','Gymnast','Secretary','Married','Teenage']
-          BadGirl = char.FemaleChar(TempType = TempType.Medium, NotList = BadGirlNotList, 
-                                    bAddAnArticle = True, SelectTemplateID = iTempID)
+          #BadGirlNotList = [sSexyAdj,sJob,'Slave Girl','Concubine','Naked',
+          #                  'Nude','Gymnast','Secretary','Married','Teenage']
+          BadGirl = char.FemaleChar(TempType = TempType.Medium, #NotList = BadGirlNotList, 
+                                    bAddAnArticle = True, SelectTemplateID = 20)
           
-          BadGirlNotList = ['Nun','Nurse','Gymnast','Masseuse','Cheerleader','Starlet','Secretary','Housewife','Fashion Model','French Maid']
+          #BadGirlNotList = ['Nun','Nurse','Gymnast','Masseuse','Cheerleader','Starlet','Secretary','Housewife','Fashion Model','French Maid']
           #if CoinFlip():
           #     sTweet += Exclamations.GetWord() + " "
           if CoinFlip():     
-               sTweet+= "My " + sSexyAdj + " " + GoodGirl.Desc + " " + sJob + "\nIs Secretly\n" 
+               sTweet+= "My " + GoodGirl.Desc + "\nIs Secretly\n" 
                sTweet+= BadGirl.Desc + "!"
           else:
-               sTweet+= "My " + sSexyAdj + " " + GoodGirl.Desc + " " + sJob + "\nIs Secretly\n" 
+               sTweet+= "My " + GoodGirl.Desc + "\nIs Secretly\n" 
                sTweet += BadGirl.Desc + "!"
-          
-          print("[" + sTweet + "]\n")
+
           return sTweet     
           
 # Daddy Found Out

@@ -266,7 +266,7 @@ class FemTemplate18(FemCharTemplate):
                                                     CTEntry([ProfBadFemale,ProfGoodFemale],1)
                                                   ], 
                                    girltype = GirlType.Bad,
-                                   priority = 0)                              
+                                   priority = 1)                              
 
 # Good Female (Race) Generators 130 & 131          
 class FemTemplate19(FemCharTemplate):
@@ -280,9 +280,9 @@ class FemTemplate19(FemCharTemplate):
                                                   ], 
                                    girltype = GirlType.Good,
                                    NotList = ["succubus"],
-                                   priority = 0)
+                                   priority = 1)
 
-# VERY Bad Female Profession (Generator 53)
+# VERY Bad Female Profession (Generators 52 & 53)
 class FemTemplate20(FemCharTemplate):
      def __init__(self):
           super().__init__(      noun = ProfVeryBadFemale(),
@@ -294,8 +294,22 @@ class FemTemplate20(FemCharTemplate):
                                                     CTEntry([SexualityFemale],2)
                                                   ], 
                                    girltype = GirlType.Bad,
-                                   priority = 0)     
-     
+                                   priority = 1,
+                                   NotList = ["Naked","Nudist"])     
+
+# Good Female Profession (Generator 52)
+class FemTemplate21(FemCharTemplate):
+     def __init__(self):
+          super().__init__(     noun = ProfGoodFemale(),
+                                    id = 21, 
+                                    adjlist =      [CTEntry([AttitudeGoodFemale],5),
+                                                    CTEntry([PhysCharFemale],4),
+                                                    CTEntry([NationFemale, SkinHairColorFemale,RaceFemale],2)
+                                                  ], 
+                                   girltype = GirlType.Good,
+                                   priority = 1,
+                                   NotList = [])
+          
 # === Good Trope templates ===
 
 class FemGoodTropeTemplate1(FemTropeTemplate):
