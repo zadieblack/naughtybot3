@@ -147,7 +147,7 @@ class TitleTemplate2(TitleTemplate):
                      MaxHeight = 116,
                      MaxRows = 2,
                      yOffset = 300,
-                     ColorType = LineColorType.MainTitle)
+                     ColorType = LineColorType.SecondTitle)
 
         # Small possible tag-line
         self.AddLine(OrderNum = 4,

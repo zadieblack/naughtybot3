@@ -82,7 +82,7 @@ def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorN
                          
                             titutil.TweetHistoryQ.LogHistoryQ()
                             titutil.TweetTxtHistoryQ.LogHistoryQ()
-               
+                            
                
      
                     # else:

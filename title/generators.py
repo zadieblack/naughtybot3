@@ -1471,7 +1471,7 @@ class Generator46(Generator):
                                       bAllowTitle = False, bAllowTrope = False)
                Relations = titmisc.RelateMale()
                Prefix = WordList(["Secretly In Love\nWith"])
-               sTweet = Prefix.GetWord() + "my\n" + Master.Desc + " " + Relations.GetWord(NotList = ["Boyfriend", "Husband", "Hubbie", "Widower", "Fiancé"])
+               sTweet = Prefix.GetWord() + " my\n" + Master.Desc + " " + Relations.GetWord(NotList = ["Boyfriend", "Husband", "Hubbie", "Widower", "Fiancé"])
           else:
                Girl = char.FemaleChar(bAddEndNoun = False, MaxChars = 32, 
                                       NotList = ["girlfriend"], bAllowRelate = False, 
@@ -1480,7 +1480,7 @@ class Generator46(Generator):
                                       bAllowTrope = False)
                Relations = titmisc.RelateFemale()
                Prefix = WordList(["Secretly In Love\nWith"])
-               sTweet = Prefix.GetWord() + "my\n" + Girl.Desc + " " + Relations.GetWord(NotList = ["Girlfriend", "Mistress", "Wife"])
+               sTweet = Prefix.GetWord() + " my\n" + Girl.Desc + " " + Relations.GetWord(NotList = ["Girlfriend", "Mistress", "Wife"])
           return sTweet
           
 # class Generator47(Generator):
@@ -1842,6 +1842,7 @@ class Generator52(Generator):
           else:
                sTweet+= "My " + GoodGirl.Desc + "\nIs Secretly\n" 
                sTweet += BadGirl.Desc + "!"
+
 
           return sTweet     
           

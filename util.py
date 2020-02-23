@@ -206,11 +206,13 @@ class HistoryQWithLog(HistoryQ):
           #print("LogFileName is " + self.LogFileName)
           
           try:
+               #print("Opening log file.")
                with open(self.LogFileName, 'r') as ReadLogFile:
                     for item in ReadLogFile.read().splitlines():
                          #print(item)
                          self.HistoryQ.append(int(item))
           except FileNotFoundError:
+               #print("Unable to open log file, creating log file.")
                open(self.LogFileName, 'w')
                with open(self.LogFileName, 'r') as ReadLogFile:
                     for item in ReadLogFile.read().splitlines():
