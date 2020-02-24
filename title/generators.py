@@ -1358,26 +1358,23 @@ class Generator41(Generator):
           
 class Generator42(Generator):
      # Deflowered in the Pleasure Gardens of the Studly Bare-Chested Pirate Count
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 42, Priority = 1)
+         self.Template = templates.TitleTemplate9()
      
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
           
           VNotList = ["Sold", "Hotwifed", "Humiliated", "Massaged"]
-          Nation = titmisc.NationMale()
-          Title = titmisc.TitlesMale()
           SexPlaces = WordList(["Bed", "Dungeon", "Sex Dungeon", "Pleasure Gardens", "Harem"])
-          Master = char.MaleChar(bAddEndNoun = False, bAllowTrope = False, bAllowRelate = False, 
-                                        bAllowMaritalStatus = False, bAllowAge = False, bAllowProf = False, 
-                                        bAllowSpecies = False,bAllowTypeMod = False, bAllowTitle = False)
+          Master = char.MaleChar(MaxChars = 30, SelectTemplateID = 15)
           
-          sTweet = self.VerbsBy.GetWord(NotList = ["Sold", "Hotwifed", "Public"]).upper() + "\n"
-          sTweet += "in the " + SexPlaces.GetWord() + " of the\n" 
-          sTweet += Master.Desc + " " + Title.GetWord()
+          sTweet = self.VerbsBy.GetWord(NotList = ["Sold", "Hotwifed", "Public"]) + "\n"
+          sTweet += "in the " + SexPlaces.GetWord() + "\nof the\n" 
+          sTweet += Master.Desc 
 
           return sTweet
 
@@ -4325,10 +4322,11 @@ class Generator123(Generator):
 # The Ghost of Richard Nixon
 # Ploughed My Girlfriend 
 class Generator124(Generator):
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 124, Priority = 1)
+         self.Template = templates.TitleTemplate9()
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -4353,7 +4351,7 @@ class Generator124(Generator):
                bAllowProf = False, bAllowPregState = False, bAllowAttitude = False, bAllowSpecies = False,
                bAllowTitle = False, bAllowMaritalStatus = False,)
           
-          sTweet = Undead.GetWord() + " " + Celebs.GetWord() + " " + Verbs.GetWord() + " "
+          sTweet = Undead.GetWord() + " " + Celebs.GetWord() + "\n" + Verbs.GetWord() + "\n"
           sTweet += "My " + Girl.Desc + " " + WordList(["Wife","Wife","Girlfriend"]).GetWord() + "!"                         
 
           return sTweet     
@@ -4635,10 +4633,11 @@ class Generator132(Generator):
 # Forbidden Heat
 # A pseudo-incest gorilla double anal story
 class Generator133(Generator):
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 133, Priority = 1)
+         self.Template = templates.TitleTemplate11()
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -4679,8 +4678,8 @@ class Generator133(Generator):
                                       "Menage","Lactation","Frottage"
                                       ]).GetWord(NotList = [sTitle1,sTitle2,sSubTitle1,sSubTitle2])
 
-          sTweet = "~" + sTitle1.upper() + " " + sTitle2.upper() + "~\n\n"
-          sTweet += AddArticles(sSubTitle1).lower() + " " + sSubTitle2.lower() + " " + sSubTitle3.lower() + " story"
+          sTweet = sTitle1 + " " + sTitle2 + "\n"
+          sTweet += AddArticles(sSubTitle1, bMakeUpper = True) + " " + sSubTitle2 + " " + sSubTitle3 + " Story"
           
           return sTweet     
           
@@ -4923,10 +4922,11 @@ class Generator137(Generator):
           
 #I Was Scissored by a Witch, and I Liked It!
 class Generator138(Generator):
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 138, Priority = 1)
+         self.Template = templates.TitleTemplate7()
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -4942,20 +4942,18 @@ class Generator138(Generator):
           if CoinFlip():
                NotFemList = ['anal','tease','virgin','fertile','small-town','tender','revealing','mature woman',
                                    'witch']
-               Girl = char.FemaleChar(Type = GirlType.Bad, bAddAnArticle = True, bAddEndNoun = False, NotList = NotFemList,
-                                        bAllowSexuality = False, bAllowMaritalStatus = False, bAllowProf = False, bAllowTitle = False,
-                                        bAllowGenMod = False)
+               Girl = char.FemaleChar(Type = GirlType.Bad, bAddAnArticle = True, SelectTemplateID = 224,
+                                      MaxChars = 24, NotList = NotFemList)
                                         
-               sTweet = "I Was " + Verbs.GetWord() + " by " + Girl.Desc + " Witch, And I Liked It!"
+               sTweet = "I Was " + Verbs.GetWord() + " by " + Girl.Desc + "\nAnd I Liked It!"
                                         
           else:
                NotFemList = ['anal','devlish','tease','virgin','fertile','small-town','submissive',
                                 'tender','masseuse','mature','little']
-               Girl = char.FemaleChar(Type = GirlType.Bad, bAddEndNoun = True, NotList = NotFemList,
-                                        bAllowSexuality = False, bAllowMaritalStatus = False, bAllowAttitude = False, 
-                                        bAllowGenMod = False, bAllowSpecies = False, bAllowTitle = False)
+               Girl = char.FemaleChar(Type = GirlType.Bad, bAddEndNoun = True, 
+                                        SelectTemplateID = 22, MaxChars = 24) #NotList = NotFemList)
                
-               sTweet = "I Was " + Verbs.GetWord() + " by an Undead " + Girl.Desc + ", And I Liked It!"
+               sTweet = "I Was " + Verbs.GetWord() + " by an Undead " + Girl.Desc + "\nAnd I Liked It!"
 
           return sTweet     
      
@@ -5088,10 +5086,11 @@ class Generator140(Generator):
           return sTweet     
           
 class Generator141(Generator):
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 141, Priority = 1)
+         self.Template = templates.TitleTemplate7()
      
      def GenerateTweet(self):
           super().GenerateTweet()

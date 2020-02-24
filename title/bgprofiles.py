@@ -7,8 +7,9 @@ from util import *
 
 BGLOGFILEPATH = "title/"
 BGLOGFILENAME = "bghistory_q.txt"
+BGQSIZE = 20
 
-ProfileHistoryQ = HistoryQWithLog(BGLOGFILEPATH + BGLOGFILENAME)
+ProfileHistoryQ = HistoryQWithLog(BGLOGFILEPATH + BGLOGFILENAME, BGQSIZE)
 
 class BGProfile():
     def __init__(self, ID = -1, Priority = 1, HeaderType = HeaderType.Harlequin, sFileName = ""):
@@ -45,7 +46,7 @@ class BGProfile():
 class BGProfileSaxaphone(BGProfile):
     def __init__(self):
         super().__init__(ID = 1,
-                           Priority = 12,
+                           Priority = 40,
                            sFileName = "saxophone")
         self.MainTitleColor = "rgba(94, 68, 25, 255)"
         self.SecondTitleColor = "rgba(94, 68, 25, 255)"
@@ -53,7 +54,7 @@ class BGProfileSaxaphone(BGProfile):
 class BGProfileBeach(BGProfile):
     def __init__(self):
         super().__init__(ID = 2,
-                           Priority = 12,
+                           Priority = 40,
                            sFileName = "beach")
         self.MainTitleColor = "rgba(162, 63, 33, 255)"
         self.SecondTitleColor = "rgba(83, 117, 88, 255)"
@@ -61,7 +62,7 @@ class BGProfileBeach(BGProfile):
 class BGProfileCrotchLevel(BGProfile):
     def __init__(self):
         super().__init__(ID = 3,
-                           Priority = 12,
+                           Priority = 40,
                            sFileName = "crotch_level")
         self.MainTitleColor = "rgba(193, 29, 63, 255)"
         self.SecondTitleColor = "rgba(83, 117, 88, 255)"
@@ -70,7 +71,7 @@ class BGProfileCrotchLevel(BGProfile):
 class BGProfileBoatNipples(BGProfile):
     def __init__(self):
         super().__init__(ID = 4,
-                           Priority = 12,
+                           Priority = 40,
                            sFileName = "boat_nipples")
         self.MainTitleColor = "rgba(39, 32, 73, 255)"
         self.SecondTitleColor = "rgba(39, 32, 73, 255)"
@@ -80,7 +81,7 @@ class BGProfileBoatNipples(BGProfile):
 class BGProfileBlueCarFire(BGProfile):
     def __init__(self):
         super().__init__(ID = 5,
-                           Priority = 12,
+                           Priority = 40,
                            sFileName = "blue_car_fire")
         self.MainTitleColor = "rgba(132, 41, 55, 255)"
         self.SecondTitleColor = "rgba(132, 41, 55, 255)"
@@ -90,7 +91,7 @@ class BGProfileBlueCarFire(BGProfile):
 class BGProfileIndian(BGProfile):
     def __init__(self):
         super().__init__(ID = 6,
-                           Priority = 12,
+                           Priority = 40,
                            sFileName = "indian")
         self.MainTitleColor = "rgba(157, 44, 43, 255)"
         self.SecondTitleColor = "rgba(157, 44, 43, 255)"
@@ -100,7 +101,7 @@ class BGProfileIndian(BGProfile):
 class BGProfileNakedFabio(BGProfile):
     def __init__(self):
         super().__init__(ID = 7,
-                           Priority = 12,
+                           Priority = 40,
                            sFileName = "naked_fabio")
         self.MainTitleColor = "rgba(238, 146, 134, 255)"
         self.SecondTitleColor = "rgba(238, 146, 134, 255)"
@@ -110,7 +111,7 @@ class BGProfileNakedFabio(BGProfile):
 class BGProfilePirate(BGProfile):
     def __init__(self):
         super().__init__(ID = 8,
-                           Priority = 12,
+                           Priority = 40,
                            sFileName = "pirate")
         self.MainTitleColor = "rgba(65, 112, 130, 255)"
         self.SecondTitleColor = "rgba(39, 32, 73, 255)"
@@ -120,7 +121,7 @@ class BGProfilePirate(BGProfile):
 class BGProfileAquaTopless(BGProfile):
     def __init__(self):
         super().__init__(ID = 9,
-                           Priority = 12,
+                           Priority = 40,
                            sFileName = "aqua_topless")
         self.MainTitleColor = "rgba(149, 196, 180, 255)"
         self.SecondTitleColor = "rgba(108, 80, 145, 255)"
@@ -130,7 +131,7 @@ class BGProfileAquaTopless(BGProfile):
 class BGProfileGay(BGProfile):
     def __init__(self):
         super().__init__(ID = 10,
-                           Priority = 12,
+                           Priority = 40,
                            sFileName = "gay")
         self.MainTitleColor = "rgba(189, 109, 65, 255)"
         self.SecondTitleColor = "rgba(189, 109, 65, 255)"
@@ -140,7 +141,7 @@ class BGProfileGay(BGProfile):
 class BGProfileSunset(BGProfile):
     def __init__(self):
         super().__init__(ID = 11,
-                           Priority = 12,
+                           Priority = 40,
                            sFileName = "sunset")
         self.MainTitleColor = "rgba(178, 27, 44, 255)"
         self.SecondTitleColor = "rgba(178, 27, 44, 255)"
@@ -150,7 +151,7 @@ class BGProfileSunset(BGProfile):
 class BGProfileField(BGProfile):
     def __init__(self):
         super().__init__(ID = 12,
-                           Priority = 12,
+                           Priority = 40,
                            sFileName = "field")
         self.MainTitleColor = "rgba(214, 149, 123, 255)"
         self.SecondTitleColor = "rgba(139, 121, 171, 255)"
@@ -160,7 +161,7 @@ class BGProfileField(BGProfile):
 class BGProfileRedVelvet(BGProfile):
     def __init__(self):
         super().__init__(ID = 13,
-                           Priority = 12,
+                           Priority = 40,
                            sFileName = "red_velvet")
         self.MainTitleColor = "rgba(181,55, 47, 255)"
         self.SecondTitleColor = "rgba(181,55, 47, 255)"
@@ -170,7 +171,7 @@ class BGProfileRedVelvet(BGProfile):
 class BGProfileRedAndPurple(BGProfile):
     def __init__(self):
         super().__init__(ID = 14,
-                           Priority = 12,
+                           Priority = 40,
                            sFileName = "red_and_purple")
         self.MainTitleColor = "rgba(209, 91, 56, 255)"
         self.SecondTitleColor = "rgba(209, 91, 56, 255)"
@@ -180,7 +181,7 @@ class BGProfileRedAndPurple(BGProfile):
 class BGProfileBlueCarFire(BGProfile):
     def __init__(self):
         super().__init__(ID = 15,
-                           Priority = 12,
+                           Priority = 40,
                            sFileName = "blue_car_fire")
         self.MainTitleColor = "rgba(132,41, 55, 255)"
         self.SecondTitleColor = "rgba(181,55, 47, 255)"
@@ -190,7 +191,7 @@ class BGProfileBlueCarFire(BGProfile):
 class BGProfileBlueDress(BGProfile):
     def __init__(self):
         super().__init__(ID = 16,
-                           Priority = 12,
+                           Priority = 40,
                            sFileName = "blue_dress")
         self.MainTitleColor = "rgba(181, 79, 75, 255)"
         self.SecondTitleColor = "rgba(181, 79, 75, 255)"
@@ -200,7 +201,7 @@ class BGProfileBlueDress(BGProfile):
 class BGProfileDarkBlueFireSuit(BGProfile):
     def __init__(self):
         super().__init__(ID = 17,
-                           Priority = 12,
+                           Priority = 40,
                            sFileName = "dark_blue_fire_suit")
         self.MainTitleColor = "rgba(173, 84, 69, 255)"
         self.SecondTitleColor = "rgba(173, 84, 69, 255)"
@@ -210,7 +211,7 @@ class BGProfileDarkBlueFireSuit(BGProfile):
 class BGProfileDark(BGProfile):
     def __init__(self):
         super().__init__(ID = 18,
-                           Priority = 12,
+                           Priority = 40,
                            sFileName = "dark")
         self.MainTitleColor = "rgba(84, 77, 93, 255)"
         self.SecondTitleColor = "rgba(84, 77, 93, 255)"
@@ -220,7 +221,7 @@ class BGProfileDark(BGProfile):
 class BGProfileGold(BGProfile):
     def __init__(self):
         super().__init__(ID = 19,
-                           Priority = 12,
+                           Priority = 40,
                            sFileName = "gold")
         self.MainTitleColor = "rgba(106, 118, 47, 255)"
         self.SecondTitleColor = "rgba(106, 118, 47, 255)"
@@ -230,7 +231,7 @@ class BGProfileGold(BGProfile):
 class BGProfileModernBedroom(BGProfile):
     def __init__(self):
         super().__init__(ID = 20,
-                           Priority = 12,
+                           Priority = 40,
                            sFileName = "modern_bedroom")
         self.MainTitleColor = "rgba(143, 137, 104, 255)"
         self.SecondTitleColor = "rgba(177, 119, 123, 255)"
@@ -240,7 +241,7 @@ class BGProfileModernBedroom(BGProfile):
 class BGProfileShipRomance(BGProfile):
     def __init__(self):
         super().__init__(ID = 21,
-                           Priority = 12,
+                           Priority = 40,
                            sFileName = "ship_romance")
         self.MainTitleColor = "rgba(75, 125, 152, 255)"
         self.SecondTitleColor = "rgba(75, 125, 152, 255)"
@@ -250,7 +251,7 @@ class BGProfileShipRomance(BGProfile):
 class BGProfileBath(BGProfile):
     def __init__(self):
         super().__init__(ID = 22,
-                           Priority = 10,
+                           Priority = 26,
                            sFileName = "bath")
         self.MainTitleColor = "rgba(209, 165, 48, 255)"
         self.SecondTitleColor = "rgba(145, 55, 63, 255)"
@@ -260,7 +261,7 @@ class BGProfileBath(BGProfile):
 class BGProfileBedSurprise(BGProfile):
     def __init__(self):
         super().__init__(ID = 23,
-                           Priority = 12,
+                           Priority = 40,
                            sFileName = "bed_surprise")
         self.MainTitleColor = "rgba(186, 73, 27, 255)"
         self.SecondTitleColor = "rgba(186, 73, 27, 255)"
@@ -270,7 +271,7 @@ class BGProfileBedSurprise(BGProfile):
 class BGProfileBoatTowel(BGProfile):
     def __init__(self):
         super().__init__(ID = 24,
-                           Priority = 12,
+                           Priority = 40,
                            sFileName = "boat_towel")
         self.MainTitleColor = "rgba(175, 98, 53, 255)"
         self.SecondTitleColor = "rgba(175, 98, 53, 255)"
@@ -280,7 +281,7 @@ class BGProfileBoatTowel(BGProfile):
 class BGProfileCastle(BGProfile):
     def __init__(self):
         super().__init__(ID = 25,
-                           Priority = 12,
+                           Priority = 40,
                            sFileName = "castle")
         self.MainTitleColor = "rgba(107, 66, 113, 255)"
         self.SecondTitleColor = "rgba(158, 162, 61, 255)"
@@ -290,7 +291,7 @@ class BGProfileCastle(BGProfile):
 class BGProfileKinkyCuffs(BGProfile):
     def __init__(self):
         super().__init__(ID = 26,
-                           Priority = 5,
+                           Priority = 15,
                            sFileName = "kinky_cuffs")
         self.MainTitleColor = "rgba(170, 26, 24, 255)"
         self.SecondTitleColor = "rgba(170, 26, 24, 255)"
@@ -300,7 +301,7 @@ class BGProfileKinkyCuffs(BGProfile):
 class BGProfileMansion(BGProfile):
     def __init__(self):
         super().__init__(ID = 27,
-                           Priority = 12,
+                           Priority = 40,
                            sFileName = "mansion")
         self.MainTitleColor = "rgba(221, 132, 34, 255)"
         self.SecondTitleColor = "rgba(41, 89, 152, 135)"
@@ -320,7 +321,7 @@ class BGProfileShower(BGProfile):
 class BGProfileSuperHero(BGProfile):
     def __init__(self):
         super().__init__(ID = 29,
-                           Priority = 12,
+                           Priority = 40,
                            sFileName = "superhero")
         self.MainTitleColor = "rgba(189, 42, 20, 255)"
         self.SecondTitleColor = "rgba(189, 42, 20, 255)"
@@ -330,7 +331,7 @@ class BGProfileSuperHero(BGProfile):
 class BGProfileSwingers(BGProfile):
     def __init__(self):
         super().__init__(ID = 30,
-                           Priority = 12,
+                           Priority = 40,
                            sFileName = "swingers")
         self.MainTitleColor = "rgba(203, 62, 76, 255)"
         self.SecondTitleColor = "rgba(203, 62, 76, 255)"
@@ -340,7 +341,7 @@ class BGProfileSwingers(BGProfile):
 class BGProfileSwordKilt(BGProfile):
     def __init__(self):
         super().__init__(ID = 31,
-                           Priority = 12,
+                           Priority = 40,
                            sFileName = "sword_kilt")
         self.MainTitleColor = "rgba(135, 49, 40, 255)"
         self.SecondTitleColor = "rgba(79, 86, 194, 255)"
@@ -350,7 +351,7 @@ class BGProfileSwordKilt(BGProfile):
 class BGProfileTightButts(BGProfile):
     def __init__(self):
         super().__init__(ID = 32,
-                           Priority = 5,
+                           Priority = 10,
                            sFileName = "tight_butts")
         self.MainTitleColor = "rgba(108, 178, 234, 255)"
         self.SecondTitleColor = "rgba(99, 36, 2, 255)"
@@ -360,22 +361,22 @@ class BGProfileTightButts(BGProfile):
 class BGProfileTropicalPirate(BGProfile):
     def __init__(self):
         super().__init__(ID = 33,
-                           Priority = 12,
+                           Priority = 40,
                            sFileName = "tropical_pirate")
         self.MainTitleColor = "rgba(195, 21, 48, 255)"
         self.SecondTitleColor = "rgba(195, 21, 48, 255)"
         self.SmallTextColor = "rgba(35, 135, 63, 255)"
         self.AuthorNameColor = "rgba(38, 167, 207, 255)"
 
-class BGProfileUSA(BGProfile):
-    def __init__(self):
-        super().__init__(ID = 34,
-                           Priority = 12,
-                           sFileName = "usa")
-        self.MainTitleColor = "rgba(210, 1, 28, 255)"
-        self.SecondTitleColor = "rgba(210, 1, 28, 255)" 
-        self.SmallTextColor = "rgba(107, 202, 245, 255)"
-        self.AuthorNameColor = "rgba(16, 37, 56, 255)"
+#class BGProfileUSA(BGProfile):
+#    def __init__(self):
+#        super().__init__(ID = 34,
+#                           Priority = 40,
+#                           sFileName = "usa")
+#        self.MainTitleColor = "rgba(210, 1, 28, 255)"
+#        self.SecondTitleColor = "rgba(210, 1, 28, 255)" 
+#        self.SmallTextColor = "rgba(107, 202, 245, 255)"
+#        self.AuthorNameColor = "rgba(16, 37, 56, 255)"
         
 class BGProfileChamberPot(BGProfile):
     def __init__(self):
@@ -628,15 +629,15 @@ class BGProfileTheDevil(BGProfile):
         self.SmallTextColor = "rgba(47, 84, 51, 255)"
         self.AuthorNameColor = "rgba(47, 84, 51, 255)"
 
-class BGProfileTrousersDown(BGProfile):
-    def __init__(self):
-        super().__init__(ID = 59,
-                           Priority = 2,
-                           sFileName = "trousers_down")
-        self.MainTitleColor = "rgba(34, 116, 95, 255)"
-        self.SecondTitleColor = "rgba(34, 116, 95, 255)"
-        self.SmallTextColor = "rgba(106, 87, 133, 255)"
-        self.AuthorNameColor = "rgba(0, 0, 0, 255)"
+#class BGProfileTrousersDown(BGProfile):
+#    def __init__(self):
+#        super().__init__(ID = 59,
+#                           Priority = 2,
+#                           sFileName = "trousers_down")
+#        self.MainTitleColor = "rgba(34, 116, 95, 255)"
+#        self.SecondTitleColor = "rgba(34, 116, 95, 255)"
+#        self.SmallTextColor = "rgba(106, 87, 133, 255)"
+#        self.AuthorNameColor = "rgba(0, 0, 0, 255)"
 
 class BGProfileVampire(BGProfile):
     def __init__(self):
@@ -704,7 +705,7 @@ def indexof(list, searchobj):
     bFound = False
 
     while iIndex < len(list):
-        if list[iIndex][0][1].BGFileName == searchobj[1].BGFileName:
+        if list[iIndex][0][1].FileName == searchobj[1].FileName:
             bFound = True
             break
         iIndex = iIndex + 1
@@ -734,9 +735,17 @@ class ProfileSelector():
         #    else:
         #        ProfileCountTable.append([profile, 1])
 
+        #iSFWCount = 0
+        #iAdultsOnlyCount = 0 
         #for item in ProfileCountTable:
-        #    sTable += str(item[0][1].BGFileName) + ": " + str(item[1]) + "\n"
-        #sTable += "\n"
+        #    sTable += str(item[0][1].FileName) + ": " + str(item[1]) + "\n"
+        #    if item[1] > 5:
+        #        iSFWCount = iSFWCount + item[1]
+        #    else:
+        #        iAdultsOnlyCount = iAdultsOnlyCount + item[1]
+        #sTable += "\n\n"
+        #sTable += "# Safe For Work: " + str(iSFWCount) + "\n"
+        #sTable += "# Adults Only: " + str(iAdultsOnlyCount) + "\n"
 
         #print(sTable)
 
@@ -764,7 +773,7 @@ def GetBGProfileGenerator(iProfileID = 0, ProfileHistoryQ = None):
     print("GetBGProfileGenerator() iProfileID = " + str(iProfileID))
 
     if ProfileHistoryQ is None:
-        ProfileHistoryQ = HistoryQWithLog(BGLOGFILEPATH + BGLOGFILENAME, iQSize = 50)
+        ProfileHistoryQ = HistoryQWithLog(BGLOGFILEPATH + BGLOGFILENAME, iQSize = BGQSIZE)
 
     ProfSel = ProfileSelector()
     if iProfileID > 0:

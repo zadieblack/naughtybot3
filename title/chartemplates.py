@@ -290,25 +290,40 @@ class FemTemplate20(FemCharTemplate):
                                     adjlist =      [ CTEntry([GenModFemale],8),
                                                     CTEntry([AttitudeBadFemale],7),
                                                     CTEntry([PhysCharFemale],6),
-                                                    CTEntry([ClothingFemale],5),
-                                                    CTEntry([SexualityFemale],2)
+                                                    CTEntry([ClothingFemale],5)
                                                   ], 
                                    girltype = GirlType.Bad,
                                    priority = 1,
                                    NotList = ["Naked","Nudist"])     
 
-# Good Female Profession (Generator 52)
+# Bad (Undead) Female Profession (Generator 138)
 class FemTemplate21(FemCharTemplate):
      def __init__(self):
-          super().__init__(     noun = ProfGoodFemale(),
+          super().__init__(      noun = ProfBadFemale(),
                                     id = 21, 
-                                    adjlist =      [CTEntry([AttitudeGoodFemale],5),
-                                                    CTEntry([PhysCharFemale],4),
-                                                    CTEntry([NationFemale, SkinHairColorFemale,RaceFemale],2)
+                                    adjlist =      [ CTEntry([AgeAdjFemale],9),
+                                                    CTEntry([PhysCharFemale],6),
+                                                    CTEntry([ClothingFemale],5),
+                                                    CTEntry([NationFemale,SkinHairColorFemale,RaceFemale],3),
                                                   ], 
-                                   girltype = GirlType.Good,
+                                   girltype = GirlType.Bad,
                                    priority = 1,
-                                   NotList = [])
+                                   NotList = ["undead","virgin","fertile","small-town","submissive",
+                                              "tender","masseuse","mature","little"])
+ 
+# bad female profession (Generator 52)
+class FemTemplate22(FemCharTemplate):
+     def __init__(self):
+          super().__init__(      noun = ProfBadFemale(),
+                                    id = 22, 
+                                    adjlist =      [ CTEntry([PhysCharFemale],6),
+                                                    CTEntry([ClothingFemale,MaritalStatusFemale],5),
+                                                    CTEntry([NationFemale,RaceFemale],3)
+                                                  ], 
+                                   girltype = GirlType.Bad,
+                                   priority = 3,
+                                   NotList = ["single","virgin","fertile","small-town","tender",
+                                              "mature","elvish","fashionable"])
           
 # === Good Trope templates ===
 
@@ -886,6 +901,21 @@ class FemBadTropeTemplate23(FemTropeTemplate):
                                    girltype = GirlType.Bad,
                                    NotList = ["virgin","younger","teen","co-ed"])
 
+class FemBadTropeTemplate24(FemTropeTemplate):
+     def __init__(self):
+          super().__init__(      noun = TropeBitBadFemale("Witch"),
+                                    id = 224, 
+                                    adjlist =      [ 
+                                                    CTEntry([GenModFemale],9),
+                                                    CTEntry([AttitudeFemale],8),
+                                                    CTEntry([PhysCharFemale],7),
+                                                    CTEntry([ClothingFemale],6),
+                                                    CTEntry([NationFemale,SkinHairColorFemale,RaceFemale],3),
+                                                    CTEntry([SexualityFemale,PregState,AgeAdjFemale],2)
+                                                  ], 
+                                   girltype = GirlType.Bad,
+                                   NotList = ['virgin','fertile','small-town','tender','mature woman','witch'])
+
 # Adj:          AgeAdjFemale, AttitudeGoodFemale, AttitudeBadFemale, AttitudeFemale,
 #                ClothingFemale, GenModFemale, MaritalStatusFemale, NationFemale, PhysCharFemale
 #               PregState, SexualityFemale, SkinHairColorFemale, SpeciesFemale
@@ -1267,7 +1297,28 @@ class MaleTemplate14(MaleCharTemplate):
                                                     CTEntry([AgeAdjMale,MaritalStatusMale],5)
                                                   ],
                                    priority = 1)
-                                   
+ 
+# Male Titled (Generator 42)
+class MaleTemplate15(MaleCharTemplate):
+     def __init__(self):
+          super().__init__(     noun = TitlesMale(),
+                                    id = 15, 
+                                    adjlist =      [CTEntry([GenModMale],8),
+                                                    CTEntry([AttitudeMale],6),
+                                                    CTEntry([ClothesMale],5),
+                                                    CTEntry([PhysCharMale],4),
+                                                    CTEntry([DickCharMale],3),
+                                                    CTEntry([SkinHairColorMale,NationMale,RaceMale],2),
+                                                    CTEntry([TropesWealthyMale],1)
+                                                  ],
+                                   priority = 1)
+
+# Adjs:          GenModMale, AttitudeMale, ClothesMale, PhysCharMale, DickCharMale, TypeModMale,
+#               SkinHairColorMale, AgeAdjMale, MaritalStatusMale, NationMale
+# Nouns:     ProfMale, RelateMale, SpeciesMale, TitlesMale, TropesWealthyMale
+# Jobs:          ProfBlueCollarMale,ProfWhiteCollarMale,ProfFantasyMale,ProfAthleteMale,ProfRockstarMale,
+#               ProfNormalMale,ProfAspirationalMale,ProfMale
+
 #ProfBlueCollarMale,ProfWhiteCollarMale,ProfFantasyMale,ProfAthleteMale,ProfRockstarMale,
 #               ProfNormalMale,ProfAspirationalMale,ProfMale
 
