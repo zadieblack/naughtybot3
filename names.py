@@ -1488,7 +1488,7 @@ def GetInnName(gender, iGeneratorNo = 0):
                gen = GenSel.RandomGenerator()
      
      if not gen is None:
-          print("Innuendo name generator #" + str(gen.ID) + " selected for " + str(gender))
+          #print("Innuendo name generator #" + str(gen.ID) + " selected for " + str(gender))
           sName = gen.GetName(gender)
 
      

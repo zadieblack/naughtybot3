@@ -222,7 +222,7 @@ class HistoryQWithLog(HistoryQ):
           #print(self.HistoryQ)
                
      def LogHistoryQ(self):
-          with open(self.LogFileName, 'w') as WriteHistoryQ:
+          with open(self.LogFileName, 'w+') as WriteHistoryQ:
                for item in self.HistoryQ:
                     WriteHistoryQ.write(str(item) + "\n")
           #print("Wrote HistoryQ:")

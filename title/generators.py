@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # Generators module
 
-import sys, threading, traceback
+import re, sys, threading, traceback
 from random import *
 from util import *
 from title.util import *
@@ -15,6 +15,8 @@ import misc
 import title.misc as titmisc
 import title.chargenerator as char
 import title.titletemplates as templates
+
+FAVTITLE_FILENAME = 'title/fav_titles.txt'
 
 PromoHistoryQ = HistoryQ(2)
 
@@ -87,6 +89,102 @@ class Generator():
             self.Template.ClearLineText()
             self.Template.AddLineText(stxt)
 
+    def GetTitleFromFile(self, sFileName = ""):
+        bSuccess = True 
+        if sFileName == "":
+            sFileName = FAVTITLE_FILENAME
+     
+        Titles = [""]
+        iTitleCount = 0
+
+        Details = [] 
+        Lines = []
+        sImgTxt = ""
+          
+        try:
+            with open(sFileName, 'r') as infile:
+                for line in infile:
+                    Lines.append(line.strip())
+                         
+        except OSError as err:
+            print("**File IO ERROR READING " + sFileName + ": " + str(err) + "**\n")
+            bSuccess = False
+
+        if len(Lines) > 0:
+            iLineNo = 0
+            # Divider or spaces at top of file, ignore
+            for iLineNo, line in enumerate(Lines):
+                if not (line == "" or line == titutil.FAVTITLE_DIVIDER):
+                    break
+            Lines = Lines[iLineNo:]
+                #print("sLine (top of file) is [" + sLine + "]")
+            print("There were " + str(iLineNo) + " filler top lines that have been ignored.")
+
+            if len(Lines[0]) > 4:
+                print("Next line (#" + str(0) + ") is [" + str(Lines[0]) + "]")
+                if Lines[0][:2] == "{{" and Lines[0][-2:] == "}}":
+            # This is a new entry 
+                    Details = Lines[0][3:-3].split("][")
+                    Lines = Lines[1:]
+                    print("Next line (#" + str(0) + ") is [" + str(Lines[0]) + "]")
+
+            # Next lines should be the imgtxt. append it until we
+            # hit a divider
+                    for iLineNo, line in enumerate(Lines):
+                        if line == titutil.FAVTITLE_DIVIDER:
+                            break
+                        sImgTxt += line + "\n"
+                    Lines = Lines[iLineNo + 1:] # skip next divider
+                    print("sImgTxt is [" + sImgTxt + "]")
+            else: 
+                bSuccess = False
+                print("ERORR: Did not find a details line.")
+
+            # We've got our generator info. Now read in the rest of 
+            # the file and spit it back out minus the gen we just read
+            print("Writing rest of lines back to file")
+            try:
+                with open(sFileName, 'w') as outfile:     
+                    for iLineNo, line in enumerate(Lines, start  = iLineNo):
+                        outfile.write(line + "\n")
+          
+            except OSError as err:
+                print("**File IO ERROR WRITING " + sFileName + ": " + str(err) + "**\n")
+                bSuccess = False
+            # Now that's done lets put our info into this generator!
+
+            if len(Details) > 3:
+                print("Populating generator with file data")
+            # 1st item is ID #
+                self.ID = int(Details[0])
+
+            # 2nd item is template #
+                iTemplateID = int(Details[1])
+                TemplateSelector = templates.TitleTemplateSelector()
+                self.Template = TemplateSelector.GetTitleTemplate(iTemplateID)
+
+            # 3rd item is author name
+                self.AuthorName = Details[2]
+
+            # 4th item is author gender
+                if Details[3].lower() == "male":
+                    self.AuthorGender = Gender.Male
+                elif Details[3].lower() == "female":
+                    self.AuthorGender = Gender.Female
+                else:
+                    self.AuthorGender = Gender.Neuter
+            else: 
+                bSuccess = False
+                print("ERROR: Did not have data so could not populate generator.")
+
+            # Finally dont forget about the image text!!
+            self.ImgTxt = sImgTxt
+            self.SetImgText(sImgTxt)
+        else: 
+            bSuccess = False 
+
+        return bSuccess
+
 def GetTweetGenerator(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = None):
      gen = None
      GenType = None 
@@ -109,22 +207,27 @@ def GetTweetGenerator(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = None):
           
      return gen
      
+def GetRandomTweetGenerator(bTest, bTweet, iGeneratorNo = 0, bAllowPromo = True):
+    Gen = GetTweetGenerator(bTest, iGeneratorNo, bAllowPromo = bAllowPromo)
+
+    if not TweetHistoryQ is None:
+        while bTweet and not TweetHistoryQ.PushToHistoryQ(Gen.ID):
+            Gen = GetTweetGenerator(bTest, iGeneratorNo, bAllowPromo = bAllowPromo)
+     
+    Gen.Generate()
+
+    return Gen
+
 def GetTweet(bTest, bTweet, iGeneratorNo = 0, bAllowPromo = True, Type = None, TweetHistoryQ = None, bAllowFavTweets = True):
     Gen = None
     sTweet = ""
     
     if not bTest and bAllowFavTweets:
-        sTweet = GetNextFavTitleFromFile()
         Gen = Generator()
-        Gen.ImgTxt = sTweet
+        if not Gen.GetTitleFromFile(FAVTITLE_FILENAME):
+            Gen = GetRandomTweetGenerator(bTest, iGeneratorNo, bAllowPromo = bAllowPromo)
     else:
-        Gen = GetTweetGenerator(bTest, iGeneratorNo, bAllowPromo = bAllowPromo)
-
-        if not TweetHistoryQ is None:
-            while bTweet and not TweetHistoryQ.PushToHistoryQ(Gen.ID):
-                Gen = GetTweetGenerator(bTest, iGeneratorNo, bAllowPromo = bAllowPromo)
-     
-        Gen.Generate()
+        Gen = GetRandomTweetGenerator(bTest, iGeneratorNo, bAllowPromo = bAllowPromo)
 
     return Gen
      

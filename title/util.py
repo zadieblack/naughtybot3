@@ -16,8 +16,7 @@ TWIT_CONTROLLER = 'zadieblack'
 Q_SIZE = 40
 HISTORYQ_FILENAME = 'title/history_q.txt'
 TWEETTXT_HISTORYQ_FILENAME = 'title/tweettxt_history_q.txt'
-FAVTITLE_FILENAME = 'title/fav_titles.txt'
-FAVTITLE_DIVIDER = '///'
+FAVTITLE_DIVIDER = "~~~"
 
 TweetHistoryQ = None
 
@@ -58,37 +57,6 @@ class MaleCharType(Enum):
      GangSingular = 3
      GangPlural = 4
      Gay = 5
-
-          
-def GetNextFavTitleFromFile(sFileName = ""):
-     if sFileName == "":
-          sFileName = FAVTITLE_FILENAME
-          
-     sFavTitle = ""
-     
-     Titles = [""]
-     iTitleCount = 0
-          
-     try:
-          with open(sFileName, 'r') as infile:
-               for line in infile:
-                    if line.strip() != FAVTITLE_DIVIDER:
-                         Titles[iTitleCount] += line.replace('&amp;','&')
-                    else:
-                         Titles.append("")
-                         iTitleCount += 1
-          
-          with open(sFileName, 'w') as outfile:     
-               for x in range(1, len(Titles)):
-                    outfile.write(Titles[x] + FAVTITLE_DIVIDER + "\n")
-          
-          sFavTitle = Titles[0].strip()
-          
-     except OSError as err:
-          print("**File IO ERROR: " + str(err) + "**\n")
-     
-     
-     return sFavTitle.strip()
                     
           
      

@@ -7,8 +7,8 @@ from util import *
 class TitleLine():
     def __init__(self, OrderNum = 1, 
                  FontName = "", 
-                 FontMaxSize = 75,
-                 MaxRows = 1,
+                 FontMaxSize = 16,
+                 MaxRows = 2,
                  ColorType = LineColorType.MainTitle,
                  AllCaps = False):
         #self.ID = 0
@@ -31,8 +31,8 @@ class TitleTemplate():
                                     FontMaxSize = 16,
                                     MaxRows = 1)
 
-    def AddLine(self, OrderNum, FontName, FontMaxSize, MaxRows, ColorType,AllCaps = False):
-        self.Lines.append(TitleLine(OrderNum,FontName,FontMaxSize,MaxRows,ColorType,AllCaps = AllCaps))
+    def AddLine(self, OrderNum = 1, FontName = "", FontMaxSize = 16, MaxRows = 2, ColorType = None, AllCaps = False):
+        self.Lines.append(TitleLine(OrderNum = OrderNum,FontName = FontName,FontMaxSize = FontMaxSize,MaxRows = MaxRows,ColorType = ColorType,AllCaps = AllCaps))
     
     def AddLineText(self, stxt = ""):
         TxtLines = []
@@ -68,8 +68,7 @@ class TitleTemplatePHDefault(TitleTemplate):
         super().__init__(ID = 1)
         self.AddLine(TitleLine(OrderNum = 1,
                                FontName = "Walpurgis Night.otf",
-                               MaxRows = 5,
-                               MaxHeight = 392))
+                               MaxRows = 5))
 
 # SHORT TOP LINE
 # of a
@@ -382,3 +381,39 @@ class TitleTemplate11(TitleTemplate):
                      FontMaxSize = 16,
                      MaxRows = 2,
                      ColorType = LineColorType.SecondTitle)
+
+
+
+
+
+
+
+
+
+class TitleTemplateSelector():
+    def __init__(self):
+        self.TitleTemplateList = [] 
+
+        for subclass in TitleTemplate.__subclasses__():
+            item = subclass()
+
+    #def RandomTitleTemplate(self):
+    #    TitleTemplate = []
+
+    #    if len(self.TitleTemplateList) > 0:
+    #        TitleTemplate = choice(self.TitleTemplateList)
+                    
+    #    return TitleTemplate
+          
+    def GetTitleTemplate(self, iTemplateID):
+        SelectedTemplate = None 
+          
+        if len(self.TitleTemplateList) > 0:
+            for template in self.TitleTemplateList :
+                if template.ID == iTemplateID:
+                    SelectedTemplate = template
+                    break
+                         
+        return SelectedTemplate
+  
+     
