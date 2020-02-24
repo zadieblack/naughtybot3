@@ -249,7 +249,7 @@ class NamesFemale(Names):
      def __init__(self):
           super().__init__()
           
-          self.SetFirstNames(ClassyNamesFemale().GetFirstNamesList())
+          self.SetFirstNames(PlainNamesFemale().GetFirstNamesList() + ClassyNamesFemale().GetFirstNamesList())
           
 class AuthorNamesFemale(Names):
      def __init__(self):

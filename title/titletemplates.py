@@ -361,7 +361,7 @@ class TitleTemplate10(TitleTemplate):
                      ColorType = LineColorType.SecondTitle,
                      AllCaps = True)
 
-# SHORT TOP LINE
+# SHORT TOP LINE (ALL CAPS!!!)
 # LONG TWO-ROW BOTTOM LINE
 class TitleTemplate11(TitleTemplate):
     def __init__(self):
@@ -382,7 +382,25 @@ class TitleTemplate11(TitleTemplate):
                      MaxRows = 2,
                      ColorType = LineColorType.SecondTitle)
 
+# SHORT TOP LINE
+# LONG TWO-ROW BOTTOM LINE
+class TitleTemplate12(TitleTemplate):
+    def __init__(self):
+        super().__init__(ID = 12)
 
+        # Large medium-length top line 
+        self.AddLine(OrderNum = 1,
+                     FontName = "Verona-ExtraBold.otf",
+                     FontMaxSize = 24,
+                     MaxRows = 2,
+                     ColorType = LineColorType.MainTitle)
+
+        # One or two-line medium-sized bottom line
+        self.AddLine(OrderNum = 2,
+                     FontName = "Sabado Regular.otf",
+                     FontMaxSize = 16,
+                     MaxRows = 2,
+                     ColorType = LineColorType.SecondTitle)
 
 
 

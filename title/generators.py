@@ -16,8 +16,6 @@ import title.misc as titmisc
 import title.chargenerator as char
 import title.titletemplates as templates
 
-FAVTITLE_FILENAME = 'title/fav_titles.txt'
-
 PromoHistoryQ = HistoryQ(2)
 
 class Generator():
@@ -112,33 +110,27 @@ class Generator():
 
         if len(Lines) > 0:
             iLineNo = 0
-            # Divider or spaces at top of file, ignore
+            # ignore lines until we find our first detail line
             for iLineNo, line in enumerate(Lines):
-                if not (line == "" or line == titutil.FAVTITLE_DIVIDER):
+                if len(line) > 4 and line[:2] == "{{" and line[-2:] == "}}":
                     break
             Lines = Lines[iLineNo:]
-                #print("sLine (top of file) is [" + sLine + "]")
-            print("There were " + str(iLineNo) + " filler top lines that have been ignored.")
 
-            if len(Lines[0]) > 4:
-                print("Next line (#" + str(0) + ") is [" + str(Lines[0]) + "]")
-                if Lines[0][:2] == "{{" and Lines[0][-2:] == "}}":
+            if Lines[0][:2] == "{{" and Lines[0][-2:] == "}}":
             # This is a new entry 
-                    Details = Lines[0][3:-3].split("][")
-                    Lines = Lines[1:]
-                    print("Next line (#" + str(0) + ") is [" + str(Lines[0]) + "]")
+                Details = Lines[0][3:-3].split("][")
+                Lines = Lines[1:]
 
             # Next lines should be the imgtxt. append it until we
             # hit a divider
-                    for iLineNo, line in enumerate(Lines):
-                        if line == titutil.FAVTITLE_DIVIDER:
-                            break
-                        sImgTxt += line + "\n"
-                    Lines = Lines[iLineNo + 1:] # skip next divider
-                    print("sImgTxt is [" + sImgTxt + "]")
+                for iLineNo, line in enumerate(Lines):
+                    if line == titutil.FAVTITLE_DIVIDER:
+                        break
+                    sImgTxt += line + "\n"
+                Lines = Lines[iLineNo + 1:] # skip next divider
             else: 
                 bSuccess = False
-                print("ERORR: Did not find a details line.")
+                print("ERROR: Did not find a details line.")
 
             # We've got our generator info. Now read in the rest of 
             # the file and spit it back out minus the gen we just read
@@ -225,9 +217,9 @@ def GetTweet(bTest, bTweet, iGeneratorNo = 0, bAllowPromo = True, Type = None, T
     if not bTest and bAllowFavTweets:
         Gen = Generator()
         if not Gen.GetTitleFromFile(FAVTITLE_FILENAME):
-            Gen = GetRandomTweetGenerator(bTest, iGeneratorNo, bAllowPromo = bAllowPromo)
+            Gen = GetRandomTweetGenerator(bTest, bTweet, iGeneratorNo, bAllowPromo = bAllowPromo)
     else:
-        Gen = GetRandomTweetGenerator(bTest, iGeneratorNo, bAllowPromo = bAllowPromo)
+        Gen = GetRandomTweetGenerator(bTest, bTweet, iGeneratorNo, bAllowPromo = bAllowPromo)
 
     return Gen
      
@@ -505,10 +497,11 @@ class Generator10(Generator):
           
 class Generator11(Generator):
      # The Millionaire Sherrif's Virgin
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 11, Priority = 1)
+         self.Template = templates.TitleTemplate12()
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -516,19 +509,31 @@ class Generator11(Generator):
           
           Relations = titmisc.RelateFemale()
           Gerunds = self.Gerunds
+
+          iTempNo = 0
+          if CoinFlip():
+          # Good female relation template
+             iTempNo = 8
+          else:
+          # Bad female relation template
+             iTempNo = 9
+
+          FemNotList = ['Girlfriend', 'Wife', 'Mistress','Concubine']
+          FemChar = char.FemaleChar(MaxChars = 28, SelectTemplateID = iTempNo,
+                                    NotList = FemNotList)
           
-          sTweet = Gerunds.GetWord() + " My " + char.FemaleChar(bAddEndNoun = False, bAllowSpecies = False, 
-                                                                                bAllowRelate = False, bAllowAge = False).Desc + " " 
-          sTweet += Relations.GetWord(NotList = ['Girlfriend', 'Wife', 'Mistress','Concubine'])
+          sTweet = Gerunds.GetWord() + "\nMy " + FemChar.Desc
 
           return sTweet
           
 class Generator12(Generator):
-     # Babysitter to the Billionaire Uniporn
-     Disabled = True
+     # Fingering Felicity
+     # A Mommy Encounter
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 12, Priority = 1)
+         self.Template = templates.TitleTemplate12()
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -537,8 +542,11 @@ class Generator12(Generator):
           RelNotList = ["Wife","Girlfriend","Mistress","Concubine","Daughter's Best Friend"]
           Relations = titmisc.RelateFemale()
           Gerunds = self.Gerunds
+          Names = NamesFemale()
 
-          sTweet = Gerunds.GetWord() + " "  + self.HerName + ":\n" 
+          RhymingPair = GetRhymingPair(Gerunds.GetWordList(), Names.GetFirstNamesList())
+
+          sTweet = RhymingPair[0] + " " + RhymingPair[1] + "\n" 
           sTweet += AddArticles(Relations.GetWord(NotList = RelNotList), bMakeUpper = True) + " " 
           sTweet += self.SubtitleCoda.GetWord()
 
