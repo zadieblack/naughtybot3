@@ -120,6 +120,7 @@ class FemTemplate8(FemCharTemplate):
                                    priority = 3)
 
 # Bad Female Relation 
+# Generators 16
 class FemTemplate9(FemCharTemplate):
      def __init__(self):
           super().__init__(     noun =  RelateFemale(),
@@ -297,6 +298,7 @@ class FemTemplate20(FemCharTemplate):
                                    NotList = ["Naked","Nudist"])     
 
 # Bad (Undead) Female Profession (Generator 138)
+# Generators: 138
 class FemTemplate21(FemCharTemplate):
      def __init__(self):
           super().__init__(      noun = ProfBadFemale(),

@@ -496,7 +496,8 @@ class Generator10(Generator):
           return sTweet
           
 class Generator11(Generator):
-     # The Millionaire Sherrif's Virgin
+     # Shaving
+     # My Cute Black Cheerleader Step-Sister
      Disabled = False
 
      def __init__(self):
@@ -553,22 +554,24 @@ class Generator12(Generator):
           return sTweet
           
 class Generator13(Generator):     
-     # I Was an Escort for a Billionaire Uniporn
-     Disabled = True
+     # I Was a Bra-less Escort for a French Billionaire Uniporn
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 13, Priority = 1)
+         self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
           
-          Girl = char.FemaleChar(TempType = TempType.Medium, Type = GirlType.Bad,
-                                        bAllowAttitude = False, bAllowGenMod = False, bAllowMaritalStatus = False,
-                                        bAllowNation = False, sPosArticle = "My")
-          Master = char.MaleChar(bAddAnArticle = True)
+          GirlNotList = ["college girl","co-ed","mommy blogger","school-marm"]
+          Girl = char.FemaleChar(TempType = TempType.Medium, Type = GirlType.Bad, 
+                                 sPosArticle = "My", SelectTemplateID = 21,
+                                 NotList = GirlNotList, bAllowNation = False)
+          Master = char.MaleChar(bAddAnArticle = True, MaxChars = 28)
           
-          sTweet = "I Was " + AddArticles(Girl.Desc) + "\nfor\n" + Master.Desc
+          sTweet = "I was " + AddArticles(Girl.Desc) + "\nfor\n" + Master.Desc
 
           return sTweet
      
@@ -632,10 +635,11 @@ class Generator16(Generator):
 # "Oh No! I Went to an Orgy
 # And I Accidentally
 # Finger-Banged My Asian Step-Sister!"
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 16, Priority = 1)
+         self.Template = templates.TitleTemplate8()
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -643,21 +647,22 @@ class Generator16(Generator):
           
           Tweets = []
           
-          RelNotList = ['Wife', 'Girlfriend', 'Fiancé','Concubine','Mistress']
+          RelNotList = ['Wife', 'Girlfriend', 'Fiancé','Concubine','Mistress',
+                        'BDSM','little']
           Relations = titmisc.RelateFemale()
           Verbs = WordList(["Boned","Banged","Humped","Had Sex With","Went Down On","Sixty-Nined","Ate Out",
-                                "Boinked","Jizzed On","Finger-Banged","Fisted","Did"])
-          FemNotList = ["BDSM","little"]
-          StepMom = char.FemaleChar(TempType = TempType.Medium, bAddEndNoun = False, NotList = FemNotList,
-                                             bAllowMaritalStatus = False, bAllowRelate = False, bAllowSpecies = False,
-                                             bAllowAge = False)
+                            "Anal","Boinked","Jizzed On","Finger-Banged","Fisted","Did"])
+
+          StepMom = char.FemaleChar(TempType = TempType.Medium, SelectTemplateID = 9, 
+                                    NotList = RelNotList, 
+                                    ExclList = [SpeciesFemale])
           
-          sTweet += "\"Oh No! I Went to " + WordList(["an Orgy","a Swinger's Party","a Wild Sex Party"]).GetWord() + "\n"
-          if randint(1,4) == 1:
-               sTweet += "And I Accidentally\nAte My " + StepMom.Desc + " " + Relations.GetWord(NotList = RelNotList) + "'s Ass!\""
+          sTweet += "\"Oh No! I Went to " + WordList(["an Orgy","a Swinger's Party","a Wild Sex Party"]).GetWord() + " "
+          if randint(1,8) == 1:
+               sTweet += "And I Accidentally Ate My " + StepMom.Desc + "'s Ass!\""
           else:
-               sTweet += "And I Accidentally\n" + Verbs.GetWord() + " " 
-               sTweet += "My " + StepMom.Desc + " " + Relations.GetWord(NotList = RelNotList) + "!\""
+               sTweet += "And I Accidentally " + Verbs.GetWord() + " " 
+               sTweet += "My " + StepMom.Desc + "!\""
           return sTweet
           
 class Generator17(Generator):
