@@ -403,20 +403,29 @@ class Generator7(Generator):
     def GenerateTweet(self):
         super().GenerateTweet()
         sTweet = ""
-          
-        Master = char.MaleChar(TempType = TempType.Flowery, 
+        
+        iMaxChars = 100
+        sTag = "!"
+        if CoinFlip():
+            sTag = "\n"
+            sTag += WordList(["And they let me watch", "And I watched",
+                             "And I got to watch",
+                             "And I video-taped the whole thing"]).GetWord()
+            sTag += "!"
+            iMaxChars = 32
+
+        Master = char.MaleChar(TempType = TempType.Flowery, MaxChars = iMaxChars,
                                     bAllowRelate = True, 
                                     bAllowTrope = True,
                                     bAddAnArticle = True, 
                                     bSplitArticle = False,
                                     sPosArticle = "My")
+
         Verbs = WordList(["Took","Claimed","Ravished","Mounted", "Plowed"])
           
         sTweet = Master.Desc  + "\n"
         sTweet += Verbs.GetWord() + " My Wife From Behind"
-        if CoinFlip():
-            sTweet += "\n" + WordList(["And They Let Me Watch", "And I Watched","And I Got To Watch"]).GetWord()
-        sTweet += "!"
+        sTweet += sTag
 
         return sTweet
 
@@ -651,7 +660,7 @@ class Generator16(Generator):
                         'BDSM','little']
           Relations = titmisc.RelateFemale()
           Verbs = WordList(["Boned","Banged","Humped","Had Sex With","Went Down On","Sixty-Nined","Ate Out",
-                            "Anal","Boinked","Jizzed On","Finger-Banged","Fisted","Did"])
+                            "Had Anal Sex With","Boinked","Jizzed On","Finger-Banged","Fisted","Did"])
 
           StepMom = char.FemaleChar(TempType = TempType.Medium, SelectTemplateID = 9, 
                                     NotList = RelNotList, 
@@ -1478,7 +1487,7 @@ class Generator42(Generator):
 
      def __init__(self):
          super().__init__(ID = 42, Priority = 1)
-         self.Template = templates.TitleTemplate9()
+         self.Template = templates.TitleTemplate13()
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -2720,7 +2729,7 @@ class Generator76(Generator):
                                          "I Spanked Her Bare Ass With a Steel Paddle","I Rimmed Her Butt-hole",
                                          "I've Seen Her Naked","She Let Me Soap Her Up in the Shower","I Got her Pregnant",
                                          "She Let Me Play With Her Hard Nips","She Let Me Play With Her Nipple Piercings"])
-          sTweet = "\"My " + Relations.GetWord() + "\nis\n"
+          sTweet = "“My " + Relations.GetWord() + "\nis\n"
           sTweet += AddArticles(Girl.Desc) + "\n"
           sTweet += "and\n" + NaughtyStuff.GetWord() + "!\""
           

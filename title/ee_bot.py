@@ -14,7 +14,14 @@ from title.texttoimg2 import *
 from names import AuthorBuilder
 from reddit import PostToReddit_eebot
      
-def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorNo = -1, iTweetTxtNo = -1, bRedditPost = False):
+def InitBot(iTweetTimer, 
+            bTweet = False, 
+            iTweets = 1, 
+            bLoop = False, 
+            iGeneratorNo = -1, 
+            iTweetTxtNo = -1, 
+            bRedditPost = False,
+            bAllowFavTweets = True):
      print("=*=*=*= EROTICA_EBOOKS BOT IS RUNNING (@erotica_ebooks) =*=*=*=\n\n")
      print("===InitBot() iTweetTimer=" + str(iTweetTimer) + ", bTweet=" + str(bTweet) + ", iTweets=" + str(iTweets) + ",bLoop=" + str(bLoop) + ",iGeneratorNo=" + str(iGeneratorNo) + "\n")
      
@@ -42,11 +49,16 @@ def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorN
                                     iGeneratorNo, 
                                     bAllowPromo = True, 
                                     TweetHistoryQ = titutil.TweetHistoryQ, 
-                                    bAllowFavTweets = True)
-               ImgTxtGen.AuthorName = AuthorBuilder()
+                                    bAllowFavTweets = bAllowFavTweets)
+               #ImgTxtGen.AuthorName = AuthorBuilder()
+               ImgTxtGen.AuthorName = "Generator " + str(ImgTxtGen.ID)
+               #ImgTxtGen.SetImgText("Paddling\nMy Straight-Laced Big-Bottomed Amish Step-Sister")
+               #ImgTxtGen.ImgTxt = "Paddling\nMy Straight-Laced Big-Bottomed Amish Step-Sister"
+               ImgTxtGen.SetImgText("Paddling\nMy Big-Bottomed Amish Sister")
+               ImgTxtGen.ImgTxt = "Paddling\nMy Big-Bottomed Amish Sister"
                if not ImgTxtGen.ImgTxt is None:
-                    TweetTxtGen = GetTweetText(bTest = False, 
-                                               iGeneratorNo = iGeneratorNo,
+                    TweetTxtGen = GetTweetText(bTest = bTest, 
+                                               iGeneratorNo = iTweetTxtNo,
                                                TweetTxtHistoryQ = titutil.TweetTxtHistoryQ, 
                                                sAuthorName = ImgTxtGen.AuthorName, 
                                                AuthorGender = ImgTxtGen.AuthorGender)
@@ -60,7 +72,7 @@ def InitBot(iTweetTimer, bTweet = False, iTweets = 1, bLoop = False, iGeneratorN
 
                     currentDT = datetime.datetime.now()
                     
-                    CreateImg(ImgTxtGen).save(GenerateFileName(), format = 'PNG')
+                    CreateImg(ImgTxtGen).save(titutil.TESTIMAGE_PATH + GenerateFileName(), format = 'PNG')
                     
                     #if bTweet:
                     if False:

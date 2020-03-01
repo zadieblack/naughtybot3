@@ -19,6 +19,8 @@ TWEETTXT_HISTORYQ_FILENAME = 'title/tweettxt_history_q.txt'
 FAVTITLE_FILENAME = 'title/fav_titles.txt'
 FAVTITLE_DIVIDER = "~~~"
 
+TESTIMAGE_PATH = 'testimages/'
+
 TweetHistoryQ = None
 
 class TempType(Enum):

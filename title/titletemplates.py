@@ -4,6 +4,44 @@
 
 from util import *
 
+#                       *** RECOMMENDED FONT LIST ***
+#
+#       ~~ File Name ~~             ~~ Type ~~  ~~ Serif? ~~  ~~ Best Size ~~
+# "Absinette W01 Regular.ttf"                        xx             25
+# "Adorable MLSJN.ttf"              Script           xx             16
+# "Amaze.ttf"                       Script           xx             12
+# "Babes In Toyland NF.ttf"         All Caps         xx             23
+# "CELTG__.ttf""                    Old English      xx             24
+# "Coventry Garden NF.ttf"          All Caps         xx             18
+# "FreestyleScriptStd.otf"          Hand-written     xx             22
+# "Lapidary 333 Bold Italic.otf"                     xx             16
+# "LaserLondon.ttf"                                  xx             26
+# "MutterKrauseNormal.ttf"                           xx             16
+# "OLDENGL.ttf"                     Old English      xx             24
+# "PerpetuaStd.otf"                 All Caps         xx             19
+# "POORICH.ttf"                                      xx             12
+# "Quaint Gothic SG OT Regular.ttf" All Caps         xx             20
+# "Sabado Regular.otf"              Small Caps       xx             18
+# "TestarossaNF.ttf"                All Caps                        24
+# "Verona-ExtraBold.otf"                             xx             22
+# "Walpurgis Night.otf"             Small Caps       xx             21
+# "blah.otf"                        All Caps         xx             16
+# "blah.otf"                        All Caps         xx             16
+# "blah.otf"                        All Caps         xx             16
+# "blah.otf"                        All Caps         xx             16
+# "blah.otf"                        All Caps         xx             16
+# "blah.otf"                        All Caps         xx             16
+# "blah.otf"                        All Caps         xx             16
+# "blah.otf"                        All Caps         xx             16
+# "blah.otf"                        All Caps         xx             16
+# "blah.otf"                        All Caps         xx             16
+# "blah.otf"                        All Caps         xx             16
+# "blah.otf"                        All Caps         xx             16
+# "blah.otf"                        All Caps         xx             16
+# "blah.otf"                        All Caps         xx             16
+# "blah.otf"                        All Caps         xx             16
+# "blah.otf"                        All Caps         xx             16
+
 class TitleLine():
     def __init__(self, OrderNum = 1, 
                  FontName = "", 
@@ -189,21 +227,25 @@ class TitleTemplate4(TitleTemplate):
     def __init__(self):
         super().__init__(ID = 4)
 
+        # Medium long line or two lines normal type
         self.AddLine(OrderNum = 1,
-                     FontName = "Adorable MLSJN.ttf",
+                     FontName = "PerpetuaStd.otf",
                      FontMaxSize = 16,
                      MaxRows = 2,
                      ColorType = LineColorType.SecondTitle)
 
+        # Large medium length line
         self.AddLine(OrderNum = 2,
-                     FontName = "Quaint Gothic SG OT Regular.ttf",
-                     FontMaxSize = 20,
-                     MaxRows = 1,
-                     ColorType = LineColorType.MainTitle)
+                     FontName = "Verona-ExtraBold.otf",
+                     FontMaxSize = 28,
+                     MaxRows = 2,
+                     ColorType = LineColorType.MainTitle,
+                     AllCaps = True)
 
+        # Small medium-length tag (excited!)
         self.AddLine(OrderNum = 3,
-                     FontName = "POORICH.ttf",
-                     FontMaxSize = 11,
+                     FontName = "FreestyleScriptStd.otf",
+                     FontMaxSize = 19,
                      MaxRows = 1,
                      ColorType = LineColorType.MainTitle)
 
@@ -276,10 +318,12 @@ class TitleTemplate7(TitleTemplate):
 
         # Small medium length top-line
         self.AddLine(OrderNum = 1,
-                     FontName = "EccentricStd.otf",
-                     FontMaxSize = 20,
+                     #FontName = "Babes In Toyland NF.ttf",
+                     FontName = "Lightfoot.ttf",
+                     FontMaxSize = 23,
                      MaxRows = 2,
-                     ColorType = LineColorType.SecondTitle)
+                     ColorType = LineColorType.SmallText,
+                     AllCaps = True)
 
         # Large one or two line bottom line (punchline)
         self.AddLine(OrderNum = 2,
@@ -309,14 +353,14 @@ class TitleTemplate9(TitleTemplate):
     def __init__(self):
         super().__init__(ID = 9)
 
-        # Large single word or short top line
+        # Small single word or short top line
         self.AddLine(OrderNum = 1,
-                     FontName = "MutterKrauseNormal.ttf",
-                     FontMaxSize = 16,
+                     FontName = "FreestyleScriptStd.otf",
+                     FontMaxSize = 19,
                      MaxRows = 1,
                      ColorType = LineColorType.SmallText)
 
-        # Smaller medium-length second line
+        # Medium medium-length second line
         self.AddLine(OrderNum = 2,
                      FontName = "Verona-ExtraBold.otf",
                      FontMaxSize = 24,
@@ -402,7 +446,43 @@ class TitleTemplate12(TitleTemplate):
                      MaxRows = 2,
                      ColorType = LineColorType.SecondTitle)
 
+# SHORT TOP LINE
+# MEDIUM LINE
+# by the
+# LONG TWO-ROW BOTTOM LINE
+class TitleTemplate13(TitleTemplate):
+    def __init__(self):
+        super().__init__(ID = 13)
 
+        # Small single word or short top line
+        self.AddLine(OrderNum = 1,
+                     FontName = "FreestyleScriptStd.otf",
+                     FontMaxSize = 19,
+                     MaxRows = 1,
+                     ColorType = LineColorType.SmallText)
+
+        # Medium medium-length second line
+        self.AddLine(OrderNum = 2,
+                     FontName = "Verona-ExtraBold.otf",
+                     FontMaxSize = 24,
+                     MaxRows = 1,
+                     ColorType = LineColorType.MainTitle,
+                     AllCaps = True)
+
+        # Small transition line
+        self.AddLine(OrderNum = 3,
+                     FontName = "Amaze.ttf",
+                     FontMaxSize = 12,
+                     MaxRows = 1,
+                     ColorType = LineColorType.SmallText)
+
+        # Medium long 1 or 2 line bottom line
+        self.AddLine(OrderNum = 4,
+                     FontName = "PerpetuaStd.otf",
+                     FontMaxSize = 18,
+                     MaxRows = 2,
+                     ColorType = LineColorType.SecondTitle,
+                     AllCaps = True)
 
 
 

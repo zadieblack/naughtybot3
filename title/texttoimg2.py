@@ -5,6 +5,7 @@
 import os, sys, time
 import re # remove later
 from PIL import Image, ImageDraw, ImageFont
+import aggdraw
 from random import *
 from util import *
 from title.titletemplates import *
@@ -109,7 +110,7 @@ def WrapText(sText, font, max_line_width):
 
 class BlockOfText():
     def __init__(self, sText, sFontName, FontMaxSize, MaxRows, BoundingBoxSize):
-        self.Text = sText 
+        self.Text = sText
         self.FontName = sFontName
         self.MaxRows = MaxRows
         self.BoundingBoxWidth = BoundingBoxSize[0]
@@ -183,7 +184,7 @@ class TitleSection:
         # calculate width and height of the bounding text box
         offset_width = round(MAXWIDTH - (MAXWIDTH * xOffset * 2), 0)
         offset_height = CalcBoxHeight(self.FontName, iAdjFontMaxSize, self.MaxRows)
-
+        print("DrawTextBox() for [" + self.Text + "]. Starting WxH is (" + str(offset_width) + ", " + str(offset_height) + ")\n")
         TextBlock = BlockOfText(self.Text, 
                                 self.FontName, 
                                 iAdjFontMaxSize,
@@ -197,44 +198,72 @@ class TitleSection:
             iLineSpacer = self.TotalLineSpace
 
         ImgTxt = Image.new('RGBA', (offset_width, offset_height), (0, 0, 0, 0))
-        draw = ImageDraw.Draw(ImgTxt)
+
+        # draw a *green* rectangle around the whole CONTAINER BOX
+        #draw.rectangle([(0, 0), (offset_width, offset_height)], outline ="green", width = 4)
              
         y_text = 0
-        iCount = 0 
-        while iCount < len(TextBlock.Lines):
-            line = TextBlock.Lines[iCount]
-
-            width, height = (0, 0)
+        pad_width, pad_height = (0, 0)
+        for iCount, line in enumerate(TextBlock.Lines):
+            start_x, start_y = (0,0)
+            adj_width, adj_height = (0, 0)
+            ImgLine = Image.new('RGBA', (offset_width, offset_height), (0, 0, 0, 0))
+            draw = ImageDraw.Draw(ImgLine)
 
             if line.isspace() or line == "":
-                width, height = GetTextLineSize(TextBlock.Font, "a")
-                height = height / 2
+                adj_width, adj_height = GetTextLineSize(TextBlock.Font, "a")
+                adj_height = adj_height / 2
             else:
-                width, height = GetTextLineSize(TextBlock.Font, line)
+                adj_width, adj_height = GetTextLineSize(TextBlock.Font, line)
                 
                 # for some reason Pillow will not start drawing the text at (0,0).
                 # you must specify (0, 0 - offset). (does this need to happen every time??)
-                draw.text(
-                          ((offset_width - width)/2, y_text - TextBlock.Font.getoffset(line)[1]), 
+                
+                pad_width, pad_height = TextBlock.Font.getoffset(line)
+                y_text = y_text - pad_height
+
+                # calculate top left corner (x,y) of text
+                start_x = ((offset_width - adj_width)/2)
+                start_y = (y_text)
+
+                draw.text(   
+                          (start_x , start_y), 
                           line, 
                           font = TextBlock.Font, 
                           fill = self.Color)
                           #features=['-vkrn']) # <-- needs libraqm library? 
-        
-            y_text = y_text + height
+
+                print(" - Drawing line #" + str(iCount) + ": [" + line + "]")
+                print("  -- y_text (top y coord) = " + str(y_text))
+                print("  -- pad W x H = " + str((pad_width, pad_height)))
+                print("  -- top left coord (x, y) = " + str(( start_x, start_y)))
+                print("  -- adj W x H = " + str((adj_width, adj_height))) 
+                print("  -- bottom right coord (x, y) = " + str((start_x + adj_width, start_y + adj_height)))
+                
+                # draw a *blue* rectangle around the text itself 
+                #draw.rectangle([(start_x, start_y), (adj_width, adj_height)], outline ="blue", width = 3)
+            y_text = y_text + adj_height
             if iCount < len(TextBlock.Lines) - 1:
                 y_text = y_text + int(iLineSpacer * .5)
 
-            iCount = iCount + 1
-        
-        ImgTxt_Cropped = ImgTxt.crop((0, 0, offset_width, y_text))
-        #draw.rectangle([(0, 0), (ImgTxt.width, ImgTxt.height)], outline ="blue", width = 2)
+            ImgTxt = Image.alpha_composite(ImgTxt, ImgLine)
+            #ImgTxt.alpha_composite(ImgLine, (xOffset, iyOffsetLine))
+            print("  -- iLineSpacer = " + str(iLineSpacer) + ", (iLineSpacer * 1/2) " + str((iLineSpacer * .5)))
 
+        print(" - Final y_text value = " + str(y_text))
+        print(" - Cropping image to " + str((offset_width, y_text)))
+        ImgTxt_Cropped = ImgTxt.crop((0, 0, offset_width, y_text + 30))
+        #ImgTxt_Cropped = ImgTxt
+
+        # draw a *red* rectangle around the cropped container box
+        #ImageDraw.Draw(ImgTxt_Cropped).rectangle([(0, 0), (ImgTxt_Cropped.width, ImgTxt_Cropped.height)], outline ="red", width = 2)
+        #ImageDraw.Draw(ImgTxt).rectangle([(0, 0), (ImgTxt.width, ImgTxt.height)], outline ="red", width = 2)
         return ImgTxt_Cropped
 
     def DrawText(self, iTotalLineSpace = 0):
         self.TotalLineSpace = iTotalLineSpace
         self.Image = self.DrawTextBox()
+        #print("DrawText() calling DrawTextBox()")
 
     def ShrinkText(self, iStep, iTotalLineSpace = 0):
         bSuccess = False 
@@ -244,6 +273,7 @@ class TitleSection:
             self.FontSize = self.FontSize - iStep 
             self.Image = self.DrawTextBox()
             bSuccess = True
+        #print("ShrinkText() calling DrawTextBox()")
 
         return bSuccess
 
@@ -255,7 +285,7 @@ class TitleSection:
             self.FontSize = self.FontSize + iStep 
             self.Image = self.DrawTextBox()
             bSuccess = True 
-
+        #print("GrowText() calling DrawTextBox()")
         return bSuccess
 
 def CalcTotalBoxHeight(boxes):
@@ -360,8 +390,8 @@ def CreateImg(ImgTxtGen):
     width_offset = 17
 
     if isinstance(ImgTxtGen, Generator):
-        # calculate text size score
-        dScore = CalcTextSizeScore(' '.join(ImgTxtGen.ImgTxt.split('\n')))
+        # calculate text size score -- NO LONGER IN USE
+        # dScore = CalcTextSizeScore(' '.join(ImgTxtGen.ImgTxt.split('\n')))
 
         AuthorTemplate = ImgTxtGen.Template.AuthorLine
 
@@ -395,7 +425,7 @@ def CreateImg(ImgTxtGen):
                                        iFontSize = line.FontMaxSize,
                                        iMaxRows = line.MaxRows,
                                        Color = Color)
-                section.DrawText()
+                #section.DrawText()
 
             #if dScore > 23:
             #    BGProfile.UsePlainheader()
