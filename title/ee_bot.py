@@ -52,10 +52,10 @@ def InitBot(iTweetTimer,
                                     bAllowFavTweets = bAllowFavTweets)
                #ImgTxtGen.AuthorName = AuthorBuilder()
                ImgTxtGen.AuthorName = "Generator " + str(ImgTxtGen.ID)
-               #ImgTxtGen.SetImgText("Paddling\nMy Straight-Laced Big-Bottomed Amish Step-Sister")
-               #ImgTxtGen.ImgTxt = "Paddling\nMy Straight-Laced Big-Bottomed Amish Step-Sister"
-               ImgTxtGen.SetImgText("Paddling\nMy Big-Bottomed Amish Sister")
-               ImgTxtGen.ImgTxt = "Paddling\nMy Big-Bottomed Amish Sister"
+               ImgTxtGen.SetImgText("Paddling\nMy Straight-Laced Big-Bottomed Amish Step-Sister")
+               ImgTxtGen.ImgTxt = "Paddling\nMy Straight-Laced Big-Bottomed Amish Step-Sister"
+               #ImgTxtGen.SetImgText("Paddling\nMy Big-Assed Amish Sister")
+               #ImgTxtGen.ImgTxt = "Paddling\nMy Big-Assed Amish Sister"
                if not ImgTxtGen.ImgTxt is None:
                     TweetTxtGen = GetTweetText(bTest = bTest, 
                                                iGeneratorNo = iTweetTxtNo,
@@ -74,7 +74,7 @@ def InitBot(iTweetTimer,
                     
                     CreateImg(ImgTxtGen).save(titutil.TESTIMAGE_PATH + GenerateFileName(), format = 'PNG')
                     
-                    #if bTweet:
+                    #if bTweet:  <-- uncomment before deploying
                     if False:
                             status = None
                          

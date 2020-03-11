@@ -798,6 +798,35 @@ class BGProfileTwoGirls(BGProfile):
         self.SmallTextColor ="rgba(205, 66, 35, 255)"
         self.AuthorNameColor = "rgba(83, 115, 148, 255)"  
 
+class BGProfileSpaceMonster(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 72,
+                           Priority = 10,
+                           sFileName = "space_monster")
+        self.MainTitleColor = "rgba(0, 0, 0, 255)"
+        self.SecondTitleColor = "rgba(0, 0, 0, 255)"  
+        self.SmallTextColor = "rgba(199, 22, 30, 255)"
+        self.AuthorNameColor = "rgba(199, 22, 30, 255)" 
+
+class BGProfileOneEyedAlien(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 72,
+                           Priority = 10,
+                           sFileName = "one_eyed_alien")
+        self.MainTitleColor = "rgba(219, 103, 122, 255)"
+        self.SecondTitleColor = "rgba(72, 146, 145, 255)"  
+        self.SmallTextColor = "rgba(0, 0, 0, 255)"
+        self.AuthorNameColor = "rgba(199, 22, 30, 255)" 
+
+class BGProfileSpaceGirl(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 72,
+                           Priority = 10,
+                           sFileName = "space_girl")
+        self.MainTitleColor = "rgba(48, 66, 138, 255)"
+        self.SecondTitleColor = "rgba(48, 66, 138, 255)"
+        self.SmallTextColor = "rgba(245, 180, 47, 255)"
+        self.AuthorNameColor = "rgba(229, 79, 24, 255)" 
 
 # this is for debugging bgprofile frequency. delete later.
 def indexof(list, searchobj):

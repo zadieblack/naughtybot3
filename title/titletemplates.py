@@ -65,8 +65,7 @@ class TitleTemplate():
         self.Lines = []
 
         self.AuthorLine = TitleLine(OrderNum = 0, 
-                                    #FontName = "Lapidary 333 Bold Italic.ttf",
-                                    FontName = "AntiqueOlive.ttf",
+                                    FontName = "Lapidary 333 Bold Italic.ttf",
                                     FontMaxSize = 16,
                                     MaxRows = 1)
 
