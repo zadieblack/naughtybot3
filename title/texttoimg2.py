@@ -16,7 +16,7 @@ MAX_IMG_NUM = 24
 RESOLUTION = 4.167
 LOWERTITLETEXTBOUND = 527
 HHMAXHEIGHT = 305
-MAXWIDTH = 900
+MAXWIDTH = 920
 XOFFSET = int(round((971 - MAXWIDTH) / 2))
 AUTHORNAME_YOFFSET = 560
 MINSPACERHEIGHT = 13
@@ -87,6 +87,50 @@ def GetTextLineSize(font, sLine):
     height = height - off_height
 
     return width, height
+
+def CalcMinSpacerHeight(TitleBoxes):
+    iMinSpacerHeight = 0
+    print(" - CalcMinSpacerHeight()")
+
+    iLastDescender = 0
+
+    if len(TitleBoxes) > 1:
+        print("  -- len(TitleBoxes) = " + str(len(TitleBoxes)))
+        for boxno, box in enumerate(TitleBoxes):
+            (ascender, descender) = box.Font.getmetrics()
+            print("  -- For box [" + box.Text + "] (ascender, descender) = " + str((ascender, descender)))
+
+            # first title line, ignore descender
+            if boxno == 0:
+                print("  -- Ignoring line 1")
+                pass
+            else:
+                print("  -- Checking line " + str(boxno) + ", iLastDescender = " + str(iLastDescender))
+                if (iLastDescender + ascender) > iMinSpacerHeight:
+                    iMinSpacerHeight = iLastDescender + ascender
+                    print("   --- New iMinSpacerHeight = " + str(iMinSpacerHeight))
+                iLastDescender = descender 
+
+    iMaxSpacerHeight = CalcMaxSpacerHeight(TitleBoxes)
+
+    if iMinSpacerHeight > iMaxSpacerHeight:
+        iMinSpacerHeight = iMaxSpacerHeight 
+
+    return iMinSpacerHeight
+
+def CalcMaxSpacerHeight(TitleBoxes):
+    iMaxSpacerHeight = 0 
+    print(" - CalcMaxSpacerHeight()")
+    for boxno, box in enumerate(TitleBoxes):
+        if boxno == 0:
+            iMaxSpacerHeight = box.Height 
+            print("  -- iMaxSpacerHeight set to height of first box (" + str(iMaxSpacerHeight) + ")")
+        else:
+            if box.Height > iMaxSpacerHeight:
+                print("  -- New max box height found, setting iMaxSpacerHeight = " + str(iMaxSpacerHeight))
+                iMaxSpacerHeight = box.Height 
+
+    return iMaxSpacerHeight
 
 class LineOfText():
     def __init__(self, sText = "", iOrderNo = 0, iHeight = 0, iWidth = 0):
@@ -201,21 +245,20 @@ class TitleSection:
         # calculate the height of the text
         self.TotLineHeight = self.CalcTotLineHeight()
 
-        print(" - FitTextToBox(), font size = " + str(self.FontSize))
-        print("  -- self.TotLineHeight = " + str(self.TotLineHeight))
-        print("  -- self.BoundingBoxHeight = " + str(self.BoundingBoxHeight))
-        print("  -- # of lines is " + str(len(self.Lines)))
-        #while self.TotLineHeight > self.BoundingBoxHeight or len(self.Lines) > self.MaxRows:
-        while self.TotLineHeight > self.BoundingBoxHeight:
+        #print(" - FitTextToBox(), font size = " + str(self.FontSize))
+        #print("  -- self.TotLineHeight = " + str(self.TotLineHeight))
+        #print("  -- self.BoundingBoxHeight = " + str(self.BoundingBoxHeight))
+        #print("  -- # of lines is " + str(len(self.Lines)))
+
+        while self.TotLineHeight > self.BoundingBoxHeight or len(self.Lines) > self.MaxRows:
     
             self.FontSize = (self.FontSize + (self.DecreaseSizeBy * (-1)))
-            #self.Font = ImageFont.truetype(PATH + self.FontName, size = self.FontSize * RESOLUTION, index = 0)
             self.SetFont()
             self.Lines = WrapText(self.Text, self.Font, self.BoundingBoxWidth)
             self.TotLineHeight = self.CalcTotLineHeight()
-            print(" - TotaLineHeight too big. Shrink font to " + str(self.FontSize))
-            print("  -- self.TotLineHeight = " + str(self.TotLineHeight))
-            print("  -- self.BoundingBoxHeight = " + str(self.BoundingBoxHeight))
+            #print(" - TotaLineHeight too big. Shrink font to " + str(self.FontSize))
+            #print("  -- self.TotLineHeight = " + str(self.TotLineHeight))
+            #print("  -- self.BoundingBoxHeight = " + str(self.BoundingBoxHeight))
 
     def SetFont(self):
         print(" - SetFont() for [" + self.Text + "] size = " + str(self.FontSize))
@@ -241,8 +284,6 @@ class TitleSection:
         for iCount, line in enumerate(self.Lines):
             start_x, start_y = (0,0)
             adj_width, adj_height = (0, 0)
-            #ImgLine = Image.new('RGBA', (offset_width, offset_height), (0, 0, 0, 0))
-            #draw = ImageDraw.Draw(ImgLine)
 
             if line.Text.isspace() or line.Text == "":
                 adj_width, adj_height = GetTextLineSize(self.Font, "a")
@@ -252,7 +293,7 @@ class TitleSection:
                 adj_width, adj_height = GetTextLineSize(self.Font, line.Text)
                 
                 # for some reason Pillow will not start drawing the text at (0,0).
-                # you must specify (0, 0 - offset). (does this need to happen every time??)
+                # you must specify (0, 0 - offset). 
 
                 pad_width, pad_height = self.Font.getoffset(line.Text)
                 self.Height = self.Height - pad_height
@@ -277,8 +318,6 @@ class TitleSection:
                 #self.Height = self.Height + int(self.LineSpace * .5)
                 self.Height = self.Height + descender
                 print("  -- Adding self.LineSpace = " + str(self.LineSpace) + ", (self.LineSpace * 1/2) = " + str((self.LineSpace * .5)))
-
-            
 
         #print(" - Final self.Height value = " + str(self.Height))
 
@@ -322,11 +361,21 @@ class TitleSection:
                       font = self.Font, 
                       fill = self.Color)
 
-def CalcTotalBoxHeight(boxes):
+# Calculate the total box height WITHOUT spaces 
+def CalcTotalBoxHeightNoSpaces(boxes):
     iTotalBoxHeight = 0
 
     for box in boxes:
         iTotalBoxHeight = iTotalBoxHeight + box.Height
+
+    return iTotalBoxHeight
+
+# Calculate the total box height WITH spaces 
+def CalcTotalBoxHeight(boxes, iSpacerHeight = 0):
+    iTotalBoxHeight = 0
+
+    for box in boxes:
+        iTotalBoxHeight = iTotalBoxHeight + box.Height + iSpacerHeight
 
     return iTotalBoxHeight
 
@@ -336,8 +385,6 @@ def CalcSpaceHeight(iMaxHeight, boxes):
     iSpaceHeight = int((iMaxHeight - CalcTotalBoxHeight(boxes))/(len(boxes)))
 
     return iSpaceHeight
-
-
 
 def CreateImg(ImgTxtGen):
     # create Image object with the input image
@@ -396,23 +443,32 @@ def CreateImg(ImgTxtGen):
                 for box in TitleBoxes:
                     box.SetDimensions()
 
+                # the minimum vert space height should be the 
+                # height of the largest descender. 
+                iMinSpacerHeight = CalcMinSpacerHeight(TitleBoxes) 
+                #iMaxSpacerHeight = CalcMaxSpacerHeight(TitleBoxes)
+
+                print(" -- init iMinSpacerHeight = " + str(iMinSpacerHeight))
+
             # 1. Attempt to fit title sections at max font sizes 
 
             # 2. If title sections don't fit, shrink fonts proportionately by 
-            #    .5 and try again.
+            #    1 and try again.
 
-                iTotalBoxHeight = CalcTotalBoxHeight(TitleBoxes)
+                iTotalBoxHeight = CalcTotalBoxHeight(TitleBoxes, iMinSpacerHeight)
                 print(" - iTotalBoxHeight = " + str(iTotalBoxHeight) + ", bg.MaxHeight = " + str(bg.MaxHeight))
                 if iTotalBoxHeight > bg.MaxHeight or \
-                    CalcSpaceHeight(bg.MaxHeight, TitleBoxes) < MINSPACERHEIGHT:
+                    CalcSpaceHeight(bg.MaxHeight, TitleBoxes) < iMinSpacerHeight:
                     print(" - Boxes too big. Adjusting...")
                     for box in TitleBoxes:
                         box.ShrinkText(1)
-                    iTotalBoxHeight = CalcTotalBoxHeight(TitleBoxes)  
+                    iMinSpacerHeight = CalcMinSpacerHeight(TitleBoxes) 
+                    iTotalBoxHeight = CalcTotalBoxHeightNoSpaces(TitleBoxes)  
 
             # 3. If title sections don't fit, use plain header background 
             #    and try again.
-                    if iTotalBoxHeight > bg.MaxHeight or CalcSpaceHeight(bg.MaxHeight, TitleBoxes) < MINSPACERHEIGHT:
+                    if iTotalBoxHeight > bg.MaxHeight or \
+                        CalcSpaceHeight(bg.MaxHeight, TitleBoxes) < iMinSpacerHeight:
                         bg = BGImagePH(BGProfile)
                         BGImg = bg.Image
                         print(" - Switched to plain header background.")
@@ -431,7 +487,8 @@ def CreateImg(ImgTxtGen):
                                         break 
                                 if bBreak:
                                     break
-                                iTotalBoxHeight = CalcTotalBoxHeight(TitleBoxes)
+                                iMinSpacerHeight = CalcMinSpacerHeight(TitleBoxes) 
+                                iTotalBoxHeight = CalcTotalBoxHeight(TitleBoxes, iMinSpacerHeight)
 
             #divide up remaining vert space between boxes
             yLineSpace = CalcSpaceHeight(bg.MaxHeight, TitleBoxes)
