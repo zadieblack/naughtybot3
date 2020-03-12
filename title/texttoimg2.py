@@ -125,12 +125,6 @@ def WrapText(sText, font, max_line_width):
             # if there is no recent whitespace char but we are past
             # the max width, split the middle 
 
-            print(" Line break on character # " + str(charno) + "!")
-            print("  sLastValidLine is [" + sLastValidLine + "]")
-            print("  iLastWhtSpc = " + str(iLastWhtSpc))
-            print("  iSubStart = " + str(iSubStart))
-            
-
             if iLastWhtSpc < iSubStart:
                 iLastWhtSpc = int((charno - iSubStart)/2) 
                 
@@ -143,7 +137,6 @@ def WrapText(sText, font, max_line_width):
             iSubStart = iLastWhtSpc + 1
             sLastValidLine = ""
             sLineSoFar = sText[iSubStart:charno + 1]
-            print("  sLineSoFar is [" + sLineSoFar + "]")
 
     Lines.append(LineOfText(sLineSoFar, len(Lines) + 1))        
 
@@ -152,7 +145,6 @@ def WrapText(sText, font, max_line_width):
 def CalcBoxHeight(sFontName, iMaxFontSize, iMaxRows, Color = (0,0,0,255)):
     iBoxHeight = 0
 
-    print("Attempting to open font file " + PATH + sFontName)
     Font = ImageFont.truetype(PATH + sFontName, size = iMaxFontSize, index = 0)
     iLineHeight = GetTextLineSize(Font,"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")[1]
 
@@ -171,7 +163,7 @@ class TitleSection:
         self.FontName = sFontName
         self.FontFileName = PATH + self.FontName
         self.FontSize = iFontSize
-        self.AdjFontSize = int(round(self.FontSize * RESOLUTION, 0))
+        self.AdjFontSize = round(int(self.FontSize * RESOLUTION))
         self.MaxRows = iMaxRows
         self.Color = Color
         self.BoundingBoxWidth = MAXWIDTH
@@ -179,7 +171,7 @@ class TitleSection:
         self.TotLineHeight = 0
         self.DecreaseSizeBy = 3
         self.VertSepProp = 4
-        self.TotalLineSpace = 0
+        self.TotalLineSpace = self.BoundingBoxHeight
 
         self.Height = 0
         self.Width = 0
@@ -209,14 +201,25 @@ class TitleSection:
         # calculate the height of the text
         self.TotLineHeight = self.CalcTotLineHeight()
 
-        while self.TotLineHeight > self.BoundingBoxHeight or len(self.Lines) > self.MaxRows:
+        print(" - FitTextToBox(), font size = " + str(self.FontSize))
+        print("  -- self.TotLineHeight = " + str(self.TotLineHeight))
+        print("  -- self.BoundingBoxHeight = " + str(self.BoundingBoxHeight))
+        print("  -- # of lines is " + str(len(self.Lines)))
+        #while self.TotLineHeight > self.BoundingBoxHeight or len(self.Lines) > self.MaxRows:
+        while self.TotLineHeight > self.BoundingBoxHeight:
+    
             self.FontSize = (self.FontSize + (self.DecreaseSizeBy * (-1)))
-            self.Font = ImageFont.truetype(PATH + self.FontName, size = self.FontSize * RESOLUTION, index = 0)
+            #self.Font = ImageFont.truetype(PATH + self.FontName, size = self.FontSize * RESOLUTION, index = 0)
+            self.SetFont()
             self.Lines = WrapText(self.Text, self.Font, self.BoundingBoxWidth)
             self.TotLineHeight = self.CalcTotLineHeight()
+            print(" - TotaLineHeight too big. Shrink font to " + str(self.FontSize))
+            print("  -- self.TotLineHeight = " + str(self.TotLineHeight))
+            print("  -- self.BoundingBoxHeight = " + str(self.BoundingBoxHeight))
 
     def SetFont(self):
-        self.Font = ImageFont.truetype(PATH + self.FontName, size = int(self.FontSize * RESOLUTION), index = 0)
+        print(" - SetFont() for [" + self.Text + "] size = " + str(self.FontSize))
+        self.Font = ImageFont.truetype(PATH + self.FontName, size = round(int(self.FontSize * RESOLUTION)), index = 0)
 
     def SetDimensions(self):
         ImgTxt = None 
@@ -226,12 +229,14 @@ class TitleSection:
         yOffset = 0     #.027
 
         self.SetFont()
+        self.Height = 0
      
         if len(self.Lines) > 1:
             self.LineSpace = self.TotalLineSpace / (len(self.Lines) - 1)
         else:
-            self.LineSpace = self.TotalLineSpace
+            self.LineSpace = 0
 
+        ascender, descender = (0, 0)
         pad_width, pad_height = (0, 0)
         for iCount, line in enumerate(self.Lines):
             start_x, start_y = (0,0)
@@ -243,6 +248,7 @@ class TitleSection:
                 adj_width, adj_height = GetTextLineSize(self.Font, "a")
                 adj_height = adj_height / 2
             else:
+                ascender, descender = self.Font.getmetrics()
                 adj_width, adj_height = GetTextLineSize(self.Font, line.Text)
                 
                 # for some reason Pillow will not start drawing the text at (0,0).
@@ -257,42 +263,51 @@ class TitleSection:
 
                 line.StartXY = (start_x, start_y)
 
-                #print(" - Setting dimensions for line #" + str(iCount) + ": [" + line + "]")
+                #print(" - Setting dimensions for line #" + str(iCount) + ": [" + line.Text + "]")
                 #print("  -- self.Height (top y coord) = " + str(self.Height))
-                #print("  -- pad W x H = " + str((pad_width, pad_height)))
+                #print("  -- (pad w, pad h) = " + str((pad_width, pad_height)))
                 #print("  -- top left coord (x, y) = " + str(( start_x, start_y)))
-                #print("  -- adj W x H = " + str((adj_width, adj_height))) 
+                #print("  -- (adj W, adj H) = " + str((adj_width, adj_height))) 
+                #print("  -- (ascender, descender) = " + str((ascender, descender))) 
                 #print("  -- bottom right coord (x, y) = " + str((start_x + adj_width, start_y + adj_height)))
                 
-            self.Height = self.Height + adj_height
+            #self.Height = self.Height + adj_height
+            self.Height = self.Height + ascender + descender
             if iCount < len(self.Lines) - 1:
-                self.Height = self.Height + int(self.LineSpace * .5)
+                #self.Height = self.Height + int(self.LineSpace * .5)
+                self.Height = self.Height + descender
+                print("  -- Adding self.LineSpace = " + str(self.LineSpace) + ", (self.LineSpace * 1/2) = " + str((self.LineSpace * .5)))
 
-            #ImgTxt = Image.alpha_composite(ImgTxt, ImgLine)
-            #ImgTxt.alpha_composite(ImgLine, (xOffset, iyOffsetLine))
-            print("  -- self.LineSpace = " + str(self.LineSpace) + ", (self.LineSpace * 1/2) " + str((self.LineSpace * .5)))
+            
 
-        print(" - Final y_text value = " + str(self.Height))
+        #print(" - Final self.Height value = " + str(self.Height))
 
-    def DrawText(self, iTotalLineSpace = 0):
-        self.TotalLineSpace = iTotalLineSpace
+    def DrawText(self, iTotalLineSpace = -1):
+        if iTotalLineSpace >= 0:
+            self.TotalLineSpace = iTotalLineSpace
         self.SetDimensions()
 
-    def ShrinkText(self, iStep, iTotalLineSpace = 0):
+    def ShrinkText(self, iStep, iTotalLineSpace = -1):
         bSuccess = False 
-
-        self.TotalLineSpace = iTotalLineSpace
+        print(" - ShrinkText()")
+        print("  -- iTotalLineSpace = " + str(iTotalLineSpace))
+        print("  -- iStep = " + str(iStep))
+        if iTotalLineSpace >= 0:
+            self.TotalLineSpace = iTotalLineSpace
         if self.FontSize - iStep > 0:
+            print("  -- iTotalLineSpace - iStep > 0")
+            print("  -- new self.FontSize = " + str(self.FontSize))
             self.FontSize = self.FontSize - iStep 
             self.SetDimensions()
             bSuccess = True
 
         return bSuccess
 
-    def GrowText(self, iStep, iTotalLineSpace = 0):
+    def GrowText(self, iStep, iTotalLineSpace = -1):
         bSuccess = False 
 
-        self.TotalLineSpace = iTotalLineSpace
+        if iTotalLineSpace >= 0:
+            self.TotalLineSpace = iTotalLineSpace
         if self.FontSize + iStep < 1000:
             self.FontSize = self.FontSize + iStep
             self.SetDimensions()
@@ -301,7 +316,7 @@ class TitleSection:
         return bSuccess
 
     def DrawLines(self, draw, xOffset = 0, yOffset = 0):
-        for line in self.Lines:
+        for lineno, line in enumerate(self.Lines):
             draw.text((line.StartXY[0] + xOffset, line.StartXY[1] + yOffset),
                       line.Text, 
                       font = self.Font, 
@@ -365,67 +380,85 @@ def CreateImg(ImgTxtGen):
         # get bg image 
         bg = BGImageHH(BGProfile)
 
-        # calculate vertical spacing of title bounded text boxes
-        xOffset = XOFFSET + width_offset
-        yOffset = bg.TitleBoxTop_yOffset
-        iTotalBoxHeight = 0
-        yLineSpace = 0
-
-        if len(TitleBoxes) > 0:
-        # 1. Attempt to fit title sections at max font sizes 
-
-        # 2. If title sections don't fit, shrink fonts proportionately by 
-        #    .5 and try again.
-
-            iTotalBoxHeight = CalcTotalBoxHeight(TitleBoxes)
-            if iTotalBoxHeight > bg.MaxHeight or \
-                CalcSpaceHeight(bg.MaxHeight, TitleBoxes) < MINSPACERHEIGHT:
-                for box in TitleBoxes:
-                    box.ShrinkText(.5)
-                iTotalBoxHeight = CalcTotalBoxHeight(TitleBoxes)  
-
-        # 3. If title sections don't fit, use plain header background 
-        #    and try again.
-                if iTotalBoxHeight > bg.MaxHeight or CalcSpaceHeight(bg.MaxHeight, Boxes) < MINSPACERHEIGHT:
-                    bg = BGImagePH(BGProfile)
-                    #yOffset = bg.TitleBoxTop_yOffset
-                    #iTotalBoxHeight = CalcTotalBoxHeight(TitleBoxes)
-
-        # 4. If title sections still don't fit, keep shrinking fonts 
-        #    proportionately until they do.
-                    if iTotalBoxHeight > bg.MaxHeight:
-                        bBreak = False 
-                        while iTotalBoxHeight > bg.MaxHeight or bBreak:
-                            for box in TitleBoxes:
-                                if not box.ShrinkText(.5):
-                                    bBreak = True
-                            iTotalBoxHeight = CalcTotalBoxHeight(TitleBoxes)
-
-        #divide up remaining vert space between boxes
-        yLineSpace = CalcSpaceHeight(bg.MaxHeight, TitleBoxes)
-
         #init image objects
         BGImg = bg.Image
-        draw = ImageDraw.Draw(BGImg)
 
-        iyOffsetLine = bg.TitleBoxTop_yOffset
+        if BGImg is not None:
+            # calculate vertical spacing of title bounded text boxes
+            print("CreateImg() Init calculation of bounded text boxes.")
+            xOffset = XOFFSET + width_offset
+            yOffset = bg.TitleBoxTop_yOffset
+            iTotalBoxHeight = 0
+            yLineSpace = 0
 
-        # draw the text boxes
-        for box in TitleBoxes:
-            box.SetDimensions()
-            box.DrawLines(draw, xOffset, iyOffsetLine)
-            iyOffsetLine = iyOffsetLine + box.Height + yLineSpace
+            if len(TitleBoxes) > 0:
+                # draw the text boxes
+                for box in TitleBoxes:
+                    box.SetDimensions()
 
-        # draw author name
-        AuthorTemplate = ImgTxtGen.Template.AuthorLine
+            # 1. Attempt to fit title sections at max font sizes 
+
+            # 2. If title sections don't fit, shrink fonts proportionately by 
+            #    .5 and try again.
+
+                iTotalBoxHeight = CalcTotalBoxHeight(TitleBoxes)
+                print(" - iTotalBoxHeight = " + str(iTotalBoxHeight) + ", bg.MaxHeight = " + str(bg.MaxHeight))
+                if iTotalBoxHeight > bg.MaxHeight or \
+                    CalcSpaceHeight(bg.MaxHeight, TitleBoxes) < MINSPACERHEIGHT:
+                    print(" - Boxes too big. Adjusting...")
+                    for box in TitleBoxes:
+                        box.ShrinkText(1)
+                    iTotalBoxHeight = CalcTotalBoxHeight(TitleBoxes)  
+
+            # 3. If title sections don't fit, use plain header background 
+            #    and try again.
+                    if iTotalBoxHeight > bg.MaxHeight or CalcSpaceHeight(bg.MaxHeight, TitleBoxes) < MINSPACERHEIGHT:
+                        bg = BGImagePH(BGProfile)
+                        BGImg = bg.Image
+                        print(" - Switched to plain header background.")
+
+            # 4. If title sections still don't fit, keep shrinking fonts 
+            #    proportionately until they do.
+                        if iTotalBoxHeight > bg.MaxHeight:
+                            bBreak = False 
+                            print("- SetImage() Shrinking fonts proportionately.")
+                            while iTotalBoxHeight > bg.MaxHeight:
+                                print(" -- iTotalBoxHeight = " + str(iTotalBoxHeight))
+                                print(" -- bg.MaxHeight = " + str(bg.MaxHeight))
+                                for box in TitleBoxes:
+                                    if not box.ShrinkText(1):
+                                        bBreak = True
+                                        break 
+                                if bBreak:
+                                    break
+                                iTotalBoxHeight = CalcTotalBoxHeight(TitleBoxes)
+
+            #divide up remaining vert space between boxes
+            yLineSpace = CalcSpaceHeight(bg.MaxHeight, TitleBoxes)
+
+            draw = ImageDraw.Draw(BGImg)
+
+            iyOffsetLine = bg.TitleBoxTop_yOffset
+            print(" - Drawing title sections")
+            # draw the text boxes
+            for box in TitleBoxes:
+                print("  -- box.Text is [" + box.Text + "]")
+                print("  -- box.Height = " + str(box.Height))
+                box.DrawLines(draw, xOffset, iyOffsetLine)
+                iyOffsetLine = iyOffsetLine + box.Height + yLineSpace
+
+            # draw author name
+            AuthorTemplate = ImgTxtGen.Template.AuthorLine
  
-        AuthorNameSection = TitleSection(ImgTxtGen.AuthorName,
-                                         sFontName = AuthorTemplate.FontName,
-                                         iFontSize = AuthorTemplate.FontMaxSize,
-                                         iMaxRows = AuthorTemplate.MaxRows,
-                                         Color = BGProfile.AuthorNameColor)
-        AuthorNameSection.SetDimensions()
-        AuthorNameSection.DrawLines(draw, xOffset, AUTHORNAME_YOFFSET)
+            AuthorNameSection = TitleSection(ImgTxtGen.AuthorName,
+                                             sFontName = AuthorTemplate.FontName,
+                                             iFontSize = AuthorTemplate.FontMaxSize,
+                                             iMaxRows = AuthorTemplate.MaxRows,
+                                             Color = BGProfile.AuthorNameColor)
+            AuthorNameSection.SetDimensions()
+            AuthorNameSection.DrawLines(draw, xOffset, AUTHORNAME_YOFFSET)
+        else:
+            print("ERROR. File not found for background " + str(bg))
 
     return  BGImg
     #    # save the edited image
