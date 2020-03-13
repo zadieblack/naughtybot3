@@ -126,8 +126,12 @@ class Generator():
                 for iLineNo, line in enumerate(Lines):
                     if line == titutil.FAVTITLE_DIVIDER:
                         break
-                    sImgTxt += line + "\n"
+                    if not sImgTxt == "":
+                        sImgTxt += "\n"
+                    sImgTxt += line
                 Lines = Lines[iLineNo + 1:] # skip next divider
+
+                print("sImgTxt from " + sFileName + " is [" + sImgTxt + "]")
             else: 
                 bSuccess = False
                 print("ERROR: Did not find a details line.")

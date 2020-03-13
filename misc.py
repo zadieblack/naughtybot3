@@ -496,6 +496,7 @@ class TantricTechniques(NounAdjList):
           super().__init__(["Mermaid",
                             "Lotus",
                             "Delight",
+                            "Coat-Hanger",
                             "Corn-Dog",
                             "Goat",
                             "Row Boat",

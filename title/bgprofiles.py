@@ -7,7 +7,7 @@ from util import *
 
 BGLOGFILEPATH = "title/"
 BGLOGFILENAME = "bghistory_q.txt"
-BGQSIZE = 60
+BGQSIZE = 15
 
 ProfileHistoryQ = HistoryQWithLog(BGLOGFILEPATH + BGLOGFILENAME, BGQSIZE)
 
@@ -301,7 +301,7 @@ class BGProfileShower(BGProfile):
                            sFileName = "shower")
         self.MainTitleColor = "rgba(199, 54, 60, 255)"
         self.SecondTitleColor = "rgba(210, 150, 78, 255)"
-        self.SmallTextColor = "rgba(74, 155, 78, 189)"
+        self.SmallTextColor = "rgba(74, 155, 189, 255)"
         self.AuthorNameColor = "rgba(199, 54, 60, 255)"
         self.AdultsOnly = True
 
@@ -905,7 +905,7 @@ class ProfileSelector():
    
 def GetBGProfileGenerator(iProfileID = 0, ProfileHistoryQ = None):
     SelectedProfile = None
-    print("GetBGProfileGenerator() iProfileID = " + str(iProfileID))
+    #print("GetBGProfileGenerator() iProfileID = " + str(iProfileID))
 
     if ProfileHistoryQ is None:
         ProfileHistoryQ = HistoryQWithLog(BGLOGFILEPATH + BGLOGFILENAME, iQSize = BGQSIZE)
