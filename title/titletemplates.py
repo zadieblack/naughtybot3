@@ -186,35 +186,35 @@ class TitleTemplate3(TitleTemplate):
         # Large short single-word top line
         self.AddLine(OrderNum = 1,
                      FontName = "Verona-ExtraBold.ttf",
-                     FontMaxSize = 20,
+                     FontMaxSize = 21,
                      MaxRows = 1,
                      ColorType = LineColorType.MainTitle)
         
         # Small trans middle line
         self.AddLine(OrderNum = 2,
                      FontName = "Amaze.ttf",
-                     FontMaxSize = 11,
+                     FontMaxSize = 12,
                      MaxRows = 1,
                      ColorType = LineColorType.SmallText)
 
         # Medium medium-length center line
         self.AddLine(OrderNum = 3,
                      FontName = "MutterKrauseNormal.ttf",
-                     FontMaxSize = 14,
+                     FontMaxSize = 15,
                      MaxRows = 2,
                      ColorType = LineColorType.SecondTitle)
 
         # Small transition line
         self.AddLine(OrderNum = 4,
                      FontName = "Amaze.ttf",
-                     FontMaxSize = 11,
+                     FontMaxSize = 12,
                      MaxRows = 1,
                      ColorType = LineColorType.SmallText)
 
         # Medium medium-length bottom line
         self.AddLine(OrderNum = 5,
                      FontName = "Sabado Regular.ttf",
-                     FontMaxSize = 16,
+                     FontMaxSize = 17,
                      MaxRows = 1,
                      ColorType = LineColorType.MainTitle,
                      AllCaps = True)

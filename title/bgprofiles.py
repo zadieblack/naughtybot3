@@ -290,7 +290,7 @@ class BGProfileMansion(BGProfile):
                            Priority = 10,
                            sFileName = "mansion")
         self.MainTitleColor = "rgba(221, 132, 34, 255)"
-        self.SecondTitleColor = "rgba(41, 89, 152, 135)"
+        self.SecondTitleColor = "rgba(41, 89, 135, 255)"
         self.SmallTextColor = "rgba(47, 78, 83, 255)"
         self.AuthorNameColor = "rgba(41, 89, 135, 255)"
 

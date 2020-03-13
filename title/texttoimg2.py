@@ -15,8 +15,7 @@ PATH = "title/cover_stuff/"
 MAX_IMG_NUM = 24
 RESOLUTION = 4.167
 LOWERTITLETEXTBOUND = 527
-HHMAXHEIGHT = 305
-MAXWIDTH = 920
+MAXWIDTH = 900
 XOFFSET = int(round((971 - MAXWIDTH) / 2))
 AUTHORNAME_YOFFSET = 560
 MINSPACERHEIGHT = 13
@@ -68,7 +67,7 @@ class BGImageHH:
         self.Image = GetBGImg(BGProfile.FileName + "_hh.png")
 
 class BGImagePH:
-    TitleBoxTop_yOffset = 128
+    TitleBoxTop_yOffset = 118
     TitleBoxBottom_yOffset = 523
     FileSuffix = "hh"
 
@@ -90,26 +89,21 @@ def GetTextLineSize(font, sLine):
 
 def CalcMinSpacerHeight(TitleBoxes):
     iMinSpacerHeight = 0
-    print(" - CalcMinSpacerHeight()")
 
     iLastDescender = 0
 
     if len(TitleBoxes) > 1:
-        print("  -- len(TitleBoxes) = " + str(len(TitleBoxes)))
         for boxno, box in enumerate(TitleBoxes):
             (ascender, descender) = box.Font.getmetrics()
-            print("  -- For box [" + box.Text + "] (ascender, descender) = " + str((ascender, descender)))
 
             # first title line, ignore descender
             if boxno == 0:
-                print("  -- Ignoring line 1")
                 pass
             else:
-                print("  -- Checking line " + str(boxno) + ", iLastDescender = " + str(iLastDescender))
-                if (iLastDescender + ascender) > iMinSpacerHeight:
-                    iMinSpacerHeight = iLastDescender + ascender
-                    print("   --- New iMinSpacerHeight = " + str(iMinSpacerHeight))
-                iLastDescender = descender 
+                if (descender) > iMinSpacerHeight:
+                    iMinSpacerHeight = descender
+    else:
+        iMinSpacerHeight = TitleBoxes[0].Font.getmetric()[1]
 
     iMaxSpacerHeight = CalcMaxSpacerHeight(TitleBoxes)
 
@@ -371,11 +365,21 @@ def CalcTotalBoxHeightNoSpaces(boxes):
     return iTotalBoxHeight
 
 # Calculate the total box height WITH spaces 
-def CalcTotalBoxHeight(boxes, iSpacerHeight = 0):
+def CalcTotalBoxHeight(boxes):
     iTotalBoxHeight = 0
 
-    for box in boxes:
-        iTotalBoxHeight = iTotalBoxHeight + box.Height + iSpacerHeight
+    iSpacerHeight = CalcMinSpacerHeight(boxes)
+
+    for boxno, box in enumerate(boxes):
+        (ascender, descender) = box.Font.getmetrics()
+
+        iTotalBoxHeight = iTotalBoxHeight + box.Height
+
+        # first title line, ignore spacer
+        if boxno == 0 or boxno == len(boxes) - 1:
+            pass
+        else:
+            iTotalBoxHeight = iTotalBoxHeight + iSpacerHeight
 
     return iTotalBoxHeight
 
@@ -452,26 +456,31 @@ def CreateImg(ImgTxtGen):
 
             # 1. Attempt to fit title sections at max font sizes 
 
+            # 3. If title sections don't fit, use plain header background 
+            #    and try again.
+                iTotalBoxHeight = CalcTotalBoxHeight(TitleBoxes)
+                print("CalcTotalBoxHeight() #1 = " + str(iTotalBoxHeight))
+                if iTotalBoxHeight > bg.MaxHeight or \
+                    CalcSpaceHeight(bg.MaxHeight, TitleBoxes) < iMinSpacerHeight:
+                    bg = BGImagePH(BGProfile)
+                    BGImg = bg.Image
+                    print(" - Switched to plain header background.")
+
             # 2. If title sections don't fit, shrink fonts proportionately by 
             #    1 and try again.
 
-                iTotalBoxHeight = CalcTotalBoxHeight(TitleBoxes, iMinSpacerHeight)
-                print(" - iTotalBoxHeight = " + str(iTotalBoxHeight) + ", bg.MaxHeight = " + str(bg.MaxHeight))
-                if iTotalBoxHeight > bg.MaxHeight or \
-                    CalcSpaceHeight(bg.MaxHeight, TitleBoxes) < iMinSpacerHeight:
-                    print(" - Boxes too big. Adjusting...")
-                    for box in TitleBoxes:
-                        box.ShrinkText(1)
-                    iMinSpacerHeight = CalcMinSpacerHeight(TitleBoxes) 
-                    iTotalBoxHeight = CalcTotalBoxHeightNoSpaces(TitleBoxes)  
+                    iTotalBoxHeight = CalcTotalBoxHeight(TitleBoxes)
+                    print("CalcTotalBoxHeight() #2 = " + str(iTotalBoxHeight))
+                    print(" - iTotalBoxHeight = " + str(iTotalBoxHeight) + ", bg.MaxHeight = " + str(bg.MaxHeight))
+                    if iTotalBoxHeight > bg.MaxHeight:
+                        print(" - Boxes too big. Adjusting...")
+                        for box in TitleBoxes:
+                            box.ShrinkText(1)
 
-            # 3. If title sections don't fit, use plain header background 
-            #    and try again.
-                    if iTotalBoxHeight > bg.MaxHeight or \
-                        CalcSpaceHeight(bg.MaxHeight, TitleBoxes) < iMinSpacerHeight:
-                        bg = BGImagePH(BGProfile)
-                        BGImg = bg.Image
-                        print(" - Switched to plain header background.")
+                        iTotalBoxHeight = CalcTotalBoxHeight(TitleBoxes) 
+                        print("CalcTotalBoxHeight() #3 = " + str(iTotalBoxHeight))
+
+
 
             # 4. If title sections still don't fit, keep shrinking fonts 
             #    proportionately until they do.
@@ -487,22 +496,26 @@ def CreateImg(ImgTxtGen):
                                         break 
                                 if bBreak:
                                     break
-                                iMinSpacerHeight = CalcMinSpacerHeight(TitleBoxes) 
-                                iTotalBoxHeight = CalcTotalBoxHeight(TitleBoxes, iMinSpacerHeight)
+                                iTotalBoxHeight = CalcTotalBoxHeight(TitleBoxes)
+                                print("CalcTotalBoxHeight() #4 = " + str(iTotalBoxHeight))
 
-            #divide up remaining vert space between boxes
-            yLineSpace = CalcSpaceHeight(bg.MaxHeight, TitleBoxes)
-
+            #calculate the starting height
             draw = ImageDraw.Draw(BGImg)
-
-            iyOffsetLine = bg.TitleBoxTop_yOffset
+            print(" - Calculating starting yOffsetLine")
+            print("  -- Starting bg.TitleBoxTop_yOffset = " + str(bg.TitleBoxTop_yOffset))
+            print("  -- Starting bg.TitleBoxBottom_yOffset = " + str(bg.TitleBoxBottom_yOffset))
+            print("  -- Starting iTotalBoxHeight = " + str(iTotalBoxHeight))
+            iyOffsetLine = bg.TitleBoxTop_yOffset + int(round((bg.TitleBoxBottom_yOffset - bg.TitleBoxTop_yOffset - iTotalBoxHeight) / 2))
+            
+            print("  -- Starting iyOffsetLine = " + str(iyOffsetLine))
             print(" - Drawing title sections")
             # draw the text boxes
-            for box in TitleBoxes:
+            for boxno, box in enumerate(TitleBoxes):
                 print("  -- box.Text is [" + box.Text + "]")
                 print("  -- box.Height = " + str(box.Height))
+                print("  -- iyOffsetLine = " + str(iyOffsetLine))
                 box.DrawLines(draw, xOffset, iyOffsetLine)
-                iyOffsetLine = iyOffsetLine + box.Height + yLineSpace
+                iyOffsetLine = iyOffsetLine + box.Height + iMinSpacerHeight
 
             # draw author name
             AuthorTemplate = ImgTxtGen.Template.AuthorLine
