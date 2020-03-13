@@ -7,7 +7,7 @@ from util import *
 
 BGLOGFILEPATH = "title/"
 BGLOGFILENAME = "bghistory_q.txt"
-BGQSIZE = 15
+BGQSIZE = 60
 
 ProfileHistoryQ = HistoryQWithLog(BGLOGFILEPATH + BGLOGFILENAME, BGQSIZE)
 
@@ -423,7 +423,7 @@ class BGProfileHandsAndKnees(BGProfile):
 
 class BGProfileHarem(BGProfile):
     def __init__(self):
-        super().__init__(ID = 4,
+        super().__init__(ID = 40,
                            Priority = 8,
                            sFileName = "harem")
         self.MainTitleColor = "rgba(119, 10, 7, 255)"
@@ -717,7 +717,7 @@ class BGProfileDoggyStyle(BGProfile):
 
 class BGProfileBathhouse(BGProfile):
     def __init__(self):
-        super().__init__(ID = 65,
+        super().__init__(ID = 66,
                            Priority = 8,
                            sFileName = "bathhouse")
         self.MainTitleColor = "rgba(30, 102, 139, 255)"
@@ -727,7 +727,7 @@ class BGProfileBathhouse(BGProfile):
 
 class BGProfileJilling(BGProfile):
     def __init__(self):
-        super().__init__(ID = 66,
+        super().__init__(ID = 67,
                            Priority = 6,
                            sFileName = "jilling")
         self.MainTitleColor = "rgba(91, 24, 45, 255)"
@@ -738,7 +738,7 @@ class BGProfileJilling(BGProfile):
 
 class BGProfileBranded(BGProfile):
     def __init__(self):
-        super().__init__(ID = 67,
+        super().__init__(ID = 68,
                            Priority = 6,
                            sFileName = "branded")
         self.MainTitleColor = "rgba(66, 75, 132, 255)"
@@ -749,7 +749,7 @@ class BGProfileBranded(BGProfile):
 
 class BGProfileGrapes(BGProfile):
     def __init__(self):
-        super().__init__(ID = 68,
+        super().__init__(ID = 69,
                            Priority = 10,
                            sFileName = "grapes")
         self.MainTitleColor = "rgba(228, 171, 62, 255)"
@@ -759,7 +759,7 @@ class BGProfileGrapes(BGProfile):
 
 class BGProfileUnderwater(BGProfile):
     def __init__(self):
-        super().__init__(ID = 69,
+        super().__init__(ID = 70,
                            Priority = 10,
                            sFileName = "underwater")
         self.MainTitleColor = "rgba(228, 171, 62, 255)"
@@ -769,7 +769,7 @@ class BGProfileUnderwater(BGProfile):
 
 class BGProfileSlaves(BGProfile):
     def __init__(self):
-        super().__init__(ID = 70,
+        super().__init__(ID = 71,
                            Priority = 10,
                            sFileName = "slaves")
         self.MainTitleColor = "rgba(169, 61, 55, 255)"
@@ -779,18 +779,18 @@ class BGProfileSlaves(BGProfile):
 
 class BGProfileNakedCowboy(BGProfile):
     def __init__(self):
-        super().__init__(ID = 71,
+        super().__init__(ID = 72,
                            Priority = 4,
                            sFileName = "naked_cowboy")
         self.MainTitleColor = "rgba(138, 52, 46, 255)"
         self.SecondTitleColor = "rgba(83, 125, 148, 255)"  
         self.SmallTextColor ="rgba(205, 163, 106, 255)"
-        self.AuthorNameColor = "rgba(138, 52, 46, 255)",
+        self.AuthorNameColor = "rgba(138, 52, 46, 255)"
         self.AdultsOnly = True
 
 class BGProfileTwoGirls(BGProfile):
     def __init__(self):
-        super().__init__(ID = 72,
+        super().__init__(ID = 73,
                            Priority = 10,
                            sFileName = "two_girls")
         self.MainTitleColor = "rgba(255, 210, 47, 255)"
@@ -800,7 +800,7 @@ class BGProfileTwoGirls(BGProfile):
 
 class BGProfileSpaceMonster(BGProfile):
     def __init__(self):
-        super().__init__(ID = 72,
+        super().__init__(ID = 74,
                            Priority = 10,
                            sFileName = "space_monster")
         self.MainTitleColor = "rgba(0, 0, 0, 255)"
@@ -810,7 +810,7 @@ class BGProfileSpaceMonster(BGProfile):
 
 class BGProfileOneEyedAlien(BGProfile):
     def __init__(self):
-        super().__init__(ID = 72,
+        super().__init__(ID = 75,
                            Priority = 10,
                            sFileName = "one_eyed_alien")
         self.MainTitleColor = "rgba(219, 103, 122, 255)"
@@ -820,7 +820,7 @@ class BGProfileOneEyedAlien(BGProfile):
 
 class BGProfileSpaceGirl(BGProfile):
     def __init__(self):
-        super().__init__(ID = 72,
+        super().__init__(ID = 76,
                            Priority = 10,
                            sFileName = "space_girl")
         self.MainTitleColor = "rgba(48, 66, 138, 255)"

@@ -327,11 +327,10 @@ class TitleTemplate7(TitleTemplate):
 
         # Large one or two line bottom line (punchline)
         self.AddLine(OrderNum = 2,
-                     FontName = "TestarossaNF.ttf",
-                     FontMaxSize = 24,
+                     FontName = "FreestyleScriptStd.ttf",
+                     FontMaxSize = 22,
                      MaxRows = 2,
-                     ColorType = LineColorType.MainTitle,
-                     AllCaps = True)
+                     ColorType = LineColorType.MainTitle)
 
 # ** Conversational **
 # Large long or multi-line line
