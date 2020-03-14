@@ -70,14 +70,14 @@ def InitBot(iTweetTimer,
                     currentDT = datetime.datetime.now()
                     
                     # Uncomment to save test images locally 
-                    #CreateImg(ImgTxtGen).save(titutil.TESTIMAGE_PATH + GenerateFileName(), format = 'PNG')
+                    #CreateImg(ImgTxtGen).save(titutil.TESTIMAGE_PATH + GenerateFileName(), format = 'jpeg', quality = 'high')
                     
-                    if bTweet:  #<-- uncomment before deploying
-                    #if False:  #<-- uncomment for debuggign
+                    #if bTweet:  #<-- uncomment before deploying
+                    if False:  #<-- uncomment for debuggign
                             status = None
                          
                             ImgFile = BytesIO() 
-                            CreateImg(TitleTweet).save(ImgFile, format = 'PNG')
+                            CreateImg(TitleTweet).save(ImgFile, format = 'jpeg', quality = 'high')
                               
                             if status == None:
                                 #pass
@@ -85,7 +85,7 @@ def InitBot(iTweetTimer,
                             else:
                                 #pass
                                 ImgFile = BytesIO() 
-                                CreateImg(sTweet).save(ImgFile, format = 'PNG')
+                                CreateImg(sTweet).save(ImgFile, format = 'jpeg', quality = 'high')
                               
                                 #status = UpdateStatusWithImage(api, TweetTxtGen.TweetTxt(), ImgFile, status.id)  
                               

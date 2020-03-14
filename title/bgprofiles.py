@@ -506,7 +506,7 @@ class BGProfileMoonBoob(BGProfile):
 #        super().__init__(ID = 35,
 #                           Priority = 2,
 #                           sFileName = "naughty_buddha",
-#                           sPHFileName = "naughty_buddha_ph.png")
+#                           sPHFileName = "naughty_buddha_ph.jpg")
 #        self.MainTitleColor = "rgba(9, 71, 161, 255)"
 #        self.SecondTitleColor = "rgba(9, 71, 161, 255)"
 #        self.SmallTextColor = "rgba(21, 85, 76, 255)"

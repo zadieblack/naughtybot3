@@ -124,7 +124,7 @@ def RespondToReplies(api, sFrom = ""):
                          
                          if sTweet != "" and sPrefix != "":
                               ImgFile = BytesIO() 
-                              CreateImg(sTweet).save(ImgFile, format = 'PNG')
+                              CreateImg(sTweet).save(ImgFile, format = 'jpg')
                               
                               status = UpdateStatusWithImage(api, sPrefix, ImgFile, reply.id)     
                     

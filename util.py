@@ -151,7 +151,7 @@ def CoinFlip():
 def GenerateFileName():
      # if bot uses same filename every time, twitter might think its spamming. this function randomizes the filename.
      sFileName = ""
-     sFileType = "png"
+     sFileType = "jpg"
      
      #append current time in seconds, remove '.' that seperates miliseconds
      sFileName += str(time.time()).replace(".", "")

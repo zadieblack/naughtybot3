@@ -42,7 +42,7 @@ def TestExcerptGens(bCreateImages = False):
                     
                if len(sTweet) > 0:
                     if bCreateImages:
-                         eximg.CreateImg(sTweet).save(GenerateFileName(), format = 'PNG')
+                         eximg.CreateImg(sTweet).save(GenerateFileName(), format = 'jpg')
                     
                     print("* Testing Excerpt Generator ID " + str(gen.ID) + " (" + str(len(sTweet)) + " chars) *")
                     print("[" + sTweet + "]\n")
@@ -95,7 +95,7 @@ def TestTitleGens(bCreateImages = False):
                     
                if len(sTweet) > 0:
                     if bCreateImages:
-                         titimg.CreateImg(sTweet).save(GenerateFileName(), format = 'PNG')
+                         titimg.CreateImg(sTweet).save(GenerateFileName(), format = 'jpg')
                     
                     print("* Testing Title Generator ID " + str(gen.ID) + " (" + str(len(sTweet)) + " chars) *")
                     print("[" + sTweet + "]\n")

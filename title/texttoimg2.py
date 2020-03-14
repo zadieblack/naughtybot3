@@ -65,7 +65,7 @@ class BGImageHH:
 
     def __init__(self, BGProfile):
         self.MaxHeight = self.TitleBoxBottom_yOffset - self.TitleBoxTop_yOffset
-        self.FileName = BGProfile.FileName + "_hh.png"
+        self.FileName = BGProfile.FileName + "_hh.jpg"
         self.Image = GetBGImg(self.FileName)
 
 class BGImagePH:
@@ -75,7 +75,7 @@ class BGImagePH:
 
     def __init__(self, BGProfile):
         self.MaxHeight = self.TitleBoxBottom_yOffset - self.TitleBoxTop_yOffset
-        self.FileName = BGProfile.FileName + "_ph.png"
+        self.FileName = BGProfile.FileName + "_ph.jpg"
         self.Image = GetBGImg(self.FileName)
 
 def GetTextLineSize(font, sLine):
@@ -496,4 +496,4 @@ def CreateImg(ImgTxtGen):
         else:
             print("ERROR. File name '" + bg.FileName + "' not found for background " + str(bg))
 
-    return  BGImg
+    return  BGImg.convert("RGB")
