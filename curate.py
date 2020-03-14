@@ -6,7 +6,7 @@ import title.misc as titmisc
 import title.util as titutil
 from names import AuthorBuilder
 
-def CurateFavorites(iGen = 0):
+def CurateFavorites(iGen = 0, iMaxLen = 0):
         sInput = ""
         iSkipCount = 0
         iAddCount = 0
@@ -21,10 +21,10 @@ def CurateFavorites(iGen = 0):
           
             if iGen != 0:
         # Create Titles for specific generator
-                ImgTxtGen = GetTweet(bTest = True, bTweet = False, iGeneratorNo = iGen, bAllowPromo = False, bAllowFavTweets = False)
+                ImgTxtGen = GetTweet(bTest = True, bTweet = False, iGeneratorNo = iGen, bAllowPromo = False, bAllowFavTweets = False, iMaxLen = iMaxLen)
             else:
         # Create Titles from random generators
-                ImgTxtGen = GetTweet(bTest = False, bTweet = False, iGeneratorNo = 0, bAllowPromo = False, bAllowFavTweets = False)
+                ImgTxtGen = GetTweet(bTest = False, bTweet = False, iGeneratorNo = 0, bAllowPromo = False, bAllowFavTweets = False, iMaxLen = iMaxLen)
 
         # Get author 
             ImgTxtGen.AuthorName = AuthorBuilder(ImgTxtGen.AuthorGender)
@@ -69,6 +69,7 @@ def CurateFavorites(iGen = 0):
                
 Parser = argparse.ArgumentParser(prog='Curate',description='Curate favorite tweets.')
 Parser.add_argument('-gen', type=int, default=0, help='tweet text generator # to curate')
+Parser.add_argument('-maxlen', type=int, default=0, help='max chars of tweet text to generate')
 Args = Parser.parse_args()
 
 if Args.gen != 0:
@@ -76,4 +77,4 @@ if Args.gen != 0:
 else:
      print("Curating random tweets.")
 
-CurateFavorites(iGen = Args.gen)
+CurateFavorites(iGen = Args.gen, iMaxLen = Args.maxlen)
