@@ -493,7 +493,7 @@ class VaginaSlang(WordList):
 
 class TantricTechniques(NounAdjList):
     def __init__(self):
-          super().__init__(["Baloney",
+          super().__init__(super().__init__(["Baloney",
                             "Banana",
                             "Basset Hound",
                             "Beaver",
@@ -501,13 +501,14 @@ class TantricTechniques(NounAdjList):
                             "Bulldog",
                             "Bunghole",
                             "Burrito",
-                            "Butterfly",
-                            "Cherry",
-                            "Delight",
+                            "Butterfly",                                                        
                             "Camel",
+                            "Cherry",
+                            "Coat-Hanger",
                             "Corn-Dog",
                             "Corn-Hole",
                             "Chimichanga",
+                            "Delight",
                             "Donkey",
                             "Dwarf",
                             "Enema",
@@ -552,7 +553,7 @@ class TantricTechniques(NounAdjList):
                             "Weasel",
                             "Whoopsie"
                             ],
-                           ["Anal",
+                            ["Anal",
                             "Bald",
                             "Bangkok",
                             "Beef",
@@ -613,9 +614,11 @@ class TantricTechniques(NounAdjList):
                             "Texas",
                             "Three-Legged",
                             "Thirsty",
+                            "Thong",
                             "Tijuana",
                             "Turkish",
                             "Upside-Down",
                             "Velvet",
                             "Whipped"
                             ])
+              

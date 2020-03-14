@@ -249,7 +249,7 @@ class NamesFemale(Names):
      def __init__(self):
           super().__init__()
           
-          self.SetFirstNames(ClassyNamesFemale().GetFirstNamesList())
+          self.SetFirstNames(PlainNamesFemale().GetFirstNamesList() + ClassyNamesFemale().GetFirstNamesList())
           
 class AuthorNamesFemale(Names):
      def __init__(self):
@@ -1008,6 +1008,8 @@ class InnNameGen1(InnNameGenerator):
                                               InnLastName(['Long']),
                                               InnLastName(['Major']),
                                               InnLastName(['Pink']),
+                                              InnLastName(['Strange']),
+                                              InnLastName(['Thicke']),
                                               InnLastName(['White'])
                                              ])
                                              
@@ -1107,7 +1109,6 @@ class InnNameGen2(InnNameGenerator):
 
           self.FirstLastNameList([InnLastName(['Bangs','Banger']),
                                               InnLastName(['Bender']),
-                                              InnLastName(['Black']),
                                               InnLastName(['Creamer']),
                                               InnLastName(['Cummings']),
                                               InnLastName(['Dicker','Dickens']),
@@ -1117,7 +1118,8 @@ class InnNameGen2(InnNameGenerator):
                                               InnLastName(['Fokker','Focker']),
                                               InnLastName(['Humper']),
                                               InnLastName(['Jakov','Jackov']),
-                                              InnLastName(['Liquor','Lickor']),
+                                              InnLastName(['Liquor','Licker','Likker'
+                                                           ]),
                                               InnLastName(['Gaper']),
                                               InnLastName(['Mounter']),
                                               InnLastName(['Philmore']),
@@ -1143,7 +1145,7 @@ class InnNameGen2(InnNameGenerator):
                                               InnLastName(['Knightly']),
                                               InnLastName(['Stiffley']),
                                               InnLastName(['Beaver']),
-                                              InnLastName(['Bodie']),
+                                              InnLastName(['Bodie','Bawdy','Bawdee','Bawdie','Body']),
                                               InnLastName(['Bresst','Brest']),
                                               InnLastName(['Clam','Clamm','Clams','Clamms','Clamz','Clammz']),
                                               InnLastName(['Cracks']),
@@ -1159,7 +1161,8 @@ class InnNameGen2(InnNameGenerator):
                                               InnLastName(['Melons']),
                                               InnLastName(['Muffy','Muffin']),
                                               InnLastName(['Peach']),
-                                              InnLastName(['Puss'])
+                                              InnLastName(['Puss']),
+                                              InnLastName(['Snatch'])
                                              ])
      
 # Name: Amanda Faulk
@@ -1245,7 +1248,8 @@ class InnNameGen4(InnNameGenerator):
                                               InnFirstNameFemale(['Eden U.']),
                                               InnFirstNameFemale(['C. Cherry','Cherry','Cherry P.']),
                                               InnFirstNameFemale(['Rhoda U.']),
-                                              InnFirstNameFemale(['Sharon','I.M. Sharon'])
+                                              InnFirstNameFemale(['Sharon','I.M. Sharon']),
+                                              InnFirstNameFemale(['Yu Mi'])
                                          ])
                                              
           self.FirstNameMaleList([      InnFirstNameMale(['Bone R.','I. Bone','Bone U.']),
@@ -1299,12 +1303,14 @@ class InnNameGen4(InnNameGenerator):
                                               InnLastName(['Sachs','Sachs','Sax']),
                                               InnLastName(['Schaft','Shaft']),
                                               InnLastName(['Schlong']),
+                                              InnLastName(['Snatch']),
                                               InnLastName(['Wang']),
                                               InnLastName(['Weiner']),
                                               InnLastName(['Wood'])
                                              ])
                                              
           self.SecondLastNameList([InnLastName(['Daley']),
+                                   InnLastName(['Deeper']),
                                               InnLastName(['Freely']),
                                               InnLastName(['Gayley']),
                                               InnLastName(['Hard','Harder']),
@@ -1385,13 +1391,16 @@ class InnNameGen6(InnNameGenerator):
                                              ])
 
           self.FirstLastNameList([      InnLastName(['Bigg']),
-                                              InnLastName(['Black']),
+                                              InnLastName(['Butt']),
+                                              InnLastName(['Cheap']),
                                               InnLastName(['Daley']),
                                               InnLastName(['Fatt']),
                                               InnLastName(['Free']),
                                               InnLastName(['Goode']),
-                                              InnLastName(['Free']),
+                                              InnLastName(['Hard']),
                                               InnLastName(['Knightly']),
+                                              InnLastName(['Rear']),
+                                              InnLastName(['Thicke']),
                                               InnLastName(['White']) 
  
                                              ])
@@ -1401,7 +1410,7 @@ class InnNameGen6(InnNameGenerator):
                                               InnLastName(['Ho']),
                                               InnLastName(['Hoar']),
                                               InnLastName(['Jackov','Jakov']),
-                                              InnLastName(['Liquor']),
+                                              InnLastName(['Liquor','Likker','Licker']),
                                               InnLastName(['Mann','Mannlova'])
                                              ])
                                              
@@ -1479,7 +1488,7 @@ def GetInnName(gender, iGeneratorNo = 0):
                gen = GenSel.RandomGenerator()
      
      if not gen is None:
-          print("Innuendo name generator #" + str(gen.ID) + " selected for " + str(gender))
+          #print("Innuendo name generator #" + str(gen.ID) + " selected for " + str(gender))
           sName = gen.GetName(gender)
 
      

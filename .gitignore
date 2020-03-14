@@ -2,6 +2,7 @@ title/twitterauth.py
 excerpt/twitterauth.py
 title/twitterauth.py
 title/history_q.txt
+title/bghistory_q.txt
 excerpt/history_q.txt
 title/tweettxt_history_q.txt
 title/_pycache_/
@@ -9,6 +10,7 @@ excerpt/_pycache_/
 excerpt/twitterauth.py
 *.pyc
 workspace_bot3
+title/bghistory_q.txt
 title/reply_ids.txt
 title/fav_titles.txt
 title/fav_titles_back.txt
@@ -155,6 +157,7 @@ title/new bg images/windswept OG wide.jpg
 title/new bg images/woods in just a shirt OG wide.jpg
 title/new bg images/top down OG tall.jpg
 title/fav_titles_old.txt
+/testimages
 /.vs/bot3/v16/.suo
 /.vs/VSWorkspaceState.json
 /bot3.pyproj

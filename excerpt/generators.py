@@ -4967,18 +4967,27 @@ class Generator87(Generator):
           # sTweet += "Follow if you dare!"
 
           # return sTweet
-          
-# "I'm a sheltered Amish school-marm," she thought. "What am I doing giving giving a full-frontal massage to 
-# a handsome muscular Italian hitman on my parent's bed?"
-# class Generator82(Generator):
-     # ID = 89
-     # Priority = 1
-     
-     # def GenerateTweet(self):
-          # super().GenerateTweet()
-          # sTweet = ""
 
-          # return sTweet
+# "Isn't this beach romantic?" asked Brad. "It reminds me of the night we first met."
+# "Oh, you mean the time you lubed me up with butter and fisted my anus?" Anna asked.          
+class Generator89(Generator):
+    ID = 89
+    Priority = 1
+     
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
+
+        sHisName = self.MaleName.FirstName()
+        sHerName = self.FemaleName.FirstName()
+
+        RomanticPlaces = WordList([["this beach","as he gazed out over the purple sunset waves"],
+                                   ["this little cabin","as he gazed up at the majestic peaks soaring over the pines"],
+                                   ["this little village","as they walked down the quaint cobblestoned street"],
+                                   ["this city","as he gazed up at soaring, neon-lit skyscrapers"]
+                                   ])
+
+        return sTweet
 
 class Generator90(Generator):
      ID = 90
@@ -5022,7 +5031,11 @@ class Generator90(Generator):
           sTweet += "in anticipation."
 
           return sTweet
-          
+
+# Lily reflected on what a strange day it had been. She was just another cute
+# lactating nun. How in the world had she wound up naked, covered in whipped
+# cream, and bent over the hood of a car as the black football team took turns
+# vigorously fucking her ass doggy style? Yet again??          
 class Generator91(Generator):
      ID = 91
      Priority = 3
@@ -5451,8 +5464,7 @@ class Generator96(Generator):
        
         return sTweet
     
-# "Isn't this beach romantic?" asked Brad. "It reminds me of the night we first met."
-# "Oh, you mean the time you lubed me up with butter and fisted my anus?" Anna asked.
+
 # class Generator97(Generator):
      # ID = 97
      # Priority = 1

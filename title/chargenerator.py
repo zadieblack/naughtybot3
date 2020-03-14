@@ -16,6 +16,7 @@ class FemaleChar(Character):
                             bAddTheArticle = False, 
                             bAddAnArticle = False,
                             sPosArticle = "My", 
+                            bSplitArticle = False,
                             bAddEndNoun = True,
                             bAllowAttitude = True, 
                             bAllowPhysChar = True, 
@@ -32,10 +33,9 @@ class FemaleChar(Character):
                             bAllowTrope = True, 
                             bAllowRelate = False, 
                             bAllowTitle = True,
-                            SelectTemplateID = 0):
+                            SelectTemplateID = 0,
+                            MaxChars = 9999):
           super().__init__()
-          
-          #print("CharGenerator.FemaleChar() started")
           if NotList is None:
                NotList = []
           
@@ -75,9 +75,6 @@ class FemaleChar(Character):
           if not bAllowTitle:
                ExclList.append(TitlesFemale())
                
-          #print("ExclusionList is " + str(ExclusionList) + "\n")
-          
-          #print("CharGenerator.FemaleChar() Getting templates")
           TemplateList = self.BuildTemplateList(bAllowTrope = bAllowTrope, bAllowSpecies = bAllowSpecies)
           
           self.SetCharDesc(TemplateList, 
@@ -89,7 +86,9 @@ class FemaleChar(Character):
                                bAddTheArticle = bAddTheArticle,
                                bAddAnArticle = bAddAnArticle,
                                sPosArticle = sPosArticle,
-                               SelectTemplateID = SelectTemplateID)
+                               bSplitArticle = bSplitArticle,
+                               SelectTemplateID = SelectTemplateID,
+                               MaxChars = MaxChars)
           
      def BuildTemplateList(self, bAllowTrope, bAllowSpecies):
           TemplateList = []
@@ -130,6 +129,7 @@ class LesbianChar(Character):
                             bAddTheArticle = False, 
                             bAddAnArticle = False,
                             sPosArticle = "My", 
+                            bSplitArticle = False,
                             bAddEndNoun = True,
                             bAllowAttitude = True, 
                             bAllowPhysChar = True, 
@@ -146,7 +146,8 @@ class LesbianChar(Character):
                             bAllowTrope = True, 
                             bAllowRelate = False, 
                             bAllowTitle = True,
-                            SelectTemplateID = 0):
+                            SelectTemplateID = 0,
+                            MaxChars = 9999):
           super().__init__()
 
           if NotList is None:
@@ -199,7 +200,9 @@ class LesbianChar(Character):
                                bAddTheArticle = bAddTheArticle,
                                bAddAnArticle = bAddAnArticle,
                                sPosArticle = sPosArticle,
-                               SelectTemplateID = SelectTemplateID)
+                               bSplitArticle = bSplitArticle,
+                               SelectTemplateID = SelectTemplateID,
+                               MaxChars = MaxChars)
           
      def BuildTemplateList(self):
           TemplateList = []
@@ -216,6 +219,7 @@ class MaleChar(Character):
                             bAddTheArticle = False, 
                             bAddAnArticle = False,
                             sPosArticle = "My", 
+                            bSplitArticle = False,
                             bAddEndNoun = True,
                             bAllowGang = False,
                             bAllowAttitude = True, 
@@ -233,7 +237,8 @@ class MaleChar(Character):
                             bAllowTrope = True, 
                             bAllowRelate = False,
                             bAllowTitle = True,
-                            SelectTemplateID = 0):
+                            SelectTemplateID = 0,
+                            MaxChars = 9999):
           super().__init__()
                
           bShowGangChar = self.ShowGangChar(bAllowGang)
@@ -244,42 +249,45 @@ class MaleChar(Character):
                                                    ReqList = ReqList,
                                                    ExclList = ExclList, 
                                                    NotList = NotList, bAddTheArticle = bAddTheArticle,
-                                                   bAddAnArticle = bAddAnArticle, sPosArticle = sPosArticle, 
+                                                   bAddAnArticle = bAddAnArticle, sPosArticle = sPosArticle, bSplitArticle = bSplitArticle,
                                                    bAddEndNoun = bAddEndNoun, bAllowPhysChar = bAllowPhysChar, 
                                                    bAllowDickChar = bAllowDickChar, bAllowGenMod = bAllowGenMod,
                                                    bAllowTypeMod = bAllowTypeMod,bAllowClothing = bAllowClothing,
                                                    bAllowNation = bAllowNation, bAllowProf = bAllowProf, 
-                                                   bAllowSpecies = bAllowSpecies, SelectTemplateID = SelectTemplateID) 
+                                                   bAllowSpecies = bAllowSpecies, SelectTemplateID = SelectTemplateID,
+                                                   MaxChars = MaxChars) 
           elif (MaleCharType == MaleCharType.Straight and bShowGangChar and bAddTheArticle) or MaleCharType == MaleCharType.GangAny:
           # show any gang character 
                Char = GangMaleChar(TempType = TempType, MaleCharType = MaleCharType.GangAny,
                                                    ReqList = ReqList,
                                                    ExclList = ExclList, 
-                                                   NotList = NotList, bAddTheArticle = bAddTheArticle,
+                                                   NotList = NotList, bAddTheArticle = bAddTheArticle, bSplitArticle = bSplitArticle,
                                                    bAddAnArticle = bAddAnArticle, sPosArticle = sPosArticle, 
                                                    bAddEndNoun = bAddEndNoun, bAllowPhysChar = bAllowPhysChar, 
                                                    bAllowDickChar = bAllowDickChar, bAllowGenMod = bAllowGenMod,
                                                    bAllowTypeMod = bAllowTypeMod,bAllowClothing = bAllowClothing,
                                                    bAllowNation = bAllowNation, bAllowProf = bAllowProf, 
-                                                   bAllowSpecies = bAllowSpecies, SelectTemplateID = SelectTemplateID) 
+                                                   bAllowSpecies = bAllowSpecies, SelectTemplateID = SelectTemplateID,
+                                                   MaxChars = MaxChars) 
           elif MaleCharType == MaleCharType.GangSingular or MaleCharType == MaleCharType.GangPlural:
           # show gang character depending on parameter passed in
                Char = GangMaleChar(TempType = TempType, MaleCharType = MaleCharType, 
                                                    ReqList = ReqList,
                                                    ExclList = ExclList,
                                                    NotList = NotList, bAddTheArticle = bAddTheArticle,
-                                                   bAddAnArticle = bAddAnArticle, sPosArticle = sPosArticle, 
+                                                   bAddAnArticle = bAddAnArticle, sPosArticle = sPosArticle, bSplitArticle = bSplitArticle,
                                                    bAddEndNoun = bAddEndNoun, bAllowPhysChar = bAllowPhysChar, 
                                                    bAllowDickChar = bAllowDickChar, bAllowGenMod = bAllowGenMod,
                                                    bAllowTypeMod = bAllowTypeMod,bAllowClothing = bAllowClothing,
                                                    bAllowNation = bAllowNation, bAllowProf = bAllowProf, 
-                                                   bAllowSpecies = bAllowSpecies, SelectTemplateID = SelectTemplateID) 
+                                                   bAllowSpecies = bAllowSpecies, SelectTemplateID = SelectTemplateID,
+                                                   MaxChars = MaxChars) 
           else:
           # show a normal straight character
                Char = StraightMaleChar(TempType = TempType, NotList = NotList, bAddTheArticle = bAddTheArticle,
                                                    ReqList = ReqList,
                                                    ExclList = ExclList,
-                                                   bAddAnArticle = bAddAnArticle, sPosArticle = sPosArticle, 
+                                                   bAddAnArticle = bAddAnArticle, sPosArticle = sPosArticle, bSplitArticle = bSplitArticle,
                                                    bAddEndNoun = bAddEndNoun, bAllowAttitude = bAllowAttitude, 
                                                    bAllowPhysChar = bAllowPhysChar, bAllowDickChar = bAllowDickChar, 
                                                    bAllowSkinHairColor = bAllowSkinHairColor, bAllowGenMod = bAllowGenMod,
@@ -288,7 +296,8 @@ class MaleChar(Character):
                                                    bAllowNation = bAllowNation, bAllowProf = bAllowProf, 
                                                    bAllowSpecies = bAllowSpecies, bAllowTrope = bAllowTrope, 
                                                    bAllowRelate = bAllowRelate,bAllowTitle = bAllowTitle,
-                                                   SelectTemplateID = SelectTemplateID) 
+                                                   SelectTemplateID = SelectTemplateID,
+                                                   MaxChars = MaxChars) 
      
           
           self.Desc = Char.Desc
@@ -310,6 +319,7 @@ class StraightMaleChar(Character):
                             bAddAnArticle = False,
                             sPosArticle = "My", 
                             bAddEndNoun = True,
+                            bSplitArticle = False,
                             bAllowAttitude = True, 
                             bAllowPhysChar = True, 
                             bAllowDickChar = True, 
@@ -325,7 +335,8 @@ class StraightMaleChar(Character):
                             bAllowTrope = True, 
                             bAllowRelate = False,
                             bAllowTitle = True,
-                            SelectTemplateID = 0):
+                            SelectTemplateID = 0,
+                            MaxChars = 9999):
           super().__init__()
           #print("CharGenerator.MaleChar() started")
           if NotList is None:
@@ -382,7 +393,9 @@ class StraightMaleChar(Character):
                                bAddTheArticle = bAddTheArticle,
                                bAddAnArticle = bAddAnArticle,
                                sPosArticle = sPosArticle,
-                               SelectTemplateID = SelectTemplateID)
+                               bSplitArticle = bSplitArticle,
+                               SelectTemplateID = SelectTemplateID,
+                               MaxChars = MaxChars)
 
      def BuildTemplateList(self, bAllowTrope, bAllowSpecies):
           TemplateList = []
@@ -421,6 +434,7 @@ class GangMaleChar(Character):
                             bAddAnArticle = False,
                             sPosArticle = "My", 
                             bAddEndNoun = True,  
+                            bSplitArticle = False,
                             bAllowPhysChar = True, 
                             bAllowDickChar = True, 
                             bAllowGenMod = True, 
@@ -429,7 +443,8 @@ class GangMaleChar(Character):
                             bAllowNation = True, 
                             bAllowProf = True, 
                             bAllowSpecies = True,
-                            SelectTemplateID = 0):
+                            SelectTemplateID = 0,
+                            MaxChars = 9999):
           super().__init__()
 
           if NotList is None:
@@ -472,7 +487,9 @@ class GangMaleChar(Character):
                                bAddTheArticle = bAddTheArticle,
                                bAddAnArticle = bAddAnArticle,
                                sPosArticle = sPosArticle,
-                               SelectTemplateID = SelectTemplateID)
+                               bSplitArticle = bSplitArticle,
+                               SelectTemplateID = SelectTemplateID,
+                               MaxChars = MaxChars)
 
      def BuildTemplateList(self, malechartype):
           TemplateList = []
@@ -494,6 +511,7 @@ class GayMaleChar(Character):
                             bAddAnArticle = False,
                             sPosArticle = "My", 
                             bAddEndNoun = True,  
+                            bSplitArticle = False,
                             bAllowPhysChar = True, 
                             bAllowDickChar = True, 
                             bAllowGenMod = True, 
@@ -503,7 +521,8 @@ class GayMaleChar(Character):
                             bAllowProf = True, 
                             bAllowTitle = False,
                             bAllowSpecies = True,
-                            SelectTemplateID = 0):
+                            SelectTemplateID = 0,
+                            MaxChars = 9999):
           super().__init__()
 
           if NotList is None:
@@ -548,7 +567,9 @@ class GayMaleChar(Character):
                                bAddTheArticle = bAddTheArticle,
                                bAddAnArticle = bAddAnArticle,
                                sPosArticle = sPosArticle,
-                               SelectTemplateID = SelectTemplateID)
+                               bSplitArticle = bSplitArticle,
+                               SelectTemplateID = SelectTemplateID,
+                               MaxChars = MaxChars)
 
      def BuildTemplateList(self, malechartype):
           TemplateList = []

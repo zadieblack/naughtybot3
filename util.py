@@ -47,6 +47,16 @@ class GirlType(Enum):
      Bad = 2
      Neutral = 3
 
+class HeaderType(Enum):
+     Harlequin = 1
+     Plain = 2
+
+class LineColorType(Enum):
+     MainTitle = 1
+     SecondTitle = 2
+     SmallText = 3
+     AuthorName = 4
+
 HeartEmoji = ['\U00002764','\U0001F49A','\U0001F499','\U0001F49C','\U0001F49B','\U0001F9E1','\U0001F5A4']
 
 def GetHeartEmoji(iNum = 1):
@@ -68,7 +78,7 @@ def GetEmoji(iNum = 1):
      return sEmoji
      
 #combined version
-def AddArticles(sNounPhrase, bMakeUpper = False, cBracket = ""):
+def AddArticles(sNounPhrase, bMakeUpper = False, cBracket = "", bSplitArticle = False):
      sUpdatedPhrase = sNounPhrase
      sArticle = ""
      sNPNounPhrase = "" #Noun phrase without any 'decoration' characters
@@ -92,10 +102,8 @@ def AddArticles(sNounPhrase, bMakeUpper = False, cBracket = ""):
           
           # Check for words that look plural but aren't (such as 'ass')
           if sNPNounPhrase[-2:].lower() in ['ss','us']:
-               #print(" - sNPNounPhrase[-2:] is " + sNPNounPhrase[-2:] + "\n")
                bDoArticle = True 
           elif sNPNounPhrase[-1:].lower() == 's':
-               #print(" - sNPNounPhrase[-1:] is " + sNPNounPhrase[-1:] + "\n")
                bDoArticle = False 
           else:
                bDoArticle = True 
@@ -103,19 +111,14 @@ def AddArticles(sNounPhrase, bMakeUpper = False, cBracket = ""):
           if bDoArticle:
                # check for words that start with a vowel but actually have a consonant sound
                if sNPNounPhrase[0:2].lower() in ['f.','h.','l.','m.','n.','r.','s.','x.']:
-                    #print(" - sNPNounPhrase[0:2] is " + sNPNounPhrase[0:2] + "\n")
                     sArticle = 'an'
                if sNPNounPhrase[0:3].lower() in ['uni','one','uro']:
-                    #print(" - sNPNounPhrase[0:3] is " + sNPNounPhrase[0:3] + "\n")
                     sArticle = 'a'
                elif sNPNounPhrase[0:4].lower() in ['hour']:
-                    #print(" - sNPNounPhrase[0:4] is " + sNPNounPhrase[0:4] + "\n")
                     sArticle = 'an'
                elif sNPNounPhrase[0:5].lower() in ['honor']:
-                    #print(" - sNPNounPhrase[0:5] is " + sNPNounPhrase[0:5] + "\n")
                     sArticle = 'an'
                elif sNPNounPhrase[0].lower() in ['a','e','i','o','u']:
-                    #print(" - sNPNounPhrase[0] " + sNPNounPhrase[0] + "\n")
                     sArticle = 'an'
                else:
                     sArticle = 'a'
@@ -125,9 +128,13 @@ def AddArticles(sNounPhrase, bMakeUpper = False, cBracket = ""):
                     sArticle = 'A'
                else:
                     sArticle = 'An'
-                         
+            
+          sArticleSplitter = " "
+          if bSplitArticle:
+              sArticleSplitter = "\n"
+
           if len(sArticle) > 0:
-               sUpdatedPhrase = sArticle + " " + cBracket + sNounPhrase + cBracket
+               sUpdatedPhrase = sArticle + sArticleSplitter + cBracket + sNounPhrase + cBracket
           else:
                sUpdatedPhrase = cBracket + sNounPhrase + cBracket
                
@@ -199,11 +206,13 @@ class HistoryQWithLog(HistoryQ):
           #print("LogFileName is " + self.LogFileName)
           
           try:
+               #print("Opening log file.")
                with open(self.LogFileName, 'r') as ReadLogFile:
                     for item in ReadLogFile.read().splitlines():
                          #print(item)
                          self.HistoryQ.append(int(item))
           except FileNotFoundError:
+               #print("Unable to open log file, creating log file.")
                open(self.LogFileName, 'w')
                with open(self.LogFileName, 'r') as ReadLogFile:
                     for item in ReadLogFile.read().splitlines():
@@ -213,7 +222,7 @@ class HistoryQWithLog(HistoryQ):
           #print(self.HistoryQ)
                
      def LogHistoryQ(self):
-          with open(self.LogFileName, 'w') as WriteHistoryQ:
+          with open(self.LogFileName, 'w+') as WriteHistoryQ:
                for item in self.HistoryQ:
                     WriteHistoryQ.write(str(item) + "\n")
           #print("Wrote HistoryQ:")

@@ -27,6 +27,34 @@ class TweetTxtGen():
      Type = GeneratorType.Normal
      # most generators are Normal. Setting a generator to Test makes sure it can't be selected randomly. Setting a generator to Promo means it won't be selected for reply tweets
      
+     def __init__(self, ID = -1, sAuthorName = "", AuthorGender = None):
+         if AuthorGender is None:
+             self._AuthorGender = Gender.Neuter 
+         else:
+             self._AuthorGender = AuthorGender 
+
+         if sAuthorName != "":
+            self._AuthorName = sAuthorName 
+         else:
+            self._AuthorName = AuthorBuilder(self._AuthorGender)
+
+         if not ID == -1:
+            self.ID = ID
+
+         self._TweetTxt = ""
+
+     def AuthorName(self):
+        return self._AuthorName 
+
+     def AuthorGender(self):
+         return self._AuthorGender
+
+     def TweetTxt(self):
+         return self._TweetTxt 
+
+     def SetTweetTxt(self, stxt):
+        self._TweetTxt = stxt
+
      def SetPriority(self, sText, List, iPriority):
           for x in range(iPriority):
                List.append(sText)
@@ -47,9 +75,12 @@ class TweetTxtGen1(TweetTxtGen):
           super().GenerateTweet()
           sText = ""
           
-          sText = "The " + self.SexyAdj.GetWord() + " " + WordList(["read", "book", "ebook"]).GetWord() + " that was " + WordList(["BANNED on", "TOO HOT for", "TOO FILTHY for", "too much for"]).GetWord() + " Amazon! Now available on " + self.BookSeller.GetWord(NotList = ["Amazon", "Kindle Unlimited"]) 
-          if CoinFlip():
-               sText += " (from " + AuthorBuilder() + ")"
+          sText = "The " + self.SexyAdj.GetWord() + " " 
+          sText += WordList(["read", "book", "ebook"]).GetWord() + " "
+          sText += "that was " + WordList(["BANNED on", "TOO HOT for", 
+                                           "TOO FILTHY for", "too much for"]).GetWord() + " Amazon! "
+          sText += "Now available on " + self.BookSeller.GetWord(NotList = ["Amazon", "Kindle Unlimited"]) 
+          sText += " (from " + self.AuthorName() + ")"
           #=============================
           
           return sText
@@ -69,7 +100,7 @@ class TweetTxtGen2(TweetTxtGen):
           if CoinFlip():
                sText += " and " + self.BookSeller.GetWord(NotList = [sBookSeller])
           if CoinFlip():
-               sText += ". By " + AuthorBuilder()
+               sText += ". By " + self.AuthorName()
           
           return sText
           
@@ -88,7 +119,7 @@ class TweetTxtGen3(TweetTxtGen):
           if CoinFlip():
                sText += " and " + self.BookSeller.GetWord(NotList = [sBookSeller])
           if CoinFlip():
-               sText += ". By " + AuthorBuilder()
+               sText += ". By " + self.AuthorName()
           #=============================
           
           return sText
@@ -108,7 +139,7 @@ class TweetTxtGen4(TweetTxtGen):
           if CoinFlip():
                sText += " and " + self.BookSeller.GetWord(NotList = [sBookSeller])
           if CoinFlip():
-               sText += ". By " + AuthorBuilder()
+               sText += ". By " + self.AuthorName()
           
           return sText
           
@@ -125,14 +156,18 @@ class TweetTxtGen5(TweetTxtGen):
           Access = WordList(["instant access", "free access", "access"])
           Reads = WordList(["reads", "books", "stories"])
           
-          if CoinFlip():
+          if self.AuthorGender() is Gender.Male:
                # male
-               sText = AuthorBuilder(Gender.Male) + "'s "
-               sText += Supporters.GetWord() + " get " + Access.GetWord() + " to all his " + self.SexyAdj.GetWord() + " " + Reads.GetWord() + "!"
+               sText = self.AuthorName() + "'s "
+               sText += Supporters.GetWord() + " get " 
+               sText += Access.GetWord() + " to all his " 
+               sText += self.SexyAdj.GetWord() + " " + Reads.GetWord() + "!"
           else:
                # female
-               sText = AuthorBuilder(Gender.Female) + "'s "
-               sText += Supporters.GetWord() + " get " + Access.GetWord() + " to all her " + self.SexyAdj.GetWord() + " " + Reads.GetWord() + "!"
+               sText =self.AuthorName() + "'s "
+               sText += Supporters.GetWord() + " get " 
+               sText += Access.GetWord() + " to all her " 
+               sText += self.SexyAdj.GetWord() + " " + Reads.GetWord() + "!"
 
           
           return sText
@@ -146,7 +181,13 @@ class TweetTxtGen6(TweetTxtGen):
           super().GenerateTweet()
           sText = ""
           
-          sText = WordList(["At last!","At last!","At last!", "Finally!","Finally!", "Get excited!", "It's here!"]).GetWord() + " The wait is over for " + AuthorBuilder() + "'s " + WordList(["newest", "latest"]).GetWord() + " " + self.SexyAdj.GetWord() + " " + WordList(["book","book","book","release","novel","ebook", "release"]).GetWord() + "!"
+          sText += WordList(["At last!","At last!","At last!", "Finally!",
+                            "Finally!", "Get excited!", "It's here!"]).GetWord() + " "
+          sText += "The wait is over for " + self.AuthorName() + "'s " 
+          sText += WordList(["newest", "latest"]).GetWord() + " " 
+          sText += self.SexyAdj.GetWord() + " " 
+          sText += WordList(["book","book","book","release","novel","ebook", 
+                             "release"]).GetWord() + "!"
           
           return sText
           
@@ -159,7 +200,9 @@ class TweetTxtGen7(TweetTxtGen):
           super().GenerateTweet()
           sText = ""
           
-          sText = WordList(["Available soon", "Coming soon", "On its way soon", "Out soon", "Arriving soon"]).GetWord() + " from " + AuthorBuilder() 
+          sText = WordList(["Available soon", "Coming soon", "On its way soon", 
+                            "Out soon", "Arriving soon"]).GetWord() + " "
+          sText += "from " + self.AuthorName()
           
           return sText
           
@@ -216,7 +259,8 @@ class TweetTxtGen9(TweetTxtGen):
           return sText
           
 class TweetTxtGen10(TweetTxtGen):
-     # Who will Emily choose, the rodeo clown or her step-dad? I was on the edge of my seat! #teamstepdad
+     # Who will Emily choose, the rodeo clown or her step-dad? I was on 
+     # the edge of my seat! #teamstepdad
      ID = 10
      Priority = 2
      
@@ -271,14 +315,37 @@ class TweetTxtGen12(TweetTxtGen):
           super().GenerateTweet()
           sText = ""
           
-          sText = AuthorBuilder() + " is truly the " + WordList(["Stephen King", "J.K. Rowling", "Jane Austen", "William Shakespeare", "Shia Lebouf", "Charles Dickens", "Hemmingway", "Agatha Christie", "Maya Angelou", "Tolstoy", "Melville", "Harper Lee", "John Grisham", "Proust", "Emily Dickinson", "Truman Capote", "James Patterson", "Dean Koontz"]).GetWord() + " of "
-          sText += WordList(["gay", "lesbian", "MILF", "unicorn", "centaur", "werewolf", "mermaid", "merman", "mer-MILF", "dwarf", "dragon", "orc", "goat man", "futanari", "alien", "tentacle monster", "pirate", "lumberjack", "trapeze artist", "clown", "sumo wrestler", "were-horse", "gorilla", "dinosaur", "dinosaur"]).GetWord() + " "
-          sText += WordList(["anal", "nipple play", "incest", "fisting", "twincest", "threesomes", "foursomes", "fivesomes", "bukkake", "bukkake", "forced feminization", "spanking", "rope play", "water-sports", "wife swapping", "69", "erotic asphyxiation", "orgy", "gangbang", "reverse gangbangs", "lactation", "double penetration", "triple penetration", "porn", "erotica", "edging", "BDSM", "bondage", "cuckolding"]).GetWord() + "!" 
+          sText = self.AuthorName() + " is truly "
+          sText += "the " + WordList(["Stephen King", "J.K. Rowling", "Jane Austen", 
+                                      "William Shakespeare", "Shia Lebouf", 
+                                      "Charles Dickens", "Hemmingway", 
+                                      "Agatha Christie", "Maya Angelou", "Tolstoy", 
+                                      "Melville", "Harper Lee", "John Grisham", 
+                                      "Proust", "Emily Dickinson", "Truman Capote", 
+                                      "James Patterson", "Dean Koontz"]).GetWord() + " of "
+          sText += WordList(["gay", "lesbian", "MILF", "unicorn", "centaur", 
+                             "werewolf", "mermaid", "merman", "mer-MILF", 
+                             "dwarf", "dragon", "orc", "goat man", "futanari", 
+                             "alien", "tentacle monster", "pirate", 
+                             "lumberjack", "trapeze artist", "clown", 
+                             "sumo wrestler", "were-horse", "gorilla", 
+                             "dinosaur", "dinosaur"]).GetWord() + " "
+          sText += WordList(["anal", "nipple play", "incest", "fisting", 
+                             "twincest", "threesomes", "foursomes", 
+                             "fivesomes", "bukkake", "bukkake", 
+                             "forced feminization", "spanking", 
+                             "rope play", "water-sports", "wife swapping", 
+                             "69", "erotic asphyxiation", "orgy", 
+                             "gangbang", "reverse gangbangs", "lactation", 
+                             "double penetration", "triple penetration", 
+                             "porn", "erotica", "edging", "BDSM", 
+                             "bondage", "cuckolding"]).GetWord() + "!" 
 
           return sText
           
 class TweetTxtGen13(TweetTxtGen):
-     # Honestly, these books don't really get going until the 16th book in the series.
+     # Honestly, these books don't really get going until the 16th book 
+     # in the series.
      ID = 13
      Priority = 2
      
@@ -286,7 +353,15 @@ class TweetTxtGen13(TweetTxtGen):
           super().GenerateTweet()
           sText = ""
           
-          sText = WordList(["You know,", "Honestly,", "To tell the truth", "In my opinion", "They say that"]).GetWord() + " these books " + WordList(["really get going after", "really hit their stride after", "don't really get good until", "really take off after", "don't really take off until", "really get good after"]).GetWord() + " the " + str(randint(4, 20)) + "th book in the series"
+          sText = WordList(["You know,", "Honestly,", "To tell the truth", 
+                            "In my opinion", "They say that"]).GetWord() + " "
+          sText += "these books " + WordList(["really get going after", 
+                                              "really hit their stride after", 
+                                              "don't really get good until", 
+                                              "really take off after", 
+                                              "don't really take off until", 
+                                              "really get good after"]).GetWord() + " "
+          sText += "the " + str(randint(4, 29)) + "th book in the series"
           
           return sText
           
@@ -299,9 +374,28 @@ class TweetTxtGen14(TweetTxtGen):
           super().GenerateTweet()
           sText = ""
           
-          sText = WordList(["WARNING", "CONTENT WARNING", "READER WARNING", "ALERT", "READER ALERT"]).GetWord() + ": book contains " 
-          sText += WordList(["explicit", "explicit", "explicit", "graphic", "graphic", "vivid"]).GetWord() + " " + WordList(["depictions", "descriptions", "scenes"]).GetWord() + " of " 
-          sText += WordList(["vaping", "80's hairstyles", "mullet haircuts", "sports talk radio", "the 1970's", "trips to IKEA", "Bronies", "ferret grooming", "juice cleanses", "large animal husbandry", "women ordering ham-and-pineapple pizza", "women consuming kale smoothies", "veganism", "crossword puzzle solving", "sporks", "fish being reheated in the microwave", "men listening to Nickleback", "tax preparation", "men recording a podcast", "older women discussing their colonoscopies", "Bitcoin investing", "Jazzercize", "essential oil use", "craft-brewed beer enthusiasts", "hipster beard hygene", "bitchy soccer moms", "the music of Ariana Grande"]).GetWord() + "!"
+          sText = WordList(["WARNING", "CONTENT WARNING", "READER WARNING", 
+                            "ALERT", "READER ALERT"]).GetWord() + ": "
+          sText += "book contains " + WordList(["explicit", "explicit", "explicit", 
+                                                "graphic", "graphic", "vivid"]).GetWord() + " " 
+          sText += WordList(["depictions", "descriptions", "scenes"]).GetWord() + " of " 
+          sText += WordList(["male comb-overs","vaping", "80's perms", 
+                             "mullet haircuts", "people with facial tattoos",
+                             "sports talk radio", "the 1970's", "trips to IKEA", 
+                             "Bronies", "ferret grooming", "juice cleanses", 
+                             "large animal husbandry", 
+                             "women ordering ham-and-pineapple pizza", 
+                             "kale smoothies", "veganism", 
+                             "crossword puzzle solving", "sporks", 
+                             "fish being reheated in the microwave", 
+                             "people listening to Nickleback", 
+                             "tax preparation", 
+                             "people promoting their podcast", 
+                             "older women discussing their colonoscopies", 
+                             "Bitcoin investing", "Jazzercize", 
+                             "essential oil use", "Gwyneth Patlrow's vagina",
+                             "hipster beard hygene", "bitchy soccer moms", 
+                             "the music of Ariana Grande"]).GetWord() + "!"
           
           return sText
           
@@ -406,7 +500,7 @@ class TweetTxtGen19(TweetTxtGen):
           super().GenerateTweet()
           sText = ""
           
-          sText = "'" + AuthorBuilder() + "'s latest is " + WordList(['a triumph', 'a triumph', 'a massive success', 'a masterpiece', 'an erotic masterpiece', 'a modern classic', 'a sexual classic', 'brilliant', 'a work of genius', 'an unmatched success', 'the next Harry Potter', 'the next 50 Shades of Gray', 'the next Hunger Games', 'un-put-downable', 'heart-warming and satisfying', 'very readable']).GetWord() + "!' "
+          sText = "'" + self.AuthorName() + "'s latest is " + WordList(['a triumph', 'a triumph', 'a massive success', 'a masterpiece', 'an erotic masterpiece', 'a modern classic', 'a sexual classic', 'brilliant', 'a work of genius', 'an unmatched success', 'the next Harry Potter', 'the next 50 Shades of Gray', 'the next Hunger Games', 'un-put-downable', 'heart-warming and satisfying', 'very readable']).GetWord() + "!' "
           sText += WordList(["raves", "raves", "enthuses", "gushes", "applauds", "cheers", "celebrates", "salutes", "extols"]).GetWord() + " " 
           sText += WordList(["Unicorn", "Centaur", "Werewolf", "Merman", "Dwarf", "Dragon", "Orc", "Pope", "Troll", "Goat-man", "Futanari", "Alien", "Tentacle Monster", "Pirate", "Lumberjack", "Clown", "Sumo Wrestler", "Were-horse", "Dinosaur", "Dinosaur"]).GetWord() + " "
           sText += WordList(["Anal", "Fisting", "Nipple Play", "Incest", "Twincest", "Threesome", "Foursome", "Fivesome", "Bukkake", "Rope Play", "Water-sports", "Cuckolding", "69", "Erotic Asphyxiation", "Orgy", "Gangbang", "Double Gangbang", "Double Penetration", "Triple Penetration", "BDSM", "Bondage", "Wife-swapping", "Voyeurism", "Water-sports"]).GetWord() + " Magazine" 
@@ -626,7 +720,8 @@ class TweetTxtGen29(TweetTxtGen):
           return sText
 
 class TweetTxtGen30(TweetTxtGen):
-     # I was stunned when it was revealed that Jack the handsome Cowboy was actually a gazillionaire!
+     # I was stunned when it was revealed that Jack the handsome Cowboy 
+     # was actually a gazillionaire!
      ID = 30
      Priority = 2
      
@@ -649,7 +744,8 @@ class TweetTxtGen30(TweetTxtGen):
           return sText
 
 class TweetTxtGen31(TweetTxtGen):
-     # ME YELLING AT THE MAIN CHARACTER: No Emily! You can't sleep with Jack! He's your long-lost twin brother!
+     # ME YELLING AT THE MAIN CHARACTER: No Emily! You can't sleep with Jack! 
+     # He's your long-lost twin brother!
      ID = 31
      Priority = 1
      
@@ -695,7 +791,7 @@ class TweetTxtGen32(TweetTxtGen):
           super().GenerateTweet()
           sText = ""
           
-          sAuthor = AuthorBuilder()
+          sAuthor = self.AuthorName()
           sSuper = WordList(["best", "premier", "finest", "top ten"]).GetWord()
           EroticaNiches = WordList(["anal fisting","dwarf lactation","wife-swapping","lesbian fisting",
                                           "lesbian lactation","lesbian anal","trans age-play","cuckquean lactation",
@@ -767,7 +863,7 @@ class TweetTxtGen33(TweetTxtGen):
                                    "Salman Rushdie", "Albert Einstein", "Hillary Clinton", "Maya Angelou", "Isaac Asimov", "Jonathan Franzen", 
                                    "Cormac McCarthy", "Ghandi", "Boutros Boutros-Ghali", "Bob Dylan", "The Dalai Lama", "Elon Musk", 
                                    "Warren Buffett", "Stephen King", "Bill Gates", "Billy Graham", "Jimmy Carter", "Oprah Winfrey",
-                                   "Neil Armstrong", "Stephen Hawking", "Al Gore"])
+                                   "Neil Armstrong", "Stephen Hawking", "Al Gore", "Bernie Sanders"])
           
           if CoinFlip():
                sAdj1 = Adjs.GetWord()
@@ -838,7 +934,8 @@ class TweetTxtGen34(TweetTxtGen):
           return sText
 
 class TweetTxtGen35(TweetTxtGen):
-     # I really identified with the protagonist. I too would like to be spooned by a naked lumberjack.
+     # I really identified with the protagonist. I too would like to be spooned 
+     # by a naked lumberjack.
      ID = 35
      Priority = 2
      
@@ -891,7 +988,8 @@ class TweetTxtGen36(TweetTxtGen):
           return sText          
           
 class TweetTxtGen37(TweetTxtGen):
-     # This was Ben Dover's last book before he was banned from Amazon for writing a scene involving a goat man and bukkake.
+     # This was Ben Dover's last book before he was banned from Amazon for 
+     # writing a scene involving a goat man and bukkake.
      ID = 37
      Priority = 2
      
@@ -918,14 +1016,14 @@ class TweetTxtGen37(TweetTxtGen):
                                    "full-frontal massage","cuck-queaning","enemas","pegging","butt stuff","sodomy",
                                    "premarital sex","spanking","paddling"])
           
-          if CoinFlip():
+          if self.AuthorGender() == Gender.Male:
                # male
-               sText = "This was " + AuthorBuilder(Gender.Male) + "'s last book before "
+               sText = "This was " + self.AuthorName() + "'s last book before "
                sText += "he was banned from Amazon for " + SmartLower(AddArticles(Adjs.GetWord())) + " scene involving "
                
           else:
                # female
-               sText = "This was " + AuthorBuilder(Gender.Female) + "'s final book before "
+               sText = "This was " + self.AuthorName() + "'s final book before "
                sText += "she was banned from Amazon for " + SmartLower(AddArticles(Adjs.GetWord())) + " scene involving "
                
           iRand = randint(1,5)
@@ -977,12 +1075,12 @@ class TweetTxtGen38(TweetTxtGen):
           sFemaleJob = DullJobsFemale().GetWord()
           sPlace = DullPlaces().GetWord()
           
-          if CoinFlip():
+          if self.AuthorGender() == Gender.Male:
                # male
-               sText = "By day, erotica author " + AuthorBuilder(Gender.Male) + " is " + SmartLower(AddArticles(sMaleJob)) + " from " + sPlace + "."     
+               sText = "By day, erotica author " + self.AuthorName() + " is " + SmartLower(AddArticles(sMaleJob)) + " from " + sPlace + "."     
           else:
                # female
-               sText = "By day, erotica author " + AuthorBuilder(Gender.Female) + " is " + SmartLower(AddArticles(sFemaleJob)) + " from " + sPlace + "."
+               sText = "By day, erotica author " + self.AuthorName() + " is " + SmartLower(AddArticles(sFemaleJob)) + " from " + sPlace + "."
           
           return sText     
 
@@ -1020,7 +1118,8 @@ class TweetTxtGen39(TweetTxtGen):
           return sText     
           
 class TweetTxtGen40(TweetTxtGen):
-     # More steamy lesbian vampire wife-swapping erotica from author Ivana Schaft-Hyman!
+     # More steamy lesbian vampire wife-swapping erotica from author 
+     # Ivana Schaft-Hyman!
      ID = 40
      Priority = 2
      
@@ -1060,7 +1159,10 @@ class TweetTxtGen40(TweetTxtGen):
                                           "anal vampire reverse gangbang", "trans anal foot-fetish",
                                           "pseudo-incest werewolf foot-fetish", "trans vampire anal wife-swapping"])
                                           
-          sText = "Get the latest " + Adjs.GetWord() + " ebook from " + WordList(['noted','celebrated','leading','best-selling']).GetWord() + " " + EroticaNiches.GetWord() + " author " + AuthorBuilder() + "!"
+          sText = "Get the latest " + Adjs.GetWord() + " ebook "
+          sText += "from " + WordList(['noted','celebrated','leading',
+                                       'best-selling']).GetWord() + " " 
+          sText += EroticaNiches.GetWord() + " author " + self.AuthorName() + "!"
           
           return sText     
           
@@ -1131,7 +1233,8 @@ class TweetTxtGen42(TweetTxtGen):
           return sText     
           
 class TweetTxtGen43(TweetTxtGen):
-     # I was so surprised when it turned out that Vaughn the dumpy plumber had a 12-inch schlong!
+     # I was so surprised when it turned out that Vaughn the dumpy plumber 
+     # had a 12-inch schlong!
      ID = 43
      Priority = 2
      
@@ -1157,7 +1260,8 @@ class TweetTxtGen43(TweetTxtGen):
           return sText     
           
 class TweetTxtGen44(TweetTxtGen):
-     # I *knew* that Viola shouldn't trust Jack! Not after he called her vagina a 'fish taco'!
+     # I *knew* that Viola shouldn't trust Jack! Not after he called her 
+     # vagina a 'fish taco'!
      ID = 44
      Priority = 3
      
@@ -1181,7 +1285,8 @@ class TweetTxtGen44(TweetTxtGen):
           return sText     
 
 class TweetTxtGen45(TweetTxtGen):
-     # I was rooting for Vance to get together with Vanessa, so it was quite a shock when he ran off with Pedro!
+     # I was rooting for Vance to get together with Vanessa, so it was quite 
+     # a shock when he ran off with Pedro!
      ID = 45
      Priority = 2
      
@@ -1345,11 +1450,14 @@ class TweetTxtGen46(TweetTxtGen):
 class TweetTxtGenSelector():
      GeneratorList = []
      
-     def __init__(self):
-          for subclass in TweetTxtGen.__subclasses__():
-               item = subclass()
-               for x in range(0, item.Priority):
-                    self.GeneratorList.append([item.ID, item])
+     def __init__(self, sAuthorName = "", AuthorGender = None):
+        if AuthorGender is None:
+            AuthorGender = Gender.Neuter 
+              
+        for subclass in TweetTxtGen.__subclasses__():
+            item = subclass(sAuthorName = sAuthorName, AuthorGender = AuthorGender)
+            for x in range(0, item.Priority):
+                self.GeneratorList.append([item.ID, item])
                
      def RandomGenerator(self, bAllowPromo = True, Type = None):
           Generator = None
@@ -1362,7 +1470,7 @@ class TweetTxtGenSelector():
           
           if bAllowPromo:
                AllowedTypes.append(GeneratorType.Promo)
-               
+
           if len(self.GeneratorList) > 0:
 
                Generator = self.GeneratorList[randint(0, len(self.GeneratorList) - 1)][1]
@@ -1402,14 +1510,14 @@ class TweetTxtGenSelector():
                          break
                          
           return Generator 
-                         
-
-          
-def GetImgTweetText(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = None, TweetTxtHistoryQ = None):
+                                   
+def GetTweetText(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = None, 
+                 TweetTxtHistoryQ = None,
+                 sAuthorName = "", AuthorGender = Gender.Neuter):
      #the bot's images are the random parts but we need to be careful that this isn't constantly generating static duplicate text. twitter won't like that.
+     Gen = None
      sText = ""
      
-     Generator = None
      GenType = None 
      HistoryQ = None 
      
@@ -1417,36 +1525,29 @@ def GetImgTweetText(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = None, Tw
           GenType = Type 
      else:
           GenType = None 
-     # print("GetImgTweetText() Generator Type is " + str(GenType))
-     # print("GetImgTweetText() Generator # is " + str(iGeneratorNo))
      
      if not TweetTxtHistoryQ is None:
           HistoryQ = TweetTxtHistoryQ
      
-     GenSel = TweetTxtGenSelector()
+     GenSel = TweetTxtGenSelector(sAuthorName = sAuthorName, AuthorGender = AuthorGender)
      if bTest:
-          gen = GenSel.GetGenerator(iGeneratorNo)
+          Gen = GenSel.GetGenerator(iGeneratorNo)
      else:
-          gen = GenSel.RandomGenerator(bAllowPromo = bAllowPromo, Type = GenType)
-          while not HistoryQ.PushToHistoryQ(gen.ID):
-               gen = GenSel.RandomGenerator(bAllowPromo = bAllowPromo, Type = GenType)
+          Gen = GenSel.RandomGenerator(bAllowPromo = bAllowPromo, Type = GenType)
+          while not HistoryQ.PushToHistoryQ(Gen.ID):
+               Gen = GenSel.RandomGenerator(bAllowPromo = bAllowPromo, Type = GenType)
      
-     if not gen is None:
-          sText = gen.GenerateTweet()
-          #print("Tweet text gen # " + str(gen.ID))
-     else:
-          #print("Generator not found.")
-          sText = ""
+     if not Gen is None:
+        sText = Gen.GenerateTweet()
 
-     # bots using hashtags can lead to shadowbans. so we have to use sparingly.
-     if randint(1,5) == 5:
-          sText += " #" + Hashtags().GetWord()
-          # while IsTweetTooLong(sText):
-               # sText = TweetText[randint(0, len(TweetText) - 1)] + " #" + Hashtag.GetWord()
-     # else:
-          # sText = TweetText[randint(0, len(TweetText) - 1)] 
-          # while IsTweetTooLong(sText):
-               # sText = TweetText[randint(0, len(TweetText) - 1)] 
+        # bots using hashtags can lead to shadowbans. so we have to use sparingly.
+        if randint(1,5) == 5:
+            sText += " #" + Hashtags().GetWord()
+
+        Gen.SetTweetTxt(sText)
+     else:
+        Gen = TweetTxtGen()
+        #Gen = Generator()
      
-     return sText 
+     return Gen  
      

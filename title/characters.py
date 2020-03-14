@@ -723,6 +723,7 @@ class Character():
                     sNounDesc = Noun.Get(NotList = NotList)
 
                     NotList = NotList + (re.findall(r"[\w']+", sNounDesc))
+
                if len(variant) > 1:     
                     for charbit in variant[:-1]:
                          if sDesc != "":
@@ -747,10 +748,13 @@ class Character():
                                 bAddAnArticle = False, 
                                 bAddTheArticle = False, 
                                 sPosArticle = "My",
-                                SelectTemplateID = 0):     
+                                bSplitArticle = False,
+                                SelectTemplateID = 0,
+                                MaxChars = 9999):     
           SelCharTemplate = None 
           variant = None
           iTryCounter = 1
+          sDesc = ""
           
           if SelectTemplateID > 0:
                # Note: if a specific template ID is requested the exclusion and required lists will be ignored
@@ -775,13 +779,15 @@ class Character():
                SelCharTemplate = choice(TemplateList)
                
                variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
+               sDesc = self.DescribeTemplateVariant(variant, bAddEndNoun = bAddEndNoun, NotList = NotList)
 
-               while (not self.DoesVariantMeetReqs(variant, ReqList) or self.IsVariantExcluded(variant, ExclList)) and iTryCounter < MAX_VARIANT_TRIES:
+               while ((not self.DoesVariantMeetReqs(variant, ReqList) or self.IsVariantExcluded(variant, ExclList)) and iTryCounter < MAX_VARIANT_TRIES) or len(sDesc) > MaxChars:
                     SelCharTemplate = choice(TemplateList)
                     
                     iTryCounter = iTryCounter + 1
                     
                     variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
+                    sDesc = self.DescribeTemplateVariant(variant, bAddEndNoun = bAddEndNoun, NotList = NotList)
 
                print("Template " + str(SelCharTemplate) + " selected, it took " + str(iTryCounter) + " tries.\n")
                
@@ -789,16 +795,20 @@ class Character():
 
           sDesc = self.DescribeTemplateVariant(variant, bAddEndNoun = bAddEndNoun, NotList = NotList)
 
+          sArticleSplitter = " "
+          if bSplitArticle:
+              sArticleSplitter = "\n"
+
           if bAddTheArticle:
                if SelCharTemplate.IsPersonal:
-                    sDesc = sPosArticle + " " + sDesc
+                    sDesc = sPosArticle + sArticleSplitter + sDesc
                else:
-                    sDesc = "The " + sDesc 
+                    sDesc = "The"+ sArticleSplitter + sDesc 
           elif bAddAnArticle:
                if SelCharTemplate.IsPersonal:
-                    sDesc = sPosArticle + " " + sDesc
+                    sDesc = sPosArticle + sArticleSplitter + sDesc
                else:
-                    sDesc = AddArticles(sDesc, bMakeUpper = True)
+                    sDesc = AddArticles(sDesc, bMakeUpper = True, bSplitArticle = bSplitArticle)
           
           self.Desc = sDesc
 
