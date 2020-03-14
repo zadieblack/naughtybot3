@@ -40,7 +40,6 @@ def InitBot(iTweetTimer,
                bTest = True
           i = 0
           while i in range(0,iTweets) or bLoop:
-               # Tweets = [1]
                ImgTxtGen = None 
                TweetTxtGen = None
 
@@ -60,7 +59,7 @@ def InitBot(iTweetTimer,
                                                TweetTxtHistoryQ = titutil.TweetTxtHistoryQ, 
                                                sAuthorName = ImgTxtGen.AuthorName, 
                                                AuthorGender = ImgTxtGen.AuthorGender)
-                    #ImgTxtGen.SetImgText("Hunted for Food\nby the\nWanton Sex God")
+
                     ImgTxtGen.TweetTxt = TweetTxtGen.TweetTxt()
 
                     print("\n===Here is your " + str(len(ImgTxtGen.ImgTxt)) + " char tweet (" + str(i + 1) + " of " + str(iTweets) + ")===")
@@ -70,18 +69,18 @@ def InitBot(iTweetTimer,
 
                     currentDT = datetime.datetime.now()
                     
-                    CreateImg(ImgTxtGen).save(titutil.TESTIMAGE_PATH + GenerateFileName(), format = 'PNG')
+                    # Uncomment to save test images locally 
+                    #CreateImg(ImgTxtGen).save(titutil.TESTIMAGE_PATH + GenerateFileName(), format = 'PNG')
                     
-                    #if bTweet:  <-- uncomment before deploying
-                    if False:
+                    if bTweet:  #<-- uncomment before deploying
+                    #if False:  #<-- uncomment for debuggign
                             status = None
                          
                             ImgFile = BytesIO() 
-                            #CreateImg(sTweet).save(ImgFile, format = 'PNG')
                             CreateImg(TitleTweet).save(ImgFile, format = 'PNG')
                               
                             if status == None:
-                                pass
+                                #pass
                                 status = UpdateStatusWithImage(api, TweetTxtGen.TweetTxt(), ImgFile)          
                             else:
                                 #pass
@@ -90,19 +89,14 @@ def InitBot(iTweetTimer,
                               
                                 #status = UpdateStatusWithImage(api, TweetTxtGen.TweetTxt(), ImgFile, status.id)  
                               
-                            #if bRedditPost and not status is None:
-                            #    PostToReddit_eebot(sLinkTitle = TweetTxtGen.TweetTxt(), sLinkURL = util.ExtractURLFromStatus(status))
+                            if bRedditPost and not status is None:
+                                PostToReddit_eebot(sLinkTitle = TweetTxtGen.TweetTxt(), sLinkURL = util.ExtractURLFromStatus(status))
 
                             print("* Tweeted at " + currentDT.strftime("%H:%M:%S"))
                          
                             titutil.TweetHistoryQ.LogHistoryQ()
                             titutil.TweetTxtHistoryQ.LogHistoryQ()
-                            
-               
-     
-                    # else:
-                         # with open(GenerateFileName(), 'wb') as file:
-                              # file.write(ImgFile.getvalue())
+
                i += 1
 
      except KeyboardInterrupt:

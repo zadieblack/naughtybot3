@@ -882,25 +882,25 @@ class ProfileSelector():
             else:
                 ProfileCountTable.append([profile, 1])
 
-        iAllAgesCount = 0
-        iPG13Count = 0
-        iAdultsOnlyCount = 0 
-        for item in ProfileCountTable:
-            sTable += str(item[0][1].FileName) + ": " + str(item[1]) + "\n"
-            if item[0][1].Content == Content.AdultsOnly:
-                iAdultsOnlyCount = iAdultsOnlyCount + item[1]
-            elif item[0][1].Content == Content.PG13:
-                iPG13Count = iPG13Count + item[1]
-            else:
-                iAllAgesCount = iAllAgesCount + item[1]
-        sTable += "\n\n"
-        sTable += "# All Ages: " + str(iAllAgesCount) + "\n"
-        sTable += "# PG13: " + str(iPG13Count) + "\n"
-        sTable += "# Adults Only: " + str(iAdultsOnlyCount) + "\n\n"
-        sTable += "% PG13 = " + str(round((iPG13Count / (iAllAgesCount + iPG13Count + iAdultsOnlyCount)) * 100, 2)) + "%\n"
-        sTable += "% Adults Only = " + str(round((iAdultsOnlyCount / (iAllAgesCount + iPG13Count + iAdultsOnlyCount)) * 100, 2)) + "%\n"
+        #iAllAgesCount = 0
+        #iPG13Count = 0
+        #iAdultsOnlyCount = 0 
+        #for item in ProfileCountTable:
+        #    sTable += str(item[0][1].FileName) + ": " + str(item[1]) + "\n"
+        #    if item[0][1].Content == Content.AdultsOnly:
+        #        iAdultsOnlyCount = iAdultsOnlyCount + item[1]
+        #    elif item[0][1].Content == Content.PG13:
+        #        iPG13Count = iPG13Count + item[1]
+        #    else:
+        #        iAllAgesCount = iAllAgesCount + item[1]
+        #sTable += "\n\n"
+        #sTable += "# All Ages: " + str(iAllAgesCount) + "\n"
+        #sTable += "# PG13: " + str(iPG13Count) + "\n"
+        #sTable += "# Adults Only: " + str(iAdultsOnlyCount) + "\n\n"
+        #sTable += "% PG13 = " + str(round((iPG13Count / (iAllAgesCount + iPG13Count + iAdultsOnlyCount)) * 100, 2)) + "%\n"
+        #sTable += "% Adults Only = " + str(round((iAdultsOnlyCount / (iAllAgesCount + iPG13Count + iAdultsOnlyCount)) * 100, 2)) + "%\n"
 
-        print(sTable)
+        #print(sTable)
 
     def RandomProfile(self):
         Profile = []
