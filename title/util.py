@@ -61,5 +61,8 @@ class MaleCharType(Enum):
      GangPlural = 4
      Gay = 5
                     
-          
+class Content(Enum):
+     AllAges = 1
+     PG13 = 2
+     AdultsOnly = 3  
      

@@ -216,16 +216,21 @@ def GetRandomTweetGenerator(bTest, bTweet, iGeneratorNo = 0, bAllowPromo = True)
 
     return Gen
 
-def GetTweet(bTest, bTweet, iGeneratorNo = 0, bAllowPromo = True, Type = None, TweetHistoryQ = None, bAllowFavTweets = True):
+def GetTweet(bTest, bTweet, iGeneratorNo = 0, bAllowPromo = True, Type = None, TweetHistoryQ = None, bAllowFavTweets = True, iMaxLen = 0):
     Gen = None
     sTweet = ""
+
+    iLocMaxLen = 9999
+    if iMaxLen > 0:
+        iLocMaxLen = iMaxLen 
     
-    if not bTest and bAllowFavTweets:
-        Gen = Generator()
-        if not Gen.GetTitleFromFile(FAVTITLE_FILENAME):
+    while Gen is None or (len(Gen.ImgTxt) > iLocMaxLen):
+        if not bTest and bAllowFavTweets:
+            Gen = Generator()
+            if not Gen.GetTitleFromFile(FAVTITLE_FILENAME):
+                Gen = GetRandomTweetGenerator(bTest, bTweet, iGeneratorNo, bAllowPromo = bAllowPromo)
+        else:
             Gen = GetRandomTweetGenerator(bTest, bTweet, iGeneratorNo, bAllowPromo = bAllowPromo)
-    else:
-        Gen = GetRandomTweetGenerator(bTest, bTweet, iGeneratorNo, bAllowPromo = bAllowPromo)
 
     return Gen
      
@@ -1950,7 +1955,7 @@ class Generator52(Generator):
           #sJob = GoodJobs.GetWord()
           
           GoodGirlNotList = ["Co-ed","Mommy Blogger","Model"]
-          GoodGirl = char.FemaleChar(Type = GirlType.Good, SelectTemplateID = 21, 
+          GoodGirl = char.FemaleChar(Type = GirlType.Good, SelectTemplateID = 8, 
                                      NotList = GoodGirlNotList, 
                                      TempType = TempType.Medium)
                                         

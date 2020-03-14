@@ -493,7 +493,7 @@ class VaginaSlang(WordList):
 
 class TantricTechniques(NounAdjList):
     def __init__(self):
-          super().__init__(super().__init__(["Baloney",
+          super().__init__(["Baloney",
                             "Banana",
                             "Basset Hound",
                             "Beaver",
