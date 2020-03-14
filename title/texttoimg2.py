@@ -111,9 +111,14 @@ def CalcMinSpacerHeight(TitleBoxes):
             iMinSpacerHeight = sorted(aDescenderHeights)[-2]
             #print("Second highest descender height = " + str(sorted(aDescenderHeights)[-2]))
     elif len(TitleBoxes) == 2:
-        iMinSpacerHeight = TitleBoxes[1].Font.getmetrics()[0]
+        iLine1Descender = TitleBoxes[0].Font.getmetrics()[1]
+        iLine2Ascender = TitleBoxes[1].Font.getmetrics()[0]
+        if iLine1Descender > iLine2Ascender:
+            iMinSpacerHeight = iLine2Ascender 
+        else:
+            iMinSpacerHeight = iLine1Descender
     else:
-        iMinSpacerHeight = TitleBoxes[0].Font.getmetrics()[1]
+        iMinSpacerHeight = 0
 
     iMaxSpacerHeight = CalcMaxSpacerHeight(TitleBoxes)
     #print("iMaxSpacerHeight = " + str(iMaxSpacerHeight))
@@ -380,7 +385,7 @@ def CalcTotalBoxHeight(boxes, bNoSpaces = False):
         iTotalBoxHeight = iTotalBoxHeight + box.Height
 
         # first title line, ignore spacer
-        if boxno == 0 or boxno == len(boxes) - 1:
+        if boxno == 0:
             pass
         else:
             iTotalBoxHeight = iTotalBoxHeight + iSpacerHeight
@@ -470,6 +475,8 @@ def CreateImg(ImgTxtGen):
 
             # 3. If title sections don't fit, shrink fonts proportionately by 
             #    1 and try again.
+                print(" - iTotalHeight = " + str(iTotalBoxHeight) + ", bg.MaxHeight = " + str(bg.MaxHeight))
+
                 if iTotalBoxHeight > bg.MaxHeight:
                     bBreak = False 
                     print("- SetImage() Shrinking fonts proportionately.")
@@ -489,13 +496,13 @@ def CreateImg(ImgTxtGen):
 
                 iyOffsetLine = bg.TitleBoxTop_yOffset + int(round((bg.TitleBoxBottom_yOffset - bg.TitleBoxTop_yOffset - iTotalBoxHeight) / 2))
             
-                #print("  -- Starting iyOffsetLine = " + str(iyOffsetLine))
-                #print(" - Drawing title sections")
+                print("  -- Starting iyOffsetLine = " + str(iyOffsetLine))
+                print(" - Drawing title sections")
                 # draw the text boxes
                 for boxno, box in enumerate(TitleBoxes):
-                    #print("  -- box.Text is [" + box.Text + "]")
-                    #print("  -- box.Height = " + str(box.Height))
-                    #print("  -- iyOffsetLine = " + str(iyOffsetLine))
+                    print("  -- box.Text is [" + box.Text + "]")
+                    print("  -- box.Height = " + str(box.Height))
+                    print("  -- iyOffsetLine = " + str(iyOffsetLine))
                     box.DrawLines(draw, xOffset, iyOffsetLine)
                     iyOffsetLine = iyOffsetLine + box.Height + iMinSpacerHeight
 

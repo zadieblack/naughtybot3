@@ -50,13 +50,10 @@ def InitBot(iTweetTimer,
                                     bAllowPromo = True, 
                                     TweetHistoryQ = titutil.TweetHistoryQ, 
                                     bAllowFavTweets = bAllowFavTweets)
-               ImgTxtGen.AuthorName = AuthorBuilder()
-               #ImgTxtGen.AuthorName = "Generator " + str(ImgTxtGen.ID)
                
-               #ImgTxtGen.SetImgText("My New Brother\nIs\nA Tall, Sensual, Muscular Hugely Erect Bad Boy\nand\nHe Has a Massive Penis!")
-               #ImgTxtGen.ImgTxt = "My New Brother\nIs\nA Tall, Sensual Muscular Hugely Erect Bad Boy\nand\nHe Has a Massive Penis!"
-               #ImgTxtGen.SetImgText("Paddling\nMy Big-Assed Amish Sister")
-               #ImgTxtGen.ImgTxt = "Paddling\nMy Big-Assed Amish Sister"
+               #ImgTxtGen.SetImgText("I Secretly Impregnated\nMy Naked Slutty Italian Elf Step-Mom!")
+               #ImgTxtGen.ImgTxt = "I Secretly Impregnated\nMy Naked Slutty Italian Elf Step-Mom"
+
                if not ImgTxtGen.ImgTxt is None:
                     TweetTxtGen = GetTweetText(bTest = bTest, 
                                                iGeneratorNo = iTweetTxtNo,

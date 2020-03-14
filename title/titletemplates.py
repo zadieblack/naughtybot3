@@ -94,7 +94,7 @@ class TitleTemplateHHDefault(TitleTemplate):
     def __init__(self):
         super().__init__(ID = 0)
 
-        self.AddLine(OrderNum = 1,
+        self.AddLine(OrderNum = 0,
                      FontName = "Walpurgis Night.otf",
                      FontMaxSize = 21,
                      MaxRows = 4,
@@ -103,7 +103,7 @@ class TitleTemplateHHDefault(TitleTemplate):
 
 class TitleTemplatePHDefault(TitleTemplate):
     def __init__(self):
-        super().__init__(ID = 1)
+        super().__init__(ID = -1)
         self.AddLine(OrderNum = 1,
                      FontName = "Walpurgis Night.otf",
                      FontMaxSize = 21,
@@ -225,21 +225,23 @@ class TitleTemplate3(TitleTemplate):
 # Medium Top Line
 # Large Middle Line
 # Small Bottom Line
+# Templates: 7
 class TitleTemplate4(TitleTemplate):
     def __init__(self):
         super().__init__(ID = 4)
 
         # Medium long line or two lines normal type
         self.AddLine(OrderNum = 1,
-                     FontName = "PerpetuaStd.otf",
+                     FontName = "MutterKrauseNormal.ttf" ,
                      FontMaxSize = 16,
-                     MaxRows = 2,
-                     ColorType = LineColorType.SecondTitle)
+                     MaxRows = 1,
+                     ColorType = LineColorType.SecondTitle,
+                     AllCaps = True)
 
         # Large medium length line
         self.AddLine(OrderNum = 2,
                      FontName = "Verona-ExtraBold.otf",
-                     FontMaxSize = 28,
+                     FontMaxSize = 22,
                      MaxRows = 2,
                      ColorType = LineColorType.MainTitle,
                      AllCaps = True)
@@ -247,9 +249,9 @@ class TitleTemplate4(TitleTemplate):
         # Small medium-length tag (excited!)
         self.AddLine(OrderNum = 3,
                      FontName = "FreestyleScriptStd.otf",
-                     FontMaxSize = 19,
+                     FontMaxSize = 17,
                      MaxRows = 1,
-                     ColorType = LineColorType.MainTitle)
+                     ColorType = LineColorType.SecondTitle)
 
 # ** Medieval **
 # SHORT TOP LINE
@@ -465,7 +467,7 @@ class TitleTemplate13(TitleTemplate):
 
         # Medium medium-length second line
         self.AddLine(OrderNum = 2,
-                     FontName = "Verona-ExtraBold.ttf",
+                     FontName = "Verona-ExtraBold.otf",
                      FontMaxSize = 24,
                      MaxRows = 1,
                      ColorType = LineColorType.MainTitle,

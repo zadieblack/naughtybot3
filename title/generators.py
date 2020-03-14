@@ -212,6 +212,8 @@ def GetRandomTweetGenerator(bTest, bTweet, iGeneratorNo = 0, bAllowPromo = True)
      
     Gen.Generate()
 
+    Gen.AuthorName = AuthorBuilder()
+
     return Gen
 
 def GetTweet(bTest, bTweet, iGeneratorNo = 0, bAllowPromo = True, Type = None, TweetHistoryQ = None, bAllowFavTweets = True):
@@ -408,7 +410,7 @@ class Generator7(Generator):
         super().GenerateTweet()
         sTweet = ""
         
-        iMaxChars = 100
+        iMaxChars = 22
         sTag = "!"
         if CoinFlip():
             sTag = "\n"
@@ -416,7 +418,7 @@ class Generator7(Generator):
                              "And I got to watch",
                              "And I video-taped the whole thing"]).GetWord()
             sTag += "!"
-            iMaxChars = 32
+            #iMaxChars = 32
 
         Master = char.MaleChar(TempType = TempType.Flowery, MaxChars = iMaxChars,
                                     bAllowRelate = True, 
