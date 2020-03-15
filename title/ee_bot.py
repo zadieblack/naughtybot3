@@ -21,93 +21,93 @@ def InitBot(iTweetTimer,
             iGeneratorNo = -1, 
             iTweetTxtNo = -1, 
             bRedditPost = False,
-            bAllowFavTweets = True):
-     print("=*=*=*= EROTICA_EBOOKS BOT IS RUNNING (@erotica_ebooks) =*=*=*=\n\n")
-     print("===InitBot() iTweetTimer=" + str(iTweetTimer) + ", bTweet=" + str(bTweet) + ", iTweets=" + str(iTweets) + ",bLoop=" + str(bLoop) + ",iGeneratorNo=" + str(iGeneratorNo) + "\n")
+            bAllowFavTweets = True,
+            bLocal = False):
+    print("=*=*=*= EROTICA_EBOOKS BOT IS RUNNING (@erotica_ebooks) =*=*=*=\n\n")
+    print("InitBot() arguments:")
+    print("  x iTweetTimer      = " + str(iTweetTimer))
+    print("  x bTweet           = " + str(bTweet))
+    print("  x iTweets          = " + str(iTweets))
+    print("  x bLoop            = " + str(bLoop))
+    print("  x iGeneratorNo     = " + str(iGeneratorNo))
+    print("  x iTweetTxtNo      = " + str(iTweetTxtNo))
+    print("  x bRedditPost      = " + str(bRedditPost))
+    print("  x bAllowFavTweets  = " + str(bAllowFavTweets))
+    print("  x bLocal           = " + str(bLocal))
+    print("")
      
-     sTweet = ""
-     bTest = False 
+    sTweet = ""
+    bTest = False 
      
-     titutil.TweetHistoryQ = util.HistoryQWithLog(titutil.HISTORYQ_FILENAME)
-     titutil.TweetTxtHistoryQ = util.HistoryQWithLog(titutil.TWEETTXT_HISTORYQ_FILENAME, iQSize = 20)
+    titutil.TweetHistoryQ = util.HistoryQWithLog(titutil.HISTORYQ_FILENAME)
+    titutil.TweetTxtHistoryQ = util.HistoryQWithLog(titutil.TWEETTXT_HISTORYQ_FILENAME, iQSize = 20)
      
-     try:
-          api = InitTweepy()
+    try:
+        api = InitTweepy()
           
-          if iGeneratorNo == -1:
-               iGeneratorNo = MAX_GENERATOR_NO
-          else:
-               bTest = True
-          i = 0
-          while i in range(0,iTweets) or bLoop:
-               ImgTxtGen = None 
-               TweetTxtGen = None
+        if iGeneratorNo == -1:
+            iGeneratorNo = MAX_GENERATOR_NO
+        else:
+            bTest = True
+        i = 0
+        while i in range(0,iTweets) or bLoop:
+            ImgTxtGen = None 
+            TweetTxtGen = None
 
-               ImgTxtGen = GetTweet(bTest, 
-                                    bTweet, 
-                                    iGeneratorNo, 
-                                    bAllowPromo = True, 
-                                    TweetHistoryQ = titutil.TweetHistoryQ, 
-                                    bAllowFavTweets = bAllowFavTweets)
+            ImgTxtGen = GetTweet(bTest, 
+                                bTweet, 
+                                iGeneratorNo, 
+                                bAllowPromo = True, 
+                                TweetHistoryQ = titutil.TweetHistoryQ, 
+                                bAllowFavTweets = bAllowFavTweets)
                
-               #ImgTxtGen.SetImgText("I Secretly Impregnated\nMy Naked Slutty Italian Elf Step-Mom!")
-               #ImgTxtGen.ImgTxt = "I Secretly Impregnated\nMy Naked Slutty Italian Elf Step-Mom"
+            #ImgTxtGen.SetImgText("I Secretly Impregnated\nMy Naked Slutty Italian Elf Step-Mom!")
+            #ImgTxtGen.ImgTxt = "I Secretly Impregnated\nMy Naked Slutty Italian Elf Step-Mom"
 
-               if not ImgTxtGen.ImgTxt is None:
-                    TweetTxtGen = GetTweetText(bTest = bTest, 
-                                               iGeneratorNo = iTweetTxtNo,
-                                               TweetTxtHistoryQ = titutil.TweetTxtHistoryQ, 
-                                               sAuthorName = ImgTxtGen.AuthorName, 
-                                               AuthorGender = ImgTxtGen.AuthorGender)
+            if not ImgTxtGen.ImgTxt is None:
+                TweetTxtGen = GetTweetText(bTest = bTest, 
+                                            iGeneratorNo = iTweetTxtNo,
+                                            TweetTxtHistoryQ = titutil.TweetTxtHistoryQ, 
+                                            sAuthorName = ImgTxtGen.AuthorName, 
+                                            AuthorGender = ImgTxtGen.AuthorGender)
 
-                    ImgTxtGen.TweetTxt = TweetTxtGen.TweetTxt()
+                ImgTxtGen.TweetTxt = TweetTxtGen.TweetTxt()
 
-                    print("\n===Here is your " + str(len(ImgTxtGen.ImgTxt)) + " char tweet (" + str(i + 1) + " of " + str(iTweets) + ")===")
-                    print("[" + ImgTxtGen.ImgTxt + "]")
-                    if len(ImgTxtGen.ImgTxt) > 0:
-                            print("Tweet text: [" + ImgTxtGen.TweetTxt + "]")
+                print("\n===Here is your " + str(len(ImgTxtGen.ImgTxt)) + " char tweet (" + str(i + 1) + " of " + str(iTweets) + ")===")
+                print("[" + ImgTxtGen.ImgTxt + "]")
+                if len(ImgTxtGen.ImgTxt) > 0:
+                        print("Tweet text: [" + ImgTxtGen.TweetTxt + "]")
 
-                    currentDT = datetime.datetime.now()
+                currentDT = datetime.datetime.now()
                     
-                    # Uncomment to save test images locally 
-                    #CreateImg(ImgTxtGen).save(titutil.TESTIMAGE_PATH + GenerateFileName(), format = 'jpeg', quality = 'high')
-                    
-                    if bTweet:  #<-- uncomment before deploying
-                    #if False:  #<-- uncomment for debuggign
-                            status = None
+                image = CreateImg(ImgTxtGen)
+
+                if bLocal:
+                    image.save(titutil.TESTIMAGE_PATH + GenerateFileName(), format = 'jpeg', quality = 'high')
+                else:
+                    status = None
                          
-                            ImgFile = BytesIO() 
-                            CreateImg(ImgTxtGen).save(ImgFile, format = 'jpeg', quality = 'high')
+                    ImgFile = BytesIO() 
+                    image.save(ImgFile, format = 'jpeg', quality = 'high')
                               
-                            if status == None:
-                                #pass
-                                status = UpdateStatusWithImage(api, TweetTxtGen.TweetTxt(), ImgFile)          
-                            else:
-                                #pass
-                                ImgFile = BytesIO() 
-                                CreateImg(ImgTxtGen).save(ImgFile, format = 'jpeg', quality = 'high')
-                              
-                                #status = UpdateStatusWithImage(api, TweetTxtGen.TweetTxt(), ImgFile, status.id)  
-                              
-                            if bRedditPost and not status is None:
-                                PostToReddit_eebot(sLinkTitle = TweetTxtGen.TweetTxt(), sLinkURL = util.ExtractURLFromStatus(status))
+                if bTweet:
+                    status = UpdateStatusWithImage(api, TweetTxtGen.TweetTxt(), ImgFile)          
 
-                            print("* Tweeted at " + currentDT.strftime("%H:%M:%S"))
+                if bRedditPost and not status is None:
+                    PostToReddit_eebot(sLinkTitle = TweetTxtGen.TweetTxt(), sLinkURL = util.ExtractURLFromStatus(status))
+
+                print("* Tweeted at " + currentDT.strftime("%H:%M:%S"))
                          
-                            titutil.TweetHistoryQ.LogHistoryQ()
-                            titutil.TweetTxtHistoryQ.LogHistoryQ()
+                titutil.TweetHistoryQ.LogHistoryQ()
+                titutil.TweetTxtHistoryQ.LogHistoryQ()
 
-               i += 1
+            i += 1
 
-     except KeyboardInterrupt:
+    except KeyboardInterrupt:
         print("Ending program ...")
-     except:
-        e = sys.exc_info()[0]
-        print("***ERROR***\n" + str(e))
-
-     finally:
-          # e.set()
-          
-          print("***Goodbye***")
+    except:
+        print("***ERROR***\n" + str(sys.exc_info()[0]))
+     
+    print("***Goodbye***")
 
 

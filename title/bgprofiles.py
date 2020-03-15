@@ -868,6 +868,16 @@ class BGProfileHorseRiders(BGProfile):
         self.SmallTextColor = "rgba(160, 80, 143, 255)"
         self.AuthorNameColor = "rgba(128, 176, 224, 255)"
 
+class BGProfileShowSomeLeg(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 80,
+                           Priority = 4,
+                           sFileName = "show_some_leg")
+        self.MainTitleColor = "rgba(64, 85, 27, 255)"
+        self.SecondTitleColor = "rgba(113, 42, 43, 255)"
+        self.SmallTextColor = "rgba(208, 150, 60, 255)"
+        self.AuthorNameColor = "rgba(208, 150, 60, 255)"
+
 # this is for debugging bgprofile frequency. delete later.
 def indexof(list, searchobj):
     iIndex = 0

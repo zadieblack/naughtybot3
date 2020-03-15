@@ -326,7 +326,20 @@ class FemTemplate22(FemCharTemplate):
                                    priority = 3,
                                    NotList = ["single","virgin","fertile","small-town","tender",
                                               "mature","elvish","fashionable"])
-          
+
+# Good female profession no phys char (Generator 30)
+class FemTemplate23(FemCharTemplate):
+     def __init__(self):
+          super().__init__(      noun = ProfGoodFemale(),
+                                    id = 23, 
+                                    adjlist =      [CTEntry([AgeAdjFemale,MaritalStatusFemale],5),
+                                                    CTEntry([NationFemale,RaceFemale,SkinHairColorFemale],3)
+                                                  ], 
+                                   girltype = GirlType.Good,
+                                   priority = 3,
+                                   NotList = ["single","virgin","fertile","small-town","tender",
+                                              "mature","elvish","fashionable"])
+                    
 # === Good Trope templates ===
 
 class FemGoodTropeTemplate1(FemTropeTemplate):

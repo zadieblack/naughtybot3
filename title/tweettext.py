@@ -1538,6 +1538,8 @@ def GetTweetText(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = None,
                Gen = GenSel.RandomGenerator(bAllowPromo = bAllowPromo, Type = GenType)
      
      if not Gen is None:
+        Gen._AuthorName = sAuthorName
+        Gen._AuthorGender = AuthorGender
         sText = Gen.GenerateTweet()
 
         # bots using hashtags can lead to shadowbans. so we have to use sparingly.

@@ -1037,11 +1037,11 @@ class Generator30(Generator):
      # Bubbly & Plump: 
      # The Chaste Small-Town Girl Barista 
      # Rides a Veiny 9-inch Dick
-     # Pleasured by the Shape-Shifting Single Dad: A Nudist Secretary Story
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 30, Priority = 1)
+         self.Template = templates.TitleTemplate14()
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1056,52 +1056,49 @@ class Generator30(Generator):
           sAdj2 = PhysChars.GetWord(NotList = AdjNotList + [sAdj1])
                
           NotGirlList = NotGirlList + [sAdj1,sAdj2]
-          Girl = char.FemaleChar(Type = GirlType.Good, NotList = NotGirlList,
-                                   bAllowSpecies = False, bAllowSexuality = False, bAllowClothing = False, bAllowTitle = False, 
-                                   bAllowAttitude = False, bAllowPhysChar = False,
-                                   bAddTheArticle = True) 
+          Girl = char.FemaleChar(Type = GirlType.Good, bAddTheArticle = True,
+                                 SelectTemplateID = 23, MaxChars = 20) 
           
-          sTweet = sAdj1 + " & " + sAdj2 + ":\n"
-          sTweet += Girl.Desc + "\n"
+          sTweet = sAdj1 + " & " + sAdj2 + "\n"
+          sTweet += Girl.Desc + " "
                
+          sCoda = ""
           iRand = randint(1,15)
           if iRand < 3:
-               sTweet += "Exposes Her Naked Body " + WordList(["in a Wal-Mart","on Main Street","at the Grocery Store",
-                                                                           "at the Mall","Downtown","on Campus","in Traffic",
-                                                                           "at the Office","on the Beach","at the Park",
-                                                                           "at Disneyland","on the Jumbotron"]).GetWord()
+               sCoda += "Exposes Her Naked Body " + WordList(["in a Wal-Mart","on Main Street","at the Grocery Store",
+                                                "at Disneyland","on the Jumbotron"]).GetWord()
           elif iRand == 3:
-               sTweet += "Has Her First " + WordList(["Threesome","Three-Way","Orgy"]).GetWord()
+               sCoda += "Has Her First " + WordList(["Threesome","Three-Way","Orgy"]).GetWord()
           elif iRand == 4:
-               sTweet += "Has a " + WordList(["4","5","6","8","10","12","20","30","60"]).GetWord() + "-guy Gangbang"
+               sCoda += "Has a " + WordList(["4","5","6","8","10","12","20","30","60"]).GetWord() + "-guy Gangbang"
           elif iRand == 5:
-               sTweet += "Gets Her Cherry Popped"
+               sCoda += "Gets Her Cherry Popped"
           elif iRand == 6:
-               sTweet += "Gets Her Anal Cherry Popped"
+               sCoda += "Gets Her Anal Cherry Popped"
           elif iRand == 7:
-               sTweet += "Goes Down On " + WordList(["a Butch Lesbian","Another Woman","Her Best Friend","Her Lesbian Boss",
+               sCoda += "Goes Down On " + WordList(["a Butch Lesbian","Another Woman","Her Best Friend","Her Lesbian Boss",
                                                               "Her Maid of Honor","Her Bridesmaid","Her Mother-in-Law"]).GetWord()
           elif iRand == 8:
-               sTweet += "Makes a Porno"
+               sCoda += "Makes a Porno"
           elif iRand == 9:
-               sTweet += "Tries Anal"
+               sCoda += "Tries Anal"
           elif iRand == 10:
-               sTweet += "Wears a Butt Plug"
+               sCoda += "Wears a Butt Plug"
           elif iRand == 11:
-               sTweet += "Tries a Glory Hole"
+               sCoda += "Tries a Glory Hole"
           elif iRand == 12:
-               sTweet += "Pounds " + NamesMale().FirstName() + " with a Strap-On"
+               sCoda += "Pounds " + NamesMale().FirstName() + " with a Strap-On"
           else:
                ErectAdjs = WordList(["Swollen","Engorged","Turgid","Rock Hard","Bulging","Fully Erect","Hugely Erect","Veiny",
                                 "Throbbing","Meaty","Burning","Dripping","Lustful","Passionate","Massive","Fat",
                                 "Throbbing","Pulsating","Dripping","Black","Stiff","Girthy"])
-               sTweet += WordList(["Rides","Sucks","Mounts","Takes"]).GetWord() + " "
-               sTweet += AddArticles(ErectAdjs.GetWord()) + " " 
-               sTweet += WordList(["Seven","Seven 1/2","Eight","Eight 1/2","Nine","Nine 1/2","Ten","Ten 1/2",
+               sCoda += WordList(["Rides","Sucks","Mounts","Takes"]).GetWord() + " "
+               sCoda += AddArticles(ErectAdjs.GetWord()) + " " 
+               sCoda += WordList(["Seven","Seven 1/2","Eight","Eight 1/2","Nine","Nine 1/2","Ten","Ten 1/2",
                                         "Eleven","Eleven 1/2","Twelve","Thirteen","Fourteen"]).GetWord() + "-inch "
-               sTweet += WordList(["Dick","Cock","Boner","Prick","Tool"]).GetWord()
+               sCoda += WordList(["Dick","Cock","Boner","Prick","Tool"]).GetWord()
                
-               
+          sTweet += sCoda
 
           return sTweet
           

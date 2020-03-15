@@ -16,6 +16,7 @@ from util import *
 # "FreestyleScriptStd.otf"          Hand-written     xx             22
 # "Lapidary 333 Bold Italic.otf"                     xx             16
 # "LaserLondon.ttf"                                  xx             26
+# "Lightfoot.ttf"                   All Caps         xx             26
 # "MutterKrauseNormal.ttf"                           xx             16
 # "OLDENGL.ttf"                     Old English      xx             24
 # "PerpetuaStd.otf"                 All Caps         xx             19
@@ -488,8 +489,29 @@ class TitleTemplate13(TitleTemplate):
                      ColorType = LineColorType.SecondTitle,
                      AllCaps = True)
 
+# ADJ1 & ADJ2
+# TWO OR EVEN THREE ROW
+# BOTTOM LINE
+# Generators: 30
+class TitleTemplate14(TitleTemplate):
+    def __init__(self):
+        super().__init__(ID = 14)
 
+        # Two large word top line
+        self.AddLine(OrderNum = 1,
+                     FontName = "Quaint Gothic SG OT Regular.ttf",
+                     FontMaxSize = 27,
+                     MaxRows = 1,
+                     ColorType = LineColorType.MainTitle,
+                     AllCaps = True)
 
+        # Medium long (2-3 lines) middle line
+        self.AddLine(OrderNum = 2,
+                     FontName = "PerpetuaStd.otf",
+                     FontMaxSize = 17,
+                     MaxRows = 3,
+                     ColorType = LineColorType.SecondTitle,
+                     AllCaps = True)
 
 
 class TitleTemplateSelector():
