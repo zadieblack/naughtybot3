@@ -5,6 +5,7 @@ import util as util
 import title.misc as titmisc
 import title.util as titutil
 from names import AuthorBuilder
+from shufflefavs import *
 
 def CurateFavorites(iGen = 0, iMaxLen = 0):
         sInput = ""
@@ -60,6 +61,13 @@ def CurateFavorites(iGen = 0, iMaxLen = 0):
                     dPerRejects = round((Decimal(iSkipCount)/Decimal(iAddCount + iSkipCount))*100,2)
                     
                 print("\nFavorited " + str(iAddCount) + ", rejected " + str(iSkipCount) + ". " + str(dPerRejects) + "% rejection rate.")
+
+                # before ending we may want to shuffle our favorited tweet file.
+                # prompt user.
+                sInput = input("\nShuffle favorited tweets? [y]es, [n]o: ")
+                if sInput.lower().strip() == "y":
+                    ShuffleFavs()
+
                 break
           
          # If [n], do nothing and loop.
