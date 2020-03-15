@@ -43,7 +43,7 @@ iTweetTimer = Args.tweettimer
 currentDT = datetime.datetime.now()
 
 while True:
-     excerpt.lust_bot.InitBot(180, bTweet = True, bLoop = False, bRedditPost = True)
+     #excerpt.lust_bot.InitBot(180, bTweet = True, bLoop = False, bRedditPost = True)
      title.ee_bot.InitBot(180, bTweet = True, bLoop = False, bRedditPost = True)
      
      if iTweetTimer > 180:

@@ -100,9 +100,10 @@ def InitBot(iTweetTimer,
                i += 1
 
      except KeyboardInterrupt:
-          print("Ending program ...")
-     except e:
-        print("***ERROR***\n" + e.strerror)
+        print("Ending program ...")
+     except:
+        e = sys.exc_info()[0]
+        print("***ERROR***\n" + str(e))
 
      finally:
           # e.set()
