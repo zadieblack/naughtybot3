@@ -1047,8 +1047,10 @@ class Generator30(Generator):
           super().GenerateTweet()
           sTweet = ""
           
-          NotGirlList = ["Harem Princess","Slave","Queen","Heiress","Divorced"]
-          AdjNotList = ["Bikini-Bod","Anal Virgin","Shave","Big-Titty","Little"]
+          NotGirlList = ["School-Marm"]
+          AdjNotList = ["Bikini-Bod","Anal Virgin","Shave","Big-Titty",
+                        "Little","Divorced","Soft-Hearted","Bottomed",
+                        "Tight-Bodied","Thick","Ample","School-Marm"]
           
           PhysChars = titmisc.PhysCharFemale()
 
