@@ -442,7 +442,7 @@ class Generator7(Generator):
 
 class Generator8(Generator):
      # My Blind Date is A Uniformed Australian Mer-man Fighter Pilot! 
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 8, Priority = 1)
@@ -499,19 +499,27 @@ class Generator9(Generator):
           
 class Generator10(Generator):
      # I'm Having a Baby for a Stay-at-Home Manticore!
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 10, Priority = 1)
+         self.Template = templates.TitleTemplate15()
      
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
-          
-          Master = char.MaleChar(bAddAnArticle = True, sPosArticle = "My", bAllowRelate = True, bAllowDickChar = False, 
-                                        NotList = ["naked","nude"])
+          ManNotList = ["naked","nude","hung","shirtless","bdsm",
+                        "erect","pantsless","hard","masked","sex addict",
+                        "girthy","bald","millennial","graying","eager",
+                        "rebel","savage","wicked","husky","rangy",
+                        "shape","stay-at-home","tabboo","college","teen",
+                        "widowed","divorced","husband","family man"]
+          Master = char.MaleChar(bAddAnArticle = True, sPosArticle = "My", 
+                                 NotList = ManNotList,
+                                 ExclList = [ProfBlueCollarMale,DickCharMale,
+                                             ClothesMale,GenModMale])
 
-          sTweet = "\"I'm Having a Baby For\n" + Master.Desc + "!\""
+          sTweet = "I'm Having A Baby For\n" + Master.Desc + "!"
 
           return sTweet
           
@@ -595,40 +603,50 @@ class Generator13(Generator):
 
           return sTweet
      
+# Note: this 'gang bang' generator has been split in two. See also
+# gen 40
 class Generator14(Generator):
-     # The Virgin Call-Girl's Gang Bang
-     Disabled = True
+    # The Virgin French Cheerleader
+    # Has a Gang-Bang with
+    # 30
+    # Giant Well-Hung Sumo Wrestlers
+    Disabled = False
 
-     def __init__(self):
-         super().__init__(ID = 14, Priority = 1)
+    def __init__(self):
+        super().__init__(ID = 14, Priority = 1)
+        self.Template = templates.TitleTemplate16()
      
-     def GenerateTweet(self):
-          super().GenerateTweet()
-          sTweet = ""
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
           
-          GangNot = ["Dapper","Gang-Bang"]
+        GangNot = ["Dapper","Gang-Bang"]
           
-          GirlShort = char.FemaleChar(Type = GirlType.Good, TempType = TempType.Medium, bAddTheArticle = True, bAllowClothing = False, bAllowSpecies = False)
-          GirlLong = char.FemaleChar(Type = GirlType.Good, TempType = TempType.Flowery, bAddTheArticle = True, bAllowClothing = False, bAllowSpecies = False)
-          GangSingShort = char.GangMaleChar(TempType = TempType.Medium,MaleCharType = MaleCharType.GangSingular, bAllowClothing = False,NotList = GangNot)
-          GangSingLong = char.GangMaleChar(TempType = TempType.Flowery,MaleCharType = MaleCharType.GangSingular, bAllowClothing = False,NotList = GangNot)
-          GangPlurShort = char.GangMaleChar(TempType = TempType.Medium,MaleCharType = MaleCharType.GangPlural, bAllowClothing = False,NotList = GangNot)
-          GangPlurLong = char.GangMaleChar(TempType = TempType.Flowery,MaleCharType = MaleCharType.GangPlural, bAllowClothing = False,NotList = GangNot)
+        GirlShort = char.FemaleChar(Type = GirlType.Good, bAddTheArticle = True, 
+                                   
+                                    bAllowClothing = False, bAllowSpecies = False)
+        GirlLong = char.FemaleChar(Type = GirlType.Good, TempType = TempType.Flowery, 
+                                   bAddTheArticle = True, MaxChars = 24,
+                                   bAllowClothing = False, bAllowSpecies = False)
+        GangShort = char.GangMaleChar(TempType = TempType.Medium,
+                                          bAllowClothing = False,
+                                          NotList = GangNot)
+        GangLong = char.GangMaleChar(TempType = TempType.Flowery,
+                                         NotList = GangNot, MaxChars = 24,
+                                         bAllowClothing = False)
           
-          GangSize = WordList(["Three","Four","Five","Seven","Nine","Ten","A Dozen","Twenty","Two-Dozen","Fifty","One-Hundred"])
+        if CoinFlip():
+            # short girl, long gang
+            sTweet = GirlShort.Desc + "\nGets " 
+            sTweet += WordList(["Shared","Gang-Banged"]).GetWord() + " "
+            sTweet += "By\nThe " + GangLong.Desc
+        else:
+            # long girl, short gang
+            sTweet = GirlLong.Desc + "\nGets " 
+            sTweet += WordList(["Shared","Gang-Banged"]).GetWord() + " "
+            sTweet += "By\nThe " + GangShort.Desc
           
-          Tweets = []
-          
-          Tweets.append(GirlShort.Desc + "\nHas a Gang Bang with\n" + GangSize.GetWord() + " " + GangPlurLong.Desc) 
-          Tweets.append(GirlLong.Desc + "\nHas a Gang Bang with\n" + GangSize.GetWord() + " " + GangPlurShort.Desc)
-          Tweets.append(GirlShort.Desc + "\nGets " + WordList(["Shared","Gang-Banged"]).GetWord() + " By\nThe " + GangSingLong.Desc)
-          Tweets.append(GirlLong.Desc + "\nGets " + WordList(["Shared","Gang-Banged"]).GetWord() + " By\nThe " + GangSingShort.Desc)
-          Tweets.append(GirlShort.Desc + "\nGets " + WordList(["Shared","Gang-Banged"]).GetWord() + " By\n" + GangSize.GetWord() + " " + GangPlurLong.Desc)
-          Tweets.append(GirlLong.Desc + "\nGets " + WordList(["Shared","Gang-Banged"]).GetWord() + " By\n" + GangSize.GetWord() + " " + GangPlurShort.Desc)
-          
-          sTweet = Tweets[randint(0, len(Tweets) - 1)]
-          
-          return sTweet
+        return sTweet
           
 class Generator15(Generator):
      # The Small-Town Virgin's First Porno
@@ -1448,24 +1466,41 @@ class Generator39(Generator):
           
           return sTweet
 
-# class Generator40(Generator):
-     # # I Was Ridden Bareback By A Burly Lumberjack Businessman, And He's Not My Husband!
-     # ID = 40
-     # Priority = 1
-     
-     # def GenerateTweet(self):
-          # super().GenerateTweet()
-          # sTweet = ""
-          
-          # NotVerbs = ['Tempted', 'Beaten', 'Broken', 'Captured', 'Caught', 'Charmed', 'Cuddled', 'Hotwifed', 'Ruled', 'Seduced', 'Tamed', 'Trained']
-          
-          # Master = MaleChar(iNumMaxCBits = 4, bAllowGang = False, bAllowAge = False, bAllowMaritalStatus = False, bAllowSpecies = False)
-          # if CoinFlip():
-               # sTweet = self.HerName + " Gets " + self.VerbsBy.GetWord(NotList = NotVerbs) + " By A\n" + Master.Desc + "\nAnd He's Not Her Husband!"
-          # else:
-               # sTweet = "I Was " + self.VerbsBy.GetWord(NotList = NotVerbs) + " By A\n" + Master.Desc + "\nWho Was Not My Husband!"
+# Note: this 'gang bang' generator has been split in two. See also
+# gen 14
+class Generator40(Generator):
+     # The Virgin French Cheerleader
+     # Has a Gang-Bang with
+     # 30
+     # Giant Well-Hung Sumo Wrestlers
+     Disabled = False
 
-          # return sTweet
+     def __init__(self):
+         super().__init__(ID = 40, Priority = 1)
+         self.Template = templates.TitleTemplate4()
+     
+     def GenerateTweet(self):
+          super().GenerateTweet()
+          sTweet = ""
+          
+          GangNot = ["Dapper","Gang-Bang"]
+          
+          GirlShort = char.FemaleChar(Type = GirlType.Good, bAddTheArticle = True, MaxChars = 24,
+                                      bAllowClothing = False, bAllowSpecies = False)
+          #GirlLong = char.FemaleChar(Type = GirlType.Good, TempType = TempType.Flowery, bAddTheArticle = True, bAllowClothing = False, bAllowSpecies = False)
+          GangSingShort = char.GangMaleChar(TempType = TempType.Medium,MaleCharType = MaleCharType.GangSingular, bAllowClothing = False,NotList = GangNot)
+          GangSingLong = char.GangMaleChar(TempType = TempType.Flowery,MaleCharType = MaleCharType.GangSingular, bAllowClothing = False,NotList = GangNot)
+          GangPlurShort = char.GangMaleChar(TempType = TempType.Medium,MaleCharType = MaleCharType.GangPlural, bAllowClothing = False,NotList = GangNot)
+          GangPlurLong = char.GangMaleChar(TempType = TempType.Flowery,MaleCharType = MaleCharType.GangPlural, bAllowClothing = False,NotList = GangNot)
+          
+          GangSize = WordList(["Three","Four","Five","Seven","Nine","Ten","A Dozen","Twenty","Two-Dozen","Fifty","One-Hundred"])
+          
+          sTweet = GirlShort.Desc + "\nHas a Gang Bang with\n" + GangSize.GetWord() + " " + GangPlurLong.Desc
+          #Tweets.append(GirlLong.Desc + "\nHas a Gang Bang with\n" + GangSize.GetWord() + " " + GangPlurShort.Desc)
+          
+          sTweet = Tweets[randint(0, len(Tweets) - 1)]
+          
+          return sTweet
           
 class Generator41(Generator):
      #Seducing Sheryl: The Virginal Nurse and the Big Titty Dominatrix
