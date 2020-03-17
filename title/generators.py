@@ -65,6 +65,8 @@ class Generator():
             self.AuthorGender = Gender.Female
 
         self.Template = None
+        self.ExclTemplateTags = []
+        self.ReqTemplateTags = []
 
     def Generate(self):
         sTweet = self.GenerateTweet()
@@ -291,6 +293,9 @@ class Generator1(Generator):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ExclTemplateTags = ["lesbian"]
+          self.ReqTemplateTags = ["man"]
           
           Master = char.MaleChar(TempType = TempType.Flowery, bAddTheArticle = False, bAllowGang = True, bAllowTrope = True, bAllowRelate = True)
           
@@ -309,8 +314,9 @@ class Generator2(Generator):
           super().GenerateTweet()
           sTweet = ""
           
-          #Master = MaleChar(iNumMaxCBits = 3, bAddArticle = True, sPosArticle = "Her", bAllowRelate = True)
-          #Girl = char.FemaleChar(TempType = TempType.Flowery, bAddArticle = False, bAllowTrope = True)
+          self.ExclTemplateTags = ["lesbian"]
+          self.ReqTemplateTags = ["man"]
+
           Master = char.MaleChar(TempType = TempType.Flowery, bAddTheArticle = True, sPosArticle = "Her", bAllowGang = True, bAllowRelate = True, bAllowTrope = True)
           
           sTweet = self.HerName + " Gets " + self.VerbsBy.GetWord(NotList = ["Sexually Harrassed At My Workplace"]) + " by\n" + Master.Desc
@@ -326,6 +332,9 @@ class Generator3(Generator):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ExclTemplateTags = ["lesbian"]
+          self.ReqTemplateTags = ["man"]
           
           Master = char.MaleChar(TempType = TempType.Flowery, 
                                  bAddTheArticle = True, 
@@ -372,6 +381,9 @@ class Generator5(Generator):
         GenNotList = ["BDSM"]
         Girl = None
         Master = None
+
+        self.ExclTemplateTags = ["gay"]
+        self.ReqTemplateTags = ["woman"]
                
         iMaxMasterChar = 50
         Master = char.MaleChar(TempType = TempType.Flowery, bAddAnArticle = True, 
@@ -392,6 +404,8 @@ class Generator6(Generator):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ReqTemplateTags = ["man"]
           
           NotList = ["Pledged", "Public", "Charmed", "Cuckolded", "Hunted", "Harrassed", "Sold", 
                          "Gifted", "Pledged", "Bed", "Sex Dungeon","Basement","Dungeon","Surrendered"]
@@ -414,6 +428,9 @@ class Generator7(Generator):
     def GenerateTweet(self):
         super().GenerateTweet()
         sTweet = ""
+
+        self.ExclTemplateTags = ["gay"]
+        self.ReqTemplateTags = ["woman"]
         
         iMaxChars = 22
         sTag = "!"
@@ -451,6 +468,9 @@ class Generator8(Generator):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ExclTemplateTags = ["lesbian"]
+          self.ReqTemplateTags = ["man"]
           
           NotList = ["Boyfriend", "Hot Date", "Fiancé", "Husband", "Single", "Ugly", "BDSM", "Comedian"]
           Master = char.MaleChar(TempType = TempType.Flowery, bAllowRelate = True,NotList = NotList,bAddAnArticle = True,
@@ -482,6 +502,8 @@ class Generator9(Generator):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ReqTemplateTags = ["man", "woman"]
           
           NotList = ["BDSM"]
           Girl = char.FemaleChar(TempType = TempType.Medium, bAllowRelate = True, bAllowTrope = True, bAllowSpecies = False, bAllowTitle = False, NotList = NotList)
@@ -508,6 +530,9 @@ class Generator10(Generator):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ReqTemplateTags = ["couple", "straight"]
+
           ManNotList = ["naked","nude","hung","shirtless","bdsm",
                         "erect","pantsless","hard","masked","sex addict",
                         "girthy","bald","millennial","graying","eager",
@@ -535,6 +560,8 @@ class Generator11(Generator):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ReqTemplateTags = ["woman"]
           
           Relations = titmisc.RelateFemale()
           Gerunds = self.Gerunds
@@ -567,6 +594,8 @@ class Generator12(Generator):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ExclTemplateTags = ["gay"]
           
           RelNotList = ["Wife","Girlfriend","Mistress","Concubine","Daughter's Best Friend"]
           Relations = titmisc.RelateFemale()
@@ -592,6 +621,9 @@ class Generator13(Generator):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ExclTemplateTags = ["gay"]
+          self.ReqTemplateTags = ["man","woman"]
           
           GirlNotList = ["college girl","co-ed","mommy blogger","school-marm"]
           Girl = char.FemaleChar(TempType = TempType.Medium, Type = GirlType.Bad, 
@@ -619,6 +651,8 @@ class Generator14(Generator):
     def GenerateTweet(self):
         super().GenerateTweet()
         sTweet = ""
+
+        self.ExclTemplateTags = ["lesbian","women","gay"]
           
         GangNot = ["Dapper","Gang-Bang","Brothers"]
           
@@ -692,6 +726,8 @@ class Generator16(Generator):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ExclTemplateTags = ["gay"]
           
           Tweets = []
           
@@ -726,6 +762,9 @@ class Generator17(Generator):
           
           GirlNotList = ["Recently-Divorced","Sassy","Tanned","Kitten","Harem","Ice Queen","MILF"]
           Subtitles = []
+
+          self.ExclTemplateTags = ["gay"]
+          self.ReqTemplateTags = ["woman"]
           
           Master = char.MaleChar()
           Gang = char.GangMaleChar()
@@ -1491,6 +1530,8 @@ class Generator40(Generator):
     def GenerateTweet(self):
         super().GenerateTweet()
         sTweet = ""
+
+        self.ExclTemplateTags = ["lesbian", "gay"]
           
         GangNot = ["Dapper","Gang-Bang"]
           
@@ -1925,12 +1966,19 @@ class Generator50(Generator):
           iRand = randint(1,3)
           if iRand == 1:
                #straight
+               self.ReqTemplateTags = ["straight","couple"]
+               self.ExclTemplateTags = ["gay"]
+               print("Generator #50... STRAIGHT")
                sTweet += NaughtinessStraight.GetWord() + " Between " + FriendsGen.GetWord()
           elif iRand == 2:
                #gay
+               self.ExclTemplateTags = ["woman","women"]
+               print("Generator #50... GAY")
                sTweet += NaughtinessGay.GetWord() + " Between " + FriendsGay.GetWord()
           else:
                #lesbian
+               self.ExclTemplateTags = ["man","men"]
+               print("Generator #50... LESBIAN")
                sTweet += NaughtinessLez.GetWord() + " Between " + FriendsLez.GetWord()
                     
           sTweet += "?"
@@ -1989,6 +2037,9 @@ class Generator52(Generator):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ReqTemplateTags = ["woman"]
+          self.ExclTemplateTags = ["gay"]
           
           Exclamations = WordList(["Oh S@*#!", "Oh No!", "WTF?!?", "Oh F*@%!"])
 
@@ -2263,6 +2314,8 @@ class Generator58(Generator):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ExclTemplateTags = ["gay","lesbian","women","men"]
           
           ManNotList = ["Widowed"]
           HookUpPhrases = WordList(["Hooked Up With", "Had a One Night Stand With", 
@@ -2460,6 +2513,8 @@ class Generator65(Generator):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ExclTemplateTags = ["gay","lesbian"]
           
           Verbs = WordList(["Serviced","Pleasured","Taken","Satisfied","Shared","Ravished","Mounted","Treated Like A Lady"])
           Numbers = WordList(["Three","Four","Five","Six","Seven","Eight","Nine","Ten","Eleven","Twelve",
@@ -2768,6 +2823,9 @@ class Generator76(Generator):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ReqTemplateTags = ["woman"]
+          self.ExclTemplateTags = ["gay","men"]
           
           WomanNotList = ["Wife","Girlfriend","Fiancé","Virgin","Harem","Slave Girl","Damsel","Maiden","Fetish","Call-Girl"]
           Girl = char.FemaleChar(NotList = WomanNotList, bAllowClothing = True, bAllowRelate = False, 
@@ -3477,12 +3535,14 @@ class Generator95(Generator):
           
           if CoinFlip():
                #For a woman
+               self.ExclTemplateTags = ["gay"]
                Prefixes = WordList(["Drill","Fuchs","Cocks","Pound","Ball","Dix","Pricks","Shafts","Bawl","Cox","Pecker",
                                          "Bang","Peen","Swallow","Pork"])
                                          
                sTweet = "“Welcome to " + Prefixes.GetWord() + Suffixes.GetWord() + ", " + WordList(["Miss","Mrs"]).GetWord() + " " + sLastName + "!\""
           else:
                #For a man
+               self.ExclTemplateTags = ["lesbian"]
                Prefixes = WordList(["Beaver","Boob","Ass","Buttes","Kuntz","Slutt","Fuchs","Tits","Brest","Blow","Suck",
                                          "Bang","Anal","Muff","Pork","Booty"])
                sTweet = "“Welcome to " + Prefixes.GetWord() + Suffixes.GetWord() + ", Mr. " + sLastName + "!\""                
@@ -3501,6 +3561,9 @@ class Generator96(Generator):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ReqTemplateTags = ["woman"]
+          self.ExclTemplateTags = ["gay"]
           
           Girl = titmisc.NiceGirl(NotList = ['Wife','Girlfriend'])
           SizeAdj = WordList(['Enormous','Gigantic','Titantic','Humongous','Massive','Sumptuous','Milky','Giant',
@@ -3531,6 +3594,8 @@ class Generator97(Generator):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+          
+          self.ReqTemplateTags = ["woman"]
           
           Accessories = WordList(['a Butt Plug','Anal Beads','Nipple Clamps','a Clit Clamp','a Strap-On',
                                         'an Anal Hook','a Remote-Controlled Vibrator','Crotchless Panties',
@@ -3640,6 +3705,8 @@ class Generator100(Generator):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ExclTemplateTags = ["gay", "men", "women", "lesbian"]
           
           GirlAdj = WordList(titmisc.PhysCharFemale().List + ['Fertile','Naked','Sassy','Saucy','Sexy','Black','Ebony','Bisexual'])
           GirlNoun = WordList(titmisc.ProfGoodFemale().List + titmisc.SpeciesFemale().List)
@@ -3684,6 +3751,8 @@ class Generator102(Generator):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ExclTemplateTags = ["gay","lesbian","women"]
           
           GirlAdjs = WordList(['Amish','Country','Small-Town','Young','Nubile','Naive','Newlywed','Virginal',
                                     'Virgin','Chaste','Conservative','Submissive','Christian','Mormon','Blushing',
@@ -3728,6 +3797,8 @@ class Generator103(Generator):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ExclTemplateTags = ["gay", "lesbian", "women"]
           
           Girl = char.FemaleChar(bAllowAttitude = False, bAllowMaritalStatus = False, bAllowPregState = False, bAllowAge = False)
           Relate = WordList(["Mother-in-Law","Step-Mom","Sister-in-Law","Step-Sister","Half Sister","Step-Daughter",
@@ -3751,6 +3822,8 @@ class Generator104(Generator):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ExclTemplateTags = ["gay","men","lesbian","women"]
           
           Verbs = WordList(['Claimed','Claimed Forcefully','Claimed Hard','Deflowered','Impregnated','Knocked Up',
                                    'Motor-Boated','Mounted','Paddled','Pleasured','Ravished','Ravished','Satisfied',
@@ -3904,6 +3977,8 @@ class Generator107(Generator):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ReqTemplateTags = ["historic"]
           
           Prefix = WordList(["Claimed\nat", "Enslaved\nat", "Taken\nat", "Imprisoned\nat", "Claimed\nat","The Dungeons\nof",
                                    "The Halls\nof","The Prisoner\nof","The Princess\nof","The Master\nof","The Baron\nof",
@@ -4353,7 +4428,9 @@ class Generator122(Generator):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
-          
+
+          self.ReqTemplateTags = ["woman"]
+
           NaughtyStuff = WordList(['Anal Beads','Anal Hook','Ball Gag','Butt Plug','Clit Clamp','Clit Pump',
                                          'Steel Dildo','12-inch Dildo','Double-Ended Dildo','Gimp Mask',
                                          'Nipple Clamps','Pearl Necklace','Sex Swing','Spreader Bar','Speculum',
@@ -4514,6 +4591,8 @@ class Generator124(Generator):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ExclTemplateTags = ["gay","lesbian","men","women"]
           
           Undead = WordList(['Undead','The Ghost of','Zombie','Vampire','Werewolf'])
           Celebs = WordList(['Richard Nixon','JFK','Abraham Lincoln','Elvis Presley','Winston Churchill','Mahatma Gandhi',
@@ -5114,6 +5193,9 @@ class Generator138(Generator):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ReqTemplateTags = ["woman"]
+          self.ExclTemplateTags = ["gay","man","men"]
           
           Verbs = WordList(["Ravished","Fingered","Milked","Scissored","Fisted",
                                 "Kissed","Eaten Out","Sixty-Nined","Finger-Banged",
@@ -5278,6 +5360,8 @@ class Generator141(Generator):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ExclTemplateTags = ["gay","man","men","straight"]
           
           ForbiddenFems = WordList(["Mom","Step-Mom","Step-Sister","Mother-in-Law","Aunt","Sister-in-Law",
                                           "Daughter","Step-Daughter","Teacher","Secretary","Maid","Nurse",

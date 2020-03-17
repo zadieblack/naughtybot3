@@ -9,6 +9,7 @@ from title.util import Content
 BGLOGFILEPATH = "title/"
 BGLOGFILENAME = "bghistory_q.txt"
 BGQSIZE = 10
+MAXTRIES = 500
 
 ProfileHistoryQ = HistoryQWithLog(BGLOGFILEPATH + BGLOGFILENAME, BGQSIZE)
 
@@ -521,7 +522,7 @@ class BGProfileIndecentProp(BGProfile):
         self.SmallTextColor = "rgba(171, 27, 108, 255)"
         self.AuthorNameColor = "rgba(186, 155, 47, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["man","woman","women","inside","historic","kinky"]
+        self.Tags = ["man","woman","women","inside","kinky"]
         self.Disabled = False
 
 class BGProfileLadyBottom(BGProfile):
@@ -546,7 +547,7 @@ class BGProfileLesbianVampires(BGProfile):
         self.SecondTitleColor = "rgba(123, 83, 137, 255)"
         self.SmallTextColor = "rgba(212, 1, 3, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["woman","women","inside","lesbian","kinky"]
+        self.Tags = ["woman","women","inside","lesbian","kinky","horror"]
         self.Disabled = False
 
 class BGProfileMaleSub(BGProfile):
@@ -596,7 +597,7 @@ class BGProfilePervyDummy(BGProfile):
         self.SmallTextColor = "rgba(123, 77, 151, 255)"
         self.AuthorNameColor = "rgba(123, 77, 151, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["woman","single","kinky","historic"]
+        self.Tags = ["woman","single","kinky","man","historic"]
         self.Disabled = False
 
 class BGProfilePoodleBondage(BGProfile):
@@ -609,7 +610,7 @@ class BGProfilePoodleBondage(BGProfile):
         self.SmallTextColor = "rgba(83, 84, 141, 255)"
         self.AuthorNameColor = "rgba(83, 84, 141, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["man","woman","women","kinky","historic"]
+        self.Tags = ["man","woman","women","kinky"]
         self.Disabled = False
 
 class BGProfileScaryMirror(BGProfile):
@@ -622,7 +623,7 @@ class BGProfileScaryMirror(BGProfile):
         self.SmallTextColor = "rgba(62, 122, 79, 255)"
         self.AuthorNameColor = "rgba(0, 0, 0, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["woman","single","inside","historic"]
+        self.Tags = ["woman","single","inside","horror"]
         self.Disabled = False
 
 class BGProfileSkeleton(BGProfile):
@@ -633,7 +634,7 @@ class BGProfileSkeleton(BGProfile):
         self.MainTitleColor = "rgba(157, 16, 16, 255)"
         self.SecondTitleColor = "rgba(157, 16, 16, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["woman","single"]
+        self.Tags = ["woman","single","horror"]
         self.Disabled = False
 
 class BGProfileSnowWhiteSevenDwarves(BGProfile):
@@ -709,7 +710,7 @@ class BGProfileSurroundedByPervs(BGProfile):
         self.SmallTextColor = "rgba(79, 89, 174, 255)"
         self.AuthorNameColor = "rgba(79, 89, 174, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["woman","men","kinky"]
+        self.Tags = ["woman","men","kinky","man"]
         self.Disabled = False
 
 class BGProfileTallWoman(BGProfile):
@@ -757,7 +758,7 @@ class BGProfileVampire(BGProfile):
         self.SmallTextColor = "rgba(91, 48, 162, 255)"
         self.AuthorNameColor = "rgba(91, 48, 162, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["man","woman","inside","kinky"]
+        self.Tags = ["man","woman","inside","kinky","horror"]
         self.Disabled = False
 
 class BGProfileUnderBedCreeper(BGProfile):
@@ -795,7 +796,7 @@ class BGProfileVoyeur(BGProfile):
         self.SmallTextColor = "rgba(67, 102, 122, 255)"
         self.AuthorNameColor = "rgba(154, 46, 93, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["man","woman","couple","women","inside","historic"]
+        self.Tags = ["man","woman","couple","women","inside"]
         self.Disabled = False
 
 class BGProfileWizardPony(BGProfile):
@@ -845,7 +846,7 @@ class BGProfileJilling(BGProfile):
         self.SmallTextColor ="rgba(106, 102, 69, 255)"
         self.AuthorNameColor = "rgba(91, 24, 45, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["woman","single","inside","historic"]
+        self.Tags = ["woman","single","inside"]
         self.Disabled = False
 
 class BGProfileBranded(BGProfile):
@@ -995,6 +996,7 @@ class BGProfileHorseRiders(BGProfile):
         self.SecondTitleColor = "rgba(220, 64, 52, 255)"
         self.SmallTextColor = "rgba(160, 80, 143, 255)"
         self.AuthorNameColor = "rgba(128, 176, 224, 255)"
+        self.Tags = ["man","woman","couple","outside","straight"]
         self.Disabled = False
 
 class BGProfileShowSomeLeg(BGProfile):
@@ -1089,7 +1091,7 @@ class BGProfileFlowers(BGProfile):
         self.SecondTitleColor = "rgba(228, 156, 82, 255)"
         self.SmallTextColor = "rgba(186, 113, 189, 255)"
         self.AuthorNameColor = "rgba(71, 116, 56, 255)"
-        self.Tags = ["man","woman","couple","historic","straight"]
+        self.Tags = ["man","woman","couple","straight"]
         self.Disabled = False
 
 class BGProfileHelloSailor(BGProfile):
@@ -1217,12 +1219,37 @@ class ProfileSelector():
 
         #print(sTable)
 
-    def RandomProfile(self):
+    def RandomProfile(self, ReqTags = [], ExclTags = []):
         Profile = []
+
+        iTries = 0
 
         if len(self.ProfileList) > 0:
             Profile = choice(self.ProfileList)
-                    
+            #print("bgprofiles Profile is " + str(Profile[1]))
+            if len(ReqTags) > 0 and len(ExclTags) > 0:
+                while iTries < MAXTRIES and \
+                    (not self.HasTags(ReqTags, Profile[1].Tags) or self.HasTags(ExclTags, Profile[1].Tags)):
+
+                    Profile = choice(self.ProfileList)
+                    iTries = iTries + 1
+
+            elif len(ReqTags) > 0 and len(ExclTags) == 0:
+                while iTries < MAXTRIES and \
+                    not self.HasTags(ReqTags, Profile[1].Tags):
+
+                    Profile = choice(self.ProfileList)
+                    iTries = iTries + 1
+
+            elif len(ReqTags) == 0 and len(ExclTags) > 0:
+                while iTries < MAXTRIES and \
+                    self.HasTags(ExclTags, Profile[1].Tags):
+
+                    Profile = choice(self.ProfileList)
+                    iTries = iTries + 1
+
+        #print("RandomProfile()\n - Selected profile is " + str(Profile[1]) + ", it took " + str(iTries) + " tries.")
+
         return Profile
           
     def GetProfile(self, iProfileID):
@@ -1235,10 +1262,29 @@ class ProfileSelector():
                     break
                          
         return SelectedProfile
+
+    def HasTags(self, TagList1, TagList2):
+        bHasTags = False
+
+        for tag1 in TagList1:
+            for tag2 in TagList2:
+                if tag1 == tag2:
+                    bHasTags = True
+                    break
+            if bHasTags:
+                break
+
+        return bHasTags
+
    
-def GetBGProfileGenerator(iProfileID = 0, ProfileHistoryQ = None):
+def GetBGProfileGenerator(iProfileID = 0, 
+                          ProfileHistoryQ = None,
+                          ReqTags = [],
+                          ExclTags = []):
     SelectedProfile = None
     #print("GetBGProfileGenerator() iProfileID = " + str(iProfileID))
+
+    iTries = 0
 
     if ProfileHistoryQ is None:
         ProfileHistoryQ = HistoryQWithLog(BGLOGFILEPATH + BGLOGFILENAME, iQSize = BGQSIZE)
@@ -1249,10 +1295,15 @@ def GetBGProfileGenerator(iProfileID = 0, ProfileHistoryQ = None):
         if SelectedProfile == None:
             SelectedProfile = BGProfile()
     else:
-        SelectedProfile = ProfSel.RandomProfile()[1]
-        while not ProfileHistoryQ.PushToHistoryQ(SelectedProfile.ID):
-            SelectedProfile = ProfSel.RandomProfile()[1]
+        SelectedProfile = ProfSel.RandomProfile(ReqTags, ExclTags)[1]
+        iTries = 1
+        while iTries < 20 and \
+            not ProfileHistoryQ.PushToHistoryQ(SelectedProfile.ID):
+            SelectedProfile = ProfSel.RandomProfile(ReqTags, ExclTags)[1]
+            iTries = iTries + 1
+
+    #print("GetBGProfileGenerator()\n - Selected BG Profile is " + str(SelectedProfile) + ", it took " + str(iTries) + " tries.")
+    ProfileHistoryQ.LogHistoryQ()    
     
-    ProfileHistoryQ.LogHistoryQ()       
     return SelectedProfile
      
