@@ -107,8 +107,8 @@ def InitBot(iTweetTimer,
         print("*** ERROR in ee_bot() ***\nFile IO Error: " + e.strerror)
     except KeyboardInterrupt:
         print("Ending program ...")
-    except:
-        print("*** ERROR in ee_bot() ***\n" + str(sys.exc_info()[0]))
+    #except:
+    #    print("*** ERROR in ee_bot() ***\n" + str(sys.exc_info()[0]))
      
     print("***Goodbye***")
 

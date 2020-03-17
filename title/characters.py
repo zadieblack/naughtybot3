@@ -124,6 +124,7 @@ class CharTemplate():
           self.ID = id
           self.Priority = priority
           self.NotList = NotList
+          self.RequestOnly = False
           
           noun.SetNoun()
           self.Noun = noun
@@ -648,169 +649,190 @@ class TropeBitMale(MaleCharBit):
 
           
 class Character():
-     def __init__(self):
+    def __init__(self):
           
-          self.Desc = ""
-          self.Gender = Gender.Neuter
+        self.Desc = ""
+        self.Gender = Gender.Neuter
           
-     def GetWordList(self):
+    def GetWordList(self):
      
-          return re.findall(r"[\w']+", self.Desc)
+        return re.findall(r"[\w']+", self.Desc)
           
-     def BuildTemplateList(self):
-          pass
+    def BuildTemplateList(self):
+        pass
      
-     def GetVariantFromTemplate(self, Template, TempType):
-          variant = None 
+    def GetVariantFromTemplate(self, Template, TempType):
+        variant = None 
 
-          if TempType == TempType.Short:
-               variant = Template.GetShortVariant()
-          elif TempType == TempType.Medium:
-               variant = Template.GetMediumVariant()
-          else:
-               variant = Template.GetFloweryVariant()
+        if TempType == TempType.Short:
+            variant = Template.GetShortVariant()
+        elif TempType == TempType.Medium:
+            variant = Template.GetMediumVariant()
+        else:
+            variant = Template.GetFloweryVariant()
                
-          return variant 
+        return variant 
           
-     def IsVariantExcluded(self, variant, exclusionlist):
-          bIsVariantExcluded = False 
+    def IsVariantExcluded(self, variant, exclusionlist):
+        bIsVariantExcluded = False 
           
-          if isinstance(variant, list) and isinstance(exclusionlist, list):
-               if len(exclusionlist) > 0:
-                    # for item in exclusionlist:
-                    for varitem in variant:
-                         if varitem.HasCharBit(exclusionlist):
-                              bIsVariantExcluded = True
-                              #print(" - - Found a match for variant item " + str(variant) + " on the excluded list")
-                              break 
-                         # if bIsVariantExcluded:
-                              # break
-          #print(" - - - IsVariantExcluded() returning " + str(bIsVariantExcluded))
-          return bIsVariantExcluded
+        if isinstance(variant, list) and isinstance(exclusionlist, list):
+            if len(exclusionlist) > 0:
+                # for item in exclusionlist:
+                for varitem in variant:
+                        if varitem.HasCharBit(exclusionlist):
+                            bIsVariantExcluded = True
+                            #print(" - - Found a match for variant item " + str(variant) + " on the excluded list")
+                            break 
+                        # if bIsVariantExcluded:
+                            # break
+        #print(" - - - IsVariantExcluded() returning " + str(bIsVariantExcluded))
+        return bIsVariantExcluded
           
-     def DoesVariantMeetReqs(self, variant, reqlist):
-          bDoesVariantMeetReqs = False 
-          ReqFoundList = []
+    def DoesVariantMeetReqs(self, variant, reqlist):
+        bDoesVariantMeetReqs = False 
+        ReqFoundList = []
           
-          if isinstance(variant, list) and isinstance(reqlist, list):
-               if len(reqlist) > 0:
-                    for item in reqlist:
-                         for varitem in variant:
-                              if varitem.HasCharBit(item):
-                                   ReqFoundList.append(item)
-                                   #print(" - - Found a match between required item " + str(item) + " and variant item " + str(varitem))
-                                   break 
-                    #print(" - - - DoesVariantMeetReqs() ReqFoundList length = " + str(len(ReqFoundList)) + ", reqlist length = " + str(len(reqlist)))
-                    if len(ReqFoundList) == len(reqlist):
-                         bDoesVariantMeetReqs = True
+        if isinstance(variant, list) and isinstance(reqlist, list):
+            if len(reqlist) > 0:
+                for item in reqlist:
+                        for varitem in variant:
+                            if varitem.HasCharBit(item):
+                                ReqFoundList.append(item)
+                                #print(" - - Found a match between required item " + str(item) + " and variant item " + str(varitem))
+                                break 
+                #print(" - - - DoesVariantMeetReqs() ReqFoundList length = " + str(len(ReqFoundList)) + ", reqlist length = " + str(len(reqlist)))
+                if len(ReqFoundList) == len(reqlist):
+                        bDoesVariantMeetReqs = True
                               
-               else:
-                    bDoesVariantMeetReqs = True
-          #print(" - - - DoesVariantMeetReqs() returning " + str(bDoesVariantMeetReqs))     
-          return bDoesVariantMeetReqs
+            else:
+                bDoesVariantMeetReqs = True
+        #print(" - - - DoesVariantMeetReqs() returning " + str(bDoesVariantMeetReqs))     
+        return bDoesVariantMeetReqs
           
-     def DescribeTemplateVariant(self, variant, bAddEndNoun, NotList = None):
-          sDesc = ""
+    def DescribeTemplateVariant(self, variant, bAddEndNoun, NotList = None):
+        sDesc = ""
           
-          if NotList is None:
-               NotList = []
+        if NotList is None:
+            NotList = []
                
-          if isinstance(variant, list):
+        if isinstance(variant, list):
                
-               sNounDesc = ""
-               Noun = variant[len(variant) - 1] 
-               if bAddEndNoun and isinstance(Noun, CharBit):
-                    sNounDesc = Noun.Get(NotList = NotList)
+            sNounDesc = ""
+            Noun = variant[len(variant) - 1] 
+            if bAddEndNoun and isinstance(Noun, CharBit):
+                sNounDesc = Noun.Get(NotList = NotList)
 
-                    NotList = NotList + (re.findall(r"[\w']+", sNounDesc))
+                NotList = NotList + (re.findall(r"[\w']+", sNounDesc))
 
-               if len(variant) > 1:     
-                    for charbit in variant[:-1]:
-                         if sDesc != "":
-                              sDesc += " "
-                         sAdjDesc = charbit.Get(NotList = NotList)
-                         for s in re.findall(r"[\w']+",sAdjDesc):
-                              NotList.append(s)
-                         sDesc += sAdjDesc
-               if sDesc != "" and sNounDesc != "":
-                    sDesc += " " 
-               sDesc += sNounDesc 
+            if len(variant) > 1:     
+                for charbit in variant[:-1]:
+                        if sDesc != "":
+                            sDesc += " "
+                        sAdjDesc = charbit.Get(NotList = NotList)
+                        for s in re.findall(r"[\w']+",sAdjDesc):
+                            NotList.append(s)
+                        sDesc += sAdjDesc
+            if sDesc != "" and sNounDesc != "":
+                sDesc += " " 
+            sDesc += sNounDesc 
                
-               return sDesc
+            return sDesc
                
-     def SetCharDesc(self, TemplateList, 
-                                ReqList = [],
-                                ExclList = [], 
-                                TempType = TempType.Flowery,
-                                GirlType = GirlType.Neutral,
-                                NotList = None, 
-                                bAddEndNoun = True, 
-                                bAddAnArticle = False, 
-                                bAddTheArticle = False, 
-                                sPosArticle = "My",
-                                bSplitArticle = False,
-                                SelectTemplateID = 0,
-                                MaxChars = 9999):     
-          SelCharTemplate = None 
-          variant = None
-          iTryCounter = 1
-          sDesc = ""
+    def SetCharDesc(self, TemplateList, 
+                            ReqList = [],
+                            ExclList = [], 
+                            TempType = TempType.Flowery,
+                            GirlType = GirlType.Neutral,
+                            NotList = None, 
+                            bAddEndNoun = True, 
+                            bAddAnArticle = False, 
+                            bAddTheArticle = False, 
+                            sPosArticle = "My",
+                            bSplitArticle = False,
+                            SelectTemplateID = 0,
+                            MaxChars = 9999):     
+        SelCharTemplate = None 
+        variant = None
+        iTryCounter = 1
+        sDesc = ""
+
+        print("SetCharDesc()")
           
-          if SelectTemplateID > 0:
-               # Note: if a specific template ID is requested the exclusion and required lists will be ignored
-               
-               if isinstance(TemplateList, list):
-                    for item in TemplateList:
-                         SelCharTemplate = item
-                         if item.ID == SelectTemplateID:
-                              break
+        if SelectTemplateID > 0:
+            # Note: if a specific template ID is requested the exclusion and required lists will be ignored
+            print(" - Getting a template for SelectTemplateID = " + str(SelectTemplateID))
+            if isinstance(TemplateList, list):
+                for item in TemplateList:
+                    SelCharTemplate = item
+                    if item.ID == SelectTemplateID:
+                        break
                               
-                    if SelCharTemplate is None:
-                         SelCharTemplate = TemplateList[0]
+                if SelCharTemplate is None:
+                        SelCharTemplate = TemplateList[0]
+                print("  -- Was given SelectTemplateID = " + str(SelectTemplateID) + ", got template #" + str(SelCharTemplate.ID) + " [" + str(SelCharTemplate) + "]")
           
-                    variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
+                variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
                     
-                    while (not self.DoesVariantMeetReqs(variant, ReqList) or self.IsVariantExcluded(variant, ExclList)) and iTryCounter < MAX_VARIANT_TRIES:
-                         iTryCounter = iTryCounter + 1
+                while (not self.DoesVariantMeetReqs(variant, ReqList) \
+                    or self.IsVariantExcluded(variant, ExclList)) and iTryCounter < MAX_VARIANT_TRIES:
+                        iTryCounter = iTryCounter + 1
                          
-                         variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
+                        variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
                     
-          else:
-               SelCharTemplate = choice(TemplateList)
-               
-               variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
-               sDesc = self.DescribeTemplateVariant(variant, bAddEndNoun = bAddEndNoun, NotList = NotList)
+        else:
+            print(" - Getting a template at random.")
+            #print(" - ExclList is " + str(ExclList))
+            for item in TemplateList:
+                if item.RequestOnly:
+                    TemplateList.remove(item)
+                else:
+                    for excl in ExclList:    
+                        if type(item.Noun) == excl:
+                            TemplateList.remove(item)
+                            #print("  -- item.Noun [" + str(item.Noun) + "] is the type of excluded charbit [" + str(excl) + "]. Removing")
+                            break
+                        else:
+                            pass
+                            #print("  -- item.Noun [" + str(item.Noun) + "] is NOT the type of excluded charbit [" + str(excl) + "]. Doing nothing.")
+            
+            SelCharTemplate = choice(TemplateList) 
+            variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
+            sDesc = self.DescribeTemplateVariant(variant, bAddEndNoun = bAddEndNoun, NotList = NotList)
 
-               while ((not self.DoesVariantMeetReqs(variant, ReqList) or self.IsVariantExcluded(variant, ExclList)) and iTryCounter < MAX_VARIANT_TRIES) or len(sDesc) > MaxChars:
-                    SelCharTemplate = choice(TemplateList)
+            while ((not self.DoesVariantMeetReqs(variant, ReqList) \
+                    or self.IsVariantExcluded(variant, ExclList)) \
+                    and iTryCounter < MAX_VARIANT_TRIES) \
+                    or len(sDesc) > MaxChars:
+                SelCharTemplate = choice(TemplateList)
                     
-                    iTryCounter = iTryCounter + 1
+                iTryCounter = iTryCounter + 1
                     
-                    variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
-                    sDesc = self.DescribeTemplateVariant(variant, bAddEndNoun = bAddEndNoun, NotList = NotList)
+                variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
+                sDesc = self.DescribeTemplateVariant(variant, bAddEndNoun = bAddEndNoun, NotList = NotList)
 
-               print("Template " + str(SelCharTemplate) + " selected, it took " + str(iTryCounter) + " tries.\n")
-               
-          NotList = NotList + SelCharTemplate.NotList 
+            print("  -- Randomly selected template #" + str(SelCharTemplate.ID) + " [" + str(SelCharTemplate) + "]")
+            print("   --- It took " + str(iTryCounter) + " tries.\n")
+        NotList = NotList + SelCharTemplate.NotList 
 
-          sDesc = self.DescribeTemplateVariant(variant, bAddEndNoun = bAddEndNoun, NotList = NotList)
+        sDesc = self.DescribeTemplateVariant(variant, bAddEndNoun = bAddEndNoun, NotList = NotList)
 
-          sArticleSplitter = " "
-          if bSplitArticle:
-              sArticleSplitter = "\n"
+        sArticleSplitter = " "
+        if bSplitArticle:
+            sArticleSplitter = "\n"
 
-          if bAddTheArticle:
-               if SelCharTemplate.IsPersonal:
-                    sDesc = sPosArticle + sArticleSplitter + sDesc
-               else:
-                    sDesc = "The"+ sArticleSplitter + sDesc 
-          elif bAddAnArticle:
-               if SelCharTemplate.IsPersonal:
-                    sDesc = sPosArticle + sArticleSplitter + sDesc
-               else:
-                    sDesc = AddArticles(sDesc, bMakeUpper = True, bSplitArticle = bSplitArticle)
+        if bAddTheArticle:
+            if SelCharTemplate.IsPersonal:
+                sDesc = sPosArticle + sArticleSplitter + sDesc
+            else:
+                sDesc = "The"+ sArticleSplitter + sDesc 
+        elif bAddAnArticle:
+            if SelCharTemplate.IsPersonal:
+                sDesc = sPosArticle + sArticleSplitter + sDesc
+            else:
+                sDesc = AddArticles(sDesc, bMakeUpper = True, bSplitArticle = bSplitArticle)
           
-          self.Desc = sDesc
+        self.Desc = sDesc
 
 
 

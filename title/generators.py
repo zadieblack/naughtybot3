@@ -620,31 +620,41 @@ class Generator14(Generator):
         super().GenerateTweet()
         sTweet = ""
           
-        GangNot = ["Dapper","Gang-Bang"]
+        GangNot = ["Dapper","Gang-Bang","Brothers"]
           
-        GirlShort = char.FemaleChar(Type = GirlType.Good, bAddTheArticle = True, 
-                                   
-                                    bAllowClothing = False, bAllowSpecies = False)
-        GirlLong = char.FemaleChar(Type = GirlType.Good, TempType = TempType.Flowery, 
+        GirlShort = char.FemaleChar(Type = GirlType.Good, 
+                                    TempType = TempType.Medium,
+                                    bAddTheArticle = True, 
+                                    bAllowSpecies = False)
+        GirlLong = char.FemaleChar(Type = GirlType.Good, 
+                                   TempType = TempType.Flowery, 
                                    bAddTheArticle = True, MaxChars = 24,
-                                   bAllowClothing = False, bAllowSpecies = False)
+                                   bAllowSpecies = False)
         GangShort = char.GangMaleChar(TempType = TempType.Medium,
-                                          bAllowClothing = False,
-                                          NotList = GangNot)
+                                      bAllowClothing = False,
+                                      NotList = GangNot)
         GangLong = char.GangMaleChar(TempType = TempType.Flowery,
                                          NotList = GangNot, MaxChars = 24,
                                          bAllowClothing = False)
-          
+
         if CoinFlip():
             # short girl, long gang
-            sTweet = GirlShort.Desc + "\nGets " 
-            sTweet += WordList(["Shared","Gang-Banged"]).GetWord() + " "
-            sTweet += "By\nThe " + GangLong.Desc
+            sTweet = GirlShort.Desc + "\n"
+            if sTweet[0:2].lower() == "my":
+                sTweet += "Had " 
+            else:
+                sTweet += "Has "
+            sTweet += "a Gang-Bang with\n"
+            sTweet += "The " + GangLong.Desc
         else:
             # long girl, short gang
-            sTweet = GirlLong.Desc + "\nGets " 
-            sTweet += WordList(["Shared","Gang-Banged"]).GetWord() + " "
-            sTweet += "By\nThe " + GangShort.Desc
+            sTweet = GirlLong.Desc + "\n"
+            if sTweet[0:2].lower() == "my":
+                sTweet += "Had " 
+            else:
+                sTweet += "Has "
+            sTweet += "a Gang-Bang with\n"
+            sTweet += "The " + GangShort.Desc
           
         return sTweet
           
@@ -1469,38 +1479,41 @@ class Generator39(Generator):
 # Note: this 'gang bang' generator has been split in two. See also
 # gen 14
 class Generator40(Generator):
-     # The Virgin French Cheerleader
-     # Has a Gang-Bang with
-     # 30
-     # Giant Well-Hung Sumo Wrestlers
-     Disabled = False
+     # My Shy Sporty Bride
+     # Got Shared
+     # by Two-Dozen Nude Leather-Jacketed Varsity Athletes
+    Disabled = False
 
-     def __init__(self):
-         super().__init__(ID = 40, Priority = 1)
-         self.Template = templates.TitleTemplate4()
+    def __init__(self):
+        super().__init__(ID = 40, Priority = 1)
+        self.Template = templates.TitleTemplate16()
      
-     def GenerateTweet(self):
-          super().GenerateTweet()
-          sTweet = ""
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
           
-          GangNot = ["Dapper","Gang-Bang"]
+        GangNot = ["Dapper","Gang-Bang"]
           
-          GirlShort = char.FemaleChar(Type = GirlType.Good, bAddTheArticle = True, MaxChars = 24,
-                                      bAllowClothing = False, bAllowSpecies = False)
-          #GirlLong = char.FemaleChar(Type = GirlType.Good, TempType = TempType.Flowery, bAddTheArticle = True, bAllowClothing = False, bAllowSpecies = False)
-          GangSingShort = char.GangMaleChar(TempType = TempType.Medium,MaleCharType = MaleCharType.GangSingular, bAllowClothing = False,NotList = GangNot)
-          GangSingLong = char.GangMaleChar(TempType = TempType.Flowery,MaleCharType = MaleCharType.GangSingular, bAllowClothing = False,NotList = GangNot)
-          GangPlurShort = char.GangMaleChar(TempType = TempType.Medium,MaleCharType = MaleCharType.GangPlural, bAllowClothing = False,NotList = GangNot)
-          GangPlurLong = char.GangMaleChar(TempType = TempType.Flowery,MaleCharType = MaleCharType.GangPlural, bAllowClothing = False,NotList = GangNot)
+        GirlShort = char.FemaleChar(Type = GirlType.Good, bAddTheArticle = True, MaxChars = 20,
+                                    ExclList = [ClothingFemale, SpeciesFemale])
+        
+        GangPlurLong = char.GangMaleChar(MaleCharType = MaleCharType.GangPlural, 
+                                         bAllowClothing = False, NotList = GangNot,
+                                         MaxChars = 32)
           
-          GangSize = WordList(["Three","Four","Five","Seven","Nine","Ten","A Dozen","Twenty","Two-Dozen","Fifty","One-Hundred"])
+        GangSize = WordList(["Three","Four","Five","Seven","Nine",
+                             "Ten","A Bunch of","A Dozen","Twenty",
+                             "Two-Dozen", "Dozens of", "Fifty","One-Hundred",
+                             "Hundreds of","A Whole Bunch of"])
           
-          sTweet = GirlShort.Desc + "\nHas a Gang Bang with\n" + GangSize.GetWord() + " " + GangPlurLong.Desc
-          #Tweets.append(GirlLong.Desc + "\nHas a Gang Bang with\n" + GangSize.GetWord() + " " + GangPlurShort.Desc)
+        sTweet = GirlShort.Desc 
+        if sTweet[0:2].lower() == "my":
+            sTweet += "\nGot Shared\nby " + GangSize.GetWord() + " " + GangPlurLong.Desc
+        else:
+            sTweet += "\nGets Shared\nby " + GangSize.GetWord() + " " + GangPlurLong.Desc
+
           
-          sTweet = Tweets[randint(0, len(Tweets) - 1)]
-          
-          return sTweet
+        return sTweet
           
 class Generator41(Generator):
      #Seducing Sheryl: The Virginal Nurse and the Big Titty Dominatrix

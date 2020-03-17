@@ -565,6 +565,39 @@ class TitleTemplate16(TitleTemplate):
                      MaxRows = 1,
                      ColorType = LineColorType.SecondTitle)
 
+# ** Conversational **
+# Medium Top Line
+# Large Middle Line
+# Small Bottom Line
+# Templates: 7
+class TitleTemplate16(TitleTemplate):
+    def __init__(self):
+        super().__init__(ID = 16)
+
+        # Medium long line or two lines normal type
+        self.AddLine(OrderNum = 1,
+                     FontName = "Absinette W01 Regular.ttf",
+                     FontMaxSize = 22,
+                     MaxRows = 1,
+                     ColorType = LineColorType.MainTitle)
+
+        # Large medium length line
+        self.AddLine(OrderNum = 2,
+                     FontName =  "Sabado Regular.otf",
+                     FontMaxSize = 14,
+                     MaxRows = 2,
+                     ColorType = LineColorType.SecondTitle,
+                     AllCaps = True)
+
+        # Two large word top line
+        self.AddLine(OrderNum = 3,
+                     FontName = "Verona-ExtraBold.otf",
+                     FontMaxSize = 20,
+                     MaxRows = 2,
+                     ColorType = LineColorType.SecondTitle,                     
+                     AllCaps = True)
+
+
 class TitleTemplateSelector():
     def __init__(self):
         self.TitleTemplateList = [] 

@@ -267,7 +267,8 @@ class FemTemplate18(FemCharTemplate):
                                                     CTEntry([ProfBadFemale,ProfGoodFemale],1)
                                                   ], 
                                    girltype = GirlType.Bad,
-                                   priority = 1)                              
+                                   priority = 1)          
+          RequestOnly = True                    
 
 # Good Female (Race) Generators 130 & 131          
 class FemTemplate19(FemCharTemplate):
@@ -282,6 +283,7 @@ class FemTemplate19(FemCharTemplate):
                                    girltype = GirlType.Good,
                                    NotList = ["succubus"],
                                    priority = 1)
+          RequestOnly = True
 
 # VERY Bad Female Profession (Generators 52 & 53)
 class FemTemplate20(FemCharTemplate):
@@ -295,7 +297,8 @@ class FemTemplate20(FemCharTemplate):
                                                   ], 
                                    girltype = GirlType.Bad,
                                    priority = 1,
-                                   NotList = ["Naked","Nudist"])     
+                                   NotList = ["Naked","Nudist"])   
+          RequestOnly = True  
 
 # Bad (Undead) Female Profession (Generator 138)
 # Generators: 138
@@ -326,6 +329,7 @@ class FemTemplate22(FemCharTemplate):
                                    priority = 3,
                                    NotList = ["single","virgin","fertile","small-town","tender",
                                               "mature","elvish","fashionable"])
+          RequestOnly = True
 
 # Good female profession no phys char (Generator 30)
 class FemTemplate23(FemCharTemplate):
@@ -339,6 +343,7 @@ class FemTemplate23(FemCharTemplate):
                                    priority = 3,
                                    NotList = ["single","virgin","fertile","small-town","tender",
                                               "mature","elvish","fashionable"])
+          RequestOnly = True
                     
 # === Good Trope templates ===
 
@@ -1327,6 +1332,7 @@ class MaleTemplate15(MaleCharTemplate):
                                                     CTEntry([TropesWealthyMale],1)
                                                   ],
                                    priority = 1)
+          RequestOnly = True
 
 # Adjs:          GenModMale, AttitudeMale, ClothesMale, PhysCharMale, DickCharMale, TypeModMale,
 #               SkinHairColorMale, AgeAdjMale, MaritalStatusMale, NationMale

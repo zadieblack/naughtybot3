@@ -40,7 +40,7 @@ class BGProfileSaxaphone(BGProfile):
         self.MainTitleColor = "rgba(94, 68, 25, 255)"
         self.SecondTitleColor = "rgba(94, 68, 25, 255)"
         self.Tags = ["man","woman","couple","outside","straight"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileBeach(BGProfile):
     def __init__(self):
@@ -50,7 +50,7 @@ class BGProfileBeach(BGProfile):
         self.MainTitleColor = "rgba(162, 63, 33, 255)"
         self.SecondTitleColor = "rgba(83, 117, 88, 255)"
         self.Tags = ["man","woman","couple","outside","straight"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileCrotchLevel(BGProfile):
     def __init__(self):
@@ -61,7 +61,7 @@ class BGProfileCrotchLevel(BGProfile):
         self.SecondTitleColor = "rgba(83, 117, 88, 255)"
         self.SmallTextColor = "rgba(112, 162, 193, 255)"
         self.Tags = ["man","woman","couple","outside","straight"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileBoatNipples(BGProfile):
     def __init__(self):
@@ -73,7 +73,7 @@ class BGProfileBoatNipples(BGProfile):
         self.SmallTextColor = "rgba(39, 32, 73, 255)"
         self.AuthorNameColor = "rgba(39, 32, 73, 255)"
         self.Tags = ["man","woman","couple","outside","straight"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileBlueCarFire(BGProfile):
     def __init__(self):
@@ -85,7 +85,7 @@ class BGProfileBlueCarFire(BGProfile):
         self.SmallTextColor = "rgba(6, 51, 103, 255)"
         self.AuthorNameColor = "rgba(6, 51, 103, 255)"
         self.Tags = ["man","woman","couple","outside","straight"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileIndian(BGProfile):
     def __init__(self):
@@ -97,7 +97,7 @@ class BGProfileIndian(BGProfile):
         self.SmallTextColor = "rgba(0, 0, 0, 255)"
         self.AuthorNameColor = "rgba(0, 0, 0, 255)"
         self.Tags = ["man","woman","couple","outside","straight"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileNakedFabio(BGProfile):
     def __init__(self):
@@ -109,7 +109,7 @@ class BGProfileNakedFabio(BGProfile):
         self.SmallTextColor = "rgba(96, 39, 116, 255)"
         self.AuthorNameColor = "rgba(96, 39, 116, 255)"
         self.Tags = ["man","woman","couple","outside","straight"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfilePirate(BGProfile):
     def __init__(self):
@@ -121,7 +121,7 @@ class BGProfilePirate(BGProfile):
         self.SmallTextColor = "rgba(191, 77, 59, 255)"
         self.AuthorNameColor = "rgba(65, 112, 130, 255)"
         self.Tags = ["man","woman","couple","outside","straight"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileAquaTopless(BGProfile):
     def __init__(self):
@@ -131,7 +131,7 @@ class BGProfileAquaTopless(BGProfile):
         self.MainTitleColor = "rgba(149, 196, 180, 255)"
         self.SecondTitleColor = "rgba(108, 80, 145, 255)"
         self.Tags = ["man","woman","couple","straight"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileGay(BGProfile):
     def __init__(self):
@@ -142,7 +142,7 @@ class BGProfileGay(BGProfile):
         self.SecondTitleColor = "rgba(189, 109, 65, 255)"
         self.SmallTextColor = "rgba(108, 145, 51, 255)"
         self.Tags = ["man","men","couple","gay"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileSunset(BGProfile):
     def __init__(self):
@@ -152,7 +152,7 @@ class BGProfileSunset(BGProfile):
         self.MainTitleColor = "rgba(178, 27, 44, 255)"
         self.SecondTitleColor = "rgba(178, 27, 44, 255)"
         self.Tags = ["man","woman","couple","outside","straight"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileField(BGProfile):
     def __init__(self):
@@ -162,7 +162,7 @@ class BGProfileField(BGProfile):
         self.MainTitleColor = "rgba(214, 149, 123, 255)"
         self.SecondTitleColor = "rgba(139, 121, 171, 255)"
         self.Tags = ["man","woman","couple","outside","straight"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileRedVelvet(BGProfile):
     def __init__(self):
@@ -172,7 +172,7 @@ class BGProfileRedVelvet(BGProfile):
         self.MainTitleColor = "rgba(181,55, 47, 255)"
         self.SecondTitleColor = "rgba(181,55, 47, 255)"
         self.Tags = ["man","woman","couple","straight"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileRedAndPurple(BGProfile):
     def __init__(self):
@@ -183,7 +183,7 @@ class BGProfileRedAndPurple(BGProfile):
         self.SecondTitleColor = "rgba(209, 91, 56, 255)"
         self.SmallTextColor = "rgba(174, 95, 160, 255)"
         self.Tags = ["man","woman","couple","straight"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileBlueCarFire(BGProfile):
     def __init__(self):
@@ -195,7 +195,7 @@ class BGProfileBlueCarFire(BGProfile):
         self.SmallTextColor = "rgba(6, 51, 103, 255)"
         self.AuthorNameColor = "rgba(6, 51, 103, 255)"
         self.Tags = ["man","woman","couple","outside","straight"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileBlueDress(BGProfile):
     def __init__(self):
@@ -207,7 +207,7 @@ class BGProfileBlueDress(BGProfile):
         self.SmallTextColor = "rgba(1, 23, 244, 255)"
         self.AuthorNameColor = "rgba(0, 0, 0, 255)"
         self.Tags = ["man","woman","couple","outside","straight"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileDarkBlueFireSuit(BGProfile):
     def __init__(self):
@@ -218,7 +218,7 @@ class BGProfileDarkBlueFireSuit(BGProfile):
         self.SecondTitleColor = "rgba(173, 84, 69, 255)"
         self.SmallTextColor = "rgba(53, 68, 89, 255)"
         self.Tags = ["man","woman","couple","outside","straight"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileDark(BGProfile):
     def __init__(self):
@@ -228,7 +228,7 @@ class BGProfileDark(BGProfile):
         self.MainTitleColor = "rgba(84, 77, 93, 255)"
         self.SecondTitleColor = "rgba(84, 77, 93, 255)"
         self.Tags = ["man","woman","couple","straight"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileGold(BGProfile):
     def __init__(self):
@@ -239,7 +239,7 @@ class BGProfileGold(BGProfile):
         self.SecondTitleColor = "rgba(106, 118, 47, 255)"
         self.SmallTextColor = "rgba(106, 118, 47, 255)"
         self.Tags = ["man","woman","couple","outside","straight"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileModernBedroom(BGProfile):
     def __init__(self):
@@ -250,7 +250,7 @@ class BGProfileModernBedroom(BGProfile):
         self.SecondTitleColor = "rgba(177, 119, 123, 255)"
         self.AuthorNameColor = "rgba(143, 137, 104, 255)"
         self.Tags = ["man","woman","couple","inside","straight"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileShipRomance(BGProfile):
     def __init__(self):
@@ -261,7 +261,7 @@ class BGProfileShipRomance(BGProfile):
         self.SecondTitleColor = "rgba(75, 125, 152, 255)"
         self.SmallTextColor = "rgba(200, 159, 193, 255)"
         self.Tags = ["man","woman","couple","outside","straight"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileBath(BGProfile):
     def __init__(self):
@@ -274,7 +274,7 @@ class BGProfileBath(BGProfile):
         self.AuthorNameColor = "rgba(27, 112, 105, 255)"
         self.Tags = ["man","woman","couple","inside","straight"]
         self.Content = Content.PG13
-        self.Disabled = True
+        self.Disabled = False
         
 class BGProfileBedSurprise(BGProfile):
     def __init__(self):
@@ -286,7 +286,7 @@ class BGProfileBedSurprise(BGProfile):
         self.SmallTextColor = "rgba(94, 134, 120, 255)"
         self.AuthorNameColor = "rgba(1, 54, 100, 255)"
         self.Tags = ["woman","single"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileBoatTowel(BGProfile):
     def __init__(self):
@@ -298,7 +298,7 @@ class BGProfileBoatTowel(BGProfile):
         self.SmallTextColor = "rgba(7, 10, 14, 255)"
         self.AuthorNameColor = "rgba(7, 10, 14, 255)"
         self.Tags = ["man","woman","couple","outside","straight"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileCastle(BGProfile):
     def __init__(self):
@@ -310,7 +310,7 @@ class BGProfileCastle(BGProfile):
         self.SmallTextColor = "rgba(141, 50, 33, 255)"
         self.AuthorNameColor = "rgba(87, 170, 207, 255)"
         self.Tags = ["man","woman","couple","outside","straight","historic"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileKinkyCuffs(BGProfile):
     def __init__(self):
@@ -323,7 +323,7 @@ class BGProfileKinkyCuffs(BGProfile):
         self.AuthorNameColor = "rgba(1, 54, 100, 255)"
         self.Content = Content.PG13
         self.Tags = ["woman","single","outside","kinky"]
-        self.Disabled = True
+        self.Disabled = False
         
 class BGProfileMansion(BGProfile):
     def __init__(self):
@@ -335,7 +335,7 @@ class BGProfileMansion(BGProfile):
         self.SmallTextColor = "rgba(47, 78, 83, 255)"
         self.AuthorNameColor = "rgba(41, 89, 135, 255)"
         self.Tags = ["man","woman","couple","outside","straight"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileShower(BGProfile):
     def __init__(self):
@@ -348,7 +348,7 @@ class BGProfileShower(BGProfile):
         self.AuthorNameColor = "rgba(199, 54, 60, 255)"
         self.Content = Content.AdultsOnly
         self.Tags = ["man","woman","straight"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileSuperHero(BGProfile):
     def __init__(self):
@@ -360,7 +360,7 @@ class BGProfileSuperHero(BGProfile):
         self.SmallTextColor = "rgba(205, 66, 109, 255)"
         self.AuthorNameColor = "rgba(122, 86, 172, 255)"
         self.Tags = ["man","woman","couple","straight"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileSwingers(BGProfile):
     def __init__(self):
@@ -372,7 +372,7 @@ class BGProfileSwingers(BGProfile):
         self.SmallTextColor = "rgba(99, 113, 160, 255)"
         self.AuthorNameColor = "rgba(184, 172, 84, 255)"
         self.Tags = ["man","woman","couple","outside","straight"]
-        self.Disabled = True
+        self.Disabled = False
         
 class BGProfileSwordKilt(BGProfile):
     def __init__(self):
@@ -384,7 +384,7 @@ class BGProfileSwordKilt(BGProfile):
         self.SmallTextColor = "rgba(41, 67, 193, 255)"
         self.AuthorNameColor = "rgba(135, 49, 58, 255)"
         self.Tags = ["man","woman","couple","outside","straight","historic"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileTightButts(BGProfile):
     def __init__(self):
@@ -397,7 +397,7 @@ class BGProfileTightButts(BGProfile):
         self.AuthorNameColor = "rgba(108, 178, 234, 255)"
         self.Content = Content.PG13
         self.Tags = ["man","men","gay","outside"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileTropicalPirate(BGProfile):
     def __init__(self):
@@ -409,7 +409,7 @@ class BGProfileTropicalPirate(BGProfile):
         self.SmallTextColor = "rgba(35, 135, 63, 255)"
         self.AuthorNameColor = "rgba(38, 167, 207, 255)"
         self.Tags = ["man","woman","couple","outside","straight"]
-        self.Disabled = True
+        self.Disabled = False
 
 #class BGProfileUSA(BGProfile):
 #    def __init__(self):
@@ -431,7 +431,7 @@ class BGProfileChamberPot(BGProfile):
         self.SmallTextColor = "rgba(170, 60, 133, 255)"
         self.Content = Content.AdultsOnly
         self.Tags = ["woman","historic","fantasy","kinky"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileChastityBelt(BGProfile):
     def __init__(self):
@@ -444,7 +444,7 @@ class BGProfileChastityBelt(BGProfile):
         self.AuthorNameColor = "rgba(85, 89, 177, 255)"
         self.Content = Content.AdultsOnly
         self.Tags = ["man","woman","straight","kinky","historic"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileCowgirlDominatrix(BGProfile):
     def __init__(self):
@@ -457,7 +457,7 @@ class BGProfileCowgirlDominatrix(BGProfile):
         self.AuthorNameColor = "rgba(199, 149, 60, 255)"
         self.Content = Content.AdultsOnly
         self.Tags = ["man","woman","couple","straight","kinky"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileDickNose(BGProfile):
     def __init__(self):
@@ -470,7 +470,7 @@ class BGProfileDickNose(BGProfile):
         self.AuthorNameColor = "rgba(225, 47, 37, 255)"
         self.Content = Content.AdultsOnly
         self.Tags = ["man","woman","couple","outside","straight","kinky"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileHandsAndKnees(BGProfile):
     def __init__(self):
@@ -483,7 +483,7 @@ class BGProfileHandsAndKnees(BGProfile):
         self.AuthorNameColor = "rgba(0, 0, 0, 255)"
         self.Content = Content.PG13
         self.Tags = ["woman","historic","kinky"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileHarem(BGProfile):
     def __init__(self):
@@ -496,7 +496,7 @@ class BGProfileHarem(BGProfile):
         self.AuthorNameColor = "rgba(62, 162, 167, 255)"
         self.Content = Content.PG13
         self.Tags = ["man","woman","women","historic"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileHotCops(BGProfile):
     def __init__(self):
@@ -509,7 +509,7 @@ class BGProfileHotCops(BGProfile):
         self.AuthorNameColor = "rgba(184, 160, 43, 255)"
         self.Content = Content.AdultsOnly
         self.Tags = ["man","woman","women","inside","kinky"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileIndecentProp(BGProfile):
     def __init__(self):
@@ -522,7 +522,7 @@ class BGProfileIndecentProp(BGProfile):
         self.AuthorNameColor = "rgba(186, 155, 47, 255)"
         self.Content = Content.AdultsOnly
         self.Tags = ["man","woman","women","inside","historic","kinky"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileLadyBottom(BGProfile):
     def __init__(self):
@@ -535,7 +535,7 @@ class BGProfileLadyBottom(BGProfile):
         self.AuthorNameColor = "rgba(88, 105, 73, 255)"
         self.Content = Content.AdultsOnly
         self.Tags = ["man","woman","outside","historic"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileLesbianVampires(BGProfile):
     def __init__(self):
@@ -547,7 +547,7 @@ class BGProfileLesbianVampires(BGProfile):
         self.SmallTextColor = "rgba(212, 1, 3, 255)"
         self.Content = Content.AdultsOnly
         self.Tags = ["woman","women","inside","lesbian","kinky"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileMaleSub(BGProfile):
     def __init__(self):
@@ -560,7 +560,7 @@ class BGProfileMaleSub(BGProfile):
         self.AuthorNameColor = "rgba(200, 114, 184, 255)"
         self.Content = Content.AdultsOnly
         self.Tags = ["man","woman","couple","inside","straight","kinky"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileMoonBoob(BGProfile):
     def __init__(self):
@@ -573,7 +573,7 @@ class BGProfileMoonBoob(BGProfile):
         self.AuthorNameColor = "rgba(224, 183, 108, 255)"
         self.Content = Content.AdultsOnly
         self.Tags = ["man","woman","couple","outside","straight"]
-        self.Disabled = True
+        self.Disabled = False
 
 #class BGProfileNaughtyBuddha(BGProfile):
 #    def __init__(self):
@@ -597,7 +597,7 @@ class BGProfilePervyDummy(BGProfile):
         self.AuthorNameColor = "rgba(123, 77, 151, 255)"
         self.Content = Content.AdultsOnly
         self.Tags = ["woman","single","kinky","historic"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfilePoodleBondage(BGProfile):
     def __init__(self):
@@ -610,7 +610,7 @@ class BGProfilePoodleBondage(BGProfile):
         self.AuthorNameColor = "rgba(83, 84, 141, 255)"
         self.Content = Content.AdultsOnly
         self.Tags = ["man","woman","women","kinky","historic"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileScaryMirror(BGProfile):
     def __init__(self):
@@ -623,7 +623,7 @@ class BGProfileScaryMirror(BGProfile):
         self.AuthorNameColor = "rgba(0, 0, 0, 255)"
         self.Content = Content.AdultsOnly
         self.Tags = ["woman","single","inside","historic"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileSkeleton(BGProfile):
     def __init__(self):
@@ -634,7 +634,7 @@ class BGProfileSkeleton(BGProfile):
         self.SecondTitleColor = "rgba(157, 16, 16, 255)"
         self.Content = Content.AdultsOnly
         self.Tags = ["woman","single"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileSnowWhiteSevenDwarves(BGProfile):
     def __init__(self):
@@ -647,7 +647,7 @@ class BGProfileSnowWhiteSevenDwarves(BGProfile):
         self.AuthorNameColor = "rgba(30, 63, 139, 255)"
         self.Content = Content.AdultsOnly
         self.Tags = ["woman","men","inside","kinky","historic"]
-        self.Disabled = True
+        self.Disabled = False
 
 #class BGProfileSnowWhiteAss(BGProfile):
 #    def __init__(self):
@@ -658,7 +658,7 @@ class BGProfileSnowWhiteSevenDwarves(BGProfile):
 #        self.SecondTitleColor = "rgba(231, 43, 38, 255)"
 #        self.SmallTextColor = "rgba(81, 151, 92, 255)"
 #        self.AuthorNameColor = "rgba(81, 151, 92, 255)"
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileSnowWhiteDungeon(BGProfile):
     def __init__(self):
@@ -671,7 +671,7 @@ class BGProfileSnowWhiteDungeon(BGProfile):
         self.AuthorNameColor = "rgba(241, 148, 33, 255)"
         self.Content = Content.AdultsOnly
         self.Tags = ["man","woman","historic","kinky"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileSnowWhiteSpanking(BGProfile):
     def __init__(self):
@@ -684,7 +684,7 @@ class BGProfileSnowWhiteSpanking(BGProfile):
         self.AuthorNameColor = "rgba(23, 81, 136, 255)"
         self.Content = Content.AdultsOnly
         self.Tags = ["man","woman","men","historic","kinky"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileStretchyArms(BGProfile):
     def __init__(self):
@@ -697,7 +697,7 @@ class BGProfileStretchyArms(BGProfile):
         self.AuthorNameColor = "rgba(74, 61, 34, 255)"
         self.Content = Content.AdultsOnly
         self.Tags = ["man","woman","couple","straight"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileSurroundedByPervs(BGProfile):
     def __init__(self):
@@ -710,7 +710,7 @@ class BGProfileSurroundedByPervs(BGProfile):
         self.AuthorNameColor = "rgba(79, 89, 174, 255)"
         self.Content = Content.AdultsOnly
         self.Tags = ["woman","men","kinky"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileTallWoman(BGProfile):
     def __init__(self):
@@ -722,7 +722,7 @@ class BGProfileTallWoman(BGProfile):
         self.SmallTextColor = "rgba(210, 119, 82, 255)"
         self.Content = Content.AdultsOnly
         self.Tags = ["man","woman","couple","inside","straight"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileTheDevil(BGProfile):
     def __init__(self):
@@ -735,7 +735,7 @@ class BGProfileTheDevil(BGProfile):
         self.AuthorNameColor = "rgba(47, 84, 51, 255)"
         self.Content = Content.AdultsOnly
         self.Tags = ["man","woman","couple","straight"]
-        self.Disabled = True
+        self.Disabled = False
 
 #class BGProfileTrousersDown(BGProfile):
 #    def __init__(self):
@@ -745,7 +745,7 @@ class BGProfileTheDevil(BGProfile):
 #        self.MainTitleColor = "rgba(34, 116, 95, 255)"
 #        self.SecondTitleColor = "rgba(34, 116, 95, 255)"
 #        self.SmallTextColor = "rgba(106, 87, 133, 255)"
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileVampire(BGProfile):
     def __init__(self):
@@ -758,7 +758,7 @@ class BGProfileVampire(BGProfile):
         self.AuthorNameColor = "rgba(91, 48, 162, 255)"
         self.Content = Content.AdultsOnly
         self.Tags = ["man","woman","inside","kinky"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileUnderBedCreeper(BGProfile):
     def __init__(self):
@@ -770,7 +770,7 @@ class BGProfileUnderBedCreeper(BGProfile):
         self.SmallTextColor = "rgba(127, 117, 53, 255)"
         self.AuthorNameColor = "rgba(130, 43, 39, 255)"
         self.Tags = ["man","woman","couple","inside","men","voyeur"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileVictorianOrgy(BGProfile):
     def __init__(self):
@@ -783,7 +783,7 @@ class BGProfileVictorianOrgy(BGProfile):
         self.AuthorNameColor = "rgba(48, 76, 124, 255)"
         self.Content = Content.AdultsOnly
         self.Tags = ["man","woman","women","inside","kinky","historic"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileVoyeur(BGProfile):
     def __init__(self):
@@ -796,7 +796,7 @@ class BGProfileVoyeur(BGProfile):
         self.AuthorNameColor = "rgba(154, 46, 93, 255)"
         self.Content = Content.AdultsOnly
         self.Tags = ["man","woman","couple","women","inside","historic"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileWizardPony(BGProfile):
     def __init__(self):
@@ -809,7 +809,7 @@ class BGProfileWizardPony(BGProfile):
         self.AuthorNameColor = "rgba(2, 47, 249, 255)"
         self.Content = Content.AdultsOnly
         self.Tags = ["man","woman","men","inside","kinky"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileDoggyStyle(BGProfile):
     def __init__(self):
@@ -820,7 +820,7 @@ class BGProfileDoggyStyle(BGProfile):
         self.SecondTitleColor = "rgba(113, 54, 24, 255)"
         self.Content = Content.AdultsOnly
         self.Tags = ["man","woman","couple","inside","straight"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileBathhouse(BGProfile):
     def __init__(self):
@@ -859,7 +859,7 @@ class BGProfileBranded(BGProfile):
         self.AuthorNameColor = "rgba(66, 75, 132, 255)"
         self.Content = Content.PG13
         self.Tags = ["man","men","outside","gay"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileGrapes(BGProfile):
     def __init__(self):
@@ -872,7 +872,7 @@ class BGProfileGrapes(BGProfile):
         self.AuthorNameColor = "rgba(152, 53, 88, 255)"
         self.Content = Content.PG13
         self.Tags = ["man","single","gay"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileUnderwater(BGProfile):
     def __init__(self):
@@ -898,7 +898,7 @@ class BGProfileSlaves(BGProfile):
         self.AuthorNameColor = "rgba(50, 158, 194, 255)"
         self.Content = Content.PG13
         self.Tags = ["man","men","kinky","outside","gay","historic"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileNakedCowboy(BGProfile):
     def __init__(self):
@@ -934,7 +934,7 @@ class BGProfileSpaceMonster(BGProfile):
         self.SmallTextColor = "rgba(199, 22, 30, 255)"
         self.AuthorNameColor = "rgba(199, 22, 30, 255)" 
         self.Tags = ["woman","outside","kinky"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileOneEyedAlien(BGProfile):
     def __init__(self):
@@ -947,7 +947,7 @@ class BGProfileOneEyedAlien(BGProfile):
         self.AuthorNameColor = "rgba(199, 22, 30, 255)" 
         self.Tags = ["women","woman","outside"]
         self.Content = Content.PG13
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileSpaceGirl(BGProfile):
     def __init__(self):
@@ -960,7 +960,7 @@ class BGProfileSpaceGirl(BGProfile):
         self.AuthorNameColor = "rgba(229, 79, 24, 255)" 
         self.Content = Content.PG13
         self.Tags = ["woman","single","outside"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileHawaiianCleavage(BGProfile):
     def __init__(self):
@@ -984,7 +984,7 @@ class BGProfileCowboyIndian(BGProfile):
         self.SmallTextColor = "rgba(36, 57, 117, 255)"
         self.AuthorNameColor = "rgba(36, 57, 117, 255)"
         self.Tags = ["man","woman","couple","outside","straight"]
-        self.Disabled = True
+        self.Disabled = False
 
 class BGProfileHorseRiders(BGProfile):
     def __init__(self):
@@ -1021,17 +1021,17 @@ class BGProfileLesbians(BGProfile):
         self.Tags = ["woman","woman","inside","lesbian"]
         self.Disabled = False
 
-class BGProfileRedDressParty(BGProfile):
-    def __init__(self):
-        super().__init__(ID = 81,
-                           Priority = 4,
-                           sFileName = "red_dress_party")
-        self.MainTitleColor = "rgba(191, 41, 32, 255)"
-        self.SecondTitleColor = "rgba(88, 118, 85, 255)"
-        self.SmallTextColor = "rgba(124, 50, 19, 255)"
-        self.AuthorNameColor = "rgba(234, 182, 73, 255)"
-        self.Tags = ["man","woman","straight"]
-        self.Disabled = False
+#class BGProfileRedDressParty(BGProfile):
+#    def __init__(self):
+#        super().__init__(ID = 81,
+#                           Priority = 4,
+#                           sFileName = "red_dress_party")
+#        self.MainTitleColor = "rgba(191, 41, 32, 255)"
+#        self.SecondTitleColor = "rgba(88, 118, 85, 255)"
+#        self.SmallTextColor = "rgba(124, 50, 19, 255)"
+#        self.AuthorNameColor = "rgba(234, 182, 73, 255)"
+#        self.Tags = ["man","woman","straight"]
+#        self.Disabled = False
 
 class BGProfileLesbianTemptation(BGProfile):
     def __init__(self):
@@ -1068,17 +1068,17 @@ class BGProfilePinkShower(BGProfile):
         self.Tags = ["woman","single","inside"]
         self.Disabled = False
 
-class BGProfileGolf(BGProfile):
-    def __init__(self):
-        super().__init__(ID = 85,
-                           Priority = 4,
-                           sFileName = "golf")
-        self.MainTitleColor = "rgba(91, 160, 201, 255)"
-        self.SecondTitleColor = "rgba(77, 179, 117, 255)"
-        self.SmallTextColor = "rgba(157, 68, 148, 255)"
-        self.AuthorNameColor = "rgba(77, 179, 117, 255)"
-        self.Tags = ["man","woman","men","women","outside","voyeur"]
-        self.Disabled = False
+#class BGProfileGolf(BGProfile):
+#    def __init__(self):
+#        super().__init__(ID = 85,
+#                           Priority = 4,
+#                           sFileName = "golf")
+#        self.MainTitleColor = "rgba(91, 160, 201, 255)"
+#        self.SecondTitleColor = "rgba(77, 179, 117, 255)"
+#        self.SmallTextColor = "rgba(157, 68, 148, 255)"
+#        self.AuthorNameColor = "rgba(77, 179, 117, 255)"
+#        self.Tags = ["man","woman","men","women","outside","voyeur"]
+#        self.Disabled = False
 
 class BGProfileFlowers(BGProfile):
     def __init__(self):
@@ -1090,6 +1090,65 @@ class BGProfileFlowers(BGProfile):
         self.SmallTextColor = "rgba(186, 113, 189, 255)"
         self.AuthorNameColor = "rgba(71, 116, 56, 255)"
         self.Tags = ["man","woman","couple","historic","straight"]
+        self.Disabled = False
+
+class BGProfileHelloSailor(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 87,
+                           Priority = 4,
+                           sFileName = "hello_sailor")
+        self.MainTitleColor = "rgba(82, 126, 183, 255)"
+        self.SecondTitleColor = "rgba(82, 126, 183, 255)"
+        self.SmallTextColor = "rgba(202, 179, 194, 255)"
+        self.AuthorNameColor = "rgba(194, 82, 31, 255)"
+        self.Tags = ["man","single"]
+        self.Disabled = False
+
+class BGProfileLatinoCowboy(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 88,
+                           Priority = 4,
+                           sFileName = "latino_cowboy")
+        self.MainTitleColor = "rgba(138, 19, 20, 255)"
+        self.SecondTitleColor = "rgba(147, 115, 73, 255)"
+        self.SmallTextColor = "rgba(164, 91, 56, 255)"
+        self.AuthorNameColor = "rgba(164, 91, 56, 255)"
+        self.Tags = ["man","single"]
+        self.Disabled = False
+
+#class BGProfileDemiGod(BGProfile):
+#    def __init__(self):
+#        super().__init__(ID = 89,
+#                           Priority = 4,
+#                           sFileName = "demi_god")
+#        self.MainTitleColor = "rgba(208, 66, 32, 255)"
+#        self.SecondTitleColor = "rgba(45, 75, 63, 255)"
+#        self.SmallTextColor =  "rgba(147, 115, 73, 255)"
+#        self.AuthorNameColor = "rgba(45, 75, 63, 255)"
+#        self.Tags = ["man","single"]
+#        self.Disabled = False
+
+class BGProfileNudeSailorButt(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 90,
+                           Priority = 4,
+                           sFileName = "nude_sailor_butt")
+        self.MainTitleColor = "rgba(45, 84, 112, 255)"
+        self.SecondTitleColor = "rgba(206, 77, 87, 255)"
+        self.AuthorNameColor = "rgba(45, 84, 112, 255)"
+        self.Tags = ["man","men","gay","inside"]
+        self.Disabled = False
+
+class BGProfileOceanHorse(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 90,
+                           Priority = 4,
+                           sFileName = "ocean_horse")
+        self.MainTitleColor = "rgba(232, 191, 72, 255)"
+        self.SecondTitleColor = "rgba(232, 191, 72, 255)"
+        self.SmallTextColor =  "rgba(152, 102, 58, 255)" 
+        self.AuthorNameColor = "rgba(105, 154, 170, 255)"
+        self.Tags = ["man","single","outside"]
         self.Disabled = False
 
 # this is for debugging bgprofile frequency. delete later.
