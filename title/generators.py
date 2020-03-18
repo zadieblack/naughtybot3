@@ -3978,7 +3978,7 @@ class Generator107(Generator):
           super().GenerateTweet()
           sTweet = ""
 
-          self.ReqTemplateTags = ["historic"]
+          self.ReqTemplateTags = ["fantasy"]
           
           Prefix = WordList(["Claimed\nat", "Enslaved\nat", "Taken\nat", "Imprisoned\nat", "Claimed\nat","The Dungeons\nof",
                                    "The Halls\nof","The Prisoner\nof","The Princess\nof","The Master\nof","The Baron\nof",
