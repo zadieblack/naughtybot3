@@ -693,25 +693,37 @@ class Generator14(Generator):
         return sTweet
           
 class Generator15(Generator):
-     # The Small-Town Virgin's First Porno
-     Disabled = True
+    # The Small-Town Virgin's First Porno
+    Disabled = False
 
-     def __init__(self):
-         super().__init__(ID = 15, Priority = 1)
+    def __init__(self):
+        super().__init__(ID = 15, Priority = 1)
+        self.Template = templates.TitleTemplate7()
      
-     def GenerateTweet(self):
-          super().GenerateTweet()
-          sTweet = ""
-          
-          Girl = char.FemaleChar(Type = GirlType.Good, bAddTheArticle = True, bAllowTitle = False)
-          
-          sTweet = Girl.Desc + "\n" + WordList(["Makes a Porno","Makes an Anal Porn Flick",
-                                                         "Makes a Gangbang Porn Flick","Makes an Interracial Gangbang Porno",
-                                                         "Becomes an Anal Porn Star","Becomes a Gangbang Porn Star"]).GetWord()
-          if CoinFlip():
-               sTweet += ":\nAn " + self._getFMs_() + " " + self.SubtitleCoda.GetWord()
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
 
-          return sTweet
+        self.ExclTemplateTags = ["gay","couple"]
+
+        GirlNotList = ["little"]
+          
+        Girl = char.FemaleChar(Type = GirlType.Good, bAddTheArticle = True, 
+                               MaxChars = 26, NotList = GirlNotList,
+                               bAllowTitle = False)
+          
+        sTweet = Girl.Desc + "\n" + WordList(["Makes a Porno","Does Anal Porn!","Does Lesbian Porn!",
+                                              "Does Gangbang Porn!","Does Inter-Racial Gangbang Porn!",
+                                              "Becomes an Anal Porn Star!","Does Inter-Racial Porn!",
+                                              "Does Animal Porn!", "Does Lesbian Anal Porn!",
+                                              "Makes a Porno With Her Dad!"]).GetWord() 
+        if "lesbian" in sTweet.lower():
+            self.ExclTemplateTags.append("man")
+            self.ExclTemplateTags.append("men")
+        if "animal" in sTweet.lower():
+            self.ReqTemplateTags = ["kinky"]
+
+        return sTweet
           
 class Generator16(Generator):
 # "Oh No! I Went to an Orgy
@@ -4942,7 +4954,7 @@ class Generator133(Generator):
                                       ]).GetWord(NotList = [sTitle1,sTitle2,sSubTitle1,sSubTitle2])
 
           sTweet = sTitle1 + " " + sTitle2 + "\n"
-          sTweet += AddArticles(sSubTitle1, bMakeUpper = True) + " " + sSubTitle2 + " " + sSubTitle3 + " Story"
+          sTweet += AddArticles(sSubTitle1 + " " + sSubTitle2 + " " + sSubTitle3 + " Story", bMakeUpper = True)
           
           return sTweet     
           
