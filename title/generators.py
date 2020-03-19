@@ -1385,7 +1385,6 @@ class Generator35(Generator):
           
 class Generator36(Generator):
      #Turned Gay
-     # Pleasured by the Shape-Shifting Single Dad: A Nudist Secretary Story
      Disabled = False
 
      def __init__(self):
@@ -1395,8 +1394,9 @@ class Generator36(Generator):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
-          
+
           if CoinFlip():
+               self.ExclTemplateTags = ["man"]
                Girl = char.FemaleChar(Type = GirlType.Good, TempType = TempType.Medium,
                                       ExclList = [SpeciesMale])
                
@@ -1412,6 +1412,7 @@ class Generator36(Generator):
                     sTweet = "Straight " + Girl.Desc + "\nfor\nthe Lesbian " + Lesbian.Desc 
                
           else:
+               self.ExclTemplateTags = ["woman"]
                Man = char.MaleChar(bAllowGang = False, TempType = TempType.Medium,
                                    ExclList = [SpeciesFemale])
                

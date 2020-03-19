@@ -8,7 +8,7 @@ from title.util import Content
 
 BGLOGFILEPATH = "title/"
 BGLOGFILENAME = "bghistory_q.txt"
-BGQSIZE = 10
+BGQSIZE = 30
 MAXTRIES = 500
 
 ProfileHistoryQ = HistoryQWithLog(BGLOGFILEPATH + BGLOGFILENAME, BGQSIZE)
@@ -1197,6 +1197,43 @@ class BGProfileBigCity(BGProfile):
         self.MainTitleColor = "rgba(204, 40, 29, 255)"
         self.SecondTitleColor = "rgba(25, 51, 107, 255)"
         self.Tags = ["man","woman","outside","city","couple","straight"]
+        self.Disabled = False
+
+class BGProfileInterracial(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 95,
+                           Priority = 4,
+                           sFileName = "interracial")
+        self.MainTitleColor = "rgba(228, 113, 164, 255)"
+        self.SecondTitleColor = "rgba(228, 113, 164, 255)"
+        self.SmallTextColor = "rgba(71, 136, 200, 255)"
+        self.AuthorNameColor = "rgba(71, 136, 200, 255)"
+        self.Tags = ["man","woman","straight","modern","minority"]
+        self.Content = Content.AdultsOnly
+        self.Disabled = False
+
+class BGProfileRedCape(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 96,
+                           Priority = 4,
+                           sFileName = "red_cape")
+        self.MainTitleColor = "rgba(208, 51, 4, 255)"
+        self.SecondTitleColor = "rgba(174, 111, 165, 255)"
+        self.SmallTextColor = "rgba(18, 18, 23, 255)"
+        self.AuthorNameColor = "rgba(208, 51, 4, 255)"
+        self.Tags = ["woman"]
+        self.Disabled = False
+
+class BGProfileValleyLake(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 97,
+                           Priority = 4,
+                           sFileName = "valley_lake")
+        self.MainTitleColor = "rgba(202, 141, 138, 255)"
+        self.SecondTitleColor = "rgba(71, 168, 169, 255)"
+        self.SmallTextColor = "rgba(71, 168, 169, 255)"
+        self.AuthorNameColor = "rgba(202, 141, 138, 255)"
+        self.Tags = ["woman","man","couple","straight","fantasy","outside"]
         self.Disabled = False
 
 # this is for debugging bgprofile frequency. delete later.
