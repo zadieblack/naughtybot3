@@ -1236,6 +1236,59 @@ class BGProfileValleyLake(BGProfile):
         self.Tags = ["woman","man","couple","straight","fantasy","outside"]
         self.Disabled = False
 
+class BGProfileIslandUndressing(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 98,
+                           Priority = 40,
+                           sFileName = "island_undressing")
+        self.MainTitleColor = "rgba(170, 8, 4, 255)"
+        self.SecondTitleColor = "rgba(170, 8, 4, 255)"
+        self.SmallTextColor = "rgba(93, 108, 19, 255)"
+        self.AuthorNameColor = "rgba(93, 108, 19, 255)"
+        self.Tags = ["woman","outside","undressing","naked"]
+        self.Disabled = False
+        self.Content = Content.PG13
+
+class BGProfilePinUp(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 99,
+                           Priority = 40,
+                           sFileName = "pin_up")
+        self.MainTitleColor = "rgba(232, 36, 23, 255)"
+        self.SecondTitleColor = "rgba(232, 36, 23, 255)"
+        self.SmallTextColor = "rgba(89, 186, 160, 255)"
+        self.AuthorNameColor = "rgba(239, 104, 123, 255)"
+        self.Tags = ["woman"]
+        self.Disabled = False
+
+class BGProfileWindowVoyeur(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 100,
+                           Priority = 40,
+                           sFileName = "window_voyeur")
+        self.MainTitleColor = "rgba(195, 63, 47, 255)"
+        self.SecondTitleColor = "rgba(25, 117, 164, 255)"
+        self.SmallTextColor = "rgba(54, 132, 122, 255)"
+        self.AuthorNameColor = "rgba(25, 117, 164, 255)"
+        self.Tags = ["woman","man","undressing","kinky"]
+        self.Content = Content.PG13
+        self.Disabled = False
+
+class BGProfileInterracialThreesome(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 101,
+                           Priority = 300,
+                           sFileName = "interracial_threesome")
+        self.MainTitleColor = "rgba(57, 187, 210, 255)"
+        self.SecondTitleColor = "rgba(201, 16, 113, 255)"
+        self.SmallTextColor = "rgba(52, 49, 98, 255)"
+        self.SmallTextColor = "rgba(52, 49, 98, 255)"
+        self.Tags = ["woman","man","men","naked","indoors","kinky"]
+        self.Content = Content.AdultsOnly
+        self.Disabled = False
+
+
+
 # this is for debugging bgprofile frequency. delete later.
 def indexof(list, searchobj):
     iIndex = 0
