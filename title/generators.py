@@ -763,14 +763,16 @@ class Generator16(Generator):
           
 class Generator17(Generator):
      # Enslaved: The Ebony Older Woman & The Mountain Man Biker Gang 
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 17, Priority = 1)
+         self.Template = templates.TitleTemplate17()
      
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+          self.ExclTemplateTags = ["gay","lesbian","women"]
           
           GirlNotList = ["Recently-Divorced","Sassy","Tanned","Kitten","Harem","Ice Queen","MILF"]
           Subtitles = []
@@ -778,16 +780,19 @@ class Generator17(Generator):
           self.ExclTemplateTags = ["gay"]
           self.ReqTemplateTags = ["woman"]
           
-          Master = char.MaleChar()
-          Gang = char.GangMaleChar()
+          Master = char.MaleChar(TempType = TempType.Medium,)
+          Gang = char.GangMaleChar(TempType = TempType.Medium)
           
           VerbNotList = ['Taken']
-          sTweet = self.VerbsBy.GetWord(NotList = VerbNotList) + ":\n"
+          sTweet = self.VerbsBy.GetWord(NotList = VerbNotList) + "\n"
           
-          Girl = char.FemaleChar(Type = GirlType.Good, NotList = GirlNotList, bAllowSpecies = False, bAllowTitle = False)
-          Subtitles.append("The " + Girl.Desc + "\n& The " + Gang.Desc)
-          Subtitles.append("The " + Girl.Desc + "\n& The " + Master.Desc)
-          Subtitles.append(AddArticles(Girl.Desc) + "\n" + WordList(['Adventure','Encounter','Liason','Experience','Episode','Rendezvous']).GetWord())
+          Girl = char.FemaleChar(Type = GirlType.Good, NotList = GirlNotList, 
+                                 TempType = TempType.Medium,
+                                 bAllowSpecies = False, bAllowTitle = False)
+
+          Subtitles.append("The " + Girl.Desc + "\nand the\n" + Gang.Desc)
+          Subtitles.append("The " + Girl.Desc + "\nand the\n" + Master.Desc)
+          #Subtitles.append(AddArticles(Girl.Desc) + " " + WordList(['Adventure','Encounter','Liason','Experience','Episode','Rendezvous']).GetWord())
           
           sTweet += Subtitles[randint(0, len(Subtitles) - 1)]
           
@@ -817,7 +822,8 @@ class Generator18(Generator):
           return sTweet
           
 class Generator19(Generator):
-      # Full Frontal for the Shy Amish Virgin: A BDSM Romance
+      # My Daughter's Best Friend is a Busty Virgin Nurse
+      # And I Got Her to Pee on Me!
       Disabled = True
 
       def __init__(self):
@@ -846,31 +852,47 @@ class Generator19(Generator):
            sTweet += "I " + Verbs.GetWord()
            return sTweet
           
+# NOTE: Similar to Generator 138 (spooky version)
 class Generator20(Generator):
-     # I Was Stripped In Public, And I Liked It
-     Disabled = True
+    # I Was Stripped In Public, And I Liked It
+    Disabled = False
 
-     def __init__(self):
-         super().__init__(ID = 20, Priority = 1)
+    def __init__(self):
+        super().__init__(ID = 20, Priority = 1)
+        self.Template = templates.TitleTemplate7()
      
-     def GenerateTweet(self):
-          super().GenerateTweet()
-          
-          Master = char.MaleChar(bAllowGang = False, bAddAnArticle = True, bAllowRelate = True)
-          Gang = char.GangMaleChar(bAddAnArticle = True)
-          
-          sTweet = ""
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
 
-          sVerbBy = self.VerbsBy.GetWord(NotList = ["Charmed", "Kept", "Trained"])
-          sTweet = "\"I Was " + sVerbBy
-          sTweet += " By\n"
-          if CoinFlip():
-               sTweet += Master.Desc
-          else:
-               sTweet += Gang.Desc
-          sTweet += ",\nAnd I Liked It!\""
+        sVerbBy = self.VerbsBy.GetWord(NotList = ["Charmed", "Kept", "Trained"])
+        sTweet = "I Was " + sVerbBy
+        sTweet += " By "
+        if CoinFlip():
+        # single man
+            Master = char.MaleChar(bAllowGang = False, bAddAnArticle = True, 
+                                    MaxChars = 20,
+                                    bAllowRelate = True)
+            sTweet += Master.Desc
+            self.ExclTemplateTags = ["women","lesbian"]
+        else:
+        # gang bang
+            GangNotList = ["S.W.A.T."]
+            if CoinFlip():
+                Gang = char.GangMaleChar(bAddAnArticle = False, MaxChars = 20,
+                                         MaleCharType = MaleCharType.GangPlural,
+                                         NotList = GangNotList)
+                sTweet += "The " + Gang.Desc
+            else:
+                Gang = char.GangMaleChar(bAddAnArticle = True, MaxChars = 20,
+                                         MaleCharType = MaleCharType.GangSingular,
+                                         NotList = GangNotList)
+                sTweet += Gang.Desc
+            
+            self.ExclTemplateTags = ["women","lesbian","couple"] 
+        sTweet += "\nAnd I Liked It!"
 
-          return sTweet
+        return sTweet
           
 class Generator21(Generator):
      # Pleasured by the Shape-Shifting Single Dad: A Nudist Secretary Story
@@ -5196,6 +5218,7 @@ class Generator137(Generator):
           return sTweet     
           
 #I Was Scissored by a Witch, and I Liked It!
+# NOTE: "Undead" version of Generator 20
 class Generator138(Generator):
      Disabled = False
 

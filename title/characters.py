@@ -757,11 +757,11 @@ class Character():
         iTryCounter = 1
         sDesc = ""
 
-        print("SetCharDesc()")
+        #print("SetCharDesc()")
           
         if SelectTemplateID > 0:
             # Note: if a specific template ID is requested the exclusion and required lists will be ignored
-            print(" - Getting a template for SelectTemplateID = " + str(SelectTemplateID))
+            #print(" - Getting a template for SelectTemplateID = " + str(SelectTemplateID))
             if isinstance(TemplateList, list):
                 for item in TemplateList:
                     SelCharTemplate = item
@@ -770,7 +770,7 @@ class Character():
                               
                 if SelCharTemplate is None:
                         SelCharTemplate = TemplateList[0]
-                print("  -- Was given SelectTemplateID = " + str(SelectTemplateID) + ", got template #" + str(SelCharTemplate.ID) + " [" + str(SelCharTemplate) + "]")
+                #print("  -- Was given SelectTemplateID = " + str(SelectTemplateID) + ", got template #" + str(SelCharTemplate.ID) + " [" + str(SelCharTemplate) + "]")
           
                 variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
                     
@@ -781,7 +781,7 @@ class Character():
                         variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
                     
         else:
-            print(" - Getting a template at random.")
+            #print(" - Getting a template at random.")
             #print(" - ExclList is " + str(ExclList))
             for item in TemplateList:
                 if item.RequestOnly:

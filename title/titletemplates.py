@@ -14,6 +14,7 @@ from util import *
 # "CELTG__.ttf""                    Old English      xx             24
 # "Coventry Garden NF.ttf"          All Caps         xx             18
 # "FreestyleScriptStd.otf"          Hand-written     xx             22
+# "Helenium W01 Regular"            All Caps         xx             18
 # "Lapidary 333 Bold Italic.otf"                     xx             16
 # "LaserLondon.ttf"                                  xx             26
 # "Lightfoot.ttf"                   All Caps         xx             26
@@ -597,6 +598,43 @@ class TitleTemplate16(TitleTemplate):
                      ColorType = LineColorType.SecondTitle,                     
                      AllCaps = True)
 
+# ONE OR TWO WORD TOP ROW
+# MEDIUM SECOND ROW
+# and the
+# MEDIUM THIRD ROW
+# Generators: 30
+class TitleTemplate17(TitleTemplate):
+    def __init__(self):
+        super().__init__(ID = 17)
+
+        # One large word top line
+        self.AddLine(OrderNum = 2,
+                     FontName = "Verona-ExtraBold.otf",
+                     FontMaxSize = 28,
+                     MaxRows = 1,
+                     ColorType = LineColorType.MainTitle,
+                     AllCaps = True)
+
+        # Medium long (1-2 lines) middle line
+        self.AddLine(OrderNum = 2,
+                     FontName = "Absinette W01 Regular.ttf",
+                     FontMaxSize = 15,
+                     MaxRows = 1,
+                     ColorType = LineColorType.SmallText)
+
+        # Small cursive trans
+        self.AddLine(OrderNum = 3,
+                     FontName = "Amaze.ttf",
+                     FontMaxSize = 11,
+                     MaxRows = 1,
+                     ColorType = LineColorType.MainTitle)
+
+        # Medium long (1-2 lines) middle line
+        self.AddLine(OrderNum = 4,
+                     FontName = "Absinette W01 Regular.ttf",
+                     FontMaxSize = 15,
+                     MaxRows = 1,
+                     ColorType = LineColorType.SmallText)
 
 class TitleTemplateSelector():
     def __init__(self):
