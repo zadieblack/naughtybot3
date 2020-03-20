@@ -898,18 +898,23 @@ class Generator20(Generator):
           
 class Generator21(Generator):
      # Pleasured by the Shape-Shifting Single Dad: A Nudist Secretary Story
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 21, Priority = 1)
+         self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ExclTemplateTags = ["lesbian", "women"] 
           
-          Master = char.MaleChar(bAddTheArticle = True, bAllowRelate = True)
+          Master = char.MaleChar(bAddTheArticle = True, bSplitArticle = True,
+                                 MaxChars = 30,
+                                 bAllowRelate = True)
           
-          sTweet = self.VerbsBy.GetWord()  + " By\n"
+          sTweet = self.VerbsBy.GetWord()  + "\nBy "
           sTweet += Master.Desc 
           
           return sTweet
