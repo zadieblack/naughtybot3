@@ -877,16 +877,18 @@ class Generator20(Generator):
             self.ExclTemplateTags = ["women","lesbian"]
         else:
         # gang bang
-            GangNotList = ["S.W.A.T."]
+            GangNotList = ["S.W.A.T.", "Millennial"]
+            GangExclList = [AttitudeMale, GenModMale, TypeModMale, 
+                            SkinHairColorMale, AgeAdjMale]
             if CoinFlip():
                 Gang = char.GangMaleChar(bAddAnArticle = False, MaxChars = 20,
                                          MaleCharType = MaleCharType.GangPlural,
-                                         NotList = GangNotList)
+                                         ExclList = GangExclList, NotList = GangNotList)
                 sTweet += "The " + Gang.Desc
             else:
                 Gang = char.GangMaleChar(bAddAnArticle = True, MaxChars = 20,
                                          MaleCharType = MaleCharType.GangSingular,
-                                         NotList = GangNotList)
+                                         ExclList = GangExclList, NotList = GangNotList)
                 sTweet += Gang.Desc
             
             self.ExclTemplateTags = ["women","lesbian","couple"] 
