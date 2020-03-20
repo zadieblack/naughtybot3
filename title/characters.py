@@ -811,8 +811,8 @@ class Character():
                 variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
                 sDesc = self.DescribeTemplateVariant(variant, bAddEndNoun = bAddEndNoun, NotList = NotList)
 
-            print("  -- Randomly selected template #" + str(SelCharTemplate.ID) + " [" + str(SelCharTemplate) + "]")
-            print("   --- It took " + str(iTryCounter) + " tries.\n")
+            #print("  -- Randomly selected template #" + str(SelCharTemplate.ID) + " [" + str(SelCharTemplate) + "]")
+            #print("   --- It took " + str(iTryCounter) + " tries.\n")
         NotList = NotList + SelCharTemplate.NotList 
 
         sDesc = self.DescribeTemplateVariant(variant, bAddEndNoun = bAddEndNoun, NotList = NotList)

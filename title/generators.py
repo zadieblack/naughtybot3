@@ -4640,7 +4640,7 @@ class Generator124(Generator):
                                    'Charlton Heston','Hugh Hefner','Yul Brynner','Carl Sagan','Yuri Gagarin','Jerry Lewis',
                                    'Benny Hill','Bob Ross','Joe DiMaggio','Don Knotts','Vincent Price','Adam West',
                                    'Frank Sinatra','Casey Kasem','Karl Marx','Jacques Cousteau','Salvador Dali',
-                                   'Bob Hope'])
+                                   'Bob Hope', 'Tupac Shakur', 'Muhammad Ali', 'Jimi Hendrix'])
           Verbs = WordList(['Plowed','Banged','Porked','Drilled','Humped','Made Love to','Nailed','Reamed',
                                 'Screwed','Shagged','Stuffed','Cream-pied','Ravished','Ate Out','Sixty-nined',
                                 'Boned',])

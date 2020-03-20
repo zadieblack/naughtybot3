@@ -865,7 +865,6 @@ class TypeModMale(WordList):
                'Heart-Throb',
                'Hipster',
                'Manly',
-               'Millennial',
                'Mysterious',
                'Naked',
                'Nudist',

@@ -50,11 +50,11 @@ def CalcTextSizeScore(sText):
 
 def GetBGImg(sFileName):
     BGImg = None 
-    #print("GetBGImg() Attemption to open file " + sFileName)
+
     try:
         BGImg = Image.open(COVER_PATH + sFileName).convert('RGBA')
     except IOError as e:
-        print("***ERROR***\nFile save failed in GetBGImg()\n" + e.strerror)
+        print("***ERROR***\nGetBGImg() Failed to open file " + COVER_PATH + sFileName + ":\n" + e.strerror)
      
     return BGImg
 
@@ -100,6 +100,7 @@ def CalcMinSpacerHeight(TitleBoxes):
     if len(TitleBoxes) > 2:
         for boxno, box in enumerate(TitleBoxes):
             (ascender, descender) = box.Font.getmetrics()
+            (ascender, descender) = (ascender * (box.SpacerPercent * .1), descender * (box.SpacerPercent * .1))
 
             # first title line, ignore descender
             if boxno == 0:
@@ -124,7 +125,7 @@ def CalcMinSpacerHeight(TitleBoxes):
     if iMinSpacerHeight > iMaxSpacerHeight:
         iMinSpacerHeight = iMaxSpacerHeight 
 
-    return iMinSpacerHeight
+    return round(iMinSpacerHeight, 2)
 
 def CalcMaxSpacerHeight(TitleBoxes):
     iMaxSpacerHeight = 0 
@@ -218,6 +219,7 @@ class TitleSection:
         self.DecreaseSizeBy = 3
         self.VertSepProp = 4
         self.TotalLineSpace = self.BoundingBoxHeight
+        self.SpacerPercent = 10
 
         self.Height = 0
         self.Width = 0
@@ -256,7 +258,10 @@ class TitleSection:
 
     def SetFont(self):
         #print(" - SetFont() for [" + self.Text + "]. Font is [" + self.FontName + "],  size = " + str(self.FontSize))
-        self.Font = ImageFont.truetype(FONT_PATH + self.FontName, size = round(int(self.FontSize * RESOLUTION)), index = 0)
+        try:
+            self.Font = ImageFont.truetype(FONT_PATH + self.FontName, size = round(int(self.FontSize * RESOLUTION)), index = 0)
+        except:
+            print("**ERROR** SetFont() failed to open font file " + FONT_PATH + self.FontName)
 
     def SetDimensions(self):
         ImgTxt = None 
@@ -298,20 +303,10 @@ class TitleSection:
 
                 line.StartXY = (start_x, start_y)
 
-                #print(" - Setting dimensions for line #" + str(iCount) + ": [" + line.Text + "]")
-                #print("  -- self.Height (top y coord) = " + str(self.Height))
-                #print("  -- (pad w, pad h) = " + str((pad_width, pad_height)))
-                #print("  -- top left coord (x, y) = " + str(( start_x, start_y)))
-                #print("  -- (adj W, adj H) = " + str((adj_width, adj_height))) 
-                #print("  -- (ascender, descender) = " + str((ascender, descender))) 
-                #print("  -- bottom right coord (x, y) = " + str((start_x + adj_width, start_y + adj_height)))
-                
-            self.Height = self.Height + ascender + descender
+            self.Height = self.Height + ((ascender + descender) * self.SpacerPercent *.1)
             if iCount < len(self.Lines) - 1:
                 self.Height = self.Height + int(round(descender * .4))
-                #print("  -- Adding self.LineSpace = " + str(self.LineSpace) + ", (self.LineSpace * 1/2) = " + str((self.LineSpace * .5)))
 
-        #print(" - Final self.Height value = " + str(self.Height))
 
     def DrawText(self, iTotalLineSpace = -1):
         if iTotalLineSpace >= 0:
@@ -341,6 +336,16 @@ class TitleSection:
 
         return bSuccess
 
+    def ShrinkSpacer(self, iStep):
+        bSuccess = False 
+
+        if self.SpacerPercent - iStep > 0:
+            self.SpacerPercent = self.SpacerPercent - iStep 
+            self.SetDimensions()
+            bSuccess = True
+
+        return bSuccess
+
     def DrawLines(self, draw, xOffset = 0, yOffset = 0):
         for lineno, line in enumerate(self.Lines):
             draw.text((line.StartXY[0] + xOffset, line.StartXY[1] + yOffset),
@@ -367,7 +372,7 @@ def CalcTotalBoxHeight(boxes, bNoSpaces = False):
         else:
             iTotalBoxHeight = iTotalBoxHeight + iSpacerHeight
 
-    return iTotalBoxHeight
+    return round(iTotalBoxHeight, 2)
 
 def CalcSpaceHeight(iMaxHeight, boxes):
     iSpaceHeight = 0
@@ -424,7 +429,6 @@ def CreateImg(ImgTxtGen):
 
         if BGImg is not None:
             # calculate vertical spacing of title bounded text boxes
-            #print("CreateImg() Init calculation of bounded text boxes.")
             xOffset = XOFFSET + width_offset
             yOffset = bg.TitleBoxTop_yOffset
             iTotalBoxHeight = 0
@@ -441,8 +445,9 @@ def CreateImg(ImgTxtGen):
 
             # 1. Attempt to fit title sections at max font sizes 
 
-            # 2. If title sections don't fit, use plain header background 
-            #    and try again.
+            # 2. If title sections WITHOUT SPACES are > the regular
+            #    template size, use plain header background 
+
                 iTotalBoxHeight = CalcTotalBoxHeight(TitleBoxes)
                 iTotalBoxHeightNoSpaces = CalcTotalBoxHeight(TitleBoxes, bNoSpaces = False)
 
@@ -451,36 +456,43 @@ def CreateImg(ImgTxtGen):
                     BGImg = bg.Image
                     #print(" - Switched to plain header background.")
 
-            # 3. If title sections don't fit, shrink fonts proportionately by 
-            #    1 and try again.
-                #print(" - iTotalHeight = " + str(iTotalBoxHeight) + ", bg.MaxHeight = " + str(bg.MaxHeight))
+            # 3. If title sections don't fit, EITHER: 
+            #    a. shrink all fonts by 1 and try again
+            #    b. shrink spacers by 1 and try again 
 
                 if iTotalBoxHeight > bg.MaxHeight:
                     bBreak = False 
-                    #print("- SetImage() Shrinking fonts proportionately.")
+
+                    bEvenLoop = False
                     while iTotalBoxHeight > bg.MaxHeight:
-                        #print(" -- iTotalBoxHeight = " + str(iTotalBoxHeight))
-                        #print(" -- bg.MaxHeight = " + str(bg.MaxHeight))
-                        for box in TitleBoxes:
-                            if not box.ShrinkText(1):
-                                bBreak = True
-                                break 
+                        if bEvenLoop:
+                            bEvenLoop = False
+
+                            # reduce font size
+                            for box in TitleBoxes:
+                                if not box.ShrinkText(1):
+                                    bBreak = True
+                                    break 
+                        else:
+                            bEvenLoop = True
+
+                            # reduce spacer size
+                            for box in TitleBoxes:
+                                if not box.ShrinkSpacer(1):
+                                    bBreak = True
+                                    break 
+
                         if bBreak:
                             break
                         iTotalBoxHeight = CalcTotalBoxHeight(TitleBoxes)
+                        iMinSpacerHeight = CalcMinSpacerHeight(TitleBoxes) 
 
                 #calculate the starting height
                 draw = ImageDraw.Draw(BGImg)
-
                 iyOffsetLine = bg.TitleBoxTop_yOffset + int(round((bg.TitleBoxBottom_yOffset - bg.TitleBoxTop_yOffset - iTotalBoxHeight) / 2))
             
-                #print("  -- Starting iyOffsetLine = " + str(iyOffsetLine))
-                #print(" - Drawing title sections")
                 # draw the text boxes
                 for boxno, box in enumerate(TitleBoxes):
-                    #print("  -- box.Text is [" + box.Text + "]")
-                    #print("  -- box.Height = " + str(box.Height))
-                    #print("  -- iyOffsetLine = " + str(iyOffsetLine))
                     box.DrawLines(draw, xOffset, iyOffsetLine)
                     iyOffsetLine = iyOffsetLine + box.Height + iMinSpacerHeight
 

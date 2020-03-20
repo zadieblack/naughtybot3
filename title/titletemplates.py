@@ -190,7 +190,7 @@ class TitleTemplate3(TitleTemplate):
         # Large short single-word top line
         self.AddLine(OrderNum = 1,
                      FontName = "Verona-ExtraBold.otf",
-                     FontMaxSize = 21,
+                     FontMaxSize = 23,
                      MaxRows = 1,
                      ColorType = LineColorType.MainTitle)
         
@@ -204,7 +204,7 @@ class TitleTemplate3(TitleTemplate):
         # Medium medium-length center line
         self.AddLine(OrderNum = 3,
                      FontName = "MutterKrauseNormal.ttf",
-                     FontMaxSize = 15,
+                     FontMaxSize = 17,
                      MaxRows = 2,
                      ColorType = LineColorType.SecondTitle)
 
@@ -218,7 +218,7 @@ class TitleTemplate3(TitleTemplate):
         # Medium medium-length bottom line
         self.AddLine(OrderNum = 5,
                      FontName = "Sabado Regular.otf",
-                     FontMaxSize = 17,
+                     FontMaxSize = 19,
                      MaxRows = 1,
                      ColorType = LineColorType.MainTitle,
                      AllCaps = True)
@@ -354,6 +354,7 @@ class TitleTemplate8(TitleTemplate):
 # SHORT TOP LINE
 # MEDIUM LINE
 # LONG TWO-ROW BOTTOM LINE
+# Generators: 124
 class TitleTemplate9(TitleTemplate):
     def __init__(self):
         super().__init__(ID = 9)
