@@ -920,29 +920,33 @@ class Generator21(Generator):
           return sTweet
           
 class Generator22(Generator):
-     # The Amish Virgin and the Taboo Butch MILF: A Lesbian Love Story 
-     # Pleasured by the Shape-Shifting Single Dad: A Nudist Secretary Story
-     Disabled = True
+    # The Amish Virgin and the Taboo Butch MILF: A Lesbian Love Story 
+    Disabled = False
 
-     def __init__(self):
-         super().__init__(ID = 22, Priority = 1)
+    def __init__(self):
+        super().__init__(ID = 22, Priority = 1)
+        self.Template = templates.TitleTemplate2()
+
+        self.ExclTemplateTags = ["gay", "straight", "man", "men"] 
      
-     def GenerateTweet(self):
-          super().GenerateTweet()
-          sTweet = ""
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
           
-          GirlGood = char.FemaleChar(TempType = TempType.Medium, Type = GirlType.Good, ExclList = [SpeciesFemale])
-          GirlLes = char.LesbianChar(ReqList = [LesFemaleAdj])
-          GirlBad = char.LesbianChar(ReqList = [LesFemaleAdj], Type = GirlType.Bad)
-
+        GirlGood = char.FemaleChar(TempType = TempType.Medium, Type = GirlType.Good, ExclList = [SpeciesFemale])
+         
+        if CoinFlip():
+            GirlLes = char.LesbianChar(MaxChars = 24, ReqList = [LesFemaleAdj])
+            sTweet = "The " + GirlGood.Desc + "\nand the\n" + GirlLes.Desc
+        else:
+            GirlBad = char.LesbianChar(MaxChars = 24, ReqList = [LesFemaleAdj], 
+                                       Type = GirlType.Bad)
+            sTweet = "The " + GirlGood.Desc + "\nand the\n" + GirlBad.Desc
+        
+        if CoinFlip() and CoinFlip():
+            sTweet += "\n" + WordList(["A Lesbian","A Secret Lesbian","A Taboo Lesbian","A Forbidden","An FF",]).GetWord() + " " + self.SubtitleCoda.GetWord()
           
-          if CoinFlip():
-               sTweet = "The " + GirlGood.Desc + "\nand the\n" + GirlLes.Desc
-          else:
-               sTweet = "The " + GirlGood.Desc + "\nand the\n" + GirlBad.Desc
-          sTweet += ":\n" + WordList(["A Lesbian","A Secret Lesbian","A Taboo Lesbian","A Forbidden","An FF",]).GetWord() + " " + self.SubtitleCoda.GetWord()
-          
-          return sTweet
+        return sTweet
           
 class Generator23(Generator):
      # The Boxer and the Gay Widowed Outlaw Daddy: A Forbidden Love Story 
