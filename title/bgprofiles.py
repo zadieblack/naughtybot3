@@ -1239,7 +1239,7 @@ class BGProfileValleyLake(BGProfile):
 class BGProfileIslandUndressing(BGProfile):
     def __init__(self):
         super().__init__(ID = 98,
-                           Priority = 40,
+                           Priority = 4,
                            sFileName = "island_undressing")
         self.MainTitleColor = "rgba(170, 8, 4, 255)"
         self.SecondTitleColor = "rgba(170, 8, 4, 255)"
@@ -1252,7 +1252,7 @@ class BGProfileIslandUndressing(BGProfile):
 class BGProfilePinUp(BGProfile):
     def __init__(self):
         super().__init__(ID = 99,
-                           Priority = 40,
+                           Priority = 4,
                            sFileName = "pin_up")
         self.MainTitleColor = "rgba(232, 36, 23, 255)"
         self.SecondTitleColor = "rgba(232, 36, 23, 255)"
@@ -1264,7 +1264,7 @@ class BGProfilePinUp(BGProfile):
 class BGProfileWindowVoyeur(BGProfile):
     def __init__(self):
         super().__init__(ID = 100,
-                           Priority = 40,
+                           Priority = 4,
                            sFileName = "window_voyeur")
         self.MainTitleColor = "rgba(195, 63, 47, 255)"
         self.SecondTitleColor = "rgba(25, 117, 164, 255)"
@@ -1277,17 +1277,75 @@ class BGProfileWindowVoyeur(BGProfile):
 class BGProfileInterracialThreesome(BGProfile):
     def __init__(self):
         super().__init__(ID = 101,
-                           Priority = 300,
+                           Priority = 3,
                            sFileName = "interracial_threesome")
         self.MainTitleColor = "rgba(57, 187, 210, 255)"
         self.SecondTitleColor = "rgba(201, 16, 113, 255)"
         self.SmallTextColor = "rgba(52, 49, 98, 255)"
-        self.SmallTextColor = "rgba(52, 49, 98, 255)"
+        self.AuthorNameColor = "rgba(52, 49, 98, 255)"
         self.Tags = ["woman","man","men","naked","indoors","kinky"]
         self.Content = Content.AdultsOnly
         self.Disabled = False
 
+class BGProfileDrMcChesty(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 102,
+                           Priority = 4,
+                           sFileName = "dr_mc_chesty")
+        self.MainTitleColor = "rgba(76, 136, 175, 255)"
+        self.SecondTitleColor = "rgba(223, 150, 89, 255)"
+        self.SmallTextColor = "rgba(155, 70, 159, 255)"
+        self.AuthorNameColor = "rgba(223, 150, 89, 255)"
+        self.Tags = ["woman","man","straight","couple","indoors"]
+        self.Disabled = False
 
+class BGProfileBadDoctor(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 103,
+                           Priority = 4,
+                           sFileName = "bad_doctor")
+        self.MainTitleColor = "rgba(217, 80, 66, 255)"
+        self.SecondTitleColor = "rgba(217, 80, 66, 255)"
+        self.SmallTextColor = "rgba(122, 120, 44, 255)"
+        self.AuthorNameColor = "rgba(122, 120, 44, 255)"
+        self.Tags = ["woman","man","straight","indoors"]
+        self.Disabled = False
+
+class BGProfileAutumnHeadband(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 104,
+                           Priority = 4,
+                           sFileName = "autumn_headband")
+        self.MainTitleColor = "rgba(233, 140, 2, 255)"
+        self.SecondTitleColor = "rgba(125, 99, 3, 255)"
+        self.SmallTextColor = "rgba(139, 106, 69, 255)"
+        self.AuthorNameColor = "rgba(125, 99, 3, 255)"
+        self.Tags = ["woman","man","straight","couple","outdoors"]
+        self.Disabled = False
+
+class BGProfileIndianPrincess(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 105,
+                           Priority = 4,
+                           sFileName = "indian_princess")
+        self.MainTitleColor = "rgba(218, 124, 1, 255)"
+        self.SecondTitleColor = "rgba(148, 39, 20, 255)"
+        self.SmallTextColor = "rgba(55, 74, 121, 255)"
+        self.AuthorNameColor = "rgba(148, 39, 20, 255)"
+        self.Tags = ["woman","man","straight","couple","outdoors"]
+        self.Disabled = False
+
+class BGProfileOrangeFromBehind(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 106,
+                           Priority = 40,
+                           sFileName = "orange_from_behind")
+        self.MainTitleColor = "rgba(243, 108, 1, 255)"
+        self.SecondTitleColor = "rgba(119, 141, 38, 255)"
+        self.SmallTextColor = "rgba(154, 91, 163, 255)"
+        self.AuthorNameColor = "rgba(154, 91, 163, 255)"
+        self.Tags = ["woman","man","straight","couple","outdoors"]
+        self.Disabled = False
 
 # this is for debugging bgprofile frequency. delete later.
 def indexof(list, searchobj):
