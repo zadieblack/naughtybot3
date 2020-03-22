@@ -1037,32 +1037,36 @@ class Generator25(Generator):
         return sTweet
           
 class Generator26(Generator):
-     # Hotwife for Daddy: A BDSM Romance 
-     # Pleasured by the Shape-Shifting Single Dad: A Nudist Secretary Story
-     Disabled = True
+    # Hotwife for Daddy: A BDSM Romance 
+    Disabled = False
 
-     def __init__(self):
-         super().__init__(ID = 21, Priority = 1)
+    def __init__(self):
+        super().__init__(ID = 26, Priority = 1)
+        self.Template = templates.TitleTemplate12()
      
-     def GenerateTweet(self):
-          super().GenerateTweet()
-          sTweet = ""
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
+
+        self.ExclTemplateTags = ["gay","men"]
+        self.ReqTemplaateTags = ["woman"]
           
-          Girl = char.FemaleChar(TempType = TempType.Medium, bAllowPregState = False, bAllowSexuality = False)
-          TabooWord = WordList(["A BDSM","An " + self._getFMs_(), "A Taboo", "A Forbidden", 
-                                     "A Forbidden", "A Naughty"]).GetWord()
-          SexActs = WordList(["anal", "double anal", "fisting","anal fisting","nipple play", "incest", "twincest",
-                                   "cum-swapping","bukkake","pee-drinking","hot-wifing","erotic asphyxiation",
-                                   "double penetration","triple penetration","B.D.S.M.","lactation","age play",
-                                   "edging","forced orgasm","deep-throating","choke play","extreme penetration",
-                                   "leather bondage","tea-bagging","full-frontal massage","enema","adulterous",
-                                   "pegging","butt stuff","sodomy","premarital sex","spanking","paddling"])
+        Girl = char.FemaleChar(TempType = TempType.Medium,
+                                ExclList = [PregState,SexualityFemale])
+        TabooWord = WordList(["A BDSM","An " + self._getFMs_(), "A Taboo", "A Forbidden", 
+                                    "A Forbidden", "A Naughty"]).GetWord()
+        SexActs = WordList(["anal", "double anal", "fisting","anal fisting","nipple play", "incest", "twincest",
+                                "cum-swapping","bukkake","pee-drinking","hot-wifing","erotic asphyxiation",
+                                "double penetration","triple penetration","B.D.S.M.","lactation","age play",
+                                "edging","forced orgasm","deep-throating","choke play","extreme penetration",
+                                "leather bondage","tea-bagging","full-frontal massage","enema","adulterous",
+                                "pegging","butt stuff","sodomy","premarital sex","spanking","paddling"])
           
-          sTweet = Girl.Desc + "\nFor Daddy:\n"
-          sTweet += AddArticles(SexActs.GetWord()).title() + " "
-          sTweet += self.SubtitleCoda.GetWord()
+        sTweet = Girl.Desc + " For Daddy\n"
+        sTweet += AddArticles(SexActs.GetWord()).title() + " "
+        sTweet += self.SubtitleCoda.GetWord()
           
-          return sTweet
+        return sTweet
           
 class Generator27(Generator):
      # The Shy Lesbian Gymnast Wore Black
