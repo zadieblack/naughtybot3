@@ -1020,9 +1020,11 @@ class Generator25(Generator):
         self.ExclTemplateTags = ["lesbian", "straight", "women", "woman"] 
           
         GayNotList = ['anal']
-        GayGuy = char.GayMaleChar(bAddTheArticle = True, sPosArticle = "His",
-                                  ReqList = [GayMaleAdj,DickCharMale], NotList = GayNotList)
-        GayGang = char.GangMaleChar(ExclList = [AttitudeMale])
+        GayGuy = char.MaleChar(bAddTheArticle = True, sPosArticle = "His",
+                               SelectTemplateID = 17,
+                               MaxChars = 20,NotList = GayNotList)
+        GayGang = char.GangMaleChar(MaxChars = 20, TempType = TempType.Medium,
+                                    ExclList = [AttitudeMale])
 
         if CoinFlip():
         # Gang

@@ -51,25 +51,26 @@ def CurateFavorites(iGen = 0, iMaxLen = 0):
                
         # If [q], quit.
             elif sInput.lower().strip() == "q":
-                dPerRejects = 100
-                if (iAddCount + iSkipCount) != 0:
-                    dPerRejects = round((Decimal(iSkipCount)/Decimal(iAddCount + iSkipCount))*100,2)
-                    
-                print("\nFavorited " + str(iAddCount) + ", rejected " + str(iSkipCount) + ". " + str(dPerRejects) + "% rejection rate.")
-
-                # before ending we may want to shuffle our favorited tweet file.
-                # prompt user.
-                sInput = input("\nShuffle favorited tweets? [y]es, [n]o: ")
-                if sInput.lower().strip() == "y":
-                    ShuffleFavs()
-
                 break
           
          # If [n], do nothing and loop.
             else:
                 iSkipCount += 1
                 print("Skipped.")
-               
+
+        dPerRejects = 100
+        if (iAddCount + iSkipCount) != 0:
+            dPerRejects = round((Decimal(iSkipCount)/Decimal(iAddCount + iSkipCount))*100,2)
+                    
+        print("\nFavorited " + str(iAddCount) + ", rejected " + str(iSkipCount) + ". " + str(dPerRejects) + "% rejection rate.")
+
+        # before ending we may want to shuffle our favorited tweet file.
+        # prompt user.
+        sInput = input("\nShuffle favorited tweets? [y]es, [n]o: ")
+        if sInput.lower().strip() == "y":
+            ShuffleFavs() 
+            
+
 Parser = argparse.ArgumentParser(prog='Curate',description='Curate favorite tweets.')
 Parser.add_argument('-gen', type=int, default=0, help='tweet text generator # to curate')
 Parser.add_argument('-maxlen', type=int, default=0, help='max chars of tweet text to generate')

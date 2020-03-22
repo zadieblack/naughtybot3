@@ -1352,6 +1352,22 @@ class MaleTemplate16(MaleCharTemplate):
                                    bpersonal = True,
                                    priority = 4)
 
+# Probably Gay Male Profession
+class MaleTemplate17(MaleCharTemplate):
+    def __init__(self):
+        super().__init__(     noun = ProfMale(),
+                                id = 17, 
+                                adjlist =      [CTEntry([GenModMale,GayMaleAdj],11),
+                                                CTEntry([GayMaleAdj],10),
+                                                CTEntry([PhysCharMale,DickCharMale],8),
+                                                CTEntry([TypeModMale,GayMaleAdj],6),
+                                                CTEntry([AgeAdjMale,MaritalStatusMale],5),
+                                                CTEntry([SkinHairColorMale,NationMale,RaceMale],3),
+                                                CTEntry([SpeciesMale],1)
+                                                ],
+                                priority = 4)
+        self.RequestOnly = True
+
 
 
 # Adjs:          GenModMale, AttitudeMale, ClothesMale, PhysCharMale, DickCharMale, TypeModMale,
