@@ -1006,35 +1006,33 @@ class Generator24(Generator):
           return sTweet
           
 class Generator25(Generator):
-     # Greg Gets Pounded In The Butt By The Motorcycle Gang
-     # Pleasured by the Shape-Shifting Single Dad: A Nudist Secretary Story
-     Disabled = True
+    # Pounded In The Butt By The Motorcycle Gang
+    Disabled = False
 
-     def __init__(self):
-         super().__init__(ID = 25, Priority = 1)
+    def __init__(self):
+        super().__init__(ID = 25, Priority = 1)
+        self.Template = templates.TitleTemplate1()
      
-     def GenerateTweet(self):
-          super().GenerateTweet()
-          sTweet = ""
-          
-          sHisName = PlainNamesMale().FirstName()
-          
-          GayNotList = ['anal']
-          GayGuy = char.GayMaleChar(bAddTheArticle = True, sPosArticle = "His", NotList = GayNotList,
-                                             ReqList = [GayMaleAdj,DickCharMale])
-          GayGang = char.GangMaleChar(ExclList = [AttitudeMale])
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
 
-          GayTitles = []
+        self.ExclTemplateTags = ["lesbian", "straight", "women", "woman"] 
           
-          GayTitles.append("Pounded In The Butt By\nThe Gay " + GayGang.Desc)
-          GayTitles.append("Pounded In The Butt By\n" + GayGuy.Desc)
-          GayTitles.append(sHisName + " Gets " + self.VerbsBy.GetWord(NotList=["Impregnated", "Hotwifed"]) + " By\n" + GayGuy.Desc)
-          GayTitles.append(sHisName + " and\n" + GayGuy.Desc)
+        GayNotList = ['anal']
+        GayGuy = char.GayMaleChar(bAddTheArticle = True, sPosArticle = "His",
+                                  ReqList = [GayMaleAdj,DickCharMale], NotList = GayNotList)
+        GayGang = char.GangMaleChar(ExclList = [AttitudeMale])
+
+        if CoinFlip():
+        # Gang
+            sTweet = "Pounded In The Butt\nBy\nThe " + GayGang.Desc
+        else:
+            sTweet = "Pounded In The Butt\nBy\n" + GayGuy.Desc
+        #GayTitles.append(sHisName + " Gets " + self.VerbsBy.GetWord(NotList=["Impregnated", "Hotwifed"]) + " By\n" + GayGuy.Desc)
+        #GayTitles.append(sHisName + " and\n" + GayGuy.Desc)
           
-          sTweet = GayTitles[randint(0, len(GayTitles) - 1)]
-          sTweet += ":\n" + WordList(["A Gay","A Secret","A Taboo Gay","A Gay", "An MM", "An MM","An Anal"]).GetWord() + " " + self.SubtitleCoda.GetWord()
-          
-          return sTweet
+        return sTweet
           
 class Generator26(Generator):
      # Hotwife for Daddy: A BDSM Romance 
