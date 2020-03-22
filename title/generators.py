@@ -897,7 +897,7 @@ class Generator20(Generator):
         return sTweet
           
 class Generator21(Generator):
-     # Pleasured by the Shape-Shifting Single Dad: A Nudist Secretary Story
+     # Pleasured by the Shape-Shifting Single Dad
      Disabled = False
 
      def __init__(self):
@@ -910,8 +910,8 @@ class Generator21(Generator):
 
           self.ExclTemplateTags = ["lesbian", "women"] 
           
-          Master = char.MaleChar(bAddTheArticle = True, bSplitArticle = True,
-                                 MaxChars = 30,
+          Master = char.MaleChar(bAddAnArticle = True, bSplitArticle = True,
+                                 sPosArticle = "His", MaxChars = 30,
                                  bAllowRelate = True)
           
           sTweet = self.VerbsBy.GetWord()  + "\nBy "

@@ -990,6 +990,24 @@ class ProfBlueCollarMale(WordList):
                'Tattoo Artist',
                'Trucker'])
 
+class ProfEducatorMale(WordList):
+     def __init__(self):
+          super().__init__(["Teacher",
+                            "Highschool Teacher",
+                            "Algebra Teacher",
+                            "Math Teacher",
+                            "English Teacher",
+                            "Science Teacher",
+                            "Gym Coach",
+                            "Math Tutor",
+                            "Professor",
+                            "College Professor",
+                            "Algebra Professor",
+                            "English Professor",
+                            "Principal",
+                            "Dean",
+                           ])
+
 class ProfWhiteCollarMale(WordList):
      def __init__(self):
           super().__init__(['Airline Pilot',
@@ -1107,20 +1125,22 @@ class ProfRockstarMale(WordList):
 class ProfMale(WordList):
      def __init__(self):
           super().__init__(ProfBlueCollarMale().GetWordList() + 
-                               ProfWhiteCollarMale().GetWordList() +
-                               ProfAthleteMale().GetWordList() +
-                               ProfFantasyMale().GetWordList() +
-                               ProfRockstarMale().GetWordList())
+                            ProfWhiteCollarMale().GetWordList() +
+                            ProfAthleteMale().GetWordList() +
+                            ProfFantasyMale().GetWordList() +
+                            ProfRockstarMale().GetWordList() +
+                            ProfEducatorMale().GetWordList())
                                
 class ProfNormalMale(WordList):
      def __init__(self):
           super().__init__(ProfBlueCollarMale().GetWordList() + 
-                               ProfWhiteCollarMale().GetWordList())
+                           ProfWhiteCollarMale().GetWordList() + 
+                           ProfEducatorMale().GetWordList())
 
 class ProfAspirationalMale(WordList):
      def __init__(self):
           super().__init__(ProfAthleteMale().GetWordList() + 
-                               ProfRockstarMale().GetWordList())
+                           ProfRockstarMale().GetWordList())
 
 class RaceMale(WordList):
      def __init__(self):

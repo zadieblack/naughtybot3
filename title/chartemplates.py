@@ -1268,7 +1268,8 @@ class MaleTemplate10(MaleCharTemplate):
                                                     CTEntry([ProfMale],1)
                                                   ],
                                    bpersonal = True,
-                                   priority = 0)
+                                   priority = 1)
+          RequestOnly = True
                                    
 # Big Black Male Profession
 class MaleTemplate11(MaleCharTemplate):
@@ -1292,7 +1293,8 @@ class MaleTemplate12(MaleCharTemplate):
                                                     CTEntry([TypeModMale],6),
                                                     CTEntry([AgeAdjMale,MaritalStatusMale],5)
                                                   ],
-                                   priority = 1)
+                                    bpersonal = True,
+                                    priority = 1)
                                    
 # Big Black Male Wealthy
 class MaleTemplate13(MaleCharTemplate):
@@ -1333,6 +1335,24 @@ class MaleTemplate15(MaleCharTemplate):
                                                   ],
                                    priority = 1)
           RequestOnly = True
+
+# Male Teacher 
+class MaleTemplate16(MaleCharTemplate):
+     def __init__(self):
+          super().__init__(     noun = ProfEducatorMale(),
+                                    id = 16, 
+                                    adjlist =      [CTEntry([GenModMale],8),
+                                                    CTEntry([AttitudeMale],6),
+                                                    CTEntry([ClothesMale],5),
+                                                    CTEntry([PhysCharMale],4),
+                                                    CTEntry([DickCharMale],3),
+                                                    CTEntry([SkinHairColorMale,NationMale,RaceMale],2),
+                                                    CTEntry([SpeciesMale],1)
+                                                  ],
+                                   bpersonal = True,
+                                   priority = 4)
+
+
 
 # Adjs:          GenModMale, AttitudeMale, ClothesMale, PhysCharMale, DickCharMale, TypeModMale,
 #               SkinHairColorMale, AgeAdjMale, MaritalStatusMale, NationMale

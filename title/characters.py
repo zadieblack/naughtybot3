@@ -551,7 +551,11 @@ class DickCharMale(MaleCharBit):
 class ProfBlueCollarMale(MaleCharBit):
      def __init__(self):
           super().__init__(titmisc.ProfBlueCollarMale())
-          
+ 
+class ProfEducatorMale(MaleCharBit):
+     def __init__(self):
+          super().__init__(titmisc.ProfEducatorMale())
+
 class ProfWhiteCollarMale(MaleCharBit):
      def __init__(self):
           super().__init__(titmisc.ProfWhiteCollarMale())
