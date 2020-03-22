@@ -11,7 +11,7 @@ import title.util as titutil
 import title.misc as titmisc
 import misc as misc
 
-MAX_CHARACTER_CHARBITS = 5
+MAX_CHARACTER_CHARBITS = 4
 MAX_VARIANT_TRIES = 200
 
 FemCBitHistoryQ = HistoryQ(10)

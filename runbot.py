@@ -13,25 +13,29 @@ def SetGetArgs():
      Parser.add_argument('-reddit', action='store_true', help='post generated tweets to reddit? (default is False)')
      Parser.add_argument('-favtweets', action='store_false', help='use curated fav tweets from file? (default is True)')
      Parser.add_argument('-local', action='store_false', help='running from local machine? (default is True)')
+     Parser.add_argument('-lustbot', action='store_true', help='run lust_bot only')
+     Parser.add_argument('-eebot', action='store_true', help='run ee_bot only')
      return Parser.parse_args()
                
 Args = SetGetArgs()     
 #print(Args)
 
-excerpt.lust_bot.InitBot(Args.tweettimer, 
+if not Args.eebot:
+    excerpt.lust_bot.InitBot(Args.tweettimer, 
+                             bTweet = Args.tweet, 
+                             iTweets = Args.numtweets, 
+                             bLoop = Args.loop, 
+                             iGeneratorNo = Args.test, 
+                             bRedditPost = Args.reddit,
+                             bLocal = Args.local)
+
+if not Args.lustbot:
+    title.ee_bot.InitBot(Args.tweettimer, 
                          bTweet = Args.tweet, 
                          iTweets = Args.numtweets, 
                          bLoop = Args.loop, 
                          iGeneratorNo = Args.test, 
-                         bRedditPost = Args.reddit,
+                         iTweetTxtNo = Args.testtweettxt, 
+                         bRedditPost = Args.reddit, 
+                         bAllowFavTweets = Args.favtweets,
                          bLocal = Args.local)
-
-title.ee_bot.InitBot(Args.tweettimer, 
-                     bTweet = Args.tweet, 
-                     iTweets = Args.numtweets, 
-                     bLoop = Args.loop, 
-                     iGeneratorNo = Args.test, 
-                     iTweetTxtNo = Args.testtweettxt, 
-                     bRedditPost = Args.reddit, 
-                     bAllowFavTweets = Args.favtweets,
-                     bLocal = Args.local)

@@ -20,12 +20,7 @@ def CurateFavorites(iGen = 0, iMaxLen = 0):
             sTxtLine = ""
             sOutput = ""
           
-            if iGen != 0:
-        # Create Titles for specific generator
-                ImgTxtGen = GetTweet(bTest = True, bTweet = False, iGeneratorNo = iGen, bAllowPromo = False, bAllowFavTweets = False, iMaxLen = iMaxLen)
-            else:
-        # Create Titles from random generators
-                ImgTxtGen = GetTweet(bTest = False, bTweet = False, iGeneratorNo = 0, bAllowPromo = False, bAllowFavTweets = False, iMaxLen = iMaxLen)
+            ImgTxtGen = GetTweet(bTest = True, bTweet = False, iGeneratorNo = iGen, bAllowPromo = False, bAllowFavTweets = False, iMaxLen = iMaxLen)
 
         # Get author 
             ImgTxtGen.AuthorName = AuthorBuilder(ImgTxtGen.AuthorGender)

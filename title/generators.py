@@ -948,47 +948,48 @@ class Generator22(Generator):
           
         return sTweet
           
+# NOTE: part of this was split off to generator 44
 class Generator23(Generator):
      # The Boxer and the Gay Widowed Outlaw Daddy: A Forbidden Love Story 
-     # Pleasured by the Shape-Shifting Single Dad: A Nudist Secretary Story
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 23, Priority = 1)
+         self.Template = templates.TitleTemplate2()
      
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ExclTemplateTags = ["lesbian", "straight", "women", "woman"] 
           
           sHisName = PlainNamesMale().FirstName()
 
-          GayTitles = []
+          StraightNotList = ["BDSM","taboo"]
           
-          StraightGuy = char.MaleChar(bAllowGang = False, ExclList = [SpeciesMale])
-          GayGuy1 = char.GayMaleChar(ReqList = [GayMaleAdj])
-          GayGuy2 = char.GayMaleChar(ReqList = [GayMaleAdj])
+          StraightGuy = char.MaleChar(TempType = TempType.Medium, 
+                                      bAllowGang = False, SelectTemplateID = 9,
+                                      ExclList = [DickCharMale, SpeciesMale, GenModMale, AttitudeMale],
+                                      NotList = StraightNotList)
+          GayGuy = char.GayMaleChar(MaxChars = 24, ReqList = [GayMaleAdj])
           
-          GayTitles.append("The " + StraightGuy.Desc + "\nand\nThe " + GayGuy1.Desc)
-          GayTitles.append("The " + GayGuy1.Desc + "\nand\nThe " + GayGuy2.Desc) 
-          GayTitles.append("The " + StraightGuy.Desc + "\nand\nThe " + GayGuy1.Desc)
-          GayTitles.append(sHisName + " and\nThe " + GayGuy1.Desc)
-          
-          sTweet = GayTitles[randint(0, len(GayTitles) - 1)]
-          sTweet += ":\n" + WordList(["A Gay","A Secret Gay","A Taboo","A Gay", "An MM", "An MM"]).GetWord() + " " + self.SubtitleCoda.GetWord()
+          sTweet = "The " + StraightGuy.Desc + "\nand\nThe " + GayGuy.Desc
+          #sTweet += ":\n" + WordList(["A Gay","A Secret Gay","A Taboo","A Gay", "An MM", "An MM"]).GetWord() + " " + self.SubtitleCoda.GetWord()
           
           return sTweet
           
 class Generator24(Generator):
      # Deep-Throating My Well-Hung Sumo-Wrestler Step-Dad
-     # Pleasured by the Shape-Shifting Single Dad: A Nudist Secretary Story
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 24, Priority = 1)
+         self.Template = templates.TitleTemplate16()
      
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+          self.ExclTemplateTags = ["lesbian", "straight", "women", "woman"] 
           
           Gerunds = WordList(['Bedding','Cuddling','Deep-Throating','Double-Teaming','Dry-Humping','Fellating','Going Down on',
                                    'Hooking Up With','Humping','Jerking Off','Licking','Pegging','Riding','Rimming','Shagging',
@@ -1114,7 +1115,6 @@ class Generator28(Generator):
           
 class Generator29(Generator):
      # Blackmailing My Step-Dad's Busty Ballerina
-     # Pleasured by the Shape-Shifting Single Dad: A Nudist Secretary Story
      Disabled = True
 
      def __init__(self):
@@ -1294,7 +1294,6 @@ class Generator31(Generator):
           
 class Generator32(Generator):
      #Stripping For My Best Friend's Cocky Coal-Miner Brother 
-     # Pleasured by the Shape-Shifting Single Dad: A Nudist Secretary Story
      Disabled = True
 
      def __init__(self):
@@ -1343,7 +1342,6 @@ class Generator32(Generator):
           
 class Generator33(Generator):
      #Milking Marie: A Pan-sexual Cheerleader Affair
-     # Pleasured by the Shape-Shifting Single Dad: A Nudist Secretary Story
      Disabled = True
 
      def __init__(self):
@@ -1364,7 +1362,6 @@ class Generator33(Generator):
 # Rimming the Uptight Librarian Futa
 # and her Mom
 class Generator34(Generator):
-     # Pleasured by the Shape-Shifting Single Dad: A Nudist Secretary Story
      Disabled = True
 
      def __init__(self):
@@ -1673,6 +1670,32 @@ class Generator43(Generator):
           
           return sTweet
           
+# NOTE: split off from Gen 23
+class Generator44(Generator):
+     # Frank and the Gay Widowed Outlaw Daddy: A Forbidden Love Story 
+     Disabled = False
+
+     def __init__(self):
+         super().__init__(ID = 44, Priority = 1)
+         self.Template = templates.TitleTemplate2()
+     
+     def GenerateTweet(self):
+          super().GenerateTweet()
+          sTweet = ""
+
+          self.ExclTemplateTags = ["lesbian", "straight", "women", "woman"] 
+          
+          sHisName = PlainNamesMale().FirstName()
+
+          GayTitles = []
+          
+          StraightGuy = char.MaleChar(bAllowGang = False, ExclList = [SpeciesMale])
+          GayGuy = char.GayMaleChar(ReqList = [GayMaleAdj])
+          
+          sTweet = sHisName + "\nand\nThe " + GayGuy.Desc
+
+          return sTweet
+
 # class Generator44(Generator):
      # # The Amish French Maid Goes Dogging 
      # ID = 44

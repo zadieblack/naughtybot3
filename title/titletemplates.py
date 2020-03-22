@@ -507,8 +507,7 @@ class TitleTemplate14(TitleTemplate):
                      ColorType = LineColorType.SecondTitle,
                      AllCaps = True)
 
-# Top Line: I'M
-# Short Top Line: HAVING A BABY FOR
+# Top Line: I'm Having a Baby for
 # LONG TWO-ROW BOTTOM LINE
 class TitleTemplate15(TitleTemplate):
     def __init__(self):
@@ -521,15 +520,8 @@ class TitleTemplate15(TitleTemplate):
                      MaxRows = 1,
                      ColorType = LineColorType.MainTitle)
 
-        # Short very large top line
-        #self.AddLine(OrderNum = 2,
-        #             FontName = "Coventry Garden NF.ttf",
-        #             FontMaxSize = 18,
-        #             MaxRows = 1,
-        #             ColorType = LineColorType.MainTitle)
-
         # One or two-line medium-sized bottom line
-        self.AddLine(OrderNum = 3,
+        self.AddLine(OrderNum = 2,
                      FontName = "Verona-ExtraBold.otf",
                      FontMaxSize = 18,
                      MaxRows = 2,
@@ -539,7 +531,7 @@ class TitleTemplate15(TitleTemplate):
 # Medium Top Line
 # Large Middle Line
 # Small Bottom Line
-# Templates: 7
+# Generators: 14, 24, 40
 class TitleTemplate16(TitleTemplate):
     def __init__(self):
         super().__init__(ID = 16)
