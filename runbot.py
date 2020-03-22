@@ -16,12 +16,16 @@ def SetGetArgs():
      return Parser.parse_args()
                
 Args = SetGetArgs()     
-print(Args)
+#print(Args)
 
-#print("*Running LustBot...*")
-#excerpt.lust_bot.InitBot(Args.tweettimer, bTweet = Args.tweet, iTweets = Args.numtweets, bLoop = Args.loop, iGeneratorNo = Args.test, bRedditPost = Args.reddit)
+excerpt.lust_bot.InitBot(Args.tweettimer, 
+                         bTweet = Args.tweet, 
+                         iTweets = Args.numtweets, 
+                         bLoop = Args.loop, 
+                         iGeneratorNo = Args.test, 
+                         bRedditPost = Args.reddit,
+                         bLocal = Args.local)
 
-print("*Running erotica_ebooks...*")
 title.ee_bot.InitBot(Args.tweettimer, 
                      bTweet = Args.tweet, 
                      iTweets = Args.numtweets, 

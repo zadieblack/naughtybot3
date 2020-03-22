@@ -46,10 +46,13 @@ def BookTitleBuilder(maxlen = None):
           
      if not isinstance(maxlen, int):
           maxlen = MAX_EXCERPT_BOOKTITLE_LEN
-          
-     sTitle = GetTweet(bTest = False, bTweet = False, bAllowPromo = False, bAllowFavTweets = False)
+         
+     sTitle = ""
+     gen = GetTweet(bTest = False, bTweet = False, bAllowPromo = False, bAllowFavTweets = False)
+     sTitle = gen.ImgTxt
      while len(sTitle) > maxlen:
-          sTitle = GetTweet(bTest = False, bTweet = False, bAllowPromo = False, bAllowFavTweets = False)
+          gen = GetTweet(bTest = False, bTweet = False, bAllowPromo = False, bAllowFavTweets = False)
+          sTitle = gen.ImgTxt
           
      sTitle = sTitle.replace('\n',' ').replace(':',' - ').replace('\"','')
      sTitle = sTitle.replace('  ',' ') #remove double spaces

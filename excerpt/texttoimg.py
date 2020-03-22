@@ -9,7 +9,7 @@ from util import *
 
 PATH = "excerpt/resources/"
 FONT = "NoticiaText-Regular.ttf"
-MAX_IMG_NUM = 86
+MAX_IMG_NUM = 74
 
 BGImgQ = HistoryQ(iQSize = 50)
 

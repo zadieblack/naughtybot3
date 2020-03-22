@@ -83,7 +83,7 @@ def InitBot(iTweetTimer,
                 image = CreateImg(ImgTxtGen)
 
                 if bLocal:
-                    image.save(titutil.TESTIMAGE_PATH + GenerateFileName(), format = 'jpeg', quality = 'high')
+                    image.save(titutil.TESTIMAGE_PATH + "eebot_" + GenerateFileName(), format = 'jpeg', quality = 'high')
                 else:
                     status = None
                          
@@ -104,12 +104,12 @@ def InitBot(iTweetTimer,
             i += 1
 
     except IOError as e:
-        print("*** ERROR in ee_bot() ***\nFile IO Error: " + e.strerror)
+        print("*** ERROR in ee_bot() ***\nFile IO Error: " + str(e))
     except KeyboardInterrupt:
         print("Ending program ...")
     #except:
     #    print("*** ERROR in ee_bot() ***\n" + str(sys.exc_info()[0]))
      
-    print("***Goodbye***")
+    print("\n***Goodbye***\n")
 
 

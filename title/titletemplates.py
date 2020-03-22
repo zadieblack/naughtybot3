@@ -11,7 +11,7 @@ from util import *
 # "Adorable MLSJN.ttf"              Script           xx             16
 # "Amaze.ttf"                       Script           xx             12
 # "Babes In Toyland NF.ttf"         All Caps         xx             23
-# "CELTG__.ttf""                    Old English      xx             24
+# "CelticGaramond.ttf"              Old English      xx             24
 # "Coventry Garden NF.ttf"          All Caps         xx             18
 # "FreestyleScriptStd.otf"          Hand-written     xx             22
 # "Helenium W01 Regular"            All Caps         xx             18
@@ -19,9 +19,9 @@ from util import *
 # "LaserLondon.ttf"                                  xx             26
 # "Lightfoot.ttf"                   All Caps         xx             26
 # "MutterKrauseNormal.ttf"                           xx             16
-# "OLDENGL.ttf"                     Old English      xx             24
+# "oldengl.ttf"                     Old English      xx             24
 # "PerpetuaStd.otf"                 All Caps         xx             19
-# "POORICH.ttf"                                      xx             12
+# "poorrichard.ttf"                                  xx             12
 # "Quaint Gothic SG OT Regular.ttf" All Caps         xx             20
 # "Sabado Regular.otf"              Small Caps       xx             18
 # "TestarossaNF.ttf"                All Caps                        24
@@ -265,7 +265,7 @@ class TitleTemplate5(TitleTemplate):
 
         # Large single word or short top line (medieval)
         self.AddLine(OrderNum = 1,
-                     FontName = "CELTG__.ttf",
+                     FontName = "CelticGaramond.ttf",
                      FontMaxSize = 24,
                      MaxRows = 1,
                      ColorType = LineColorType.MainTitle,
@@ -280,7 +280,7 @@ class TitleTemplate5(TitleTemplate):
 
         # Large medium-length bottom line (medieval)
         self.AddLine(OrderNum = 3,
-                     FontName = "OLDENGL.ttf",
+                     FontName = "oldengl.ttf",
                      FontMaxSize = 22,
                      MaxRows = 1,
                      ColorType = LineColorType.SecondTitle)

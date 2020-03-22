@@ -8,7 +8,7 @@ from title.util import Content
 
 BGLOGFILEPATH = "title/"
 BGLOGFILENAME = "bghistory_q.txt"
-BGQSIZE = 15
+BGQSIZE = 20
 MAXTRIES = 500
 
 ProfileHistoryQ = HistoryQWithLog(BGLOGFILEPATH + BGLOGFILENAME, BGQSIZE)

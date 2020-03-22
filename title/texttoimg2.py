@@ -192,10 +192,13 @@ def WrapText(sText, font, max_line_width):
 def CalcBoxHeight(sFontName, iMaxFontSize, iMaxRows, Color = (0,0,0,255)):
     iBoxHeight = 0
 
-    Font = ImageFont.truetype(FONT_PATH + sFontName, size = iMaxFontSize, index = 0)
-    iLineHeight = GetTextLineSize(Font,"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")[1]
+    try:
+        Font = ImageFont.truetype(FONT_PATH + sFontName, size = iMaxFontSize, index = 0)
+        iLineHeight = GetTextLineSize(Font,"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")[1]
 
-    iBoxHeight = (iLineHeight * iMaxRows) + (int(round(iLineHeight/VERT_SEP_PROP)) * (iMaxRows - 1))
+        iBoxHeight = (iLineHeight * iMaxRows) + (int(round(iLineHeight/VERT_SEP_PROP)) * (iMaxRows - 1))
+    except OSError as e:
+            print("**ERROR** CalcBoxHeight() failed to open font file " + FONT_PATH + sFontName + ". OSError: " + str(e))
 
     return iBoxHeight 
 
@@ -260,8 +263,8 @@ class TitleSection:
         #print(" - SetFont() for [" + self.Text + "]. Font is [" + self.FontName + "],  size = " + str(self.FontSize))
         try:
             self.Font = ImageFont.truetype(FONT_PATH + self.FontName, size = round(int(self.FontSize * RESOLUTION)), index = 0)
-        except:
-            print("**ERROR** SetFont() failed to open font file " + FONT_PATH + self.FontName)
+        except OSError as e:
+            print("**ERROR** SetFont() failed to open font file " + FONT_PATH + self.FontName + ". OSError: " + str(e))
 
     def SetDimensions(self):
         ImgTxt = None 
