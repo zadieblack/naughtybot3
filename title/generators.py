@@ -1399,10 +1399,11 @@ class Generator33(Generator):
 # Rimming the Uptight Librarian Futa
 # and her Mom
 class Generator34(Generator):
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 34, Priority = 1)
+         self.Template = templates.TitleTemplate14()
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1412,10 +1413,10 @@ class Generator34(Generator):
           
           Girl = char.FemaleChar(Type = GirlType.Good, TempType = TempType.Medium, bAddTheArticle = True,
                                         bAllowPregState = False)
-          sTweet = sVerb + " " + Girl.Desc
-          
+          sTweet = sVerb + "\n" + Girl.Desc           
           sTweet += "\nand her " + WordList(['Mother', 'Step-Mom', 'Step-Daughter', 'Daughter', 'Sister', 
                                                        'Twin Sister', 'Best Friend', 'Lesbian Lover', 'Mom']).GetWord()
+          sTweet += "!"
 
           return sTweet
           

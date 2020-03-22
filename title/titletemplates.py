@@ -485,7 +485,6 @@ class TitleTemplate13(TitleTemplate):
 
 # ADJ1 & ADJ2
 # TWO OR EVEN THREE ROW
-# BOTTOM LINE
 # Generators: 30
 class TitleTemplate14(TitleTemplate):
     def __init__(self):
@@ -506,6 +505,13 @@ class TitleTemplate14(TitleTemplate):
                      MaxRows = 3,
                      ColorType = LineColorType.SecondTitle,
                      AllCaps = True)
+
+        # Small medium-length tag (excited!)
+        self.AddLine(OrderNum = 3,
+                     FontName = "FreestyleScriptStd.otf",
+                     FontMaxSize = 17,
+                     MaxRows = 1,
+                     ColorType = LineColorType.SmallText)
 
 # Top Line: I'm Having a Baby for
 # LONG TWO-ROW BOTTOM LINE
