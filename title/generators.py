@@ -1376,20 +1376,23 @@ class Generator32(Generator):
           
 class Generator33(Generator):
      #Milking Marie: A Pan-sexual Cheerleader Affair
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 33, Priority = 1)
+         self.Template = templates.TitleTemplate14()
      
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ReqTemplateTags = ["woman"]
           
           sVerb = self.Gerunds.GetWord()
           
-          Girl = char.FemaleChar(bAddAnArticle = True, sPosArticle = "My")
-          sTweet = sVerb + " " + self.HerName + ":\n"
-          sTweet += Girl.Desc + "\n" + self.SubtitleCoda.GetWord()
+          Girl = char.FemaleChar(MaxChars = 24)
+          sTweet = sVerb + " " + self.HerName + "\n"
+          sTweet += AddArticles(Girl.Desc) + " " + self.SubtitleCoda.GetWord()
 
           return sTweet
           
