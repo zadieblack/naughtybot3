@@ -1347,7 +1347,7 @@ class BGProfileOrangeFromBehind(BGProfile):
         self.Tags = ["woman","man","straight","couple","outdoors"]
         self.Disabled = False
 
-class BGProfilecABINfEVER(BGProfile):
+class BGProfileCabinFever(BGProfile):
     def __init__(self):
         super().__init__(ID = 107,
                            Priority = 40,
@@ -1359,7 +1359,17 @@ class BGProfilecABINfEVER(BGProfile):
         self.Tags = ["woman","man","straight","couple","outdoors"]
         self.Disabled = False
 
-
+class BGProfileCensorEagle(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 108,
+                           Priority = 40,
+                           sFileName = "censor_eagle")
+        self.MainTitleColor = "rgba(233, 109, 51, 255)"
+        self.SecondTitleColor = "rgba(233, 109, 51, 255)"
+        self.SmallTextColor = "rgba(105, 168, 213, 255)"
+        self.AuthorNameColor = "rgba(105, 168, 213, 255)"
+        self.Tags = ["man","outdoors"]
+        self.Disabled = False
 
 
 # this is for debugging bgprofile frequency. delete later.
