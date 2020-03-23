@@ -5536,7 +5536,32 @@ class Generator142(Generator):
           sTweet += "Make a Porno\n"
           sTweet += "with " + Num.GetWord() + " " + MaleGang.Desc 
           
-          return sTweet          
+          return sTweet   
+      
+class Generator143(Generator):
+    Disabled = False 
+    def __init__(self):
+        super().__init__(ID = 143, Priority = 1)
+        self.Template = templates.TitleTemplate8()
+     
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
+
+        self.ReqTemplateTags = ["couple","straight"]
+
+        Verbs = WordList(["Banged","Boinked","Boned","Creamed",
+                            "Did","Drilled","Fingered","Fucked",
+                            "Humped","Porked","Rimmed","Stuffed"
+                        ])
+        FemRelations = WordList(["Best Friend","Daughter","Friend","Mom","Mom",
+                                 "Sister","Step-Mom","Step-Sister",
+                                 "Twin Sister"])   
+
+        sTweet += "“Honey, I " + Verbs.GetWord() + " "
+        sTweet += "Your " + FemRelations.GetWord() + "!\""
+
+        return sTweet     
 
 # Testing innuendo name generators          
 class Generator999(Generator):
