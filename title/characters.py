@@ -106,140 +106,142 @@ class CTEntry():
      
 #MAX_CHARACTER_CHARBITS = 5
 class CharTemplate():
-     def entry_key(self,entry):
-          return entry.OrderNo
+    def entry_key(self,entry):
+        return entry.OrderNo
           
-     def __init__(self, noun, 
-                            id = 0, 
-                            adjlist = [], 
-                            gen = Gender.Neuter, 
-                            priority = 1, 
-                            bpersonal = False,
-                            NotList = None):
-          #print("CharTemplate started")
-          if NotList is None:
-               NotList = []
+    def __init__(self, noun = None, 
+                id = 0, 
+                adjlist = [], 
+                gen = Gender.Neuter, 
+                priority = 1, 
+                bpersonal = False,
+                NotList = None):
+
+        if noun is None:
+            noun = CharBit("")
+        if NotList is None:
+            NotList = []
                
-          self.Gender = gen 
-          self.ID = id
-          self.Priority = priority
-          self.NotList = NotList
-          self.RequestOnly = False
+        self.Gender = gen 
+        self.ID = id
+        self.Priority = priority
+        self.NotList = NotList
+        self.RequestOnly = False
           
-          noun.SetNoun()
-          self.Noun = noun
+        noun.SetNoun()
+        self.Noun = noun
           
-          #adjlist.sort(key = self.entry_key)
-          self._AdjList = []
-          i = 0
-          while i < len(adjlist):
-               adjlist[i].priority = i
-               self._AdjList.append(adjlist[i])
-               i = i + 1
+        #adjlist.sort(key = self.entry_key)
+        self._AdjList = []
+        i = 0
+        while i < len(adjlist):
+            adjlist[i].priority = i
+            self._AdjList.append(adjlist[i])
+            i = i + 1
           
-          #self._AdjList = adjlist 
+        #self._AdjList = adjlist 
           
-          if bpersonal:
-               self.IsPersonal = True
-          else:
-               self.IsPersonal = False 
+        if bpersonal:
+            self.IsPersonal = True
+        else:
+            self.IsPersonal = False 
      
-     def GetShortVariant(self):
-          variant = []
-          variant.append(self.Noun)
-          return variant
+    def GetShortVariant(self):
+        variant = []
+        variant.append(self.Noun)
+        return variant
                
-     def GetMediumVariant(self):
-          variant = []
-          if isinstance(self._AdjList, list):
-               if len(self._AdjList) > 1:
-                    variant.append(self.Noun)
-                    variant.append(choice(self._AdjList).PickOne(NotList = self.NotList))
+    def GetMediumVariant(self):
+        variant = []
+        if isinstance(self._AdjList, list):
+            if len(self._AdjList) > 1:
+                variant.append(self.Noun)
+                variant.append(choice(self._AdjList).PickOne(NotList = self.NotList))
                     
-               else:
-                    variant.append(GetShortVariant())
+            else:
+                variant.append(self.GetShortVariant())
                     
-          variant.reverse()
+        variant.reverse()
           
-          return variant
+        return variant
                
-     def GetFloweryVariant(self):
-          variant = []
-          if isinstance(self._AdjList, list):
-               if len(self._AdjList) > 2:
-                    iMaxCharbits = MAX_CHARACTER_CHARBITS - 1               #get the max allowed charbits in one description string
-                    if len(self._AdjList) < MAX_CHARACTER_CHARBITS:
-                         iMaxCharbits = len(self._AdjList) - 1
-                    #print("CharTemplate.GetFloweryVariant() iMaxCharbits = " + str(iMaxCharbits))
+    def GetFloweryVariant(self):
+        variant = []
+        if isinstance(self._AdjList, list):
+            if len(self._AdjList) > 2:
+                iMaxCharbits = MAX_CHARACTER_CHARBITS - 1               #get the max allowed charbits in one description string
+                if len(self._AdjList) < MAX_CHARACTER_CHARBITS:
+                        iMaxCharbits = len(self._AdjList) - 1
+                #print("CharTemplate.GetFloweryVariant() iMaxCharbits = " + str(iMaxCharbits))
                     
-                    iTotal = randint(2,iMaxCharbits)                         #pick a number >= the max but > short or medium variants 
-                    #print("CharTemplate.GetFloweryVariant() iTotal = " + str(iTotal))
+                iTotal = randint(2,iMaxCharbits)                         #pick a number >= the max but > short or medium variants 
+                #print("CharTemplate.GetFloweryVariant() iTotal = " + str(iTotal))
 
-                                                                                     #get a random selection from the adjectives list,sort
-                    selections = sorted(sample(self._AdjList, k = iTotal), key = self.entry_key, reverse = True)
+                                                                                    #get a random selection from the adjectives list,sort
+                selections = sorted(sample(self._AdjList, k = iTotal), key = self.entry_key, reverse = True)
                     
-                    for item in selections:                                        #append to variant, selecting one option at random if there are 
-                         variant.append(item.PickOne(NotList = self.NotList))     #  multiple options for the same order #
-                    variant.append(self.Noun)                                   #get the noun
-               else:
-                    variant = self.GetMediumVariant()
+                for item in selections:                                        #append to variant, selecting one option at random if there are 
+                        variant.append(item.PickOne(NotList = self.NotList))     #  multiple options for the same order #
+                variant.append(self.Noun)                                   #get the noun
+            else:
+                variant = self.GetMediumVariant()
           
-          return variant
+        return variant
                
-     def GetDesc(self, temptype = TempType.Flowery):
-          sDesc = ""
-          variant = None
+    def GetDesc(self, temptype = TempType.Flowery):
+        sDesc = ""
+        variant = None
 
-          if temptype == TempType.Short:
-               variant = self.GetShortVariant()
-          elif temptype == TempType.Medium:
-               variant = self.GetMediumVariant()
-          else:
-               variant = self.GetFloweryVariant()
+        if temptype == TempType.Short:
+            variant = self.GetShortVariant()
+        elif temptype == TempType.Medium:
+            variant = self.GetMediumVariant()
+        else:
+            variant = self.GetFloweryVariant()
           
-          sNoun = variant[len(variant) - 1].Get(NotList = self.NotList)
-          self.NotList.append(re.findall(r"[\w']+", sNoun))
-          for charbit in variant[:-1]:
-               #print("CharTemplate.GetDesc() charbit is " + str(charbit))
-               if sDesc != "":
-                    sDesc += " "
-               sAdj = charbit.Get(NotList = self.NotList)
-               for s in re.findall(r"[\w']+",sAdj):
-                    self.NotList.append(s)
-               sDesc += sAdj
-          if sDesc != "":
-               sDesc += " " 
-          sDesc += sNoun 
+        sNoun = variant[len(variant) - 1].Get(NotList = self.NotList)
+        self.NotList.append(re.findall(r"[\w']+", sNoun))
+        for charbit in variant[:-1]:
+            #print("CharTemplate.GetDesc() charbit is " + str(charbit))
+            if sDesc != "":
+                sDesc += " "
+            sAdj = charbit.Get(NotList = self.NotList)
+            for s in re.findall(r"[\w']+",sAdj):
+                self.NotList.append(s)
+            sDesc += sAdj
+        if sDesc != "":
+            sDesc += " " 
+        sDesc += sNoun 
                
-          #print("Final NotList is " + str(self.NotList))
-          return sDesc
+        #print("Final NotList is " + str(self.NotList))
+        return sDesc
           
-     def HasCharBit(self, charbits):
-          bHasCharBit = False 
+    def HasCharBit(self, charbits):
+        bHasCharBit = False 
           
-          if isinstance(charbits, CharBit):
-               charbits = [charbit()]
+        if isinstance(charbits, CharBit):
+            charbits = [charbit()]
 
-          if isinstance(charbits, list):
-               for checkitem in charbits:
-                    checknoun = None
-                    if isinstance(self.Noun, CTEntry):
-                         checknoun = self.Noun.CharBit 
-                    else:
-                         checknoun = self.Noun 
-                    #print("CharTemplate: Checking excluded class \"" + str(checkitem.__class__) + "\" against template Noun, \"" + str(checknoun.__class__) + "\"\n")
-                    if checkitem.__class__ == checknoun.__class__:
-                         bHasCharBit = True 
-                         #print("==<< CharTemplate: Excluded noun match found! >>==\n")
-                         break 
-                    for myitem in self._AdjList:
-                         #print("CharTemplate: Checking excluded class \"" + str(checkitem.__class__) + "\" against adj, \"" + str(myitem.__class__) + "\"")
-                         if myitem.HasCharBit(checkitem):
-                              bHasCharBit = True 
-                              #print("==<< CharTemplate: Excluded adjective match found! >>==\n")
-                              break
-          #print("CharTemplate returning " + str(bHasCharBit))
-          return bHasCharBit
+        if isinstance(charbits, list):
+            for checkitem in charbits:
+                checknoun = None
+                if isinstance(self.Noun, CTEntry):
+                        checknoun = self.Noun.CharBit 
+                else:
+                        checknoun = self.Noun 
+                #print("CharTemplate: Checking excluded class \"" + str(checkitem.__class__) + "\" against template Noun, \"" + str(checknoun.__class__) + "\"\n")
+                if checkitem.__class__ == checknoun.__class__:
+                        bHasCharBit = True 
+                        #print("==<< CharTemplate: Excluded noun match found! >>==\n")
+                        break 
+                for myitem in self._AdjList:
+                        #print("CharTemplate: Checking excluded class \"" + str(checkitem.__class__) + "\" against adj, \"" + str(myitem.__class__) + "\"")
+                        if myitem.HasCharBit(checkitem):
+                            bHasCharBit = True 
+                            #print("==<< CharTemplate: Excluded adjective match found! >>==\n")
+                            break
+        #print("CharTemplate returning " + str(bHasCharBit))
+        return bHasCharBit
 
 class FemCharTemplate(CharTemplate):
      def __init__(self, noun, 
@@ -657,6 +659,7 @@ class Character():
           
         self.Desc = ""
         self.Gender = Gender.Neuter
+        self.TemplateList = []
           
     def GetWordList(self):
      
@@ -665,15 +668,19 @@ class Character():
     def BuildTemplateList(self):
         pass
      
-    def GetVariantFromTemplate(self, Template, TempType):
+    def GetVariantFromTemplate(self, Template, TempType = None):
         variant = None 
 
-        if TempType == TempType.Short:
-            variant = Template.GetShortVariant()
-        elif TempType == TempType.Medium:
-            variant = Template.GetMediumVariant()
-        else:
-            variant = Template.GetFloweryVariant()
+        if TempType is None:
+            TemptType = TempType.Short
+
+        if not Template is None:
+            if TempType == TempType.Short:
+                variant = Template.GetShortVariant()
+            elif TempType == TempType.Medium:
+                variant = Template.GetMediumVariant()
+            else:
+                variant = Template.GetFloweryVariant()
                
         return variant 
           
@@ -743,19 +750,20 @@ class Character():
                
             return sDesc
                
-    def SetCharDesc(self, TemplateList, 
-                            ReqList = [],
-                            ExclList = [], 
-                            TempType = TempType.Flowery,
-                            GirlType = GirlType.Neutral,
-                            NotList = None, 
-                            bAddEndNoun = True, 
-                            bAddAnArticle = False, 
-                            bAddTheArticle = False, 
-                            sPosArticle = "My",
-                            bSplitArticle = False,
-                            SelectTemplateID = 0,
-                            MaxChars = 9999):     
+    def SetCharDesc(self, 
+                    TemplateList, 
+                    ReqList = [],
+                    ExclList = [], 
+                    TempType = TempType.Flowery,
+                    GirlType = GirlType.Neutral,
+                    NotList = None, 
+                    bAddEndNoun = True, 
+                    bAddAnArticle = False, 
+                    bAddTheArticle = False, 
+                    sPosArticle = "My",
+                    bSplitArticle = False,
+                    SelectTemplateID = 0,
+                    MaxChars = 9999):     
         SelCharTemplate = None 
         variant = None
         iTryCounter = 1
@@ -772,8 +780,8 @@ class Character():
                     if item.ID == SelectTemplateID:
                         break
                               
-                if SelCharTemplate is None:
-                        SelCharTemplate = TemplateList[0]
+                if SelCharTemplate is None and not len(TemplateList) == 0:
+                    SelCharTemplate = TemplateList[0]
                 #print("  -- Was given SelectTemplateID = " + str(SelectTemplateID) + ", got template #" + str(SelCharTemplate.ID) + " [" + str(SelCharTemplate) + "]")
           
                 variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
@@ -800,21 +808,28 @@ class Character():
                             pass
                             #print("  -- item.Noun [" + str(item.Noun) + "] is NOT the type of excluded charbit [" + str(excl) + "]. Doing nothing.")
             
-            SelCharTemplate = choice(TemplateList) 
-            variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
-            sDesc = self.DescribeTemplateVariant(variant, bAddEndNoun = bAddEndNoun, NotList = NotList)
+            if len(TemplateList) > 0:
+                SelCharTemplate = choice(TemplateList) 
 
-            while ((not self.DoesVariantMeetReqs(variant, ReqList) \
-                    or self.IsVariantExcluded(variant, ExclList)) \
-                    and iTryCounter < MAX_VARIANT_TRIES) \
-                    or len(sDesc) > MaxChars:
-                SelCharTemplate = choice(TemplateList)
-                    
-                iTryCounter = iTryCounter + 1
-                    
                 variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
                 sDesc = self.DescribeTemplateVariant(variant, bAddEndNoun = bAddEndNoun, NotList = NotList)
 
+                while ((not self.DoesVariantMeetReqs(variant, ReqList) \
+                        or self.IsVariantExcluded(variant, ExclList)) \
+                        and iTryCounter < MAX_VARIANT_TRIES) \
+                        or len(sDesc) > MaxChars:
+                    SelCharTemplate = choice(TemplateList)
+                    
+                    iTryCounter = iTryCounter + 1
+                    
+                    variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
+                    sDesc = self.DescribeTemplateVariant(variant, bAddEndNoun = bAddEndNoun, NotList = NotList)
+
+            else:
+                SelCharTemplate = CharTemplate()
+                variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
+                sDesc = self.DescribeTemplateVariant(variant, bAddEndNoun = bAddEndNoun, NotList = NotList)
+            
             #print("  -- Randomly selected template #" + str(SelCharTemplate.ID) + " [" + str(SelCharTemplate) + "]")
             #print("   --- It took " + str(iTryCounter) + " tries.\n")
         NotList = NotList + SelCharTemplate.NotList 

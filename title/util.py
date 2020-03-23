@@ -23,46 +23,47 @@ TESTIMAGE_PATH = 'testimages/'
 
 TweetHistoryQ = None
 
-class TempType(Enum):
+class TempType(IntEnum):
      Short = 1
      Medium = 2
      Flowery = 3
      
-class Tense(Enum):
+class Tense(IntEnum):
      Present = 1
      Past = 2
      Gerund = 3
      
-class LocInOutType(Enum):
+class LocInOutType(IntEnum):
      Indoors = 1
      Outdoors = 2
      Either = 3
      
-class LocPubPrivType(Enum):
+class LocPubPrivType(IntEnum):
      Public = 1
      Private = 2
      Either = 3
      
-class GeneratorType(Enum):
+class GeneratorType(IntEnum):
      Normal = 1
      Promo = 2
      Test = 3
      BookTitle = 4
      
-class GirlType(Enum):
+class GirlType(IntEnum):
      Good = 1
      Bad = 2
      Neutral = 3
      
-class MaleCharType(Enum):
+class MaleCharType(IntEnum):
      Straight = 1
      GangAny = 2
      GangSingular = 3
      GangPlural = 4
      Gay = 5
                     
-class Content(Enum):
+class Content(IntEnum):
      AllAges = 1
      PG13 = 2
      AdultsOnly = 3  
      
+   

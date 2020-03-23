@@ -1087,7 +1087,7 @@ class FemLesbianTemplate1(FemLesbianTemplate):
      def __init__(self):
           super().__init__(      noun = LesFemaleNoun(),
                                     id = 401, 
-                                    adjlist =      [ CTEntry([GenModFemale],10),
+                                    adjlist =      [CTEntry([GenModFemale],10),
                                                     CTEntry([LesFemaleAdj],9),
                                                     CTEntry([AttitudeFemale],7),
                                                     CTEntry([PhysCharFemale],6),

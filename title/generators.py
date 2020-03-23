@@ -3,18 +3,16 @@
 # Generators module
 
 import re, sys, threading, traceback
+from decimal import Decimal
 from random import *
 from util import *
-from title.util import *
 from names import *
-#from titpeeps import *
-from title.texttoimg import *
-from title.characters import *
-#import title.people as titpeeps
 import misc
-import title.misc as titmisc
+from title.characters import *
 import title.chargenerator as char
+import title.misc as titmisc
 import title.titletemplates as templates
+from title.util import *
 
 PromoHistoryQ = HistoryQ(2)
 
@@ -49,13 +47,18 @@ class Generator():
           
         return FMs
     
-    def __init__(self, ID = -1, Priority = 1, Template = templates.TitleTemplateHHDefault):
+    def __init__(self, ID = -1, Priority = 1, Template = templates.TitleTemplateHHDefault()):
 
         if not ID == -1:
             self.ID = ID
         self.Priority = 1
 
+        self.Template = Template
+        self.ExclTemplateTags = []
+        self.ReqTemplateTags = []
+
         self.ImgTxt = ""
+        self.SetImgText("")
         self.TweetTxt = ""
         self.AuthorName = ""
 
@@ -63,10 +66,6 @@ class Generator():
             self.AuthorGender = Gender.Male 
         else:
             self.AuthorGender = Gender.Female
-
-        self.Template = None
-        self.ExclTemplateTags = []
-        self.ReqTemplateTags = []
 
     def Generate(self):
         sTweet = self.GenerateTweet()
@@ -80,6 +79,8 @@ class Generator():
         self.HerName = NamesFemale().FirstName()
         self.HisName = NamesMale().FirstName()
         self.SubtitleCoda = titmisc.SubtitleCoda()
+
+        return ""
 
     def SetImgText(self,stxt = ""):
         if self.Template is None:
@@ -933,7 +934,8 @@ class Generator22(Generator):
         super().GenerateTweet()
         sTweet = ""
           
-        GirlGood = char.FemaleChar(TempType = TempType.Medium, Type = GirlType.Good, ExclList = [SpeciesFemale])
+        GirlGood = char.FemaleChar(TempType = TempType.Medium, Type = GirlType.Good, 
+                                   ExclList = [SpeciesFemale])
          
         if CoinFlip():
             GirlLes = char.LesbianChar(MaxChars = 24, ReqList = [LesFemaleAdj])
@@ -1464,7 +1466,9 @@ class Generator35(Generator):
           return sTweet
           
 class Generator36(Generator):
-     #Turned Gay
+     # Turned Gay
+     # by
+     # The Strong Vegan Back-Door Bandit
      Disabled = False
 
      def __init__(self):
@@ -5695,6 +5699,8 @@ class GeneratorSelector():
             if not item.Disabled:
                 for x in range(0, item.Priority):
                     self.GeneratorList.append([item.ID, item])
+
+        self.ValidateGenIDs()
                
     def RandomGenerator(self, bAllowPromo = True, Type = None):
         Generator = None
@@ -5747,4 +5753,130 @@ class GeneratorSelector():
                         break
                          
         return Generator
+
+    def ValidateGenIDs(self):
+        bValid = True
+
+        IDList = []
+
+        if len(self.GeneratorList) > 0:
+            for gen in self.GeneratorList :
+                if gen[1].ID in IDList:
+                    print("=*= WARNING =*= Title generator ID # " + str(gen[1].ID) + " is a duplicate")
+                    bValid = False
+
+        return bValid
           
+def ShuffleFavs(sFileName = ""):
+     if sFileName == "":
+          sFileName = titutil.FAVTITLE_FILENAME
+          
+     sFavTitle = ""
+     
+     Titles = []
+     Titles.append("")
+     iTitleCount = 0
+          
+     with open(sFileName, 'r') as infile:
+          for line in infile:
+               if line.strip() == titutil.FAVTITLE_DIVIDER:
+                    Titles.append("")
+                    iTitleCount += 1
+               elif not line.strip():
+                    pass
+               else:
+                    Titles[iTitleCount] += line 
+     
+     print("***BEFORE SHUFFLE***")
+     print("There are " + str(len(Titles)) + " favorited titles.")
+     shuffle(Titles)
+     print("***AFTER SHUFFLE***")
+     print("There are " + str(len(Titles)) + " favorited titles.")
+     
+     CleanTitles = []
+     for x in range(0, len(Titles)):
+          if Titles[x].strip():
+               CleanTitles.append(Titles[x])
+     
+     print("***AFTER CLEANING***")
+     print("There are " + str(len(CleanTitles)) + " favorited titles.")
+     with open(sFileName, 'w') as outfile:     
+          for x in range(0, len(CleanTitles)):
+               if CleanTitles[x].endswith('\n'):
+                    outfile.write(CleanTitles[x] + util.FAVTITLE_DIVIDER + "\n")
+               else:
+                    outfile.write(CleanTitles[x] + "\n" + util.FAVTITLE_DIVIDER + "\n")
+
+def CurateFavorites(iGen = 0, iMaxLen = 0):
+        sInput = ""
+        iSkipCount = 0
+        iAddCount = 0
+
+        ImgTxtGen = None
+     
+        while True:
+        # Create Title 
+            sDetailsLine = ""
+            sTxtLine = ""
+            sOutput = ""
+          
+            if iGen > 0:
+                ImgTxtGen = GetTweet(bTest = True, bTweet = False, 
+                                     iGeneratorNo = iGen, 
+                                     bAllowPromo = False, 
+                                     bAllowFavTweets = False, 
+                                     iMaxLen = iMaxLen)
+            else:
+                ImgTxtGen = GetTweet(bTest = False, bTweet = False, 
+                                     iGeneratorNo = iGen, 
+                                     bAllowPromo = False, 
+                                     bAllowFavTweets = False, 
+                                     iMaxLen = iMaxLen)
+
+        # Get author 
+            ImgTxtGen.AuthorName = AuthorBuilder(ImgTxtGen.AuthorGender)
+
+        # Create output string for writing 
+            sDetailsLine += "[" + str(ImgTxtGen.ID) + "]"
+            sDetailsLine += "[" + str(ImgTxtGen.Template.ID) + "]"
+            sDetailsLine += "[" + ImgTxtGen.AuthorName + "]"
+            sDetailsLine += "[" + str(ImgTxtGen.AuthorGender).split(".")[1] + "]" 
+            sTxtLine += ImgTxtGen.ImgTxt.strip()
+            sOutput = "{{" + sDetailsLine + "}}\n" + sTxtLine  + "\n" + FAVTITLE_DIVIDER + "\n"
+
+        # Print generated title and info
+            print(sOutput)
+
+        # Prompt user.
+            sInput = input("\nKeep suggested title? [y]es, [n]o, or [q]uit: ")
+          
+        # If [y], save tweet.
+            if sInput.lower().strip() == "y":
+                with open(titutil.FAVTITLE_FILENAME, 'a+') as WriteReplyFile:
+
+                    WriteReplyFile.write(sOutput)
+
+                    iAddCount += 1
+
+                    print("Favorited tweet and saved.")
+               
+        # If [q], quit.
+            elif sInput.lower().strip() == "q":
+                break
+          
+         # If [n], do nothing and loop.
+            else:
+                iSkipCount += 1
+                print("Skipped.")
+
+        dPerRejects = 100
+        if (iAddCount + iSkipCount) != 0:
+            dPerRejects = round((Decimal(iSkipCount)/Decimal(iAddCount + iSkipCount))*100,2)
+                    
+        print("\nFavorited " + str(iAddCount) + ", rejected " + str(iSkipCount) + ". " + str(dPerRejects) + "% rejection rate.")
+
+        # before ending we may want to shuffle our favorited tweet file.
+        # prompt user.
+        sInput = input("\nShuffle favorited tweets? [y]es, [n]o: ")
+        if sInput.lower().strip() == "y":
+            ShuffleFavs()   

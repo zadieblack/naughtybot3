@@ -119,6 +119,9 @@ class FemaleChar(Character):
                               TemplateList.append(template)
                               i = i + 1
           
+          if len(TemplateList) == 0:
+              print("=*= WARNING =*= FemaleChar() template list is empty")
+
           return TemplateList
 
 class LesbianChar(Character):
@@ -208,6 +211,8 @@ class LesbianChar(Character):
           TemplateList = []
           
           TemplateList.append(FemLesbianTemplate1())
+          if len(TemplateList) == 0:
+              print("=*= WARNING =*= LesbianChar() template list is empty")
           
           return TemplateList
           
@@ -422,7 +427,9 @@ class StraightMaleChar(Character):
                     while i < template.Priority:
                          TemplateList.append(template)
                          i = i + 1
-               
+          if len(TemplateList) == 0:
+              print("=*= WARNING =*= StraightMaleChar() template list is empty")
+              
           return TemplateList
 
 class GangMaleChar(Character):
@@ -500,7 +507,10 @@ class GangMaleChar(Character):
                TemplateList.append(MaleGangPluralTemplate())
           if malechartype == MaleCharType.GangAny:
                TemplateList.append(MaleGangAnyTemplate())
-                    
+
+          if len(TemplateList) == 0:
+              print("=*= WARNING =*= GangMaleChar() template list is empty")
+              
           return TemplateList
           
 class GayMaleChar(Character):
@@ -575,5 +585,7 @@ class GayMaleChar(Character):
           TemplateList = []
           
           TemplateList.append(MaleGayTemplate())
+          if len(TemplateList) == 0:
+              print("=*= WARNING =*= GayMaleChar() template list is empty")
                     
           return TemplateList

@@ -16,42 +16,42 @@ Q_SIZE = 40
 
 TweetHistoryQ = None
      
-class Gender(Enum):
+class Gender(IntEnum):
      Male = 1
      Female = 2
      Neuter = 3
      
-class Tense(Enum):
+class Tense(IntEnum):
      Present = 1
      Past = 2
      Gerund = 3
      
-class LocInOutType(Enum):
+class LocInOutType(IntEnum):
      Indoors = 1
      Outdoors = 2
      Either = 3
      
-class LocPubPrivType(Enum):
+class LocPubPrivType(IntEnum):
      Public = 1
      Private = 2
      Either = 3
      
-class GeneratorType(Enum):
+class GeneratorType(IntEnum):
      Normal = 1
      Promo = 2
      Test = 3
      BookTitle = 4
      
-class GirlType(Enum):
+class GirlType(IntEnum):
      Good = 1
      Bad = 2
      Neutral = 3
 
-class HeaderType(Enum):
+class HeaderType(IntEnum):
      Harlequin = 1
      Plain = 2
 
-class LineColorType(Enum):
+class LineColorType(IntEnum):
      MainTitle = 1
      SecondTitle = 2
      SmallText = 3
