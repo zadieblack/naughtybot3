@@ -1445,15 +1445,12 @@ class ProfileSelector():
 
         if len(self.ProfileList) > 0:
             Profile = choice(self.ProfileList)
-            #print("bgprofiles Profile is " + str(Profile[1]))
-            print("Checking " + str(Profile[1]) + " " + str(Profile[1].Tags))
+
             while iTries < MAXTRIES and \
                 (not self.HasReqTags(ReqTags, Profile[1].Tags) or self.HasExclTags(ExclTags, Profile[1].Tags)):
-                print(" - does NOT HAVE req tags " + str(ReqTags) + "\n - or HAS excluded tags " + str(ExclTags) + " found")
                 Profile = choice(self.ProfileList)
                 iTries = iTries + 1
-                print("Checking " + str(Profile[1]) + " " + str(Profile[1].Tags))
-            print("After " + str(iTries) + ", " + str(Profile[1]) + " was selected.\n")
+            print("After " + str(iTries) + " tries, " + str(Profile[1]) + " was selected.\n")
 
         return Profile
           
