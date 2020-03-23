@@ -134,7 +134,7 @@ class Generator():
                     sImgTxt += line
                 Lines = Lines[iLineNo + 1:] # skip next divider
 
-                print("sImgTxt from " + sFileName + " is [" + sImgTxt + "]")
+                print("sImgTxt from " + sFileName + " for gen # " + str(Details[0]) + " is [" + sImgTxt + "]")
             else: 
                 bSuccess = False
                 print("ERROR: Did not find a details line.")
@@ -154,6 +154,7 @@ class Generator():
 
             if len(Details) > 3:
                 print("Populating generator with file data")
+
             # 1st item is ID #
                 self.ID = int(Details[0])
 
@@ -172,6 +173,20 @@ class Generator():
                     self.AuthorGender = Gender.Female
                 else:
                     self.AuthorGender = Gender.Neuter
+
+            # 5th item is required template tags (optional)
+                if len(Details) > 4:
+                    tags = []
+                    for tag in Details[4].split(","):
+                        if len(tag) > 0:
+                            self.ReqTemplateTags.append(tag)
+
+            # 6th item is excluded template tags (optional)
+                if len(Details) > 5:
+                    tags = []                    
+                    for tag in Details[5].split(","):
+                        if len(tag) > 0:
+                            self.ExclTemplateTags.append(tag)
             else: 
                 bSuccess = False
                 print("ERROR: Did not have data so could not populate generator.")
@@ -182,6 +197,7 @@ class Generator():
         else: 
             bSuccess = False 
 
+        print("Pulled image text from file.\nRequired tag list is " + str(self.ReqTemplateTags) + "\nExcluded tag list is " + str(self.ExclTemplateTags))
         return bSuccess
 
 def GetTweetGenerator(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = None):
@@ -5803,9 +5819,9 @@ def ShuffleFavs(sFileName = ""):
      with open(sFileName, 'w') as outfile:     
           for x in range(0, len(CleanTitles)):
                if CleanTitles[x].endswith('\n'):
-                    outfile.write(CleanTitles[x] + util.FAVTITLE_DIVIDER + "\n")
+                    outfile.write(CleanTitles[x] + FAVTITLE_DIVIDER + "\n")
                else:
-                    outfile.write(CleanTitles[x] + "\n" + util.FAVTITLE_DIVIDER + "\n")
+                    outfile.write(CleanTitles[x] + "\n" + FAVTITLE_DIVIDER + "\n")
 
 def CurateFavorites(iGen = 0, iMaxLen = 0):
         sInput = ""
@@ -5841,6 +5857,25 @@ def CurateFavorites(iGen = 0, iMaxLen = 0):
             sDetailsLine += "[" + str(ImgTxtGen.Template.ID) + "]"
             sDetailsLine += "[" + ImgTxtGen.AuthorName + "]"
             sDetailsLine += "[" + str(ImgTxtGen.AuthorGender).split(".")[1] + "]" 
+
+            sDetailsLine += "["
+            if not ImgTxtGen.ReqTemplateTags is None and len(ImgTxtGen.ReqTemplateTags) > 0:
+                
+                for tagno, tag in enumerate(ImgTxtGen.ReqTemplateTags):
+                    sDetailsLine += tag
+                    if tagno < len(ImgTxtGen.ReqTemplateTags) - 1:
+                        sDetailsLine += ","
+            sDetailsLine += "]"
+
+            sDetailsLine += "["
+            if not ImgTxtGen.ExclTemplateTags is None and len(ImgTxtGen.ExclTemplateTags) > 0:
+                
+                for tagno, tag in enumerate(ImgTxtGen.ExclTemplateTags):
+                    sDetailsLine += tag
+                    if tagno < len(ImgTxtGen.ExclTemplateTags) - 1:
+                        sDetailsLine += ","
+            sDetailsLine += "]"
+
             sTxtLine += ImgTxtGen.ImgTxt.strip()
             sOutput = "{{" + sDetailsLine + "}}\n" + sTxtLine  + "\n" + FAVTITLE_DIVIDER + "\n"
 

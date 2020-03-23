@@ -13,6 +13,7 @@ from title.generators import Generator
 
 COVER_PATH = "title/resources/cover_images/"
 FONT_PATH = "title/resources/fonts/"
+PATCH_PATH = "title/resources/"
 MAX_IMG_NUM = 24
 RESOLUTION = 4.167
 LOWERTITLETEXTBOUND = 527
@@ -511,5 +512,15 @@ def CreateImg(ImgTxtGen):
                 AuthorNameSection.DrawLines(draw, xOffset, AUTHORNAME_YOFFSET)
         else:
             print("ERROR. File name '" + bg.FileName + "' not found for background " + str(bg))
+
+        # Write the generator # on the top left corner of the cover
+        if not ImgTxtGen.ID is None:
+            sGenID = str(ImgTxtGen.ID).zfill(3)
+
+            ImgGenNo = Image.open(PATCH_PATH + "gen_cover_patch.jpg").convert('RGBA')
+            GenFont = ImageFont.truetype(FONT_PATH + "NimbusRomNo9L-MedIta.otf", size = int(round(8 * RESOLUTION)), index = 0)
+            draw_patch = ImageDraw.Draw(ImgGenNo)
+            draw_patch.text((0, 0), sGenID, font = GenFont, fill = "black")
+            BGImg.alpha_composite(ImgGenNo, dest=(96, 18))
 
     return  BGImg.convert("RGB")

@@ -9,7 +9,7 @@ from title.util import Content
 BGLOGFILEPATH = "title/"
 BGLOGFILENAME = "bghistory_q.txt"
 BGQSIZE = 20
-MAXTRIES = 500
+MAXTRIES = 10
 
 ProfileHistoryQ = HistoryQWithLog(BGLOGFILEPATH + BGLOGFILENAME, BGQSIZE)
 
@@ -1446,28 +1446,14 @@ class ProfileSelector():
         if len(self.ProfileList) > 0:
             Profile = choice(self.ProfileList)
             #print("bgprofiles Profile is " + str(Profile[1]))
-            if len(ReqTags) > 0 and len(ExclTags) > 0:
-                while iTries < MAXTRIES and \
-                    (not self.HasTags(ReqTags, Profile[1].Tags) or self.HasTags(ExclTags, Profile[1].Tags)):
-
-                    Profile = choice(self.ProfileList)
-                    iTries = iTries + 1
-
-            elif len(ReqTags) > 0 and len(ExclTags) == 0:
-                while iTries < MAXTRIES and \
-                    not self.HasTags(ReqTags, Profile[1].Tags):
-
-                    Profile = choice(self.ProfileList)
-                    iTries = iTries + 1
-
-            elif len(ReqTags) == 0 and len(ExclTags) > 0:
-                while iTries < MAXTRIES and \
-                    self.HasTags(ExclTags, Profile[1].Tags):
-
-                    Profile = choice(self.ProfileList)
-                    iTries = iTries + 1
-
-        #print("RandomProfile()\n - Selected profile is " + str(Profile[1]) + ", it took " + str(iTries) + " tries.")
+            print("Checking " + str(Profile[1]) + " " + str(Profile[1].Tags))
+            while iTries < MAXTRIES and \
+                (not self.HasReqTags(ReqTags, Profile[1].Tags) or self.HasExclTags(ExclTags, Profile[1].Tags)):
+                print(" - does NOT HAVE req tags " + str(ReqTags) + "\n - or HAS excluded tags " + str(ExclTags) + " found")
+                Profile = choice(self.ProfileList)
+                iTries = iTries + 1
+                print("Checking " + str(Profile[1]) + " " + str(Profile[1].Tags))
+            print("After " + str(iTries) + ", " + str(Profile[1]) + " was selected.\n")
 
         return Profile
           
@@ -1482,7 +1468,22 @@ class ProfileSelector():
                          
         return SelectedProfile
 
-    def HasTags(self, TagList1, TagList2):
+    def HasReqTags(self, TagList1, TagList2):
+        bHasTags = True
+
+        for tag1 in TagList1:
+            bFoundMatch = False 
+            for tag2 in TagList2:
+                if tag1 == tag2:
+                    bFoundMatch = True
+                    break
+            if not bFoundMatch:
+                bHasTags = False
+                break
+
+        return bHasTags
+
+    def HasExclTags(self, TagList1, TagList2):
         bHasTags = False
 
         for tag1 in TagList1:
