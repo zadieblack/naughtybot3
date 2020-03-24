@@ -1889,44 +1889,45 @@ class Generator49(Generator):
      # Taken Vigorously
      # in the Men's Restroom by
      # The Dominant Donkey-Dicked Italian Vegan Centaur
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 49, Priority = 1)
+         self.Template = templates.TitleTemplate17()
      
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
           
-          PublicPlaces = WordList(["at the Bowling Alley", 
-               "in the Produce Section", 
-               "in the Baked Goods Section",
-               "in the Bakery",
-               "at the Wine Tasting",
-               "on the Coffee Table", 
-               "in the Restroom at Chiopotle", 
+          PublicPlaces = WordList(["At the Bowling Alley", 
+               "In the Produce Section", 
+               "In the Baked Goods Section",
+               "In the Bakery",
+               "At the Wine Tasting",
+               "On the Coffee Table", 
+               "In the Restroom at Chiopotle", 
                "Behind the Chic-fil-a", 
-               "in the Ball Pit", 
-               "in the Whole Foods Parking Lot",
-               "in the Men's Restroom",
-               "in the Women's Restroom",
-               "in the Park",
-               "at the Beach",
+               "In the Ball Pit", 
+               "In the Whole Foods Parking Lot",
+               "In the Men's Restroom",
+               "In the Women's Restroom",
+               "In the Park",
+               "At the Beach",
                "on the Eliptical Machine at the Gym",
-               "at the Seafood Restaurant",
-               "at the Museum",
-               "at the Library",
-               "at the Farmer's Market",
-               "next to the Duck Pond",
-               "in the Window of a Shoe Store",
-               "in the Hunting Section at a Wal-Mart",
-               "in the Church Graveyard",
-               "in the Old Castle Ruins",
-               "at the Old Manor House",
-               "in the Abandoned Mansion",
-               "at the Construction Site",
-               "next to the Assembly Line",
-               "on a Hotel Balcony"
+               "At the Seafood Restaurant",
+               "At the Museum",
+               "At the Library",
+               "At the Farmer's Market",
+               "Next to the Duck Pond",
+               "In the Window of a Shoe Store",
+               "In the Hunting Section at a Wal-Mart",
+               "In the Church Graveyard",
+               "In the Old Castle Ruins",
+               "At the Old Manor House",
+               "In the Abandoned Mansion",
+               "At the Construction Site",
+               "Next to the Assembly Line",
+               "On a Hotel Balcony"
                ])
           
           Verbs = WordList(["Claimed", "Claimed",
@@ -1942,15 +1943,20 @@ class Generator49(Generator):
                "Ruthlessly",
                "Vigorously"])
                
-          Master = char.MaleChar(bAddTheArticle = True)
+          Master = char.MaleChar(bAddTheArticle = True, bSplitArticle = True,
+                                 MaxChars = 20)
           
           if CoinFlip():
                sTweet = Verbs.GetWord()
           else:
                sTweet = Verbs.GetWord() + " " + Adverbs.GetWord() 
 
-          sTweet += "\n" + PublicPlaces.GetWord() + " by\n" + Master.Desc
+          sTweet += "\n" + PublicPlaces.GetWord() + "\n"
 
+          sLine3_4 = "by " + Master.Desc.upper()
+          sLine3_4 = sLine3_4.replace("by THE", "by the")
+          sTweet += sLine3_4
+          
           return sTweet
           
 class Generator50(Generator):
