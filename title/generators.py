@@ -1659,22 +1659,28 @@ class Generator40(Generator):
           
 class Generator41(Generator):
      #Seducing Sheryl: The Virginal Nurse and the Big Titty Dominatrix
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 41, Priority = 1)
+         self.Template = templates.TitleTemplate17()
      
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ReqTemplateTags = ["women"]
+          self.ExclTemplateTags = ["man","men","gay","straight"]
           
           Gerunds = WordList(["Seducing", "Tempting", "Corrupting", "Degrading", "Debauching", "Perverting", "Whipping",
-                                   "Fisting", "Sixty-Nining", "Scissoring", "Tribbing", "Fingering"])
+                              "Fisting", "Sixty-Nining", "Scissoring", "Tribbing", "Fingering"])
 
-          GoodGirl = char.FemaleChar(Type = GirlType.Good, TempType = TempType.Medium,
-                                             ExclList = [PregState, MaritalStatusFemale, SpeciesFemale, TitlesFemale])
-          LesGirl = char.LesbianChar(Type = GirlType.Bad, bAddTheArticle = True, sPosArticle = "Her",
-                                             ExclList = [AgeAdjFemale, MaritalStatusFemale, SpeciesFemale, TitlesFemale])
+          GoodGirl = char.FemaleChar(Type = GirlType.Good, TempType = TempType.Medium, MaxChars = 22,
+                                     ExclList = [PregState, MaritalStatusFemale, SpeciesFemale, TitlesFemale])
+          LesGirl = char.LesbianChar(Type = GirlType.Bad, MaxChars = 22, #SelectTemplateID = 401, 
+                                     bAddTheArticle = True, sPosArticle = "Her",
+                                     ExclList = [AgeAdjFemale, SpeciesFemale],
+                                     NotList = ["straight"])
                                              
           sTweet = Gerunds.GetWord() + " " + self.HerName + ":\n"
           sTweet += "The " + GoodGirl.Desc + "\nand\n" + LesGirl.Desc 
@@ -1706,25 +1712,29 @@ class Generator42(Generator):
 class Generator43(Generator):
      # Secret Baby for the Well-Hung Italian Count 
      #          - this is very similar to gen 10.
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 43, Priority = 1)
+         self.Template = templates.TitleTemplate12()
      
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
           
-          Nation = titmisc.NationMale()
-          Title = WordList(titmisc.TitlesMale().GetWordList() + titmisc.TropesWealthyMale().GetWordList())
-          
-          Master = char.MaleChar(bAddEndNoun = False, TempType = TempType.Medium, bAllowRelate = False, 
-                                      bAllowMaritalStatus = False, bAllowNation = False, 
-                                      bAllowTitle = False, bAllowAge = False, bAllowProf = False)
-          sTweet = WordList(["Secret Baby", "Illegal Baby", "Baby", "Twin Babies", "Secret Twin Babies", 
-                                   "Fertile Surrogate", "Secret Surrogate", "Pregnant", "Secretly Pregnant", 
-                                   "Illegally Pregnant"]).GetWord()
-          sTweet += " for the\n" + Master.Desc + " " + Nation.GetWord() + " " + Title.GetWord()
+          self.ReqTemplateTags = ["straight","couple"]
+          self.ExclTemplateTags = ["kinky"]
+
+          MaleNotList = ["Nude","S.W.A.T."]
+          TemplateID = choice([3,5])
+          Master = char.MaleChar(SelectTemplateID = TemplateID,
+                                 ExclList = [MaritalStatusMale,DickCharMale,ProfMale],
+                                 ReqList = [NationMale],
+                                 NotList = MaleNotList)
+          sTweet = WordList(["Secret Baby", "Illegal Baby", "Twin Babies", "Secret Twin Babies", 
+                             "Fertile Surrogate", "Secret Surrogate", "Secretly Pregnant", 
+                             "Illegally Pregnant", "Illegal Twin Babies"]).GetWord().upper()
+          sTweet += "\nfor the " + Master.Desc #+ " " + Nation.GetWord() + " " + Title.GetWord()
           
           return sTweet
           

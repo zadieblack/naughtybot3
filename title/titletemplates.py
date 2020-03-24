@@ -602,7 +602,7 @@ class TitleTemplate16(TitleTemplate):
 # MEDIUM SECOND ROW
 # and the
 # MEDIUM THIRD ROW
-# Generators: 30
+# Generators: 30, 41
 class TitleTemplate17(TitleTemplate):
     def __init__(self):
         super().__init__(ID = 17)
