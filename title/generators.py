@@ -2134,14 +2134,17 @@ class Generator50(Generator):
 class Generator51(Generator):
      # Juliana the Nudist Damsel in:
      # The Kingdom of the Dildo-Bots
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 51, Priority = 1)
+         self.Template = templates.TitleTemplate18()
      
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ReqTemplateTags = ["woman"]
           
           sName = self.HerName 
           Girl = None
@@ -2159,13 +2162,15 @@ class Generator51(Generator):
                                  "Ass-Eating Angels","Ass-Eating Aliens","Sex Serpents","Penis Pythons"])
           
           if CoinFlip():
-               Girl = char.FemaleChar(Type = GirlType.Good, bAllowMaritalStatus = False, 
-                                             bAllowSpecies = False, bAllowPregState = False)
+               Girl = char.FemaleChar(Type = GirlType.Good, bAddTheArticle = True, MaxChars = 22,
+                                      bAllowMaritalStatus = False, bAllowSpecies = False, 
+                                      bAllowPregState = False)
           else:
-               Girl = char.FemaleChar(Type = GirlType.Bad, bAllowMaritalStatus = False, 
-                                             bAllowSpecies = False, bAllowPregState = False)
+               Girl = char.FemaleChar(Type = GirlType.Bad, bAddTheArticle = True, MaxChars = 22,
+                                      bAllowMaritalStatus = False, bAllowSpecies = False, 
+                                      bAllowPregState = False)
                
-          sTweet = sName + " the " + Girl.Desc + " in:\n"     
+          sTweet = sName + "\n" + Girl.Desc + "\nin\n"     
           sTweet += "The " + Places.GetWord() + " of the " + Beings.GetWord()
 
           return sTweet

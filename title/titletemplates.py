@@ -636,6 +636,43 @@ class TitleTemplate17(TitleTemplate):
                      MaxRows = 1,
                      ColorType = LineColorType.SmallText)
 
+# SHORT TOP LINE
+# of a
+# LONG TWO-ROW BOTTOM LINE
+class TitleTemplate18(TitleTemplate):
+    def __init__(self):
+        super().__init__(ID = 18)
+
+        # Short large top line
+        self.AddLine(OrderNum = 1,
+                     FontName = "Verona-ExtraBold.otf",
+                     FontMaxSize = 21,
+                     MaxRows = 1,
+                     ColorType = LineColorType.MainTitle,
+                     AllCaps = True)
+
+        # Medium-length large second line 
+        self.AddLine(OrderNum = 1,
+                     FontName = "Verona-ExtraBold.otf",
+                     FontMaxSize = 21,
+                     MaxRows = 1,
+                     ColorType = LineColorType.MainTitle)
+
+        # Small cursive trans
+        self.AddLine(OrderNum = 2,
+                     FontName = "Amaze.ttf",
+                     FontMaxSize = 12,
+                     MaxRows = 1,
+                     ColorType = LineColorType.SmallText)
+
+        # One or two-line medium-sized bottom line
+        self.AddLine(OrderNum = 3,
+                     FontName = "PerpetuaStd.otf",
+                     FontMaxSize = 19,
+                     MaxRows = 2,
+                     ColorType = LineColorType.SecondTitle,
+                     AllCaps = True)
+
 class TitleTemplateSelector():
     def __init__(self):
         self.TitleTemplateList = [] 
