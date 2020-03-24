@@ -1725,7 +1725,7 @@ class Generator43(Generator):
           self.ReqTemplateTags = ["straight","couple"]
           self.ExclTemplateTags = ["kinky"]
 
-          MaleNotList = ["Nude","S.W.A.T."]
+          MaleNotList = ["Nude","S.W.A.T.","Naked"]
           TemplateID = choice([3,5])
           Master = char.MaleChar(SelectTemplateID = TemplateID,
                                  ExclList = [MaritalStatusMale,DickCharMale,ProfMale],
@@ -1783,15 +1783,19 @@ class Generator44(Generator):
 class Generator45(Generator):
      # The Sporty Black Farmer's Daughter
      # Gets Naked at the Museum!]
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 45, Priority = 1)
+         self.Template = templates.TitleTemplate12()
      
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
-          
+
+          self.ReqTemplateTags = ["woman"]
+          self.ExclTemplateTags = ["women", "man", "men"] 
+
           NudeActions = WordList(["Gets Naked", "Flashes Herself", "Goes Streaking", "Goes Topless", 
                                         "Goes Bottomless", "Exposes Herself", "Goes Nude",
                                         "Strips Naked", "Twerks Naked", "Publically Exposes Herself",
