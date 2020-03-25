@@ -1617,7 +1617,7 @@ class Generator39(Generator):
           return sTweet
 
 # Note: this 'gang bang' generator has been split in two. See also
-# gen 14
+# gen 14, gen 57
 class Generator40(Generator):
      # My Shy Sporty Bride
      # Got Shared
@@ -1954,7 +1954,7 @@ class Generator49(Generator):
           sTweet += "\n" + PublicPlaces.GetWord() + "\n"
 
           sLine3_4 = "by " + Master.Desc.upper()
-          sLine3_4 = sLine3_4.replace("by THE", "by the")
+          sLine3_4 = sLine3_4.replace("by THE", "by the").replace("by MY", "by my")
           sTweet += sLine3_4
           
           return sTweet
@@ -2194,15 +2194,6 @@ class Generator52(Generator):
           self.ExclTemplateTags = ["gay"]
           
           Exclamations = WordList(["Oh S@*#!", "Oh No!", "WTF?!?", "Oh F*@%!"])
-
-          #SexyAdjs = WordList(["Hot","Sexy","Cute","Young","Nubile"])
-          #sSexyAdj = SexyAdjs.GetWord()
-          #GoodJobs = WordList(["Teacher","English Teacher","Yoga Instructor","Librarian","Nanny","Math Tutor","Babysitter",
-          #                          "Nurse","Piano Teacher","Dance Teacher","Algebra Teacher","Biology Teacher","Personal Trainer",
-          #                          "House Maid","French Maid","Secretary","Intern","Assistant","Physical Therapist","Therapist",
-          #                          "Violin Teacher","Dance Instructor","Gym Coach","Volleyball Coach"
-          #                          ])
-          #sJob = GoodJobs.GetWord()
           
           GoodGirlNotList = ["Co-ed","Mommy Blogger","Model"]
           GoodGirl = char.FemaleChar(Type = GirlType.Good, SelectTemplateID = 8, 
@@ -2210,22 +2201,15 @@ class Generator52(Generator):
                                      TempType = TempType.Medium)
                                         
           #iTempID = choice([222,220,205,2,2,2])
-          
-          #BadGirlNotList = [sSexyAdj,sJob,'Slave Girl','Concubine','Naked',
-          #                  'Nude','Gymnast','Secretary','Married','Teenage']
           BadGirl = char.FemaleChar(TempType = TempType.Medium, #NotList = BadGirlNotList, 
                                     bAddAnArticle = True, SelectTemplateID = 20)
           
-          #BadGirlNotList = ['Nun','Nurse','Gymnast','Masseuse','Cheerleader','Starlet','Secretary','Housewife','Fashion Model','French Maid']
-          #if CoinFlip():
-          #     sTweet += Exclamations.GetWord() + " "
           if CoinFlip():     
                sTweet+= "My " + GoodGirl.Desc + "\nIs Secretly\n" 
                sTweet+= BadGirl.Desc + "!"
           else:
                sTweet+= "My " + GoodGirl.Desc + "\nIs Secretly\n" 
                sTweet += BadGirl.Desc + "!"
-
 
           return sTweet     
           
@@ -2272,10 +2256,14 @@ class Generator54(Generator):
 
      def __init__(self):
          super().__init__(ID = 54, Priority = 1)
+         self.Template = templates.TitleTemplate19()
      
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ExclTemplateTags = ["gay","lesbian"]
+          self.ReqTemplateTags = ["fantasy"]
           
           Weapons = WordList(['Steel','Molten Steel','Iron','Molten Iron','Hot Steel','Burning Steel','Hot Iron','Smoldering Steel'])
           LadyAdjs1 = WordList(['Feisty','Nubile','Virginal','Saucy','Wanton','Chaste','Demure','Virginal',
@@ -2299,10 +2287,10 @@ class Generator54(Generator):
                                         'Paladin','Monk','Rogue','Thief','Warlock','Sorcerer','Hunter','Swordsman','Soldier',
                                         'Troubador','Woodsman','Blacksmith'])
                                         
-          iLength = randint(8,12)
-          sTweet = str(iLength) + " Inches of " + Weapons.GetWord() + ":\n"
-          sTweet += "The " + LadyAdjs1.GetWord() + " " + LadyAdjs2.GetWord() + " " + Ladies.GetWord() + "\n"
-          sTweet += "Encounters\n"
+          sLength = choice(["Six","Seven","Eight","Nine","Ten","Eleven","Twelve"])
+          sTweet = sLength + " Inches of " + Weapons.GetWord() + "\n"
+          sTweet += "The " + LadyAdjs1.GetWord() + " " + LadyAdjs2.GetWord() + " " + Ladies.GetWord() + " "
+          sTweet += "Encounters "
           
           sMonster = ""
           if CoinFlip():
@@ -2314,7 +2302,7 @@ class Generator54(Generator):
                
           #print("Monster string is [" + sMonster.strip() + "]")
           if sMonster.strip():
-               sMonster = AddArticles(sMonster)
+               sMonster = AddArticles(sMonster, bMakeUpper = True)
           else:
                sMonster = "The " + sMonster
                
@@ -2335,10 +2323,11 @@ class Generator54(Generator):
 # Fireman on the Bottom,
 # Kinky Airline Stewardess in the Middle
 class Generator55(Generator):
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 55, Priority = 1)
+         self.Template = templates.TitleTemplate20()
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -2360,10 +2349,10 @@ class Generator55(Generator):
                                         bAllowAttitude = False, bAllowAge = False, bAllowSpecies = False)
           sHerName = FemmeNames.GetWord()
           
-          sTweet = "The " + sHerName + " Sandwich:\n"
-          sTweet += sJob1 + " on Top,\n"
-          sTweet += sJob2 + " on the Bottom,\n"
-          sTweet += Girl.Desc + " in the Middle"
+          sTweet = "The " + sHerName + " Sandwich\n"
+          sTweet += sJob1 + " on top,\n"
+          sTweet += sJob2 + " on the bottom,\n"
+          sTweet += Girl.Desc.capitalize() + " in the middle!"
 
           return sTweet     
           
@@ -2430,15 +2419,17 @@ class Generator56(Generator):
 # by an Entire Team of 
 # Muscular Lumberjack Hockey Players
 class Generator57(Generator):
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 57, Priority = 1)
-         # self.Template = templates.TitleTemplate3()
+         self.Template = templates.TitleTemplate21()
      
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ExclTemplateTags = ["couple","lesbian","women"]
           
           Verbs = WordList(['Taken','Gang-Banged','Shared','Claimed','Taken Hard','Claimed Hard','Tied Up & Used','Deflowered',
                                 'Fisted','Motor-Boated','Impregnated','Fertilized','Mounted Bareback','Ridden Hard','Pleasured',
@@ -2450,7 +2441,7 @@ class Generator57(Generator):
           Men = char.MaleChar(TempType = TempType.Medium, bAddEndNoun = False, NotList = MenNotList,
                               bAllowAge = False, bAllowAttitude = False, bAllowGenMod = False, bAllowRelate = False, bAllowTitle = False)
      
-          sTweet += Verbs.GetWord() + "\nIn the Locker Room\nBy an Entire Team\nof\n" + Men.Desc + " " + Teams.GetWord()
+          sTweet += Verbs.GetWord() + "\nIn the Locker Room\nby an\nEntire Team of " + Men.Desc + " " + Teams.GetWord()
 
           return sTweet     
           
@@ -5576,15 +5567,18 @@ class Generator143(Generator):
         self.ReqTemplateTags = ["couple","straight"]
 
         Verbs = WordList(["Banged","Boinked","Boned","Creamed",
-                            "Did","Drilled","Fingered","Fucked",
-                            "Humped","Porked","Rimmed","Stuffed"
+                          "Did","Drilled","Fingered","Fucked",
+                          "Humped","Porked","Rimmed","Stuffed"
                         ])
-        FemRelations = WordList(["Best Friend","Daughter","Friend","Mom","Mom",
-                                 "Sister","Step-Mom","Step-Sister",
-                                 "Twin Sister"])   
+        FemRelations = WordList(["Your Best Friend","Your Daughter",
+                                 "Your Friend","Your Mom","Your Mom",
+                                 "Your Sister","Your Step-Mom",
+                                 "Your Step-Sister",
+                                 "Your Twin Sister","the Babysitter",
+                                 "the Nanny","Your Younger Sister"])   
 
         sTweet += "“Honey, I " + Verbs.GetWord() + " "
-        sTweet += "Your " + FemRelations.GetWord() + "!\""
+        sTweet += FemRelations.GetWord() + "!\""
 
         return sTweet     
 

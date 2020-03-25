@@ -673,6 +673,124 @@ class TitleTemplate18(TitleTemplate):
                      ColorType = LineColorType.SecondTitle,
                      AllCaps = True)
 
+# ** Medieval **
+# 8 INCHES OF STEEL
+# MEDIUM length MEDIUM sized second line
+# SMALL SHORT third line
+# MEDIUM LONG (1-2 lines) final line
+class TitleTemplate19(TitleTemplate):
+    def __init__(self):
+        super().__init__(ID = 19)
+
+        #8 INCHES OF STEEL (medieval)
+        self.AddLine(OrderNum = 1,
+                     FontName = "CelticGaramond.ttf",
+                     FontMaxSize = 17,
+                     MaxRows = 2,
+                     ColorType = LineColorType.MainTitle,
+                     AllCaps = True)
+
+        # MEDIUM length MEDIUM sized second line
+        self.AddLine(OrderNum = 2,
+                     FontName = "PerpetuaStd.otf",
+                     FontMaxSize = 15,
+                     MaxRows = 3,
+                     ColorType = LineColorType.SecondTitle,
+                     AllCaps = True)
+
+        ## SMALL SHORT third line
+        #self.AddLine(OrderNum = 3,
+        #             FontName = "Amaze.ttf",
+        #             FontMaxSize = 10,
+        #             MaxRows = 1,
+        #             ColorType = LineColorType.SmallText)
+        
+        ## MEDIUM length MEDIUM sized fourth line
+        #self.AddLine(OrderNum = 4,
+        #             FontName = "oldengl.ttf",
+        #             FontMaxSize = 14,
+        #             MaxRows = 1,
+        #             ColorType = LineColorType.SecondTitle)
+
+# LARGE two-or-three word (1-2 lines) top line
+# MEDIUM medium-length second line
+# MEDIUM medium-length third line
+# MEDIUM medium-length punch-line 
+# Generators: 55
+class TitleTemplate20(TitleTemplate):
+    def __init__(self):
+        super().__init__(ID = 20)
+
+        # LARGE two-or-three word (1-2 lines) top line
+        self.AddLine(OrderNum = 1,
+                     FontName = "Verona-ExtraBold.otf",
+                     FontMaxSize = 22,
+                     MaxRows = 2,
+                     ColorType = LineColorType.MainTitle,
+                     AllCaps = True)
+
+        # MEDIUM medium-length third line
+        self.AddLine(OrderNum = 2,
+                     FontName = "MutterKrauseNormal.ttf",
+                     FontMaxSize = 13,
+                     MaxRows = 1,
+                     ColorType = LineColorType.SmallText)
+
+        # MEDIUM medium-length third line
+        self.AddLine(OrderNum = 3,
+                     FontName = "MutterKrauseNormal.ttf",
+                     FontMaxSize = 13,
+                     MaxRows = 1,
+                     ColorType = LineColorType.SmallText)
+
+        # MEDIUM medium-length punch-line 
+        self.AddLine(OrderNum = 4,
+                     FontName = "FreestyleScriptStd.otf",
+                     FontMaxSize = 20,
+                     MaxRows = 1,
+                     ColorType = LineColorType.SecondTitle)
+
+# LARGE ONE OR TWO WORD top row
+# LARGE SHORT 2nd row
+# by
+# MEDIUM LONG-length 4th row
+# Generators: 30, 41
+class TitleTemplate21(TitleTemplate):
+    def __init__(self):
+        super().__init__(ID = 21)
+
+        # One large word top line
+        self.AddLine(OrderNum = 2,
+                     FontName = "Verona-ExtraBold.otf",
+                     FontMaxSize = 28,
+                     MaxRows = 1,
+                     ColorType = LineColorType.MainTitle,
+                     AllCaps = True)
+
+        # Medium long (1-2 lines) middle line
+        self.AddLine(OrderNum = 2,
+                     FontName = "Absinette W01 Regular.ttf",
+                     FontMaxSize = 15,
+                     MaxRows = 1,
+                     ColorType = LineColorType.SecondTitle)
+
+        # Small cursive trans
+        self.AddLine(OrderNum = 3,
+                     FontName = "FreestyleScriptStd.otf",
+                     FontMaxSize = 13,
+                     MaxRows = 1,
+                     ColorType = LineColorType.SmallText)
+
+        # Medium long (1-2 lines) middle line
+        self.AddLine(OrderNum = 4,
+                     FontName =  "PerpetuaStd.otf",
+                     FontMaxSize = 15,
+                     MaxRows = 2,
+                     ColorType = LineColorType.MainTitle,
+                     AllCaps = True)
+
+
+
 class TitleTemplateSelector():
     def __init__(self):
         self.TitleTemplateList = [] 
