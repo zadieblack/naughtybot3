@@ -862,18 +862,18 @@ class BGProfileBranded(BGProfile):
         self.Tags = ["man","men","outside","gay"]
         self.Disabled = False
 
-class BGProfileGrapes(BGProfile):
-    def __init__(self):
-        super().__init__(ID = 69,
-                           Priority = 4,
-                           sFileName = "grapes")
-        self.MainTitleColor = "rgba(228, 171, 62, 255)"
-        self.SecondTitleColor = "rgba(152, 53, 88, 255)"  
-        self.SmallTextColor ="rgba(100, 135, 70, 255)"
-        self.AuthorNameColor = "rgba(152, 53, 88, 255)"
-        self.Content = Content.PG13
-        self.Tags = ["man","single","gay"]
-        self.Disabled = False
+#class BGProfileGrapes(BGProfile):
+#    def __init__(self):
+#        super().__init__(ID = 69,
+#                           Priority = 4,
+#                           sFileName = "grapes")
+#        self.MainTitleColor = "rgba(228, 171, 62, 255)"
+#        self.SecondTitleColor = "rgba(152, 53, 88, 255)"  
+#        self.SmallTextColor ="rgba(100, 135, 70, 255)"
+#        self.AuthorNameColor = "rgba(152, 53, 88, 255)"
+#        self.Content = Content.PG13
+#        self.Tags = ["man","single","gay"]
+#        self.Disabled = False
 
 class BGProfileUnderwater(BGProfile):
     def __init__(self):
@@ -1154,17 +1154,17 @@ class BGProfileOceanHorse(BGProfile):
         self.Tags = ["man","single","outside"]
         self.Disabled = False
 
-class BGProfileCaveCouple(BGProfile):
-    def __init__(self):
-        super().__init__(ID = 91,
-                           Priority = 4,
-                           sFileName = "cave_couple")
-        self.MainTitleColor = "rgba(82, 126, 183, 255)"
-        self.SecondTitleColor = "rgba(11, 115, 24, 255)"
-        self.SmallTextColor =  "rgba(192, 111, 21, 255)" 
-        self.AuthorNameColor = "rgba(11, 115, 24, 255)"
-        self.Tags = ["man","woman","straight","couple","outside","caveman"]
-        self.Disabled = False
+#class BGProfileCaveCouple(BGProfile):
+#    def __init__(self):
+#        super().__init__(ID = 91,
+#                           Priority = 4,
+#                           sFileName = "cave_couple")
+#        self.MainTitleColor = "rgba(82, 126, 183, 255)"
+#        self.SecondTitleColor = "rgba(11, 115, 24, 255)"
+#        self.SmallTextColor =  "rgba(192, 111, 21, 255)" 
+#        self.AuthorNameColor = "rgba(11, 115, 24, 255)"
+#        self.Tags = ["man","woman","straight","couple","outside","caveman"]
+#        self.Disabled = False
 
 class BGProfileRedSatinSheets(BGProfile):
     def __init__(self):
