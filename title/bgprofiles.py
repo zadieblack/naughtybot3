@@ -1408,6 +1408,54 @@ class BGProfileSharingBed(BGProfile):
         self.Tags = ["woman","women","lesbian","indoors"]
         self.Disabled = False
 
+class BGProfileHotLasso(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 112,
+                           Priority = 4,
+                           sFileName = "hot_lasso")
+        self.MainTitleColor = "rgba(198, 68, 42, 255)"
+        self.SecondTitleColor = "rgba(52, 162, 137, 255)"
+        self.SmallTextColor = "rgba(120, 115, 147, 255)"
+        self.AuthorNameColor = "rgba(120, 115, 147, 255)"
+        self.Tags = ["man","outdoors"]
+        self.Disabled = False
+
+class BGProfileThirdMan(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 113,
+                           Priority = 4,
+                           sFileName = "third_man")
+        self.MainTitleColor = "rgba(150, 45, 23, 255)"
+        self.SecondTitleColor = "rgba(32, 104, 43, 255)"
+        self.AuthorNameColor = "rgba(150, 45, 23, 255)"
+        self.Tags = ["man","men", "woman", "indoors", "bed"]
+        self.Content = Content.PG13
+        self.Disabled = False
+
+class BGProfileFileCabinet(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 114,
+                           Priority = 4,
+                           sFileName = "file_cabinet")
+        self.MainTitleColor = "rgba(236, 53, 36, 255)"
+        self.SecondTitleColor = "rgba(221, 97, 99, 255)"
+        self.SmallTextColor = "rgba(2, 117, 71, 255)"
+        self.AuthorNameColor = "rgba(133, 123, 32, 255)"
+        self.Tags = ["woman","indoors"]
+        self.Disabled = False
+
+class BGProfileWindowCreeper(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 115,
+                           Priority = 40,
+                           sFileName = "window_creeper")
+        self.MainTitleColor = "rgba(219, 49, 26, 255)"
+        self.SecondTitleColor = "rgba(232, 174, 36, 255)"
+        self.SmallTextColor = "rgba(8, 70, 131, 255)"
+        self.AuthorNameColor = "rgba(3, 71, 15, 255)"
+        self.Tags = ["woman","indoors","bed","voyeur"]
+        self.Disabled = False
+
 # this is for debugging bgprofile frequency. delete later.
 def indexof(list, searchobj):
     iIndex = 0
