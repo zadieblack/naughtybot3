@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import argparse, datetime, logging, socket, sys, time
+from pytz import timezone
 from random import *
 
 lock_socket = None  # we want to keep the socket open until the very end of
@@ -40,20 +41,28 @@ Args = SetGetArgs()
 print(Args)
 
 iTweetTimer = Args.tweettimer 
-currentDT = datetime.datetime.now()
+currentDT = datetime.datetime.utcnow()
+thisTZ = timezone("US/Eastern")
+currentDTaware = thisTZ.localize(currentDT)
 
 while True:
     if randint(1,4) == 4:
+        #pass
         excerpt.lust_bot.InitBot(180, bTweet = True, bLoop = False, bRedditPost = True)
 
     title.ee_bot.InitBot(180, bTweet = True, bLoop = False, bRedditPost = True)
-     
+    currentDTaware = thisTZ.localize(datetime.datetime.utcnow())
+    
+    print("* Tweeted at " + currentDTaware.strftime("%I:%M %P"))
+
     if iTweetTimer > 180:
         iRandSecs = iTweetTimer
                
         iRandSecs = randint(int(iRandSecs - (iRandSecs * (1/3))), int(iRandSecs + (iRandSecs * (1/3))))
-        print("* Next tweets in " + str(iRandSecs) + " seconds (" + (currentDT + datetime.timedelta(seconds=iRandSecs)).strftime("%H:%M:%S") + ")...")
+        dtNext = currentDTaware + datetime.timedelta(seconds = iRandSecs)
+        print("* Next tweets in " + str(datetime.timedelta(seconds = iRandSecs)) + " (" + dtNext.strftime("%I:%M %P") + ")...")
         time.sleep(iRandSecs)
     else:
-        print("* Next tweets in " + str(iTweetTimer) + " seconds (" + (currentDT + datetime.timedelta(seconds=iTweetTimer)).strftime("%H:%M:%S") + ")...")
+        dtNext = currentDTaware + datetime.timedelta(seconds = iTweetTimer)
+        print("* Next tweets in " + str(datetime.timedelta(seconds = iTweetTimer)) + " minutes (" + dtNext.strftime("%I:%M %P") + ")...")
         time.sleep(iTweetTimer)

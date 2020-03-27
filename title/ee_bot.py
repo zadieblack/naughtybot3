@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
  
 import sys, argparse, datetime, threading, traceback
+from pytz import timezone
 import util as util
 import title.util as titutil
 
@@ -78,7 +79,9 @@ def InitBot(iTweetTimer,
                 if len(ImgTxtGen.ImgTxt) > 0:
                         print("Tweet text: [" + ImgTxtGen.TweetTxt + "]")
 
-                currentDT = datetime.datetime.now()
+                currentDT = datetime.datetime.utcnow()
+                thisTZ = timezone("US/Eastern")
+                currentDTaware = thisTZ.localize(currentDT)
                     
                 image = CreateImg(ImgTxtGen)
 
@@ -96,7 +99,7 @@ def InitBot(iTweetTimer,
                 if bRedditPost and not status is None:
                     PostToReddit_eebot(sLinkTitle = TweetTxtGen.TweetTxt(), sLinkURL = util.ExtractURLFromStatus(status))
 
-                print("* Tweeted at " + currentDT.strftime("%H:%M:%S"))
+                print("* Tweeted at " + currentDTaware.strftime("%I:%M %P"))
                          
                 titutil.TweetHistoryQ.LogHistoryQ()
                 titutil.TweetTxtHistoryQ.LogHistoryQ()
