@@ -4999,6 +4999,9 @@ class Generator132(Generator):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ReqTemplateTags = ["man","woman","couple"]
+
           
           Guy = WordList(['Attorney','Blind Date','Body Guard','Boss','Camp Counselor','Captain','Coach','Date',
                               'Doctor','Duke','Gym Coach','King','Marriage Counselor','Manor Lord','Mechanic',
