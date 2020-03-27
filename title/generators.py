@@ -3692,10 +3692,11 @@ class Generator95(Generator):
 
           return sTweet     
           
+# NOTE: Female version of Gen 132
+class Generator96(Generator):
 # In Love With
 # My Innocent Amish Maid's 
 # Enormous Coconuts 
-class Generator96(Generator):
      Disabled = False
 
      def __init__(self):
@@ -4985,11 +4986,12 @@ class Generator131(Generator):
           
           return sTweet     
           
+# Note: Male version of Gen 96
+class Generator132(Generator):
 # In Love With
 # My Dentist's 
 # Magnificent Meat-Missile
-class Generator132(Generator):
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 132, Priority = 1)
@@ -5025,7 +5027,7 @@ class Generator132(Generator):
                                  "Seduced By","Ensorcelled By","Gaga About","Infatuated With",
                                  "Enamoured By","Swept Away By","Transfixed By"]).GetWord()
                                  
-          sTweet += "\nMy " + Guy + "'s\n"
+          sTweet += " My " + Guy + "'s "
           
           iRand = randint(1,3)
           if iRand == 1:
@@ -5495,6 +5497,8 @@ class Generator140(Generator):
           return sTweet     
           
 class Generator141(Generator):
+# Hypnotized by Her Secretary's
+# Wide Lesbian Ass
      Disabled = False
 
      def __init__(self):

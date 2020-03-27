@@ -1,7 +1,7 @@
 #!/usr/bin/python3.6
 # -*- coding: utf-8 -*-
  
-import sys, argparse, datetime, threading, traceback
+import sys, argparse, time, datetime, threading, traceback
 from pytz import timezone
 import util as util
 import title.util as titutil
@@ -99,7 +99,7 @@ def InitBot(iTweetTimer,
                 if bRedditPost and not status is None:
                     PostToReddit_eebot(sLinkTitle = TweetTxtGen.TweetTxt(), sLinkURL = util.ExtractURLFromStatus(status))
 
-                print("* Tweeted at " + currentDTaware.strftime("%I:%M %P"))
+                print("* Tweeted at " + currentDTaware.strftime("%I:%M %p"))
                          
                 titutil.TweetHistoryQ.LogHistoryQ()
                 titutil.TweetTxtHistoryQ.LogHistoryQ()

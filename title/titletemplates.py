@@ -409,7 +409,7 @@ class TitleTemplate10(TitleTemplate):
 # LONG TWO-ROW BOTTOM LINE
 class TitleTemplate11(TitleTemplate):
     def __init__(self):
-        super().__init__(ID = 1)
+        super().__init__(ID = 11)
 
         # Short very large top line
         self.AddLine(OrderNum = 11,
@@ -422,7 +422,7 @@ class TitleTemplate11(TitleTemplate):
         # One or two-line medium-sized bottom line
         self.AddLine(OrderNum = 2,
                      FontName = "Sabado Regular.otf",
-                     FontMaxSize = 16,
+                     FontMaxSize = 18,
                      MaxRows = 2,
                      ColorType = LineColorType.SecondTitle)
 
