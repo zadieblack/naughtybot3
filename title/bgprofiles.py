@@ -1447,7 +1447,7 @@ class BGProfileFileCabinet(BGProfile):
 class BGProfileWindowCreeper(BGProfile):
     def __init__(self):
         super().__init__(ID = 115,
-                           Priority = 40,
+                           Priority = 4,
                            sFileName = "window_creeper")
         self.MainTitleColor = "rgba(219, 49, 26, 255)"
         self.SecondTitleColor = "rgba(232, 174, 36, 255)"
@@ -1455,6 +1455,19 @@ class BGProfileWindowCreeper(BGProfile):
         self.AuthorNameColor = "rgba(3, 71, 15, 255)"
         self.Tags = ["woman","indoors","bed","voyeur"]
         self.Disabled = False
+
+class BGProfileLesboFriend(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 116,
+                           Priority = 40,
+                           sFileName = "lesbo_friend")
+        self.MainTitleColor = "rgba(170, 43, 40, 255)"
+        self.SecondTitleColor = "rgba(94, 146, 95, 255)"
+        self.SmallTextColor = "rgba(85, 120, 154, 255)"
+        self.AuthorNameColor = "rgba(85, 120, 154, 255)"
+        self.Tags = ["woman","women","lesbian","indoors"]
+        self.Disabled = False
+
 
 # this is for debugging bgprofile frequency. delete later.
 def indexof(list, searchobj):

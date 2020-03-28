@@ -5095,58 +5095,71 @@ class Generator133(Generator):
           
 # Taken by her Lesbian Centaur Boss
 class Generator134(Generator):
-     Disabled = True
+    Disabled = False
 
-     def __init__(self):
-         super().__init__(ID = 134, Priority = 1)
+    def __init__(self):
+        super().__init__(ID = 134, Priority = 1)
+        self.Template = templates.TitleTemplate1()
      
-     def GenerateTweet(self):
-          super().GenerateTweet()
-          sTweet = ""
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
           
-          VerbNot = ['Impregnated','Bred','Hunted']
-          sVerb = self.VerbsBy.GetWord(NotList = VerbNot)
+        
+        if CoinFlip():
+        #gay male
+            self.ExclTemplateTags = ["woman","women","lesbian"]
 
-          sTweet = sVerb + " by "
-          if CoinFlip():
-          #gay male
-               Orientation = WordList(['Gay','Gay','Androgynous','Bisexual','Transgender','Otherkin',
-                                             'Gender-fluid','Gender-queer','Non-Binary','Pansexual','Polysexual'])
-               Species = WordList(['Alien','Alpha Wolf','Centaur','Centaur','Cyborg','Demon',
-                                        'Dinosaur','Dinosaur','Dwarf','Gargoyle','Goat-Man',
-                                        'Man-o-taur','MANtelope','MANticore','Mer-man','Mer-man',
-                                        'Swamp Creature','Tentacle Monster','Undead',
-                                        'Vampire','Vampire','Were-Horse','Were-Shark','Werewolf',
-                                        'Werewolf','Zombie','Chippendales Dancer','Coal Miner',
-                                        'Construction Worker','Cop','Cowboy','Farm Hand',
-                                        'Football Players','Frat Boy','Gangsta','Long Haul Trucker',
-                                        'Lumberjack','MMA Fighter','Sailor','Sumo Wrestler',
-                                        'Millionaire','Billionaire'])
-               Relations = WordList(['Blind Date','Body Guard','Boss','Camp Counselor','Coach',
-                              'Doctor','Duke','Gym Coach','Marriage Counselor','Manor Lord','Mechanic',
-                              'Minister','New Boyfriend','Pastor','Personal Trainer','Plumber','Priest','Pool Boy',
-                              'Prince','Professor','Step-brother','Step-father','Step-son','Teacher',
-                              'Divorce Attorney','Yoga Teacher','Physical Therapist','Dentist','Youth Pastor',
-                              'Principal'
-                              ])
-               sTweet += "his " + Orientation.GetWord() + " " + Species.GetWord() + " " + Relations.GetWord()
-          else:
-          #lesbian female
-               Orientation = WordList(['Lesbian','Lesbian','Dyke','Androgynous','Bisexual','Transgender','Otherkin',
-                                             'Gender-fluid','Gender-queer','Non-Binary','Pansexual','Polysexual'])
-               Species = WordList(['Elf','Fairy','Futa','Futanari','Green-Skinned Alien',
-                                        'Mermaid','Mermaid','Mermaid','Nymph','Succubus','Succubus',
-                                        'Vampire','Cougar','MILF','Step-Daughter',
-                                        'Zombie'])
-               Relations = WordList(['Teacher','English Teacher','Yoga Instructor','Nanny','Math Tutor',
-                                          'Babysitter','Nurse','Piano Teacher','Biology Teacher','Personal Trainer',
-                                          'Housekeeper','French Maid','Secretary','Therapist',
-                                          'Gym Coach','Volleyball Coach','Nun','Nurse','Massage Therapist',
-                                          'Cheerleading Captain','Secretary','Fashion Model',
-                                          'Stripper','Step-Mom','Mother-in-Law','Principal','Waitress',
-                                          'Manager'])
-               sTweet += "her " + Orientation.GetWord() + " " + Species.GetWord() + " " + Relations.GetWord()
-          return sTweet     
+            VerbNot = ['Impregnated','Bred','Hunted','Motor','Harrassed']
+            sVerb = self.VerbsBy.GetWord(NotList = VerbNot)
+
+            sTweet = sVerb + "\nby "
+
+            Orientation = WordList(['Gay','Gay','Androgynous','Bisexual','Transgender','Otherkin',
+                                            'Gender-fluid','Gender-queer','Non-Binary','Pansexual','Polysexual'])
+            Species = WordList(['Alien','Alpha Wolf','Centaur','Centaur','Cyborg','Demon',
+                                    'Dinosaur','Dinosaur','Dwarf','Gargoyle','Goat-Man',
+                                    'Man-o-taur','MANtelope','MANticore','Mer-man','Mer-man',
+                                    'Swamp Creature','Tentacle Monster','Undead',
+                                    'Vampire','Vampire','Were-Horse','Were-Shark','Werewolf',
+                                    'Werewolf','Zombie','Chippendales Dancer','Coal Miner',
+                                    'Construction Worker','Cop','Cowboy','Farm Hand',
+                                    'Football Players','Frat Boy','Gangsta','Long Haul Trucker',
+                                    'Lumberjack','MMA Fighter','Sailor','Sumo Wrestler',
+                                    'Millionaire','Billionaire'])
+            Relations = WordList(['Blind Date','Body Guard','Boss','Camp Counselor','Coach',
+                            'Doctor','Duke','Gym Coach','Marriage Counselor','Manor Lord','Mechanic',
+                            'Minister','New Boyfriend','Pastor','Personal Trainer','Plumber','Priest','Pool Boy',
+                            'Prince','Professor','Step-brother','Step-father','Step-son','Teacher',
+                            'Divorce Attorney','Yoga Teacher','Physical Therapist','Dentist','Youth Pastor',
+                            'Principal'
+                            ])
+            sTweet += "his\n" + Orientation.GetWord() + " " + Species.GetWord() + " " + Relations.GetWord()
+        else:
+        #lesbian female
+            self.ExclTemplateTags = ["man","men","gay"]
+
+            VerbNot = ['Impregnated','Bred','Hunted','Cream','Harrassed',
+                       'Behind','Plowed','Boned']
+            sVerb = self.VerbsBy.GetWord(NotList = VerbNot)
+
+            sTweet = sVerb + "\nby "
+
+            Orientation = WordList(['Lesbian','Lesbian','Dyke','Androgynous','Bisexual','Transgender','Otherkin',
+                                            'Gender-fluid','Gender-queer','Non-Binary','Pansexual','Polysexual'])
+            Species = WordList(['Elf','Fairy','Futa','Futanari','Green-Skinned Alien',
+                                    'Mermaid','Mermaid','Mermaid','Nymph','Succubus','Succubus',
+                                    'Vampire','Cougar','MILF','Step-Daughter',
+                                    'Zombie'])
+            Relations = WordList(['Teacher','English Teacher','Yoga Instructor','Nanny','Math Tutor',
+                                        'Babysitter','Nurse','Piano Teacher','Biology Teacher','Personal Trainer',
+                                        'Housekeeper','French Maid','Secretary','Therapist',
+                                        'Gym Coach','Volleyball Coach','Nun','Nurse','Massage Therapist',
+                                        'Cheerleading Captain','Secretary','Fashion Model',
+                                        'Stripper','Step-Mom','Mother-in-Law','Principal','Waitress',
+                                        'Manager'])
+            sTweet += "her\n" + Orientation.GetWord() + " " + Species.GetWord() + " " + Relations.GetWord()
+        return sTweet     
           
 # MILKED by my biker step-son
 # class Generator100(Generator):
