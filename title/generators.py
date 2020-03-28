@@ -2505,14 +2505,18 @@ class Generator58(Generator):
 # Adventure with the
 # Magic Butt Plug
 class Generator60(Generator):
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 60, Priority = 1)
+         self.Template = templates.TitleTemplate21()
      
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ReqTemplateTags = ["woman"]
+          self.ExclTemplateTags = ["man","men"]
           
           SweetAdjs = WordList(['Sweet', 'Sweet', 'Cute', 'Blonde','Innocent','Bashful','Naive'])
           NiceNames = WordList(['Amy','Angelica','Annie','Charity','Daisy','Daphne','Elsie',
@@ -2534,15 +2538,12 @@ class Generator60(Generator):
           sNice1 = ""
           sNice2 = ""
           
-          sTweet += NiceNames.GetWord() + " the " 
+          sTweet += NiceNames.GetWord() + "\nThe " 
           if CoinFlip():
                sTweet += SweetAdjs.GetWord() + " "
           sTweet += "Little "
-          if CoinFlip():
-               sNice1 = NiceGirlAdjs.GetWord()
-               sTweet += sNice1 + " "
           sNice2 = NiceGirlAdjs.GetWord(NotList = [sNice1])
-          sTweet += sNice2 + " " + NiceGirlNouns.GetWord(NotList = [sNice1, sNice2]) + "\nand her\nAdventure with\n"
+          sTweet += sNice2 + " " + NiceGirlNouns.GetWord(NotList = [sNice1, sNice2]) + "\nAnd Her Adventure With\n"
           sTweet += "The " + ObjectAdjs.GetWord() + " " + ObjectNouns.GetWord()
           
           return sTweet     
