@@ -5110,7 +5110,8 @@ class Generator134(Generator):
         #gay male
             self.ExclTemplateTags = ["woman","women","lesbian"]
 
-            VerbNot = ['Impregnated','Bred','Hunted','Motor','Harrassed']
+            VerbNot = ['Impregnated','Bred','Hunted','Motor','Harrassed',
+                       'Knocked','Eaten']
             sVerb = self.VerbsBy.GetWord(NotList = VerbNot)
 
             sTweet = sVerb + "\nby "
