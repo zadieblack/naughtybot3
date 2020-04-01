@@ -1459,7 +1459,7 @@ class BGProfileWindowCreeper(BGProfile):
 class BGProfileLesboFriend(BGProfile):
     def __init__(self):
         super().__init__(ID = 116,
-                           Priority = 40,
+                           Priority = 4,
                            sFileName = "lesbo_friend")
         self.MainTitleColor = "rgba(170, 43, 40, 255)"
         self.SecondTitleColor = "rgba(94, 146, 95, 255)"
@@ -1483,7 +1483,7 @@ class BGProfileNaughtyBarn(BGProfile):
 class BGProfileBulgingCodpieces(BGProfile):
     def __init__(self):
         super().__init__(ID = 118,
-                           Priority = 40,
+                           Priority = 4,
                            sFileName = "bulging_codpieces")
         self.MainTitleColor = "rgba(142, 22, 25, 255)"
         self.SecondTitleColor = "rgba(194, 102, 52, 255)"
@@ -1495,7 +1495,7 @@ class BGProfileBulgingCodpieces(BGProfile):
 class BGProfileLesboBoudoir(BGProfile):
     def __init__(self):
         super().__init__(ID = 119,
-                           Priority = 40,
+                           Priority = 4,
                            sFileName = "lesbo_boudoir")
         self.MainTitleColor = "rgba(216, 107, 111, 255)"
         self.SecondTitleColor = "rgba(110, 173, 69, 255)"
@@ -1544,13 +1544,25 @@ class BGProfileDangerMine(BGProfile):
 class BGProfileFlex(BGProfile):
     def __init__(self):
         super().__init__(ID = 123,
-                           Priority = 40,
+                           Priority = 4,
                            sFileName = "flex")
         self.MainTitleColor = "rgba(199, 47, 19, 255)"
         self.SecondTitleColor = "rgba(49, 114, 44, 255)"
         self.SmallTextColor = "rgba(1, 77, 119, 255)"
         self.AuthorNameColor = "rgba(1, 77, 119, 255)"
         self.Tags = ["man","indoors","muscular","shirtless"]
+        self.Disabled = False
+
+class BGProfileBeefcakeAngel(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 124,
+                           Priority = 40,
+                           sFileName = "beefcake_angel")
+        self.MainTitleColor = "rgba(205, 99, 139, 255)"
+        self.SecondTitleColor = "rgba(205, 99, 139, 255)"
+        self.SmallTextColor = "rgba(101, 44, 84, 255)"
+        self.AuthorNameColor = "rgba(101, 44, 84, 255)"
+        self.Tags = ["man","woman","muscular","shirtless","angel","fantasy","brunette"]
         self.Disabled = False
 
 # this is for debugging bgprofile frequency. delete later.
