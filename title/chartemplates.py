@@ -268,7 +268,7 @@ class FemTemplate18(FemCharTemplate):
                                                   ], 
                                    girltype = GirlType.Bad,
                                    priority = 1)          
-          RequestOnly = True                    
+          self.RequestOnly = True                    
 
 # Good Female (Race) Generators 130 & 131          
 class FemTemplate19(FemCharTemplate):
@@ -283,7 +283,7 @@ class FemTemplate19(FemCharTemplate):
                                    girltype = GirlType.Good,
                                    NotList = ["succubus"],
                                    priority = 1)
-          RequestOnly = True
+          self.RequestOnly = True
 
 # VERY Bad Female Profession (Generators 52 & 53)
 class FemTemplate20(FemCharTemplate):
@@ -298,7 +298,7 @@ class FemTemplate20(FemCharTemplate):
                                    girltype = GirlType.Bad,
                                    priority = 1,
                                    NotList = ["Naked","Nudist"])   
-          RequestOnly = True  
+          self.RequestOnly = True  
 
 # Bad (Undead) Female Profession (Generator 138)
 # Generators: 138
@@ -329,7 +329,7 @@ class FemTemplate22(FemCharTemplate):
                                    priority = 3,
                                    NotList = ["single","virgin","fertile","small-town","tender",
                                               "mature","elvish","fashionable"])
-          RequestOnly = True
+          self.RequestOnly = True
 
 # Good female profession no phys char (Generator 30)
 class FemTemplate23(FemCharTemplate):
@@ -343,7 +343,7 @@ class FemTemplate23(FemCharTemplate):
                                    priority = 3,
                                    NotList = ["single","virgin","fertile","small-town","tender",
                                               "mature","elvish","fashionable"])
-          RequestOnly = True
+          self.RequestOnly = True
                     
 # === Good Trope templates ===
 
@@ -1098,7 +1098,24 @@ class FemLesbianTemplate1(FemLesbianTemplate):
                                                     CTEntry([SpeciesFemale],1)
                                                   ], 
                                    girltype = GirlType.Good,
-                                   priority = 1)                                   
+                                   priority = 1)  
+          
+# Female "Nice Girl"
+class FemNiceGirlTemplate1(FemCharTemplate):
+     def __init__(self):
+          super().__init__(      noun = NounsNiceGirl(),
+                                    id = 501, 
+                                    adjlist =      [CTEntry([FirstAdjsNiceGirl],9),
+                                                    CTEntry([AttitudesNiceGirl],8),
+                                                    CTEntry([DiminuitiveNiceGirl],7), 
+                                                    CTEntry([PhysCharAdjsNiceGirl],6),
+                                                    CTEntry([NationHairColorNiceGirl],5)
+                                                  ], 
+                                   girltype = GirlType.Good,
+                                   priority = 1)  
+          self.RequestOnly = True
+          print("501 selected")
+
 # Adj:          AgeAdjFemale, AttitudeGoodFemale, AttitudeBadFemale, AttitudeFemale,
 #                ClothingFemale, GenModFemale, MaritalStatusFemale, NationFemale, PhysCharFemale
 #               PregState, SexualityFemale, SkinHairColorFemale, SpeciesFemale
@@ -1598,7 +1615,7 @@ class MaleTropeTemplate14(MaleTropeTemplate):
 
 class MaleTropeTemplate15(MaleTropeTemplate):
      def __init__(self):
-          super().__init__(     noun = TropeBitMale("DILF"),
+          super().__init__(     noun = TropeBitMale("D.I.L.F."),
                                     id = 115, 
                                     adjlist =      [ CTEntry([AttitudeMale],10),
                                                     CTEntry([PhysCharMale,DickCharMale],9),

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # Generators module
 
-import re, sys, threading, traceback
+import re, sys
 from decimal import Decimal
 from random import *
 from util import *
@@ -2518,17 +2518,11 @@ class Generator60(Generator):
           self.ReqTemplateTags = ["woman"]
           self.ExclTemplateTags = ["man","men"]
           
-          SweetAdjs = WordList(['Sweet', 'Sweet', 'Cute', 'Blonde','Innocent','Bashful','Naive'])
           NiceNames = WordList(['Amy','Angelica','Annie','Charity','Daisy','Daphne','Elsie',
                                      'Emmy','Frances','Gertrude','Greta','Jeanie','Lacey','Lizzy',
                                      'Mabel','Mary','Maryanne','Molly','Nancy','Nell','Olive','Phoebe',
                                      'Rosie','Shelly','Sophie','Summer','Virginia'])
-          NiceGirlAdjs = WordList(['All-American','Amish','Apple-Bottomed','Athletic','Asian','Blue-Eyed',
-                                         'Busty','Buxom','Country','Curvy','Freshman','Korean','Leggy','Modest','Nubile',
-                                         'Pale','Repressed','Small-Town','Swedish','Teen Beauty Queen','Virgin'])
-          NiceGirlNouns = WordList(['Babysitter','Cheerleader','Coed','Daddy\'s Girl','Farmer\'s Daughter',
-                                          'Freshman','Geek Girl', 'Gymnast','Maiden','Nerd Girl','Schoolgirl','Southern Belle',
-                                          'Step-Daughter','Teen Model','Virgin'])
+
           ObjectAdjs = WordList(['Demon-Possessed','Enchanted','Haunted','Magic','Magical'])
           ObjectNouns = WordList(['Anal Beads','Anal Hook','Ball Gag','Ben Wa balls','Bull Dyke','Butt Plug',
                                         'Clit Clamp','Clit Pump','Crotchless Panties','Dildo','11\" Dildo',
@@ -2537,13 +2531,13 @@ class Generator60(Generator):
                                         'Sex Swing','Spreader Bar','Speculum','Strap-On','Sybian','Thong','Vibrator'])
           sNice1 = ""
           sNice2 = ""
+
+          NiceGirl = char.FemaleChar(SelectTemplateID = 501, bAddTheArticle = True,
+                                     ReqList = [DiminuitiveNiceGirl])
           
-          sTweet += NiceNames.GetWord() + "\nThe " 
-          if CoinFlip():
-               sTweet += SweetAdjs.GetWord() + " "
-          sTweet += "Little "
-          sNice2 = NiceGirlAdjs.GetWord(NotList = [sNice1])
-          sTweet += sNice2 + " " + NiceGirlNouns.GetWord(NotList = [sNice1, sNice2]) + "\nAnd Her Adventure With\n"
+          sTweet += NiceGirl.Desc
+
+          sTweet += "\nAnd Her Adventure With\n"
           sTweet += "The " + ObjectAdjs.GetWord() + " " + ObjectNouns.GetWord()
           
           return sTweet     
@@ -2563,22 +2557,29 @@ class Generator60(Generator):
 # has me chained up in his basement (garage/sex dungeon)
 # naked!
 class Generator62(Generator):
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 62, Priority = 1)
+         self.Template = templates.TitleTemplate22()
      
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
           
           BadNotList = ["Naked"]
-          Exclamations = WordList(["Help!", "Help!", "Oh No!", "Uh Oh!", "What Do I Do?!?"])
-          BadPlaces = WordList(["Basement", "Basement", "Dungeon", "Garage", "Attic", "Man Cave", "Den", "Sex Dungeon", "Cellar", "Secret Lair", "Secret Hideout", "Secret Love-Nest", "Swanky Bachelor Pad"])
+          Exclamations = WordList(["Help!", "Help!", "Oh No!", "Uh Oh!"])
+          BadPlaces = WordList(["Basement","Basement","Castle","Dungeon",
+                                "Garage", "Attic","Man Cave", "Den", 
+                                "Sex Dungeon", "Cellar","Secret Lair", 
+                                "Secret Hideout", "Secret Love-Nest", 
+                                "Bachelor Pad"])
           BadMan = char.MaleChar(bAddAnArticle = True, NotList = BadNotList, 
-                                        bAllowSpecies = False, bAllowMaritalStatus = False, bAllowGang = False)
+                                 bAllowGang = False, MaxChars = 18,
+                                 bAllowSpecies = False, bAllowMaritalStatus = False)
           
-          sTweet = "\"" + Exclamations.GetWord() + "\n" + BadMan.Desc + "\nHas Me Chained Up In His " + BadPlaces.GetWord() + ",\nNaked!\""
+          sTweet += Exclamations.GetWord() + "\n" 
+          sTweet += BadMan.Desc + "\nHas Me Chained Up In His " + BadPlaces.GetWord() + ",\nNaked!"
 
           return sTweet     
           
@@ -3776,7 +3777,7 @@ class Generator98(Generator):
                                          "Gives a Rim-Job to","Has Twincest with","Tries Leather Bondage with",
                                          "Gets Peed on by"])
                                          
-          MaleAdjs = WordList(titmisc.PhysCharMale().List + titmisc.DickCharMale().List + ['Giant','Enormous','Black','Black','Married','Heavily-Tattooed','DILF','Naked','Nudist','Virile','Wealthy','Millionaire','Billionaire'])
+          MaleAdjs = WordList(titmisc.PhysCharMale().List + titmisc.DickCharMale().List + ['Giant','Enormous','Black','Black','Married','Heavily-Tattooed','D.I.L.F.','Naked','Nudist','Virile','Wealthy','Millionaire','Billionaire'])
           Species = WordList(["Unicorn","Centaur","Werewolf","Merman","Dragon","Goat Man","Dwarf",
                                    "Space Alien","Tentacle Monster","Pirate","Trapeze Artist","Clown", 
                                    "Sumo Wrestler","Were-Horse","Werewolf","Dinosaur", "Dinosaur",
@@ -3812,7 +3813,7 @@ class Generator99(Generator):
                                          "Gives a Rim-Job to","Has Twincest with","Tries Leather Bondage with",
                                          "Gets Peed on by"])
                                          
-          MaleAdjs = WordList(titmisc.PhysCharMale().List + titmisc.DickCharMale().List + ['Giant','Enormous','Black','Black','Married','Heavily-Tattooed','DILF','Naked','Nudist','Virile','Wealthy','Millionaire','Billionaire'])
+          MaleAdjs = WordList(titmisc.PhysCharMale().List + titmisc.DickCharMale().List + ['Giant','Enormous','Black','Black','Married','Heavily-Tattooed','D.I.L.F.','Naked','Nudist','Virile','Wealthy','Millionaire','Billionaire'])
           Species = WordList(["Unicorn","Centaur","Werewolf","Merman","Goat Man","Dwarf",
                                    "Space Alien","Tentacle Monster","Pirate","Trapeze Artist","Were-Horse",
                                    "Werewolf","Dinosaur", "Dinosaur","Vampire","Martian","Contortionist",
@@ -4851,7 +4852,7 @@ class Generator128(Generator):
                                         'Fire Fighters','Frat Boys','Long Haul Truckers','Lumberjacks',
                                         'Male Escorts','Male Models','Male Nurses','Male Strippers',
                                         'Matadors','Pirates','Roadies','Rodeo Clowns','Sailors','Stuntmen',
-                                        'Sumo Wrestlers','Surfers','Surgeons','Biker Gang','DILFs','Jocks',
+                                        'Sumo Wrestlers','Surfers','Surgeons','Biker Gang','D.I.L.F.s','Jocks',
                                         'Billionaires','Millionaires','Sugar Daddies','Leather Daddies',
                                         'Bounty Hunters','Barbarians','Businessmen','Werewolves',
                                         'Drag Queens','Muscle Marys'])

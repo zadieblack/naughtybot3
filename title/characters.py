@@ -510,10 +510,34 @@ class LesFemaleAdj(FemCharBit):
      def __init__(self):
           super().__init__(titmisc.LesFemaleAdj())
           
+class FirstAdjsNiceGirl(FemCharBit):
+     def __init__(self):
+          super().__init__(titmisc.FirstAdjsNiceGirl())
+
+class AttitudesNiceGirl(FemCharBit):
+     def __init__(self):
+          super().__init__(titmisc.AttitudesNiceGirl())
+
+class DiminuitiveNiceGirl(FemCharBit):
+     def __init__(self):
+          super().__init__(titmisc.DiminuitiveNiceGirl())
+
+class PhysCharAdjsNiceGirl(FemCharBit):
+     def __init__(self):
+          super().__init__(titmisc.PhysCharAdjsNiceGirl())
+
+class NationHairColorNiceGirl(FemCharBit):
+     def __init__(self):
+          super().__init__(titmisc.NationHairColorNiceGirl())
+          
+class NounsNiceGirl(FemCharBit):
+     def __init__(self):
+          super().__init__(titmisc.NounsNiceGirl())
+          
 class LesFemaleNoun(FemCharBit):
      def __init__(self):
           super().__init__(titmisc.LesFemaleNoun())
-          
+
 class AgeAdjMale(MaleCharBit):
      def __init__(self):
           super().__init__(titmisc.AgeMaleAdj())

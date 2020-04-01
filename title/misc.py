@@ -725,6 +725,108 @@ class LesFemaleNoun(WordList):
                'Rug Muncher',
                'Stud'])               
 
+# ***********************
+# * Nice girl word lists 
+# ***********************
+
+class FirstAdjsNiceGirl(WordList):
+    def __init__(self):
+        super().__init__(["Bashful",
+                          "Chaste",
+                          "Cute",
+                          "Innocent",
+                          "Naive",
+                          "Shy",
+                          "Sweet",
+                          "Tender",
+                          "Virgin"
+                          ])
+
+class AttitudesNiceGirl(WordList):
+    def __init__(self):
+        super().__init__(["Conservative",
+                            "Demure",
+                            "Geeky",
+                            "Introverted",
+                            "Modest",
+                            "Nerdy",
+                            "Repressed",
+                            "Sheltered",
+                            "Uptight"])
+
+class DiminuitiveNiceGirl(WordList):
+    def __init__(self):
+        super().__init__(["Little"])
+
+class PhysCharAdjsNiceGirl(WordList):
+    def __init__(self):
+        super().__init__(["Apple-Bottomed",
+                          "Athletic",
+                          "BBW",
+                          "Buxom",
+                          "Curvy",
+                          "Leggy",
+                          "Nubile",
+                          "Petite"])
+
+class NationHairColorNiceGirl(WordList):
+    def __init__(self):
+        super().__init__(["All-American",
+                          "Amish",
+                          "Asian",
+                          "Blonde",
+                          "Blue-Eyed",
+                          "British",
+                          "Brunette",
+                          "Christian",
+                          "Country",
+                          "Curvy",
+                          "Dark-Skinned",
+                          "Ebony",
+                          "French",
+                          "Irish",
+                          "Korean",
+                          "Mormon",
+                          "Pale",
+                          "Redheaded",
+                          "Spanish",
+                          "Swedish"])
+
+class NounsNiceGirl(WordList):
+    def __init__(self):
+        super().__init__(["Babysitter",
+                          "Bride",
+                          "Cheerleader",
+                          "Co-ed",
+                          "Daddy's Girl",
+                          "Farmer's Daughter",
+                          "Fiancé",
+                          "French Maid",
+                          "Freshman",
+                          "Girlfriend",
+                          "Governess",
+                          "Gymnast",
+                          "House Maid",
+                          "Housewife",
+                          "Librarian",
+                          "Maiden",
+                          "Piano Teacher",
+                          "Teacher",
+                          "Secretary",
+                          "Schoolgirl",
+                          "Small-Town Girl",
+                          "Southern Belle",
+                          "Stay-at-Home Wife",
+                          "Step-Daughter",
+                          "Step-Mom",
+                          "Step-Sister",
+                          "Teen Model",
+                          "Virgin",
+                          "Wife"])
+
+# ***********************
+# * Male word lists 
+# ***********************
 
 class GenModMale(WordList):
      def __init__(self):
@@ -1222,7 +1324,7 @@ class TropesMale(WordList):
                'Criminal',
                'Daddy',
                'Daddy Dom',
-               'DILF',
+               'D.I.L.F.',
                'Dirty Old Man',
                'Don Juan',
                'Ex-Con',
@@ -1316,7 +1418,7 @@ class GangsMalePlural(WordList):
                'Construction Workers',
                'Cops',
                'Cowboys',
-               'DILFs',
+               'D.I.L.F.s',
                'Dwarves',
                'Firemen',
                'Gangstas',
@@ -1389,7 +1491,7 @@ class GayMaleNoun(WordList):
                'Butt Pirate',
                'Cub',
                'Daddy','Daddy',
-               'DILF',
+               'D.I.L.F.',
                'Drag Queen','Drag Queen',
                'Fairy',
                'Flamer',
@@ -1423,91 +1525,91 @@ class SubtitleCoda(WordList):
                'Story'])
                
 class NiceGirlGoodAdjs(WordList):
-     WordHistoryQ = HistoryQ(3)
+    WordHistoryQ = HistoryQ(3)
      
-     def __init__(self):
-          super().__init__(["Amish",
-                                "Bashful",
-                                "Chaste",
-                                "Conservative",
-                                "Christian","Christian",
-                                "Demure",
-                                "Innocent",
-                                "Modest",
-                                "Mormon",
-                                "Sheltered",
-                                "Shy",
-                                "Tender",
-                                "Wholesome",
-                                "Uptight",
-                                "Virgin"])
+    def __init__(self):
+        super().__init__(["Amish",
+                            "Bashful",
+                            "Chaste",
+                            "Conservative",
+                            "Christian","Christian",
+                            "Demure",
+                            "Innocent",
+                            "Modest",
+                            "Mormon",
+                            "Sheltered",
+                            "Shy",
+                            "Tender",
+                            "Wholesome",
+                            "Uptight",
+                            "Virgin"])
 
 class NiceGirlAdjs(WordList):
-     WordHistoryQ = HistoryQ(3)
+    WordHistoryQ = HistoryQ(3)
      
-     def __init__(self):
-          super().__init__(["All-American",
-                                "Asian",
-                                "Athletic",
-                                "BBW",
-                                "Blonde",
-                                "British",
-                                "Brunette",
-                                "Cheerleader",
-                                "Dark-Skinned",
-                                "Curvy",
-                                "Ebony",
-                                "Fashionable",
-                                "Geeky",
-                                "Gymnast",
-                                "Introverted",
-                                "Irish",
-                                "Lactating",
-                                "Mature",
-                                "Nerdy",
-                                "Pale",
-                                "Petite",
-                                "Pregnant",
-                                "Redheaded",
-                                "Spanish"])
+    def __init__(self):
+        super().__init__(["All-American",
+                            "Asian",
+                            "Athletic",
+                            "BBW",
+                            "Blonde",
+                            "British",
+                            "Brunette",
+                            "Cheerleader",
+                            "Dark-Skinned",
+                            "Curvy",
+                            "Ebony",
+                            "Fashionable",
+                            "Geeky",
+                            "Gymnast",
+                            "Introverted",
+                            "Irish",
+                            "Lactating",
+                            "Mature",
+                            "Nerdy",
+                            "Pale",
+                            "Petite",
+                            "Pregnant",
+                            "Redheaded",
+                            "Spanish"])
 
 class NiceGirlNouns(WordList):
-     WordHistoryQ = HistoryQ(3)
+    WordHistoryQ = HistoryQ(3)
      
-     def __init__(self):
-          super().__init__(["Babysitter",
-                                "Bride",
-                                "Fiancé",
-                                "Girlfriend",
-                                "Governess",
-                                "House Maid",
-                                "Housewife",
-                                "Librarian",
-                                "Maid",
-                                "Piano Teacher",
-                                "Teacher",
-                                "Secretary",
-                                "Schoolgirl",
-                                "Small-Town Girl",
-                                "Stay-at-Home Wife",
-                                "Step-Daughter",
-                                "Step-Mom",
-                                "Step-Sister",
-                                "Wife"])
+    def __init__(self):
+        super().__init__(["Babysitter",
+                            "Bride",
+                            "Fiancé",
+                            "Girlfriend",
+                            "Governess",
+                            "House Maid",
+                            "Housewife",
+                            "Librarian",
+                            "Maid",
+                            "Piano Teacher",
+                            "Teacher",
+                            "Secretary",
+                            "Schoolgirl",
+                            "Small-Town Girl",
+                            "Stay-at-Home Wife",
+                            "Step-Daughter",
+                            "Step-Mom",
+                            "Step-Sister",
+                            "Wife"])
 
 class NiceGirl():
-     def __init__(self, NotList = None):
-          if NotList == None:
-               NotList = []
+    def __init__(self, NotList = None):
+        if NotList == None:
+            NotList = []
                
-          sNiceAdj1 = NiceGirlGoodAdjs().GetWord(NotList = NotList)
-          sNiceGirl = sNiceAdj1 + " "
-          if CoinFlip():
-               sNiceGirl += NiceGirlGoodAdjs().GetWord(NotList = [sNiceAdj1] + NotList) + " "
-          if CoinFlip():
-               sNiceGirl += NiceGirlAdjs().GetWord(NotList = NotList) + " "
-          sNiceGirl += NiceGirlNouns().GetWord(NotList = NotList)
+        sNiceAdj1 = NiceGirlGoodAdjs().GetWord(NotList = NotList)
+        sNiceGirl = sNiceAdj1 + " "
+        if CoinFlip():
+            sNiceGirl += NiceGirlGoodAdjs().GetWord(NotList = [sNiceAdj1] + NotList) + " "
+        if CoinFlip():
+            sNiceGirl += NiceGirlAdjs().GetWord(NotList = NotList) + " "
+        sNiceGirl += NiceGirlNouns().GetWord(NotList = NotList)
           
-          self.Desc = sNiceGirl 
+        self.Desc = sNiceGirl 
                
                

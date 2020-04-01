@@ -1468,6 +1468,90 @@ class BGProfileLesboFriend(BGProfile):
         self.Tags = ["woman","women","lesbian","indoors"]
         self.Disabled = False
 
+class BGProfileNaughtyBarn(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 117,
+                           Priority = 40,
+                           sFileName = "naughty_barn")
+        self.MainTitleColor = "rgba(249, 49, 37, 255)"
+        self.SecondTitleColor = "rgba(204, 145, 88, 255)"
+        self.SmallTextColor = "rgba(71, 106, 116, 255)"
+        self.AuthorNameColor = "rgba(71, 106, 116, 255)"
+        self.Tags = ["woman","man","straight","blonde"]
+        self.Disabled = False
+
+class BGProfileBulgingCodpieces(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 118,
+                           Priority = 40,
+                           sFileName = "bulging_codpieces")
+        self.MainTitleColor = "rgba(142, 22, 25, 255)"
+        self.SecondTitleColor = "rgba(194, 102, 52, 255)"
+        self.SmallTextColor = "rgba(143, 138, 40, 255)"
+        self.AuthorNameColor = "rgba(194, 102, 52, 255)"
+        self.Tags = ["men","man","muscular","fantasy","outdoors"]
+        self.Disabled = False
+
+class BGProfileLesboBoudoir(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 119,
+                           Priority = 40,
+                           sFileName = "lesbo_boudoir")
+        self.MainTitleColor = "rgba(216, 107, 111, 255)"
+        self.SecondTitleColor = "rgba(110, 173, 69, 255)"
+        self.SmallTextColor = "rgba(126, 63, 100, 255)"
+        self.AuthorNameColor = "rgba(110, 173, 69, 255)"
+        self.Tags = ["woman","outdoors","underwater","kinky","bikini","blonde"]
+        self.Disabled = False
+
+class BGProfileOctoAttack(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 120,
+                           Priority = 40,
+                           sFileName = "octo_attack")
+        self.MainTitleColor = "rgba(223, 112, 77, 255)"
+        self.SecondTitleColor = "rgba(71, 109, 63, 255)"
+        self.SmallTextColor = "rgba(44, 117, 179, 255)"
+        self.AuthorNameColor = "rgba(44, 117, 179, 255)"
+        self.Tags = ["woman","women","indoors"]
+        self.Disabled = False
+
+class BGProfileFireplaceBeauty(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 121,
+                           Priority = 40,
+                           sFileName = "fireplace_beauty")
+        self.MainTitleColor = "rgba(213, 22, 24, 255)"
+        self.SecondTitleColor = "rgba(254, 171, 15, 255)"
+        self.SmallTextColor = "rgba(11, 84, 115, 255)"
+        self.AuthorNameColor = "rgba(11, 84, 115, 255)"
+        self.Tags = ["woman","indoors","blonde","butt"]
+        self.Content = Content.PG13
+        self.Disabled = False
+
+class BGProfileDangerMine(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 122,
+                           Priority = 40,
+                           sFileName = "danger_mine")
+        self.MainTitleColor = "rgba(205, 97, 71, 255)"
+        self.SecondTitleColor = "rgba(231, 140, 81, 255)"
+        self.SmallTextColor = "rgba(1, 77, 119, 255)"
+        self.AuthorNameColor = "rgba(79, 27, 36, 255)"
+        self.Tags = ["man","woman","outdoors","blonde","couple","straight"]
+        self.Disabled = False
+
+class BGProfileFlex(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 123,
+                           Priority = 40,
+                           sFileName = "flex")
+        self.MainTitleColor = "rgba(199, 47, 19, 255)"
+        self.SecondTitleColor = "rgba(49, 114, 44, 255)"
+        self.SmallTextColor = "rgba(1, 77, 119, 255)"
+        self.AuthorNameColor = "rgba(1, 77, 119, 255)"
+        self.Tags = ["man","indoors","muscular","shirtless"]
+        self.Disabled = False
 
 # this is for debugging bgprofile frequency. delete later.
 def indexof(list, searchobj):

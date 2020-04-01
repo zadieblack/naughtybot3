@@ -566,38 +566,6 @@ class TitleTemplate16(TitleTemplate):
                      MaxRows = 1,
                      ColorType = LineColorType.SecondTitle)
 
-# ** Conversational **
-# Medium Top Line
-# Large Middle Line
-# Small Bottom Line
-# Templates: 7
-class TitleTemplate16(TitleTemplate):
-    def __init__(self):
-        super().__init__(ID = 16)
-
-        # Medium long line or two lines normal type
-        self.AddLine(OrderNum = 1,
-                     FontName = "Absinette W01 Regular.ttf",
-                     FontMaxSize = 22,
-                     MaxRows = 1,
-                     ColorType = LineColorType.MainTitle)
-
-        # Large medium length line
-        self.AddLine(OrderNum = 2,
-                     FontName =  "Sabado Regular.otf",
-                     FontMaxSize = 14,
-                     MaxRows = 2,
-                     ColorType = LineColorType.SecondTitle,
-                     AllCaps = True)
-
-        # Two large word top line
-        self.AddLine(OrderNum = 3,
-                     FontName = "Verona-ExtraBold.otf",
-                     FontMaxSize = 20,
-                     MaxRows = 2,
-                     ColorType = LineColorType.SecondTitle,                     
-                     AllCaps = True)
-
 # ONE OR TWO WORD TOP ROW
 # MEDIUM SECOND ROW
 # and the
@@ -789,7 +757,45 @@ class TitleTemplate21(TitleTemplate):
                      ColorType = LineColorType.MainTitle,
                      AllCaps = True)
 
+# ** Conversational **
+# Medium Top Line
+# Large Middle Line
+# Small Bottom Line
+# Templates: 62
+class TitleTemplate22(TitleTemplate):
+    def __init__(self):
+        super().__init__(ID = 22)
 
+        # Large short 1-2 word top line
+        self.AddLine(OrderNum = 1,
+                     FontName = "Verona-ExtraBold.otf",
+                     FontMaxSize = 26,
+                     MaxRows = 1,
+                     ColorType = LineColorType.MainTitle,
+                     AllCaps = True)
+
+        # Medium long line or two lines normal type
+        self.AddLine(OrderNum = 2,
+                     FontName = "Sabado Regular.otf",
+                     FontMaxSize = 18,
+                     MaxRows = 1,
+                     ColorType = LineColorType.SecondTitle,
+                     AllCaps = True)
+
+        # Large medium length line
+        self.AddLine(OrderNum = 2,
+                     FontName =  "Sabado Regular.otf",
+                     FontMaxSize = 13,
+                     MaxRows = 2,
+                     ColorType = LineColorType.SmallText,
+                     AllCaps = True)
+
+        # Small medium-length tag (excited!)
+        self.AddLine(OrderNum = 4,
+                     FontName = "FreestyleScriptStd.otf",
+                     FontMaxSize = 25,
+                     MaxRows = 1,
+                     ColorType = LineColorType.MainTitle)
 
 class TitleTemplateSelector():
     def __init__(self):
