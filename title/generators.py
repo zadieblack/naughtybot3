@@ -422,7 +422,8 @@ class Generator6(Generator):
           super().GenerateTweet()
           sTweet = ""
 
-          self.ReqTemplateTags = ["man"]
+          self.ReqTemplateTags = ["bed"]
+          self.ExclTemplateTags = ["gay","lesbian"]
           
           NotList = ["Pledged", "Public", "Charmed", "Cuckolded", "Hunted", "Harrassed", "Sold", 
                          "Gifted", "Pledged", "Bed", "Sex Dungeon","Basement","Dungeon","Surrendered"]
