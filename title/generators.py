@@ -2557,31 +2557,38 @@ class Generator60(Generator):
 # has me chained up in his basement (garage/sex dungeon)
 # naked!
 class Generator62(Generator):
-     Disabled = False
+    Disabled = False
 
-     def __init__(self):
-         super().__init__(ID = 62, Priority = 1)
-         self.Template = templates.TitleTemplate22()
+    def __init__(self):
+        super().__init__(ID = 62, Priority = 1)
+        self.Template = templates.TitleTemplate22()
      
-     def GenerateTweet(self):
-          super().GenerateTweet()
-          sTweet = ""
-          
-          BadNotList = ["Naked"]
-          Exclamations = WordList(["Help!", "Help!", "Oh No!", "Uh Oh!"])
-          BadPlaces = WordList(["Basement","Basement","Castle","Dungeon",
-                                "Garage", "Attic","Man Cave", "Den", 
-                                "Sex Dungeon", "Cellar","Secret Lair", 
-                                "Secret Hideout", "Secret Love-Nest", 
-                                "Bachelor Pad"])
-          BadMan = char.MaleChar(bAddAnArticle = True, NotList = BadNotList, 
-                                 bAllowGang = False, MaxChars = 18,
-                                 bAllowSpecies = False, bAllowMaritalStatus = False)
-          
-          sTweet += Exclamations.GetWord() + "\n" 
-          sTweet += BadMan.Desc + "\nHas Me Chained Up In His " + BadPlaces.GetWord() + ",\nNaked!"
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
 
-          return sTweet     
+        if CoinFlip() and CoinFlip():
+            self.ReqTemplateTags = ["tied up","woman"]
+            self.ExclTemplateTags = ["femdom"]
+        else:
+            self.ReqTemplateTags = ["naked","woman"]
+          
+          
+        BadNotList = ["Naked"]
+        Exclamations = WordList(["Help!", "Help!", "Oh No!", "Uh Oh!"])
+        BadPlaces = WordList(["Basement","Basement","Castle","Dungeon",
+                            "Garage", "Attic","Man Cave", "Den", 
+                            "Sex Dungeon", "Cellar","Secret Lair", 
+                            "Secret Hideout", "Secret Love-Nest", 
+                            "Bachelor Pad"])
+        BadMan = char.MaleChar(bAddAnArticle = True, NotList = BadNotList, 
+                                bAllowGang = False, MaxChars = 18,
+                                bAllowSpecies = False, bAllowMaritalStatus = False)
+          
+        sTweet += Exclamations.GetWord() + "\n" 
+        sTweet += BadMan.Desc + "\nHas Me Chained Up In His " + BadPlaces.GetWord() + ",\nNaked!"
+
+        return sTweet     
           
 # The Busty Blonde Flight Attendant's 
 # Topless Miami Vacation
@@ -2970,7 +2977,7 @@ class Generator76(Generator):
           sTweet = ""
 
           self.ReqTemplateTags = ["woman"]
-          self.ExclTemplateTags = ["gay","men"]
+          self.ExclTemplateTags = ["gay"]
           
           WomanNotList = ["Wife","Girlfriend","Fiancé","Virgin","Harem","Slave Girl","Damsel","Maiden","Fetish","Call-Girl"]
           Girl = char.FemaleChar(NotList = WomanNotList, bAllowClothing = True, bAllowRelate = False, 

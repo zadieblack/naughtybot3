@@ -40,7 +40,8 @@ class BGProfileSaxaphone(BGProfile):
                            sFileName = "saxophone")
         self.MainTitleColor = "rgba(94, 68, 25, 255)"
         self.SecondTitleColor = "rgba(94, 68, 25, 255)"
-        self.Tags = ["man","woman","couple","outside","straight"]
+        self.Tags = ["man","woman","couple","outside","straight",
+                     "redhead","muscular"]
         self.Disabled = False
 
 class BGProfileBeach(BGProfile):
@@ -50,7 +51,8 @@ class BGProfileBeach(BGProfile):
                            sFileName = "beach")
         self.MainTitleColor = "rgba(162, 63, 33, 255)"
         self.SecondTitleColor = "rgba(83, 117, 88, 255)"
-        self.Tags = ["man","woman","couple","outside","straight"]
+        self.Tags = ["man","woman","couple","outside","straight",
+                     "blonde","shirtless","beach"]
         self.Disabled = False
 
 class BGProfileCrotchLevel(BGProfile):
@@ -61,7 +63,8 @@ class BGProfileCrotchLevel(BGProfile):
         self.MainTitleColor = "rgba(193, 29, 63, 255)"
         self.SecondTitleColor = "rgba(83, 117, 88, 255)"
         self.SmallTextColor = "rgba(112, 162, 193, 255)"
-        self.Tags = ["man","woman","couple","outside","straight"]
+        self.Tags = ["man","woman","couple","outside","straight","shirtless",
+                     "brunette","redhead","muscular","mountains"]
         self.Disabled = False
 
 class BGProfileBoatNipples(BGProfile):
@@ -73,7 +76,8 @@ class BGProfileBoatNipples(BGProfile):
         self.SecondTitleColor = "rgba(39, 32, 73, 255)"
         self.SmallTextColor = "rgba(39, 32, 73, 255)"
         self.AuthorNameColor = "rgba(39, 32, 73, 255)"
-        self.Tags = ["man","woman","couple","outside","straight"]
+        self.Tags = ["man","woman","couple","outside","straight","blonde",
+                     "shirtless","muscular","pirate","ship","boat"]
         self.Disabled = False
 
 class BGProfileBlueCarFire(BGProfile):
@@ -82,10 +86,11 @@ class BGProfileBlueCarFire(BGProfile):
                            Priority = 4,
                            sFileName = "blue_car_fire")
         self.MainTitleColor = "rgba(132, 41, 55, 255)"
-        self.SecondTitleColor = "rgba(132, 41, 55, 255)"
+        self.SecondTitleColor = "rgba(181, 55, 47, 255)"
         self.SmallTextColor = "rgba(6, 51, 103, 255)"
         self.AuthorNameColor = "rgba(6, 51, 103, 255)"
-        self.Tags = ["man","woman","couple","outside","straight"]
+        self.Tags = ["man","woman","couple","outside","straight","brunette",
+                     "modern","car","fire"]
         self.Disabled = False
 
 class BGProfileIndian(BGProfile):
@@ -97,7 +102,8 @@ class BGProfileIndian(BGProfile):
         self.SecondTitleColor = "rgba(157, 44, 43, 255)"
         self.SmallTextColor = "rgba(0, 0, 0, 255)"
         self.AuthorNameColor = "rgba(0, 0, 0, 255)"
-        self.Tags = ["man","woman","couple","outside","straight"]
+        self.Tags = ["man","woman","couple","outside","straight","western",
+                     "shirtless","muscular"]
         self.Disabled = False
 
 class BGProfileNakedFabio(BGProfile):
@@ -109,7 +115,8 @@ class BGProfileNakedFabio(BGProfile):
         self.SecondTitleColor = "rgba(238, 146, 134, 255)"
         self.SmallTextColor = "rgba(96, 39, 116, 255)"
         self.AuthorNameColor = "rgba(96, 39, 116, 255)"
-        self.Tags = ["man","woman","couple","outside","straight"]
+        self.Tags = ["man","woman","couple","outside","straight","redhead",
+                     "shirtless","muscular","fabio"]
         self.Disabled = False
 
 class BGProfilePirate(BGProfile):
@@ -121,7 +128,8 @@ class BGProfilePirate(BGProfile):
         self.SecondTitleColor = "rgba(39, 32, 73, 255)"
         self.SmallTextColor = "rgba(191, 77, 59, 255)"
         self.AuthorNameColor = "rgba(65, 112, 130, 255)"
-        self.Tags = ["man","woman","couple","outside","straight"]
+        self.Tags = ["man","woman","couple","outside","straight","blonde",
+                     "tied up","pirate","ship","boat"]
         self.Disabled = False
 
 class BGProfileAquaTopless(BGProfile):
@@ -131,7 +139,8 @@ class BGProfileAquaTopless(BGProfile):
                            sFileName = "aqua_topless")
         self.MainTitleColor = "rgba(149, 196, 180, 255)"
         self.SecondTitleColor = "rgba(108, 80, 145, 255)"
-        self.Tags = ["man","woman","couple","straight"]
+        self.Tags = ["man","woman","couple","straight","brunette","topless",
+                     "shirtless","muscular"]
         self.Disabled = False
 
 class BGProfileGay(BGProfile):
@@ -142,7 +151,7 @@ class BGProfileGay(BGProfile):
         self.MainTitleColor = "rgba(189, 109, 65, 255)"
         self.SecondTitleColor = "rgba(189, 109, 65, 255)"
         self.SmallTextColor = "rgba(108, 145, 51, 255)"
-        self.Tags = ["man","men","couple","gay"]
+        self.Tags = ["man","men","couple","gay","naked","nude","muscular"]
         self.Disabled = False
 
 class BGProfileSunset(BGProfile):
@@ -152,7 +161,8 @@ class BGProfileSunset(BGProfile):
                            sFileName = "sunset")
         self.MainTitleColor = "rgba(178, 27, 44, 255)"
         self.SecondTitleColor = "rgba(178, 27, 44, 255)"
-        self.Tags = ["man","woman","couple","outside","straight"]
+        self.Tags = ["man","woman","couple","outside","straight","brunette",
+                     "shirtless","muscular","western"]
         self.Disabled = False
 
 class BGProfileField(BGProfile):
@@ -162,7 +172,8 @@ class BGProfileField(BGProfile):
                            sFileName = "field")
         self.MainTitleColor = "rgba(214, 149, 123, 255)"
         self.SecondTitleColor = "rgba(139, 121, 171, 255)"
-        self.Tags = ["man","woman","couple","outside","straight"]
+        self.Tags = ["man","woman","couple","outside","straight","shirtless",
+                     "muscular","brunette"]
         self.Disabled = False
 
 class BGProfileRedVelvet(BGProfile):
@@ -172,7 +183,8 @@ class BGProfileRedVelvet(BGProfile):
                            sFileName = "red_velvet")
         self.MainTitleColor = "rgba(181,55, 47, 255)"
         self.SecondTitleColor = "rgba(181,55, 47, 255)"
-        self.Tags = ["man","woman","couple","straight"]
+        self.Tags = ["man","woman","couple","straight","brunette","shirtless",
+                     "muscular"]
         self.Disabled = False
 
 class BGProfileRedAndPurple(BGProfile):
@@ -183,19 +195,20 @@ class BGProfileRedAndPurple(BGProfile):
         self.MainTitleColor = "rgba(209, 91, 56, 255)"
         self.SecondTitleColor = "rgba(209, 91, 56, 255)"
         self.SmallTextColor = "rgba(174, 95, 160, 255)"
-        self.Tags = ["man","woman","couple","straight"]
+        self.Tags = ["man","woman","couple","straight","redhead","bed",
+                     "shirtless","muscular"]
         self.Disabled = False
 
-class BGProfileBlueCarFire(BGProfile):
+class BGProfileSeventiesChic(BGProfile):
     def __init__(self):
         super().__init__(ID = 15,
                            Priority = 4,
-                           sFileName = "blue_car_fire")
-        self.MainTitleColor = "rgba(132,41, 55, 255)"
-        self.SecondTitleColor = "rgba(181,55, 47, 255)"
-        self.SmallTextColor = "rgba(6, 51, 103, 255)"
-        self.AuthorNameColor = "rgba(6, 51, 103, 255)"
-        self.Tags = ["man","woman","couple","outside","straight"]
+                           sFileName = "seventies_chic")
+        self.MainTitleColor = "rgba(194, 76, 39, 255)"
+        self.SecondTitleColor = "rgba(139, 68, 25, 255)"
+        self.SmallTextColor = "rgba(165, 150, 58, 255)"
+        self.AuthorNameColor = "rgba(139, 68, 25, 255)"
+        self.Tags = ["man","woman","couple","straight","blonde"]
         self.Disabled = False
 
 class BGProfileBlueDress(BGProfile):
@@ -207,7 +220,8 @@ class BGProfileBlueDress(BGProfile):
         self.SecondTitleColor = "rgba(181, 79, 75, 255)"
         self.SmallTextColor = "rgba(1, 23, 244, 255)"
         self.AuthorNameColor = "rgba(0, 0, 0, 255)"
-        self.Tags = ["man","woman","couple","outside","straight"]
+        self.Tags = ["man","woman","couple","outside","straight","brunette",
+                     "shirtless","muscular"]
         self.Disabled = False
 
 class BGProfileDarkBlueFireSuit(BGProfile):
@@ -218,7 +232,8 @@ class BGProfileDarkBlueFireSuit(BGProfile):
         self.MainTitleColor = "rgba(173, 84, 69, 255)"
         self.SecondTitleColor = "rgba(173, 84, 69, 255)"
         self.SmallTextColor = "rgba(53, 68, 89, 255)"
-        self.Tags = ["man","woman","couple","outside","straight"]
+        self.Tags = ["man","woman","couple","outside","straight",
+                     "suit","raven-haired", "fire"]
         self.Disabled = False
 
 class BGProfileDark(BGProfile):
@@ -228,7 +243,7 @@ class BGProfileDark(BGProfile):
                            sFileName = "dark")
         self.MainTitleColor = "rgba(84, 77, 93, 255)"
         self.SecondTitleColor = "rgba(84, 77, 93, 255)"
-        self.Tags = ["man","woman","couple","straight"]
+        self.Tags = ["man","woman","couple","straight","brunette"]
         self.Disabled = False
 
 class BGProfileGold(BGProfile):
@@ -239,7 +254,8 @@ class BGProfileGold(BGProfile):
         self.MainTitleColor = "rgba(106, 118, 47, 255)"
         self.SecondTitleColor = "rgba(106, 118, 47, 255)"
         self.SmallTextColor = "rgba(106, 118, 47, 255)"
-        self.Tags = ["man","woman","couple","outside","straight"]
+        self.Tags = ["man","woman","couple","outside","straight","shirtless",
+                     "muscular","topless","raven-haired"]
         self.Disabled = False
 
 class BGProfileModernBedroom(BGProfile):
@@ -250,7 +266,8 @@ class BGProfileModernBedroom(BGProfile):
         self.MainTitleColor = "rgba(143, 137, 104, 255)"
         self.SecondTitleColor = "rgba(177, 119, 123, 255)"
         self.AuthorNameColor = "rgba(143, 137, 104, 255)"
-        self.Tags = ["man","woman","couple","inside","straight"]
+        self.Tags = ["man","woman","couple","inside","straight","redhead",
+                     "shirtless","muscular","bed"]
         self.Disabled = False
 
 class BGProfileShipRomance(BGProfile):
@@ -261,7 +278,8 @@ class BGProfileShipRomance(BGProfile):
         self.MainTitleColor = "rgba(75, 125, 152, 255)"
         self.SecondTitleColor = "rgba(75, 125, 152, 255)"
         self.SmallTextColor = "rgba(200, 159, 193, 255)"
-        self.Tags = ["man","woman","couple","outside","straight"]
+        self.Tags = ["man","woman","couple","outside","straight","blonde",
+                     "ship","boat","pirate"]
         self.Disabled = False
 
 class BGProfileBath(BGProfile):
@@ -273,7 +291,8 @@ class BGProfileBath(BGProfile):
         self.SecondTitleColor = "rgba(145, 55, 63, 255)"
         self.SmallTextColor = "rgba(27, 112, 105, 255)"
         self.AuthorNameColor = "rgba(27, 112, 105, 255)"
-        self.Tags = ["man","woman","couple","inside","straight"]
+        self.Tags = ["man","woman","couple","inside","straight","brunette",
+                     "topless","nude","naked"]
         self.Content = Content.PG13
         self.Disabled = False
         
@@ -286,7 +305,7 @@ class BGProfileBedSurprise(BGProfile):
         self.SecondTitleColor = "rgba(186, 73, 27, 255)"
         self.SmallTextColor = "rgba(94, 134, 120, 255)"
         self.AuthorNameColor = "rgba(1, 54, 100, 255)"
-        self.Tags = ["woman","single"]
+        self.Tags = ["woman","single","redhead","bed"]
         self.Disabled = False
 
 class BGProfileBoatTowel(BGProfile):
@@ -298,7 +317,8 @@ class BGProfileBoatTowel(BGProfile):
         self.SecondTitleColor = "rgba(175, 98, 53, 255)"
         self.SmallTextColor = "rgba(7, 10, 14, 255)"
         self.AuthorNameColor = "rgba(7, 10, 14, 255)"
-        self.Tags = ["man","woman","couple","outside","straight"]
+        self.Tags = ["man","woman","couple","outside","straight","blonde",
+                     "fabio","shirtless","muscular","ship","boat","pirate"]
         self.Disabled = False
 
 class BGProfileCastle(BGProfile):
@@ -310,7 +330,8 @@ class BGProfileCastle(BGProfile):
         self.SecondTitleColor = "rgba(158, 162, 61, 255)"
         self.SmallTextColor = "rgba(141, 50, 33, 255)"
         self.AuthorNameColor = "rgba(87, 170, 207, 255)"
-        self.Tags = ["man","woman","couple","outside","straight","fantasy"]
+        self.Tags = ["man","woman","couple","outside","straight","fantasy",
+                     "blonde","medieval","castle"]
         self.Disabled = False
 
 class BGProfileKinkyCuffs(BGProfile):
@@ -323,7 +344,7 @@ class BGProfileKinkyCuffs(BGProfile):
         self.SmallTextColor = "rgba(94, 134, 120, 255)"
         self.AuthorNameColor = "rgba(1, 54, 100, 255)"
         self.Content = Content.PG13
-        self.Tags = ["woman","single","outside","kinky"]
+        self.Tags = ["woman","single","outside","kinky","blonde","tied up"]
         self.Disabled = False
         
 class BGProfileMansion(BGProfile):
@@ -335,7 +356,8 @@ class BGProfileMansion(BGProfile):
         self.SecondTitleColor = "rgba(41, 89, 135, 255)"
         self.SmallTextColor = "rgba(47, 78, 83, 255)"
         self.AuthorNameColor = "rgba(41, 89, 135, 255)"
-        self.Tags = ["man","woman","couple","outside","straight"]
+        self.Tags = ["man","woman","couple","outside","straight","blonde",
+                     "shirtless","mansion"]
         self.Disabled = False
 
 class BGProfileShower(BGProfile):
@@ -348,7 +370,8 @@ class BGProfileShower(BGProfile):
         self.SmallTextColor = "rgba(74, 155, 189, 255)"
         self.AuthorNameColor = "rgba(199, 54, 60, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["man","woman","straight"]
+        self.Tags = ["man","woman","straight","brunette","naked","nude",
+                     "tits","suit"]
         self.Disabled = False
 
 class BGProfileSuperHero(BGProfile):
@@ -360,7 +383,8 @@ class BGProfileSuperHero(BGProfile):
         self.SecondTitleColor = "rgba(189, 42, 20, 255)"
         self.SmallTextColor = "rgba(205, 66, 109, 255)"
         self.AuthorNameColor = "rgba(122, 86, 172, 255)"
-        self.Tags = ["man","woman","couple","straight"]
+        self.Tags = ["man","woman","couple","straight","brunette",
+                     "shirtless","muscular"]
         self.Disabled = False
 
 class BGProfileSwingers(BGProfile):
@@ -372,7 +396,8 @@ class BGProfileSwingers(BGProfile):
         self.SecondTitleColor = "rgba(203, 62, 76, 255)"
         self.SmallTextColor = "rgba(99, 113, 160, 255)"
         self.AuthorNameColor = "rgba(184, 172, 84, 255)"
-        self.Tags = ["man","woman","couple","outside","straight"]
+        self.Tags = ["man","woman","couple","outside","straight","blonde",
+                     "shirtless","muscular","nature"]
         self.Disabled = False
         
 class BGProfileSwordKilt(BGProfile):
@@ -384,7 +409,9 @@ class BGProfileSwordKilt(BGProfile):
         self.SecondTitleColor = "rgba(79, 86, 194, 255)"
         self.SmallTextColor = "rgba(41, 67, 193, 255)"
         self.AuthorNameColor = "rgba(135, 49, 58, 255)"
-        self.Tags = ["man","woman","couple","outside","straight","fantasy"]
+        self.Tags = ["man","woman","couple","outside","straight","fantasy",
+                     "brunette","shirtless","muscular","kilt","sword",
+                     "forest"]
         self.Disabled = False
 
 class BGProfileTightButts(BGProfile):
@@ -397,7 +424,8 @@ class BGProfileTightButts(BGProfile):
         self.SmallTextColor = "rgba(72, 87, 56, 255)" 
         self.AuthorNameColor = "rgba(108, 178, 234, 255)"
         self.Content = Content.PG13
-        self.Tags = ["man","men","gay","outside"]
+        self.Tags = ["man","men","gay","outside","naked","nude","butt",
+                     "tanlines"]
         self.Disabled = False
 
 class BGProfileTropicalPirate(BGProfile):
@@ -409,18 +437,22 @@ class BGProfileTropicalPirate(BGProfile):
         self.SecondTitleColor = "rgba(195, 21, 48, 255)"
         self.SmallTextColor = "rgba(35, 135, 63, 255)"
         self.AuthorNameColor = "rgba(38, 167, 207, 255)"
-        self.Tags = ["man","woman","couple","outside","straight"]
+        self.Tags = ["man","woman","couple","outside","straight","blonde",
+                     "shirtless","muscular","ship","historical"]
         self.Disabled = False
 
-#class BGProfileUSA(BGProfile):
-#    def __init__(self):
-#        super().__init__(ID = 34,
-#                           Priority = 4,
-#                           sFileName = "usa")
-#        self.MainTitleColor = "rgba(210, 1, 28, 255)"
-#        self.SecondTitleColor = "rgba(210, 1, 28, 255)" 
-#        self.SmallTextColor = "rgba(107, 202, 245, 255)"
-#        self.AuthorNameColor = "rgba(16, 37, 56, 255)"
+class BGProfileBeefcakeAngel(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 34,
+                           Priority = 4,
+                           sFileName = "beefcake_angel")
+        self.MainTitleColor = "rgba(205, 99, 139, 255)"
+        self.SecondTitleColor = "rgba(205, 99, 139, 255)"
+        self.SmallTextColor = "rgba(101, 44, 84, 255)"
+        self.AuthorNameColor = "rgba(101, 44, 84, 255)"
+        self.Tags = ["man","woman","muscular","shirtless","angel","fantasy",
+                     "brunette"]
+        self.Disabled = False
         
 class BGProfileChamberPot(BGProfile):
     def __init__(self):
@@ -431,7 +463,8 @@ class BGProfileChamberPot(BGProfile):
         self.SecondTitleColor = "rgba(198, 94, 21, 255)"
         self.SmallTextColor = "rgba(170, 60, 133, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["woman","fantasy","fantasy","kinky"]
+        self.Tags = ["woman","fantasy","historical","kinky","brunette",
+                     "man","flower","tuxedo","naked","nude","tits","ass"]
         self.Disabled = False
 
 class BGProfileChastityBelt(BGProfile):
@@ -444,7 +477,9 @@ class BGProfileChastityBelt(BGProfile):
         self.SmallTextColor = "rgba(6, 60, 86, 255)"
         self.AuthorNameColor = "rgba(85, 89, 177, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["man","woman","straight","kinky","fantasy"]
+        self.Tags = ["man","woman","straight","kinky","fantasy","topless",
+                     "shirtless","muscular","tits","blonde","historical",
+                     "femdom"]
         self.Disabled = False
 
 class BGProfileCowgirlDominatrix(BGProfile):
@@ -457,7 +492,8 @@ class BGProfileCowgirlDominatrix(BGProfile):
         self.SmallTextColor = "rgba(0, 0, 0, 255)"
         self.AuthorNameColor = "rgba(199, 149, 60, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["man","woman","couple","straight","kinky"]
+        self.Tags = ["man","woman","couple","straight","kinky","blonde",
+                     "naked","nude","tits","BDSM","femdom"]
         self.Disabled = False
 
 class BGProfileDickNose(BGProfile):
@@ -470,7 +506,9 @@ class BGProfileDickNose(BGProfile):
         self.SmallTextColor = "rgba(198, 78, 107, 255)"
         self.AuthorNameColor = "rgba(225, 47, 37, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["man","woman","couple","outside","straight","kinky"]
+        self.Tags = ["man","woman","couple","outside","straight","kinky",
+                     "blonde","topless","shirtless","muscular","circus",
+                     "nose"]
         self.Disabled = False
 
 class BGProfileHandsAndKnees(BGProfile):
@@ -483,7 +521,8 @@ class BGProfileHandsAndKnees(BGProfile):
         self.SmallTextColor = "rgba(0, 0, 0, 255)"
         self.AuthorNameColor = "rgba(0, 0, 0, 255)"
         self.Content = Content.PG13
-        self.Tags = ["woman","fantasy","kinky"]
+        self.Tags = ["woman","fantasy","kinky","redhead","loincloth",
+                     "suit","historical"]
         self.Disabled = False
 
 class BGProfileHarem(BGProfile):
@@ -496,7 +535,8 @@ class BGProfileHarem(BGProfile):
         self.SmallTextColor = "rgba(62, 162, 167, 255)"
         self.AuthorNameColor = "rgba(62, 162, 167, 255)"
         self.Content = Content.PG13
-        self.Tags = ["man","woman","women","fantasy"]
+        self.Tags = ["man","woman","women","fantasy","brunette","blodne",
+                     "bikini","tits","harem","straight"]
         self.Disabled = False
 
 class BGProfileHotCops(BGProfile):
@@ -509,7 +549,9 @@ class BGProfileHotCops(BGProfile):
         self.SmallTextColor = "rgba(184, 160, 43, 255)"
         self.AuthorNameColor = "rgba(184, 160, 43, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["man","woman","women","inside","kinky"]
+        self.Tags = ["man","woman","women","inside","kinky","redhead",
+                     "blonde","cops","threesome","shirtless","muscular",
+                     "topless","tits"]
         self.Disabled = False
 
 class BGProfileIndecentProp(BGProfile):
@@ -522,7 +564,9 @@ class BGProfileIndecentProp(BGProfile):
         self.SmallTextColor = "rgba(171, 27, 108, 255)"
         self.AuthorNameColor = "rgba(186, 155, 47, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["man","woman","women","inside","kinky"]
+        self.Tags = ["man","woman","women","inside","kinky","brunette",
+                     "nude","naked","tits","ass","money","gambling",
+                     "tuxedo","historic","casino"]
         self.Disabled = False
 
 class BGProfileLadyBottom(BGProfile):
@@ -535,7 +579,8 @@ class BGProfileLadyBottom(BGProfile):
         self.SmallTextColor = "rgba(88, 105, 73, 255)"
         self.AuthorNameColor = "rgba(88, 105, 73, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["man","woman","outside","fantasy"]
+        self.Tags = ["man","woman","outside","fantasy","blonde","nude",
+                     "naked","horse"]
         self.Disabled = False
 
 class BGProfileLesbianVampires(BGProfile):
@@ -547,7 +592,8 @@ class BGProfileLesbianVampires(BGProfile):
         self.SecondTitleColor = "rgba(123, 83, 137, 255)"
         self.SmallTextColor = "rgba(212, 1, 3, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["woman","women","inside","lesbian","kinky","horror"]
+        self.Tags = ["woman","women","inside","lesbian","kinky","horror",
+                     "castle","raven-haired","redhead","blonde","vampire"]
         self.Disabled = False
 
 class BGProfileMaleSub(BGProfile):
@@ -560,7 +606,9 @@ class BGProfileMaleSub(BGProfile):
         self.SmallTextColor = "rgba(131, 149, 93, 255)"
         self.AuthorNameColor = "rgba(200, 114, 184, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["man","woman","couple","inside","straight","kinky"]
+        self.Tags = ["man","woman","couple","inside","straight","kinky",
+                     "femdom","nude","naked","shirtless","topless","tits",
+                     "brunette"]
         self.Disabled = False
 
 class BGProfileMoonBoob(BGProfile):
@@ -573,19 +621,21 @@ class BGProfileMoonBoob(BGProfile):
         self.SmallTextColor = "rgba(31, 51, 82, 255)"
         self.AuthorNameColor = "rgba(224, 183, 108, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["man","woman","couple","outside","straight"]
+        self.Tags = ["man","woman","couple","outside","straight","blonde",
+                     "naked","nude","shirtless","topless","tits","ocean"]
         self.Disabled = False
 
-#class BGProfileNaughtyBuddha(BGProfile):
-#    def __init__(self):
-#        super().__init__(ID = 35,
-#                           Priority = 2,
-#                           sFileName = "naughty_buddha",
-#                           sPHFileName = "naughty_buddha_ph.jpg")
-#        self.MainTitleColor = "rgba(9, 71, 161, 255)"
-#        self.SecondTitleColor = "rgba(9, 71, 161, 255)"
-#        self.SmallTextColor = "rgba(21, 85, 76, 255)"
-#        self.AuthorNameColor = "rgba(209, 155, 14, 255)"
+class BGProfileFlex(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 47,
+                           Priority = 4,
+                           sFileName = "flex")
+        self.MainTitleColor = "rgba(199, 47, 19, 255)"
+        self.SecondTitleColor = "rgba(49, 114, 44, 255)"
+        self.SmallTextColor = "rgba(1, 77, 119, 255)"
+        self.AuthorNameColor = "rgba(1, 77, 119, 255)"
+        self.Tags = ["man","indoors","muscular","shirtless"]
+        self.Disabled = False
 
 class BGProfilePervyDummy(BGProfile):
     def __init__(self):
@@ -597,7 +647,8 @@ class BGProfilePervyDummy(BGProfile):
         self.SmallTextColor = "rgba(123, 77, 151, 255)"
         self.AuthorNameColor = "rgba(123, 77, 151, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["woman","single","kinky","man","fantasy"]
+        self.Tags = ["woman","single","kinky","man","fantasy","dwarf",
+                     "naked","nude","tits","ass","pissing"]
         self.Disabled = False
 
 class BGProfilePoodleBondage(BGProfile):
@@ -610,7 +661,9 @@ class BGProfilePoodleBondage(BGProfile):
         self.SmallTextColor = "rgba(83, 84, 141, 255)"
         self.AuthorNameColor = "rgba(83, 84, 141, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["man","woman","women","kinky"]
+        self.Tags = ["man","woman","women","kinky","blonde","brunette",
+                     "femdom","topless","naked","nude","tits","ass",
+                     "tied up"]
         self.Disabled = False
 
 class BGProfileScaryMirror(BGProfile):
@@ -623,7 +676,8 @@ class BGProfileScaryMirror(BGProfile):
         self.SmallTextColor = "rgba(62, 122, 79, 255)"
         self.AuthorNameColor = "rgba(0, 0, 0, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["woman","single","inside","horror"]
+        self.Tags = ["woman","single","inside","horror","blonde",
+                     "bed","masturbation"]
         self.Disabled = False
 
 class BGProfileSkeleton(BGProfile):
@@ -634,7 +688,8 @@ class BGProfileSkeleton(BGProfile):
         self.MainTitleColor = "rgba(157, 16, 16, 255)"
         self.SecondTitleColor = "rgba(157, 16, 16, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["woman","single","horror"]
+        self.Tags = ["woman","single","horror","brunette","topless",
+                     "naked","nude","bed","skeleton","tits","bush"]
         self.Disabled = False
 
 class BGProfileSnowWhiteSevenDwarves(BGProfile):
@@ -647,18 +702,22 @@ class BGProfileSnowWhiteSevenDwarves(BGProfile):
         self.SmallTextColor = "rgba(30, 63, 139, 255)"
         self.AuthorNameColor = "rgba(30, 63, 139, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["woman","men","inside","kinky","fantasy"]
+        self.Tags = ["woman","inside","kinky","fantasy","dwarf",
+                     "raven-haired", "naked", "nude", "tits",
+                     "panties"]
         self.Disabled = False
 
-#class BGProfileSnowWhiteAss(BGProfile):
-#    def __init__(self):
-#        super().__init__(ID = 52,
-#                           Priority = 3,
-#                           sFileName = "snow_white_ass")
-#        self.MainTitleColor = "rgba(39, 22, 95, 255)"
-#        self.SecondTitleColor = "rgba(231, 43, 38, 255)"
-#        self.SmallTextColor = "rgba(81, 151, 92, 255)"
-#        self.AuthorNameColor = "rgba(81, 151, 92, 255)"
+class BGProfileDangerMine(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 52,
+                           Priority = 4,
+                           sFileName = "danger_mine")
+        self.MainTitleColor = "rgba(205, 97, 71, 255)"
+        self.SecondTitleColor = "rgba(231, 140, 81, 255)"
+        self.SmallTextColor = "rgba(1, 77, 119, 255)"
+        self.AuthorNameColor = "rgba(79, 27, 36, 255)"
+        self.Tags = ["man","woman","outdoors","blonde","couple","straight",
+                     "danger","mine"]
         self.Disabled = False
 
 class BGProfileSnowWhiteDungeon(BGProfile):
@@ -671,7 +730,8 @@ class BGProfileSnowWhiteDungeon(BGProfile):
         self.SmallTextColor = "rgba(238, 64, 130, 255)"
         self.AuthorNameColor = "rgba(241, 148, 33, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["man","woman","fantasy","kinky"]
+        self.Tags = ["man","woman","fantasy","kinky","knight","raven-haired",
+                     "tied up","topless","tits"]
         self.Disabled = False
 
 class BGProfileSnowWhiteSpanking(BGProfile):
@@ -684,7 +744,8 @@ class BGProfileSnowWhiteSpanking(BGProfile):
         self.SmallTextColor = "rgba(23, 81, 136, 255)"
         self.AuthorNameColor = "rgba(23, 81, 136, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["man","woman","men","fantasy","kinky"]
+        self.Tags = ["man","woman","men","fantasy","kinky","viking",
+                     "raven-haired","naked","nude","ass","spanking"]
         self.Disabled = False
 
 class BGProfileStretchyArms(BGProfile):
@@ -697,7 +758,8 @@ class BGProfileStretchyArms(BGProfile):
         self.SmallTextColor = "rgba(74, 61, 34, 255)"
         self.AuthorNameColor = "rgba(74, 61, 34, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["man","woman","couple","straight"]
+        self.Tags = ["man","woman","couple","straight","blonde",
+                     "shirtless","nude","naked","tits","weird arms"]
         self.Disabled = False
 
 class BGProfileSurroundedByPervs(BGProfile):
@@ -710,7 +772,8 @@ class BGProfileSurroundedByPervs(BGProfile):
         self.SmallTextColor = "rgba(79, 89, 174, 255)"
         self.AuthorNameColor = "rgba(79, 89, 174, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["woman","men","kinky","man"]
+        self.Tags = ["woman","men","kinky","man","blonde","naked",
+                     "nude","masturbation"]
         self.Disabled = False
 
 class BGProfileTallWoman(BGProfile):
@@ -722,7 +785,8 @@ class BGProfileTallWoman(BGProfile):
         self.SecondTitleColor = "rgba(77, 172, 243, 255)"
         self.SmallTextColor = "rgba(210, 119, 82, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["man","woman","couple","inside","straight"]
+        self.Tags = ["man","woman","couple","inside","straight","brunette",
+                     "topless","tits"]
         self.Disabled = False
 
 class BGProfileTheDevil(BGProfile):
@@ -735,17 +799,22 @@ class BGProfileTheDevil(BGProfile):
         self.SmallTextColor = "rgba(47, 84, 51, 255)"
         self.AuthorNameColor = "rgba(47, 84, 51, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["man","woman","couple","straight"]
+        self.Tags = ["man","woman","couple","straight","naked","nude",
+                     "topless","tits","brunette","vampire","horror"]
         self.Disabled = False
 
-#class BGProfileTrousersDown(BGProfile):
-#    def __init__(self):
-#        super().__init__(ID = 59,
-#                           Priority = 2,
-#                           sFileName = "trousers_down")
-#        self.MainTitleColor = "rgba(34, 116, 95, 255)"
-#        self.SecondTitleColor = "rgba(34, 116, 95, 255)"
-#        self.SmallTextColor = "rgba(106, 87, 133, 255)"
+class BGProfileFireplaceBeauty(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 59,
+                           Priority = 40,
+                           sFileName = "fireplace_beauty")
+        self.MainTitleColor = "rgba(213, 22, 24, 255)"
+        self.SecondTitleColor = "rgba(254, 171, 15, 255)"
+        self.SmallTextColor = "rgba(11, 84, 115, 255)"
+        self.AuthorNameColor = "rgba(11, 84, 115, 255)"
+        self.Tags = ["woman","indoors","blonde","butt","fireplace",
+                     "mirror"]
+        self.Content = Content.PG13
         self.Disabled = False
 
 class BGProfileVampire(BGProfile):
@@ -758,7 +827,9 @@ class BGProfileVampire(BGProfile):
         self.SmallTextColor = "rgba(91, 48, 162, 255)"
         self.AuthorNameColor = "rgba(91, 48, 162, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["man","woman","inside","kinky","horror"]
+        self.Tags = ["man","woman","inside","kinky","horror","blonde",
+                     "vampire","blood","fangs","naked","nude","tits",
+                     "ass"]
         self.Disabled = False
 
 class BGProfileUnderBedCreeper(BGProfile):
@@ -770,7 +841,8 @@ class BGProfileUnderBedCreeper(BGProfile):
         self.SecondTitleColor = "rgba(199, 131, 61, 255)"
         self.SmallTextColor = "rgba(127, 117, 53, 255)"
         self.AuthorNameColor = "rgba(130, 43, 39, 255)"
-        self.Tags = ["man","woman","couple","inside","men","voyeur"]
+        self.Tags = ["man","woman","couple","inside","men","voyeur",
+                     "brunetted","bed","arabic","shirtless","muscular"]
         self.Disabled = False
 
 class BGProfileVictorianOrgy(BGProfile):
@@ -809,7 +881,8 @@ class BGProfileWizardPony(BGProfile):
         self.SmallTextColor = "rgba(2, 47, 249, 255)"
         self.AuthorNameColor = "rgba(2, 47, 249, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["man","woman","men","inside","kinky"]
+        self.Tags = ["man","woman","men","inside","kinky","fantasy",
+                     "wizard","femdom"]
         self.Disabled = False
 
 class BGProfileDoggyStyle(BGProfile):
@@ -820,7 +893,8 @@ class BGProfileDoggyStyle(BGProfile):
         self.MainTitleColor = "rgba(113, 54, 24, 255)"
         self.SecondTitleColor = "rgba(113, 54, 24, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["man","woman","couple","inside","straight"]
+        self.Tags = ["man","woman","couple","inside","straight","naked",
+                     "nude","tits","ass","pussy","sex"]
         self.Disabled = False
 
 class BGProfileBathhouse(BGProfile):
@@ -833,7 +907,8 @@ class BGProfileBathhouse(BGProfile):
         self.SmallTextColor = "rgba(150, 85, 45, 255)"
         self.AuthorNameColor = "rgba(196, 89, 81, 255)"
         self.Content = Content.PG13
-        self.Tags = ["man","men","inside","fantasy","gay"]
+        self.Tags = ["man","men","inside","fantasy","gay","historic",
+                     "naked","nude","shirtless","muscular"]
         self.Disabled = False
 
 class BGProfileJilling(BGProfile):
@@ -846,7 +921,8 @@ class BGProfileJilling(BGProfile):
         self.SmallTextColor ="rgba(106, 102, 69, 255)"
         self.AuthorNameColor = "rgba(91, 24, 45, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["woman","single","inside"]
+        self.Tags = ["woman","single","inside","masturbation","topless",
+                     "tits","bed"]
         self.Disabled = False
 
 class BGProfileBranded(BGProfile):
@@ -859,7 +935,8 @@ class BGProfileBranded(BGProfile):
         self.SmallTextColor ="rgba(54, 50, 74, 255)"
         self.AuthorNameColor = "rgba(66, 75, 132, 255)"
         self.Content = Content.PG13
-        self.Tags = ["man","men","outside","gay"]
+        self.Tags = ["man","men","outside","gay","cowboy",
+                     "nude","naked","shirtless","muscular"]
         self.Disabled = False
 
 #class BGProfileGrapes(BGProfile):
@@ -885,7 +962,7 @@ class BGProfileUnderwater(BGProfile):
         self.SmallTextColor ="rgba(50, 158, 194, 255)"
         self.AuthorNameColor = "rgba(228, 171, 62, 255)"
         self.Content = Content.PG13
-        self.Tags = ["man","men","outside","gay"]
+        self.Tags = ["man","men","outside","gay","underwater"]
         self.Disabled = False
 
 class BGProfileSlaves(BGProfile):
@@ -898,7 +975,9 @@ class BGProfileSlaves(BGProfile):
         self.SmallTextColor ="rgba(50, 158, 194, 255)"
         self.AuthorNameColor = "rgba(50, 158, 194, 255)"
         self.Content = Content.PG13
-        self.Tags = ["man","men","kinky","outside","gay","fantasy"]
+        self.Tags = ["man","men","kinky","outside","gay","fantasy",
+                     "historic","shirtless","muscular","codpiece",
+                     "whip","tied up"]
         self.Disabled = False
 
 class BGProfileNakedCowboy(BGProfile):
@@ -911,7 +990,8 @@ class BGProfileNakedCowboy(BGProfile):
         self.SmallTextColor ="rgba(205, 163, 106, 255)"
         self.AuthorNameColor = "rgba(138, 52, 46, 255)"
         self.Content = Content.PG13
-        self.Tags = ["man","single","outside","gay"]
+        self.Tags = ["man","single","outside","gay","nude","naked",
+                     "shirtless","muscular","cowboy"]
         self.Disabled = False
 
 class BGProfileTwoGirls(BGProfile):
@@ -924,7 +1004,7 @@ class BGProfileTwoGirls(BGProfile):
         self.SmallTextColor ="rgba(205, 66, 35, 255)"
         self.AuthorNameColor = "rgba(83, 115, 148, 255)"  
         self.Content = Content.PG13
-        self.Tags = ["woman","women"]
+        self.Tags = ["woman","women","lesbian"]
         self.Disabled = False
 
 class BGProfileSpaceMonster(BGProfile):
@@ -934,7 +1014,8 @@ class BGProfileSpaceMonster(BGProfile):
                            sFileName = "space_monster")
         self.SmallTextColor = "rgba(199, 22, 30, 255)"
         self.AuthorNameColor = "rgba(199, 22, 30, 255)" 
-        self.Tags = ["woman","outside","kinky"]
+        self.Tags = ["woman","outside","kinky","tentacles","space",
+                     "scifi"]
         self.Disabled = False
 
 class BGProfileOneEyedAlien(BGProfile):
@@ -946,7 +1027,7 @@ class BGProfileOneEyedAlien(BGProfile):
         self.SecondTitleColor = "rgba(72, 146, 145, 255)"  
         self.SmallTextColor = "rgba(0, 0, 0, 255)"
         self.AuthorNameColor = "rgba(199, 22, 30, 255)" 
-        self.Tags = ["women","woman","outside"]
+        self.Tags = ["women","woman","outside","scifi"]
         self.Content = Content.PG13
         self.Disabled = False
 
@@ -960,7 +1041,8 @@ class BGProfileSpaceGirl(BGProfile):
         self.SmallTextColor = "rgba(245, 180, 47, 255)"
         self.AuthorNameColor = "rgba(229, 79, 24, 255)" 
         self.Content = Content.PG13
-        self.Tags = ["woman","single","outside"]
+        self.Tags = ["woman","single","outside","space","scifi",
+                     "blonde"]
         self.Disabled = False
 
 class BGProfileHawaiianCleavage(BGProfile):
@@ -1055,7 +1137,7 @@ class BGProfileRedBedCutie(BGProfile):
         self.MainTitleColor = "rgba(188, 9, 2, 255)"
         self.SecondTitleColor = "rgba(188, 9, 2, 255)"
         self.SmallTextColor = "rgba(153, 102, 153, 255)"
-        self.Tags = ["woman","single","inside"]
+        self.Tags = ["woman","single","inside","brunette","bed"]
         self.Disabled = False
 
 class BGProfilePinkShower(BGProfile):
@@ -1067,7 +1149,8 @@ class BGProfilePinkShower(BGProfile):
         self.SecondTitleColor = "rgba(241, 166, 150, 255)"
         self.SmallTextColor = "rgba(158, 162, 225, 255)"
         self.AuthorNameColor = "rgba(136, 67, 107, 255)"
-        self.Tags = ["woman","single","inside"]
+        self.Tags = ["woman","single","inside","nude","naked",
+                     "bathroom","shower","phone"]
         self.Disabled = False
 
 #class BGProfileGolf(BGProfile):
@@ -1103,7 +1186,7 @@ class BGProfileHelloSailor(BGProfile):
         self.SecondTitleColor = "rgba(82, 126, 183, 255)"
         self.SmallTextColor = "rgba(202, 179, 194, 255)"
         self.AuthorNameColor = "rgba(194, 82, 31, 255)"
-        self.Tags = ["man","single"]
+        self.Tags = ["man","single","shirtless","muscular","outdoors"]
         self.Disabled = False
 
 class BGProfileLatinoCowboy(BGProfile):
@@ -1115,7 +1198,7 @@ class BGProfileLatinoCowboy(BGProfile):
         self.SecondTitleColor = "rgba(147, 115, 73, 255)"
         self.SmallTextColor = "rgba(164, 91, 56, 255)"
         self.AuthorNameColor = "rgba(164, 91, 56, 255)"
-        self.Tags = ["man","single"]
+        self.Tags = ["man","single","cowboy","shirtless","muscular"]
         self.Disabled = False
 
 #class BGProfileDemiGod(BGProfile):
@@ -1138,7 +1221,7 @@ class BGProfileNudeSailorButt(BGProfile):
         self.MainTitleColor = "rgba(45, 84, 112, 255)"
         self.SecondTitleColor = "rgba(206, 77, 87, 255)"
         self.AuthorNameColor = "rgba(45, 84, 112, 255)"
-        self.Tags = ["man","men","gay","inside"]
+        self.Tags = ["man","men","gay","inside","sailor"]
         self.Content = Content.PG13
         self.Disabled = False
 
@@ -1151,7 +1234,8 @@ class BGProfileOceanHorse(BGProfile):
         self.SecondTitleColor = "rgba(232, 191, 72, 255)"
         self.SmallTextColor =  "rgba(152, 102, 58, 255)" 
         self.AuthorNameColor = "rgba(105, 154, 170, 255)"
-        self.Tags = ["man","single","outside"]
+        self.Tags = ["man","single","outside","horse","nude","naked",
+                     "muscular","shirtless"]
         self.Disabled = False
 
 #class BGProfileCaveCouple(BGProfile):
@@ -1174,7 +1258,8 @@ class BGProfileRedSatinSheets(BGProfile):
         self.MainTitleColor = "rgba(134, 15, 55, 255)"
         self.SecondTitleColor = "rgba(6, 108, 17, 255)"
         self.AuthorNameColor = "rgba(134, 15, 55, 255)"
-        self.Tags = ["man","woman","straight","couple","inside"]
+        self.Tags = ["man","woman","straight","couple","inside","bed",
+                     "blonde"]
         self.Disabled = False
 
 class BGProfileFabioHero(BGProfile):
@@ -1186,7 +1271,7 @@ class BGProfileFabioHero(BGProfile):
         self.SecondTitleColor = "rgba(87, 87, 89, 255)"
         self.SmallTextColor = "rgba(125, 47, 30, 255)"
         self.AuthorNameColor = "rgba(87, 87, 89, 255)"
-        self.Tags = ["man","outside","fantasy"]
+        self.Tags = ["man","outside","fantasy","fabio"]
         self.Disabled = False
 
 class BGProfileBigCity(BGProfile):
@@ -1221,7 +1306,7 @@ class BGProfileRedCape(BGProfile):
         self.SecondTitleColor = "rgba(174, 111, 165, 255)"
         self.SmallTextColor = "rgba(18, 18, 23, 255)"
         self.AuthorNameColor = "rgba(208, 51, 4, 255)"
-        self.Tags = ["woman"]
+        self.Tags = ["woman","blonde"]
         self.Disabled = False
 
 class BGProfileValleyLake(BGProfile):
@@ -1245,7 +1330,7 @@ class BGProfileIslandUndressing(BGProfile):
         self.SecondTitleColor = "rgba(170, 8, 4, 255)"
         self.SmallTextColor = "rgba(93, 108, 19, 255)"
         self.AuthorNameColor = "rgba(93, 108, 19, 255)"
-        self.Tags = ["woman","outside","undressing","naked"]
+        self.Tags = ["woman","outside","undressing","naked","nude"]
         self.Disabled = False
         self.Content = Content.PG13
 
@@ -1258,7 +1343,7 @@ class BGProfilePinUp(BGProfile):
         self.SecondTitleColor = "rgba(232, 36, 23, 255)"
         self.SmallTextColor = "rgba(89, 186, 160, 255)"
         self.AuthorNameColor = "rgba(239, 104, 123, 255)"
-        self.Tags = ["woman"]
+        self.Tags = ["woman","blonde"]
         self.Disabled = False
 
 class BGProfileWindowVoyeur(BGProfile):
@@ -1270,7 +1355,7 @@ class BGProfileWindowVoyeur(BGProfile):
         self.SecondTitleColor = "rgba(25, 117, 164, 255)"
         self.SmallTextColor = "rgba(54, 132, 122, 255)"
         self.AuthorNameColor = "rgba(25, 117, 164, 255)"
-        self.Tags = ["woman","man","undressing","kinky"]
+        self.Tags = ["woman","man","undressing","kinky","blonde"]
         self.Content = Content.PG13
         self.Disabled = False
 
@@ -1283,7 +1368,8 @@ class BGProfileInterracialThreesome(BGProfile):
         self.SecondTitleColor = "rgba(201, 16, 113, 255)"
         self.SmallTextColor = "rgba(52, 49, 98, 255)"
         self.AuthorNameColor = "rgba(52, 49, 98, 255)"
-        self.Tags = ["woman","man","men","naked","indoors","kinky"]
+        self.Tags = ["woman","man","men","naked","indoors","kinky",
+                     "bed"]
         self.Content = Content.AdultsOnly
         self.Disabled = False
 
@@ -1296,7 +1382,8 @@ class BGProfileDrMcChesty(BGProfile):
         self.SecondTitleColor = "rgba(223, 150, 89, 255)"
         self.SmallTextColor = "rgba(155, 70, 159, 255)"
         self.AuthorNameColor = "rgba(223, 150, 89, 255)"
-        self.Tags = ["woman","man","straight","couple","indoors"]
+        self.Tags = ["woman","man","straight","couple","indoors",
+                     "shirtless"]
         self.Disabled = False
 
 class BGProfileBadDoctor(BGProfile):
@@ -1332,7 +1419,8 @@ class BGProfileIndianPrincess(BGProfile):
         self.SecondTitleColor = "rgba(148, 39, 20, 255)"
         self.SmallTextColor = "rgba(55, 74, 121, 255)"
         self.AuthorNameColor = "rgba(148, 39, 20, 255)"
-        self.Tags = ["woman","man","straight","couple","outdoors"]
+        self.Tags = ["woman","man","straight","couple","outdoors",
+                     "brunette","indian"]
         self.Disabled = False
 
 class BGProfileOrangeFromBehind(BGProfile):
@@ -1356,7 +1444,7 @@ class BGProfileCabinFever(BGProfile):
         self.SecondTitleColor = "rgba(171, 0, 34, 255)"
         self.SmallTextColor = "rgba(48, 89, 135, 255)"
         self.AuthorNameColor = "rgba(48, 89, 135, 255)"
-        self.Tags = ["woman","man","straight","couple","outdoors"]
+        self.Tags = ["woman","man","straight","couple","indoors"]
         self.Disabled = False
 
 class BGProfileCensorEagle(BGProfile):
@@ -1368,7 +1456,8 @@ class BGProfileCensorEagle(BGProfile):
         self.SecondTitleColor = "rgba(233, 109, 51, 255)"
         self.SmallTextColor = "rgba(105, 168, 213, 255)"
         self.AuthorNameColor = "rgba(105, 168, 213, 255)"
-        self.Tags = ["man","outdoors"]
+        self.Tags = ["man","outdoors","ocean","nude","naked",
+                     "shirtless","muscular"]
         self.Disabled = False
 
 class BGProfileLesbianKiss(BGProfile):
@@ -1417,7 +1506,7 @@ class BGProfileHotLasso(BGProfile):
         self.SecondTitleColor = "rgba(52, 162, 137, 255)"
         self.SmallTextColor = "rgba(120, 115, 147, 255)"
         self.AuthorNameColor = "rgba(120, 115, 147, 255)"
-        self.Tags = ["man","outdoors"]
+        self.Tags = ["man","outdoors","cowboy"]
         self.Disabled = False
 
 class BGProfileThirdMan(BGProfile):
@@ -1435,13 +1524,13 @@ class BGProfileThirdMan(BGProfile):
 class BGProfileFileCabinet(BGProfile):
     def __init__(self):
         super().__init__(ID = 114,
-                           Priority = 4,
+                           Priority = 2,
                            sFileName = "file_cabinet")
         self.MainTitleColor = "rgba(236, 53, 36, 255)"
         self.SecondTitleColor = "rgba(221, 97, 99, 255)"
         self.SmallTextColor = "rgba(2, 117, 71, 255)"
         self.AuthorNameColor = "rgba(133, 123, 32, 255)"
-        self.Tags = ["woman","indoors"]
+        self.Tags = ["woman","indoors","blonde"]
         self.Disabled = False
 
 class BGProfileWindowCreeper(BGProfile):
@@ -1453,7 +1542,7 @@ class BGProfileWindowCreeper(BGProfile):
         self.SecondTitleColor = "rgba(232, 174, 36, 255)"
         self.SmallTextColor = "rgba(8, 70, 131, 255)"
         self.AuthorNameColor = "rgba(3, 71, 15, 255)"
-        self.Tags = ["woman","indoors","bed","voyeur"]
+        self.Tags = ["woman","indoors","bed","voyeur","blonde"]
         self.Disabled = False
 
 class BGProfileLesboFriend(BGProfile):
@@ -1465,19 +1554,20 @@ class BGProfileLesboFriend(BGProfile):
         self.SecondTitleColor = "rgba(94, 146, 95, 255)"
         self.SmallTextColor = "rgba(85, 120, 154, 255)"
         self.AuthorNameColor = "rgba(85, 120, 154, 255)"
-        self.Tags = ["woman","women","lesbian","indoors"]
+        self.Tags = ["woman","women","lesbian","indoors","blonde",
+                     "brunette"]
         self.Disabled = False
 
 class BGProfileNaughtyBarn(BGProfile):
     def __init__(self):
         super().__init__(ID = 117,
-                           Priority = 40,
+                           Priority = 4,
                            sFileName = "naughty_barn")
         self.MainTitleColor = "rgba(249, 49, 37, 255)"
         self.SecondTitleColor = "rgba(204, 145, 88, 255)"
         self.SmallTextColor = "rgba(71, 106, 116, 255)"
         self.AuthorNameColor = "rgba(71, 106, 116, 255)"
-        self.Tags = ["woman","man","straight","blonde"]
+        self.Tags = ["woman","man","straight","blonde","barn"]
         self.Disabled = False
 
 class BGProfileBulgingCodpieces(BGProfile):
@@ -1489,7 +1579,7 @@ class BGProfileBulgingCodpieces(BGProfile):
         self.SecondTitleColor = "rgba(194, 102, 52, 255)"
         self.SmallTextColor = "rgba(143, 138, 40, 255)"
         self.AuthorNameColor = "rgba(194, 102, 52, 255)"
-        self.Tags = ["men","man","muscular","fantasy","outdoors"]
+        self.Tags = ["men","man","muscular","fantasy","outdoors","gay"]
         self.Disabled = False
 
 class BGProfileLesboBoudoir(BGProfile):
@@ -1501,7 +1591,8 @@ class BGProfileLesboBoudoir(BGProfile):
         self.SecondTitleColor = "rgba(110, 173, 69, 255)"
         self.SmallTextColor = "rgba(126, 63, 100, 255)"
         self.AuthorNameColor = "rgba(110, 173, 69, 255)"
-        self.Tags = ["woman","outdoors","underwater","kinky","bikini","blonde"]
+        self.Tags = ["woman","outdoors","underwater","kinky","bikini","blonde",
+                     "lesbian"]
         self.Disabled = False
 
 class BGProfileOctoAttack(BGProfile):
@@ -1513,57 +1604,19 @@ class BGProfileOctoAttack(BGProfile):
         self.SecondTitleColor = "rgba(71, 109, 63, 255)"
         self.SmallTextColor = "rgba(44, 117, 179, 255)"
         self.AuthorNameColor = "rgba(44, 117, 179, 255)"
-        self.Tags = ["woman","women","indoors"]
+        self.Tags = ["woman","outdoors","underwater","bikini","blonde",
+                     "octopus","tentacles"]
         self.Disabled = False
 
-class BGProfileFireplaceBeauty(BGProfile):
-    def __init__(self):
-        super().__init__(ID = 121,
-                           Priority = 40,
-                           sFileName = "fireplace_beauty")
-        self.MainTitleColor = "rgba(213, 22, 24, 255)"
-        self.SecondTitleColor = "rgba(254, 171, 15, 255)"
-        self.SmallTextColor = "rgba(11, 84, 115, 255)"
-        self.AuthorNameColor = "rgba(11, 84, 115, 255)"
-        self.Tags = ["woman","indoors","blonde","butt"]
-        self.Content = Content.PG13
-        self.Disabled = False
 
-class BGProfileDangerMine(BGProfile):
-    def __init__(self):
-        super().__init__(ID = 122,
-                           Priority = 40,
-                           sFileName = "danger_mine")
-        self.MainTitleColor = "rgba(205, 97, 71, 255)"
-        self.SecondTitleColor = "rgba(231, 140, 81, 255)"
-        self.SmallTextColor = "rgba(1, 77, 119, 255)"
-        self.AuthorNameColor = "rgba(79, 27, 36, 255)"
-        self.Tags = ["man","woman","outdoors","blonde","couple","straight"]
-        self.Disabled = False
 
-class BGProfileFlex(BGProfile):
-    def __init__(self):
-        super().__init__(ID = 123,
-                           Priority = 4,
-                           sFileName = "flex")
-        self.MainTitleColor = "rgba(199, 47, 19, 255)"
-        self.SecondTitleColor = "rgba(49, 114, 44, 255)"
-        self.SmallTextColor = "rgba(1, 77, 119, 255)"
-        self.AuthorNameColor = "rgba(1, 77, 119, 255)"
-        self.Tags = ["man","indoors","muscular","shirtless"]
-        self.Disabled = False
 
-class BGProfileBeefcakeAngel(BGProfile):
-    def __init__(self):
-        super().__init__(ID = 124,
-                           Priority = 40,
-                           sFileName = "beefcake_angel")
-        self.MainTitleColor = "rgba(205, 99, 139, 255)"
-        self.SecondTitleColor = "rgba(205, 99, 139, 255)"
-        self.SmallTextColor = "rgba(101, 44, 84, 255)"
-        self.AuthorNameColor = "rgba(101, 44, 84, 255)"
-        self.Tags = ["man","woman","muscular","shirtless","angel","fantasy","brunette"]
-        self.Disabled = False
+
+
+
+
+
+
 
 # this is for debugging bgprofile frequency. delete later.
 def indexof(list, searchobj):
