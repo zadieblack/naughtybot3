@@ -4505,40 +4505,53 @@ class Generator118(Generator):
                                            
           return sTweet     
           
+# The Nubile Teen Starlet
+# Gets an Enema
 class Generator119(Generator):
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 119, Priority = 1)
+         self.Template = templates.TitleTemplate23()
      
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ReqTemplateTags = ["woman","single"]
           
           GirlNotList = ['Single','Slave','Nude','Naked','Tanned']
-          Girl = char.FemaleChar(bAddTheArticle = True, Type = GirlType.Good, NotList = GirlNotList)
+          Girl = char.FemaleChar(bAddTheArticle = True, Type = GirlType.Good, 
+                                 MaxChars = 20, NotList = GirlNotList,
+                                 ExclList = [SpeciesFemale])
           
-          sTweet = Girl.Desc + "\nGets An Enema"
+          sTweet = Girl.Desc + "\ngets an enema!"
 
           return sTweet     
 
-# The Randy Hairy Vegan Gunslinger Multi-Billionaire
-# Gets An Enema          
+# NOTE: Haven't quite figured out how to make this funny with cover pics
 class Generator120(Generator):
+# The Randy Hairy Vegan Gunslinger Multi-Billionaire
+# Gets An Enema   
      Disabled = True
 
      def __init__(self):
          super().__init__(ID = 120, Priority = 1)
+         self.Template = templates.TitleTemplate23()
      
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ReqTemplateTags = ["man","single"]
+          #self.ExclTemplateTags = ["woman","women","men"]
           
-          GuyNotList = ['Single']
-          Guy = char.MaleChar(bAddTheArticle = True, bAllowGang = False, NotList = GuyNotList,
-                                   bAllowTitle = False, bAllowSpecies = False)
+          GuyNotList = ['Naked','Dwarf','Centaur']
+          Guy = char.MaleChar(bAddTheArticle = True, MaxChars = 20,
+                              bAllowGang = False, NotList = GuyNotList,
+                              ExclList = [TitlesMale,SpeciesMale])
           
-          sTweet = Guy.Desc + "\nGets An Enema"
+          sTweet = Guy.Desc + "\ngets an enema!"
 
           return sTweet     
           

@@ -14,7 +14,7 @@ from util import *
 # "CelticGaramond.ttf"              Old English      xx             24
 # "Coventry Garden NF.ttf"          All Caps         xx             18
 # "FreestyleScriptStd.otf"          Hand-written     xx             22
-# "Helenium W01 Regular"            All Caps         xx             18
+# "Helenium W01 Regular.ttf"        All Caps         xx             18
 # "Lapidary 333 Bold Italic.otf"                     xx             16
 # "LaserLondon.ttf"                                  xx             26
 # "Lightfoot.ttf"                   All Caps         xx             26
@@ -794,6 +794,28 @@ class TitleTemplate22(TitleTemplate):
         self.AddLine(OrderNum = 4,
                      FontName = "FreestyleScriptStd.otf",
                      FontMaxSize = 25,
+                     MaxRows = 1,
+                     ColorType = LineColorType.MainTitle)
+
+# ** Conversational **
+# Medium Top Line
+# Punch-line
+# Templates: 62
+class TitleTemplate23(TitleTemplate):
+    def __init__(self):
+        super().__init__(ID = 23)
+
+        # Large short 1-2 word top line
+        self.AddLine(OrderNum = 1,
+                     FontName = "Sabado Regular.otf",
+                     FontMaxSize = 26,
+                     MaxRows = 2,
+                     ColorType = LineColorType.SmallText ,AllCaps = True)
+
+        # Small medium-length tag (excited!)
+        self.AddLine(OrderNum = 4,
+                     FontName = "FreestyleScriptStd.otf",
+                     FontMaxSize = 21,
                      MaxRows = 1,
                      ColorType = LineColorType.MainTitle)
 
