@@ -2692,14 +2692,18 @@ class Generator65(Generator):
 
 # The Bride Wore a Ball Gag          
 class Generator66(Generator):
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 66, Priority = 1)
+         self.Template = templates.TitleTemplate7()
      
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ReqTemplateTags = ["woman"]
+          self.ExclTemplateTags = ["gay","lesbian","couple"]
           
           BrideWore = WordList(['Latex','Black Leather','Body Paint','a Spreader Bar','a Speculum','a Clit Pump','Nipple Clamps',
                                      'a Ball Gag','a Leash','a Butt Plug','an Anal Plug','a Vibrator','Crotchless Panties',
@@ -2712,7 +2716,7 @@ class Generator66(Generator):
                                      'a Black Body Harness','a Black Bodystocking','a Red Sheer Bodystocking',
                                      'a Black Sheer Bodystocking','a Black Leather Bikini','Black Pasties','Red Pasties'])
                                      
-          sTweet = "The Bride Wore " + BrideWore.GetWord()
+          sTweet = "The Bride\nWore " + BrideWore.GetWord() + "!"
 
           return sTweet     
           

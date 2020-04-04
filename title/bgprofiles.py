@@ -1605,7 +1605,7 @@ class BGProfileLesboBoudoir(BGProfile):
 class BGProfileOctoAttack(BGProfile):
     def __init__(self):
         super().__init__(ID = 120,
-                           Priority = 40,
+                           Priority = 4,
                            sFileName = "octo_attack")
         self.MainTitleColor = "rgba(223, 112, 77, 255)"
         self.SecondTitleColor = "rgba(71, 109, 63, 255)"
@@ -1615,7 +1615,18 @@ class BGProfileOctoAttack(BGProfile):
                      "octopus","tentacles"]
         self.Disabled = False
 
-
+class BGProfileNurseTriangle(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 121,
+                           Priority = 40,
+                           sFileName = "nurse_triangle")
+        self.MainTitleColor = "rgba(93, 133, 72, 255)"
+        self.SecondTitleColor = "rgba(93, 133, 72, 255)"
+        self.SmallTextColor = "rgba(139, 64, 56, 255)"
+        self.AuthorNameColor = "rgba(198, 77, 44, 255)"
+        self.Tags = ["woman","man","couple","nurse","redhead",
+                     "indoors","hospital","suit","straight"]
+        self.Disabled = False
 
 
 
