@@ -644,8 +644,6 @@ class TitleTemplate18(TitleTemplate):
 # ** Medieval **
 # 8 INCHES OF STEEL
 # MEDIUM length MEDIUM sized second line
-# SMALL SHORT third line
-# MEDIUM LONG (1-2 lines) final line
 class TitleTemplate19(TitleTemplate):
     def __init__(self):
         super().__init__(ID = 19)
@@ -665,20 +663,6 @@ class TitleTemplate19(TitleTemplate):
                      MaxRows = 3,
                      ColorType = LineColorType.SecondTitle,
                      AllCaps = True)
-
-        ## SMALL SHORT third line
-        #self.AddLine(OrderNum = 3,
-        #             FontName = "Amaze.ttf",
-        #             FontMaxSize = 10,
-        #             MaxRows = 1,
-        #             ColorType = LineColorType.SmallText)
-        
-        ## MEDIUM length MEDIUM sized fourth line
-        #self.AddLine(OrderNum = 4,
-        #             FontName = "oldengl.ttf",
-        #             FontMaxSize = 14,
-        #             MaxRows = 1,
-        #             ColorType = LineColorType.SecondTitle)
 
 # LARGE two-or-three word (1-2 lines) top line
 # MEDIUM medium-length second line
@@ -800,7 +784,7 @@ class TitleTemplate22(TitleTemplate):
 # ** Conversational **
 # Medium Top Line
 # Punch-line
-# Templates: 62
+# Templates: 63, 119
 class TitleTemplate23(TitleTemplate):
     def __init__(self):
         super().__init__(ID = 23)

@@ -2594,35 +2594,40 @@ class Generator62(Generator):
 # The Busty Blonde Flight Attendant's 
 # Topless Miami Vacation
 class Generator63(Generator):
-     Disabled = True
+    Disabled = False
 
-     def __init__(self):
-         super().__init__(ID = 63, Priority = 1)
-     
-     def GenerateTweet(self):
-          super().GenerateTweet()
-          sTweet = ""
+    def __init__(self):
+        super().__init__(ID = 63, Priority = 1)
+        self.Template = templates.TitleTemplate23()
+
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
+
+        self.ReqTemplateTags = ["woman"]
+        self.ExclTemplateTags = ["gay","straight"]
           
-          Girl = None
-          if CoinFlip():
-               Girl = char.FemaleChar(Type = GirlType.Good, bAddTheArticle = True, 
-                                             bAllowClothing = False, bAllowRelate = False, bAllowSexuality = False, 
-                                             bAllowSpecies = False, bAllowNation = True, bAllowMaritalStatus = False, 
-                                             bAllowTitle = False)
-          else:
-               Girl = char.FemaleChar(Type = GirlType.Bad, bAddTheArticle = True, 
-                                             bAllowClothing = False, bAllowRelate = False, bAllowSexuality = True, 
-                                             bAllowSpecies = False, bAllowNation = True, bAllowMaritalStatus = False, 
-                                             bAllowTitle = False)
-          VacType = WordList(["Topless", "Nudist", "Fully Nude", "Naked", "Fully Nude", "Naked"])
-          VacPlace = WordList(["Miami", "Carribean", "Spanish", "Italian", "Greek", "Cancún", "Hawaiian", "Los Angeles", "Bangkok", 
-                                    "Las Vegas", "Macau", "Ibiza", "Jamaica", "New Orleans", "Rio", "Berlin", "Bali", "Goa", "Australian",
-                                    "Amsterdam", "Lagos", "Bora Bora", "Thai", "Fiji"])
-          VacWord = WordList(["Vacation", "Vacation", "Getaway", "Holiday", "Spring Break"])
+        Girl = None
+        if CoinFlip():
+            Girl = char.FemaleChar(Type = GirlType.Good, bAddTheArticle = True, 
+                                   MaxChars = 20,
+                                   bAllowSpecies = False, bAllowMaritalStatus = False, 
+                                   bAllowTitle = False)
+        else:
+            Girl = char.FemaleChar(Type = GirlType.Bad, bAddTheArticle = True, 
+                                   MaxChars = 20,
+                                   bAllowClothing = False, bAllowSpecies = False, 
+                                   bAllowMaritalStatus = False, bAllowTitle = False)
+
+        VacType = WordList(["Topless", "Nudist", "Fully Nude", "Naked", "Fully Nude", "Naked"])
+        VacPlace = WordList(["Miami", "Carribean", "Spanish", "Italian", "Greek", "Cancún", "Hawaiian", "Los Angeles", "Bangkok", 
+                                "Las Vegas", "Macau", "Ibiza", "Jamaica", "New Orleans", "Rio", "Berlin", "Bali", "Goa", "Australian",
+                                "Amsterdam", "Lagos", "Bora Bora", "Thai", "Fiji"])
+        VacWord = WordList(["Vacation", "Vacation", "Getaway", "Holiday", "Spring Break"])
                                     
-          sTweet = Girl.Desc + "'s\n" + VacType.GetWord() + " " + VacPlace.GetWord() + " " + VacWord.GetWord()
+        sTweet = Girl.Desc + "'s\n" + VacType.GetWord() + " " + VacPlace.GetWord() + " " + VacWord.GetWord()
                
-          return sTweet     
+        return sTweet     
           
 # 'Oh $@*#!'
 # My new stepmom is a 
