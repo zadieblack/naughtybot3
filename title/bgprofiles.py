@@ -1642,7 +1642,7 @@ class BGProfileNurseTriangleMFF(BGProfile):
                      "threesome"]
         self.Disabled = False
 
-class BGProfileBoatBOys(BGProfile):
+class BGProfileBoatBoys(BGProfile):
     def __init__(self):
         super().__init__(ID = 123,
                            Priority = 40,
@@ -1655,7 +1655,18 @@ class BGProfileBoatBOys(BGProfile):
                      "outdoors","ocean","boat","threesome"]
         self.Disabled = False
 
-
+class BGProfileLoveCanoe(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 124,
+                           Priority = 40,
+                           sFileName = "love_canoe")
+        self.MainTitleColor = "rgba(214, 66, 31, 255)"
+        self.SecondTitleColor = "rgba(86, 124, 29, 255)"
+        self.SmallTextColor = "rgba(59, 12, 109, 255)"
+        self.AuthorNameColor = "rgba(59, 12, 109, 255)"
+        self.Tags = ["woman","man","outdoors","boat","straight",
+                     "couple","cowboy","brunette"]
+        self.Disabled = False
 
 
 

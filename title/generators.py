@@ -2789,36 +2789,46 @@ class Generator68(Generator):
 # The wholesome blonde Christian girl spreads her legs (bends over/drops her panties/puts out)
 # for the cocky Italian DILF!
 class Generator69(Generator):
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 69, Priority = 1)
-         #self.Template = templates.TitleTemplate4()
+         self.Template = templates.TitleTemplate24()
      
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ReqTemplateTags = ["woman"]
+          self.ExclTemplateTags = ["gay","lesbian","kinky","horror"]
+
+          sArticle = "The"
           
-          Actions = WordList(["Spreads her Legs\nfor","Spreads her Legs\nfor",
-                              "Bends Over\nfor","Drops Her Panties\nfor",
-                              "Lifts her Skirt\nfor",
-                              "Spreads her Thighs\nfor","Spreads her Cheeks\nfor",
-                              "Opens Her Legs\nfor","Lubes Herself Up\nfor"])
-          Girl = titmisc.NiceGirl()
-          sNiceGirl = Girl.Desc
+          Actions = WordList(["Spreads her Legs","Spreads her Legs",
+                              "Bends Over","Drops Her Panties",
+                              "Lifts her Skirts","Spreads her Thighs",
+                              "Spreads her Cheeks","Opens Her Legs",
+                              "Lubes Herself Up"])
           
-          Man = char.MaleChar(bAddTheArticle = True, MaxChars = 32,
-                              bAllowRelate = False, 
-                              bAllowMaritalStatus = True, 
-                              bAllowGang = False, bAllowTitle = True)
+          NiceGirl = char.FemaleChar(SelectTemplateID = 501, MaxChars = 16) #, ReqList = [DiminuitiveNiceGirl])
+          if FoundIn(NiceGirl.Desc, ["sister","brother","mom","dad","mother",
+                                     "father","fiancé","wife","girlfriend",
+                                     "teacher","secretary","daughter",
+                                     "babysitter","governess","tutor",
+                                     "bride"]):
+              sArticle = "My"
+
+          Man = char.MaleChar(bAddAnArticle = True, sPosArticle = "Her", 
+                              MaxChars = 22,
+                              bAllowGang = False, bAllowTitle = True,
+                              bAllowRelate = False)
           
-          iRand = randint(1,3)
-          if iRand == 1:
-               sTweet = "The " + Girl.Desc + "\n" + Actions.GetWord() + "\n" + Man.Desc 
-          elif iRand == 2:
-               sTweet = NamesFemale().FirstName() + " the " + Girl.Desc + "\n" + Actions.GetWord() + "\n" + Man.Desc 
-          else:
-               sTweet = "My " + Girl.Desc + "\n" + Actions.GetWord() + "\n" + Man.Desc
+          #iRand = randint(1,3)
+          #if iRand == 1:
+          #     sTweet = NiceGirl.Desc + "\n" + Actions.GetWord().lower() + " for\nThe" + Man.Desc 
+          #else:
+          sTweet = sArticle + " " + NiceGirl.Desc + "\n" 
+          sTweet += Actions.GetWord().lower() + " for\n" + Man.Desc + "!"
                
           return sTweet     
           

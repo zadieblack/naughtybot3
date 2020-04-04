@@ -112,6 +112,7 @@ class TitleTemplatePHDefault(TitleTemplate):
                      MaxRows = 5,
                      ColorType = LineColorType.MainTitle)
 
+# [THREE LINES]
 # SHORT TOP LINE
 # of a
 # LONG TWO-ROW BOTTOM LINE
@@ -141,6 +142,7 @@ class TitleTemplate1(TitleTemplate):
                      ColorType = LineColorType.SecondTitle,
                      AllCaps = True)
 
+# [FOUR LINES]
 # MEDIUM TOP LINE
 # of a
 # MEDIUM BOTTOM LINE
@@ -178,6 +180,7 @@ class TitleTemplate2(TitleTemplate):
                      ColorType = LineColorType.SmallText)
         
 
+# [FIVE LINES]
 # FEMALE NAME
 # Shows A
 # MEDIUM CENTER LINE
@@ -223,6 +226,7 @@ class TitleTemplate3(TitleTemplate):
                      ColorType = LineColorType.MainTitle,
                      AllCaps = True)
 
+# [THREE LINES]
 # ** Conversational **
 # Medium Top Line
 # Large Middle Line
@@ -255,6 +259,7 @@ class TitleTemplate4(TitleTemplate):
                      MaxRows = 1,
                      ColorType = LineColorType.SecondTitle)
 
+# [TWO LINES]
 # ** Medieval **
 # SHORT TOP LINE
 # transition
@@ -285,6 +290,7 @@ class TitleTemplate5(TitleTemplate):
                      MaxRows = 1,
                      ColorType = LineColorType.SecondTitle)
 
+# [THREE LINES]
 # SHORT TOP LINE
 # MEDIUM LINE
 # LONG TWO-ROW BOTTOM LINE
@@ -315,6 +321,7 @@ class TitleTemplate6(TitleTemplate):
                      ColorType = LineColorType.SecondTitle,
                      AllCaps = True)
 
+# [TWO LINES]
 # ** Punchline **
 # MEDIUM TOP LINE
 # MEDIUM BOTTOM LINE
@@ -339,6 +346,7 @@ class TitleTemplate7(TitleTemplate):
                      ColorType = LineColorType.MainTitle)
                      #This needs extra space to work
 
+# [ONE LINE]
 # ** Conversational **
 # Large long or multi-line line
 # Generators: 143
@@ -352,6 +360,7 @@ class TitleTemplate8(TitleTemplate):
                      MaxRows = 4,
                      ColorType = LineColorType.MainTitle)
 
+# [THREE LINES]
 # SHORT TOP LINE
 # MEDIUM LINE
 # LONG TWO-ROW BOTTOM LINE
@@ -383,6 +392,7 @@ class TitleTemplate9(TitleTemplate):
                      ColorType = LineColorType.SecondTitle,
                      AllCaps = True)
 
+# [TWO LINES]
 # ** Punchline **
 # LONG TOP LINE
 # MEDIUM BOTTOM LINE
@@ -405,6 +415,7 @@ class TitleTemplate10(TitleTemplate):
                      ColorType = LineColorType.SecondTitle,
                      AllCaps = True)
 
+# [TWO LINES]
 # SHORT TOP LINE (ALL CAPS!!!)
 # LONG TWO-ROW BOTTOM LINE
 class TitleTemplate11(TitleTemplate):
@@ -412,7 +423,7 @@ class TitleTemplate11(TitleTemplate):
         super().__init__(ID = 11)
 
         # Short very large top line
-        self.AddLine(OrderNum = 11,
+        self.AddLine(OrderNum = 1,
                      FontName = "Absinette W01 Regular.ttf",
                      FontMaxSize = 25,
                      MaxRows = 2,
@@ -426,6 +437,7 @@ class TitleTemplate11(TitleTemplate):
                      MaxRows = 2,
                      ColorType = LineColorType.SecondTitle)
 
+# [two LINES]
 # Large medium-length top line 
 # LONG TWO-ROW BOTTOM LINE
 class TitleTemplate12(TitleTemplate):
@@ -446,6 +458,7 @@ class TitleTemplate12(TitleTemplate):
                      MaxRows = 2,
                      ColorType = LineColorType.SecondTitle)
 
+# [FOUR LINES]
 # SHORT TOP LINE
 # MEDIUM LINE
 # by the
@@ -484,6 +497,7 @@ class TitleTemplate13(TitleTemplate):
                      ColorType = LineColorType.SecondTitle,
                      AllCaps = True)
 
+# [THREE LINES]
 # ADJ1 & ADJ2
 # TWO OR EVEN THREE ROW
 # Generators: 30
@@ -514,6 +528,7 @@ class TitleTemplate14(TitleTemplate):
                      MaxRows = 1,
                      ColorType = LineColorType.SmallText)
 
+# [TWO LINES]
 # Top Line: I'm Having a Baby for
 # LONG TWO-ROW BOTTOM LINE
 class TitleTemplate15(TitleTemplate):
@@ -534,6 +549,7 @@ class TitleTemplate15(TitleTemplate):
                      MaxRows = 2,
                      ColorType = LineColorType.SecondTitle)
 
+# [FOUR LINES]
 # ** Conversational **
 # Medium Top Line
 # Large Middle Line
@@ -566,6 +582,7 @@ class TitleTemplate16(TitleTemplate):
                      MaxRows = 1,
                      ColorType = LineColorType.SecondTitle)
 
+# [FOUR LINES]
 # ONE OR TWO WORD TOP ROW
 # MEDIUM SECOND ROW
 # and the
@@ -576,7 +593,7 @@ class TitleTemplate17(TitleTemplate):
         super().__init__(ID = 17)
 
         # One large word top line
-        self.AddLine(OrderNum = 2,
+        self.AddLine(OrderNum = 1,
                      FontName = "Verona-ExtraBold.otf",
                      FontMaxSize = 28,
                      MaxRows = 1,
@@ -604,9 +621,11 @@ class TitleTemplate17(TitleTemplate):
                      MaxRows = 1,
                      ColorType = LineColorType.SmallText)
 
-# SHORT TOP LINE
-# of a
-# LONG TWO-ROW BOTTOM LINE
+# [FOUR LINES]
+# Short large top line
+# Medium-length large second line 
+# Small cursive trans
+# One or two-line medium-sized bottom line
 class TitleTemplate18(TitleTemplate):
     def __init__(self):
         super().__init__(ID = 18)
@@ -620,27 +639,28 @@ class TitleTemplate18(TitleTemplate):
                      AllCaps = True)
 
         # Medium-length large second line 
-        self.AddLine(OrderNum = 1,
+        self.AddLine(OrderNum = 2,
                      FontName = "Verona-ExtraBold.otf",
                      FontMaxSize = 21,
                      MaxRows = 1,
                      ColorType = LineColorType.MainTitle)
 
         # Small cursive trans
-        self.AddLine(OrderNum = 2,
+        self.AddLine(OrderNum = 3,
                      FontName = "Amaze.ttf",
                      FontMaxSize = 12,
                      MaxRows = 1,
                      ColorType = LineColorType.SmallText)
 
         # One or two-line medium-sized bottom line
-        self.AddLine(OrderNum = 3,
+        self.AddLine(OrderNum = 4,
                      FontName = "PerpetuaStd.otf",
                      FontMaxSize = 19,
                      MaxRows = 2,
                      ColorType = LineColorType.SecondTitle,
                      AllCaps = True)
 
+# [TWO LINES]
 # ** Medieval **
 # 8 INCHES OF STEEL
 # MEDIUM length MEDIUM sized second line
@@ -664,6 +684,7 @@ class TitleTemplate19(TitleTemplate):
                      ColorType = LineColorType.SecondTitle,
                      AllCaps = True)
 
+# [FOUR LINES]
 # LARGE two-or-three word (1-2 lines) top line
 # MEDIUM medium-length second line
 # MEDIUM medium-length third line
@@ -702,6 +723,7 @@ class TitleTemplate20(TitleTemplate):
                      MaxRows = 1,
                      ColorType = LineColorType.SecondTitle)
 
+# [FOUR LINES]
 # LARGE ONE OR TWO WORD top row
 # LARGE SHORT 2nd row
 # by
@@ -712,7 +734,7 @@ class TitleTemplate21(TitleTemplate):
         super().__init__(ID = 21)
 
         # One large word top line
-        self.AddLine(OrderNum = 2,
+        self.AddLine(OrderNum = 1,
                      FontName = "Verona-ExtraBold.otf",
                      FontMaxSize = 28,
                      MaxRows = 1,
@@ -741,6 +763,7 @@ class TitleTemplate21(TitleTemplate):
                      ColorType = LineColorType.MainTitle,
                      AllCaps = True)
 
+# [FOUR LINES]
 # ** Conversational **
 # Medium Top Line
 # Large Middle Line
@@ -767,7 +790,7 @@ class TitleTemplate22(TitleTemplate):
                      AllCaps = True)
 
         # Large medium length line
-        self.AddLine(OrderNum = 2,
+        self.AddLine(OrderNum = 3,
                      FontName =  "Sabado Regular.otf",
                      FontMaxSize = 13,
                      MaxRows = 2,
@@ -781,6 +804,7 @@ class TitleTemplate22(TitleTemplate):
                      MaxRows = 1,
                      ColorType = LineColorType.MainTitle)
 
+# [TWO LINES]
 # ** Conversational **
 # Medium Top Line
 # Punch-line
@@ -797,11 +821,37 @@ class TitleTemplate23(TitleTemplate):
                      ColorType = LineColorType.SmallText ,AllCaps = True)
 
         # Small medium-length tag (excited!)
-        self.AddLine(OrderNum = 4,
+        self.AddLine(OrderNum = 2,
                      FontName = "FreestyleScriptStd.otf",
                      FontMaxSize = 21,
                      MaxRows = 1,
                      ColorType = LineColorType.MainTitle)
+
+class TitleTemplate24(TitleTemplate):
+    def __init__(self):
+        super().__init__(ID = 24)
+
+        # Large medium-length top line 
+        self.AddLine(OrderNum = 1,
+                     FontName = "Verona-ExtraBold.otf",
+                     FontMaxSize = 23,
+                     MaxRows = 2,
+                     ColorType = LineColorType.SecondTitle)
+
+        # Small single word or short top line
+        self.AddLine(OrderNum = 2,
+                     FontName = "FreestyleScriptStd.otf",
+                     FontMaxSize = 19,
+                     MaxRows = 1,
+                     ColorType = LineColorType.SmallText)
+
+        # One or two-line medium-sized bottom line
+        self.AddLine(OrderNum = 3,
+                     FontName = "PerpetuaStd.otf",
+                     FontMaxSize = 19,
+                     MaxRows = 2,
+                     ColorType = LineColorType.MainTitle,
+                     AllCaps = True)
 
 class TitleTemplateSelector():
     def __init__(self):
