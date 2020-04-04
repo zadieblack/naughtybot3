@@ -2724,10 +2724,11 @@ class Generator66(Generator):
 # and its my first time
 # doing anal!"
 class Generator67(Generator):
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 67, Priority = 1)
+         self.Template = templates.TitleTemplate4()
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -2743,11 +2744,13 @@ class Generator67(Generator):
                                       "With Two Dudes", "With Three Guys At Once", "Trying a Gang Bang",
                                       "With an Older Man", "Doing Hardcore Bondage Play", "Wearing a Ball Gag",
                                       "Trying Water Sports"])
-          Girl = char.FemaleChar(Type = GirlType.Good, bAllowClothing = False, bAllowRelate = False, 
-                                        bAllowNation = True, bAllowMaritalStatus = False, bAllowTitle = False, 
+          Girl = char.FemaleChar(Type = GirlType.Good, MaxChars = 22,
+                                        bAllowMaritalStatus = False, bAllowTitle = False, 
                                         bAllowPregState = False)
 
-          sTweet = "\"" + Beginnings.GetWord() + "!\nI'm " + AddArticles(Girl.Desc) + "\nAnd Its My First Time\n" + FirstTimes.GetWord() + "!\""
+          sTweet = "\"" + Beginnings.GetWord() + "!\"\n"
+          sTweet += "I'm " + AddArticles(Girl.Desc) + "\n"
+          sTweet += "And its my first time " + FirstTimes.GetWord().lower() + "!"
 
           return sTweet     
           
