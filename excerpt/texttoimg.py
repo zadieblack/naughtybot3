@@ -11,7 +11,7 @@ PATH = "excerpt/resources/"
 FONT = "NoticiaText-Regular.ttf"
 MAX_IMG_NUM = 82
 
-BGImgQ = HistoryQ(iQSize = 7)
+BGImgQ = HistoryQ(iQSize = 50)
 
 def SaveImg(img, filename = ""):
      try:
