@@ -1628,8 +1628,32 @@ class BGProfileNurseTriangle(BGProfile):
                      "indoors","hospital","suit","straight"]
         self.Disabled = False
 
+class BGProfileNurseTriangleMFF(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 122,
+                           Priority = 40,
+                           sFileName = "nurse_triangle_mff")
+        self.MainTitleColor = "rgba(217, 67, 22, 255)"
+        self.SecondTitleColor = "rgba(70, 128, 129, 255)"
+        self.SmallTextColor = "rgba(22, 73, 97, 255)"
+        self.AuthorNameColor = "rgba(22, 73, 97, 255)"
+        self.Tags = ["woman","man","couple","nurse","blonde",
+                     "indoors","hospital","doctor","straight",
+                     "threesome"]
+        self.Disabled = False
 
-
+class BGProfileBoatBOys(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 123,
+                           Priority = 40,
+                           sFileName = "boat_boys")
+        self.MainTitleColor = "rgba(139, 183, 218, 255)"
+        self.SecondTitleColor = "rgba(202, 49, 27, 255)"
+        self.SmallTextColor = "rgba(106, 55, 39, 255)"
+        self.AuthorNameColor = "rgba(106, 55, 39, 255)"
+        self.Tags = ["man","men","shirtless","muscular",
+                     "outdoors","ocean","boat","threesome"]
+        self.Disabled = False
 
 
 
