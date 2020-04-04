@@ -9,9 +9,9 @@ from util import *
 
 PATH = "excerpt/resources/"
 FONT = "NoticiaText-Regular.ttf"
-MAX_IMG_NUM = 74
+MAX_IMG_NUM = 82
 
-BGImgQ = HistoryQ(iQSize = 50)
+BGImgQ = HistoryQ(iQSize = 7)
 
 def SaveImg(img, filename = ""):
      try:
