@@ -1605,7 +1605,7 @@ class BGProfileLesboBoudoir(BGProfile):
 class BGProfileOctoAttack(BGProfile):
     def __init__(self):
         super().__init__(ID = 120,
-                           Priority = 4,
+                           Priority = 2,
                            sFileName = "octo_attack")
         self.MainTitleColor = "rgba(223, 112, 77, 255)"
         self.SecondTitleColor = "rgba(71, 109, 63, 255)"
@@ -1618,7 +1618,7 @@ class BGProfileOctoAttack(BGProfile):
 class BGProfileNurseTriangle(BGProfile):
     def __init__(self):
         super().__init__(ID = 121,
-                           Priority = 40,
+                           Priority = 4,
                            sFileName = "nurse_triangle")
         self.MainTitleColor = "rgba(93, 133, 72, 255)"
         self.SecondTitleColor = "rgba(93, 133, 72, 255)"
@@ -1631,7 +1631,7 @@ class BGProfileNurseTriangle(BGProfile):
 class BGProfileNurseTriangleMFF(BGProfile):
     def __init__(self):
         super().__init__(ID = 122,
-                           Priority = 40,
+                           Priority = 4,
                            sFileName = "nurse_triangle_mff")
         self.MainTitleColor = "rgba(217, 67, 22, 255)"
         self.SecondTitleColor = "rgba(70, 128, 129, 255)"
@@ -1645,7 +1645,7 @@ class BGProfileNurseTriangleMFF(BGProfile):
 class BGProfileBoatBoys(BGProfile):
     def __init__(self):
         super().__init__(ID = 123,
-                           Priority = 40,
+                           Priority = 4,
                            sFileName = "boat_boys")
         self.MainTitleColor = "rgba(139, 183, 218, 255)"
         self.SecondTitleColor = "rgba(202, 49, 27, 255)"
@@ -1658,7 +1658,7 @@ class BGProfileBoatBoys(BGProfile):
 class BGProfileLoveCanoe(BGProfile):
     def __init__(self):
         super().__init__(ID = 124,
-                           Priority = 40,
+                           Priority = 4,
                            sFileName = "love_canoe")
         self.MainTitleColor = "rgba(214, 66, 31, 255)"
         self.SecondTitleColor = "rgba(86, 124, 29, 255)"
@@ -1668,7 +1668,31 @@ class BGProfileLoveCanoe(BGProfile):
                      "couple","cowboy","brunette"]
         self.Disabled = False
 
+class BGProfileBarbarianBulge(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 125,
+                           Priority = 4,
+                           sFileName = "barbarian_bulge")
+        self.MainTitleColor = "rgba(31, 78, 143, 255)"
+        self.SecondTitleColor = "rgba(199, 95, 52, 255)"
+        self.SmallTextColor = "rgba(65, 88, 55, 255)"
+        self.AuthorNameColor = "rgba(65, 88, 55, 255)"
+        self.Tags = ["man","single","fantasy","barbarian","sword",
+                     "muscular","shirtless"]
+        self.Disabled = False
 
+class BGProfileStartledBedMan(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 126,
+                           Priority = 4,
+                           sFileName = "startled_bed_man")
+        self.MainTitleColor = "rgba(231, 81, 111, 255)"
+        self.SecondTitleColor = "rgba(30, 134, 80, 255)"
+        self.SmallTextColor = "rgba(107, 50, 65, 255)"
+        self.AuthorNameColor = "rgba(231, 81, 111, 255)"
+        self.Tags = ["man" ,"single","indoors","bed","horror",
+                     "muscular","shirtless","scared"]
+        self.Disabled = False
 
 
 # this is for debugging bgprofile frequency. delete later.
