@@ -1694,6 +1694,21 @@ class BGProfileStartledBedMan(BGProfile):
                      "muscular","shirtless","scared"]
         self.Disabled = False
 
+class BGProfileAgainstATree(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 127,
+                           Priority = 40,
+                           sFileName = "against_a_tree")
+        self.MainTitleColor = "rgba(212, 105, 41, 255)"
+        self.SecondTitleColor = "rgba(71, 139, 64, 255)"
+        self.SmallTextColor = "rgba(101, 20, 81, 255)"
+        self.AuthorNameColor = "rgba(101, 20, 81, 255)"
+        self.Tags = ["woman","man","outdoors","tree","straight",
+                     "couple","shirtless","muscular","blonde"]
+        self.Disabled = False
+
+
+
 
 # this is for debugging bgprofile frequency. delete later.
 def indexof(list, searchobj):
