@@ -1697,7 +1697,7 @@ class BGProfileStartledBedMan(BGProfile):
 class BGProfileAgainstATree(BGProfile):
     def __init__(self):
         super().__init__(ID = 127,
-                           Priority = 40,
+                           Priority = 4,
                            sFileName = "against_a_tree")
         self.MainTitleColor = "rgba(212, 105, 41, 255)"
         self.SecondTitleColor = "rgba(71, 139, 64, 255)"
@@ -1707,6 +1707,33 @@ class BGProfileAgainstATree(BGProfile):
                      "couple","shirtless","muscular","blonde"]
         self.Disabled = False
 
+class BGProfileMermaidPirateStorm(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 128,
+                           Priority = 1,
+                           sFileName = "mermaid_pirate_storm")
+        self.MainTitleColor = "rgba(237, 89, 53, 255)"
+        self.SecondTitleColor = "rgba(25, 162, 36, 255)"
+        self.SmallTextColor = "rgba(139, 55, 30, 255)"
+        self.AuthorNameColor = "rgba(78, 120, 171, 255)"
+        self.Tags = ["woman","man","outdoors","straight","blonde",
+                     "couple","topless","mermaid","ship","boat",
+                     "pirate","ocean","storm"]
+        self.Disabled = False
+
+class BGProfileSkiSweaters(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 129,
+                           Priority = 40,
+                           sFileName = "ski_sweaters")
+        self.MainTitleColor = "rgba(180, 21, 43, 255)"
+        self.SecondTitleColor = "rgba(117, 74, 120, 255)"
+        self.SmallTextColor = "rgba(4, 106, 103, 255)"
+        self.AuthorNameColor = "rgba(180, 21, 43, 255)"
+        self.Tags = ["woman","man","outdoors","straight","blonde",
+                     "couple","topless","mermaid","ship","boat",
+                     "pirate","ocean","storm"]
+        self.Disabled = False
 
 
 
