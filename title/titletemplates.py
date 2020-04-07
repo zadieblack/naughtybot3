@@ -500,7 +500,7 @@ class TitleTemplate13(TitleTemplate):
 # [THREE LINES]
 # ADJ1 & ADJ2
 # TWO OR EVEN THREE ROW
-# Generators: 30
+# Generators: 30, 72
 class TitleTemplate14(TitleTemplate):
     def __init__(self):
         super().__init__(ID = 14)
@@ -554,7 +554,7 @@ class TitleTemplate15(TitleTemplate):
 # Medium Top Line
 # Large Middle Line
 # Small Bottom Line
-# Generators: 14, 24, 40
+# Generators: 14, 24, 40, 74
 class TitleTemplate16(TitleTemplate):
     def __init__(self):
         super().__init__(ID = 16)

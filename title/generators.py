@@ -2916,44 +2916,61 @@ class Generator71(Generator):
           return sTweet     
           
 # My New Coworker
-# is a Strapping Long Haul Truckers
+# is a Strapping Long Haul Trucker
 # and He Sucked My Titties 
 class Generator72(Generator):
-     Disabled = True
+    Disabled = False
 
-     def __init__(self):
-         super().__init__(ID = 72, Priority = 1)
+    def __init__(self):
+        super().__init__(ID = 72, Priority = 1)
+        self.Template = templates.TitleTemplate14()
      
-     def GenerateTweet(self):
-          super().GenerateTweet()
-          sTweet = ""
-          
-          ManNotList = ["Single"]
-          Man = char.MaleChar(NotList = ManNotList, bAddAnArticle = True, bAllowGang = False,
-                                   bAllowSpecies = True, bAllowMaritalStatus = False, bAllowTitle = False, 
-                                   bAllowGenMod = True, bAllowTrope = False)
-          Relations = WordList(["Co-worker","Boss","Boss","Step-Brother","Brother-in-Law","Son-in-Law","Step-Son",
-                                        "Tutoring Student","Gym Coach","Personal Trainer","Massage Therapist",
-                                        "Nextdoor Neighbor","Math Teacher","Math Tutor","English Teacher",
-                                        "Literature Professor","Tennis Coach","Pool Boy"
-                                        ])
-          NaughtyStuff = WordList(["He Ate Me Out","He Ate My Ass","He Sucked My Titties","I Let Him Finger Me",
-                                        "We Sixty-nined","I Let Him Fist Me","I Let Him Shave My Cooch","I Gave Him Head",
-                                         "I Gave Him a Hand-Job","I Gave Him a Foot-Job","I Let Him Play With My Titties",
-                                         "He Whipped My Bare Ass With a Riding Crop","I Sat On His Face",
-                                         "He Spanked My Ass","I Gave Him Road Head","I've Seen Him Naked",
-                                         "We Showered Together","I Jerked Him Off","I Dry-Humped Him",
-                                         "I Gave Him a Rim-Job","He Wears a Cock Ring","He Has a Cock Piercing",
-                                         "He Likes to be Pegged","We Did Butt Stuff","I Went Down On Him",
-                                         "He Went Down On Me"])
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
 
-          sTweet = "\"My New " + Relations.GetWord() + " is\n"
-          sTweet += Man.Desc + "\n"
-          sTweet += "and\n" + NaughtyStuff.GetWord() + "!\""
+        self.ReqTemplateTags = ["man"]
+        self.ExclTemplateTags = ["lesbian"]
           
-          return sTweet     
+        ManNotList = ["Single"]
+        Man = char.MaleChar(MaxChars = 22, bAllowGang = False,
+                            ExclList = [MaritalStatusMale, TitlesMale, ProfBlueCollarMale, ProfWhiteCollarMale, ProfFantasyMale, RelateMale],
+                            NotList = ManNotList)
 
-          return sTweet     
+        Relations = WordList(["Co-worker","Boss","Boss","Step-Brother","Brother-in-Law",
+                              "Son-in-Law","Step-Son","Tutoring Student","Gym Coach",
+                              "Personal Trainer","Massage Therapist","Nextdoor Neighbor",
+                              "Math Teacher","Math Tutor","English Teacher",
+                              "Literature Professor","Tennis Coach","Pool Boy"
+                             ])
+        NaughtyStuff = WordList(["He Ate Me Out","He Ate My Ass","He Sucked My Titties",
+                                 "He Finger-banged My Twat","We Sixty-nined",
+                                 "I Let Him Fist Me","I Let Him Shave My Cooch",
+                                 "I Gave Him Head","I Gave Him a Hand-Job",
+                                 "I Gave Him a Foot-Job","I scissord his wife",
+                                 "He Whipped My Bare Ass With a Riding Crop",
+                                 "I Sat On His Face","He Spanked My Bare Ass",
+                                 "I Gave Him Road Head","I've Seen Him Naked",
+                                 "We Showered Together","I Jerked Him Off",
+                                 "I Dry-Humped Him","I Rimmed His Butt-hole",
+                                 "He Wears a Cock Ring","He Has a Cock Piercing",
+                                 "We Did Butt Stuff","I Went Down On Him",
+                                 "He Went Down On Me", "I Rode Him Hard",
+                                 "His cock is huge","his dick is enormous",
+                                 "He's hung like a horse","I'm having his baby",
+                                 "He tea-bagged me with his hairy balls",
+                                 "We've had anal sex","I Deep-Throated Him"])
+
+        sNaughty = NaughtyStuff.GetWord().lower()
+        if sNaughty[0] == "i":
+            sNaughty = sNaughty.capitalize()
+
+        sTweet = "My New " + Relations.GetWord() + "\n"
+        sTweet += "is " + AddArticles(Man.Desc) + "\n"
+        sTweet += "and " + sNaughty + "!"
+          
+        return sTweet     
+   
           
 # class Generator73(Generator):
      # ID = 73
@@ -2966,28 +2983,58 @@ class Generator72(Generator):
           # return sTweet     
           
 class Generator74(Generator):
-     Disabled = True
+    Disabled = False
 
-     def __init__(self):
-         super().__init__(ID = 74, Priority = 1)
+    def __init__(self):
+        super().__init__(ID = 74, Priority = 1)
+        self.Template = templates.TitleTemplate16()
      
-     def GenerateTweet(self):
-          super().GenerateTweet()
-          sTweet = ""
-          
-          Girl = titmisc.NiceGirl()
-          sNiceGirl = Girl.Desc
-          
-          NaughtyStuff = WordList(["69ing", "an Anal Hook","Anal Sex","BBC","BDSM","Bukkake","a Butt Plug","a Clit Clamp","a Dirty Sanchez","Double Penetration","Erotic Asphyxiation","a Gang Bang",
-                                              "an Interracial Threesome", "Leather Bondage","Lesbian Sex","Face-Sitting","Fisting","an Orgy","Nipple Clamps","Nudism","Rimming","Sex With Another Woman","Spanking",
-                                              "Stripping at a Club","Swinging","a Threesome","Watching Porn","Water Sports","Whips and Chains","Wife Swapping"])
-          Reactions = WordList(["Now She Can't Get Enough","She Loves It","She Wants More","Now She Won't Stop","Now She Won't Quit","Now She's Insatiable",
-                                     "It Turned Her Into A Slut","It Turned Her Into A Sex-Crazed Bimbo","Now She's a Sex Addict","It Turned Her Into A Ho","It Turned Her Into a Lesbian",
-                                     "Now She's a Professional Porn Star", "She Decided to Become a Porn Star","Now All She Does Is Masturbate","It Was Awkward and Not Really Her Thing"])
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
 
-          sTweet = "My " + sNiceGirl + "\nTried " + NaughtyStuff.GetWord() + "\nAnd " + Reactions.GetWord() + "!"
+        self.ReqTemplateTags = ["woman"]
+        self.ExclTemplateTags = ["gay"]
+          
+        NiceGirl = char.FemaleChar(SelectTemplateID = 501)
+        while len(NiceGirl.Desc) > 24:
+            NiceGirl = char.FemaleChar(SelectTemplateID = 501)
+          
+        NaughtyStuff = WordList(["69ing", "Anal Hooks","Anal Sex","BBC","BDSM",
+                                "Bukkake","Butt Plugs","Clit Clamps",
+                                "a Dirty Sanchez","Double Penetration",
+                                "Erotic Asphyxiation","Gang Bangs",
+                                "an Interracial Threesome","Hardcore Bondage",
+                                "Leather Bondage","Lesbian Sex","Face-Sitting",
+                                "Oral Fisting","Vaginal Fisting","Anal Fisting",
+                                "Orgies","Nipple Clamps","Public Nudity",
+                                "Sex With Another Woman","Spanking",
+                                "Stripping at a Club","Swinging","a Threesome",
+                                "Big Black Cock","Black Dick","Rimming",
+                                "A 12-inch Black Dildo","Whips and Chains",
+                                "Hot-Wifing","Pussy","Pee Drinking",
+                                "Extreme Vaginal Insertion","Group Sex",
+                                "Extreme Anal Insertion","Deep-Throating",
+                                "Auto-Erotic Asphyxiation","Scissoring"])
+
+        Reactions = WordList(["Now She Can't Get Enough",
+                              "Now She Wants More",
+                              "Now She Won't Stop",
+                              "Now She Won't Quit",
+                              "Now She's Insatiable",
+                              "Now She's a Street Whore",
+                              "Now She's a Lesbian",
+                              "It Turned Her Into A Sex-Crazed Bimbo",
+                              "Now She's a Sex Addict",
+                              "It Turned Her Into a Lesbian",
+                              "Now She's a Professional Porn Star", 
+                              "It Was Awkward and Not Really Her Thing"])
+
+        sTweet = "My " + NiceGirl.Desc + "\nTried "
+        sTweet += NaughtyStuff.GetWord() + "\n"
+        sTweet += "And " + Reactions.GetWord().lower() + "!"
                     
-          return sTweet     
+        return sTweet     
 
 class Generator75(Generator):
      Disabled = True
