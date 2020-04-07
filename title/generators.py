@@ -2934,7 +2934,7 @@ class Generator72(Generator):
           
         ManNotList = ["Single"]
         Man = char.MaleChar(MaxChars = 22, bAllowGang = False,
-                            ExclList = [MaritalStatusMale, TitlesMale, ProfBlueCollarMale, ProfWhiteCollarMale, ProfFantasyMale, RelateMale],
+                            ExclList = [MaritalStatusMale, TitlesMale, ProfBlueCollarMale, ProfWhiteCollarMale, ProfFantasyMale, RelateMale,DickCharMale,ClothesMale],
                             NotList = ManNotList)
 
         Relations = WordList(["Co-worker","Boss","Boss","Step-Brother","Brother-in-Law",
@@ -2947,7 +2947,7 @@ class Generator72(Generator):
                                  "He Finger-banged My Twat","We Sixty-nined",
                                  "I Let Him Fist Me","I Let Him Shave My Cooch",
                                  "I Gave Him Head","I Gave Him a Hand-Job",
-                                 "I Gave Him a Foot-Job","I scissord his wife",
+                                 "I Gave Him a Foot-Job","I scissored his wife",
                                  "He Whipped My Bare Ass With a Riding Crop",
                                  "I Sat On His Face","He Spanked My Bare Ass",
                                  "I Gave Him Road Head","I've Seen Him Naked",
