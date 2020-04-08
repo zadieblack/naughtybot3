@@ -1724,7 +1724,7 @@ class BGProfileMermaidPirateStorm(BGProfile):
 class BGProfileSkiSweaters(BGProfile):
     def __init__(self):
         super().__init__(ID = 129,
-                           Priority = 40,
+                           Priority = 4,
                            sFileName = "ski_sweaters")
         self.MainTitleColor = "rgba(180, 21, 43, 255)"
         self.SecondTitleColor = "rgba(117, 74, 120, 255)"
@@ -1735,6 +1735,19 @@ class BGProfileSkiSweaters(BGProfile):
                      "pirate","ocean","storm"]
         self.Disabled = False
 
+class BGProfileBigPole(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 2,
+                           Priority = 400,
+                           sFileName = "big_pole")
+        self.MainTitleColor = "rgba(70, 174, 210, 255)"
+        self.SecondTitleColor = "rgba(225, 144, 118, 255)"
+        self.SmallTextColor = "rgba(125, 96, 78, 255)"
+        self.AuthorNameColor = "rgba(70, 174, 210, 255)"
+        self.Tags = ["man","men","gay","penis","naked","nude",
+                     "shirtless","muscular","bed"]
+        self.Disabled = False
+        self.Content = Content.AdultsOnly
 
 
 # this is for debugging bgprofile frequency. delete later.
