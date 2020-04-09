@@ -344,7 +344,21 @@ class FemTemplate23(FemCharTemplate):
                                    NotList = ["single","virgin","fertile","small-town","tender",
                                               "mature","elvish","fashionable"])
           self.RequestOnly = True
-                    
+                 
+# Race/Nation Girl           
+class FemTemplate24(FemCharTemplate):
+     def __init__(self):
+          super().__init__(      noun = GirlFemale(),
+                                    id = 24, 
+                                    adjlist =      [CTEntry([GenModFemale],8),
+                                                    CTEntry([AttitudeFemale],7),
+                                                    CTEntry([PhysCharFemale],6),
+                                                    CTEntry([ClothingFemale],5)
+
+                                                  ], 
+                                   girltype = GirlType.Neutral,
+                                   priority = 3)
+
 # === Good Trope templates ===
 
 class FemGoodTropeTemplate1(FemTropeTemplate):
@@ -1114,7 +1128,6 @@ class FemNiceGirlTemplate1(FemCharTemplate):
                                    girltype = GirlType.Good,
                                    priority = 1)  
           self.RequestOnly = True
-          print("501 selected")
 
 # Adj:          AgeAdjFemale, AttitudeGoodFemale, AttitudeBadFemale, AttitudeFemale,
 #                ClothingFemale, GenModFemale, MaritalStatusFemale, NationFemale, PhysCharFemale

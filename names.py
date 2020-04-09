@@ -99,7 +99,7 @@ class ClassyNamesFemale(Names):
                'Francesca',
                'Georgina',
                'Gisele',
-               'Gwyneth'
+               'Gwyneth',
                'Harmony',
                'Heidi',
                'Heaven',

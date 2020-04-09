@@ -611,6 +611,31 @@ class RaceFemale(WordList):
                'White','White',
                'Asian','Asian',
                'Latina','Latina'])
+
+class GirlFemale(WordList):
+     def __init__(self):
+          super().__init__(['Asian Girl','Asian Girl','Asian Girl',
+                            'Black Girl','Black Girl','Black Girl',
+                            'Blonde Girl','Blonde Girl',
+                            'Brazillian Girl',
+                            'Catholic Girl',
+                            'Dutch Girl',
+                            'French Girl',
+                            'German Girl',
+                            'Indian Girl',
+                            'Irish Girl',
+                            'Italian Girl',
+                            'Japanese Girl',
+                            'Jewish Girl',
+                            'Korean Girl',
+                            'Latina Girl',
+                            'Mexican Girl',
+                            'Mormon Girl',
+                            'Redhead Girl','Redhead Girl',
+                            'Swedish Girl',
+                            'Swiss Girl',
+                            'White Girl','White Girl','White Girl'])
+
      
 # princess     
 class TitlesFemale(WordList):

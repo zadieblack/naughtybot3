@@ -1841,7 +1841,7 @@ class ProfileSelector():
                 (not self.HasReqTags(ReqTags, Profile[1].Tags) or self.HasExclTags(ExclTags, Profile[1].Tags)):
                 Profile = choice(self.ProfileList)
                 iTries = iTries + 1
-            print("After " + str(iTries) + " tries, " + str(Profile[1]) + " was selected.\n")
+            #print("After " + str(iTries) + " tries, " + str(Profile[1]) + " was selected.\n")
 
         return Profile
           

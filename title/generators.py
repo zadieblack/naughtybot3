@@ -3179,7 +3179,7 @@ class Generator78(Generator):
                               "Compliant","Obedient","Kinky"])
 
           sSubAdj = SubAdjs.GetWord()
-          Girl = char.FemaleChar(MaxChars = 28, Type = TempType.Medium, 
+          Girl = char.FemaleChar(MaxChars = 22, Type = TempType.Medium, 
                                  ExclList = [GenModFemale, AttitudeFemale, SexualityFemale],
                                  NotList = [sSubAdj])
           
@@ -5807,10 +5807,11 @@ class Generator1000(Generator):
 #Testing specific title generators          
 class Generator1001(Generator):
      Type = GeneratorType.Test
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 1001, Priority = 1)
+         self.Template = templates.TitleTemplate8()
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -5819,12 +5820,12 @@ class Generator1001(Generator):
           Girl = char.FemaleChar(TempType = TempType.Flowery, 
                                         bAddTheArticle = False, 
                                         bAllowTrope = True, 
-                                        SelectTemplateID = 128)
-          Guy = char.MaleChar(TempType = TempType.Flowery, 
-                                   bAddAnArticle = True, 
-                                   bAllowGang = False,
-                                   bAllowTrope = True,
-                                   SelectTemplateID = 14)
+                                        SelectTemplateID = 24)
+          #Guy = char.MaleChar(TempType = TempType.Flowery, 
+          #                         bAddAnArticle = True, 
+          #                         bAllowGang = False,
+          #                         bAllowTrope = True,
+          #                         SelectTemplateID = 14)
           #Gang = char.MaleChar(TempType = TempType.Flowery,
           #                          bAddAnArticle = True,
           #                          bAllowGang = True)
@@ -5832,7 +5833,7 @@ class Generator1001(Generator):
 
           sTweet += AddArticles(Girl.Desc, bMakeUpper = True) + " Gets Sexed the Hell Up!\n"
           #sTweet += AddArticles(Guy.Desc, bMakeUpper = True) + " Took My Wife Hard From Behind!\n"
-          sTweet += Guy.Desc + " Took My Wife Hard From Behind!\n"
+          #sTweet += Guy.Desc + " Took My Wife Hard From Behind!\n"
           #sTweet += Gang.Desc + " Took Turns With My Wife!"
 
           return sTweet     

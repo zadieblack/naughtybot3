@@ -485,6 +485,10 @@ class HairColorFemale(FemCharBit):
 class SkinHairColorFemale(FemCharBit):
      def __init__(self):
           super().__init__(titmisc.SkinHairColorFemale())
+
+class GirlFemale(FemCharBit):
+     def __init__(self):
+          super().__init__(titmisc.GirlFemale())
           
 class SpeciesFemale(FemCharBit):
      def __init__(self):
@@ -854,8 +858,8 @@ class Character():
                 variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
                 sDesc = self.DescribeTemplateVariant(variant, bAddEndNoun = bAddEndNoun, NotList = NotList)
             
-            #print("  -- Randomly selected template #" + str(SelCharTemplate.ID) + " [" + str(SelCharTemplate) + "]")
-            #print("   --- It took " + str(iTryCounter) + " tries.\n")
+            print("\nRandomly selected character template #" + str(SelCharTemplate.ID) + " [" + str(SelCharTemplate) + "]")
+            print(" - It took " + str(iTryCounter) + " tries.\n")
         NotList = NotList + SelCharTemplate.NotList 
 
         sDesc = self.DescribeTemplateVariant(variant, bAddEndNoun = bAddEndNoun, NotList = NotList)

@@ -392,7 +392,7 @@ def CreateImg(ImgTxtGen):
     # get a random cover profile 
     BGProfile = GetBGProfileGenerator(ReqTags = ImgTxtGen.ReqTemplateTags,
                                       ExclTags = ImgTxtGen.ExclTemplateTags)
-    print("BGProfile #" + str(BGProfile.ID) + " (" + BGProfile.FileName + ") selected")
+    #print("BGProfile #" + str(BGProfile.ID) + " (" + BGProfile.FileName + ") selected")
 
     sFileName = ""
 
