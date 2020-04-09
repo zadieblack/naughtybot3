@@ -1737,8 +1737,8 @@ class BGProfileSkiSweaters(BGProfile):
 
 class BGProfileBigPole(BGProfile):
     def __init__(self):
-        super().__init__(ID = 2,
-                           Priority = 400,
+        super().__init__(ID = 130,
+                           Priority = 2,
                            sFileName = "big_pole")
         self.MainTitleColor = "rgba(70, 174, 210, 255)"
         self.SecondTitleColor = "rgba(225, 144, 118, 255)"
@@ -1748,6 +1748,19 @@ class BGProfileBigPole(BGProfile):
                      "shirtless","muscular","bed"]
         self.Disabled = False
         self.Content = Content.AdultsOnly
+
+class BGProfileBigPole(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 131,
+                           Priority = 4,
+                           sFileName = "bad_nun")
+        self.MainTitleColor = "rgba(173, 13, 19, 255)"
+        self.SecondTitleColor = "rgba(111, 154, 187, 255)"
+        self.SmallTextColor = "rgba(91, 38, 6, 255)"
+        self.AuthorNameColor = "rgba(91, 38, 6, 255)"
+        self.Tags = ["woman","smoking","nun","single"]
+        self.Disabled = False
+        self.Content = Content.PG13
 
 
 # this is for debugging bgprofile frequency. delete later.

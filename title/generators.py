@@ -3037,24 +3037,31 @@ class Generator74(Generator):
         return sTweet     
 
 class Generator75(Generator):
-     Disabled = True
+    Disabled = False
 
-     def __init__(self):
-         super().__init__(ID = 75, Priority = 1)
+    def __init__(self):
+        super().__init__(ID = 75, Priority = 1)
+        self.Template = templates.TitleTemplate16()
      
-     def GenerateTweet(self):
-          super().GenerateTweet()
-          sTweet = ""
-          
-          Exclamations = WordList(["Oh S@*#!", "Oh No!", "WTF?!?", "Oh F*@%!"])
-          Girl = titmisc.NiceGirl()
-          sNiceGirl = Girl.Desc
-          
-          if CoinFlip():
-               sTweet += Exclamations.GetWord() + " "
-          sTweet += "My " + sNiceGirl + " Went Black and She Won't Come Back!"
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
 
-          return sTweet     
+        self.ReqTemplateTags = ["woman"]
+        self.ExclTemplateTags = ["gay","couple"]
+          
+        Exclamations = WordList(["Oh S@*#!", "Oh No!", "WTF?!?", "Oh F*@%!"])
+          
+        GirlNotList = ["black","african","ebony","dark-skinned"]
+        NiceGirl = char.FemaleChar(SelectTemplateID = 501, NotList = GirlNotList)
+        while len(NiceGirl.Desc) > 24:
+            NiceGirl = char.FemaleChar(SelectTemplateID = 501)
+          
+        sTweet += Exclamations.GetWord() + "\n"
+        sTweet += "My " + NiceGirl.Desc + " Went Black\n"
+        sTweet += "and she won't come back!"
+
+        return sTweet     
           
 # My New Neighbor is a 
 # Tanned Redheaded Secretary
@@ -3145,27 +3152,39 @@ class Generator77(Generator):
 # His for the Fisting:
 # A Submissive Nubile Black Flight-Attendant Story     
 class Generator78(Generator):
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 78, Priority = 1)
+         self.Template = templates.TitleTemplate12()
+
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
 
-          Gerunds = WordList(["69ing","Ass-Eating","Bedding","Binding","Breaking","Breeding","Caning","Claiming","Deflowering",
-                                  "Defiling","Dominating","Edging","Exposing","Fingering","Fisting","Impregnating","Ogling","Milking","Motor-Boating",
-                                   "Paddling","Peeing On","Penetrating","Pleasuring","Porking","Pumping","Rimming","Sharing","Shaving","Spanking","Spraying","Spread-Eagling",
-                                   "Spit-Roasting","Stripping","Stuffing","Taking","Tasting","Tea-Bagging","Touching","Toying","Whipping",
-                                   "Undressing","Using","Video-Taping"])
-          SubAdjs = WordList(["Submissive","Submissive","Subservient","Compliant","Slave Girl","Obedient","Kinky"])
+          self.ReqTemplateTags = ["woman"]
+          self.ExclTemplateTags = ["gay","lesbian"]
+
+          Gerunds = WordList(["69ing","Ass-Eating","Bedding","Binding","Breaking",
+                              "Breeding","Caning","Claiming","Deflowering",
+                              "Defiling","Dominating","Fingering","Fisting",
+                              "Impregnating","Milking","Motor-Boating",
+                              "Paddling","Peeing On","Penetrating","Pleasuring",
+                              "Porking","Pumping","Rimming","Sharing",
+                              "Shaving","Spanking","Spit-Roasting",
+                              "Stripping","Stuffing","Taking","Tea-Bagging",
+                              "Whipping","Using","Video-Taping"])
+
+          SubAdjs = WordList(["Submissive","Submissive","Subservient",
+                              "Compliant","Obedient","Kinky"])
+
           sSubAdj = SubAdjs.GetWord()
-          Girl = char.FemaleChar(NotList = [sSubAdj], bAllowClothing = True, 
-                                        bAllowRelate = True, bAllowSexuality = True, bAllowSpecies = True, 
-                                        bAllowMaritalStatus = True, bAllowTitle = True)
+          Girl = char.FemaleChar(MaxChars = 28, Type = TempType.Medium, 
+                                 ExclList = [GenModFemale, AttitudeFemale, SexualityFemale],
+                                 NotList = [sSubAdj])
           
-          sTweet = "His for the " + Gerunds.GetWord() + ":\n"
-          sTweet += AddArticles(sSubAdj + " " + Girl.Desc) + " Story"
+          sTweet = "HIS FOR THE " + Gerunds.GetWord().upper() + "\n"
+          sTweet += AddArticles(sSubAdj + " " + Girl.Desc, bMakeUpper = True) + " Story"
           return sTweet     
           
 class Generator79(Generator):

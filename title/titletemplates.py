@@ -259,7 +259,7 @@ class TitleTemplate4(TitleTemplate):
                      MaxRows = 1,
                      ColorType = LineColorType.SecondTitle)
 
-# [TWO LINES]
+# [THREE LINES]
 # ** Medieval **
 # SHORT TOP LINE
 # transition
@@ -437,9 +437,10 @@ class TitleTemplate11(TitleTemplate):
                      MaxRows = 2,
                      ColorType = LineColorType.SecondTitle)
 
-# [two LINES]
+# [TWO LINES]
 # Large medium-length top line 
 # LONG TWO-ROW BOTTOM LINE
+# Generators: 11, 12, 26, 45, 78
 class TitleTemplate12(TitleTemplate):
     def __init__(self):
         super().__init__(ID = 12)
@@ -554,7 +555,7 @@ class TitleTemplate15(TitleTemplate):
 # Medium Top Line
 # Large Middle Line
 # Small Bottom Line
-# Generators: 14, 24, 40, 74
+# Generators: 14, 24, 40, 74 76
 class TitleTemplate16(TitleTemplate):
     def __init__(self):
         super().__init__(ID = 16)
