@@ -273,6 +273,7 @@ class BookVerbsBy(WordList):
                'Captured',
                'Caught on Tape',
                'Caught on Video',
+               'Cavity Searched',
                'Claimed','Claimed',
                'Claimed From Behind',
                'Claimed Hard',

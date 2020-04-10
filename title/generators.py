@@ -321,24 +321,44 @@ class Generator1(Generator):
           return sTweet
           
 class Generator2(Generator):
-     # Veonica Gets Blackmailed by the Billionaire Mountain Man 
-     Disabled = True
+    # Bedded
+    # by the
+    # Busty Trans Japanese Schoolgirl
+    Disabled = False
 
-     def __init__(self):
+    def __init__(self):
         super().__init__(ID = 4, Priority = 1)
+        self.Template = templates.TitleTemplate1()
      
-     def GenerateTweet(self):
-          super().GenerateTweet()
-          sTweet = ""
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
           
-          self.ExclTemplateTags = ["lesbian"]
-          self.ReqTemplateTags = ["woman","man"]
+        self.ExclTemplateTags = ["gay","couple","women","lesbian"]
+        #self.ReqTemplateTags = ["woman"]
 
-          Master = char.MaleChar(TempType = TempType.Flowery, bAddTheArticle = True, sPosArticle = "Her", bAllowGang = True, bAllowRelate = True, bAllowTrope = True)
+        Verbs = WordList(["Ball-Gagged","Bedded","Blown","Cavity Searched","Chained to the Bed","Collared",
+                        "Deep-Throated","Disciplined","Dominated","Dry-Humped",
+                        "Fellated","Feminized","Gone Down On","Hand-cuffed","Horse-Whipped",
+                        "Jerked Off","Licked","Smothered","Peed On","Pegged",
+                        "Pegged with a Strap-on","Ridden","Rimmed","Seduced",
+                        "Sixty-Nined","Straddled","Stroked","Spanked",
+                        "Sucked Off","Swallowed","Teased","Tempted",
+                        "Tied Up","Urinated On","Whipped"])
+
+        Woman = char.FemaleChar(bAllowRelate = True, bAllowSexuality = False)
+
+        sTweet = Verbs.GetWord() + "\n"
+        if FoundIn(Woman.Desc, ["sister","brother","mom","dad","mother",
+                                "father","fiancé","wife","girlfriend",
+                                "teacher","secretary","daughter",
+                                "babysitter","governess","tutor",
+                                "bride","house maid","french maid"]):
+            sTweet += "By\nMy " + Woman.Desc
+        else:
+            sTweet += "By\n" + AddArticles(Woman.Desc, bMakeUpper = True)
           
-          sTweet = self.HerName + " Gets " + self.VerbsBy.GetWord(NotList = ["Sexually Harrassed At My Workplace"]) + " by\n" + Master.Desc
-          
-          return sTweet
+        return sTweet
 
 class Generator3(Generator):
      # Married to the Alpha Wolf
@@ -425,14 +445,13 @@ class Generator6(Generator):
           self.ReqTemplateTags = ["bed","woman"]
           self.ExclTemplateTags = ["gay","lesbian"]
           
-          NotList = ["Pledged", "Public", "Charmed", "Cuckolded", "Hunted", "Harrassed", "Sold", 
-                         "Gifted", "Pledged", "Bed", "Sex Dungeon","Basement","Dungeon","Surrendered"]
+          NotList = ["Pledged", "Public", "Charmed", "Cuckolded", "Hunted", 
+                     "Harrassed", "Sold", "Gifted", "Pledged", "Bed", 
+                     "Sex Dungeon","Basement","Dungeon","Surrendered"]
           
-          #Girl = char.FemaleChar(TempType = TempType.Medium, bAllowTrope = True, NotList = GenNotList)
           Master = char.MaleChar(TempType = TempType.Flowery, bAddTheArticle = True,
                                  bAllowRelate = True, bAllowTrope = True)
-          #Master = MaleChar(iNumMaxCBits = 3, bAllowGang = False, NotList = NotList, bAddArticle = True)
-          
+
           sTweet += self.VerbsBy.GetWord(NotList = NotList) + "\nIn the Bed of\n" + Master.Desc 
           
           return sTweet
@@ -580,8 +599,7 @@ class Generator11(Generator):
           sTweet = ""
 
           self.ReqTemplateTags = ["woman"]
-          
-          Relations = titmisc.RelateFemale()
+
           Gerunds = self.Gerunds
 
           iTempNo = 0
@@ -766,7 +784,7 @@ class Generator16(Generator):
           
           RelNotList = ['Wife', 'Girlfriend', 'Fiancé','Concubine','Mistress',
                         'BDSM','little']
-          Relations = titmisc.RelateFemale()
+
           Verbs = WordList(["Boned","Banged","Humped","Had Sex With","Went Down On","Sixty-Nined","Ate Out",
                             "Had Anal Sex With","Boinked","Jizzed On","Finger-Banged","Fisted","Did"])
 
@@ -1139,7 +1157,10 @@ class Generator28(Generator):
           super().GenerateTweet()
           sTweet = ""
           
-          Girl = char.FemaleChar(bAddEndNoun = False, bAllowMaritalStatus = False, bAllowSexuality = False, NotList = ['Single', 'Divorced'])
+          Girl = char.FemaleChar(bAddEndNoun = False, 
+                                 bAllowMaritalStatus = False, 
+                                 bAllowSexuality = False, 
+                                 NotList = ['Single', 'Divorced'])
           Man = char.MaleChar(bAddTheArticle = True, bAllowMaritalStatus = False)
           FemaleRelate = WordList(['Wife', 'Wife', 'Fiancé', 'Girlfriend'])
           if CoinFlip():
@@ -3179,7 +3200,7 @@ class Generator78(Generator):
                               "Compliant","Obedient","Kinky"])
 
           sSubAdj = SubAdjs.GetWord()
-          Girl = char.FemaleChar(MaxChars = 22, Type = TempType.Medium, 
+          Girl = char.FemaleChar(MaxChars = 22, TempType = TempType.Medium, 
                                  ExclList = [GenModFemale, AttitudeFemale, SexualityFemale],
                                  NotList = [sSubAdj])
           
@@ -5820,7 +5841,7 @@ class Generator1001(Generator):
           Girl = char.FemaleChar(TempType = TempType.Flowery, 
                                         bAddTheArticle = False, 
                                         bAllowTrope = True, 
-                                        SelectTemplateID = 24)
+                                        SelectTemplateID = 26)
           #Guy = char.MaleChar(TempType = TempType.Flowery, 
           #                         bAddAnArticle = True, 
           #                         bAllowGang = False,

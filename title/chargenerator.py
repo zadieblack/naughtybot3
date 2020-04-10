@@ -9,120 +9,159 @@ from title.util import TempType
 from title.util import MaleCharType 
           
 class FemaleChar(Character):
-     def __init__(self, ReqList = [], ExclList = [],
-                            TempType = TempType.Flowery,
-                            Type = GirlType.Neutral, 
-                            NotList = None, 
-                            bAddTheArticle = False, 
-                            bAddAnArticle = False,
-                            sPosArticle = "My", 
-                            bSplitArticle = False,
-                            bAddEndNoun = True,
-                            bAllowAttitude = True, 
-                            bAllowPhysChar = True, 
-                            bAllowSkinHairColor = True, 
-                            bAllowGenMod = True, 
-                            bAllowClothing = True, 
-                            bAllowAge = True, 
-                            bAllowPregState = True, 
-                            bAllowMaritalStatus = True,     
-                            bAllowNation = True, 
-                            bAllowProf = True, 
-                            bAllowSpecies = True, 
-                            bAllowSexuality = True, 
-                            bAllowTrope = True, 
-                            bAllowRelate = False, 
-                            bAllowTitle = True,
-                            SelectTemplateID = 0,
-                            MaxChars = 9999):
-          super().__init__()
-          if NotList is None:
-               NotList = []
+    def __init__(self, ReqList = [], ExclList = [],
+                        TempType = TempType.Flowery,
+                        Type = GirlType.Neutral, 
+                        NotList = None, 
+                        bAddTheArticle = False, 
+                        bAddAnArticle = False,
+                        sPosArticle = "My", 
+                        bSplitArticle = False,
+                        bAddEndNoun = True,
+                        bAllowAttitude = True, 
+                        bAllowPhysChar = True, 
+                        bAllowSkinHairColor = True, 
+                        bAllowGenMod = True, 
+                        bAllowClothing = True, 
+                        bAllowAge = True, 
+                        bAllowPregState = True, 
+                        bAllowMaritalStatus = True,     
+                        bAllowNation = True, 
+                        bAllowProf = True, 
+                        bAllowSpecies = True, 
+                        bAllowSexuality = True, 
+                        bAllowTrope = True, 
+                        bAllowRelate = False, 
+                        bAllowTitle = True,
+                        SelectTemplateID = 0,
+                        MaxChars = 9999):
+        super().__init__()
+        if NotList is None:
+            NotList = []
           
-          self.Gender = Gender.Female 
-          self.GirlType = Type
+        self.Gender = Gender.Female 
+        self.GirlType = Type
           
-          # add any CharBits that we are going to exclude to the exclusion list
+        # add any CharBits that we are going to exclude to the exclusion list
           
-          if not bAllowAttitude:
-               ExclList.append(AttitudeFemale())
-               ExclList.append(AttitudeBadFemale())
-               ExclList.append(AttitudeGoodFemale())
-          if not bAllowPhysChar:
-               ExclList.append(PhysCharFemale())
-          if not bAllowSkinHairColor:
-               ExclList.append(SkinHairColorFemale())
-          if not bAllowGenMod:
-               ExclList.append(GenModFemale())
-          if not bAllowClothing:
-               ExclList.append(ClothingFemale())
-          if not bAllowPregState:
-               ExclList.append(PregState())
-          if not bAllowMaritalStatus:
-               ExclList.append(MaritalStatusFemale())
-          if not bAllowNation:
-               ExclList.append(NationFemale())
-          if not bAllowProf:
-               ExclList.append(ProfFemale())
-               ExclList.append(ProfBadFemale())
-               ExclList.append(ProfGoodFemale())
-          if not bAllowSpecies:
-               ExclList.append(SpeciesFemale())
-          if not bAllowSexuality:
-               ExclList.append(SexualityFemale())
-          if not bAllowRelate:
-               ExclList.append(RelateFemale())     
-          if not bAllowTitle:
-               ExclList.append(TitlesFemale())
+        if not bAllowAttitude:
+            ExclList.append(AttitudeFemale())
+            ExclList.append(AttitudeBadFemale())
+            ExclList.append(AttitudeGoodFemale())
+        if not bAllowPhysChar:
+            ExclList.append(PhysCharFemale())
+        if not bAllowSkinHairColor:
+            ExclList.append(SkinHairColorFemale())
+        if not bAllowGenMod:
+            ExclList.append(GenModFemale())
+        if not bAllowClothing:
+            ExclList.append(ClothingFemale())
+        if not bAllowPregState:
+            ExclList.append(PregState())
+        if not bAllowMaritalStatus:
+            ExclList.append(MaritalStatusFemale())
+        if not bAllowNation:
+            ExclList.append(NationFemale())
+        if not bAllowProf:
+            ExclList.append(ProfFemale())
+            ExclList.append(ProfBadFemale())
+            ExclList.append(ProfGoodFemale())
+        if not bAllowSpecies:
+            ExclList.append(SpeciesFemale())
+        if not bAllowSexuality:
+            ExclList.append(SexualityFemale())
+        if not bAllowRelate:
+            ExclList.append(RelateFemale())     
+        if not bAllowTitle:
+            ExclList.append(TitlesFemale())
                
-          TemplateList = self.BuildTemplateList(bAllowTrope = bAllowTrope, bAllowSpecies = bAllowSpecies)
+        TemplateList = self.BuildTemplateList(bAllowTrope = bAllowTrope, bAllowSpecies = bAllowSpecies)
           
-          self.SetCharDesc(TemplateList, 
-                               ReqList = ReqList,
-                               ExclList = ExclList, 
-                               TempType = TempType,
-                               NotList = NotList, 
-                               bAddEndNoun = bAddEndNoun,
-                               bAddTheArticle = bAddTheArticle,
-                               bAddAnArticle = bAddAnArticle,
-                               sPosArticle = sPosArticle,
-                               bSplitArticle = bSplitArticle,
-                               SelectTemplateID = SelectTemplateID,
-                               MaxChars = MaxChars)
+        self.SetCharDesc(TemplateList, 
+                            ReqList = ReqList,
+                            ExclList = ExclList, 
+                            TempType = TempType,
+                            NotList = NotList, 
+                            bAddEndNoun = bAddEndNoun,
+                            bAddTheArticle = bAddTheArticle,
+                            bAddAnArticle = bAddAnArticle,
+                            sPosArticle = sPosArticle,
+                            bSplitArticle = bSplitArticle,
+                            SelectTemplateID = SelectTemplateID,
+                            MaxChars = MaxChars)
           
-     def BuildTemplateList(self, bAllowTrope, bAllowSpecies):
-          TemplateList = []
-          
-          for subclass in FemCharTemplate.__subclasses__():
-               template = subclass()
-               if self.GirlType == GirlType.Neutral or template.GirlType == self.GirlType:
-                    i = 0
-                    while i < template.Priority:
-                         TemplateList.append(template)
-                         i = i + 1
-     
-          if bAllowTrope:
-               for subclass in FemTropeTemplate.__subclasses__():
-                    template = subclass()
-                    if self.GirlType == GirlType.Neutral or template.GirlType == self.GirlType:
-                         i = 0
-                         while i < template.Priority:
-                              TemplateList.append(template)
-                              i = i + 1
-     
-          if bAllowSpecies:
-               for subclass in FemSpeciesTemplate.__subclasses__():
-                    template = subclass()
-                    if self.GirlType == GirlType.Neutral or template.GirlType == self.GirlType:
-                         i = 0
-                         while i < template.Priority:
-                              TemplateList.append(template)
-                              i = i + 1
-          
-          if len(TemplateList) == 0:
-              print("=*= WARNING =*= FemaleChar() template list is empty")
+    def BuildTemplateList(self, bAllowTrope, bAllowSpecies):
+        TemplateList = []
 
-          return TemplateList
+        iStdCount = 0
+          
+        for subclass in FemCharTemplate.__subclasses__():
+            template = subclass()
+            if self.GirlType == GirlType.Neutral or template.GirlType == self.GirlType:
+                i = 0
+                while i < template.Priority * 5:
+                        TemplateList.append(template)
+                        i = i + 1
+                        iStdCount = iStdCount + 1
+                
+        if bAllowTrope:
+            for subclass in FemTropeTemplate.__subclasses__():
+                template = subclass()
+                if self.GirlType == GirlType.Neutral or template.GirlType == self.GirlType:
+                        i = 0
+                        while i < template.Priority * 2:
+                            TemplateList.append(template)
+                            i = i + 1
+     
+        if bAllowSpecies:
+            for subclass in FemSpeciesTemplate.__subclasses__():
+                template = subclass()
+                if self.GirlType == GirlType.Neutral or template.GirlType == self.GirlType:
+                        i = 0
+                        while i < template.Priority:
+                            TemplateList.append(template)
+                            i = i + 1
+          
+        if len(TemplateList) == 0:
+            print("=*= WARNING =*= FemaleChar() template list is empty")
+        else:
+            print("Template List length is " + str(len(TemplateList)) + "\nTEMPLATE LIST")
+            #print("NAME:\t\t\tID\tGIRL TYPE:\tTEMPLATE TYPE:")
+            #sTable = ""
+            #for item in TemplateList:
+            #    sObjName = str(item).split(" ")[0][21:]
+            #    sTable += sObjName 
+            #    iNumSpaces = 25 - len(sObjName)
+            #    i = 0
+            #    while i < iNumSpaces:
+            #        sTable += " "
+            #        i = i + 1
+
+            #    sTable += str(item.ID) + "\t"
+            #    if item.GirlType == GirlType.Good:
+            #        sTable += "good"
+            #    elif item.GirlType == GirlType.Bad:
+            #        sTable += "bad"
+            #    else: 
+            #        sTable += "neutral"
+            #    sTable += "\t\t"
+            #    if isinstance(item,FemTropeTemplate):
+            #        sTable += "Female Trope"
+            #    elif isinstance(item,FemSpeciesTemplate):
+            #        sTable += "Female Species"
+            #    elif isinstance(item,FemNiceGirlTemplate1):
+            #        sTable += "Nice Girl"
+            #    elif isinstance(item,FemLesbianTemplate1):
+            #        sTable += "Lesbian"
+            #    else:
+            #        sTable += "Female Template"
+            #    sTable += "\n"
+
+            #print(sTable)
+
+            #print("There are " + str(iStdCount) + " standard fem templates out of " + str(len(TemplateList)) + " (" + str(round(100 * (iStdCount / len(TemplateList)),2)) + "%)")
+
+        return TemplateList
 
 class LesbianChar(Character):
      def __init__(self, ReqList = [], ExclList = [],
