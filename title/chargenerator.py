@@ -74,61 +74,78 @@ class FemaleChar(Character):
             ExclList.append(RelateFemale())     
         if not bAllowTitle:
             ExclList.append(TitlesFemale())
-               
-        TemplateList = self.BuildTemplateList(bAllowTrope = bAllowTrope, bAllowSpecies = bAllowSpecies)
-          
-        self.SetCharDesc(TemplateList, 
-                            ReqList = ReqList,
-                            ExclList = ExclList, 
-                            TempType = TempType,
-                            NotList = NotList, 
-                            bAddEndNoun = bAddEndNoun,
-                            bAddTheArticle = bAddTheArticle,
-                            bAddAnArticle = bAddAnArticle,
-                            sPosArticle = sPosArticle,
-                            bSplitArticle = bSplitArticle,
-                            SelectTemplateID = SelectTemplateID,
-                            MaxChars = MaxChars)
-          
-    def BuildTemplateList(self, bAllowTrope, bAllowSpecies):
+
         TemplateList = []
+        for subclass in FemCharTemplate.__subclasses__():
+            template = subclass()
+            TemplateList.append(template)
+
+        for subclass in FemTropeTemplate.__subclasses__():
+            template = subclass()
+            TemplateList.append(template)       
+
+        for subclass in FemSpeciesTemplate.__subclasses__():
+            template = subclass()
+            TemplateList.append(template)
+
+        SelectionList = self.BuildSelectionList(bAllowTrope = bAllowTrope, bAllowSpecies = bAllowSpecies)
+          
+        self.SetCharDesc(TemplateList = TemplateList, 
+                         SelectionList = SelectionList,
+                         ReqList = ReqList,
+                         ExclList = ExclList, 
+                         TempType = TempType,
+                         NotList = NotList, 
+                         bAddEndNoun = bAddEndNoun,
+                         bAddTheArticle = bAddTheArticle,
+                         bAddAnArticle = bAddAnArticle,
+                         sPosArticle = sPosArticle,
+                         bSplitArticle = bSplitArticle,
+                         SelectTemplateID = SelectTemplateID,
+                         MaxChars = MaxChars)
+          
+    def BuildSelectionList(self, bAllowTrope, bAllowSpecies):
+        SelectionList = []
 
         iStdCount = 0
           
         for subclass in FemCharTemplate.__subclasses__():
             template = subclass()
-            if self.GirlType == GirlType.Neutral or template.GirlType == self.GirlType:
+            if (self.GirlType == GirlType.Neutral or template.GirlType == self.GirlType) \
+                and not template.RequestOnly:
                 i = 0
                 while i < template.Priority * 5:
-                        TemplateList.append(template)
-                        i = i + 1
-                        iStdCount = iStdCount + 1
+                    SelectionList.append(template)
+                    i = i + 1
+                    iStdCount = iStdCount + 1
                 
         if bAllowTrope:
             for subclass in FemTropeTemplate.__subclasses__():
                 template = subclass()
-                if self.GirlType == GirlType.Neutral or template.GirlType == self.GirlType:
-                        i = 0
-                        while i < template.Priority * 2:
-                            TemplateList.append(template)
-                            i = i + 1
+                if (self.GirlType == GirlType.Neutral or template.GirlType == self.GirlType) \
+                    and not template.RequestOnly:
+                    i = 0
+                    while i < template.Priority * 2:
+                        SelectionList.append(template)
+                        i = i + 1
      
         if bAllowSpecies:
             for subclass in FemSpeciesTemplate.__subclasses__():
                 template = subclass()
-                if self.GirlType == GirlType.Neutral or template.GirlType == self.GirlType:
-                        i = 0
-                        while i < template.Priority:
-                            TemplateList.append(template)
-                            i = i + 1
+                if () \
+                    and not template.RequestOnly:
+                    i = 0
+                    while i < template.Priority:
+                        SelectionList.append(template)
+                        i = i + 1
           
-        if len(TemplateList) == 0:
+        if len(SelectionList) == 0:
             print("=*= WARNING =*= FemaleChar() template list is empty")
         else:
-            print("Template List length is " + str(len(TemplateList)) + "\nTEMPLATE LIST")
+            print("Template List length is " + str(len(SelectionList)) + "\nTEMPLATE LIST")
             #print("NAME:\t\t\tID\tGIRL TYPE:\tTEMPLATE TYPE:")
             #sTable = ""
-            #for item in TemplateList:
+            #for item in SelectionList:
             #    sObjName = str(item).split(" ")[0][21:]
             #    sTable += sObjName 
             #    iNumSpaces = 25 - len(sObjName)
@@ -159,9 +176,9 @@ class FemaleChar(Character):
 
             #print(sTable)
 
-            #print("There are " + str(iStdCount) + " standard fem templates out of " + str(len(TemplateList)) + " (" + str(round(100 * (iStdCount / len(TemplateList)),2)) + "%)")
+            #print("There are " + str(iStdCount) + " standard fem templates out of " + str(len(SelectionList)) + " (" + str(round(100 * (iStdCount / len(SelectionList)),2)) + "%)")
 
-        return TemplateList
+        return SelectionList
 
 class LesbianChar(Character):
      def __init__(self, ReqList = [], ExclList = [],
@@ -231,29 +248,32 @@ class LesbianChar(Character):
           if not bAllowTitle:
                ExclList.append(TitlesFemale())
                
-          TemplateList = self.BuildTemplateList()
+          TemplateList = []
+          TemplateList.append(FemLesbianTemplate1())
+          SelectionList = self.BuildTemplateList()
           
-          self.SetCharDesc(TemplateList, 
-                               ReqList = ReqList,
-                               ExclList = ExclList, 
-                               TempType = TempType,
-                               NotList = NotList, 
-                               bAddEndNoun = bAddEndNoun,
-                               bAddTheArticle = bAddTheArticle,
-                               bAddAnArticle = bAddAnArticle,
-                               sPosArticle = sPosArticle,
-                               bSplitArticle = bSplitArticle,
-                               SelectTemplateID = SelectTemplateID,
-                               MaxChars = MaxChars)
+          self.SetCharDesc(TemplateList = TemplateList, 
+                           SelectionList = SelectionList,
+                           ReqList = ReqList,
+                           ExclList = ExclList, 
+                           TempType = TempType,
+                           NotList = NotList, 
+                           bAddEndNoun = bAddEndNoun,
+                           bAddTheArticle = bAddTheArticle,
+                           bAddAnArticle = bAddAnArticle,
+                           sPosArticle = sPosArticle,
+                           bSplitArticle = bSplitArticle,
+                           SelectTemplateID = SelectTemplateID,
+                           MaxChars = MaxChars)
           
      def BuildTemplateList(self):
-          TemplateList = []
+          SelectionList = []
           
-          TemplateList.append(FemLesbianTemplate1())
-          if len(TemplateList) == 0:
+          SelectionList.append(FemLesbianTemplate1())
+          if len(SelectionList) == 0:
               print("=*= WARNING =*= LesbianChar() template list is empty")
           
-          return TemplateList
+          return SelectionList
           
 class MaleChar(Character):
      def __init__(self, ReqList = [], ExclList = [],
@@ -356,275 +376,304 @@ class MaleChar(Character):
           return bShowGangChar
                
 class StraightMaleChar(Character):
-     def __init__(self, ReqList = [], ExclList = [],
-                            TempType = TempType.Flowery,
-                            NotList = None, 
-                            bAddTheArticle = False, 
-                            bAddAnArticle = False,
-                            sPosArticle = "My", 
-                            bAddEndNoun = True,
-                            bSplitArticle = False,
-                            bAllowAttitude = True, 
-                            bAllowPhysChar = True, 
-                            bAllowDickChar = True, 
-                            bAllowSkinHairColor = True, 
-                            bAllowGenMod = True, 
-                            bAllowTypeMod = True,
-                            bAllowClothing = True,
-                            bAllowAge = True, 
-                            bAllowMaritalStatus = True,
-                            bAllowNation = True, 
-                            bAllowProf = True, 
-                            bAllowSpecies = True, 
-                            bAllowTrope = True, 
-                            bAllowRelate = False,
-                            bAllowTitle = True,
-                            SelectTemplateID = 0,
-                            MaxChars = 9999):
-          super().__init__()
-          #print("CharGenerator.MaleChar() started")
-          if NotList is None:
-               NotList = []
+    def __init__(self, ReqList = [], ExclList = [],
+                        TempType = TempType.Flowery,
+                        NotList = None, 
+                        bAddTheArticle = False, 
+                        bAddAnArticle = False,
+                        sPosArticle = "My", 
+                        bAddEndNoun = True,
+                        bSplitArticle = False,
+                        bAllowAttitude = True, 
+                        bAllowPhysChar = True, 
+                        bAllowDickChar = True, 
+                        bAllowSkinHairColor = True, 
+                        bAllowGenMod = True, 
+                        bAllowTypeMod = True,
+                        bAllowClothing = True,
+                        bAllowAge = True, 
+                        bAllowMaritalStatus = True,
+                        bAllowNation = True, 
+                        bAllowProf = True, 
+                        bAllowSpecies = True, 
+                        bAllowTrope = True, 
+                        bAllowRelate = False,
+                        bAllowTitle = True,
+                        SelectTemplateID = 0,
+                        MaxChars = 9999):
+        super().__init__()
+        #print("CharGenerator.MaleChar() started")
+        if NotList is None:
+            NotList = []
           
-          self.Gender = Gender.Male 
+        self.Gender = Gender.Male 
           
-          ExclusionList = []
-          if not bAllowGenMod:
-               ExclusionList.append(GenModMale())
-          if not bAllowTypeMod:
-               ExclusionList.append(TypeModMale())
-          if not bAllowAttitude:
-               ExclusionList.append(AttitudeMale())
-          if not bAllowPhysChar:
-               ExclusionList.append(PhysCharMale())
-          if not bAllowDickChar:
-               ExclusionList.append(DickCharMale())
-          if not bAllowSkinHairColor:
-               ExclusionList.append(SkinHairColorMale())
-          if not bAllowClothing:
-               ExclusionList.append(ClothesMale())
-          if not bAllowMaritalStatus:
-               ExclusionList.append(MaritalStatusMale())
-          if not bAllowNation:
-               ExclusionList.append(NationMale())
-               ExclusionList.append(NationNounMale())
-          if not bAllowAge:
-               ExclusionList.append(AgeAdjMale())
-          if not bAllowProf:
-               ExclusionList.append(ProfBlueCollarMale())
-               ExclusionList.append(ProfWhiteCollarMale())
-               ExclusionList.append(ProfFantasyMale())
-               ExclusionList.append(ProfAthleteMale())
-               ExclusionList.append(ProfRockstarMale())
-               ExclusionList.append(ProfNormalMale())
-               ExclusionList.append(ProfAspirationalMale())
-               ExclusionList.append(ProfMale())
-          if not bAllowSpecies:
-               ExclusionList.append(SpeciesMale())
-          if not bAllowRelate:
-               ExclusionList.append(RelateMale())     
-          if not bAllowTitle:
-               ExclusionList.append(TitlesMale())
+        ExclusionList = []
+        if not bAllowGenMod:
+            ExclusionList.append(GenModMale())
+        if not bAllowTypeMod:
+            ExclusionList.append(TypeModMale())
+        if not bAllowAttitude:
+            ExclusionList.append(AttitudeMale())
+        if not bAllowPhysChar:
+            ExclusionList.append(PhysCharMale())
+        if not bAllowDickChar:
+            ExclusionList.append(DickCharMale())
+        if not bAllowSkinHairColor:
+            ExclusionList.append(SkinHairColorMale())
+        if not bAllowClothing:
+            ExclusionList.append(ClothesMale())
+        if not bAllowMaritalStatus:
+            ExclusionList.append(MaritalStatusMale())
+        if not bAllowNation:
+            ExclusionList.append(NationMale())
+            ExclusionList.append(NationNounMale())
+        if not bAllowAge:
+            ExclusionList.append(AgeAdjMale())
+        if not bAllowProf:
+            ExclusionList.append(ProfBlueCollarMale())
+            ExclusionList.append(ProfWhiteCollarMale())
+            ExclusionList.append(ProfFantasyMale())
+            ExclusionList.append(ProfAthleteMale())
+            ExclusionList.append(ProfRockstarMale())
+            ExclusionList.append(ProfNormalMale())
+            ExclusionList.append(ProfAspirationalMale())
+            ExclusionList.append(ProfMale())
+        if not bAllowSpecies:
+            ExclusionList.append(SpeciesMale())
+        if not bAllowRelate:
+            ExclusionList.append(RelateMale())     
+        if not bAllowTitle:
+            ExclusionList.append(TitlesMale())
           
-          TemplateList = self.BuildTemplateList(bAllowTrope = bAllowTrope, bAllowSpecies = bAllowSpecies)
-          
-          self.SetCharDesc(TemplateList,  
-                               ReqList = ReqList,
-                               ExclList = ExclList,  
-                               TempType = TempType,
-                               NotList = NotList, 
-                               bAddEndNoun = bAddEndNoun,
-                               bAddTheArticle = bAddTheArticle,
-                               bAddAnArticle = bAddAnArticle,
-                               sPosArticle = sPosArticle,
-                               bSplitArticle = bSplitArticle,
-                               SelectTemplateID = SelectTemplateID,
-                               MaxChars = MaxChars)
+        TemplateList = []
+        for subclass in MaleCharTemplate.__subclasses__():
+            template = subclass()
+            TemplateList.append(template)
 
-     def BuildTemplateList(self, bAllowTrope, bAllowSpecies):
-          TemplateList = []
+        for subclass in MaleTropeTemplate.__subclasses__():
+            template = subclass()
+            TemplateList.append(template)
+
+        for subclass in MaleSpeciesTemplate.__subclasses__():
+            template = subclass()
+            TemplateList.append(template)
+
+        SelectionList = self.BuildTemplateList(bAllowTrope = bAllowTrope, bAllowSpecies = bAllowSpecies)
           
-          for subclass in MaleCharTemplate.__subclasses__():
-               template = subclass()
-               i = 0
-               while i < template.Priority:
-                    TemplateList.append(template)
+        self.SetCharDesc(TemplateList = TemplateList,  
+                         SelectionList = SelectionList,
+                         ReqList = ReqList,
+                         ExclList = ExclList,  
+                         TempType = TempType,
+                         NotList = NotList, 
+                         bAddEndNoun = bAddEndNoun,
+                         bAddTheArticle = bAddTheArticle,
+                         bAddAnArticle = bAddAnArticle,
+                         sPosArticle = sPosArticle,
+                         bSplitArticle = bSplitArticle,
+                         SelectTemplateID = SelectTemplateID,
+                         MaxChars = MaxChars)
+
+    def BuildTemplateList(self, bAllowTrope, bAllowSpecies):
+        SelectionList = []
+          
+        for subclass in MaleCharTemplate.__subclasses__():
+            template = subclass()
+            if not template.RequestOnly:
+                i = 0
+                while i < template.Priority:
+                    SelectionList.append(template)
                     i = i + 1
           
-          if bAllowTrope:
-               for subclass in MaleTropeTemplate.__subclasses__():
-                    template = subclass()
+        if bAllowTrope:
+            for subclass in MaleTropeTemplate.__subclasses__():
+                template = subclass()
+                if not template.RequestOnly:
                     i = 0
                     while i < template.Priority:
-                         TemplateList.append(template)
-                         i = i + 1
+                        SelectionList.append(template)
+                        i = i + 1
                
-          if bAllowSpecies:
-               for subclass in MaleSpeciesTemplate.__subclasses__():
-                    template = subclass()
+        if bAllowSpecies:
+            for subclass in MaleSpeciesTemplate.__subclasses__():
+                template = subclass()
+                if not template.RequestOnly:
                     i = 0
                     while i < template.Priority:
-                         TemplateList.append(template)
-                         i = i + 1
-          if len(TemplateList) == 0:
-              print("=*= WARNING =*= StraightMaleChar() template list is empty")
+                        SelectionList.append(template)
+                        i = i + 1
+
+        if len(SelectionList) == 0:
+            print("=*= WARNING =*= StraightMaleChar() template list is empty")
               
-          return TemplateList
+        return SelectionList
 
 class GangMaleChar(Character):
-     def __init__(self, ReqList = [], ExclList = [],
-                            TempType = TempType.Flowery,
-                            MaleCharType = MaleCharType.GangAny,
-                            NotList = None, 
-                            bAddTheArticle = False, 
-                            bAddAnArticle = False,
-                            sPosArticle = "My", 
-                            bAddEndNoun = True,  
-                            bSplitArticle = False,
-                            bAllowPhysChar = True, 
-                            bAllowDickChar = True, 
-                            bAllowGenMod = True, 
-                            bAllowTypeMod = True,
-                            bAllowClothing = True,
-                            bAllowNation = True, 
-                            bAllowProf = True, 
-                            bAllowSpecies = True,
-                            SelectTemplateID = 0,
-                            MaxChars = 9999):
-          super().__init__()
+    def __init__(self, ReqList = [], ExclList = [],
+                        TempType = TempType.Flowery,
+                        MaleCharType = MaleCharType.GangAny,
+                        NotList = None, 
+                        bAddTheArticle = False, 
+                        bAddAnArticle = False,
+                        sPosArticle = "My", 
+                        bAddEndNoun = True,  
+                        bSplitArticle = False,
+                        bAllowPhysChar = True, 
+                        bAllowDickChar = True, 
+                        bAllowGenMod = True, 
+                        bAllowTypeMod = True,
+                        bAllowClothing = True,
+                        bAllowNation = True, 
+                        bAllowProf = True, 
+                        bAllowSpecies = True,
+                        SelectTemplateID = 0,
+                        MaxChars = 9999):
+        super().__init__()
 
-          if NotList is None:
-               NotList = []
+        if NotList is None:
+            NotList = []
           
-          self.Gender = Gender.Male 
+        self.Gender = Gender.Male 
           
-          ExclusionList = []
-          if not bAllowGenMod:
-               ExclusionList.append(GenModMale())
-          if not bAllowTypeMod:
-               ExclusionList.append(TypeModMale())
-          if not bAllowPhysChar:
-               ExclusionList.append(PhysCharMale())
-          if not bAllowDickChar:
-               ExclusionList.append(DickCharMale())
-          if not bAllowClothing:
-               ExclusionList.append(ClothesMale())
-          if not bAllowNation:
-               ExclusionList.append(NationMale())
-          if not bAllowProf:
-               ExclusionList.append(ProfBlueCollarMale())
-               ExclusionList.append(ProfWhiteCollarMale())
-               ExclusionList.append(ProfFantasyMale())
-               ExclusionList.append(ProfAthleteMale())
-               ExclusionList.append(ProfRockstarMale())
-               ExclusionList.append(ProfNormalMale())
-               ExclusionList.append(ProfAspirationalMale())
-               ExclusionList.append(ProfMale())
-          if not bAllowSpecies:
-               ExclusionList.append(SpeciesMale())
+        ExclusionList = []
+        if not bAllowGenMod:
+            ExclusionList.append(GenModMale())
+        if not bAllowTypeMod:
+            ExclusionList.append(TypeModMale())
+        if not bAllowPhysChar:
+            ExclusionList.append(PhysCharMale())
+        if not bAllowDickChar:
+            ExclusionList.append(DickCharMale())
+        if not bAllowClothing:
+            ExclusionList.append(ClothesMale())
+        if not bAllowNation:
+            ExclusionList.append(NationMale())
+        if not bAllowProf:
+            ExclusionList.append(ProfBlueCollarMale())
+            ExclusionList.append(ProfWhiteCollarMale())
+            ExclusionList.append(ProfFantasyMale())
+            ExclusionList.append(ProfAthleteMale())
+            ExclusionList.append(ProfRockstarMale())
+            ExclusionList.append(ProfNormalMale())
+            ExclusionList.append(ProfAspirationalMale())
+            ExclusionList.append(ProfMale())
+        if not bAllowSpecies:
+            ExclusionList.append(SpeciesMale())
           
-          TemplateList = self.BuildTemplateList(MaleCharType)
-          self.SetCharDesc(TemplateList,  
-                               ReqList,
-                               ExclList, 
-                               TempType = TempType,
-                               NotList = NotList, 
-                               bAddEndNoun = bAddEndNoun,
-                               bAddTheArticle = bAddTheArticle,
-                               bAddAnArticle = bAddAnArticle,
-                               sPosArticle = sPosArticle,
-                               bSplitArticle = bSplitArticle,
-                               SelectTemplateID = SelectTemplateID,
-                               MaxChars = MaxChars)
+        
+        TemplateList = []
+        TemplateList.append(MaleGangSingularTemplate())
+        TemplateList.append(MaleGangPluralTemplate())
+        TemplateList.append(MaleGangAnyTemplate())
 
-     def BuildTemplateList(self, malechartype):
-          TemplateList = []
-          
-          if malechartype == MaleCharType.GangSingular or malechartype == MaleCharType.GangAny:
-               TemplateList.append(MaleGangSingularTemplate())
-          if malechartype == MaleCharType.GangPlural or malechartype == MaleCharType.GangAny:
-               TemplateList.append(MaleGangPluralTemplate())
-          if malechartype == MaleCharType.GangAny:
-               TemplateList.append(MaleGangAnyTemplate())
+        SelectionList = self.BuildTemplateList(MaleCharType)
+        self.SetCharDesc(TemplateList = TemplateList,  
+                         SelectionList = SelectionList,
+                         ReqList = ReqList,
+                         ExclList = ExclList, 
+                         TempType = TempType,
+                         NotList = NotList, 
+                         bAddEndNoun = bAddEndNoun,
+                         bAddTheArticle = bAddTheArticle,
+                         bAddAnArticle = bAddAnArticle,
+                         sPosArticle = sPosArticle,
+                         bSplitArticle = bSplitArticle,
+                         SelectTemplateID = SelectTemplateID,
+                         MaxChars = MaxChars)
 
-          if len(TemplateList) == 0:
-              print("=*= WARNING =*= GangMaleChar() template list is empty")
+    def BuildTemplateList(self, malechartype):
+        SelectionList = []
+          
+        if malechartype == MaleCharType.GangSingular or malechartype == MaleCharType.GangAny:
+            SelectionList.append(MaleGangSingularTemplate())
+        if malechartype == MaleCharType.GangPlural or malechartype == MaleCharType.GangAny:
+            SelectionList.append(MaleGangPluralTemplate())
+        if malechartype == MaleCharType.GangAny:
+            SelectionList.append(MaleGangAnyTemplate())
+
+        if len(SelectionList) == 0:
+            print("=*= WARNING =*= GangMaleChar() template list is empty")
               
-          return TemplateList
+        return SelectionList
           
 class GayMaleChar(Character):
-     def __init__(self, ReqList = [], ExclList = [],
-                            TempType = TempType.Flowery,
-                            NotList = None, 
-                            bAddTheArticle = False, 
-                            bAddAnArticle = False,
-                            sPosArticle = "My", 
-                            bAddEndNoun = True,  
-                            bSplitArticle = False,
-                            bAllowPhysChar = True, 
-                            bAllowDickChar = True, 
-                            bAllowGenMod = True, 
-                            bAllowTypeMod = True,
-                            bAllowClothing = True,
-                            bAllowNation = True, 
-                            bAllowProf = True, 
-                            bAllowTitle = False,
-                            bAllowSpecies = True,
-                            SelectTemplateID = 0,
-                            MaxChars = 9999):
-          super().__init__()
+    def __init__(self, ReqList = [], ExclList = [],
+                        TempType = TempType.Flowery,
+                        NotList = None, 
+                        bAddTheArticle = False, 
+                        bAddAnArticle = False,
+                        sPosArticle = "My", 
+                        bAddEndNoun = True,  
+                        bSplitArticle = False,
+                        bAllowPhysChar = True, 
+                        bAllowDickChar = True, 
+                        bAllowGenMod = True, 
+                        bAllowTypeMod = True,
+                        bAllowClothing = True,
+                        bAllowNation = True, 
+                        bAllowProf = True, 
+                        bAllowTitle = False,
+                        bAllowSpecies = True,
+                        SelectTemplateID = 0,
+                        MaxChars = 9999):
+        super().__init__()
 
-          if NotList is None:
-               NotList = []
+        if NotList is None:
+            NotList = []
           
-          self.Gender = Gender.Male 
+        self.Gender = Gender.Male 
           
-          ExclusionList = []
-          if not bAllowGenMod:
-               ExclusionList.append(GenModMale())
-          if not bAllowTypeMod:
-               ExclusionList.append(TypeModMale())
-          if not bAllowPhysChar:
-               ExclusionList.append(PhysCharMale())
-          if not bAllowDickChar:
-               ExclusionList.append(DickCharMale())
-          if not bAllowClothing:
-               ExclusionList.append(ClothesMale())
-          if not bAllowNation:
-               ExclusionList.append(NationMale())
-          if not bAllowProf:
-               ExclusionList.append(ProfBlueCollarMale())
-               ExclusionList.append(ProfWhiteCollarMale())
-               ExclusionList.append(ProfFantasyMale())
-               ExclusionList.append(ProfAthleteMale())
-               ExclusionList.append(ProfRockstarMale())
-               ExclusionList.append(ProfNormalMale())
-               ExclusionList.append(ProfAspirationalMale())
-               ExclusionList.append(ProfMale())
-          if not bAllowSpecies:
-               ExclusionList.append(TitlesMale())
-          if not bAllowSpecies:
-               ExclusionList.append(SpeciesMale())
+        ExclusionList = []
+        if not bAllowGenMod:
+            ExclusionList.append(GenModMale())
+        if not bAllowTypeMod:
+            ExclusionList.append(TypeModMale())
+        if not bAllowPhysChar:
+            ExclusionList.append(PhysCharMale())
+        if not bAllowDickChar:
+            ExclusionList.append(DickCharMale())
+        if not bAllowClothing:
+            ExclusionList.append(ClothesMale())
+        if not bAllowNation:
+            ExclusionList.append(NationMale())
+        if not bAllowProf:
+            ExclusionList.append(ProfBlueCollarMale())
+            ExclusionList.append(ProfWhiteCollarMale())
+            ExclusionList.append(ProfFantasyMale())
+            ExclusionList.append(ProfAthleteMale())
+            ExclusionList.append(ProfRockstarMale())
+            ExclusionList.append(ProfNormalMale())
+            ExclusionList.append(ProfAspirationalMale())
+            ExclusionList.append(ProfMale())
+        if not bAllowSpecies:
+            ExclusionList.append(TitlesMale())
+        if not bAllowSpecies:
+            ExclusionList.append(SpeciesMale())
           
-          TemplateList = self.BuildTemplateList(MaleCharType)
-          self.SetCharDesc(TemplateList,  
-                               ReqList,
-                               ExclList, 
-                               TempType = TempType,
-                               NotList = NotList, 
-                               bAddEndNoun = bAddEndNoun,
-                               bAddTheArticle = bAddTheArticle,
-                               bAddAnArticle = bAddAnArticle,
-                               sPosArticle = sPosArticle,
-                               bSplitArticle = bSplitArticle,
-                               SelectTemplateID = SelectTemplateID,
-                               MaxChars = MaxChars)
+        TemplateList = []
+        TemplateList.append(MaleGayTemplate())
 
-     def BuildTemplateList(self, malechartype):
-          TemplateList = []
+        SelectionList = self.BuildTemplateList(MaleCharType)
+        self.SetCharDesc(TemplateList = TemplateList,  
+                         SelectionList = SelectionList,
+                         ReqList = ReqList,
+                         ExclList = ExclList, 
+                         TempType = TempType,
+                         NotList = NotList, 
+                         bAddEndNoun = bAddEndNoun,
+                         bAddTheArticle = bAddTheArticle,
+                         bAddAnArticle = bAddAnArticle,
+                         sPosArticle = sPosArticle,
+                         bSplitArticle = bSplitArticle,
+                         SelectTemplateID = SelectTemplateID,
+                         MaxChars = MaxChars)
+
+    def BuildTemplateList(self, malechartype):
+        SelectionList = []
           
-          TemplateList.append(MaleGayTemplate())
-          if len(TemplateList) == 0:
-              print("=*= WARNING =*= GayMaleChar() template list is empty")
+        SelectionList.append(MaleGayTemplate())
+        if len(SelectionList) == 0:
+            print("=*= WARNING =*= GayMaleChar() template list is empty")
                     
-          return TemplateList
+        return SelectionList

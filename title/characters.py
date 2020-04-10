@@ -780,6 +780,7 @@ class Character():
                
     def SetCharDesc(self, 
                     TemplateList, 
+                    SelectionList,
                     ReqList = [],
                     ExclList = [], 
                     TempType = TempType.Flowery,
@@ -823,21 +824,18 @@ class Character():
         else:
             #print(" - Getting a template at random.")
             #print(" - ExclList is " + str(ExclList))
-            for item in TemplateList:
-                if item.RequestOnly:
-                    TemplateList.remove(item)
-                else:
-                    for excl in ExclList:    
-                        if type(item.Noun) == excl:
-                            TemplateList.remove(item)
-                            #print("  -- item.Noun [" + str(item.Noun) + "] is the type of excluded charbit [" + str(excl) + "]. Removing")
-                            break
-                        else:
-                            pass
-                            #print("  -- item.Noun [" + str(item.Noun) + "] is NOT the type of excluded charbit [" + str(excl) + "]. Doing nothing.")
+            for item in SelectionList:
+                for excl in ExclList:    
+                    if type(item.Noun) == excl:
+                        SelectionList.remove(item)
+                        #print("  -- item.Noun [" + str(item.Noun) + "] is the type of excluded charbit [" + str(excl) + "]. Removing")
+                        break
+                    else:
+                        pass
+                        #print("  -- item.Noun [" + str(item.Noun) + "] is NOT the type of excluded charbit [" + str(excl) + "]. Doing nothing.")
             
             if len(TemplateList) > 0:
-                SelCharTemplate = choice(TemplateList) 
+                SelCharTemplate = choice(SelectionList) 
 
                 variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
                 sDesc = self.DescribeTemplateVariant(variant, bAddEndNoun = bAddEndNoun, NotList = NotList)
@@ -846,7 +844,7 @@ class Character():
                         or self.IsVariantExcluded(variant, ExclList)) \
                         and iTryCounter < MAX_VARIANT_TRIES) \
                         or len(sDesc) > MaxChars:
-                    SelCharTemplate = choice(TemplateList)
+                    SelCharTemplate = choice(SelectionList)
                     
                     iTryCounter = iTryCounter + 1
                     
