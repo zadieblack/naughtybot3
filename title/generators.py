@@ -3209,14 +3209,18 @@ class Generator78(Generator):
           return sTweet     
           
 class Generator79(Generator):
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 79, Priority = 1)
+         self.Template = templates.TitleTemplate12()
      
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ReqTemplateTags = ["woman"]
+          self.ExclTemplateTags = ["gay","lesbian"]
           
           VerbsTo = WordList(["69","Anally Deflower","Bone","Chain Up","Claim","Claim Hard","Command","Deflower",
                                    "Degrade","Dominate","Enslave","Gag","Hotwife","Humiliate","Hypnotize","Impregnate",
@@ -3227,142 +3231,124 @@ class Generator79(Generator):
 
           SubAdjs = WordList(["Submissive","Submissive","Subservient","Compliant","Slave Girl","Obedient","Kinky"])
           sSubAdj = SubAdjs.GetWord()
-          Girl = char.FemaleChar(NotList = [sSubAdj], TempType = TempType.Medium,
-                                        bAllowClothing = True, bAllowRelate = True, bAllowSexuality = True, 
-                                        bAllowSpecies = True, bAllowMaritalStatus = True, bAllowTitle = True)
+          Girl = char.FemaleChar(MaxChars = 22, TempType = TempType.Medium, 
+                                 NotList = [sSubAdj])
           
-          sTweet = "His To " + VerbsTo.GetWord() + ":\n"
-          sTweet += AddArticles(sSubAdj + " " + Girl.Desc) + " Story"
+          sTweet = "HIS TO " + VerbsTo.GetWord().upper() + "\n"
+          sTweet += AddArticles(sSubAdj + " " + Girl.Desc, bMakeUpper = True) + " Story"
 
           return sTweet     
           
-# # When the Princess
-# # Met the Cowboy...
-# # ...and they had wild interracial sex!
-# class Generator80(Generator):
-     # ID = 80
-     # Priority = 1
-     
-     # def GenerateTweet(self):
-          # super().GenerateTweet()
-          # sTweet = ""
-          
-          # SexAdjs1 = WordList(["Wild","Illicit","Unbridled","Unprotected","Passionate","Hate-Fueled",
-                                        # "Interracial","Wall-Banging","Steamy","Wanton","Lustful","Hot",
-                                        # "Steamy","Lust-Fueled","Loud","Filthy"])
-          # SexAdjs2 = WordList(["Illicit","Unbridled","Unprotected","Passionate","Extramarital",
-                                        # "Interracial","Wild","Loud","Kinky"])
-          # sSexAdj1 = SexAdjs1.GetWord()
-          # sSexAdj2 = SexAdjs2.GetWord(NotList = [sSexAdj1])
-          
-          # ManNotList = []
-          # Man = MaleChar(iNumMaxCBits = 3, iNumMinCBits = 2, NotList = ManNotList, bAddArticle = False, bAllowGang = False, bAllowRelate = False, bAllowAttitude = False, bAllowSpecies = False, bAllowSkinHairColor = False, bAllowTitle = False, bAllowNation = False)
-          # GirlNotList = []
-          # Girl = FemaleChar(iNumMaxCBits = 3, iNumMinCBits = 2, NotList = GirlNotList, bAddArticle = False, bAllowRelate = False, bAllowAttitude = False, bAllowSpecies = False, bAllowSkinHairColor = False, bAllowTitle = False, bAllowNation = False)
-
-          # sTweet = "When the " + Girl.Desc + "\n"
-          # sTweet += "Met the " + Man.Desc + "\n"
-          
-          # iRand = randint(1,3)
-          # if iRand == 1:
-               # PublicPlaces = WordList(["at the Bowling Alley","in the Produce Section", "in the Baked Goods Section",
-                    # "on the Coffee Table","in the Restroom at Chiopotle","Behind the Dumpster","Behind the Chic-fil-a", 
-                    # "in the Ball Pit", "in the Whole Foods Parking Lot","in the Men's Room","in a Stall in the Ladies Room",
-                    # "on a Bench in the Park","Under the Boardwalk at the Beach","on the Eliptical Machine at the Gym",
-                    # "at the Seafood Restaurant","in the Locker Room Showers","at the Museum","in the Non-Fiction Section at the Library",
-                    # "at the Farmer's Market","in the Window of a Shoe Store","in the Auto Parts Section at a Wal-Mart",
-                    # "in the Church Graveyard","in the Back of a Church","in a House They Broke Into","in a Motel 6",
-                    # "next to the Assembly Line","on a Hotel Balcony","in Her Parents Bedroom","on the Floor of the Restroom",
-                    # "in a Truck Stop Bathroom","in a Parking Garage","in a Changing Room"
-                    # ])
-               # sTweet += "...and They Had " + sSexAdj1 + ", " + sSexAdj2 + " Sex " + PublicPlaces.GetWord() + "!"
-          # elif iRand == 2:
-               # Gangs = WordList(["a Construction Crew","a Biker Gang","a Basketball Team","the Football Team","some Carnies",
-                                        # "a Chain Gang","some Chippendales Dancers","some Coal Miners","the Cops","some Cowboys","some Firemen",
-                                        # "a Hockey Team","Identical Triplets","a Men's Volleyball Team","the Guys at the Gym",
-                                        # "some Rednecks","some Mountain Men","a Band of Pirates","a Rock Band","some Pro Wrestlers",
-                                        # "some Sumo Wrestlers","a Rugby Team","a S.W.A.T. Team","a Viking Horde","a Werewolf Pack",
-                                        # "a Group of Sailors","some Fraternity Brothers","some Professional Bull Riders",
-                                        # "the Kappa Omega Kappa Fraternity House","some Gay-for-Pay Porn Stars"])
-               # sTweet += "...and They Had " + WordList(["Group Sex","an Orgy","a Gang Bang"]).GetWord() + " With " + Gangs.GetWord() + "!"
-          # else:
-               # sTweet += "...and They Had " + sSexAdj1 + ", " + sSexAdj2 + " Sex!"
-          
-          # return sTweet     
-          
-# I Lost My Virginity To 
+# NOTE: Similar to 81
+class Generator80(Generator):
+# I Lost My Virginity
+# to 
 # A Tanned Leather Cowboy 
-# And he was my old 7th grade chemistry teacher
-class Generator81(Generator):
-     Disabled = True
+    Disabled = False
 
-     def __init__(self):
-         super().__init__(ID = 81, Priority = 1)
+    def __init__(self):
+        super().__init__(ID = 80, Priority = 1)
+        self.Template = templates.TitleTemplate1()
      
-     def GenerateTweet(self):
-          super().GenerateTweet()
-          sTweet = ""
-          
-          ManNotList = (["Teenage","Young","College","Visibly Erect","Space"])
-          Places = WordList(["at the Bowling Alley","in the Produce Section", "in the Baked Goods Section","in the Bakery",
-               "Behind the Chic-fil-a", "in the Ball Pit","Behind a Bench in the Park","at the Beach","Under an Overpass",
-               "on the Eliptical Machine at the Gym","In the Locker Room Showers","at the Seafood Restaurant","at the Museum",
-               "at the Library","at the Farmer's Market","next to the Duck Pond","in the Back of a Church","On Top of the Bar",
-               "in the Window Display of a Shoe Store","Under the Boardwalk","in the Hunting Section at a Wal-Mart",
-               "in the Church Graveyard","in a White Van Under an Overpass","at the Construction Site","next to the Assembly Line",
-               "on a Hotel Balcony","in a Room at a Motel 6","in my Parent's Bedroom","at the Pet Store","Beside the Bike Path",
-               "Behind the Bleachers","Behind the Bar","In the Back Seat of a Prius","In the Back of a Ford 150",
-               "In the Back Seat of a Volvo","In the Back of a Movie Theater"
-               ])
-          Retailers = WordList(["In-n-Out Burger","Whole Foods","Wal-Mart","Starbucks","Gold's Gym","LA Fitness","Krispy Kreme",
-                                     "CVS","Target","Chipotle","Burger King","the Mall","IHOP","the Multiplex","an Apple Store"])
-          
-          Man = char.MaleChar(NotList = ManNotList, bAllowRelate = False, bAllowSpecies = False, 
-                                   bAllowMaritalStatus = False, bAllowGang = False, bAllowTitle = False, 
-                                   bAllowGenMod = False)
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
 
-          if CoinFlip():
-               sTweet = "I Lost My Virginity\n"
-               sTweet += "to " + AddArticles(Man.Desc) + "\n"
-          else:
-               sTweet = "I Got My Cherry Popped\n"
-               sTweet += "by " + AddArticles(Man.Desc) + "\n"
+        self.ReqTemplateTags = ["man"]
+        self.ExclTemplateTags = ["men"]
           
-          iRand = randint(1,7)
+        ManNotList = (["Teenage","Young","College","Visibly Erect","Space"])
+
+        Man = char.MaleChar(MaxChars = 30, bAddAnArticle = True, bAllowGang = False,
+                            NotList = ManNotList, 
+                            ExclList = [SpeciesMale,MaritalStatusMale,TitlesMale,GenModMale])
+
+        if CoinFlip():
+            sTweet = "I Lost My Virginity\n"
+            sTweet += "To\n" + Man.Desc + "!"
+        else:
+            sTweet = "I Got My Cherry Popped\n"
+            sTweet += "By\n" + Man.Desc + "!"
+
+         
+        return sTweet    
           
-          if iRand == 1:
-               sTweet += "in the " + WordList(["Men's Room","Women's Restroom","Parking Lot"]).GetWord() + " " 
-               sTweet += "at " + Retailers.GetWord()
+# I Lost My Virginity
+# to 
+# A Tanned Leather Cowboy 
+# in 
+# The Bathroom at CVS
+class Generator81(Generator):
+    Disabled = False
+
+    def __init__(self):
+        super().__init__(ID = 81, Priority = 1)
+        self.Template = templates.TitleTemplate3()
+     
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
+
+        self.ReqTemplateTags = ["man"]
+        self.ExclTemplateTags = ["men"]
           
-          elif iRand == 2:
-               sTweet += Places.GetWord()
+        ManNotList = (["Teenage","Young","College","Visibly Erect","Space"])
+        Places = WordList(["at\nThe Bowling Alley","in\nThe Produce Section", "in\nThe Baked Goods Section","in\nThe Bakery",
+            "Behind the Chic-fil-a", "in the Ball Pit","Behind a Bench in the Park","at\nThe Beach","Under\nAn Overpass",
+            "On\nThe Eliptical Machine at the Gym","In\nThe Locker Room Showers","at\nThe Seafood Restaurant","at\nThe Museum",
+            "at\nThe Library","at\nThe Farmer's Market","next to\nThe Duck Pond","in\nThe Back of a Church","On\nTop of the Bar",
+            "in\nThe Window Display of a Shoe Store","Under\nThe Boardwalk","in\nThe Hunting Section at a Wal-Mart",
+            "in\nThe Church Graveyard","in\nA White Van Under an Overpass","at\nThe Construction Site","next\nto the Assembly Line",
+            "on\nA Hotel Balcony","in\nA Room at a Motel 6","in\nmy Parent's Bedroom","at\nThe Pet Store","Beside\nThe Bike Path",
+            "Behind the Bleachers","Behind\nThe Bar","In\nThe Back Seat of a Prius","In\nThe Back of a Ford 150",
+            "In\nThe Back Seat of a Volvo","In\nThe Back of a Movie Theater"
+            ])
+        Retailers = WordList(["In-n-Out Burger","Whole Foods","Wal-Mart","Starbucks","Gold's Gym","LA Fitness","Krispy Kreme",
+                                    "CVS","Target","Chipotle","Burger King","the Mall","IHOP","the Multiplex","an Apple Store"])
           
-          elif iRand == 3:
-               sTweet += "and " + WordList(["Two","Two","Three","Three","Four","Five","Seven","Nine","Twelve","Thirteen","Twenty"]).GetWord() + " of His Buddies!"
+        Man = char.MaleChar(MaxChars = 24, bAddAnArticle = True, bAllowGang = False, 
+                            ExclList = [SpeciesMale,MaritalStatusMale,TitlesMale,GenModMale],
+                            NotList = ManNotList)
+
+        if CoinFlip():
+            sTweet = "I Lost My Virginity\n"
+            sTweet += "To\n" + Man.Desc + "\n"
+        else:
+            sTweet = "I Got My Cherry Popped\n"
+            sTweet += "By\n" + Man.Desc + "\n"
           
-          elif iRand == 4:
-               iInches = randint(8,12)
-               sTweet += "Who Used " + WordList(["a Cucumber","a Banana","an Eggplant","an Electric Toothbrush",
-                              "a " + str(iInches) + "\" Black Dildo",
-                              "a " + str(iInches) + "\" Steel Dildo"]).GetWord() + " On Me!"
-          elif iRand == 5:
-               sTweet += "Who Used To Be My " + WordList(["High School Chemistry Teacher","High School English Teacher","French Teacher",
-                              "Gym Teacher","6th Grade Teacher","7th Grader Teacher","8th Grade Teacher","Chemistry Teacher","Algebra Teacher",
-                              "Literature Professor","Boss","Boss at " + Retailers.GetWord(),"Math Tutor","Next Door Neighbor","Gym Coach","Track Coach",
-                              "Basketball Coach","Pediatrician","Gynecologist"]).GetWord() + "!"
-          elif iRand == 6:
-               sTweet += "and Then I Realized He Was " + WordList(["My New Step-Dad","My New Step-Brother",
-                              "My New Next Door Neighbor","My New Brother-in-Law","My Literature Professor",
-                              "My Biology Professor","My Gynecologist", "My Mom's New Boyfriend"]).GetWord() + "!"
-          else:
-               sTweet += WordList(["Live on Television!","Live on the Internet!","And He Gave Me $100!",
-                                        "And My Dad Was Pissed When He Found Out!","And I Let His Friends Watch!",
-                                        "And a Cop Caught Us!","And We Filmed the Whole Thing!",
-                                        "In the Basement of His Parents House!","Upstairs at His Parents House!",
-                                        "And He Didn't Pull Out!","And He Did My Ass Too!","And Then My Parents Came Home!",
-                                        "And His Sexy Wife!","And Now I'm Pregnant!"]).GetWord()
+        iRand = randint(1,5)
           
-          return sTweet     
+        if iRand == 1:
+            sTweet += "In\nThe " + WordList(["Men's Room","Women's Restroom","Parking Lot"]).GetWord() + " " 
+            sTweet += "At " + Retailers.GetWord()
+          
+        elif iRand == 2:
+            sTweet += Places.GetWord()
+          
+        elif iRand == 3:
+            sTweet += "and\n" + WordList(["Two","Two","Three","Three","Four","Five","Seven","Nine","Twelve","Thirteen","Twenty"]).GetWord() + " of His Buddies!"
+          
+        elif iRand == 4:
+            iInches = randint(8,12)
+            sTweet += "Who Used\n" + WordList(["A Cucumber","A Banana","An Eggplant","An Electric Toothbrush",
+                            "A " + str(iInches) + "\" Black Dildo",
+                            "A " + str(iInches) + "\" Steel Dildo"]).GetWord() + " On Me!"
+        elif iRand == 5:
+            sTweet += WordList(["And It Was\nLive on Television!",
+                                "And It Was\nLive on the Internet!",
+                                "And\nHe Gave Me $100!",
+                                "And\nMy Dad Was Pissed When He Found Out!",
+                                "And\nI Let His Friends Watch!",
+                                "And\nA Cop Caught Us!",
+                                "And\nHe Filmed the Whole Thing!",
+                                "In\nThe Basement of His Parents House!",
+                                "And\nHe Didn't Pull Out!",
+                                "And\nHe Did My Ass Too!",
+                                "And\nHis Sexy Wife!",
+                                "And\nNow I'm Pregnant!"]).GetWord()
+
+        return sTweet     
           
 # "I'm a Pregnant Asian Waitress
 # and
