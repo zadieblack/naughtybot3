@@ -242,6 +242,7 @@ class FemTemplate15(FemCharTemplate):
                                    priority = 1)
                                    
 # Good Female of a Sexual Orientation
+# Generators: 112, 117
 class FemTemplate16(FemCharTemplate):
      def __init__(self):
           super().__init__(      noun = ProfGoodFemale(),

@@ -4466,18 +4466,26 @@ class Generator111(Generator):
 # My Tight-Bodied Russian Secretary
 # Isn't Wearing Any Panties!          
 class Generator112(Generator):
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 112, Priority = 1)
+         self.Template = templates.TitleTemplate23()
      
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ReqTemplateTags = ["woman"]
+          self.ExclTemplateTags = ["man"]
           
           FemNotList = ['Naked','Nudist','Bikini','Lingerie','Nude']
           SexyAdjs = WordList(['Sexy','Naughty','Erotic','Dirty','Steamy','Filthy','Shameless','Explicit','X-Rated'])
-          Girl = char.FemaleChar(SelectTemplateID = 17, NotList = FemNotList)
+          Girl = char.FemaleChar(Type = GirlType.Good, SelectTemplateID = 16,
+                                 #bAllowTropes = False,
+                                 #ReqList = [ProfFemale],
+                                 #ExclList = [SpeciesFemale,TitlesFemale],
+                                 NotList = FemNotList)
           
           sTweet = "My " + Girl.Desc + "\n"
           sTweet += "Isn't Wearing Any Panties!"
@@ -4594,26 +4602,30 @@ class Generator116(Generator):
 # A Big-Titty German Waitress
 # Urinates on Dick!
 class Generator117(Generator):
-     Disabled = True
+    Disabled = False
 
-     def __init__(self):
-         super().__init__(ID = 117, Priority = 1)
+    def __init__(self):
+        super().__init__(ID = 117, Priority = 1)
+        self.Template = templates.TitleTemplate12()
      
-     def GenerateTweet(self):
-          super().GenerateTweet()
-          sTweet = ""
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
           
-          FemNotList = ['Naked','Nudist','Bikini','Lingerie','Nude']
-          Girl = char.FemaleChar(SelectTemplateID = 17, NotList = FemNotList, bAddAnArticle = True)
+        FemNotList = ['Naked','Nudist','Bikini','Lingerie','Nude']
+        Girl = char.FemaleChar(SelectTemplateID = 16, bAddAnArticle = True,
+                               NotList = FemNotList)
           
-          sTweet = Girl.Desc + "\n"
-          sTweet += WordList(['Pees on','Fists','Paddles','Whips','Ties Up','Pegs','Uses a Steel Dildo on',
-                                   'Uses a Riding Crop on','Takes a Shit on','Urinates on','Chokes',
-                                   'Forcibly Feminizes','Poops on','Handcuffs',
-                                   'Puts a Leash and Dog Collar on','Spanks']).GetWord() + " " 
-          sTweet += self.HisName + "!"
+        sTweet = Girl.Desc + "\n"
+        sTweet += WordList(['Pees on','Fists','Paddles','Whips','Ties Up',
+                            'Pegs','Uses a Steel Dildo on',
+                            'Uses a Riding Crop on','Takes a Shit on',
+                            'Urinates on','Chokes','Forcibly Feminizes',
+                            'Poops on','Handcuffs',
+                            'Puts a Leash and Dog Collar on','Spanks']).GetWord() + " " 
+        sTweet += self.HisName + "!"
 
-          return sTweet     
+        return sTweet     
      
 # I Found Out I Was a Lesbian
 # When an Oiled-Up Flight Attendant Ate My Ass      

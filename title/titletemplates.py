@@ -440,7 +440,7 @@ class TitleTemplate11(TitleTemplate):
 # [TWO LINES]
 # Large medium-length top line 
 # LONG TWO-ROW BOTTOM LINE
-# Generators: 11, 12, 26, 45, 78, 108
+# Generators: 11, 12, 26, 45, 78, 108, 117
 class TitleTemplate12(TitleTemplate):
     def __init__(self):
         super().__init__(ID = 12)
@@ -809,7 +809,7 @@ class TitleTemplate22(TitleTemplate):
 # ** Conversational **
 # Medium Top Line
 # Punch-line
-# Templates: 63, 119
+# Templates: 63, 112, 119
 class TitleTemplate23(TitleTemplate):
     def __init__(self):
         super().__init__(ID = 23)
@@ -827,7 +827,7 @@ class TitleTemplate23(TitleTemplate):
                      FontMaxSize = 21,
                      MaxRows = 1,
                      ColorType = LineColorType.MainTitle)
-
+# [THREE LINES]
 class TitleTemplate24(TitleTemplate):
     def __init__(self):
         super().__init__(ID = 24)
