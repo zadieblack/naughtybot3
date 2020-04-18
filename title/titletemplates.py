@@ -231,7 +231,7 @@ class TitleTemplate3(TitleTemplate):
 # Medium Top Line
 # Large Middle Line
 # Small Bottom Line
-# Templates: 7
+# Templates: 7, 83
 class TitleTemplate4(TitleTemplate):
     def __init__(self):
         super().__init__(ID = 4)
@@ -440,7 +440,7 @@ class TitleTemplate11(TitleTemplate):
 # [TWO LINES]
 # Large medium-length top line 
 # LONG TWO-ROW BOTTOM LINE
-# Generators: 11, 12, 26, 45, 78
+# Generators: 11, 12, 26, 45, 78, 108
 class TitleTemplate12(TitleTemplate):
     def __init__(self):
         super().__init__(ID = 12)

@@ -4337,14 +4337,17 @@ class Generator107(Generator):
 # The Buxom Irish Waitress
 # Makes Love to a Pirate!     
 class Generator108(Generator):
-     Disabled = True
+     Disabled = False
 
      def __init__(self):
          super().__init__(ID = 108, Priority = 1)
+         self.Template = templates.TitleTemplate12()
      
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+          
+          self.ReqTemplateTags = ["woman","man"]
           
           FemAdjNotList = ['Naked','Nudist', 'Bare-Shaven','Anal','Polynesian','Japanese','Brazilian',
                                'Elvish']
@@ -4353,7 +4356,7 @@ class Generator108(Generator):
           
           sTweet = Girl.Desc + "\n"
           sTweet += WordList(["Makes Love to","Is Ravished by","Jumps into Bed with","Gets Bedded by","Spends the Night with",
-                                   "Has a Wild Night of Passion with","Has a Forbidden Affair with","Is Claimed by"]).GetWord() + "\n" 
+                                   "Has a Wild Night of Passion with","Has a Forbidden Affair with","Is Claimed by"]).GetWord() + " " 
           sTweet += Man.Desc + "!"
 
           return sTweet     
