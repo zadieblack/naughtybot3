@@ -4611,6 +4611,8 @@ class Generator117(Generator):
     def GenerateTweet(self):
         super().GenerateTweet()
         sTweet = ""
+
+        self.ExclTemplateTags = ["gay","lesbian","couple"]
           
         FemNotList = ['Naked','Nudist','Bikini','Lingerie','Nude']
         Girl = char.FemaleChar(SelectTemplateID = 16, bAddAnArticle = True,
@@ -4630,34 +4632,37 @@ class Generator117(Generator):
 # I Found Out I Was a Lesbian
 # When an Oiled-Up Flight Attendant Ate My Ass      
 class Generator118(Generator):
-     Disabled = True
+    Disabled = False
 
-     def __init__(self):
-         super().__init__(ID = 118, Priority = 1)
+    def __init__(self):
+        super().__init__(ID = 118, Priority = 1)
+        self.Template = templates.TitleTemplate14()
      
-     def GenerateTweet(self):
-          super().GenerateTweet()
-          sTweet = ""
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
+
+        self.ReqTemplateTags = ["woman"]
+        self.ExclTemplateTags = ["gay","man"]
           
-          CharNotList = ['Uptight','Virgin','Male Model','Quarterback','Male Stripper','Camp Counselor','Business Man','Slave',
-                              'Defensive Lineman','Virtuous']
-          Lesbian1 = char.LesbianChar(bAddAnArticle = True, bAddEndNoun = False, NotList = CharNotList,
-                                             ReqList = [LesFemaleAdj],
-                                             ExclList = [MaritalStatusFemale, SexualityFemale, PregState, TitlesFemale])
-          GirlJobs = titmisc.ProfFemale()
-          GuyJobs = titmisc.ProfMale()
-                                        
-          sTweet = "I Found Out I Was a Lesbian When\n"
-          # if CoinFlip():
-          sTweet += Lesbian1.Desc + " " + GirlJobs.GetWord()
-          # else:
-               # sTweet += Lesbian2.Desc + " Lady " + GuyJobs.GetWord()
-          sTweet += "\n" + WordList(["Ate My Ass", "Ate Me Out", "Ate My Pussy", "Licked My Snatch", "Scissored Me",
-                                           "Rode My Face", "Rode Me With a Strap-On", "Fisted Me", "Fisted My Butt",
-                                           "Sucked My Tits", "Ate Out My Snatch", "Rimmed My Butthole",
-                                           "Sucked My Titties"]).GetWord()
+        CharNotList = ['Uptight','Virgin','Male Model','Quarterback','Male Stripper','Camp Counselor','Business Man','Slave',
+                       'Defensive Lineman','Virtuous']
+        Lesbian1 = char.LesbianChar(bAddAnArticle = True, NotList = CharNotList,
+                                    ExclList = [MaritalStatusFemale, SexualityFemale, PregState, TitlesFemale])
+        Girl = char.FemaleChar(bAddAnArticle = True, Type = GirlType.Good, 
+                                 MaxChars = 30, NotList = CharNotList,
+                                 ExclList = [SpeciesFemale])
+        
+        sTweet = "I Found Out I Was a Lesbian\n"
+        sTweet += "When " + Girl.Desc 
+        sTweet += "\n" + WordList(["Ate My Ass", "Ate Me Out", "Ate My Pussy", 
+                                   "Licked My Snatch","Scissored Me",
+                                   "Rode My Face","Rode Me With a Strap-On", 
+                                   "Fisted Me", "Fisted My Butt",
+                                   "Sucked My Tits","Ate Out My Snatch", 
+                                   "Rimmed My Butthole","Sucked My Titties"]).GetWord()
                                            
-          return sTweet     
+        return sTweet     
           
 # The Nubile Teen Starlet
 # Gets an Enema

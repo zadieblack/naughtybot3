@@ -500,8 +500,9 @@ class TitleTemplate13(TitleTemplate):
 
 # [THREE LINES]
 # ADJ1 & ADJ2
-# TWO OR EVEN THREE ROW
-# Generators: 30, 72
+# Medium long (2-3 lines) middle line
+# Small medium-length tag (excited!)
+# Generators: 30, 72, 118
 class TitleTemplate14(TitleTemplate):
     def __init__(self):
         super().__init__(ID = 14)
@@ -550,7 +551,7 @@ class TitleTemplate15(TitleTemplate):
                      MaxRows = 2,
                      ColorType = LineColorType.SecondTitle)
 
-# [FOUR LINES]
+# [THREE LINES]
 # ** Conversational **
 # Medium Top Line
 # Large Middle Line
@@ -853,6 +854,45 @@ class TitleTemplate24(TitleTemplate):
                      MaxRows = 2,
                      ColorType = LineColorType.MainTitle,
                      AllCaps = True)
+
+# [THREE LINES]
+# SHORT TOP LINE
+# of a
+# LONG TWO-ROW BOTTOM LINE
+# Punchline!
+class TitleTemplate25(TitleTemplate):
+    def __init__(self):
+        super().__init__(ID = 25)
+
+        # Large medium-length top line 
+        self.AddLine(OrderNum = 1,
+                     FontName = "Verona-ExtraBold.otf",
+                     FontMaxSize = 18,
+                     MaxRows = 1,
+                     ColorType = LineColorType.MainTitle,
+                     AllCaps = True)
+
+        # Small cursive trans
+        self.AddLine(OrderNum = 2,
+                     FontName = "Amaze.ttf",
+                     FontMaxSize = 12,
+                     MaxRows = 1,
+                     ColorType = LineColorType.SmallText)
+
+        # One or two-line medium-sized bottom line
+        self.AddLine(OrderNum = 3,
+                     FontName = "PerpetuaStd.otf",
+                     FontMaxSize = 25,
+                     MaxRows = 2,
+                     ColorType = LineColorType.SecondTitle,
+                     AllCaps = True)
+
+        # Small single word or short top line
+        self.AddLine(OrderNum = 4,
+                     FontName = "FreestyleScriptStd.otf",
+                     FontMaxSize = 19,
+                     MaxRows = 1,
+                     ColorType = LineColorType.MainTitle)
 
 class TitleTemplateSelector():
     def __init__(self):
