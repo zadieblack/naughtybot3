@@ -327,7 +327,7 @@ class Generator2(Generator):
     Disabled = False
 
     def __init__(self):
-        super().__init__(ID = 4, Priority = 1)
+        super().__init__(ID = 2, Priority = 1)
         self.Template = templates.TitleTemplate1()
      
     def GenerateTweet(self):
@@ -3400,40 +3400,59 @@ class Generator82(Generator):
 #The Virgin Christian Redheaded Librarian
 #Tries an Interracial Threesome
 class Generator83(Generator):
-     Disabled = True
+    Disabled = False
 
-     def __init__(self):
-         super().__init__(ID = 83, Priority = 1)
+    def __init__(self):
+        super().__init__(ID = 83, Priority = 1)
+        self.Template = templates.TitleTemplate4()
      
-     def GenerateTweet(self):
-          super().GenerateTweet()
-          sTweet = ""
-          
-          NiceGirl = titmisc.NiceGirl()
-          
-          NaughtyStuff = WordList(["69", "an Anal Hook","Anal Sex","BBC","BDSM","a Butt Plug","a Clit Clamp",
-                                         "a Dirty Sanchez","Double Penetration","Erotic Asphyxiation",
-                                         "an Interracial Threesome", "Leather Bondage","Lesbian Sex","Face-Sitting",
-                                         "Fisting","Nipple Clamps","Stripping at a Club","a Threesome",
-                                         "Watching Hardcore Porn","Butt Stuff","Anal Fisting","Edible Lube",
-                                         "Water Sports","Whips and Chains","Wife Swapping","Anal Beads",
-                                         "Getting Her Clit Pierced","Eating Ass","Ass-to-Ass","a Clit Pump",
-                                         "an Ass Vibe","a 12 inch Steel Dildo"])
-          Extras = WordList(["with the Pope","with the Dalai Lama","with Miss America","with Her Step-Dad",
-                                 "with Her Step-Mom","with Her Step-Brother","with Her English Teacher",
-                                 "with Her Gym Coach","with Her Guidance Counselor","with Her Literature Professor",
-                                 "with Her Gynecologist","at the Zoo","in a Starbucks Restroom",
-                                 "in Her Parents Bedroom","in the Locker Room","at College","with Her Best Friend",
-                                 "with Her Tinder Date","at the Aquarium","with Her SCUBA Partner",
-                                 "with a Police Officer","with a 65-Year-Old Man","with Her Lab Partner",
-                                 "on the Coffee Table","on the Dining Room Table","on the Hotel Balcony",
-                                 "with a Total Stranger"])
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
 
-          sTweet = "The " + NiceGirl.Desc + "\nTries " + NaughtyStuff.GetWord() 
-          if CoinFlip():
-               sTweet += "\n" + Extras.GetWord() + "!"
+        self.ReqTemplateTags = ["woman"]
+        self.ExclTemplateTags = ["couple","gay"]
+          
+        GirlNotList = ["black","african","ebony","dark-skinned"]
+        NiceGirl = char.FemaleChar(SelectTemplateID = 501, NotList = GirlNotList)
+        while len(NiceGirl.Desc) > 28:
+            NiceGirl = char.FemaleChar(SelectTemplateID = 501, NotList = GirlNotList)
+          
+        sArticle = "The"
+        if FoundIn(NiceGirl.Desc, ["sister","brother","mom","dad","mother",
+                                   "father","fiancé","wife","girlfriend",
+                                   "teacher","secretary","daughter",
+                                   "babysitter","governess","tutor",
+                                   "bride"]):
+                sArticle = "My"
 
-          return sTweet     
+        NaughtyStuff = WordList(["69", "an Anal Hook","Anal Sex","BBC","BDSM","a Butt Plug","a Clit Clamp",
+                                 "a Dirty Sanchez","Double Penetration","Erotic Asphyxiation",
+                                 "an Interracial Threesome", "Leather Bondage","a Lesbian Threesome",
+                                 "Fisting","Nipple Clamps","Stripping at a Club","a Threesome",
+                                 "Watching Hardcore Porn","Butt Stuff","Anal Fisting","Pee Drinking",
+                                 "Water Sports","Whips and Chains","Wife Swapping","Anal Beads",
+                                 "Getting Her Clit Pierced","Eating Ass","Ass-to-Ass","a Clit Pump",
+                                 "an Ass Vibe","a 12 inch Steel Dildo","Deep Throating","Bukkake"])
+        Extras = WordList(["with the Pope","with the Dalai Lama","with Miss America","with Her Step-Dad",
+                                "with Her Step-Mom","with Her Step-Brother","with Her English Teacher",
+                                "with Her Gym Coach","with Her Guidance Counselor","with Her Literature Professor",
+                                "with Her Gynecologist","at the Zoo","in a Starbucks Restroom",
+                                "in Her Parents Bedroom","in the Locker Room","at College","with Her Best Friend",
+                                "with Her Tinder Date","at the Aquarium","with Her SCUBA Partner",
+                                "with a Police Officer","with a 65-Year-Old Man","with Her Lab Partner",
+                                "on the Coffee Table","on the Dining Room Table","on the Hotel Balcony",
+                                "with a Total Stranger"])
+        sTryVerb = "Tries"
+        if sArticle == "My":
+            sTryVerb = "Tried"
+
+        sTweet = sArticle + " " + NiceGirl.Desc + "\n" 
+        sTweet += sTryVerb + " " + NaughtyStuff.GetWord() 
+        if CoinFlip():
+            sTweet += "\n" + Extras.GetWord() + "!"
+
+        return sTweet     
           
 # Busty Princess Sophie
 # Gets Tea-Bagged by the Goat Men
