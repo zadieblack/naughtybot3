@@ -4945,26 +4945,56 @@ class Generator124(Generator):
           return sTweet     
           
 # The Chaste Secretary
-# Gets Deflowered by The Brawny Manly Space Dinosaur Gargoyle          
+# Gets Deflowered 
+# by 
+# The Brawny Manly Space Dinosaur Gargoyle          
 class Generator125(Generator):
-     Disabled = True
+    Disabled = False
 
-     def __init__(self):
-         super().__init__(ID = 125, Priority = 1)
+    def __init__(self):
+        super().__init__(ID = 125, Priority = 1)
+        self.Template = templates.TitleTemplate25()
      
-     def GenerateTweet(self):
-          super().GenerateTweet()
-          sTweet = ""
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
+
+        self.ReqTemplateTags = ["woman","man"]
+
+        VerbNotList = ["Sexually Harrassed At My Workplace","Cuddled"]
+        sVerb2 = self.VerbsBy.GetWord(NotList = VerbNotList)
+
+        GirlNotList = []
+        NiceGirl = char.FemaleChar(SelectTemplateID = 501, NotList = GirlNotList)
+
+        while len(NiceGirl.Desc) > 22:
+            NiceGirl = char.FemaleChar(SelectTemplateID = 501, NotList = GirlNotList)
+
+        sArticle = ""
+        sVerb1 = ""
+        Man = None
+
+        if FoundIn(NiceGirl.Desc, ["sister","brother","mom","dad","mother",
+                                "father","fiancé","wife","girlfriend",
+                                "teacher","secretary","daughter",
+                                "babysitter","governess","tutor",
+                                "bride"]):
+            sVerb1 = "Was"
+            sArticle = "My"
           
-          Girl = titmisc.NiceGirl()
+            Man = char.MaleChar(MaxChars = 22, bAddAnArticle = True, 
+                                sPosArticle = "My", bAllowRelate = True)
+        else:
+            sVerb1 = "Gets"
+            sArticle = "The"
+            Man = char.MaleChar(MaxChars = 22, bAddTheArticle = True, 
+                                sPosArticle = "Her", bAllowRelate = True)
           
-          Master = char.MaleChar(bAddTheArticle = True, sPosArticle = "Her", bAllowRelate = True)
+        sTweet = sArticle + " " + NiceGirl.Desc + "\n"
+        sTweet += sVerb1 + " " + sVerb2 + " By\n"
+        sTweet += Man.Desc
           
-          sTweet = "The " + Girl.Desc + "\n"
-          sTweet += "Gets " + self.VerbsBy.GetWord(NotList = ["Sexually Harrassed At My Workplace","Cuddled"]) + " "
-          sTweet += "by " + Master.Desc
-          
-          return sTweet     
+        return sTweet     
           
 class Generator126(Generator):
      # Sitting On My Well-Hung Sumo-Wrestler Step-Dad's Face
