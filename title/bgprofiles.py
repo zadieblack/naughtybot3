@@ -1762,6 +1762,19 @@ class BGProfileBigPole(BGProfile):
         self.Disabled = False
         self.Content = Content.PG13
 
+class BGProfileSkinnyDipping(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 131,
+                           Priority = 4,
+                           sFileName = "skinny_dipping")
+        self.MainTitleColor = "rgba(173, 51, 15, 255)"
+        self.SecondTitleColor = "rgba(207, 123, 9, 255)"
+        self.SmallTextColor = "rgba(43, 99, 102, 255)"
+        self.AuthorNameColor = "rgba(43, 99, 102, 255)"
+        self.Tags = ["woman","single","nude","naked","ass","outside","night",
+                     "blonde"]
+        self.Disabled = False
+        self.Content = Content.PG13
 
 # this is for debugging bgprofile frequency. delete later.
 def indexof(list, searchobj):
