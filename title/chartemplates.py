@@ -1414,19 +1414,6 @@ class MaleTemplate17(MaleCharTemplate):
                                 priority = 4)
         self.RequestOnly = True
 
-# Space Man 
-class MaleTemplate18(MaleCharTemplate):
-     def __init__(self):
-          super().__init__(     noun = TropeBitMale("Space Men"),
-                                    id = 18, 
-                                    adjlist =      [CTEntry([GenModMale,ClothesMale],8),
-                                                    CTEntry([PhysCharMale],4),
-                                                    CTEntry([DickCharMale,SkinHairColorMale],3),
-                                                    CTEntry([SpaceManColorAdjs],2),
-                                                    CTEntry([TropesWealthyMale,ProfMale],1)
-                                                  ],
-                                   priority = 4)
-
 # Adjs:          GenModMale, AttitudeMale, ClothesMale, PhysCharMale, DickCharMale, TypeModMale,
 #               SkinHairColorMale, AgeAdjMale, MaritalStatusMale, NationMale
 # Nouns:     ProfMale, RelateMale, SpeciesMale, TitlesMale, TropesWealthyMale
@@ -2503,45 +2490,70 @@ class MaleSpeciesTemplate19(MaleSpeciesTemplate):
                                    NotList = ["shape-shifting"])
                                    
 # === Male Gang Templates ===     
-                                   
 class MaleGangAnyTemplate(MaleGangTemplate):
+    def __init__(self, noun, id = 0, adjlist = [], priority = 1, bpersonal = False, NotList = None):
+          super().__init__(noun = noun, id = id, adjlist = adjlist, NotList = NotList)
+
+class MaleGangAnyTemplate1(MaleGangAnyTemplate):
      def __init__(self):
           super().__init__(     noun = GangsMale(),
                                     id = 401, 
-                                    adjlist =      [ CTEntry([GenModMale],7),
+                                    adjlist =      [CTEntry([GenModMale],7),
                                                     CTEntry([ClothesMale,PhysCharMale,DickCharMale],6),
                                                     CTEntry([TypeModMale],3),
-                                                     CTEntry([NationMale],2),
+                                                    CTEntry([NationMale],2),
                                                     CTEntry([ProfMale,SpeciesMale],1)
                                                   ],
                                    NotList = ["Man"])     
                                    
 class MaleGangSingularTemplate(MaleGangTemplate):
+    def __init__(self, noun, id = 0, adjlist = [], priority = 1, bpersonal = False, NotList = None):
+          super().__init__(noun = noun, id = id, adjlist = adjlist, NotList = NotList)
+
+class MaleGangSingularTemplate1(MaleGangSingularTemplate):
      def __init__(self):
           super().__init__(     noun = GangsMaleSingular(),
                                     id = 402, 
-                                    adjlist =      [ CTEntry([GenModMale],7),
+                                    adjlist =      [CTEntry([GenModMale],7),
                                                     CTEntry([ClothesMale,PhysCharMale,DickCharMale],6),
                                                     CTEntry([TypeModMale],3),
-                                                     CTEntry([NationMale],2),
+                                                    CTEntry([NationMale],2),
                                                     CTEntry([ProfMale,SpeciesMale],1)
                                                   ],
                                    NotList = ["Man"])
-                                   
+
 class MaleGangPluralTemplate(MaleGangTemplate):
+    def __init__(self, noun, id = 0, adjlist = [], priority = 1, bpersonal = False, NotList = None):
+          super().__init__(noun = noun, id = id, adjlist = adjlist, NotList = NotList)
+
+class MaleGangPluralTemplate1(MaleGangPluralTemplate):
      def __init__(self):
           super().__init__(     noun = GangsMalePlural(),
                                     id = 403, 
-                                    adjlist =      [ CTEntry([GenModMale],7),
+                                    adjlist =      [CTEntry([GenModMale],7),
                                                     CTEntry([ClothesMale],6),
                                                     CTEntry([PhysCharMale],5),
                                                     CTEntry([DickCharMale],4),
                                                     CTEntry([TypeModMale],3),
-                                                     CTEntry([NationMale,RaceMale],2),
+                                                    CTEntry([NationMale,RaceMale],2),
                                                     CTEntry([ProfMale,SpeciesMale],1)
                                                   ],
                                    NotList = ["Man"])
-                                                  
+                                       
+# Space Men
+class MaleSpaceManTemplate(MaleGangPluralTemplate):
+     def __init__(self):
+          super().__init__(     noun = TropeBitMale("Space Men"),
+                                    id = 404, 
+                                    adjlist =      [CTEntry([GenModMale,ClothesMale],8),
+                                                    CTEntry([PhysCharMale],4),
+                                                    CTEntry([DickCharMale,SkinHairColorMale],3),
+                                                    CTEntry([SpaceManColorAdjs],2),
+                                                    CTEntry([TropesWealthyMale,ProfMale],1)
+                                                  ])
+          self.RequestOnly = True
+
+
 class MaleGayTemplate(MaleGayTemplate):
      def __init__(self):
           super().__init__(     noun = GayMaleNoun(),

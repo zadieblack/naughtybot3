@@ -5086,19 +5086,12 @@ class Generator128(Generator):
                                         'Billionaires','Millionaires','Sugar Daddies','Leather Daddies',
                                         'Bounty Hunters','Barbarians','Businessmen','Werewolves',
                                         'Drag Queens','Muscle Marys'])
-          MaleNotList = ['Space']
-          #AlienPref = char.MaleChar(bAddEndNoun = False, bAllowGang = False, NotList = MaleNotList, 
-          #     ExclList = [MaritalStatusMale, TitlesMale, NationMale, SpeciesMale, AttitudeMale])
-          #AlienNoun = char.GangMaleChar(bAddEndNoun = True, NotList = MaleNotList, TempType = TempType.Short,
-          #     ExclList = [TitlesMale, NationMale, SpeciesMale])     
-          Alien = char.MaleChar(SelectTemplateID = 18, NotList = MaleNotList)
+          MaleNotList = ['Space']  
+          Alien = char.GangMaleChar(SelectTemplateID = 404, NotList = MaleNotList)
           while len(Alien.Desc) > 32:
-              Alien = char.MaleChar(SelectTemplateID = 18, NotList = MaleNotList)
+              Alien = char.GangMaleChar(SelectTemplateID = 404, NotList = MaleNotList)
           
           sTweet = Verbs.GetWord() + "\nby\n"
-          #if CoinFlip():
-          #     sTweet += "The " + AlienPref.Desc + " " + AlienPrefixes.GetWord() + " " + AlienNoun.Desc
-          #else:
           sTweet += "The " + Alien.Desc 
           sTweet += "\non Uranus!"
 
@@ -5134,23 +5127,16 @@ class Generator129(Generator):
                GirlNotList.append('Latina')          
           
           iRand = randint(1,3)
-          if iRand == 1:
+          if iRand < 3:
           # Sexy White Girl for the Black Man
                print("<A>")
                Girl = char.FemaleChar(ReqList = [RaceFemale], 
                                       ExclList = [SpeciesFemale,SkinHairColorFemale,NationFemale,SexualityFemale], 
                                       NotList = GirlNotList)
                sTweet = Girl.Desc.upper() + "\nfor\n" + Guy.Desc
-          elif iRand == 2:
-          # Sexy Mermaid for the Black Man
-               print("<B>")
-               Girl = char.FemaleChar(ReqList = [SpeciesFemale], 
-                                      ExclList = [SkinHairColorFemale,NationFemale,SexualityFemale], 
-                                      NotList = GirlNotList)
-               sTweet = Girl.Desc.upper() + "\nfor\n" + Guy.Desc
           else:
           # Black Mermaid Secretary for the Black Man
-               print("<C>")
+               print("<B>")
                Girl = char.FemaleChar(ReqList = [SpeciesFemale,RaceFemale], ExclList = [SkinHairColorFemale,NationFemale,SexualityFemale], NotList = GirlNotList)
                
                sTweet = Girl.Desc.upper() + "\nfor\n" + Guy.Desc
@@ -5186,21 +5172,15 @@ class Generator130(Generator):
           print("ManNotList is " + str(ManNotList))
           
           iRand = randint(1,3)
-          if iRand == 1:
+          if iRand < 3:
           # Sexy White Trucker for the Black Stay-at-Home Mom
                print("<A>")
                Man = char.MaleChar(NotList = ManNotList, bAllowSpecies = False,
                                    ReqList = [RaceMale])
                sTweet = Man.Desc + "\nfor\n" + Woman.Desc
-          elif iRand == 2:
-          # Fighter Pilot Centaur for the Asian Secretary
-               print("<B>")
-               Man = char.MaleChar(NotList = ManNotList, 
-                                   ReqList = [SpeciesMale])
-               sTweet = Man.Desc + "\nfor\n" + Woman.Desc
           else:
           # Black Centaur Cowboy for the Latina Flight Attendant
-               print("<C>")
+               print("<B>")
                Man = char.MaleChar(NotList = ManNotList, 
                                    ReqList = [SpeciesMale,RaceMale])
                sTweet = Man.Desc + "\nfor\n" + Woman.Desc
