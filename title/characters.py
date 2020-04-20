@@ -677,6 +677,10 @@ class GayMaleNoun(MaleCharBit):
 class GayMaleAdj(MaleCharBit):
      def __init__(self):
           super().__init__(titmisc.GayMaleAdj())          
+
+class SpaceManColorAdjs(MaleCharBit):
+     def __init__(self):
+          super().__init__(titmisc.SpaceManColorAdjs())  
           
 class TropeBitMale(MaleCharBit):
      pass          

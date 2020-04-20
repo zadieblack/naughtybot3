@@ -1414,7 +1414,18 @@ class MaleTemplate17(MaleCharTemplate):
                                 priority = 4)
         self.RequestOnly = True
 
-
+# Space Man 
+class MaleTemplate18(MaleCharTemplate):
+     def __init__(self):
+          super().__init__(     noun = TropeBitMale("Space Men"),
+                                    id = 18, 
+                                    adjlist =      [CTEntry([GenModMale,ClothesMale],8),
+                                                    CTEntry([PhysCharMale],4),
+                                                    CTEntry([DickCharMale,SkinHairColorMale],3),
+                                                    CTEntry([SpaceManColorAdjs],2),
+                                                    CTEntry([TropesWealthyMale,ProfMale],1)
+                                                  ],
+                                   priority = 4)
 
 # Adjs:          GenModMale, AttitudeMale, ClothesMale, PhysCharMale, DickCharMale, TypeModMale,
 #               SkinHairColorMale, AgeAdjMale, MaritalStatusMale, NationMale
@@ -2186,6 +2197,7 @@ class MaleTropeTemplate150(MaleTropeTemplate):
                                                     CTEntry([ProfMale,TropesWealthyMale],1)
                                                   ],
                                    NotList = ["demon"])
+
                                    
 # Adjs:          GenModMale, AttitudeMale, ClothesMale, PhysCharMale, DickCharMale, TypeModMale,
 #               SkinHairColorMale, AgeAdjMale, MaritalStatusMale, NationMale

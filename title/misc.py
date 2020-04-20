@@ -1536,6 +1536,22 @@ class GayMaleNoun(WordList):
                'Twink','Twink','Twink',
                'Wolf'])
 
+class SpaceManColorAdjs(WordList):
+     def __init__(self):
+          super().__init__([
+                            "Black",
+                            "Blue",
+                            "Brown",
+                            "Gold",
+                            "Green",
+                            "Orange",
+                            "Pink",
+                            "Purple",
+                            "Red",
+                            "Yellow",
+                            "White"
+               ])
+
 class SubtitleCoda(WordList):
      WordHistoryQ = HistoryQ(3)
      
