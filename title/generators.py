@@ -1804,22 +1804,6 @@ class Generator44(Generator):
           sTweet = sHisName + "\nand\nThe " + GayGuy.Desc
 
           return sTweet
-
-# class Generator44(Generator):
-     # # The Amish French Maid Goes Dogging 
-     # ID = 44
-     # Priority = 1
-     
-     # def GenerateTweet(self):
-          # super().GenerateTweet()
-          # sTweet = ""
-          
-          # Girl = FemaleChar(iNumMaxCBits = 4, bAddArticle = True, bAllowRelate = True, bAllowSexuality = False, bAllowSpecies = False)
-          # Suffixes = WordList(["Spreads Her Legs", "Spreads Her Legs", "Rides Again", "Puts Out", "Takes It Deep", "Rides A Big One", "Spreads Her Cheeks", "Takes A Roll In The Hay", "Assumes the Position", "Goes Down", "Has a Quickie", "Bends Over", "Goes Dogging", "Gets Laid", "Knocks Boots", "Does the Rumpy Pumpy", "Gets Off", "Goes All The Way", "Drops Her Pants"])
-
-          # sTweet = Girl.Desc + "\n" + Suffixes.GetWord()
-          
-          # return sTweet
           
 class Generator45(Generator):
      # The Sporty Black Farmer's Daughter
@@ -2589,15 +2573,30 @@ class Generator60(Generator):
           
           return sTweet     
 
-# class Generator61(Generator):
-     # ID = 61
-     # Priority = 1
-     
-     # def GenerateTweet(self):
-          # super().GenerateTweet()
-          # sTweet = ""
+class Generator61(Generator):
+    # DOMINATED
+    # by the
+    # Busty Japanese Schoolgirl
+    Disabled = False
 
-          # return sTweet     
+    def __init__(self):
+        super().__init__(ID = 61, Priority = 1)
+        self.Template = templates.TitleTemplate28() # CHANGe
+     
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
+          
+        self.ExclTemplateTags = ["gay","couple"]
+        self.ReqTemplateTags = ["woman"]
+
+        Woman = char.FemaleChar(bAddTheArticle = True, sPosArticle = "My",
+                                bAllowRelate = True)
+
+        sTweet = "Dominated\n"
+        sTweet += "by\n" + Woman.Desc
+          
+        return sTweet  
           
 # Help!
 # A husky investment banker

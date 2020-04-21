@@ -963,6 +963,38 @@ class TitleTemplate27(TitleTemplate):
                      ColorType = LineColorType.SecondTitle,
                      AllCaps = True)
         
+# [THREE LINES]
+# ONE OR TWO WORD TOP ROW
+# and the
+# LONG MEDIUM-SIZED THIRD ROW
+# Generators: 61
+class TitleTemplate28(TitleTemplate):
+    def __init__(self):
+        super().__init__(ID = 28)
+
+        # One large word top line
+        self.AddLine(OrderNum = 1,
+                     FontName = "Verona-ExtraBold.otf",
+                     FontMaxSize = 28,
+                     MaxRows = 1,
+                     ColorType = LineColorType.MainTitle,
+                     AllCaps = True)
+
+        # Small cursive trans line
+        self.AddLine(OrderNum = 3,
+                     FontName = "Amaze.ttf",
+                     FontMaxSize = 11,
+                     MaxRows = 1,
+                     ColorType = LineColorType.SmallText)
+
+        # Medium long (1-2 lines) last line
+        self.AddLine(OrderNum = 4,
+                     FontName = "Absinette W01 Regular.ttf",
+                     FontMaxSize = 12,
+                     MaxRows = 2,
+                     ColorType = LineColorType.SecondTitle)
+
+
 
 class TitleTemplateSelector():
     def __init__(self):
