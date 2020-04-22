@@ -1788,10 +1788,10 @@ class BGProfileCopsInLove(BGProfile):
         self.Tags = ["men","cops","police","indoors","gay"]
         self.Disabled = False
 
-class BGProfileCopsInLove(BGProfile):
+class BGProfileBondageMattress(BGProfile):
     def __init__(self):
         super().__init__(ID = 133,
-                           Priority = 400,
+                           Priority = 4,
                            sFileName = "bondage_mattress")
         self.MainTitleColor = "rgba(223, 60, 38, 255)"
         self.SecondTitleColor = "rgba(224, 153, 17, 255)"
@@ -1799,6 +1799,32 @@ class BGProfileCopsInLove(BGProfile):
         self.AuthorNameColor = "rgba(140, 93, 137, 255)"
         self.Tags = ["woman","women","man","indoors","bondage","kinky"]
         self.Content = Content.PG13
+        self.Disabled = False
+
+class BGProfileUpsideDownWhip(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 134,
+                           Priority = 2,
+                           sFileName = "upside_down_whip")
+        self.MainTitleColor = "rgba(237, 47, 86, 255)"
+        self.SecondTitleColor = "rgba(224, 153, 17, 255)"
+        self.SmallTextColor = "rgba(168, 93, 158, 255)"
+        self.AuthorNameColor = "rgba(168, 93, 158, 255)"
+        self.Tags = ["woman","women","indoors","bondage","kinky","naked",
+                     "nude","tits","whip","lesbian"]
+        self.Content = Content.AdultsOnly
+        self.Disabled = False
+
+class BGProfileSprayed(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 135,
+                           Priority = 40,
+                           sFileName = "sprayed")
+        self.MainTitleColor = "rgba(229, 105, 86, 255)"
+        self.SecondTitleColor = "rgba(86, 123, 140, 255)"
+        self.SmallTextColor = "rgba(142, 66, 167, 255)"
+        self.AuthorNameColor = "rgba(115, 161, 154, 255)"
+        self.Tags = ["woman","outdoors","wet","blonde","facial"]
         self.Disabled = False
 
 # this is for debugging bgprofile frequency. delete later.
