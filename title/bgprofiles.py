@@ -1827,6 +1827,19 @@ class BGProfileSprayed(BGProfile):
         self.Tags = ["woman","outdoors","wet","blonde","facial"]
         self.Disabled = False
 
+class BGProfileGayArmy(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 136,
+                           Priority = 400,
+                           sFileName = "gay_army")
+        self.MainTitleColor = "rgba(58, 134, 208, 255)"
+        self.SecondTitleColor = "rgba(229, 154, 51, 255)"
+        self.AuthorNameColor = "rgba(58, 134, 208, 255)"
+        self.Tags = ["gay","man","men","army","water","shirtless","naked",
+                     "nude","jungle","outdoors","towel"]
+        self.Content = Content.PG13
+        self.Disabled = False
+
 # this is for debugging bgprofile frequency. delete later.
 def indexof(list, searchobj):
     iIndex = 0
