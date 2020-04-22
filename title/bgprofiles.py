@@ -1776,6 +1776,31 @@ class BGProfileSkinnyDipping(BGProfile):
         self.Disabled = False
         self.Content = Content.PG13
 
+class BGProfileCopsInLove(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 132,
+                           Priority = 4,
+                           sFileName = "cops_in_love")
+        self.MainTitleColor = "rgba(218, 79, 158, 255)"
+        self.SecondTitleColor = "rgba(85, 138, 205, 255)"
+        self.SmallTextColor = "rgba(113, 59, 36, 255)"
+        self.AuthorNameColor = "rgba(199, 171, 57, 255)"
+        self.Tags = ["men","cops","police","indoors","gay"]
+        self.Disabled = False
+
+class BGProfileCopsInLove(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 133,
+                           Priority = 400,
+                           sFileName = "bondage_mattress")
+        self.MainTitleColor = "rgba(223, 60, 38, 255)"
+        self.SecondTitleColor = "rgba(224, 153, 17, 255)"
+        self.SmallTextColor = "rgba(140, 93, 137, 255)"
+        self.AuthorNameColor = "rgba(140, 93, 137, 255)"
+        self.Tags = ["woman","women","man","indoors","bondage","kinky"]
+        self.Content = Content.PG13
+        self.Disabled = False
+
 # this is for debugging bgprofile frequency. delete later.
 def indexof(list, searchobj):
     iIndex = 0
