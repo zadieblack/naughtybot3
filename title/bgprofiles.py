@@ -1818,7 +1818,7 @@ class BGProfileUpsideDownWhip(BGProfile):
 class BGProfileSprayed(BGProfile):
     def __init__(self):
         super().__init__(ID = 135,
-                           Priority = 40,
+                           Priority = 4,
                            sFileName = "sprayed")
         self.MainTitleColor = "rgba(229, 105, 86, 255)"
         self.SecondTitleColor = "rgba(86, 123, 140, 255)"
@@ -1830,7 +1830,7 @@ class BGProfileSprayed(BGProfile):
 class BGProfileGayArmy(BGProfile):
     def __init__(self):
         super().__init__(ID = 136,
-                           Priority = 400,
+                           Priority = 4,
                            sFileName = "gay_army")
         self.MainTitleColor = "rgba(58, 134, 208, 255)"
         self.SecondTitleColor = "rgba(229, 154, 51, 255)"
@@ -1838,6 +1838,31 @@ class BGProfileGayArmy(BGProfile):
         self.Tags = ["gay","man","men","army","water","shirtless","naked",
                      "nude","jungle","outdoors","towel"]
         self.Content = Content.PG13
+        self.Disabled = False
+
+class BGProfileChainedToTheBed(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 137,
+                           Priority = 4,
+                           sFileName = "cuffed_to_the_bed")
+        self.MainTitleColor = "rgba(217, 43, 38, 255)"
+        self.SecondTitleColor = "rgba(214, 154, 40, 255)"
+        self.Tags = ["man","woman","bed","naked","straight","kinky","nude",
+                     "femdom","bound","bondage","blonde"]
+        self.Content = Content.PG13
+        self.Disabled = False
+
+class BGProfileCivilWarHorse(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 138,
+                           Priority = 40,
+                           sFileName = "civil_war_horse")
+        self.MainTitleColor = "rgba(117, 176, 195, 255)"
+        self.SecondTitleColor = "rgba(220, 100, 81, 255)"
+        self.SmallTextColor = "rgba(166, 80, 175, 255)"
+        self.AuthorNameColor = "rgba(117, 176, 195, 255)"
+        self.Tags = ["man","woman","shirtless","outside","historical","horse",
+                     "straight","couple","blonde","sunset"]
         self.Disabled = False
 
 # this is for debugging bgprofile frequency. delete later.

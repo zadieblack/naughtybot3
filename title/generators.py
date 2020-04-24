@@ -2587,8 +2587,11 @@ class Generator61(Generator):
         super().GenerateTweet()
         sTweet = ""
           
-        self.ExclTemplateTags = ["gay","couple"]
-        self.ReqTemplateTags = ["woman"]
+        if CoinFlip():
+            self.ExclTemplateTags = ["gay","couple"]
+            self.ReqTemplateTags = ["woman"]
+        else:
+            self.ReqTemplateTags = ["femdom"]
 
         Woman = char.FemaleChar(bAddTheArticle = True, sPosArticle = "My",
                                 bAllowRelate = True)
