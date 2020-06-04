@@ -312,7 +312,8 @@ class Generator1(Generator):
           self.ExclTemplateTags = ["lesbian"]
           self.ReqTemplateTags = ["woman","man"]
           
-          Master = char.MaleChar(TempType = TempType.Flowery, bAddTheArticle = False, bAllowGang = True, bAllowTrope = True, bAllowRelate = True)
+          Master = char.MaleChar(TempType = TempType.Flowery, bAddTheArticle = False, MaxChars = 32,
+                                 bAllowGang = True)
           
           sTweet = self.VerbsBy.GetWord() + "\nBy The\n" + Master.Desc
 
@@ -1573,19 +1574,20 @@ class Generator37(Generator):
 
           self.ReqTemplateTags = ["man"]
           
-          NotList = ['Husband', 'Boyfriend', 'Hubby', 'Widower', 'Fiancé']
+          NotList = ['Husband', 'Boyfriend', 'Hubby', 'Widower', 'Fiancé','Erect','Hard']
           Relations = titmisc.RelateMale()
           DickWords = WordList(["Boner","Cock","Dick","Penis","Schlong","Tool","Package","Erection"])
           Gerunds = self.Gerunds
           Dad = char.MaleChar(bAddEndNoun = True, MaxChars = 35, bAllowGang = False, 
-                                   bAllowMaritalStatus = False, bAllowRelate = False,
-                                   bAllowAge = False, bAllowDickChar = False)
+                              NotList = NotList, 
+                              ExclList = [MaritalStatusMale, RelateMale, AgeAdjMale, DickCharMale])
           
           sTweet += "My New " + Relations.GetWord(NotList = NotList) + "\nIs\n" + AddArticles(Dad.Desc, bMakeUpper = True)
           if CoinFlip():
                sTweet += "\nand\n" + WordList(["He's Hung Like a Horse",
-                                                       "He Has a Massive " + DickWords.GetWord(),
-                                                       "His " + DickWords.GetWord() + " is ENORMOUS"]).GetWord()
+                                               "He Has a Massive " + DickWords.GetWord(),
+                                               "He Has a Foot-long " + DickWords.GetWord(),
+                                               "His " + DickWords.GetWord() + " is ENORMOUS"]).GetWord()
           sTweet += "!"
 
           return sTweet
@@ -3400,7 +3402,7 @@ class Generator83(Generator):
     Disabled = False
 
     def __init__(self):
-        super().__init__(ID = 83, Priority = 5)
+        super().__init__(ID = 83, Priority = 30)
         self.Template = templates.TitleTemplate4()
      
     def GenerateTweet(self):
