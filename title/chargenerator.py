@@ -249,7 +249,10 @@ class LesbianChar(Character):
                ExclList.append(TitlesFemale())
                
           TemplateList = []
-          TemplateList.append(FemLesbianTemplate1())
+          for subclass in FemLesbianTemplate.__subclasses__():
+            template = subclass()
+            TemplateList.append(template)
+
           SelectionList = self.BuildTemplateList()
           
           self.SetCharDesc(TemplateList = TemplateList, 
@@ -269,7 +272,13 @@ class LesbianChar(Character):
      def BuildTemplateList(self):
           SelectionList = []
           
-          SelectionList.append(FemLesbianTemplate1())
+          for subclass in FemLesbianTemplate.__subclasses__():
+            template = subclass()
+            i = 0
+            while i < template.Priority * 5:
+                SelectionList.append(template)
+                i = i + 1
+
           if len(SelectionList) == 0:
               print("=*= WARNING =*= LesbianChar() template list is empty")
           
@@ -667,7 +676,9 @@ class GayMaleChar(Character):
             ExclusionList.append(SpeciesMale())
           
         TemplateList = []
-        TemplateList.append(MaleGayTemplate())
+        for subclass in MaleGayTemplate.__subclasses__():
+            template = subclass()
+            TemplateList.append(template)
 
         SelectionList = self.BuildTemplateList(MaleCharType)
         self.SetCharDesc(TemplateList = TemplateList,  
@@ -687,7 +698,13 @@ class GayMaleChar(Character):
     def BuildTemplateList(self, malechartype):
         SelectionList = []
           
-        SelectionList.append(MaleGayTemplate())
+        for subclass in MaleGayTemplate.__subclasses__():
+            template = subclass()
+            i = 0
+            while i < template.Priority * 5:
+                SelectionList.append(template)
+                i = i + 1
+
         if len(SelectionList) == 0:
             print("=*= WARNING =*= GayMaleChar() template list is empty")
                     

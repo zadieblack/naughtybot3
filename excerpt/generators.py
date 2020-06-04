@@ -4952,42 +4952,54 @@ class Generator87(Generator):
 
           return sTweet
           
-# class Generator88(Generator):
-     # ID = 88
-     # Priority = 1
-     
-     # def GenerateTweet(self):
-          # super().GenerateTweet()
-          # sTweet = ""
-          
-          # sTweet += "This is a bot.\n\n"
-          # sTweet += "Every few hours it generates a 'sex scene' based on a template filled in with some randomized phrases. Then it posts it to this twitter.\n\n"
-          # sTweet += "Sometimes the results are nonsense. Or funny. Or sexy. Or wildly inappropriate. You never know what the bot will do next.\n\n"
-          # sTweet += "Liking and retweeting the bot keeps twitter from flagging it as a spam bot. Thank you for doing that.\n\n"
-          # sTweet += "Follow if you dare!"
-
-          # return sTweet
-
-# "Isn't this beach romantic?" asked Brad. "It reminds me of the night we first met."
-# "Oh, you mean the time you lubed me up with butter and fisted my anus?" Anna asked.          
-class Generator89(Generator):
-    ID = 89
+class Generator88(Generator):
+    ID = 88
     Priority = 1
      
     def GenerateTweet(self):
         super().GenerateTweet()
         sTweet = ""
-
+          
         sHisName = self.MaleName.FirstName()
-        sHerName = self.FemaleName.FirstName()
-
-        RomanticPlaces = WordList([["this beach","as he gazed out over the purple sunset waves"],
-                                   ["this little cabin","as he gazed up at the majestic peaks soaring over the pines"],
-                                   ["this little village","as they walked down the quaint cobblestoned street"],
-                                   ["this city","as he gazed up at soaring, neon-lit skyscrapers"]
-                                   ])
+        sHerName = names.PlainNamesFemale().FirstName()
+        sNotHerName = self.FemaleName.FirstName()
+          
+        Location = locations.LocationSelector().Location(InOut = exutil.LocInOutType.Indoors, PubPrivType = exutil.LocPubPrivType.Private)
+        SexTags = {exutil.TAG_DONE_TO_HER, exutil.TAG_PEN}
+        SexNotTags = {exutil.TAG_CLIMAX}
+        ClimaxTags = {exutil.TAG_DONE_TO_HER, exutil.TAG_CLIMAX}
+        SceneSex = SceneSelector().GetScene(sHisName = sHisName, sHerName = "", Tags = SexTags, NotTags = SexNotTags, Location = Location)
+        SceneClimax = SceneSelector().GetScene(sHisName = sHisName, sHerName = "", Tags = ClimaxTags, Location = Location)
+          
+        sTweet = Location.BeginDesc + " "
+        sTweet += SceneSex.Scene() + " " + SceneClimax.Scene() + "\n\n"
+          
+        sTweet += "\"Oh " + sNotHerName + ",\" " + sHisName + " gasped, \"that was amazing!\"\n\n"
+        sTweet += "\"My name is " + sHerName + ",\" she said."
 
         return sTweet
+
+# "Isn't this beach romantic?" asked Brad. "It reminds me of the night we first met."
+# "Oh, you mean the time you lubed me up with butter and fisted my anus?" Anna asked.          
+# NOT FINISHED!
+#class Generator89(Generator):
+#    ID = 89
+#    Priority = 1
+     
+#    def GenerateTweet(self):
+#        super().GenerateTweet()
+#        sTweet = ""
+
+#        sHisName = self.MaleName.FirstName()
+#        sHerName = self.FemaleName.FirstName()
+
+#        RomanticPlaces = WordList([["this beach","as he gazed out over the purple sunset waves"],
+#                                   ["this little cabin","as he gazed up at the majestic peaks soaring over the pines"],
+#                                   ["this little village","as they walked down the quaint cobblestoned street"],
+#                                   ["this city","as he gazed up at soaring, neon-lit skyscrapers"]
+#                                   ])
+
+#        return sTweet
 
 class Generator90(Generator):
      ID = 90

@@ -1093,7 +1093,7 @@ class FemGoodSpeciesTemplate9(FemSpeciesTemplate):
                                                     CTEntry([PhysCharFemale],6),          
                                                     CTEntry([ClothingFemale],5),
                                                     CTEntry([NationFemale,SkinHairColorFemale],3),
-                                                    CTEntry([SexualityFemale],2),
+                                                    CTEntry([SexualityFemale],2)
                                                   ], 
                                    girltype = GirlType.Bad,
                                    NotList = ["vampire","virgin","amish","christian","mormon","jewish","amish"])
@@ -1107,7 +1107,7 @@ class FemGoodSpeciesTemplate10(FemSpeciesTemplate):
                                                     CTEntry([PhysCharFemale],6),          
                                                     CTEntry([ClothingFemale],5),
                                                     CTEntry([NationFemale,SkinHairColorFemale],3),
-                                                    CTEntry([SexualityFemale],2),
+                                                    CTEntry([SexualityFemale],2)
                                                   ], 
                                    girltype = GirlType.Bad,
                                    NotList = ["vampire","virgin","amish","christian","mormon","jewish","queen","amish"])     
@@ -1124,12 +1124,56 @@ class FemLesbianTemplate1(FemLesbianTemplate):
                                                     CTEntry([ClothingFemale],5),
                                                     CTEntry([AgeAdjFemale,MaritalStatusFemale],4),
                                                     CTEntry([NationFemale, SkinHairColorFemale,RaceFemale],3),
-                                                    CTEntry([ProfFemale,ProfBlueCollarMale],2),
-                                                    CTEntry([SpeciesFemale],1)
+                                                    CTEntry([ProfFemale,ProfBlueCollarMale],2)
+                                                  ], 
+                                   girltype = GirlType.Good,
+                                   priority = 1) 
+          
+class FemLesbianTemplate2(FemLesbianTemplate):
+     def __init__(self):
+          super().__init__(      noun = ProfFemale(),
+                                    id = 402, 
+                                    adjlist =      [CTEntry([GenModFemale],10),
+                                                    CTEntry([LesFemaleAdj],9),
+                                                    CTEntry([AttitudeFemale],7),
+                                                    CTEntry([PhysCharFemale],6),
+                                                    CTEntry([ClothingFemale],5),
+                                                    CTEntry([AgeAdjFemale,MaritalStatusFemale],4),
+                                                    CTEntry([NationFemale, SkinHairColorFemale,RaceFemale],3)
+                                                  ], 
+                                   girltype = GirlType.Good,
+                                   priority = 3)  
+
+class FemLesbianTemplate3(FemLesbianTemplate):
+     def __init__(self):
+          super().__init__(      noun = TitlesFemale(),
+                                    id = 403, 
+                                    adjlist =      [CTEntry([GenModFemale],10),
+                                                    CTEntry([LesFemaleAdj],9),
+                                                    CTEntry([AttitudeFemale],7),
+                                                    CTEntry([PhysCharFemale],6),
+                                                    CTEntry([ClothingFemale],5),
+                                                    CTEntry([AgeAdjFemale,MaritalStatusFemale],4),
+                                                    CTEntry([NationFemale, SkinHairColorFemale,RaceFemale],3),
                                                   ], 
                                    girltype = GirlType.Good,
                                    priority = 1)  
           
+class FemLesbianTemplate4(FemLesbianTemplate):
+     def __init__(self):
+          super().__init__(      noun = AgeNounFemale(),
+                                    id = 404, 
+                                    adjlist =      [CTEntry([GenModFemale],10),
+                                                    CTEntry([LesFemaleAdj],9),
+                                                    CTEntry([AttitudeFemale],7),
+                                                    CTEntry([PhysCharFemale],6),
+                                                    CTEntry([ClothingFemale],5),
+                                                    CTEntry([MaritalStatusFemale],4),
+                                                    CTEntry([NationFemale, SkinHairColorFemale,RaceFemale],3),
+                                                  ], 
+                                   girltype = GirlType.Good,
+                                   priority = 1)  
+
 # Female "Nice Girl"
 class FemNiceGirlTemplate1(FemCharTemplate):
      def __init__(self):
@@ -2554,11 +2598,11 @@ class MaleSpaceManTemplate(MaleGangPluralTemplate):
           self.RequestOnly = True
 
 
-class MaleGayTemplate(MaleGayTemplate):
+class MaleGayTemplate1(MaleGayTemplate):
      def __init__(self):
-          super().__init__(     noun = GayMaleNoun(),
+          super().__init__(     noun = ProfMale(),
                                     id = 501, 
-                                    adjlist =      [ CTEntry([GenModMale],10),
+                                    adjlist =      [CTEntry([GenModMale],10),
                                                     CTEntry([GayMaleAdj],9),
                                                     CTEntry([AttitudeMale],8),
                                                     CTEntry([ClothesMale],7),
@@ -2566,10 +2610,27 @@ class MaleGayTemplate(MaleGayTemplate):
                                                     CTEntry([DickCharMale],5),
                                                     CTEntry([TypeModMale],4),
                                                     CTEntry([AgeAdjMale,MaritalStatusMale],3),
-                                                     CTEntry([NationMale,RaceMale,SkinHairColorMale],2),
+                                                    CTEntry([NationMale,RaceMale,SkinHairColorMale],2),
+                                                    CTEntry([SpeciesMale,TitlesMale],1)
+                                                  ],
+                                    priority = 5)
+
+class MaleGayTemplate2(MaleGayTemplate):
+     def __init__(self):
+          super().__init__(     noun = GayMaleNoun(),
+                                    id = 502, 
+                                    adjlist =      [CTEntry([GenModMale],10),
+                                                    CTEntry([GayMaleAdj],9),
+                                                    CTEntry([AttitudeMale],8),
+                                                    CTEntry([ClothesMale],7),
+                                                    CTEntry([PhysCharMale],6),
+                                                    CTEntry([DickCharMale],5),
+                                                    CTEntry([TypeModMale],4),
+                                                    CTEntry([AgeAdjMale,MaritalStatusMale],3),
+                                                    CTEntry([NationMale,RaceMale,SkinHairColorMale],2),
                                                     CTEntry([ProfBlueCollarMale,SpeciesMale,TitlesMale],1)
                                                   ],
-                                   NotList = ["Man"])
+                                   priority = 3)
                                    
 # CharBitList.append(AttitudeMale())
 # CharBitList.append(PhysCharMale())

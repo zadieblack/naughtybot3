@@ -174,7 +174,8 @@ class ClassyNamesFemale(Names):
                'Violet',
                'Violetta',
                'Virginia',
-               'Vivienne'])
+               'Vivienne',
+               'Yolanda'])
                
 class PlainNamesFemale(Names):
      def __init__(self):

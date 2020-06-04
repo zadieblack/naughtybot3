@@ -51,7 +51,7 @@ class Generator():
 
         if not ID == -1:
             self.ID = ID
-        self.Priority = 1
+        self.Priority = Priority
 
         self.Template = Template
         self.ExclTemplateTags = []
@@ -208,17 +208,15 @@ def GetTweetGenerator(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = None):
           GenType = Type 
      else:
           GenType = None 
-     #print("GetTweet() Generator Type is " + str(GenType))
      
      iSwitch = 999
      
-     GenSel = GeneratorSelector()
      if bTest:
-          gen = GenSel.GetGenerator(iGeneratorNo)
+          gen = TweetGenSel.GetGenerator(iGeneratorNo)
           if gen == None:
                gen = Generator()
      else:
-          gen = GenSel.RandomGenerator(bAllowPromo = bAllowPromo, Type = GenType)
+          gen = TweetGenSel.RandomGenerator(bAllowPromo = bAllowPromo, Type = GenType)
           
      return gen
      
@@ -304,7 +302,7 @@ class GeneratorPromo(Generator):
 class Generator1(Generator):
      # Blackmailed by the Billionaire Mountain Man 
      def __init__(self):
-         super().__init__(ID = 1, Priority = 1)
+         super().__init__(ID = 1, Priority = 100)
          self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
@@ -327,7 +325,7 @@ class Generator2(Generator):
     Disabled = False
 
     def __init__(self):
-        super().__init__(ID = 2, Priority = 1)
+        super().__init__(ID = 2, Priority = 30)
         self.Template = templates.TitleTemplate1()
      
     def GenerateTweet(self):
@@ -363,7 +361,7 @@ class Generator2(Generator):
 class Generator3(Generator):
      # Married to the Alpha Wolf
      def __init__(self):
-         super().__init__(ID = 3, Priority = 1)
+         super().__init__(ID = 3, Priority = 50)
          self.Template = templates.TitleTemplate1()
        
      def GenerateTweet(self):
@@ -392,7 +390,7 @@ class Generator4(Generator):
      Disabled = True
 
      def __init__(self):
-        super().__init__(ID = 4, Priority = 1)
+        super().__init__(ID = 4, Priority = 30)
 
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -409,7 +407,7 @@ class Generator4(Generator):
 class Generator5(Generator):
     # Jackie Shows a Horny French Alpha Wolf her Cunning Stunt
     def __init__(self):
-        super().__init__(ID = 5, Priority = 1)
+        super().__init__(ID = 5, Priority = 5)
         self.Template = templates.TitleTemplate3()
      
     def GenerateTweet(self):
@@ -435,7 +433,7 @@ class Generator5(Generator):
 class Generator6(Generator):
      # Seduced in the Bed of the Billionaire     
      def __init__(self):
-        super().__init__(ID = 6, Priority = 1)
+        super().__init__(ID = 6, Priority = 5)
         self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
@@ -459,7 +457,7 @@ class Generator6(Generator):
 class Generator7(Generator):
     # A Buff Tuxedoed Italian Dinosaur Took My Wife Hard From Behind!
     def __init__(self):
-        super().__init__(ID = 7, Priority = 1)
+        super().__init__(ID = 7, Priority = 50)
         self.Template = templates.TitleTemplate4()
      
     def GenerateTweet(self):
@@ -499,7 +497,7 @@ class Generator8(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 8, Priority = 1)
+         super().__init__(ID = 8, Priority = 5)
          self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
@@ -533,7 +531,7 @@ class Generator9(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 9, Priority = 1)
+         super().__init__(ID = 9, Priority = 5)
          self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
@@ -561,7 +559,7 @@ class Generator10(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 10, Priority = 1)
+         super().__init__(ID = 10, Priority = 5)
          self.Template = templates.TitleTemplate15()
      
      def GenerateTweet(self):
@@ -591,7 +589,7 @@ class Generator11(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 11, Priority = 1)
+         super().__init__(ID = 11, Priority = 5)
          self.Template = templates.TitleTemplate12()
      
      def GenerateTweet(self):
@@ -652,7 +650,7 @@ class Generator13(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 13, Priority = 1)
+         super().__init__(ID = 13, Priority = 5)
          self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
@@ -682,7 +680,7 @@ class Generator14(Generator):
     Disabled = False
 
     def __init__(self):
-        super().__init__(ID = 14, Priority = 1)
+        super().__init__(ID = 14, Priority = 5)
         self.Template = templates.TitleTemplate16()
      
     def GenerateTweet(self):
@@ -734,7 +732,7 @@ class Generator15(Generator):
     Disabled = False
 
     def __init__(self):
-        super().__init__(ID = 15, Priority = 1)
+        super().__init__(ID = 15, Priority = 5)
         self.Template = templates.TitleTemplate7()
      
     def GenerateTweet(self):
@@ -770,7 +768,7 @@ class Generator16(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 16, Priority = 1)
+         super().__init__(ID = 16, Priority = 30)
          self.Template = templates.TitleTemplate8()
      
      def GenerateTweet(self):
@@ -805,7 +803,7 @@ class Generator17(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 17, Priority = 1)
+         super().__init__(ID = 17, Priority = 5)
          self.Template = templates.TitleTemplate17()
      
      def GenerateTweet(self):
@@ -844,7 +842,7 @@ class Generator18(Generator):
      Disabled = True
 
      def __init__(self):
-         super().__init__(ID = 18, Priority = 1)
+         super().__init__(ID = 18, Priority = 5)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -868,7 +866,7 @@ class Generator19(Generator):
       Disabled = True
 
       def __init__(self):
-         super().__init__(ID = 19, Priority = 1)
+         super().__init__(ID = 19, Priority = 5)
      
       def GenerateTweet(self):
            super().GenerateTweet()
@@ -899,7 +897,7 @@ class Generator20(Generator):
     Disabled = False
 
     def __init__(self):
-        super().__init__(ID = 20, Priority = 1)
+        super().__init__(ID = 20, Priority = 5)
         self.Template = templates.TitleTemplate7()
      
     def GenerateTweet(self):
@@ -945,7 +943,7 @@ class Generator21(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 21, Priority = 1)
+         super().__init__(ID = 21, Priority = 5)
          self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
@@ -969,7 +967,7 @@ class Generator22(Generator):
     Disabled = False
 
     def __init__(self):
-        super().__init__(ID = 22, Priority = 1)
+        super().__init__(ID = 22, Priority = 30)
         self.Template = templates.TitleTemplate2()
 
         self.ExclTemplateTags = ["gay", "straight", "man", "men"] 
@@ -978,16 +976,11 @@ class Generator22(Generator):
         super().GenerateTweet()
         sTweet = ""
           
-        GirlGood = char.FemaleChar(TempType = TempType.Medium, Type = GirlType.Good, 
-                                   ExclList = [SpeciesFemale])
+        GirlGood = char.FemaleChar(MaxChars = 22, Type = GirlType.Good, 
+                                   ExclList = [SpeciesFemale,SexualityFemale])
          
-        if CoinFlip():
-            GirlLes = char.LesbianChar(MaxChars = 24, ReqList = [LesFemaleAdj])
-            sTweet = "The " + GirlGood.Desc + "\nand the\n" + GirlLes.Desc
-        else:
-            GirlBad = char.LesbianChar(MaxChars = 24, ReqList = [LesFemaleAdj], 
-                                       Type = GirlType.Bad)
-            sTweet = "The " + GirlGood.Desc + "\nand the\n" + GirlBad.Desc
+        GirlLes = char.LesbianChar(MaxChars = 28, NotList = ["nude","naked","nudist"] + GirlGood.GetWordList())
+        sTweet = "The " + GirlGood.Desc + "\nand the\n" + GirlLes.Desc
         
         if CoinFlip() and CoinFlip():
             sTweet += "\n" + WordList(["A Lesbian","A Secret Lesbian","A Taboo Lesbian","A Forbidden","An FF",]).GetWord() + " " + self.SubtitleCoda.GetWord()
@@ -1000,7 +993,7 @@ class Generator23(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 23, Priority = 1)
+         super().__init__(ID = 23, Priority = 30)
          self.Template = templates.TitleTemplate2()
      
      def GenerateTweet(self):
@@ -1029,7 +1022,7 @@ class Generator24(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 24, Priority = 1)
+         super().__init__(ID = 24, Priority = 5)
          self.Template = templates.TitleTemplate16()
      
      def GenerateTweet(self):
@@ -1056,7 +1049,7 @@ class Generator25(Generator):
     Disabled = False
 
     def __init__(self):
-        super().__init__(ID = 25, Priority = 1)
+        super().__init__(ID = 25, Priority = 30)
         self.Template = templates.TitleTemplate1()
      
     def GenerateTweet(self):
@@ -1087,7 +1080,7 @@ class Generator26(Generator):
     Disabled = False
 
     def __init__(self):
-        super().__init__(ID = 26, Priority = 1)
+        super().__init__(ID = 26, Priority = 5)
         self.Template = templates.TitleTemplate12()
      
     def GenerateTweet(self):
@@ -1119,7 +1112,7 @@ class Generator27(Generator):
     Disabled = False
 
     def __init__(self):
-        super().__init__(ID = 27, Priority = 1)
+        super().__init__(ID = 27, Priority = 5)
         self.Template = templates.TitleTemplate7()
      
     def GenerateTweet(self):
@@ -1151,7 +1144,7 @@ class Generator28(Generator):
      Disabled = True
 
      def __init__(self):
-         super().__init__(ID = 28, Priority = 1)
+         super().__init__(ID = 28, Priority = 5)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1177,7 +1170,7 @@ class Generator29(Generator):
      Disabled = True
 
      def __init__(self):
-         super().__init__(ID = 29, Priority = 1)
+         super().__init__(ID = 29, Priority = 5)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1211,7 +1204,7 @@ class Generator30(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 30, Priority = 1)
+         super().__init__(ID = 30, Priority = 5)
          self.Template = templates.TitleTemplate14()
      
      def GenerateTweet(self):
@@ -1362,7 +1355,7 @@ class Generator32(Generator):
     Disabled = False
 
     def __init__(self):
-        super().__init__(ID = 32, Priority = 1)
+        super().__init__(ID = 32, Priority = 5)
         self.Template = templates.TitleTemplate9()
      
     def GenerateTweet(self):
@@ -1426,12 +1419,13 @@ class Generator32(Generator):
                
         return sTweet
           
+# Let's make this a consonant rhyme
 class Generator33(Generator):
      #Milking Marie: A Pan-sexual Cheerleader Affair
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 33, Priority = 1)
+         super().__init__(ID = 33, Priority = 5)
          self.Template = templates.TitleTemplate14()
      
      def GenerateTweet(self):
@@ -1454,7 +1448,7 @@ class Generator34(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 34, Priority = 1)
+         super().__init__(ID = 34, Priority = 5)
          self.Template = templates.TitleTemplate14()
      
      def GenerateTweet(self):
@@ -1524,7 +1518,7 @@ class Generator36(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 36, Priority = 1)
+         super().__init__(ID = 36, Priority = 5)
          self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
@@ -1570,7 +1564,7 @@ class Generator37(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 37, Priority = 1)
+         super().__init__(ID = 37, Priority = 30)
          self.Template = templates.TitleTemplate3()
      
      def GenerateTweet(self):
@@ -1601,7 +1595,7 @@ class Generator38(Generator):
      Disabled = True
 
      def __init__(self):
-         super().__init__(ID = 38, Priority = 1)
+         super().__init__(ID = 38, Priority = 5)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1626,7 +1620,7 @@ class Generator39(Generator):
      Disabled = True
 
      def __init__(self):
-         super().__init__(ID = 39, Priority = 1)
+         super().__init__(ID = 39, Priority = 5)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1663,7 +1657,7 @@ class Generator40(Generator):
     Disabled = False
 
     def __init__(self):
-        super().__init__(ID = 40, Priority = 1)
+        super().__init__(ID = 40, Priority = 5)
         self.Template = templates.TitleTemplate16()
      
     def GenerateTweet(self):
@@ -1700,7 +1694,7 @@ class Generator41(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 41, Priority = 1)
+         super().__init__(ID = 41, Priority = 5)
          self.Template = templates.TitleTemplate17()
      
      def GenerateTweet(self):
@@ -1730,7 +1724,7 @@ class Generator42(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 42, Priority = 1)
+         super().__init__(ID = 42, Priority = 5)
          self.Template = templates.TitleTemplate13()
      
      def GenerateTweet(self):
@@ -1741,7 +1735,7 @@ class Generator42(Generator):
           self.ExclTemplateTags = ["lesbian"]
           
           VNotList = ["Sold", "Hotwifed", "Humiliated", "Massaged"]
-          SexPlaces = WordList(["Bed", "Dungeon", "Sex Dungeon", "Pleasure Gardens", "Harem"])
+          SexPlaces = WordList(["Bed", "Dungeon", "Sex Dungeon", "Pleasure Gardens", "Harem", "Stables"])
           Master = char.MaleChar(MaxChars = 30, SelectTemplateID = 15)
           
           sTweet = self.VerbsBy.GetWord(NotList = ["Sold", "Hotwifed", "Public"]) + "\n"
@@ -1756,7 +1750,7 @@ class Generator43(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 43, Priority = 1)
+         super().__init__(ID = 43, Priority = 5)
          self.Template = templates.TitleTemplate12()
      
      def GenerateTweet(self):
@@ -1785,7 +1779,7 @@ class Generator44(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 44, Priority = 1)
+         super().__init__(ID = 44, Priority = 5)
          self.Template = templates.TitleTemplate2()
      
      def GenerateTweet(self):
@@ -1811,7 +1805,7 @@ class Generator45(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 45, Priority = 1)
+         super().__init__(ID = 45, Priority = 5)
          self.Template = templates.TitleTemplate12()
      
      def GenerateTweet(self):
@@ -1844,7 +1838,7 @@ class Generator46(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 46, Priority = 1)
+         super().__init__(ID = 46, Priority = 5)
          self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
@@ -1896,7 +1890,7 @@ class Generator48(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 48, Priority = 1)
+         super().__init__(ID = 48, Priority = 5)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1921,7 +1915,7 @@ class Generator49(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 49, Priority = 1)
+         super().__init__(ID = 49, Priority = 5)
          self.Template = templates.TitleTemplate17()
      
      def GenerateTweet(self):
@@ -1995,7 +1989,7 @@ class Generator50(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 50, Priority = 1)
+         super().__init__(ID = 50, Priority = 50)
          # self.Template = templates.TitleTemplate8()
      
      def GenerateTweet(self):
@@ -2168,7 +2162,7 @@ class Generator51(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 51, Priority = 1)
+         super().__init__(ID = 51, Priority = 5)
          self.Template = templates.TitleTemplate18()
      
      def GenerateTweet(self):
@@ -2357,7 +2351,7 @@ class Generator55(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 55, Priority = 1)
+         super().__init__(ID = 55, Priority = 5)
          self.Template = templates.TitleTemplate20()
      
      def GenerateTweet(self):
@@ -2453,7 +2447,7 @@ class Generator57(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 57, Priority = 1)
+         super().__init__(ID = 57, Priority = 30)
          self.Template = templates.TitleTemplate21()
      
      def GenerateTweet(self):
@@ -2482,7 +2476,7 @@ class Generator58(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 58, Priority = 1)
+         super().__init__(ID = 58, Priority = 5)
          # self.Template = templates.TitleTemplate4()
      
      def GenerateTweet(self):
@@ -2539,7 +2533,7 @@ class Generator60(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 60, Priority = 1)
+         super().__init__(ID = 60, Priority = 5)
          self.Template = templates.TitleTemplate21()
      
      def GenerateTweet(self):
@@ -2580,7 +2574,7 @@ class Generator61(Generator):
     Disabled = False
 
     def __init__(self):
-        super().__init__(ID = 61, Priority = 1)
+        super().__init__(ID = 61, Priority = 30)
         self.Template = templates.TitleTemplate28() # CHANGe
      
     def GenerateTweet(self):
@@ -2609,7 +2603,7 @@ class Generator62(Generator):
     Disabled = False
 
     def __init__(self):
-        super().__init__(ID = 62, Priority = 1)
+        super().__init__(ID = 62, Priority = 5)
         self.Template = templates.TitleTemplate22()
      
     def GenerateTweet(self):
@@ -2645,7 +2639,7 @@ class Generator63(Generator):
     Disabled = False
 
     def __init__(self):
-        super().__init__(ID = 63, Priority = 1)
+        super().__init__(ID = 63, Priority = 30)
         self.Template = templates.TitleTemplate23()
 
     def GenerateTweet(self):
@@ -2686,7 +2680,7 @@ class Generator64(Generator):
      Disabled = True
 
      def __init__(self):
-         super().__init__(ID = 64, Priority = 1)
+         super().__init__(ID = 64, Priority = 5)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -2775,7 +2769,7 @@ class Generator67(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 67, Priority = 1)
+         super().__init__(ID = 67, Priority = 5)
          self.Template = templates.TitleTemplate4()
      
      def GenerateTweet(self):
@@ -2840,7 +2834,7 @@ class Generator69(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 69, Priority = 1)
+         super().__init__(ID = 69, Priority = 5)
          self.Template = templates.TitleTemplate24()
      
      def GenerateTweet(self):
@@ -2856,6 +2850,7 @@ class Generator69(Generator):
                               "Bends Over","Drops Her Panties",
                               "Lifts her Skirts","Spreads her Thighs",
                               "Spreads her Cheeks","Opens Her Legs",
+                              "Spreads her Lips",
                               "Lubes Herself Up"])
           
           NiceGirl = char.FemaleChar(SelectTemplateID = 501, MaxChars = 16) #, ReqList = [DiminuitiveNiceGirl])
@@ -2886,7 +2881,7 @@ class Generator70(Generator):
      Disabled = True
 
      def __init__(self):
-         super().__init__(ID = 70, Priority = 1)
+         super().__init__(ID = 70, Priority = 15)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -2913,7 +2908,7 @@ class Generator71(Generator):
      Disabled = True
 
      def __init__(self):
-         super().__init__(ID = 71, Priority = 1)
+         super().__init__(ID = 71, Priority = 15)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -2945,7 +2940,7 @@ class Generator72(Generator):
     Disabled = False
 
     def __init__(self):
-        super().__init__(ID = 72, Priority = 1)
+        super().__init__(ID = 72, Priority = 5)
         self.Template = templates.TitleTemplate14()
      
     def GenerateTweet(self):
@@ -3094,7 +3089,7 @@ class Generator76(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 76, Priority = 1)
+         super().__init__(ID = 76, Priority = 5)
          self.Template = templates.TitleTemplate3()
      
      def GenerateTweet(self):
@@ -3134,7 +3129,7 @@ class Generator77(Generator):
      Disabled = True
 
      def __init__(self):
-         super().__init__(ID = 77, Priority = 1)
+         super().__init__(ID = 77, Priority = 5)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -3178,7 +3173,7 @@ class Generator78(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 78, Priority = 1)
+         super().__init__(ID = 78, Priority = 5)
          self.Template = templates.TitleTemplate12()
 
      def GenerateTweet(self):
@@ -3214,7 +3209,7 @@ class Generator79(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 79, Priority = 1)
+         super().__init__(ID = 79, Priority = 5)
          self.Template = templates.TitleTemplate12()
      
      def GenerateTweet(self):
@@ -3249,7 +3244,7 @@ class Generator80(Generator):
     Disabled = False
 
     def __init__(self):
-        super().__init__(ID = 80, Priority = 1)
+        super().__init__(ID = 80, Priority = 5)
         self.Template = templates.TitleTemplate1()
      
     def GenerateTweet(self):
@@ -3284,7 +3279,7 @@ class Generator81(Generator):
     Disabled = False
 
     def __init__(self):
-        super().__init__(ID = 81, Priority = 1)
+        super().__init__(ID = 81, Priority = 5)
         self.Template = templates.TitleTemplate3()
      
     def GenerateTweet(self):
@@ -3360,7 +3355,7 @@ class Generator82(Generator):
      Disabled = True
 
      def __init__(self):
-         super().__init__(ID = 82, Priority = 1)
+         super().__init__(ID = 82, Priority = 5)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -3405,7 +3400,7 @@ class Generator83(Generator):
     Disabled = False
 
     def __init__(self):
-        super().__init__(ID = 83, Priority = 1)
+        super().__init__(ID = 83, Priority = 5)
         self.Template = templates.TitleTemplate4()
      
     def GenerateTweet(self):
@@ -3547,7 +3542,7 @@ class Generator86(Generator):
      Disabled = True
 
      def __init__(self):
-         super().__init__(ID = 86, Priority = 1)
+         super().__init__(ID = 86, Priority = 5)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -3598,7 +3593,7 @@ class Generator88(Generator):
      Disabled = True
 
      def __init__(self):
-         super().__init__(ID = 88, Priority = 1)
+         super().__init__(ID = 88, Priority = 5)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -3636,7 +3631,7 @@ class Generator89(Generator):
      Disabled = True
 
      def __init__(self):
-         super().__init__(ID = 89, Priority = 1)
+         super().__init__(ID = 89, Priority = 5)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -3816,7 +3811,7 @@ class Generator95(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 95, Priority = 1)
+         super().__init__(ID = 95, Priority = 5)
          self.Template = templates.TitleTemplate8()
      
      def GenerateTweet(self):
@@ -3851,7 +3846,7 @@ class Generator96(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 96, Priority = 1)
+         super().__init__(ID = 96, Priority = 30)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -3883,7 +3878,7 @@ class Generator97(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 97, Priority = 1)
+         super().__init__(ID = 97, Priority = 5)
          self.Template = templates.TitleTemplate7()
      
      def GenerateTweet(self):
@@ -3994,7 +3989,7 @@ class Generator100(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 100, Priority = 1)
+         super().__init__(ID = 100, Priority = 5)
          self.Template = templates.TitleTemplate7()
      
      def GenerateTweet(self):
@@ -4040,7 +4035,7 @@ class Generator102(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 102, Priority = 1)
+         super().__init__(ID = 102, Priority = 30)
          self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
@@ -4086,7 +4081,7 @@ class Generator103(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 103, Priority = 1)
+         super().__init__(ID = 103, Priority = 5)
          self.Template = templates.TitleTemplate3()
      
      def GenerateTweet(self):
@@ -4111,7 +4106,7 @@ class Generator104(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 104, Priority = 1)
+         super().__init__(ID = 104, Priority = 30)
          self.Template = templates.TitleTemplate6()
      
      def GenerateTweet(self):
@@ -4243,7 +4238,7 @@ class Generator107(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 107, Priority = 1)
+         super().__init__(ID = 107, Priority = 30)
          self.Template = templates.TitleTemplate5()
      
      def WordCombiner(self, sFirstWord, sSecWord):
@@ -4342,7 +4337,7 @@ class Generator108(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 108, Priority = 1)
+         super().__init__(ID = 108, Priority = 5)
          self.Template = templates.TitleTemplate12()
      
      def GenerateTweet(self):
@@ -4471,7 +4466,7 @@ class Generator112(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 112, Priority = 1)
+         super().__init__(ID = 112, Priority = 5)
          self.Template = templates.TitleTemplate23()
      
      def GenerateTweet(self):
@@ -4500,7 +4495,7 @@ class Generator113(Generator):
      Disabled = True
 
      def __init__(self):
-         super().__init__(ID = 113, Priority = 1)
+         super().__init__(ID = 113, Priority = 5)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -4607,7 +4602,7 @@ class Generator117(Generator):
     Disabled = False
 
     def __init__(self):
-        super().__init__(ID = 117, Priority = 1)
+        super().__init__(ID = 117, Priority = 5)
         self.Template = templates.TitleTemplate12()
      
     def GenerateTweet(self):
@@ -4637,7 +4632,7 @@ class Generator118(Generator):
     Disabled = False
 
     def __init__(self):
-        super().__init__(ID = 118, Priority = 1)
+        super().__init__(ID = 118, Priority = 5)
         self.Template = templates.TitleTemplate14()
      
     def GenerateTweet(self):
@@ -4672,7 +4667,7 @@ class Generator119(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 119, Priority = 1)
+         super().__init__(ID = 119, Priority = 5)
          self.Template = templates.TitleTemplate23()
      
      def GenerateTweet(self):
@@ -4722,7 +4717,7 @@ class Generator121(Generator):
      Disabled = True
 
      def __init__(self):
-         super().__init__(ID = 121, Priority = 1)
+         super().__init__(ID = 121, Priority = 5)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -4750,7 +4745,7 @@ class Generator122(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 122, Priority = 1)
+         super().__init__(ID = 122, Priority = 30)
          self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
@@ -4913,7 +4908,7 @@ class Generator124(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 124, Priority = 1)
+         super().__init__(ID = 124, Priority = 30)
          self.Template = templates.TitleTemplate9()
      
      def GenerateTweet(self):
@@ -4954,7 +4949,7 @@ class Generator125(Generator):
     Disabled = False
 
     def __init__(self):
-        super().__init__(ID = 125, Priority = 1)
+        super().__init__(ID = 125, Priority = 5)
         self.Template = templates.TitleTemplate25()
      
     def GenerateTweet(self):
@@ -5024,7 +5019,7 @@ class Generator127(Generator):
     Disabled = False
 
     def __init__(self):
-        super().__init__(ID = 127, Priority = 1)
+        super().__init__(ID = 127, Priority = 5)
         self.Template = templates.TitleTemplate13()
      
     def GenerateTweet(self):
@@ -5064,7 +5059,7 @@ class Generator128(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 128, Priority = 1)
+         super().__init__(ID = 128, Priority = 5)
          self.Template = templates.TitleTemplate26()
      
      def GenerateTweet(self):
@@ -5106,7 +5101,7 @@ class Generator129(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 129, Priority = 1)
+         super().__init__(ID = 129, Priority = 5)
          self.Template = templates.TitleTemplate27()
      
      def GenerateTweet(self):
@@ -5150,7 +5145,7 @@ class Generator130(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 130, Priority = 1)
+         super().__init__(ID = 130, Priority = 5)
          self.Template = templates.TitleTemplate27()
      
      def GenerateTweet(self):
@@ -5226,7 +5221,7 @@ class Generator132(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 132, Priority = 1)
+         super().__init__(ID = 132, Priority = 5)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -5278,7 +5273,7 @@ class Generator133(Generator):
      Disabled = False
 
      def __init__(self):
-         super().__init__(ID = 133, Priority = 1)
+         super().__init__(ID = 133, Priority = 30)
          self.Template = templates.TitleTemplate11()
      
      def GenerateTweet(self):
@@ -5330,7 +5325,7 @@ class Generator134(Generator):
     Disabled = False
 
     def __init__(self):
-        super().__init__(ID = 134, Priority = 1)
+        super().__init__(ID = 134, Priority = 30)
         self.Template = templates.TitleTemplate1()
      
     def GenerateTweet(self):
@@ -5810,7 +5805,7 @@ class Generator142(Generator):
 class Generator143(Generator):
     Disabled = False 
     def __init__(self):
-        super().__init__(ID = 143, Priority = 1)
+        super().__init__(ID = 143, Priority = 5)
         self.Template = templates.TitleTemplate8()
      
     def GenerateTweet(self):
@@ -5903,7 +5898,7 @@ class Generator1000(Generator):
 #Testing specific title generators          
 class Generator1001(Generator):
      Type = GeneratorType.Test
-     Disabled = False
+     Disabled = True
 
      def __init__(self):
          super().__init__(ID = 1001, Priority = 1)
@@ -6005,14 +6000,15 @@ class Generator1001(Generator):
           # return sTweet     
           
 class GeneratorSelector():
-    GeneratorList = []
-     
     def __init__(self):
+        self.GeneratorList = []
         for subclass in Generator.__subclasses__():
             item = subclass()
             if not item.Disabled:
                 for x in range(0, item.Priority):
                     self.GeneratorList.append([item.ID, item])
+
+        print("There are " + str(len(self.GeneratorList)) + " generators in GeneratorList (with priority)")
 
         self.ValidateGenIDs()
                
@@ -6080,6 +6076,8 @@ class GeneratorSelector():
                     bValid = False
 
         return bValid
+
+TweetGenSel = GeneratorSelector()
           
 def ShuffleFavs(sFileName = ""):
      if sFileName == "":
@@ -6178,7 +6176,9 @@ def CurateFavorites(iGen = 0, iMaxLen = 0):
             sOutput = "{{" + sDetailsLine + "}}\n" + sTxtLine  + "\n" + FAVTITLE_DIVIDER + "\n"
 
         # Print generated title and info
+            
             print(sOutput)
+            print("Priority = " + str(ImgTxtGen.Priority))
 
         # Prompt user.
             sInput = input("\nKeep suggested title? [y]es, [n]o, or [q]uit: ")
