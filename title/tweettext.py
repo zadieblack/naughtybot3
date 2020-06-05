@@ -383,16 +383,16 @@ class TweetTxtGen14(TweetTxtGen):
                              "mullet haircuts", "people with facial tattoos",
                              "sports talk radio", "the 1970's", "trips to IKEA", 
                              "Bronies", "ferret grooming", "juice cleanses", 
-                             "large animal husbandry", 
-                             "women ordering ham-and-pineapple pizza", 
-                             "kale smoothies", "veganism", 
-                             "crossword puzzle solving", "sporks", 
-                             "fish being reheated in the microwave", 
-                             "people listening to Nickleback", 
-                             "tax preparation", 
-                             "people promoting their podcast", 
+                             "large animal husbandry", "dubstep", "tech bros",
+                             "ham-and-pineapple pizza", "crossfit", "cat memes",
+                             "kale smoothies", "veganism", "angry Game of Thrones fans"
+                             "crossword puzzle solving", "sporks", "Cats: The Musical",
+                             "fish being reheated in the microwave", "Justin Bieber's music",
+                             "people listening to Nickleback", "Bernie Bros",
+                             "tax preparation", "Twilight fan fiction",
+                             "people promoting their podcast", "Cats: The Movie",
                              "older women discussing their colonoscopies", 
-                             "Bitcoin investing", "Jazzercize", 
+                             "Bitcoin investing", "Jazzercize", "the 90's",
                              "essential oil use", "Gwyneth Patlrow's vagina",
                              "hipster beard hygene", "bitchy soccer moms", 
                              "the music of Ariana Grande"]).GetWord() + "!"
@@ -573,7 +573,7 @@ class TweetTxtGen23(TweetTxtGen):
                                            "triple penetration", "BDSM", "bondage", "wife-swapping", "voyeurism", 
                                            "water-sports", "public humiliation", "lactation", "age play", 
                                            "mutual masturbation", "edging", "forced orgasm", "domination", 
-                                           "submission"]).GetWord() + " scene goes on for " + str(randint(3,119)) + " pages"
+                                           "submission"]).GetWord() + " scene goes on for " + str(randint(20,119)) + " pages"
           
           return sText
           
@@ -1288,7 +1288,7 @@ class TweetTxtGen45(TweetTxtGen):
      # I was rooting for Vance to get together with Vanessa, so it was quite 
      # a shock when he ran off with Pedro!
      ID = 45
-     Priority = 2
+     Priority = 200
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1296,14 +1296,12 @@ class TweetTxtGen45(TweetTxtGen):
           
           sHerName = NamesFemale().FirstName()
           sHisName1 = NamesMale().FirstName()
-          sHisName2 = NamesMale().FirstName()
+          sHisName2 = PlainNamesMale().FirstName()
           
           sText = "I was " + WordList(["rooting for", "hoping for"]).GetWord() + " "
           sText += sHisName1 + " to get together with " + sHerName + ", "
           sText += "so " + WordList(["it was quite a shock when","I was stunned when"]).GetWord() + " "
-          sText += "he " + WordList(["ran off with","shagged","spent the night with","got it on with",
-                                           "banged","had a booty call with","Netflix-and-chilled with","blew",
-                                           "hooked up with"]).GetWord() + " " 
+          sText += "he had sex with " 
           sText += sHisName2 + " instead!"
           
           return sText

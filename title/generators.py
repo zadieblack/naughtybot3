@@ -362,7 +362,7 @@ class Generator2(Generator):
 class Generator3(Generator):
      # Married to the Alpha Wolf
      def __init__(self):
-         super().__init__(ID = 3, Priority = 50)
+         super().__init__(ID = 3, Priority = 15)
          self.Template = templates.TitleTemplate1()
        
      def GenerateTweet(self):
@@ -391,7 +391,7 @@ class Generator4(Generator):
      Disabled = True
 
      def __init__(self):
-        super().__init__(ID = 4, Priority = 30)
+        super().__init__(ID = 4, Priority = 15)
 
      def GenerateTweet(self):
           super().GenerateTweet()
