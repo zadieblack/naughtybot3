@@ -8,6 +8,7 @@ from random import *
 import excerpt.util as exutil
 import util as shutil
 import excerpt.locations as locations
+import misc as mainmisc
 
 from util import CoinFlip
 from util import WordList
@@ -158,7 +159,7 @@ class Generator2(Generator):
                sTweet += "'" + sVerb + " me like I'm your " + self.FFWB.GetPerson() + "!'"
           else:
                sVerb = WordList(['Fuck','Do','Pound','Stuff','Ravish','Hammer','Impale',
-                                     'Ream','Jack-hammer','Plough','Pump Into','Desecrate',
+                                     'Ream','Jack-hammer','Plow','Pump Into','Desecrate',
                                      'Defile','Stretch','Probe','Fill']).GetWord()
                sHole = WordList(['anus','ass','asshole','back-door','bowels','bunghole','butthole','corn-hole',
                                      'dirt-pipe','fart-blaster','heinie-hole','poop-chute','poop-trap','rectum']).GetWord()
@@ -195,7 +196,7 @@ class Generator3(Generator):
           Moans = WordList(['cried out','gasped','moaned','panted','whimpered','whispered'])
                                     
           Verbs = WordList(['bored into','desecrated','drilled','eagerly filled','fucked','hammered',
-                                'penetrated','pistoned into','ploughed','pounded','pumped into',
+                                'penetrated','pistoned into','plowed','pounded','pumped into',
                                 'rammed relentlessly into','ravished','reamed','stuffed',
                                 'thrust deep into','licked','sucked on','tongued','fingered','ate out',
                                 'rubbed','lubed up','dildoed','massaged','oiled up',
@@ -270,7 +271,7 @@ class Generator6(Generator):
           sTweet += "'" + sRivalName + " is a successful " + self.WhiteCollar.GetPerson() + " "
           sTweet += "and I'm just a lowly " + self.BlueCollar.GetPerson() + "!'\n\n"
           sTweet += "'I don't care about " + sRivalName + ",' she said, 'He doesn't have what I want. "
-          sTweet += "Now hurry up and " + WordList(['stuff','fill','do','plough','ravish','pound','fuck']).GetWord() + " me with that "
+          sTweet += "Now hurry up and " + WordList(['stuff','fill','do','plow','ravish','pound','fuck']).GetWord() + " me with that "
           
           if CoinFlip():
                sTweet += PenisAdjs.GetWord() + " " + PenisSizes.GetWord() + " " + PenisNouns.GetWord() + " of yours!'"
@@ -290,7 +291,7 @@ class Generator7(Generator):
           super().GenerateTweet()
           sTweet = ""
           
-          Verbs = WordList(['bang','do','drill','fuck','gape','hammer','impale','nail','plough','pound','ravish','ream','stuff','violate'])
+          Verbs = WordList(['bang','do','drill','fuck','gape','hammer','impale','nail','plow','pound','ravish','ream','stuff','violate'])
           Location = locations.LocationSelector().Location()
           
           iRand = randint(1,3)
@@ -1178,8 +1179,13 @@ class Generator30(Generator):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          MoralAuthorities = WordList(['priest','priest','dad','pastor','pastor','marriage counselor',
+                                       'shrink','psychiatrist','coach'])
           
           FWBNotList = ['roommate','ex','land lady','maid','next-door','hot friend','wife','Avon']
+          sFWB = self.FFWB.GetPerson(NotList = FWBNotList)
+          sMoral = MoralAuthorities.GetWord(NotList = [sFWB])
           
           sTweet = "'C'mere baby,' she said. 'I want you to suck on my "
           if CoinFlip():
@@ -1195,7 +1201,7 @@ class Generator30(Generator):
           else:
                sTweet += "and then I want you to fill my " + self.FemBodyParts.Vagina.InnerVag.RandomDescription() + " with your " + self.Semen.RandomDescription() + ".'\n\n"
           
-          sTweet += "'Ooooh, yes,' " + self.VMoan.Past() + " " + self.MaleName.FirstName() + ". 'But my priest says it's wrong to do this with my " + self.FFWB.GetPerson(NotList = FWBNotList) + ".'"
+          sTweet += "'Ooooh, yes,' " + self.VMoan.Past() + " " + self.MaleName.FirstName() + ". 'But my " + sMoral + " says it's wrong to do this with my " + sFWB + ".'"
           
           return sTweet
           
@@ -1335,20 +1341,43 @@ class Generator34(Generator):
           super().GenerateTweet()
           sTweet = ""
           
-          Location = LocationSelector().Location(PubPrivType = exutil.LocPubPrivType.Public)
-          iRand = randint(1,4)
+          sHisName = self.MaleName.FirstName()
+          sHerName = self.FemaleName.FirstName()
+          sHole = ""
+          sLocation = WordList(["in front of the window", "in your mom's bedroom", 
+                                "in your bosses office", "in this Whole Foods",
+                                "on the golf course","in church",
+                                "in the classroom","in the doctor's office",
+                                "in this dressing room","in the janitor's closet",
+                                "at the gym","on the trampoline",
+                                "in the library","in the men's room",
+                                "at the bowling alley","in the park",
+                                "in the Starbucks restroom","in this yoga studio",
+                                "in the pet food aisle","in this sushi restaurant",
+                                "in the Chipotle restroom","on the hotel balcony",
+                                "in the backseat of the Prius","on your boyfriend's waterbed",
+                                "at the laundromat","on the tennis court",
+                                "on the basketball court","in the breakroom",
+                                "in the garage","in this gas station bathroom",
+                                "by the vending machines","in the synaogogue",
+                                "in the dentist's office","in the back of the church"
+                                ]).GetWord()
+          HoleNotList = ["vagina","anus","asshole","knot","sphincter","bowels"]
+
+          sBottoms = WordList(['pants','Daisy Dukes','spandex yoga pants','booty shorts',
+                               'panties','blue jeans','thong'
+                               ]).GetWord()
+
+          if CoinFlip() and CoinFlip():
+               sHole = self.FemBodyParts.Ass.Anus.ShortDescription(NotList = HoleNotList)
+          else:       
+               sHole = mainmisc.VaginaSlang().GetWord()
           
-          sTweet = "'It was just a silly bet,' " + self.MaleName.FirstName () + " said to his " + misc.WomanAdjs().GetWord() + " " + self.FFWB.GetPerson() + ". 'Don't worry about it.'\n\n"
-          sTweet += "'No, fair is fair,' " + self.FemaleName.FirstName() + " said, pulling down her " + Location.FemaleBottomClothing + ". "
-          if iRand == 1:
-               sTweet += "'I said that you could use my " + self.FemBodyParts.Vagina.RandomDescription() + " any way you want, "
-          elif iRand == 2:
-               sTweet += "'I said that you could use my " + self.FemBodyParts.Vagina.InnerVag.RandomDescription() + " any way you want, "
-          elif iRand == 3:
-               sTweet += "'I said that you could use my " + self.FemBodyParts.Ass.RandomDescription() + " any way you want, "
-          else:
-               sTweet += "'I said that you could use my " + self.FemBodyParts.Ass.Anus.RandomDescription() + " any way you want, "
-          sTweet += "right here " + Location.NamePrep + ", and I never go back on a bet.' "
+          sTweet = "\"It was just a silly bet, " + sHerName + ",\" " + sHisName + " said to her. \"Don't worry about it.\"\n\n"
+          sTweet += "\"No, fair is fair,\" said his " + misc.WomanAdjs().GetWord() + " " + self.FFWB.GetPerson() + ", "
+          sTweet += "pulling down her " + sBottoms + ". "
+          sTweet += "\"I said that you could use my " + sHole + " any way you want, and I never go back on a bet.\"\n\n"
+          sTweet += "\"Okay,\" he said, \"but right here " + sLocation + "??\""
           
           return sTweet
           
@@ -2752,7 +2781,7 @@ class Generator61(Generator):
                FFWBNotList = ['soccer mom','one true love','dominatrix','fiancé','cute roommate','girlfriend',
                                    'mother-in-law','next-door neighbor','roommate\'s girlfriend','wife']
                Breasts = self.FemBodyParts.Breasts 
-               sVerbed = WordList(["rode","pistoned into","fucked","drilled","pounded","bored into","hammered","impaled","ploughed","ravished","stuffed"]).GetWord()
+               sVerbed = WordList(["rode","pistoned into","fucked","drilled","pounded","bored into","hammered","impaled","plowed","ravished","stuffed"]).GetWord()
                
                sTweet = sHerName + " walked into the bedroom and froze. Her " + self.MaleSO.GetPerson() + " " + sHisName + " "
                sTweet += "was on the bed between the legs of a naked woman. Her " + Breasts.RandomDescription(bAllowShortDesc = False) + " " 
@@ -4934,7 +4963,7 @@ class Generator87(Generator):
                                               "suck on my titties","play with my tits","squeeze my ass",
                                               "grab me around the neck","pull my panties down",
                                               "rip this dress off me","lube up","lube me up"]).GetWord() + " and "
-               sTweet += WordList(["pound","stuff","ream","plough","jackhammer","fuck","bang"]).GetWord() + " "
+               sTweet += WordList(["pound","stuff","ream","plow","jackhammer","fuck","bang"]).GetWord() + " "
                if CoinFlip():
                     sTweet += "my " + sharedmisc.VaginaSlang().GetWord(NotList = VagNotList) + " "
                else:
