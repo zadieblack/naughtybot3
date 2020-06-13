@@ -5505,26 +5505,85 @@ class Generator96(Generator):
        
         return sTweet
     
+# "Oh Vince!" "Oh Veronica! Every night I have tossed and turned, yearning to have you naked in my bed."
+# "Yes!" she said. "I have too!"
+# "Touch me, my love," he breathed. "Let me kiss your tender breasts. Open your forbidden flower to my
+# "burning love!"
+# "Yes!" Veronica gasped. "Oh yes, love! "
+# {"Gag me with your hard fuck-rocket!" /
+#  "Rape my asshole with your hard meat!" /
+#  "Fill my holes with your nasty beef-stick!"
+#  "Choke me out while you fuck my whore {twat/cunt}"
+#  "Make me your bitch with your nasty hot-dog!"
+class Generator97(Generator):
+      ID = 97
+      Priority = 20
 
-# class Generator97(Generator):
-     # ID = 97
-     # Priority = 1
+      def GetKey(self,item):
+          return item[1]
      
-     # def GenerateTweet(self):
-          # super().GenerateTweet()
-          # sTweet = ""
+      def GenerateTweet(self):
+           super().GenerateTweet()
+           sTweet = ""
 
-          # return sTweet
+           sHisName = self.MaleName.FirstName()
+           sHerName = self.FemaleName.FirstName()
+
+           
+           
+           DickNotList = ["penis","dick","erection","girth","goo-gun","hardness","member",
+                           "organ","package","phallus","prick","schlong","stem","thing",
+                           "tool","wood", "lady-dagger"]
+           sDickNoun = self.MaleBodyParts.Penis.ShortDescription(NotList = DickNotList)
+           sDickAdj = WordList(["hard","hard","nasty","fat","rock-hard","fucking"]).GetWord()
+           sDick = sDickAdj + " " + sDickNoun
+
+           sTOE1 = misc.TermsOfEndearment().GetWord(NotList = ["baby","babe"])
+           sTOE2 = misc.TermsOfEndearment().GetWord(NotList = [sTOE1, "babe","baby"])
+
+           SweetNothings = []
+           SweetNothings.append(["Let me run my fingers through your " + WordList(["flaxen","golden","scarlet","curly","fair","red","luxuriant","blonde","glossy","ambrosial","auburn","fiery","silken"]).GetWord() + " " + WordList(["locks","hair","tresses"]).GetWord(),1])
+           SweetNothings.append(["Kiss me with your " + WordList(["sweet","saucy","red","sensual","exquisite","rosy","warm","ruby"]).GetWord() + " lips",2])
+           SweetNothings.append(["Let me " + WordList(["kiss","caress","stroke"]).GetWord() + " your " + WordList(["soft","fulsome","tender","budding","heaving","succulent","ripe"]).GetWord() + " " + WordList(["breasts","bosoms"]).GetWord(),3])
+           SweetNothings.append(["Stroke my " + WordList(["burning","turgid","swollen","throbbing"]).GetWord () + " " + WordList(["manhood","love","girth","member","phallus"]).GetWord() + " with your " + WordList(["gentle","tender","supple","silken","soft"]).GetWord() + " hands",4])
+           SweetNothings.append(["Wrap your " + WordList(["lissom","lithe","limber"]).GetWord() + " " + WordList(["legs","limbs","thighs"]).GetWord() + " around me",5])
+           SweetNothings.append(["Open your " + WordList(["tender","forbidden","secret","delicate","virginal"]).GetWord() + " " + WordList(["flower","womanhood","nether regions"]).GetWord() + " to me",6])
+           SweetNothings.append(["I want to fill you with my " + WordList(["glistening","silky","nourishing"]).GetWord() + " " + WordList(["cream","desire","milk","love"]).GetWord(),7])
+
+           sTweet = "\"Oh " + sHisName + "!\" she exclaimed.\n\n"
+           sTweet += "\"Oh " + sHerName + "!\" he cried. \"How I've missed you! "
+           sTweet += "Every night I've tossed and turned, " + WordList(["yearning","aching","longing"]).GetWord() + " to hold your naked body in my arms once more.\"\n\n"
+           sTweet += "\"Yes!\" " + sHerName + " said, \"Me too!\"\n\n"
+
+           Picks = sample(SweetNothings, 2)
+           Picks.sort(key = self.GetKey)
+           sTweet += "\"Touch me, my " + sTOE1 + ",\" he " + WordList(["breathed","sighed"]).GetWord() + ". "
+           sTweet += "\"" + Picks[0][0] + ". " + Picks[1][0] + "!\"\n\n"
+
+           sTweet += "\"Yes!\" she said. \"Oh yes, baby! "
+
+           FilthyPhrases = []
+           FilthyPhrases.append("Make me gag on your " + sDick)
+           FilthyPhrases.append(WordList(["Fuck","Rape","Gape"]).GetWord() + " my " + WordList(["asshole","butthole","anus","rectum","shit-hole","corn-hole"]).GetWord() + " with your " + sDick)
+           FilthyPhrases.append(WordList(["Fill","Stuff","Rape","Pound"]).GetWord() + " my holes with your " + sDick)
+           FilthyPhrases.append("Choke me out while you fuck my whore " + WordList(["cunt","twat","cunt-hole","pussy","snatch","cock-sock","twat-box"]).GetWord())
+           FilthyPhrases.append("Make me your " + WordList(["whore","slut","bitch"]).GetWord() + " with your " + sDick)
+           FilthyPhrases.append("Fill my " + WordList(["fucking","filthy","dirty"]).GetWord() + " " + WordList(["cunt","twat","fuck-hole","hole","minge","cooter","snatch","vag"]).GetWord() + " with your " + WordList(["nasty ","sticky ","goddamn ",""]).GetWord() + self.Semen.ShortDescription())
+           FilthyPhrases.append("Shove your " + sDick + " into my mouth and shoot your " + WordList(["cum","jizz","spunk","sperm","splooge"]).GetWord() + " down my fucking throat")
+
+           sTweet += choice(FilthyPhrases) + "!\""
+
+           return sTweet
         
-class Generator98(Generator):
-    ID = 98
-    Priority = 1
+#class Generator98(Generator):
+#    ID = 98
+#    Priority = 1
      
-    def GenerateTweet(self):
-        super().GenerateTweet()
-        sTweet = ""
+#    def GenerateTweet(self):
+#        super().GenerateTweet()
+#        sTweet = ""
 
-        return sTweet
+#        return sTweet
           
 # class Generator99(Generator):
      # ID = 99

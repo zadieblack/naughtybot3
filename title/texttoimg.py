@@ -117,7 +117,7 @@ def FormatText(sText, size, color):
      
      #if the height of our lines exceeds the height of the image area, reduce font and try again
      while iTotLineHeight > offset_height:
-          print("FormatText() offset_height exceeded for font size " + str(iFontSize) + ", shrinking font by 3 and trying again")
+          #print("FormatText() offset_height exceeded for font size " + str(iFontSize) + ", shrinking font by 3 and trying again")
           iFontSize += (-3)
           
           font = ImageFont.truetype(PATH + FONT, size = iFontSize)
@@ -126,7 +126,7 @@ def FormatText(sText, size, color):
           
           iTotLineHeight = CalcTotalLineHeight(Lines, font)
           
-     print("FormatText() Final font size is " + str(iFontSize))
+     #print("FormatText() Final font size is " + str(iFontSize))
                
      ImgTxt = Image.new('RGBA', (base_width, base_height), (0,0,0,95))
      draw = ImageDraw.Draw(ImgTxt)
