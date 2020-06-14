@@ -5009,19 +5009,11 @@ class Generator88(Generator):
         return sTweet
 
 # "Isn't this beach romantic?" asked Brad. "It reminds me of the night we first met."
-# "Oh, you mean the time 
-# { you lubed me up with butter and fisted my anus / 
-#   I put a ball-gag on you and inserted a 12-inch steel dildo into your anus /
-#   you and the rest of the Fire Department took turns jizzing on my face /
-#   you tied me to a wooden pole and whipped my ass with a horsewhip /
-#   you choked me out fucked my poop-chute
-#   the night I walked in on you fucking my {mom/sister/twin sister/dad/brother/best friend/girlfriend/boyfriend}
-#   
-# ?" Anna asked.          
-# NOT FINISHED!
+# "Oh, you mean the night you and the rest of the Fire Department took turns jizzing 
+# on my face?" Anna asked.          
 class Generator89(Generator):
     ID = 89
-    Priority = 1
+    Priority = 20
      
     def GenerateTweet(self):
         super().GenerateTweet()
@@ -5033,14 +5025,20 @@ class Generator89(Generator):
         RomanticPlaces = [["this beach","as he gazed out over the purple sunset waves"],
                           ["this little cabin","as he gazed up at the majestic peaks soaring over the pines"],
                           ["this little village","as they walked down the quaint cobblestoned street"],
-                          ["this city","as he gazed up at soaring, neon-lit skyscrapers"]
+                          ["this city","as he gazed up at soaring, neon-lit skyscrapers"],
+                          ["this small town","as they strolled down the lamplit main street"],
+                          ["this lake","as he watched the moon reflected in the clear water"],
+                          ["this place","as he looked around the upscale restaurant"],
+                          ["this sunset","as he gazed up at the purple and orange clouds"],
+                          ["this ski lodge","as he gazed out over the snow-covered peaks"],
+                          ["this view","as he gazed down into the green river valley"]
                          ]
         RPlace = choice(RomanticPlaces)
         sTweet += "\"Isn't " + RPlace[0] + " romantic?\" asked " + sHisName + " " + RPlace[1] + ". "
         sTweet += "\"It reminds me of the first night we met.\"\n\n"
         sTweet += "\"Oh, you mean the night "
 
-        iRand = randint(1,5)
+        iRand = randint(1,8)
         if iRand == 1:
             sLube = WordList(["butter", "KY jelly", "peanut butter", "yoghurt", "vaseline", 
                               "almond butter"]).GetWord()
@@ -5090,6 +5088,31 @@ class Generator89(Generator):
             sTweet += "my " + WordList(["ass","anus","asshole","back door","rectum","arse-cunt",
                                         "starfish","butthole","butt","corn-hole","poop-chute",
                                         "shitter"]).GetWord() 
+        elif iRand == 6:
+            sTweet += "I walked in on you " + WordList(["banging","boinking","boning","drilling","fucking",
+                                                        "humping","jack-hammering","nailing","porking",
+                                                        "screwing","stuffing"
+                                                       ]).GetWord() + " "
+            sTweet += "my " + WordList(["sister","twin sister","step-sister","mom","mother","step-mom",
+                                        "daughter","best friend","husband","brother","step-brother",
+                                        "dad","stepdad","babysitter","nanny","girlfriend","boyfriend",
+                                        "wife","ex-husband","ex-wife"]).GetWord()  
+        elif iRand == 7:
+            sTweet += "I " + WordList(["blew you","deep-throated you","sucked you off","gave you head",
+                                       "went down on you","sucked your cock","sucked your dick"
+                                       ]).GetWord() + " "
+            sTweet += WordList(["behind the bar","behind the club","in the men's room","in the dressing room",
+                                "behind the bleachers","in the janitor's closet","in the ladies room",
+                                "in the park","in the back of your van","in that parking garage",
+                                "in the men's locker room"]).GetWord()
+        elif iRand == 8:
+            sTweet += "you and " + names.PlainNamesMale().FirstName() + " "
+            sTweet += WordList(["spit-roasted me","double-penetrated me","took my virginity","double-stuffed my ass",
+                                "double-stuffed me in the hotel room","filmed me sucking your cocks",
+                                "took turns plowing me from behind","fucked me in the hot tub",
+                                "took me on the sex swing"
+                                ]).GetWord()
+
         sTweet += "?\" asked " + sHerName + "."
 
         return sTweet
