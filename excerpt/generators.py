@@ -5009,26 +5009,90 @@ class Generator88(Generator):
         return sTweet
 
 # "Isn't this beach romantic?" asked Brad. "It reminds me of the night we first met."
-# "Oh, you mean the time you lubed me up with butter and fisted my anus?" Anna asked.          
+# "Oh, you mean the time 
+# { you lubed me up with butter and fisted my anus / 
+#   I put a ball-gag on you and inserted a 12-inch steel dildo into your anus /
+#   you and the rest of the Fire Department took turns jizzing on my face /
+#   you tied me to a wooden pole and whipped my ass with a horsewhip /
+#   you choked me out fucked my poop-chute
+#   the night I walked in on you fucking my {mom/sister/twin sister/dad/brother/best friend/girlfriend/boyfriend}
+#   
+# ?" Anna asked.          
 # NOT FINISHED!
-#class Generator89(Generator):
-#    ID = 89
-#    Priority = 1
+class Generator89(Generator):
+    ID = 89
+    Priority = 1
      
-#    def GenerateTweet(self):
-#        super().GenerateTweet()
-#        sTweet = ""
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
 
-#        sHisName = self.MaleName.FirstName()
-#        sHerName = self.FemaleName.FirstName()
+        sHisName = self.MaleName.FirstName()
+        sHerName = self.FemaleName.FirstName()
 
-#        RomanticPlaces = WordList([["this beach","as he gazed out over the purple sunset waves"],
-#                                   ["this little cabin","as he gazed up at the majestic peaks soaring over the pines"],
-#                                   ["this little village","as they walked down the quaint cobblestoned street"],
-#                                   ["this city","as he gazed up at soaring, neon-lit skyscrapers"]
-#                                   ])
+        RomanticPlaces = [["this beach","as he gazed out over the purple sunset waves"],
+                          ["this little cabin","as he gazed up at the majestic peaks soaring over the pines"],
+                          ["this little village","as they walked down the quaint cobblestoned street"],
+                          ["this city","as he gazed up at soaring, neon-lit skyscrapers"]
+                         ]
+        RPlace = choice(RomanticPlaces)
+        sTweet += "\"Isn't " + RPlace[0] + " romantic?\" asked " + sHisName + " " + RPlace[1] + ". "
+        sTweet += "\"It reminds me of the first night we met.\"\n\n"
+        sTweet += "\"Oh, you mean the night "
 
-#        return sTweet
+        iRand = randint(1,5)
+        if iRand == 1:
+            sLube = WordList(["butter", "KY jelly", "peanut butter", "yoghurt", "vaseline", 
+                              "almond butter"]).GetWord()
+            sTweet += "you lubed me up with " + sLube + " and "
+            sTweet += "fisted my " + WordList(["ass","asshole","butthole","anus","rectum",
+                                               "backdoor","starfish","corn-hole",
+                                               "bung-hole","sphincter","rear-orifice",
+                                               "starfish","pooper"
+                                               ]).GetWord()
+        elif iRand == 2:
+            sBinding = WordList(["put a ball-gag on you","handcuffed you",
+                                 "put " + AddArticles(sharedmisc.Colors().GetWord()).lower() + " dress on you",
+                                 "put a gimp-mask on you","blind-folded you"
+                                 ]).GetWord() 
+            sObjectAdj = WordList(["black","steel","wooden","metal","rubber"]).GetWord()
+            sObjectLen = WordList(["12-inch","12-inch","13-inch","16-inch","20-inch"]).GetWord()
+            sObject = WordList(["dildo","vibrator"]).GetWord() 
+            sTweet += "I " + sBinding + " and " + WordList(["stuck","inserted","shoved"]).GetWord() + " "
+            sTweet += "a " + sObjectLen + " " + sObjectAdj + " " + sObject + " "
+            sTweet += "into your " + WordList(["ass","anus","rectum","asshole","butt",
+                                                "butthole","corn-hole","bung-hole"
+                                                ]).GetWord()
+        elif iRand == 3:
+            sGroup = WordList(["the boys", "the fire department", "the football team", 
+                               "your gym buddies", "your D&D group", "your motorcycle gang",
+                               "the cops", "your men's Bible study", "your baseball team",
+                               "the construction workers", "your fraternity"
+                               ]).GetWord()
+            sTweet += "you and the rest of " + sGroup + " "
+            sTweet += "took turns " + WordList(["jizzing","cumming","ejaculating","nutting","spurting","blowing your wads","blowing your loads"]).GetWord() + " "
+            sTweet += "all over my face"
+        elif iRand == 4:
+            sTiedTo = WordList(["a wooden pole","the radiator","the front porch","the fence",
+                                "a steel pole","a post"
+                                ]).GetWord()
+            sBound = WordList(["tied","bound","chained","hand-cuffed"]).GetWord()
+            sTweet += "you " + sBound + " me to " + sTiedTo + " and "
+            sTweet += "whipped my ass with " + WordList(["a horsewhip","your belt","a cane","a riding crop",
+                                                     "a wooden paddle","a flogger","a bull-whip",
+                                                     "a ruler","a ping-pong paddle"
+                                                     ]).GetWord()
+        elif iRand == 5:
+            sTweet += "you choked me out while you " + WordList(["fucked","drilled","jack-hammered",
+                                                                 "nailed","pounded","stuffed",
+                                                                 "reamed","violated","gaped"
+                                                                 ]).GetWord() + " "
+            sTweet += "my " + WordList(["ass","anus","asshole","back door","rectum","arse-cunt",
+                                        "starfish","butthole","butt","corn-hole","poop-chute",
+                                        "shitter"]).GetWord() 
+        sTweet += "?\" asked " + sHerName + "."
+
+        return sTweet
 
 class Generator90(Generator):
      ID = 90
@@ -5304,11 +5368,10 @@ class Generator93(Generator):
            sTweet += "\n\n\"Me too, mom,\" said " + sFriendName + "."
            return sTweet
 
-#"Ambrose," called Juan from the next room. "Have you seen my mother, Jacinda?"
-
-#Ambrose looked down at Jacinda. Her sweet, earnest eyes were locked on his as she sucked passionately on his lengthy, erect, silken member.
-
-#"I haven't seen her anywhere," Ambrose shouted back.          
+# "Ambrose," called Juan from the next room. "Have you seen my mother, Jacinda?"
+# Ambrose looked down at Jacinda. Her sweet, earnest eyes were locked on his as 
+# she sucked passionately on his lengthy, erect, silken member.
+# "I haven't seen her anywhere," Ambrose shouted back.          
 class Generator94(Generator):
       ID = 94
       Priority = 3
@@ -5509,12 +5572,7 @@ class Generator96(Generator):
 # "Yes!" she said. "I have too!"
 # "Touch me, my love," he breathed. "Let me kiss your tender breasts. Open your forbidden flower to my
 # "burning love!"
-# "Yes!" Veronica gasped. "Oh yes, love! "
-# {"Gag me with your hard fuck-rocket!" /
-#  "Rape my asshole with your hard meat!" /
-#  "Fill my holes with your nasty beef-stick!"
-#  "Choke me out while you fuck my whore {twat/cunt}"
-#  "Make me your bitch with your nasty hot-dog!"
+# "Yes!" Veronica said. "Oh yes, baby! Make me gag on your fat beef-pipe!"
 class Generator97(Generator):
       ID = 97
       Priority = 20
