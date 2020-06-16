@@ -1855,7 +1855,7 @@ class BGProfileChainedToTheBed(BGProfile):
 class BGProfileCivilWarHorse(BGProfile):
     def __init__(self):
         super().__init__(ID = 138,
-                           Priority = 40,
+                           Priority = 4,
                            sFileName = "civil_war_horse")
         self.MainTitleColor = "rgba(117, 176, 195, 255)"
         self.SecondTitleColor = "rgba(220, 100, 81, 255)"
