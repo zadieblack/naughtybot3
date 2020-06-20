@@ -14,12 +14,13 @@ from util import CoinFlip
 from util import WordList
 from util import AddArticles
 from util import SmartLower
+from util import GenPriority
 
 from excerpt.locations import LocationSelector
 
 import excerpt.bodyparts as bodyparts
 import excerpt.verbs as verbs
-import excerpt.misc as misc
+#import excerpt.misc as misc
 import excerpt.scenes as scenes
 #import excerpt.names as names
 import names 
@@ -28,7 +29,7 @@ from excerpt.scenes import SceneSelector
 
 import excerpt.bodyparts as bodyparts
 import excerpt.verbs as verbs
-import misc as sharedmisc
+import misc as shmisc
 import excerpt.misc as misc
 import excerpt.scenes as scenes
 
@@ -39,13 +40,14 @@ import title.people as titpeople
 PromoHistoryQ = shutil.HistoryQ(2)
      
 class Generator():
-     ID = -1
-     # each generator should have a unique ID
-     Priority = 1
-     # increasing the Priority increases the chances the generator is randomly selected. But it can only be selected again while it is not currently in the history queue
-     Type = exutil.GeneratorType.Normal
-     # most generators are Normal. Setting a generator to Test makes sure it can't be selected randomly. Setting a generator to Promo means it won't be selected for reply tweets
-     
+     def __init__(self, ID = -1, Priority = GenPriority.Normal, Type = exutil.GeneratorType.Normal):
+         self.ID = ID
+         # each generator should have a unique ID
+         self.Priority = Priority
+         # increasing the Priority increases the chances the generator is randomly selected. But it can only be selected again while it is not currently in the history queue
+         self.Type = Type
+         # most generators are Normal. Setting a generator to Test makes sure it can't be selected randomly. Setting a generator to Promo means it won't be selected for reply tweets
+
      def GenerateTweet(self):
           self.MaleBodyParts = bodyparts.BodyMale()
           self.FemBodyParts = bodyparts.BodyFemale()
@@ -111,8 +113,8 @@ def GetTweet(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = None):
      
 class Generator1(Generator):
      # The baron desecrated Jacinda's well-used muffin with his thick pole.     
-     ID = 1
-     Priority = 1
+     def __init__(self):
+         super().__init__(ID = 1, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -125,10 +127,9 @@ class Generator1(Generator):
           
 class Generator2(Generator):
      # Spreading open her supple buttocks with his rough hands, he desecrated her well-used anus with his erect boner. 'Fuck me,
-     # Jordan!' she screamed. 'Pound me like your wife!'     
-          
-     ID = 2
-     Priority = 3
+     # Jordan!' she screamed. 'Pound me like your wife!'             
+     def __init__(self):
+         super().__init__(ID = 2, Priority = GenPriority.High)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -170,8 +171,8 @@ class Generator2(Generator):
 
 class Generator3(Generator):
      # 'Please, no!' she said, squirming as he bayonetted her pink cooch. 'Not while my yoga teacher is watching!'
-     ID = 3
-     Priority = 2
+     def __init__(self):
+         super().__init__(ID = 3, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -220,8 +221,8 @@ class Generator3(Generator):
 
 class Generator4(Generator):
      # 'You may cum inside my womanhood if you like', she instructed him, 'But only my photographer is allowed to bayonette my sphincter.'     
-     ID = 4
-     Priority = 1
+     def __init__(self):
+         super().__init__(ID = 4, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -233,9 +234,9 @@ class Generator4(Generator):
           
 class Generator5(Generator):
      # 'Oh, Leon,' she moaned, 'I'm so thirsty for your glossy spunk!' 'But Ophelia,' he said, 'You're my mother-in-law!'
-     ID = 5
-     Priority = 2
-     
+     def __init__(self):
+         super().__init__(ID = 5, Priority = GenPriority.AboveAverage)
+         
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
@@ -250,8 +251,8 @@ class Generator5(Generator):
 class Generator6(Generator):
      # 'You don't have to hide the truth from me, Honey,' he said, 'Tom is a successful opthamologist and I'm just a lowly roadie!' 
      # 'That's true,' she said, 'But YOU have a 8 1/2 inch fuck-pole!'     
-     ID = 6
-     Priority = 2
+     def __init__(self):
+         super().__init__(ID = 6, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -282,10 +283,9 @@ class Generator6(Generator):
           
 class Generator7(Generator):
      # Charity bit her lip as Tristan fondled her heaving bosoms. 'Oh god,' she said, 'What would my pastor say 
-     # if he saw that I was letting my pool boy pump into my crack?'     
-     
-     ID = 7
-     Priority = 2
+     # if he knew that I was letting my pool boy pump into my crack?'     
+     def __init__(self):
+         super().__init__(ID = 7, Priority = GenPriority.AboveAverage)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -325,8 +325,8 @@ class Generator7(Generator):
 class Generator8(Generator):
      #Bianca bit her lip as he caressed her youthful thighs. 'Ferdinand!' she said, 'My orthodontist is in the next room!' 
      #'Should we invite him?' he asked innocently, inserting a finger into her love channel.     
-     ID = 8
-     Priority = 2
+     def __init__(self):
+         super().__init__(ID = 8, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -382,8 +382,8 @@ class Generator8(Generator):
 class Generator9(Generator):
      # 'What?' she said. 'Hasn't a girl ever let you fuck her oiled-up coconuts with your meat pole before?'
      # 'Only my dad's girlfriend,' he replied.
-     ID = 9
-     Priority = 1
+     def __init__(self):
+         super().__init__(ID = 9, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -402,8 +402,8 @@ class Generator10(Generator):
      # 'Oh lord, what a day it has been,' said the dutchess. Ripping open her blouse, she exposed 
      # her massive double-D mammaries. 'Come, my little fry cook, I need you to nibble on my 
      # buns and then to cover my hard nipples in your salty man jam.'
-     ID = 10
-     Priority = 1
+     def __init__(self):
+         super().__init__(ID = 10, Priority = GenPriority.Lowest)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -431,8 +431,8 @@ class Generator10(Generator):
 class Generator11(Generator):
      # 'Oh God, Julia,' he said, 'You are so beautiful. I love your supple skin, your sumptuous hips, 
      # your perfect thighs, and the way you look with my ballsack in your mouth.'
-     ID = 11
-     Priority = 1
+     def __init__(self):
+         super().__init__(ID = 11, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -472,8 +472,8 @@ class Generator11(Generator):
 class Generator12(Generator):
      # Ginger's robe fell to the floor, and his heart skipped a beat. She had a shapely form with ripe boobs, 
      # wide hips, and a well-used hole. "I can't believe you're my sister," he said.     
-     ID = 12
-     Priority = 1
+     def __init__(self):
+         super().__init__(ID = 12, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -531,8 +531,8 @@ class Generator12(Generator):
 class Generator13(Generator):     
      # 'Oh thank God Christina,' he gasped. 'You saved me. How can I ever repay you?' Christina bent over and pulled down her panties,
      # revealing her pert bum. 'You can start by licking my starfish,' she said.
-     ID = 13
-     Priority = 1
+     def __init__(self):
+         super().__init__(ID = 13, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -561,8 +561,8 @@ class Generator13(Generator):
 class Generator14(Generator):
      # 'Oh Julian,' she said, 'I've never been with a duke before.'
      # 'Fear not, my love,' he said, as he began to gently fuck her bunghole."
-     ID = 14
-     Priority = 1
+     def __init__(self):
+         super().__init__(ID = 14, Priority = GenPriority.AboveAverage)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -590,8 +590,8 @@ class Generator14(Generator):
 class Generator15(Generator):
      # 'Vance, my love, where are you?' called Anjelica from the next room. Vance looked down at Veronica. Her dazzling blue eyes 
      # were locked on his as she wrapped her hungry mouth around his massive meat pole. "I'll just be a minute dear," Vance replied.
-     ID = 15
-     Priority = 1
+     def __init__(self):
+         super().__init__(ID = 15, Priority = GenPriority.Normal) 
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -620,11 +620,12 @@ class Generator15(Generator):
           return sTweet
           
 class Generator16(Generator):
-     # Devon squeezed and sucked on Sabrina's luscious double-D mammaries as he fingered her clit and jackhammered her willing cunt 
-     # hole. 'My god,' whispered Grant, stroking his meat sword, 'I can't believe I'm watching my wife fuck an opthamologist!'"
-          
-     ID = 16
-     Priority = 2
+     # Devon squeezed and sucked on Sabrina's luscious double-D mammaries as he fingered her clit and 
+     # jackhammered her willing cunt hole. 
+     # 'My god,' whispered Grant, stroking his meat sword, 'I can't believe I'm watching my wife fuck 
+     # an opthamologist!'"
+     def __init__(self):
+         super().__init__(ID = 16, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -638,8 +639,8 @@ class Generator16(Generator):
 class Generator17(Generator):
      # Charity's eyes were wide as she cupped his dangling nutsack. 'Does every opthamologist have one like this?' she asked. 
      # 'No darling,' said Brad. 'Not every opthamologist has a 9 1/2 inch meat sword. Now play with my testicles while you rub the swollen head.'
-     ID = 17
-     Priority = 1
+     def __init__(self):
+         super().__init__(ID = 17, Priority = GenPriority.Lowest)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -654,8 +655,8 @@ class Generator17(Generator):
 class Generator18(Generator):
      # "'Jacinda, my dear, I wrote you a poem,' he said. 'What is it about?' asked Jacinda. 'It's about you, my love: your golden 
      # hair, your generous tits, your smooth legs, your dangling labia.' 'Oh Brad!' she sighed."
-     ID = 18
-     Priority = 2
+     def __init__(self):
+         super().__init__(ID = 18, Priority = GenPriority.Normal) 
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -697,8 +698,8 @@ class Generator19(Generator):
      #Unaware Roxanne was watching him, Nicolas pulled his tshirt and jeans off, revealing his broad 
      #shoulders, powerful chest, and sinewy thighs. But what made Roxanne's mouth water was the massive, 
      #throbbing tool between his legs.     
-     ID = 19
-     Priority = 50
+     def __init__(self):
+         super().__init__(ID = 19, Priority = GenPriority.Lowest)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -718,8 +719,8 @@ class Generator20(Generator):
      #Xavier approached the bed, completely naked. A thrill ran through Constance at the sight of his broad  
      #shoulders, powerful chest, sinewy thighs, muscular buttocks and swollen man meat. She could hardly 
      #believe that in a few minutes this man would be stuffing her virgin pussy.
-     ID = 20
-     Priority = 2
+     def __init__(self):
+         super().__init__(ID = 20, Priority = GenPriority.Lowest)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -757,8 +758,8 @@ class Generator20(Generator):
           
 # class Generator21(Generator):
      # #Candy stroked Lorenzo's turgid meat vigorously. Suddenly his engorged head swelled and spurted gobs of white hot semen on her lips, on her breasts, on her thighs, on her pussy. 'Oh God', she said, 'it's all over my nice Easter Sunday outfit!'
-     # ID = 21
-     # Priority = 2
+     # def __init__(self):
+     #    super().__init__(ID = 21, Priority = GenPriority.Normal)
      
      # def GenerateTweet(self):
           # super().GenerateTweet()
@@ -779,8 +780,8 @@ class Generator20(Generator):
 class Generator22(Generator):
      # John's robe fell to the floor, and Ginger's heart skipped a beat. He had a compact athletic physic with wide shoulders, brawny arms, tight buns, and a 
      # lengthy penis. "I can't believe you're my brother-in-law," she said.     
-     ID = 22
-     Priority = 2 #2
+     def __init__(self):
+         super().__init__(ID = 22, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -805,8 +806,8 @@ class Generator23(Generator):
      # 'My mother thinks an opthamolgist and his step-sister can never find love together,' said Raoul 
      # as Esmerelda lay exhausted in his strong arms.\r\n
      # 'You're no opthamologist,' she replied, panting. 'You're the mayor of Ream My Fucking Ass City!'
-     ID = 23
-     Priority = 2
+     def __init__(self):
+         super().__init__(ID = 23, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -853,8 +854,8 @@ class Generator24(Generator):
      #Angelica got down on her knees and began to lick the silken cock-snot from his thick erection. Angelica 
      #wiggled into her panties.
      #'Hell, yes! I can't believe I'm not a virgin anymore,' she said.
-     ID = 24
-     Priority = 3
+     def __init__(self):
+         super().__init__(ID = 24, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -948,8 +949,8 @@ class Generator25(Generator):
      #'Lord! I'm gonna cum!' said Tristan. 
      #'Wait, not yet!' she cried. 
      #'Too late!' said Tristan. 'I'm ejaculating!' And then, as her boss watched, open-mouthed, he grabbed her by the hips and filled her succulent womb with silken milky man-custard.
-     ID = 25
-     Priority = 2
+     def __init__(self):
+         super().__init__(ID = 25, Priority = GenPriority.Normal) 
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -989,8 +990,8 @@ class Generator25(Generator):
           
 class Generator26(Generator):
      #Naked in a public location and caught.
-     ID = 26
-     Priority = 2
+     def __init__(self):
+         super().__init__(ID = 26, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1014,8 +1015,8 @@ class Generator27(Generator):
      # 'You're such a slut, Veronica,' he said. 'I *am* a slut,' she said. 'I'm one for *you*, James. 
      # I'm a slut for your hard cock in my mouth.' 'You're also a slut because you let me fuck your 
      # backdoor in the bathroom at Starbucks,' he said.
-     ID = 27
-     Priority = 1
+     def __init__(self):
+         super().__init__(ID = 27, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1072,8 +1073,8 @@ class Generator27(Generator):
           
 class Generator28(Generator):
      #Doing it in a location. Surprise! They're being watched by her husband.
-     ID = 28
-     Priority = 2
+     def __init__(self):
+         super().__init__(ID = 28, Priority = GenPriority.AboveAverage)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1111,8 +1112,8 @@ class Generator29(Generator):
      #Martin walked in to see Sabrina lying on the bed. Her nose was in a book and her short nightgown was hiked up over her pert bottom. Her hand was down her panties and Martin could see that she was frigging her starfish urgently.
      #'What are you reading?' Martin asked.
      #'Sex Slave to the Vampire Pirates,' Sabrina moaned.
-     ID = 29
-     Priority = 1
+     def __init__(self):
+         super().__init__(ID = 29, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1173,8 +1174,8 @@ class Generator30(Generator):
      #'C'mere baby,' she said. 'I want you to suck on my inch-long nipples. I want to feel your fevered package
      #against my bottom and then I want you to fill my silk womb with your semen.' 'Ooooh, yes,' sighed Julian. 
      #'But my priest says it's wrong to do this with my teacher.'
-     ID = 30
-     Priority = 1
+     def __init__(self):
+         super().__init__(ID = 30, Priority = GenPriority.AboveAverage)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1207,8 +1208,8 @@ class Generator30(Generator):
           
 class Generator31(Generator):
      # Trevor walked in and froze. His step-sister lay on the bed totally nude. His wide eyes took in her heavy tits, wide hips, sticky folds, and puckered sphincter. The naked guy next to her was idly diddling her peach. He looked up at Trevor. 'You want in?' he asked.
-     ID = 31
-     Priority = 2
+     def __init__(self):
+         super().__init__(ID = 31, Priority = GenPriority.Lowest)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1231,8 +1232,8 @@ class Generator32(Generator):
      #revealing her little starfish.] [lifted up her short skirt revealing that she wasn't wearing any panties. He 
      #could clearly see her smooth pussy lips and her inner folds.] [pulled her titties out of her blouse. They 
      #were large and gleaming with oil.]
-     ID = 32
-     Priority = 1
+     def __init__(self):
+         super().__init__(ID = 32, Priority = GenPriority.Normal) 
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1265,8 +1266,8 @@ class Generator33(Generator):
      # He leaned forward, and whispered in her ear, "Your tight little starfish."
      # "Ooh, yes {sir/master/daddy}," she said. "Make me your fuck toy! But wait," she added. 
      # "Am I still your babysitter?"
-     ID = 33
-     Priority = 1
+     def __init__(self):
+         super().__init__(ID = 33, Priority = GenPriority.AboveAverage)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1334,8 +1335,8 @@ class Generator33(Generator):
 class Generator34(Generator):
      #'It was just a silly bet,' he said.\n\n
      #'No, fair is fair,' she said, pulling down her panties. 'I said that you could use my cocksock any way you want, right here in the woods, and I never go back on a bet.' 
-     ID = 34
-     Priority = 1
+     def __init__(self):
+         super().__init__(ID = 34, Priority = GenPriority.High)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1384,8 +1385,8 @@ class Generator34(Generator):
 class Generator35(Generator):
      #'Oh baby,' she said. 'I love you so much. I just want to be with you and make you happy. Tell me what I can do,' she said, giving him a peck on the lips.
      #'I want {to fuck your big titties / to put my finger in your butthole / to put my balls in your mouth / you to eat out my starfish },' he said.
-     ID = 35
-     Priority = 3
+     def __init__(self):
+         super().__init__(ID = 35, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1429,8 +1430,8 @@ class Generator35(Generator):
           
 class Generator36(Generator):
      #Their masked host guided them into the banquet hall. On the dining table a beautiful woman lay spread-eagled, completely naked, in the center. Her succulent bronzed skin was dripping with honey, her lissome form was covered with fruits and berries, her navel was brimming with liquor, her full, perfect breasts were topped with whipped cream, and her pussy was stuffed with a single ripe strawberry. 'Gentlemen,' said the marquis, 'Let's eat!'\n\n'Holy fuck,' thought Leon, 'That's my step-daughter!'
-     ID = 36
-     Priority = 1
+     def __init__(self):
+         super().__init__(ID = 36, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1465,8 +1466,8 @@ class Generator36(Generator):
           return sTweet
           
 # class Generator37(Generator):
-     # ID = 37
-     # Priority = 1
+     #def __init__(self):
+     #    super().__init__(ID = 37, Priority = GenPriority.Normal)
      
      # def GenerateTweet(self):
           # super().GenerateTweet()
@@ -1527,8 +1528,8 @@ class Generator38(Generator):
      # 'This isn't your present,' said Marsha.
      # A tall black woman stepped thru the bathroom door. Her sumptuous breasts were full and heavy and her pussy was shaved bare.
      # 'THIS is your birthday present,' Marsha said.
-     ID = 38
-     Priority = 2
+     def __init__(self):
+         super().__init__(ID = 38, Priority = GenPriority.Normal) 
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1577,8 +1578,8 @@ class Generator38(Generator):
           
 class Generator39(Generator):
      #Naked in a public location and watched.
-     ID = 39
-     Priority = 1
+     def __init__(self):
+         super().__init__(ID = 39, Priority = GenPriority.AboveAverage)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1612,8 +1613,8 @@ class Generator39(Generator):
           return sTweet
           
 class Generator40(Generator):
-     ID = 40
-     Priority = 2
+     def __init__(self):
+         super().__init__(ID = 40, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1660,8 +1661,8 @@ class Generator41(Generator):
      #clothes were strewn about the room.\n\n{sex act}\n\n{'My god, Marsha', he said angrily. 'You and 
      #the MaleFWB??' / 'Oh Marsha,' he sighed, 'This is revenge for when I titty-fucked my 
      #FemaleFWB, isn't it?' / }
-     ID = 41
-     Priority = 3
+     def __init__(self):
+         super().__init__(ID = 41, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1703,8 +1704,8 @@ class Generator41(Generator):
           return sTweet
           
 class Generator42(Generator):
-     ID = 42
-     Priority = 2
+     def __init__(self):
+         super().__init__(ID = 42, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1741,8 +1742,8 @@ class Generator42(Generator):
           return sTweet
           
 class Generator43(Generator):
-     ID = 43
-     Priority = 1
+     def __init__(self):
+         super().__init__(ID = 43, Priority = GenPriority.Normal) 
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1778,8 +1779,8 @@ class Generator43(Generator):
           return sTweet
           
 class Generator44(Generator):
-     ID = 44
-     Priority = 2
+     def __init__(self):
+         super().__init__(ID = 44, Priority = GenPriority.Normal) 
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1843,8 +1844,8 @@ class Generator44(Generator):
           return sTweet
           
 class Generator45(Generator):
-     ID = 45
-     Priority = 1
+     def __init__(self):
+         super().__init__(ID = 45, Priority = GenPriority.Normal) 
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1878,8 +1879,8 @@ class Generator46(Generator):
      #Martin walked in to see Sabrina lying on the bed. Her nose was in a book and her short nightgown was hiked up over her pert bottom. Her hand was down her panties and Martin could see that she was frigging her starfish urgently.
      #'What are you reading?' Martin asked.
      #'Sex Slave to the Vampire Pirates,' Sabrina moaned.
-     ID = 46
-     Priority = 1
+     def __init__(self):
+         super().__init__(ID = 46, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1905,8 +1906,8 @@ class Generator47(Generator):
      #tight!' he gasped as he began to piston into her.
      #
      #'I've let dozens of men fuck my pussy, babe,' said Sable, 'But you're the only man who will ever plough my sphincter.'
-     ID = 47
-     Priority = 2
+     def __init__(self):
+         super().__init__(ID = 47, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1969,9 +1970,8 @@ class Generator47(Generator):
           return sTweet
           
 class Generator48(Generator):
-     ID = 48
-     Priority = 1
-     Type = exutil.GeneratorType.Test
+     def __init__(self):
+         super().__init__(ID = 48, Priority = GenPriority.Normal, Type = exutil.GeneratorType.Test)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1996,8 +1996,8 @@ class Generator48(Generator):
 class Generator49(Generator):
      #'Now remember,' Veronica said, 'when you meet my parents, you can't tell them that you're a dishwasher at Applebee's 
      #and that we met when you titty-fucked me behind a club. You're a successful chiropractor and your name is Reginald.'
-     ID = 49
-     Priority = 2
+     def __init__(self):
+         super().__init__(ID = 49, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -2023,8 +2023,8 @@ class Generator50(Generator):
      # 'Go away, Francesca,' he said. 'I'm a successful veterinarian now. I'm married to a beautiful opthamalogist. We have (2-14) children!' Pablo said. 
      # 'That's too bad,' she said. 'Then I guess you have no interest in *this*.' She pulled the crotch of her tight shorts aside. Her pussy lips were tanned and hairless, and a metal piercing gleamed in her clit.
      # 'Oh, fuck!' moaned Pablo.
-     ID = 50
-     Priority = 3
+     def __init__(self):
+         super().__init__(ID = 50, Priority = GenPriority.AboveAverage)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -2147,8 +2147,8 @@ class Generator50(Generator):
           return sTweet
           
 class Generator51(Generator):
-     ID = 51
-     Priority = 3
+     def __init__(self):
+         super().__init__(ID = 51, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -2188,8 +2188,8 @@ class Generator51(Generator):
           return sTweet
           
 class Generator52(Generator):
-     ID = 52
-     Priority = 1
+     def __init__(self):
+         super().__init__(ID = 52, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -2278,9 +2278,8 @@ class Generator52(Generator):
           
 #generator for testing scenes 
 class Generator53(Generator):
-     ID = 53
-     Priority = 2
-     Type = exutil.GeneratorType.Test
+     def __init__(self):
+         super().__init__(ID = 53, Priority = GenPriority.Normal, Type = exutil.GeneratorType.Test)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -2321,8 +2320,8 @@ class Generator53(Generator):
 # glazed entrance until you squirt inside it. I need you to fill me with your delicious, tasty, glossy 
 # cream, right here, right now, at the gym!'
 class Generator54(Generator):
-     ID = 54
-     Priority = 2
+     def __init__(self):
+         super().__init__(ID = 54, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -2345,8 +2344,8 @@ class Generator54(Generator):
 class Generator55(Generator):
      # 'No,' thought Nora, 'I can never forgive Brad for sleeping with my twin sister. I have to cut him out of my life 
      # once and for all. No more will I stare at his picture. No more will I think about his lengthy, virile beef snake. 
-     ID = 55
-     Priority = 2
+     def __init__(self):
+         super().__init__(ID = 55, Priority = GenPriority.AboveAverage)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -2468,8 +2467,8 @@ class Generator55(Generator):
           return sTweet
           
 class Generator56(Generator):
-     ID = 56
-     Priority = 1
+     def __init__(self):
+         super().__init__(ID = 56, Priority = GenPriority.Lowest)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -2516,8 +2515,8 @@ class Generator56(Generator):
           return sTweet
           
 class Generator57(Generator):
-     ID = 57
-     Priority = 2
+     def __init__(self):
+         super().__init__(ID = 57, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -2574,8 +2573,8 @@ class Generator57(Generator):
           return sTweet
           
 class Generator58(Generator):
-     ID = 58
-     Priority = 1
+     def __init__(self):
+         super().__init__(ID = 58, Priority = GenPriority.Normal) 
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -2642,8 +2641,8 @@ class Generator58(Generator):
 # Candice walked stiffly down the stairs, groaning with every step. "Oh god," she said. "That's the last time I
 # let a burly Italian construction worker fist my anus!"
 class Generator59(Generator):
-     ID = 59
-     Priority = 2
+     def __init__(self):
+         super().__init__(ID = 59, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -2674,8 +2673,8 @@ class Generator59(Generator):
 #
 # "'Tis the legendary anal hook of Devaxatar!"
 class Generator60(Generator):
-     ID = 60
-     Priority = 2 #2
+     def __init__(self):
+         super().__init__(ID = 60, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -2748,16 +2747,13 @@ class Generator61(Generator):
 # man was behind him, his hugely erect flesh-bayonette burrowing passionately between Desmond's naked 
 # buttocks with every thrust.
 # 'My god, Desmond', he shouted angrily. 'You and your volleyball coach??']
-     ID = 61
-     Priority = 4
-     Type = exutil.GeneratorType.Test
+     def __init__(self):
+         super().__init__(ID = 61, Priority = GenPriority.AboveAverage, Type = exutil.GeneratorType.Test)
      
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
-          
-          
-          
+
           iRand = randint(1,4)
           
           if iRand == 1:
@@ -2826,8 +2822,8 @@ class Generator61(Generator):
 # glazed entrance until you squirt inside it. I need you to fill me with your delicious, tasty, glossy 
 # cream, right here, right now, at the gym!'
 class Generator62(Generator):
-     ID = 62
-     Priority = 3
+     def __init__(self):
+         super().__init__(ID = 62, Priority = GenPriority.High)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -2888,8 +2884,8 @@ class Generator62(Generator):
 
 # "But you know we cannot," she said, "You're shorter than I am!"
 class Generator63(Generator):
-     ID = 63
-     Priority = 3
+     def __init__(self):
+         super().__init__(ID = 63, Priority = GenPriority.High)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -3026,8 +3022,8 @@ class Generator63(Generator):
           return sTweet
           
 class Generator64(Generator):
-     ID = 64
-     Priority = 3
+     def __init__(self):
+         super().__init__(ID = 64, Priority = GenPriority.High)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -3355,8 +3351,8 @@ class Generator64(Generator):
 # "What is it, my sweet?" he asked, squeezing her ripe buttocks.
 # "I'm secretly married - to your father!"
 class Generator65(Generator):
-     ID = 65
-     Priority = 4
+     def __init__(self):
+         super().__init__(ID = 65, Priority = GenPriority.AboveAverage)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -3431,8 +3427,8 @@ class Generator65(Generator):
 # between her legs. 
 # "Ah, here's your deep-dish pizza with banana peppers and double meat," he stammered. 
 class Generator66(Generator):
-     ID = 66
-     Priority = 4
+     def __init__(self):
+         super().__init__(ID = 60, Priority = GenPriority.AboveAverage)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -3556,8 +3552,8 @@ class Generator66(Generator):
 # {two/three} fingers {or a whole fist} in and out of her {tight pussy/pert asshole} as the naughty scene played out 
 # in her imagination. "Ohh, Mr. Jefferson!" she moaned. "You're the best Algebra teacher ever!"
 class Generator67(Generator):
-     ID = 67
-     Priority = 2
+     def __init__(self):
+         super().__init__(ID = 67, Priority = GenPriority.AboveAverage)
 
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -3615,8 +3611,8 @@ class Generator67(Generator):
 # "We can't tell my husband about this," said {Karen/Bill} to the three naked black sailors that were taking turns pounding
 # her ass.
 class Generator68(Generator):
-     ID = 68
-     Priority = 3
+     def __init__(self):
+         super().__init__(ID = 68, Priority = GenPriority.AboveAverage)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -3663,8 +3659,8 @@ class Generator68(Generator):
 # "Make love to me, Vicenzo!" Delilah said. "Make love to me right here in this Starbucks bathroom! Make love to my 
 # sweet wet cunt!"          
 class Generator69(Generator):
-     ID = 69
-     Priority = 2
+     def __init__(self):
+         super().__init__(ID = 69, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -3726,8 +3722,8 @@ class Generator69(Generator):
 
 # Sarah sat bolt upright in the tangled sheets of her bed. "Fuck!" she said. "That was only a dream??"          
 class Generator70(Generator):
-     ID = 70
-     Priority = 1
+     def __init__(self):
+         super().__init__(ID = 70, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -3823,8 +3819,8 @@ class Generator70(Generator):
  
  # I want you to fuck my heinie hole."
 class Generator71(Generator):
-     ID = 71
-     Priority = 2
+     def __init__(self):
+         super().__init__(ID = 71, Priority = GenPriority.AboveAverage)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -3871,8 +3867,8 @@ class Generator71(Generator):
 # But I'll bet my pussy feels as good as hers./So bend me over that couch and put a baby in me./And unlike her,
 # I give excellent head./Now pull your pants down so I can suck that cock.
 class Generator72(Generator):
-     ID = 72
-     Priority = 2 #3
+     def __init__(self):
+         super().__init__(ID = 72, Priority = GenPriority.AboveAverage)
 
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -3932,8 +3928,8 @@ class Generator72(Generator):
  # "I'm eighteen now, you can't stop me!" retorted Candy. "I'm going to let Chad anally deflower me in public, and
  # that's final!"
 class Generator73(Generator):
-     ID = 73
-     Priority = 4
+     def __init__(self):
+         super().__init__(ID = 73, Priority = GenPriority.Lowest)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -4003,8 +3999,8 @@ class Generator73(Generator):
 # "Hush, my {love/sweet}," said Ronson. "No one can hear us. You know that the {King/Emperor/Duke} has forbidden 
 # anal sex." With that he carefully eased his tumescent meat-snake into her tight pooper.
 class Generator74(Generator):
-     ID = 74
-     Priority = 2
+     def __init__(self):
+         super().__init__(ID = 74, Priority = GenPriority.AboveAverage)
 
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -4065,8 +4061,8 @@ class Generator74(Generator):
           return sTweet
           
 class Generator75(Generator):
-     ID = 75
-     Priority = 4
+     def __init__(self):
+         super().__init__(ID = 75, Priority = GenPriority.High)
 
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -4135,8 +4131,8 @@ class Generator75(Generator):
           return sTweet
           
 class Generator76(Generator):
-     ID = 76
-     Priority = 2
+     def __init__(self):
+         super().__init__(ID = 76, Priority = GenPriority.Normal) 
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -4190,8 +4186,8 @@ class Generator76(Generator):
           
 # "Mrs. Philmore!" gasped Todd to his next-door neighbor, "Your bunghole is so tight!"
 class Generator77(Generator):
-     ID = 77
-     Priority = 4
+     def __init__(self):
+         super().__init__(ID = 77, Priority = GenPriority.High)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -4225,8 +4221,8 @@ class Generator77(Generator):
 # Woman walks through a public place looking uncomfortable. A man says, "Can I help you with something, miss?"
 # "Ggggghhhhhhhuh" she says, as the remote-controlled vibrator in her {ass/pussy} began to buzz again.
 class Generator78(Generator):
-     ID = 78
-     Priority = 3
+     def __init__(self):
+         super().__init__(ID = 78, Priority = GenPriority.High)
      
      def GetLetterStr(self, sLetter, iMaxNum):
           sReturn = ""
@@ -4381,8 +4377,8 @@ class Generator78(Generator):
 # cock of yours. Fill me with your cream."
 # "Oh shit. Yes! Yes!!!" moaned Todd. Then he bucked his hips and began to fill his step-mom's asshole with cum.
 class Generator79(Generator):
-     ID = 79
-     Priority = 4
+     def __init__(self):
+         super().__init__(ID = 79, Priority = GenPriority.AboveAverage)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -4499,8 +4495,8 @@ class Generator79(Generator):
 # "But we are married!" she replied in confusion.
 # "Yes," he said, "but not to each other."
 class Generator80(Generator):
-     ID = 80
-     Priority = 3
+     def __init__(self):
+         super().__init__(ID = 80, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -4531,8 +4527,8 @@ class Generator80(Generator):
           
 # interracial
 class Generator81(Generator):
-     ID = 81
-     Priority = 3
+     def __init__(self):
+         super().__init__(ID = 81, Priority = GenPriority.Normal) 
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -4615,8 +4611,8 @@ class Generator81(Generator):
 # Brad squirted more oil into his hands and rubbed them together. "For you Mrs Johnson, anything," he said. 
 # Then he spread her legs open and began to tenderly finger her anus.
 class Generator82(Generator):
-     ID = 82
-     Priority = 3
+     def __init__(self):
+         super().__init__(ID = 82, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -4668,8 +4664,8 @@ class Generator82(Generator):
 # {waitress/barista/accountant}, especially one with a pair of enormous, swollen, DDD breasts???"
 # fallen arches? 
 class Generator83(Generator):
-     ID = 83
-     Priority = 3
+     def __init__(self):
+         super().__init__(ID = 83, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -4739,8 +4735,8 @@ class Generator83(Generator):
 # "No Brad, wait!" said Calliope breathlessly. "I'm saving my pussy for marriage. But I'll let you fuck my 
 # virgin ass."          
 class Generator84(Generator):
-     ID = 84
-     Priority = 3
+     def __init__(self):
+         super().__init__(ID = 84, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -4817,8 +4813,8 @@ class Generator84(Generator):
 # "Just think," she said excitedly to her best friend Amy, "in less than three days Brad 
 # and I will be married, and my name will be MRS Ivana Seymour-Butts!"
 class Generator85(Generator):
-     ID = 85
-     Priority = 3
+     def __init__(self):
+         super().__init__(ID = 85, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -4849,8 +4845,8 @@ class Generator85(Generator):
 
 # Same as 57, but in the ass          
 class Generator86(Generator):
-     ID = 86
-     Priority = 3
+     def __init__(self):
+         super().__init__(ID = 86, Priority = GenPriority.AboveAverage)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -4910,8 +4906,8 @@ class Generator86(Generator):
           return sTweet
           
 class Generator87(Generator):
-     ID = 87
-     Priority = 3
+     def __init__(self):
+         super().__init__(ID = 87, Priority = GenPriority.AboveAverage)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -4933,7 +4929,7 @@ class Generator87(Generator):
           sTweet += " he " + WordList(['admitted','confessed']).GetWord() + ". "
           sTweet += "\"My name is " + sHisPlainName + ", "
           sTweet += "and I'm a " + self.BlueCollar.GetWord(NotList = BlueCollarNotList) + " "
-          sTweet += "from " + sharedmisc.DullPlaces().GetWord() + ".\"\n\n"
+          sTweet += "from " + shmisc.DullPlaces().GetWord() + ".\"\n\n"
           
           iRand = randint(1,3)
           if iRand == 1:
@@ -4965,7 +4961,7 @@ class Generator87(Generator):
                                               "rip this dress off me","lube up","lube me up"]).GetWord() + " and "
                sTweet += WordList(["pound","stuff","ream","plow","jackhammer","fuck","bang"]).GetWord() + " "
                if CoinFlip():
-                    sTweet += "my " + sharedmisc.VaginaSlang().GetWord(NotList = VagNotList) + " "
+                    sTweet += "my " + shmisc.VaginaSlang().GetWord(NotList = VagNotList) + " "
                else:
                     sTweet += "my " + WordList(['ass','anus','asshole','butthole','rectal cavity','starfish','bunghole',
                                                        'corn hole','dirt-pipe','fart blaster','heinie hole','poop-chute',
@@ -4982,8 +4978,8 @@ class Generator87(Generator):
           return sTweet
           
 class Generator88(Generator):
-    ID = 88
-    Priority = 1
+    def __init__(self):
+         super().__init__(ID = 88, Priority = GenPriority.AboveAverage)
      
     def GenerateTweet(self):
         super().GenerateTweet()
@@ -5012,8 +5008,8 @@ class Generator88(Generator):
 # "Oh, you mean the night you and the rest of the Fire Department took turns jizzing 
 # on my face?" Anna asked.          
 class Generator89(Generator):
-    ID = 89
-    Priority = 20
+    def __init__(self):
+         super().__init__(ID = 89, Priority = GenPriority.SuperHigh)
      
     def GenerateTweet(self):
         super().GenerateTweet()
@@ -5050,7 +5046,7 @@ class Generator89(Generator):
                                                ]).GetWord()
         elif iRand == 2:
             sBinding = WordList(["put a ball-gag on you","handcuffed you",
-                                 "put " + AddArticles(sharedmisc.Colors().GetWord()).lower() + " dress on you",
+                                 "put " + AddArticles(shmisc.Colors().GetWord()).lower() + " dress on you",
                                  "put a gimp-mask on you","blind-folded you"
                                  ]).GetWord() 
             sObjectAdj = WordList(["black","steel","wooden","metal","rubber"]).GetWord()
@@ -5118,8 +5114,8 @@ class Generator89(Generator):
         return sTweet
 
 class Generator90(Generator):
-     ID = 90
-     Priority = 2
+     def __init__(self):
+         super().__init__(ID = 90, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -5165,8 +5161,8 @@ class Generator90(Generator):
 # cream, and bent over the hood of a car as the black football team took turns
 # vigorously fucking her ass doggy style? Yet again??          
 class Generator91(Generator):
-     ID = 91
-     Priority = 3
+     def __init__(self):
+         super().__init__(ID = 91, Priority = GenPriority.High)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -5225,8 +5221,8 @@ class Generator91(Generator):
 # "God sweetie, do we have to talk about your ex right now?!?" gasped Jerry 
 # as he pounded her from behind."     
 class Generator92(Generator):
-     ID = 92
-     Priority = 4
+     def __init__(self):
+         super().__init__(ID = 92, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -5301,8 +5297,8 @@ class Generator93(Generator):
 # having your wrinkled, hairy ball sack in my mouth last night, Chad," 
 # she growled into his ear.
 # "Me too, mom," said Chad.
-      ID = 93
-      Priority = 5
+      def __init__(self):
+         super().__init__(ID = 93, Priority = GenPriority.AboveAverage)
      
       def GenerateTweet(self):
            super().GenerateTweet()
@@ -5320,7 +5316,7 @@ class Generator93(Generator):
                                 "Cody","Tony","Cameron","Ethan","Eric",
                                 "Jackson","Carter","Trent","Derek","Steve",
                                 "Bryson","Topher","Ted"])
-           sColor = sharedmisc.Colors().GetWord().lower()
+           sColor = shmisc.Colors().GetWord().lower()
 
            sSonName = BoyNames.GetWord() 
            sFriendName = BoyNames.GetWord(NotList = [sSonName])
@@ -5396,8 +5392,8 @@ class Generator93(Generator):
 # she sucked passionately on his lengthy, erect, silken member.
 # "I haven't seen her anywhere," Ambrose shouted back.          
 class Generator94(Generator):
-      ID = 94
-      Priority = 3
+      def __init__(self):
+         super().__init__(ID = 94, Priority = GenPriority.Normal)
      
       def GenerateTweet(self):
         super().GenerateTweet()
@@ -5453,8 +5449,8 @@ class Generator94(Generator):
 
 # As above, but gay
 class Generator95(Generator):
-    ID = 95
-    Priority = 2
+    def __init__(self):
+         super().__init__(ID = 95, Priority = GenPriority.Normal)
      
     def GenerateTweet(self):
         super().GenerateTweet()
@@ -5516,8 +5512,8 @@ class Generator95(Generator):
 # {put it in my butt,ride me bareback,cum on my face,video us with your phone}," she said. 
 # "I suppose just this once couldn't hurt," said Chase.
 class Generator96(Generator):
-    ID = 96
-    Priority = 7
+    def __init__(self):
+         super().__init__(ID = 96, Priority = GenPriority.Normal)
      
     def GenerateTweet(self):
         super().GenerateTweet()
@@ -5525,7 +5521,7 @@ class Generator96(Generator):
 
         sHisName = self.MaleName.FirstName()
         sHerName = self.FemaleName.FirstName()
-        sColor = sharedmisc.Colors().GetWord().lower()
+        sColor = shmisc.Colors().GetWord().lower()
 
         Breasts = self.FemBodyParts.Breasts 
         Ass = self.FemBodyParts.Ass
@@ -5597,8 +5593,8 @@ class Generator96(Generator):
 # "burning love!"
 # "Yes!" Veronica said. "Oh yes, baby! Make me gag on your fat beef-pipe!"
 class Generator97(Generator):
-      ID = 97
-      Priority = 20
+      def __init__(self):
+         super().__init__(ID = 97, Priority = GenPriority.SuperHigh)
 
       def GetKey(self,item):
           return item[1]
@@ -5726,66 +5722,112 @@ class Generator97(Generator):
 
           # return sTweet
           
-
-                    
 class GeneratorSelector():
-     GeneratorList = []
-     
-     def __init__(self):
-          for subclass in Generator.__subclasses__():
-               item = subclass()
-               for x in range(0, item.Priority):
-                    self.GeneratorList.append([item.ID, item])
-               
-     def RandomGenerator(self, bAllowPromo = True, Type = None):
-          Generator = None
-          AllowedTypes = []
-          
-          if not Type is None:
-               AllowedTypes = [Type] 
-          else:
-               AllowedTypes = [exutil.GeneratorType.Normal, exutil.GeneratorType.BookTitle]
-          
-          if bAllowPromo:
-               AllowedTypes.append(exutil.GeneratorType.Promo)
-               
-          #print("RandomGenerator() Allowed types: " + str(AllowedTypes))
-          if len(self.GeneratorList) > 0:
+    def __init__(self):
+        self.GeneratorList = []
+        self.LowestBucket = []
+        self.NormalBucket = []
+        self.AboveAverageBucket = []
+        self.HighBucket = []
+        self.SuperHighBucket = []
 
-               Generator = self.GeneratorList[randint(0, len(self.GeneratorList) - 1)][1]
-               while not Generator.Type in AllowedTypes:
-                    Generator = self.GeneratorList[randint(0, len(self.GeneratorList) - 1)][1]
+        for subclass in Generator.__subclasses__():
+            item = subclass()
+            #for x in range(0, item.Priority):
+            self.GeneratorList.append([item.ID, item])
+
+            if item.Priority == shmisc.GenPriority.Lowest:
+                self.LowestBucket.append(item)
+            elif item.Priority == shmisc.GenPriority.AboveAverage:
+                self.AboveAverageBucket.append(item)
+            elif item.Priority == shmisc.GenPriority.High:
+                self.HighBucket.append(item)
+            elif item.Priority == shmisc.GenPriority.SuperHigh:
+                self.SuperHighBucket.append(item)
+            else:
+                self.NormalBucket.append(item)
+
+    def GetBucket(self):
+        Bucket = []
+
+        MAXTRIES = 100
+
+        iCount = 0
+        while len(Bucket) == 0 and iCount < MAXTRIES:
+            iChance = randint(1, 15)                                # 1 + 2 + 3 + 4 + 5 = 15
+
+            if iChance == 1:
+                Bucket = self.LowestBucket
+                print(" Lowest bucket selected (iChance == " + str(iChance) + ")")
+            elif iChance > 1 and iChance <= 3:      # 2x
+                Bucket = self.NormalBucket 
+                print(" Normal bucket selected (iChance == " + str(iChance) + ")")
+            elif iChance > 3 and iChance <= 6:      # 3x
+                Bucket = self.AboveAverageBucket
+                print(" AboveAverage bucket selected (iChance == " + str(iChance) + ")")
+            elif iChance > 6 and iChance <= 10:     # 4x
+                Bucket = self.HighBucket 
+                print(" High bucket selected (iChance == " + str(iChance) + ")")
+            elif iChance > 10 and iChance <= 15:    # 5x
+                Bucket = self.SuperHighBucket
+                print(" SuperHigh bucket selected (iChance == " + str(iChance) + ")")
+            else:
+                Bucket = self.NormalBucket 
+                print(" WARNING: Default bucket (normal) selected (iChance == " + str(iChance) + ")")
+
+            iCount = iCount + 1
+
+        return Bucket
+               
+    def RandomGenerator(self, bAllowPromo = True, Type = None):
+        Generator = None
+        AllowedTypes = []
+          
+        if not Type is None:
+            AllowedTypes = [Type] 
+        else:
+            AllowedTypes = [exutil.GeneratorType.Normal, exutil.GeneratorType.BookTitle]
+          
+        if bAllowPromo:
+            AllowedTypes.append(exutil.GeneratorType.Promo)
+               
+        #print("RandomGenerator() Allowed types: " + str(AllowedTypes))
+        if len(self.GeneratorList) > 0:
+            Generator = choice(self.GetBucket())
+            print("Chosen generator is " + str(Generator))
+            while not Generator.Type in AllowedTypes:
+                Generator = choice(self.GetBucket())
                     
-          return Generator 
+        return Generator 
           
-     def GetGeneratorsSequential(self, bAllowPromo = True, Type = None):
-          GeneratorList = []
-          AllowedTypes = []
+    def GetGeneratorsSequential(self, bAllowPromo = True, Type = None):
+        GeneratorList = []
+        AllowedTypes = []
           
-          if not Type is None:
-               AllowedTypes = [Type] 
-          else:
-               AllowedTypes = [exutil.GeneratorType.Normal, exutil.GeneratorType.BookTitle]
+        if not Type is None:
+            AllowedTypes = [Type] 
+        else:
+            AllowedTypes = [exutil.GeneratorType.Normal, exutil.GeneratorType.BookTitle]
           
-          if bAllowPromo:
-               AllowedTypes.append(exutil.GeneratorType.Promo)
+        if bAllowPromo:
+            AllowedTypes.append(exutil.GeneratorType.Promo)
 
-          for subclass in Generator.__subclasses__():
-               gen = subclass()
+        for subclass in Generator.__subclasses__():
+            gen = subclass()
 
-               if gen.Type in AllowedTypes:
-                    GeneratorList.append(gen)
+            if gen.Type in AllowedTypes:
+                GeneratorList.append(gen)
                
-          return GeneratorList  
+        return GeneratorList  
           
-     def GetGenerator(self, iGen):
-          Generator = None 
+    def GetGenerator(self, iGen):
+        Generator = None 
           
-          if len(self.GeneratorList) > 0:
-               for gen in self.GeneratorList :
-                    if gen[1].ID == iGen:
-                         Generator = gen[1]
-                         break
+        if len(self.GeneratorList) > 0:
+            for gen in self.GeneratorList :
+                if gen[1].ID == iGen:
+                        Generator = gen[1]
+                        break
                          
-          return Generator
+        return Generator
           

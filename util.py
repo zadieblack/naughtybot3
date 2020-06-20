@@ -57,6 +57,13 @@ class LineColorType(IntEnum):
      SmallText = 3
      AuthorName = 4
 
+class GenPriority(IntEnum):
+    Lowest = 1          # Unity
+    Normal = 2          # 2x more likely
+    AboveAverage = 3    # 3x more likely
+    High = 4            # 4x
+    SuperHigh = 5       # 5x
+
 HeartEmoji = ['\U00002764','\U0001F49A','\U0001F499','\U0001F49C','\U0001F49B','\U0001F9E1','\U0001F5A4']
 
 def GetHeartEmoji(iNum = 1):
