@@ -859,8 +859,8 @@ class TweetTxtGen33(TweetTxtGen):
                                    "delightful", "sinful", "arousing", "naughty", "depraved", "lustful", "wicked", "outrageous", "delicious", 
                                    "stimulating", "sexy", "provocative", "lewd", "wicked", "shameless", "stimulating", "kinky", "juicy",
                                    "wanton"])
-          Celebs = WordList(["Abraham Lincoln", "Winston Churchill", "Barak Obama", "Mother Theresa", "Martin Luther King, Jr.", "Nelson Mandela", 
-                                   "Salman Rushdie", "Albert Einstein", "Hillary Clinton", "Maya Angelou", "Isaac Asimov", "Jonathan Franzen", 
+          Celebs = WordList(["Abraham Lincoln", "Winston Churchill", "Barak Obama", "Mother Theresa", 
+                                   "Salman Rushdie", "Albert Einstein", "Hillary Clinton", "Isaac Asimov", "Jonathan Franzen", 
                                    "Cormac McCarthy", "Ghandi", "Boutros Boutros-Ghali", "Bob Dylan", "The Dalai Lama", "Elon Musk", 
                                    "Warren Buffett", "Stephen King", "Bill Gates", "Billy Graham", "Jimmy Carter", "Oprah Winfrey",
                                    "Neil Armstrong", "Stephen Hawking", "Al Gore", "Bernie Sanders"])
