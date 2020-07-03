@@ -5009,7 +5009,7 @@ class Generator88(Generator):
 # on my face?" Anna asked.          
 class Generator89(Generator):
     def __init__(self):
-         super().__init__(ID = 89, Priority = GenPriority.SuperHigh)
+         super().__init__(ID = 89, Priority = GenPriority.High)
      
     def GenerateTweet(self):
         super().GenerateTweet()
@@ -5594,7 +5594,7 @@ class Generator96(Generator):
 # "Yes!" Veronica said. "Oh yes, baby! Make me gag on your fat beef-pipe!"
 class Generator97(Generator):
       def __init__(self):
-         super().__init__(ID = 97, Priority = GenPriority.SuperHigh)
+         super().__init__(ID = 97, Priority = GenPriority.High)
 
       def GetKey(self,item):
           return item[1]
@@ -5652,15 +5652,126 @@ class Generator97(Generator):
 
            return sTweet
         
-#class Generator98(Generator):
-#    ID = 98
-#    Priority = 1
+# "I've got a special treat for you, baby," said Shandra, pulling down Steve's pants. In moments, 
+# she had him completely naked.
+#
+# "What kind of treat is it, baby?" he asked as she clicked a pair of handcuffs around his wrists, 
+# shackling him to the bed.
+#
+#"You'll see," she said. "Just stay there like a good boy."
+#
+# Steve felt his pulse racing. What could his girlfriend have in store for him? Deep throat? Anal? 
+# A threesome?
+#
+# Shandra pulled on a pair of rubber gloves and produced a bottle of vasaline. "Tell me baby," 
+# she purred, "have you ever tried a Dirty Burrito?"
+class Generator98(Generator):
+    def __init__(self):
+        super().__init__(ID = 98, Priority = GenPriority.SuperHigh)
      
-#    def GenerateTweet(self):
-#        super().GenerateTweet()
-#        sTweet = ""
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
 
-#        return sTweet
+        sHisName = names.PlainNamesMale().FirstName()
+        sHerName = self.FemaleName.FirstName()
+
+        sToE1 = self.TermsOfEndearment.GetWord()
+        sToE2 = self.TermsOfEndearment.GetWord()
+        sToE3 = self.TermsOfEndearment.GetWord()
+          
+        Prep = WordList(["produced a large tub of vasaline",
+                          "secured a spreader bar to his ankles",
+                          "pulled on a pair of rubber gloves",
+                          "stuffed a ball gag into his mouth",
+                          "put on a 12-inch black strap-on",
+                          "produced a pair of steel forceps",
+                          "picked up a ten-gallon drum of lube",
+                          "plugged in a power-drill with a dildo attached to it",
+                          "put on a pair of goggles",
+                          "opened a gallon of whole milk",
+                          "laid down a black plastic tarp",
+                          "produced a plastic syringe filled with liquid",
+                          "pulled a large pickle out of a pickle jar",
+                          "pulled a strip off a roll of duct-tape",
+                          "picked up two large wooden clothespins",
+                          "unscrewed the cap on a jar of " + WordList(["chocolate sauce","jam","peanut butter","mayonaisse","marmalaie","mustard","salsa","cheez whiz"]).GetWord(),
+                          "put in an athletic mouth guard",
+                          "brought out a life-size inflatable sex doll",
+                          "unrolled a condom onto a large cucumber",
+                          "scooped a large glob of peanut butter out of a jar with a knife",
+                          "sprinkled him with baby powder",
+                          "zipped herself into a large plush squirrel costume",
+                          "opened a cage containing a live " + WordList(["gerbil","ferret","weasel","chinchilla","Mongolian gerbil","pygmy hedgehog"]).GetWord(),
+                          "produced a medical catheter",
+                          "produced an adult diaper",
+                          "turned on a cattle prod",
+                          "pulled a welding mask over her face",
+                          "lubed up a large black butt plug",
+                          "sliced a large lemon open with a knife",
+                          "snapped a large rubber-band with her finger",
+                          "put on a pair of boxing gloves",
+                          "produced a turkey baster",
+                          "produced a large glass vodka bottle",
+                          "stuck electrodes to his nipples",
+                          "blew air into a black inflatable balloon",
+                          "strapped on a pair of roller skates",
+                          "brought a manequin out of the closet",
+                          "put on a rubber horse mask",
+                          "smacked a large wooden paddle against her hand",
+                          "unpeeled a banana",
+                          "scooped up a large spoonful of tapioca pudding",
+                          "opened a package of hot dogs",
+                          "shook up a bottle of silly string",
+                          "produced a set of false teeth",
+                          "opened a package of raw hamburger meat",
+                          "produced a wire coat-hangar",
+                          "put on a surgical mask and gloves",
+                          "stuffed the end of a plastic funnel into his mouth",
+                          "set a bowl of corn flakes on his chest"
+                          ])
+
+        sPrep1 = Prep.GetWord()
+        sPrep2 = Prep.GetWord(NotList = [sPrep1])
+        print("\nsPrep 1 verb is [" + str(sPrep1.split(" ",1)[0]) + "] and sPrep 2 verb is [" + str(sPrep2.split(" ",1)[0]) + "]")
+        while sPrep1.split(" ",1)[0] == sPrep2.split(" ",1)[0]:
+            sPrep2 = Prep.GetWord(NotList = [sPrep1])
+            print("MATCH: sPrep 1 verb is [" + str(sPrep1.split(" ",1)[0]) + "] and sPrep 2 verb is [" + str(sPrep2.split(" ",1)[0]) + "]")
+
+        sTweet += "\"I've got a special " + WordList(["treat","surprise"]).GetWord() + " "
+        sTweet += "for you, " + sToE1 + ",\" said " + sHerName + ", "
+        sTweet += WordList(["pulling down " + sHisName + "'s pants",
+                            "pulling down " + sHisName + "'s underwear",
+                            "unbuckling " + sHisName + "'s belt",
+                            "unbuckling " + sHisName + "'s shorts",
+                            "unbuttoning " + sHisName + "'s shirt"]).GetWord() + ". "
+        sTweet += "In moments, she had him " + WordList(["completely","totally","buck","stark"]).GetWord() + " naked.\n\n"
+        
+        sTweet += "\"What kind of treat is it, " + sToE2 + "?\" he asked as she clicked "
+        sTweet += "a pair of handcuffs around his wrists, shackling him to the bed.\n\n"
+
+        sTweet += "\"You'll see,\" she said. "
+        sTweet += "\"" + WordList(["Just stay there like a good boy",
+                                   "Just hold on while mommy gets ready",
+                                   "Just stay right there",
+                                   "Just lie there and relax",
+                                   "Just lie there like a good boy",
+                                   "Just hold tight for one second",
+                                   "Just be a good boy and stay right there",
+                                   "Just be a good boy and lie there for a moment",
+                                   "Just be a good boy and wait while mommy gets ready"
+                                   ]).GetWord() + ".\"\n\n"
+
+        sTweet += sHisName + " felt his " + WordList(["heart","pulse"]).GetWord() + " racing. "
+        sTweet += "What could his " + WordList(["girlfriend","wife","fiance"]).GetWord() + " "
+        sTweet += "have in store for him? Deep throat? Anal? A threesome?\n\n"
+
+        sTweet += sHerName + " " + sPrep1 + " and " + sPrep2 + ". "
+        sTweet += "\"Tell me, " + sToE3 + ",\" she purred, " 
+        sTweet += "\"Have you ever " + WordList(["tried","had","gotten"]).GetWord() + " " 
+        sTweet += "" + AddArticles(shmisc.TantricTechniques().GetWord(), cBracket = "'") + "?\""
+
+        return sTweet
           
 # class Generator99(Generator):
      # ID = 99
