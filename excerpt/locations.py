@@ -213,7 +213,7 @@ class CampingTent(PrivateLocation):
      SittingOn = "a bedroll"
      LyingOn = "a sleeping bag"
      Ground = "the thick sleeping bag"
-     FemaleTopClothing = "cute litte sweater"
+     FemaleTopClothing = "cute little sweater"
      FemaleBottomClothing = "tight bluejeans"
      
 class CarBackseat(PublicLocation):

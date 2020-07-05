@@ -5000,7 +5000,8 @@ class Generator88(Generator):
         sTweet += SceneSex.Scene() + " " + SceneClimax.Scene() + "\n\n"
           
         sTweet += "\"Oh " + sNotHerName + ",\" " + sHisName + " gasped, \"that was amazing!\"\n\n"
-        sTweet += "\"My name is " + sHerName + ",\" she said."
+        sTweet += "\"I'm not " + sNotHerName + ",\" she said " + WordList(["frostily","icily","coldly"]).GetWord () + ". "
+        sTweet += "\"My name is " + sHerName + ".\""
 
         return sTweet
 
