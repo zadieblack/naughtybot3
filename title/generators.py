@@ -312,10 +312,10 @@ class Generator1(Generator):
           self.ExclTemplateTags = ["lesbian"]
           self.ReqTemplateTags = ["woman","man"]
           
-          Master = char.MaleChar(TempType = TempType.Flowery, bAddTheArticle = False, MaxChars = 32,
-                                 bAllowGang = True)
+          Master = char.MaleChar(TempType = TempType.Flowery, bAddTheArticle = True, MaxChars = 32,
+                                 bSplitArticle = True, bAllowGang = True)
           
-          sTweet = self.VerbsBy.GetWord() + "\nBy The\n" + Master.Desc
+          sTweet = self.VerbsBy.GetWord() + "\nBy " + Master.Desc
 
           return sTweet
           

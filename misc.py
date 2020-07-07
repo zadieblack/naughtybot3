@@ -594,6 +594,7 @@ class TantricTechniques(NounAdjList):
                             "Greasy",
                             "Gutter",
                             "Hairy",
+                            "Hooker's",
                             "Italian",
                             "Jailhouse",
                             "Juicy",
