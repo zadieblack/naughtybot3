@@ -5832,6 +5832,45 @@ class Generator143(Generator):
 
         return sTweet     
 
+class Generator144(Generator):
+     # Boned by the Beefy Billionaire
+     #  (gen 1 but it rhymes)
+     def __init__(self):
+         super().__init__(ID = 144, Priority = 50)
+         self.Template = templates.TitleTemplate1()
+     
+     def GenerateTweet(self):
+          super().GenerateTweet()
+          sTweet = ""
+
+          self.ExclTemplateTags = ["lesbian"]
+          self.ReqTemplateTags = ["woman","man"]
+          
+          #Master = char.MaleChar(TempType = TempType.Flowery, bAddTheArticle = True, MaxChars = 32,
+          #                       bSplitArticle = True, bAllowGang = True)
+
+          VerbList = WordList()
+          for verb in self.VerbsBy.GetWordList():
+              if len(verb.split()) == 1:
+                  VerbList.AddWord(verb)
+
+          MasterAdjs = WordList(titmisc.GenModMale().GetWordList() + 
+                                titmisc.AttitudeMale().GetWordList() +
+                                titmisc.ClothesMale().GetWordList() +
+                                titmisc.PhysCharMale().GetWordList() + 
+                                titmisc.DickCharMale().GetWordList() + 
+                                titmisc.NationMale().GetWordList())
+          MasterNouns = WordList(titmisc.ProfMale().GetWordList() +
+                                 titmisc.SpeciesMale().GetWordList() +
+                                 titmisc.TitlesMale().GetWordList() +
+                                 titmisc.TropesWealthyMale().GetWordList())
+
+          RhymingVerbNounPair = GetRhymingPair(VerbList.GetWordList(), MasterNouns.GetWordList())
+          RhymingAdjNoun = GetRhymingWord(RhymingVerbNounPair[1], MasterAdjs.GetWordList())
+          sTweet = RhymingVerbNounPair[0] + "\nBy " + AddArticles(RhymingAdjNoun, bSplitArticle = True) + " " + RhymingVerbNounPair[1]
+
+          return sTweet
+
 # Testing innuendo name generators          
 class Generator999(Generator):
      Type = GeneratorType.Test

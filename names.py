@@ -1465,6 +1465,52 @@ class InnNameGen6(InnNameGenerator):
                                               InnLastName(['Liquor','Likker','Licker']),
                                               InnLastName(['Mann','Mannlova'])
                                              ])
+
+
+# Name: Juan A. Nell
+class InnNameGen7(InnNameGenerator):
+     def __init__(self):
+          super().__init__(id = 7, priority = 1)
+          
+          self._Default = DefaultLastName.SecondLastName
+          
+          self.FirstNameFemaleList([   InnFirstNameFemale(['Anita A.']),
+                                              InnFirstNameFemale(['Fonda','I.M. Fonda']),
+                                              InnFirstNameFemale(['Ivana']),
+                                              InnFirstNameFemale(['Juana','I. Juana','U. Juana']),
+                                              InnFirstNameFemale(['Nastya']),
+                                              InnFirstNameFemale(['Olive']),
+                                              InnFirstNameFemale(['Rhoda','I. Rhoda','U. Rhoda']),
+                                              InnFirstNameFemale(['Sharon','I.M. Sharon']),
+                                              InnFirstNameFemale(['Wanda','I. Wanda']) 
+                                         ])
+          #'Dick','Gaylord','Hans','Penn S.','Peter','Rod','Willie','Willy'
+          self.FirstNameMaleList([      InnFirstNameMale(['Craven']),
+                                              InnFirstNameMale(['Dew N.']),
+                                              InnFirstNameMale(['Gaylord']),
+                                              InnFirstNameMale(['Juan']),
+                                              InnFirstNameMale(['Major']),
+                                              InnFirstNameMale(['Philmore']),
+                                              InnFirstNameMale(['Sawyer','I. Sawyer'])
+                                             ])
+
+          self.FirstLastNameList([      InnLastName(['A. Nell']),
+                                             ])
+                                             
+          self.SecondLastNameList([      InnLastName(['Daily']),
+                                              InnLastName(['Deeper']),
+                                              InnLastName(['Djiz']),
+                                              InnLastName(['Faulk']),
+                                              InnLastName(['Gape']),
+                                              InnLastName(['Gayley']),
+                                              InnLastName(['Harder']),
+                                              InnLastName(['Hoar']),
+                                              InnLastName(['Knightly']),
+                                              InnLastName(['Lover']),
+                                              InnLastName(['Philmore']),
+                                              InnLastName(['Sachs']),
+                                              InnLastName(['Sexton'])
+                                             ])
                                              
 class InnNameGenSelector():
      GeneratorList = []
