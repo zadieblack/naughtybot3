@@ -46,7 +46,7 @@ thisTZ = timezone("US/Eastern")
 currentDTaware = thisTZ.localize(currentDT)
 
 while True:
-    if randint(1,4) == 4:
+    if randint(1,2) == 2:
         #pass
         excerpt.lust_bot.InitBot(180, bTweet = True, bLoop = False, bRedditPost = True)
 

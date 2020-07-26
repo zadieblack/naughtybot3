@@ -5871,6 +5871,49 @@ class Generator144(Generator):
 
           return sTweet
 
+class Generator145(Generator):
+    Disabled = False 
+    def __init__(self):
+        super().__init__(ID = 145, Priority = 5)
+        #self.Template = templates.TitleTemplate6()
+        self.Template = templates.TitleTemplate29()
+     
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
+
+        sHerName = NamesFemale().FirstName()
+        while len(sHerName) < 7:
+            sHerName = NamesFemale().FirstName()
+
+        sHerName = sHerName[:-1] + sHerName[-1].upper()
+
+        self.ReqTemplateTags = ["couple","straight"]
+
+        Verbs = WordList(['Banged','Boinked','Fisted','Fucked','Humped','Jack-hammered','Plowed','Porked',
+                          'Reamed','Slammed','Stuffed','Titty-Fucked'])
+        Location = WordList(["on the bathroom floor","on the kitchen counter", 
+                             "in the back seat","on a park bench",
+                             "on the washing machine","at the laundromat",
+                             "under a jungle gym","on a merry-go-round",
+                             "on an elliptical machine","on a treadmill",
+                             "on a trampoline","in the ladies room",
+                             "in a kiddie pool","on a see-saw",
+                             "on an ikea futon","in the men's room",
+                             "in the janitor's closet","on the hood of a Buick",
+                             "in the back of a truck"])
+
+        sTweet = sHerName + "\n"
+        sTweet += Verbs.GetWord() + " Hard\n"
+        sTweet += Location.GetWord() +"!"
+
+
+        #sTweet = "Regina\nFucked Hard\nat the Laundromat!"
+        #sTweet = "Regina\nFucked Hard at the Laundromat"
+        
+
+        return sTweet     
+
 # Testing innuendo name generators          
 class Generator999(Generator):
      Type = GeneratorType.Test

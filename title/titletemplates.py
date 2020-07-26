@@ -994,7 +994,36 @@ class TitleTemplate28(TitleTemplate):
                      MaxRows = 2,
                      ColorType = LineColorType.SecondTitle)
 
+# [THREE LINES]
+# ONE OR TWO WORD TOP ROW
+# MEDIUM LENGTH MEDIUM-SIZED SECOND ROW
+# Small medium-length tag (excited!)
+# Generators: 145
+class TitleTemplate29(TitleTemplate):
+    def __init__(self):
+        super().__init__(ID = 29)
 
+        # Short very large top line
+        self.AddLine(OrderNum = 1,
+                     FontName = "Watson.ttf",
+                     FontMaxSize = 30,
+                     MaxRows = 1,
+                     ColorType = LineColorType.MainTitle)
+
+        # Small medium-length line 
+        self.AddLine(OrderNum = 1,
+                     FontName = "MutterKrauseNormal.ttf" ,
+                     FontMaxSize = 10,
+                     MaxRows = 1,
+                     ColorType = LineColorType.SmallText,
+                     AllCaps = True)
+
+        # Small medium-length tag (excited!)
+        self.AddLine(OrderNum = 3,
+                     FontName = "FreestyleScriptStd.otf",
+                     FontMaxSize = 21,
+                     MaxRows = 1,
+                     ColorType = LineColorType.SecondTitle)
 
 class TitleTemplateSelector():
     def __init__(self):

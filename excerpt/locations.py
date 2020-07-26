@@ -299,7 +299,7 @@ class Den(PrivateLocation):
      SittingOn = "a thick cushion"
      LyingOn = "the sofa"
      Ground = "the thick fur rug"
-     FemaleTopClothing = "tight leather corseet"
+     FemaleTopClothing = "tight leather corset"
      FemaleBottomClothing = "lacy silk panties"
      
 class DoctorsOffice(PublicLocation):
