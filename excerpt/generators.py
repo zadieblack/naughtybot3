@@ -500,7 +500,7 @@ class Generator12(Generator):
                                       "I haven't had a man in such a long time, and I'm SO horny,",
                                       "I've been waiting so long for this, " + sToE + ",",
                                       "Mommy needs a little favor, " + sToE + ",",
-                                      "Could you do me a teensy favor and rub me down baby oil?"
+                                      "Could you do me a teensy favor and rub me down with baby oil?"
                                      ])
           
           sTweet = sHerName + Intros.GetWord() + ". " 
