@@ -527,6 +527,7 @@ class Generator8(Generator):
 
           return sTweet
           
+# Idea: a rhyming version of this generator
 class Generator9(Generator):
      # The Secretary and the Space Werewolf  
      Disabled = False
@@ -787,7 +788,7 @@ class Generator16(Generator):
           Verbs = WordList(["Boned","Banged","Humped","Had Sex With","Went Down On","Sixty-Nined","Ate Out",
                             "Had Anal Sex With","Boinked","Jizzed On","Finger-Banged","Fisted","Did"])
 
-          StepMom = char.FemaleChar(TempType = TempType.Medium, SelectTemplateID = 9, 
+          StepMom = char.FemaleChar(TempType = TempType.Medium, SelectTemplateID = 7, 
                                     NotList = RelNotList, 
                                     ExclList = [SpeciesFemale])
           
@@ -5911,6 +5912,106 @@ class Generator145(Generator):
         #sTweet = "Regina\nFucked Hard\nat the Laundromat!"
         #sTweet = "Regina\nFucked Hard at the Laundromat"
         
+
+        return sTweet     
+
+class Generator146(Generator):
+    def __init__(self):
+         super().__init__(ID = 146, Priority = 50)
+         self.Template = templates.TitleTemplate1()
+     
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
+
+        self.ExclTemplateTags = ["gay"]
+        self.ReqTemplateTags = ["woman"]
+
+        Gerunds = WordList(['Ass Fucking',
+                           'Banging',
+                           'Bedding',
+                           'Boinking',
+                           'Boning',
+                           'Cavity Searching',
+                           'Cream-Pieing',
+                           'Deflowering', 
+                           'Dominating',
+                           'Drilling',
+                           'Dry Humping',
+                           'Eating Out',
+                           'Fingering',
+                           'Fisting',
+                           'Gagging',
+                           'Gang-Banging',
+                           'Hot-Dogging',
+                           'Humping',
+                           'Impregnating',
+                           'Jerking Off On',
+                           'Jizzing On',
+                           'Knocking Up',
+                           'Licking',
+                           'Lubing Up',
+                           'Milking',
+                           'Motor-Boating',
+                           'Mounting',
+                           'Nailing',
+                           'Paddling',
+                           'Penetrating',
+                           'Plowing',
+                           'Porking',
+                           'Queefing',
+                           'Ravishing',
+                           'Raw Dogging',
+                           'Reaming',
+                           'Riding',
+                           'Rimming',
+                           'Sixty-nining',
+                           'Spanking',
+                           'Stripping',
+                           'Stuffing',
+                           'Taking',
+                           'Tea-bagging',
+                           'Undressing',
+                           'Using',
+                           'Violating',
+                           'Whipping'])
+
+        GirlAdjs = WordList(titmisc.AgeFemaleAdj().GetWordList() + 
+                                titmisc.AttitudeFemale().GetWordList() +
+                                titmisc.ClothingFemale().GetWordList() +
+                                titmisc.GenModFemale().GetWordList() + 
+                                titmisc.NationFemale().GetWordList() + 
+                                titmisc.PhysCharFemale().GetWordList() +  
+                                titmisc.SexualityFemale().GetWordList() +  
+                                titmisc.SkinHairColorFemale().GetWordList() +  
+                                titmisc.SpeciesFemale().GetWordList() +  
+                                titmisc.RaceFemale().GetWordList() +  
+                                titmisc.SpeciesFemale().GetWordList())
+
+        GirlNouns = WordList(titmisc.SpeciesFemale().GetWordList() +
+                             titmisc.ProfFemale().GetWordList() + 
+                             titmisc.GirlFemale().GetWordList() + 
+                             titmisc.TitlesFemale().GetWordList() + 
+                             titmisc.TropesFemale().GetWordList() + 
+                             titmisc.NounsNiceGirl().GetWordList())
+
+        RhymingVerbAdjPair = GetRhymingPair(Gerunds.GetWordList(), GirlAdjs.GetWordList())
+        sGerund = RhymingVerbAdjPair[0]
+        sAdj = RhymingVerbAdjPair[1]
+        sNoun = GetRhymingWord(sAdj, GirlNouns.GetWordList())
+        while FoundIn(sNoun, sAdj):
+            sNoun = GetRhymingWord(sAdj, GirlNouns.GetWordList())
+        
+        PersonalRelate = ["sister","brother","mom","dad","mother",
+                            "father","fiancé","wife","girlfriend",
+                            "teacher","secretary","daughter",
+                            "babysitter","governess","tutor",
+                            "bride"]
+        sArticle = "The"
+        if FoundIn(sAdj, PersonalRelate) or FoundIn(sNoun, PersonalRelate):
+            sArticle = "My"
+
+        sTweet = sGerund + "\n" + sArticle + "\n" + sAdj + " " + sNoun
 
         return sTweet     
 
