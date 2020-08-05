@@ -5873,11 +5873,11 @@ class Generator144(Generator):
           return sTweet
 
 class Generator145(Generator):
-    Disabled = False 
+    Disabled = True 
     def __init__(self):
         super().__init__(ID = 145, Priority = 5)
         #self.Template = templates.TitleTemplate6()
-        self.Template = templates.TitleTemplate29()
+        #self.Template = templates.TitleTemplate29()
      
     def GenerateTweet(self):
         super().GenerateTweet()
@@ -5929,16 +5929,18 @@ class Generator146(Generator):
 
         Gerunds = WordList(['Ass Fucking',
                            'Banging',
+                           'Bare-backing',
                            'Bedding',
                            'Boinking',
                            'Boning',
                            'Cavity Searching',
                            'Cream-Pieing',
                            'Deflowering', 
-                           'Dominating',
+                           'Dominating',           # Daring Dominatrix
                            'Drilling',
                            'Dry Humping',
                            'Eating Out',
+                           'Edging',
                            'Fingering',
                            'Fisting',
                            'Gagging',
@@ -5951,28 +5953,27 @@ class Generator146(Generator):
                            'Knocking Up',
                            'Licking',
                            'Lubing Up',
+                           'Masturbating',
                            'Milking',
                            'Motor-Boating',
                            'Mounting',
-                           'Nailing',
+                           'Nailing',           # the norwegian naughty brat
                            'Paddling',
                            'Penetrating',
-                           'Plowing',
+                           #'Plowing',          # platinum blonde playboy centerfold
                            'Porking',
-                           'Queefing',
-                           'Ravishing',
+                           'Queefing',  
+                           'Ravishing',         # rebellious teen
                            'Raw Dogging',
                            'Reaming',
                            'Riding',
                            'Rimming',
                            'Sixty-nining',
                            'Spanking',
-                           'Stripping',
+                           #Stripping',        # Straight-Laced Stripper
                            'Stuffing',
                            'Taking',
                            'Tea-bagging',
-                           'Undressing',
-                           'Using',
                            'Violating',
                            'Whipping'])
 
@@ -5998,6 +5999,7 @@ class Generator146(Generator):
         RhymingVerbAdjPair = GetRhymingPair(Gerunds.GetWordList(), GirlAdjs.GetWordList())
         sGerund = RhymingVerbAdjPair[0]
         sAdj = RhymingVerbAdjPair[1]
+        print("Gerund is " + sGerund + ", Adj is " + sAdj)
         sNoun = GetRhymingWord(sAdj, GirlNouns.GetWordList())
         while FoundIn(sNoun, sAdj):
             sNoun = GetRhymingWord(sAdj, GirlNouns.GetWordList())
