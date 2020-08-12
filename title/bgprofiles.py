@@ -1868,7 +1868,7 @@ class BGProfileCivilWarHorse(BGProfile):
 class BGProfileShirtlessSpaceman(BGProfile):
     def __init__(self):
         super().__init__(ID = 139,
-                           Priority = 4,
+                           Priority = 12, # 4,
                            sFileName = "shirtless_spaceman")
         self.MainTitleColor = "rgba(217, 8, 7, 255)"
         self.SecondTitleColor = "rgba(217, 8, 7, 255)"
@@ -1881,7 +1881,7 @@ class BGProfileShirtlessSpaceman(BGProfile):
 class BGProfileGorillaVoyeur(BGProfile):
     def __init__(self):
         super().__init__(ID = 140,
-                           Priority = 4,
+                           Priority = 12, # 4
                            sFileName = "gorilla_voyeur")
         self.MainTitleColor = "rgba(214, 47, 37, 255)"
         self.SecondTitleColor = "rgba(223, 139, 144, 255)"
@@ -1894,7 +1894,7 @@ class BGProfileGorillaVoyeur(BGProfile):
 class BGProfileWaterfallKnife(BGProfile):
     def __init__(self):
         super().__init__(ID = 141,
-                           Priority = 4,
+                           Priority = 12, # 4
                            sFileName = "waterfall_knife")
         self.MainTitleColor = "rgba(214, 47, 37, 255)"
         self.SecondTitleColor = "rgba(53, 103, 83, 255)"
@@ -1907,7 +1907,7 @@ class BGProfileWaterfallKnife(BGProfile):
 class BGProfilePantyPerv(BGProfile):
     def __init__(self):
         super().__init__(ID = 142,
-                           Priority = 4,
+                           Priority = 12, # 4
                            sFileName = "panty_perv")
         self.MainTitleColor = "rgba(76, 180, 179, 255)"
         self.SecondTitleColor = "rgba(154, 143, 194, 255)"
@@ -1917,6 +1917,32 @@ class BGProfilePantyPerv(BGProfile):
                      "panties","underwear","kinky"]
         self.Disabled = False
         self.Content = Content.PG13
+
+class BGProfileAstroBabes(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 143,
+                           Priority = 12, # 4
+                           sFileName = "astrobabes")
+        self.MainTitleColor = "rgba(204, 65, 63, 255)"
+        self.SecondTitleColor = "rgba(77, 74, 156, 255)"
+        self.SmallTextColor = "rgba(8, 54, 98, 255)"
+        self.AuthorNameColor = "rgba(28, 115, 56, 255)"
+        self.Tags = ["woman","women","outside","redhead","brunette"
+                     "space","spaceship","alien","ass","future","scifi"]
+        self.Disabled = False
+
+class BGProfileCowgirlPanties(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 144,
+                           Priority = 12, # 4
+                           sFileName = "cowgirl_panties")
+        self.MainTitleColor = "rgba(222, 78, 18, 255)"
+        self.SecondTitleColor = "rgba(177, 118, 51, 255)"
+        self.SmallTextColor = "rgba(29, 104, 198, 255)"
+        self.AuthorNameColor = "rgba(68, 158, 227, 255)"
+        self.Tags = ["woman","outside","brunette","horse","cowgirl",
+                     "panties","western","pinup"]
+        self.Disabled = False
 
 # this is for debugging bgprofile frequency. delete later.
 def indexof(list, searchobj):
