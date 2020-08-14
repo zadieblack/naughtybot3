@@ -1941,8 +1941,36 @@ class BGProfileCowgirlPanties(BGProfile):
         self.SmallTextColor = "rgba(29, 104, 198, 255)"
         self.AuthorNameColor = "rgba(68, 158, 227, 255)"
         self.Tags = ["woman","outside","brunette","horse","cowgirl",
-                     "panties","western","pinup"]
+                     "panties","western","pinup","single"]
         self.Disabled = False
+
+class BGProfileGingerDriver(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 145,
+                           Priority = 12, # 4
+                           sFileName = "ginger_diver")
+        self.MainTitleColor = "rgba(183, 42, 3, 255)"
+        self.SecondTitleColor = "rgba(192, 65, 5, 255)"
+        self.SmallTextColor = "rgba(36, 65, 30, 255)"
+        self.AuthorNameColor = "rgba(14, 81, 164, 255)"
+        self.Tags = ["woman","outside","redhead","underwater","bikini",
+                     "diving","single","pinup"]
+        self.Disabled = False
+
+class BGProfilePublicBedroom(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 146,
+                           Priority = 12, # 4
+                           sFileName = "public_bedroom")
+        self.MainTitleColor = "rgba(208, 68, 86, 255)"
+        self.SecondTitleColor = "rgba(207, 179, 52, 255)"
+        self.SmallTextColor = "rgba(78, 92, 72, 255)"
+        self.AuthorNameColor = "rgba(78, 92, 72, 255)"
+        self.Tags = ["man","woman","blonde","inside","bedroom",
+                     "voyeur","couple","sex","hardcore","audience",
+                     "kinky"]
+        self.Disabled = False
+        self.Content = Content.AdultsOnly
 
 # this is for debugging bgprofile frequency. delete later.
 def indexof(list, searchobj):
