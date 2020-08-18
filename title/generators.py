@@ -4677,7 +4677,7 @@ class Generator119(Generator):
           super().GenerateTweet()
           sTweet = ""
 
-          self.ReqTemplateTags = ["woman","single"]
+          self.ReqTemplateTags = ["woman","ass"]
           
           GirlNotList = ['Single','Slave','Nude','Naked','Tanned']
           Girl = char.FemaleChar(bAddTheArticle = True, Type = GirlType.Good, 

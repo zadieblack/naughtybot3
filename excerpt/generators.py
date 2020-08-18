@@ -5783,16 +5783,115 @@ class Generator98(Generator):
           # sTweet = ""
 
           # return sTweet
-          
-# class Generator100(Generator):
-     # ID = 100
-     # Priority = 1
+      
+# Svetlana unbuckled his belt, unzipped his {pants/jeans/trousers/shorts} and pulled out his penis. 
+# His knob began to swell at the gentle {touch/strokes} of her {soft/warm/kind/gentle} fingers as 
+# she jacked him off right there in the carpark.
+class Generator100(Generator):
+    def __init__(self):
+        super().__init__(ID = 100, Priority = GenPriority.Normal)
      
-     # def GenerateTweet(self):
-          # super().GenerateTweet()
-          # sTweet = ""
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
 
-          # return sTweet
+        sHerName = self.FemaleName.FirstName()
+        sHisName = self.MaleName.FirstName()
+
+        Penis = bodyparts.Penis(bAllowBAP = False)
+        Head = Penis.Head
+        Balls = Penis.Testicles
+
+        DickNotList = ["hard","girth","erect","thing"]
+        DickAdjs = WordList(["bald","beautiful","black","carefully man-scaped","circumcised",
+                            "dangling","dark","flaccid","flaccid","fleshy","hairless",
+                            "hairy","lengthy","limp","long","magnificent","pink","silken",
+                            "shriveled","small","smooth","tasty","tiny","thick","uncircumcised",
+                            "veiny","veiny","virile","well-groomed"])
+        sDickAdj = DickAdjs.GetWord()
+
+        sTweet += sHerName + " unbuckled " + sHisName + "'s belt, "
+        sTweet += "unzipped his " + WordList(["khaki pants","bluejeans","trousers",
+                                              "gray slacks","black slacks","leather pants",
+                                              "tight pants","pleated trousers"
+                                             ]).GetWord() + ", "
+        sTweet += "and pulled out his " + sDickAdj + " " + Penis.ShortDescription(NotList = DickNotList + [sDickAdj]) + ". "
+        if CoinFlip():
+            # balls
+            sTweet += "His " + Balls.ShortDescription() + " began to tighten"
+        elif CoinFlip():
+            # head
+            sTweet += "The " + Head.ShortDescription() + " "
+            sTweet += "began to " + WordList(["swell","engorge","fatten","grow"]).GetWord()
+        else:
+            #cock 
+            sTweet += "His " + Penis.ShortDescription() + " "
+            sTweet += "began to " + WordList(["swell","engorge","fatten","grow","lengthen",
+                                              "rise","extend","harden"]).GetWord()
+
+        sTweet += " at the " + WordList(["touch","strokes","caresses","fondling",
+                                         "ministrations"
+                                         ]).GetWord() + " "
+        sTweet += "of her " + WordList(["gentle","soft","soothing","delicate",
+                                         "skillful","tender","sensitive"
+                                         ]).GetWord() + " fingers "
+        sTweet += "as she " + WordList(["jacked him off",
+                                        "jerked him off",
+                                        "beat his meat",
+                                        "wanked him",
+                                        "wanked him off",
+                                        "yanked him off",
+                                        "gave him a handjob",
+                                        ]).GetWord() + " "
+        sTweet += "right there " + WordList(["in the carpark",
+                                             "in the men's restroom",
+                                             "in the ladies room",
+                                             "in the Macy's dressing room",
+                                             "in the back alley",
+                                             "in the frozen foods aisle",
+                                             "behind the bleachers",
+                                             "behind the shed",
+                                             "in the back seat",
+                                             "in the Starbucks restroom",
+                                             "in the auto parts section at Wal-mart",
+                                             "in the back of her parents van",
+                                             "on a park bench",
+                                             "behind the bowling alley",
+                                             "on the hotel balcony",
+                                             "in the back of the church",
+                                             "on the teacher's desk",
+                                             "in the back of the classroom",
+                                             "under the jungle gym",
+                                             "in the laundromat",
+                                             "on the examination table",
+                                             "in the library",
+                                             "on the boss's desk",
+                                             "on the conference room table",
+                                             "in the yoga studio",
+                                             "behind the Wendy's",
+                                             "in the airplane bathroom",
+                                             "in the menswear section",
+                                             "in the back row of the movie theater",
+                                             "in the parking garage",
+                                             "in the gas station restroom",
+                                             "under the overpass",
+                                             "in the carwash",
+                                             "behind the wedding chapel",
+                                             "on the kitchen counter",
+                                             "on the kichen table",
+                                             "on the coffee table",
+                                             "in the doctor's office",
+                                             "in the dentist's office",
+                                             "in the back of the Buick",
+                                             "in his Honda Civic",
+                                             "in his Toyota Camry",
+                                             "in his Nissan Altima",
+                                             "in her parent's bedroom",
+                                             "behind the Subway counter",
+                                             "on the subway"
+                                             ]).GetWord() + "."
+
+        return sTweet
           
 # class Generator101(Generator):
      # ID = 101

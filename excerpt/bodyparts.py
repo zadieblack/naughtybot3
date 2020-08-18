@@ -1829,7 +1829,7 @@ class Penis(BodyParts):
                'tumescent',
                'turgid',
                'unfurled',
-               'veiny',
+               'veiny','veiny','veiny',
                'virile'])
                
           self.PenisFrontPart = ['beef',
