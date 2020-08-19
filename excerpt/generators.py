@@ -5789,7 +5789,7 @@ class Generator98(Generator):
 # she jacked him off right there in the carpark.
 class Generator100(Generator):
     def __init__(self):
-        super().__init__(ID = 100, Priority = GenPriority.Normal)
+        super().__init__(ID = 100, Priority = GenPriority.AboveAverage)
      
     def GenerateTweet(self):
         super().GenerateTweet()
@@ -5893,45 +5893,163 @@ class Generator100(Generator):
 
         return sTweet
           
-# class Generator101(Generator):
-     # ID = 101
-     # Priority = 1
+# Bradford {held his breath/felt his heart hammering in his chest} as Prudence sensually slid 
+# her {lacy/frilly} panties down over her {curved, rounded} hips. Then she bent forward over 
+# the {bed/counter/sofa/coffee table}, {exposing/presenting} her large, generous rump to him. 
+# Kneeling behind her, he gently {brushed one chubby cheek with his lips/caressed her sweet buns}. 
+# {Then he spread them apart and begin to tongue her tight anus
+# /Then he spread her legs apart and began to nibble on her long, meaty flaps}
+class Generator101(Generator):
+    def __init__(self):
+        super().__init__(ID = 101, Priority = GenPriority.AboveAverage)
      
-     # def GenerateTweet(self):
-          # super().GenerateTweet()
-          # sTweet = ""
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
 
-          # return sTweet
+        sHerName = self.FemaleName.FirstName()
+        sHisName = self.MaleName.FirstName()
 
-# class Generator102(Generator):
-     # ID = 102
-     # Priority = 1
+        Hips = self.FemBodyParts.Hips
+        Ass = self.FemBodyParts.Ass
+        Buns = Ass.Buttocks
+        Pussy = self.FemBodyParts.Vagina
+
+        sTweet += sHisName + " felt his heart " + WordList(["hammering","pounding",
+                                                            "beating hard","thumping",
+                                                            "pulsing"
+                                                            ]).GetWord() + " in his chest "
+        sTweet += "as " + sHerName + " " + WordList(["sensually","sensuously",
+                                                     "slowly","teasingly",
+                                                     "languidly","tantalizingly",
+                                                     "sexily"
+                                                     ]).GetWord() + " slid "
+        sTweet += "her " + WordList(["lacy","frilly",
+                                     "silky","sheer",
+                                     "satiny"
+                                     ]).GetWord() + " little panties "
+        sTweet += "down over her " + Hips.MediumDescription() + ". "
+        sTweet += "Then she bent forward over the " + WordList(["bed","bench","coffee table",
+                                                                "desk","kitchen counter","kitchen table",
+                                                                "loveseat","seat","sofa",
+                                                                "examination table","boulder","fallen log",
+                                                                "side of the trampoline","work bench","conference room table"
+                                                                ]).GetWord() + ", "
+        sTweet += WordList(["displaying","exposing","offering","presenting"]).GetWord() + " "
+        sTweet += "her " + Ass.FloweryDescription() + " to him. "
+        sTweet += "Kneeling behind her, he " + WordList(["gently","lightly","softly","tenderly"]).GetWord() + " "
+        if CoinFlip():
+            # kisses it
+            
+            sTweet += WordList(["brushed","kissed","nuzzled","bussed"
+                                ]).GetWord() + " one of her " + Buns.RandomDescription()
+            sTweet += " with his lips"
+        else:
+            # caresses it
+            sTweet += WordList(["brushed","caressed","squeezed","stroked","fondled"
+                                ]).GetWord() + " her " + Buns.RandomDescription()
+        sTweet += ". Then he spread her open and "
+        if CoinFlip():
+            # nibbles her labia
+            sTweet += "began to " + WordList(["nibble","suck on","tongue and tease"]).GetWord() + " "
+            sTweet += "her " + Pussy.InnerLabia.FloweryDescription()
+        else:
+            # tongues her anus
+            sTweet += "began to " + WordList(["lick the rim of","taste","lap at","penetrate","lick","rim"]).GetWord() + " "
+            sTweet += "her " + Ass.Anus.FloweryDescription() + " with his tongue"
+        sTweet += "."
+
+        return sTweet
+
+#class Generator102(Generator):
+#    def __init__(self):
+#        super().__init__(ID = 102, Priority = GenPriority.Normal)
      
-     # def GenerateTweet(self):
-          # super().GenerateTweet()
-          # sTweet = ""
+#    def GenerateTweet(self):
+#        super().GenerateTweet()
+#        sTweet = ""
 
-          # return sTweet
+#        return sTweet
           
-# class Generator103(Generator):
-     # ID = 103
-     # Priority = 1
+#class Generator103(Generator):
+#    def __init__(self):
+#        super().__init__(ID = 103, Priority = GenPriority.Normal)
      
-     # def GenerateTweet(self):
-          # super().GenerateTweet()
-          # sTweet = ""
+#    def GenerateTweet(self):
+#        super().GenerateTweet()
+#        sTweet = ""
 
-          # return sTweet
+#        return sTweet
           
-# class Generator104(Generator):
-     # ID = 104
-     # Priority = 1
+#class Generator104(Generator):
+#    def __init__(self):
+#        super().__init__(ID = 104, Priority = GenPriority.Normal)
      
-     # def GenerateTweet(self):
-          # super().GenerateTweet()
-          # sTweet = ""
+#    def GenerateTweet(self):
+#        super().GenerateTweet()
+#        sTweet = ""
 
-          # return sTweet
+#        return sTweet
+
+#class Generator105(Generator):
+#    def __init__(self):
+#        super().__init__(ID = 105, Priority = GenPriority.Normal)
+     
+#    def GenerateTweet(self):
+#        super().GenerateTweet()
+#        sTweet = ""
+
+#        return sTweet
+
+#class Generator106(Generator):
+#    def __init__(self):
+#        super().__init__(ID = 106, Priority = GenPriority.Normal)
+     
+#    def GenerateTweet(self):
+#        super().GenerateTweet()
+#        sTweet = ""
+
+#        return sTweet
+
+#class Generator107(Generator):
+#    def __init__(self):
+#        super().__init__(ID = 107, Priority = GenPriority.Normal)
+     
+#    def GenerateTweet(self):
+#        super().GenerateTweet()
+#        sTweet = ""
+
+#        return sTweet
+
+#class Generator108(Generator):
+#    def __init__(self):
+#        super().__init__(ID = 108, Priority = GenPriority.Normal)
+     
+#    def GenerateTweet(self):
+#        super().GenerateTweet()
+#        sTweet = ""
+
+#        return sTweet
+
+#class Generator109(Generator):
+#    def __init__(self):
+#        super().__init__(ID = 109, Priority = GenPriority.Normal)
+     
+#    def GenerateTweet(self):
+#        super().GenerateTweet()
+#        sTweet = ""
+
+#        return sTweet
+
+#class Generator110(Generator):
+#    def __init__(self):
+#        super().__init__(ID = 110, Priority = GenPriority.Normal)
+     
+#    def GenerateTweet(self):
+#        super().GenerateTweet()
+#        sTweet = ""
+
+#        return sTweet
           
 class GeneratorSelector():
     def __init__(self):
