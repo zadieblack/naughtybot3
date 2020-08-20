@@ -5798,9 +5798,10 @@ class Generator100(Generator):
         sHerName = self.FemaleName.FirstName()
         sHisName = self.MaleName.FirstName()
 
-        Penis = bodyparts.Penis(bAllowBAP = False)
-        Head = Penis.Head
-        Balls = Penis.Testicles
+        Penis1 = bodyparts.Penis(bAllowBAP = False)
+        Penis2 = bodyparts.Penis()
+        Head = Penis1.Head
+        Balls = Penis1.Testicles
 
         DickNotList = ["hard","girth","erect","thing"]
         DickAdjs = WordList(["bald","beautiful","black","carefully man-scaped","circumcised",
@@ -5815,19 +5816,19 @@ class Generator100(Generator):
                                               "gray slacks","black slacks","leather pants",
                                               "tight pants","pleated trousers"
                                              ]).GetWord() + ", "
-        sTweet += "and pulled out his " + sDickAdj + " " + Penis.ShortDescription(NotList = DickNotList + [sDickAdj]) + ". "
+        sTweet += "and pulled out his " + sDickAdj + " " + Penis1.ShortDescription(NotList = DickNotList + [sDickAdj]) + ". "
         if CoinFlip():
-            # balls
-            sTweet += "His " + Balls.ShortDescription() + " began to tighten"
+            #cock 
+            sTweet += "His " + Penis2.ShortDescription(NotList = ["fuck","thing"]) + " " #Penis.BuildAPenis(NotList = ['fuck']) + " " 
+            sTweet += "began to " + WordList(["swell","engorge","fatten","grow","lengthen",
+                                              "rise","extend","harden"]).GetWord()
         elif CoinFlip():
             # head
             sTweet += "The " + Head.ShortDescription() + " "
             sTweet += "began to " + WordList(["swell","engorge","fatten","grow"]).GetWord()
         else:
-            #cock 
-            sTweet += "His " + Penis.ShortDescription() + " "
-            sTweet += "began to " + WordList(["swell","engorge","fatten","grow","lengthen",
-                                              "rise","extend","harden"]).GetWord()
+            # balls
+            sTweet += "His " + Balls.ShortDescription() + " began to tighten"
 
         sTweet += " at the " + WordList(["touch","strokes","caresses","fondling",
                                          "ministrations"

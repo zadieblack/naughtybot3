@@ -385,6 +385,7 @@ class Lips(BodyParts):
                'inviting',
                'insolent',
                'luscious',
+               'pouting',
                'sensual',
                'sweet'])
                
@@ -612,27 +613,22 @@ class Breasts(BodyParts):
           
           self.NounList(['boobies',
                'boobs',
-               'bosoms',
-               'bosoms',
-               'breasts',
-               'breasts',
-               'breasts',
-               'breasts',
-               'buds',
+               'bosoms','bosoms',
+               'breasts','breasts',
+               'buds','buds',
                'bust',
                'coconuts',
                'dumplings',
                'gazongas',
-               'globes',
+               'globes','globes',
                'jugs',
                'knockers',
                'mammaries',
                'melons',
-               'orbs',
+               'mounds','mounds',
+               'orbs','orbs',
                'teats',
-               'tits',
-               'tits',
-               'titties'])
+               'tits','titties'])
                
           self.AdjList(['bouncy',
                'bountiful',
@@ -1703,7 +1699,7 @@ class Testicles(BodyParts):
           self.DefaultNoun("testicles")
 
 class Penis(BodyParts):
-     def BuildAPenis(self):
+     def BuildAPenis(self, NotList = []):
           sPenis = ""
           
           iRandFront = 0
@@ -1714,7 +1710,7 @@ class Penis(BodyParts):
           sFrontPart = self.PenisFrontPart[iRandFront]
           sBackPart = self.PenisBackPart[iRandBack]
           
-          while sFrontPart in sBackPart:
+          while FoundIn(sFrontPart, sBackPart) or FoundIn(sFrontPart, NotList) or FoundIn(sBackPart, NotList):
                iRandFront = randint(0,len(self.PenisFrontPart) - 1)
                iRandBack = randint(0,len(self.PenisBackPart) - 1)
                sFrontPart = self.PenisFrontPart[iRandFront]
@@ -1728,7 +1724,7 @@ class Penis(BodyParts):
                sFrontPart = self.PenisFrontPart[iRandFront]
                sBackPart = self.PenisBackPart[iRandBack]
                
-               while sFrontPart in sBackPart:
+               while FoundIn(sFrontPart, sBackPart) or FoundIn(sFrontPart, NotList) or FoundIn(sBackPart, NotList):
                     iRandFront = randint(0,len(self.PenisFrontPart) - 1)
                     iRandBack = randint(0,len(self.PenisBackPart) - 1)
                     sFrontPart = self.PenisFrontPart[iRandFront]
