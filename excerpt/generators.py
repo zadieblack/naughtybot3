@@ -5918,7 +5918,7 @@ class Generator101(Generator):
 
         sTweet += sHisName + " felt his heart " + WordList(["hammering","pounding",
                                                             "beating hard","thumping",
-                                                            "pulsing"
+                                                            "pulsing","racing"
                                                             ]).GetWord() + " in his chest "
         sTweet += "as " + sHerName + " " + WordList(["sensually","sensuously",
                                                      "slowly","teasingly",

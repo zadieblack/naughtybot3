@@ -353,6 +353,7 @@ class ClassyNamesMale(Names):
                'Darius',
                'Deacon',
                'Desmond',
+               'Diego',
                'Dominic',
                'Drake',
                'Duke',
