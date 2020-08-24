@@ -47,10 +47,13 @@ currentDTaware = thisTZ.localize(currentDT)
 
 while True:
     iRand = randint(1,3)
-
+    print("+ randint(1,3) = " + str(iRand))
     if iRand != 1:
         #pass
+        print("+ running bot lust")
         excerpt.lust_bot.InitBot(180, bTweet = True, bLoop = False, bRedditPost = True)
+    else:
+        print("+ skipping bot lust")
 
     title.ee_bot.InitBot(180, bTweet = True, bLoop = False, bRedditPost = True)
     currentDTaware = thisTZ.localize(datetime.datetime.utcnow())

@@ -5668,7 +5668,7 @@ class Generator97(Generator):
 # she purred, "have you ever tried a Dirty Burrito?"
 class Generator98(Generator):
     def __init__(self):
-        super().__init__(ID = 98, Priority = GenPriority.SuperHigh)
+        super().__init__(ID = 98, Priority = GenPriority.High)
      
     def GenerateTweet(self):
         super().GenerateTweet()
@@ -5769,7 +5769,7 @@ class Generator98(Generator):
 
         sTweet += sHerName + " " + sPrep1 + " and " + sPrep2 + ". "
         sTweet += "\"Tell me, " + sToE3 + ",\" she purred, " 
-        sTweet += "\"Have you ever " + WordList(["tried","had","gotten"]).GetWord() + " " 
+        sTweet += "\"Have you ever " + WordList(["had","gotten"]).GetWord() + " " 
         sTweet += "" + AddArticles(shmisc.TantricTechniques().GetWord(), cBracket = "'") + "?\""
 
         return sTweet
