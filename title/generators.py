@@ -5999,7 +5999,7 @@ class Generator146(Generator):
         RhymingVerbAdjPair = GetRhymingPair(Gerunds.GetWordList(), GirlAdjs.GetWordList())
         sGerund = RhymingVerbAdjPair[0]
         sAdj = RhymingVerbAdjPair[1]
-        print("Gerund is " + sGerund + ", Adj is " + sAdj)
+        #print("Gerund is " + sGerund + ", Adj is " + sAdj)
         sNoun = GetRhymingWord(sAdj, GirlNouns.GetWordList())
         while FoundIn(sNoun, sAdj):
             sNoun = GetRhymingWord(sAdj, GirlNouns.GetWordList())
@@ -6016,6 +6016,49 @@ class Generator146(Generator):
         sTweet = sGerund + "\n" + sArticle + "\n" + sAdj + " " + sNoun
 
         return sTweet     
+
+class Generator147(Generator):
+    def __init__(self):
+         super().__init__(ID = 147, Priority = 50)
+         self.Template = templates.TitleTemplate30()
+     
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
+
+        
+
+        #12,17,26,30,31,51,54,55,62,67,74,78,79,89,90,133,136,147
+
+        ExclGenList = [12,17,26,30,31,51,54,55,62,67,74,78,79,89,90,133,136,147]
+
+        ImgTxtGen = GetTweet(bTest = False, bTweet = False, iGeneratorNo = -1, bAllowPromo = False, bAllowFavTweets = False)
+
+        while int(ImgTxtGen.ID) in ExclGenList or len(ImgTxtGen.ImgTxt) > 55:
+            #print("  Getting new ImgTxtGen...")
+            #if len(ImgTxtGen.ImgTxt) > 65:
+            #    print("  - ImgTxtGen.ImgTxt too long at " + str(len(ImgTxtGen.ImgTxt)) + " characters. Trying again.")
+            #if int(ImgTxtGen.ID) in ExclGenList:
+            #    print("  - " + str(ImgTxtGen.ID) + " in the exclusion list " + str(ExclGenList))
+
+            ImgTxtGen = GetTweet(bTest = False, bTweet = False, iGeneratorNo = -1, bAllowPromo = False, bAllowFavTweets = False)
+  
+        #print("  ImgTxtGen.ExclTemplateTags is " + str(ImgTxtGen.ExclTemplateTags))
+        self.ExclTemplateTags = ImgTxtGen.ExclTemplateTags
+        self.ReqTemplateTags = ImgTxtGen.ReqTemplateTags
+
+        #print("  Done. Final ImgTxtGen.ID = " + str(ImgTxtGen.ID))
+        if len(ImgTxtGen.ImgTxt) > 0:
+            sTweet = " ".join(ImgTxtGen.ImgTxt.split("\n"))
+
+        Sequels = WordList(["2","II","III","4","IV","5","7","VII","8","10","11","13","17","18","20","21","22","37","69"])
+
+        if CoinFlip():
+            sTweet += "\nBook " + Sequels.GetWord()
+        else:
+            sTweet += "\nPart " + Sequels.GetWord()
+
+        return sTweet
 
 # Testing innuendo name generators          
 class Generator999(Generator):

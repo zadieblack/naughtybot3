@@ -806,7 +806,7 @@ class Character():
           
         if SelectTemplateID > 0:
             # Note: if a specific template ID is requested the exclusion and required lists will be ignored
-            print(" - Getting a template for SelectTemplateID = " + str(SelectTemplateID))
+            #print(" - Getting a template for SelectTemplateID = " + str(SelectTemplateID))
             if isinstance(TemplateList, list):
                 for item in TemplateList:
                     SelCharTemplate = item

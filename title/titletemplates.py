@@ -16,7 +16,7 @@ from util import *
 # "Coventry Garden NF.ttf"          All Caps         xx             18
 # "FreestyleScriptStd.otf"          Hand-written     xx             22
 # "Helenium W01 Regular.ttf"        All Caps         xx             18           
-# "Lapidary 333 Bold Italic.otf"                     xx             16
+# "Lapidary 333 Bold Italic.otf"                     xx             16  AUTHOR FONT
 # "LaserLondon.ttf"                                  xx             26
 # "Lightfoot.ttf"                   All Caps         xx             26
 # "MutterKrauseNormal.ttf"                           xx             16
@@ -1024,6 +1024,31 @@ class TitleTemplate29(TitleTemplate):
                      FontMaxSize = 21,
                      MaxRows = 1,
                      ColorType = LineColorType.SecondTitle)
+
+# [TWO LINES]
+# LONG ONE OR TWO LINE TOP ROW
+# Part III
+# Generators: 145
+class TitleTemplate30(TitleTemplate):
+    def __init__(self):
+        super().__init__(ID = 30)
+
+        # Large very long line
+        self.AddLine(OrderNum = 1,
+                     FontName = "Verona-ExtraBold.otf",
+                     FontMaxSize = 24,
+                     MaxRows = 3,
+                     ColorType = LineColorType.MainTitle,
+                     AllCaps = True)
+
+        # Medium short length line
+        self.AddLine(OrderNum = 2,
+                     FontName =  "Sabado Regular.otf",
+                     FontMaxSize = 12,
+                     MaxRows = 2,
+                     ColorType = LineColorType.SmallText,
+                     AllCaps = True)
+
 
 class TitleTemplateSelector():
     def __init__(self):

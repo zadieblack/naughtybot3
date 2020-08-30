@@ -141,8 +141,8 @@ class FemaleChar(Character):
           
         if len(SelectionList) == 0:
             print("=*= WARNING =*= FemaleChar() template list is empty")
-        else:
-            print("Template List length is " + str(len(SelectionList)) + "\nTEMPLATE LIST")
+        #else:
+            #print("Template List length is " + str(len(SelectionList)) + "\nTEMPLATE LIST")
             #print("NAME:\t\t\tID\tGIRL TYPE:\tTEMPLATE TYPE:")
             #sTable = ""
             #for item in SelectionList:

@@ -46,10 +46,9 @@ def InitBot(iTweetTimer,
     try:
         api = InitTweepy()
           
-        if iGeneratorNo == -1:
-            iGeneratorNo = MAX_GENERATOR_NO
-        else:
+        if iGeneratorNo != -1:
             bTest = True
+
         i = 0
         while i in range(0,iTweets) or bLoop:
             ImgTxtGen = None 
