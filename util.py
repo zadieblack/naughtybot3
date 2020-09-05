@@ -207,33 +207,49 @@ class HistoryQ():
           return bIsInQ
                
 class HistoryQWithLog(HistoryQ):
-     def __init__(self, sLogFileName, iQSize = Q_SIZE):
-          super().__init__(iQSize)
-          self.LogFileName = sLogFileName
-          #print("LogFileName is " + self.LogFileName)
+    def __init__(self, sLogFileName, iQSize = Q_SIZE):
+        super().__init__(iQSize)
+        self.LogFileName = sLogFileName
           
-          try:
-               #print("Opening log file.")
-               with open(self.LogFileName, 'r') as ReadLogFile:
-                    for item in ReadLogFile.read().splitlines():
-                         #print(item)
-                         self.HistoryQ.append(int(item))
-          except FileNotFoundError:
-               #print("Unable to open log file, creating log file.")
-               open(self.LogFileName, 'w')
-               with open(self.LogFileName, 'r') as ReadLogFile:
-                    for item in ReadLogFile.read().splitlines():
-                         #print(item)
-                         self.HistoryQ.append(int(item))
-          #print("Loaded HistoryQ:")
-          #print(self.HistoryQ)
+        try:
+            #print("Opening log file.")
+            with open(self.LogFileName, 'rb') as ReadLogFile:
+                for item in ReadLogFile.read().splitlines():
+                    item = item.decode("utf8")
+                    item = item.replace("\\n","\n")
+                    #print(item)
+                    if type(item) == "int":
+                        self.HistoryQ.append(int(item))
+                    else:
+                        self.HistoryQ.append(item)
+        except FileNotFoundError:
+            #print("Unable to open log file, creating log file.")
+            open(self.LogFileName, 'wb')
+            with open(self.LogFileName, 'rb') as ReadLogFile:
+                for item in ReadLogFile.read().splitlines():
+                    item = item.decode("utf8")
+                    item = item.replace("\\n","\n")
+                    #print(item)
+                    if type(item) == "int":
+                        self.HistoryQ.append(int(item))
+                    else:
+                        self.HistoryQ.append(item)
+        #print("Loaded HistoryQ:")
+        #print(self.HistoryQ)
                
-     def LogHistoryQ(self):
-          with open(self.LogFileName, 'w+') as WriteHistoryQ:
-               for item in self.HistoryQ:
-                    WriteHistoryQ.write(str(item) + "\n")
-          #print("Wrote HistoryQ:")
-          #print(self.HistoryQ)
+    def LogHistoryQ(self):
+        with open(self.LogFileName, 'wb+') as WriteHistoryQ:
+            for item in self.HistoryQ:
+                sLine = str(item)
+                sLine = sLine.replace("\n","\\n")
+                sLine += "\n"
+                UTFLine = sLine.encode("utf8")
+                WriteHistoryQ.write(UTFLine)
+        #print("Wrote HistoryQ:")
+        #print(self.HistoryQ)
+
+    def __del__(self):
+        self.LogHistoryQ()
      
 def FoundIn(sWord, SearchTarget):
      bFound = False 
