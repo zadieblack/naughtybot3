@@ -6,25 +6,36 @@ from random import *
 from util import *
 
 class GeneratorContainer():
-    # List of unique generators 
-    GeneratorList = []
+    def __init__(self, GeneratorClass, iFirstID = 1, HistoryQ = None):
+        super().__init__()  # just in case
 
-    # List of prioritized generators for random selection
-    SelectorList = []
+        GeneratorObj = GeneratorClass()
+        self.GeneratorClassName = str(type(GeneratorObj).__name__)
+        print("Generator class name is " + self.GeneratorClassName)
 
-    # If generator IDs are not given the container will add them
-    NextGenID = 1
+        # The optional history q
+        if not HistoryQ is None:
+            self.HistoryQ = HistoryQ
+        else:
+            self.HistoryQ = None
 
-    # The container can also track the history Q
-    HistoryQ 
-
-    def __init__(self, Q = None, iFirstID = 1):
-        if not Q is None:
-            self.HistoryQ = Q
-
+        # List of unique generators 
         self.GeneratorList = []
+
+        # List of prioritized generators for random selection
         self.SelectorList = [] 
+
+        # If generator IDs are not given the container will add them
         self.NextGenID = iFirstID
+
+        for subclass in GeneratorClass.__subclasses__():
+            item = subclass()
+            if not item.Disabled:
+                #for x in range(0, item.Priority):
+                
+                self.GeneratorList.append([item.ID, item])
+
+        print(self.GeneratorList)
 
     # Get an individual generator by ID
     def GetGenerator(self, GenNo):
@@ -67,20 +78,20 @@ class GeneratorContainer():
                     
         return Generator 
 
-    # Generators adding themselves to the container must call this
-    def AddMe(self, gen):
-        if isinstance(gen, Generator):
-            self.GeneratorList.append(gen)
-            if not gen.Priority is None:
-                i = 0 
-                if not gen.Disabled:
-                    while i < gen.Priority:
-                        self.SelectorList.append(gen)
-                        i = i + 1
+    ## Generators adding themselves to the container must call this
+    #def AddMe(self, gen):
+    #    if isinstance(gen, Generator):
+    #        self.GeneratorList.append(gen)
+    #        if not gen.Priority is None:
+    #            i = 0 
+    #            if not gen.Disabled:
+    #                while i < gen.Priority:
+    #                    self.SelectorList.append(gen)
+    #                    i = i + 1
 
-            if gen.ID is None or gen.ID < 0:
-                gen.ID = self.NextGenID
-                self.NextGenID = self.NextGenID + 1
+    #        if gen.ID is None or gen.ID < 0:
+    #            gen.ID = self.NextGenID
+    #            self.NextGenID = self.NextGenID + 1
 
     def ValidateGenIDs(self):
         bValid = True
@@ -97,41 +108,41 @@ class GeneratorContainer():
 
 
 class Generator():
-    ID = -1
-    # each generator should have a unique ID
-    Priority = 1
-    # increasing the Priority increases the chances the generator is randomly selected. But it can only be selected again while it is not currently in the history queue
-    Type = GeneratorType.Normal
-    # most generators are Normal. Setting a generator to Test makes sure it can't be selected randomly. Setting a generator to Promo means it won't be selected for reply tweets
-    Disabled = False
-    # the generated text
-    Txt = ""
-    # a container object to hold all the generators for selection
-    self.Container = None
-    
     def __init__(self, 
-                 ID = -1, 
-                 iPriority = 1, 
                  Container = None,
+                 ID = -1, 
+                 Priority = 1, 
                  GeneratorType = GeneratorType.Normal, 
                  bDisabled = False, 
+                 Func = None,
                  sTxt = ""):
 
-        if not ID == -1:
-            self.ID = ID
-        self.Priority = iPriority
-        if not Container is None and isinstance(Container, GeneratorContainer):
-            Container.AddMe(self)
+        # each generator should have a unique ID
+        self.ID = ID
+
+        # increasing the Priority increases the chances the generator is randomly selected. But it can only be selected again while it is not currently in the history queue
+        self.Priority = Priority
+
+        # most generators are Normal. Setting a generator to Test makes sure it can't be selected randomly. Setting a generator to Promo means it won't be selected for reply tweets
         self.GeneratorType = GeneratorType
         self.Disabled = bDisabled 
+
+        # the generated text
         self.Txt = sTxt
 
-    def Generate(self):
+        ## a container object to hold all the generators for selection
+        #if not Container is None and isinstance(Container, GeneratorContainer):
+        #    Container.AddMe(self)
+
+    # pass in a custom function for this object
+    def Generate(self, Func):
         self.Txt = self.GenerateTxt()
 
     # this will be overridden by most generators but this is how it should look
     def GenerateTxt(self):
-        sTweet = ""
+        sTxt = ""
+
+        return sTxt
 
         return sTweet
 
