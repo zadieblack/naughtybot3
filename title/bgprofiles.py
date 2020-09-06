@@ -1972,6 +1972,19 @@ class BGProfilePublicBedroom(BGProfile):
         self.Disabled = False
         self.Content = Content.AdultsOnly
 
+class BGProfilBoobGrab(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 147,
+                           Priority = 4,
+                           sFileName = "boob_grab")
+        self.MainTitleColor = "rgba(186, 16, 23, 255)"
+        self.SecondTitleColor = "rgba(88, 145, 126, 255)"
+        self.SmallTextColor = "rgba(93, 43, 64, 255)"
+        self.AuthorNameColor = "rgba(93, 43, 64, 255)"
+        self.Tags = ["man","woman","brunette","outside","couple",
+                     "beach","windy"]
+        self.Disabled = False
+
 # this is for debugging bgprofile frequency. delete later.
 def indexof(list, searchobj):
     iIndex = 0
