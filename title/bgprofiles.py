@@ -880,10 +880,10 @@ class BGProfileWizardPony(BGProfile):
         super().__init__(ID = 64,
                            Priority = 2,
                            sFileName = "wizard_pony")
-        self.MainTitleColor = "rgba(244, 63, 233, 255)"
-        self.SecondTitleColor = "rgba(244, 63, 233, 255)"
-        self.SmallTextColor = "rgba(2, 47, 249, 255)"
-        self.AuthorNameColor = "rgba(2, 47, 249, 255)"
+        self.MainTitleColor = "rgba(215, 67, 47, 255)"
+        self.SecondTitleColor = "rgba(38, 91, 152, 255)"
+        self.SmallTextColor = "rgba(29, 36, 0, 255)"
+        self.AuthorNameColor = "rgba(29, 36, 0, 255)"
         self.Content = Content.AdultsOnly
         self.Tags = ["man","woman","men","inside","kinky","fantasy",
                      "wizard","femdom"]
@@ -1972,7 +1972,7 @@ class BGProfilePublicBedroom(BGProfile):
         self.Disabled = False
         self.Content = Content.AdultsOnly
 
-class BGProfilBoobGrab(BGProfile):
+class BGProfileBoobGrab(BGProfile):
     def __init__(self):
         super().__init__(ID = 147,
                            Priority = 4,
@@ -1982,6 +1982,19 @@ class BGProfilBoobGrab(BGProfile):
         self.SmallTextColor = "rgba(93, 43, 64, 255)"
         self.AuthorNameColor = "rgba(93, 43, 64, 255)"
         self.Tags = ["man","woman","brunette","outside","couple",
+                     "beach","windy"]
+        self.Disabled = False
+
+class BGProfilePurpleBarechested(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 147,
+                           Priority = 4,
+                           sFileName = "purple_barechested")
+        self.MainTitleColor = "rgba(255, 55, 127, 255)"
+        self.SecondTitleColor = "rgba(146, 55, 116, 255)"
+        self.SmallTextColor = "rgba(111, 41, 137, 255)"
+        self.AuthorNameColor = "rgba(111, 41, 137, 255)"
+        self.Tags = ["man","woman","outside","couple","shirtless","mountains","fantasy",
                      "beach","windy"]
         self.Disabled = False
 
