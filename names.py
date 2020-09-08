@@ -4,6 +4,7 @@
 
 from random import *
 from util import *
+from gen import *
 
 InnNameHistoryQ = HistoryQ(2)
 
@@ -802,84 +803,86 @@ def AuthorBuilder(gender = Gender.Neuter):
      
      
 class InnName():
-     def __init__(self, NewNameVariantsList = None, NewPrefInitList = None, NewSuffInitList = None):
-          if NewNameVariantsList is None:
-               NewNameVariantsList = []
+    def __init__(self, NewNameVariantsList = None, NewPrefInitList = None, NewSuffInitList = None):
+        super().__init__()
+
+        if NewNameVariantsList is None:
+            NewNameVariantsList = []
                
-          if NewPrefInitList is None:
-               NewPrefInitList = []
+        if NewPrefInitList is None:
+            NewPrefInitList = []
      
-          if NewSuffInitList is None:
-               NewSuffInitList = []     
+        if NewSuffInitList is None:
+            NewSuffInitList = []     
                
-          self._NameVariants = WordList(NewNameVariantsList)
-          self._PrefInitList = WordList(NewPrefInitList)
-          self._SuffInitList = WordList(NewSuffInitList)
+        self._NameVariants = WordList(NewNameVariantsList)
+        self._PrefInitList = WordList(NewPrefInitList)
+        self._SuffInitList = WordList(NewSuffInitList)
           
-          self._Gender = Gender.Neuter 
+        self._Gender = Gender.Neuter 
           
-     def GetNameVariant(self):
-          return self._NameVariants.GetWord()
+    def GetNameVariant(self):
+        return self._NameVariants.GetWord()
           
-     def GetPrefInitial(self):
-          return self._PrefInitList.GetWord()
+    def GetPrefInitial(self):
+        return self._PrefInitList.GetWord()
           
-     def GetSuffInitial(self):
-          return self._SuffInitList.GetWord()
+    def GetSuffInitial(self):
+        return self._SuffInitList.GetWord()
      
-     def GetNameVariantsList(self):
-          return self._NameVariants.List 
+    def GetNameVariantsList(self):
+        return self._NameVariants.List 
           
-     def GetPrefInitialList(self):
-          return self._PrefInitList.List
+    def GetPrefInitialList(self):
+        return self._PrefInitList.List
           
-     def GetSuffInitialList(self):
-          return self._SuffInitList.List
+    def GetSuffInitialList(self):
+        return self._SuffInitList.List
           
-     def IsNameVariantListEmpty(self):
-          return self._NameVariants.IsEmpty()
+    def IsNameVariantListEmpty(self):
+        return self._NameVariants.IsEmpty()
           
-     def IsPrefInitListEmpty(self):
-          return self._PrefInitList.IsEmpty()
+    def IsPrefInitListEmpty(self):
+        return self._PrefInitList.IsEmpty()
           
-     def IsSuffInitListEmpty(self):
-          return self._SuffInitList.IsEmpty()
+    def IsSuffInitListEmpty(self):
+        return self._SuffInitList.IsEmpty()
           
-     def SetGender(self, gender):
-          if isinstance(gender, Gender):
-               self._Gender = gender
+    def SetGender(self, gender):
+        if isinstance(gender, Gender):
+            self._Gender = gender
           
-     def IsMale(self):
-          return self._Gender == Gender.Male 
+    def IsMale(self):
+        return self._Gender == Gender.Male 
           
-     def IsFemale(self):
-          return self._Gender == Gender.Female
+    def IsFemale(self):
+        return self._Gender == Gender.Female
           
-     def IsNeuter(self):
-          return self._Gender == Gender.Neuter
+    def IsNeuter(self):
+        return self._Gender == Gender.Neuter
           
 
 class InnFirstName(InnName):     
-     def GetName(self):
-          sFirstName = ""
+    def GetName(self):
+        sFirstName = ""
           
-          PossibleNameVariants = WordList() 
-          if not self.IsNameVariantListEmpty():
-               i = 0
-               while i < 3:
-                    PossibleNameVariants.AddWord(self.GetNameVariant())
-                    i = i + 1
+        PossibleNameVariants = WordList() 
+        if not self.IsNameVariantListEmpty():
+            i = 0
+            while i < 3:
+                PossibleNameVariants.AddWord(self.GetNameVariant())
+                i = i + 1
                
-               if not self.IsPrefInitListEmpty():
-                    PossibleNameVariants.AddWord(self.GetPrefInitial() + ". " + self.GetNameVariant())
+            if not self.IsPrefInitListEmpty():
+                PossibleNameVariants.AddWord(self.GetPrefInitial() + ". " + self.GetNameVariant())
                
-               if not self.IsSuffInitListEmpty():
-                    PossibleNameVariants.AddWord(self.GetNameVariant() + " " + self.GetSuffInitial() + ".")
+            if not self.IsSuffInitListEmpty():
+                PossibleNameVariants.AddWord(self.GetNameVariant() + " " + self.GetSuffInitial() + ".")
      
-          if not PossibleNameVariants.IsEmpty():
-               sFirstName = PossibleNameVariants.GetWord()
+        if not PossibleNameVariants.IsEmpty():
+            sFirstName = PossibleNameVariants.GetWord()
                
-          return sFirstName
+        return sFirstName
           
 class InnFirstNameFemale(InnFirstName):     
      def __init__(self, NewNameVariantsList = None, NewPrefInitList = None, NewSuffInitList = None):
@@ -916,19 +919,17 @@ class DefaultLastName(Enum):
      FirstLastName = 1
      SecondLastName = 2
           
-class InnNameGenerator():
-     def __init__(self, id = 0, priority = 1):     
-          self.ID = id
-          self.Priority = priority
-          self.Type = GeneratorType.Normal
+class InnNameGenerator(Generator):
+     def __init__(self, ID = -1, Priority = GenPriority.Normal,Type = GeneratorType.Normal):
+        super().__init__(ID = ID, Priority = Priority, Type = Type)
           
-          self._Default = DefaultLastName.FirstLastName
+        self._Default = DefaultLastName.FirstLastName
           
-          self._FirstNameFemaleList = WordList()
-          self._FirstNameMaleList = WordList()
-          self._FirstLastNameList = WordList()
-          self._SecondLastNameList = WordList()
-          self._LastNameList = WordList()
+        self._FirstNameFemaleList = WordList()
+        self._FirstNameMaleList = WordList()
+        self._FirstLastNameList = WordList()
+        self._SecondLastNameList = WordList()
+        self._LastNameList = WordList()
           
      def FirstNameFemaleList(self, NewList = None):
           if NewList is None:
@@ -1002,7 +1003,7 @@ class InnNameGenerator():
 # Name: Verb/Adjective - Noun(genitals)
 class InnNameGen1(InnNameGenerator):
      def __init__(self):
-          super().__init__(id = 1,priority = 1)
+          super().__init__(ID = 1)
           
           self._Default = DefaultLastName.SecondLastName
           
@@ -1121,7 +1122,7 @@ class InnNameGen1(InnNameGenerator):
 # Name: Adjective Adverb-Verber
 class InnNameGen2(InnNameGenerator):
      def __init__(self):
-          super().__init__(id = 2,priority = 1)
+          super().__init__(ID = 2)
           
           self.FirstNameFemaleList([      InnFirstNameFemale(['A. Nell']),
                                               InnFirstNameFemale(['Ana L.','Anna L.']),
@@ -1219,7 +1220,7 @@ class InnNameGen2(InnNameGenerator):
 # Name: Amanda Faulk
 class InnNameGen3(InnNameGenerator):
      def __init__(self):
-          super().__init__(id = 3,priority = 1)
+          super().__init__(ID = 3)
           
           self.FirstNameFemaleList([      InnFirstNameFemale(['Amanda']),
                                               InnFirstNameFemale(['Amanda']),
@@ -1287,7 +1288,7 @@ class InnNameGen3(InnNameGenerator):
 # Verb (being): 'Ben','I. Ben'
 class InnNameGen4(InnNameGenerator):
      def __init__(self):
-          super().__init__(id = 4,priority = 1)
+          super().__init__(ID = 4)
           
           self._Default = DefaultLastName.SecondLastName
           
@@ -1373,7 +1374,7 @@ class InnNameGen4(InnNameGenerator):
 # Name: Noun - Adjective
 class InnNameGen5(InnNameGenerator):
      def __init__(self):
-          super().__init__(id = 5,priority = 1)
+          super().__init__(ID = 5)
           
           self.FirstNameFemaleList([   InnFirstNameFemale(['Ima']),
                                               InnFirstNameFemale(['Ophelia'])
@@ -1421,7 +1422,7 @@ class InnNameGen5(InnNameGenerator):
 # Name: Ima Ho
 class InnNameGen6(InnNameGenerator):
      def __init__(self):
-          super().__init__(id = 6,priority = 1)
+          super().__init__(ID = 6)
           
           self._Default = DefaultLastName.SecondLastName
           
@@ -1471,7 +1472,7 @@ class InnNameGen6(InnNameGenerator):
 # Name: Juan A. Nell
 class InnNameGen7(InnNameGenerator):
      def __init__(self):
-          super().__init__(id = 7, priority = 1)
+          super().__init__(ID = 7)
           
           self._Default = DefaultLastName.SecondLastName
           
@@ -1512,56 +1513,7 @@ class InnNameGen7(InnNameGenerator):
                                               InnLastName(['Sachs']),
                                               InnLastName(['Sexton'])
                                              ])
-                                             
-class InnNameGenSelector():
-     GeneratorList = []
-     
-     def __init__(self):
-          for subclass in InnNameGenerator.__subclasses__():
-               item = subclass()
-               for x in range(0, item.Priority):
-                    self.GeneratorList.append([item.ID, item])
-               
-     def RandomGenerator(self,):
-          Generator = None
-          
-          Generator = self.GeneratorList[randint(0, len(self.GeneratorList) - 1)][1]
-                              
-          return Generator 
-          
-     def GetGeneratorsSequential(self, bAllowPromo = True, Type = None):
-          GeneratorList = []
-          AllowedTypes = []
-          
-          if not Type is None:
-               AllowedTypes = [Type] 
-          else:
-               AllowedTypes = [GeneratorType.Normal, GeneratorType.BookTitle]
-          
-          if bAllowPromo:
-               AllowedTypes.append(GeneratorType.Promo)
-
-          for subclass in InnNameGenerator.__subclasses__():
-               gen = subclass()
-
-               if gen.Type in AllowedTypes:
-                    GeneratorList.append(gen)
-               
-          return GeneratorList  
-          
-     def GetGenerator(self, iGen):
-          Generator = None 
-          
-          if len(self.GeneratorList) > 0:
-               for gen in self.GeneratorList :
-                    if gen[1].ID == iGen:
-                         Generator = gen[1]
-                         break
-                         
-          return Generator 
-                         
-
-          
+   
 def GetInnName(gender, iGeneratorNo = 0):
      sName = ""
      
@@ -1578,7 +1530,7 @@ def GetInnName(gender, iGeneratorNo = 0):
      if not InnNameHistoryQ is None:
           HistoryQ = InnNameHistoryQ
      
-     GenSel = InnNameGenSelector()
+     GenSel = GeneratorContainer(InnNameGenerator)
      if iGeneratorNo != 0:
           gen = GenSel.GetGenerator(iGeneratorNo)
      else:

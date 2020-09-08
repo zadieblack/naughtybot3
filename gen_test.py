@@ -5,6 +5,7 @@
 from random import *
 from util import *
 from gen import *
+import names
 
 TestGen1 = Generator(ID = 1, Priority = 2)
 
@@ -89,13 +90,16 @@ class TestGen11(TestGen):
    def __init__(self):
          super().__init__(Priority = GenPriority.Lowest, sAuthorName = "Pat")
 
-TGC = GeneratorContainer(TestGen)
+#TGC = GeneratorContainer(TestGen)
 
-Gen = TGC.RandomGenerator()
-print("Gen # " + str(Gen.ID) + ":\n[" + Gen.GenerateTxt() + "]\n")
+#Gen = TGC.RandomGenerator()
+#print("Gen # " + str(Gen.ID) + ":\n[" + Gen.GenerateTxt() + "]\n")
 
-Gen = TGC.RandomGenerator()
-print("Gen # " + str(Gen.ID) + ":\n[" + Gen.GenerateTxt() + "]\n")
+#Gen = TGC.RandomGenerator()
+#print("Gen # " + str(Gen.ID) + ":\n[" + Gen.GenerateTxt() + "]\n")
 
-Gen = TGC.RandomGenerator()
-print("Gen # " + str(Gen.ID) + ":\n[" + Gen.GenerateTxt() + "]\n")
+#Gen = TGC.RandomGenerator()
+#print("Gen # " + str(Gen.ID) + ":\n[" + Gen.GenerateTxt() + "]\n")
+
+print("Her name is " + names.GetInnName(Gender.Female))
+print("His name is " + names.GetInnName(Gender.Male))

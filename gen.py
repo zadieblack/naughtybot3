@@ -23,6 +23,8 @@ class Generator():
 
         # most generators are Normal. Setting a generator to Test makes sure it can't be selected randomly. Setting a generator to Promo means it won't be selected for reply tweets
         self.GeneratorType = GeneratorType
+
+        # disabled = true disables the generator so it cannot be selected
         self.Disabled = bDisabled 
 
         # the generated text
