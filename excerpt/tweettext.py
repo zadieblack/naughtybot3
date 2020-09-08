@@ -1,5 +1,6 @@
 from random import *
 from util import *
+from gen import *
 from misc import *
 from names import *
 from title.generators import GetTweet
@@ -58,17 +59,7 @@ def BookTitleBuilder(maxlen = None):
      sTitle = sTitle.replace('  ',' ') #remove double spaces
      return sTitle
      
-class TweetTxtGen():
-     def __init__(self):          
-          self.ID = -1
-          # each generator should have a unique ID
-          self.Priority = 1
-          # increasing the Priority increases the chances the generator is randomly selected. But it can only be 
-          # selected again while it is not currently in the history queue
-          self.Type = GeneratorType.Normal
-          # most generators are Normal. Setting a generator to Test makes sure it can't be selected randomly. 
-          # Setting a generator to Promo means it won't be selected for reply tweets
-     
+class TweetTxtGen(Generator):
      def SetPriority(self, sText, List, iPriority):
           for x in range(iPriority):
                List.append(sText)
@@ -85,9 +76,7 @@ class TweetTxtGen1(TweetTxtGen):
      # that was BANNED on Amazon!
      # Now available on Wattpad from Dick Spunk
      def __init__(self):          
-          super().__init__()
-          self.ID = 1
-          self.Priority = 2
+          super().__init__(ID = 1, Priority = GenPriority.Lowest)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -107,9 +96,7 @@ class TweetTxtGen2(TweetTxtGen):
      # "Punished by the handsome Swedish prime minister" is now available 
      # on Kindle. By Ben Dover
      def __init__(self):     
-          super().__init__()     
-          self.ID = 2
-          self.Priority = 2
+          super().__init__(ID = 2, Priority = GenPriority.Lowest)     
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -130,9 +117,7 @@ class TweetTxtGen3(TweetTxtGen):
      # "Punished by the handsome Swedish prime minister" is coming soon 
      # to discerning readers on Amazon. By Ben Dover
      def __init__(self):          
-          super().__init__()
-          self.ID = 3
-          self.Priority = 2
+          super().__init__(ID = 3, Priority = GenPriority.Lowest)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -151,9 +136,7 @@ class TweetTxtGen4(TweetTxtGen):
      # Get excited! The wait is over for Ben Dover's latest sexy release, 
      # "Punished by the handsome Swedish prime minister"!
      def __init__(self):          
-          super().__init__()
-          self.ID = 4
-          self.Priority = 2
+          super().__init__(ID = 4, Priority = GenPriority.Lowest)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -168,9 +151,7 @@ class TweetTxtGen4(TweetTxtGen):
 class TweetTxtGen5(TweetTxtGen):
      # Out soon from Ben Dover
      def __init__(self):
-          super().__init__()
-          self.ID = 5
-          self.Priority = 2
+          super().__init__(ID = 5, Priority = GenPriority.Lowest)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -184,9 +165,7 @@ class TweetTxtGen5(TweetTxtGen):
 #class TweetTxtGen6(TweetTxtGen):
 #     # You have to retweet this if it turned you on.
 #     def __init__(self):
-#          super().__init__()
-#          self.ID = 6
-#          self.Priority = 2
+#          super().__init__(ID = 6)
      
 #     def GenerateTweet(self):
 #          super().GenerateTweet()
@@ -208,9 +187,7 @@ class TweetTxtGen7(TweetTxtGen):
      # The sexual positions depicted are algorithmically generated and have not been approved by 
      # a licensed medical practicitioner. Do not attempt.
      def __init__(self):
-          super().__init__()
-          self.ID = 7
-          self.Priority = 2
+          super().__init__(ID = 7)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -228,9 +205,7 @@ class TweetTxtGen7(TweetTxtGen):
 class TweetTxtGen8(TweetTxtGen):
      # Out soon from Ben Dover
      def __init__(self):
-          super().__init__()
-          self.ID = 8
-          self.Priority = 2
+          super().__init__(ID = 8)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -249,9 +224,7 @@ class TweetTxtGen8(TweetTxtGen):
 class TweetTxtGen9(TweetTxtGen):
      # Out soon from Ben Dover
      def __init__(self):
-          super().__init__()
-          self.ID = 9
-          self.Priority = 2
+          super().__init__(ID = 9)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -270,9 +243,7 @@ class TweetTxtGen9(TweetTxtGen):
 class TweetTxtGen10(TweetTxtGen):
      # Out soon from Ben Dover
      def __init__(self):
-          super().__init__()
-          self.ID = 10
-          self.Priority = 2
+          super().__init__(ID = 10)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -298,9 +269,7 @@ class TweetTxtGen11(TweetTxtGen):
      # If you only read one book this year about clown bukkake, make 
      # sure it is 'Black T-Rex for the Bisexual Princess'!
      def __init__(self):
-          super().__init__()
-          self.ID = 11
-          self.Priority = 2
+          super().__init__(ID = 11)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -331,9 +300,7 @@ class TweetTxtGen12(TweetTxtGen):
      # Write one little sumo wrestler fisting scene and they ban you 
      # from Amazon for life!
      def __init__(self):
-          super().__init__()
-          self.ID = 12
-          self.Priority = 2
+          super().__init__(ID = 12)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -360,10 +327,8 @@ class TweetTxtGen12(TweetTxtGen):
 class TweetTxtGen13(TweetTxtGen):
      # Author Ben Dover is truly the Hemmingway of triple penetration!
      def __init__(self):
-          super().__init__()
-          self.ID = 13
-          self.Priority = 2
-     
+          super().__init__(ID = 13)
+
      def GenerateTweet(self):
           super().GenerateTweet()
           sText = ""
@@ -390,9 +355,7 @@ class TweetTxtGen13(TweetTxtGen):
 class TweetTxtGen14(TweetTxtGen):
      # "Double-Penetrated by the Filthy Centaur Bikers," page 312
      def __init__(self):
-          super().__init__()
-          self.ID = 14
-          self.Priority = 2
+          super().__init__(ID = 14)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -409,9 +372,7 @@ class TweetTxtGen15(TweetTxtGen):
      # "Teen mom for the Well-Hung Viking" is 'Delightful & provactive!' 
      # raves Dwarf Fisting Magazine 
      def __init__(self):
-          super().__init__()
-          self.ID = 15
-          self.Priority = 2
+          super().__init__(ID = 15)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -439,9 +400,7 @@ class TweetTxtGen15(TweetTxtGen):
 class TweetTxtGen16(TweetTxtGen):
      # 'Ben Dover's latest is a triumph!' applauds Goat-man Foursome Magazine 
      def __init__(self):
-          super().__init__()
-          self.ID = 16
-          self.Priority = 2
+          super().__init__(ID = 16)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -474,9 +433,7 @@ class TweetTxtGen16(TweetTxtGen):
 class TweetTxtGen17(TweetTxtGen):
      # Why don't I ever meet any horny, well-hung lumberjacks in real life?
      def __init__(self):
-          super().__init__()
-          self.ID = 17
-          self.Priority = 2
+          super().__init__(ID = 17)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -502,9 +459,7 @@ class TweetTxtGen18(TweetTxtGen):
      # Of course in real life you should never attempt centaur bukkake 
      # without strict medical supervision.
      def __init__(self):
-          super().__init__()
-          self.ID = 18
-          self.Priority = 2
+          super().__init__(ID = 18)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -536,9 +491,7 @@ class TweetTxtGen18(TweetTxtGen):
 class TweetTxtGen19(TweetTxtGen):
      # Ben Dover is definitely the best erotica author working in Tuscaloosa!
      def __init__(self):
-          super().__init__()
-          self.ID = 19
-          self.Priority = 2
+          super().__init__(ID = 19)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -603,9 +556,7 @@ class TweetTxtGen20(TweetTxtGen):
      # "*Spit-Roasting My Busty Centaur MILF* is a wild fuck-fest!" 
      # -Abraham Lincoln
      def __init__(self):
-          super().__init__()
-          self.ID = 20
-          self.Priority = 2
+          super().__init__(ID = 20)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -650,9 +601,7 @@ class TweetTxtGen21(TweetTxtGen):
      # "Fisted by the Alpha Male Goat-Men on Uranus" is widely considered to 
      # be the 'Lord of the Rings' of anal fisting books.
      def __init__(self):
-          super().__init__()
-          self.ID = 21
-          self.Priority = 2
+          super().__init__(ID = 21)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -699,9 +648,7 @@ class TweetTxtGen22(TweetTxtGen):
      # This was Ben Dover's last book before he was banned from Amazon 
      # for writing a scene involving a goat man and bukkake.
      def __init__(self):
-          super().__init__()
-          self.ID = 22
-          self.Priority = 2
+          super().__init__(ID = 22)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -776,9 +723,7 @@ class TweetTxtGen22(TweetTxtGen):
 class TweetTxtGen23(TweetTxtGen):
      # By day, erotica author Ben Dover is a Wedding Photographer from Scranton.
      def __init__(self):
-          super().__init__()
-          self.ID = 23
-          self.Priority = 2
+          super().__init__(ID = 23)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -801,9 +746,7 @@ class TweetTxtGen24(TweetTxtGen):
      # LEGAL DISCLAIMER: Wal-Mart does not condone cum-swapping or genital 
      # piercings.
      def __init__(self):
-          super().__init__()
-          self.ID = 24
-          self.Priority = 2
+          super().__init__(ID = 24)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -843,9 +786,7 @@ class TweetTxtGen24(TweetTxtGen):
 class TweetTxtGen25(TweetTxtGen):
      # from Part 3 of Ben Dover's 12-book "Baby For the Ugly Werewolf" series
      def __init__(self):
-          super().__init__()
-          self.ID = 25
-          self.Priority = 3
+          super().__init__(ID = 25)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -876,9 +817,7 @@ class TweetTxtGen25(TweetTxtGen):
 class TweetTxtGen26(TweetTxtGen):
      # Out soon from Ben Dover
      def __init__(self):
-          super().__init__()
-          self.ID = 26
-          self.Priority = 4
+          super().__init__(ID = 26)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -933,9 +872,7 @@ class TweetTxtGen26(TweetTxtGen):
 class TweetTxtGen27(TweetTxtGen):
      # Out soon from Ben Dover
      def __init__(self):
-          super().__init__()
-          self.ID = 27
-          self.Priority = 3
+          super().__init__(ID = 27, Priority = GenPriority.AboveAverage)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -948,12 +885,10 @@ class TweetTxtGen27(TweetTxtGen):
           
           return sText     
 
-class TweetTxtGen24(TweetTxtGen):
-    # Out soon from Ben Dover
+class TweetTxtGen29(TweetTxtGen):
+    # The part where he gives her a "Mexican Donkey" is the filthiest thing I've ever read in my life
     def __init__(self):
-        super().__init__()
-        self.ID = 24
-        self.Priority = 4
+        super().__init__(ID = 29, Priority = GenPriority.High)
      
     def GenerateTweet(self):
         super().GenerateTweet()
@@ -1059,69 +994,6 @@ class TweetTxtGen24(TweetTxtGen):
           
           # return sText               
           
-class TweetTxtGenSelector():
-     GeneratorList = []
-     
-     def __init__(self):
-          for subclass in TweetTxtGen.__subclasses__():
-               item = subclass()
-               for x in range(0, item.Priority):
-                    self.GeneratorList.append([item.ID, item])
-               
-     def RandomGenerator(self, bAllowPromo = True, Type = None):
-          Generator = None
-          AllowedTypes = []
-          
-          if not Type is None:
-               AllowedTypes = [Type] 
-          else:
-               AllowedTypes = [GeneratorType.Normal, GeneratorType.BookTitle]
-          
-          if bAllowPromo:
-               AllowedTypes.append(GeneratorType.Promo)
-               
-          if len(self.GeneratorList) > 0:
-
-               Generator = self.GeneratorList[randint(0, len(self.GeneratorList) - 1)][1]
-               
-               while not Generator.Type in AllowedTypes:
-                    Generator = self.GeneratorList[randint(0, len(self.GeneratorList) - 1)][1]
-                              
-          return Generator 
-          
-     def GetGeneratorsSequential(self, bAllowPromo = True, Type = None):
-          GeneratorList = []
-          AllowedTypes = []
-          
-          if not Type is None:
-               AllowedTypes = [Type] 
-          else:
-               AllowedTypes = [GeneratorType.Normal, GeneratorType.BookTitle]
-          
-          if bAllowPromo:
-               AllowedTypes.append(GeneratorType.Promo)
-
-          for subclass in TweetTxtGen.__subclasses__():
-               gen = subclass()
-
-               if gen.Type in AllowedTypes:
-                    GeneratorList.append(gen)
-               
-          return GeneratorList  
-          
-     def GetGenerator(self, iGen):
-          Generator = None 
-          
-          if len(self.GeneratorList) > 0:
-               for gen in self.GeneratorList :
-                    if gen[1].ID == iGen:
-                         Generator = gen[1]
-                         break
-                         
-          return Generator 
-                         
-
-          
 def GetImgTweetText(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = None, TweetTxtHistoryQ = None):
      #the bot's images are the random parts but we need to be careful that this isn't constantly generating static duplicate text. twitter won't like that.
      sText = ""
@@ -1138,7 +1010,7 @@ def GetImgTweetText(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = None, Tw
      if not TweetTxtHistoryQ is None:
           HistoryQ = TweetTxtHistoryQ
      
-     GenSel = TweetTxtGenSelector()
+     GenSel = GeneratorContainer(TweetTxtGen)
      if bTest:
           gen = GenSel.GetGenerator(iGeneratorNo)
      else:

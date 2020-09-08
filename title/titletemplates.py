@@ -3,6 +3,7 @@
 # titletemplates module
 
 from util import *
+from gen import *
 
 #                       *** RECOMMENDED FONT LIST ***
 #
@@ -61,10 +62,9 @@ class TitleLine():
         self.ColorType = ColorType
         self.AllCaps = AllCaps
 
-class TitleTemplate():
-    def __init__(self, ID):
-        self.ID = ID
-
+class TitleTemplate(Generator):
+    def __init__(self, ID = -1, Priority = GenPriority.Normal):
+        super().__init__(ID = ID, Priority = Priority)
         self.Lines = []
 
         self.AuthorLine = TitleLine(OrderNum = 0, 
@@ -1049,31 +1049,6 @@ class TitleTemplate30(TitleTemplate):
                      ColorType = LineColorType.SmallText,
                      AllCaps = True)
 
+# Title templates are generators and can be randomly selected but we aren't using this right now
 
-class TitleTemplateSelector():
-    def __init__(self):
-        self.TitleTemplateList = [] 
-
-        for subclass in TitleTemplate.__subclasses__():
-            self.TitleTemplateList.append(subclass())
-
-    #def RandomTitleTemplate(self):
-    #    TitleTemplate = []
-
-    #    if len(self.TitleTemplateList) > 0:
-    #        TitleTemplate = choice(self.TitleTemplateList)
-                    
-    #    return TitleTemplate
-          
-    def GetTitleTemplate(self, iTemplateID):
-        SelectedTemplate = None 
-          
-        if len(self.TitleTemplateList) > 0:
-            for template in self.TitleTemplateList :
-                if template.ID == iTemplateID:
-                    SelectedTemplate = template
-                    break
-                         
-        return SelectedTemplate
-  
-     
+TTS = GeneratorContainer(TitleTemplate)

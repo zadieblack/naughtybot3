@@ -6088,22 +6088,22 @@ class GeneratorSelector():
 
             if iChance == 1:
                 Bucket = self.LowestBucket
-                print(" Lowest bucket selected (iChance == " + str(iChance) + ")")
+                #print(" Lowest bucket selected (iChance == " + str(iChance) + ")")
             elif iChance > 1 and iChance <= 3:      # 2x
                 Bucket = self.NormalBucket 
-                print(" Normal bucket selected (iChance == " + str(iChance) + ")")
+                #print(" Normal bucket selected (iChance == " + str(iChance) + ")")
             elif iChance > 3 and iChance <= 6:      # 3x
                 Bucket = self.AboveAverageBucket
-                print(" AboveAverage bucket selected (iChance == " + str(iChance) + ")")
+                #print(" AboveAverage bucket selected (iChance == " + str(iChance) + ")")
             elif iChance > 6 and iChance <= 10:     # 4x
                 Bucket = self.HighBucket 
-                print(" High bucket selected (iChance == " + str(iChance) + ")")
+                #print(" High bucket selected (iChance == " + str(iChance) + ")")
             elif iChance > 10 and iChance <= 15:    # 5x
                 Bucket = self.SuperHighBucket
-                print(" SuperHigh bucket selected (iChance == " + str(iChance) + ")")
+                #print(" SuperHigh bucket selected (iChance == " + str(iChance) + ")")
             else:
                 Bucket = self.NormalBucket 
-                print(" WARNING: Default bucket (normal) selected (iChance == " + str(iChance) + ")")
+                #print(" WARNING: Default bucket (normal) selected (iChance == " + str(iChance) + ")")
 
             iCount = iCount + 1
 

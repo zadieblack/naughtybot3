@@ -50,7 +50,6 @@ class GeneratorContainer():
 
         GeneratorObj = GeneratorClass()
         self.GeneratorClassName = str(type(GeneratorObj).__name__)
-        print("Generator class name is " + self.GeneratorClassName)
 
         # The optional history q
         if not HistoryQ is None:
@@ -85,7 +84,7 @@ class GeneratorContainer():
         self.ValidateGenIDs()
 
         # Print list (uncomment for debugging)
-        self.PrintGeneratorList()
+        #self.PrintGeneratorList()
 
     def AddGenerator(self, Gen, Priority = GenPriority.Normal):
         bResult = False 

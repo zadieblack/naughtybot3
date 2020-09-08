@@ -224,7 +224,7 @@ class HistoryQWithLog(HistoryQ):
                         self.HistoryQ.append(item)
         except FileNotFoundError:
             #print("Unable to open log file, creating log file.")
-            open(self.LogFileName, 'wb')
+            #open(self.LogFileName, 'wb')
             with open(self.LogFileName, 'rb') as ReadLogFile:
                 for item in ReadLogFile.read().splitlines():
                     item = item.decode("utf8")
@@ -238,6 +238,7 @@ class HistoryQWithLog(HistoryQ):
         #print(self.HistoryQ)
                
     def LogHistoryQ(self):
+        print("Writing log file [" + self.LogFileName + "]")
         with open(self.LogFileName, 'wb+') as WriteHistoryQ:
             for item in self.HistoryQ:
                 sLine = str(item)
@@ -248,7 +249,7 @@ class HistoryQWithLog(HistoryQ):
         #print("Wrote HistoryQ:")
         #print(self.HistoryQ)
 
-    def __del__(self):
+    def __exit__(self):
         self.LogHistoryQ()
      
 def FoundIn(sWord, SearchTarget):

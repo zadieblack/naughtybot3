@@ -6,6 +6,7 @@ from random import *
 from util import *
 from gen import *
 import names
+import title.titletemplates as titles
 
 TestGen1 = Generator(ID = 1, Priority = 2)
 
@@ -101,5 +102,9 @@ class TestGen11(TestGen):
 #Gen = TGC.RandomGenerator()
 #print("Gen # " + str(Gen.ID) + ":\n[" + Gen.GenerateTxt() + "]\n")
 
-print("Her name is " + names.GetInnName(Gender.Female))
-print("His name is " + names.GetInnName(Gender.Male))
+#print("Her name is " + names.GetInnName(Gender.Female))
+#print("His name is " + names.GetInnName(Gender.Male))
+
+TTS = GeneratorContainer(titles.TitleTemplate)
+Gen = TTS.RandomGenerator()
+print(Gen)
