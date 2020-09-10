@@ -5,6 +5,8 @@
 from random import *
 from util import *
 
+MAXBUCKETTRIES = 100
+
 class Generator():
     def __init__(self, 
                  Container = None,
@@ -86,6 +88,13 @@ class GeneratorContainer():
         # Print list (uncomment for debugging)
         #self.PrintGeneratorList()
 
+        #print(self.GeneratorClassName + " Priority Buckets:")
+        #print(" * Lowest priority bucket has " + str(len(self.BucketLowest)) + " items")
+        #print(" * Normal priority bucket has " + str(len(self.BucketNormal)) + " items")
+        #print(" * Above Average priority bucket has " + str(len(self.BucketAboveAverage)) + " items")
+        #print(" * High priority bucket has " + str(len(self.BucketHigh)) + " items")
+        #print(" * Super High priority bucket has " + str(len(self.BucketSuperHigh)) + " items")
+
     def AddGenerator(self, Gen, Priority = GenPriority.Normal):
         bResult = False 
 
@@ -125,9 +134,9 @@ class GeneratorContainer():
         sTxt = ""
 
         sTxt = "List of generators for " + str(self) + ":\n\n"
-        if len(self.GeneratorList) > 0:
+        if len(self.BucketLowest) > 0:
             for gen in self.GeneratorList:
-                sTxt += " * " + self.GeneratorClassName + " | ID # " + str(gen.ID) + " | " + str(gen.Priority)
+                sTxt += " * " + self.GeneratorClassName + " | \tID # " + str(gen.ID) + " | \t" + str(gen.Priority)
                 sTxt += "\n"
 
         print(sTxt)
@@ -139,10 +148,11 @@ class GeneratorContainer():
     def GetBucket(self):
         Bucket = []
 
-        MAXTRIES = 100
+        
+        #print("Selecting priority bucket for " + str(self.GeneratorClassName))
 
         iCount = 0
-        while len(Bucket) == 0 and iCount < MAXTRIES:
+        while len(Bucket) == 0 and iCount < MAXBUCKETTRIES:
             iChance = randint(1, 15)                                # 1 + 2 + 3 + 4 + 5 = 15
 
             if iChance == 1:
@@ -162,7 +172,7 @@ class GeneratorContainer():
                 #print(" SuperHigh bucket selected (iChance == " + str(iChance) + "). Bucket contains #" + str(len(Bucket)) + " items.")
             else:
                 Bucket = self.BucketNormal
-                #print(" WARNING: Default bucket (normal) selected (iChance == " + str(iChance) + "). Bucket contains #" + str(len(Bucket)) + " items.")
+                print(" WARNING: Default bucket (normal) selected (iChance == " + str(iChance) + "). Bucket contains #" + str(len(Bucket)) + " items.")
 
             iCount = iCount + 1
 

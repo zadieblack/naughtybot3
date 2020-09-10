@@ -7,6 +7,7 @@ from decimal import Decimal
 from random import *
 from util import *
 from names import *
+from gen import *
 import misc
 from title.characters import *
 import title.chargenerator as char
@@ -160,8 +161,8 @@ class Generator():
 
             # 2nd item is template #
                 iTemplateID = int(Details[1])
-                TemplateSelector = templates.TitleTemplateSelector()
-                self.Template = TemplateSelector.GetTitleTemplate(iTemplateID)
+                TemplateSelector = GeneratorContainer(templates.TitleTemplate)
+                self.Template = TemplateSelector.GetGenerator(iTemplateID)
 
             # 3rd item is author name
                 self.AuthorName = Details[2]

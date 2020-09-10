@@ -238,7 +238,7 @@ class HistoryQWithLog(HistoryQ):
         #print(self.HistoryQ)
                
     def LogHistoryQ(self):
-        print("Writing log file [" + self.LogFileName + "]")
+        #print("Writing log file [" + self.LogFileName + "]")
         with open(self.LogFileName, 'wb+') as WriteHistoryQ:
             for item in self.HistoryQ:
                 sLine = str(item)
@@ -249,8 +249,6 @@ class HistoryQWithLog(HistoryQ):
         #print("Wrote HistoryQ:")
         #print(self.HistoryQ)
 
-    def __exit__(self):
-        self.LogHistoryQ()
      
 def FoundIn(sWord, SearchTarget):
      bFound = False 
