@@ -64,6 +64,7 @@ class GeneratorContainer():
 
         # Buckets of prioritized generators for random selection
         self.BucketLowest = []
+        self.BucketLow = []
         self.BucketNormal = []
         self.BucketAboveAverage = []
         self.BucketHigh = []
@@ -100,6 +101,8 @@ class GeneratorContainer():
 
         if Priority == GenPriority.Lowest:
             self.BucketLowest.append(Gen)
+        elif Priority == GenPriority.Low:
+            self.BucketLow.append(Gen)
         elif Priority == GenPriority.AboveAverage:
             self.BucketAboveAverage.append(Gen)
         elif Priority == GenPriority.High:
@@ -153,21 +156,24 @@ class GeneratorContainer():
 
         iCount = 0
         while len(Bucket) == 0 and iCount < MAXBUCKETTRIES:
-            iChance = randint(1, 15)                                # 1 + 2 + 3 + 4 + 5 = 15
+            iChance = randint(1, 58)                                # 1 + 2 + 3 + 4 + 5 = 15
 
             if iChance == 1:
                 Bucket = self.BucketLowest
                 #print(" Lowest bucket selected (iChance == " + str(iChance) + "). Bucket contains #" + str(len(Bucket)) + " items.")
-            elif iChance > 1 and iChance <= 3:      # 2x
+            elif iChance >= 2 and iChance < 4:      # 2x
+                Bucket = self.BucketLow 
+                #print(" Normal bucket selected (iChance == " + str(iChance) + "). Bucket contains #" + str(len(Bucket)) + " items.")
+            elif iChance >= 4 and iChance < 8:      # 2x
                 Bucket = self.BucketNormal 
                 #print(" Normal bucket selected (iChance == " + str(iChance) + "). Bucket contains #" + str(len(Bucket)) + " items.")
-            elif iChance > 3 and iChance <= 6:      # 3x
+            elif iChance >= 8 and iChance < 16:      # 3x
                 Bucket = self.BucketAboveAverage
                 #print(" AboveAverage bucket selected (iChance == " + str(iChance) + "). Bucket contains #" + str(len(Bucket)) + " items.")
-            elif iChance > 6 and iChance <= 10:     # 4x
+            elif iChance >= 16 and iChance < 32:     # 4x
                 Bucket = self.BucketHigh
                 #print(" High bucket selected (iChance == " + str(iChance) + "). Bucket contains #" + str(len(Bucket)) + " items.")
-            elif iChance > 10 and iChance <= 15:    # 5x
+            elif iChance >= 32 and iChance < 58:    # 5x
                 Bucket = self.BucketSuperHigh
                 #print(" SuperHigh bucket selected (iChance == " + str(iChance) + "). Bucket contains #" + str(len(Bucket)) + " items.")
             else:
@@ -193,10 +199,10 @@ class GeneratorContainer():
             AllowedTypes.append(GeneratorType.Promo)
 
         Bucket = self.GetBucket()
-        Generator = choice(Bucket)
-        while not Generator.Type in AllowedTypes:
+        while len(Bucket) == 0 or Generator == None or not Generator.Type in AllowedTypes:
             Bucket = self.GetBucket()
-            Generator = choice(Bucket)
+            if len(Bucket) > 0:
+                Generator = choice(Bucket)
                     
         return Generator 
 
