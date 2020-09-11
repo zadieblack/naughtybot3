@@ -60,10 +60,10 @@ class LineColorType(IntEnum):
 class GenPriority(IntEnum):
     Lowest = 1          # Unity
     Low = 2             # 2x more likely
-    Normal = 2          # 3x more likely
-    AboveAverage = 3    # 4x more likely
-    High = 4            # 5x
-    SuperHigh = 5       # 5.5x
+    Normal = 3          # 3x more likely
+    AboveAverage = 4    # 4x more likely
+    High = 5            # 5x
+    SuperHigh = 6       # 5.5x
 
 HeartEmoji = ['\U00002764','\U0001F49A','\U0001F499','\U0001F49C','\U0001F49B','\U0001F9E1','\U0001F5A4']
 

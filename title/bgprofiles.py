@@ -2016,23 +2016,23 @@ class BGProfileContainer(GeneratorContainer):
     def RandomGenerator(self, ReqTags = [], ExclTags = [], bAllowPromo = True, Type = None):
         Gen = None
 
-        print("Required tags: " + str(ReqTags) + "\nExcluded tags: " + str(ExclTags))
+        #print("Required tags: " + str(ReqTags) + "\nExcluded tags: " + str(ExclTags))
         Gen = super().RandomGenerator(bAllowPromo = bAllowPromo, Type = Type)
         iTries = 0
 
         while iTries < MAXTRIES and \
             (not self.HasReqTags(ReqTags, Gen.Tags) or self.HasExclTags(ExclTags, Gen.Tags)):
 
-            if not self.HasReqTags(ReqTags, Gen.Tags):
-                print("Gen " + str(Gen) + " was missing required tags. (Tags are " + str(Gen.Tags) + ")")
+            #if not self.HasReqTags(ReqTags, Gen.Tags):
+            #    print("Gen " + str(Gen) + " was missing required tags. (Tags are " + str(Gen.Tags) + ")")
 
-            if self.HasExclTags(ExclTags, Gen.Tags):
-                print("Gen " + str(Gen) + " had excluded tags. (Tags are " + str(Gen.Tags) + ")")
+            #if self.HasExclTags(ExclTags, Gen.Tags):
+            #    print("Gen " + str(Gen) + " had excluded tags. (Tags are " + str(Gen.Tags) + ")")
 
             Gen = super().RandomGenerator(bAllowPromo = bAllowPromo, Type = Type)
             iTries = iTries + 11
 
-        print("After " + str(iTries) + " tries, " + str(Gen) + " was selected.\n")
+        #print("After " + str(iTries) + " tries, " + str(Gen) + " was selected.\n")
 
         return Gen
 

@@ -156,7 +156,7 @@ class GeneratorContainer():
 
         iCount = 0
         while len(Bucket) == 0 and iCount < MAXBUCKETTRIES:
-            iChance = randint(1, 58)                                # 1 + 2 + 3 + 4 + 5 = 15
+            iChance = randint(1, 57)                                # 1 + 2 + 3 + 4 + 5 = 15
 
             if iChance == 1:
                 Bucket = self.BucketLowest
