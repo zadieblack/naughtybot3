@@ -17,19 +17,7 @@ from title.util import *
 
 PromoHistoryQ = HistoryQ(2)
 
-class Generator():
-    ID = -1
-    # each generator should have a unique ID
-    Priority = 1
-    # increasing the Priority increases the chances the generator is randomly selected. But it can only be selected again while it is not currently in the history queue
-    Type = GeneratorType.Normal
-    # most generators are Normal. Setting a generator to Test makes sure it can't be selected randomly. Setting a generator to Promo means it won't be selected for reply tweets
-    Disabled = False
-
-    def SetPriority(self, sText, List, iPriority):
-        for x in range(iPriority):
-            List.append(sText)
-          
+class TitleGen(Generator):          
     def _getFMs_(self):
         FMs = ""
           
@@ -48,11 +36,13 @@ class Generator():
           
         return FMs
     
-    def __init__(self, ID = -1, Priority = 1, Template = templates.TitleTemplateHHDefault()):
-
-        if not ID == -1:
-            self.ID = ID
-        self.Priority = Priority
+    def __init__(self, ID = -1, 
+                 Priority = GenPriority.Normal, 
+                 Type = GeneratorType.Normal, 
+                 Disabled = False, 
+                 sTxt = "", 
+                 Template = templates.TitleTemplateHHDefault()):
+        super().__init__(ID = ID, Priority = Priority, Disabled = Disabled, sTxt = sTxt)
 
         self.Template = Template
         self.ExclTemplateTags = []
@@ -209,15 +199,17 @@ def GetTweetGenerator(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = None):
           GenType = Type 
      else:
           GenType = None 
+
+     TGC = GeneratorContainer(TitleGen)
      
      iSwitch = 999
      
      if bTest:
-          gen = TweetGenSel.GetGenerator(iGeneratorNo)
+          gen = TGC.GetGenerator(iGeneratorNo)
           if gen == None:
                gen = Generator()
      else:
-          gen = TweetGenSel.RandomGenerator(bAllowPromo = bAllowPromo, Type = GenType)
+          gen = TGC.RandomGenerator(bAllowPromo = bAllowPromo, Type = GenType)
           
      return gen
      
@@ -241,10 +233,12 @@ def GetTweet(bTest, bTweet, iGeneratorNo = 0, bAllowPromo = True, Type = None, T
     iLocMaxLen = 9999
     if iMaxLen > 0:
         iLocMaxLen = iMaxLen 
+
+    #TGC = GeneratorContainer(TitleGen)
     
     while Gen is None or (len(Gen.ImgTxt) > iLocMaxLen):
         if not bTest and bAllowFavTweets:
-            Gen = Generator()
+            Gen = TitleGen()
             if not Gen.GetTitleFromFile(FAVTITLE_FILENAME):
                 Gen = GetRandomTweetGenerator(bTest, bTweet, iGeneratorNo, bAllowPromo = bAllowPromo)
         else:
@@ -252,12 +246,9 @@ def GetTweet(bTest, bTweet, iGeneratorNo = 0, bAllowPromo = True, Type = None, T
 
     return Gen
      
-class GeneratorPromo(Generator):
-     Type = GeneratorType.Promo
-     Disabled = True
-
+class GeneratorPromo(TitleGen):
      def __init__(self):
-        super().__init__(ID = 0, Priority = 1)
+        super().__init__(ID = 0, Priority = GenPriority.Lowest, Disabled = True, Type = GeneratorType.Promo)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -300,10 +291,10 @@ class GeneratorPromo(Generator):
                
           return sTweet
           
-class Generator1(Generator):
+class Generator1(TitleGen):
      # Blackmailed by the Billionaire Mountain Man 
      def __init__(self):
-         super().__init__(ID = 1, Priority = 100)
+         super().__init__(ID = 1, Priority = GenPriority.SuperHigh)
          self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
@@ -320,14 +311,12 @@ class Generator1(Generator):
 
           return sTweet
           
-class Generator2(Generator):
+class Generator2(TitleGen):
     # Bedded
     # by the
     # Busty Trans Japanese Schoolgirl
-    Disabled = False
-
     def __init__(self):
-        super().__init__(ID = 2, Priority = 30)
+        super().__init__(ID = 2, Priority = GenPriority.High)
         self.Template = templates.TitleTemplate1()
      
     def GenerateTweet(self):
@@ -360,10 +349,10 @@ class Generator2(Generator):
           
         return sTweet
 
-class Generator3(Generator):
+class Generator3(TitleGen):
      # Married to the Alpha Wolf
      def __init__(self):
-         super().__init__(ID = 3, Priority = 15)
+         super().__init__(ID = 3, Priority = GenPriority.Normal)
          self.Template = templates.TitleTemplate1()
        
      def GenerateTweet(self):
@@ -387,12 +376,10 @@ class Generator3(Generator):
 
           return sTweet
 
-class Generator4(Generator):
+class Generator4(TitleGen):
      # Veronica Gets Married to the Alpha Wolf     
-     Disabled = True
-
      def __init__(self):
-        super().__init__(ID = 4, Priority = 15)
+        super().__init__(ID = 4, Priority = GenPriority.Low, Disabled = True)
 
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -406,10 +393,10 @@ class Generator4(Generator):
           
           return sTweet
           
-class Generator5(Generator):
+class Generator5(TitleGen):
     # Jackie Shows a Horny French Alpha Wolf her Cunning Stunt
     def __init__(self):
-        super().__init__(ID = 5, Priority = 5)
+        super().__init__(ID = 5, Priority = GenPriority.Low)
         self.Template = templates.TitleTemplate3()
      
     def GenerateTweet(self):
@@ -432,10 +419,10 @@ class Generator5(Generator):
           
         return sTweet
           
-class Generator6(Generator):
+class Generator6(TitleGen):
      # Seduced in the Bed of the Billionaire     
      def __init__(self):
-        super().__init__(ID = 6, Priority = 5)
+        super().__init__(ID = 6, Priority = GenPriority.Low)
         self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
@@ -456,10 +443,10 @@ class Generator6(Generator):
           
           return sTweet
           
-class Generator7(Generator):
+class Generator7(TitleGen):
     # A Buff Tuxedoed Italian Dinosaur Took My Wife Hard From Behind!
     def __init__(self):
-        super().__init__(ID = 7, Priority = 50)
+        super().__init__(ID = 7, Priority = GenPriority.High)
         self.Template = templates.TitleTemplate4()
      
     def GenerateTweet(self):
@@ -494,12 +481,10 @@ class Generator7(Generator):
 
         return sTweet
 
-class Generator8(Generator):
+class Generator8(TitleGen):
      # My Blind Date is A Uniformed Australian Mer-man Fighter Pilot! 
-     Disabled = False
-
      def __init__(self):
-         super().__init__(ID = 8, Priority = 5)
+         super().__init__(ID = 8, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
@@ -529,12 +514,10 @@ class Generator8(Generator):
           return sTweet
           
 # Idea: a rhyming version of this generator
-class Generator9(Generator):
+class Generator9(TitleGen):
      # The Secretary and the Space Werewolf  
-     Disabled = False
-
      def __init__(self):
-         super().__init__(ID = 9, Priority = 5)
+         super().__init__(ID = 9, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
@@ -557,12 +540,10 @@ class Generator9(Generator):
           
           return sTweet
           
-class Generator10(Generator):
+class Generator10(TitleGen):
      # I'm Having a Baby for a Stay-at-Home Manticore!
-     Disabled = False
-
      def __init__(self):
-         super().__init__(ID = 10, Priority = 5)
+         super().__init__(ID = 10, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate15()
      
      def GenerateTweet(self):
@@ -586,13 +567,11 @@ class Generator10(Generator):
 
           return sTweet
           
-class Generator11(Generator):
+class Generator11(TitleGen):
      # Shaving
      # My Cute Black Cheerleader Step-Sister
-     Disabled = False
-
      def __init__(self):
-         super().__init__(ID = 11, Priority = 5)
+         super().__init__(ID = 11, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate12()
      
      def GenerateTweet(self):
@@ -619,13 +598,11 @@ class Generator11(Generator):
 
           return sTweet
           
-class Generator12(Generator):
+class Generator12(TitleGen):
      # Fingering Felicity
      # A Mommy Encounter
-     Disabled = False
-
      def __init__(self):
-         super().__init__(ID = 12, Priority = 1)
+         super().__init__(ID = 12, Priority = GenPriority.Lowest)
          self.Template = templates.TitleTemplate12()
      
      def GenerateTweet(self):
@@ -648,12 +625,10 @@ class Generator12(Generator):
 
           return sTweet
           
-class Generator13(Generator):     
+class Generator13(TitleGen):     
      # I Was a Bra-less Escort for a French Billionaire Uniporn
-     Disabled = False
-
      def __init__(self):
-         super().__init__(ID = 13, Priority = 5)
+         super().__init__(ID = 13, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
@@ -675,15 +650,13 @@ class Generator13(Generator):
      
 # Note: this 'gang bang' generator has been split in two. See also
 # gen 40
-class Generator14(Generator):
+class Generator14(TitleGen):
     # The Virgin French Cheerleader
     # Has a Gang-Bang with
     # 30
     # Giant Well-Hung Sumo Wrestlers
-    Disabled = False
-
     def __init__(self):
-        super().__init__(ID = 14, Priority = 5)
+        super().__init__(ID = 14, Priority = GenPriority.Low)
         self.Template = templates.TitleTemplate16()
      
     def GenerateTweet(self):
@@ -730,12 +703,10 @@ class Generator14(Generator):
           
         return sTweet
           
-class Generator15(Generator):
+class Generator15(TitleGen):
     # The Small-Town Virgin's First Porno
-    Disabled = False
-
     def __init__(self):
-        super().__init__(ID = 15, Priority = 5)
+        super().__init__(ID = 15, Priority = GenPriority.Low)
         self.Template = templates.TitleTemplate7()
      
     def GenerateTweet(self):
@@ -764,14 +735,12 @@ class Generator15(Generator):
 
         return sTweet
           
-class Generator16(Generator):
+class Generator16(TitleGen):
 # "Oh No! I Went to an Orgy
 # And I Accidentally
 # Finger-Banged My Asian Step-Sister!"
-     Disabled = False
-
      def __init__(self):
-         super().__init__(ID = 16, Priority = 30)
+         super().__init__(ID = 16, Priority = GenPriority.High)
          self.Template = templates.TitleTemplate8()
      
      def GenerateTweet(self):
@@ -801,12 +770,10 @@ class Generator16(Generator):
                sTweet += "My " + StepMom.Desc + "!\""
           return sTweet
           
-class Generator17(Generator):
+class Generator17(TitleGen):
      # Enslaved: The Ebony Older Woman & The Mountain Man Biker Gang 
-     Disabled = False
-
      def __init__(self):
-         super().__init__(ID = 17, Priority = 5)
+         super().__init__(ID = 17, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate17()
      
      def GenerateTweet(self):
@@ -840,12 +807,10 @@ class Generator17(Generator):
           
           return sTweet
           
-class Generator18(Generator):
+class Generator18(TitleGen):
      # Oh No! My Step-Daughter is a Porn Star
-     Disabled = True
-
      def __init__(self):
-         super().__init__(ID = 18, Priority = 5)
+         super().__init__(ID = 18, Priority = GenPriority.Low, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -863,13 +828,11 @@ class Generator18(Generator):
           
           return sTweet
           
-class Generator19(Generator):
+class Generator19(TitleGen):
       # My Daughter's Best Friend is a Busty Virgin Nurse
       # And I Got Her to Pee on Me!
-      Disabled = True
-
       def __init__(self):
-         super().__init__(ID = 19, Priority = 5)
+         super().__init__(ID = 19, Priority = GenPriority.Low, Disabled = True)
      
       def GenerateTweet(self):
            super().GenerateTweet()
@@ -895,12 +858,10 @@ class Generator19(Generator):
            return sTweet
           
 # NOTE: Similar to Generator 138 (spooky version)
-class Generator20(Generator):
+class Generator20(TitleGen):
     # I Was Stripped In Public, And I Liked It
-    Disabled = False
-
     def __init__(self):
-        super().__init__(ID = 20, Priority = 5)
+        super().__init__(ID = 20, Priority = GenPriority.Low)
         self.Template = templates.TitleTemplate7()
      
     def GenerateTweet(self):
@@ -941,12 +902,10 @@ class Generator20(Generator):
 
         return sTweet
           
-class Generator21(Generator):
+class Generator21(TitleGen):
      # Pleasured by the Shape-Shifting Single Dad
-     Disabled = False
-
      def __init__(self):
-         super().__init__(ID = 21, Priority = 5)
+         super().__init__(ID = 21, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
@@ -965,12 +924,10 @@ class Generator21(Generator):
           
           return sTweet
           
-class Generator22(Generator):
+class Generator22(TitleGen):
     # The Amish Virgin and the Taboo Butch MILF: A Lesbian Love Story 
-    Disabled = False
-
     def __init__(self):
-        super().__init__(ID = 22, Priority = 30)
+        super().__init__(ID = 22, Priority = GenPriority.High)
         self.Template = templates.TitleTemplate2()
 
         self.ExclTemplateTags = ["gay", "straight", "man", "men"] 
@@ -991,12 +948,10 @@ class Generator22(Generator):
         return sTweet
           
 # NOTE: part of this was split off to generator 44
-class Generator23(Generator):
+class Generator23(TitleGen):
      # The Boxer and the Gay Widowed Outlaw Daddy: A Forbidden Love Story 
-     Disabled = False
-
      def __init__(self):
-         super().__init__(ID = 23, Priority = 30)
+         super().__init__(ID = 23, Priority = GenPriority.High)
          self.Template = templates.TitleTemplate2()
      
      def GenerateTweet(self):
@@ -1020,12 +975,10 @@ class Generator23(Generator):
           
           return sTweet
           
-class Generator24(Generator):
+class Generator24(TitleGen):
      # Deep-Throating My Well-Hung Sumo-Wrestler Step-Dad
-     Disabled = False
-
      def __init__(self):
-         super().__init__(ID = 24, Priority = 5)
+         super().__init__(ID = 24, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate16()
      
      def GenerateTweet(self):
@@ -1047,12 +1000,10 @@ class Generator24(Generator):
           
           return sTweet
           
-class Generator25(Generator):
+class Generator25(TitleGen):
     # Pounded In The Butt By The Motorcycle Gang
-    Disabled = False
-
     def __init__(self):
-        super().__init__(ID = 25, Priority = 30)
+        super().__init__(ID = 25, Priority = GenPriority.High)
         self.Template = templates.TitleTemplate1()
      
     def GenerateTweet(self):
@@ -1078,12 +1029,10 @@ class Generator25(Generator):
           
         return sTweet
           
-class Generator26(Generator):
+class Generator26(TitleGen):
     # Hotwife for Daddy: A BDSM Romance 
-    Disabled = False
-
     def __init__(self):
-        super().__init__(ID = 26, Priority = 5)
+        super().__init__(ID = 26, Priority = GenPriority.Low)
         self.Template = templates.TitleTemplate12()
      
     def GenerateTweet(self):
@@ -1110,12 +1059,10 @@ class Generator26(Generator):
           
         return sTweet
           
-class Generator27(Generator):
+class Generator27(TitleGen):
     # The Shy Lesbian Gymnast Wore Black
-    Disabled = False
-
     def __init__(self):
-        super().__init__(ID = 27, Priority = 5)
+        super().__init__(ID = 27, Priority = GenPriority.Low)
         self.Template = templates.TitleTemplate7()
      
     def GenerateTweet(self):
@@ -1142,12 +1089,10 @@ class Generator27(Generator):
 
         return sTweet
 
-class Generator28(Generator):
+class Generator28(TitleGen):
      #Cuckolded By My Amish Maiden Hotwife
-     Disabled = True
-
      def __init__(self):
-         super().__init__(ID = 28, Priority = 5)
+         super().__init__(ID = 28, Priority = GenPriority.Low, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1168,12 +1113,10 @@ class Generator28(Generator):
           
           return sTweet
           
-class Generator29(Generator):
+class Generator29(TitleGen):
      # Blackmailing My Step-Dad's Busty Ballerina
-     Disabled = True
-
      def __init__(self):
-         super().__init__(ID = 29, Priority = 5)
+         super().__init__(ID = 29, Priority = GenPriority.Low, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1200,14 +1143,12 @@ class Generator29(Generator):
           
           return sTweet
           
-class Generator30(Generator):
+class Generator30(TitleGen):
      # Bubbly & Plump: 
      # The Chaste Small-Town Girl Barista 
      # Rides a Veiny 9-inch Dick
-     Disabled = False
-
      def __init__(self):
-         super().__init__(ID = 30, Priority = 5)
+         super().__init__(ID = 30, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate14()
      
      def GenerateTweet(self):
@@ -1275,14 +1216,12 @@ class Generator30(Generator):
           return sTweet
           
 # NOTE: Has some issues
-class Generator31(Generator):
+class Generator31(TitleGen):
      # Wanton & Willing: 
      # My Kinky Lesbian Leather-Clad Dominatrix
      # Pegs Me With a Strap-On
-     Disabled = True
-
      def __init__(self):
-         super().__init__(ID = 31, Priority = 1)
+         super().__init__(ID = 31, Priority = GenPriority.Lowest, Disabled = True)
          self.Template = templates.TitleTemplate14()
      
      def GenerateTweet(self):
@@ -1351,14 +1290,12 @@ class Generator31(Generator):
                                                             "Anal Beads"]).GetWord()
           return sTweet
           
-class Generator32(Generator):
+class Generator32(TitleGen):
      # Stripping 
      # For My Best Friend's 
      # Cocky Coal-Miner Brother 
-    Disabled = False
-
     def __init__(self):
-        super().__init__(ID = 32, Priority = 5)
+        super().__init__(ID = 32, Priority = GenPriority.Low)
         self.Template = templates.TitleTemplate9()
      
     def GenerateTweet(self):
@@ -1423,12 +1360,10 @@ class Generator32(Generator):
         return sTweet
           
 # Let's make this a consonant rhyme
-class Generator33(Generator):
+class Generator33(TitleGen):
      #Milking Marie: A Pan-sexual Cheerleader Affair
-     Disabled = False
-
      def __init__(self):
-         super().__init__(ID = 33, Priority = 5)
+         super().__init__(ID = 33, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate14()
      
      def GenerateTweet(self):
@@ -1447,11 +1382,9 @@ class Generator33(Generator):
           
 # Rimming the Uptight Librarian Futa
 # and her Mom
-class Generator34(Generator):
-     Disabled = False
-
+class Generator34(TitleGen):
      def __init__(self):
-         super().__init__(ID = 34, Priority = 5)
+         super().__init__(ID = 34, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate14()
      
      def GenerateTweet(self):
@@ -1471,12 +1404,10 @@ class Generator34(Generator):
 
           return sTweet
           
-class Generator35(Generator):
+class Generator35(TitleGen):
      # Pleasured by the Shape-Shifting Single Dad: A Nudist Secretary Story
-     Disabled = True
-
      def __init__(self):
-         super().__init__(ID = 35, Priority = 1)
+         super().__init__(ID = 35, Priority = GenPriority.Lowest, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1514,14 +1445,12 @@ class Generator35(Generator):
 
           return sTweet
           
-class Generator36(Generator):
+class Generator36(TitleGen):
      # Turned Gay
      # by
      # The Strong Vegan Back-Door Bandit
-     Disabled = False
-
      def __init__(self):
-         super().__init__(ID = 36, Priority = 5)
+         super().__init__(ID = 36, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
@@ -1563,11 +1492,9 @@ class Generator36(Generator):
 # My New Step-Dad Is
 # A Tattooed Hard-Drinking Vegan Trillionaire
 # and He's Hung Like a Horse!          
-class Generator37(Generator):
-     Disabled = False
-
+class Generator37(TitleGen):
      def __init__(self):
-         super().__init__(ID = 37, Priority = 30)
+         super().__init__(ID = 37, Priority = GenPriority.High)
          self.Template = templates.TitleTemplate3()
      
      def GenerateTweet(self):
@@ -1594,12 +1521,10 @@ class Generator37(Generator):
 
           return sTweet
           
-class Generator38(Generator):
+class Generator38(TitleGen):
      # My New Step-Dad Is A Visibly-Erect Centaur
-     Disabled = True
-
      def __init__(self):
-         super().__init__(ID = 38, Priority = 5)
+         super().__init__(ID = 38, Priority = GenPriority.Low, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1619,12 +1544,11 @@ class Generator38(Generator):
 
           return sTweet
           
-class Generator39(Generator):
+class Generator39(TitleGen):
      # Taken Hard By My Big Black Biker 
-     Disabled = True
-
      def __init__(self):
-         super().__init__(ID = 39, Priority = 5)
+         super().__init__(ID = 39, Priority = GenPriority.Low, Disabled = True)
+         #self.Template = templates.TitleTemplate3()
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1654,14 +1578,12 @@ class Generator39(Generator):
 
 # Note: this 'gang bang' generator has been split in two. See also
 # gen 14, gen 57
-class Generator40(Generator):
+class Generator40(TitleGen):
      # My Shy Sporty Bride
      # Got Shared
      # by Two-Dozen Nude Leather-Jacketed Varsity Athletes
-    Disabled = False
-
     def __init__(self):
-        super().__init__(ID = 40, Priority = 5)
+        super().__init__(ID = 40, Priority = GenPriority.Low)
         self.Template = templates.TitleTemplate16()
      
     def GenerateTweet(self):
@@ -1693,12 +1615,10 @@ class Generator40(Generator):
           
         return sTweet
           
-class Generator41(Generator):
+class Generator41(TitleGen):
      #Seducing Sheryl: The Virginal Nurse and the Big Titty Dominatrix
-     Disabled = False
-
      def __init__(self):
-         super().__init__(ID = 41, Priority = 5)
+         super().__init__(ID = 41, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate17()
      
      def GenerateTweet(self):
@@ -1723,12 +1643,10 @@ class Generator41(Generator):
 
           return sTweet
           
-class Generator42(Generator):
+class Generator42(TitleGen):
      # Deflowered in the Pleasure Gardens of the Studly Bare-Chested Pirate Count
-     Disabled = False
-
      def __init__(self):
-         super().__init__(ID = 42, Priority = 5)
+         super().__init__(ID = 42, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate13()
      
      def GenerateTweet(self):
@@ -1748,13 +1666,11 @@ class Generator42(Generator):
 
           return sTweet
 
-class Generator43(Generator):
+class Generator43(TitleGen):
      # Secret Baby for the Well-Hung Italian Count 
      #          - this is very similar to gen 10.
-     Disabled = False
-
      def __init__(self):
-         super().__init__(ID = 43, Priority = 5)
+         super().__init__(ID = 43, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate12()
      
      def GenerateTweet(self):
@@ -1778,12 +1694,10 @@ class Generator43(Generator):
           return sTweet
           
 # NOTE: split off from Gen 23
-class Generator44(Generator):
+class Generator44(TitleGen):
      # Frank and the Gay Widowed Outlaw Daddy: A Forbidden Love Story 
-     Disabled = False
-
      def __init__(self):
-         super().__init__(ID = 44, Priority = 5)
+         super().__init__(ID = 44, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate2()
      
      def GenerateTweet(self):
@@ -1803,13 +1717,11 @@ class Generator44(Generator):
 
           return sTweet
           
-class Generator45(Generator):
+class Generator45(TitleGen):
      # The Sporty Black Farmer's Daughter
      # Gets Naked at the Museum!]
-     Disabled = False
-
      def __init__(self):
-         super().__init__(ID = 45, Priority = 5)
+         super().__init__(ID = 45, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate12()
      
      def GenerateTweet(self):
@@ -1838,11 +1750,9 @@ class Generator45(Generator):
 
 # Secretly In Love With
 # My Elf Supermodel Sister
-class Generator46(Generator):
-     Disabled = False
-
+class Generator46(TitleGen):
      def __init__(self):
-         super().__init__(ID = 46, Priority = 5)
+         super().__init__(ID = 46, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
@@ -1870,10 +1780,10 @@ class Generator46(Generator):
                sTweet = Prefix.GetWord() + " my\n" + Girl.Desc + " " + Relations.GetWord(NotList = ["Girlfriend", "Mistress", "Wife"])
           return sTweet
           
-# class Generator47(Generator):
+# class Generator47(TitleGen):
      # # My Step-Dad Transforms Into A Cocky Gentleman Mer-Man!
      # ID = 47
-     # Priority = 1
+     # Priority = GenPriority.Lowest
      
      # def GenerateTweet(self):
           # super().GenerateTweet()
@@ -1889,12 +1799,10 @@ class Generator46(Generator):
 
           # return sTweet
           
-class Generator48(Generator):
+class Generator48(TitleGen):
      # Lusting For the Wicked Blonde Fetish Model
-     Disabled = False
-
      def __init__(self):
-         super().__init__(ID = 48, Priority = 5)
+         super().__init__(ID = 48, Priority = GenPriority.Low)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1912,14 +1820,12 @@ class Generator48(Generator):
           
           return sTweet          
           
-class Generator49(Generator):
+class Generator49(TitleGen):
      # Taken Vigorously
      # in the Men's Restroom by
      # The Dominant Donkey-Dicked Italian Vegan Centaur
-     Disabled = False
-
      def __init__(self):
-         super().__init__(ID = 49, Priority = 5)
+         super().__init__(ID = 49, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate17()
      
      def GenerateTweet(self):
@@ -1988,12 +1894,10 @@ class Generator49(Generator):
           
           return sTweet
           
-class Generator50(Generator):
+class Generator50(TitleGen):
      # What's a Little Deep Throat Between Bros?
-     Disabled = False
-
      def __init__(self):
-         super().__init__(ID = 50, Priority = 50)
+         super().__init__(ID = 50, Priority = GenPriority.SuperHigh)
          # self.Template = templates.TitleTemplate8()
      
      def GenerateTweet(self):
@@ -2160,13 +2064,11 @@ class Generator50(Generator):
           sTweet += "?"
           return sTweet
 
-class Generator51(Generator):
+class Generator51(TitleGen):
      # Juliana the Nudist Damsel in:
      # The Kingdom of the Dildo-Bots
-     Disabled = False
-
      def __init__(self):
-         super().__init__(ID = 51, Priority = 5)
+         super().__init__(ID = 51, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate18()
      
      def GenerateTweet(self):
@@ -2208,11 +2110,9 @@ class Generator51(Generator):
 # Is Secretly
 # A Stripper!
 #            - needs work: custom char templates
-class Generator52(Generator):
-     Disabled = False
-
+class Generator52(TitleGen):
      def __init__(self):
-         super().__init__(ID = 52, Priority = 1)
+         super().__init__(ID = 52, Priority = GenPriority.Lowest)
          self.Template = templates.TitleTemplate2()
      
      def GenerateTweet(self):
@@ -2247,11 +2147,9 @@ class Generator52(Generator):
 # Is a Sassy Asian Stripper 
 # And Now He's Pissed!
 #          - also needs work
-class Generator53(Generator):
-     Disabled = True
-
+class Generator53(TitleGen):
      def __init__(self):
-         super().__init__(ID = 53, Priority = 1)
+         super().__init__(ID = 53, Priority = GenPriority.Lowest, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -2280,11 +2178,9 @@ class Generator53(Generator):
 # The Feisty Princess (Nubile Queen / Virginal Priestess)
 # Encounters 
 # The Strapping Naked Half-Orc Barbarian 
-class Generator54(Generator):
-     Disabled = True
-
+class Generator54(TitleGen):
      def __init__(self):
-         super().__init__(ID = 54, Priority = 1)
+         super().__init__(ID = 54, Priority = GenPriority.Lowest, Disabled = True)
          self.Template = templates.TitleTemplate19()
      
      def GenerateTweet(self):
@@ -2351,11 +2247,9 @@ class Generator54(Generator):
 # Fireman on Top,
 # Fireman on the Bottom,
 # Kinky Airline Stewardess in the Middle
-class Generator55(Generator):
-     Disabled = False
-
+class Generator55(TitleGen):
      def __init__(self):
-         super().__init__(ID = 55, Priority = 5)
+         super().__init__(ID = 55, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate20()
      
      def GenerateTweet(self):
@@ -2388,11 +2282,9 @@ class Generator55(Generator):
 # The Kinky Brazillian Bikini Model
 # is hot for
 # Bald Men!
-class Generator56(Generator):
-     Disabled = True
-
+class Generator56(TitleGen):
      def __init__(self):
-         super().__init__(ID = 56, Priority = 1)
+         super().__init__(ID = 56, Priority = GenPriority.Lowest)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -2447,11 +2339,9 @@ class Generator56(Generator):
 # Taken in the Locker Room 
 # by an Entire Team of 
 # Muscular Lumberjack Hockey Players
-class Generator57(Generator):
-     Disabled = False
-
+class Generator57(TitleGen):
      def __init__(self):
-         super().__init__(ID = 57, Priority = 30)
+         super().__init__(ID = 57, Priority = GenPriority.High)
          self.Template = templates.TitleTemplate21()
      
      def GenerateTweet(self):
@@ -2476,11 +2366,9 @@ class Generator57(Generator):
           
 # I hooked up with a strapping leather cowboy
 # and now I'm pregnant!
-class Generator58(Generator):
-     Disabled = False
-
+class Generator58(TitleGen):
      def __init__(self):
-         super().__init__(ID = 58, Priority = 5)
+         super().__init__(ID = 58, Priority = GenPriority.Low)
          # self.Template = templates.TitleTemplate4()
      
      def GenerateTweet(self):
@@ -2508,9 +2396,9 @@ class Generator58(Generator):
      
 # # The hot bikini model prom queen
 # # is secretly a lesbian      
-# class Generator59(Generator):
+# class Generator59(TitleGen):
      # ID = 59
-     # Priority = 1
+     # Priority = GenPriority.Lowest
      
      # def GenerateTweet(self):
           # super().GenerateTweet()
@@ -2533,11 +2421,9 @@ class Generator58(Generator):
 # and her 
 # Adventure with the
 # Magic Butt Plug
-class Generator60(Generator):
-     Disabled = False
-
+class Generator60(TitleGen):
      def __init__(self):
-         super().__init__(ID = 60, Priority = 5)
+         super().__init__(ID = 60, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate21()
      
      def GenerateTweet(self):
@@ -2571,14 +2457,12 @@ class Generator60(Generator):
           
           return sTweet     
 
-class Generator61(Generator):
+class Generator61(TitleGen):
     # DOMINATED
     # by the
     # Busty Japanese Schoolgirl
-    Disabled = False
-
     def __init__(self):
-        super().__init__(ID = 61, Priority = 30)
+        super().__init__(ID = 61, Priority = GenPriority.High)
         self.Template = templates.TitleTemplate28() # CHANGe
      
     def GenerateTweet(self):
@@ -2603,11 +2487,9 @@ class Generator61(Generator):
 # A husky investment banker
 # has me chained up in his basement (garage/sex dungeon)
 # naked!
-class Generator62(Generator):
-    Disabled = False
-
+class Generator62(TitleGen):
     def __init__(self):
-        super().__init__(ID = 62, Priority = 5)
+        super().__init__(ID = 62, Priority = GenPriority.Low)
         self.Template = templates.TitleTemplate22()
      
     def GenerateTweet(self):
@@ -2639,11 +2521,9 @@ class Generator62(Generator):
           
 # The Busty Blonde Flight Attendant's 
 # Topless Miami Vacation
-class Generator63(Generator):
-    Disabled = False
-
+class Generator63(TitleGen):
     def __init__(self):
-        super().__init__(ID = 63, Priority = 30)
+        super().__init__(ID = 63, Priority = GenPriority.High)
         self.Template = templates.TitleTemplate23()
 
     def GenerateTweet(self):
@@ -2680,11 +2560,9 @@ class Generator63(Generator):
 # Tanned Swedish Masseuse
 # and 
 # Her Ass Looks Amazing! 
-class Generator64(Generator):
-     Disabled = True
-
+class Generator64(TitleGen):
      def __init__(self):
-         super().__init__(ID = 64, Priority = 5)
+         super().__init__(ID = 64, Priority = GenPriority.Low, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -2707,11 +2585,9 @@ class Generator64(Generator):
           
 # Anita Gets Serviced 
 # By Five Naked Cowboys 
-class Generator65(Generator):
-     Disabled = False
-
+class Generator65(TitleGen):
      def __init__(self):
-         super().__init__(ID = 65, Priority = 1)
+         super().__init__(ID = 65, Priority = GenPriority.Lowest)
          self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
@@ -2737,11 +2613,9 @@ class Generator65(Generator):
           return sTweet     
 
 # The Bride Wore a Ball Gag          
-class Generator66(Generator):
-     Disabled = False
-
+class Generator66(TitleGen):
      def __init__(self):
-         super().__init__(ID = 66, Priority = 1)
+         super().__init__(ID = 66, Priority = GenPriority.Lowest)
          self.Template = templates.TitleTemplate7()
      
      def GenerateTweet(self):
@@ -2769,11 +2643,9 @@ class Generator66(Generator):
 # "Go easy on me! I'm a teenage coed nun
 # and its my first time
 # doing anal!"
-class Generator67(Generator):
-     Disabled = False
-
+class Generator67(TitleGen):
      def __init__(self):
-         super().__init__(ID = 67, Priority = 5)
+         super().__init__(ID = 67, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate4()
      
      def GenerateTweet(self):
@@ -2804,11 +2676,9 @@ class Generator67(Generator):
 # but it can't hurt if I try rimming
 # with this Italian Don Juan cowboy 
 # just this once!
-class Generator68(Generator):
-     Disabled = True
-
+class Generator68(TitleGen):
      def __init__(self):
-         super().__init__(ID = 68, Priority = 1)
+         super().__init__(ID = 68, Priority = GenPriority.Lowest, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -2834,11 +2704,9 @@ class Generator68(Generator):
           
 # The wholesome blonde Christian girl spreads her legs (bends over/drops her panties/puts out)
 # for the cocky Italian DILF!
-class Generator69(Generator):
-     Disabled = False
-
+class Generator69(TitleGen):
      def __init__(self):
-         super().__init__(ID = 69, Priority = 5)
+         super().__init__(ID = 69, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate24()
      
      def GenerateTweet(self):
@@ -2881,11 +2749,9 @@ class Generator69(Generator):
           
 # I shot a porn scene
 # with a handsome BBC construction worker
-class Generator70(Generator):
-     Disabled = True
-
+class Generator70(TitleGen):
      def __init__(self):
-         super().__init__(ID = 70, Priority = 15)
+         super().__init__(ID = 70, Priority = GenPriority.Normal, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -2908,11 +2774,9 @@ class Generator70(Generator):
           
           return sTweet     
           
-class Generator71(Generator):
-     Disabled = True
-
+class Generator71(TitleGen):
      def __init__(self):
-         super().__init__(ID = 71, Priority = 15)
+         super().__init__(ID = 71, Priority = GenPriority.Normal, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -2940,11 +2804,9 @@ class Generator71(Generator):
 # My New Coworker
 # is a Strapping Long Haul Trucker
 # and He Sucked My Titties 
-class Generator72(Generator):
-    Disabled = False
-
+class Generator72(TitleGen):
     def __init__(self):
-        super().__init__(ID = 72, Priority = 5)
+        super().__init__(ID = 72, Priority = GenPriority.Low)
         self.Template = templates.TitleTemplate14()
      
     def GenerateTweet(self):
@@ -2994,9 +2856,9 @@ class Generator72(Generator):
         return sTweet     
    
           
-# class Generator73(Generator):
+# class Generator73(TitleGen):
      # ID = 73
-     # Priority = 1
+     # Priority = GenPriority.Lowest
      
      # def GenerateTweet(self):
           # super().GenerateTweet()
@@ -3004,11 +2866,9 @@ class Generator72(Generator):
           
           # return sTweet     
           
-class Generator74(Generator):
-    Disabled = False
-
+class Generator74(TitleGen):
     def __init__(self):
-        super().__init__(ID = 74, Priority = 1)
+        super().__init__(ID = 74, Priority = GenPriority.Lowest)
         self.Template = templates.TitleTemplate16()
      
     def GenerateTweet(self):
@@ -3058,11 +2918,9 @@ class Generator74(Generator):
                     
         return sTweet     
 
-class Generator75(Generator):
-    Disabled = False
-
+class Generator75(TitleGen):
     def __init__(self):
-        super().__init__(ID = 75, Priority = 1)
+        super().__init__(ID = 75, Priority = GenPriority.Lowest)
         self.Template = templates.TitleTemplate16()
      
     def GenerateTweet(self):
@@ -3089,11 +2947,9 @@ class Generator75(Generator):
 # Tanned Redheaded Secretary
 # and 
 # I Ate Her Out
-class Generator76(Generator):
-     Disabled = False
-
+class Generator76(TitleGen):
      def __init__(self):
-         super().__init__(ID = 76, Priority = 5)
+         super().__init__(ID = 76, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate3()
      
      def GenerateTweet(self):
@@ -3129,11 +2985,9 @@ class Generator76(Generator):
           
 # "I was a fertile harem girl
 # for a strapping black cowboy sheikh"
-class Generator77(Generator):
-     Disabled = True
-
+class Generator77(TitleGen):
      def __init__(self):
-         super().__init__(ID = 77, Priority = 5)
+         super().__init__(ID = 77, Priority = GenPriority.Low, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -3173,11 +3027,9 @@ class Generator77(Generator):
      
 # His for the Fisting:
 # A Submissive Nubile Black Flight-Attendant Story     
-class Generator78(Generator):
-     Disabled = False
-
+class Generator78(TitleGen):
      def __init__(self):
-         super().__init__(ID = 78, Priority = 5)
+         super().__init__(ID = 78, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate12()
 
      def GenerateTweet(self):
@@ -3209,11 +3061,9 @@ class Generator78(Generator):
           sTweet += AddArticles(sSubAdj + " " + Girl.Desc, bMakeUpper = True) + " Story"
           return sTweet     
           
-class Generator79(Generator):
-     Disabled = False
-
+class Generator79(TitleGen):
      def __init__(self):
-         super().__init__(ID = 79, Priority = 5)
+         super().__init__(ID = 79, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate12()
      
      def GenerateTweet(self):
@@ -3241,14 +3091,12 @@ class Generator79(Generator):
           return sTweet     
           
 # NOTE: Similar to 81
-class Generator80(Generator):
+class Generator80(TitleGen):
 # I Lost My Virginity
 # to 
 # A Tanned Leather Cowboy 
-    Disabled = False
-
     def __init__(self):
-        super().__init__(ID = 80, Priority = 5)
+        super().__init__(ID = 80, Priority = GenPriority.Low)
         self.Template = templates.TitleTemplate1()
      
     def GenerateTweet(self):
@@ -3279,11 +3127,9 @@ class Generator80(Generator):
 # A Tanned Leather Cowboy 
 # in 
 # The Bathroom at CVS
-class Generator81(Generator):
-    Disabled = False
-
+class Generator81(TitleGen):
     def __init__(self):
-        super().__init__(ID = 81, Priority = 5)
+        super().__init__(ID = 81, Priority = GenPriority.Low)
         self.Template = templates.TitleTemplate3()
      
     def GenerateTweet(self):
@@ -3355,11 +3201,9 @@ class Generator81(Generator):
 # and
 # I'm Stripping 
 # For a Well-Hung Millionaire Sheikh!" (alt: I'm a pregnant asian waitress: what am I doing stripping for...??)
-class Generator82(Generator):
-     Disabled = True
-
+class Generator82(TitleGen):
      def __init__(self):
-         super().__init__(ID = 82, Priority = 5)
+         super().__init__(ID = 82, Priority = GenPriority.Low, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -3400,11 +3244,9 @@ class Generator82(Generator):
           
 #The Virgin Christian Redheaded Librarian
 #Tries an Interracial Threesome
-class Generator83(Generator):
-    Disabled = False
-
+class Generator83(TitleGen):
     def __init__(self):
-        super().__init__(ID = 83, Priority = 30)
+        super().__init__(ID = 83, Priority = GenPriority.High)
         self.Template = templates.TitleTemplate4()
      
     def GenerateTweet(self):
@@ -3457,11 +3299,9 @@ class Generator83(Generator):
           
 # Busty Princess Sophie
 # Gets Tea-Bagged by the Goat Men
-class Generator84(Generator):
-     Disabled = True
-
+class Generator84(TitleGen):
      def __init__(self):
-         super().__init__(ID = 84, Priority = 1)
+         super().__init__(ID = 84, Priority = GenPriority.Lowest, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -3505,11 +3345,9 @@ class Generator84(Generator):
 
           return sTweet     
 
-class Generator85(Generator):
-     Disabled = True
-
+class Generator85(TitleGen):
      def __init__(self):
-         super().__init__(ID = 85, Priority = 1)
+         super().__init__(ID = 85, Priority = GenPriority.Lowest, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -3542,11 +3380,9 @@ class Generator85(Generator):
 # I Shared My Innocent Asian Wife 
 # with 
 # A Well-Hung Beefy Fighter Pilot!
-class Generator86(Generator):
-     Disabled = True
-
+class Generator86(TitleGen):
      def __init__(self):
-         super().__init__(ID = 86, Priority = 5)
+         super().__init__(ID = 86, Priority = GenPriority.Low, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -3580,9 +3416,9 @@ class Generator86(Generator):
           
 # Filming My Step-Son's Rich Bitch Wife
 # In the Shower
-# class Generator87(Generator):
+# class Generator87(TitleGen):
      # ID = 87
-     # Priority = 1
+     # Priority = GenPriority.Lowest
      
      # def GenerateTweet(self):
           # super().GenerateTweet()
@@ -3593,11 +3429,9 @@ class Generator86(Generator):
 # Last Night a Sexy Dominatrix (Honey, A Sexy Dominatrix)
 # Forced Me 
 # To Eat Her Ass 
-class Generator88(Generator):
-     Disabled = True
-
+class Generator88(TitleGen):
      def __init__(self):
-         super().__init__(ID = 88, Priority = 5)
+         super().__init__(ID = 88, Priority = GenPriority.Low, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -3631,11 +3465,9 @@ class Generator88(Generator):
 # The Country Virgin Schoolgirl
 # and the
 # Swollen 8" Purple Dick
-class Generator89(Generator):
-     Disabled = True
-
+class Generator89(TitleGen):
      def __init__(self):
-         super().__init__(ID = 89, Priority = 5)
+         super().__init__(ID = 89, Priority = GenPriority.Low, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -3675,11 +3507,9 @@ class Generator89(Generator):
 # A Big Day for Veronica:
 # The Nubile Nympho Teen Slut 
 # Gets Anal Fisted 
-class Generator90(Generator):
-     Disabled = True
-
+class Generator90(TitleGen):
      def __init__(self):
-         super().__init__(ID = 90, Priority = 1)
+         super().__init__(ID = 90, Priority = GenPriority.Lowest, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -3739,11 +3569,9 @@ class Generator90(Generator):
 # I Spent the Night With
 # A Buff Well-Hung Mossad Agent
 # And a Sexy Cheerleader Stripper!
-class Generator91(Generator):
-     Disabled = True
-
+class Generator91(TitleGen):
      def __init__(self):
-         super().__init__(ID = 91, Priority = 1)
+         super().__init__(ID = 91, Priority = GenPriority.Lowest, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -3775,9 +3603,9 @@ class Generator91(Generator):
           
 # "I Gave A Naked Italian Airline Stewardess
 # A Full Frontal Massage!"
-# class Generator92(Generator):
+# class Generator92(TitleGen):
      # ID = 92
-     # Priority = 1
+     # Priority = GenPriority.Lowest
      
      # def GenerateTweet(self):
           # super().GenerateTweet()
@@ -3787,9 +3615,9 @@ class Generator91(Generator):
           
 # Veronica Puts On Latex (Leather/A Butt Plug):
 # Let the Hotwife Games Begin! (Bondage/BDSM/Dominatrix)
-# class Generator93(Generator):
+# class Generator93(TitleGen):
      # ID = 93
-     # Priority = 1
+     # Priority = GenPriority.Lowest
      
      # def GenerateTweet(self):
           # super().GenerateTweet()
@@ -3800,9 +3628,9 @@ class Generator91(Generator):
 # "I'm a Stay-at-Home Mommmy Blogger
 # And A Billionaire Biker
 # Spooned Me Hard!"
-# class Generator94(Generator):
+# class Generator94(TitleGen):
      # ID = 94
-     # Priority = 1
+     # Priority = GenPriority.Lowest
      
      # def GenerateTweet(self):
           # super().GenerateTweet()
@@ -3811,11 +3639,9 @@ class Generator91(Generator):
           # return sTweet     
           
 # Welcome to Pound Town, Miss Dixon!
-class Generator95(Generator):
-     Disabled = False
-
+class Generator95(TitleGen):
      def __init__(self):
-         super().__init__(ID = 95, Priority = 5)
+         super().__init__(ID = 95, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate8()
      
      def GenerateTweet(self):
@@ -3843,14 +3669,12 @@ class Generator95(Generator):
           return sTweet     
           
 # NOTE: Female version of Gen 132
-class Generator96(Generator):
+class Generator96(TitleGen):
 # In Love With
 # My Innocent Amish Maid's 
 # Enormous Coconuts 
-     Disabled = False
-
      def __init__(self):
-         super().__init__(ID = 96, Priority = 30)
+         super().__init__(ID = 96, Priority = GenPriority.High)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -3878,11 +3702,9 @@ class Generator96(Generator):
 # The Secretary 
 # is wearing
 # a butt plug          
-class Generator97(Generator):
-     Disabled = False
-
+class Generator97(TitleGen):
      def __init__(self):
-         super().__init__(ID = 97, Priority = 5)
+         super().__init__(ID = 97, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate7()
      
      def GenerateTweet(self):
@@ -3903,11 +3725,9 @@ class Generator97(Generator):
 
           return sTweet     
           
-class Generator98(Generator):
-     Disabled = True
-
+class Generator98(TitleGen):
      def __init__(self):
-         super().__init__(ID = 98, Priority = 1)
+         super().__init__(ID = 98, Priority = GenPriority.Lowest, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -3939,11 +3759,9 @@ class Generator98(Generator):
 
           return sTweet     
           
-class Generator99(Generator):
-     Disabled = True
-
+class Generator99(TitleGen):
      def __init__(self):
-         super().__init__(ID = 99, Priority = 1)
+         super().__init__(ID = 99, Priority = GenPriority.Lowest, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -3989,11 +3807,9 @@ class Generator99(Generator):
 
 # I Secretly Impregnated 
 # My Nudist Mommy-Blogger Sister-in-Law!          
-class Generator100(Generator):
-     Disabled = False
-
+class Generator100(TitleGen):
      def __init__(self):
-         super().__init__(ID = 100, Priority = 5)
+         super().__init__(ID = 100, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate7()
      
      def GenerateTweet(self):
@@ -4022,9 +3838,9 @@ class Generator100(Generator):
 # Butt Stuff 
 # With My 
 # Biology Professor (Spanish Teacher / Math Tutor)
-# class Generator101(Generator):
+# class Generator101(TitleGen):
      # ID = 101
-     # Priority = 1
+     # Priority = GenPriority.Lowest
      
      # def GenerateTweet(self):
           # super().GenerateTweet()
@@ -4035,11 +3851,9 @@ class Generator100(Generator):
 # Backdoor Lovin'
 # for the 
 # Jiggling Farmer's Daughter     
-class Generator102(Generator):
-     Disabled = False
-
+class Generator102(TitleGen):
      def __init__(self):
-         super().__init__(ID = 102, Priority = 30)
+         super().__init__(ID = 102, Priority = GenPriority.High)
          self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
@@ -4081,11 +3895,9 @@ class Generator102(Generator):
 # My Mother-in-Law is 
 # A Tanned Cheerleader 
 # and I Got Her Pregnant!
-class Generator103(Generator):
-     Disabled = False
-
+class Generator103(TitleGen):
      def __init__(self):
-         super().__init__(ID = 103, Priority = 5)
+         super().__init__(ID = 103, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate3()
      
      def GenerateTweet(self):
@@ -4106,11 +3918,9 @@ class Generator103(Generator):
           
 # Claimed on the Coffee Table
 # by a Burly Centaur Sailor
-class Generator104(Generator):
-     Disabled = False
-
+class Generator104(TitleGen):
      def __init__(self):
-         super().__init__(ID = 104, Priority = 30)
+         super().__init__(ID = 104, Priority = GenPriority.High)
          self.Template = templates.TitleTemplate6()
      
      def GenerateTweet(self):
@@ -4138,11 +3948,9 @@ class Generator104(Generator):
 # Brigitte Gets Claimed by 
 # The Well-Hung Naked Manor Lord 
 # On the Back of a Horse          
-class Generator105(Generator):
-     Disabled = True
-
+class Generator105(TitleGen):
      def __init__(self):
-         super().__init__(ID = 105, Priority = 1)
+         super().__init__(ID = 105, Priority = GenPriority.Lowest, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -4199,11 +4007,9 @@ class Generator105(Generator):
 
 # Lady Belle is Claimed Repeatedly
 # by The Tattooed Oiled-Up Barbarian          
-class Generator106(Generator):
-     Disabled = True
-
+class Generator106(TitleGen):
      def __init__(self):
-         super().__init__(ID = 106, Priority = 1)
+         super().__init__(ID = 106, Priority = GenPriority.Lowest, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -4238,11 +4044,9 @@ class Generator106(Generator):
           return sTweet     
           
 # Claimed at Castle Tittyfuck
-class Generator107(Generator):
-     Disabled = False
-
+class Generator107(TitleGen):
      def __init__(self):
-         super().__init__(ID = 107, Priority = 30)
+         super().__init__(ID = 107, Priority = GenPriority.High)
          self.Template = templates.TitleTemplate5()
      
      def WordCombiner(self, sFirstWord, sSecWord):
@@ -4337,11 +4141,9 @@ class Generator107(Generator):
      
 # The Buxom Irish Waitress
 # Makes Love to a Pirate!     
-class Generator108(Generator):
-     Disabled = False
-
+class Generator108(TitleGen):
      def __init__(self):
-         super().__init__(ID = 108, Priority = 5)
+         super().__init__(ID = 108, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate12()
      
      def GenerateTweet(self):
@@ -4364,11 +4166,9 @@ class Generator108(Generator):
 
 # The Modest Swedish Cheerleader
 # Does a Naughty Strip-Tease          
-class Generator109(Generator):
-     Disabled = True
-
+class Generator109(TitleGen):
      def __init__(self):
-         super().__init__(ID = 109, Priority = 1)
+         super().__init__(ID = 109, Priority = GenPriority.Lowest, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -4388,11 +4188,9 @@ class Generator109(Generator):
 # and also Steve
 # AND Chuck
 # not-to-mention Lenny, Will and Zeke!          
-class Generator110(Generator):
-     Disabled = True
-
+class Generator110(TitleGen):
      def __init__(self):
-         super().__init__(ID = 110, Priority = 1)
+         super().__init__(ID = 110, Priority = GenPriority.Lowest, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -4439,11 +4237,9 @@ class Generator110(Generator):
 
 # The Bosomy Jewish Teacher
 # Wrestles Another Woman Naked!          
-class Generator111(Generator):
-     Disabled = True
-
+class Generator111(TitleGen):
      def __init__(self):
-         super().__init__(ID = 111, Priority = 1)
+         super().__init__(ID = 111, Priority = GenPriority.Lowest, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -4466,11 +4262,9 @@ class Generator111(Generator):
 
 # My Tight-Bodied Russian Secretary
 # Isn't Wearing Any Panties!          
-class Generator112(Generator):
-     Disabled = False
-
+class Generator112(TitleGen):
      def __init__(self):
-         super().__init__(ID = 112, Priority = 5)
+         super().__init__(ID = 112, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate23()
      
      def GenerateTweet(self):
@@ -4495,11 +4289,9 @@ class Generator112(Generator):
           
 # A Wholesome Amish Babysitter
 # Eats Out Jasmine          
-class Generator113(Generator):
-     Disabled = True
-
+class Generator113(TitleGen):
      def __init__(self):
-         super().__init__(ID = 113, Priority = 5)
+         super().__init__(ID = 113, Priority = GenPriority.Low, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -4521,11 +4313,9 @@ class Generator113(Generator):
 # My Classy Eastern European Housewife
 # Is Wearing a Butt Plug!          
 # --- Very similar to 124
-class Generator114(Generator):
-     Disabled = True
-
+class Generator114(TitleGen):
      def __init__(self):
-         super().__init__(ID = 114, Priority = 1)
+         super().__init__(ID = 114, Priority = GenPriority.Lowest, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -4548,11 +4338,9 @@ class Generator114(Generator):
           
 # The Perky Flight Attendant
 # Plays Tackle Football Naked!
-class Generator115(Generator):
-     Disabled = True
-
+class Generator115(TitleGen):
      def __init__(self):
-         super().__init__(ID = 115, Priority = 1)
+         super().__init__(ID = 115, Priority = GenPriority.Lowest, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -4580,11 +4368,9 @@ class Generator115(Generator):
 
 # My Flirty Italian Milk Maid
 # Is A Wanton Hotwife!
-class Generator116(Generator):
-     Disabled = True
-
+class Generator116(TitleGen):
      def __init__(self):
-         super().__init__(ID = 116, Priority = 1)
+         super().__init__(ID = 116, Priority = GenPriority.Lowest, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -4602,11 +4388,9 @@ class Generator116(Generator):
           
 # A Big-Titty German Waitress
 # Urinates on Dick!
-class Generator117(Generator):
-    Disabled = False
-
+class Generator117(TitleGen):
     def __init__(self):
-        super().__init__(ID = 117, Priority = 5)
+        super().__init__(ID = 117, Priority = GenPriority.Low)
         self.Template = templates.TitleTemplate12()
      
     def GenerateTweet(self):
@@ -4632,11 +4416,9 @@ class Generator117(Generator):
      
 # I Found Out I Was a Lesbian
 # When an Oiled-Up Flight Attendant Ate My Ass      
-class Generator118(Generator):
-    Disabled = False
-
+class Generator118(TitleGen):
     def __init__(self):
-        super().__init__(ID = 118, Priority = 5)
+        super().__init__(ID = 118, Priority = GenPriority.Low)
         self.Template = templates.TitleTemplate14()
      
     def GenerateTweet(self):
@@ -4667,11 +4449,9 @@ class Generator118(Generator):
           
 # The Nubile Teen Starlet
 # Gets an Enema
-class Generator119(Generator):
-     Disabled = False
-
+class Generator119(TitleGen):
      def __init__(self):
-         super().__init__(ID = 119, Priority = 5)
+         super().__init__(ID = 119, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate23()
      
      def GenerateTweet(self):
@@ -4690,13 +4470,11 @@ class Generator119(Generator):
           return sTweet     
 
 # NOTE: Haven't quite figured out how to make this funny with cover pics
-class Generator120(Generator):
+class Generator120(TitleGen):
 # The Randy Hairy Vegan Gunslinger Multi-Billionaire
 # Gets An Enema   
-     Disabled = True
-
      def __init__(self):
-         super().__init__(ID = 120, Priority = 1)
+         super().__init__(ID = 120, Priority = GenPriority.Lowest, Disabled = True)
          self.Template = templates.TitleTemplate23()
      
      def GenerateTweet(self):
@@ -4717,11 +4495,9 @@ class Generator120(Generator):
           
 # Massaging Mrs. Mountcox:
 # A Sadistic Bisexual MILF Story
-class Generator121(Generator):
-     Disabled = True
-
+class Generator121(TitleGen):
      def __init__(self):
-         super().__init__(ID = 121, Priority = 5)
+         super().__init__(ID = 121, Priority = GenPriority.Low, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -4745,14 +4521,12 @@ class Generator121(Generator):
           return sTweet     
           
 # Speculum for the Horny Mexican MILF
-class Generator122(Generator):
-     Disabled = False
-
-     def __init__(self):
-         super().__init__(ID = 122, Priority = 30)
+class Generator122(TitleGen):
+    def __init__(self):
+         super().__init__(ID = 122, Priority = GenPriority.High)
          self.Template = templates.TitleTemplate1()
      
-     def GenerateTweet(self):
+    def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
 
@@ -4779,11 +4553,9 @@ class Generator122(Generator):
 # Lady Constance is Claimed Vigorously
 # by The Gruff Hairy Well-Hung Manor Lord
 # at Bonkalot Keep          
-class Generator123(Generator):
-     Disabled = True
-
+class Generator123(TitleGen):
      def __init__(self):
-         super().__init__(ID = 123, Priority = 1)
+         super().__init__(ID = 123, Priority = GenPriority.Lowest, Disabled = True)
      
      def WordCombiner(self, sFirstWord, sSecWord):
           sCombined = ""
@@ -4908,11 +4680,9 @@ class Generator123(Generator):
           
 # The Ghost of Richard Nixon
 # Ploughed My Girlfriend 
-class Generator124(Generator):
-     Disabled = False
-
+class Generator124(TitleGen):
      def __init__(self):
-         super().__init__(ID = 124, Priority = 30)
+         super().__init__(ID = 124, Priority = GenPriority.High)
          self.Template = templates.TitleTemplate9()
      
      def GenerateTweet(self):
@@ -4949,11 +4719,9 @@ class Generator124(Generator):
 # Gets Deflowered 
 # by 
 # The Brawny Manly Space Dinosaur Gargoyle          
-class Generator125(Generator):
-    Disabled = False
-
+class Generator125(TitleGen):
     def __init__(self):
-        super().__init__(ID = 125, Priority = 5)
+        super().__init__(ID = 125, Priority = GenPriority.Low)
         self.Template = templates.TitleTemplate25()
      
     def GenerateTweet(self):
@@ -4997,12 +4765,10 @@ class Generator125(Generator):
           
         return sTweet     
           
-class Generator126(Generator):
+class Generator126(TitleGen):
      # Sitting On My Well-Hung Sumo-Wrestler Step-Dad's Face
-     Disabled = True
-
      def __init__(self):
-         super().__init__(ID = 126, Priority = 1)
+         super().__init__(ID = 126, Priority = GenPriority.Lowest, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -5019,11 +4785,9 @@ class Generator126(Generator):
           return sTweet
           
 # Ava Undresses for The Muscular Space Dwarf Rock Band
-class Generator127(Generator):
-    Disabled = False
-
+class Generator127(TitleGen):
     def __init__(self):
-        super().__init__(ID = 127, Priority = 5)
+        super().__init__(ID = 127, Priority = GenPriority.Low)
         self.Template = templates.TitleTemplate13()
      
     def GenerateTweet(self):
@@ -5059,11 +4823,9 @@ class Generator127(Generator):
 # by 
 # The Well-Endowed Dinosaur Space Men
 # on Uranus!
-class Generator128(Generator):
-     Disabled = False
-
+class Generator128(TitleGen):
      def __init__(self):
-         super().__init__(ID = 128, Priority = 5)
+         super().__init__(ID = 128, Priority = GenPriority.Normal)
          self.Template = templates.TitleTemplate26()
      
      def GenerateTweet(self):
@@ -5101,11 +4863,9 @@ class Generator128(Generator):
 # Spunky Stacked Black Barista
 # for
 # The Latino Viking
-class Generator129(Generator):
-     Disabled = False
-
+class Generator129(TitleGen):
      def __init__(self):
-         super().__init__(ID = 129, Priority = 5)
+         super().__init__(ID = 129, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate27()
      
      def GenerateTweet(self):
@@ -5145,11 +4905,9 @@ class Generator129(Generator):
           return sTweet     
           
 # Black Merman Quarterback for the White Playboy Centerfold
-class Generator130(Generator):
-     Disabled = False
-
+class Generator130(TitleGen):
      def __init__(self):
-         super().__init__(ID = 130, Priority = 5)
+         super().__init__(ID = 130, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate27()
      
      def GenerateTweet(self):
@@ -5190,11 +4948,9 @@ class Generator130(Generator):
           return sTweet     
           
 # I watched my wife and an Italian cowboy dinosaur make a porno!
-class Generator131(Generator):
-     Disabled = True
-
+class Generator131(TitleGen):
      def __init__(self):
-         super().__init__(ID = 131, Priority = 1)
+         super().__init__(ID = 131, Priority = GenPriority.Lowest, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -5218,14 +4974,12 @@ class Generator131(Generator):
           return sTweet     
           
 # Note: Male version of Gen 96
-class Generator132(Generator):
+class Generator132(TitleGen):
 # In Love With
 # My Dentist's 
 # Magnificent Meat-Missile
-     Disabled = False
-
      def __init__(self):
-         super().__init__(ID = 132, Priority = 5)
+         super().__init__(ID = 132, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -5273,11 +5027,9 @@ class Generator132(Generator):
           
 # Forbidden Heat
 # A pseudo-incest gorilla double anal story
-class Generator133(Generator):
-     Disabled = False
-
+class Generator133(TitleGen):
      def __init__(self):
-         super().__init__(ID = 133, Priority = 30)
+         super().__init__(ID = 133, Priority = GenPriority.High)
          self.Template = templates.TitleTemplate11()
      
      def GenerateTweet(self):
@@ -5325,11 +5077,9 @@ class Generator133(Generator):
           return sTweet     
           
 # Taken by her Lesbian Centaur Boss
-class Generator134(Generator):
-    Disabled = False
-
+class Generator134(TitleGen):
     def __init__(self):
-        super().__init__(ID = 134, Priority = 30)
+        super().__init__(ID = 134, Priority = GenPriority.High)
         self.Template = templates.TitleTemplate1()
      
     def GenerateTweet(self):
@@ -5394,9 +5144,9 @@ class Generator134(Generator):
         return sTweet     
           
 # MILKED by my biker step-son
-# class Generator100(Generator):
+# class Generator100(TitleGen):
      # ID = 100
-     # Priority = 1
+     # Priority = GenPriority.Lowest
      
      # def GenerateTweet(self):
           # super().GenerateTweet()
@@ -5406,11 +5156,9 @@ class Generator134(Generator):
      
 #Ass Eating 101:
 # My date with the principal
-class Generator136(Generator):
-     Disabled = True
-
+class Generator136(TitleGen):
      def __init__(self):
-         super().__init__(ID = 136, Priority = 1)
+         super().__init__(ID = 136, Priority = GenPriority.Lowest, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -5528,11 +5276,9 @@ class Generator136(Generator):
           return sTweet     
           
 # Taken in the Graveyard by the Strapping Truck-Driver Zombie 
-class Generator137(Generator):
-     Disabled = True
-
+class Generator137(TitleGen):
      def __init__(self):
-         super().__init__(ID = 137, Priority = 1)
+         super().__init__(ID = 137, Priority = GenPriority.Lowest, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -5577,11 +5323,9 @@ class Generator137(Generator):
           
 #I Was Scissored by a Witch, and I Liked It!
 # NOTE: "Undead" version of Generator 20
-class Generator138(Generator):
-     Disabled = False
-
+class Generator138(TitleGen):
      def __init__(self):
-         super().__init__(ID = 138, Priority = 1)
+         super().__init__(ID = 138, Priority = GenPriority.Lowest)
          self.Template = templates.TitleTemplate7()
      
      def GenerateTweet(self):
@@ -5619,11 +5363,9 @@ class Generator138(Generator):
 # My Innocent Sheltered Step-Mom 
 # Wore a Butt Plug
 # To Church     
-class Generator139(Generator):
-     Disabled = True
-
+class Generator139(TitleGen):
      def __init__(self):
-         super().__init__(ID = 139, Priority = 1)
+         super().__init__(ID = 139, Priority = GenPriority.Lowest, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -5660,11 +5402,9 @@ class Generator139(Generator):
           return sTweet     
           
 # I Sucked On My Mother-in-Law's Massive Mammaries 
-class Generator140(Generator):
-     Disabled = True
-
+class Generator140(TitleGen):
      def __init__(self):
-         super().__init__(ID = 140, Priority = 1)
+         super().__init__(ID = 140, Priority = GenPriority.Lowest, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -5744,13 +5484,11 @@ class Generator140(Generator):
 
           return sTweet     
           
-class Generator141(Generator):
+class Generator141(TitleGen):
 # Hypnotized by Her Secretary's
 # Wide Lesbian Ass
-     Disabled = False
-
      def __init__(self):
-         super().__init__(ID = 141, Priority = 1)
+         super().__init__(ID = 141, Priority = GenPriority.Lowest)
          self.Template = templates.TitleTemplate7()
      
      def GenerateTweet(self):
@@ -5777,11 +5515,9 @@ class Generator141(Generator):
 # I Watched My Wife
 # Make a Porno
 # with Nine Shameless Clean-Shaven Horse-Cock Highlander Luchadors
-class Generator142(Generator):
-     Disabled = True
-
+class Generator142(TitleGen):
      def __init__(self):
-         super().__init__(ID = 142, Priority = 1)
+         super().__init__(ID = 142, Priority = GenPriority.Lowest, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -5806,10 +5542,9 @@ class Generator142(Generator):
           
           return sTweet   
       
-class Generator143(Generator):
-    Disabled = False 
+class Generator143(TitleGen):
     def __init__(self):
-        super().__init__(ID = 143, Priority = 5)
+        super().__init__(ID = 143, Priority = GenPriority.Low)
         self.Template = templates.TitleTemplate8()
      
     def GenerateTweet(self):
@@ -5834,11 +5569,11 @@ class Generator143(Generator):
 
         return sTweet     
 
-class Generator144(Generator):
+class Generator144(TitleGen):
      # Boned by the Beefy Billionaire
      #  (gen 1 but it rhymes)
      def __init__(self):
-         super().__init__(ID = 144, Priority = 50)
+         super().__init__(ID = 144, Priority = GenPriority.Normal)
          self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
@@ -5873,10 +5608,9 @@ class Generator144(Generator):
 
           return sTweet
 
-class Generator145(Generator):
-    Disabled = True 
+class Generator145(TitleGen):
     def __init__(self):
-        super().__init__(ID = 145, Priority = 5)
+        super().__init__(ID = 145, Priority = GenPriority.Low, Disabled = True)
         #self.Template = templates.TitleTemplate6()
         #self.Template = templates.TitleTemplate29()
      
@@ -5916,9 +5650,9 @@ class Generator145(Generator):
 
         return sTweet     
 
-class Generator146(Generator):
+class Generator146(TitleGen):
     def __init__(self):
-         super().__init__(ID = 146, Priority = 50)
+         super().__init__(ID = 146, Priority = GenPriority.Normal)
          self.Template = templates.TitleTemplate1()
      
     def GenerateTweet(self):
@@ -6018,9 +5752,9 @@ class Generator146(Generator):
 
         return sTweet     
 
-class Generator147(Generator):
+class Generator147(TitleGen):
     def __init__(self):
-         super().__init__(ID = 147, Priority = 50)
+         super().__init__(ID = 147, Priority = GenPriority.Normal)
          self.Template = templates.TitleTemplate30()
      
     def GenerateTweet(self):
@@ -6062,12 +5796,10 @@ class Generator147(Generator):
         return sTweet
 
 # Testing innuendo name generators          
-class Generator999(Generator):
+class Generator999(TitleGen):
      Type = GeneratorType.Test
-     Disabled = True
-
      def __init__(self):
-         super().__init__(ID = 999, Priority = 1)
+         super().__init__(ID = 999, Priority = GenPriority.Lowest, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -6088,12 +5820,10 @@ class Generator999(Generator):
           return sTweet     
           
 #Testing rhyming functions
-class Generator1000(Generator):
+class Generator1000(TitleGen):
      Type = GeneratorType.Test
-     Disabled = True
-
      def __init__(self):
-         super().__init__(ID = 1000, Priority = 1)
+         super().__init__(ID = 1000, Priority = GenPriority.Lowest, Disabled = True)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -6127,12 +5857,10 @@ class Generator1000(Generator):
           return sTweet     
 
 #Testing specific title generators          
-class Generator1001(Generator):
+class Generator1001(TitleGen):
      Type = GeneratorType.Test
-     Disabled = True
-
      def __init__(self):
-         super().__init__(ID = 1001, Priority = 1)
+         super().__init__(ID = 1001, Priority = GenPriority.Lowest, Disabled = True)
          self.Template = templates.TitleTemplate8()
      
      def GenerateTweet(self):
@@ -6160,9 +5888,9 @@ class Generator1001(Generator):
 
           return sTweet     
           
-# class Generator100(Generator):
+# class Generator100(TitleGen):
      # ID = 100
-     # Priority = 1
+     # Priority = GenPriority.Lowest
      
      # def GenerateTweet(self):
           # super().GenerateTweet()
@@ -6170,9 +5898,9 @@ class Generator1001(Generator):
 
           # return sTweet     
           
-# class Generator100(Generator):
+# class Generator100(TitleGen):
      # ID = 100
-     # Priority = 1
+     # Priority = GenPriority.Lowest
      
      # def GenerateTweet(self):
           # super().GenerateTweet()
@@ -6180,9 +5908,9 @@ class Generator1001(Generator):
 
           # return sTweet     
           
-# class Generator100(Generator):
+# class Generator100(TitleGen):
      # ID = 100
-     # Priority = 1
+     # Priority = GenPriority.Lowest
      
      # def GenerateTweet(self):
           # super().GenerateTweet()
@@ -6190,9 +5918,9 @@ class Generator1001(Generator):
 
           # return sTweet     
           
-# class Generator100(Generator):
+# class Generator100(TitleGen):
      # ID = 100
-     # Priority = 1
+     # Priority = GenPriority.Lowest
      
      # def GenerateTweet(self):
           # super().GenerateTweet()
@@ -6200,9 +5928,9 @@ class Generator1001(Generator):
 
           # return sTweet     
           
-# class Generator100(Generator):
+# class Generator100(TitleGen):
      # ID = 100
-     # Priority = 1
+     # Priority = GenPriority.Lowest
      
      # def GenerateTweet(self):
           # super().GenerateTweet()
@@ -6210,9 +5938,9 @@ class Generator1001(Generator):
 
           # return sTweet     
           
-# class Generator100(Generator):
+# class Generator100(TitleGen):
      # ID = 100
-     # Priority = 1
+     # Priority = GenPriority.Lowest
      
      # def GenerateTweet(self):
           # super().GenerateTweet()
@@ -6220,95 +5948,15 @@ class Generator1001(Generator):
 
           # return sTweet     
           
-# class Generator100(Generator):
+# class Generator100(TitleGen):
      # ID = 100
-     # Priority = 1
+     # Priority = GenPriority.Lowest
      
      # def GenerateTweet(self):
           # super().GenerateTweet()
           # sTweet = ""
 
           # return sTweet     
-          
-class GeneratorSelector():
-    def __init__(self):
-        self.GeneratorList = []
-        for subclass in Generator.__subclasses__():
-            item = subclass()
-            if not item.Disabled:
-                for x in range(0, item.Priority):
-                    self.GeneratorList.append([item.ID, item])
-
-        print("There are " + str(len(self.GeneratorList)) + " generators in GeneratorList (with priority)")
-
-        self.ValidateGenIDs()
-               
-    def RandomGenerator(self, bAllowPromo = True, Type = None):
-        Generator = None
-        AllowedTypes = []
-          
-        if not Type is None:
-            AllowedTypes = [Type] 
-        else:
-            AllowedTypes = [GeneratorType.Normal, GeneratorType.BookTitle]
-          
-        if bAllowPromo:
-            AllowedTypes.append(GeneratorType.Promo)
-               
-        #print("RandomGenerator() Allowed types: " + str(AllowedTypes))
-        if len(self.GeneratorList) > 0:
-
-            Generator = self.GeneratorList[randint(0, len(self.GeneratorList) - 1)][1]
-            while not Generator.Type in AllowedTypes:
-                Generator = self.GeneratorList[randint(0, len(self.GeneratorList) - 1)][1]
-                    
-        return Generator 
-          
-    def GetGeneratorsSequential(self, bAllowPromo = True, Type = None):
-        GeneratorList = []
-        AllowedTypes = []
-          
-        if not Type is None:
-            AllowedTypes = [Type] 
-        else:
-            AllowedTypes = [GeneratorType.Normal, GeneratorType.BookTitle]
-          
-        if bAllowPromo:
-            AllowedTypes.append(GeneratorType.Promo)
-
-        for subclass in Generator.__subclasses__():
-            gen = subclass()
-
-            if gen.Type in AllowedTypes:
-                GeneratorList.append(gen)
-               
-        return GeneratorList  
-          
-    def GetGenerator(self, iGen):
-        Generator = None 
-          
-        if len(self.GeneratorList) > 0:
-            for gen in self.GeneratorList :
-                if gen[1].ID == iGen:
-                        Generator = gen[1]
-                        break
-                         
-        return Generator
-
-    def ValidateGenIDs(self):
-        bValid = True
-
-        IDList = []
-
-        if len(self.GeneratorList) > 0:
-            for gen in self.GeneratorList :
-                if gen[1].ID in IDList:
-                    print("=*= WARNING =*= Title generator ID # " + str(gen[1].ID) + " is a duplicate")
-                    bValid = False
-
-        return bValid
-
-TweetGenSel = GeneratorSelector()
           
 def ShuffleFavs(sFileName = ""):
      if sFileName == "":

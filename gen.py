@@ -9,11 +9,10 @@ MAXBUCKETTRIES = 100
 
 class Generator():
     def __init__(self, 
-                 Container = None,
                  ID = -1, 
                  Priority = GenPriority.Normal, 
                  Type = GeneratorType.Normal, 
-                 bDisabled = False, 
+                 Disabled = False, 
                  sTxt = ""):
 
         # each generator should have a unique ID
@@ -26,7 +25,7 @@ class Generator():
         self.GeneratorType = GeneratorType
 
         # disabled = true disables the generator so it cannot be selected
-        self.Disabled = bDisabled 
+        self.Disabled = Disabled 
 
         # the generated text
         self.Txt = sTxt
@@ -34,8 +33,7 @@ class Generator():
         # normal / promo / test
         self.Type = Type
 
-    # pass in a custom function for this object
-    def Generate(self, Func):
+    def Generate(self):
         self.Txt = self.GenerateTxt()
 
     # this will be overridden by most generators but this is how it should look

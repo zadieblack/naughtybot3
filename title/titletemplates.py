@@ -66,9 +66,9 @@ class TitleTemplate(Generator):
     def __init__(self, ID = -1, 
                  Priority = GenPriority.Normal, 
                  Type = GeneratorType.Normal, 
-                 bDisabled = False, 
+                 Disabled = False, 
                  sTxt = ""):
-        super().__init__(ID = ID, Priority = Priority,Type = Type, bDisabled = bDisabled, sTxt = sTxt)
+        super().__init__(ID = ID, Priority = Priority,Type = Type, Disabled = Disabled, sTxt = sTxt)
         self.Lines = []
         self.NextLineID = 1
 
