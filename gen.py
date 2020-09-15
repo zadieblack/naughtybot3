@@ -14,7 +14,6 @@ class Generator():
                  Priority = GenPriority.Normal, 
                  Type = GeneratorType.Normal, 
                  bDisabled = False, 
-                 Func = None,
                  sTxt = ""):
 
         # each generator should have a unique ID
@@ -117,15 +116,22 @@ class GeneratorContainer():
 
         return bResult 
 
-    # Get an individual generator by ID
-    def GetGenerator(self, GenNo):
+    # Get an individual generator by ID or class name
+    def GetGenerator(self, GenID):
         Generator = None 
-          
+
         if len(self.GeneratorList) > 0:
-            for gen in self.GeneratorList :
-                if gen.ID == GenNo:
-                    Generator = gen
-                    break
+            if isinstance(GenID, int):
+                for gen in self.GeneratorList :
+                    if gen.ID == GenID:
+                        Generator = gen
+                        break
+            elif isinstance(GenID, str):
+                for gen in self.GeneratorList :
+                    if type(gen).__name__ == GenID:
+                        Generator = gen
+                        break
+
                          
         return Generator
 

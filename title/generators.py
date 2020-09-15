@@ -135,14 +135,14 @@ class Generator():
                     sImgTxt += line
                 Lines = Lines[iLineNo + 1:] # skip next divider
 
-                print("sImgTxt from " + sFileName + " for gen # " + str(Details[0]) + " is [" + sImgTxt + "]")
+                #print("sImgTxt from " + sFileName + " for gen # " + str(Details[0]) + " is [" + sImgTxt + "]")
             else: 
                 bSuccess = False
                 print("ERROR: Did not find a details line.")
 
             # We've got our generator info. Now read in the rest of 
             # the file and spit it back out minus the gen we just read
-            print("Writing rest of lines back to file")
+            #print("Writing rest of lines back to file")
             try:
                 with open(sFileName, 'w') as outfile:     
                     for iLineNo, line in enumerate(Lines, start  = iLineNo):
@@ -154,15 +154,15 @@ class Generator():
             # Now that's done lets put our info into this generator!
 
             if len(Details) > 3:
-                print("Populating generator with file data")
+            #    print("Populating generator with file data")
 
             # 1st item is ID #
                 self.ID = int(Details[0])
 
             # 2nd item is template #
-                iTemplateID = int(Details[1])
+                sTemplateID = Details[1]
                 TemplateSelector = GeneratorContainer(templates.TitleTemplate)
-                self.Template = TemplateSelector.GetGenerator(iTemplateID)
+                self.Template = TemplateSelector.GetGenerator(sTemplateID)
 
             # 3rd item is author name
                 self.AuthorName = Details[2]
@@ -198,7 +198,7 @@ class Generator():
         else: 
             bSuccess = False 
 
-        print("Pulled image text from file.\nRequired tag list is " + str(self.ReqTemplateTags) + "\nExcluded tag list is " + str(self.ExclTemplateTags))
+        #print("Pulled image text from file.\nRequired tag list is " + str(self.ReqTemplateTags) + "\nExcluded tag list is " + str(self.ExclTemplateTags))
         return bSuccess
 
 def GetTweetGenerator(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = None):
@@ -6381,7 +6381,9 @@ def CurateFavorites(iGen = 0, iMaxLen = 0):
 
         # Create output string for writing 
             sDetailsLine += "[" + str(ImgTxtGen.ID) + "]"
-            sDetailsLine += "[" + str(ImgTxtGen.Template.ID) + "]"
+            #sDetailsLine += "[" + str(ImgTxtGen.Template.ID) + "]"
+            sDetailsLine += "[" + type(ImgTxtGen.Template).__name__ + "]"
+            
             sDetailsLine += "[" + ImgTxtGen.AuthorName + "]"
             sDetailsLine += "[" + str(ImgTxtGen.AuthorGender).split(".")[1] + "]" 
 
