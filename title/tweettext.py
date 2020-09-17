@@ -1288,7 +1288,7 @@ class TweetTxtGen45(TweetTxtGen):
      # I was rooting for Vance to get together with Vanessa, so it was quite 
      # a shock when he ran off with Pedro!
      ID = 45
-     Priority = 200
+     Priority = 2
      
      def GenerateTweet(self):
           super().GenerateTweet()
