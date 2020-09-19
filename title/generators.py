@@ -191,7 +191,7 @@ class TitleGen(Generator):
         #print("Pulled image text from file.\nRequired tag list is " + str(self.ReqTemplateTags) + "\nExcluded tag list is " + str(self.ExclTemplateTags))
         return bSuccess
 
-def GetTweetGenerator(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = None):
+def GetTweetGenerator(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = None, TweetHistoryQ = None):
      gen = None
      GenType = None 
      
@@ -200,26 +200,22 @@ def GetTweetGenerator(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = None):
      else:
           GenType = None 
 
-     TGC = GeneratorContainer(TitleGen)
+     GC = GeneratorContainer(TitleGen, HistoryQ = TweetHistoryQ)
      
      iSwitch = 999
      
      if bTest:
-          gen = TGC.GetGenerator(iGeneratorNo)
+          gen = GC.GetGenerator(iGeneratorNo)
           if gen == None:
                gen = Generator()
      else:
-          gen = TGC.RandomGenerator(bAllowPromo = bAllowPromo, Type = GenType)
+          gen = GC.RandomGenerator(bAllowPromo = bAllowPromo, Type = GenType)
           
      return gen
      
-def GetRandomTweetGenerator(bTest, bTweet, iGeneratorNo = 0, bAllowPromo = True):
-    Gen = GetTweetGenerator(bTest, iGeneratorNo, bAllowPromo = bAllowPromo)
+def GetRandomTweetGenerator(bTest, bTweet, iGeneratorNo = 0, bAllowPromo = True, TweetHistoryQ = None):
+    Gen = GetTweetGenerator(bTest, iGeneratorNo, bAllowPromo = bAllowPromo, TweetHistoryQ = TweetHistoryQ)
 
-    if not TweetHistoryQ is None:
-        while bTweet and not TweetHistoryQ.PushToHistoryQ(Gen.ID):
-            Gen = GetTweetGenerator(bTest, iGeneratorNo, bAllowPromo = bAllowPromo)
-     
     Gen.Generate()
 
     Gen.AuthorName = AuthorBuilder()
@@ -240,9 +236,9 @@ def GetTweet(bTest, bTweet, iGeneratorNo = 0, bAllowPromo = True, Type = None, T
         if not bTest and bAllowFavTweets:
             Gen = TitleGen()
             if not Gen.GetTitleFromFile(FAVTITLE_FILENAME):
-                Gen = GetRandomTweetGenerator(bTest, bTweet, iGeneratorNo, bAllowPromo = bAllowPromo)
+                Gen = GetRandomTweetGenerator(bTest, bTweet, iGeneratorNo, bAllowPromo = bAllowPromo, TweetHistoryQ = TweetHistoryQ)
         else:
-            Gen = GetRandomTweetGenerator(bTest, bTweet, iGeneratorNo, bAllowPromo = bAllowPromo)
+            Gen = GetRandomTweetGenerator(bTest, bTweet, iGeneratorNo, bAllowPromo = bAllowPromo, TweetHistoryQ = TweetHistoryQ)
 
     return Gen
      

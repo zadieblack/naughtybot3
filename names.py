@@ -1534,9 +1534,7 @@ def GetInnName(gender, iGeneratorNo = 0):
      if iGeneratorNo != 0:
           gen = GenSel.GetGenerator(iGeneratorNo)
      else:
-          gen = GenSel.RandomGenerator()
-          while not HistoryQ.PushToHistoryQ(gen.ID):
-               gen = GenSel.RandomGenerator()
+         gen = GenSel.RandomGenerator()
      
      if not gen is None:
           #print("Innuendo name generator #" + str(gen.ID) + " selected for " + str(gender))

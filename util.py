@@ -183,29 +183,31 @@ def IsTweetTooLong(sTweet):
      return bTooLong
           
 class HistoryQ():
-     def __init__(self, iQSize = Q_SIZE):
-          self.MaxQSize = iQSize
-          self.HistoryQ = []
+    def __init__(self, iQSize = Q_SIZE):
+        self.MaxQSize = iQSize
+        self.HistoryQ = []
      
-     def PushToHistoryQ(self, item):
-          bPushOK = False 
+    def PushToHistoryQ(self, item):
+        bPushOK = False 
 
-          if not self.IsInQ(item):
-               self.HistoryQ.insert(0,item)
-               bPushOK = True
+        if not self.IsInQ(item):
+            self.HistoryQ.insert(0,item)
+            bPushOK = True
                
-               while len(self.HistoryQ) > self.MaxQSize:
-                    self.HistoryQ.pop()
+            while len(self.HistoryQ) > self.MaxQSize:
+                self.HistoryQ.pop()
           
-          return bPushOK
+        #else:
+        #    print("   Collision! in history Q. Item " + str(item) + " found in Q!")
+        return bPushOK
           
-     def IsInQ(self, item):
-          bIsInQ = True 
+    def IsInQ(self, item):
+        bIsInQ = True 
           
-          if len(self.HistoryQ) == 0 or not item in self.HistoryQ:
-               bIsInQ = False
+        if len(self.HistoryQ) == 0 or not item in self.HistoryQ:
+            bIsInQ = False
 
-          return bIsInQ
+        return bIsInQ
                
 class HistoryQWithLog(HistoryQ):
     def __init__(self, sLogFileName, iQSize = Q_SIZE):

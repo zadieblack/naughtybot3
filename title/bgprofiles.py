@@ -2084,11 +2084,6 @@ def GetBGProfileGenerator(iProfileID = 0,
             SelectedProfile = BGProfile()
     else:
         SelectedProfile = ProfSel.RandomGenerator(ReqTags, ExclTags)
-        iTries = 1
-        while iTries < 20 and \
-            not ProfileHistoryQ.PushToHistoryQ(SelectedProfile.ID):
-            SelectedProfile = ProfSel.RandomGenerator(ReqTags, ExclTags)
-            iTries = iTries + 1
 
     #print("GetBGProfileGenerator()\n - Selected BG Profile is " + str(SelectedProfile) + ", it took " + str(iTries) + " tries.")
     ProfileHistoryQ.LogHistoryQ()    

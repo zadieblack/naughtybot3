@@ -66,8 +66,7 @@ def InitBot(iTweetTimer,
                
             Gen = GetTweet(bTest, iGeneratorNo, bAllowPromo = True)
             #print("Generator ID: " + str(Gen.ID))
-            while bTweet and not exutil.TweetHistoryQ.PushToHistoryQ(Gen.ID):
-                Gen = GetTweet(bTest, iGeneratorNo, bAllowPromo = True)
+            Gen = GetTweet(bTest, iGeneratorNo, bAllowPromo = True, TweetHistoryQ = exutil.TweetHistoryQ)
                
             sTweet = Gen.GenerateTweet()
             if len(sTweet) > 0:
@@ -107,6 +106,7 @@ def InitBot(iTweetTimer,
             i += 1
     except IOError as e:
         print("*** ERROR in lust_bot() ***\nFile IO Error: " + str(e))
+        excerpt.util.TweetHistoryQ.LogHistoryQ()
     except KeyboardInterrupt:
         print("Ending program ...")
           
