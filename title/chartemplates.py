@@ -1461,11 +1461,10 @@ class MaleTemplate17(MaleCharTemplate):
 # special template to be used by excerpt generator # 37
 class MaleTemplate18(MaleCharTemplate):
     def __init__(self):
-        super().__init__(     noun = ProfMale(),
+        super().__init__(     noun = ProfNormalMale(),
                                 id = 18, 
                                 adjlist =       [CTEntry([PhysCharMale,DickCharMale],3),
-                                                CTEntry([SkinHairColorMale,NationMale,RaceMale],2),
-                                                CTEntry([ProfNormalMale],1)
+                                                 CTEntry([SkinHairColorMale,NationMale,RaceMale],2)
                                                 ],
                                 priority = 4)
         self.RequestOnly = True

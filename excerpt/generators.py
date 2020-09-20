@@ -152,7 +152,7 @@ class Generator2(ExGen):
           sTweet += "'Fuck me, " + sHisName + "!\' she " + self.VMoan.Past() + ". "
           
           if CoinFlip():
-               sVerb = WordList(['Fuck','Do','Pound','Stuff','Ravish','Hammer','Impale','Ream','Plough']).GetWord()
+               sVerb = WordList(['Fuck','Do','Pound','Stuff','Ravish','Hammer','Impale','Ream','Plow']).GetWord()
                
                sTweet += "'" + sVerb + " me like I'm your " + self.FFWB.GetPerson() + "!'"
           else:
@@ -1485,16 +1485,13 @@ class Generator37(ExGen):
         sCheatQuestion = CheatQuestions.GetWord()
 
         CheatLocations = WordList(["in the dorm showers",
-                                   "in the back of the van",
+                                    "in the back of the van",
                                     "at the yoga studio",
-                                    "on the coffee table",
-                                    "in the jacuzzi",
                                     "at the massage studio",
                                     "at the beach",
                                     "in the back of the car",
                                     "in the gym locker room",
                                     "in the locker room",
-                                    "behind the nightclub",
                                     "at the bowling alley",
                                     "at the swimming pool",
                                     "at the Motel 6",
@@ -1504,13 +1501,27 @@ class Generator37(ExGen):
                                     "at the Holiday Inn",
                                     "at the Sheraton",
                                     "at summer camp",
+                                    "after the photo shoot",
+                                    "after my massage",
+                                    "when I was high",
                                     "on the church trip",
-                                    "in the Red Lobster restroom",
-                                    "in the Olive Garden restroom"
+                                    "on my business trip",
+                                    "at the gay bar",
+                                    "on the waterbed",
+                                    "on our vacation in Mali",
+                                    "on our honeymoon",
+                                    "after nude yoga",
+                                    "on the Carribean cruise"
                                    ])
 
-        Man = titchar.MaleChar(TempType = TempType.Medium, SelectTemplateID = 18
-                               )
+        NotList = ['white','virile','hard','erect','shape-shifting','highlander','space']
+        Length = None
+        if CoinFlip():
+            Length = TempType.Medium
+        else:
+            Length = TempType.Short
+        Man = titchar.MaleChar(TempType = Length, SelectTemplateID = 18,
+                               NotList = NotList)
 
         #iRand = randint(1,3)
         if CoinFlip():
@@ -1537,39 +1548,82 @@ class Generator37(ExGen):
 
         sTweet += "\n\n"
 
-        ToE = WordList(["baby",
-                        "darling",
-                        "honey",
-                        "pudding",
-                        "sugar plum",
+        ToE = WordList(["angel pie","babe","baby",
+                        "cupcake","darling","honey",
+                        "honey-pie","muffin","pookums",
+                        "pudding","pumpkin","snookums",
+                        "snuggle bunny","sugar plum","sweet cheeks",
                         "sweetie"])
         sTweet += "\"I have been faithful to you, " + ToE.GetWord() + ", "
         sTweet += "I " + WordList(["swear", "promise"]).GetWord() + "!\" "
-        sTweet += "said " + sHerName + ". \"It was only that one time, " + CheatLocations.GetWord() + ". "
-        sTweet += "With the " + Man.Desc.lower() + ". "
+        sTweet += "said " + sHerName + ". \"It was only that one time, " + CheatLocations.GetWord() + ", "
+        sTweet += "with the " + Man.Desc.lower() + ". "
         
-        Indiscretons = WordList(["play with my clit ring",
-                                 "put two fingers in my butthole",
-                                 "spank me with my panties on",
-                                 "rub the outside the big purple tip of his dick",
-                                 "suck my titties",
-                                 "face-fuck me",
-                                 "fuck my big titties",
-                                 "blow his load on my titties",
-                                 "strip me and paint my whole body in gold",
-                                 "rub suntan lotion on my front and back before I put on my bikini",
-                                 "cum on my face",
-                                 "I only saw his dick because he was wearing a mask",
-                                 "fist my vagina",
-                                 "put his dildo in me",
-                                 "use my backdoor",
-                                 "do a little butt play to me",
-                                 "show me the vast array of tools in his sex dungeon",
-                                 "hotdog me",
-                                 "make me wear a pony tail butt plug",
-                                 "watch the sex tapes we've made together",
+        Indiscretions = WordList([
+                                  # ==sex dungeon=========
+                                  "all we did was a little light bondage",
+                                  "all we did was wear latex and flog each other",
+                                  "he just showed me his sex dungeon",
+                                  "I only let him tie me up and whip me",
+                                  # ==sex toys===========
+                                  "all we did is try out his sex swing",
+                                  "I just rode him with a strap-on",
+                                  "I just rode his sybian",
+                                  "I just wore a pony tail butt plug for him",
+                                  # ==facials============
+                                  "he only gave me a facial",
+                                  "he only gave me a pearl necklace",
+                                  # ==blowjobs===========
+                                  "he only face-fucked me",
+                                  "I only deep-throated him",
+                                  "I only sucked his balls",
+                                  "I only sucked his dick",
+                                  # ==tit play===========
+                                  "he only titty-fucked me",
+                                  "I only let him blow his load on my titties",
+                                  "I only let him suck my titties",
+                                  # ==butt stuff=========
+                                  "he only ate my ass",
+                                  "I only gave him a rim-job",
+                                  "I only let him use my backdoor",
+                                  "we only did a little ass play",
+                                  # ==fingering==========
+                                  "he only fingerbanged me",
+                                  "I only let him play with my clit ring",
+                                  "I only let him stick two fingers in my butthole",
+                                  # ==fisting============
+                                  "he only fisted me",
+                                  "he only fisted my ass",
+                                  # ==safe sex===========
+                                  "I made him use a dental dam",
+                                  "I made him wear a condom",
+                                  # ==positions==========
+                                  "he only hot-dogged me",
+                                  "I only let him do me missionary style",
+                                  "we only sixty-nined",
+                                  # ==we didn't==========
+                                  "I didn't let him cum inside",
+                                  "I didn't let him fuck my ass",
+                                  "I didn't let him use your cock ring",
+                                  "I drew the line at doing butt stuff",
+                                  "I refused to do any watersports with him",
+                                  "we didn't do ass-to-mouth",
+                                  "we fucked but there was no kissing",
+                                  # ==other==============
+                                  "all I did was drink his cum",
+                                  "all I did was smother him with my ass",
+                                  "He just rubbed suntan lotion on my front and back before I put on my bikini",
+                                  "he only ate me out",
+                                  "he only tea-bagged me",
+                                  "he only used a dildo on me",
+                                  "I only let him lick me",
+                                  "I only let him spank me with my panties on",
+                                  "I only let him take some nudes",
+                                  "I only jerked him off",
+                                  "I only sat on his face",
+                                  "we only watched hardcore porn together",
                                 ])
-        sTweet += "But I only let him " + Indiscretons.GetWord() + ".\""
+        sTweet += "But " + Indiscretions.GetWord() + ".\""
 
         return sTweet
           
