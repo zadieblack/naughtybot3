@@ -175,7 +175,7 @@ class GeneratorContainer():
     def GetBucket(self):
         Bucket = []
 
-        print(" GeneratorContainer.GetBucket() for " + str(self.GeneratorClassName))
+        #print(" GeneratorContainer.GetBucket() for " + str(self.GeneratorClassName))
 
         iCount = 0
         while len(Bucket) == 0 and iCount < MAXBUCKETTRIES:
@@ -183,22 +183,22 @@ class GeneratorContainer():
             
             if iChance == 1:
                 Bucket = self.BucketLowest
-                print(" - Lowest bucket selected (iChance == " + str(iChance) + "). Bucket contains " + str(len(Bucket)) + " items.")
+                #print(" - Lowest bucket selected (iChance == " + str(iChance) + "). Bucket contains " + str(len(Bucket)) + " items.")
             elif iChance >= 2 and iChance < 4:      # 2x lowest
                 Bucket = self.BucketLow 
-                print(" - Normal bucket selected (iChance == " + str(iChance) + "). Bucket contains " + str(len(Bucket)) + " items.")
+                #print(" - Normal bucket selected (iChance == " + str(iChance) + "). Bucket contains " + str(len(Bucket)) + " items.")
             elif iChance >= 4 and iChance < 8:      # 2x low
                 Bucket = self.BucketNormal 
-                print(" Normal bucket selected (iChance == " + str(iChance) + "). Bucket contains " + str(len(Bucket)) + " items.")
+                #print(" Normal bucket selected (iChance == " + str(iChance) + "). Bucket contains " + str(len(Bucket)) + " items.")
             elif iChance >= 8 and iChance < 16:      # 2x normal
                 Bucket = self.BucketAboveAverage
-                print(" - AboveAverage bucket selected (iChance == " + str(iChance) + "). Bucket contains " + str(len(Bucket)) + " items.")
+                #print(" - AboveAverage bucket selected (iChance == " + str(iChance) + "). Bucket contains " + str(len(Bucket)) + " items.")
             elif iChance >= 16 and iChance < 32:     # 2x above average
                 Bucket = self.BucketHigh
-                print(" - High bucket selected (iChance == " + str(iChance) + "). Bucket contains " + str(len(Bucket)) + " items.")
+                #print(" - High bucket selected (iChance == " + str(iChance) + "). Bucket contains " + str(len(Bucket)) + " items.")
             elif iChance >= 32 and iChance < 56:     # 1.5x high
                 Bucket = self.BucketSuperHigh
-                print(" - SuperHigh bucket selected (iChance == " + str(iChance) + "). Bucket contains " + str(len(Bucket)) + " items.")
+                #print(" - SuperHigh bucket selected (iChance == " + str(iChance) + "). Bucket contains " + str(len(Bucket)) + " items.")
             else:
                 Bucket = self.BucketNormal
                 print("=*= WARNING =*= Default bucket (normal) selected (iChance == " + str(iChance) + "). Bucket contains " + str(len(Bucket)) + " items.\n")
