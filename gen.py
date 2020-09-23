@@ -8,7 +8,7 @@ from random import *
 from util import GenPriority
 from util import GeneratorType
 
-MAXBUCKETTRIES = 100
+MAXBUCKETTRIES = 1000
 MAXGENTRIES = 1000
 
 class Generator():
@@ -57,7 +57,7 @@ class GeneratorContainer():
         # The optional history q
         if not HistoryQ is None:
             self.HistoryQ = HistoryQ
-            print(" HistoryQ found for " + self.GeneratorClassName)
+            # print(" HistoryQ found for " + self.GeneratorClassName)
         else:
             print("=*= WARNING =*= Empty HistoryQ passed to GeneratorContainer() for [" + self.GeneratorClassName + "], new blank queue will be initialized.")
             self.HistoryQ = util.HistoryQ()
@@ -207,6 +207,9 @@ class GeneratorContainer():
 
             iCount = iCount + 1
 
+        if iCount >= MAXBUCKETTRIES:
+            print("=*= WARNING =*= Maximum attempts to choose a bucket exceeded for " + self.GeneratorClassName + " GetBucket(). Bucket " + str(Bucket) + " accepted by default.\n")
+
         return Bucket
 
     # Get a random generator
@@ -224,13 +227,19 @@ class GeneratorContainer():
 
         if not self.AreBucketsEmpty():
             Bucket = self.GetBucket()
-            Generator = choice(Bucket)
+            if not len(Bucket) == 0:
+                Generator = choice(Bucket)
+            else:
+                print("=*= WARNING =*= Empty bucket received while attempting to randomly pick a generator for " + str(self.GeneratorClassName) + "!\n")
 
             iGetGeneratorTries = 1
-            while (not Generator.Type in AllowedTypes or not self.HistoryQ.PushToHistoryQ(str(Generator.ID))) \
+            while (not Generator.Type in AllowedTypes or not self.HistoryQ.PushToHistoryQ(str(Generator.ID)) or Generator is None) \
                 and iGetGeneratorTries < MAXGENTRIES:
                 Bucket = self.GetBucket()
-                Generator = choice(Bucket)
+                if not len(Bucket) == 0:
+                    Generator = choice(Bucket)
+                else:
+                    print("=*= WARNING =*= Empty bucket received while attempting to randomly pick a generator for " + str(self.GeneratorClassName) + "!\n")
 
                 iGetGeneratorTries = iGetGeneratorTries + 1
 

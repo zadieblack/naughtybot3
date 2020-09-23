@@ -6,8 +6,9 @@ from names import *
 from title.generators import GetTweet
 import excerpt.bodyparts
 
-
 MAX_EXCERPT_BOOKTITLE_LEN = 65
+
+TweetTxtHistoryQ = HistoryQ(10)
 
 def LastNameBuilder(NotList = None):
      sLName = ""
@@ -1010,7 +1011,7 @@ def GetImgTweetText(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = None, Tw
      if not TweetTxtHistoryQ is None:
           HistoryQ = TweetTxtHistoryQ
      
-     GenSel = GeneratorContainer(TweetTxtGen)
+     GenSel = GeneratorContainer(TweetTxtGen, HistoryQ = TweetTxtHistoryQ)
      if bTest:
           gen = GenSel.GetGenerator(iGeneratorNo)
      else:

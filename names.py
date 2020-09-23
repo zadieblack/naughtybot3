@@ -1530,7 +1530,7 @@ def GetInnName(gender, iGeneratorNo = 0):
      if not InnNameHistoryQ is None:
           HistoryQ = InnNameHistoryQ
      
-     GenSel = GeneratorContainer(InnNameGenerator)
+     GenSel = GeneratorContainer(InnNameGenerator, HistoryQ = HistoryQ)
      if iGeneratorNo != 0:
           gen = GenSel.GetGenerator(iGeneratorNo)
      else:
