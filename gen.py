@@ -57,7 +57,9 @@ class GeneratorContainer():
         # The optional history q
         if not HistoryQ is None:
             self.HistoryQ = HistoryQ
+            print(" HistoryQ found for " + self.GeneratorClassName)
         else:
+            print("=*= WARNING =*= Empty HistoryQ passed to GeneratorContainer() for [" + self.GeneratorClassName + "], new blank queue will be initialized.")
             self.HistoryQ = util.HistoryQ()
 
         # List of unique generators 
@@ -208,15 +210,12 @@ class GeneratorContainer():
         return Bucket
 
     # Get a random generator
-    def RandomGenerator(self, bAllowPromo = True, Type = None):
+    def RandomGenerator(self, bAllowPromo = False, Type = GeneratorType.Normal):
         Generator = None 
         AllowedTypes = []
         Bucket = []
           
-        if not Type is None:
-            AllowedTypes = [Type] 
-        else:
-            AllowedTypes = [GeneratorType.Normal, GeneratorType.BookTitle]
+        AllowedTypes = [GeneratorType.Normal, GeneratorType.BookTitle]
           
         if bAllowPromo:
             AllowedTypes.append(GeneratorType.Promo)
@@ -228,14 +227,14 @@ class GeneratorContainer():
             Generator = choice(Bucket)
 
             iGetGeneratorTries = 1
-            while (not Generator.Type in AllowedTypes or not self.HistoryQ.PushToHistoryQ(Generator.ID)) \
+            while (not Generator.Type in AllowedTypes or not self.HistoryQ.PushToHistoryQ(str(Generator.ID))) \
                 and iGetGeneratorTries < MAXGENTRIES:
                 Bucket = self.GetBucket()
                 Generator = choice(Bucket)
 
                 iGetGeneratorTries = iGetGeneratorTries + 1
 
-            if iGetGeneratorTries == MAXGENTRIES:
+            if iGetGeneratorTries >= MAXGENTRIES - 1:
                 print("=*= WARNING =*= Max number of tries (" + str(MAXGENTRIES) + ") exceeded while attempting to randomly select a generator of type " + str(self.GeneratorClassName) + "! Accepted #" + str(Generator.ID) + " by default.\n")
                     
         return Generator 

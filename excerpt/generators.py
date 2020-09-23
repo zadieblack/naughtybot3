@@ -85,19 +85,19 @@ class ExGen(Generator):
      
           return ""
           
-def GetTweet(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = None, TweetHistoryQ = None):
+def GetTweet(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = GeneratorType.Normal, TweetHistoryQ = None):
      gen = None
      GenType = None 
      
-     if not Type is None:
-          GenType = Type 
-     else:
-          GenType = None 
+     #if not Type is None:
+     #     GenType = Type 
+     #else:
+     #     GenType = None 
      # print("GetTweet() Generator Type is " + str(GenType))
      
      iSwitch = 999
      
-
+     # print("  Excerpt GetTweet(): TweetHistoryQ is " + str(TweetHistoryQ))
      GenSel = GeneratorContainer(ExGen, HistoryQ = TweetHistoryQ)
      if bTest:
           gen = GenSel.GetGenerator(iGeneratorNo)
@@ -5693,7 +5693,7 @@ class Generator96(ExGen):
                                    "I'll let you video the whole thing with your phone",
                                    "I'll let you fuck my titties"]).GetWord() + ",\" "
         sTweet += "said " + sHerName + ".\n\n"
-        sTweet += "\"I suppose just this once couldn't hurt,\" he said."
+        sTweet += "\"Well,\" said " + sHisName + ", \"I suppose just this once couldn't hurt.\""
        
         return sTweet
     
@@ -5843,10 +5843,8 @@ class Generator98(ExGen):
 
         sPrep1 = Prep.GetWord()
         sPrep2 = Prep.GetWord(NotList = [sPrep1])
-        print("\nsPrep 1 verb is [" + str(sPrep1.split(" ",1)[0]) + "] and sPrep 2 verb is [" + str(sPrep2.split(" ",1)[0]) + "]")
         while sPrep1.split(" ",1)[0] == sPrep2.split(" ",1)[0]:
             sPrep2 = Prep.GetWord(NotList = [sPrep1])
-            print("MATCH: sPrep 1 verb is [" + str(sPrep1.split(" ",1)[0]) + "] and sPrep 2 verb is [" + str(sPrep2.split(" ",1)[0]) + "]")
 
         sTweet += "\"I've got a special " + WordList(["treat","surprise"]).GetWord() + " "
         sTweet += "for you, " + sToE1 + ",\" said " + sHerName + ", "

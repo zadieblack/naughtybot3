@@ -52,10 +52,10 @@ def InitBot(iTweetTimer,
           
         if iGeneratorNo == -1:
             iGeneratorNo = MAX_GENERATOR_NO
-            print("InitBot() Not in test mode.")
+            #print("InitBot() Not in test mode.")
         else:
             bTest = True
-            print("InitBot() In test mode.")
+            #print("InitBot() In test mode.")
           
         i = 0
         while i in range(0,iTweets) or bLoop:
@@ -64,7 +64,7 @@ def InitBot(iTweetTimer,
             sTweet = ""
             sText = ""
                
-            Gen = GetTweet(bTest, iGeneratorNo, bAllowPromo = True)
+            #Gen = GetTweet(bTest, iGeneratorNo, bAllowPromo = True)
             #print("Generator ID: " + str(Gen.ID))
             Gen = GetTweet(bTest, iGeneratorNo, bAllowPromo = True, TweetHistoryQ = exutil.TweetHistoryQ)
                
