@@ -5881,15 +5881,65 @@ class Generator98(ExGen):
 
         return sTweet
           
-# class Generator99(ExGen):
-     # ID = 99
-     # Priority = 1
-     
-     # def GenerateTweet(self):
-          # super().GenerateTweet()
-          # sTweet = ""
+# "Oh Giorgio!" Tiffany gasped. "I love you! Every beat of my heart beats for you!"
 
-          # return sTweet
+# "I love you as well, my sweet gazelle," panted Giorgio as he 
+# {tit-fucked | sprayed a stream of urine over her | thrust his dick into her rectum | ate her ass | rubbed his hairy ballsack against her face | inserted his vaseline-coated fist into her vaginal canal} her.
+class Generator99(ExGen):
+    def __init__(self):
+        super().__init__(ID = 99, Priority = GenPriority.SuperHigh)
+     
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
+
+        sHerName = self.FemaleName.FirstName()
+        sHisName = self.MaleName.FirstName()
+
+        sTweet += "\"Oh " + sHisName + ",\" " + sHerName + " " + WordList(["gasped","sighed","cried","breathed"]).GetWord() + ", "
+        sTweet += "\"I love you! "
+        sTweet += WordList(["Every beat of my heart beats for you",
+                            "The scent of you in my nostrils is the sweetest perfume",
+                            "Your gaze is like the brilliant sun in the sapphire sky, filling me with its warmth",
+                            "The taste of the sweetest fruit pales next to the taste of your kiss upon my ruby lips",
+                            "A moment in your strong embrace is like an eternity",
+                            "Every moment that I do not gaze upon your face is like an eternal ocean filled with longing",
+                            "Your kisses upon my skin burn me with your undying passion",
+                            "If I were a ship I would dash myself upon the rocks of your love",
+                            "My desire for you is greater than every drop in the deepest of oceans",
+                            "Our passion is like two flaming stars burning together in the purple night sky",
+                            "Your every word and glance is written upon my heart for eternity",
+                            "I cannot bear it that we should be apart ever again",
+                            "I would trade an eternity among the angels of heaven for an hour in your arms",
+                            "You shine brighter than the moon shines among the stars"
+
+                            ]).GetWord() + "!\"\n\n"
+
+        Adjs = WordList(["sweet","beautiful","dulcet","fairest","tender","precious","most winsome",
+                         "ravishing","alluring","flawless","delicate"])
+        Nouns = WordList(["angel","gazelle","blossom","plum","queen","princess","treasure","tulip",
+                          "dove","swan","butterfly","enchantress","flower","lotus","sunbeam",
+                          "lamb"])
+        
+        sTweet += "\"I love you too, my " + Adjs.GetWord() + " " + Nouns.GetWord() + "!\" he panted "
+
+        AnusFemale = self.FemBodyParts.Ass.Anus
+        Balls = self.MaleBodyParts.Penis.Testicles
+        Dick = self.MaleBodyParts.Penis
+        Vaj = self.FemBodyParts.Vagina
+        Tits = self.FemBodyParts.Breasts
+        sTweet += "as he " + WordList(["ate her ass",
+                                        "inserted his " + WordList(["lubricated","vaseline-covered","oiled-up"]).GetWord() + " fist into her " + Vaj.ShortDescription(),
+                                        "rubbed his " + WordList(["hairy","wrinkled","fleshy"]).GetWord() + " " + Balls.ShortDescription() + " against her face",
+                                        "rubbed his " + WordList(["hairy","wrinkled","fleshy"]).GetWord() + " " + Dick.ShortDescription() + " against her face",
+                                        "thrust his " + Dick.ShortDescription() + " between her " + Tits.MediumDescription(),
+                                        "thrust his " + Dick.ShortDescription() + " deep into her " + AnusFemale.ShortDescription(),
+                                        "tit-fucked her",
+                                        WordList(["sprayed urine","urinated","pissed","peed"]).GetWord() + " all over her",
+                                       ]).GetWord() + "."
+        
+
+        return sTweet
       
 # Svetlana unbuckled his belt, unzipped his {pants/jeans/trousers/shorts} and pulled out his penis. 
 # His knob began to swell at the gentle {touch/strokes} of her {soft/warm/kind/gentle} fingers as 
