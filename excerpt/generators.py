@@ -6136,7 +6136,7 @@ class Generator101(ExGen):
 # "Oh, baby!" said Joe, "those are some sweet-ass breasticles!"
 class Generator102(ExGen):
     def __init__(self):
-        super().__init__(ID = 102, Priority = GenPriority.Normal)
+        super().__init__(ID = 102, Priority = GenPriority.SuperHigh)
      
     def GenerateTweet(self):
         super().GenerateTweet()
