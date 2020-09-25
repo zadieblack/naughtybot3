@@ -3683,10 +3683,7 @@ class Generator96(TitleGen):
           SizeAdj = WordList(['Enormous','Gigantic','Titantic','Humongous','Massive','Sumptuous','Milky','Giant',
                                    'Honking','Juicy','Jiggling','Double D','Magnificent','Gargantuan','Jumbo',
                                    'Heavenly'])
-          Breasts = WordList(['Coconuts','Tatas','Breasticles','Gazongas','Titties','Mammaries','Melons',
-                                   'Cantaloups','Jugs','Fun-Bags','Jubblies','Knockers','Hooters','Bazooms','Bosoms',
-                                   'Milk Balloons','Juice-Bags','Sweater-Zeppelins','Grapefruits','Pumpkins',
-                                   'Grand Tetons','Hangers','Bongos','Meat-Melons','Love-Pillows','Udders'])
+          Breasts = misc.TittySlang()
                                    
           sTweet = WordList(["In Love with","Falling for","Head-Over-Heels for","Captivated by",
                                  "Bewitched by","Entranced by","Enraptured by","Spellbound by"]).GetWord()

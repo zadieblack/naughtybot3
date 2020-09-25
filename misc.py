@@ -495,6 +495,35 @@ class VaginaSlang(WordList):
                                  "womanhood"
                                  ])
           
+class TittySlang(WordList):
+    def __init__(self):
+          super().__init__(['Bazooms',
+                            'Bongos',
+                            'Breasticles',
+                            'Cantaloups',
+                            'Coconuts',
+                            'Fun-Bags',
+                            'Gazongas',
+                            'Grand Tetons',
+                            'Grapefruits',
+                            'Hangers',
+                            'Hooters',
+                            'Jugs',
+                            'Juice-Bags',
+                            'Jubblies',
+                            'Knockers',
+                            'Love-Pillows',
+                            'Mammaries',
+                            'Melons',
+                            'Meat-Melons',
+                            'Milk Balloons',
+                            'Pumpkins',
+                            'Sweater-Zeppelins',
+                            'Tatas',
+                            'Tiddies',
+                            'Titties',
+                            'Udders'   
+                           ])
 
 class TantricTechniques(NounAdjList):
     def __init__(self):

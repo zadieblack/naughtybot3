@@ -36,6 +36,7 @@ import excerpt.scenes as scenes
 
 import excerpt.people as people
 import excerpt.texttoimg as texttoimg
+import title.misc as titmisc
 import title.people as titpeople
 import title.chargenerator as titchar
 import title.chartemplates as chartemps
@@ -5899,19 +5900,22 @@ class Generator99(ExGen):
         sTweet += "\"Oh " + sHisName + ",\" " + sHerName + " " + WordList(["gasped","sighed","cried","breathed"]).GetWord() + ", "
         sTweet += "\"I love you! "
         sTweet += WordList(["Every beat of my heart beats for you",
+                            "Our love is as eternal as the stars, and our passion shines brighter than the sun",
                             "The scent of you in my nostrils is the sweetest perfume",
                             "Your gaze is like the brilliant sun in the sapphire sky, filling me with its warmth",
                             "The taste of the sweetest fruit pales next to the taste of your kiss upon my ruby lips",
                             "A moment in your strong embrace is like an eternity",
                             "Every moment that I do not gaze upon your face is like an eternal ocean filled with longing",
-                            "Your kisses upon my skin burn me with your undying passion",
+                            "Your lips upon mine burn with our undying passion",
+                            "If you were the anchor upon my foot I would cast myself into the storm-tossed sea without hesitation"
                             "If I were a ship I would dash myself upon the rocks of your love",
                             "My desire for you is greater than every drop in the deepest of oceans",
                             "Our passion is like two flaming stars burning together in the purple night sky",
                             "Your every word and glance is written upon my heart for eternity",
                             "I cannot bear it that we should be apart ever again",
                             "I would trade an eternity among the angels of heaven for an hour in your arms",
-                            "You shine brighter than the moon shines among the stars"
+                            "You shine brighter than the moon shines among the stars",
+                            "I could spend a thousand lifetimes with you and still want for more"
 
                             ]).GetWord() + "!\"\n\n"
 
@@ -5924,21 +5928,29 @@ class Generator99(ExGen):
         sTweet += "\"I love you too, my " + Adjs.GetWord() + " " + Nouns.GetWord() + "!\" he panted "
 
         AnusFemale = self.FemBodyParts.Ass.Anus
+        AssFemale = self.FemBodyParts.Ass
         Balls = self.MaleBodyParts.Penis.Testicles
         Dick = self.MaleBodyParts.Penis
         Vaj = self.FemBodyParts.Vagina
         Tits = self.FemBodyParts.Breasts
         sTweet += "as he " + WordList(["ate her ass",
+                                        "shoved his " + WordList(["lubricated","vaseline-covered","oiled-up"]).GetWord() + " fist deeper into her " + AnusFemale.ShortDescription(),
                                         "inserted his " + WordList(["lubricated","vaseline-covered","oiled-up"]).GetWord() + " fist into her " + Vaj.ShortDescription(),
                                         "rubbed his " + WordList(["hairy","wrinkled","fleshy"]).GetWord() + " " + Balls.ShortDescription() + " against her face",
                                         "rubbed his " + WordList(["hairy","wrinkled","fleshy"]).GetWord() + " " + Dick.ShortDescription() + " against her face",
+                                        "sodomized her virgin " + AssFemale.ShortDescription(),
                                         "thrust his " + Dick.ShortDescription() + " between her " + Tits.MediumDescription(),
                                         "thrust his " + Dick.ShortDescription() + " deep into her " + AnusFemale.ShortDescription(),
+                                        "injected the enema into her " + AnusFemale.ShortDescription(),
+                                        "as he fucked her " + WordList(["lubed-up","oiled-up","greased-up"]).GetWord() + " tits",
                                         "tit-fucked her",
-                                        WordList(["sprayed urine","urinated","pissed","peed"]).GetWord() + " all over her",
+                                        "pushed the " + WordList(["eleven-inch","twelve-inch","thirteen-inch","foot-long","twenty-inch"]).GetWord() + " " + WordList(["black","glass","steel"]).GetWord() + " dildo deeper into her " + Vaj.ShortDescription(),
+                                        "pushed the " + WordList(["eleven-inch","twelve-inch","thirteen-inch","foot-long","twenty-inch"]).GetWord() + " " + WordList(["black","glass","steel"]).GetWord() + " dildo deeper into her " + AnusFemale.ShortDescription(),
+                                        WordList(["sprayed his urine","urinated","pissed","peed"]).GetWord() + " all over her",
+                                        "as he pounded her " + WordList(["best friend","maid-of-honor","mom","sister","twin sister"]).GetWord(),
+                                        "spread his ass-cheeks and lowered his " + self.MaleBodyParts.Ass.Anus.ShortDescription() + " onto her face",
                                        ]).GetWord() + "."
         
-
         return sTweet
       
 # Svetlana unbuckled his belt, unzipped his {pants/jeans/trousers/shorts} and pulled out his penis. 
@@ -6119,15 +6131,72 @@ class Generator101(ExGen):
 
         return sTweet
 
-#class Generator102(ExGen):
-#    def __init__(self):
-#        super().__init__(ID = 102, Priority = GenPriority.Normal)
-     
-#    def GenerateTweet(self):
-#        super().GenerateTweet()
-#        sTweet = ""
+# The redheaded nurse winked at him. Then she sensually pulled down her bra. revealing her DDD breasts to him.
 
-#        return sTweet
+# "Oh, baby!" said Joe, "those are some sweet-ass breasticles!"
+class Generator102(ExGen):
+    def __init__(self):
+        super().__init__(ID = 102, Priority = GenPriority.Normal)
+     
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
+
+        WomanProfs = titmisc.ProfGoodFemale()
+
+        sHisName = names.PlainNamesMale().FirstName()
+
+        sTweet += "The " + WomanProfs.GetWord(NotList = ["mom"]).lower() + " "
+        sTweet += WordList(["bit her lower lip",
+                            "licked her red lips",
+                            "winked at " + sHisName
+                            ]).GetWord() + ". "
+        sTweet += "Then she " + WordList(["slowly","sensually"]).GetWord() + " "
+        
+        sTweet += WordList(["opened her bath towel",
+                            "opened her blouse",
+                            "opened her robe",
+                            "opened her uniform",
+                            "pulled down her bra",
+                            "pulled down her sports bra",
+                            "pulled up her shirt",
+                            "undid her bikini"
+                            ]).GetWord() + ", "
+
+        BreastAdjs = WordList(['big','bouncy','bountiful','buxom','double-D',
+                               'enormous','full','fulsome','generous',
+                               'glorious','heavy','huge','impressive',
+                               'jiggling','luscious','lush','magnificent',
+                               'massive','nubile','pendulous','plump',
+                               'proud','ripe','round','triple-D','shapely',
+                               'statuesque','stunning','succulent',
+                               'sumptuous','supple','surgically-enhanced',
+                               'voluptuous'])
+        BreastNouns = WordList(['bosoms','breasts','breasts','breasts','bust',
+                                'globes','orbs','tits'])
+        sTweet += WordList(["revealing","exposing","baring"]).GetWord() + " "
+        sTweet += "her " + BreastAdjs.GetWord() + " " + BreastNouns.GetWord() + " to him.\n\n"
+
+        TittyAdjs = WordList(["bangin'",
+                              "big-ass",
+                              "big fucking",
+                              "big honking",
+                              "bitchin'",
+                              "dank",
+                              "dope",
+                              "dope-ass",
+                              "hella big",
+                              "monster",
+                              "sick",
+                              "serious fucking",
+                              "sweet-ass"
+                              ])
+        TittySlang = shmisc.TittySlang()
+
+        sTweet += "\"Oh, baby!\" " + sHisName + " said. "
+        sTweet += "\"Those are some " + TittyAdjs.GetWord().lower() + " " + TittySlang.GetWord().lower() + "!\""
+
+        return sTweet
           
 #class Generator103(ExGen):
 #    def __init__(self):
