@@ -65,13 +65,13 @@ def InitBot(iTweetTimer,
             #ImgTxtGen.ImgTxt = "I Secretly Impregnated\nMy Naked Slutty Italian Elf Step-Mom"
 
             if not ImgTxtGen.ImgTxt is None:
-                TweetTxtGen = GetTweetText(bTest = bTest, 
-                                            iGeneratorNo = iTweetTxtNo,
-                                            TweetTxtHistoryQ = titutil.TweetTxtHistoryQ, 
-                                            sAuthorName = ImgTxtGen.AuthorName, 
-                                            AuthorGender = ImgTxtGen.AuthorGender)
+                sTweetTxt = GetTweetText(bTest = bTest, 
+                                         iGeneratorNo = iTweetTxtNo,
+                                         TweetTxtHistoryQ = titutil.TweetTxtHistoryQ, 
+                                         sAuthorName = ImgTxtGen.AuthorName, 
+                                         AuthorGender = ImgTxtGen.AuthorGender)
 
-                ImgTxtGen.TweetTxt = TweetTxtGen.TweetTxt()
+                ImgTxtGen.TweetTxt = sTweetTxt
 
                 print("\n===Here is your " + str(len(ImgTxtGen.ImgTxt)) + " char tweet (" + str(i + 1) + " of " + str(iTweets) + ")===")
                 print("[" + ImgTxtGen.ImgTxt + "]")
