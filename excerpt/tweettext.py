@@ -77,7 +77,7 @@ class TweetTxtGen1(TweetTxtGen):
      # that was BANNED on Amazon!
      # Now available on Wattpad from Dick Spunk
      def __init__(self):          
-          super().__init__(ID = 1, Priority = GenPriority.Lowest)
+          super().__init__(ID = 1, Priority = GenPriority.Low)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -97,7 +97,7 @@ class TweetTxtGen2(TweetTxtGen):
      # "Punished by the handsome Swedish prime minister" is now available 
      # on Kindle. By Ben Dover
      def __init__(self):     
-          super().__init__(ID = 2, Priority = GenPriority.Lowest)     
+          super().__init__(ID = 2, Priority = GenPriority.Low)     
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -118,7 +118,7 @@ class TweetTxtGen3(TweetTxtGen):
      # "Punished by the handsome Swedish prime minister" is coming soon 
      # to discerning readers on Amazon. By Ben Dover
      def __init__(self):          
-          super().__init__(ID = 3, Priority = GenPriority.Lowest)
+          super().__init__(ID = 3, Priority = GenPriority.Low)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -137,7 +137,7 @@ class TweetTxtGen4(TweetTxtGen):
      # Get excited! The wait is over for Ben Dover's latest sexy release, 
      # "Punished by the handsome Swedish prime minister"!
      def __init__(self):          
-          super().__init__(ID = 4, Priority = GenPriority.Lowest)
+          super().__init__(ID = 4, Priority = GenPriority.Low)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -152,7 +152,7 @@ class TweetTxtGen4(TweetTxtGen):
 class TweetTxtGen5(TweetTxtGen):
      # Out soon from Ben Dover
      def __init__(self):
-          super().__init__(ID = 5, Priority = GenPriority.Lowest)
+          super().__init__(ID = 5, Priority = GenPriority.Low)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -204,9 +204,9 @@ class TweetTxtGen7(TweetTxtGen):
           return sText
           
 class TweetTxtGen8(TweetTxtGen):
-     # Out soon from Ben Dover
+     # You have to retweet this if it made you laugh
      def __init__(self):
-          super().__init__(ID = 8)
+          super().__init__(ID = 8, Priority = GenPriority.Lowest)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -225,7 +225,7 @@ class TweetTxtGen8(TweetTxtGen):
 class TweetTxtGen9(TweetTxtGen):
      # Out soon from Ben Dover
      def __init__(self):
-          super().__init__(ID = 9)
+          super().__init__(ID = 9, Priority = GenPriority.AboveAverage)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -244,7 +244,7 @@ class TweetTxtGen9(TweetTxtGen):
 class TweetTxtGen10(TweetTxtGen):
      # Out soon from Ben Dover
      def __init__(self):
-          super().__init__(ID = 10)
+          super().__init__(ID = 10, Priority = GenPriority.AboveAverage)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -270,7 +270,7 @@ class TweetTxtGen11(TweetTxtGen):
      # If you only read one book this year about clown bukkake, make 
      # sure it is 'Black T-Rex for the Bisexual Princess'!
      def __init__(self):
-          super().__init__(ID = 11)
+          super().__init__(ID = 11, Priority = GenPriority.AboveAverage)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -373,7 +373,7 @@ class TweetTxtGen15(TweetTxtGen):
      # "Teen mom for the Well-Hung Viking" is 'Delightful & provactive!' 
      # raves Dwarf Fisting Magazine 
      def __init__(self):
-          super().__init__(ID = 15)
+          super().__init__(ID = 15, Priority = GenPriority.AboveAverage)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -401,7 +401,7 @@ class TweetTxtGen15(TweetTxtGen):
 class TweetTxtGen16(TweetTxtGen):
      # 'Ben Dover's latest is a triumph!' applauds Goat-man Foursome Magazine 
      def __init__(self):
-          super().__init__(ID = 16)
+          super().__init__(ID = 16, Priority = GenPriority.AboveAverage)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -434,7 +434,7 @@ class TweetTxtGen16(TweetTxtGen):
 class TweetTxtGen17(TweetTxtGen):
      # Why don't I ever meet any horny, well-hung lumberjacks in real life?
      def __init__(self):
-          super().__init__(ID = 17)
+          super().__init__(ID = 17, Priority = GenPriority.Low)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -460,7 +460,7 @@ class TweetTxtGen18(TweetTxtGen):
      # Of course in real life you should never attempt centaur bukkake 
      # without strict medical supervision.
      def __init__(self):
-          super().__init__(ID = 18)
+          super().__init__(ID = 18, Priority = GenPriority.AboveAverage)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -492,7 +492,7 @@ class TweetTxtGen18(TweetTxtGen):
 class TweetTxtGen19(TweetTxtGen):
      # Ben Dover is definitely the best erotica author working in Tuscaloosa!
      def __init__(self):
-          super().__init__(ID = 19)
+          super().__init__(ID = 19,Priority = GenPriority.AboveAverage)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -557,7 +557,7 @@ class TweetTxtGen20(TweetTxtGen):
      # "*Spit-Roasting My Busty Centaur MILF* is a wild fuck-fest!" 
      # -Abraham Lincoln
      def __init__(self):
-          super().__init__(ID = 20)
+          super().__init__(ID = 20, Priority = GenPriority.High)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -567,11 +567,13 @@ class TweetTxtGen20(TweetTxtGen):
                                    "delightful", "sinful", "arousing", "naughty", "depraved", "lustful", "wicked", "outrageous", "delicious", 
                                    "stimulating", "sexy", "provocative", "lewd", "wicked", "shameless", "stimulating", "kinky", "juicy",
                                    "wanton"])
-          Celebs = WordList(["Abraham Lincoln", "Winston Churchill", "Barak Obama", "Mother Theresa", 
-                                   "Salman Rushdie", "Albert Einstein", "Hillary Clinton", "Isaac Asimov", "Jonathan Franzen", 
-                                   "Cormac McCarthy", "Ghandi", "Boutros Boutros-Ghali", "Bob Dylan", "The Dalai Lama", "Elon Musk", 
-                                   "Warren Buffett", "Stephen King", "Bill Gates", "Billy Graham", "Jimmy Carter", "Oprah Winfrey",
-                                   "Neil Armstrong", "Stephen Hawking", "Al Gore"])
+          Celebs = WordList(["Abraham Lincoln", "Winston Churchill", "Barak Obama", "Michelle Obama", 
+                             "Mother Theresa", "Salman Rushdie", "Albert Einstein", "Hillary Clinton", 
+                             "Isaac Asimov", "Jonathan Franzen", "Cormac McCarthy", "Ghandi", 
+                             "Boutros Boutros-Ghali", "Bob Dylan", "The Dalai Lama", "Elon Musk", 
+                             "Warren Buffett", "Stephen King", "Bill Gates", "Billy Graham", 
+                             "Jimmy Carter", "Oprah Winfrey","Neil Armstrong", "Stephen Hawking", 
+                             "Al Gore"])
           sAdj1 = Adjs.GetWord()
           sAdj2 = Adjs.GetWord(NotList = [sAdj1])
           
@@ -602,7 +604,7 @@ class TweetTxtGen21(TweetTxtGen):
      # "Fisted by the Alpha Male Goat-Men on Uranus" is widely considered to 
      # be the 'Lord of the Rings' of anal fisting books.
      def __init__(self):
-          super().__init__(ID = 21)
+          super().__init__(ID = 21, Priority = GenPriority.AboveAverage)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -724,7 +726,7 @@ class TweetTxtGen22(TweetTxtGen):
 class TweetTxtGen23(TweetTxtGen):
      # By day, erotica author Ben Dover is a Wedding Photographer from Scranton.
      def __init__(self):
-          super().__init__(ID = 23)
+          super().__init__(ID = 23, Priority = GenPriority.AboveAverage)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -747,7 +749,7 @@ class TweetTxtGen24(TweetTxtGen):
      # LEGAL DISCLAIMER: Wal-Mart does not condone cum-swapping or genital 
      # piercings.
      def __init__(self):
-          super().__init__(ID = 24)
+          super().__init__(ID = 24, Priority = GenPriority.High)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -816,7 +818,7 @@ class TweetTxtGen25(TweetTxtGen):
           return sText     
 
 class TweetTxtGen26(TweetTxtGen):
-     # Out soon from Ben Dover
+     # From page 307 of One Hundred Years of Solitude by Gabriel Garcia Marquez
      def __init__(self):
           super().__init__(ID = 26)
      
@@ -871,7 +873,7 @@ class TweetTxtGen26(TweetTxtGen):
           return sText     
 
 class TweetTxtGen27(TweetTxtGen):
-     # Out soon from Ben Dover
+     # From the demented imagination of author Ben Dover
      def __init__(self):
           super().__init__(ID = 27, Priority = GenPriority.AboveAverage)
      
