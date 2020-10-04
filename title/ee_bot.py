@@ -93,10 +93,10 @@ def InitBot(iTweetTimer,
                     image.save(ImgFile, format = 'jpeg', quality = 'high')
                               
                 if bTweet:
-                    status = UpdateStatusWithImage(api, TweetTxtGen.TweetTxt(), ImgFile)          
+                    status = UpdateStatusWithImage(api, ImgTxtGen.TweetTxt, ImgFile)          
 
                 if bRedditPost and not status is None:
-                    PostToReddit_eebot(sLinkTitle = TweetTxtGen.TweetTxt(), sLinkURL = util.ExtractURLFromStatus(status))
+                    PostToReddit_eebot(sLinkTitle = ImgTxtGen.TweetTxt, sLinkURL = util.ExtractURLFromStatus(status))
 
                 print("* Tweeted at " + currentDTaware.strftime("%I:%M %p"))
                          
