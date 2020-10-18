@@ -177,30 +177,22 @@ class GeneratorContainer():
     def GetBucket(self):
         Bucket = []
 
-        #print(" GeneratorContainer.GetBucket() for " + str(self.GeneratorClassName))
-
         iCount = 0
         while len(Bucket) == 0 and iCount < MAXBUCKETTRIES:
-            iChance = randint(1, 55)                                # 1 + 2 + 3 + 4 + 5 = 15
+            iChance = randint(1, 55)                                # 1 + 2 + 4 + 8 + 16 + 24 = 56
             
             if iChance == 1:
                 Bucket = self.BucketLowest
-                #print(" - Lowest bucket selected (iChance == " + str(iChance) + "). Bucket contains " + str(len(Bucket)) + " items.")
             elif iChance >= 2 and iChance < 4:      # 2x lowest
                 Bucket = self.BucketLow 
-                #print(" - Normal bucket selected (iChance == " + str(iChance) + "). Bucket contains " + str(len(Bucket)) + " items.")
             elif iChance >= 4 and iChance < 8:      # 2x low
                 Bucket = self.BucketNormal 
-                #print(" Normal bucket selected (iChance == " + str(iChance) + "). Bucket contains " + str(len(Bucket)) + " items.")
             elif iChance >= 8 and iChance < 16:      # 2x normal
                 Bucket = self.BucketAboveAverage
-                #print(" - AboveAverage bucket selected (iChance == " + str(iChance) + "). Bucket contains " + str(len(Bucket)) + " items.")
             elif iChance >= 16 and iChance < 32:     # 2x above average
                 Bucket = self.BucketHigh
-                #print(" - High bucket selected (iChance == " + str(iChance) + "). Bucket contains " + str(len(Bucket)) + " items.")
             elif iChance >= 32 and iChance < 56:     # 1.5x high
                 Bucket = self.BucketSuperHigh
-                #print(" - SuperHigh bucket selected (iChance == " + str(iChance) + "). Bucket contains " + str(len(Bucket)) + " items.")
             else:
                 Bucket = self.BucketNormal
                 print("=*= WARNING =*= Default bucket (normal) selected (iChance == " + str(iChance) + "). Bucket contains " + str(len(Bucket)) + " items.\n")
@@ -281,5 +273,50 @@ class GeneratorContainer():
 
         return bValid
 
+class GeneratorContainerNoPriorities(GeneratorContainer):
+    def AddGenerator(self, Gen, Priority = GenPriority.Normal):
+        # We don't need priority and will ignore it but it has to be a parameter for super class compatability
+        bResult = False 
+
+        self.GeneratorList.append(Gen)
+
+        bResult = True
+
+        return bResult 
+
+    # Get a random generator
+    def RandomGenerator(self, bAllowPromo = False, Type = GeneratorType.Normal):
+        Generator = None 
+        AllowedTypes = []
+        Bucket = []
+
+        print("GeneratorContainerNoPriorities.RandomGenerator() started")
+          
+        AllowedTypes = [GeneratorType.Normal, GeneratorType.BookTitle]
+          
+        if bAllowPromo:
+            AllowedTypes.append(GeneratorType.Promo)
+
+        iGetBucketTries = 1
+
+        if not len(self.GeneratorList) == 0:
+            Generator = choice(self.GeneratorList)
+        else:
+            print("=*= WARNING =*= Empty generator list received while attempting to randomly pick a generator for " + str(self.GeneratorClassName) + "!\n")
+
+        iGetGeneratorTries = 1
+        while (not Generator.Type in AllowedTypes or not self.HistoryQ.PushToHistoryQ(str(Generator.ID)) or Generator is None) \
+            and iGetGeneratorTries < MAXGENTRIES:
+            if not len(self.GeneratorList) == 0:
+                Generator = choice(self.GeneratorList)
+            else:
+                print("=*= WARNING =*= Empty generator list received while attempting to randomly pick a generator for " + str(self.GeneratorClassName) + "!\n")
+
+            iGetGeneratorTries = iGetGeneratorTries + 1
+
+        if iGetGeneratorTries == MAXGENTRIES:
+            print("=*= WARNING =*= Max number of tries (" + str(MAXGENTRIES) + ") exceeded while attempting to randomly select a generator of type " + str(self.GeneratorClassName) + "! Accepted #" + str(Generator.ID) + " by default.\n")
+                    
+        return Generator 
 
 

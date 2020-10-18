@@ -6198,15 +6198,24 @@ class Generator102(ExGen):
 
         return sTweet
           
-#class Generator103(ExGen):
-#    def __init__(self):
-#        super().__init__(ID = 103, Priority = GenPriority.Normal)
+# Mrs. Claremont bent over in front of him and spread the cheeks of her ass, shamelessly displaying her puckered
+# starfish. 
+#
+# "Fuck me, Joe," she moaned. "Defile my dirt pipe with your big nasty cock!"
+class Generator103(ExGen):
+    def __init__(self):
+        super().__init__(ID = 103, Priority = GenPriority.Normal)
      
-#    def GenerateTweet(self):
-#        super().GenerateTweet()
-#        sTweet = ""
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
 
-#        return sTweet
+        sMILFName = names.AllLastNames().GetWord()
+        Ass = self.FemBodyParts.Ass 
+        Anus = Ass.Anus
+        Pussy = self.FemBodyParts.Vagina
+
+        return sTweet
           
 #class Generator104(ExGen):
 #    def __init__(self):

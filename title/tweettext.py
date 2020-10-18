@@ -1195,18 +1195,18 @@ class TweetTxtGen42(TweetTxtGen):
           sText = ""
           
           SexActs = WordList(["unprotected anal sex","double anal penetration","fisting",
-                                   "anal fisting","twincest","tribbing","pee drinking",
-                                   "cum-swapping","bukkake","public gang bangs",
-                                   "anal gangbangs","urinating in the mouth of another person",
-                                   "pee-drinking","erotic asphyxiation","double penetration",
-                                   "triple penetration","forced orgasm","public nudity",
-                                   "ball torture","forced feminization","wife-swapping",
-                                   "leather bondage","tea-bagging","full-frontal massage",
-                                   "enemas","pegging","butt stuff","sodomy","premarital sex",
-                                   "spanking","paddling","adult diapers","choke play",
-                                   "genital piercings","extreme vaginal insertion",
-                                   "cum drinking","extreme anal insertion",
-                                   "interracial gang-bangs"])
+                                "anal fisting","twincest","tribbing","pee drinking",
+                                "cum-swapping","bukkake","public gang bangs",
+                                "anal gangbangs","urinating in the mouth of another person",
+                                "pee-drinking","erotic asphyxiation","double penetration",
+                                "triple penetration","forced orgasm","public nudity",
+                                "ball torture","forced feminization","wife-swapping",
+                                "leather bondage","tea-bagging","full-frontal massage",
+                                "enemas","pegging","butt stuff","sodomy","premarital sex",
+                                "spanking","paddling","adult diapers","choke play",
+                                "genital piercings","extreme vaginal insertion",
+                                "cum drinking","extreme anal insertion",
+                                "interracial gang-bangs"])
           sAct1 = SexActs.GetWord()
           sAct2 = SexActs.GetWord(NotList = [sAct1])
           
@@ -1338,6 +1338,97 @@ class TweetTxtGen46(TweetTxtGen):
 
 
         return sText     
+
+class TweetTxtGen47(TweetTxtGen):
+    # Yes, this book does contain some man-on-horse frottage scenes, but it's all consensual!
+    def __init__(self): 
+         super().__init__(ID = 47, Priority = GenPriority.SuperHigh)
+     
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sText = ""
+
+        Numbers = WordList(["double","triple","quaduple","quintuple"])
+
+        sText = WordList(["Yes","Sure","It's true"]).GetWord() + ", "
+        sText += "this book DOES contain "
+
+        iRand = randint(1,9)
+        if iRand == 1:
+            sText += "a scene where " + WordList(["a baguette",
+                                                  "a can of Mountain Dew",
+                                                  "a can of chunky peanut butter",
+                                                  "an eggplant",
+                                                  "a jar of quarters",
+                                                  "a large McDonald's french fries",
+                                                  "a live octopus",
+                                                  "a pineapple"]).GetWord() + " "
+            sText += "is inserted into someone's " + WordList(["anus","colon","rectum"]).GetWord()
+        elif iRand == 2:
+            sText += "a scene of man-on-" + WordList(["basilisk",
+                                                      "bee hive",
+                                                      "boa constrictor",
+                                                      "centaur",
+                                                      "dinosaur",
+                                                      "donkey",
+                                                      "falcon",
+                                                      "firetruck",
+                                                      "gargoyle",
+                                                      "goat",
+                                                      "helicopter",
+                                                      "hippogriff",
+                                                      "kraken",
+                                                      "leprechaun",
+                                                      "orca",
+                                                      "robot",
+                                                      "sea serpent",
+                                                      "swamp creature",
+                                                      "vending machine",
+                                                      "walrus",
+                                                      "wookie",
+                                                      "werebear"
+                                                      ]).GetWord() + " "
+            sText += "sexual intercourse"
+        elif iRand == 3:
+            sText += "an erotic " + WordList(["body builder",
+                                              "carnie",
+                                              "circus clown",
+                                              "coal miner",
+                                              "deep water oil rig",
+                                              "lumberjack",
+                                              "mime",
+                                              "MMA fighter",
+                                              "NASCAR pit crew",
+                                              "pirate",
+                                              "rodeo clown",
+                                              "SCUBA diver"]).GetWord() + " "
+            sText += " " + WordList(["gangbang","orgy","foursome","bukkake scene"]).GetWord()
+        elif iRand == 4:
+            sText += "unprotected " + Numbers.GetWord() + " anal penetration"
+        elif iRand == 5:
+            sText += Numbers.GetWord() + " anal fisting"
+        elif iRand == 6:
+            sText += WordList(["quadruplet","quintuplet","sextuplet","septuplet","octuplet"]).GetWord() + " twincest"
+        elif iRand == 7:
+            sText += "a public " + str(randint(20,100)) + "-man anal gangbang"
+        elif iRand == 8:
+            sText += AddArticles(Colors().GetWord(), bMakeUpper = False).lower() + " "
+            sText += WordList(["corduroy","denim","flannel","fur",
+                               "leather","nylon","pleather",
+                               "polyester","PVC","spandex",
+                               "vulcanized rubber"]).GetWord() + " gimp suit"
+        elif iRand == 9:
+            sText += WordList(["a chunky peanut butter",
+                               "a Diet Coke",
+                               "a micro-brewed craft beer",
+                               "a pickle juice",
+                               "a soy milk",
+                               "a venti iced latte",                             
+                               ]).GetWord() + " enema"
+
+        sText += ", but it's all consensual!"
+
+        return sText
 
 # class TweetTxtGen44(TweetTxtGen):
      # The sexy read that was BANNED on Amazon! Now available on Smashwords
