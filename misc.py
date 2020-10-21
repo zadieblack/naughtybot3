@@ -40,7 +40,7 @@ class Hashtags(WordList):
                'romanceauthor','romanceauthor',
                'romancereaders','romancereader',
                'selfcare',
-               'selfisolation','selfisolating','selfquarantine',
+               'socialdistancing','socialdistancing',
                'sexybot',
                'smut',
                'sorrynotsorry','sorrynotsorry',
