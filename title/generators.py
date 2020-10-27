@@ -5271,7 +5271,8 @@ class Generator136(TitleGen):
 # Taken in the Graveyard by the Strapping Truck-Driver Zombie 
 class Generator137(TitleGen):
      def __init__(self):
-         super().__init__(ID = 137, Priority = GenPriority.Lowest, Disabled = True)
+         super().__init__(ID = 137, Priority = GenPriority.Lowest, Disabled = False)
+         self.Template = templates.TitleTemplate6()
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -5310,7 +5311,7 @@ class Generator137(TitleGen):
           ManNouns = WordList(['Ghost','Zombie','Vampire','Werewolf','Ghoul','Skeleton','Mummy','Corpse',
                                     'Serial Killer'])
                                     
-          sTweet = sVerbPhrase + "\n" + Places.GetWord() + " by\n" + Man.Desc + " " + ManNouns.GetWord()
+          sTweet = sVerbPhrase + "\n" + Places.GetWord() + "\nby " + Man.Desc + " " + ManNouns.GetWord()
 
           return sTweet     
           

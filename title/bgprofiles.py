@@ -496,7 +496,7 @@ class BGProfileCowgirlDominatrix(BGProfile):
 class BGProfileDickNose(BGProfile):
     def __init__(self):
         super().__init__(ID = 38,
-                           Priority = GenPriority.Low,
+                           Priority = GenPriority.SuperHigh, # GenPriority.Low,
                            sFileName = "dick_nose")
         self.MainTitleColor = "rgba(32, 124, 207, 255)"
         self.SecondTitleColor = "rgba(225, 47, 37, 255)"
@@ -505,7 +505,7 @@ class BGProfileDickNose(BGProfile):
         self.Content = Content.AdultsOnly
         self.Tags = ["man","woman","couple","outside","straight","kinky",
                      "blonde","topless","shirtless","muscular","circus",
-                     "nose","bed"]
+                     "nose","bed","october"]
         self.Disabled = False
 
 class BGProfileHandsAndKnees(BGProfile):
@@ -583,14 +583,14 @@ class BGProfileLadyBottom(BGProfile):
 class BGProfileLesbianVampires(BGProfile):
     def __init__(self):
         super().__init__(ID = 44,
-                           Priority = GenPriority.Low,
+                           Priority = GenPriority.SuperHigh, # GenPriority.Low,
                            sFileName = "lesbian_vampires")
         self.MainTitleColor = "rgba(123, 83, 137, 255)"
         self.SecondTitleColor = "rgba(123, 83, 137, 255)"
         self.SmallTextColor = "rgba(212, 1, 3, 255)"
         self.Content = Content.AdultsOnly
         self.Tags = ["woman","women","inside","lesbian","kinky","horror",
-                     "castle","raven-haired","redhead","blonde","vampire"]
+                     "castle","raven-haired","redhead","blonde","vampire","october"]
         self.Disabled = False
 
 class BGProfileMaleSub(BGProfile):
@@ -681,13 +681,13 @@ class BGProfileScaryMirror(BGProfile):
 class BGProfileSkeleton(BGProfile):
     def __init__(self):
         super().__init__(ID = 51,
-                           Priority = GenPriority.Lowest,
+                           Priority = GenPriority.SuperHigh, # GenPriority.Lowest,
                            sFileName = "skeleton")
         self.MainTitleColor = "rgba(157, 16, 16, 255)"
         self.SecondTitleColor = "rgba(157, 16, 16, 255)"
         self.Content = Content.AdultsOnly
         self.Tags = ["woman","single","horror","brunette","topless",
-                     "naked","nude","bed","skeleton","tits","bush"]
+                     "naked","nude","bed","skeleton","tits","bush","october"]
         self.Disabled = False
 
 class BGProfileSnowWhiteSevenDwarves(BGProfile):
@@ -790,14 +790,14 @@ class BGProfileTallWoman(BGProfile):
 class BGProfileTheDevil(BGProfile):
     def __init__(self):
         super().__init__(ID = 59,
-                           Priority = GenPriority.Lowest,
+                           Priority = GenPriority.SuperHigh, # GenPriority.Lowest,
                            sFileName = "the_devil")
         self.MainTitleColor = "rgba(212, 80, 83, 255)"
         self.SecondTitleColor = "rgba(0, 0, 0, 255)"
         self.SmallTextColor = "rgba(47, 84, 51, 255)"
         self.AuthorNameColor = "rgba(47, 84, 51, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["man","woman","couple","straight","naked","nude",
+        self.Tags = ["man","woman","couple","straight","naked","nude","october",
                      "topless","tits","brunette","vampire","horror",
                      "bed"]
         self.Disabled = False
@@ -819,14 +819,14 @@ class BGProfileFireplaceBeauty(BGProfile):
 class BGProfileVampire(BGProfile):
     def __init__(self):
         super().__init__(ID = 61,
-                           Priority = GenPriority.Lowest,
+                           Priority = GenPriority.SuperHigh, # GenPriority.Lowest,
                            sFileName = "vampire")
         self.MainTitleColor = "rgba(23, 72, 199, 255)"
         self.SecondTitleColor = "rgba(23, 72, 199, 255)"
         self.SmallTextColor = "rgba(91, 48, 162, 255)"
         self.AuthorNameColor = "rgba(91, 48, 162, 255)"
         self.Content = Content.AdultsOnly
-        self.Tags = ["man","woman","inside","kinky","horror","blonde",
+        self.Tags = ["man","woman","inside","kinky","horror","blonde","october",
                      "vampire","blood","fangs","naked","nude","tits",
                      "ass"]
         self.Disabled = False
@@ -1403,13 +1403,13 @@ class BGProfileBadDoctor(BGProfile):
 class BGProfileAutumnHeadband(BGProfile):
     def __init__(self):
         super().__init__(ID = 104,
-                           Priority = GenPriority.High,
+                           Priority = GenPriority.SuperHigh, # GenPriority.High,
                            sFileName = "autumn_headband")
         self.MainTitleColor = "rgba(233, 140, 2, 255)"
         self.SecondTitleColor = "rgba(125, 99, 3, 255)"
         self.SmallTextColor = "rgba(139, 106, 69, 255)"
         self.AuthorNameColor = "rgba(125, 99, 3, 255)"
-        self.Tags = ["woman","man","straight","couple","outdoors"]
+        self.Tags = ["woman","man","straight","couple","outdoors","fall","october"]
         self.Disabled = False
 
 class BGProfileIndianPrincess(BGProfile):
@@ -1428,13 +1428,13 @@ class BGProfileIndianPrincess(BGProfile):
 class BGProfileOrangeFromBehind(BGProfile):
     def __init__(self):
         super().__init__(ID = 106,
-                           Priority = GenPriority.High,
+                           Priority = GenPriority.SuperHigh, # GenPriority.High,
                            sFileName = "orange_from_behind")
         self.MainTitleColor = "rgba(243, 108, 1, 255)"
         self.SecondTitleColor = "rgba(119, 141, 38, 255)"
         self.SmallTextColor = "rgba(154, 91, 163, 255)"
         self.AuthorNameColor = "rgba(154, 91, 163, 255)"
-        self.Tags = ["woman","man","straight","couple","outdoors"]
+        self.Tags = ["woman","man","straight","couple","outdoors","fall","october"]
         self.Disabled = False
 
 class BGProfileCabinFever(BGProfile):
@@ -1539,13 +1539,13 @@ class BGProfileFileCabinet(BGProfile):
 class BGProfileWindowCreeper(BGProfile):
     def __init__(self):
         super().__init__(ID = 115,
-                           Priority = GenPriority.AboveAverage,
+                           Priority = GenPriority.SuperHigh, # GenPriority.AboveAverage,
                            sFileName = "window_creeper")
         self.MainTitleColor = "rgba(219, 49, 26, 255)"
         self.SecondTitleColor = "rgba(232, 174, 36, 255)"
         self.SmallTextColor = "rgba(8, 70, 131, 255)"
         self.AuthorNameColor = "rgba(3, 71, 15, 255)"
-        self.Tags = ["woman","indoors","bed","voyeur","blonde","single"]
+        self.Tags = ["woman","indoors","bed","voyeur","blonde","single","october"]
         self.Disabled = False
 
 class BGProfileLesboFriend(BGProfile):
