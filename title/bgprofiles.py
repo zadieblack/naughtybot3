@@ -1995,6 +1995,33 @@ class BGProfilePurpleBarechested(BGProfile):
                      "beach","windy"]
         self.Disabled = False
 
+class BGProfileTheFrenchDoctor(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 150,
+                           Priority = GenPriority.High,
+                           sFileName = "french_doctor")
+        self.MainTitleColor = "rgba(206, 73, 60, 255)"
+        self.SecondTitleColor = "rgba(58, 109, 126, 255)"
+        self.SmallTextColor = "rgba(57, 94, 59, 255)"
+        self.AuthorNameColor = "rgba(58, 109, 126, 255)"
+        self.Tags = ["man","woman","bed","inside","doctor","blonde"]
+        self.Disabled = False
+
+class BGProfilePokerWifeBet(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 151,
+                           Priority = GenPriority.Normal,
+                           sFileName = "poker_wife_bet")
+        self.MainTitleColor = "rgba(126, 166, 51, 255)"
+        self.SecondTitleColor = "rgba(115, 55, 60, 255)"
+        self.SmallTextColor = "rgba(100, 114, 148, 255)"
+        self.AuthorNameColor = "rgba(126, 166, 51, 255)"
+        self.Tags = ["men","man","woman","blonde","inside","poker",
+                     "femdom","kinky","bondage","smoking","bald",
+                     "modern"]
+        self.Disabled = False
+        self.Content = Content.PG13
+
 # this is for debugging bgprofile frequency. delete later.
 def indexof(list, searchobj):
     iIndex = 0
