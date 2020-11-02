@@ -496,7 +496,7 @@ class BGProfileCowgirlDominatrix(BGProfile):
 class BGProfileDickNose(BGProfile):
     def __init__(self):
         super().__init__(ID = 38,
-                           Priority = GenPriority.SuperHigh, # GenPriority.Low,
+                           Priority = GenPriority.Low,
                            sFileName = "dick_nose")
         self.MainTitleColor = "rgba(32, 124, 207, 255)"
         self.SecondTitleColor = "rgba(225, 47, 37, 255)"
@@ -583,7 +583,7 @@ class BGProfileLadyBottom(BGProfile):
 class BGProfileLesbianVampires(BGProfile):
     def __init__(self):
         super().__init__(ID = 44,
-                           Priority = GenPriority.SuperHigh, # GenPriority.Low,
+                           Priority = GenPriority.Low,
                            sFileName = "lesbian_vampires")
         self.MainTitleColor = "rgba(123, 83, 137, 255)"
         self.SecondTitleColor = "rgba(123, 83, 137, 255)"
@@ -681,7 +681,7 @@ class BGProfileScaryMirror(BGProfile):
 class BGProfileSkeleton(BGProfile):
     def __init__(self):
         super().__init__(ID = 51,
-                           Priority = GenPriority.SuperHigh, # GenPriority.Lowest,
+                           Priority = GenPriority.Lowest,
                            sFileName = "skeleton")
         self.MainTitleColor = "rgba(157, 16, 16, 255)"
         self.SecondTitleColor = "rgba(157, 16, 16, 255)"
@@ -790,7 +790,7 @@ class BGProfileTallWoman(BGProfile):
 class BGProfileTheDevil(BGProfile):
     def __init__(self):
         super().__init__(ID = 59,
-                           Priority = GenPriority.SuperHigh, # GenPriority.Lowest,
+                           Priority = GenPriority.Lowest,
                            sFileName = "the_devil")
         self.MainTitleColor = "rgba(212, 80, 83, 255)"
         self.SecondTitleColor = "rgba(0, 0, 0, 255)"
@@ -819,7 +819,7 @@ class BGProfileFireplaceBeauty(BGProfile):
 class BGProfileVampire(BGProfile):
     def __init__(self):
         super().__init__(ID = 61,
-                           Priority = GenPriority.SuperHigh, # GenPriority.Lowest,
+                           Priority = GenPriority.Lowest,
                            sFileName = "vampire")
         self.MainTitleColor = "rgba(23, 72, 199, 255)"
         self.SecondTitleColor = "rgba(23, 72, 199, 255)"
@@ -1403,7 +1403,7 @@ class BGProfileBadDoctor(BGProfile):
 class BGProfileAutumnHeadband(BGProfile):
     def __init__(self):
         super().__init__(ID = 104,
-                           Priority = GenPriority.SuperHigh, # GenPriority.High,
+                           Priority = GenPriority.High,
                            sFileName = "autumn_headband")
         self.MainTitleColor = "rgba(233, 140, 2, 255)"
         self.SecondTitleColor = "rgba(125, 99, 3, 255)"
@@ -1428,7 +1428,7 @@ class BGProfileIndianPrincess(BGProfile):
 class BGProfileOrangeFromBehind(BGProfile):
     def __init__(self):
         super().__init__(ID = 106,
-                           Priority = GenPriority.SuperHigh, # GenPriority.High,
+                           Priority = GenPriority.High,
                            sFileName = "orange_from_behind")
         self.MainTitleColor = "rgba(243, 108, 1, 255)"
         self.SecondTitleColor = "rgba(119, 141, 38, 255)"
@@ -1539,7 +1539,7 @@ class BGProfileFileCabinet(BGProfile):
 class BGProfileWindowCreeper(BGProfile):
     def __init__(self):
         super().__init__(ID = 115,
-                           Priority = GenPriority.SuperHigh, # GenPriority.AboveAverage,
+                           Priority = GenPriority.AboveAverage,
                            sFileName = "window_creeper")
         self.MainTitleColor = "rgba(219, 49, 26, 255)"
         self.SecondTitleColor = "rgba(232, 174, 36, 255)"
