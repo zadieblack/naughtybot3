@@ -1893,7 +1893,7 @@ class Generator49(TitleGen):
 class Generator50(TitleGen):
      # What's a Little Deep Throat Between Bros?
      def __init__(self):
-         super().__init__(ID = 50, Priority = GenPriority.SuperHigh)
+         super().__init__(ID = 50, Priority = GenPriority.AboveAverage)
          # self.Template = templates.TitleTemplate8()
      
      def GenerateTweet(self):
