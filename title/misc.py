@@ -1220,7 +1220,8 @@ class ProfAthleteMale(WordList):
                'Quarterback',
                'Rodeo Clown',
                'Sumo Wrestler',
-               'Tennis Coach'])
+               'Tennis Coach',
+               ])
 
 class ProfRockstarMale(WordList):
      def __init__(self):
@@ -1261,6 +1262,7 @@ class ProfRockstarMale(WordList):
                'Stand-up Comedian',
                'Stuntman',
                'Surfer',
+               'Trapeze Artist',
                'Undercover Cop'])
      
 class ProfMale(WordList):

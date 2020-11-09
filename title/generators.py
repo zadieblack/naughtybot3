@@ -290,7 +290,7 @@ class GeneratorPromo(TitleGen):
 class Generator1(TitleGen):
      # Blackmailed by the Billionaire Mountain Man 
      def __init__(self):
-         super().__init__(ID = 1, Priority = GenPriority.SuperHigh)
+         super().__init__(ID = 1, Priority = GenPriority.High)
          self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
@@ -442,7 +442,7 @@ class Generator6(TitleGen):
 class Generator7(TitleGen):
     # A Buff Tuxedoed Italian Dinosaur Took My Wife Hard From Behind!
     def __init__(self):
-        super().__init__(ID = 7, Priority = GenPriority.High)
+        super().__init__(ID = 7, Priority = GenPriority.AboveAverage)
         self.Template = templates.TitleTemplate4()
      
     def GenerateTweet(self):
@@ -736,7 +736,7 @@ class Generator16(TitleGen):
 # And I Accidentally
 # Finger-Banged My Asian Step-Sister!"
      def __init__(self):
-         super().__init__(ID = 16, Priority = GenPriority.High)
+         super().__init__(ID = 16, Priority = GenPriority.AboveAverage)
          self.Template = templates.TitleTemplate8()
      
      def GenerateTweet(self):
@@ -923,7 +923,7 @@ class Generator21(TitleGen):
 class Generator22(TitleGen):
     # The Amish Virgin and the Taboo Butch MILF: A Lesbian Love Story 
     def __init__(self):
-        super().__init__(ID = 22, Priority = GenPriority.High)
+        super().__init__(ID = 22, Priority = GenPriority.AboveAverage)
         self.Template = templates.TitleTemplate2()
 
         self.ExclTemplateTags = ["gay", "straight", "man", "men"] 
@@ -1490,7 +1490,7 @@ class Generator36(TitleGen):
 # and He's Hung Like a Horse!          
 class Generator37(TitleGen):
      def __init__(self):
-         super().__init__(ID = 37, Priority = GenPriority.High)
+         super().__init__(ID = 37, Priority = GenPriority.AboveAverage)
          self.Template = templates.TitleTemplate3()
      
      def GenerateTweet(self):
@@ -2337,7 +2337,7 @@ class Generator56(TitleGen):
 # Muscular Lumberjack Hockey Players
 class Generator57(TitleGen):
      def __init__(self):
-         super().__init__(ID = 57, Priority = GenPriority.High)
+         super().__init__(ID = 57, Priority = GenPriority.Normal)
          self.Template = templates.TitleTemplate21()
      
      def GenerateTweet(self):
@@ -2458,7 +2458,7 @@ class Generator61(TitleGen):
     # by the
     # Busty Japanese Schoolgirl
     def __init__(self):
-        super().__init__(ID = 61, Priority = GenPriority.High)
+        super().__init__(ID = 61, Priority = GenPriority.AboveAverage)
         self.Template = templates.TitleTemplate28() # CHANGe
      
     def GenerateTweet(self):
@@ -2519,7 +2519,7 @@ class Generator62(TitleGen):
 # Topless Miami Vacation
 class Generator63(TitleGen):
     def __init__(self):
-        super().__init__(ID = 63, Priority = GenPriority.High)
+        super().__init__(ID = 63, Priority = GenPriority.Normal)
         self.Template = templates.TitleTemplate23()
 
     def GenerateTweet(self):
@@ -3670,7 +3670,7 @@ class Generator96(TitleGen):
 # My Innocent Amish Maid's 
 # Enormous Coconuts 
      def __init__(self):
-         super().__init__(ID = 96, Priority = GenPriority.High)
+         super().__init__(ID = 96, Priority = GenPriority.AboveAverage)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -4675,7 +4675,7 @@ class Generator123(TitleGen):
 # Ploughed My Girlfriend 
 class Generator124(TitleGen):
      def __init__(self):
-         super().__init__(ID = 124, Priority = GenPriority.High)
+         super().__init__(ID = 124, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate9()
      
      def GenerateTweet(self):
