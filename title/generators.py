@@ -736,7 +736,7 @@ class Generator16(TitleGen):
 # And I Accidentally
 # Finger-Banged My Asian Step-Sister!"
      def __init__(self):
-         super().__init__(ID = 16, Priority = GenPriority.AboveAverage)
+         super().__init__(ID = 16, Priority = GenPriority.Normal)
          self.Template = templates.TitleTemplate8()
      
      def GenerateTweet(self):
@@ -3242,7 +3242,7 @@ class Generator82(TitleGen):
 #Tries an Interracial Threesome
 class Generator83(TitleGen):
     def __init__(self):
-        super().__init__(ID = 83, Priority = GenPriority.High)
+        super().__init__(ID = 83, Priority = GenPriority.Normal)
         self.Template = templates.TitleTemplate4()
      
     def GenerateTweet(self):
@@ -3846,7 +3846,7 @@ class Generator100(TitleGen):
 # Jiggling Farmer's Daughter     
 class Generator102(TitleGen):
      def __init__(self):
-         super().__init__(ID = 102, Priority = GenPriority.High)
+         super().__init__(ID = 102, Priority = GenPriority.AboveAverage)
          self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
@@ -3913,7 +3913,7 @@ class Generator103(TitleGen):
 # by a Burly Centaur Sailor
 class Generator104(TitleGen):
      def __init__(self):
-         super().__init__(ID = 104, Priority = GenPriority.High)
+         super().__init__(ID = 104, Priority = GenPriority.AboveAverage)
          self.Template = templates.TitleTemplate6()
      
      def GenerateTweet(self):
@@ -5604,9 +5604,9 @@ class Generator144(TitleGen):
 
 class Generator145(TitleGen):
     def __init__(self):
-        super().__init__(ID = 145, Priority = GenPriority.Low, Disabled = True)
+        super().__init__(ID = 145, Priority = GenPriority.Low, Disabled = False)
         #self.Template = templates.TitleTemplate6()
-        #self.Template = templates.TitleTemplate29()
+        self.Template = templates.TitleTemplate29()
      
     def GenerateTweet(self):
         super().GenerateTweet()
@@ -5620,22 +5620,25 @@ class Generator145(TitleGen):
 
         self.ReqTemplateTags = ["couple","straight"]
 
-        Verbs = WordList(['Banged','Boinked','Fisted','Fucked','Humped','Jack-hammered','Plowed','Porked',
-                          'Reamed','Slammed','Stuffed','Titty-Fucked'])
+        Verbs = WordList(['Banged hard','Boinked hard','Fisted deep','Fucked hard',
+                          'Humped Silly','Jack-hammered','Plowed hard','Porked hard',
+                          'Reamed Relentlessly','Titty-Fucked','Anal penetration','Spit-roasted',
+                          'Bukkake Party','Double Penetrated','Triple Penetration',
+                          'Ass-to-Mouth','Anal Fisting','Big Black Cock','Gang-Banged',
+                          'Fucked Silly'])
         Location = WordList(["on the bathroom floor","on the kitchen counter", 
                              "in the back seat","on a park bench",
                              "on the washing machine","at the laundromat",
                              "under a jungle gym","on a merry-go-round",
                              "on an elliptical machine","on a treadmill",
-                             "on a trampoline","in the ladies room",
+                             "on a trampoline","in the ladie's room",
                              "in a kiddie pool","on a see-saw",
                              "on an ikea futon","in the men's room",
                              "in the janitor's closet","on the hood of a Buick",
                              "in the back of a truck"])
 
         sTweet = sHerName + "\n"
-        sTweet += Verbs.GetWord() + " Hard\n"
-        sTweet += Location.GetWord() +"!"
+        sTweet += Verbs.GetWord() + "\n" + Location.GetWord() +"!"
 
 
         #sTweet = "Regina\nFucked Hard\nat the Laundromat!"
@@ -5646,7 +5649,7 @@ class Generator145(TitleGen):
 
 class Generator146(TitleGen):
     def __init__(self):
-         super().__init__(ID = 146, Priority = GenPriority.Normal)
+         super().__init__(ID = 146, Priority = GenPriority.AboveAverage)
          self.Template = templates.TitleTemplate1()
      
     def GenerateTweet(self):
@@ -5755,37 +5758,21 @@ class Generator147(TitleGen):
         super().GenerateTweet()
         sTweet = ""
 
-        
-
-        #12,17,26,30,31,51,54,55,62,67,74,78,79,89,90,133,136,147
-
         ExclGenList = [12,17,26,30,31,51,54,55,62,67,74,78,79,89,90,133,136,147]
 
         ImgTxtGen = GetTweet(bTest = False, bTweet = False, iGeneratorNo = -1, bAllowPromo = False, bAllowFavTweets = False)
-
         while int(ImgTxtGen.ID) in ExclGenList or len(ImgTxtGen.ImgTxt) > 55:
-            #print("  Getting new ImgTxtGen...")
-            #if len(ImgTxtGen.ImgTxt) > 65:
-            #    print("  - ImgTxtGen.ImgTxt too long at " + str(len(ImgTxtGen.ImgTxt)) + " characters. Trying again.")
-            #if int(ImgTxtGen.ID) in ExclGenList:
-            #    print("  - " + str(ImgTxtGen.ID) + " in the exclusion list " + str(ExclGenList))
-
             ImgTxtGen = GetTweet(bTest = False, bTweet = False, iGeneratorNo = -1, bAllowPromo = False, bAllowFavTweets = False)
   
-        #print("  ImgTxtGen.ExclTemplateTags is " + str(ImgTxtGen.ExclTemplateTags))
         self.ExclTemplateTags = ImgTxtGen.ExclTemplateTags
         self.ReqTemplateTags = ImgTxtGen.ReqTemplateTags
 
-        #print("  Done. Final ImgTxtGen.ID = " + str(ImgTxtGen.ID))
         if len(ImgTxtGen.ImgTxt) > 0:
             sTweet = " ".join(ImgTxtGen.ImgTxt.split("\n"))
 
-        Sequels = WordList(["2","II","III","4","IV","5","7","VII","8","10","11","13","17","18","20","21","22","37","69"])
+        Sequels = WordList(["2","II","III","3","4","IV","5","V","7","VII","8","VIII","10","11","12","13","17","18","20","21","22","37","69"])
 
-        if CoinFlip():
-            sTweet += "\nBook " + Sequels.GetWord()
-        else:
-            sTweet += "\nPart " + Sequels.GetWord()
+        sTweet += "\n" + WordList(["Book","Part","Volume"]).GetWord() + " " + Sequels.GetWord()
 
         return sTweet
 

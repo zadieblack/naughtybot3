@@ -12,6 +12,7 @@ from gen import *
 # "Adorable MLSJN.ttf"              Script           xx             16
 # "Amaze.ttf"                       Script           xx             12
 # "Babes In Toyland NF.ttf"         All Caps         xx             23
+# "Blacksword.otf"                  Script           xx             13
 # "CelticGaramond.ttf"              Old English      xx             24
 # "chintzy.ttf.ttf"                 Tech             xx             24
 # "Coventry Garden NF.ttf"          All Caps         xx             18
@@ -20,7 +21,9 @@ from gen import *
 # "Lapidary 333 Bold Italic.otf"                     xx             16  AUTHOR FONT
 # "LaserLondon.ttf"                                  xx             26
 # "Lightfoot.ttf"                   All Caps         xx             26
+# "Moyers.otf"                                       xx             40
 # "MutterKrauseNormal.ttf"                           xx             16
+# "NimbusRomNo9L-Med.otf"                            xx             14
 # "oldengl.ttf"                     Old English      xx             24
 # "PerpetuaStd.otf"                 All Caps         xx             19
 # "poorrichard.ttf"                                  xx             12
@@ -959,23 +962,23 @@ class TitleTemplate29(TitleTemplate):
 
         # Short very large top line
         self.AddLine(OrderNum = 1,
-                     FontName = "Watson.ttf",
-                     FontMaxSize = 30,
+                     FontName = "Moyers.otf",
+                     FontMaxSize = 47,
                      MaxRows = 1,
                      ColorType = LineColorType.MainTitle)
 
         # Small medium-length line 
         self.AddLine(OrderNum = 1,
-                     FontName = "MutterKrauseNormal.ttf" ,
-                     FontMaxSize = 10,
+                     FontName = "NimbusRomNo9L-Med.otf" ,
+                     FontMaxSize = 14,
                      MaxRows = 1,
                      ColorType = LineColorType.SmallText,
                      AllCaps = True)
 
         # Small medium-length tag (excited!)
         self.AddLine(OrderNum = 3,
-                     FontName = "FreestyleScriptStd.otf",
-                     FontMaxSize = 21,
+                     FontName = "Blacksword.otf",
+                     FontMaxSize = 13,
                      MaxRows = 1,
                      ColorType = LineColorType.SecondTitle)
 
