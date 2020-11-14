@@ -373,21 +373,43 @@ class Generator3(TitleGen):
           return sTweet
 
 class Generator4(TitleGen):
-     # Veronica Gets Married to the Alpha Wolf     
-     def __init__(self):
-        super().__init__(ID = 4, Priority = GenPriority.Low, Disabled = True)
+    # Jizzing on Josephine
+    # Sexy Surprise for the Wide-Bottomed Stay-at-home Mom   
+    def __init__(self):
+        super().__init__(ID = 4, Priority = GenPriority.Normal, Disabled = False)
+        self.Template = templates.TitleTemplate31()
 
-     def GenerateTweet(self):
-          super().GenerateTweet()
-          sTweet = ""
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
+
+        self.ExclTemplateTags = ["gay","lesbian"]
+        self.ReqTemplateTags = ["woman"]
+
+        GirlNotList = ["Co-ed","Mommy Blogger","Model"]
+        Girl = char.FemaleChar(Type = GirlType.Good, MaxChars = 26, bAddTheArticle = True, sPosArticle = "My",
+                               ExclList = [AgeAdjFemale,AttitudeFemale,MaritalStatusFemale,PregState,SpeciesFemale],
+                               NotList = GirlNotList)
+
+        Gerunds = WordList(['Bedding','Banging','Boinking','Boning','Buggering','Butt Fucking',
+                            'Cavity Searching','Cream-pieing','Creaming','Defiling','Deflowering',
+                            'Desecrating','Doing','Drilling','Eating Out','Filling','Fingering',
+                            'Fisting','Hot-dogging','Humping','Gagging','Gang-banging',
+                            'Going Down On','Impaling','Jizzing On','Licking','Milking',
+                            'Motor-boating','Mounting','Nailing','Paddling','Penetrating',
+                            'Plowing','Porking','Pounding','Pumping Into','Ravishing',
+                            'Raw-dogging','Riding','Rimming','Sixty-nining','Shaving',
+                            'Sodomizing','Spanking','Spit-Roasting','Stripping','Tea-bagging',
+                            'Tit-fucking','Video-taping','Violating','Whipping'])
           
-          #Master = MaleChar(iNumMaxCBits = 3, bAddArticle = True, sPosArticle = "Her", bAllowRelate = True)
-          #Girl = char.FemaleChar(TempType = TempType.Flowery, bAddArticle = False, bAllowTrope = True)
-          Master = char.MaleChar(TempType = TempType.Flowery, bAddTheArticle = True, sPosArticle = "Her", bAllowGang = True, bAllowRelate = True, bAllowTrope = True)
-          
-          sTweet = self.HerName + " Gets " + self.VerbsTo.GetWord() + " to \n" + Master.Desc
-          
-          return sTweet
+        RhymingPair = GetRhymingPair(Gerunds.GetWordList(), NamesFemale().GetFirstNamesList())
+        sGerund = RhymingPair[0]
+        sName = RhymingPair[1]
+
+        sTweet = sGerund + " " + sName + "\n"
+        sTweet += WordList(["Sexy Suprise for "]).GetWord() + " " + Girl.Desc
+
+        return sTweet
           
 class Generator5(TitleGen):
     # Jackie Shows a Horny French Alpha Wolf her Cunning Stunt
