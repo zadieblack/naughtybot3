@@ -848,8 +848,8 @@ class Generator18(TitleGen):
           
 class Generator19(TitleGen):
     # My Husband Cheated On Me
-    # With A
-    # Handsome Well-Hung Truck Driver!
+    # with
+    # A Donkey-Dicked Space Luchador!
     def __init__(self):
         super().__init__(ID = 19, Priority = GenPriority.Low, Disabled = False)
         self.Template = templates.TitleTemplate25()
@@ -863,7 +863,7 @@ class Generator19(TitleGen):
             self.ReqTemplateTags = ["man"]
             self.ExclTemplateTags = ["straight","lesbian"]
 
-            MaleNotList = ['aroused','erect','naked','nude','taboo','engorged','single','straight']
+            MaleNotList = ['aroused','erect','naked','nude','taboo','engorged','single','straight','widower']
             ManLover = char.MaleChar(MaxChars = 24, bAddAnArticle = True, sPosArticle = "His", 
                                      bAllowTrope = False, bAllowSpecies = False, bAllowGang = False, 
                                      bAllowRelate = True, NotList = MaleNotList, 
@@ -880,7 +880,9 @@ class Generator19(TitleGen):
             LadyLover = char.FemaleChar(bAddAnArticle = True, sPosArticle = "Her", bAllowTrope = False, 
                                         bAllowSpecies = False, bAllowRelate = True,
                                         NotList = LadyNotList,
-                                        ExclList = [AttitudeFemale,SpeciesFemale,TitlesFemale,SexualityFemale])
+                                        ExclList = [AttitudeFemale,SpeciesFemale,TitlesFemale,SexualityFemale,
+                                                    PregState,MaritalStatusFemale,GenModFemale,AttitudeGoodFemale,
+                                                    AttitudeBadFemale,AttitudesNiceGirl,FirstAdjsNiceGirl])
 
             sTweet += "My " + WordList(["Wife","Girlfriend"]).GetWord() + " Cheated On Me\n"
             sTweet += "with\n" + LadyLover.Desc + "!"
