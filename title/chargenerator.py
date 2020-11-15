@@ -218,35 +218,35 @@ class LesbianChar(Character):
           # add any CharBits that we are going to exclude to the exclusion list
           
           if not bAllowAttitude:
-               ExclList.append(AttitudeFemale())
-               ExclList.append(AttitudeBadFemale())
-               ExclList.append(AttitudeGoodFemale())
+               ExclList.append(AttitudeFemale)
+               ExclList.append(AttitudeBadFemale)
+               ExclList.append(AttitudeGoodFemale)
           if not bAllowPhysChar:
-               ExclList.append(PhysCharFemale())
+               ExclList.append(PhysCharFemale)
           if not bAllowSkinHairColor:
-               ExclList.append(SkinHairColorFemale())
+               ExclList.append(SkinHairColorFemale)
           if not bAllowGenMod:
-               ExclList.append(GenModFemale())
+               ExclList.append(GenModFemale)
           if not bAllowClothing:
-               ExclList.append(ClothingFemale())
+               ExclList.append(ClothingFemale)
           if not bAllowPregState:
-               ExclList.append(PregState())
+               ExclList.append(PregState)
           if not bAllowMaritalStatus:
-               ExclList.append(MaritalStatusFemale())
+               ExclList.append(MaritalStatusFemale)
           if not bAllowNation:
-               ExclList.append(NationFemale())
+               ExclList.append(NationFemale)
           if not bAllowProf:
-               ExclList.append(ProfFemale())
-               ExclList.append(ProfBadFemale())
-               ExclList.append(ProfGoodFemale())
+               ExclList.append(ProfFemale)
+               ExclList.append(ProfBadFemale)
+               ExclList.append(ProfGoodFemale)
           if not bAllowSpecies:
-               ExclList.append(SpeciesFemale())
+               ExclList.append(SpeciesFemale)
           if not bAllowSexuality:
-               ExclList.append(SexualityFemale())
+               ExclList.append(SexualityFemale)
           if not bAllowRelate:
-               ExclList.append(RelateFemale())     
+               ExclList.append(RelateFemale)     
           if not bAllowTitle:
-               ExclList.append(TitlesFemale())
+               ExclList.append(TitlesFemale)
                
           TemplateList = []
           for subclass in FemLesbianTemplate.__subclasses__():
@@ -417,43 +417,42 @@ class StraightMaleChar(Character):
           
         self.Gender = Gender.Male 
           
-        ExclusionList = []
         if not bAllowGenMod:
-            ExclusionList.append(GenModMale())
+            ExclList.append(GenModMale)
         if not bAllowTypeMod:
-            ExclusionList.append(TypeModMale())
+            ExclList.append(TypeModMale)
         if not bAllowAttitude:
-            ExclusionList.append(AttitudeMale())
+            ExclList.append(AttitudeMale)
         if not bAllowPhysChar:
-            ExclusionList.append(PhysCharMale())
+            ExclList.append(PhysCharMale)
         if not bAllowDickChar:
-            ExclusionList.append(DickCharMale())
+            ExclList.append(DickCharMale)
         if not bAllowSkinHairColor:
-            ExclusionList.append(SkinHairColorMale())
+            ExclList.append(SkinHairColorMale)
         if not bAllowClothing:
-            ExclusionList.append(ClothesMale())
+            ExclList.append(ClothesMale)
         if not bAllowMaritalStatus:
-            ExclusionList.append(MaritalStatusMale())
+            ExclList.append(MaritalStatusMale)
         if not bAllowNation:
-            ExclusionList.append(NationMale())
-            ExclusionList.append(NationNounMale())
+            ExclList.append(NationMale)
+            ExclList.append(NationNounMale)
         if not bAllowAge:
-            ExclusionList.append(AgeAdjMale())
+            ExclusionList.append(AgeAdjMale)
         if not bAllowProf:
-            ExclusionList.append(ProfBlueCollarMale())
-            ExclusionList.append(ProfWhiteCollarMale())
-            ExclusionList.append(ProfFantasyMale())
-            ExclusionList.append(ProfAthleteMale())
-            ExclusionList.append(ProfRockstarMale())
-            ExclusionList.append(ProfNormalMale())
-            ExclusionList.append(ProfAspirationalMale())
-            ExclusionList.append(ProfMale())
+            ExclList.append(ProfBlueCollarMale)
+            ExclList.append(ProfWhiteCollarMale)
+            ExclList.append(ProfFantasyMale)
+            ExclList.append(ProfAthleteMale)
+            ExclList.append(ProfRockstarMale)
+            ExclList.append(ProfNormalMale)
+            ExclList.append(ProfAspirationalMale)
+            ExclList.append(ProfMale)
         if not bAllowSpecies:
-            ExclusionList.append(SpeciesMale())
+            ExclList.append(SpeciesMale)
         if not bAllowRelate:
-            ExclusionList.append(RelateMale())     
+            ExclList.append(RelateMale)     
         if not bAllowTitle:
-            ExclusionList.append(TitlesMale())
+            ExclList.append(TitlesMale)
           
         TemplateList = []
         for subclass in MaleCharTemplate.__subclasses__():

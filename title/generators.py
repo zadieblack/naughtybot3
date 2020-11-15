@@ -386,9 +386,9 @@ class Generator4(TitleGen):
         self.ExclTemplateTags = ["gay","lesbian"]
         self.ReqTemplateTags = ["woman"]
 
-        GirlNotList = ["Co-ed","Mommy Blogger","Model"]
+        GirlNotList = ["sexy"]
         Girl = char.FemaleChar(Type = GirlType.Good, MaxChars = 26, bAddTheArticle = True, sPosArticle = "My",
-                               ExclList = [AgeAdjFemale,AttitudeFemale,MaritalStatusFemale,PregState,SpeciesFemale],
+                               ExclList = [AgeAdjFemale,AgeNounFemale,AttitudeFemale,MaritalStatusFemale,PregState,SpeciesFemale],
                                NotList = GirlNotList)
 
         Gerunds = WordList(['Bedding','Banging','Boinking','Boning','Buggering','Butt Fucking',
@@ -407,7 +407,7 @@ class Generator4(TitleGen):
         sName = RhymingPair[1]
 
         sTweet = sGerund + " " + sName + "\n"
-        sTweet += WordList(["Sexy Suprise for "]).GetWord() + " " + Girl.Desc
+        sTweet += "Sexy Surprise for " + Girl.Desc
 
         return sTweet
           
@@ -847,33 +847,45 @@ class Generator18(TitleGen):
           return sTweet
           
 class Generator19(TitleGen):
-      # My Daughter's Best Friend is a Busty Virgin Nurse
-      # And I Got Her to Pee on Me!
-      def __init__(self):
-         super().__init__(ID = 19, Priority = GenPriority.Low, Disabled = True)
-     
-      def GenerateTweet(self):
-           super().GenerateTweet()
-           sTweet = ""
+    # My Husband Cheated On Me
+    # With A
+    # Handsome Well-Hung Truck Driver!
+    def __init__(self):
+        super().__init__(ID = 19, Priority = GenPriority.Low, Disabled = False)
+        self.Template = templates.TitleTemplate25()
+            
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
           
-           Verbs = WordList(["Anally Deflowered Her","Ate Her Out","Banged Her","Boned Her","Deflowered Her",
-                             "Dry-Humped Her","Fisted Her","Knocked Her Up","Motor-Boated Her Titties",
-                             "Mounted Her Bare-back","Rode Her Hard","Took Her From Behind",
-                             "Rimmed Her","Spanked Her With a Belt","Popped Her Cherry","Tea-Bagged Her",
-                             "Whipped Her With A Leather Riding Crop","Showered Naked With Her",
-                             "Sixty-Nined Her","Ate Her Ass","Finger-Banged Her","Put a Finger in Her Ass",
-                             "Let Her Pee On Me","Showed Her My Junk","Got Her Pregnant","Made Her Squirt",
-                             "Got a Lap Dance from her at the Strip Club"])
-           FriendNotList = ["best","friend","mom","MILF","mature","housewife","nude","nudist","naked",
-                            "x-rated","escort","call-girl","whore"]
-           Girl = char.FemaleChar(NotList = FriendNotList, 
-                                  bAllowTrope = False, bAllowRelate = False, bAllowTitle = False, bAllowSpecies = False,
-                                  ExclList = [AgeAdjFemale,MaritalStatusFemale,PregState,SpeciesFemale,
-                                              RelateFemale,TitlesFemale,AgeNounFemale])
-          
-           sTweet += "My Daughter's Best Friend\nis " + AddArticles(Girl.Desc) + "\nand\n"
-           sTweet += "I " + Verbs.GetWord()
-           return sTweet
+        if CoinFlip():
+            #male cheater
+            self.ReqTemplateTags = ["man"]
+            self.ExclTemplateTags = ["straight","lesbian"]
+
+            MaleNotList = ['aroused','erect','naked','nude','taboo','engorged','single','straight']
+            ManLover = char.MaleChar(MaxChars = 24, bAddAnArticle = True, sPosArticle = "His", 
+                                     bAllowTrope = False, bAllowSpecies = False, bAllowGang = False, 
+                                     bAllowRelate = True, NotList = MaleNotList, 
+                                     ExclList = [AttitudeMale,SpeciesMale,ProfRockstarMale,TitlesMale,ProfEducatorMale])
+            sTweet += "My " + WordList(["Husband","Boyfriend","Hubby"]).GetWord() + " Cheated On Me\n"
+            sTweet += "with\n" + ManLover.Desc +"!"
+
+        else:
+            #female cheater
+            self.ReqTemplateTags = ["woman"]
+            self.ExclTemplateTags = ["straight","gay"]
+
+            LadyNotList = ['naked','nude','chaste','virgin','single','straight']
+            LadyLover = char.FemaleChar(bAddAnArticle = True, sPosArticle = "Her", bAllowTrope = False, 
+                                        bAllowSpecies = False, bAllowRelate = True,
+                                        NotList = LadyNotList,
+                                        ExclList = [AttitudeFemale,SpeciesFemale,TitlesFemale,SexualityFemale])
+
+            sTweet += "My " + WordList(["Wife","Girlfriend"]).GetWord() + " Cheated On Me\n"
+            sTweet += "with\n" + LadyLover.Desc + "!"
+
+        return sTweet
           
 # NOTE: Similar to Generator 138 (spooky version)
 class Generator20(TitleGen):
