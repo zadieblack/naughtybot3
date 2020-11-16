@@ -2024,6 +2024,21 @@ class BGProfilePokerWifeBet(BGProfile):
         self.Disabled = False
         self.Content = Content.PG13
 
+class BGProfileCopTorture(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 152,
+                           Priority = GenPriority.Normal,
+                           sFileName = "cop_torture")
+        self.MainTitleColor = "rgba(212, 38, 34, 255)"
+        self.SecondTitleColor = "rgba(71, 77, 116, 255)"
+        self.SmallTextColor = "rgba(58, 37, 32, 255)"
+        self.AuthorNameColor = "rgba(58, 37, 32, 255)"
+        self.Tags = ["men","man","woman","women","inside","blonde",
+                     "femdom","kinky","bondage","shirtless","baseball",
+                     "modern","minority"]
+        self.Disabled = False
+        self.Content = Content.PG13
+
 # this is for debugging bgprofile frequency. delete later.
 def indexof(list, searchobj):
     iIndex = 0
