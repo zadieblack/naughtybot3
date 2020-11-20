@@ -1089,7 +1089,7 @@ class TitleTemplate31(TitleTemplate):
 # MEDIUM medium-length second line
 # # MEDIUM medium-length bottom line 
 
-class TitleTemplate25(TitleTemplate):
+class TitleTemplate32(TitleTemplate):
     # Generators: 125
     def __init__(self):
         super().__init__()

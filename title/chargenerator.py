@@ -437,7 +437,7 @@ class StraightMaleChar(Character):
             ExclList.append(NationMale)
             ExclList.append(NationNounMale)
         if not bAllowAge:
-            ExclusionList.append(AgeAdjMale)
+            ExclList.append(AgeAdjMale)
         if not bAllowProf:
             ExclList.append(ProfBlueCollarMale)
             ExclList.append(ProfWhiteCollarMale)

@@ -852,7 +852,7 @@ class Generator19(TitleGen):
     # A Donkey-Dicked Space Luchador!
     def __init__(self):
         super().__init__(ID = 19, Priority = GenPriority.Low, Disabled = False)
-        self.Template = templates.TitleTemplate25()
+        self.Template = templates.TitleTemplate32()
             
     def GenerateTweet(self):
         super().GenerateTweet()
