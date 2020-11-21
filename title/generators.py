@@ -4552,7 +4552,7 @@ class Generator121(TitleGen):
 # Speculum for the Horny Mexican MILF
 class Generator122(TitleGen):
     def __init__(self):
-         super().__init__(ID = 122, Priority = GenPriority.High)
+         super().__init__(ID = 122, Priority = GenPriority.Normal)
          self.Template = templates.TitleTemplate1()
      
     def GenerateTweet(self):
@@ -5813,16 +5813,16 @@ class Generator147(TitleGen):
         return sTweet
 
 # Testing innuendo name generators          
-class Generator999(TitleGen):
-     Type = GeneratorType.Test
+class Generator999(TitleGen):     
      def __init__(self):
-         super().__init__(ID = 999, Priority = GenPriority.Lowest, Disabled = True)
+         super().__init__(ID = 999, Priority = GenPriority.Lowest, Disabled = False, Type = GeneratorType.Test)
+         self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
           
-          iNum = 0
+          iNum = 4
           
           if iNum != 0:
           
