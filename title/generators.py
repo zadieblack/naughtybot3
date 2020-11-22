@@ -5815,14 +5815,14 @@ class Generator147(TitleGen):
 # Testing innuendo name generators          
 class Generator999(TitleGen):     
      def __init__(self):
-         super().__init__(ID = 999, Priority = GenPriority.Lowest, Disabled = False, Type = GeneratorType.Test)
+         super().__init__(ID = 999, Priority = GenPriority.Lowest, Disabled = True, Type = GeneratorType.Test)
          self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
           
-          iNum = 4
+          iNum = 11
           
           if iNum != 0:
           
