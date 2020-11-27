@@ -988,6 +988,17 @@ class InnNameGenerator(Generator):
                     sName = self._FirstNameMaleList.GetWord().GetName() + " " + sLastName
                else:
                     sName = self._FirstNameMaleList.GetWord().GetName()
+
+          iRand = randint(1,8)
+          if iRand == 8:
+              iRand = randint(1,3)
+
+              if iRand == 1:
+                  sName = "Dr. " + sName
+              elif iRand == 2:
+                  sName = sName + ", M.D."
+              elif iRand == 3:
+                  sName = sName + ", PhD"
                     
           return sName 
          
@@ -1821,6 +1832,51 @@ class InnNameGen8(InnNameGenerator):
                                               InnLastName(['Sucking']),
                                              ])
    
+# Anita Blow-Jobb, Hadda Rimm-Jobb, Ivana Buub-Jobb, I.M. Craven Hand-Jobb
+class InnNameGen9(InnNameGenerator):
+     def __init__(self):
+          super().__init__()
+          
+          self._Default = DefaultLastName.FirstLastName
+          
+          self.FirstNameFemaleList([   InnFirstNameFemale(['Anita']),
+                                              InnFirstNameFemale(['Fonda','I.M. Fonda']),
+                                              InnFirstNameFemale(['Hatta','Hadda']),
+                                              InnFirstNameFemale(['Ivana']),
+                                              InnFirstNameFemale(['Juana','I. Juana','U. Juana']),
+                                              InnFirstNameFemale(['Lotta']),
+                                              InnFirstNameFemale(['Nastya']),
+                                              InnFirstNameFemale(['Olive']),
+                                              InnFirstNameFemale(['Ophelia']),
+                                              InnFirstNameFemale(['Sandy']),
+                                              InnFirstNameFemale(['Sharon','I.M. Sharon']),
+                                              InnFirstNameFemale(['Wanda','I. Wanda']) 
+                                         ])
+          #'Dick','Gaylord','Hans','Penn S.','Peter','Rod','Willie','Willy'
+          self.FirstNameMaleList([      InnFirstNameMale(['Craven','I.M. Craven']),
+                                              InnFirstNameMale(['Dew N.']),
+                                              InnFirstNameMale(['Earl E.']),
+                                              InnFirstNameMale(['Juan', 'Juan A.','I. Juan','I. Juan A.']),
+                                              InnFirstNameMale(['Major']),
+                                              InnFirstNameMale(['Max']),
+                                              InnFirstNameFemale(['Randy']),
+                                              InnFirstNameMale(['Sawyer','I. Sawyer']),
+                                             ])
+
+          self.FirstLastNameList([      InnLastName(['Asse-Jobb']),
+                                              InnLastName(['Blow-Jobb']),
+                                              InnLastName(['Buub-Jobb','Boob-Jobb','Bewb-Jobb']),
+                                              InnLastName(['Butt-Jobb','Butte-Jobb']),
+                                              InnLastName(['Foot-Jobb']),
+                                              InnLastName(['Gumm-Jobb']),
+                                              InnLastName(['Hand-Jobb']),
+                                              InnLastName(['Panty-Jobb']),
+                                              InnLastName(['Rimm-Jobb','Rim-Jobb']),
+                                              InnLastName(['Stroke-Jobb']),
+                                              InnLastName(['Titt-Jobb']),
+                                              
+                                             ])
+
 def GetInnName(gender, iGeneratorNo = 0):
      sName = ""
      

@@ -53,10 +53,12 @@ class TitleGen(Generator):
         self.TweetTxt = ""
         self.AuthorName = ""
 
-        if CoinFlip():
-            self.AuthorGender = Gender.Male 
-        else:
-            self.AuthorGender = Gender.Female
+        self.GenerateAuthor()
+
+        #if CoinFlip():
+        #    self.AuthorGender = Gender.Male 
+        #else:
+        #    self.AuthorGender = Gender.Female
 
     def Generate(self):
         sTweet = self.GenerateTweet()
@@ -190,6 +192,17 @@ class TitleGen(Generator):
 
         #print("Pulled image text from file.\nRequired tag list is " + str(self.ReqTemplateTags) + "\nExcluded tag list is " + str(self.ExclTemplateTags))
         return bSuccess
+
+    def GenerateAuthor(self, gender = None):
+        if gender is None:
+            if CoinFlip():
+                self.AuthorGender = Gender.Male 
+            else:
+                self.AuthorGender = Gender.Female
+        else: 
+            self.AuthorGender = gender
+
+        self.AuthorName = AuthorBuilder()
 
 def GetTweetGenerator(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = None, TweetHistoryQ = None):
      gen = None
@@ -5815,14 +5828,14 @@ class Generator147(TitleGen):
 # Testing innuendo name generators          
 class Generator999(TitleGen):     
      def __init__(self):
-         super().__init__(ID = 999, Priority = GenPriority.Lowest, Disabled = True, Type = GeneratorType.Test)
+         super().__init__(ID = 999, Priority = GenPriority.Lowest, Disabled = False, Type = GeneratorType.Test)
          self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
           
-          iNum = 11
+          iNum = 12
           
           if iNum != 0:
           
@@ -6016,37 +6029,91 @@ def ShuffleFavs(sFileName = ""):
                     outfile.write(CleanTitles[x] + "\n" + FAVTITLE_DIVIDER + "\n")
 
 def CurateFavorites(iGen = 0, iMaxLen = 0):
-        sInput = ""
-        iSkipCount = 0
+        sLastInput = ""
+        sDetailsLine = ""
+        sOutput = ""
+        iSkipCount = -1      # start at -1 as thee logic includes an automatic "skip" the first time
         iAddCount = 0
+
+        # A list of max len 9
+        History = []
+        HISTMAXLEN = 9
 
         ImgTxtGen = None
      
         while True:
-        # Create Title 
-            sDetailsLine = ""
-            sTxtLine = ""
-            sOutput = ""
+        # Switch depending on last user input
           
-            if iGen > 0:
-                ImgTxtGen = GetTweet(bTest = True, bTweet = False, 
-                                     iGeneratorNo = iGen, 
-                                     bAllowPromo = False, 
-                                     bAllowFavTweets = False, 
-                                     iMaxLen = iMaxLen)
-            else:
-                ImgTxtGen = GetTweet(bTest = False, bTweet = False, 
-                                     iGeneratorNo = iGen, 
-                                     bAllowPromo = False, 
-                                     bAllowFavTweets = False, 
-                                     iMaxLen = iMaxLen)
+            if sLastInput == "y":
+            # === if [y], save tweet ===
+                print("  - Last input = y, saving tweet")
 
-        # Get author 
-            ImgTxtGen.AuthorName = AuthorBuilder(ImgTxtGen.AuthorGender)
+                with open(titutil.FAVTITLE_FILENAME, 'a+') as WriteReplyFile:
 
-        # Create output string for writing 
+                    WriteReplyFile.write(sOutput)
+
+                    iAddCount += 1
+
+                    print("Favorited tweet and saved.")
+               
+            
+            elif sLastInput == "q":
+            # === if [q], quit ===
+                print("  - Last input = q, quitting")
+                break
+
+            elif sLastInput in ["1","2","3","4","5","6","7","8","9"]:
+            # === if [1-9], retrieve # from history list ===
+                print("  - Last input = " + sLastInput + ", retrieving tweet from history")
+
+                iHistNum = int(sLastInput) - 1
+                if iHistNum < len(History):
+                    ImgTxtGen = History[iHistNum]
+                else:
+                    print("=*= WARNING =*= Index " + str(iHistNum) + " not found in tweet history")
+  
+            elif sLastInput == "a":
+            # === if [a], get a new author name ===
+                print("  - Last input = a, getting new author")
+                if not ImgTxtGen is None:
+                    ImgTxtGen.GenerateAuthor()
+
+            if not sLastInput in ["a","q","1","2","3","4","5","6","7","8","9"]:
+            # === Generate a new title and author name ===
+                print("  - Last input = " + sLastInput + ", generating new title and author")
+          
+                if iGen > 0:
+                    ImgTxtGen = GetTweet(bTest = True, bTweet = False, 
+                                            iGeneratorNo = iGen, 
+                                            bAllowPromo = False, 
+                                            bAllowFavTweets = False, 
+                                            iMaxLen = iMaxLen)
+                else:
+                    ImgTxtGen = GetTweet(bTest = False, bTweet = False, 
+                                            iGeneratorNo = iGen, 
+                                            bAllowPromo = False, 
+                                            bAllowFavTweets = False, 
+                                            iMaxLen = iMaxLen)
+
+                iSkipCount += 1
+                print("Skipped.")
+
+                # Get author 
+                ImgTxtGen.GenerateAuthor()
+
+                # Save to history
+                if len(History) >= HISTMAXLEN:
+                    print("Max history length " + str(HISTMAXLEN) + " exceeded. Removing oldest item from list.")
+                    History.pop()                       # does this remove the right item?
+
+                History.insert(0, ImgTxtGen)
+
+                #print(" History:")
+                #for i, item in enumerate(History):
+                #    print("  [" + str(i + 1) + "] " + str(History[i].ImgTxt).replace("\n"," ") + ", by " + str(History[i].AuthorName))
+
+            # Create output string for writing 
             sDetailsLine += "[" + str(ImgTxtGen.ID) + "]"
-            #sDetailsLine += "[" + str(ImgTxtGen.Template.ID) + "]"
             sDetailsLine += "[" + type(ImgTxtGen.Template).__name__ + "]"
             
             sDetailsLine += "[" + ImgTxtGen.AuthorName + "]"
@@ -6070,35 +6137,20 @@ def CurateFavorites(iGen = 0, iMaxLen = 0):
                         sDetailsLine += ","
             sDetailsLine += "]"
 
-            sTxtLine += ImgTxtGen.ImgTxt.strip()
-            sOutput = "{{" + sDetailsLine + "}}\n" + sTxtLine  + "\n" + FAVTITLE_DIVIDER + "\n"
+            sOutput = "{{" + sDetailsLine + "}}\n" + ImgTxtGen.ImgTxt.strip()  + "\n" + FAVTITLE_DIVIDER + "\n" 
 
-        # Print generated title and info
+            # Print generated title and info
             
             print(sOutput)
             print("Priority = " + str(ImgTxtGen.Priority))
 
-        # Prompt user.
-            sInput = input("\nKeep suggested title? [y]es, [n]o, or [q]uit: ")
-          
-        # If [y], save tweet.
-            if sInput.lower().strip() == "y":
-                with open(titutil.FAVTITLE_FILENAME, 'a+') as WriteReplyFile:
+            # Clear variables
+            sDetailsLine = ""
 
-                    WriteReplyFile.write(sOutput)
+            # Prompt user
+            sLastInput = input("\nKeep suggested title? [y]es, [n]o, [#] retrieve previous, change [a]uthor, or [q]uit: ").lower().strip()
 
-                    iAddCount += 1
-
-                    print("Favorited tweet and saved.")
-               
-        # If [q], quit.
-            elif sInput.lower().strip() == "q":
-                break
-          
-         # If [n], do nothing and loop.
-            else:
-                iSkipCount += 1
-                print("Skipped.")
+            print(" - " + str(len(History)) + " items in history")
 
         dPerRejects = 100
         if (iAddCount + iSkipCount) != 0:
