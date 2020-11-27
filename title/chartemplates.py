@@ -726,6 +726,20 @@ class FemGoodTropeTemplate28(FemTropeTemplate):
                                    NotList = ["single","mom","japanese","tanned","swedish","russian","czech",
                                               "virgin","fertile","fashionable","futa","nasty","housewife",
                                               "school-marm"])
+
+class FemGoodTropeTemplate29(FemTropeTemplate):
+     def __init__(self):
+          super().__init__(      noun = TropeBitBadFemale("Foreign Exchange Student"),
+                                    id = 129, 
+                                    adjlist =      [CTEntry([AttitudeFemale,GenModFemale],8),
+                                                    CTEntry([PhysCharFemale],7),
+                                                    CTEntry([ClothingFemale],6),
+                                                    CTEntry([SkinHairColorFemale,RaceFemale],5),
+                                                    CTEntry([NationFemale],4),
+                                                    CTEntry([SpeciesFemale,NationFemale],3)
+                                                  ], 
+                                   girltype = GirlType.Neutral,
+                                   NotList = [])
 # === Bad Trope templates ===
 
 class FemBadTropeTemplate1(FemTropeTemplate):

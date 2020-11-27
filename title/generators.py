@@ -2901,15 +2901,52 @@ class Generator72(TitleGen):
         return sTweet     
    
           
-# class Generator73(TitleGen):
-     # ID = 73
-     # Priority = GenPriority.Lowest
+class Generator73(TitleGen):
+      def __init__(self):
+        super().__init__(ID = 73, Priority = GenPriority.Normal)
+        self.Template = templates.TitleTemplate23() # templates.TitleTemplate7()
      
-     # def GenerateTweet(self):
-          # super().GenerateTweet()
-          # sTweet = ""
+      def GenerateTweet(self):
+           super().GenerateTweet()
+           sTweet = ""
+
+           self.ReqTemplateTags = ["woman"]
+           self.ExclTemplateTags = ["gay","lesbian","femdom"]
+
+           Verbs = WordList(["Ate Out","Banged","Boinked","Boned","Did","Fingered",
+                             "Humped","Plowed","Porked","Rogered","Sixty-nined","Shagged","Shtupped"])
+
+           GirlNotList = ["Nude","Naked","Virgin","Girlfriend","Wife","Concubine","Schoolgirl",
+                          "Bride"]
+           Girl = char.FemaleChar(Type = GirlType.Good, bAddAnArticle = True, sPosArticle = "My", 
+                                  MaxChars = 22, bAddEndNoun = True, bAllowSexuality = False, 
+                                  bAllowTrope = False,
+                                  NotList = GirlNotList,
+                                  ExclList = [AttitudeFemale,AttitudeGoodFemale,GenModFemale,MaritalStatusFemale,
+                                              PregState,SexualityFemale,SexualityNounFemale,TitlesFemale])
+           sDesc = Girl.Desc
+           if FoundIn("teacher", sDesc) \
+               or FoundIn(" maid", sDesc) \
+               or FoundIn("nurse", sDesc) \
+               or FoundIn("stewardess", sDesc) \
+               or FoundIn("attendant", sDesc) \
+               or FoundIn("babysitter", sDesc) \
+               or FoundIn("instructor", sDesc) \
+               or FoundIn("barista", sDesc) \
+               or FoundIn("secretary", sDesc):
+                print("FoundIn() match, sDesc = [" + sDesc + "], sDesc[0:3] = [" + sDesc[0:3] + "]")
+
+                if sDesc[0:3] == "An ":
+                    print(" Starts with An!")
+                    sDesc = sDesc.replace("An","My",1)
+                elif sDesc[0:2] == "A ":
+                    print(" Starts with A!")
+                    sDesc = sDesc.replace("A","My",1)
+
+           sTweet = "I " + Verbs.GetWord() + " " + sDesc
+           sTweet += "\nWhile her husband watched!"
           
-          # return sTweet     
+           return sTweet     
           
 class Generator74(TitleGen):
     def __init__(self):
