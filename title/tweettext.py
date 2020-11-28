@@ -1188,7 +1188,7 @@ class TweetTxtGen41(TweetTxtGen):
 class TweetTxtGen42(TweetTxtGen):
      # LEGAL DISCLAIMER: Wal-Mart does not condone cum-swapping or genital piercings.
      def __init__(self): 
-         super().__init__(ID = 42, Priority = GenPriority.High)
+         super().__init__(ID = 42, Priority = GenPriority.AboveAverage)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1302,7 +1302,7 @@ class TweetTxtGen45(TweetTxtGen):
 class TweetTxtGen46(TweetTxtGen):
     # This book taught me the tantric sex technique called the "Mexican Gorilla"
     def __init__(self): 
-         super().__init__(ID = 46, Priority = GenPriority.High)
+         super().__init__(ID = 46, Priority = GenPriority.AboveAverage)
      
     def GenerateTweet(self):
         super().GenerateTweet()
@@ -1445,19 +1445,21 @@ class TweetTxtGen47(TweetTxtGen):
                                ]).GetWord() + " enema"
         elif iRand == 9:
             Celebs = WordList(["The Dalai Lama","Ryan Reynolds","The Pope","German Chancellor Angela Merkel",
-                               "Elvis Presley", "Beyoncé", "The Harlem Globetrotters", "Post Malone",
+                               "Elvis Presley", "Beyoncé", "the Harlem Globetrotters", "Post Malone",
                                "Arnold Schwarznegger","Miss America","Martha Stewart", "Vladamir Putin",
-                               "Bruce Lee", "Batman", "Hugh Jackman", "JFK", "The Spice Girls",
-                               "The Cast of Glee", "Drake", "Ed Sheeran", "Lady Gaga", "Ariana Grande",
+                               "Bruce Lee", "Batman", "Hugh Jackman", "JFK", "the Spice Girls",
+                               "The cast of Glee", "Drake", "Ed Sheeran", "Lady Gaga", "Ariana Grande",
                                "Kim Kardashian", "Tom Hanks", "Vin Diesel", "Nicholas Cage","The Hulk",
                                "The Simpsons","Elmo from Sesame Street","Elon Musk","Taylor Swift",
-                               "One Direction", "John Cena", "Henry Kissinger", "Val Kilmer", "bananorama",
+                               "One Direction", "John Cena", "Henry Kissinger", "Val Kilmer", "Bananorama",
                                "Donald Duck","Elsa from 'Frozen'","Mr. T","Dr. Phil","Oprah",
-                               "Spiderman","Ice Cube"])
+                               "Spiderman","Ice Cube","the cast of Hamilton","the Power Rangers",
+                               "BTS","Johnny Depp","Harry Potter","Hermione from Harry Potter",
+                               "Kanye West"])
             sCeleb1 = Celebs.GetWord()
             sCeleb2 = Celebs.GetWord(NotList = [sCeleb1])
             sText += WordList(["a gangbang", "an orgy", "a prison gangbang", "a bukkake gangbang"]).GetWord() + " "
-            sText += "featuring " + sCeleb1 + " and " + sCeleb2
+            sText += "involving " + sCeleb1 + " and " + sCeleb2
         elif iRand == 10:
             sText += "a scene of " + MaleJobs.GetWord() + " pee-drinking"
         sText += ", but it's all consensual!"

@@ -875,7 +875,7 @@ class TweetTxtGen26(TweetTxtGen):
 class TweetTxtGen27(TweetTxtGen):
      # From the demented imagination of author Ben Dover
      def __init__(self):
-          super().__init__(ID = 27, Priority = GenPriority.AboveAverage)
+          super().__init__(ID = 27, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -891,7 +891,7 @@ class TweetTxtGen27(TweetTxtGen):
 class TweetTxtGen29(TweetTxtGen):
     # The part where he gives her a "Mexican Donkey" is the filthiest thing I've ever read in my life
     def __init__(self):
-        super().__init__(ID = 29, Priority = GenPriority.High)
+        super().__init__(ID = 29, Priority = GenPriority.AboveAverage)
      
     def GenerateTweet(self):
         super().GenerateTweet()
@@ -915,6 +915,133 @@ class TweetTxtGen29(TweetTxtGen):
              sText = "If you haven't heard of " + AddArticles(sDirtyPhrase, cBracket = "\"") + " before, do NOT google it."
 
         return sText     
+
+class TweetTxtGen30(TweetTxtGen):
+    # Yes, this book does contain some man-on-horse frottage scenes, but it's all consensual!
+    def __init__(self): 
+         super().__init__(ID = 47, Priority = GenPriority.High)
+     
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sText = ""
+
+        Numbers = WordList(["double","triple","quaduple","quintuple"])
+        MaleJobs = WordList(["biker",
+                                "body builder",
+                                "carnie",
+                                "circus clown",
+                                "construction worker",
+                                "cowboy",
+                                "coal miner",
+                                "oil rigger",
+                                "long-haul trucker",
+                                "luchador",
+                                "lumberjack",
+                                "mime",
+                                "MMA fighter",
+                                "pirate",
+                                "rodeo clown",
+                                "sailor",
+                                "SCUBA diver",
+                                "sumo wrestler"])
+
+        sText = WordList(["Yes","Sure","It's true"]).GetWord() + ", "
+        sText += "this book DOES contain "
+
+        iRand = randint(1,10)
+        if iRand == 1:
+            sText += "a scene where " + WordList(["a baguette",
+                                                  "a can of Mountain Dew",
+                                                  "a cantaloupe",
+                                                  "a jar of chunky peanut butter",
+                                                  "an eggplant",
+                                                  "a jar of quarters",
+                                                  "a large McDonald's french fries",
+                                                  "a pack of hotdogs",
+                                                  "a live octopus",
+                                                  "a pineapple"]).GetWord() + " "
+            sText += "is inserted into someone's " + WordList(["anus","colon","rectum"]).GetWord()
+        elif iRand == 2:
+            sText += "a scene of man-on-" + WordList(["basilisk",
+                                                      "bee hive",
+                                                      "boa constrictor",
+                                                      "centaur",
+                                                      "dinosaur",
+                                                      "donkey",
+                                                      "falcon",
+                                                      "firetruck",
+                                                      "gargoyle",
+                                                      "goat",
+                                                      "helicopter",
+                                                      "hippogriff",
+                                                      "kraken",
+                                                      "leprechaun",
+                                                      "orca",
+                                                      "robot",
+                                                      "salad",
+                                                      "sea serpent",
+                                                      "swamp creature",
+                                                      "vending machine",
+                                                      "walrus",
+                                                      "wookie",
+                                                      "werebear"
+                                                      ]).GetWord() + " "
+            sText += "sexual " + WordList(["intercourse", "relations"]).GetWord()
+        elif iRand == 3:
+            sText += "an erotic " + MaleJobs.GetWord() + " "
+            sText += WordList(["gangbang","orgy","foursome","bukkake scene"]).GetWord()
+        elif iRand == 4:
+            sText += WordList(["quadruplet","quintuplet","sextuplet","septuplet","octuplet"]).GetWord() + " twincest"
+        elif iRand == 5:
+            sText += "a public " + str(randint(20,100)) + "-" + MaleJobs.GetWord() + " "
+            sText += WordList(["anal gangbang","prison gangbang","orgy","bukkake scene"]).GetWord()
+        elif iRand == 6:
+            sText += AddArticles(MaleJobs.GetWord(),bMakeUpper = False) + " "
+            sText += WordList(["gangbang","orgy","bukkake scene"]).GetWord() + " "
+            sText += WordList(["in a library","in a church","in a synagogue","in a Starbucks",
+                               "at the circus","at an ice-skating rink","in a yoga studio",
+                               "on roller skates","on ice skates","at a Subway Sandwiches",
+                               "at a Burger King", "on a trampoline","in a food court"]).GetWord()
+        elif iRand == 7:
+            sText += "a scene with a " + WordList(["guy","dude","man"]).GetWord() + " strapped into "
+            sText += AddArticles(Colors().GetWord(), bMakeUpper = False).lower() + " "
+            sText += WordList(["corduroy","denim","flannel","fur",
+                               "leather","nylon","pleather",
+                               "polyester","PVC","spandex",
+                               "vulcanized rubber"]).GetWord() + " gimp suit"
+        elif iRand == 8:
+            sText += "a scene with "
+            sText += WordList(["a chunky peanut butter",
+                               "a Diet Coke",
+                               "a micro-brewed craft beer",
+                               "a pickle juice",
+                               "a soy milk",
+                               "a venti iced latte", 
+                               "a whale semen",
+                               "a greek yogurt",
+                               ]).GetWord() + " enema"
+        elif iRand == 9:
+            Celebs = WordList(["The Dalai Lama","Ryan Reynolds","The Pope","German Chancellor Angela Merkel",
+                               "Elvis Presley", "Beyoncé", "the Harlem Globetrotters", "Post Malone",
+                               "Arnold Schwarznegger","Miss America","Martha Stewart", "Vladamir Putin",
+                               "Bruce Lee", "Batman", "Hugh Jackman", "JFK", "the Spice Girls",
+                               "The cast of Glee", "Drake", "Ed Sheeran", "Lady Gaga", "Ariana Grande",
+                               "Kim Kardashian", "Tom Hanks", "Vin Diesel", "Nicholas Cage","The Hulk",
+                               "The Simpsons","Elmo from Sesame Street","Elon Musk","Taylor Swift",
+                               "One Direction", "John Cena", "Henry Kissinger", "Val Kilmer", "Bananorama",
+                               "Donald Duck","Elsa from 'Frozen'","Mr. T","Dr. Phil","Oprah",
+                               "Spiderman","Ice Cube","the cast of Hamilton","the Power Rangers",
+                               "BTS","Johnny Depp","Harry Potter","Hermione from Harry Potter",
+                               "Kanye West"])
+            sCeleb1 = Celebs.GetWord()
+            sCeleb2 = Celebs.GetWord(NotList = [sCeleb1])
+            sText += WordList(["a gangbang", "an orgy", "a prison gangbang", "a bukkake gangbang"]).GetWord() + " "
+            sText += "involving " + sCeleb1 + " and " + sCeleb2
+        elif iRand == 10:
+            sText += "a scene of " + MaleJobs.GetWord() + " pee-drinking"
+        sText += ", but it's all consensual!"
+
+        return sText
 
 # class TweetTxtGen24(TweetTxtGen):
      # # Out soon from Ben Dover
