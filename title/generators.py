@@ -1280,80 +1280,92 @@ class Generator30(TitleGen):
 
           return sTweet
           
-# NOTE: Has some issues
 class Generator31(TitleGen):
-     # Wanton & Willing: 
-     # My Kinky Lesbian Leather-Clad Dominatrix
-     # Pegs Me With a Strap-On
-     def __init__(self):
-         super().__init__(ID = 31, Priority = GenPriority.Lowest, Disabled = True)
-         self.Template = templates.TitleTemplate14()
+    # Wanton & Willing: 
+    # My Kinky Lesbian Leather-Clad Dominatrix
+    # Pegs Me With a Strap-On
+    def __init__(self):
+        super().__init__(ID = 31, Priority = GenPriority.Normal, Disabled = False)
+        self.Template = templates.TitleTemplate14()
      
-     def GenerateTweet(self):
-          super().GenerateTweet()
-          sTweet = ""
-          
-          NotGirlList = ["Harem Princess"]
-          Girl = char.FemaleChar(Type = GirlType.Bad, MaxChars = 18,
-                                 NotList = NotGirlList, 
-                                 bAllowSpecies = False)
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
 
-          sAdj1 = ""
-          sAdj2 = ""
-          if CoinFlip():
-               sAdj1 = titmisc.PhysCharFemale().GetWord()
-               sAdj2 = titmisc.AttitudeBadFemale().GetWord()
-          else:
-               sAdj1 = titmisc.AttitudeBadFemale().GetWord()
-               sAdj2 = titmisc.PhysCharFemale().GetWord()
-               
-          sHerName = NamesFemale().FirstName()
+        self.ReqTemplateTags = ["woman"]
+        self.ExclTemplateTags = ["kinky"]
+
+        sHerName = NamesFemale().FirstName()
           
-          sTweet = sAdj1 + " & " + sAdj2 + "\n"
+        NotGirlList = ["Harem","Succubus","Futa"]
           
-          if CoinFlip():
-               sTweet += "My " + Girl.Desc + " "
-          else:
-               sTweet += sHerName + " the " + Girl.Desc + " "
+        sAttitude = ""
+        sPhysChar = ""
+
+        while sAttitude == "" or len(sAttitude) > 8:
+            sAttitude = titmisc.AttitudeGoodFemale().GetWord()
+            NotGirlList = NotGirlList + [sAttitude]
+        while sPhysChar == "" or len(sPhysChar) > 8:
+            sPhysChar = titmisc.PhysCharFemale().GetWord(NotList = [sAttitude])
+            NotGirlList = NotGirlList + [sPhysChar]
+
+        if CoinFlip():
+            sTweet = sPhysChar + " & " + sAttitude + "\n"
+        else:
+            sTweet = sAttitude + " & " + sPhysChar + "\n"
+
+        if CoinFlip():
+            Girl = char.FemaleChar(Type = GirlType.Good, MaxChars = 18,
+                                        NotList = NotGirlList, 
+                                        bAllowSpecies = False)
+            sTweet += "The " + Girl.Desc + "\n"
+        else:
+            Girl = char.FemaleChar(Type = GirlType.Good, TempType = TempType.Medium,
+                                        NotList = NotGirlList, 
+                                        bAllowSpecies = False)
+            sTweet += sHerName + " the " + Girl.Desc + "\n"
                
-          iRand = randint(1,13)
-          if iRand < 3:
-               ErectAdjs = WordList(["Swollen","Engorged","Turgid","Rock Hard","Bulging","Fully Erect","Hugely Erect","Veiny",
-                                "Throbbing","Meaty","Burning","Dripping","Purple","Red","Fleshy","Lustful","Passionate",
-                                "Throbbing","Pulsating","Vigorous","Virile","Moist","Black","Stiff","Girthy"])
-               sTweet += "Gets a " + ErectAdjs.GetWord() + " " + str(randint(7,12)) + "\" Surprise"
-          elif iRand == 3:
-               sTweet += "Gets Her " + WordList(["Nipples","Clit","Labia","Taint","Ass Dimples"]).GetWord() + " Pierced"
-          elif iRand == 4:
-               Places = WordList(["at the Bowling Alley","in the Produce Section", "in the Baked Goods Section","in the Bakery",
-               "at the Chic-fil-a","in the Ball Pit","at the Park","at the Beach","Under an Overpass","at the Gym",
-               "on the Eliptical Machine at the Gym","at the Seafood Restaurant","at the Museum","at Burger King",
-               "at the Library","at the Farmer's Market","next to the Duck Pond","at Church","at the Bar",
-               "in the Window Display of a Shoe Store","at Wal-Mart","at Starbucks","at School","on Campus",
-               "in the Church Graveyard","at a Construction Site","at Rush Hour Traffic","at Her Uber Driver",
-               "on a Hotel Balcony","Beside the Bike Path","at the Mail Man","at the Amazon Delivery Guy",
-               "Behind the Bleachers","In the Back of a Ford 150","In a Movie Theater","at Chipotle","at Barnes & Noble",
-               "at Whole Foods","at the Mall","at the CVS"
-               ])
-               sTweet += "Flashes Her " + WordList(["Tits","Ass","Pussy"]).GetWord() + " " + Places.GetWord()
-          elif iRand == 5:
-               sTweet += "Has Her First " + WordList(["Threesome","Foursome","Fivesome","Orgy","Gang Bang","Black Gang Bang"]).GetWord()
-          elif iRand == 6:
-               sTweet += "Has a " + WordList(["Dick","Cock","Penis","Prick"]).GetWord()
-          elif iRand == 7:
-               sTweet += "Tries a Glory Hole"
-          elif iRand == 8:
-               sTweet += "Gets " + WordList(["Fisted","Fisted","Anal Fisted"]).GetWord()
-          elif iRand > 9 and iRand < 12:
-               sTweet += WordList(["Wants","Craves","Is Horny for","Begs for"]).GetWord() + " " 
-               sTweet += WordList(["Her Neighbor's","Her Step-Brother's","Her Professor's","Her Teacher's","Her Boss's",
-                                        "Her Step-Dad's","Her Uncle's","Her Gym Coach's","Her Gynecologist's","A Stranger's"]).GetWord() + " "
-               sTweet += WordList(["Dick","D","Cock","Hard Cock","Fat Dick","Dingus","Meat Stick","Flesh Pole","Fat Boner"]).GetWord()
-          else: 
-               sTweet += "Is Wearing " + WordList(["a Butt Plug","an Anal Hook","Nipple Clamps","a Ball Gag","a Clit Clamp",
-                                                            "Crotchless Panties","a Strap-On","a Remote-Controlled Vibrator",
-                                                            "Anal Beads"]).GetWord()
-          return sTweet
+        iRand = randint(1,13)
+        if iRand < 3:
+            ErectAdjs = WordList(["Swollen","Engorged","Turgid","Rock Hard","Bulging","Fully Erect","Hugely Erect","Veiny",
+                            "Throbbing","Meaty","Burning","Dripping","Purple","Red","Fleshy","Lustful","Passionate",
+                            "Throbbing","Pulsating","Vigorous","Virile","Moist","Black","Stiff","Girthy"])
+            sTweet += "Gets a " + ErectAdjs.GetWord() + " " + str(randint(7,12)) + "\" Surprise"
+        elif iRand == 3:
+            sTweet += "Gets Her " + WordList(["Nipples","Clit","Labia","Taint","Ass Dimples"]).GetWord() + " Pierced"
+        elif iRand == 4:
+            Places = WordList(["at the Bowling Alley","in the Produce Section", "in the Baked Goods Section","in the Bakery",
+            "at the Chic-fil-a","in the Ball Pit","at the Park","at the Beach","Under an Overpass","at the Gym",
+            "on the Eliptical Machine at the Gym","at the Seafood Restaurant","at the Museum","at Burger King",
+            "at the Library","at the Farmer's Market","next to the Duck Pond","at Church","at the Bar",
+            "in the Window Display of a Shoe Store","at Wal-Mart","at Starbucks","at School","on Campus",
+            "in the Church Graveyard","at a Construction Site","at Rush Hour Traffic","at Her Uber Driver",
+            "on a Hotel Balcony","Beside the Bike Path","at the Mail Man","at the Amazon Delivery Guy",
+            "Behind the Bleachers","In the Back of a Ford 150","In a Movie Theater","at Chipotle","at Barnes & Noble",
+            "at Whole Foods","at the Mall","at the CVS"
+            ])
+            sTweet += "Flashes Her " + WordList(["Tits","Ass","Pussy"]).GetWord() + " " + Places.GetWord()
+        elif iRand == 5:
+            sTweet += "Has Her First " + WordList(["Threesome","Foursome","Fivesome","Orgy","Gang Bang","Black Gang Bang"]).GetWord()
+        elif iRand == 6:
+            sTweet += "Has a " + WordList(["Dick","Cock","Penis","Prick"]).GetWord()
+        elif iRand == 7:
+            sTweet += "Tries a Glory Hole"
+        elif iRand == 8:
+            sTweet += "Gets " + WordList(["Fisted","Fisted","Anal Fisted"]).GetWord()
+        elif iRand > 9 and iRand < 12:
+            sTweet += WordList(["Wants","Craves","Is Horny for","Begs for"]).GetWord() + " " 
+            sTweet += WordList(["Her Neighbor's","Her Step-Brother's","Her Professor's","Her Teacher's","Her Boss's",
+                                    "Her Step-Dad's","Her Uncle's","Her Gym Coach's","Her Gynecologist's","A Stranger's"]).GetWord() + " "
+            sTweet += WordList(["Dick","D","Cock","Hard Cock","Fat Dick","Dingus","Meat Stick","Flesh Pole","Fat Boner"]).GetWord()
+        else: 
+            sTweet += "Is Wearing " + WordList(["a Butt Plug","an Anal Hook","Nipple Clamps","a Ball Gag","a Clit Clamp",
+                                                        "Crotchless Panties","a Strap-On","a Remote-Controlled Vibrator",
+                                                        "Anal Beads"]).GetWord()
+
+        sTweet += "!"
+
+        return sTweet
           
 class Generator32(TitleGen):
      # Stripping 
