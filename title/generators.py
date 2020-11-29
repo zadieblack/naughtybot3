@@ -544,32 +544,32 @@ class Generator8(TitleGen):
 
           return sTweet
           
-# Idea: a rhyming version of this generator
+# REPLACE: This just doesn't come up with funny stuff, even with rhymes
 class Generator9(TitleGen):
-     # The Secretary and the Space Werewolf  
-     def __init__(self):
-         super().__init__(ID = 9, Priority = GenPriority.Low)
-         self.Template = templates.TitleTemplate1()
+    # The Secretary and the Space Werewolf  
+    def __init__(self):
+        super().__init__(ID = 9, Priority = GenPriority.Low, Disabled = True)
+        self.Template = templates.TitleTemplate1()
      
-     def GenerateTweet(self):
-          super().GenerateTweet()
-          sTweet = ""
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
 
-          self.ReqTemplateTags = ["man", "woman"]
+        self.ReqTemplateTags = ["man", "woman"]
+
+        NotList = ["BDSM"]
+        Girl = char.FemaleChar(TempType = TempType.Medium, bAddTheArticle = False, bAllowRelate = True, bAllowSpecies = False, bAllowTitle = False, NotList = NotList)
+        Master = char.MaleChar(TempType = TempType.Medium, bAddTheArticle = False, bAllowRelate = True, sPosArticle = "Her", bSplitArticle = True, NotList = NotList)
+
+        sTweet = "The " + Girl.Desc + "\nAnd The " + Master.Desc
+        if len(sTweet) > 60:
+            sTweet += "\n" + AddArticles(WordList([self._getFMs_(), 
+                                                            "BDSM", 
+                                                            misc.SexyAdjs().GetWord().lower()]).GetWord(),
+                                        bSplitArticle = True) + " " 
+            sTweet += self.SubtitleCoda.GetWord().lower()
           
-          NotList = ["BDSM"]
-          Girl = char.FemaleChar(TempType = TempType.Medium, bAllowRelate = True, bAllowTrope = True, bAllowSpecies = False, bAllowTitle = False, NotList = NotList)
-          Master = char.MaleChar(TempType = TempType.Flowery, bAllowRelate = True, bAllowTrope = True, bAddTheArticle = True, sPosArticle = "Her", bSplitArticle = True, NotList = NotList)
-          
-          sTweet = "The " + Girl.Desc + "\nAnd " + Master.Desc 
-          if len(sTweet) > 60:
-              sTweet += "\n" + AddArticles(WordList([self._getFMs_(), 
-                                                                "BDSM", 
-                                                                misc.SexyAdjs().GetWord().lower()]).GetWord(),
-                                           bSplitArticle = True) + " " 
-              sTweet += self.SubtitleCoda.GetWord().lower()
-          
-          return sTweet
+        return sTweet
           
 class Generator10(TitleGen):
      # I'm Having a Baby for a Stay-at-Home Manticore!
@@ -975,16 +975,29 @@ class Generator22(TitleGen):
         super().__init__(ID = 22, Priority = GenPriority.AboveAverage)
         self.Template = templates.TitleTemplate2()
 
-        self.ExclTemplateTags = ["gay", "straight", "man", "men"] 
-     
     def GenerateTweet(self):
         super().GenerateTweet()
         sTweet = ""
+
+        self.ExclTemplateTags = ["gay", "straight", "man", "men"] 
           
-        GirlGood = char.FemaleChar(MaxChars = 22, Type = GirlType.Good, 
-                                   ExclList = [SpeciesFemale,SexualityFemale])
-         
-        GirlLes = char.LesbianChar(MaxChars = 28, NotList = ["nude","naked","nudist"] + GirlGood.GetWordList())
+        GoodGirlNotList = ["Sexy","Fiancé","Girlfriend","Step-Mom","Step-Mother","Nude","Naked","Nudist"]
+        GirlGood = None
+        sGirlGoodDesc = ""
+
+        while GirlGood is None or len(GirlGood.Desc) > 24:
+            GirlGood = char.FemaleChar(MaxChars = 20, Type = GirlType.Good, SelectTemplateID = 501,
+                                       NotList = GoodGirlNotList)
+
+        LesGirlNotList = ["Virgin","Chaste","Innocent","Modest","Amish","Christian",
+                          "Maiden","Little","Tiny","Cute","Repressed","Intern",
+                          "Naive","Sheltered","Conservative","Nice","Sweet",
+                          "Uptight","Nerdy","Straight","Tender"] \
+            + GirlGood.GetWordList()
+        GirlLes = char.FemaleChar(MaxChars = 22, 
+                                   ExclList = [AttitudeGoodFemale,AttitudeFemale,PregState],
+                                   NotList = LesGirlNotList)
+
         sTweet = "The " + GirlGood.Desc + "\nand the\n" + GirlLes.Desc
         
         if CoinFlip() and CoinFlip():
@@ -6083,8 +6096,6 @@ def CurateFavorites(iGen = 0, iMaxLen = 0):
           
             if sLastInput == "y":
             # === if [y], save tweet ===
-                print("  - Last input = y, saving tweet")
-
                 with open(titutil.FAVTITLE_FILENAME, 'a+') as WriteReplyFile:
 
                     WriteReplyFile.write(sOutput)
@@ -6096,13 +6107,10 @@ def CurateFavorites(iGen = 0, iMaxLen = 0):
             
             elif sLastInput == "q":
             # === if [q], quit ===
-                print("  - Last input = q, quitting")
                 break
 
             elif sLastInput in ["1","2","3","4","5","6","7","8","9"]:
             # === if [1-9], retrieve # from history list ===
-                print("  - Last input = " + sLastInput + ", retrieving tweet from history")
-
                 iHistNum = int(sLastInput) - 1
                 if iHistNum < len(History):
                     ImgTxtGen = History[iHistNum]
@@ -6111,13 +6119,11 @@ def CurateFavorites(iGen = 0, iMaxLen = 0):
   
             elif sLastInput == "a":
             # === if [a], get a new author name ===
-                print("  - Last input = a, getting new author")
                 if not ImgTxtGen is None:
                     ImgTxtGen.GenerateAuthor()
 
             if not sLastInput in ["a","q","1","2","3","4","5","6","7","8","9"]:
             # === Generate a new title and author name ===
-                print("  - Last input = " + sLastInput + ", generating new title and author")
           
                 if iGen > 0:
                     ImgTxtGen = GetTweet(bTest = True, bTweet = False, 
@@ -6187,7 +6193,6 @@ def CurateFavorites(iGen = 0, iMaxLen = 0):
             # Prompt user
             sLastInput = input("\nKeep suggested title? [y]es, [n]o, [#] retrieve previous, change [a]uthor, or [q]uit: ").lower().strip()
 
-            print(" - " + str(len(History)) + " items in history")
 
         dPerRejects = 100
         if (iAddCount + iSkipCount) != 0:

@@ -175,8 +175,8 @@ class TitleTemplate2(TitleTemplate):
                      ColorType = LineColorType.SmallText)
 
         # Large medium third line
-        self.AddLine(FontName = "Verona-ExtraBold.otf",
-                     FontMaxSize = 24,
+        self.AddLine(FontName = "Moyers.otf",
+                     FontMaxSize = 22,
                      MaxRows = 2,
                      ColorType = LineColorType.SecondTitle)
 
