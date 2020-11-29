@@ -544,12 +544,14 @@ class Generator8(TitleGen):
 
           return sTweet
           
-# REPLACE: This just doesn't come up with funny stuff, even with rhymes
+# Split off from Gen 28
 class Generator9(TitleGen):
-    # The Secretary and the Space Werewolf  
+    # My Wife 
+    # And The
+    # Beefy Well-Hung Space Werewolf
     def __init__(self):
-        super().__init__(ID = 9, Priority = GenPriority.Low, Disabled = True)
-        self.Template = templates.TitleTemplate1()
+        super().__init__(ID = 9, Priority = GenPriority.Low, Disabled = False)
+        self.Template = templates.TitleTemplate2()
      
     def GenerateTweet(self):
         super().GenerateTweet()
@@ -557,17 +559,13 @@ class Generator9(TitleGen):
 
         self.ReqTemplateTags = ["man", "woman"]
 
-        NotList = ["BDSM"]
-        Girl = char.FemaleChar(TempType = TempType.Medium, bAddTheArticle = False, bAllowRelate = True, bAllowSpecies = False, bAllowTitle = False, NotList = NotList)
-        Master = char.MaleChar(TempType = TempType.Medium, bAddTheArticle = False, bAllowRelate = True, sPosArticle = "Her", bSplitArticle = True, NotList = NotList)
+        Man = char.MaleChar(bAddTheArticle = True, bSplitArticle = True, bAllowMaritalStatus = False)
 
-        sTweet = "The " + Girl.Desc + "\nAnd The " + Master.Desc
-        if len(sTweet) > 60:
-            sTweet += "\n" + AddArticles(WordList([self._getFMs_(), 
-                                                            "BDSM", 
-                                                            misc.SexyAdjs().GetWord().lower()]).GetWord(),
-                                        bSplitArticle = True) + " " 
-            sTweet += self.SubtitleCoda.GetWord().lower()
+        FemaleRelate = WordList(['Wife', 'Wife', 'Fiancé', 'Girlfriend'])
+
+        sTweet = "My " + FemaleRelate.GetWord() + "\n"
+        sTweet += "And " + Man.Desc + "\nA " + WordList(["Cuckold","Hotwife"]).GetWord() + " "
+        sTweet += self.SubtitleCoda.GetWord()
           
         return sTweet
           
@@ -1147,34 +1145,36 @@ class Generator27(TitleGen):
 
         return sTweet
 
+# Split off from Gen 9
 class Generator28(TitleGen):
      #Cuckolded By My Amish Maiden Hotwife
      def __init__(self):
-         super().__init__(ID = 28, Priority = GenPriority.Low, Disabled = True)
+         super().__init__(ID = 28, Priority = GenPriority.Normal, Disabled = False)
+         self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ExclTemplateTags = ["gay","lesbian"]
+          self.ReqTemplateTags = ["woman","man"]
           
           Girl = char.FemaleChar(bAddEndNoun = False, 
+                                 ExclList = [MaritalStatusFemale, SexualityFemale],
                                  bAllowMaritalStatus = False, 
                                  bAllowSexuality = False, 
                                  NotList = ['Single', 'Divorced'])
-          Man = char.MaleChar(bAddTheArticle = True, bAllowMaritalStatus = False)
+
           FemaleRelate = WordList(['Wife', 'Wife', 'Fiancé', 'Girlfriend'])
-          if CoinFlip():
-               sTweet = "Cuckolded By My\n" + Girl.Desc + " " + FemaleRelate.GetWord()
-          else:
-               sTweet = "My " + FemaleRelate.GetWord() + " "
-               sTweet += "And\n" + Man.Desc + ":\nA " + WordList(["Cuckold","Hotwife"]).GetWord() + " "
-               sTweet += self.SubtitleCoda.GetWord()
+          sTweet = "Cuckolded\nBy My\n" + Girl.Desc + " " + FemaleRelate.GetWord()
           
           return sTweet
           
 class Generator29(TitleGen):
      # Blackmailing My Step-Dad's Busty Ballerina
      def __init__(self):
-         super().__init__(ID = 29, Priority = GenPriority.Low, Disabled = True)
+         super().__init__(ID = 29, Priority = GenPriority.Low, Disabled = False)
+         self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1767,9 +1767,11 @@ class Generator44(TitleGen):
           sHisName = PlainNamesMale().FirstName()
 
           GayTitles = []
+          GayGuy = None
           
-          StraightGuy = char.MaleChar(bAllowGang = False, ExclList = [SpeciesMale])
-          GayGuy = char.GayMaleChar(ReqList = [GayMaleAdj])
+          #StraightGuy = char.MaleChar(bAllowGang = False, ExclList = [SpeciesMale])
+          if GayGuy is None or len(GayGuy.Desc > 22):
+            GayGuy = char.GayMaleChar(MaxChars = 20)
           
           sTweet = sHisName + "\nand\nThe " + GayGuy.Desc
 

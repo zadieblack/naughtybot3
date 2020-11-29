@@ -130,6 +130,7 @@ class TitleTemplatePHDefault(TitleTemplate):
 # SHORT TOP LINE
 # of a
 # LONG TWO-ROW BOTTOM LINE
+
 class TitleTemplate1(TitleTemplate):
     def __init__(self):
         super().__init__()
@@ -158,7 +159,10 @@ class TitleTemplate1(TitleTemplate):
 # of a
 # MEDIUM BOTTOM LINE
 # possible subtitle
+
+# Generators: 22, 23, 44, 52
 class TitleTemplate2(TitleTemplate):
+    
     def __init__(self):
         super().__init__()
 
@@ -193,6 +197,7 @@ class TitleTemplate2(TitleTemplate):
 # MEDIUM CENTER LINE
 # Her
 # CUNNING STUNT
+
 class TitleTemplate3(TitleTemplate):
     def __init__(self):
         super().__init__()
