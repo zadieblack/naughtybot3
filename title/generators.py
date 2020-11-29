@@ -1173,19 +1173,26 @@ class Generator28(TitleGen):
 class Generator29(TitleGen):
      # Blackmailing My Step-Dad's Busty Ballerina
      def __init__(self):
-         super().__init__(ID = 29, Priority = GenPriority.Low, Disabled = False)
-         self.Template = templates.TitleTemplate1()
+         super().__init__(ID = 29, Priority = GenPriority.Normal, Disabled = False)
+         #self.Template = templates.TitleTemplate6()
+         self.Template = templates.TitleTemplate24()
      
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ExclTemplateTags = ["gay","lesbian"]
+          self.ReqTemplateTags = ["woman","man"]
           
           GirlNotList = ["Girlfriend", "Mom", "Dad", "Sister", "Divorced", "Single", "Hotwife", "Virgin", 
                               "Pastor's Wife", "Housewife", "Lesbian", "Bridesmaid", "Nun"]
-          Girl = char.FemaleChar(bAddEndNoun = False, bAllowMaritalStatus = False, bAllowTitle = False, NotList = GirlNotList, bAllowSexuality = False)
+          Girl = char.FemaleChar(bAddEndNoun = False, Type = GirlType.Good,
+                                 ExclList = [MaritalStatusFemale, TitlesFemale, SexualityFemale,
+                                             SexualityNounFemale],
+                                 NotList = GirlNotList)
           
           iRand = randint(1,4)
-          sTweet = self.Gerunds.GetWord() + " "
+          sTweet = self.Gerunds.GetWord() + "\n"
           if iRand == 1:
                sTweet += "My " + WordList(["Father's", "Dad's", "Step-Dad's"]).GetWord() + "\n"
                sTweet += Girl.Desc + " " + WordList(["Wife", "Girlfriend", "Fiancé", "Hotwife", "Bride"]).GetWord()
@@ -1197,7 +1204,7 @@ class Generator29(TitleGen):
                sTweet += Girl.Desc + " " + WordList(["Bride", "Wife", "Wife", "Girlfriend", "Fiancé", "Daughter", "Step-Daughter", "Sister", "Hotwife", "Mom", "Step-Mom"]).GetWord()
           else: 
                sTweet += "My " + WordList(["Sister's","Step-Sister's","Mom's","Step-Mom's","Daughter's","Step-Daughter's"]).GetWord() + "\n"
-               sTweet += "Lesbian " + Girl.Desc + " " + WordList(["Wife", "Girlfriend"]).GetWord()
+               sTweet += Girl.Desc + " Lesbian " + WordList(["Wife", "Girlfriend"]).GetWord()
           
           return sTweet
           

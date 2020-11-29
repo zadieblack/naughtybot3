@@ -765,9 +765,11 @@ class TitleTemplate21(TitleTemplate):
 
 # [FOUR LINES]
 # ** Conversational **
-# Medium Top Line
-# Large Middle Line
-# Small Bottom Line
+# Large short 1-2 word top line
+# # Medium long line or two lines normal type
+# Large medium length line
+# Small medium-length tag (excited!)
+
 class TitleTemplate22(TitleTemplate):
     # Templates: 62
     def __init__(self):
@@ -809,6 +811,7 @@ class TitleTemplate22(TitleTemplate):
 # ** Conversational **
 # Medium Top Line
 # Punch-line
+
 class TitleTemplate23(TitleTemplate):
     # Templates: 63, 112, 119
     def __init__(self):
