@@ -2039,21 +2039,18 @@ class BGProfileCopTorture(BGProfile):
         self.Disabled = False
         self.Content = Content.PG13
 
-# this is for debugging bgprofile frequency. delete later.
-def indexof(list, searchobj):
-    iIndex = 0
-    bFound = False
-
-    while iIndex < len(list):
-        if list[iIndex][0][1].FileName == searchobj[1].FileName:
-            bFound = True
-            break
-        iIndex = iIndex + 1
-    
-    if not bFound:
-        iIndex = -1
-
-    return iIndex
+class BGProfileGayMedieval(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 153,
+                           Priority = GenPriority.Normal,
+                           sFileName = "gay_medieval")
+        self.MainTitleColor = "rgba(188, 36, 29, 255)"
+        self.SecondTitleColor = "rgba(197, 144, 52, 255)"
+        self.SmallTextColor = "rgba(71, 126, 57, 255)"
+        self.AuthorNameColor = "rgba(71, 126, 57, 255)"
+        self.Tags = ["men","man","inside","knight","king","medieval","fantasy","gay","threesome"]
+        self.Disabled = False
+        self.Content = Content.PG13
 
 class BGProfileContainer(GeneratorContainer):
 
