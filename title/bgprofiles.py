@@ -6,6 +6,7 @@ import random
 from util import *
 from gen import *
 from title.util import Content
+import title.util as titutil
 
 BGLOGFILEPATH = "title/"
 BGLOGFILENAME = "bghistory_q.txt"
@@ -1943,7 +1944,7 @@ class BGProfileCowgirlPanties(BGProfile):
         self.Disabled = False
         self.Content = Content.PG13
 
-class BGProfileGingerDriver(BGProfile):
+class BGProfileGingerDiver(BGProfile):
     def __init__(self):
         super().__init__(ID = 146,
                            Priority = GenPriority.High,
@@ -2027,7 +2028,7 @@ class BGProfilePokerWifeBet(BGProfile):
 class BGProfileCopTorture(BGProfile):
     def __init__(self):
         super().__init__(ID = 152,
-                           Priority = GenPriority.Normal,
+                           Priority = GenPriority.Lowest,
                            sFileName = "cop_torture")
         self.MainTitleColor = "rgba(212, 38, 34, 255)"
         self.SecondTitleColor = "rgba(71, 77, 116, 255)"
@@ -2037,7 +2038,7 @@ class BGProfileCopTorture(BGProfile):
                      "femdom","kinky","bondage","shirtless","baseball",
                      "modern","minority"]
         self.Disabled = False
-        self.Content = Content.PG13
+        self.Content = Content.AdultsOnly
 
 class BGProfileGayMedieval(BGProfile):
     def __init__(self):
@@ -2051,6 +2052,35 @@ class BGProfileGayMedieval(BGProfile):
         self.Tags = ["men","man","inside","knight","king","medieval","fantasy","gay","threesome"]
         self.Disabled = False
         self.Content = Content.PG13
+
+class BGProfileMoonlightSkinnyDippers(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 154,
+                           Priority = GenPriority.AboveAverage,
+                           sFileName = "moonlight_skinny_dippers")
+        self.MainTitleColor = "rgba(254, 43, 172, 255)"
+        self.SecondTitleColor = "rgba(168, 20, 217, 255)"
+        self.SmallTextColor = "rgba(13, 114, 212, 255)"
+        self.AuthorNameColor = "rgba(13, 114, 212, 255)"
+        self.Tags = ["man","woman","couple","straight","shirtless","water",
+                     "brunette","night","moon","nude","naked","lake"]
+        self.Disabled = False
+        self.Content = Content.PG13
+
+class BGProfileGoldWater(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 155,
+                           Priority = GenPriority.SuperHigh,
+                           sFileName = "gold_water")
+        self.MainTitleColor = "rgba(26, 132, 198, 255)"
+        self.SecondTitleColor = "rgba(26, 132, 198, 255)"
+        self.SmallTextColor = "rgba(72, 38, 14, 255)"
+        self.AuthorNameColor = "rgba(72, 38, 14, 255)"
+        self.Tags = ["woman","wet","naked","cherub","gold","yellow",
+                     "water","urine","nude","tits","breasts","pubes",
+                     "bush","full frontal","kinky"]
+        self.Disabled = False
+        self.Content = Content.AdultsOnly
 
 class BGProfileContainer(GeneratorContainer):
 
@@ -2071,7 +2101,7 @@ class BGProfileContainer(GeneratorContainer):
             #    print("Gen " + str(Gen) + " had excluded tags. (Tags are " + str(Gen.Tags) + ")")
 
             Gen = super().RandomGenerator(bAllowPromo = bAllowPromo, Type = Type)
-            iTries = iTries + 11
+            iTries = iTries + 1
 
         #print("After " + str(iTries) + " tries, " + str(Gen) + " was selected.\n")
 
@@ -2116,9 +2146,12 @@ def GetBGProfileGenerator(iProfileID = 0,
     iTries = 0
 
     if ProfileHistoryQ is None:
-        ProfileHistoryQ = HistoryQWithLog(BGLOGFILEPATH + BGLOGFILENAME, iQSize = BGQSIZE)
+        print("ProfileHistoryQ is None, initializing new history q")
+        ProfileHistoryQ = HistoryQWithLog(titutil.BGPROFILEQ_FILENAME, iQSize = titutil.BGPROFILEQ_SIZE)
+    else:
+        print("ProileHistoryQ is " + str(ProfileHistoryQ))
 
-    ProfSel = BGProfileContainer(BGProfile)
+    ProfSel = BGProfileContainer(GeneratorClass = BGProfile, HistoryQ = ProfileHistoryQ)
     if iProfileID > 0:
         SelectedProfile = ProfSel.GetProfile(iProfileID)
         if SelectedProfile == None:

@@ -19,9 +19,15 @@ TWEETTXT_HISTORYQ_FILENAME = 'title/tweettxt_history_q.txt'
 FAVTITLE_FILENAME = 'title/fav_titles.txt'
 FAVTITLE_DIVIDER = "~~~"
 
+BGPROFILEQ_SIZE = 30
+BGPROFILELOGFILEPATH = "title/"
+BGPROFILEFILENAME = "bghistory_q.txt"
+BGPROFILEQ_FILENAME = BGPROFILELOGFILEPATH + BGPROFILEFILENAME
+
 TESTIMAGE_PATH = 'testimages/'
 
 TweetHistoryQ = None
+BGProfileQ = None
 
 class TempType(IntEnum):
      Short = 1

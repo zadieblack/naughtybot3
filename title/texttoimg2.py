@@ -11,6 +11,8 @@ from title.titletemplates import *
 from title.bgprofiles import *
 from title.generators import Generator
 
+import title.util as titutil
+
 COVER_PATH = "title/resources/cover_images/"
 FONT_PATH = "title/resources/fonts/"
 PATCH_PATH = "title/resources/"
@@ -390,7 +392,10 @@ def CreateImg(ImgTxtGen):
     RGBImgOut = None 
     
     # get a random cover profile 
-    BGProfile = GetBGProfileGenerator(ReqTags = ImgTxtGen.ReqTemplateTags,
+    if titutil.BGProfileQ is None:
+        titutil.BGProfileQ = HistoryQWithLog(titutil.BGPROFILEQ_FILENAME, titutil.BGPROFILEQ_SIZE)
+    BGProfile = GetBGProfileGenerator(ProfileHistoryQ = titutil.BGProfileQ,
+                                      ReqTags = ImgTxtGen.ReqTemplateTags,
                                       ExclTags = ImgTxtGen.ExclTemplateTags)
     #print("BGProfile #" + str(BGProfile.ID) + " (" + BGProfile.FileName + ") selected")
 

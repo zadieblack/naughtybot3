@@ -215,7 +215,7 @@ class HistoryQWithLog(HistoryQ):
         self.LogFileName = sLogFileName
           
         try:
-            #print("Opening log file.")
+            #print("Opening log file " + sLogFileName + ".")
             with open(self.LogFileName, 'rb') as ReadLogFile:
                 for item in ReadLogFile.read().splitlines():
                     item = item.decode("utf8")
@@ -226,7 +226,7 @@ class HistoryQWithLog(HistoryQ):
                     else:
                         self.HistoryQ.append(item)
         except FileNotFoundError:
-            #print("Unable to open log file, creating log file.")
+            print("Unable to open log file, creating log file.")
             #open(self.LogFileName, 'wb')
             with open(self.LogFileName, 'rb') as ReadLogFile:
                 for item in ReadLogFile.read().splitlines():
@@ -249,7 +249,7 @@ class HistoryQWithLog(HistoryQ):
                 sLine += "\n"
                 UTFLine = sLine.encode("utf8")
                 WriteHistoryQ.write(UTFLine)
-        #print("Wrote HistoryQ:")
+        #print("Wrote HistoryQ to " + self.LogFileName)
         #print(self.HistoryQ)
 
      
