@@ -5173,21 +5173,22 @@ class Generator133(TitleGen):
                                         "Lumberjack","Biker","Viking","Gargoyle","Construction Worker","Cowboy","Fireman",
                                         "Pro-Wrestler","Priest","Luchador","Furry","Japanese Schoolgirl","Teacher","Viking",
                                         "Nun"]).GetWord(NotList = [sTitle1,sTitle2,sSubTitle1])
-          sSubTitle3 = WordList(["Anal", "Double Anal", "Nipple Play", "Fisting", "Incest", "Twincest", "Threesome", 
-                                      "Foursome", "Fivesome", "Bukkake", "Feminization", "Paddling", "Rope Play", 
-                                      "Water-Sports", "Wife Swapping", "Sixty-Nine", "Erotic Asphyxiation", "Orgy", "Gangbang", 
-                                      "Reverse Gangbang", "Milking", "Double Penetration", "Triple Penetration", 
-                                      "Pee-Drinking", "Dirty Sanchez", "Sodomy", "Age Play", "BDSM", "Fisting","Toe Sucking",
-                                      "Anal Fisting", "Fem-dom","Tea-Bagging","Spanking","Lactation","Cuckolding",
-                                      "Cuck-Queaning","Enema","Rimming", "Leather Bondage","Public Humiliation","Cum-Drinking",
-                                      "Fellatio","Choking","Glory Hole","Cum-Swapping","Analingus","Ass-Eating","Ass-to-Ass",
-                                      "Menage","Lactation","Frottage"
-                                      ]).GetWord(NotList = [sTitle1,sTitle2,sSubTitle1,sSubTitle2])
+          sSubTitle3 = WordList(["Age Play","Anal","Analingus","Anal Fisting","Anal Hook","Ass-Eating","Ass-to-Ass","BDSM",
+                                 "Bukkake","Choking","Cuck-Queaning","Cuckolding","Cum-Drinking","Cum-Swapping",
+                                 "Dirty Sanchez","Double Anal","Double Penetration","Enema","Erotic Asphyxiation",
+                                 "Erotic Furniture","Fellatio","Fem-dom","Feminization","Fisting","Fivesome","Foursome",
+                                 "Frottage","Gangbang","Glory Hole","Incest","Lactation","Leather Bondage","Menage",
+                                 "Milking","Nipple Play","Orgy","Paddling", "Pee-Drinking","Public Humiliation",
+                                 "Reverse Gangbang","Rimming","Rope Play","Sixty-Nine","Sodomy","Spanking","Tea-Bagging",
+                                 "Threesome","Toe Sucking","Triple Penetration","Twincest","Water-Sports", "Wife Swapping",  
+                                 ]).GetWord(NotList = [sTitle1,sTitle2,sSubTitle1,sSubTitle2])
 
           sTweet = sTitle1 + " " + sTitle2 + "\n"
           sTweet += AddArticles(sSubTitle1 + " " + sSubTitle2 + " " + sSubTitle3 + " Story", bMakeUpper = True)
           
           return sTweet     
+
+
           
 # Taken by her Lesbian Centaur Boss
 class Generator134(TitleGen):
@@ -5899,7 +5900,7 @@ class Generator147(TitleGen):
 # Testing innuendo name generators          
 class Generator999(TitleGen):     
      def __init__(self):
-         super().__init__(ID = 999, Priority = GenPriority.Lowest, Disabled = False, Type = GeneratorType.Test)
+         super().__init__(ID = 999, Priority = GenPriority.Lowest, Disabled = True, Type = GeneratorType.Test)
          self.Template = templates.TitleTemplate1()
      
      def GenerateTweet(self):

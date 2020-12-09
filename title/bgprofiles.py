@@ -2070,7 +2070,7 @@ class BGProfileMoonlightSkinnyDippers(BGProfile):
 class BGProfileGoldWater(BGProfile):
     def __init__(self):
         super().__init__(ID = 155,
-                           Priority = GenPriority.SuperHigh,
+                           Priority = GenPriority.Lowest,
                            sFileName = "gold_water")
         self.MainTitleColor = "rgba(26, 132, 198, 255)"
         self.SecondTitleColor = "rgba(26, 132, 198, 255)"
@@ -2078,7 +2078,22 @@ class BGProfileGoldWater(BGProfile):
         self.AuthorNameColor = "rgba(72, 38, 14, 255)"
         self.Tags = ["woman","wet","naked","cherub","gold","yellow",
                      "water","urine","nude","tits","breasts","pubes",
-                     "bush","full frontal","kinky"]
+                     "bush","full frontal","kinky","single","indoors"]
+        self.Disabled = False
+        self.Content = Content.AdultsOnly
+
+class BGProfileTentacleRobot(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 156,
+                           Priority = GenPriority.Low,
+                           sFileName = "robot_tentacles")
+        self.MainTitleColor = "rgba(203, 63, 76, 255)"
+        self.SecondTitleColor = "rgba(229, 119, 27, 255)"
+        self.SmallTextColor = "rgba(102, 48, 40, 255)"
+        self.AuthorNameColor = "rgba(102, 48, 40, 255)"
+        self.Tags = ["woman","monster","robot","brunette",
+                     "table","kinky","panties","tied up",
+                     "maledom"]
         self.Disabled = False
         self.Content = Content.AdultsOnly
 

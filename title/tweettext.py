@@ -874,6 +874,8 @@ class TweetTxtGen33(TweetTxtGen):
                sText = "\"I'm so horny for this!\"\n" 
           elif CoinFlip():
                sText = "\"I got off on this!\"\n" 
+          elif CoinFlip():
+               sText = "\"This is some kinky shit, but I'm into it!\"\n" 
           else:
                sText = "\"What the fuck did I just read??\"\n" 
                
