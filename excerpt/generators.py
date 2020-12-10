@@ -3698,7 +3698,7 @@ class Generator67(ExGen):
           sTweet += "\n\n"
           
           if CoinFlip():
-               sTweet += "\"Oh " + WordList(['daddy','step-dad','uncle','step-brother','grand-dad']).GetWord() + "!\" "
+               sTweet += "\"Oh " + WordList(['daddy','step-dad','uncle','step-brother','grand-dad','Santa','Dr. Phil','Pope Francis']).GetWord() + "!\" "
                sTweet += "she " + sPanted + ", \""
                sTweet += "I've wanted you for so long!\""
           else:               
