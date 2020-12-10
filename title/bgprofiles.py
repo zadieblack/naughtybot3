@@ -2069,8 +2069,7 @@ class BGProfileMoonlightSkinnyDippers(BGProfile):
 
 class BGProfileGoldWater(BGProfile):
     def __init__(self):
-        super().__init__(ID = 155,
-                           Priority = GenPriority.Lowest,
+        super().__init__(Priority = GenPriority.Lowest,
                            sFileName = "gold_water")
         self.MainTitleColor = "rgba(26, 132, 198, 255)"
         self.SecondTitleColor = "rgba(26, 132, 198, 255)"
@@ -2084,8 +2083,7 @@ class BGProfileGoldWater(BGProfile):
 
 class BGProfileTentacleRobot(BGProfile):
     def __init__(self):
-        super().__init__(ID = 156,
-                           Priority = GenPriority.Low,
+        super().__init__(Priority = GenPriority.Low,
                            sFileName = "robot_tentacles")
         self.MainTitleColor = "rgba(203, 63, 76, 255)"
         self.SecondTitleColor = "rgba(229, 119, 27, 255)"
@@ -2096,6 +2094,44 @@ class BGProfileTentacleRobot(BGProfile):
                      "maledom"]
         self.Disabled = False
         self.Content = Content.AdultsOnly
+
+class BGProfilePirateRomance(BGProfile):
+    def __init__(self):
+        super().__init__(ID = 157,
+                           Priority = GenPriority.AboveAverage,
+                           sFileName = "robot_tentacles")
+        self.MainTitleColor = "rgba(184, 49, 38, 255)"
+        self.SecondTitleColor = "rgba(46, 71, 135, 255)"
+        self.SmallTextColor = "rgba(43, 33, 29, 255)"
+        self.AuthorNameColor = "rgba(46, 71, 135, 255)"
+        self.Tags = ["woman","man","outdoors","straight","couple","pirate","ocean","water",
+                     "blonde","bird","ship","boat","fantasy"]
+        self.Disabled = False
+
+class BGProfileHotdogFlirt(BGProfile):
+    def __init__(self):
+        super().__init__(Priority = GenPriority.AboveAverage,
+                           sFileName = "hot_dog_flirt")
+        self.MainTitleColor = "rgba(213, 60, 73, 255)"
+        self.SecondTitleColor = "rgba(0, 149, 91, 255)"
+        self.SmallTextColor = "rgba(6, 89, 103, 255)"
+        self.AuthorNameColor = "rgba(0, 169, 165, 255)"
+        self.Tags = ["woman","man","outdoors","straight","couple","modern","hotdog",
+                     "blonde","food"]
+        self.Disabled = False
+
+class BGProfileFantasy(BGProfile):
+    def __init__(self):
+        super().__init__(Priority = GenPriority.Normal,
+                           sFileName = "fantasy")
+        self.MainTitleColor = "rgba(238, 47, 43, 255)"
+        self.SecondTitleColor = "rgba(170, 47, 84, 255)"
+        self.SmallTextColor = "rgba(14, 10, 23, 255)"
+        self.AuthorNameColor = "rgba(170, 47, 84, 255)"
+        self.Tags = ["woman","man","outdoors","straight","couple","fantasy","women",
+                     "brunette","shield","knight","tits"]
+        self.Disabled = False
+        self.Content = Content.PG13
 
 class BGProfileContainer(GeneratorContainer):
 
@@ -2161,10 +2197,8 @@ def GetBGProfileGenerator(iProfileID = 0,
     iTries = 0
 
     if ProfileHistoryQ is None:
-        print("ProfileHistoryQ is None, initializing new history q")
+        #print("ProfileHistoryQ is None, initializing new history q")
         ProfileHistoryQ = HistoryQWithLog(titutil.BGPROFILEQ_FILENAME, iQSize = titutil.BGPROFILEQ_SIZE)
-    else:
-        print("ProileHistoryQ is " + str(ProfileHistoryQ))
 
     ProfSel = BGProfileContainer(GeneratorClass = BGProfile, HistoryQ = ProfileHistoryQ)
     if iProfileID > 0:
