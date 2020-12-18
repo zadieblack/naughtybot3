@@ -2133,6 +2133,46 @@ class BGProfileFantasy(BGProfile):
         self.Disabled = False
         self.Content = Content.PG13
 
+class BGProfileBadVampireTouch(BGProfile):
+    def __init__(self):
+        super().__init__(Priority = GenPriority.Lowest,
+                           sFileName = "bad_vampire_touch")
+        self.MainTitleColor = "rgba(186, 77, 56, 255)"
+        self.SecondTitleColor = "rgba(195, 123, 58, 255)"
+        self.SmallTextColor = "rgba(94, 147, 196, 255)"
+        self.AuthorNameColor = "rgba(94, 147, 196, 255)"
+        self.Tags = ["woman","man","indoors","straight","fantasy","vampire","tits","breasts","boobs","pussy",
+                     "horror","naked","nude","sofa"]
+        self.Disabled = False
+        self.Content = Content.AdultsOnly
+
+class BGProfileReadyForYou(BGProfile):
+    def __init__(self):
+        super().__init__(Priority = GenPriority.Normal,
+                           sFileName = "ready_for_you")
+        self.MainTitleColor = "rgba(244, 87, 220, 255)"
+        self.SecondTitleColor = "rgba(46, 123, 237, 255)"
+        self.SmallTextColor = "rgba(117, 24, 156, 255)"
+        self.AuthorNameColor = "rgba(117, 24, 156, 255)"
+        self.Tags = ["woman","tits","breasts","boobs","ass","butt","panties","brunette","high heels",
+                     "naked","nude","maledom"]
+        self.Disabled = False
+        self.Content = Content.AdultsOnly
+
+class BGProfileVampireAssCastle(BGProfile):
+    def __init__(self):
+        super().__init__(Priority = GenPriority.Low,
+                           sFileName = "vampire_ass_castle")
+        self.MainTitleColor = "rgba(219, 62, 48, 255)"
+        self.SecondTitleColor = "rgba(43, 43, 149, 255)"
+        self.SmallTextColor = "rgba(287, 70, 48, 255)"
+        self.AuthorNameColor = "rgba(43, 43, 149, 255)"
+        self.Tags = ["woman","tits","breasts","boobs","ass","butt","busy","blonde","vampire",
+                     "naked","nude","lingerie","straight","couple","horror","castle","fantasy",
+                     "outdoors"]
+        self.Disabled = False
+        self.Content = Content.AdultsOnly
+
 class BGProfileContainer(GeneratorContainer):
 
     def RandomGenerator(self, ReqTags = [], ExclTags = [], bAllowPromo = True, Type = None):

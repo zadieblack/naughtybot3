@@ -30,6 +30,9 @@ VERT_SEP_PROP = 2                           # proportion of text height to use a
 
 BGImgQ = HistoryQ(iQSize = 5)
 
+def RGBtoHex(sRGBcode):
+    return '#%02x%02x%02x' % sRGBcode
+
 def CalcTextSizeScore(sText):
     dScore = 0.0
     # = (Char Count /4) +(Upper Case Num + Avg Word Size)+(- White Spaces)
