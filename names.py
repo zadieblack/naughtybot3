@@ -520,9 +520,7 @@ class InnuendoLastNames(WordList):
      def __init__(self):
           super().__init__()
           
-          self.List = ["Amalova",
-               "Analiquor",
-               "Anlicker",
+          self.List = ["Analicker",
                "Bangs","Bangs",
                "Bear",
                "Beaver","Beaver","Beaver",

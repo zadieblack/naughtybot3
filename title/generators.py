@@ -3152,8 +3152,8 @@ class Generator78(TitleGen):
           super().GenerateTweet()
           sTweet = ""
 
-          self.ReqTemplateTags = ["woman"]
-          self.ExclTemplateTags = ["gay","lesbian"]
+          self.ReqTemplateTags = ["maledom"]
+          #self.ExclTemplateTags = ["gay","lesbian"]
 
           Gerunds = WordList(["69ing","Ass-Eating","Bedding","Binding","Breaking",
                               "Breeding","Caning","Claiming","Deflowering",
@@ -5894,6 +5894,57 @@ class Generator147(TitleGen):
         Sequels = WordList(["2","II","III","3","4","IV","5","V","7","VII","8","VIII","10","11","12","13","17","18","20","21","22","37","69"])
 
         sTweet += "\n" + WordList(["Book","Part","Volume"]).GetWord() + " " + Sequels.GetWord()
+
+        return sTweet
+
+class Generator148(TitleGen):
+    def __init__(self):
+         super().__init__(ID = 148, Priority = GenPriority.Normal)
+         self.Template = templates.TitleTemplate6()
+     
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
+
+        #self.ExclTemplateTags = ["gay"]
+        self.ReqTemplateTags = ["woman"]
+
+        ProfNotList = ["Co-ed","College Girl","Housewife","Gymnast","Mommy Blogger",
+                        "Nanny","Nursing Student","School-marm","Stay-at-Home Mom",
+                        "Teacher"]
+
+        sPrefix = WordList(["Anal","Anal","Anal-Virgin","BDSM","Bicurious","Bimbo","Bottomless","Cougar","Erotic",
+                            "Exhibitionist","Fertile","Lactating","MILF","Naked","Nudist","Nympho","Nymphomaniac",
+                            "Sexual","Submissive","Swinger","Topless","Virgin","Willing"
+                            ]).GetWord()
+        AdjList = WordList(titmisc.DiminuitiveNiceGirl().GetWordList() + 
+                           titmisc.RaceFemale().GetWordList() + 
+                           titmisc.SkinHairColorFemale().GetWordList() + 
+                           titmisc.PhysCharFemale().GetWordList() + 
+                           titmisc.NationFemale().GetWordList() 
+                           )
+        sName = WordList(["Banger","Beaver","Bigg","Bone","Cox","Creamer","Dicker","Dix","Faulk","Fokker","Hammer",
+                          "Hancock","Head","Johnson","Knott","Knutter","Moorecox","Moorehead","Mount","Mounter",
+                          "Mountcox","Muffin","Pecker","Peckwood","Peters","Philmore","Pink","Pohl","Rutter",
+                          "Sacks","Shaft","Stiffington","Stroker","Stuffer","Tallwood","Weiner","Wood"
+                          ]).GetWord()
+        sTitle = titmisc.TitlesMale().GetWord(NotList = ["Sheikh","Shah"])
+
+        if CoinFlip():
+            # The King's
+            sTweet += "The " + sTitle + "'s"
+        else:
+            # Lord Dicker's
+            sTweet += sTitle + " " + sName + "'s"
+
+        sTweet += "\n" 
+
+        if CoinFlip():
+            # Adj Noun
+            sTweet += sPrefix + " " + titmisc.ProfNeutralFemale().GetWord(NotList = ProfNotList)
+        else:
+            # Adj adj noun
+            sTweet += AdjList.GetWord(NotList = [sPrefix]) + " " + sPrefix + " " + titmisc.ProfNeutralFemale().GetWord(NotList = ProfNotList)
 
         return sTweet
 

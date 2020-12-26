@@ -2099,7 +2099,7 @@ class BGProfilePirateRomance(BGProfile):
     def __init__(self):
         super().__init__(ID = 157,
                            Priority = GenPriority.AboveAverage,
-                           sFileName = "robot_tentacles")
+                           sFileName = "pirate_romance")
         self.MainTitleColor = "rgba(184, 49, 38, 255)"
         self.SecondTitleColor = "rgba(46, 71, 135, 255)"
         self.SmallTextColor = "rgba(43, 33, 29, 255)"
@@ -2170,6 +2170,19 @@ class BGProfileVampireAssCastle(BGProfile):
         self.Tags = ["woman","tits","breasts","boobs","ass","butt","busy","blonde","vampire",
                      "naked","nude","lingerie","straight","couple","horror","castle","fantasy",
                      "outdoors"]
+        self.Disabled = False
+        self.Content = Content.AdultsOnly
+
+class BGProfileGirlsAssWhipped(BGProfile):
+    def __init__(self):
+        super().__init__(Priority = GenPriority.SuperHigh,
+                           sFileName = "girls_ass_whipped")
+        self.MainTitleColor = "rgba(224, 100, 10, 255)"
+        self.SecondTitleColor = "rgba(119, 44, 87, 255)"
+        self.SmallTextColor = "rgba(30, 97, 173, 255)"
+        self.AuthorNameColor = "rgba(119, 44, 87, 255)"
+        self.Tags = ["woman","women","straight","kinky","minority","black","blonde","brunette","POC",
+                     "whip","spanking","maledom","discipline","ass","bottomless"]
         self.Disabled = False
         self.Content = Content.AdultsOnly
 

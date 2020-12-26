@@ -153,8 +153,9 @@ class CharTemplate():
                
     def GetMediumVariant(self):
         variant = []
+
         if isinstance(self._AdjList, list):
-            if len(self._AdjList) > 1:
+            if len(self._AdjList) > 0:
                 variant.append(self.Noun)
                 variant.append(choice(self._AdjList).PickOne(NotList = self.NotList))
                     
