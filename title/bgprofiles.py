@@ -2175,7 +2175,7 @@ class BGProfileVampireAssCastle(BGProfile):
 
 class BGProfileGirlsAssWhipped(BGProfile):
     def __init__(self):
-        super().__init__(Priority = GenPriority.SuperHigh,
+        super().__init__(Priority = GenPriority.Low,
                            sFileName = "girls_ass_whipped")
         self.MainTitleColor = "rgba(224, 100, 10, 255)"
         self.SecondTitleColor = "rgba(119, 44, 87, 255)"
@@ -2185,6 +2185,18 @@ class BGProfileGirlsAssWhipped(BGProfile):
                      "whip","spanking","maledom","discipline","ass","bottomless"]
         self.Disabled = False
         self.Content = Content.AdultsOnly
+
+class BGProfileHotFishing(BGProfile):
+    def __init__(self):
+        super().__init__(Priority = GenPriority.High,
+                           sFileName = "hot_fishing")
+        self.MainTitleColor = "rgba(227, 76, 55, 255)"
+        self.SecondTitleColor = "rgba(244, 116, 15, 255)"
+        self.SmallTextColor = "rgba(60, 131, 115, 255)"
+        self.AuthorNameColor = "rgba(244, 116, 15, 255)"
+        self.Tags = ["woman","women","straight","men","bikini","underwater","fishing","boat",
+                     "blonde","brunette","outdoors"]
+        self.Disabled = False
 
 class BGProfileContainer(GeneratorContainer):
 
