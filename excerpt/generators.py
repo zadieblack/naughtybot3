@@ -6217,15 +6217,145 @@ class Generator103(ExGen):
 
         return sTweet
           
-#class Generator104(ExGen):
-#    def __init__(self):
-#        super().__init__(ID = 104, Priority = GenPriority.Normal)
+# "Isn't this kinda wrong?" asked Gary as he pounded his step-daughter's ass 
+# in the back of a church while her husband watched.
+class Generator104(ExGen):
+    def __init__(self):
+        super().__init__(ID = 104, Priority = GenPriority.Normal)
      
-#    def GenerateTweet(self):
-#        super().GenerateTweet()
-#        sTweet = ""
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
 
-#        return sTweet
+        sAct = ""
+        sWhile = ""
+        iRand = 1
+
+        sPerverted = WordList(["a little depraved",
+                               "a little messed-up","kind of messed-up",
+                               "a little perverted","kind of perverted","a bit perverted",
+                               "a little twisted","kind of twisted","a bit twisted",
+                               "kind of weird",
+                               "wrong","kind of wrong","a bit wrong",
+                               "going a little too far","going a bit too far"
+                               ]).GetWord() 
+        sPlace = WordList(["in the back of a church",
+                           "in the back of the synagogue",
+                           "in the graveyard",
+                           "in the library",
+                           "behind the gym",
+                           "in the locker room",
+                           "in the men's room",
+                           "in the women's restroom",
+                           "in the middle of downtown",
+                           "in the back of the wedding chapel",
+                           "in the chapel",
+                           "on the desk",
+                           "in the dungeon",
+                           "in the sex dungeon"
+                           ]).GetWord()
+
+        sTweet += "\"Isn't this " + sPerverted + "?\" "
+
+        if CoinFlip():
+            #Male
+            sHisName = self.MaleName.FirstName()
+
+            sFemRelate = WordList(['mother','step-mom','ex-wife','ex-girlfriend','therapist','sister','step-sister',
+                                   'twin sister','aunt','grandmother','boss','Sunday-School teacher',
+                                   'sister-in-law','daughter','step-daughter','teacher'
+                                   ]).GetWord()
+
+            sTweet += "asked " + sHisName + " as "
+            
+            iRand = randint(1,5)
+            if iRand == 1:
+                sAct = "he "
+                sAct += WordList(["ate out","banged","desecrated","drilled","fingered","fisted",
+                                 "fucked","had sex with","hammered","humped","pissed on","plowed",
+                                 "pounded","rimmed","sixty-nined","tit-fucked",
+                                 "went down on"]).GetWord() + " "
+                sAct += "his " + sFemRelate
+            elif iRand == 2:
+                sAct = "he "
+                sAct += WordList(["ate","desecrated","drilled","fingered","fisted","fucked",
+                                 "hammered","humped","penetrated","plowed","pounded",
+                                 "rimmed","sucked","violated"]).GetWord() + " "
+                sAct += "his " + sFemRelate
+                if CoinFlip():
+                    sAct += "'s " + self.FemBodyParts.Ass.RandomDescription(bAllowLongDesc = False)
+                else:
+                    sAct += "'s " + self.FemBodyParts.Ass.Anus.ShortDescription()
+            elif iRand == 3:
+                sAct = "he "
+                sAct += WordList(["ate","desecrated","drilled","fingered","fisted","fucked",
+                                 "hammered","humped","penetrated","plowed","pounded",
+                                 "rimmed","sucked","violated"]).GetWord() + " "
+                sAct += "his " + sFemRelate
+                sAct += "'s " + self.FemBodyParts.Vagina.RandomDescription(bAllowLongDesc = False)
+            elif iRand == 4:
+                sAct = "he "
+                sAct += WordList(["fucked","humped","rode","tit-fucked","titty-fucked"]).GetWord() + " "
+                sAct += "his " + sFemRelate
+                sAct += "'s " + self.FemBodyParts.Breasts.RandomDescription(bAllowLongDesc = False,
+                                                                            NotList = ["budding","small","little"])
+            elif iRand == 5:
+                sAct = "his " + sFemRelate + " "
+                sAct += WordList(["blew","deep throated","fellated","gagged on","sucked"
+                                  ]).GetWord() + " "
+                sAct += "his " + bodyparts.Penis(bAllowBAP = False).RandomDescription(bAllowLongDesc = False)
+            sWhile = "while her " + WordList(["boyfriend watched","husband watched","husband watched","boyfriend filmed them","husband filmed them"]).GetWord()
+
+        else:
+            #Female
+            sHerName = self.FemaleName.FirstName()
+
+            sMaleRelate = WordList(["father","brother","son","step-son","twin brother",
+                                    "step-brother","grandfather","step-father","teacher","boss",
+                                    "pastor"
+                                    ]).GetWord()
+            
+            sTweet += "asked " + sHerName + " as she "
+
+            iRand = randint(1,5)
+            if iRand == 1:
+                #general sex acts
+                sAct = WordList(["fucked","had sex with","humped","jerked-off","pissed on","rode",
+                                 "sixty-nined","tit-fucked","went down on"]).GetWord() + " "
+                sAct += "her " + sMaleRelate
+            elif iRand == 2:
+                #cock play
+                sAct = WordList(["caressed","licked","played with","stroked","rubbed her tits on"]).GetWord() + " "
+                sAct += "her " + sMaleRelate + "'s "
+                sAct += bodyparts.Penis(bAllowBAP = False).RandomDescription(bAllowLongDesc = False)
+            elif iRand == 3:
+                #butt stuff
+                sAct = WordList(["ate","ate out","fingered","fisted","licked","pegged"]).GetWord() + " "
+                sAct += "her " + sMaleRelate + "'s "
+                sAct += self.MaleBodyParts.Ass.Anus.ShortDescription()
+            elif iRand == 4:
+                #face riding
+                sAct = WordList(["humped","rode","straddled"]).GetWord() + " "
+                sAct += "her " + sMaleRelate + "'s face"
+            elif iRand == 5:
+                #cock riding
+                sAct = WordList(["bounced on","humped","rode","straddled"]).GetWord() + " "
+                sAct += "her " + sMaleRelate + "'s "
+                sAct += bodyparts.Penis(bAllowBAP = False).RandomDescription(bAllowLongDesc = False)
+
+            sWhile = "while his " + WordList(["boyfriend watched","husband watched","husband watched","girlfriend watched","wife watched","wife filmed them"]).GetWord()
+
+        iRand = randint(1,3)
+        if iRand == 1:
+            sTweet += sAct + " " + sWhile
+        elif iRand == 2:
+            sTweet += sAct + " " + sPlace
+        elif iRand == 3:
+            sTweet += sAct + " " + sPlace + " " + sWhile
+
+        sTweet += "."
+
+        return sTweet
 
 #class Generator105(ExGen):
 #    def __init__(self):
