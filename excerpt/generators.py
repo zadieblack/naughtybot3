@@ -6221,7 +6221,7 @@ class Generator103(ExGen):
 # in the back of a church while her husband watched.
 class Generator104(ExGen):
     def __init__(self):
-        super().__init__(ID = 104, Priority = GenPriority.Normal)
+        super().__init__(ID = 104, Priority = GenPriority.High)
      
     def GenerateTweet(self):
         super().GenerateTweet()
