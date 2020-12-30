@@ -6268,7 +6268,7 @@ class Generator104(ExGen):
 
             sTweet += "asked " + sHisName + " as "
             
-            iRand = randint(1,5)
+            iRand = randint(1,7)
             if iRand == 1:
                 sAct = "he "
                 sAct += WordList(["ate out","banged","desecrated","drilled","fingered","fisted",
@@ -6304,7 +6304,22 @@ class Generator104(ExGen):
                 sAct += WordList(["blew","deep throated","fellated","gagged on","sucked"
                                   ]).GetWord() + " "
                 sAct += "his " + bodyparts.Penis(bAllowBAP = False).RandomDescription(bAllowLongDesc = False)
-            sWhile = "while her " + WordList(["boyfriend watched","husband watched","husband watched","boyfriend filmed them","husband filmed them"]).GetWord()
+            elif iRand == 6:
+                sAct = "his " + sFemRelate + " "
+                sAct += WordList(["chugged","drained","drank","guzzled","slurped down"
+                                  ]).GetWord() + " "
+                sAct += WordList(["a cup","a glass","a beer stein","a mug"]).GetWord() + " "
+                sAct += "of his " + bodyparts.Semen().RandomDescription(bAllowLongDesc = False)
+            elif iRand == 7:
+                sAct += "he "
+                sAct += WordList(["drank","guzzled","licked","lapped"]).GetWord() + " "
+                sAct += bodyparts.Semen().RandomDescription(bAllowLongDesc = False) + " "
+                sAct += "out of his " + sFemRelate + "'s "
+                if CoinFlip():
+                    sAct += self.FemBodyParts.Vagina.RandomDescription(bAllowLongDesc = False)
+                else:
+                    sAct += self.FemBodyParts.Ass.Anus.RandomDescription(bAllowLongDesc = False)
+            sWhile = "while her " + WordList(["boyfriend watched","husband watched","husband watched","boyfriend filmed them","husband filmed them","friend filmed them","friends watched"]).GetWord()
 
         else:
             #Female
@@ -6315,35 +6330,49 @@ class Generator104(ExGen):
                                     "pastor"
                                     ]).GetWord()
             
-            sTweet += "asked " + sHerName + " as she "
+            sTweet += "asked " + sHerName + " as "
 
-            iRand = randint(1,5)
+            iRand = randint(1,6)
             if iRand == 1:
                 #general sex acts
-                sAct = WordList(["fucked","had sex with","humped","jerked-off","pissed on","rode",
+                sAct += "she "
+                sAct += WordList(["fucked","had sex with","humped","jerked-off","pissed on","rode",
                                  "sixty-nined","tit-fucked","went down on"]).GetWord() + " "
                 sAct += "her " + sMaleRelate
             elif iRand == 2:
                 #cock play
-                sAct = WordList(["caressed","licked","played with","stroked","rubbed her tits on"]).GetWord() + " "
+                sAct += "she "
+                sAct += WordList(["caressed","licked","played with","stroked","rubbed her tits on"
+                                 "toyed with"]).GetWord() + " "
                 sAct += "her " + sMaleRelate + "'s "
                 sAct += bodyparts.Penis(bAllowBAP = False).RandomDescription(bAllowLongDesc = False)
             elif iRand == 3:
                 #butt stuff
-                sAct = WordList(["ate","ate out","fingered","fisted","licked","pegged"]).GetWord() + " "
+                sAct += "she "
+                sAct += WordList(["ate","ate out","fingered","fisted","licked","pegged"]).GetWord() + " "
                 sAct += "her " + sMaleRelate + "'s "
                 sAct += self.MaleBodyParts.Ass.Anus.ShortDescription()
             elif iRand == 4:
                 #face riding
-                sAct = WordList(["humped","rode","straddled"]).GetWord() + " "
+                sAct += "she "
+                sAct += WordList(["humped","rode","straddled"]).GetWord() + " "
                 sAct += "her " + sMaleRelate + "'s face"
             elif iRand == 5:
                 #cock riding
-                sAct = WordList(["bounced on","humped","rode","straddled"]).GetWord() + " "
+                sAct += "she "
+                sAct += WordList(["bounced on","humped","rode","straddled"]).GetWord() + " "
                 sAct += "her " + sMaleRelate + "'s "
                 sAct += bodyparts.Penis(bAllowBAP = False).RandomDescription(bAllowLongDesc = False)
-
-            sWhile = "while his " + WordList(["boyfriend watched","husband watched","husband watched","girlfriend watched","wife watched","wife filmed them"]).GetWord()
+            elif iRand == 6:
+                sAct += "her " + sMaleRelate + " "
+                sAct += WordList(["drank","guzzled","licked","lapped"]).GetWord() + " "
+                sAct += bodyparts.Semen().RandomDescription(bAllowLongDesc = False) + " "
+                sAct += "out of her " 
+                if CoinFlip():
+                    sAct += self.FemBodyParts.Vagina.RandomDescription(bAllowLongDesc = False)
+                else:
+                    sAct += self.FemBodyParts.Ass.Anus.RandomDescription(bAllowLongDesc = False)
+            sWhile = "while his " + WordList(["boyfriend watched","husband watched","husband watched","girlfriend watched","wife watched","wife filmed them","friend watched","friend filmed them","friends watched"]).GetWord()
 
         iRand = randint(1,3)
         if iRand == 1:
