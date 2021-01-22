@@ -6386,15 +6386,83 @@ class Generator104(ExGen):
 
         return sTweet
 
-#class Generator105(ExGen):
-#    def __init__(self):
-#        super().__init__(ID = 105, Priority = GenPriority.Normal)
+class Generator105(ExGen):
+    def __init__(self):
+        super().__init__(ID = 105, Priority = GenPriority.Normal)
      
-#    def GenerateTweet(self):
-#        super().GenerateTweet()
-#        sTweet = ""
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
 
-#        return sTweet
+        sHisName1 = self.MaleName.FirstName()
+        sHisName2 = self.MaleName.FirstName()
+
+        bGrabAss = False
+        if CoinFlip():
+            bGrabAss = True
+
+        PenisNotList = ["hard","erect","engorged"]
+
+        ShowerType = WordList(["bathroom","dorm","gym", "hostel", "locker room","men's room","Y's"])
+
+        if CoinFlip():
+            sTweet += "A cloud of steam parted, and " + sHisName1 + " "
+            sTweet += "stepped naked out of the " + ShowerType.GetWord() + " shower. "
+        else:
+            sTweet += sHisName1 + " turned off the hot water. "
+            sTweet += "Naked and dripping wet, he stepped out of the " + ShowerType.GetWord() + " shower. "
+
+        bPenis = False
+        bAss = False
+
+        iNumParts = 3
+        if CoinFlip():
+            iNumParts = 4
+
+        iRand = randint(1,3)
+        if bGrabAss:
+            bPenis = True
+            bAss = False
+        else:
+            bPenis = False, 
+            bAss = True
+
+        bAddLen = False
+        if CoinFlip():
+            bAddLen = True
+
+        sTweet += sHisName2 + " " + WordList(["could not help but admire","covertly admired","furtively admired",
+                                              "eyed","could not help but eye","furtively eyed",
+                                              "could not help but notice",
+                                              "could not help but check out",
+                                              ]).GetWord() + " "
+        sTweet += self.MaleBodyParts.DescRandomNakedParts(iNum = iNumParts, sDivideChar = ";", bPenis = bPenis, bAss = bAss, bExplicit = True, sPossessive = "his") + ".\n\n"
+
+        sTweet += "\"You look " + WordList(["really","so","super","very"]).GetWord() + " tense,\" said " + sHisName2 + ". "
+        sTweet += "\"Here, let me help you relax.\"\n\n"
+        
+        MaleRelate = WordList(["best man","bodyguard","boss","brother-in-law","cousin",
+                               "minister","pupil","roommate","son-in-law",
+                               "star quarterback","step-brother","step-dad",
+                               "step-son","student","teammate","tutor"])
+        if bGrabAss:
+            sAss = self.MaleBodyParts.Ass.MediumDescription()
+            sTweet += "He reached down and put his hands on his " + MaleRelate.GetWord() + "'s "
+            sTweet +=  sAss+ ". "
+            sTweet += "Then he began to " + WordList(["gently","sensually","smoothly","tenderly"]).GetWord() + " "
+            sTweet += WordList(["caress","massage","rub","squeeze"]).GetWord() + " "
+            if util.FoundIn(sAss, ["buns","buttocks"]):
+                sTweet += "them."
+            else:
+                sTweet += "it."
+        else:
+            sTweet += "He reached down and took hold of his " + MaleRelate.GetWord() + "'s "
+            sTweet += self.MaleBodyParts.Penis.MediumDescription(bAddLen = bAddLen, NotList = PenisNotList) + ". "
+            sTweet += "Then he began to " + WordList(["carefully","gently","sensually","softly","tenderly"]).GetWord() + " "
+            sTweet += WordList(["caress","rub","stroke"]).GetWord() + " it."
+            
+
+        return sTweet
 
 #class Generator106(ExGen):
 #    def __init__(self):

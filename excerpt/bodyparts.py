@@ -2471,367 +2471,371 @@ class JawMale(BodyParts):
           self.DefaultAdj("chiseled")
           
 class BodyMale(BodyParts):     
-     def __init__(self):
-          super().__init__()
+    def __init__(self):
+        super().__init__()
           
-          self.NounList(['body','body','body','body',
-               'form',
-               'physique',
-               'bulk',
-               'build',
-               'body',
-               'physique'])
+        self.NounList(['body','body','body','body',
+            'form',
+            'physique',
+            'bulk',
+            'build',
+            'body',
+            'physique'])
                
-          self.AdjList(['beefy',
-               'brawny',
-               'broad',
-               'bronzed',
-               'burly',
-               'commanding',
-               'compact',
-               'dark-thatched',
-               'handsome',
-               'hardened',
-               'hearty',
-               'hung',
-               'husky',
-               'lanky',
-               'lean',
-               'limber',
-               'manly',
-               'masculine',
-               'massive',
-               'muscular',
-               'powerful',
-               'rugged',
-               'sinewy',
-               'smooth',
-               'strapping',
-               'striking',
-               'strong',
-               'sturdy',
-               'supple',
-               'tall',
-               'taut',
-               'tight',
-               'toned',
-               'towering',
-               'trim',
-               'virile','virile',
-               'well-built',
-               'well-hung',
-               'wiry',
-               'youthful'])
+        self.AdjList(['beefy',
+            'brawny',
+            'broad',
+            'bronzed',
+            'burly',
+            'commanding',
+            'compact',
+            'dark-thatched',
+            'handsome',
+            'hardened',
+            'hearty',
+            'hung',
+            'husky',
+            'lanky',
+            'lean',
+            'limber',
+            'manly',
+            'masculine',
+            'massive',
+            'muscular',
+            'powerful',
+            'rugged',
+            'sinewy',
+            'smooth',
+            'strapping',
+            'striking',
+            'strong',
+            'sturdy',
+            'supple',
+            'tall',
+            'taut',
+            'tight',
+            'toned',
+            'towering',
+            'trim',
+            'virile','virile',
+            'well-built',
+            'well-hung',
+            'wiry',
+            'youthful'])
           
-          self.DefaultNoun("body")
-          self.IsPlural = False
-          self.FacialHair = FacialHair()
-          self.Hair = HairMale()
-          self.Eyes = EyesMale()
-          self.Jaw = JawMale()
-          self.Legs = LegsMale()
-          self.Skin = SkinMale()
-          self.Shoulders = ShouldersMale()
-          self.Muscles = MusclesMale()
-          self.Chest = ChestMale()
-          self.Arms = ArmsMale()
-          self.Ass = AssMale()
-          self.Penis = Penis()
+        self.DefaultNoun("body")
+        self.IsPlural = False
+        self.FacialHair = FacialHair()
+        self.Hair = HairMale()
+        self.Eyes = EyesMale()
+        self.Jaw = JawMale()
+        self.Legs = LegsMale()
+        self.Skin = SkinMale()
+        self.Shoulders = ShouldersMale()
+        self.Muscles = MusclesMale()
+        self.Chest = ChestMale()
+        self.Arms = ArmsMale()
+        self.Ass = AssMale()
+        self.Penis = Penis()
           
-     # woman random body parts used by gen 8 (one instance), 18,21,31,38,60,72
-     # man random body parts used by gen 19, 20, 22,38
+    # woman random body parts used by gen 8 (one instance), 18,21,31,38,60,72
+    # man random body parts used by gen 19, 20, 22,38
      
-     def GetClothedBodyPartDesc(self, part, bAllowLongDesc, sPossessive = None):
-          sPartDesc = ""
+    def GetClothedBodyPartDesc(self, part, bAllowLongDesc, sPossessive = None):
+        sPartDesc = ""
           
-          if sPossessive is None:
-               sPossessive = ""
+        if sPossessive is None:
+            sPossessive = ""
           
-          PartNotList = ['naked','nude','bare','exposed']
-          bAddArticles = True
+        PartNotList = ['naked','nude','bare','exposed']
+        bAddArticles = True
           
-          if isinstance(part, SkinMale):
-               PartNotList += ['warm','tender']
-               bAddArticles = False 
-          elif isinstance(part, HairMale): 
-               bAddArticles = False
-          elif isinstance(part, FacialHair): 
-               bAddArticles = True 
-          elif isinstance(part, EyesMale):
-               bAddArticles = False 
-          elif isinstance(part, ShouldersMale):
-               bAddArticles = False 
-          elif isinstance(part, ChestMale):
-               bAddArticles = True 
-          elif isinstance(part, LegsMale):
-               bAddArticles = False 
-          elif isinstance(part, AssMale):
-               bAddArticles = True 
-          elif isinstance(part, PenisHead):
-               bAddArticles = True 
-          elif isinstance(part, Testicles):
-               bAddArticles = True 
-          elif isinstance(part, Head):
-               bAddArticles = True 
-          elif isinstance(part, JawMale):
-               bAddArticles = True 
-          elif isinstance(part, MusclesMale):
-               bAddArticles = False 
-          elif isinstance(part, ArmsMale):
-               PartNotList += ['boobies']
-               bAddArticles = False 
+        if isinstance(part, SkinMale):
+            PartNotList += ['warm','tender']
+            bAddArticles = False 
+        elif isinstance(part, HairMale): 
+            bAddArticles = False
+        elif isinstance(part, FacialHair): 
+            bAddArticles = True 
+        elif isinstance(part, EyesMale):
+            bAddArticles = False 
+        elif isinstance(part, ShouldersMale):
+            bAddArticles = False 
+        elif isinstance(part, ChestMale):
+            bAddArticles = True 
+        elif isinstance(part, LegsMale):
+            bAddArticles = False 
+        elif isinstance(part, AssMale):
+            bAddArticles = True 
+        elif isinstance(part, PenisHead):
+            bAddArticles = True 
+        elif isinstance(part, Testicles):
+            bAddArticles = True 
+        elif isinstance(part, Head):
+            bAddArticles = True 
+        elif isinstance(part, JawMale):
+            bAddArticles = True 
+        elif isinstance(part, MusclesMale):
+            bAddArticles = False 
+        elif isinstance(part, ArmsMale):
+            PartNotList += ['boobies']
+            bAddArticles = False 
                
-          if not sPossessive == "":
-               bAddArticles = False 
-               sPartDesc = sPossessive + " " + part.RandomDescription(bAllowShortDesc = False, bAllowLongDesc = bAllowLongDesc, NotList = PartNotList)
-          else:
-               sPartDesc = part.RandomDescription(bAllowShortDesc = False, bAllowLongDesc = bAllowLongDesc, NotList = PartNotList)
-               if bAddArticles:
-                    sPartDesc = AddArticles(sPartDesc)
+        if not sPossessive == "":
+            bAddArticles = False 
+            sPartDesc = sPossessive + " " + part.RandomDescription(bAllowShortDesc = False, bAllowLongDesc = bAllowLongDesc, NotList = PartNotList)
+        else:
+            sPartDesc = part.RandomDescription(bAllowShortDesc = False, bAllowLongDesc = bAllowLongDesc, NotList = PartNotList)
+            if bAddArticles:
+                sPartDesc = AddArticles(sPartDesc)
           
-          return sPartDesc
+        return sPartDesc
      
-     def DescRandomClothedBodyParts(self, iNum = 3, sDivideChar = ',', bAllowLongDesc = True, sPossessive = None):
-          sBodyDesc = ""
+    def DescRandomClothedBodyParts(self, iNum = 3, sDivideChar = ',', bAllowLongDesc = True, sPossessive = None):
+        sBodyDesc = ""
           
-          if sPossessive is None:
-               sPossessive = ""
+        if sPossessive is None:
+            sPossessive = ""
           
-          if iNum < 3:
-               iNum = 3
-          if iNum > 5:
-               iNum = 5
+        if iNum < 3:
+            iNum = 3
+        if iNum > 5:
+            iNum = 5
                
-          hair = self.Hair
-          beard = self.FacialHair
-          jaw = self.Jaw 
-          eyes = self.Eyes 
-          chest = self.Chest
-          legs = self.Legs 
-          skin = self.Skin
-          shoulders = self.Shoulders
-          arms = self.Arms
+        hair = self.Hair
+        beard = self.FacialHair
+        jaw = self.Jaw 
+        eyes = self.Eyes 
+        chest = self.Chest
+        legs = self.Legs 
+        skin = self.Skin
+        shoulders = self.Shoulders
+        arms = self.Arms
           
-          PartPriorities = [[hair,1],
-                                [eyes,1],
-                                [beard,2]
-                                [jaw,2]
-                                [chest,3],
-                                [shoulders,4],
-                                [legs,4],
-                                [body,5],
-                                [skin,6]]
+        PartPriorities = [[hair,1],
+                            [eyes,1],
+                            [beard,2]
+                            [jaw,2]
+                            [chest,3],
+                            [shoulders,4],
+                            [legs,4],
+                            [body,5],
+                            [skin,6]]
                                 
           
-          PartGroups = []
+        PartGroups = []
           
-          if iNum == 3:
-               for part1 in PartPriorities: 
-                    for part2 in PartPriorities[PartPriorities.index(part1) + 1:]:
-                         if part2[1] == part1[1] and not part2[0] == part1[0]:
-                              for part3 in PartPriorities[PartPriorities.index(part2) + 1:]:
-                                   if part3[1] > part2[1] or (part3[1] == part2[1] and not part3[0] == part2[0]):
-                                        PartGroups.append([part1[0],part2[0],part3[0]])
+        if iNum == 3:
+            for part1 in PartPriorities: 
+                for part2 in PartPriorities[PartPriorities.index(part1) + 1:]:
+                        if part2[1] == part1[1] and not part2[0] == part1[0]:
+                            for part3 in PartPriorities[PartPriorities.index(part2) + 1:]:
+                                if part3[1] > part2[1] or (part3[1] == part2[1] and not part3[0] == part2[0]):
+                                    PartGroups.append([part1[0],part2[0],part3[0]])
                          
-          elif iNum == 4:
-               for part1 in PartPriorities:
-                    for part2 in PartPriorities[PartPriorities.index(part1) + 1:]:
-                         if part2[1] > part1[1] or (part2[1] == part1[1] and not part2[0] == part1[0]):
-                              for part3 in PartPriorities[PartPriorities.index(part2) + 1:]:
-                                   if part3[1] > part2[1] or (part3[1] == part2[1] and not part3[0] == part2[0]):
-                                        for part4 in PartPriorities[PartPriorities.index(part3) + 1:]:
-                                             if part4[1] > part3[1] or (part4[1] == part3[1] and not part4[0] == part3[0]):
-                                                  PartGroups.append([part1[0],part2[0],part3[0],part4[0]])
+        elif iNum == 4:
+            for part1 in PartPriorities:
+                for part2 in PartPriorities[PartPriorities.index(part1) + 1:]:
+                        if part2[1] > part1[1] or (part2[1] == part1[1] and not part2[0] == part1[0]):
+                            for part3 in PartPriorities[PartPriorities.index(part2) + 1:]:
+                                if part3[1] > part2[1] or (part3[1] == part2[1] and not part3[0] == part2[0]):
+                                    for part4 in PartPriorities[PartPriorities.index(part3) + 1:]:
+                                            if part4[1] > part3[1] or (part4[1] == part3[1] and not part4[0] == part3[0]):
+                                                PartGroups.append([part1[0],part2[0],part3[0],part4[0]])
      
-          else:
-               for part1 in PartPriorities:
-                    for part2 in PartPriorities[PartPriorities.index(part1) + 1:]:
-                         if part2[1] > part1[1] or (part2[1] == part1[1] and not part2[0] == part1[0]):
-                              for part3 in PartPriorities[PartPriorities.index(part2) + 1:]:
-                                   if part3[1] > part2[1] or (part3[1] == part2[1] and not part3[0] == part2[0]):
-                                        for part4 in PartPriorities[PartPriorities.index(part3) + 1:]:
-                                             if part4[1] > part3[1] or (part4[1] == part3[1] and not part4[0] == part3[0]):
-                                                  for part5 in PartPriorities[PartPriorities.index(part4) + 1:]:
-                                                       if part5[1] > part4[1] or (part5[1] == part4[1] and not part5[0] == part4[0]):
-                                                            PartGroups.append([part1[0],part2[0],part3[0],part4[0],part5[0]])
+        else:
+            for part1 in PartPriorities:
+                for part2 in PartPriorities[PartPriorities.index(part1) + 1:]:
+                        if part2[1] > part1[1] or (part2[1] == part1[1] and not part2[0] == part1[0]):
+                            for part3 in PartPriorities[PartPriorities.index(part2) + 1:]:
+                                if part3[1] > part2[1] or (part3[1] == part2[1] and not part3[0] == part2[0]):
+                                    for part4 in PartPriorities[PartPriorities.index(part3) + 1:]:
+                                            if part4[1] > part3[1] or (part4[1] == part3[1] and not part4[0] == part3[0]):
+                                                for part5 in PartPriorities[PartPriorities.index(part4) + 1:]:
+                                                    if part5[1] > part4[1] or (part5[1] == part4[1] and not part5[0] == part4[0]):
+                                                        PartGroups.append([part1[0],part2[0],part3[0],part4[0],part5[0]])
           
-          SelectedParts = PartGroups[randint(0,len(PartGroups) - 1)]
+        SelectedParts = PartGroups[randint(0,len(PartGroups) - 1)]
           
-          iLoops = 0
-          while iLoops < iNum:
-               sBodyDesc += self.GetClothedBodyPartDesc(SelectedParts[iLoops], bAllowLongDesc, sPossessive = sPossessive)
-               if iLoops == iNum - 2:  
-                    sBodyDesc += sDivideChar + " and "
-               elif iLoops < iNum - 2:
-                    sBodyDesc += sDivideChar + " "
-               iLoops = iLoops + 1
+        iLoops = 0
+        while iLoops < iNum:
+            sBodyDesc += self.GetClothedBodyPartDesc(SelectedParts[iLoops], bAllowLongDesc, sPossessive = sPossessive)
+            if iLoops == iNum - 2:  
+                sBodyDesc += sDivideChar + " and "
+            elif iLoops < iNum - 2:
+                sBodyDesc += sDivideChar + " "
+            iLoops = iLoops + 1
                
-          return sBodyDesc
+        return sBodyDesc
           
-     def GetNakedBodyPartDesc(self, part, bAllowLongDesc, sPossessive = None):
-          sPartDesc = ""
+    def GetNakedBodyPartDesc(self, part, bAllowLongDesc, sPossessive = None):
+        sPartDesc = ""
           
-          if sPossessive is None:
-               sPossessive = ""
+        if sPossessive is None:
+            sPossessive = ""
           
-          PartNotList = []
-          bAddArticles = True
+        PartNotList = []
+        bAddArticles = True
           
-          if isinstance(part, SkinMale):
-               PartNotList += ['warm','tender']
-               bAddArticles = False 
-          elif isinstance(part, HairMale): 
-               bAddArticles = False
-          elif isinstance(part, FacialHair): 
-               bAddArticles = True 
-          elif isinstance(part, EyesMale):
-               bAddArticles = False 
-          elif isinstance(part, ShouldersMale):
-               bAddArticles = False 
-          elif isinstance(part, ChestMale):
-               bAddArticles = True 
-          elif isinstance(part, LegsMale):
-               bAddArticles = False 
-          elif isinstance(part, AssMale):
-               bAddArticles = True 
-          elif isinstance(part, PenisHead):
-               bAddArticles = True 
-          elif isinstance(part, Testicles):
-               bAddArticles = True 
-          elif isinstance(part, PenisHead):
-               bAddArticles = True 
-          elif isinstance(part, JawMale):
-               bAddArticles = True 
-          elif isinstance(part, ArmsMale):
-               bAddArticles = False 
-          elif isinstance(part, MusclesMale):
-               bAddArticles = False 
+        if isinstance(part, SkinMale):
+            PartNotList += ['warm','tender']
+            bAddArticles = False 
+        elif isinstance(part, HairMale): 
+            bAddArticles = False
+        elif isinstance(part, FacialHair): 
+            bAddArticles = True 
+        elif isinstance(part, EyesMale):
+            bAddArticles = False 
+        elif isinstance(part, ShouldersMale):
+            bAddArticles = False 
+        elif isinstance(part, ChestMale):
+            bAddArticles = True 
+        elif isinstance(part, LegsMale):
+            bAddArticles = False 
+        elif isinstance(part, AssMale):
+            bAddArticles = True 
+        elif isinstance(part, PenisHead):
+            bAddArticles = True 
+        elif isinstance(part, Testicles):
+            bAddArticles = True 
+        elif isinstance(part, PenisHead):
+            bAddArticles = True 
+        elif isinstance(part, JawMale):
+            bAddArticles = True 
+        elif isinstance(part, ArmsMale):
+            bAddArticles = False 
+        elif isinstance(part, MusclesMale):
+            bAddArticles = False 
                
-          if not sPossessive == "":
-               sPartDesc = sPossessive + " " + part.RandomDescription(bAllowShortDesc = False, bAllowLongDesc = bAllowLongDesc, NotList = PartNotList)
-          else:
-               sPartDesc = part.RandomDescription(bAllowShortDesc = False, bAllowLongDesc = bAllowLongDesc, NotList = PartNotList)
+        if not sPossessive == "":
+            sPartDesc = sPossessive + " " + part.RandomDescription(bAllowShortDesc = False, bAllowLongDesc = bAllowLongDesc, NotList = PartNotList)
+        else:
+            sPartDesc = part.RandomDescription(bAllowShortDesc = False, bAllowLongDesc = bAllowLongDesc, NotList = PartNotList)
           
-               if bAddArticles:
-                    sPartDesc = AddArticles(sPartDesc)
+            if bAddArticles:
+                sPartDesc = AddArticles(sPartDesc)
           
-          return sPartDesc
+        return sPartDesc
      
-     def DescRandomNakedParts(self, iNum = 3, sDivideChar = ',', bPenis = True, bAss = True, bExplicit = False, bAllowLongDesc = True, sPossessive = None):
-          sBodyDesc = ""
+    def DescRandomNakedParts(self, iNum = 3, sDivideChar = ',', bPenis = True, bAss = True, bExplicit = False, bAllowLongDesc = True, sPossessive = None):
+        sBodyDesc = ""
           
-          if sPossessive is None:
-               sPossessive = ""
-               sPossessive = ""
+        if sPossessive is None:
+            sPossessive = ""
+            sPossessive = ""
           
-          if iNum < 3:
-               iNum = 3
-          if iNum > 5:
-               iNum = 5
+        if iNum < 3:
+            iNum = 3
+        if iNum > 5:
+            iNum = 5
                
-          hair = self.Hair
-          beard = self.FacialHair
-          jaw = self.Jaw 
-          eyes = self.Eyes 
-          chest = self.Chest
-          muscles = self.Muscles
-          legs = self.Legs 
-          skin = self.Skin
-          shoulders = self.Shoulders
-          arms = self.Arms
-          penis = self.Penis
-          balls = self.Penis.Testicles
-          head = self.Penis.Head 
-          ass = self.Ass 
-          asshole = self.Ass.Anus 
-          body = self
+        hair = self.Hair
+        beard = self.FacialHair
+        jaw = self.Jaw 
+        eyes = self.Eyes 
+        chest = self.Chest
+        muscles = self.Muscles
+        legs = self.Legs 
+        skin = self.Skin
+        shoulders = self.Shoulders
+        arms = self.Arms
+        penis = self.Penis
+        balls = self.Penis.Testicles
+        head = self.Penis.Head 
+        ass = self.Ass 
+        asshole = self.Ass.Anus 
+        body = self
           
-          PartPriorities = [[chest,1],
-                                [shoulders,2],
-                                [muscles,3],
-                                [legs,4],
-                                [skin,5],
-                                [body,6]]
+        PartPriorities = [[chest,1],
+                            [shoulders,2],
+                            [muscles,3],
+                            [legs,4],
+                            [skin,5],
+                            [body,6]]
           
-          if bAss:
-               PartPriorities.append([ass,4])
-          if bPenis:
-               PartPriorities.append([penis,8])
+        if bAss:
+            PartPriorities.append([ass,4])
+        if bPenis:
+            PartPriorities.append([penis,8])
           
-          if bExplicit:
-               PartPriorities.append([testicles,9])
-               PartPriorities.append([head,10])
-               PartPriorities.append([asshole,11])
+        if bExplicit:
+            PartPriorities.append([balls,9])
+            PartPriorities.append([head,10])
+            #PartPriorities.append([asshole,11])
           
-          PartGroups = []
+        PartGroups = []
           
-          if iNum == 3:
-               for part1 in PartPriorities: #skin 6
-                    for part2 in PartPriorities[PartPriorities.index(part1) + 1:]:
-                         if part2[1] == part1[1] and not part2[0] == part1[0]:
-                              for part3 in PartPriorities[PartPriorities.index(part2) + 1:]:
-                                   if part3[1] > part2[1] or (part3[1] == part2[1] and not part3[0] == part2[0]):
-                                        PartGroups.append([part1[0],part2[0],part3[0]])
+        if iNum == 3:
+            for part1 in PartPriorities: #skin 6
+                for part2 in PartPriorities[PartPriorities.index(part1) + 1:]:
+                    if part2[1] > part1[1] or (part2[1] == part1[1] and not part2[0] == part1[0]):
+                        for part3 in PartPriorities[PartPriorities.index(part2) + 1:]:
+                            if part3[1] > part2[1] or (part3[1] == part2[1] and not part3[0] == part2[0]):
+                                PartGroups.append([part1[0],part2[0],part3[0]])
                          
-          elif iNum == 4:
-               for part1 in PartPriorities:
-                    for part2 in PartPriorities[PartPriorities.index(part1) + 1:]:
-                         if part2[1] > part1[1] or (part2[1] == part1[1] and not part2[0] == part1[0]):
-                              for part3 in PartPriorities[PartPriorities.index(part2) + 1:]:
-                                   if part3[1] > part2[1] or (part3[1] == part2[1] and not part3[0] == part2[0]):
-                                        for part4 in PartPriorities[PartPriorities.index(part3) + 1:]:
-                                             if part4[1] > part3[1] or (part4[1] == part3[1] and not part4[0] == part3[0]):
-                                                  PartGroups.append([part1[0],part2[0],part3[0],part4[0]])
+        elif iNum == 4:
+            for part1 in PartPriorities:
+                for part2 in PartPriorities[PartPriorities.index(part1) + 1:]:
+                    if part2[1] > part1[1] or (part2[1] == part1[1] and not part2[0] == part1[0]):
+                        for part3 in PartPriorities[PartPriorities.index(part2) + 1:]:
+                            if part3[1] > part2[1] or (part3[1] == part2[1] and not part3[0] == part2[0]):
+                                for part4 in PartPriorities[PartPriorities.index(part3) + 1:]:
+                                    if part4[1] > part3[1] or (part4[1] == part3[1] and not part4[0] == part3[0]):
+                                        PartGroups.append([part1[0],part2[0],part3[0],part4[0]])
      
-          else:
-               for part1 in PartPriorities:
-                    for part2 in PartPriorities[PartPriorities.index(part1) + 1:]:
-                         if part2[1] > part1[1] or (part2[1] == part1[1] and not part2[0] == part1[0]):
-                              for part3 in PartPriorities[PartPriorities.index(part2) + 1:]:
-                                   if part3[1] > part2[1] or (part3[1] == part2[1] and not part3[0] == part2[0]):
-                                        for part4 in PartPriorities[PartPriorities.index(part3) + 1:]:
-                                             if part4[1] > part3[1] or (part4[1] == part3[1] and not part4[0] == part3[0]):
-                                                  for part5 in PartPriorities[PartPriorities.index(part4) + 1:]:
-                                                       if part5[1] > part4[1] or (part5[1] == part4[1] and not part5[0] == part4[0]):
-                                                            PartGroups.append([part1[0],part2[0],part3[0],part4[0],part5[0]])
-          
-          SelectedParts = PartGroups[randint(0,len(PartGroups) - 1)]
+        else:
+            for part1 in PartPriorities:
+                for part2 in PartPriorities[PartPriorities.index(part1) + 1:]:
+                    if part2[1] > part1[1] or (part2[1] == part1[1] and not part2[0] == part1[0]):
+                        for part3 in PartPriorities[PartPriorities.index(part2) + 1:]:
+                            if part3[1] > part2[1] or (part3[1] == part2[1] and not part3[0] == part2[0]):
+                                for part4 in PartPriorities[PartPriorities.index(part3) + 1:]:
+                                    if part4[1] > part3[1] or (part4[1] == part3[1] and not part4[0] == part3[0]):
+                                        for part5 in PartPriorities[PartPriorities.index(part4) + 1:]:
+                                            if part5[1] > part4[1] or (part5[1] == part4[1] and not part5[0] == part4[0]):
+                                                PartGroups.append([part1[0],part2[0],part3[0],part4[0],part5[0]])
+        
+        SelectedParts = None
+        
+        if len(PartGroups) > 1:
+            SelectedParts = PartGroups[randint(0,len(PartGroups) - 1)]
+        elif len(PartGroups) == 1:
+            SelectedParts = PartGroups[0]
 
-          iLoops = 0
-          while iLoops < iNum:
-               sBodyDesc += self.GetNakedBodyPartDesc(SelectedParts[iLoops], bAllowLongDesc, sPossessive = sPossessive)
+        iLoops = 0
+        while iLoops < iNum:
+            sBodyDesc += self.GetNakedBodyPartDesc(SelectedParts[iLoops], bAllowLongDesc, sPossessive = sPossessive)
                
-               if iLoops == iNum - 2:  
-                    sBodyDesc += sDivideChar + " and "
-               elif iLoops < iNum - 2:
-                    sBodyDesc += sDivideChar + " "
-               iLoops = iLoops + 1
+            if iLoops == iNum - 2:  
+                sBodyDesc += sDivideChar + " and "
+            elif iLoops < iNum - 2:
+                sBodyDesc += sDivideChar + " "
+            iLoops = iLoops + 1
 
-          return sBodyDesc
+        return sBodyDesc
           
-     
-                    
-     def GetRandomIntimateParts(self, iNum, bIncludeInners, bAllowShortDesc = False):
-          Parts = []
-          AllParts = []
+ 
+    def GetRandomIntimateParts(self, iNum, bIncludeInners, bAllowShortDesc = False):
+        Parts = []
+        AllParts = []
           
-          if bIncludeInners:
-               AllParts.append(self.Shoulders.RandomDescription(bAllowShortDesc = bAllowShortDesc))
-               AllParts.append(self.Chest.RandomDescription(bAllowShortDesc = bAllowShortDesc))
-               AllParts.append(self.Legs.RandomDescription(bAllowShortDesc = bAllowShortDesc))
-               AllParts.append(self.Ass.RandomDescription(bAllowShortDesc = bAllowShortDesc))
-               AllParts.append(self.Penis.RandomDescription(bAllowShortDesc = bAllowShortDesc))
-               AllParts.append(self.Penis.Head.RandomDescription(bAllowShortDesc = bAllowShortDesc))
-               AllParts.append(self.Penis.Testicles.RandomDescription(bAllowShortDesc = bAllowShortDesc))
-          else:
-               AllParts.append(self.RandomDescription(bAllowShortDesc = bAllowShortDesc))
-               AllParts.append(self.Shoulders.RandomDescription(bAllowShortDesc = bAllowShortDesc))
-               AllParts.append(self.Chest.RandomDescription(bAllowShortDesc = bAllowShortDesc))
-               AllParts.append(self.Legs.RandomDescription(bAllowShortDesc = bAllowShortDesc))
-               AllParts.append(self.Ass.RandomDescription(bAllowShortDesc = bAllowShortDesc))
-               AllParts.append(self.Penis.RandomDescription(bAllowShortDesc = bAllowShortDesc))
+        if bIncludeInners:
+            AllParts.append(self.Shoulders.RandomDescription(bAllowShortDesc = bAllowShortDesc))
+            AllParts.append(self.Chest.RandomDescription(bAllowShortDesc = bAllowShortDesc))
+            AllParts.append(self.Legs.RandomDescription(bAllowShortDesc = bAllowShortDesc))
+            AllParts.append(self.Ass.RandomDescription(bAllowShortDesc = bAllowShortDesc))
+            AllParts.append(self.Penis.RandomDescription(bAllowShortDesc = bAllowShortDesc))
+            AllParts.append(self.Penis.Head.RandomDescription(bAllowShortDesc = bAllowShortDesc))
+            AllParts.append(self.Penis.Testicles.RandomDescription(bAllowShortDesc = bAllowShortDesc))
+        else:
+            AllParts.append(self.RandomDescription(bAllowShortDesc = bAllowShortDesc))
+            AllParts.append(self.Shoulders.RandomDescription(bAllowShortDesc = bAllowShortDesc))
+            AllParts.append(self.Chest.RandomDescription(bAllowShortDesc = bAllowShortDesc))
+            AllParts.append(self.Legs.RandomDescription(bAllowShortDesc = bAllowShortDesc))
+            AllParts.append(self.Ass.RandomDescription(bAllowShortDesc = bAllowShortDesc))
+            AllParts.append(self.Penis.RandomDescription(bAllowShortDesc = bAllowShortDesc))
                
-          for x in sorted(sample(range(0, len(AllParts)), iNum)):
-               Parts.append(AllParts[x])
+        for x in sorted(sample(range(0, len(AllParts)), iNum)):
+            Parts.append(AllParts[x])
                
-          return Parts
+        return Parts
