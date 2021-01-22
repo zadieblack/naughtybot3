@@ -839,49 +839,54 @@ class TweetTxtGen32(TweetTxtGen):
           return sText
 
 class TweetTxtGen33(TweetTxtGen):
-     # "A wild fuckfest!" -Abraham Lincoln
-     def __init__(self): 
-         super().__init__(ID = 33, Priority = GenPriority.High)
+    # "A wild fuckfest!" -Abraham Lincoln
+    def __init__(self): 
+        super().__init__(ID = 33, Priority = GenPriority.High)
      
-     def GenerateTweet(self):
-          super().GenerateTweet()
-          sText = ""
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sText = ""
           
-          Adjs = WordList(["thrilling", "wild", "sensual", "perverted", "raunchy", "tasteless", "lascivious", "erotic", "horny", 
-                                   "delightful", "sinful", "arousing", "naughty", "depraved", "lustful", "wicked", "outrageous", "delicious", 
-                                   "stimulating", "sexy", "provocative", "lewd", "wicked", "shameless", "stimulating", "kinky", "juicy",
-                                   "wanton"])
-          Celebs = WordList(["Abraham Lincoln", "Winston Churchill", "Barak Obama", "Mother Theresa", 
-                                   "Salman Rushdie", "Albert Einstein", "Hillary Clinton", "Isaac Asimov", "Jonathan Franzen", 
-                                   "Cormac McCarthy", "Ghandi", "Boutros Boutros-Ghali", "Bob Dylan", "The Dalai Lama", "Elon Musk", 
-                                   "Warren Buffett", "Stephen King", "Bill Gates", "Billy Graham", "Jimmy Carter", "Oprah Winfrey",
-                                   "Neil Armstrong", "Stephen Hawking", "Al Gore", "Bernie Sanders"])
-          
-          if CoinFlip():
-               sAdj1 = Adjs.GetWord()
-               sAdj2 = Adjs.GetWord(NotList = [sAdj1])
-               sText = "\"" + sAdj1.title() + " and " + sAdj2 + "!\"\n"
-          elif CoinFlip():
-               sAdj = Adjs.GetWord()
-               if sAdj[0] in ('a','e','i','o','u'):
-                    sText = "\"An " + sAdj + " fuckfest!\"\n"
-               else: 
-                    sText = "\"A " + sAdj + " fuckfest!\"\n"
-          elif CoinFlip():
-               sAdj = Adjs.GetWord()
-               sText = "\"" + sAdj.title() + " AF!\"\n"
-          elif CoinFlip():
-               sText = "\"I'm so horny for this!\"\n" 
-          elif CoinFlip():
-               sText = "\"I got off on this!\"\n" 
-          elif CoinFlip():
-               sText = "\"This is some kinky shit, but I'm into it!\"\n" 
-          else:
-               sText = "\"What the fuck did I just read??\"\n" 
+        Adjs = WordList(["thrilling", "wild", "sensual", "perverted", "raunchy", "tasteless", "lascivious", "erotic", "horny", 
+                                "delightful", "sinful", "arousing", "naughty", "depraved", "lustful", "wicked", "outrageous", "delicious", 
+                                "stimulating", "sexy", "provocative", "lewd", "wicked", "shameless", "stimulating", "kinky", "juicy",
+                                "wanton"])
+        Celebs = WordList(["Abraham Lincoln", "Winston Churchill", "Barak Obama", "Mother Theresa", 
+                                "Salman Rushdie", "Albert Einstein", "Hillary Clinton", "Isaac Asimov", "Jonathan Franzen", 
+                                "Cormac McCarthy", "Ghandi", "Boutros Boutros-Ghali", "Bob Dylan", "The Dalai Lama", "Elon Musk", 
+                                "Warren Buffett", "Stephen King", "Bill Gates", "Billy Graham", "Jimmy Carter", "Oprah Winfrey",
+                                "Neil Armstrong", "Stephen Hawking", "Al Gore", "Bernie Sanders", "Dr. Anthony Fauci"])
+        iRand = randint(1,8) 
+        if iRand == 1:
+            sAdj1 = Adjs.GetWord()
+            sAdj2 = Adjs.GetWord(NotList = [sAdj1])
+            sText = "\"" + sAdj1.title() + " and " + sAdj2 + "!\"\n"
+        elif iRand == 2:
+            sAdj = Adjs.GetWord()
+            if sAdj[0] in ('a','e','i','o','u'):
+                sText = "\"An " + sAdj + " fuckfest!\"\n"
+            else: 
+                sText = "\"A " + sAdj + " fuckfest!\"\n"
+        elif iRand == 3:
+            sAdj = Adjs.GetWord()
+            sText = "\"" + sAdj.title() + " AF!\"\n"
+        elif iRand == 4:
+            sText = "\"I'm so horny for this!\"\n" 
+        elif iRand == 5:
+            sText = "\"I got off on this!\"\n" 
+        elif iRand == 6:
+            sText = "\"This is some kinky shit, but I'm into it!\"\n" 
+        elif iRand == 7:
+            sText = "\"What the fuck did I just read??\"\n" 
+        elif iRand == 8:
+            if CoinFlip():
+                sText = "\"This got me dripping wet!\"\n"
+            else:
+                sText = "\"This got me rock hard!\"\n"
                
-          sText += " ~" + Celebs.GetWord()
+        sText += " ~" + Celebs.GetWord()
           
-          return sText
+        return sText
 
 class TweetTxtGen34(TweetTxtGen):
      # This is widely considered to be the Lord of the Rings of anal fisting books.

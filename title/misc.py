@@ -174,6 +174,7 @@ class AttitudeGoodFemale(WordList):
                'Eager',
                'Elegant',
                'Flirty',
+               'Free-spirited',
                'Gentle',
                'Innocent','Innocent','Innocent',
                'Kind',
@@ -258,8 +259,8 @@ class ClothingFemale(WordList):
 
 class GenModFemale(WordList):
      def __init__(self):
-          super().__init__(['Anal','Anal',
-          'BDSM','BDSM',
+          super().__init__(['BDSM',
+          'Dominant',
           'Erotic',
           'Fetish',
           'Horny',
@@ -414,7 +415,6 @@ class ProfNeutralFemale(WordList):
                'Nurse','Nurse',
                'Nursing Student',
                'Schoolgirl',
-               'School-marm',
                'Secretary','Secretary',
                'Stay-at-Home Mom',
                'Supermodel',
@@ -679,7 +679,6 @@ class TropesGoodFemale(WordList):
                'Soccer Mom',
                'Southern Belle',
                'Teen Mom',
-               'Tomboy',
                'Virgin','Virgin','Virgin'])
           
 # bad girl, bimbo, brat

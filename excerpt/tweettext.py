@@ -573,7 +573,7 @@ class TweetTxtGen20(TweetTxtGen):
                              "Boutros Boutros-Ghali", "Bob Dylan", "The Dalai Lama", "Elon Musk", 
                              "Warren Buffett", "Stephen King", "Bill Gates", "Billy Graham", 
                              "Jimmy Carter", "Oprah Winfrey","Neil Armstrong", "Stephen Hawking", 
-                             "Al Gore"])
+                             "Al Gore", "Dr. Anthony Fauci", "Bill Gates"])
           sAdj1 = Adjs.GetWord()
           sAdj2 = Adjs.GetWord(NotList = [sAdj1])
           
