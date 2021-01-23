@@ -6386,9 +6386,15 @@ class Generator104(ExGen):
 
         return sTweet
 
+# A cloud of steam parted, and Sterling stepped naked out of the Y's shower. Julian furtively admired his 
+# ebony shoulders; his bronzed muscles; his pendulous, hairy gonads; and his tumescent, purple, red head.
+#
+#"You look so tense," said Julian. "Here, let me help you relax."
+#
+#He reached down and put his hands on his step-brother's well-defined ass. Then he began to gently massage it.
 class Generator105(ExGen):
     def __init__(self):
-        super().__init__(ID = 105, Priority = GenPriority.Normal)
+        super().__init__(ID = 105, Priority = GenPriority.High)
      
     def GenerateTweet(self):
         super().GenerateTweet()
@@ -6464,15 +6470,318 @@ class Generator105(ExGen):
 
         return sTweet
 
-#class Generator106(ExGen):
-#    def __init__(self):
-#        super().__init__(ID = 106, Priority = GenPriority.Normal)
-     
-#    def GenerateTweet(self):
-#        super().GenerateTweet()
-#        sTweet = ""
+# "So," said Jane excitedly, "tell me all about your date with Eric!"
 
-#        return sTweet
+# "It was so romantic," sighed Penelope. "He gave me a red rose, then he took me to Carlisle's 
+# for dinner. Afterward, we rode bicycles on the beach and danced to salsa music. Then I let him put
+# his balls in my mouth behind the club."
+class Generator106(ExGen):
+    def __init__(self):
+        super().__init__(ID = 106, Priority = GenPriority.High)
+     
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
+
+        sFriendName = names.PlainNamesFemale().FirstName()
+        sHerName = self.FemaleName.FirstName()
+        sHisName = self.MaleName.FirstName()
+
+        
+        Dick = self.MaleBodyParts.Penis
+        Balls = Dick.Testicles
+        FemAss = self.FemBodyParts.Ass
+        FemAnus = FemAss.Anus
+        Tits = self.FemBodyParts.Breasts
+        Pussy = self.FemBodyParts.Vagina
+
+
+        pre_DateParts = WordList(["gave me a single red rose. Then he",
+                                  "gave me a dozen red roses. Then he",
+                                  "gave me a pink carnation. Then he",
+                                  "picked me up in a convertible. He",
+                                  "picked me up in a limo. He",
+                                  "picked me up in a Porsche. He",
+                                  "picked me up in a Corvette. He",
+                                  "picked me up in a stretch limo. He",
+                                  "was dressed in a three-piece suit. He",
+                                  "was dressed in a tuxedo. He",
+                                  "was wearing a suit and black tie. He",
+                                  "was wearing a suit and a bowler hat. He",
+                                  ])
+
+        # He took me to _place_ for dinner
+        Restaurants = WordList(["Carlisle's",
+                                "Il Buco",
+                                "this French Korean fusion place",
+                                "this Italian Japanese fusion place",
+                                "this Mexican Thai fusion place",
+                                "this Brazillian Chinese fusion place",
+                                "Sauvage",
+                                "The Winery",
+                                "The Plaza Hotel",
+                                "Odette's",
+                                "The Clove Club",
+                                "Piazza Duomo",
+                                "Don Julio's",
+                                "The Bluebird Cafe",
+                                "Tim Finnegan’s",
+                                "El Greco’s",
+                                "The Blue Lotus",
+                                "Max's Bistro",
+                                "The Gazebo",
+                                "Mickey's Kitchen",
+                                "Sheikh Chic",
+                                ])
+        sRestaurant = Restaurants.GetWord()
+
+        activity_DateParts = WordList(["went rollerblading at the park",
+                                       "rented a tandem bicycle",
+                                       "took a barefoot walk on the beach",
+                                       "went skating at a roller rink",
+                                       "went ice skating on a frozen pond",
+                                       "watched the sun set at the beach",
+                                       "picked cherries in an orchard",
+                                       "walked on the boardwalk",
+                                       "watched the sun set",
+                                       "had wine and dessert at " + Restaurants.GetWord(NotList = [sRestaurant]),
+                                       ])
+
+        lateactivity_DateParts = WordList(["listened to a band play at the jazz club",
+                                           "listened to a blues band play at a club",
+                                           "held hands",
+                                           "saw a comedy show at Bert's",
+                                           "went ballroom dancing",
+                                           "went salsa dancing",
+                                           "went dancing at Club 101",
+                                           "went country line dancing",
+                                           "drank coffee at an outdoor cafe",
+                                           "went to a wine tasting at The Vineyard",
+                                           "caught a movie at a drive in theater",
+                                           "watched a scary movie",
+                                           "got coffee at Frank's Diner",
+                                           "drank coffee at " + Restaurants.GetWord(NotList = [sRestaurant]),
+                                           ])
+
+        sTweet += "\"So,\" said " + sFriendName + " " + WordList(["breathlessly","eagerly","excitedly"]).GetWord() + ", "
+        sTweet += "\"tell me all about your date with " + sHisName + "!\"\n\n"
+        sTweet += "\"It was so romantic,\" " + WordList(["rhapsodized", "sighed","swooned"]).GetWord() + " " + sHerName + " "
+        sTweet += WordList(["dreamily","fervently","passionately","rapturously"]).GetWord() + ". "
+        sTweet += "\"He " + pre_DateParts.GetWord() 
+        sTweet += " took me to " + sRestaurant + " for dinner. "
+        sTweet += "Afterward, we " + activity_DateParts.GetWord() + " and "
+        sTweet += lateactivity_DateParts.GetWord() + ". Then "
+
+        bPart2 = True
+        #naughty activity
+        iRand = randint(1,13)
+        if iRand == 1:
+            # tea bagging
+            sTweet += "I let him put his balls in my mouth"
+        elif iRand == 2:
+            # fellatio
+            sTweet += "I " + WordList(["blew him",
+                                       "deep-throated him",
+                                       "gave him head",
+                                       "sucked him off",
+                                       "sucked his cock",
+                                       "sucked his " + Dick.ShortDescription()
+                                      ]).GetWord()
+            if CoinFlip():
+                sTweet += " and stuck my thumb up his " + self.MaleBodyParts.Ass.Anus.ShortDescription()
+                bPart2 = False
+        elif iRand == 3:
+            # rode his dick
+            sTweet += "I " + WordList(["bounced on", "rode"]).GetWord() + " his " + Dick.MediumDescription() 
+            if CoinFlip():
+                sTweet += " " + WordList(["bareback","without a condom"]).GetWord()
+            if CoinFlip():
+                sTweet + " for like an hour"
+        elif iRand == 4:
+            # anal
+            sTweet += "he " + WordList(["butt-fucked me",
+                                        "fucked me in the ass",
+                                        "fucked my ass",
+                                        "fucked my " + FemAss.ShortDescription(),
+                                        "fucked my " + FemAnus.ShortDescription()
+                                        ]).GetWord()
+        elif iRand == 5:
+            # handjob
+            sTweet += "I " + WordList(["beat his meat",
+                                      "diddled his " + Dick.ShortDescription(),
+                                      "jacked him off",
+                                      "jerked him off",
+                                      "wanked him off"
+                                      ]).GetWord()
+        elif iRand == 6:
+            # fucked
+            sTweet += "he " + WordList(["fucked my brains out",
+                                        "fucked me from behind",
+                                        "pounded my pussy",
+                                        "raw dogged me",
+                                        "rode me bareback",
+                                        "rode me doggy style"]).GetWord()
+        elif iRand == 7:
+            # sat on his face
+            sTweet += "I sat on his face and made him " + WordList(["eat me out",
+                                                                    "eat my " + Pussy.ShortDescription(),
+                                                                    "lick my " + Pussy.ShortDescription(),
+                                                                    "suck my " + Pussy.ShortDescription(),
+                                                                    ]).GetWord()
+        elif iRand == 8:
+            # titty fuck
+            sTweet += "I lubed up his " + Dick.ShortDescription() + " with my saliva and let him "
+            sTweet += WordList(["fuck my titties","tit-fuck me","titty-fuck me"]).GetWord()
+        elif iRand == 9:
+            # spit roasted
+            sTweet += "two of his " + WordList(["buddies","friends"]).GetWord() + " spit-roasted me"
+        elif iRand == 10:
+            # masturbation
+            sTweet += "I " + WordList(["diddled myself","diddled my " + Pussy.ShortDescription(),
+                                       "frigged myself","frigged my" + Pussy.ShortDescription(),
+                                       "jilled myself",
+                                       "played with myself","played with my " + Pussy.ShortDescription(),
+                                       "rubbed one out",
+                                       ]).GetWord() + " "
+            if CoinFlip():
+                sTweet += "while he watched"
+            else:
+                sTweet += "while he filmed me with his phone"
+            bPart2 = False
+        elif iRand == 11:
+            # ate my ass
+            sTweet += "he " + WordList(["ate my ass","ate my " + FemAnus.ShortDescription(),
+                                        "licked my " + FemAnus.ShortDescription(),
+                                        "tongued my " + FemAnus.ShortDescription(),
+                                        "gave me a rim-job",
+                                        ]).GetWord()
+        elif iRand == 12:
+            # BDSM
+            sTweet += "he " + WordList(["chained me in a cellar",
+                                        "tied me up spread-eagle",
+                                        "put me in a latex gimp suit",
+                                        "hand-cuffed me to a radiator",
+                                        "put a steel collar on my neck",
+                                        "made me wear nipple clamps",
+                                        "ball-gagged me",
+                                        ]).GetWord()
+            sTweet += " and "
+            sTweet += WordList(["spanked me with a leather paddle",
+                                "flogged me with a leather whip",
+                                "whipped my ass with a riding crop",
+                                "used a clit pump on me",
+                                "inserted an XL butt plug into my " + FemAnus.ShortDescription(),
+                                "gave me an enema",
+                                "used a steel dildo on me",
+                                "dripped hot wax on my tits",
+                                "stuffed ben wa balls up my ass",
+                                "tickled me til I pissed myself",
+                                "forced me to ride a sybian until I sceamed",
+
+                                ]).GetWord()
+            bPart2 = False
+        elif iRand == 13:
+            # hardcoreporn
+            sTweet += "we watched hardcore porn and I "
+            sTweet += WordList(["used a vibrator on myself",
+                                "stimulated my clit with a magic wand",
+                                "rode a leather sybian",
+                                ]).GetWord() + " "
+            sTweet += "until I squirted"
+            bPart2 = False
+
+        # naughty twist
+        if bPart2:
+            iRand = randint(1,10)
+            if iRand == 1:
+                # place
+                sTweet += " " + WordList(["behind the bar",
+                                        "behind a strip club",
+                                        "at a strip club",
+                                        "on the hood of his car",
+                                        "in the back of a van",
+                                        "in the back of his truck",
+                                        "in an alley",
+                                        "in an alley behind a club",
+                                        "on a mattress in an alley",
+                                        "under the pier",
+                                        "in the men's room",
+                                        "in the women's restroom",
+                                        "in a parking garage",
+                                        "in the back of a movie theater",
+                                        ]).GetWord()
+            elif iRand == 2:
+                # insertion
+                sTweet += ". And then later " 
+                sTweet += WordList(["he watched",
+                                    "he and his buddies watched",
+                                    "he and his friends watched",
+                                    "he filmed"
+                                    ]).GetWord() + " "
+                sTweet += "me " + WordList(["shove","stuff","stick"]).GetWord() + " "
+                sTweet += WordList(["an entire potato","a pickle","a beer bottle","a cucumber",
+                                    "my fist","a bottle of wine","a Coke can"]).GetWord() + " "
+                sTweet += "up my " + WordList(["ass","asshole","cooch","cunt","pussy","twat"]).GetWord() 
+            elif iRand == 3:
+                # facial
+                sTweet += " until he " + WordList(["blew his load",
+                                                   "came",
+                                                   "creamed",
+                                                   "nutted",
+                                                   "shot his wad",
+                                                   "splooged"]).GetWord() + " "
+                sTweet += "all over my " + WordList(["face","face","tits","tiddies"]).GetWord()
+            elif iRand == 4:
+                # video
+                sTweet += " while he filmed me with his phone"
+            elif iRand == 5:
+                # pee
+                sTweet += ". Later he asked me to " + WordList(["pee on him",
+                                                                "piss on him",
+                                                                "take a shit on him"]).GetWord()
+            elif iRand == 6:
+                # audience
+                sTweet += " while " + WordList(["one of","two of","three of","a bunch of"
+                                               ]).GetWord() + " "
+                sTweet += "his " + WordList(["friends","buddies","homies","bros"
+                                              ]).GetWord() + " watched"
+            elif iRand == 7:
+                # threesome
+                sTweet += ". And then he and " + WordList(["this guy from the club",
+                                                     "this other dude",
+                                                     "some friend of his",
+                                                     "some other guy",
+                                                     "one of his homies",
+                                                     "this guy we met at a bar"
+                                                     ]).GetWord() + " "
+                sTweet += WordList(["double-teamed me","DP'd me","spit-roasted me"]).GetWord()
+            elif iRand == 8:
+                # lesbian
+                sTweet += ". And later I " + WordList(["made out with","scissored","ate out","twerked naked on"]).GetWord() + " "
+                sTweet +=  WordList(["this other girl",
+                                     "this other chick",
+                                     "this ho from the club",
+                                     "this bitch from the bar",
+                                     "a hooker",
+                                     ]).GetWord() + " while he watched"
+            elif iRand == 9:
+                # all night long
+                sTweet += " all night long"
+            elif iRand == 10:
+                # gross drinking
+                sTweet += ". Later I chugged " + WordList(["like a gallon of",
+                                                             "a pint glass of",
+                                                             "a small bottle of",
+                                                             "a glass of"])
+                if CoinFlip():
+                    sTweet += " his " + WordList(["piss","pee","urine"]).GetWord()
+                else:
+                    sTweet += " his " + self.MaleBodyParts.Semen.MediumDescription()
+            
+
+        sTweet += ".\""
+
+        return sTweet
 
 #class Generator107(ExGen):
 #    def __init__(self):
