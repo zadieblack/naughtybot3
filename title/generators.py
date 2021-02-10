@@ -1311,7 +1311,7 @@ class Generator31(TitleGen):
         while (sAttitude == "" and sPhysChar == "") \
         or (len(sAttitude) > len(sPhysChar) + 3 or (len(sAttitude) < len(sPhysChar) - 3)) \
         or (len(sAttitude) + len(sPhysChar) > 16):
-            sAttitude = WordList(titmisc.AttitudeFemale().GetWordList() + titmisc.PhysCharFemale().GetWordList()).GetWord(NotList = AttitudeNotList)
+            sAttitude = WordList(titmisc.AttitudeFemale().GetWordList() + titmisc.PhysCharFemale().GetWordList()).GetWord(NotList = AttitudeNotList + PhysCharNotList)
             sPhysChar = titmisc.PhysCharFemale().GetWord(NotList = [sAttitude] + PhysCharNotList)
 
         NotGirlList = NotGirlList + [sAttitude, sPhysChar]
