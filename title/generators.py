@@ -1323,13 +1323,13 @@ class Generator31(TitleGen):
 
         if CoinFlip():
             Girl = char.FemaleChar(Type = GirlType.Good, MaxChars = 18,
-                                        NotList = NotGirlList, 
-                                        bAllowSpecies = False)
+                                        NotList = NotGirlList, bAllowTrope = False,
+                                        ExclList = [SpeciesFemale])
             sTweet += "The " + Girl.Desc + "\n"
         else:
             Girl = char.FemaleChar(Type = GirlType.Good, TempType = TempType.Medium,
-                                        NotList = NotGirlList, 
-                                        bAllowSpecies = False)
+                                        NotList = NotGirlList, bAllowTrope = False,
+                                        ExclList = [SpeciesFemale])
             sTweet += sHerName + " the " + Girl.Desc + "\n"
                
         iRand = randint(1,13)
