@@ -42,6 +42,9 @@ import title.chargenerator as titchar
 import title.chartemplates as chartemps
 from title.util import TempType
 
+# from title.generators import GetTweet
+from excerpt.tweettext import BookTitleBuilder
+
 PromoHistoryQ = shutil.HistoryQ(2)
      
 class ExGen(Generator):
@@ -1117,10 +1120,17 @@ class Generator29(ExGen):
           super().GenerateTweet()
           sTweet = ""
           
-          
           sHerName = self.FemaleName.FirstName()
           sHisName = self.MaleName.FirstName()
           sHerName2 = self.FemaleName.FirstName()
+
+          ExclGenList = [12,17,26,30,31,51,54,55,62,67,74,78,79,89,90,133,136,147]
+
+          sBookTitle = BookTitleBuilder()
+
+          ImgTxtGen = GetTweet(bTest = False, bTweet = False, iGeneratorNo = -1, bAllowPromo = False, bAllowFavTweets = False)
+          while int(ImgTxtGen.ID) in ExclGenList or len(ImgTxtGen.ImgTxt) > 55:
+            ImgTxtGen = GetTweet(bTest = False, bTweet = False, iGeneratorNo = -1, bAllowPromo = False, bAllowFavTweets = False)
           
           CombinedNotList = ['cock','bowels','folds']
           
@@ -1129,7 +1139,7 @@ class Generator29(ExGen):
                bFemale = True 
           
           if bFemale:
-               sHerName2 + " found " + sHerName + " "
+               sTweet += sHerName2 + " found " + sHerName + " "
           else:
                sTweet += sHisName + " found " + sHerName + " "
 
@@ -1143,28 +1153,60 @@ class Generator29(ExGen):
           else:
                sTweet += "lying on her bed naked "
                sTweet += "with her nose in a book and one hand between her thighs. She was "
-          sTweet += WordList(["frigging","massaging","rubbing","stroking","playing with",
-                                   "carressing","fingering"]).GetWord() + " "
           
-          iRand = randint(1,5)
-          if iRand == 1:
-               sTweet += "her " + self.FemBodyParts.Vagina.InnerLabia.ShortDescription(NotList = CombinedNotList)
-          elif iRand == 2:
-               sTweet += "her " + self.FemBodyParts.Vagina.OuterLabia.ShortDescription(NotList = CombinedNotList)
-          elif iRand == 3:
-               sTweet += "her " + self.FemBodyParts.Ass.Anus.ShortDescription(NotList = CombinedNotList)
-          elif iRand == 3:
-               sTweet += "her " + self.FemBodyParts.Vagina.Clitoris.ShortDescription(NotList = CombinedNotList)
-          else: 
+          
+          iRand = randint(1,3)
+          if iRand < 3:
+               #vaginal masturbation
+               sTweet += WordList(["frigging","vigorously frigging",
+                              "massaging","sensually messaging",
+                              "rubbing","vigorously rubbing","urgently rubbing",
+                              "stroking","sensually stroking","gently stroking",
+                              "playing with",
+                              "carressing","sensually carressing",
+                              "fingering"]).GetWord() + " "
                sTweet += "her " + self.FemBodyParts.Vagina.ShortDescription(NotList = CombinedNotList)
-          sTweet += " with " + WordList(["urgent","naughty","sensual","moistened"]).GetWord() + " fingers.\n\n"
+          else:
+               sTweet += WordList(["penetrating","thrusting into","violating"]).GetWord() + " "
+               sTweet += "her " + self.FemBodyParts.Ass.Anus.ShortDescription(NotList = CombinedNotList) + " "
+               sTweet += "with " + WordList(["her finger","two fingers","three fingers","a realistic black dildo",
+                                             "a large metal butt plug","a buzzing vibrator","her balled up fist",
+                                             "her lubricated fist","a huge horse-cock dildo",
+                                             ]).GetWord()
+
+          sTweet += ".\n\n"
           sTweet += "\"What " + WordList(["the hell", "the fuck", "in gods name"]).GetWord() + " are you reading?\" "
           if bFemale:
                sTweet += "she "
           else:
                sTweet += "he "
-          sTweet += "asked.\n\n"
-          sTweet += "\"" + misc.BookTitleBuilder().GetTitle() + ",\" " + sHerName + " " + self.VMoan.Past() + "."
+          sTweet += "demanded.\n\n"
+          sTweet += "\"" + sBookTitle + ",\" " + sHerName + " said. "
+
+          Kinks = WordList(["age play","anal creampies","extreme anal insertion","anal threesomes", 
+                            "deep fisting","anal fisting","extreme BDSM","cum-swapping","bukkake",
+                            "fucking machines","rope bondage","pee-drinking","hotwife BBC cuckolding",
+                            "hotwife interracial cuckolding","hotwife anal cuckolding","hotwife spit-roasting",
+                            "erotic asphyxiation","double penetration","triple penetration",
+                            "MMF threesomes","MFF threesomes","MMM threesomes","gay orgies",
+                            "gay anal gangbangs","fifty-man anal gangbangs","lesbian strap-ons",
+                            "anal domination","forced feminization","water-sports",
+                            "extreme deep-throating","swingers parties","tea-bagging","foot fetishes",
+                            "cock-and-ball torture","erotic prostate massage","cuck-queaning",
+                            "lesbian cuck-queaning","enemas","pegging","butt stuff","sodomy",
+                            "anal gaping","spanking","paddling","public sex","clit clamps",
+                            "chastity belts","anal hooks","key parties","erotic furniture",
+                            "furry sex","strap-on pegging","glory holes","werewolf knotting",
+                            "latex fetishes","gay pseudo-incest","lesbian pseudo-incest",
+                            ])
+
+          Settings = WordList(["the antebellum South","Victorian England","colonial America","the old west",
+                               "Rennaissance Italy","Regency-era England","Belle Epoque France",
+                               "revolutionary France","the American civil war","Tstarist Russia",
+                               "occupied Paris during World War II","the War of the Roses",
+                               "the British Raj","medieval France",
+                               ])
+          sTweet += "\"It's a romance about love and " + Kinks.GetWord() + " set in " + Settings.GetWord() + "!\""
           
           return sTweet
           

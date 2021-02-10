@@ -1298,16 +1298,23 @@ class Generator31(TitleGen):
         sHerName = NamesFemale().FirstName()
           
         NotGirlList = ["Harem","Succubus","Futa"]
+        PhysCharNotList = ["Attractive","Beautiful","Comely","Bubble","Cute",
+                           "Flat","Leggy","Little","Nubile","Skinny","Sporty",
+                           "Skinny","Tender","Tiny","Young","Chubby"]
+        AttitudeNotList = ["Classy","Anal","Daring","Elegant","Foxy","Kind",
+                           "Revealing","Salacious","Soft","Virtuous",
+                           "Wholesome","X-rated"]
           
         sAttitude = ""
         sPhysChar = ""
 
-        while sAttitude == "" or len(sAttitude) > 8:
-            sAttitude = titmisc.AttitudeGoodFemale().GetWord()
-            NotGirlList = NotGirlList + [sAttitude]
-        while sPhysChar == "" or len(sPhysChar) > 8:
-            sPhysChar = titmisc.PhysCharFemale().GetWord(NotList = [sAttitude])
-            NotGirlList = NotGirlList + [sPhysChar]
+        while (sAttitude == "" and sPhysChar == "") \
+        or (len(sAttitude) > len(sPhysChar) + 3 or (len(sAttitude) < len(sPhysChar) - 3)) \
+        or (len(sAttitude) + len(sPhysChar) > 16):
+            sAttitude = WordList(titmisc.AttitudeFemale().GetWordList() + titmisc.PhysCharFemale().GetWordList()).GetWord(NotList = AttitudeNotList)
+            sPhysChar = titmisc.PhysCharFemale().GetWord(NotList = [sAttitude] + PhysCharNotList)
+
+        NotGirlList = NotGirlList + [sAttitude, sPhysChar]
 
         if CoinFlip():
             sTweet = sPhysChar + " & " + sAttitude + "\n"

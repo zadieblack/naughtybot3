@@ -660,10 +660,10 @@ class TweetTxtGen28(TweetTxtGen):
           sText = "Of course in real life you should never attempt " 
           sText += WordList(["tentacle", "unicorn", "centaur", "man-o-taur", "gargoyle", "werewolf", "merman", "dwarf", "dragon", "orc", "troll", "goat-man", "futanari", "alien", "tentacle monster", "clown", "sumo wrestler", "were-horse", "t-rex", "velociraptor", "dinosaur", "reverse merman", "cyborg", "were-shark"]).GetWord() + " "
           sText += WordList(["anal", "double anal", "fisting", "nipple play", "incest", "twincest", "cum-swapping", 
-                                   "bukkake", "rope play", "pee-drinking", "cuckolding", "69", "erotic asphyxiation", 
-                                   "double gangbang", "double penetration", "triple penetration", "BDSM", "bondage", 
-                                   "water-sports", "public humiliation", "lactation", "age play", "edging", 
-                                   "forced orgasm", "domination", "submission"]).GetWord() + " "
+                                "bukkake", "rope play", "pee-drinking", "cuckolding", "69", "erotic asphyxiation", 
+                                "double gangbang", "double penetration", "triple penetration", "BDSM", "bondage", 
+                                "water-sports", "public humiliation", "lactation", "age play", "edging", 
+                                "forced orgasm", "domination", "submission"]).GetWord() + " "
           sText += "without " + WordList(["strict medical supervision", "a note from your doctor", "waiting at least two hours after eating", "guidance from a trained professional", "help from a licensed dominatrix", "the buddy system", "regular checkups", "notifying the police", "an ambulance standing by", "a certified SCUBA instructor", "a friend that you can trust", "telling someone where you are", "paramedics on hand", "medical training", "power of attorney"]).GetWord()
           
           return sText

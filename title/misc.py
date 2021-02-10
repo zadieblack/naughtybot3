@@ -320,7 +320,7 @@ class PhysCharFemale(WordList):
                'Attractive',
                'Bare-Shaven',
                'Beautiful',
-               'Big Bottomed',
+               'Big-Bottomed',
                'Big-Titty',
                'Bikini-Bod',
                'Boobalicious',
