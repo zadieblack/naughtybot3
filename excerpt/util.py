@@ -16,6 +16,7 @@ TESTIMAGE_PATH = 'testimages/'
 
 Q_SIZE = 30
 HISTORYQ_FILENAME = 'excerpt/history_q.txt'
+TWEETTXT_Q_SIZE = 20
 TWEETTXT_HISTORYQ_FILENAME = 'title/tweettxt_history_q.txt'
 
 TAG_PEN = "sex act with penetration scene"

@@ -919,7 +919,7 @@ class TweetTxtGen29(TweetTxtGen):
 class TweetTxtGen30(TweetTxtGen):
     # Yes, this book does contain some man-on-horse frottage scenes, but it's all consensual!
     def __init__(self): 
-         super().__init__(ID = 47, Priority = GenPriority.High)
+         super().__init__(ID = 30, Priority = GenPriority.High)
      
     def GenerateTweet(self):
         super().GenerateTweet()
@@ -1041,6 +1041,55 @@ class TweetTxtGen30(TweetTxtGen):
             sText += "a scene of " + MaleJobs.GetWord() + " pee-drinking"
         sText += ", but it's all consensual!"
 
+        return sText
+
+class TweetTxtGen31(TweetTxtGen):
+# Finally, a book that combines my fetishes for [blank] and [blank]!
+    def __init__(self): 
+        super().__init__(ID = 31, Priority = GenPriority.High)
+     
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sText = ""
+
+        Kinks = WordList(["airline stewardesses","adult diapers","anal hooks","amputees",
+                          "armpit sex","ball gags","being buried alive",
+                          "being covered in mayonnaise","being drowned in quicksand",
+                          "bukkake","catholic schoolgirls","cake farts",
+                          "caning","cannibalism","chastity belts","cheerleaders","clowns",
+                          "cock and ball torture","choking","cum-swapping",
+                          "dental dams","dog collars","douching","enemas","farting","glory holes","furries",
+                          "genital piercings","GILFs","gimp masks","golden showers",
+                          "horse whips","human furniture","latex","male lactation","male pregnancy",
+                          "meat bikinis","motor-boating","mustaches","nipple hair","nipple play",
+                          "nude skydiving","nuns","orgasmic sneezing","pee-drinking","penis pumps","pony play",
+                          "ponytail butt plugs","prosthetic dicks","prosthetic limbs","rectal thermometers",
+                          "scissoring","sex in public","spandex","speedos","tea-bagging","tree sex",
+                          "urethral sounding","wigs",
+                          ])
+
+        TwoKinkList = []
+
+        sKink1 = ""
+        sKink2 = ""
+
+        while len(TwoKinkList) < 1:
+            TwoKinkList.append(Kinks.GetWord(NotList = ["being"]))
+            TwoKinkList.append(Kinks.GetWord(NotList = [TwoKinkList[0]]))
+            if not "being" in TwoKinkList[1]:
+                TwoKinkList.sort()
+
+        sKink1 = TwoKinkList[0]
+        sKink2 = TwoKinkList[1]
+
+        sText += WordList(["Finally","At last","At long last"]).GetWord() 
+        if CoinFlip():
+            sText += "! A "
+        else:
+            sText += ", a "
+        sText += "book that combines my fetishes for "
+        sText += sKink1 + " and " + sKink2 + WordList(["!","."]).GetWord()
+          
         return sText
 
 # class TweetTxtGen24(TweetTxtGen):

@@ -41,7 +41,7 @@ def InitBot(iTweetTimer,
     bTest = False 
      
     titutil.TweetHistoryQ = util.HistoryQWithLog(titutil.HISTORYQ_FILENAME)
-    titutil.TweetTxtHistoryQ = util.HistoryQWithLog(titutil.TWEETTXT_HISTORYQ_FILENAME, iQSize = 25)
+    titutil.TweetTxtHistoryQ = util.HistoryQWithLog(titutil.TWEETTXT_HISTORYQ_FILENAME, iQSize = titutil.TWEETTXT_Q_SIZE)
      
     try:
         api = InitTweepy()

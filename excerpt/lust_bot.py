@@ -44,7 +44,7 @@ def InitBot(iTweetTimer,
     bTest = False 
      
     exutil.TweetHistoryQ = util.HistoryQWithLog(exutil.HISTORYQ_FILENAME)
-    exutil.TweetTxtHistoryQ = util.HistoryQWithLog(exutil.TWEETTXT_HISTORYQ_FILENAME, iQSize = 4)
+    exutil.TweetTxtHistoryQ = util.HistoryQWithLog(exutil.TWEETTXT_HISTORYQ_FILENAME, exutil.TWEETTXT_Q_SIZE)
      
     try:
           

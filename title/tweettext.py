@@ -384,9 +384,11 @@ class TweetTxtGen14(TweetTxtGen):
                              "tax preparation", "Twilight fan fiction",
                              "people promoting their podcast", "Cats: The Movie",
                              "older women discussing their colonoscopies", 
+                             "overbearing moms","hardcore Donald Trump supporters",
                              "Bitcoin investing", "Jazzercize", "the 90's",
                              "essential oil use", "Gwyneth Patlrow's vagina",
                              "hipster beard hygene", "bitchy soccer moms", 
+                             "multilevel marketing schemes",
                              "the music of Ariana Grande"]).GetWord() + "!"
           
           return sText
@@ -841,7 +843,7 @@ class TweetTxtGen32(TweetTxtGen):
 class TweetTxtGen33(TweetTxtGen):
     # "A wild fuckfest!" -Abraham Lincoln
     def __init__(self): 
-        super().__init__(ID = 33, Priority = GenPriority.High)
+        super().__init__(ID = 33, Priority = GenPriority.AboveAverage)
      
     def GenerateTweet(self):
         super().GenerateTweet()
@@ -1263,7 +1265,7 @@ class TweetTxtGen44(TweetTxtGen):
      # I *knew* that Viola shouldn't trust Jack! Not after he called her 
      # vagina a 'fish taco'!
      def __init__(self): 
-         super().__init__(ID = 44, Priority = GenPriority.High)
+         super().__init__(ID = 44, Priority = GenPriority.AboveAverage)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1309,7 +1311,7 @@ class TweetTxtGen45(TweetTxtGen):
 class TweetTxtGen46(TweetTxtGen):
     # This book taught me the tantric sex technique called the "Mexican Gorilla"
     def __init__(self): 
-         super().__init__(ID = 46, Priority = GenPriority.AboveAverage)
+         super().__init__(ID = 46, Priority = GenPriority.Normal)
      
     def GenerateTweet(self):
         super().GenerateTweet()
@@ -1349,7 +1351,7 @@ class TweetTxtGen46(TweetTxtGen):
 class TweetTxtGen47(TweetTxtGen):
     # Yes, this book does contain some man-on-horse frottage scenes, but it's all consensual!
     def __init__(self): 
-         super().__init__(ID = 47, Priority = GenPriority.High)
+         super().__init__(ID = 47, Priority = GenPriority.AboveAverage)
      
     def GenerateTweet(self):
         super().GenerateTweet()
@@ -1473,18 +1475,56 @@ class TweetTxtGen47(TweetTxtGen):
 
         return sText
 
-# class TweetTxtGen44(TweetTxtGen):
-     # The sexy read that was BANNED on Amazon! Now available on Smashwords
-     # ID = 44
-     # Priority = 2
+class TweetTxtGen48(TweetTxtGen):
+# Finally, a book that combines my fetishes for [blank] and [blank]!
+    def __init__(self): 
+        super().__init__(ID = 48, Priority = GenPriority.High)
      
-     # def GenerateTweet(self):
-          # super().GenerateTweet()
-          # sText = ""
-          
-          # return sText
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sText = ""
 
-# class TweetTxtGen44(TweetTxtGen):
+        Kinks = WordList(["airline stewardesses","adult diapers","anal hooks","amputees",
+                          "armpit sex","ball gags","being buried alive",
+                          "being covered in mayonnaise","being drowned in quicksand",
+                          "bukkake","catholic schoolgirls","cake farts",
+                          "caning","cannibalism","chastity belts","cheerleaders","clowns",
+                          "cock and ball torture","choking","cum-swapping",
+                          "dental dams","dog collars","douching","enemas","farting","glory holes","furries",
+                          "genital piercings","GILFs","gimp masks","golden showers",
+                          "horse whips","human furniture","latex","male lactation","male pregnancy",
+                          "meat bikinis","motor-boating","mustaches","nipple hair","nipple play",
+                          "nude skydiving","nuns","orgasmic sneezing","pee-drinking","penis pumps","pony play",
+                          "ponytail butt plugs","prosthetic dicks","prosthetic limbs","rectal thermometers",
+                          "scissoring","sex in public","spandex","speedos","tea-bagging","tree sex",
+                          "urethral sounding","wigs",
+                          ])
+
+        TwoKinkList = []
+
+        sKink1 = ""
+        sKink2 = ""
+
+        while len(TwoKinkList) < 1:
+            TwoKinkList.append(Kinks.GetWord(NotList = ["being"]))
+            TwoKinkList.append(Kinks.GetWord(NotList = [TwoKinkList[0]]))
+            if not "being" in TwoKinkList[1]:
+                TwoKinkList.sort()
+
+        sKink1 = TwoKinkList[0]
+        sKink2 = TwoKinkList[1]
+
+        sText += WordList(["Finally","At last","At long last"]).GetWord() 
+        if CoinFlip():
+            sText += "! A "
+        else:
+            sText += ", a "
+        sText += "book that combines my fetishes for "
+        sText += sKink1 + " and " + sKink2 + WordList(["!","."]).GetWord()
+          
+        return sText
+
+# class TweetTxtGen49(TweetTxtGen):
      # The sexy read that was BANNED on Amazon! Now available on Smashwords
      # ID = 44
      # Priority = 2
