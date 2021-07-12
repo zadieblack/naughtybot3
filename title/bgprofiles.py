@@ -2331,6 +2331,19 @@ class BGProfileGayVampireSex(BGProfile):
         self.Disabled = False
         self.Content = Content.AdultsOnly
 
+class BGProfileGayMexicoRevolution(BGProfile):
+    def __init__(self):
+        super().__init__(Priority = GenPriority.Normal,
+                           sFileName = "gay_mexico_revolution")
+        self.MainTitleColor = "rgba(230, 98, 79, 255)"
+        self.SecondTitleColor = "rgba(25, 117, 78, 255)"
+        self.SmallTextColor = "rgba(114, 79, 53, 255)"
+        self.AuthorNameColor = "rgba(234, 158, 167, 255)"
+        self.Tags = ["man","gay","nude","horse","ethnic","hispanic","moustache","heels",
+                     "kinky","naked","hat","Mexico","legs","ass","solo"]
+        self.Disabled = False
+        self.Content = Content.AdultsOnly
+
 class BGProfileContainer(GeneratorContainer):
 
     def RandomGenerator(self, ReqTags = [], ExclTags = [], bAllowPromo = True, Type = None):
