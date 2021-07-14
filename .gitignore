@@ -9,6 +9,7 @@ title/_pycache_/
 excerpt/_pycache_/
 excerpt/twitterauth.py
 *.pyc
+*.bak
 workspace_bot3
 title/bghistory_q.txt
 title/reply_ids.txt

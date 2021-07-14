@@ -5925,8 +5925,20 @@ class Generator100(ExGen):
         super().GenerateTweet()
         sTweet = ""
 
-        sHerName = self.FemaleName.FirstName()
-        sHisName = self.MaleName.FirstName()
+        sPerson1Pronoun = ""
+        sPerson1Name = ""
+        sPerson2Name = self.MaleName.FirstName()
+
+        if randint(1,3) == 3:
+            # gay
+            sPerson1Pronoun = "he"
+            sPerson1PronounPos = "his"
+            sPerson1Name = self.MaleName.FirstName(NotList = [sPerson2Name])
+        else:
+            # straight
+            sPerson1Pronoun = "she"
+            sPerson1PronounPos = "her"
+            sPerson1Name = self.FemaleName.FirstName()
 
         Penis1 = bodyparts.Penis(bAllowBAP = False)
         Penis2 = bodyparts.Penis()
@@ -5941,7 +5953,7 @@ class Generator100(ExGen):
                             "veiny","veiny","virile","well-groomed"])
         sDickAdj = DickAdjs.GetWord()
 
-        sTweet += sHerName + " unbuckled " + sHisName + "'s belt, "
+        sTweet += sPerson1Pronoun.capitalize() + " unbuckled " + sPerson2Name + "'s belt, "
         sTweet += "unzipped his " + WordList(["khaki pants","bluejeans","trousers",
                                               "gray slacks","black slacks","leather pants",
                                               "tight pants","pleated trousers"
@@ -5963,10 +5975,10 @@ class Generator100(ExGen):
         sTweet += " at the " + WordList(["touch","strokes","caresses","fondling",
                                          "ministrations"
                                          ]).GetWord() + " "
-        sTweet += "of her " + WordList(["gentle","soft","soothing","delicate",
+        sTweet += "of " + sPerson1PronounPos + " " + WordList(["gentle","soft","soothing","delicate",
                                          "skillful","tender","sensitive"
                                          ]).GetWord() + " fingers "
-        sTweet += "as she " + WordList(["jacked him off",
+        sTweet += "as " + sPerson1Pronoun + " " + WordList(["jacked him off",
                                         "jerked him off",
                                         "beat his meat",
                                         "wanked him",
@@ -5985,7 +5997,7 @@ class Generator100(ExGen):
                                              "in the back seat",
                                              "in the Starbucks restroom",
                                              "in the auto parts section at Wal-mart",
-                                             "in the back of her parents van",
+                                             "in the back of " + sPerson1PronounPos + " parents van",
                                              "on a park bench",
                                              "behind the bowling alley",
                                              "on the hotel balcony",
@@ -5996,7 +6008,7 @@ class Generator100(ExGen):
                                              "in the laundromat",
                                              "on the examination table",
                                              "in the library",
-                                             "on the boss's desk",
+                                             "on their boss's desk",
                                              "on the conference room table",
                                              "in the yoga studio",
                                              "behind the Wendy's",
@@ -6017,9 +6029,12 @@ class Generator100(ExGen):
                                              "in his Honda Civic",
                                              "in his Toyota Camry",
                                              "in his Nissan Altima",
-                                             "in her parent's bedroom",
+                                             "in " + sPerson1PronounPos + " parent's bedroom",
                                              "behind the Subway counter",
-                                             "on the subway"
+                                             "on the subway",
+                                             "in front of the rest of the dinner guests",
+                                             "in the middle of the Bass Pro Shop",
+
                                              ]).GetWord() + "."
 
         return sTweet

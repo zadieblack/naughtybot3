@@ -891,7 +891,7 @@ class TweetTxtGen27(TweetTxtGen):
 class TweetTxtGen29(TweetTxtGen):
     # The part where he gives her a "Mexican Donkey" is the filthiest thing I've ever read in my life
     def __init__(self):
-        super().__init__(ID = 29, Priority = GenPriority.AboveAverage)
+        super().__init__(ID = 29, Priority = GenPriority.Normal)
      
     def GenerateTweet(self):
         super().GenerateTweet()
@@ -919,7 +919,7 @@ class TweetTxtGen29(TweetTxtGen):
 class TweetTxtGen30(TweetTxtGen):
     # Yes, this book does contain some man-on-horse frottage scenes, but it's all consensual!
     def __init__(self): 
-         super().__init__(ID = 30, Priority = GenPriority.High)
+         super().__init__(ID = 30, Priority = GenPriority.AboveAverage)
      
     def GenerateTweet(self):
         super().GenerateTweet()
@@ -1046,7 +1046,7 @@ class TweetTxtGen30(TweetTxtGen):
 class TweetTxtGen31(TweetTxtGen):
 # Finally, a book that combines my fetishes for [blank] and [blank]!
     def __init__(self): 
-        super().__init__(ID = 31, Priority = GenPriority.High)
+        super().__init__(ID = 31, Priority = GenPriority.Normal)
      
     def GenerateTweet(self):
         super().GenerateTweet()

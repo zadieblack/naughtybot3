@@ -1197,7 +1197,7 @@ class TweetTxtGen41(TweetTxtGen):
 class TweetTxtGen42(TweetTxtGen):
      # LEGAL DISCLAIMER: Wal-Mart does not condone cum-swapping or genital piercings.
      def __init__(self): 
-         super().__init__(ID = 42, Priority = GenPriority.AboveAverage)
+         super().__init__(ID = 42, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1238,7 +1238,7 @@ class TweetTxtGen43(TweetTxtGen):
      # I was so surprised when it turned out that Vaughn the dumpy plumber 
      # had a 12-inch schlong!
      def __init__(self): 
-         super().__init__(ID = 43, Priority = GenPriority.Low)
+         super().__init__(ID = 43, Priority = GenPriority.Lowest)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1265,7 +1265,7 @@ class TweetTxtGen44(TweetTxtGen):
      # I *knew* that Viola shouldn't trust Jack! Not after he called her 
      # vagina a 'fish taco'!
      def __init__(self): 
-         super().__init__(ID = 44, Priority = GenPriority.AboveAverage)
+         super().__init__(ID = 44, Priority = GenPriority.Normal)
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -1478,7 +1478,7 @@ class TweetTxtGen47(TweetTxtGen):
 class TweetTxtGen48(TweetTxtGen):
 # Finally, a book that combines my fetishes for [blank] and [blank]!
     def __init__(self): 
-        super().__init__(ID = 48, Priority = GenPriority.High)
+        super().__init__(ID = 48, Priority = GenPriority.Normal)
      
     def GenerateTweet(self):
         super().GenerateTweet()
