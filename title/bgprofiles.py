@@ -2344,6 +2344,18 @@ class BGProfileGayMexicoRevolution(BGProfile):
         self.Disabled = False
         self.Content = Content.AdultsOnly
 
+class BGProfileClipboardJealousy(BGProfile):
+    def __init__(self):
+        super().__init__(Priority = GenPriority.SuperHigh,
+                           sFileName = "clipboard_jealousy")
+        self.MainTitleColor = "rgba(175, 100, 130, 255)"
+        self.SecondTitleColor = "rgba(179, 85, 38, 255)"
+        self.SmallTextColor = "rgba(75, 70, 53, 255)"
+        self.AuthorNameColor = "rgba(175, 100, 130, 255)"
+        self.Tags = ["man","woman","straight","sweater","brunette","outdoors",
+                     "couple"]
+        self.Disabled = False
+
 class BGProfileContainer(GeneratorContainer):
 
     def RandomGenerator(self, ReqTags = [], ExclTags = [], bAllowPromo = True, Type = None):
