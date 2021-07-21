@@ -1124,6 +1124,42 @@ class TitleTemplate32(TitleTemplate):
                      ColorType = LineColorType.MainTitle,
                      AllCaps = True)
 
+# [FOUR LINES]
+# SHORT TOP LINE
+# of the
+# MEDIUM ONE-ROW THIRD LINE
+# LARGE SHORT-LENGTH BOTTOM LINE
+
+class TitleTemplate33(TitleTemplate):
+    def __init__(self):
+        super().__init__()
+
+        # Large single word or short top line
+        self.AddLine(FontName = "Walpurgis Night.otf",
+                     FontMaxSize = 26,
+                     MaxRows = 1,
+                     ColorType = LineColorType.MainTitle)
+
+        # Smaller medium-length second line
+        self.AddLine(FontName = "Amaze.ttf",
+                     FontMaxSize = 11,
+                     MaxRows = 1,
+                     ColorType = LineColorType.SmallText)
+
+        # Medium long 1 line third line
+        self.AddLine(FontName = "PerpetuaStd.otf",
+                     FontMaxSize = 15,
+                     MaxRows = 2,
+                     ColorType = LineColorType.SecondTitle,
+                     AllCaps = True)
+
+        # Large short-length bottom line 
+        self.AddLine(FontName = "Verona-ExtraBold.otf",
+                     FontMaxSize = 17,
+                     MaxRows = 1,
+                     ColorType = LineColorType.MainTitle,
+                     AllCaps = True)
+
 # Title templates are generators and can be randomly selected but we aren't using this right now
 
 TTS = GeneratorContainer(TitleTemplate)

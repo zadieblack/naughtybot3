@@ -13,6 +13,7 @@ from title.characters import *
 import title.chargenerator as char
 import title.misc as titmisc
 import title.titletemplates as templates
+import excerpt.bodyparts as bodyparts
 from title.util import *
 
 PromoHistoryQ = HistoryQ(2)
@@ -5952,6 +5953,110 @@ class Generator148(TitleGen):
         else:
             # Adj adj noun
             sTweet += AdjList.GetWord(NotList = [sPrefix]) + " " + sPrefix + " " + titmisc.ProfNeutralFemale().GetWord(NotList = ProfNotList)
+
+        return sTweet
+
+# Rimmed by my Trucker Step Dad (gay)
+class Generator149(TitleGen):
+    def __init__(self):
+         super().__init__(ID = 149, Priority = GenPriority.Normal)
+         self.Template = templates.TitleTemplate6()
+     
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
+
+        self.ReqTemplateTags = ["man"]
+        self.ExclTemplateTags = ["straight","lesbian","women"]
+
+        NotList = ["College"]
+
+        Verbs = WordList(['Back-Doored','Banged','Bare-Backed','Blown',
+                          'Boned','Bound','Broken','Buggered','Corn-Holed',
+                          'Deep-Throated','Defiled',
+                          'Dicked','Drilled','Felched',
+                          'Fellated','Filled','Fucked',
+                          'Gaped','Hammered','Impaled','Inseminated',
+                          'Jack-Hammered','Nailed',
+                          'Pegged','Penetrated','Plowed',
+                          'Pounded','Probed','Railed',
+                          'Reamed','Ridden',
+                          'Ridden Bareback','Rimmed',
+                          'Shafted','Shagged','Slammed',
+                          'Smashed','Sodomized','Stuffed',
+                          'Taken In The Rear','Tea-Bagged',
+                          'Violated'])
+
+        Relate = WordList(['Bodyguard','Boss','Boss','Brother','Brother-in-Law',
+                           'Coach','Commanding Officer','Dad','Daddy','Doctor',
+                           'Father','Foreman','Landlord','Mailman',
+                           'Mechanic','Minister','Older Brother','Pastor','Priest',
+                           'Professor','Queen','Step-Dad','Step-Father',
+                           'Step-Brother','Teacher','Teammate','Twin Brother',
+                           'Youth Pastor',])
+
+        Daddy = char.GayMaleChar(bAddEndNoun = False,
+                                 ExclList = [RelateMale,TypeModMale,MaritalStatusMale,ProfFantasyMale,TitlesMale,GayMaleAdj],
+                                 NotList = NotList)
+
+        sTweet += Verbs.GetWord() + "\n"
+        sTweet += "by my\n"
+        sTweet += Daddy.Desc + " " + Relate.GetWord()
+
+        return sTweet
+
+# Impaled on my Trucker Step Dad's Big Black 12" Beef Torpedo (gay)
+class Generator150(TitleGen):
+    def __init__(self):
+         super().__init__(ID = 150, Priority = GenPriority.Normal)
+         self.Template = templates.TitleTemplate33()
+     
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
+
+        self.ReqTemplateTags = ["man"]
+        self.ExclTemplateTags = ["straight","lesbian","women"]
+
+        NotList = ["College"]
+
+        Verbs = WordList(['Boned','Buggered','Corn-Holed',
+                          'Drilled','Filled','Fucked',
+                          'Gaped','Hammered','Impaled','Inseminated',
+                          'Jack-Hammered','Pegged',
+                          'Penetrated','Plowed','Plugged',
+                          'Pounded','Probed','Railed',
+                          'Reamed','Rear-Ended Raw','Shafted','Sodomized',
+                          'Skewered','Stuffed','Violated'])
+
+        Relate = WordList(['Bodyguard','Boss','Boss','Brother','Brother-in-Law',
+                           'Coach','Commanding Officer','Dad','Daddy','Doctor',
+                           'Father','Foreman','Landlord','Mailman',
+                           'Mechanic','Minister','Older Brother','Pastor','Priest',
+                           'Professor','Queen','Step-Dad','Step-Father',
+                           'Step-Brother','Teacher','Teammate','Twin Brother',
+                           'Youth Pastor',])
+
+        Daddy = char.GayMaleChar(bAddEndNoun = False, MaxChars = 16,
+                                 ExclList = [RelateMale,TypeModMale,MaritalStatusMale,ProfFantasyMale,TitlesMale,GayMaleAdj,DickCharMale],
+                                 NotList = NotList)
+
+        DickNotList = ["penis","lady-dagger","hardness"]
+        Penis = bodyparts.Penis()
+
+        sTweet += Verbs.GetWord() + "\n"
+        sTweet += "by my\n"
+        sTweet += Daddy.Desc + " " + Relate.GetWord() + "'s\n"
+
+        iRand = randint(1,4)
+        if iRand == 2:
+            sTweet += "Big Black " + Penis.ShortDescription(NotList = DickNotList).title()
+        elif iRand == 3:
+            sTweet += Penis.GenerateLength() + " " + Penis.ShortDescription(NotList = DickNotList).title()
+        elif iRand == 4:
+            sTweet += "Big Black " + str(randint(7,15)) + "-inch " + Penis.ShortDescription(NotList = DickNotList).title()
+        else:
+            sTweet += Penis.MediumDescription(NotList = DickNotList).title()
 
         return sTweet
 
