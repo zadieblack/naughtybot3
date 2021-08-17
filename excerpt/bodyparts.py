@@ -276,7 +276,7 @@ class BackFemale(BodyParts):
                'carved',
                'concave',
                'curved','curved',
-               'deliate',
+               'delicate',
                'feminine',
                'flexible',
                'gently curved',

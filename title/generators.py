@@ -322,40 +322,54 @@ class Generator1(TitleGen):
           return sTweet
           
 class Generator2(TitleGen):
-    # Bedded
-    # by the
-    # Busty Trans Japanese Schoolgirl
+    # Urinated On
+    # by a
+    # Busty Japanese Schoolgirl Bitch
     def __init__(self):
         super().__init__(ID = 2, Priority = GenPriority.High)
-        self.Template = templates.TitleTemplate1()
+        self.Template = templates.TitleTemplate24()
      
     def GenerateTweet(self):
         super().GenerateTweet()
         sTweet = ""
           
-        self.ExclTemplateTags = ["gay","couple","women","lesbian"]
-        #self.ReqTemplateTags = ["woman"]
-
-        Verbs = WordList(["Ball-Gagged","Bedded","Blown","Cavity Searched","Chained to the Bed","Collared",
-                        "Deep-Throated","Disciplined","Dominated","Dry-Humped",
-                        "Fellated","Feminized","Gone Down On","Hand-cuffed","Horse-Whipped",
-                        "Jerked Off","Licked","Smothered","Peed On","Pegged",
-                        "Pegged with a Strap-on","Ridden","Rimmed","Seduced",
-                        "Sixty-Nined","Straddled","Stroked","Spanked",
-                        "Sucked Off","Swallowed","Teased","Tempted",
-                        "Tied Up","Urinated On","Whipped"])
-
-        Woman = char.FemaleChar(bAllowRelate = True, bAllowSexuality = False)
-
-        sTweet = Verbs.GetWord() + "\n"
-        if FoundIn(Woman.Desc, ["sister","brother","mom","dad","mother",
-                                "father","fiancé","wife","girlfriend",
-                                "teacher","secretary","daughter",
-                                "babysitter","governess","tutor",
-                                "bride","house maid","french maid"]):
-            sTweet += "By\nMy " + Woman.Desc
+        if CoinFlip():
+            self.ExclTemplateTags = ["gay","maledom"]
+            self.ReqTemplateTags = ["kinky"]
         else:
-            sTweet += "By\n" + AddArticles(Woman.Desc, bMakeUpper = True)
+            self.ReqTemplateTags = ["femdom"]
+
+        Verbs = WordList(["Ball-Gagged","Bound","Caned","Cavity Searched",
+                          "Chained Up","Collared","Cuckolded","Disciplined",
+                          "Dominated","Feminized","Fisted","Flogged",
+                          "Hand-cuffed","Horse-Whipped","Paddled",
+                          "Peed On","Pegged","Pegged with a Strap-on",
+                          "Smothered","Straddled","Spanked","Tied Up",
+                          "Urinated On","Whipped"])
+
+        sTweet += Verbs.GetWord() + "\n"
+        iRand = randint(1,3)
+        if iRand == 1:
+        # By My Girlfriend
+            Woman = char.FemaleChar(bAddEndNoun = False, MaxChars = 20,
+                                    ExclList = [GenModFemale,RelateFemale])
+            sTweet += "by\nMy " + Woman.Desc + " " 
+            sTweet += WordList(["Sister","Mom","Mother","Step-Mother",
+                                "Fiancé","Wife","Girlfriend","Step-Mom",
+                                "Teacher","Secretary","Daughter",
+                                "Babysitter","Governess","Tutor",
+                                "House Maid","French Maid","Intern",
+                                "Step-Daughter","Sister-in-Law"]).GetWord()
+        elif iRand == 2:
+        # By The Stripper
+            Woman = char.FemaleChar(Type = GirlType.Bad, MaxChars = 28,
+                                    ExclList = [GenModFemale,RelateFemale])
+            sTweet += "by " + AddArticles(Woman.Desc, bSplitArticle = True)
+        else:
+        # By A Schoolgirl Bitch
+            Woman = char.FemaleChar(Type = GirlType.Good, MaxChars = 20,
+                                    ExclList = [AttitudeBadFemale, AttitudeGoodFemale, GenModFemale, RelateFemale])
+            sTweet += "by a\n" + Woman.Desc + " Bitch"
           
         return sTweet
 
