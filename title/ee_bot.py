@@ -75,6 +75,7 @@ def InitBot(iTweetTimer,
 
                 print("\n===Here is your " + str(len(ImgTxtGen.ImgTxt)) + " char tweet (" + str(i + 1) + " of " + str(iTweets) + ")===")
                 print("[" + ImgTxtGen.ImgTxt + "]")
+                print("   by " + ImgTxtGen.AuthorName)
                 if len(ImgTxtGen.ImgTxt) > 0:
                         print("Tweet text: [" + ImgTxtGen.TweetTxt + "]")
 

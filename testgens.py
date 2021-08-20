@@ -134,39 +134,41 @@ def TestTitleTweetTextGens():
      return [GeneratorPassList,GeneratorFailList]
 
 def TestInnNameGens():
-     print("==>Testing INNUENDO NAMES<==")
-     GeneratorList = []
+    print("==>Testing INNUENDO NAMES<==")
+    GeneratorList = []
      
-     selector = names.InnNameGenSelector()
-     GeneratorList = selector.GetGeneratorsSequential()
+    selector = names.GeneratorContainer(names.InnNameGenerator)
+    GeneratorList = selector.GetGeneratorsSequential()
      
-     GeneratorPassList = []
-     GeneratorFailList = []
-     for gen in GeneratorList:
-          try:
-               sTweet = gen.GetName(util.Gender.Female)
+    GeneratorPassList = []
+    GeneratorFailList = []
+    for gen in GeneratorList:
+        try:
+            if gen.GenderAllowed(util.Gender.Female):
+                sTweet = gen.GetName(util.Gender.Female)
                     
-               if len(sTweet) > 0:
-                    print("* Testing Innuendo Name Generator ID " + str(gen.ID) + " FEMALE (" + str(len(sTweet)) + " chars) *")
+                if len(sTweet) > 0:
+                    print("* Testing Innuendo Name Generator ID " + str(gen.ID) + " " + type(gen).__name__ + " FEMALE (" + str(len(sTweet)) + " chars) *")
                     print("[" + sTweet + "]\n")
-                    GeneratorPassList.append(str(gen.ID) + " FEMALE")
-               else:
-                    print("* ! ERROR: empty tweet (Innuendo Name Generator ID: " + str(gen.ID) + " FEMALE) ! *")
-                    GeneratorFailList.append(str(gen.ID) + " FEMALE")
+                    GeneratorPassList.append(str(gen.ID) + " " + type(gen).__name__ + " FEMALE")
+                else:
+                    print("* ! ERROR: empty tweet (Innuendo Name Generator ID: " + str(gen.ID) + " " + type(gen).__name__ + " FEMALE) ! *")
+                    GeneratorFailList.append(str(gen.ID) + " " + type(gen).__name__ + " FEMALE")
                     
-               sTweet = gen.GetName(util.Gender.Male)
+            if gen.GenderAllowed(util.Gender.Male):
+                sTweet = gen.GetName(util.Gender.Male)
                     
-               if len(sTweet) > 0:
-                    print("* Testing Innuendo Name Generator ID " + str(gen.ID) + " MALE (" + str(len(sTweet)) + " chars) *")
+                if len(sTweet) > 0:
+                    print("* Testing Innuendo Name Generator ID " + str(gen.ID) + " " + type(gen).__name__ + " MALE (" + str(len(sTweet)) + " chars) *")
                     print("[" + sTweet + "]\n")
-                    GeneratorPassList.append(str(gen.ID) + " MALE")
-               else:
-                    print("* ! ERROR: empty tweet (Innuendo Name Generator ID: " + str(gen.ID) + " MALE) ! *")
-                    GeneratorFailList.append(str(gen.ID) + " MALE")
-          except:
-               GeneratorFailList.append("* ! Innuendo Name Generator: " + str(sys.exc_info()[0]) + " ! *")
+                    GeneratorPassList.append(str(gen.ID) + " " + type(gen).__name__ + " MALE")
+                else:
+                    print("* ! ERROR: empty tweet (Innuendo Name Generator ID: " + str(gen.ID) + " " + type(gen).__name__ + " MALE) ! *")
+                    GeneratorFailList.append(str(gen.ID) + " " + type(gen).__name__ + " MALE")
+        except:
+            GeneratorFailList.append("* ! Innuendo Name Generator: " + str(sys.exc_info()[0]) + " ! *")
                
-     return [GeneratorPassList,GeneratorFailList]
+    return [GeneratorPassList,GeneratorFailList]
 
 def TestAllGens(bExcerpts = False, bExcTweetTxts = False, bTitles = False, bTitTweetTxts = False, bInnNames = False, bAll = False, bCreateImages = False):
      print("<=>Calling test functions<=>")

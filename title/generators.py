@@ -203,7 +203,7 @@ class TitleGen(Generator):
         else: 
             self.AuthorGender = gender
 
-        self.AuthorName = AuthorBuilder()
+        self.AuthorName = AuthorBuilder(gender)
 
 def GetTweetGenerator(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = None, TweetHistoryQ = None):
      gen = None
