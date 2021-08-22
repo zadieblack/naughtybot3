@@ -1519,77 +1519,6 @@ class InnNameGen3(InnNameGenerator):
                                              ])
                                              
                                              
-# Verb: 'Barry','Bone R.','Buster','Holden','Lance','Pat','Pat N.','Phil','Phil N.','Philip','Philmore','Ryder',
-       # 'Seymour','I. Seymour'
-# Verb (being): 'Ben','I. Ben'
-# Verb Noun-Adverb
-class InnNameGen4(InnNameGenerator):
-     def __init__(self):
-          super().__init__()
-         
-          self._Default = DefaultLastName.FirstLastName
-          
-          #'Carrie','Eden','Kari','Rhoda','Sharon','I'.M. Sharon'
-          self.FirstNameFemaleList([      InnFirstNameFemale(['Carrie']),
-                                         ])
-                                             
-          self.FirstNameMaleList([      InnFirstNameMale(['Buster',]),
-                                              InnFirstNameMale(['Ryder','I. Ryder']),
-                                              
-                                             ])
-                                             
-          self.FirstLastNameList([      InnLastName(['Beaver']),
-                                              InnLastName(['Bone','Boner','Bones']),
-                                              InnLastName(['Brest','Bresst']),
-                                              InnLastName(['Bottom','Bottoms']),
-                                              InnLastName(['Brownie']),
-                                              InnLastName(['Buhnz']),
-                                              InnLastName(['Butts']),
-                                              InnLastName(['Cheeks']),
-                                              InnLastName(['Clam','Clamm','Clams','Clamms','Clamz','Clammz']),
-                                              InnLastName(['Cox']),
-                                              InnLastName(['Cracks']),
-                                              InnLastName(['Dick','Dicks','Dix','Dickons']),
-                                              InnLastName(['Fatone']),
-                                              InnLastName(['Furrows']),
-                                              InnLastName(['Grotch']),
-                                              InnLastName(['Hole','Holes']),
-                                              InnLastName(['Knockers']),
-                                              InnLastName(['Janus']),
-                                              InnLastName(['Johnson']),
-                                              InnLastName(['Knott']),
-                                              InnLastName(['Knuttz']),
-                                              InnLastName(['Koch']),
-                                              InnLastName(['Kootch']),
-                                              InnLastName(['Krevises']),
-                                              InnLastName(['Kuntz']),
-                                              InnLastName(['Mann']),
-                                              InnLastName(['Mannlove']),
-                                              InnLastName(['McCreviss']),
-                                              InnLastName(['Melons']),
-                                              InnLastName(['Moon']),
-                                              InnLastName(['Pecker']),
-                                              InnLastName(['Pohl']),
-                                              InnLastName(['Rack','Racks']),
-                                              InnLastName(['Rodd','Rohdd']),
-                                              InnLastName(['Sachs','Sachs','Sax']),
-                                              InnLastName(['Schaft','Shaft']),
-                                              InnLastName(['Schlong']),
-                                              InnLastName(['Snatch']),
-                                              InnLastName(['Wang']),
-                                              InnLastName(['Weiner']),
-                                              InnLastName(['Wood'])
-                                             ])
-                                             
-          self.SecondLastNameList([InnLastName(['Daley']),
-                                   InnLastName(['Deeper']),
-                                              InnLastName(['Freely']),
-                                              InnLastName(['Gayley']),
-                                              InnLastName(['Hard','Harder']),
-                                              InnLastName(['Knightly']),
-                                              InnLastName(['Stiffley'])
-                                             ])
-
 class InnNameGen4Dick(InnNameGenerator):
      def __init__(self):
           super().__init__()
@@ -1811,6 +1740,43 @@ class InnNameGen4Rhoda(InnNameGenerator):
                                               InnLastName(['Stiffley'])
                                              ])
 
+class InnNameGen4Ryder(InnNameGenerator):
+     def __init__(self):
+          super().__init__()
+         
+          self._AllowedGender = Gender.Male
+          self._Default = DefaultLastName.FirstLastName
+                                             
+          self.FirstNameMaleList([InnFirstNameMale(['Ryder','I. Ryder']),])
+                                             
+          self.FirstLastNameList([      InnLastName(['Beaver']),
+                                              InnLastName(['Boottay']),
+                                              InnLastName(['Bottom','Bottoms']),
+                                              InnLastName(['Brownie']),
+                                              InnLastName(['Buhnz']),
+                                              InnLastName(['Cheeks']),
+                                              InnLastName(['Cherry']),
+                                              InnLastName(['Clam','Clamm',]),
+                                              InnLastName(['Flower']),
+                                              InnLastName(['Furrow']),
+                                              InnLastName(['Hole','Holes']),
+                                              InnLastName(['Knockers']),
+                                              InnLastName(['Janus']),
+                                              InnLastName(['Kootch']),
+                                              InnLastName(['Kreviss']),
+                                              InnLastName(['Kuhnt','K. Hunt']),
+                                              InnLastName(['Mann']),
+                                              InnLastName(['Snatch']),
+                                             ])
+                                             
+          self.SecondLastNameList([InnLastName(['Daley']),
+                                   InnLastName(['Deeper']),
+                                              InnLastName(['Freely']),
+                                              InnLastName(['Hard','Harder']),
+                                              InnLastName(['Knightly']),
+                                              InnLastName(['Stiffley'])
+                                             ])
+
 class InnNameGen4Sia(InnNameGenerator):
      def __init__(self):
           super().__init__()
@@ -1960,7 +1926,7 @@ class InnNameGen5(InnNameGenerator):
                                              ])
                                              
 # Name: Ima Ho
-class InnNameGen6(InnNameGenerator):
+class InnNameGen6Ho(InnNameGenerator):
      def __init__(self):
           super().__init__()
           
@@ -1969,18 +1935,21 @@ class InnNameGen6(InnNameGenerator):
           self.FirstNameFemaleList([   InnFirstNameFemale(['Anita']),
                                               InnFirstNameFemale(['Ima']),
                                               InnFirstNameFemale(['Issa']),
-                                              InnFirstNameFemale(['Juana','I. Juana','U. Juana']),
-                                              InnFirstNameFemale(['Rhoda','I. Rhoda','U. Rhoda']),
+                                              InnFirstNameFemale(['Ivana',]),
+                                              InnFirstNameFemale(['Juana','I. Juana']),
+                                              InnFirstNameFemale(['Nastya']),
+                                              InnFirstNameFemale(['Rhoda','I. Rhoda']),
                                               InnFirstNameFemale(['Wanda','I. Wanda'])
                                          ])
           #'Dick','Gaylord','Hans','Penn S.','Peter','Rod','Willie','Willy'
-          self.FirstNameMaleList([      InnFirstNameMale(['Ben A.','I. Ben']),
-                                              InnFirstNameMale(['Craven','I.M. Craven']),
-                                              InnFirstNameMale(['Dick','Dick A.','I. Dick']),
+          self.FirstNameMaleList([      InnFirstNameMale(['Ben A.',]),
+                                              InnFirstNameMale(['Craven A.','I.M. Craven A.']),
+                                              InnFirstNameMale(['Dick','Dick A.','I. Dick A.']),
                                               InnFirstNameMale(['Juan A.']),
-                                              InnFirstNameMale(['Major','U. Major','I. Major']),
+                                              InnFirstNameMale(['Major','U. Major']),
                                               InnFirstNameMale(['Penn S.']),
                                               InnFirstNameMale(['Peter']),
+                                              InnFirstNameMale(['Randy']),
                                               InnFirstNameMale(['Sawyer','I. Sawyer'])
                                              ])
 
@@ -1999,58 +1968,50 @@ class InnNameGen6(InnNameGenerator):
  
                                              ])
                                              
-          self.SecondLastNameList([      InnLastName(['Analicker']),
-                                              InnLastName(['Djerkov']),
-                                              InnLastName(['Ho']),
-                                              InnLastName(['Hoar']),
-                                              InnLastName(['Jackov','Jakov']),
-                                              InnLastName(['Liquor','Likker','Licker']),
-                                              InnLastName(['Mann','Mannlova'])
+          self.SecondLastNameList([      InnLastName(['Ho','Ho','Ho','Hoar']),
                                              ])
 
 
 # Name: Juan A. Nell
-class InnNameGen7(InnNameGenerator):
+class InnNameGen7Anal(InnNameGenerator):
      def __init__(self):
           super().__init__()
           
-          self._Default = DefaultLastName.SecondLastName
+          self._Default = DefaultLastName.FirstLastName
           
-          self.FirstNameFemaleList([   InnFirstNameFemale(['Anita A.']),
+          self.FirstNameFemaleList([   InnFirstNameFemale(['Anita']),
                                               InnFirstNameFemale(['Fonda','I.M. Fonda']),
                                               InnFirstNameFemale(['Ivana']),
-                                              InnFirstNameFemale(['Juana','I. Juana','U. Juana']),
-                                              InnFirstNameFemale(['Nastya']),
+                                              InnFirstNameFemale(['Juana','I. Juana',]),
+                                              InnFirstNameFemale(['Love']),
                                               InnFirstNameFemale(['Olive']),
-                                              InnFirstNameFemale(['Rhoda','I. Rhoda','U. Rhoda']),
                                               InnFirstNameFemale(['Sia','I. Sia']),
                                               InnFirstNameFemale(['Sharon','I.M. Sharon']),
-                                              InnFirstNameFemale(['Wanda','I. Wanda']) 
                                          ])
-          #'Dick','Gaylord','Hans','Penn S.','Peter','Rod','Willie','Willy'
+
           self.FirstNameMaleList([      InnFirstNameMale(['Craven']),
                                               InnFirstNameMale(['Dew N.']),
-                                              InnFirstNameMale(['Gaylord']),
-                                              InnFirstNameMale(['Juan']),
-                                              InnFirstNameMale(['Major']),
-                                              InnFirstNameMale(['Philmore']),
+                                              InnFirstNameMale(['I.C.']),
+                                              InnFirstNameMale(['I. Juan','Juan']),
                                               InnFirstNameMale(['Sawyer','I. Sawyer'])
                                              ])
 
           self.FirstLastNameList([      InnLastName(['A. Nell']),
                                              ])
                                              
-          self.SecondLastNameList([      InnLastName(['Daily']),
+          self.SecondLastNameList([      InnLastName(['Cherry']),
+                                              InnLastName(['Daily']),
                                               InnLastName(['Deeper']),
+                                              InnLastName(['Dickens']),
                                               InnLastName(['Djiz']),
                                               InnLastName(['Faulk']),
+                                              InnLastName(['Fisting']),
                                               InnLastName(['Gape','Gaper']),
                                               InnLastName(['Gayley']),
                                               InnLastName(['Harder']),
                                               InnLastName(['Hoar']),
                                               InnLastName(['Knightly']),
-                                              InnLastName(['Lover']),
-                                              InnLastName(['Philmore']),
+                                              InnLastName(['Rimming']),
                                               InnLastName(['Sachs']),
                                               InnLastName(['Sexton']),
                                               InnLastName(['Topping']),
@@ -2069,6 +2030,7 @@ class InnNameGen8(InnNameGenerator):
                                               InnFirstNameFemale(['Ivana']),
                                               InnFirstNameFemale(['Juana','I. Juana','U. Juana']),
                                               InnFirstNameFemale(['Lotta']),
+                                              InnFirstNameFemale(['Love']),
                                               InnFirstNameFemale(['C. Mya','C. Maya']),
                                               InnFirstNameFemale(['Maya C.']),
                                               InnFirstNameFemale(['Olive']),
@@ -2080,7 +2042,6 @@ class InnNameGen8(InnNameGenerator):
           self.FirstNameMaleList([      InnFirstNameMale(['Craven']),
                                               InnFirstNameMale(['Dew N.']),
                                               InnFirstNameMale(['Gaylord']),
-                                              InnFirstNameMale(['Gunnar','I. Gunnar']),
                                               InnFirstNameMale(['Juan', 'Juan A.','I. Juan','I. Juan A.']),
                                               InnFirstNameMale(['Major']),
                                               InnFirstNameMale(['Sawyer','I. Sawyer']),
