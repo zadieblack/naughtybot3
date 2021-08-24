@@ -6810,7 +6810,7 @@ class Generator107(ExGen):
         sHerName = self.FemaleName.FirstName()
 
         StrangeLocations = WordList(["in a giant aquarium",
-                                     "on a bird bath",
+                                     "in a giant bird bath",
                                      "on the bus",
                                      "in a car wash",
                                      "in a giant bird cage",
@@ -6834,6 +6834,22 @@ class Generator107(ExGen):
                                      "doing a stand-up comedy act",
                                      "in the home goods section at Target",
                                      "on the pool high-dive",
+                                     "in church",
+                                     "attending mass",
+                                     "at a funeral",
+                                     "in a store window",
+                                     "collared and ball-gagged",
+                                     "hand-cuffed to a radiator",
+                                     "at the homecoming game",
+                                     "strapped to a wall",
+                                     "flying coach on an airplane",
+                                     "breast-feeding a full-grown man",
+                                     "attending a fundraising dinner",
+                                     "tied to the dinner table",
+                                     "a matador in a bull-fighting arena",
+                                     "late to the first day of school",
+                                     "at the McDonald's drive-thru",
+                                     "at a Halloween costume party",
                                      ])
 
         DickNotList = ["snake","serpent"]
@@ -6846,7 +6862,8 @@ class Generator107(ExGen):
             Length = TempType.Short
         Man = titchar.MaleChar(TempType = Length, SelectTemplateID = 19,
                                ExclList = [titmisc.ProfEducatorMale,titmisc.ProfFantasyMale,
-                                           titmisc.ProfRockstarMale],
+                                           titmisc.ProfRockstarMale, titmisc.ProfNormalMale,
+                                           titmisc.ProfAspirationalMale],
                                NotList = ManNotList)
 
         sTweet += "Every night " + sHerName + " had the same dream "
@@ -6877,10 +6894,18 @@ class Generator107(ExGen):
                                 ]).GetWord() + " "
             sTweet += "her " + bodyparts.Breasts().ShortDescription()
         elif iRand == 3:
-            sTweet += WordList(["sixty-nining wit her",
+            sTweet += WordList(["sixty-nining with her",
                                 "doing her doggy style",
+                                "taking her from behind",
+                                "spanking her ass with it",
                                 "doing her in the missionary position",
                                 ]).GetWord() 
+        elif iRand == 4:
+            sTweet += WordList(["jizzing","creaming","cumming",
+                                "shooting his wad","spurting a load",
+                                ]).GetWord() + " "
+            sTweet += "all over her " + WordList(["ass","body","breasts","butt","face","hair",
+                                                  "pussy","tits"]).GetWord()
         else:
             sTweet += WordList(["drilling","jack-hammering","nailing","plowing","reaming",
                                 "stuffing",]).GetWord() + " "
