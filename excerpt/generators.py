@@ -6797,15 +6797,105 @@ class Generator106(ExGen):
 
         return sTweet
 
-#class Generator107(ExGen):
-#    def __init__(self):
-#        super().__init__(ID = 107, Priority = GenPriority.Normal)
+# Every night Luba had the same dream where she was naked in a car wash. Then a tall,
+# rugged fire fighter pulled out his cock and started reaming her ass.
+class Generator107(ExGen):
+    def __init__(self):
+        super().__init__(ID = 107, Priority = GenPriority.Normal)
      
-#    def GenerateTweet(self):
-#        super().GenerateTweet()
-#        sTweet = ""
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
 
-#        return sTweet
+        sHerName = self.FemaleName.FirstName()
+
+        StrangeLocations = WordList(["in a giant aquarium",
+                                     "on a bird bath",
+                                     "on the bus",
+                                     "in a car wash",
+                                     "in a giant bird cage",
+                                     "at a laundromat",
+                                     "at the library",
+                                     "on a mechanical bull",
+                                     "in study hall",
+                                     "in a skee ball machine",
+                                     "at a Starbucks",
+                                     "at the zoo",
+                                     "leashed up in a dog kennel",
+                                     "on the green of the 18th hole",
+                                     "teaching Sunday School",
+                                     "in the middle of Grand Central Station",
+                                     "in a crowded bar",
+                                     "trying to play the tuba",
+                                     "at a seafood restaurant",
+                                     "in the dentist's chair",
+                                     "riding a unicycle",
+                                     "wandering around a hospital",
+                                     "doing a stand-up comedy act",
+                                     "in the home goods section at Target",
+                                     "on the pool high-dive",
+                                     ])
+
+        DickNotList = ["snake","serpent"]
+
+        ManNotList = ['naked']
+        Length = None
+        if CoinFlip():
+            Length = TempType.Medium
+        else:
+            Length = TempType.Short
+        Man = titchar.MaleChar(TempType = Length, SelectTemplateID = 19,
+                               ExclList = [titmisc.ProfEducatorMale,titmisc.ProfFantasyMale,
+                                           titmisc.ProfRockstarMale],
+                               NotList = ManNotList)
+
+        sTweet += "Every night " + sHerName + " had the same dream "
+        sTweet += "where she was " + WordList([StrangeLocations.GetWord() + " and she wasn't wearing any clothes",
+                                               "naked " + StrangeLocations.GetWord(),
+                                               "totally nude " + StrangeLocations.GetWord(),
+                                               "buck naked " + StrangeLocations.GetWord(),
+                                               StrangeLocations.GetWord() + " and she was completely naked",
+                                               ]).GetWord() + ". "
+        sTweet += "Then " + AddArticles(Man.Desc.lower()) + " "
+        sTweet += WordList(["pulled out", "whipped out"]).GetWord() + " "
+
+        if CoinFlip():
+            sTweet += "his " + bodyparts.Penis(bAllowBAP = False).ShortDescription(NotList = DickNotList) + " "
+        else:
+            sTweet += "his " + bodyparts.Penis(bAllowBAP = False).MediumDescription(NotList = DickNotList) + " "
+        sTweet += "and started "
+
+        iRand = randint(1,6)
+
+        if iRand == 1:
+            sTweet += WordList(["dry-humping","hot-dogging","grinding it against"
+                                ]).GetWord() + " "
+            sTweet += "her " + bodyparts.AssFemale().ShortDescription()
+        elif iRand == 2:
+            sTweet += WordList(["motor-boating","sucking on","nibbling","tit-fucking",
+                                "playing with","rubbing it on",
+                                ]).GetWord() + " "
+            sTweet += "her " + bodyparts.Breasts().ShortDescription()
+        elif iRand == 3:
+            sTweet += WordList(["sixty-nining wit her",
+                                "doing her doggy style",
+                                "doing her in the missionary position",
+                                ]).GetWord() 
+        else:
+            sTweet += WordList(["drilling","jack-hammering","nailing","plowing","reaming",
+                                "stuffing",]).GetWord() + " "
+
+            iRand = randint(1,6)
+            if iRand == 6:
+                sTweet += "her " + bodyparts.AssFemale().ShortDescription()
+            elif iRand == 5:
+                sTweet += "her " + bodyparts.AnusFemale().ShortDescription()
+            else:
+                sTweet += "her " + bodyparts.Vagina().ShortDescription()
+
+        sTweet += "."
+
+        return sTweet
 
 #class Generator108(ExGen):
 #    def __init__(self):

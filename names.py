@@ -128,6 +128,7 @@ class ClassyNamesFemale(Names):
                'Lilah',
                'Lilli',
                'Lola',
+               'Luba',
                'Madeline',
                'Marianna',
                'Marilyn',
