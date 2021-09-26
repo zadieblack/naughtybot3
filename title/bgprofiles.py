@@ -2372,7 +2372,7 @@ class BGProfileWhippedDress(BGProfile):
         self.Disabled = False
         self.Content = Content.AdultsOnly
 
-class BGProfileAssForHoresman(BGProfile):
+class BGProfileAssForHorseman(BGProfile):
     def __init__(self):
         super().__init__(Priority = GenPriority.Normal,
                            sFileName = "ass_for_horseman")
