@@ -2349,7 +2349,7 @@ class BGProfileGayMexicoRevolution(BGProfile):
 
 class BGProfileClipboardJealousy(BGProfile):
     def __init__(self):
-        super().__init__(Priority = GenPriority.SuperHigh,
+        super().__init__(Priority = GenPriority.Normal,
                            sFileName = "clipboard_jealousy")
         self.MainTitleColor = "rgba(175, 100, 130, 255)"
         self.SecondTitleColor = "rgba(179, 85, 38, 255)"
@@ -2358,6 +2358,45 @@ class BGProfileClipboardJealousy(BGProfile):
         self.Tags = ["man","woman","straight","sweater","brunette","outdoors",
                      "couple"]
         self.Disabled = False
+
+class BGProfileWhippedDress(BGProfile):
+    def __init__(self):
+        super().__init__(Priority = GenPriority.Low,
+                           sFileName = "whipped_dress")
+        self.MainTitleColor = "rgba(216, 89, 38, 255)"
+        self.SecondTitleColor = "rgba(174, 100, 68, 255)"
+        self.SmallTextColor = "rgba(26, 56, 74, 255)"
+        self.AuthorNameColor = "rgba(216, 89, 38, 255)"
+        self.Tags = ["man","shirtless","woman","maledom","outdoors","fire","whip","kinky",
+                     "bondage","voyeur","beach","ethnic","minority"]
+        self.Disabled = False
+        self.Content = Content.AdultsOnly
+
+class BGProfileAssForHoresman(BGProfile):
+    def __init__(self):
+        super().__init__(Priority = GenPriority.Normal,
+                           sFileName = "ass_for_horseman")
+        self.MainTitleColor = "rgba(186, 51, 66, 255)"
+        self.SecondTitleColor = "rgba(45, 142, 161, 255)"
+        self.SmallTextColor = "rgba(134, 166, 46, 255)"
+        self.AuthorNameColor = "rgba(186, 51, 66, 255)"
+        self.Tags = ["woman","nude","tits","ass","breasts","brunette","outdoors",
+                     "fantasy","medieval","floating head","man","horse","maledom",]
+        self.Disabled = False
+        self.Content = Content.AdultsOnly
+
+class BGProfileGayBoatFoursome(BGProfile):
+    def __init__(self):
+        super().__init__(Priority = GenPriority.Normal,
+                           sFileName = "gay_boat_foursome")
+        self.MainTitleColor = "rgba(253, 156, 123, 255)"
+        self.SecondTitleColor = "rgba(212, 116, 141, 255)"
+        self.SmallTextColor = "rgba(71, 115, 94, 255)"
+        self.AuthorNameColor = "rgba(212, 116, 141, 255)"
+        self.Tags = ["man","men","nude","gay","foursome","outdoors","boat","sea",
+                     "sailors","dick","penis","muscles","shirtless"]
+        self.Disabled = False
+        self.Content = Content.AdultsOnly
 
 class BGProfileContainer(GeneratorContainer):
 
