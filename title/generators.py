@@ -5170,39 +5170,70 @@ class Generator133(TitleGen):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          self.ReqTemplateTags = ["straight","couple"]
           
-          sTitle1 = WordList(['Forbidden','Taboo','Lustful','Secret','Dirty','Naked','Sinful','Wicked',
-                                   'Dangerous','Indecent','Twisted','Throbbing','Hard','Untamed',
-                                   'Sexual','Steamy','Naked','Bound',
-                                   'Passionate','Devil\'s','Lesbian','Sizzling','Caged','Desperate',
-                                   'Cocky','Scandalous','Professional','Submissive'
-                                ]).GetWord()
-          sTitle2 = WordList(['Desire','Heat','Secret','Virgin','Sins','Pleasures','Temptation','Cowboy',
-                                   'Lust','Release','Danger','Rendevous','Obsession','Persuasion','Embrace',
-                                   'Kiss','Lovers','Passion','Daddy','Bachelor','Shame','Scoundrel',
-                                   'Seduction','Surrender','Angel','Bad Boy','Possession','Climax',
-                                   'Beauty','Touch','Gentleman','Princess','Flower',
-                                   'Diaries','Lies','Fire','Desperado','Liason','Tease',
-                                   'Secretary','Fantasy','Outlaw'
-                                ]).GetWord(NotList = [sTitle1])
+          sTitle1 = WordList(['Anal','Blushing','Bound','Burning','Caged','Captive',
+                              'Cocky','Dangerous','Dark','Desperate',
+                              'Devil\'s','Dirty','Discrete','Fiery',
+                              'Flowering','Forbidden','Gentle',
+                              'Gentleman\'s','Hardened','Horseback','Hot','Indecent','Innocent',
+                              'Intimate','Jealous','Knightly','Lesbian','Lustful',
+                              'Naked','Night','Passionate','Primal',
+                              'Princely','Quivering','Ravishing','Reluctant','Risky','Rogue','Royal',
+                              'Scandalous','Secret','Sexual','Shameful','Shameless',
+                              'Sinful','Sizzling','Starlight','Steamy','Sweet',
+                              'Taboo','Temptation\'s','Thirsty',
+                              'Throbbing','Twisted','Submissive','Unbound',
+                              'Uncaged','Untamed','Velvet','Virgin',
+                              'Wanton','Wicked','Young','Youthful',
+                             ]).GetWord()
+          sTitle2 = WordList(['Affair','Angel','Bachelor','Bad Boy',
+                              'Beauty','Bosom','Bride','Climax','Confession','Cowboy','Daddy',
+                              'Dancer','Danger','Desire','Desperado',
+                              'Diaries','Doctor','Duchess','Duke','Embrace','Entanglement',
+                              'Erection','Fantasy','Fire','Flirtation',
+                              'Flower','Gambler','Gentleman','Harlequin',
+                              'Harlot','Heart','Hearts','Heat',
+                              'Indiscretion','Kiss','Knight','Lady',
+                              'Liason','Lies','Lips','Love','Lovers','Lust',
+                              'Masquerade','Member','Night','Nights','Nun','Nurse','Nymph','Obsession',
+                              'Outlaw','Passion','Persuasion','Pleasure',
+                              'Pleasures','Possession','Prince','Princess','Prisoner','Proposal',
+                              'Punishment','Release','Rendevous','Scandal',
+                              'Scoundrel','Secret','Secretary','Shame',
+                              'Sheikh','Sins','Stranger','Surrender','Sword',
+                              'Tease','Temptation','Touch','Virgin','Woman',
+                              ]).GetWord(NotList = [sTitle1])
                                 
-          sSubTitle1 = WordList(['Non-Consensual','Interracial','Pseudo-Incest','Dominant','Submissive',
-                                      'Twincest','Cuckold','BDSM','Lesbian','Exhibitionist','Trans','Anal']).GetWord(NotList = [sTitle1,sTitle2])
-          sSubTitle2 = WordList(["Unicorn", "Centaur", "Werewolf", "Mermaid", "Merman", "Mer-MILF", "Dragon", "Orc", "Goat-Man", 
-                                        "Dwarf", "Futanari", "Space Alien", "Tentacle Monster", "Clown", "Sumo Wrestler", "Were-Horse", 
-                                        "Gorilla", "Dinosaur", "Dinosaur", "Velociraptor", "Zombie", "Bodybuilder","Martian",
-                                        "Troll","Goblin","Vampire","Step-Dad","Dwarf","Housewife","Cheerleader","Hotwife",
-                                        "Lumberjack","Biker","Viking","Gargoyle","Construction Worker","Cowboy","Fireman",
-                                        "Pro-Wrestler","Priest","Luchador","Furry","Japanese Schoolgirl","Teacher","Viking",
-                                        "Nun"]).GetWord(NotList = [sTitle1,sTitle2,sSubTitle1])
-          sSubTitle3 = WordList(["Age Play","Anal","Analingus","Anal Fisting","Anal Hook","Ass-Eating","Ass-to-Ass","BDSM",
-                                 "Bukkake","Choking","Cuck-Queaning","Cuckolding","Cum-Drinking","Cum-Swapping",
+          sSubTitle1 = WordList(['Anal','Asian','Ball-gagged','Bareback','BDSM','Big-titted','Chubby','Cuckold','Dominant','Ebony','Erotic',
+                                 'Exhibitionist','Fertile','Fetish','Filthy','Free Use','Furry','Gay','German','Hardcore','Horny','Humiliation',
+                                 'Incestuous','Interracial','Japanese','Lactating',
+                                 'Latex','Lesbian','Male-Preg','Masochistic','Mature',
+                                 'Menage','Moist','Naughty','Non-Consensual','Nudist','Oiled-up','Pregnant',
+                                 'Pseudo-Incest','Sadism','Slutty','Submissive',
+                                 'Teenage','Trans','Twincest','Underage',
+                                 'Well-endowed','Wife-Swapping','X-rated','XXL',]).GetWord(NotList = [sTitle1,sTitle2])
+          sSubTitle2 = WordList(["Babysitter","Ballerina","Biker","Bikini Model","Bimbo","Bodybuilder","Bride","Centaur","Cheerleader",
+                                 "Clown","Construction Worker","Co-ed","Cop","Cowboy","Daughter","Dick-girl","Dinosaur",
+                                 "Dinosaur","Dominatrix","Dragon","Dwarf","Erotic Dancer","Escort","Fireman","Flight Attendant","Football Player","French Maid","Futanari",
+                                 "Gargoyle","Gimp","Goat-Man","Goblin","Gorilla","Harem boy","Hotwife",
+                                 "Housewife","Japanese Schoolgirl","Librarian","Lingerie Model","Luchador","Lumberjack",
+                                 "Male Model","Male Stripper","Martian","Mermaid","Merman","Mer-MILF","MILF","Model","Mommy",
+                                 "Nanny","Nun","Nurse","Old Man","Older Woman","Orc","Porn Star","Priest","Pro-Wrestler","Schoolgirl","Secretary",
+                                 "Slave girl","Slave boy","Space Alien","Step-Dad","Step-Mom","Stripper","Sumo Wrestler","Supermodel","Teacher",
+                                 "Tentacle Monster","Troll","Twink","Unicorn","Vampire",
+                                 "Velociraptor","Viking","Were-Horse","Werewolf","Wife","Zombie",
+                                 ]).GetWord(NotList = [sTitle1,sTitle2,sSubTitle1])
+          sSubTitle3 = WordList(["Age Play","Anal","Anal Beads","Analingus","Anal Fisting","Anal Hook","Ass-Eating","Ass-to-Ass","Ball Sucking","BDSM","Butt Plug",
+                                 "Bukkake","Circle Jerk","Choking","Cuck-Queaning","Cuckolding","Cum-Drinking","Cum-Swapping","Deep Throat",
                                  "Dirty Sanchez","Double Anal","Double Penetration","Enema","Erotic Asphyxiation",
-                                 "Erotic Furniture","Fellatio","Fem-dom","Feminization","Fisting","Fivesome","Foursome",
-                                 "Frottage","Gangbang","Glory Hole","Incest","Lactation","Leather Bondage","Menage",
-                                 "Milking","Nipple Play","Orgy","Paddling", "Pee-Drinking","Public Humiliation",
-                                 "Reverse Gangbang","Rimming","Rope Play","Sixty-Nine","Sodomy","Spanking","Tea-Bagging",
-                                 "Threesome","Toe Sucking","Triple Penetration","Twincest","Water-Sports", "Wife Swapping",  
+                                 "Erotic Furniture","Extreme Penetration","Fellatio","Fem-dom","Feminization","Fisting","Fivesome","Foot Fetish",
+                                 "Foursome","Frottage","Gangbang","Glory Hole","Incest","Lactation","Leather Bondage","Masturbation","Menage",
+                                 "Milking","Nipple Play","Orgy","Orthodontia","Paddling", "Pee-Drinking","Public Humiliation",
+                                 "Reverse Gangbang","Rimming","Rope Play","Scat Play","Sixty-Nine","Sodomy","Spanking","Tea-Bagging",
+                                 "Tentacle Rape","Threesome","Toe Sucking","Triple Penetration","Twincest","Water-Sports", 
+                                 "Wife Swapping","Whipping",
                                  ]).GetWord(NotList = [sTitle1,sTitle2,sSubTitle1,sSubTitle2])
 
           sTweet = sTitle1 + " " + sTitle2 + "\n"

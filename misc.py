@@ -53,7 +53,54 @@ class Hashtags(WordList):
                'writingcommunity',
                'writingprompt','writingprompt','writingprompt',
                'yesdaddy'])
-               
+      
+class BGBonusTags(WordList):
+     def __init__(self):
+          super().__init__([
+                            "ass",
+                            "beach",
+                            "bed",
+                            "bikini",
+                            "black",
+                            "blonde",
+                            "boat",
+                            "bound",
+                            "breast",
+                            "brunette",
+                            "butt",
+                            "concubine",
+                            "cop",
+                            "dog",
+                            "dwarf",
+                            "forest",
+                            "kilt",
+                            "leg",
+                            "loincloth",
+                            "manor",
+                            "money",
+                            "muscular",
+                            "naked",
+                            "nipple",
+                            "nipslip",
+                            "nude",
+                            "ocean",
+                            "pirate",
+                            "piss",
+                            "police",
+                            "redhead",
+                            "sea",
+                            "sheikh",
+                            "ship",
+                            "shirtless",
+                            "shower",
+                            "swing",
+                            "sword",
+                            "suit",
+                            "tanlines",
+                            "tied up",
+                            "water",
+                           ])
+
 class SexyAdjs(WordList):
      def __init__(self):
           super().__init__(['dirty',
