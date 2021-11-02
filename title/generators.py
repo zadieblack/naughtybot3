@@ -5173,7 +5173,7 @@ class Generator133(TitleGen):
 
           self.ReqTemplateTags = ["straight","couple"]
           
-          sTitle1 = WordList(['Anal','Blushing','Bound','Burning','Caged','Captive',
+          sTitle1 = WordList(['Anal','Blushing','Bound','Burning','Caged','Captive','Carnal',
                               'Cocky','Dangerous','Dark','Desperate',
                               'Devil\'s','Dirty','Discrete','Fiery',
                               'Flowering','Forbidden','Gentle',
@@ -5190,7 +5190,7 @@ class Generator133(TitleGen):
                              ]).GetWord()
           sTitle2 = WordList(['Affair','Angel','Bachelor','Bad Boy',
                               'Beauty','Bosom','Bride','Climax','Confession','Cowboy','Daddy',
-                              'Dancer','Danger','Desire','Desperado',
+                              'Dancer','Danger','Delights','Desire','Desperado',
                               'Diaries','Doctor','Duchess','Duke','Embrace','Entanglement',
                               'Erection','Fantasy','Fire','Flirtation',
                               'Flower','Gambler','Gentleman','Harlequin',
@@ -5211,7 +5211,7 @@ class Generator133(TitleGen):
                                  'Incestuous','Interracial','Japanese','Lactating',
                                  'Latex','Lesbian','Male-Preg','Masochistic','Mature',
                                  'Menage','Moist','Naughty','Non-Consensual','Nudist','Oiled-up','Pregnant',
-                                 'Pseudo-Incest','Sadism','Slutty','Submissive',
+                                 'Pseudo-Incest','Rubber','Sadism','Slutty','Submissive',
                                  'Teenage','Trans','Twincest','Underage',
                                  'Well-endowed','Wife-Swapping','X-rated','XXL',]).GetWord(NotList = [sTitle1,sTitle2])
           sSubTitle2 = WordList(["Babysitter","Ballerina","Biker","Bikini Model","Bimbo","Bodybuilder","Bride","Centaur","Cheerleader",
