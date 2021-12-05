@@ -38,7 +38,7 @@ class BGProfileSaxaphone(BGProfile):
         self.MainTitleColor = "rgba(94, 68, 25, 255)"
         self.SecondTitleColor = "rgba(94, 68, 25, 255)"
         self.Tags = ["man","woman","couple","outside","straight",
-                     "redhead","muscular"]
+                     "redhead","muscular","white"]
         self.Disabled = False
 
 class BGProfileBeach(BGProfile):
@@ -49,7 +49,7 @@ class BGProfileBeach(BGProfile):
         self.MainTitleColor = "rgba(162, 63, 33, 255)"
         self.SecondTitleColor = "rgba(83, 117, 88, 255)"
         self.Tags = ["man","woman","couple","outside","straight",
-                     "blonde","shirtless","beach"]
+                     "blonde","shirtless","beach","white"]
         self.Disabled = False
 
 class BGProfileCrotchLevel(BGProfile):
@@ -61,7 +61,7 @@ class BGProfileCrotchLevel(BGProfile):
         self.SecondTitleColor = "rgba(83, 117, 88, 255)"
         self.SmallTextColor = "rgba(112, 162, 193, 255)"
         self.Tags = ["man","woman","couple","outside","straight","shirtless",
-                     "brunette","redhead","muscular","mountains"]
+                     "brunette","redhead","muscular","mountains","white"]
         self.Disabled = False
 
 class BGProfileBoatNipples(BGProfile):

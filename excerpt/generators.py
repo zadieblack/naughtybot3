@@ -6922,15 +6922,86 @@ class Generator107(ExGen):
 
         return sTweet
 
-#class Generator108(ExGen):
-#    def __init__(self):
-#        super().__init__(ID = 108, Priority = GenPriority.Normal)
+# Marianna wailed, her naked, sweaty curves writhing in ecstasy on the coffee table, as Derrick
+# erupted inside her meat sleeve. 
+class Generator108(ExGen):
+    def __init__(self):
+        super().__init__(ID = 108, Priority = GenPriority.Normal)
      
-#    def GenerateTweet(self):
-#        super().GenerateTweet()
-#        sTweet = ""
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
 
-#        return sTweet
+        sHerName = self.FemaleName.FirstName()
+        sHisName = self.MaleName.FirstName()
+
+        SexLocation = WordList(["on the coffee table","on the piano bench","on the park bench",
+                                "on her parent's bed","on her dad's sofa",
+                                "on the hood of the Honda","on the kitchen table",
+                                "on her teacher's desk","atop the grand piano",
+                                "on the conference room table","on the examination table",
+                                "on the kitchen counter","on the dining room table",
+                                "on the filthy mattress","on the bathroom floor","in the sex swing",
+                                "on the weight bench","in the back of the Volkswagen",
+                                "on the back of the car","on the dressing room floor",
+                                "on the seat of the toilet","on the bar","on the tanning bed",
+                                "on the sidewalk","on the driveway","on the hardwood floor",
+                                "on the credenza","on the psychiatrist's couch",
+                                "on her boss's desk","on the principal's desk",
+                                "on the coarse beach sand","on the diving board",
+                                "on the seat of the motorcycle","on the hood of the truck",
+                                "in the back of the truck","on the floor of the shower stall",
+                                "on the massage table",
+                                ])
+
+        Vaj = self.FemBodyParts.Vagina
+
+        sTweet += sHerName + " " 
+        sTweet += WordList(["cried out","gasped","moaned","panted",
+                            "sighed","wailed","whimpered"]).GetWord() + ", "
+        sTweet += "her naked, " + WordList(["busty","buxom","curvy","flushed",
+                                            "girlish","lithe","moist","nubile",
+                                            "oiled-up",
+                                            "ravishing","shameless","slender",
+                                            "smooth","sweaty",
+                                            "voluptuous","womanly"]).GetWord() + " body "
+        sTweet += WordList(["gyrating","heaving","quivering","trembling"]).GetWord() + " "
+        sTweet += "in ecstasy " + SexLocation.GetWord() + ", "
+        sTweet += "as " + sHisName + " "
+        sTweet += WordList(["blew his load","came","climaxed","deposited","discharged",
+                            "ejaculated","erupted","exploded","nutted",
+                            "splooged","spurted"]).GetWord() + " "
+
+        if CoinFlip():
+            if CoinFlip():
+                sTweet += self.Semen.MediumDescription() + " "
+            else:
+                sTweet += WordList(["jets of","ropes of","spurts of ",]).GetWord() + " "
+                sTweet += self.Semen.MediumDescription() + " "
+
+        if CoinFlip():
+            sTweet += "deep "
+        sTweet += "inside her "
+
+        if randint(1,5) < 5:
+            if CoinFlip():
+                sTweet += WordList(["clenched","dewy","dripping","fertile","glistening",
+                                    "gushing","juicy","silken","sopping","tender",
+                                    "tight","velvet","wanton","well-used","wet"]).GetWord() + " "
+            sTweet += WordList(["beef taco","clam","cock sock","cunt-hole",
+                                "fish lips","fish taco","fuck-hole",
+                                "fuck-tunnel","fur burger","fur pie",
+                                "furrow","gash","goop chute","honey hole",
+                                "honey pot","hot pocket","love muffin",
+                                "meat sleeve","pie","sausage wallet",
+                                "sex lips","spunk trunk","tuna taco",
+                                "whisker biscuit","wizard sleeve",]).GetWord() + "."
+        else:
+            sTweet += self.FemBodyParts.Ass.Anus.MediumDescription() + "."
+
+        
+
+        return sTweet
 
 #class Generator109(ExGen):
 #    def __init__(self):
