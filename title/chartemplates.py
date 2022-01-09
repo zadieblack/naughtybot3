@@ -2623,20 +2623,152 @@ class MaleGangPluralTemplate1(MaleGangPluralTemplate):
                                                     CTEntry([ProfMale,SpeciesMale],1)
                                                   ],
                                    NotList = ["Man"])
-                                       
+       
+# Boy's School
+class MaleBoysSchoolGangTemplate(MaleGangPluralTemplate):
+     def __init__(self):
+          super().__init__(     noun = TropeBitMale("Boys School"),
+                                    id = 404, 
+                                    adjlist =      [CTEntry([GenModMale],8),
+                                                    CTEntry([AttitudeMale],7),
+                                                    CTEntry([ClothesMale],6),
+                                                    CTEntry([PhysCharMale],5),
+                                                    CTEntry([DickCharMale],4),
+                                                    CTEntry([TypeModMale],3),
+                                                    CTEntry([NationMale,RaceMale],2),
+                                                  ],
+                                    NotList = ["Mustachioed"])
+          self.RequestOnly = False
+
+# Coal Miners
+class MaleCoalMinersGangTemplate(MaleGangPluralTemplate):
+     def __init__(self):
+          super().__init__(     noun = TropeBitMale("Coal Miners"),
+                                    id = 405, 
+                                    adjlist =      [CTEntry([GenModMale],8),
+                                                    CTEntry([AttitudeMale],7),
+                                                    CTEntry([ClothesMale],6),
+                                                    CTEntry([PhysCharMale],5),
+                                                    CTEntry([DickCharMale],4),
+                                                    CTEntry([TypeModMale],3)
+                                                  ])
+          self.RequestOnly = False
+
+# Constructions Workers
+class MaleConstructionWorkersGangTemplate(MaleGangPluralTemplate):
+     def __init__(self):
+          super().__init__(     noun = TropeBitMale("Construction Workers"),
+                                    id = 406, 
+                                    adjlist =      [CTEntry([GenModMale],8),
+                                                    CTEntry([AttitudeMale],7),
+                                                    CTEntry([ClothesMale],6),
+                                                    CTEntry([PhysCharMale],5),
+                                                    CTEntry([DickCharMale],4),
+                                                    CTEntry([TypeModMale],3),
+                                                    CTEntry([NationMale,RaceMale],2),
+                                                  ])
+          self.RequestOnly = False
+
+# Hockey Team
+class MaleHockeyTeamGangTemplate(MaleGangPluralTemplate):
+     def __init__(self):
+          super().__init__(     noun = TropeBitMale("Hockey Team"),
+                                    id = 407, 
+                                    adjlist =      [CTEntry([GenModMale],8),
+                                                    CTEntry([ClothesMale],6),
+                                                    CTEntry([PhysCharMale],5),
+                                                    CTEntry([DickCharMale],4),
+                                                    CTEntry([TypeModMale],3),
+                                                    CTEntry([NationMale],2),
+                                                  ])
+          self.RequestOnly = False
+
+# Men's Locker Room
+class MaleMensLockerRoomGangTemplate(MaleGangPluralTemplate):
+     def __init__(self):
+          super().__init__(     noun = TropeBitMale("Men's Locker Room"),
+                                    id = 408, 
+                                    adjlist =      [CTEntry([GenModMale],8),
+                                                    CTEntry([ClothesMale],6),
+                                                    CTEntry([PhysCharMale],5),
+                                                    CTEntry([DickCharMale],4),
+                                                    CTEntry([TypeModMale],3)
+                                                  ])
+          self.RequestOnly = False
+
 # Space Men
 class MaleSpaceManTemplate(MaleGangPluralTemplate):
      def __init__(self):
           super().__init__(     noun = TropeBitMale("Space Men"),
-                                    id = 404, 
+                                    id = 409, 
                                     adjlist =      [CTEntry([GenModMale,ClothesMale],8),
                                                     CTEntry([PhysCharMale],4),
                                                     CTEntry([DickCharMale,SkinHairColorMale],3),
                                                     CTEntry([SpaceManColorAdjs],2),
                                                     CTEntry([TropesWealthyMale,ProfMale],1)
                                                   ])
-          self.RequestOnly = True
+          self.RequestOnly = False
 
+# Street Gang
+class MaleStreetGangTemplate(MaleGangPluralTemplate):
+     def __init__(self):
+          super().__init__(     noun = TropeBitMale("Street Gang"),
+                                    id = 410, 
+                                    adjlist =      [CTEntry([GenModMale],8),
+                                                    CTEntry([AttitudeMale],7),
+                                                    CTEntry([ClothesMale],6),
+                                                    CTEntry([PhysCharMale],5),
+                                                    CTEntry([DickCharMale],4),
+                                                    CTEntry([TypeModMale],3),
+                                                    CTEntry([NationMale,RaceMale],2)
+                                                  ])
+          self.RequestOnly = False
+
+# Identical Twin Brothers
+class MaleTwinBrothersGangTemplate(MaleGangPluralTemplate):
+     def __init__(self):
+          super().__init__(     noun = TropeBitMale("Identical Twin Brothers"),
+                                    id = 411, 
+                                    adjlist =      [CTEntry([GenModMale],8),
+                                                    CTEntry([AttitudeMale],7),
+                                                    CTEntry([ClothesMale],6),
+                                                    CTEntry([PhysCharMale],5),
+                                                    CTEntry([DickCharMale],4),
+                                                    CTEntry([TypeModMale],3),
+                                                    CTEntry([NationMale,RaceMale],2),
+                                                    CTEntry([ProfMale,SpeciesMale,TropesWealthyMale],1),
+                                                  ])
+          self.RequestOnly = False
+
+# Viking Horde
+class MaleVikingHordeGangTemplate(MaleGangPluralTemplate):
+     def __init__(self):
+          super().__init__(     noun = TropeBitMale("Viking Horde"),
+                                    id = 412, 
+                                    adjlist =      [CTEntry([GenModMale],8),
+                                                    CTEntry([AttitudeMale],7),
+                                                    CTEntry([ClothesMale],6),
+                                                    CTEntry([PhysCharMale],5),
+                                                    CTEntry([DickCharMale],4),
+                                                    CTEntry([TypeModMale],3),
+                                                  ])
+          self.RequestOnly = False
+
+# Werewolf Pack
+class MaleWerewolfPackGangTemplate(MaleGangPluralTemplate):
+     def __init__(self):
+          super().__init__(     noun = TropeBitMale("Werewolf Pack"),
+                                    id = 413, 
+                                    adjlist =      [CTEntry([GenModMale],8),
+                                                    CTEntry([AttitudeMale],7),
+                                                    CTEntry([ClothesMale],6),
+                                                    CTEntry([PhysCharMale],5),
+                                                    CTEntry([DickCharMale],4),
+                                                    CTEntry([TypeModMale],3),
+                                                    CTEntry([NationMale,RaceMale],2),
+                                                    CTEntry([ProfMale,TropesWealthyMale],1),
+                                                  ])
+          self.RequestOnly = False
 
 class MaleGayTemplate1(MaleGayTemplate):
      def __init__(self):

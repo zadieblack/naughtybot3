@@ -603,17 +603,20 @@ class GangMaleChar(Character):
             #SelectionList.append(MaleGangSingularTemplate())
             for subclass in MaleGangSingularTemplate.__subclasses__():
                 template = subclass()
-                SelectionList.append(template)
+                if not template.RequestOnly:
+                    SelectionList.append(template)
         if malechartype == MaleCharType.GangPlural or malechartype == MaleCharType.GangAny:
             #SelectionList.append(MaleGangPluralTemplate())
             for subclass in MaleGangPluralTemplate.__subclasses__():
                 template = subclass()
-                SelectionList.append(template)
+                if not template.RequestOnly:
+                    SelectionList.append(template)
         if malechartype == MaleCharType.GangAny:
             #SelectionList.append(MaleGangAnyTemplate())
             for subclass in MaleGangAnyTemplate.__subclasses__():
                 template = subclass()
-                SelectionList.append(template)
+                if not template.RequestOnly:
+                    SelectionList.append(template)
 
         if len(SelectionList) == 0:
             print("=*= WARNING =*= GangMaleChar() template list is empty")

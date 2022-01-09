@@ -4935,14 +4935,14 @@ class Generator127(TitleGen):
             self.ReqTemplateTags = ["men"]
           
         sStrip = ""
-        Gang = char.GangMaleChar(bAddTheArticle = True, MaxChars = 22,
+        Gang = char.GangMaleChar(bAddTheArticle = True, MaxChars = 28,
                                 bAllowGenMod = False, bAllowTypeMod = False, 
                                 bAllowProf = False, bAllowSpecies = False)
           
         sTweet = self.HerName + "\n" 
         sStrip = WordList(["Gets Naked for","Strips Naked for","Twerks Naked for","Undresses for",
                             "Exposes Herself to","Strips for","Shows Her Tits to","Flashes\n",
-                            "Does a Strip-Tease for","Takes Her Top Off for"]).GetWord().upper()
+                            "Does a Strip-Tease for","Takes Her Top Off for","Pole Dances for",]).GetWord().upper()
 
         if sStrip[-4: ] == " FOR":
             sStrip = sStrip.replace(sStrip[-4: ], "\nfor")
@@ -4985,9 +4985,9 @@ class Generator128(TitleGen):
                                         'Bounty Hunters','Barbarians','Businessmen','Werewolves',
                                         'Drag Queens','Muscle Marys'])
           MaleNotList = ['Space']  
-          Alien = char.GangMaleChar(SelectTemplateID = 404, NotList = MaleNotList)
+          Alien = char.GangMaleChar(SelectTemplateID = 409, NotList = MaleNotList)
           while len(Alien.Desc) > 32:
-              Alien = char.GangMaleChar(SelectTemplateID = 404, NotList = MaleNotList)
+              Alien = char.GangMaleChar(SelectTemplateID = 409, NotList = MaleNotList)
           
           sTweet = Verbs.GetWord() + "\nby\n"
           sTweet += "The " + Alien.Desc 

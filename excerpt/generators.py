@@ -6968,8 +6968,8 @@ class Generator108(ExGen):
         sTweet += WordList(["gyrating","heaving","quivering","trembling"]).GetWord() + " "
         sTweet += "in ecstasy " + SexLocation.GetWord() + ", "
         sTweet += "as " + sHisName + " "
-        sTweet += WordList(["blew his load","came","climaxed","creamed","deposited",
-                            "discharged","ejaculated","erupted","exploded","nutted",
+        sTweet += WordList(["came","climaxed","creamed","discharged",
+                            "ejaculated","erupted","exploded","nutted",
                             "splooged","spurted"]).GetWord() + " "
 
         if CoinFlip():
