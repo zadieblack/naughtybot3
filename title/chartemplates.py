@@ -2669,11 +2669,25 @@ class MaleConstructionWorkersGangTemplate(MaleGangPluralTemplate):
                                                   ])
           self.RequestOnly = False
 
+# Football Team
+class MaleFootballTeamGangTemplate(MaleGangPluralTemplate):
+     def __init__(self):
+          super().__init__(     noun = TropeBitMale("Football Team"),
+                                    id = 407, 
+                                    adjlist =      [CTEntry([GenModMale],8),
+                                                    CTEntry([ClothesMale],6),
+                                                    CTEntry([PhysCharMale],5),
+                                                    CTEntry([DickCharMale],4),
+                                                    CTEntry([TypeModMale],3),
+                                                    CTEntry([NationMale],2),
+                                                  ])
+          self.RequestOnly = False
+
 # Hockey Team
 class MaleHockeyTeamGangTemplate(MaleGangPluralTemplate):
      def __init__(self):
           super().__init__(     noun = TropeBitMale("Hockey Team"),
-                                    id = 407, 
+                                    id = 408, 
                                     adjlist =      [CTEntry([GenModMale],8),
                                                     CTEntry([ClothesMale],6),
                                                     CTEntry([PhysCharMale],5),
@@ -2687,7 +2701,7 @@ class MaleHockeyTeamGangTemplate(MaleGangPluralTemplate):
 class MaleMensLockerRoomGangTemplate(MaleGangPluralTemplate):
      def __init__(self):
           super().__init__(     noun = TropeBitMale("Men's Locker Room"),
-                                    id = 408, 
+                                    id = 409, 
                                     adjlist =      [CTEntry([GenModMale],8),
                                                     CTEntry([ClothesMale],6),
                                                     CTEntry([PhysCharMale],5),
@@ -2700,7 +2714,7 @@ class MaleMensLockerRoomGangTemplate(MaleGangPluralTemplate):
 class MaleSpaceManTemplate(MaleGangPluralTemplate):
      def __init__(self):
           super().__init__(     noun = TropeBitMale("Space Men"),
-                                    id = 409, 
+                                    id = 410, 
                                     adjlist =      [CTEntry([GenModMale,ClothesMale],8),
                                                     CTEntry([PhysCharMale],4),
                                                     CTEntry([DickCharMale,SkinHairColorMale],3),
@@ -2713,7 +2727,7 @@ class MaleSpaceManTemplate(MaleGangPluralTemplate):
 class MaleStreetGangTemplate(MaleGangPluralTemplate):
      def __init__(self):
           super().__init__(     noun = TropeBitMale("Street Gang"),
-                                    id = 410, 
+                                    id = 411, 
                                     adjlist =      [CTEntry([GenModMale],8),
                                                     CTEntry([AttitudeMale],7),
                                                     CTEntry([ClothesMale],6),
@@ -2728,7 +2742,7 @@ class MaleStreetGangTemplate(MaleGangPluralTemplate):
 class MaleTwinBrothersGangTemplate(MaleGangPluralTemplate):
      def __init__(self):
           super().__init__(     noun = TropeBitMale("Identical Twin Brothers"),
-                                    id = 411, 
+                                    id = 412, 
                                     adjlist =      [CTEntry([GenModMale],8),
                                                     CTEntry([AttitudeMale],7),
                                                     CTEntry([ClothesMale],6),
@@ -2744,7 +2758,7 @@ class MaleTwinBrothersGangTemplate(MaleGangPluralTemplate):
 class MaleVikingHordeGangTemplate(MaleGangPluralTemplate):
      def __init__(self):
           super().__init__(     noun = TropeBitMale("Viking Horde"),
-                                    id = 412, 
+                                    id = 413, 
                                     adjlist =      [CTEntry([GenModMale],8),
                                                     CTEntry([AttitudeMale],7),
                                                     CTEntry([ClothesMale],6),
@@ -2758,7 +2772,7 @@ class MaleVikingHordeGangTemplate(MaleGangPluralTemplate):
 class MaleWerewolfPackGangTemplate(MaleGangPluralTemplate):
      def __init__(self):
           super().__init__(     noun = TropeBitMale("Werewolf Pack"),
-                                    id = 413, 
+                                    id = 414, 
                                     adjlist =      [CTEntry([GenModMale],8),
                                                     CTEntry([AttitudeMale],7),
                                                     CTEntry([ClothesMale],6),
