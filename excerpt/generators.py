@@ -7003,16 +7003,93 @@ class Generator108(ExGen):
 
         return sTweet
 
-#class Generator109(ExGen):
-#    def __init__(self):
-#        super().__init__(ID = 109, Priority = GenPriority.Normal)
+# Jennifer lifted the wine glass to her ruby lips and drank, savoring the hot, frothy liquid 
+# as it slid down her throat.
+# "I've never tasted lumberjack semen before!" she remarked.
+class Generator109(ExGen):
+    def __init__(self):
+        super().__init__(ID = 109, Priority = GenPriority.Normal)
      
-#    def GenerateTweet(self):
-#        super().GenerateTweet()
-#        sTweet = ""
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
 
-#        return sTweet
+        sHerName = self.FemaleName.FirstName()
+        RaceGuys = WordList(["a black man","a white man","an Asian man",
+                             "a Latino man","an African American man",
+                             "a white guy","a black guy","an Arabic guy",
+                             "an Arabic man","a Greek man","an Irishman",
+                             "a Scottish man","a Frenchman",
+                             "an African man","a dark-skinned man",
+                             "an Italian man", "a Japanese man",
+                             "a Hispanic guy", "a Norwegian man",
+                             "a Jewish man", "a Muslim man",
+                             "a Spanish man","a Native American man",
+                             "a German guy","a Russian man",
+                            ])
 
+        SemenWord = WordList(["cum","jizz","semen","sperm"])
+        SemenOwner = WordList(titmisc.ProfMale().GetWordList()
+                              + titmisc.SpeciesMale().GetWordList()
+                              + titmisc.TitlesMale().GetWordList()
+                              + titmisc.TropesMale().GetWordList()
+                              + titmisc.TropesWealthyMale().GetWordList()
+                              )
+        OwnerNotList = ["Charming","Sex God","Voyeur","Sugar Daddy","Stud",
+                        "Stalker","Smooth Operator","Silver Fox","Scoundrel",
+                        "Playboy","Ladykiller","Ladies Man","Hunk","Hipster",
+                        "Heart-Breaker","Gentleman","Gay-for-Pay",
+                        "Family-Man","Daddy","Casanova","Boss","Bad Boy",
+                        "Alpha","Undead","MANticore","MANtelope",
+                        "Man-o-taur","teacher","business man",
+                       ]
+
+        sTweet += sHerName + " "
+        sTweet += "lifted the " + WordList(["long-stemmed wine glass",
+                                            "shot glass",
+                                            "goblet","chalice",
+                                            "jeweled goblet",
+                                            "jeweled chalice",
+                                            "cocktail glass",
+                                            "mug","tall mug",
+                                            "fluted wine glass",
+                                            "champagne flute",
+                                            "pint glass",
+                                           ]).GetWord() + " "
+        sTweet += "to her " + WordList(["red","rouged","full","sensual",
+                                        "full, red", "pursed red",
+                                        "crimson","thick","rosy","ruby",
+                                        "firm","soft red","curved",
+                                        "curved red","sensual ruby",
+                                        "rose-red",
+                                       ]).GetWord() + " lips and "
+        sTweet += WordList(["drank","drank","sipped","guzzled it down",
+                            "sipped and swallowed","took a swig",
+                           ]).GetWord() + ", "
+        sTweet += "savoring the " + WordList(["hot","warm","steaming"]).GetWord() + ", "
+        sTweet += WordList(["rich","nourishing","delightful","strong",
+                            "delicious","thick","sweet","frothy","bitter",
+                            "potent","stimulating","heady","filling",
+                            "tasty",
+                           ]).GetWord() + " "
+        sTweet += WordList(["drink","liquid","liquid"]).GetWord() + " "
+        sTweet += "as it " + WordList(["slid","streamed","poured","ran"]).GetWord() + " "
+        sTweet += WordList(["down her throat","down her throat","across her tongue"]).GetWord() + ".\n\n"
+
+        sTweet += "\"I've never tasted " 
+        if randint(1,3) == 3:
+            sTweet += "the " + SemenWord.GetWord() + " "
+            sTweet += "of " + RaceGuys.GetWord() + " "
+        else:
+            sTweet += SemenOwner.GetWord(NotList = OwnerNotList).lower() + " "
+            sTweet += SemenWord.GetWord() + " "
+        sTweet += "before,\" she remarked."
+
+        return sTweet
+
+## "Can you describe him, ma'am?" asked the officer.
+## Cassandra pursed her lips thoughtfully. "He was about six feet tall, broad-shouldered, blonde.
+## He had the tight, muscular buttocks of a football player."
 #class Generator110(ExGen):
 #    def __init__(self):
 #        super().__init__(ID = 110, Priority = GenPriority.Normal)
