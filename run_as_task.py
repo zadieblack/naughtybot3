@@ -46,8 +46,8 @@ thisTZ = timezone("US/Eastern")
 currentDTaware = thisTZ.localize(currentDT)
 
 while True:
-    iRand = randint(1,3)
-    print("+ randint(1,3) = " + str(iRand))
+    iRand = randint(2,3)
+    print("+ randint(2,3) = " + str(iRand))
     if iRand != 1:
         #pass
         print("+ running bot lust")

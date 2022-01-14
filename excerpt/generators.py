@@ -5739,7 +5739,7 @@ class Generator97(ExGen):
 # she purred, "have you ever tried a Dirty Burrito?"
 class Generator98(ExGen):
     def __init__(self):
-        super().__init__(ID = 98, Priority = GenPriority.High)
+        super().__init__(ID = 98, Priority = GenPriority.AboveAverage)
      
     def GenerateTweet(self):
         super().GenerateTweet()
@@ -5849,7 +5849,7 @@ class Generator98(ExGen):
 # {tit-fucked | sprayed a stream of urine over her | thrust his dick into her rectum | ate her ass | rubbed his hairy ballsack against her face | inserted his vaseline-coated fist into her vaginal canal} her.
 class Generator99(ExGen):
     def __init__(self):
-        super().__init__(ID = 99, Priority = GenPriority.SuperHigh)
+        super().__init__(ID = 99, Priority = GenPriority.AboveAverage)
      
     def GenerateTweet(self):
         super().GenerateTweet()
@@ -5919,7 +5919,7 @@ class Generator99(ExGen):
 # she jacked him off right there in the carpark.
 class Generator100(ExGen):
     def __init__(self):
-        super().__init__(ID = 100, Priority = GenPriority.AboveAverage)
+        super().__init__(ID = 100, Priority = GenPriority.Normal)
      
     def GenerateTweet(self):
         super().GenerateTweet()
@@ -6112,7 +6112,7 @@ class Generator101(ExGen):
 # "Oh, baby!" said Joe, "those are some sweet-ass breasticles!"
 class Generator102(ExGen):
     def __init__(self):
-        super().__init__(ID = 102, Priority = GenPriority.SuperHigh)
+        super().__init__(ID = 102, Priority = GenPriority.Normal)
      
     def GenerateTweet(self):
         super().GenerateTweet()
@@ -6180,7 +6180,7 @@ class Generator102(ExGen):
 # "Fuck me, Joe," she moaned. "Defile my dirt pipe with your big nasty cock!"
 class Generator103(ExGen):
     def __init__(self):
-        super().__init__(ID = 103, Priority = GenPriority.Normal)
+        super().__init__(ID = 103, Priority = GenPriority.Lowest)
      
     def GenerateTweet(self):
         super().GenerateTweet()
@@ -6197,7 +6197,7 @@ class Generator103(ExGen):
 # in the back of a church while her husband watched.
 class Generator104(ExGen):
     def __init__(self):
-        super().__init__(ID = 104, Priority = GenPriority.High)
+        super().__init__(ID = 104, Priority = GenPriority.AboveAverage)
      
     def GenerateTweet(self):
         super().GenerateTweet()
@@ -6370,7 +6370,7 @@ class Generator104(ExGen):
 #He reached down and put his hands on his step-brother's well-defined ass. Then he began to gently massage it.
 class Generator105(ExGen):
     def __init__(self):
-        super().__init__(ID = 105, Priority = GenPriority.High)
+        super().__init__(ID = 105, Priority = GenPriority.AboveAverage)
      
     def GenerateTweet(self):
         super().GenerateTweet()
@@ -6453,7 +6453,7 @@ class Generator105(ExGen):
 # his balls in my mouth behind the club."
 class Generator106(ExGen):
     def __init__(self):
-        super().__init__(ID = 106, Priority = GenPriority.High)
+        super().__init__(ID = 106, Priority = GenPriority.AboveAverage)
      
     def GenerateTweet(self):
         super().GenerateTweet()
@@ -6801,7 +6801,7 @@ class Generator106(ExGen):
 # rugged fire fighter pulled out his cock and started reaming her ass.
 class Generator107(ExGen):
     def __init__(self):
-        super().__init__(ID = 107, Priority = GenPriority.Normal)
+        super().__init__(ID = 107, Priority = GenPriority.High)
      
     def GenerateTweet(self):
         super().GenerateTweet()
@@ -6926,7 +6926,7 @@ class Generator107(ExGen):
 # erupted inside her meat sleeve. 
 class Generator108(ExGen):
     def __init__(self):
-        super().__init__(ID = 108, Priority = GenPriority.Normal)
+        super().__init__(ID = 108, Priority = GenPriority.High)
      
     def GenerateTweet(self):
         super().GenerateTweet()
@@ -7008,7 +7008,7 @@ class Generator108(ExGen):
 # "I've never tasted lumberjack semen before!" she remarked.
 class Generator109(ExGen):
     def __init__(self):
-        super().__init__(ID = 109, Priority = GenPriority.Normal)
+        super().__init__(ID = 109, Priority = GenPriority.High)
      
     def GenerateTweet(self):
         super().GenerateTweet()
