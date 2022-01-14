@@ -9,6 +9,7 @@ import excerpt.util as exutil
 import util as shutil
 import excerpt.locations as locations
 import misc as mainmisc
+import re
 
 from util import CoinFlip
 from util import WordList
@@ -6180,16 +6181,108 @@ class Generator102(ExGen):
 # "Fuck me, Joe," she moaned. "Defile my dirt pipe with your big nasty cock!"
 class Generator103(ExGen):
     def __init__(self):
-        super().__init__(ID = 103, Priority = GenPriority.Lowest)
+        super().__init__(ID = 103, Priority = GenPriority.AboveAverage)
      
     def GenerateTweet(self):
         super().GenerateTweet()
         sTweet = ""
 
-        sMILFName = names.AllLastNames().GetWord()
+        bIsPussy = False
+        sMILFName = names.RegularLastNames().GetWord()
+        sBoyName = WordList(["Adam","Brad","Chad","Drew",
+                             "Jeff","Jim","John","Peter",
+                             "Richard","Rick","Shawn",
+                             "Tom","Trey","Ty"
+                            ]).GetWord()
+        PhraseNotList = ['shameless',]
+
         Ass = self.FemBodyParts.Ass 
         Anus = Ass.Anus
+        FormalAnusNotList = ['bowels','corn hole','dirt-pipe','fart blaster',
+                             'poop-chute','poop-trap','pooper','rectum',]
+        AnusAdjList = WordList(['horny','hot','lewd','little',
+                                'loose','nasty','naughty',
+                                'neeful',
+                                'snug','taboo','tender',
+                                'tight','wanton','well-used',
+                                'willing',])
         Pussy = self.FemBodyParts.Vagina
+        FormalPussyNotList = ['cherry pie','cock-garage','cock-sock',
+                              'cooch','coochie','cunny','fuckhole',
+                              'honey-hole','honeypot','love-muffin',
+                              'muff','muffin','peach','pie',]
+        PussyAdjList = WordList(["dripping","gleaming wet","gushing","hot",
+                                 "horny","hungry","juicy","leaky","lewd",
+                                 "lustful","moist","nasty","naughty",
+                                 "needful","pink","puffy","slutty","smooth",
+                                 "sweet","tender","tight","wanton",
+                                 "whore","willing","well-used"])
+        Penis = self.MaleBodyParts.Penis
+        PenisNotList = ["penis","phallus"]
+        PenisAdjNotList = ['burning','engorged','erect','fevered',
+                           'hairless','hardening','impressive',
+                           'man-scaped','pulsating','raging',
+                           'rampant','silken','smooth','stiff',
+                           'tasty','towering','tumescent',
+                           'turgid','unfurled',
+                          ]
+
+        sTweet += "Mrs. " + sMILFName + " bent over in front of him "
+        sTweet += "and spread the cheeks of her " + Ass.ShortDescription() + ", "
+        sTweet += "shamelessly displaying her "
+        iRand = randint(1,3)
+        if iRand == 1:
+            #anus
+            sAnus1 = Anus.ShortDescription(NotList = FormalAnusNotList + PhraseNotList)
+            PhraseNotList += re.split('\W+', sAnus1)
+            sTweet += sAnus1
+        elif iRand == 2:
+            #cunt
+            bIsPussy = True
+            sPussy1 = Pussy.RandomDescription(NotList = FormalPussyNotList + PhraseNotList)
+            PhraseNotList += re.split('\W+', sPussy1)
+            sTweet += sPussy1
+        else:
+            #anus and cunt
+            if CoinFlip():
+                bIsPussy = True
+            sPussy1 = Pussy.ShortDescription(NotList = FormalPussyNotList + PhraseNotList)
+            PhraseNotList += re.split('\W+', sPussy1)
+            sAnus1 = Anus.ShortDescription(NotList = FormalAnusNotList + PhraseNotList)
+            PhraseNotList += re.split('\W+', sAnus1)
+            sTweet += sPussy1 + " and " + sAnus1
+        sTweet += ".\n\n"
+
+        sTweet += "\"Fuck me, " + sBoyName + ",\" "
+        sTweet += "she " + self.VMoan.Past() + ". "
+        sTweet += "\"" + WordList(["Defile","Desecrate","Do","Drill",
+                                   "Impale","Pound","Ram","Rape","Ravish",
+                                   "Ream","Stuff",
+                                  ]).GetWord() + " my "
+        if bIsPussy:
+            if CoinFlip():
+                #pussy
+                sPussy2 = PussyAdjList.GetWord() + " " + Pussy.ShortDescription(NotList = PhraseNotList)
+                PhraseNotList += re.split('\W+', sPussy2)
+                sTweet += sPussy2
+            else:
+                #inner hole
+                sPussy2 = PussyAdjList.GetWord() + " " + Pussy.InnerVag.ShortDescription(NotList = PhraseNotList)
+                PhraseNotList += re.split('\W+', sPussy2)
+                sTweet += sPussy2
+        else:
+            if CoinFlip():
+                #ass
+                sAnus2 = Ass.RandomDescription(NotList = PhraseNotList)
+                PhraseNotList += re.split('\W+', sAnus2)
+                sTweet += sAnus2
+            else:
+                #anus
+                sAnus2 = AnusAdjList.GetWord() + " " + Anus.ShortDescription(NotList = PhraseNotList)
+                PhraseNotList += re.split('\W+', sAnus2)
+                sTweet += sAnus2
+        sTweet += " "
+        sTweet += "with your " + Penis.FloweryDescription(NotList = PenisNotList + PhraseNotList + PenisAdjNotList) + "!\""
 
         return sTweet
           

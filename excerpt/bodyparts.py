@@ -961,6 +961,7 @@ class Vagina(BodyParts):
                          'lustful',
                          'moist',
                          'naked',
+                         'needful',
                          'peach-fuzzed',
                          'puffy',
                          'shameless',
