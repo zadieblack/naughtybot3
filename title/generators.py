@@ -312,7 +312,7 @@ class Generator1(TitleGen):
           sTweet = ""
 
           self.ExclTemplateTags = ["lesbian"]
-          self.ReqTemplateTags = ["woman","man"]
+          self.ReqTemplateTags = ["woman","man","couple"]
           
           Master = char.MaleChar(TempType = TempType.Flowery, bAddTheArticle = True, MaxChars = 32,
                                  bSplitArticle = True, bAllowGang = True)
@@ -4932,7 +4932,9 @@ class Generator127(TitleGen):
         if CoinFlip():
             self.ReqTemplateTags = ["woman","single"]
         else:
-            self.ReqTemplateTags = ["men"]
+            #self.ReqTemplateTags = ["men"]
+            self.ReqTemplateTags = ["woman","single"]
+        self.ExclTemplateTags = ["gay","lesbian"]
           
         sStrip = ""
         Gang = char.GangMaleChar(bAddTheArticle = True, MaxChars = 28,

@@ -10,7 +10,7 @@ import title.util as titutil
 
 BGLOGFILEPATH = "title/"
 BGLOGFILENAME = "bghistory_q.txt"
-BGQSIZE = 20
+BGQSIZE = 100
 MAXTRIES = 500
 
 ProfileHistoryQ = HistoryQWithLog(BGLOGFILEPATH + BGLOGFILENAME, BGQSIZE)
@@ -2290,6 +2290,73 @@ class BGProfileHawaiianThongRemoval(BGProfile):
         self.Tags = ["man","woman","straight","outdoors","Asian","black hair",
                      "minority","Hawaiian","tropical","topless","buttocks",
                      "thong","shirtless","sexy","couple"]
+        self.Disabled = False
+        self.Content = Content.PG13
+
+class BGProfileBlueBikiniRedPhone(BGProfile):
+    def __init__(self):
+        super().__init__(Priority = GenPriority.High,
+                           sFileName = "blue_bikini_red_phone")
+        self.MainTitleColor = "rgba(1, 123, 201, 255)"
+        self.SecondTitleColor = "rgba(211, 2, 13, 255)"
+        self.SmallTextColor = "rgba(0, 0, 0, 255)"
+        self.AuthorNameColor = "rgba(0, 0, 0, 255)"
+        self.Tags = ["woman","single","pinup","inside","indoors","blonde","bikini",
+                     "lingerie","pinup","red phone","heels","blue ribbon"]
+        self.Disabled = False
+
+class BGProfileZipperLady(BGProfile):
+    def __init__(self):
+        super().__init__(Priority = GenPriority.AboveAverage,
+                           sFileName = "zipper_lady")
+        self.MainTitleColor = "rgba(224, 40, 33, 255)"
+        self.SecondTitleColor = "rgba(243, 118, 49, 255)"
+        self.SmallTextColor = "rgba(30, 21, 151, 255)"
+        self.AuthorNameColor = "rgba(30, 21, 151, 255)"
+        self.Tags = ["woman","single","pinup","redhead","nude","breasts","cum",
+                     "weird","kinky","zipper","leather","barechested"]
+        self.Disabled = False
+        self.Content = Content.AdultsOnly
+
+class BGProfileLesbianCellmate(BGProfile):
+    def __init__(self):
+        super().__init__(Priority = GenPriority.High,
+                           sFileName = "lesbian_cellmate")
+        self.MainTitleColor = "rgba(205, 62, 41, 255)"
+        self.SecondTitleColor = "rgba(230, 102, 165, 255)"
+        self.SmallTextColor = "rgba(27, 31, 33, 255)"
+        self.AuthorNameColor = "rgba(230, 102, 165, 255)"
+        self.Tags = ["woman","women","panties","ass","underwear",
+                     "lingerie","lesbian","jail","prison",
+                     "brunette","black","minority","kinky"]
+        self.Disabled = False
+        self.Content = Content.PG13
+
+class BGProfileHotMeal(BGProfile):
+    def __init__(self):
+        super().__init__(Priority = GenPriority.AboveAverage,
+                           sFileName = "hot_meal")
+        self.MainTitleColor = "rgba(229, 60, 31, 255)"
+        self.SecondTitleColor = "rgba(213, 94, 231, 255)"
+        self.SmallTextColor = "rgba(0, 0, 0, 255)"
+        self.AuthorNameColor = "rgba(229, 60, 31, 255)"
+        self.Tags = ["woman","single","brunette","sexy","provocative",
+                     "outdoors","picnic","legs open","food","pie",
+                     "suggestive"]
+        self.Disabled = False
+        self.Content = Content.PG13
+
+class BGProfileNylonFingers(BGProfile):
+    def __init__(self):
+        super().__init__(Priority = GenPriority.AboveAverage,
+                           sFileName = "nylon_fingers")
+        self.MainTitleColor = "rgba(233, 45, 104, 255)"
+        self.SecondTitleColor = "rgba(197, 45, 225, 255)"
+        self.SmallTextColor = "rgba(0, 0, 0, 255)"
+        self.AuthorNameColor = "rgba(197, 45, 225, 255)"
+        self.Tags = ["woman","man","couple","straight","lingerie",
+                     "nylons","stockings","undressing","stripping",
+                     "blue jeans","underwear",]
         self.Disabled = False
         self.Content = Content.PG13
 
