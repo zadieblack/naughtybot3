@@ -67,14 +67,19 @@ class TitleGen(Generator):
         TagList = []
 
         print(" - Checking tweet [" + sTweet + "] for tags!")
-        WordList = re.split("\W+", sTweet.lower())
-        for word in WordList:
-            if word not in ["man","woman"]:
-                if word in MasterTagList and word not in TagList:
-                    #print("  - Tag '" + str(word) + "' found in tweet")
-                    TagList.append(word)
-                #else: 
-                #    print("  - Tag '" + str(word) + "' not found in tweet")
+        #WordList = re.split("\W+", sTweet.lower())
+        #for word in WordList:
+        #    if word not in ["man","woman"]:
+        #        if word in MasterTagList and word not in TagList:
+        #            #print("  - Tag '" + str(word) + "' found in tweet")
+        #            TagList.append(word)
+        #        #else: 
+        #        #    print("  - Tag '" + str(word) + "' not found in tweet")
+
+        for tag in MasterTagList:
+            if tag.lower() in sTweet.lower():
+                # print("  - Tag '" + str(tag) + "' found in tweet")
+                TagList.append(tag)
 
         print(" - Found tags: " + str(TagList))
 
@@ -2376,6 +2381,11 @@ class Generator55(TitleGen):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          if CoinFlip():
+              self.ExclTemplateTags = ["threesome"]
+          else:
+              self.ExclTemplateTags = ["woman","single"]
           
           FemmeNames = WordList(['Amy','Alicia','Alice','Alexis','Amanda','Amber','Angelica','Anita','Anna','Ava','Bella','Belle','Bianca',
                                       'Daphne','Delilah','Delores','Donna','Doris','Eliza','Elizabeth','Emma','Ericka','Esmerelda',
