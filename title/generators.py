@@ -15,6 +15,7 @@ import title.misc as titmisc
 import title.titletemplates as templates
 import excerpt.bodyparts as bodyparts
 from title.util import *
+from title.bgprofiles import MasterTagList
 
 PromoHistoryQ = HistoryQ(2)
 
@@ -48,6 +49,7 @@ class TitleGen(Generator):
         self.Template = Template
         self.ExclTemplateTags = []
         self.ReqTemplateTags = []
+        self.OptionalTemplateTags = []
 
         self.ImgTxt = ""
         self.SetImgText("")
@@ -61,8 +63,26 @@ class TitleGen(Generator):
         #else:
         #    self.AuthorGender = Gender.Female
 
+    def ExtractBGProfileTags(self, sTweet):
+        TagList = []
+
+        print(" - Checking tweet [" + sTweet + "] for tags!")
+        WordList = re.split("\W+", sTweet.lower())
+        for word in WordList:
+            if word not in ["man","woman"]:
+                if word in MasterTagList and word not in TagList:
+                    #print("  - Tag '" + str(word) + "' found in tweet")
+                    TagList.append(word)
+                #else: 
+                #    print("  - Tag '" + str(word) + "' not found in tweet")
+
+        print(" - Found tags: " + str(TagList))
+
+        return TagList
+
     def Generate(self):
         sTweet = self.GenerateTweet()
+        self.OptionalTemplateTags += self.ExtractBGProfileTags(sTweet)
         self.ImgTxt = sTweet
         self.SetImgText(sTweet)
 
@@ -453,7 +473,7 @@ class Generator5(TitleGen):
         Master = None
 
         self.ExclTemplateTags = ["gay","lesbian"]
-        self.ReqTemplateTags = ["woman","man"]
+        self.ReqTemplateTags = ["woman","single"]
                
         iMaxMasterChar = 50
         Master = char.MaleChar(TempType = TempType.Flowery, bAddAnArticle = True, 
