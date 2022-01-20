@@ -15,6 +15,26 @@ TWIT_CONTROLLER = 'zadieblack'
 Q_SIZE = 40
 
 TweetHistoryQ = None
+
+class Orientation(IntEnum):
+     Straight = 1
+     Lesbian = 2
+     Gay = 3
+     Neutral = 4
+
+OSTRAIGHT = Orientation.Straight
+OLES = Orientation.Lesbian
+OGAY = Orientation.Gay
+ONEUTRAL = Orientation.Neutral
+
+class Grouping(IntEnum):
+    Single = 1
+    Couple = 2
+    Group = 3
+
+GSING = Grouping.Single
+GCOUP = Grouping.Couple
+GGROUP = Grouping.Group
      
 class Gender(IntEnum):
      Male = 1

@@ -400,7 +400,9 @@ def CreateImg(ImgTxtGen):
     BGProfile = GetBGProfileGenerator(ProfileHistoryQ = titutil.BGProfileQ,
                                       ReqTags = ImgTxtGen.ReqTemplateTags,
                                       ExclTags = ImgTxtGen.ExclTemplateTags,
-                                      OptTags = ImgTxtGen.OptionalTemplateTags)
+                                      OptTags = ImgTxtGen.OptionalTemplateTags,
+                                      Orient = ImgTxtGen.Orient,
+                                      Group = ImgTxtGen.Group)
     #print("BGProfile #" + str(BGProfile.ID) + " (" + BGProfile.FileName + ") selected")
 
     sFileName = ""

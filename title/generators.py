@@ -50,6 +50,8 @@ class TitleGen(Generator):
         self.ExclTemplateTags = []
         self.ReqTemplateTags = []
         self.OptionalTemplateTags = []
+        self.Orient = None
+        self.Group = None
 
         self.ImgTxt = ""
         self.SetImgText("")
@@ -338,6 +340,8 @@ class Generator1(TitleGen):
 
           self.ExclTemplateTags = ["lesbian"]
           self.ReqTemplateTags = ["woman","man","couple"]
+          self.Orient = OSTRAIGHT
+          self.Group = GCOUP
           
           Master = char.MaleChar(TempType = TempType.Flowery, bAddTheArticle = True, MaxChars = 32,
                                  bSplitArticle = True, bAllowGang = True)
