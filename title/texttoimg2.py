@@ -401,8 +401,8 @@ def CreateImg(ImgTxtGen):
                                       ReqTags = ImgTxtGen.ReqTemplateTags,
                                       ExclTags = ImgTxtGen.ExclTemplateTags,
                                       OptTags = ImgTxtGen.OptionalTemplateTags,
-                                      Orient = ImgTxtGen.Orient,
-                                      Group = ImgTxtGen.Group)
+                                      Orients = ImgTxtGen.Orients,
+                                      Groups = ImgTxtGen.Groups)
     #print("BGProfile #" + str(BGProfile.ID) + " (" + BGProfile.FileName + ") selected")
 
     sFileName = ""

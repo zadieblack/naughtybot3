@@ -1607,7 +1607,7 @@ class BGProfileBigCity(BGProfile):
         self.SecondTitleColor = "rgba(25, 51, 107, 255)"
         self.Tags = ["man","woman","outside","city","couple","straight",
                      "blonde","pink","stars","night","wealthy","suit",
-                     "bowtie",]
+                     "bowtie","wife","husband",]
         self.Disabled = False
 
 class BGProfileInterracial(BGProfile):
@@ -1959,7 +1959,7 @@ class BGProfileLesboFriend(BGProfile):
         self.Tags = ["woman","women","lesbian","indoors","blonde",
                      "brunette","teen","student","daughter",
                      "young","sweater","library","librarian",
-                     "book",]
+                     "book","school-girl",]
         self.Disabled = False
 
 class BGProfileNaughtyBarn(BGProfile):
@@ -2760,7 +2760,7 @@ class BGProfileGirlsAssWhipped(BGProfile):
                      "brunette","POC","BBC","teen","student","co-ed","medieval",
                      "whip","spanking","maledom","discipline","ass",
                      "bottomless","butt","fantasy","whipped","young",
-                     "exposed","student","teacher",]
+                     "exposed","student","teacher","school-girl",]
         self.Disabled = False
         self.Content = Content.AdultsOnly
 
@@ -3175,7 +3175,7 @@ def PopRandomTag(TagList):
 class BGProfileContainer(GeneratorContainer):
 
     def RandomGenerator(self, ReqTags = [], ExclTags = [], OptTags = [], 
-                        Orient = None, Group = None,
+                        Orients = None, Groups = None,
                         bAllowPromo = True, Type = None):
         Gen = None
 
@@ -3190,11 +3190,16 @@ class BGProfileContainer(GeneratorContainer):
         for subclass in BGProfile.__subclasses__():
             item = subclass()
             iScore = 0
-            if (Orient is None or Orient == item.Orient) and \
-               (Group is None or Group == item.Group):
+            if (len(Orients) == 0 or item.Orient in Orients) and \
+               (len(Groups) == 0 or item.Group in Groups):
                 for tag in item.Tags:
                     if tag in OptTags:
                         iScore += 1
+                    if tag in ExclTags:
+                        iScore -= 1
+                for tag in ReqTags:
+                    if tag not in item.Tags:
+                        iScore -= 1
                 
                 if iTopProfile == -1 or iScore > iTopScore:
                     ScoredProfiles.append([item, iScore])
@@ -3270,8 +3275,8 @@ def GetBGProfileGenerator(iProfileID = 0,
                           ReqTags = [],
                           ExclTags = [],
                           OptTags = [],
-                          Orient = None,
-                          Group = None):
+                          Orients = None,
+                          Groups = None):
     SelectedProfile = None
     #print("GetBGProfileGenerator() iProfileID = " + str(iProfileID))
 
@@ -3290,8 +3295,8 @@ def GetBGProfileGenerator(iProfileID = 0,
         SelectedProfile = ProfSel.RandomGenerator(ReqTags = ReqTags, 
                                                   ExclTags = ExclTags, 
                                                   OptTags = OptTags,
-                                                  Orient = Orient,
-                                                  Group = Group)
+                                                  Orients = Orients,
+                                                  Groups = Groups)
 
     #print("GetBGProfileGenerator()\n - Selected BG Profile is " + str(SelectedProfile) + ", it took " + str(iTries) + " tries.")
     ProfileHistoryQ.LogHistoryQ()    
