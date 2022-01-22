@@ -397,12 +397,8 @@ def CreateImg(ImgTxtGen):
     # get a random cover profile 
     if titutil.BGProfileQ is None:
         titutil.BGProfileQ = HistoryQWithLog(titutil.BGPROFILEQ_FILENAME, titutil.BGPROFILEQ_SIZE)
-    BGProfile = GetBGProfileGenerator(ProfileHistoryQ = titutil.BGProfileQ,
-                                      ReqTags = ImgTxtGen.ReqTemplateTags,
-                                      ExclTags = ImgTxtGen.ExclTemplateTags,
-                                      OptTags = ImgTxtGen.OptionalTemplateTags,
-                                      Orients = ImgTxtGen.Orients,
-                                      Groups = ImgTxtGen.Groups)
+    BGProfile = PickBGProfile(ProfileHistoryQ = titutil.BGProfileQ,
+                                      ImgTxtGen = ImgTxtGen)
     #print("BGProfile #" + str(BGProfile.ID) + " (" + BGProfile.FileName + ") selected")
 
     sFileName = ""

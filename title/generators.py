@@ -81,7 +81,10 @@ class TitleGen(Generator):
         for tag in MasterTagList:
             if tag.lower() in sTweet.lower():
                 # print("  - Tag '" + str(tag) + "' found in tweet")
-                TagList.append(tag)
+
+                # check to make sure the tag is at least a whole word
+                if re.search(r"\b" + re.escape(tag.lower()) + r"\b", sTweet.lower()):
+                    TagList.append(tag)
 
         print(" - Found tags: " + str(TagList))
 
