@@ -238,8 +238,9 @@ class BGProfileRedVelvet(BGProfile):
         self.SecondTitleColor = "rgba(181,55, 47, 255)"
         self.Tags = ["man","woman","couple","straight","brunette","shirtless",
                      "muscular","bed","lord","lady","red dress","blonde",
-                     "tits","busty","groped","boss",
-                     "prince","daughter","dad",]
+                     "tits","busty","groped","boss","scotch","irish",
+                     "prince","daughter","dad","pale","mistress",
+                     "dark skinned",]
         self.Disabled = False
 
 class BGProfileRedAndPurple(BGProfile):
@@ -1104,7 +1105,7 @@ class BGProfileVictorianOrgy(BGProfile):
                      "count","serv","harem","breasts","tits","busty",
                      "ass","daughter","maid","wealthy","older woman",
                      "cougar","swinger","teen","young","governess",
-                     "strip","undress","expose","victorian"]
+                     "strip","undress","expose","victorian","party",]
         self.Disabled = False
 
 class BGProfileVoyeur(BGProfile):
@@ -1679,7 +1680,7 @@ class BGProfileValleyLake(BGProfile):
                      "daughter","prince","princess","king","duke","baron",
                      "lord","lady","undress","gown","pink gown","leg",
                      "slender","wind","mountain","lake","shirtless","wife",
-                     "husband",]
+                     "husband","swedish","swiss","german","icelandic",]
         self.Disabled = False
 
 class BGProfileIslandUndressing(BGProfile):
@@ -1887,7 +1888,8 @@ class BGProfileLesboThreesome(BGProfile):
                      "nude","towel","brunette","blonde","redhead",
                      "busty","tits","cleavage","stockings","nightgown",
                      "lingerie","teen","older woman","mature","cougar",
-                     "secretary","whore","slut",]
+                     "secretary","whore","slut","call girl","college",
+                     "stripper",]
         self.Disabled = False
         self.Content = Content.PG13
 
@@ -2195,7 +2197,7 @@ class BGProfileSkiSweaters(BGProfile):
                      "blue jeans","brother","sister",
                      "babysitter","snow","winter","day","ski",
                      "nerd","athletic","wealthy","gentleman",
-                     "sporty",]
+                     "sporty","christian","mormon","modern",]
         self.Disabled = False
 
 class BGProfileBigPole(BGProfile):
@@ -2895,7 +2897,8 @@ class BGProfilePinupWithBird(BGProfile):
         self.AuthorNameColor = "rgba(145, 167, 210, 255)"
         self.Tags = ["woman","single","nude","tits","bird","brunette",
                      "breasts","naked","strip","stripped","stripping",
-                     "teen","young","daughter",]
+                     "teen","young","daughter","starlet","virgin",
+                     "innocent","wholesome","jewish",]
         self.Disabled = False
         self.Content = Content.AdultsOnly
 
@@ -3333,8 +3336,26 @@ class BGProfilePrettyGymBoys(BGProfile):
                      "strong","weights","workout","athlete",
                      "jock","bulge","sweatpants","t-shirt",
                      "thong","boys","olympic","medal",
-                     "gloves","locker room",]
+                     "gloves","locker room","frat boy",]
         self.Disabled = False
+
+class BGProfileThongQueenWeightLifter(BGProfile):
+    def __init__(self):
+        super().__init__(Priority = GenPriority.AboveAverage,
+                           sFileName = "thong_queen_weight_lifter",
+                         Orient = ONEUTRAL,
+                         Group = GGROUP)
+        self.MainTitleColor = "rgba(216, 84, 3, 255)"
+        self.SecondTitleColor = "rgba(216, 84, 3, 255)"
+        self.SmallTextColor = "rgba(0, 0, 0, 255)"
+        self.AuthorNameColor = "rgba(0, 0, 0, 255)"
+        self.Tags = ["man","men","gay","gym","weight lifter",
+                     "body builder","muscular","shirtless",
+                     "strong","weights","workout","athlete",
+                     "jock","bulge","shirtless","thong",
+                     "locker room","hairy","dad",]
+        self.Disabled = False,
+        self.Content = Content.PG13
 
 def PopRandomTag(TagList):
     if len(TagList) > 0:
@@ -3433,7 +3454,7 @@ def PickBGProfile(ImgTxtGen, ProfileHistoryQ = None, bAllowPromo = True, Type = 
         TopProfileMatches = GeneratorContainer(HistoryQ = ProfileHistoryQ)
         TopProfileMatches.GeneratorClassName = "BGProfile"
         for i, profile in enumerate(ScoredProfiles):
-            if ScoredProfiles[i][1] >= iTopScore - 3:
+            if ScoredProfiles[i][1] >= iTopScore - 2:
                 if ScoredProfiles[i][1] == iTopScore:
                     TopProfileMatches.AddGenerator(profile[0], GenPriority.High)
                 else:
