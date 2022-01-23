@@ -846,6 +846,7 @@ Synonyms = [
             ["tits","hooters"],
             ["tits","knockers"],
             ["tits","mammaries"],
+            ["tits","melons"],
             ["tits","titties"],
             ["thong","g-string"],
             ["virgin","chaste"],
