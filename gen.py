@@ -48,19 +48,10 @@ class Generator():
 
 
 class GeneratorContainer():
-    def __init__(self, GeneratorClass, iFirstID = 1, HistoryQ = None):
+    def __init__(self, GeneratorClass = None, iFirstID = 1, HistoryQ = None):
         super().__init__()  # just in case
 
-        GeneratorObj = GeneratorClass()
-        self.GeneratorClassName = str(type(GeneratorObj).__name__)
-
-        # The optional history q
-        if not HistoryQ is None:
-            self.HistoryQ = HistoryQ
-            # print(" HistoryQ found for " + self.GeneratorClassName)
-        else:
-            print("=*= WARNING =*= Empty HistoryQ passed to GeneratorContainer() for [" + self.GeneratorClassName + "], new blank queue will be initialized.")
-            self.HistoryQ = util.HistoryQ()
+        self.GeneratorClassName = ""
 
         # List of unique generators 
         self.GeneratorList = []
@@ -76,48 +67,62 @@ class GeneratorContainer():
         # If generator IDs are not given the container will add them
         self.NextGenID = iFirstID
 
-        # Build generator list
-        for subclass in GeneratorClass.__subclasses__():
-            item = subclass()
-            if not item.Disabled:
-                if item.ID == -1:
-                    item.ID = self.NextGenID
+        if GeneratorClass is not None:
+            GeneratorObj = GeneratorClass()
+            self.GeneratorClassName = str(type(GeneratorObj).__name__)
 
-                self.AddGenerator(item, item.Priority)
-                self.NextGenID = item.ID + 1
+            # Build generator list
+            for subclass in GeneratorClass.__subclasses__():
+                item = subclass()
+                if not item.Disabled:
+                    self.AddGenerator(item, item.Priority, item.ID)
 
-        # Validate generator list
-        self.ValidateGenIDs()
+            # Validate generator list
+            self.ValidateGenIDs()
 
-        # Print list (uncomment for debugging)
-        #self.PrintGeneratorList()
+            # Print list (uncomment for debugging)
+            #self.PrintGeneratorList()
 
-        #print(self.GeneratorClassName + " Priority Buckets:")
-        #print(" * Lowest priority bucket has " + str(len(self.BucketLowest)) + " items")
-        #print(" * Low priority bucket has " + str(len(self.BucketLow)) + " items")
-        #print(" * Normal priority bucket has " + str(len(self.BucketNormal)) + " items")
-        #print(" * Above Average priority bucket has " + str(len(self.BucketAboveAverage)) + " items")
-        #print(" * High priority bucket has " + str(len(self.BucketHigh)) + " items")
-        #print(" * Super High priority bucket has " + str(len(self.BucketSuperHigh)) + " items")
+            #print(self.GeneratorClassName + " Priority Buckets:")
+            #print(" * Lowest priority bucket has " + str(len(self.BucketLowest)) + " items")
+            #print(" * Low priority bucket has " + str(len(self.BucketLow)) + " items")
+            #print(" * Normal priority bucket has " + str(len(self.BucketNormal)) + " items")
+            #print(" * Above Average priority bucket has " + str(len(self.BucketAboveAverage)) + " items")
+            #print(" * High priority bucket has " + str(len(self.BucketHigh)) + " items")
+            #print(" * Super High priority bucket has " + str(len(self.BucketSuperHigh)) + " items")
 
-    def AddGenerator(self, Gen, Priority = GenPriority.Normal):
+        # The optional history q
+        if not HistoryQ is None:
+            self.HistoryQ = HistoryQ
+            # print(" HistoryQ found for " + self.GeneratorClassName)
+        else:
+            print("=*= WARNING =*= Empty HistoryQ passed to GeneratorContainer() for [" + self.GeneratorClassName + "], new blank queue will be initialized.")
+            self.HistoryQ = util.HistoryQ()
+
+    def AddGenerator(self, Gen, Priority = GenPriority.Normal, ID = -1):
         bResult = False 
 
-        if Priority == GenPriority.Lowest:
-            self.BucketLowest.append(Gen)
-        elif Priority == GenPriority.Low:
-            self.BucketLow.append(Gen)
-        elif Priority == GenPriority.AboveAverage:
-            self.BucketAboveAverage.append(Gen)
-        elif Priority == GenPriority.High:
-            self.BucketHigh.append(Gen)
-        elif Priority == GenPriority.SuperHigh:
-            self.BucketSuperHigh.append(Gen)
-        else:
-            self.BucketNormal.append(Gen)
-        self.GeneratorList.append(Gen)
+        if not Gen.Disabled:
+            if Gen.ID == -1:
+                Gen.ID = self.NextGenID
 
-        bResult = True
+            self.NextGenID = Gen.ID + 1
+
+            if Priority == GenPriority.Lowest:
+                self.BucketLowest.append(Gen)
+            elif Priority == GenPriority.Low:
+                self.BucketLow.append(Gen)
+            elif Priority == GenPriority.AboveAverage:
+                self.BucketAboveAverage.append(Gen)
+            elif Priority == GenPriority.High:
+                self.BucketHigh.append(Gen)
+            elif Priority == GenPriority.SuperHigh:
+                self.BucketSuperHigh.append(Gen)
+            else:
+                self.BucketNormal.append(Gen)
+            self.GeneratorList.append(Gen)
+
+            bResult = True
 
         return bResult 
 
