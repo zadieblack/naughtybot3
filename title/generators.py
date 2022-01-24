@@ -5203,6 +5203,7 @@ class Generator128(TitleGen):
           super().GenerateTweet()
           sTweet = ""
 
+          self.ReqTemplateTags = ["man"]
           self.ExclTemplateTags = ["couple","lesbian","women"]
           self.Orients = [ONEUTRAL,OGAY]
           self.Groups = [GCOUP,GSING,GGROUP]

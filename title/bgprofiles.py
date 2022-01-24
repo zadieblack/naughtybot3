@@ -3306,12 +3306,6 @@ class BGProfileZipperLady(BGProfile):
         self.Content = Content.AdultsOnly
 
 
-
-
-
-
-
-
 def PopRandomTag(TagList):
     if len(TagList) > 0:
         TagList.pop(randint(0, len(TagList) - 1))
@@ -3371,8 +3365,10 @@ def PickBGProfile(ImgTxtGen, ProfileHistoryQ = None, bAllowPromo = True, Type = 
     iTopScore = 0
     ScoredProfiles = []
 
-    for subclass in BGProfile.__subclasses__():
+    for iSeqNo, subclass in enumerate(BGProfile.__subclasses__()):
         item = subclass()
+        item.ID = iSeqNo + 1
+
         iScore = 0
         MatchedTags = []
 
@@ -3411,7 +3407,7 @@ def PickBGProfile(ImgTxtGen, ProfileHistoryQ = None, bAllowPromo = True, Type = 
         for i, profile in enumerate(ScoredProfiles):
             if ScoredProfiles[i][1] >= iTopScore - 2:
                 if ScoredProfiles[i][1] == iTopScore:
-                    TopProfileMatches.AddGenerator(profile[0], GenPriority.High)
+                    TopProfileMatches.AddGenerator(profile[0], GenPriority.High, profile[0].ID)
                 else:
                     if profile[0].Content == Content.AllAges:
                         TopProfileMatches.AddGenerator(profile[0], GenPriority.AboveAverage)
