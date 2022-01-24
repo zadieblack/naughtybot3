@@ -176,11 +176,23 @@ class TitleGen(Generator):
                 bSuccess = False
             # Now that's done lets put our info into this generator!
 
+            self.OptionalTemplateTags += self.ExtractBGProfileTags(sImgTxt)
+
             if len(Details) > 3:
             #    print("Populating generator with file data")
 
             # 1st item is ID #
                 self.ID = int(Details[0])
+                GenCont = GeneratorContainer(TitleGen, HistoryQ = TweetHistoryQ)
+                Gen = GenCont.GetGenerator(self.ID)
+                # We need to run Generate() to populate this info, but we won't be
+                # using the text it generates.
+                Gen.Generate()
+                if Gen is not None:
+                    self.ReqTemplateTags = Gen.ReqTemplateTags
+                    self.ExclTemplateTags = Gen.ExclTemplateTags
+                    self.Orients = Gen.Orients
+                    self.Groups = Gen.Groups
 
             # 2nd item is template #
                 sTemplateID = Details[1]
@@ -199,18 +211,18 @@ class TitleGen(Generator):
                     self.AuthorGender = Gender.Neuter
 
             # 5th item is required template tags (optional)
-                if len(Details) > 4:
-                    tags = []
-                    for tag in Details[4].split(","):
-                        if len(tag) > 0:
-                            self.ReqTemplateTags.append(tag)
+                #if len(Details) > 4:
+                #    tags = []
+                #    for tag in Details[4].split(","):
+                #        if len(tag) > 0:
+                #            self.ReqTemplateTags.append(tag)
 
             # 6th item is excluded template tags (optional)
-                if len(Details) > 5:
-                    tags = []                    
-                    for tag in Details[5].split(","):
-                        if len(tag) > 0:
-                            self.ExclTemplateTags.append(tag)
+                #if len(Details) > 5:
+                #    tags = []                    
+                #    for tag in Details[5].split(","):
+                #        if len(tag) > 0:
+                #            self.ExclTemplateTags.append(tag)
             else: 
                 bSuccess = False
                 print("ERROR: Did not have data so could not populate generator.")

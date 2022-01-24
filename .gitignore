@@ -13,8 +13,8 @@ excerpt/twitterauth.py
 workspace_bot3
 title/bghistory_q.txt
 title/reply_ids.txt
-title/fav_titles.txt
-title/fav_titles_back.txt
+title/fav_titles.*
+title/fav_titles_back.*
 title/reply_ids.txt
 title/new bg images/pic.jpg
 title/new bg images/Romance.jpg
