@@ -741,6 +741,7 @@ Synonyms = [
             ["call girl","escort"],
             ["call girl","prostitute"],
             ["call girl","whore"],
+            ["ceo","boss"],
             ["college","co-ed"],
             ["college","freshman"],
             ["conservative","modest"],
