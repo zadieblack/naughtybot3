@@ -836,6 +836,8 @@ Synonyms = [
             ["slut","whore"],
             ["shy","bashful"],
             ["smooth","suave"],
+            ["ass","spank"],
+            ["ass","spanking"],
             ["stewardess","modern"],
             ["strip","bare"],
             ["strip","bared"],

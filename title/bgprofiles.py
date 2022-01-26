@@ -1770,7 +1770,7 @@ class BGProfileLesboBoudoir(BGProfile):
         super().__init__(Priority = GenPriority.AboveAverage,
                            sFileName = "lesbo_boudoir",
                          Orient = OLES,
-                         Group = GGROUP)
+                         Group = GCOUP)
         self.MainTitleColor = "rgba(216, 107, 111, 255)"
         self.SecondTitleColor = "rgba(110, 173, 69, 255)"
         self.SmallTextColor = "rgba(126, 63, 100, 255)"
@@ -2816,7 +2816,8 @@ class BGProfileSnowWhiteSpanking(BGProfile):
                      "straight","maledom","warrior","butt","brat",
                      "teen","strip","expose","punish","discipline",
                      "young","daughter","brunette","pale","king",
-                     "undress","pound","paddle","beat","public",]
+                     "undress","pound","paddle","beat","public",
+                     "party",]
         self.Disabled = False
         
 class BGProfileSpaceGirl(BGProfile):

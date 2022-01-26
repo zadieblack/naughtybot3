@@ -1123,7 +1123,7 @@ class Generator24(TitleGen):
           sTweet = ""
 
           self.ReqTemplateTags = ["man"]
-          self.Orients = [OSTRAIGHT,ONEUTRAL]
+          self.Orients = [OGAY,ONEUTRAL]
           self.Groups = [GGROUP,GSING,GCOUP]
           
           Gerunds = WordList(['Bedding','Cuddling','Deep-Throating','Double-Teaming','Dry-Humping','Fellating','Going Down on',
@@ -2257,24 +2257,22 @@ class Generator50(TitleGen):
           iRand = randint(1,3)
           if iRand == 1:
                #straight
-               self.ReqTemplateTags = ["straight","couple"]
-               self.ExclTemplateTags = ["gay"]
                self.Orients = [OSTRAIGHT,ONEUTRAL]
                self.Groups = [GCOUP]
                print("Generator #50... STRAIGHT")
                sTweet += NaughtinessStraight.GetWord() + " Between " + FriendsGen.GetWord()
           elif iRand == 2:
                #gay
-               self.ExclTemplateTags = ["woman","women"]
+               self.ExclTemplateTags = ["women"]
                self.Orients = [ONEUTRAL,OGAY]
                self.Groups = [GCOUP,GGROUP]
                print("Generator #50... GAY")
                sTweet += NaughtinessGay.GetWord() + " Between " + FriendsGay.GetWord()
           else:
                #lesbian
-               self.ExclTemplateTags = ["man","men"]
+               self.ExclTemplateTags = ["men"]
                self.Orients = [ONEUTRAL,OLES]
-               self.Groups = [GCOUP,GSING,GGROUP]
+               self.Groups = [GCOUP,GGROUP]
                print("Generator #50... LESBIAN")
                sTweet += NaughtinessLez.GetWord() + " Between " + FriendsLez.GetWord()
                     
@@ -5464,10 +5462,11 @@ class Generator134(TitleGen):
     def GenerateTweet(self):
         super().GenerateTweet()
         sTweet = ""
-          
-        
+
         if CoinFlip():
         #gay male
+            print("Gen 134 Gay selected")
+            self.ReqTemplateTags = ["man"]
             self.ExclTemplateTags = ["women"]
             self.Orients = [ONEUTRAL,OGAY]
             self.Groups = [GCOUP,GSING,GGROUP]
@@ -5500,6 +5499,8 @@ class Generator134(TitleGen):
             sTweet += "his\n" + Orientation.GetWord() + " " + Species.GetWord() + " " + Relations.GetWord()
         else:
         #lesbian female
+            print("Gen 134 Lesbian selected")
+            self.ReqTemplateTags = ["woman"]
             self.ExclTemplateTags = ["man"]
             self.Orients = [ONEUTRAL,OLES]
             self.Groups = [GCOUP,GSING,GGROUP]
@@ -5524,6 +5525,7 @@ class Generator134(TitleGen):
                                         'Stripper','Step-Mom','Mother-in-Law','Principal','Waitress',
                                         'Manager'])
             sTweet += "her\n" + Orientation.GetWord() + " " + Species.GetWord() + " " + Relations.GetWord()
+        
         return sTweet     
           
 # MILKED by my biker step-son
