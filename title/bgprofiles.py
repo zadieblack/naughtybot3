@@ -3536,9 +3536,9 @@ def PickBGProfile(ImgTxtGen, ProfileHistoryQ = None, bAllowPromo = True, Type = 
     Orients = ImgTxtGen.Orients
     Groups = ImgTxtGen.Groups
 
-    print(" - Optional tags: " + str(OptTags))
-    print(" - Required tags: " + str(ReqTags))
-    print(" - Excluded tags: " + str(ExclTags))
+    #print(" - Optional tags: " + str(OptTags))
+    #print(" - Required tags: " + str(ReqTags))
+    #print(" - Excluded tags: " + str(ExclTags))
 
     iTries = 0
 
@@ -3565,18 +3565,20 @@ def PickBGProfile(ImgTxtGen, ProfileHistoryQ = None, bAllowPromo = True, Type = 
                     if synonym[1] not in item.Tags:
                         item.Tags.append(synonym[1])
 
+            item.MatchedTags = []
             for tag in item.Tags:
                 if tag in OptTags:
                     iScore += 2
-                    MatchedTags.append(tag)
+                    item.MatchedTags.append(tag)
                 if tag in ExclTags:
                     iScore -= 4
             for tag in ReqTags:
                 if tag in item.Tags:
                     iScore += 3
+                    item.MatchedTags.append(tag)
             #iScore += item.Priority
             #iScore += 3 - item.Content
-
+            item.TagScore = iScore
             #print(str(type(item).__name__)[9:] + " " + str(MatchedTags) + ", TOTAL: " + str(iScore))
                
             ScoredProfiles.append([item, iScore])
@@ -3607,6 +3609,7 @@ def PickBGProfile(ImgTxtGen, ProfileHistoryQ = None, bAllowPromo = True, Type = 
                 TopProfileMatches.AddGenerator(profile[0], ThisPriority, profile[0].ID)
 
         Gen = TopProfileMatches.RandomGenerator()
+        print(" - Selected " + str(type(Gen).__name__) + ", matched tags " + str(Gen.MatchedTags) + ", score = " + str(Gen.TagScore))
 
         #TopScoredProfiles = []
         #for i, profile in enumerate(ScoredProfiles):

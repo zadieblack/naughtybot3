@@ -78,7 +78,7 @@ class TitleGen(Generator):
                 if re.search(r"\b" + re.escape(tag.lower()) + r"\b", sTweet.lower()):
                     TagList.append(tag)
 
-        print(" - Found tags: " + str(TagList))
+        #print(" - Found tags: " + str(TagList))
 
         return TagList
 
@@ -344,13 +344,23 @@ class Generator1(TitleGen):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
-
-          self.ReqTemplateTags = ["woman","man","couple"]
+     
           self.Orients = [OSTRAIGHT,ONEUTRAL]
-          self.Groups = [GCOUP,GSING]
-          
-          Master = char.MaleChar(TempType = TempType.Flowery, bAddTheArticle = True, MaxChars = 32,
-                                 bSplitArticle = True, bAllowGang = True)
+
+          Master = ""
+             
+          if randint(1, 4) == 4:
+              # Gang
+              self.Groups = [GGROUP]
+              self.ReqTemplateTags = ["men"]
+              Master = char.GangMaleChar(TempType = TempType.Flowery, bAddTheArticle = True, MaxChars = 32,
+                                     bSplitArticle = True)
+          else:
+              self.Groups = [GCOUP,GSING]
+              self.ReqTemplateTags = ["woman","man","straight"]
+
+              Master = char.MaleChar(TempType = TempType.Flowery, bAddTheArticle = True, MaxChars = 32,
+                                     bSplitArticle = True, bAllowGang = False)
           
           sTweet = self.VerbsBy.GetWord() + "\nBy " + Master.Desc
 
@@ -420,17 +430,28 @@ class Generator3(TitleGen):
           super().GenerateTweet()
           sTweet = ""
 
-          self.ReqTemplateTags = ["woman","man"]
-          self.Orients = [OSTRAIGHT,ONEUTRAL]
-          self.Groups = [GCOUP,GSING]
-          
-          Master = char.MaleChar(TempType = TempType.Flowery, 
-                                 bAddTheArticle = True, 
-                                 sPosArticle = "Her", 
-                                 bSplitArticle = True,
-                                 bAllowGang = True, 
-                                 bAllowRelate = True, 
-                                 bAllowTrope = True)
+          self.ExclTemplateTags = ["femdom"]
+
+          Master = ""
+
+          if randint(1, 4) == 4:
+              # Gang
+              self.Groups = [GGROUP]
+              self.ReqTemplateTags = ["men"]
+              Master = char.GangMaleChar(TempType = TempType.Flowery, bAddTheArticle = True, MaxChars = 32,
+                                     bSplitArticle = True)
+          else:
+              # Single guy
+              self.ReqTemplateTags = ["man"]
+              self.Orients = [OSTRAIGHT,ONEUTRAL]
+              self.Groups = [GCOUP,GSING]
+              Master = char.MaleChar(TempType = TempType.Flowery, 
+                                     bAddTheArticle = True, 
+                                     sPosArticle = "Her", 
+                                     bSplitArticle = True,
+                                     bAllowGang = False, 
+                                     bAllowRelate = True, 
+                                     bAllowTrope = True)
                
           sTweet = self.VerbsTo.GetWord() + "\nTo " + Master.Desc
 
