@@ -2655,7 +2655,7 @@ class BGProfileSaxaphone(BGProfile):
                      "teen","young","seduce","bad boy",
                      "athletic","alley","fire escape",
                      "window","saxophone","musician","leg",
-                     "blue jeans","busty"]
+                     "blue jeans","busty","tomboy",]
         self.Disabled = False
         
 class BGProfileScaryMirror(BGProfile):
@@ -3151,7 +3151,7 @@ class BGProfileThirdMan(BGProfile):
                      "man","men", "woman", "indoors", "bed","kinky","voyeur",
                      "wife","business","secretary","CEO","hotel",
                      "mistress","undress","brunette","redhead","shirtless",
-                     "kidnap","captive","in the bed","whore","slut","suit",
+                     "kidnap","captive","whore","slut","suit",
                      "cuckold","pillow","slender","leg","jock",
                      "bachelor","teacher","surprise","scotch","irish","shy",
                     ]

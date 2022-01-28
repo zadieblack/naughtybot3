@@ -495,7 +495,8 @@ class Generator4(TitleGen):
         sName = RhymingPair[1]
 
         sTweet = sGerund + " " + sName + "\n"
-        sTweet += "Sexy Surprise for " + Girl.Desc
+        sTweet += WordList(["Dirty","Filthy","Naughty","Nasty","Sexy","Sexy",]).GetWord() + " " 
+        sTweet += "Surprise for " + Girl.Desc
 
         return sTweet
           
@@ -513,7 +514,8 @@ class Generator5(TitleGen):
         Girl = None
         Master = None
 
-        self.ReqTemplateTags = ["woman","single"]
+        self.ReqTemplateTags = ["woman"]
+        self.ExclTemplateTags = ["man"]
         self.Orients = [OSTRAIGHT,ONEUTRAL]
         self.Groups = [GSING]
                
@@ -537,9 +539,9 @@ class Generator6(TitleGen):
           super().GenerateTweet()
           sTweet = ""
 
-          self.ReqTemplateTags = ["bed","wealthy"]
+          self.ReqTemplateTags = ["wealthy","woman"]
           self.Orients = [OSTRAIGHT,ONEUTRAL]
-          self.Groups = [GCOUP]
+          self.Groups = [GCOUP,GSING,GGROUP]
           
           NotList = ["Pledged", "Public", "Charmed", "Cuckolded", "Hunted", 
                      "Harrassed", "Sold", "Gifted", "Pledged", "Bed", 
@@ -594,6 +596,7 @@ class Generator7(TitleGen):
 
 class Generator8(TitleGen):
      # My Blind Date is A Uniformed Australian Mer-man Fighter Pilot! 
+     # NOTE: Probably using incorrect template
      def __init__(self):
          super().__init__(ID = 8, Priority = GenPriority.Low)
          self.Template = templates.TitleTemplate1()
@@ -662,9 +665,9 @@ class Generator10(TitleGen):
           super().GenerateTweet()
           sTweet = ""
 
-          self.ReqTemplateTags = ["woman"]
+          self.ReqTemplateTags = ["man"]
           self.Orients = [OSTRAIGHT,ONEUTRAL]
-          self.Groups = [GCOUP,GSING]
+          self.Groups = [GCOUP,GSING,GGROUP]
 
           ManNotList = ["naked","nude","hung","shirtless","bdsm",
                         "erect","pantsless","hard","masked","sex addict",
