@@ -20,6 +20,7 @@ MAX_IMG_NUM = 24
 RESOLUTION = 4.167
 LOWERTITLETEXTBOUND = 527
 MAXWIDTH = 910
+MINFONTSIZE = 14
 XOFFSET = int(round((971 - MAXWIDTH) / 2))
 AUTHORNAME_YOFFSET = 560
 MINSPACERHEIGHT = 13
@@ -238,7 +239,14 @@ class TitleSection:
         self.SetFont()
 
         # shrink font until lines do not exceed bounding text box's height
-        self.FitTextToBox()
+        iLoopCount = 1
+        while not self.FitTextToBox():
+            self.FontSize = iFontSize + (self.DecreaseSizeBy * (-1 * iLoopCount))
+            self.AdjFontSize = round(int(self.FontSize * RESOLUTION))
+            self.MaxRows += 1
+            self.BoundingBoxHeight = CalcBoxHeight(self.FontName, self.AdjFontSize, self.MaxRows) 
+            self.SetFont()
+            iLoopCount += 1
 
     def CalcTotLineHeight(self):
         iHeight = 0
@@ -252,6 +260,8 @@ class TitleSection:
         return iHeight
 
     def FitTextToBox(self):
+        bSuccess = True
+
         # wrap the text based on the bounding text box's width
         self.Lines = WrapText(self.Text, self.Font, self.BoundingBoxWidth)
 
@@ -261,9 +271,15 @@ class TitleSection:
         while self.TotLineHeight > self.BoundingBoxHeight or len(self.Lines) > self.MaxRows:
     
             self.FontSize = (self.FontSize + (self.DecreaseSizeBy * (-1)))
+            if self.FontSize < MINFONTSIZE:
+                bSuccess = False
+                break
+
             self.SetFont()
             self.Lines = WrapText(self.Text, self.Font, self.BoundingBoxWidth)
             self.TotLineHeight = self.CalcTotLineHeight()
+
+        return bSuccess
 
     def SetFont(self):
         #print(" - SetFont() for [" + self.Text + "]. Font is [" + self.FontName + "],  size = " + str(self.FontSize))
