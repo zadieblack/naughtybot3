@@ -6403,6 +6403,40 @@ class Generator150(TitleGen):
 
         return sTweet
 
+# Little Nurse Sally
+# The Sweet Bi-curious Whore
+class Generator151(TitleGen):
+    def __init__(self):
+         super().__init__(ID = 151, Priority = GenPriority.Normal)
+         self.Template = templates.TitleTemplate30()
+     
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
+
+        self.ReqTemplateTags = ["woman"]
+        self.Orients = [OSTRAIGHT,ONEUTRAL]
+        self.Groups = [GCOUP,GSING]
+
+        GirlProfs = WordList(titmisc.ProfNeutralFemale().GetWordList() + titmisc.ProfGoodFemale().GetWordList())
+        
+        AdjNotList = ["co-ed","flat-chested","little","maiden","sexy"]
+
+        RhymingProf = ""
+        iCount = 0
+        while RhymingProf == "" and iCount < 100:
+            sHerName = PlainNamesFemale().FirstName()
+            
+            RhymingProf = GetRhymingWord(sHerName, GirlProfs.GetWordList())
+            iCount += 1
+
+        sTweet += str("Little " + RhymingProf + " " + sHerName + "\n").upper()
+        sTweet += "The " + titmisc.AttitudeGoodFemale().GetWord(NotList = AdjNotList) + " "
+        sTweet += titmisc.PhysCharFemale().GetWord(NotList = AdjNotList) + " "
+        sTweet += "Whore"
+
+        return sTweet
+
 # Testing innuendo name generators          
 class Generator999(TitleGen):     
      def __init__(self):
