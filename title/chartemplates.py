@@ -2625,7 +2625,7 @@ class MaleGangPluralTemplate1(MaleGangPluralTemplate):
                                    NotList = ["Man"])
        
 # Boy's School
-class MaleBoysSchoolGangTemplate(MaleGangPluralTemplate):
+class MaleBoysSchoolGangTemplate(MaleGangSingularTemplate):
      def __init__(self):
           super().__init__(     noun = TropeBitMale("Boys School"),
                                     id = 404, 
@@ -2641,7 +2641,7 @@ class MaleBoysSchoolGangTemplate(MaleGangPluralTemplate):
           self.RequestOnly = False
 
 # Coal Miners
-class MaleCoalMinersGangTemplate(MaleGangPluralTemplate):
+class MaleCoalMinersGangTemplate(MaleGangSingularTemplate):
      def __init__(self):
           super().__init__(     noun = TropeBitMale("Coal Miners"),
                                     id = 405, 
@@ -2655,7 +2655,7 @@ class MaleCoalMinersGangTemplate(MaleGangPluralTemplate):
           self.RequestOnly = False
 
 # Constructions Workers
-class MaleConstructionWorkersGangTemplate(MaleGangPluralTemplate):
+class MaleConstructionWorkersGangTemplate(MaleGangSingularTemplate):
      def __init__(self):
           super().__init__(     noun = TropeBitMale("Construction Workers"),
                                     id = 406, 
@@ -2670,7 +2670,7 @@ class MaleConstructionWorkersGangTemplate(MaleGangPluralTemplate):
           self.RequestOnly = False
 
 # Football Team
-class MaleFootballTeamGangTemplate(MaleGangPluralTemplate):
+class MaleFootballTeamGangTemplate(MaleGangSingularTemplate):
      def __init__(self):
           super().__init__(     noun = TropeBitMale("Football Team"),
                                     id = 407, 
@@ -2684,7 +2684,7 @@ class MaleFootballTeamGangTemplate(MaleGangPluralTemplate):
           self.RequestOnly = False
 
 # Hockey Team
-class MaleHockeyTeamGangTemplate(MaleGangPluralTemplate):
+class MaleHockeyTeamGangTemplate(MaleGangSingularTemplate):
      def __init__(self):
           super().__init__(     noun = TropeBitMale("Hockey Team"),
                                     id = 408, 
@@ -2698,7 +2698,7 @@ class MaleHockeyTeamGangTemplate(MaleGangPluralTemplate):
           self.RequestOnly = False
 
 # Men's Locker Room
-class MaleMensLockerRoomGangTemplate(MaleGangPluralTemplate):
+class MaleMensLockerRoomGangTemplate(MaleGangSingularTemplate):
      def __init__(self):
           super().__init__(     noun = TropeBitMale("Men's Locker Room"),
                                     id = 409, 
@@ -2711,7 +2711,7 @@ class MaleMensLockerRoomGangTemplate(MaleGangPluralTemplate):
           self.RequestOnly = False
 
 # Space Men
-class MaleSpaceManTemplate(MaleGangPluralTemplate):
+class MaleSpaceManTemplate(MaleGangSingularTemplate):
      def __init__(self):
           super().__init__(     noun = TropeBitMale("Space Men"),
                                     id = 410, 
@@ -2724,7 +2724,7 @@ class MaleSpaceManTemplate(MaleGangPluralTemplate):
           self.RequestOnly = False
 
 # Street Gang
-class MaleStreetGangTemplate(MaleGangPluralTemplate):
+class MaleStreetGangTemplate(MaleGangSingularTemplate):
      def __init__(self):
           super().__init__(     noun = TropeBitMale("Street Gang"),
                                     id = 411, 
@@ -2755,7 +2755,7 @@ class MaleTwinBrothersGangTemplate(MaleGangPluralTemplate):
           self.RequestOnly = False
 
 # Viking Horde
-class MaleVikingHordeGangTemplate(MaleGangPluralTemplate):
+class MaleVikingHordeGangTemplate(MaleGangSingularTemplate):
      def __init__(self):
           super().__init__(     noun = TropeBitMale("Viking Horde"),
                                     id = 413, 
@@ -2769,7 +2769,7 @@ class MaleVikingHordeGangTemplate(MaleGangPluralTemplate):
           self.RequestOnly = False
 
 # Werewolf Pack
-class MaleWerewolfPackGangTemplate(MaleGangPluralTemplate):
+class MaleWerewolfPackGangTemplate(MaleGangSingularTemplate):
      def __init__(self):
           super().__init__(     noun = TropeBitMale("Werewolf Pack"),
                                     id = 414, 

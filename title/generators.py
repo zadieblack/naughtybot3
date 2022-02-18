@@ -177,15 +177,7 @@ class TitleGen(Generator):
                 self.ID = int(Details[0])
                 GenCont = GeneratorContainer(TitleGen, HistoryQ = TweetHistoryQ)
                 Gen = GenCont.GetGenerator(self.ID)
-                # We need to run Generate() to populate this info, but we won't be
-                # using the text it generates.
-                Gen.Generate()
-                if Gen is not None:
-                    self.ReqTemplateTags = Gen.ReqTemplateTags
-                    self.ExclTemplateTags = Gen.ExclTemplateTags
-                    self.Orients = Gen.Orients
-                    self.Groups = Gen.Groups
-
+               
             # 2nd item is template #
                 sTemplateID = Details[1]
                 TemplateSelector = GeneratorContainer(templates.TitleTemplate)
@@ -202,19 +194,44 @@ class TitleGen(Generator):
                 else:
                     self.AuthorGender = Gender.Neuter
 
-            # 5th item is required template tags (optional)
-                #if len(Details) > 4:
-                #    tags = []
-                #    for tag in Details[4].split(","):
-                #        if len(tag) > 0:
-                #            self.ReqTemplateTags.append(tag)
+             # 5th item is required template tags (optional)
+                if len(Details) > 4:
+                    tags = []
+                    #for tag in Details[4].split(","):
+                    #    if len(tag) > 0:
+                    #        self.ReqTemplateTags.append(tag)
 
-            # 6th item is excluded template tags (optional)
-                #if len(Details) > 5:
-                #    tags = []                    
-                #    for tag in Details[5].split(","):
-                #        if len(tag) > 0:
-                #            self.ExclTemplateTags.append(tag)
+             # 6th item is excluded template tags (optional)
+                if len(Details) > 5:
+                    tags = []                    
+                    #for tag in Details[5].split(","):
+                    #    if len(tag) > 0:
+                    #        self.ExclTemplateTags.append(tag)
+
+                # We need to run Generate() to populate this info, but we won't be
+                # using the text it generates.
+                Gen.Generate()
+                if Gen is not None:
+                    self.ReqTemplateTags = Gen.ReqTemplateTags
+                    self.ExclTemplateTags = Gen.ExclTemplateTags
+
+            # 7th item is groups
+                if len(Details) > 6:
+                    for tag in Details[6].split(","):
+                        if len(tag) > 0 and tag.isnumeric():
+                            self.Groups.append(int(tag))
+                else:
+                    if Gen is not None:
+                        self.Groups = Gen.Groups
+
+            # 8th item is orients
+                if len(Details) > 7:
+                    for tag in Details[7].split(","):
+                        if len(tag) > 0 and tag.isnumeric():
+                            self.Orients.append(int(tag))
+                else:
+                    if Gen is not None:
+                        self.Orients = Gen.Orients
             else: 
                 bSuccess = False
                 print("ERROR: Did not have data so could not populate generator.")
@@ -729,6 +746,7 @@ class Generator12(TitleGen):
           sTweet = ""
 
           self.ReqTemplateTags = ["woman"]
+          self.ExclTemplateTags = ["historic","fantasy","medieval",]
           self.Orients = [OSTRAIGHT,ONEUTRAL]
           self.Groups = [GCOUP,GSING]
           
@@ -755,7 +773,7 @@ class Generator13(TitleGen):
           super().GenerateTweet()
           sTweet = ""
 
-          self.ReqTemplateTags = ["man"]
+          self.ReqTemplateTags = ["woman"]
           self.Orients = [OSTRAIGHT,ONEUTRAL]
           self.Groups = [GCOUP,GSING]
           
@@ -887,7 +905,7 @@ class Generator16(TitleGen):
                                     NotList = RelNotList, 
                                     ExclList = [SpeciesFemale])
           
-          sTweet += "\"Oh No! I Went to " + WordList(["an Orgy","a Swinger's Party","a Wild Sex Party"]).GetWord() + " "
+          sTweet += "“Oh No! I Went to " + WordList(["an Orgy","a Swinger's Party","a Wild Sex Party"]).GetWord() + " "
           if randint(1,8) == 1:
                sTweet += "And I Accidentally Ate My " + StepMom.Desc + "'s Ass!\""
           else:
@@ -898,7 +916,7 @@ class Generator16(TitleGen):
 class Generator17(TitleGen):
      # Enslaved: The Ebony Older Woman & The Mountain Man Biker Gang 
      def __init__(self):
-         super().__init__(ID = 17, Priority = GenPriority.Low)
+         super().__init__(ID = 17, Priority = GenPriority.Lowest)
          self.Template = templates.TitleTemplate17()
      
      def GenerateTweet(self):
@@ -1011,15 +1029,16 @@ class Generator20(TitleGen):
         super().GenerateTweet()
         sTweet = ""
 
-        self.ReqTemplateTags = ["woman"]
         self.Orients = [OSTRAIGHT,ONEUTRAL]
-        self.Groups = [GGROUP,GSING,GCOUP]
 
         sVerbBy = self.VerbsBy.GetWord(NotList = ["Charmed", "Kept", "Trained"])
         sTweet = "I Was " + sVerbBy
         sTweet += " By "
         if CoinFlip():
         # single man
+            self.ReqTemplateTags = ["woman"]
+            self.Groups = [GGROUP,GSING,GCOUP]
+
             Master = char.MaleChar(bAllowGang = False, bAddAnArticle = True, 
                                     MaxChars = 20,
                                     bAllowRelate = True)
@@ -1027,6 +1046,9 @@ class Generator20(TitleGen):
             self.ExclTemplateTags = ["women","lesbian"]
         else:
         # gang bang
+            self.ReqTemplateTags = ["man"]
+            self.Groups = [GGROUP]
+
             GangNotList = ["S.W.A.T.", "Millennial"]
             GangExclList = [AttitudeMale, GenModMale, TypeModMale, 
                             SkinHairColorMale, AgeAdjMale]
@@ -1057,14 +1079,17 @@ class Generator21(TitleGen):
           sTweet = ""
 
           self.ReqTemplateTags = ["man"] 
-          self.Orients = [OSTRAIGHT,ONEUTRAL]
+          self.ExclTemplateTags = ["women"]
+          self.Orients = [OGAY,ONEUTRAL]
           self.Groups = [GGROUP,GSING,GCOUP]
+
+          VerbNotList = ["Motor-Boated"],
           
           Master = char.MaleChar(bAddAnArticle = True, bSplitArticle = True,
                                  sPosArticle = "His", MaxChars = 30,
                                  bAllowRelate = True)
           
-          sTweet = self.VerbsBy.GetWord()  + "\nBy "
+          sTweet = self.VerbsBy.GetWord(NotList = VerbNotList)  + "\nBy "
           sTweet += Master.Desc 
           
           return sTweet
@@ -1079,8 +1104,9 @@ class Generator22(TitleGen):
         super().GenerateTweet()
         sTweet = ""
 
+        self.ReqTemplateTags = ["woman"]
         self.Orients = [OLES,ONEUTRAL]
-        self.Groups = [GGROUP,GSING,GCOUP]
+        self.Groups = [GGROUP,GCOUP]
           
         GoodGirlNotList = ["Sexy","Fiancé","Girlfriend","Step-Mom","Step-Mother","Nude","Naked","Nudist"]
         GirlGood = None
@@ -1409,7 +1435,7 @@ class Generator31(TitleGen):
         sTweet = ""
 
         self.ReqTemplateTags = ["woman"]
-        self.Orients = [OSTRAIGHT,ONEUTRAL]
+        self.Orients = [OSTRAIGHT,ONEUTRAL,OLES]
         self.Groups = [GGROUP,GSING]
 
         sHerName = NamesFemale().FirstName()
@@ -1504,6 +1530,7 @@ class Generator32(TitleGen):
         sTweet = ""
         
         if CoinFlip():
+            self.ReqTemplateTags = ["man"]
             self.Orients = [OSTRAIGHT,ONEUTRAL]
             self.Groups = [GCOUP,GSING]
 
@@ -1540,8 +1567,8 @@ class Generator32(TitleGen):
                 sTweet += sMaster + " " + WordList(["Son", "Brother", "Boyfriend", "Fiancé", "Husband", "Dad", "Father", "Hubby", "Step-Dad"]).GetWord()
         else:
             self.ReqTemplateTags = ["woman"]
-            self.Orients = [OLES,ONEUTRAL]
-            self.Groups = [GCOUP,GSING,GGROUP]
+            self.Orients = [OSTRAIGHT,ONEUTRAL,OLES]
+            self.Groups = [GCOUP,GSING]
 
             FemNotList = NotList = ['Single','Virgin', 'Girl', 'Woman', 'Mom', 'Sister', 'Mother', 'Daughter', 'Lesbian', 'Maiden', 'Wife']
             Girl = char.FemaleChar(TempType = TempType.Medium, NotList = FemNotList,
@@ -1857,7 +1884,7 @@ class Generator41(TitleGen):
                                      ExclList = [AgeAdjFemale, SpeciesFemale],
                                      NotList = ["straight"])
                                              
-          sTweet = Gerunds.GetWord() + " " + self.HerName + ":\n"
+          sTweet = Gerunds.GetWord() + " " + self.HerName + "\n"
           sTweet += "The " + GoodGirl.Desc + "\nand\n" + LesGirl.Desc 
 
           return sTweet
@@ -2314,9 +2341,9 @@ class Generator51(TitleGen):
           super().GenerateTweet()
           sTweet = ""
 
-          self.ReqTemplateTags = ["woman"]
           self.Orients = [OSTRAIGHT,ONEUTRAL]
-          self.Groups = [GSING]
+          self.Groups = [GSING,GCOUP,GGROUP]
+          self.ReqTemplateTags = ["woman","fantasy"]
           
           sName = self.HerName 
           Girl = None
@@ -2536,13 +2563,16 @@ class Generator55(TitleGen):
 class Generator56(TitleGen):
      def __init__(self):
          super().__init__(ID = 56, Priority = GenPriority.Lowest)
+         self.Template = templates.TitleTemplate24()
+         #self.Template = templates.TitleTemplate16()
      
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
 
           self.Orients = [OSTRAIGHT,ONEUTRAL]
-          self.Groups = [GSING,GGROUP]
+          self.Groups = [GSING]
+          self.ReqTemplateTags = ["woman"]
           
           FirstAdjs = WordList(['Sultry','Sexy','Stunning','Hot','Bubbly','Perky','Gorgeous','Foxy','Sensual',
                                      'Passionate','Seductive','Slinky','Spicy','Luscious','Stunning','Nympho'])
@@ -2892,7 +2922,7 @@ class Generator66(TitleGen):
 
           self.ReqTemplateTags = ["woman"]
           self.Orients = [OSTRAIGHT,ONEUTRAL]
-          self.Groups = [GSING,GGROUP]
+          self.Groups = [GCOUP]
           
           BrideWore = WordList(['Latex','Black Leather','Body Paint','a Spreader Bar','a Speculum','a Clit Pump','Nipple Clamps',
                                      'a Ball Gag','a Leash','a Butt Plug','an Anal Plug','a Vibrator','Crotchless Panties',
@@ -2921,8 +2951,8 @@ class Generator67(TitleGen):
           super().GenerateTweet()
           sTweet = ""
 
-          self.Orients = [OSTRAIGHT,ONEUTRAL]
-          self.Groups = [GCOUP,GSING]
+          self.Orients = [OSTRAIGHT,ONEUTRAL,OLES]
+          self.Groups = [GCOUP,GSING,GGROUP]
           
           Beginnings = WordList(["Please Go Easy On Me", "Please Be Gentle With Me", "Please Be Gentle", "Please Go Slow", 
                                       "Please Be Careful"])
@@ -3393,9 +3423,8 @@ class Generator79(TitleGen):
           super().GenerateTweet()
           sTweet = ""
 
-          self.ReqTemplateTags = ["woman"]
           self.Orients = [OSTRAIGHT,ONEUTRAL]
-          self.Groups = [GCOUP,GSING,GGROUP]
+          self.Groups = [GCOUP]
           
           VerbsTo = WordList(["69","Anally Deflower","Bone","Chain Up","Claim","Claim Hard","Command","Deflower",
                                    "Degrade","Dominate","Enslave","Gag","Hotwife","Humiliate","Hypnotize","Impregnate",
@@ -3582,9 +3611,8 @@ class Generator83(TitleGen):
         sTweet = ""
 
         self.ReqTemplateTags = ["woman"]
-        self.ExclTemplateTags = ["couple"]
         self.Orients = [OSTRAIGHT,ONEUTRAL]
-        self.Groups = [GCOUP,GSING,GGROUP]
+        self.Groups = [GCOUP,GSING]
           
         GirlNotList = ["black","african","ebony","dark-skinned"]
         NiceGirl = char.FemaleChar(SelectTemplateID = 501, NotList = GirlNotList)
@@ -4016,7 +4044,7 @@ class Generator96(TitleGen):
 
           self.ReqTemplateTags = ["woman"]
           self.Orients = [OSTRAIGHT,ONEUTRAL]
-          self.Groups = [GCOUP,GSING,GGROUP]
+          self.Groups = [GCOUP]
           
           Girl = titmisc.NiceGirl(NotList = ['Wife','Girlfriend'])
           SizeAdj = WordList(['Enormous','Gigantic','Titantic','Humongous','Massive','Sumptuous','Milky','Giant',
@@ -4266,7 +4294,8 @@ class Generator104(TitleGen):
           super().GenerateTweet()
           sTweet = ""
 
-          self.ExclTemplateTags = ["men","women"]
+          self.ExclTemplateTags = ["men"]
+          self.ReqTemplateTags = ["man"]
           self.Orients = [OSTRAIGHT,ONEUTRAL]
           self.Groups = [GCOUP,GSING,GGROUP]
           
@@ -4493,9 +4522,8 @@ class Generator108(TitleGen):
           super().GenerateTweet()
           sTweet = ""
           
-          self.ReqTemplateTags = ["woman","man"]
           self.Orients = [OSTRAIGHT,ONEUTRAL]
-          self.Groups = [GCOUP,GSING,GGROUP]
+          self.Groups = [GCOUP]
           
           FemAdjNotList = ['Naked','Nudist', 'Bare-Shaven','Anal','Polynesian','Japanese','Brazilian',
                                'Elvish']
@@ -4619,7 +4647,7 @@ class Generator112(TitleGen):
           self.ReqTemplateTags = ["woman"]
           self.ExclTemplateTags = ["panties"]
           self.Orients = [OSTRAIGHT,ONEUTRAL]
-          self.Groups = [GSING]
+          self.Groups = [GSING,GCOUP]
           
           FemNotList = ['Naked','Nudist','Bikini','Lingerie','Nude']
           SexyAdjs = WordList(['Sexy','Naughty','Erotic','Dirty','Steamy','Filthy','Shameless','Explicit','X-Rated'])
@@ -4744,9 +4772,13 @@ class Generator117(TitleGen):
         super().GenerateTweet()
         sTweet = ""
 
-        self.ExclTemplateTags = ["couple"]
-        self.Groups = [GSING,GGROUP]
-        self.Orient = [GSTRAIGHT,GNEUTRAL]
+        self.Orient = [OSTRAIGHT,ONEUTRAL]
+        if CoinFlip():
+            self.Groups = [GSING]
+            self.ReqTemplateTags = ["woman"]
+        else:
+            self.Groups = [GSING,GGROUP,GCOUP]
+            self.ReqTemplateTags = ["femdom"]
           
         FemNotList = ['Naked','Nudist','Bikini','Lingerie','Nude']
         Girl = char.FemaleChar(SelectTemplateID = 16, bAddAnArticle = True,
@@ -5195,7 +5227,7 @@ class Generator128(TitleGen):
           super().GenerateTweet()
           sTweet = ""
 
-          self.ReqTemplateTags = ["man"]
+          self.ReqTemplateTags = ["man","men"]
           self.ExclTemplateTags = ["couple","women"]
           self.Orients = [ONEUTRAL,OGAY]
           self.Groups = [GCOUP,GSING,GGROUP]
@@ -5296,7 +5328,7 @@ class Generator130(TitleGen):
           ManNotList = ManNotList + Woman.GetWordList()
           if 'Latina' in ManNotList:
                ManNotList.append('Latino')
-          print("ManNotList is " + str(ManNotList))
+          #print("ManNotList is " + str(ManNotList))
           
           iRand = randint(1,3)
           if iRand < 3:
@@ -5911,7 +5943,8 @@ class Generator141(TitleGen):
           super().GenerateTweet()
           sTweet = ""
 
-          self.ExclTemplateTags = ["men"]
+          self.ReqTemplateTags = ["woman"]
+          self.ExclTemplateTags = ["men","man"]
           self.Orients = [ONEUTRAL,OLES]
           self.Groups = [GCOUP,GSING,GGROUP]
           
@@ -6001,7 +6034,7 @@ class Generator144(TitleGen):
           super().GenerateTweet()
           sTweet = ""
 
-          self.ReqTemplateTags = ["woman","man"]
+          self.ReqTemplateTags = ["woman","man","straight"]
           self.Orients = [OSTRAIGHT,ONEUTRAL]
           self.Groups = [GCOUP,GSING]
           
@@ -6088,7 +6121,7 @@ class Generator146(TitleGen):
 
         self.ReqTemplateTags = ["woman"]
         self.Orients = [OSTRAIGHT,ONEUTRAL]
-        self.Groups = [GCOUP,GSING,GGROUP]
+        self.Groups = [GCOUP]
 
         Gerunds = WordList(['Ass Fucking',
                            'Banging',
@@ -6673,6 +6706,16 @@ def CurateFavorites(iGen = 0, iMaxLen = 0):
                     sDetailsLine += tag
                     if tagno < len(ImgTxtGen.ExclTemplateTags) - 1:
                         sDetailsLine += ","
+            sDetailsLine += "]"
+
+            sDetailsLine += "["
+            for item in ImgTxtGen.Groups:
+                sDetailsLine += str(int(item)) + ","
+            sDetailsLine += "]"
+
+            sDetailsLine += "["
+            for item in ImgTxtGen.Orients:
+                sDetailsLine += str(int(item)) + ","
             sDetailsLine += "]"
 
             sOutput = "{{" + sDetailsLine + "}}\n" + ImgTxtGen.ImgTxt.strip()  + "\n" + FAVTITLE_DIVIDER + "\n" 

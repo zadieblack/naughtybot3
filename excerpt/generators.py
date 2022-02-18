@@ -7192,6 +7192,19 @@ class Generator109(ExGen):
 #        sTweet = ""
 
 #        return sTweet
+
+## With a loud tear, the secretary's lacy black brassier was ripped right off.
+## She squealed and covered herself with her arms.
+## "Oh no!" she cried. "Please don't look at my digusting huge creamy DDD bongos!"
+#class Generator110(ExGen):
+#    def __init__(self):
+#        super().__init__(ID = 110, Priority = GenPriority.Normal)
+     
+#    def GenerateTweet(self):
+#        super().GenerateTweet()
+#        sTweet = ""
+
+#        return sTweet
           
 #class GeneratorSelector():
 #    def __init__(self):

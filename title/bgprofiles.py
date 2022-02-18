@@ -119,6 +119,7 @@ class BGProfileAssForHorseman(BGProfile):
         self.Tags = ["woman","nude","tits","ass","breasts","brunette","outdoors",
                      "fantasy","medieval","floating head","man","horse","maledom",
                      "warrior","butt","nipples","bent over","archer","busty",
+                     "public",
                      ]
         self.Disabled = False
         self.Content = Content.AdultsOnly
@@ -270,7 +271,8 @@ class BGProfileBathhouse(BGProfile):
         self.Content = Content.PG13
         self.Tags = ["bath","bath","bathhouse","bathhouse","pool","pool",
                      "man","men","inside","fantasy","gay","historic",
-                     "nude","shirtless","muscular","towel","wet",]
+                     "nude","shirtless","muscular","towel","wet",
+                     "public",]
         self.Disabled = False
 
 class BGProfileBathhouseButtocks(BGProfile):
@@ -363,7 +365,7 @@ class BGProfileBigGayCop(BGProfile):
         self.Tags = ["cop","cop","police","police","erect","erect",
                      "penis","penis",
                      "man","men","nude","gay","sunglasses","moustache","leather",
-                     "well-hung","boots","muscular","giant",]
+                     "well-hung","boots","muscular","giant","party",]
         self.Disabled = False
         self.Content = Content.AdultsOnly
         
@@ -457,7 +459,8 @@ class BGProfileBoatBoys(BGProfile):
         self.SmallTextColor = "rgba(106, 55, 39, 255)"
         self.AuthorNameColor = "rgba(106, 55, 39, 255)"
         self.Tags = ["man","men","shirtless","muscular",
-                     "outdoors","ocean","boat","threesome"]
+                     "outdoors","ocean","boat","threesome"
+                     "party","modern",]
         self.Disabled = False
         
 class BGProfileBondageMattress(BGProfile):
@@ -648,7 +651,7 @@ class BGProfileChamberPot(BGProfile):
                      "pissed","wealthy","lord","lady","duke","stockings",
                      "busty","rose","mature","older man","older woman",
                      "milf","exposed","french","porn star",
-                     "chamber pot",]
+                     "chamber pot","party","orgy",]
         self.Disabled = False
 
 class BGProfileChastityBelt(BGProfile):
@@ -899,7 +902,7 @@ class BGProfileDickNose(BGProfile):
                      "blonde","topless","shirtless","muscular","arabic",
                      "bed","october","older man","busty",
                      "tits","underwear","lingerie","oral","porn",
-                     "call girl","whore",]
+                     "call girl","whore","party",]
         self.Disabled = False
         
 class BGProfileDoggyStyle(BGProfile):
@@ -1338,14 +1341,14 @@ class BGProfileHawaiianThongRemoval(BGProfile):
         super().__init__(Priority = GenPriority.Normal,
                            sFileName = "hawaiian_thong_removal",
                          Orient = OSTRAIGHT,
-                         Group = GCOUP)
+                         Group = GGROUP)
         self.MainTitleColor = "rgba(230, 36, 63, 255)"
         self.SecondTitleColor = "rgba(172, 62, 43, 255)"
         self.SmallTextColor = "rgba(83, 41, 31, 255)"
         self.AuthorNameColor = "rgba(230, 36, 63, 255)"
         self.Tags = ["man","woman","straight","outdoors","asian","black hair",
                      "minority","hawaiian","tropical","topless","buttocks",
-                     "thong","shirtless","couple","black","vacation",]
+                     "thong","shirtless","couple","black","vacation","single",]
         self.Disabled = False
         self.Content = Content.PG13
 
@@ -1661,7 +1664,7 @@ class BGProfileJilling(BGProfile):
                      "tits","bed","teen","nightgown","young","college",
                      "co-ed", "panties","yellow nightgown",
                      "jilling","pussy","jewish","french","horny",
-                     "masturbate",]
+                     "masturbate","voyeur",]
         self.Disabled = False
         
 class BGProfileKinkyCuffs(BGProfile):
@@ -1711,7 +1714,7 @@ class BGProfileLatinoCowboy(BGProfile):
         self.AuthorNameColor = "rgba(164, 91, 56, 255)"
         self.Tags = ["latino","latino","dark skinned","dark skinned",
                      "man","single","cowboy","shirtless","muscular","gay",
-                     "minority","jeans","horse",
+                     "minority","jeans","horse","bulge",
                      "queen",]
         self.Disabled = False
         
@@ -2120,6 +2123,23 @@ class BGProfileNudeSailorButt(BGProfile):
                      "man","men","gay","inside","bed","drinking",
                      "butt","ass","smoking","tattooed","hat",]
         self.Content = Content.PG13
+        self.Disabled = False
+
+class BGProfileNurseGangbang(BGProfile):
+    def __init__(self):
+        super().__init__(Priority = GenPriority.High,
+                           sFileName = "nurse_gangbang",
+                         Orient = OSTRAIGHT,
+                         Group = GGROUP)
+        self.MainTitleColor = "rgba(239, 51, 69, 255)"
+        self.SecondTitleColor = "rgba(192, 0, 122, 255)"
+        self.SmallTextColor = "rgba(41, 53, 107, 255)"
+        self.AuthorNameColor = "rgba(41, 53, 107, 255)"
+        self.Tags = ["nurse","nurse","hospital","hospital",
+                     "woman","man","men","brunette",
+                     "patient","gangbang","straight","indoors",
+                     "dad","bed","older man","doctor's office",
+                     "doctor",]
         self.Disabled = False
 
 class BGProfileNurseTriangle(BGProfile):
@@ -2673,7 +2693,7 @@ class BGProfileScaryMirror(BGProfile):
                      "masturbation","surprise","horny","slut",
                      "young","teen","co-ed","college","wife","breasts",
                      "tits","naked","nude","naughty","expose","strip",
-                     "undress","swedish","jilling","mirror",]
+                     "undress","swedish","jilling","mirror","voyeur",]
         self.Disabled = False
 
 class BGProfileSeventiesChic(BGProfile):
@@ -2777,6 +2797,27 @@ class BGProfileShower(BGProfile):
                      "bath","wet","voyeur","babysitter",
                      "breasts","ass","butt","expose","undress",
                      "brat","maledom",]
+        self.Disabled = False
+
+class BGProfileShowerSwap(BGProfile):
+    def __init__(self):
+        super().__init__(Priority = GenPriority.High,
+                           sFileName = "shower_swap",
+                           Orient = OSTRAIGHT,
+                           Group = GGROUP)
+        self.MainTitleColor = "rgba(239, 106, 48, 255)"
+        self.SecondTitleColor = "rgba(184, 96, 183, 255)"
+        self.SmallTextColor = "rgba(92, 168, 132, 255)"
+        self.AuthorNameColor = "rgba(92, 168, 132, 255)"
+        self.Tags = ["shower","shower",
+                     "woman","women","man","men","nude","orgy","party",
+                     "gangbang","swinging","shirtless","muscular",
+                     "redhead","blonde","soap","wet","modern",
+                     "college","bachelor","brother","sister","shaved",
+                     "kinky","foursome","fivesome","wife swap","bi",
+                     "bisexual","gang-bang","bronzed","bath","school",
+                     "horny","naughty",
+                     ]
         self.Disabled = False
 
 class BGProfileSkeleton(BGProfile):
@@ -3595,7 +3636,14 @@ def PickBGProfile(ImgTxtGen, ProfileHistoryQ = None, bAllowPromo = True, Type = 
             if ScoredProfiles[i][1] >= iTopScore - 2:
                 ThisPriority = GenPriority.Normal
                 if ScoredProfiles[i][1] == iTopScore:
-                    ThisPriority = GenPriority.High
+                    if profile[0].Priority == GenPriority.SuperHigh:
+                        ThisPriority = GenPriority.SuperHigh
+                    elif profile[0].Priority == GenPriority.Low:
+                        ThisPriority = GenPriority.AboveAverage
+                    elif profile[0].Priority == GenPriority.Lowest:
+                        ThisPriority = GenPriority.Normal
+                    else:
+                        ThisPriority = GenPriority.High
                 else:
                     if profile[0].Content == Content.AllAges:
                         ThisPriority = GenPriority.AboveAverage
