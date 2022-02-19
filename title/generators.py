@@ -6437,6 +6437,64 @@ class Generator151(TitleGen):
 
         return sTweet
 
+# Major Boner
+# for the
+# Geeky Asian Schoolgirl
+class Generator152(TitleGen):
+    def __init__(self):
+         super().__init__(ID = 152, Priority = GenPriority.Normal)
+         self.Template = templates.TitleTemplate24()
+     
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
+
+        self.ReqTemplateTags = ["woman"]
+        self.Orients = [OSTRAIGHT,ONEUTRAL]
+        self.Groups = [GCOUP,GSING]
+
+        Sizes = WordList(["Major","Major","Major",
+                          "Big Black","Big Fat","Colossal","Enormous",
+                          "Gargantuan","Giant","Gigantic",
+                          "Humongous","Massive","Mondo",
+                          "Monster","Super-Sized","XXL",])
+
+        Dicks = WordList(["Beef Bayonette","Beef Pole","Boner","Boner","Cock",
+                          "Cock Meat","Cocksicle","Dick","Dick",
+                          "Disco Stick","Erection","Flesh Pipe","Flesh Python","Hard-On","Hard One",
+                          "Hot Rod","Joystick","Knob","Man Meat","Member","Meat Missile",
+                          "Meat Rifle","Meat Torpedo","Organ","Penis",
+                          "Phallus","Prick","Sausage","Tool",
+                          "Trouser Snake","Weiner","Wood",])
+
+        Penis = bodyparts.Penis(bAllowBAP = False)
+        sPenis = ""
+
+        iRand = randint(1,6)
+        if iRand == 1:
+            sPenis += Penis.GenerateLength() + " " + Dicks.GetWord()
+        elif iRand == 2:
+            sPenis += Sizes.GetWord() + " " + str(randint(7,15)) + "-inch " + Dicks.GetWord()
+        elif iRand == 3:
+            sPenis += Dicks.GetWord() + " "
+            sPenis += WordList(["City","City","Party","Special","Surprise"]).GetWord()
+        else:
+            sPenis += Sizes.GetWord() + " " + Dicks.GetWord()
+
+        sTweet += sPenis.upper()
+        sTweet += "\nfor the\n"
+
+        HerNotList = ["bronzed","ditzy","lesbian","MILF","queer","sexy","tanned",]
+        Woman = char.FemaleChar(Type = GirlType.Good, MaxChars = 30,
+                                bAllowTrope = False, bAllowSexuality = False,
+                                NotList = HerNotList,
+                                ExclList = [GenModFemale, PregState, 
+                                            RelateFemale, SexualityFemale, 
+                                            SpeciesFemale, TitlesFemale])
+        sTweet += Woman.Desc
+
+        return sTweet
+
 # Testing innuendo name generators          
 class Generator999(TitleGen):     
      def __init__(self):
