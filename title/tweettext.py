@@ -384,12 +384,18 @@ class TweetTxtGen14(TweetTxtGen):
                              "tax preparation", "Twilight fan fiction",
                              "people promoting their podcast", "Cats: The Movie",
                              "older women discussing their colonoscopies", 
+                             "older men discussing their colonoscopies",
                              "overbearing moms","hardcore Donald Trump supporters",
                              "Bitcoin investing", "Jazzercize", "the 90's",
-                             "essential oil use", "Gwyneth Patlrow's vagina",
+                             "essential oil use", "Gwyneth Paltrow's vagina",
                              "hipster beard hygene", "bitchy soccer moms", 
-                             "multilevel marketing schemes",
-                             "the music of Ariana Grande"]).GetWord() + "!"
+                             "multilevel marketing schemes","the Metaverse",
+                             "people tweeting their Wordle games",
+                             "crypto bros","people bragging about their NFT apes",
+                             "crypto investment schemes","Peloton workouts",
+                             "nerds arguing about Marvel vs. DC","Joe Rogan's podcast",
+                             "the music of Ariana Grande"
+                             ]).GetWord() + "!"
           
           return sText
           
