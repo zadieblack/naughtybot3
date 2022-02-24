@@ -44,6 +44,9 @@ class FemaleChar(Character):
           
         # add any CharBits that we are going to exclude to the exclusion list
           
+        if not bAllowAge:
+            ExclList.append(AgeAdjFemale())
+            ExclList.append(AgeNounFemale())
         if not bAllowAttitude:
             ExclList.append(AttitudeFemale())
             ExclList.append(AttitudeBadFemale())

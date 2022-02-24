@@ -374,6 +374,15 @@ class FemTemplate24(FemCharTemplate):
                                    girltype = GirlType.Good,
                                    priority = 1)
 
+# Female Physical Description (Generator 153)
+class FemTemplate25(FemCharTemplate):
+     def __init__(self):
+          super().__init__(     noun = GirlFemale(),
+                                    id = 25, 
+                                    adjlist =      [CTEntry([AttitudeGoodFemale,AttitudesNiceGirl,DiminuitiveNiceGirl,PhysCharFemale],4),
+                                                  ], 
+                                   priority = 1)
+          self.RequestOnly = True
 
 # === Good Trope templates ===
 
@@ -1496,6 +1505,23 @@ class MaleTemplate19(MaleCharTemplate):
                                                 ],
                                 priority = 4)
         self.RequestOnly = True
+
+# Male Physical Description + Profession (Generator 154)
+class MaleTemplate20(MaleCharTemplate):
+     def __init__(self):
+          super().__init__(     noun = TropeBitMale("Man"),
+                                    id = 20, 
+                                    adjlist =      [CTEntry([GenModMale],8),
+                                                    CTEntry([AttitudeMale],7),
+                                                    CTEntry([ClothesMale],6),
+                                                    CTEntry([PhysCharMale],5),
+                                                    CTEntry([TypeModMale],4),
+                                                    CTEntry([AgeAdjMale],3),
+                                                    CTEntry([NationMale,SkinHairColorMale,RaceMale],2),
+                                                    CTEntry([AgeAdjMale,MaritalStatusMale],1),
+                                                  ], 
+                                   priority = 1)
+          self.RequestOnly = True
 
 
 # Adjs:          GenModMale, AttitudeMale, ClothesMale, PhysCharMale, DickCharMale, TypeModMale,

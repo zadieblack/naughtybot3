@@ -6495,6 +6495,122 @@ class Generator152(TitleGen):
 
         return sTweet
 
+# SEX NURSE
+# The Busty Brunette Was Hungry For Dick!
+class Generator153(TitleGen):
+    def __init__(self):
+         super().__init__(ID = 153, Priority = GenPriority.Normal)
+         self.Template = templates.TitleTemplate34()
+     
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
+
+        self.ReqTemplateTags = ["woman"]
+        self.Orients = [OSTRAIGHT,ONEUTRAL]
+        self.Groups = [GCOUP,GSING]
+
+        FirstWord = WordList(["Horny","Sex","Sex","Sex","Nympho"])
+        FemProfs = WordList(["Assistant","Babysitter","Ballerina",
+                             "Barista","Bride","Cashier","Counselor","Coed",
+                             "Intern","Hostess","Librarian",
+                             "Maid","Manager","Masseuse","Nanny","Nun",
+                             "Nurse","Nutritionist","Professor",
+                             "Psychiatrist","Receptionist",
+                             "Schoolgirl","Secretary","Servant",
+                             "Stewardess","Teacher","Therapist",
+                             "Tutor","Waitress","Wife",])
+        
+        sFirstLine = FirstWord.GetWord() + " " + FemProfs.GetWord()
+        sTweet += sFirstLine.upper() + "\n"
+
+        FemNotList = []
+        Female = char.FemaleChar(MaxChars = 18, #bAddEndNoun = False,
+                                 NotList = FemNotList,
+                                 SelectTemplateID = 25)
+        sTweet += "The " + Female.Desc.lower() + " "
+
+        iRand = randint(1,1)
+        if iRand == 1:
+            DickNotList = ["goo-gun","joystick","lady-dagger","pole","ramrod",]
+            Dicks = WordList(["Beef Bayonette","Beef Pole","Cock","Cock","Cock Meat",
+                              "Dick","Dick","Erect Cock","Erect Penis","Erect Tools",
+                              "Hard Cock","Hard Dicks","Hard Ones","Hard Pricks",
+                              "Hard Shafts","Hard Wood","Male Pricks","Male Sausage",
+                              "Man Meat","Penis","Pricks","Sausage","Strange Dick",
+                              "Strange Cock","Strange Meat","Tool","Trouser Snake",
+                              "Weiners","Wood",])
+            sTweet += WordList(["always dropped her panties for",
+                                "couldn't get enough",
+                                "couldn't say 'no' to",
+                                "couldn't stop spreading her legs for",
+                                "craved","lived for","loved to ride",
+                                "loved to suck",
+                                "never said 'no' to","only wanted",
+                                "thirsted for",
+                                "was a fiend for",
+                                "was hot for","was hungry for",
+                                "was on the prowl for",
+                               ]).GetWord().lower() + " "
+            sTweet += Dicks.GetWord().lower() + "!"
+        elif iRand == 2:
+            sTweet += Sizes.GetWord() + " " + str(randint(7,15)) + "-inch " + Dicks.GetWord()
+        elif iRand == 3:
+            sTweet += Dicks.GetWord() + " "
+            sTweet += WordList(["City","City","Party","Special","Surprise"]).GetWord()
+        else:
+            sTweet += Sizes.GetWord() + " " + Dicks.GetWord()
+
+        return sTweet
+
+# SEX DOCTOR
+# The Handsome Scottsman Had a 8-inch Dick!
+class Generator154(TitleGen):
+    def __init__(self):
+         super().__init__(ID = 154, Priority = GenPriority.Normal)
+         self.Template = templates.TitleTemplate34()
+     
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
+
+        self.ReqTemplateTags = ["man"]
+        self.Orients = [OSTRAIGHT,ONEUTRAL]
+        self.Groups = [GCOUP,GSING]
+
+        Sizes = WordList(["Major","Major","Major",
+                          "Big Black","Big Fat","Colossal","Enormous",
+                          "Gargantuan","Giant","Gigantic",
+                          "Humongous","Massive","Mondo",
+                          "Monster","Super-Sized","XXL",])
+        
+        sTweet += "SEX " + titmisc.ProfMale().GetWord().upper() + "\n"
+
+        ManNotList = ["male gymnast","male model","grade","S.W.A.T.","shape-shifting",
+                      "teen","barbarian",]
+        Man = char.MaleChar(MaxChars = 18, bAllowTrope = False,
+                            NotList = ManNotList,
+                            SelectTemplateID = 20)
+        sTweet += "The " + Man.Desc.lower() + "'s secret was his "
+
+        DickNotList = ["man-scaped",]
+        Penis = bodyparts.Penis()
+        sPenis = ""
+
+        iRand = randint(1,4)
+        if iRand == 2:
+            sPenis += Sizes.GetWord() + " " + Penis.ShortDescription(NotList = DickNotList)
+        elif iRand == 3:
+            sPenis += Penis.GenerateLength() + " " + Penis.ShortDescription(NotList = DickNotList)
+        elif iRand == 4:
+            sPenis += Sizes.GetWord() + " " + str(randint(7,15)) + "-inch " + Penis.ShortDescription(NotList = DickNotList)
+        else:
+            sPenis += Penis.MediumDescription(NotList = DickNotList)
+
+        sTweet += sPenis.lower() + "!"
+
+        return sTweet
+
 # Testing innuendo name generators          
 class Generator999(TitleGen):     
      def __init__(self):

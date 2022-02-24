@@ -1160,6 +1160,30 @@ class TitleTemplate33(TitleTemplate):
                      ColorType = LineColorType.MainTitle,
                      AllCaps = True)
 
+# [TWO LINES]
+# LARGE TWO-WORD TOP LINE
+# MEDIUM TWO-LINE TAG (EXCITED!)
+
+class TitleTemplate34(TitleTemplate):
+    # Generators: 153
+    def __init__(self):
+        super().__init__()
+
+        # Large very long line
+        self.AddLine(OrderNum = 1,
+                     FontName = "Verona-ExtraBold.otf",
+                     FontMaxSize = 29,
+                     MaxRows = 2,
+                     ColorType = LineColorType.MainTitle,
+                     AllCaps = True)
+
+        # Medium two-line tag (excited!)
+        self.AddLine(OrderNum = 2,
+                     FontName = "FreestyleScriptStd.otf",
+                     FontMaxSize = 19,
+                     MaxRows = 2,
+                     ColorType = LineColorType.SecondTitle)
+
 # Title templates are generators and can be randomly selected but we aren't using this right now
 
 TTS = GeneratorContainer(TitleTemplate)
