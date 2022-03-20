@@ -51,11 +51,11 @@ while True:
     if iRand != 1:
         #pass
         print("+ running bot lust")
-        excerpt.lust_bot.InitBot(180, bTweet = True, bLoop = False, bRedditPost = True)
+        excerpt.lust_bot.InitBot(180, bTweet = True, bLoop = False, bRedditPost = False)
     else:
         print("+ skipping bot lust")
 
-    title.ee_bot.InitBot(180, bTweet = True, bLoop = False, bRedditPost = True)
+    title.ee_bot.InitBot(180, bTweet = True, bLoop = False, bRedditPost = False)
     currentDTaware = thisTZ.localize(datetime.datetime.utcnow())
     
     print("* Tweeted at " + currentDTaware.strftime("%I:%M %P"))
