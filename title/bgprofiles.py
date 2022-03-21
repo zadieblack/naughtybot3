@@ -1665,6 +1665,23 @@ class BGProfileIslandUndressing(BGProfile):
                      "shy","wholesome",]
         self.Disabled = False
         self.Content = Content.PG13
+
+class BGProfileJapaneseCheckers(BGProfile):
+    def __init__(self):
+        super().__init__(Priority = GenPriority.SuperHigh,
+                           sFileName = "japanese_checkers",
+                         Orient = ONEUTRAL,
+                         Group = GSING)
+        self.MainTitleColor = "rgba(219, 60, 59, 255)"
+        self.SecondTitleColor = "rgba(24, 128, 3, 255)"
+        self.AuthorNameColor = "rgba(219, 60, 59, 255)"
+        self.Tags = ["asian","japanese","asian","japanese",
+                     "woman","minority","single","strip",
+                     "newspaper","nude","daughter","wife",
+                     "teen","young","surprise","shy","sis",
+                     "exposed",
+                    ]
+        self.Disabled = False
         
 class BGProfileJilling(BGProfile):
     def __init__(self):
@@ -1717,6 +1734,22 @@ class BGProfileLadyBottom(BGProfile):
                      "ass","tits","queen","princess",
                      "hat","french","maiden",
                      ]
+        self.Disabled = False
+
+class BGProfileLakesideBikiniLesbos(BGProfile):
+    def __init__(self):
+        super().__init__(Priority = GenPriority.SuperHigh,
+                           sFileName = "lakeside_bikini_lesbos",
+                         Orient = OLES,
+                         Group = GCOUP)
+        self.MainTitleColor = "rgba(213, 64, 53, 255)"
+        self.SecondTitleColor = "rgba(82, 121, 74, 255)"
+        self.SmallTextColor = "rgba(14, 40, 63, 255)"
+        self.AuthorNameColor = "rgba(82, 121, 74, 255)"
+        self.Tags = ["woman","women","outside","lake","car",
+                     "lesbian","bikini","blonde","brunette",
+                     "water","ass","teen","coed","college",
+                    ]
         self.Disabled = False
         
 class BGProfileLatinoCowboy(BGProfile):
