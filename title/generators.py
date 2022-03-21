@@ -6270,14 +6270,26 @@ class Generator148(TitleGen):
                            titmisc.PhysCharFemale().GetWordList() + 
                            titmisc.NationFemale().GetWordList() 
                            )
-        sName = WordList(["Banger","Beaver","Bigg","Bone","Cox","Creamer","Dicker","Dix","Faulk","Fokker","Hammer",
+        sName = ""
+        iRand = randint(1,3)
+        if iRand == 1:
+            sName = WordList(["Banger","Beaver","Bigg","Bone","Cox","Creamer","Dicker","Dix","Faulk","Fokker","Hammer",
                           "Hancock","Head","Johnson","Knott","Knutter","Moorecox","Moorehead","Mount","Mounter",
                           "Mountcox","Muffin","Pecker","Peckwood","Peters","Philmore","Pink","Pohl","Rutter",
                           "Sacks","Shaft","Stiffington","Stroker","Stuffer","Tallwood","Weiner","Wood"
                           ]).GetWord()
+        elif iRand == 2:
+            sName = ClassyLastNames().GetWord()
+        elif iRand == 3:
+            iCount = 0
+            while len(sName) < 4 and iCount < 100:
+                sName = ClassyNamesMale().FirstName()
+                iCount += 1
+
         sTitle = titmisc.TitlesMale().GetWord(NotList = ["Sheikh","Shah"])
 
-        if CoinFlip():
+        iRand = randint(1,4)
+        if iRand == 4:
             # The King's
             sTweet += "The " + sTitle + "'s"
         else:

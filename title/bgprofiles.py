@@ -1366,6 +1366,23 @@ class BGProfileHelloSailor(BGProfile):
                      "man","single","shirtless","muscular","outdoors","sailor",
                      "bronzed",]
         self.Disabled = False
+
+class BGProfileHornyLadyCaptain(BGProfile):
+    def __init__(self):
+        super().__init__(Priority = GenPriority.SuperHigh,
+                           sFileName = "horny_lady_captain",
+                         Orient = OSTRAIGHT,
+                         Group = GSING)
+        self.MainTitleColor = "rgba(196, 46, 15, 255)"
+        self.SecondTitleColor = "rgba(221, 137, 24, 255)"
+        self.SmallTextColor = "rgba(3, 88, 100, 255)"
+        self.AuthorNameColor = "rgba(3, 88, 100, 255)"
+        self.Tags = ["woman","single","outside","sailor","captain",
+                     "blonde","legs","bowsprit","ship","boat",
+                     "sea","ocean","blue","teen","coed","college",
+                     "adventure","daughter","swedish","kinky",
+                     "american","young","brat","sweater",]
+        self.Disabled = False
         
 class BGProfileHorseRiders(BGProfile):
     def __init__(self):
