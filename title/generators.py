@@ -6623,6 +6623,110 @@ class Generator154(TitleGen):
 
         return sTweet
 
+# Mime Bukkake
+# for the
+# French Secretary
+class Generator155(TitleGen):
+    def __init__(self):
+        super().__init__(ID = 155, Priority = GenPriority.Normal)
+        self.Template = templates.TitleTemplate28()
+     
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
+
+        self.ReqTemplateTags = ["woman"]
+        self.Orients = [OSTRAIGHT,ONEUTRAL]
+        self.Groups = [GCOUP,GGROUP,GSING]
+
+        Numbers = WordList(["Double","Triple","Quaduple","Quintuple"])
+        Word1 = WordList(["BBC",
+                          "Body Builder",
+                          "Cannibal",
+                          "Centaur",
+                          "Dildo-Bot",
+                          "Dinosaur",
+                          "Dwarf",
+                          "Carnie",
+                          "Circus Clown",
+                          "Construction Worker",
+                          "Cowboy",
+                          "Coal Miner",
+                          "Lesbian",
+                          "Luchador",
+                          "Lumberjack",
+                          "Mime",
+                          "MMA Fighter",
+                          "Nun",
+                          "Penis Python",
+                          "Pirate",
+                          "Priest",
+                          "Public",
+                          "Rodeo Clown",
+                          "Sailor",
+                          "SCUBA Diver",
+                          "Sumo Wrestler",
+                          "Uniporn",
+                          "Upside-Down",
+                          "Vampire",
+                          "Werewolf",
+                        ])
+
+        Word2 = WordList(["Anal Creampie",
+                          "Anal Fisting",
+                          "Anal Gangbang",
+                          "Anal Sex",
+                          "Ass Eating",
+                          "Blow-bang",
+                          "Bondage",
+                          "Bukkake",
+                          "Butt Stuff",
+                          "Choking",
+                          "Cream Pie",
+                          "Cum-swap",
+                          "Deep Throat",
+                          "Dogging",
+                          "Domination",
+                          "Finger-Bang",
+                          "Fisting",
+                          "Flogging",
+                          "Forced Orgasm",
+                          "Free Use",
+                          "Frontal Massage",
+                          "Gangbang",
+                          "Glory Hole",
+                          "Golden Shower",
+                          "Orgy",
+                          "Penetration",
+                          "Prison Gangbang",
+                          "Sex Party",
+                          "Sodomy",
+                          "Spanking",
+                          "Spit-Roasting",
+                          "Throat Pie",
+                          "Whipping",
+                          ])
+
+        sNumber = Numbers.GetWord()
+        sWord1 = Word1.GetWord(NotList = [sNumber])
+        sWord2 = Word2.GetWord(NotList = [sNumber,sWord1])
+        Woman = char.FemaleChar(bAddTheArticle = True, bAllowTrope = False,
+                                bSplitArticle = True, MaxChars = 14,
+                                bAllowSpecies = False,
+                                NotList = [sNumber,sWord1,sWord2,
+                                           "alien","bdsm","elf","fairy",
+                                           "futa","mermaid","nymph",
+                                           "succubus","vampire"],
+                                ExclList = [GenModFemale,MaritalStatusFemale,SpeciesFemale])
+
+        if randint(1,4) == 4:
+            sTweet += sNumber + " "
+        sTweet += sWord1 + " " + sWord2 + "\n"
+        sTweet += "For "
+        sTweet += Woman.Desc
+
+        return sTweet     
+
 # Testing innuendo name generators          
 class Generator999(TitleGen):     
      def __init__(self):
@@ -6715,7 +6819,9 @@ class Generator1001(TitleGen):
           #sTweet += Gang.Desc + " Took Turns With My Wife!"
 
           return sTweet     
-          
+        
+
+
 # class Generator100(TitleGen):
      # ID = 100
      # Priority = GenPriority.Lowest
