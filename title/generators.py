@@ -6711,7 +6711,7 @@ class Generator155(TitleGen):
         sWord1 = Word1.GetWord(NotList = [sNumber])
         sWord2 = Word2.GetWord(NotList = [sNumber,sWord1])
         Woman = char.FemaleChar(bAddTheArticle = True, bAllowTrope = False,
-                                bSplitArticle = True, MaxChars = 14,
+                                bSplitArticle = True, MaxChars = 24,
                                 bAllowSpecies = False,
                                 NotList = [sNumber,sWord1,sWord2,
                                            "alien","bdsm","elf","fairy",

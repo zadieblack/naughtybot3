@@ -856,6 +856,8 @@ class Character():
                     variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
                     sDesc = self.DescribeTemplateVariant(variant, bAddEndNoun = bAddEndNoun, NotList = NotList)
 
+                if iTryCounter >= MAX_VARIANT_TRIES:
+                    print("WARNING: Character.SetCharDesc exceeded " + str(MAX_VARIANT_TRIES) + " tries. Accepting final attempt \"" + sDesc + "\".")
             else:
                 SelCharTemplate = CharTemplate()
                 variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
