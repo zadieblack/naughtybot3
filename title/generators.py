@@ -1534,7 +1534,8 @@ class Generator32(TitleGen):
             self.Orients = [OSTRAIGHT,ONEUTRAL]
             self.Groups = [GCOUP,GSING]
 
-            MaleNotList = ['Single', 'Man', 'Dad', 'Father', 'Brother', 'Son']
+            MaleNotList = ['Single','Man','Dad','Father','Brother','Son',
+                           'Husband','Boyfriend','Married']
             Master = char.MaleChar(bAllowGang = False, NotList = MaleNotList, 
                                    TempType = TempType.Medium,
                                    bAllowMaritalStatus = False)
@@ -1555,7 +1556,9 @@ class Generator32(TitleGen):
                                 "Pleasured By", "Spanked By", 
                                 "Ravished By", "Taken Hard By", 
                                 "Massaged By", "Going Down On", 
-                                "Impregnated By"]).GetWord() + "\n"
+                                "Impregnated By", "Sucking-off",
+                                "Deep-throating","Getting Railed By",
+                                "Pissing On","Spread-eagled by",]).GetWord() + "\n"
             if CoinFlip():
                 sTweet += "My " + WordList(["Best Friend", "Daughter", "Sister", "Step-Sister", "Step-Daughter"]).GetWord() + "'s\n"
                 sTweet += sMaster + " " + WordList(["Boyfriend", "Fiancé", "Husband", "Hubby"]).GetWord()
@@ -1570,16 +1573,32 @@ class Generator32(TitleGen):
             self.Orients = [OSTRAIGHT,ONEUTRAL,OLES]
             self.Groups = [GCOUP,GSING]
 
-            FemNotList = NotList = ['Single','Virgin', 'Girl', 'Woman', 'Mom', 'Sister', 'Mother', 'Daughter', 'Lesbian', 'Maiden', 'Wife']
+            FemNotList = NotList = ['Single','Virgin','Girl','Woman',
+                                    'Mom','Sister','Mother','Daughter', 
+                                    'Lesbian','Maiden','Wife','Queen',
+                                    'Daughter','Pregnant','Nun',
+                                    'Princess','Chaste','Married',
+                                    'Cousin','Fiancé','Girlfriend',
+                                    'Concubine','Bisexual','Straight',]
             Girl = char.FemaleChar(TempType = TempType.Medium, NotList = FemNotList,
-                                   bAllowMaritalStatus = False, bAllowTitle = False)
+                                   bAllowMaritalStatus = False, bAllowTitle = False,
+                                   bAllowRelate = False,bAllowSexuality = False)
             if Girl.Desc[-4:] == "Girl":
                 sGirl = Girl.Desc[0:-5]
             elif Girl.Desc[-5:] == "Woman":
                 sGirl = Girl.Desc[0:-6]
             else:
                 sGirl = Girl.Desc
-            sTweet = WordList(["Sleeping With", "Seducing", "Massaging", "Bedding", "Undressing", "Secretly Watching", "Spying On", "Sharing", "Showering With", "Stripping", "Playing With", "Claiming", "Spanking", "Punishing", "Deflowering", "Going Down On", "Blackmailing", "Pleasuring", "Impregnating"]).GetWord() + "\n"
+            sTweet = WordList(["Sleeping With","Seducing","Massaging","Bedding",
+                               "Undressing","Secretly Watching","Spying On","Sharing",
+                               "Showering With","Stripping","Playing With","Claiming", 
+                               "Spanking","Punishing","Deflowering","Going Down On",
+                               "Blackmailing","Pleasuring","Impregnating",
+                               "Balls-deep in","Knuckle-deep in","Elbow-deep in",
+                               "Raw-dogging","Bare-backing","Cream Pie-ing",
+                               "Pissing on","Fisting","Face-Fucking",
+                               "Throat-Fucking","Anally Penetrating",
+                               "Finger-Banging","Butt-Fucking","Ass-Fucking",]).GetWord() + "\n"
             if CoinFlip():
                 sTweet += "My " + WordList(["Best Friend", "Brother", "Step-Brother", "Step-Son", "Son"]).GetWord() + "'s\n"
                 sTweet += sGirl + " " + WordList(["Girlfriend", "Fiancé", "Wife"]).GetWord()

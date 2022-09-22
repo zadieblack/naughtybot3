@@ -3209,6 +3209,28 @@ class BGProfileTallWoman(BGProfile):
                      "nanny",]
         self.Disabled = False
 
+class BGProfileTentacleAttack(BGProfile):
+    def __init__(self):
+        super().__init__(Priority = GenPriority.High,
+                           sFileName = "tentacle_attack",
+                         Orient = ONEUTRAL,
+                         Group = GSING)
+        self.MainTitleColor = "rgba(211, 68, 51, 255)"
+        self.SecondTitleColor = "rgba(129, 169, 66, 255)"
+        self.SmallTextColor = "rgba(179, 55, 66, 255)"
+        self.AuthorNameColor = "rgba(179, 55, 66, 255)"
+        self.Content = Content.AdultsOnly
+        self.Tags = ["tentacles","tentacles","tentacle","tentacle",
+                     "monster","monster",
+                     "woman","nude","blonde","wet","tits","water",
+                     "milf","wife","bimbo","swedish","breasts",
+                     "pussy","busty","babysitter","kidnap",
+                     "capture","damsel","teacher","water",
+                     "single","swedish","curvy","public","mature",
+                     "maledom",
+                    ]
+        self.Disabled = False
+
 class BGProfileTheDevil(BGProfile):
     def __init__(self):
         super().__init__(Priority = GenPriority.Lowest,
