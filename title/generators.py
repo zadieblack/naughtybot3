@@ -6507,7 +6507,8 @@ class Generator152(TitleGen):
         elif iRand == 2:
             sPenis += Sizes.GetWord() + " " + str(randint(7,15)) + "-inch " + Dicks.GetWord()
         elif iRand == 3:
-            sPenis += Dicks.GetWord() + " "
+            sPenis += WordList(["Boner","Cock","Dick","Knob","Penis",
+                                "Sausage","Shaft","Weiner",]).GetWord() + " "
             sPenis += WordList(["City","City","Party","Special","Surprise"]).GetWord()
         else:
             sPenis += Sizes.GetWord() + " " + Dicks.GetWord()
