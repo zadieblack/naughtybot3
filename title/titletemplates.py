@@ -685,9 +685,8 @@ class TitleTemplate19(TitleTemplate):
 # MEDIUM medium-length second line
 # MEDIUM medium-length third line
 # MEDIUM medium-length punch-line 
-
 class TitleTemplate20(TitleTemplate):
-    # Generators: 55
+    # Generators: 55, 156
     def __init__(self):
         super().__init__()
 
@@ -726,7 +725,6 @@ class TitleTemplate20(TitleTemplate):
 # LARGE SHORT 2nd row
 # by
 # MEDIUM LONG-length 4th row
-
 class TitleTemplate21(TitleTemplate):
     # Generators: 30, 41
     def __init__(self):

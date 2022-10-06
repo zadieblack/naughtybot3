@@ -6751,6 +6751,92 @@ class Generator155(TitleGen):
         sTweet += "For "
         sTweet += Woman.Desc
 
+        return sTweet    
+    
+# Wanton Coed:
+# A Tale Of Erotic Furniture
+# & Anal Bondage
+class Generator156(TitleGen):
+    def __init__(self):
+        super().__init__(ID = 156, Priority = GenPriority.Normal)
+        self.Template = templates.TitleTemplate20()
+     
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
+
+        self.ReqTemplateTags = ["woman"]
+        self.Orients = [OSTRAIGHT,ONEUTRAL]
+        self.Groups = [GCOUP,GGROUP,GSING]
+
+        sTitle1 = WordList(['Bimbo','Bisexual','Busty','Carnal','Desperate','Dirty','Dominant','Easy','Erotic','Fertile','Flexible','Foxy','Freak','Freaky','Horny','Hot',
+                            'Juicy','Kinky','Lesbian','Lewd','Lust-crazed','Lustful','Naked','Nasty','Naughty','Nubile','Nympho',
+                            'Saucy','Sexual','Sex-crazed','Shameless','Sinful','Slutty',
+                            'Taboo','Teen','Teenage','Thirsty',
+                            'Unbridled','Untamed','Wanton','Wanton','Wicked','Wild','Willing','Young',
+                             ]).GetWord()
+        sTitle2 = WordList(['Babysitter','Bikini Model','Bridesmaid',
+                            'Cheerleader','Co-ed','College Girl',
+                            'Fashion Model','Flight Attendant',
+                            'House Maid','Housewife','Intern',
+                            'Librarian','Lingerie Model','Masseuse',
+                            'Maid','MILF','Nanny','Nun','Nurse',
+                            'Princess','Prom Queen','Schoolgirl',
+                            'Secretary','Snow Bunny','Step-daughter',
+                            'Step-mom','Step-sister','Stripper',
+                            'Supermodel','Teacher','Virgin',
+                            'Yoga Instructor',
+                            ]).GetWord(NotList = [sTitle1])
+
+        sTweet += sTitle1 + " " + sTitle2 + "\n"
+
+        NaughtyActivities = WordList(["Analingus","Anal Fisting",
+                                      "Anal Masturbation",
+                                      "Anal Play","Ass-Eating",
+                                      "Ass-to-Ass","Ball Sucking",
+                                      "Ball Torture",
+                                      "Bukkake","Circle Jerks",
+                                      "Choking","Cuck-Queaning",
+                                      "Cuckolding",
+                                      "Cum-Drinking",
+                                      "Cum-Swapping",
+                                      "Deep Throating",
+                                      "Double Anal",
+                                      "Double Penetration",
+                                      "Enemas",
+                                      "Erotic Asphyxiation",
+                                      "Erotic Furniture","Fem-dom",
+                                      "Feminization","Fisting",
+                                      "Incest","Gangbangs",
+                                      "Glory Holes","Humiliation",
+                                      "Leather Bondage",
+                                      "Masturbation","Menage a Trois",
+                                      "Milking","Nipple Play","Orgies",
+                                      "Orthodontia","Paddling",
+                                      "Pee-Drinking","Role Play",
+                                      "Rope Play","Scat Play",
+                                      "Sixty-Nining","Sodomy",
+                                      "Spanking","Tea-Bagging",
+                                      "Submission","Toe Sucking",
+                                      "Triple Penetration",
+                                      "Twincest","Water-Sports",
+                                      "Wife-swapping"])
+        NaughtyModifiers = WordList(["Anal","Bareback","BBC","BDSM","DILF",
+                                     "Dominant","Dwarf","Extreme","Furry",
+                                     "Gay","Gimp","Group","Lesbian","MILF",
+                                     "Non-consensual","Nun","Oral",
+                                     "Pregant","Priest","Public","Reverse",
+                                     "Sadomasochistic","Sexual","Slave",
+                                     "Submissive","Trans","Underage",
+                                     "Unprotected"])
+
+        sActivity1 = NaughtyActivities.GetWord(NotList = [sTitle1, sTitle2])
+        sActivity2 = NaughtyActivities.GetWord(NotList = [sTitle1, sTitle2, sActivity1])
+        sModifier = NaughtyModifiers.GetWord(NotList = [sTitle1, sTitle2, sActivity1, sActivity2])
+
+        sTweet += "A Tale of " + sActivity1 + "\n"
+        sTweet += "& " + sModifier + " " + sActivity2
+
         return sTweet     
 
 # Testing innuendo name generators          
