@@ -3605,6 +3605,27 @@ class BGProfileWindyBeach(BGProfile):
                      "busty","leg","sweater","dad","boss","secretary",]
         self.Disabled = False
 
+class BGProfileWitchPinup(BGProfile):
+    def __init__(self):
+        super().__init__(Priority = GenPriority.SuperHigh,
+                           sFileName = "witch_pinup",
+                         Orient = ONEUTRAL,
+                         Group = GSING)
+        self.MainTitleColor = "rgba(224, 110, 46, 255)"
+        self.SecondTitleColor = "rgba(67, 1, 172, 255)"
+        self.SmallTextColor = "rgba(0, 0, 0, 255)"
+        self.AuthorNameColor = "rgba(67, 1, 172, 255)"
+        self.Tags = ["woman","single","outdoors","brunette",
+                     "witch","witch","wicked","wicked",
+                     "moon","moon","broom","broom",
+                     "broomstick","broomstick",
+                     "night","night",
+                     "stockings","ride","fly","teen","milf",
+                     "busty","boobs","legs","young","heels",
+                     "horny","kinky","weird","spooky",
+                     "lingerie","raven-haired",]
+        self.Disabled = False
+
 class BGProfileWizardPony(BGProfile):
     def __init__(self):
         super().__init__(Priority = GenPriority.Low,

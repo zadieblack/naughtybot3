@@ -6794,7 +6794,7 @@ class Generator156(TitleGen):
                                       "Anal Masturbation",
                                       "Anal Play","Ass-Eating",
                                       "Ass-to-Ass","Ball Sucking",
-                                      "Ball Torture",
+                                      "Ball Torture","Blow-bangs",
                                       "Bukkake","Circle Jerks",
                                       "Choking","Cuck-Queaning",
                                       "Cuckolding",
