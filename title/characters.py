@@ -754,7 +754,7 @@ class Character():
         #print(" - - - DoesVariantMeetReqs() returning " + str(bDoesVariantMeetReqs))     
         return bDoesVariantMeetReqs
           
-    def DescribeTemplateVariant(self, variant, bAddEndNoun, NotList = None):
+    def DescribeTemplateVariant(self, variant, bAddEndNoun, bSplitNoun, NotList = None):
         sDesc = ""
           
         if NotList is None:
@@ -768,6 +768,9 @@ class Character():
                 sNounDesc = Noun.Get(NotList = NotList)
 
                 NotList = NotList + (re.findall(r"[\w']+", sNounDesc))
+
+                if bSplitNoun:
+                    sNounDesc = "\n" + sNounDesc
 
             if len(variant) > 1:     
                 for charbit in variant[:-1]:
@@ -796,6 +799,7 @@ class Character():
                     bAddTheArticle = False, 
                     sPosArticle = "My",
                     bSplitArticle = False,
+                    bSplitNoun = False,
                     SelectTemplateID = 0,
                     MaxChars = 9999):     
         SelCharTemplate = None 
@@ -843,7 +847,7 @@ class Character():
                 SelCharTemplate = choice(SelectionList) 
 
                 variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
-                sDesc = self.DescribeTemplateVariant(variant, bAddEndNoun = bAddEndNoun, NotList = NotList)
+                sDesc = self.DescribeTemplateVariant(variant, bAddEndNoun = bAddEndNoun, bSplitNoun = bSplitNoun, NotList = NotList)
 
                 while ((not self.DoesVariantMeetReqs(variant, ReqList) \
                         or self.IsVariantExcluded(variant, ExclList)) \
@@ -854,20 +858,20 @@ class Character():
                     iTryCounter = iTryCounter + 1
                     
                     variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
-                    sDesc = self.DescribeTemplateVariant(variant, bAddEndNoun = bAddEndNoun, NotList = NotList)
+                    sDesc = self.DescribeTemplateVariant(variant, bAddEndNoun = bAddEndNoun, bSplitNoun = bSplitNoun, NotList = NotList)
 
                 if iTryCounter >= MAX_VARIANT_TRIES:
                     print("WARNING: Character.SetCharDesc exceeded " + str(MAX_VARIANT_TRIES) + " tries. Accepting final attempt \"" + sDesc + "\".")
             else:
                 SelCharTemplate = CharTemplate()
                 variant = self.GetVariantFromTemplate(SelCharTemplate, TempType)
-                sDesc = self.DescribeTemplateVariant(variant, bAddEndNoun = bAddEndNoun, NotList = NotList)
+                sDesc = self.DescribeTemplateVariant(variant, bAddEndNoun = bAddEndNoun, bSplitNoun = bSplitNoun, NotList = NotList)
             
             # print("\nRandomly selected character template #" + str(SelCharTemplate.ID) + " [" + str(SelCharTemplate) + "]")
             # print(" - It took " + str(iTryCounter) + " tries.\n")
         NotList = NotList + SelCharTemplate.NotList 
 
-        sDesc = self.DescribeTemplateVariant(variant, bAddEndNoun = bAddEndNoun, NotList = NotList)
+        sDesc = self.DescribeTemplateVariant(variant, bAddEndNoun = bAddEndNoun, bSplitNoun = bSplitNoun, NotList = NotList)
 
         sArticleSplitter = " "
         if bSplitArticle:

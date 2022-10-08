@@ -17,6 +17,7 @@ class FemaleChar(Character):
                         bAddAnArticle = False,
                         sPosArticle = "My", 
                         bSplitArticle = False,
+                        bSplitNoun = False,
                         bAddEndNoun = True,
                         bAllowAttitude = True, 
                         bAllowPhysChar = True, 
@@ -104,6 +105,7 @@ class FemaleChar(Character):
                          bAddAnArticle = bAddAnArticle,
                          sPosArticle = sPosArticle,
                          bSplitArticle = bSplitArticle,
+                         bSplitNoun = bSplitNoun,
                          SelectTemplateID = SelectTemplateID,
                          MaxChars = MaxChars)
           
@@ -192,6 +194,7 @@ class LesbianChar(Character):
                             bAddAnArticle = False,
                             sPosArticle = "My", 
                             bSplitArticle = False,
+                            bSplitNoun = False,
                             bAddEndNoun = True,
                             bAllowAttitude = True, 
                             bAllowPhysChar = True, 
@@ -269,6 +272,7 @@ class LesbianChar(Character):
                            bAddAnArticle = bAddAnArticle,
                            sPosArticle = sPosArticle,
                            bSplitArticle = bSplitArticle,
+                           bSplitNoun = bSplitNoun,
                            SelectTemplateID = SelectTemplateID,
                            MaxChars = MaxChars)
           
@@ -296,6 +300,7 @@ class MaleChar(Character):
                             bAddAnArticle = False,
                             sPosArticle = "My", 
                             bSplitArticle = False,
+                            bSplitNoun = False,
                             bAddEndNoun = True,
                             bAllowGang = False,
                             bAllowAttitude = True, 
@@ -325,7 +330,8 @@ class MaleChar(Character):
                                                    ReqList = ReqList,
                                                    ExclList = ExclList, 
                                                    NotList = NotList, bAddTheArticle = bAddTheArticle,
-                                                   bAddAnArticle = bAddAnArticle, sPosArticle = sPosArticle, bSplitArticle = bSplitArticle,
+                                                   bAddAnArticle = bAddAnArticle, sPosArticle = sPosArticle, 
+                                                   bSplitArticle = bSplitArticle, bSplitNoun = bSplitNoun,
                                                    bAddEndNoun = bAddEndNoun, bAllowPhysChar = bAllowPhysChar, 
                                                    bAllowDickChar = bAllowDickChar, bAllowGenMod = bAllowGenMod,
                                                    bAllowTypeMod = bAllowTypeMod,bAllowClothing = bAllowClothing,
@@ -337,7 +343,8 @@ class MaleChar(Character):
                Char = GangMaleChar(TempType = TempType, MaleCharType = MaleCharType.GangAny,
                                                    ReqList = ReqList,
                                                    ExclList = ExclList, 
-                                                   NotList = NotList, bAddTheArticle = bAddTheArticle, bSplitArticle = bSplitArticle,
+                                                   NotList = NotList, bAddTheArticle = bAddTheArticle, 
+                                                   bSplitArticle = bSplitArticle, bSplitNoun = bSplitNoun,
                                                    bAddAnArticle = bAddAnArticle, sPosArticle = sPosArticle, 
                                                    bAddEndNoun = bAddEndNoun, bAllowPhysChar = bAllowPhysChar, 
                                                    bAllowDickChar = bAllowDickChar, bAllowGenMod = bAllowGenMod,
@@ -351,7 +358,8 @@ class MaleChar(Character):
                                                    ReqList = ReqList,
                                                    ExclList = ExclList,
                                                    NotList = NotList, bAddTheArticle = bAddTheArticle,
-                                                   bAddAnArticle = bAddAnArticle, sPosArticle = sPosArticle, bSplitArticle = bSplitArticle,
+                                                   bAddAnArticle = bAddAnArticle, sPosArticle = sPosArticle, 
+                                                   bSplitArticle = bSplitArticle, bSplitNoun = bSplitNoun,
                                                    bAddEndNoun = bAddEndNoun, bAllowPhysChar = bAllowPhysChar, 
                                                    bAllowDickChar = bAllowDickChar, bAllowGenMod = bAllowGenMod,
                                                    bAllowTypeMod = bAllowTypeMod,bAllowClothing = bAllowClothing,
@@ -363,7 +371,8 @@ class MaleChar(Character):
                Char = StraightMaleChar(TempType = TempType, NotList = NotList, bAddTheArticle = bAddTheArticle,
                                                    ReqList = ReqList,
                                                    ExclList = ExclList,
-                                                   bAddAnArticle = bAddAnArticle, sPosArticle = sPosArticle, bSplitArticle = bSplitArticle,
+                                                   bAddAnArticle = bAddAnArticle, sPosArticle = sPosArticle, 
+                                                   bSplitArticle = bSplitArticle, bSplitNoun = bSplitNoun,
                                                    bAddEndNoun = bAddEndNoun, bAllowAttitude = bAllowAttitude, 
                                                    bAllowPhysChar = bAllowPhysChar, bAllowDickChar = bAllowDickChar, 
                                                    bAllowSkinHairColor = bAllowSkinHairColor, bAllowGenMod = bAllowGenMod,
@@ -396,6 +405,7 @@ class StraightMaleChar(Character):
                         sPosArticle = "My", 
                         bAddEndNoun = True,
                         bSplitArticle = False,
+                        bSplitNoun = False,
                         bAllowAttitude = True, 
                         bAllowPhysChar = True, 
                         bAllowDickChar = True, 
@@ -483,6 +493,7 @@ class StraightMaleChar(Character):
                          bAddAnArticle = bAddAnArticle,
                          sPosArticle = sPosArticle,
                          bSplitArticle = bSplitArticle,
+                         bSplitNoun = bSplitNoun,
                          SelectTemplateID = SelectTemplateID,
                          MaxChars = MaxChars)
 
@@ -530,6 +541,7 @@ class GangMaleChar(Character):
                         sPosArticle = "My", 
                         bAddEndNoun = True,  
                         bSplitArticle = False,
+                        bSplitNoun = False,
                         bAllowPhysChar = True, 
                         bAllowDickChar = True, 
                         bAllowGenMod = True, 
@@ -596,6 +608,7 @@ class GangMaleChar(Character):
                          bAddAnArticle = bAddAnArticle,
                          sPosArticle = sPosArticle,
                          bSplitArticle = bSplitArticle,
+                         bSplitNoun = bSplitNoun,
                          SelectTemplateID = SelectTemplateID,
                          MaxChars = MaxChars)
 
@@ -635,6 +648,7 @@ class GayMaleChar(Character):
                         sPosArticle = "My", 
                         bAddEndNoun = True,  
                         bSplitArticle = False,
+                        bSplitNoun = False,
                         bAllowPhysChar = True, 
                         bAllowDickChar = True, 
                         bAllowGenMod = True, 
@@ -697,6 +711,7 @@ class GayMaleChar(Character):
                          bAddAnArticle = bAddAnArticle,
                          sPosArticle = sPosArticle,
                          bSplitArticle = bSplitArticle,
+                         bSplitNoun = bSplitNoun,
                          SelectTemplateID = SelectTemplateID,
                          MaxChars = MaxChars)
 

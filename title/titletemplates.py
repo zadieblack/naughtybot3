@@ -55,7 +55,8 @@ class TitleLine():
                  FontMaxSize = 16,
                  MaxRows = 2,
                  ColorType = LineColorType.MainTitle,
-                 AllCaps = False):
+                 AllCaps = False,
+                 AllLower = False):
         #self.ID = 0
         self.OrderNum = OrderNum
         self.FontName = FontName
@@ -64,6 +65,7 @@ class TitleLine():
         self.LineText = ""
         self.ColorType = ColorType
         self.AllCaps = AllCaps
+        self.AllLower = AllLower
 
 class TitleTemplate(Generator):
     def __init__(self, ID = -1, 
@@ -80,14 +82,19 @@ class TitleTemplate(Generator):
                                     FontMaxSize = 16,
                                     MaxRows = 1)
 
-    def AddLine(self, OrderNum = -1, FontName = "", FontMaxSize = 16, MaxRows = 2, ColorType = None, AllCaps = False):
+    def AddLine(self, OrderNum = -1, FontName = "", FontMaxSize = 16, 
+                MaxRows = 2, ColorType = None, AllCaps = False,
+                AllLower = False):
         if OrderNum == -1:
             OrderNum = self.NextLineID
             self.NextLineID = self.NextLineID + 1
         else:
             self.NextLineID = OrderNum + 1
 
-        self.Lines.append(TitleLine(OrderNum = OrderNum,FontName = FontName,FontMaxSize = FontMaxSize,MaxRows = MaxRows,ColorType = ColorType,AllCaps = AllCaps))
+        self.Lines.append(TitleLine(OrderNum = OrderNum,FontName = FontName,
+                                    FontMaxSize = FontMaxSize,
+                                    MaxRows = MaxRows,ColorType = ColorType,
+                                    AllCaps = AllCaps,AllLower = AllLower))
         
     
     def AddLineText(self, stxt = ""):
@@ -99,6 +106,8 @@ class TitleTemplate(Generator):
         while i < len(TxtLines) and i < len(self.Lines):
             if self.Lines[i].AllCaps:
                 self.Lines[i].LineText = TxtLines[i].upper()
+            elif self.Lines[i].AllLower:
+                self.Lines[i].LineText = TxtLines[i].lower()
             else:
                 self.Lines[i].LineText = TxtLines[i]
             i = i + 1
@@ -130,7 +139,6 @@ class TitleTemplatePHDefault(TitleTemplate):
 # SHORT TOP LINE
 # of a
 # LONG TWO-ROW BOTTOM LINE
-
 class TitleTemplate1(TitleTemplate):
     def __init__(self):
         super().__init__()
@@ -153,6 +161,7 @@ class TitleTemplate1(TitleTemplate):
                      MaxRows = 2,
                      ColorType = LineColorType.SecondTitle,
                      AllCaps = True)
+
 
 # [FOUR LINES]
 # MEDIUM TOP LINE
@@ -820,7 +829,8 @@ class TitleTemplate23(TitleTemplate):
                      FontName = "Sabado Regular.otf",
                      FontMaxSize = 26,
                      MaxRows = 2,
-                     ColorType = LineColorType.SmallText ,AllCaps = True)
+                     ColorType = LineColorType.SmallText,
+                     AllCaps = True)
 
         # Small medium-length tag (excited!)
         self.AddLine(OrderNum = 2,
@@ -1182,6 +1192,43 @@ class TitleTemplate34(TitleTemplate):
                      MaxRows = 2,
                      ColorType = LineColorType.SecondTitle)
 
+# [FOUR LINES]
+# SHORT TOP LINE
+# of a
+# LONG ONE-ROW LINE
+# LARGE SHORT BOTTOM LINE
+class TitleTemplate35(TitleTemplate):
+    def __init__(self):
+        super().__init__()
+
+        # Short very large top line
+        self.AddLine(FontName = "Walpurgis Night.otf",
+                     FontMaxSize = 22,
+                     MaxRows = 1,
+                     ColorType = LineColorType.MainTitle)
+
+        # Small cursive trans
+        self.AddLine(FontName = "Amaze.ttf",
+                     FontMaxSize = 10,
+                     MaxRows = 1,
+                     ColorType = LineColorType.SmallText,
+                     AllLower = True)
+
+        # One medium-sized line
+        self.AddLine(FontName = "PerpetuaStd.otf",
+                     FontMaxSize = 17,
+                     MaxRows = 1,
+                     ColorType = LineColorType.SecondTitle,
+                     AllCaps = True)
+
+        # Large short-length bottom line 
+        self.AddLine(FontName = "Walpurgis Night.otf",
+                     FontMaxSize = 16,
+                     MaxRows = 1,
+                     ColorType = LineColorType.MainTitle,
+                     AllLower = True)
+
 # Title templates are generators and can be randomly selected but we aren't using this right now
+
 
 TTS = GeneratorContainer(TitleTemplate)

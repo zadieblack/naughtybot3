@@ -356,7 +356,7 @@ class Generator1(TitleGen):
      # Blackmailed by the Billionaire Mountain Man 
      def __init__(self):
          super().__init__(ID = 1, Priority = GenPriority.High)
-         self.Template = templates.TitleTemplate1()
+         self.Template = templates.TitleTemplate35()
      
      def GenerateTweet(self):
           super().GenerateTweet()
@@ -371,13 +371,13 @@ class Generator1(TitleGen):
               self.Groups = [GGROUP]
               self.ReqTemplateTags = ["men"]
               Master = char.GangMaleChar(TempType = TempType.Flowery, bAddTheArticle = True, MaxChars = 32,
-                                     bSplitArticle = True)
+                                     bSplitArticle = True, bSplitNoun = True)
           else:
               self.Groups = [GCOUP,GSING]
               self.ReqTemplateTags = ["woman","man","straight"]
 
               Master = char.MaleChar(TempType = TempType.Flowery, bAddTheArticle = True, MaxChars = 32,
-                                     bSplitArticle = True, bAllowGang = False)
+                                     bSplitArticle = True, bSplitNoun = True, bAllowGang = False)
           
           sTweet = self.VerbsBy.GetWord() + "\nBy " + Master.Desc
 
