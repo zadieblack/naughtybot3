@@ -56,12 +56,12 @@ def BookTitleBuilder(maxlen = None):
      sTitle = gen.ImgTxt
 
      iLoop = 1
-     print("excerpt.tweetxt.BookTitleBuilder(): starting loop")
+     #print("excerpt.tweetxt.BookTitleBuilder(): starting loop")
      while len(sTitle) > maxlen or int(gen.ID) in GenExclList or iLoop >= 50:
           gen = GetTweet(bTest = False, bTweet = False, bAllowPromo = False, bAllowFavTweets = False)
           sTitle = gen.ImgTxt
           iLoop += 1
-     print("excerpt.tweetxt.BookTitleBuilder(): loop completed in " + str(iLoop) + " tries")
+     #print("excerpt.tweetxt.BookTitleBuilder(): loop completed in " + str(iLoop) + " tries")
           
      sTitle = sTitle.replace('\n',' ')
      sTitle = sTitle.replace('\"','')

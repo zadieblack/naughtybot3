@@ -7761,47 +7761,6 @@ class Generator115(ExGen):
 
         UsedWords = ["naked","nude","pretty","beautiful"]
 
-        #sBodyPartAdj1 = ""
-        #sBodyPartAdj2 = ""
-        #sBodyPartNoun = ""
-
-        #iRand = randint(1,8)
-        ##iRand = 1
-        #if iRand == 1:
-        #    sBodyPartAdj1 = man.Ass.GetAdj(NotList = UsedWords)
-        #    sBodyPartAdj2 = man.Ass.GetAdj(NotList = UsedWords + [sBodyPartAdj1])
-        #    sBodyPartNoun = man.Ass.GetNoun(NotList = UsedWords + [sBodyPartAdj1,sBodyPartAdj2])
-        #elif iRand == 2:
-        #    sBodyPartAdj1 = man.Ass.Buttocks.GetAdj(NotList = UsedWords)
-        #    sBodyPartAdj2 = man.Ass.Buttocks.GetAdj(NotList = UsedWords + [sBodyPartAdj1])
-        #    sBodyPartNoun = man.Ass.Buttocks.GetNoun(NotList = UsedWords + [sBodyPartAdj1,sBodyPartAdj2])
-        #elif iRand == 3:
-        #    sBodyPartAdj1 = man.Shoulders.GetAdj(NotList = UsedWords)
-        #    sBodyPartAdj2 = man.Shoulders.GetAdj(NotList = UsedWords + [sBodyPartAdj1])
-        #    sBodyPartNoun = man.Shoulders.GetNoun(NotList = UsedWords + [sBodyPartAdj1,sBodyPartAdj2])
-        #elif iRand == 4:
-        #    sBodyPartAdj1 = man.Chest.GetAdj(NotList = UsedWords)
-        #    sBodyPartAdj2 = man.Chest.GetAdj(NotList = UsedWords + [sBodyPartAdj1])
-        #    sBodyPartNoun = man.Chest.GetNoun(NotList = UsedWords + [sBodyPartAdj1,sBodyPartAdj2])
-        #elif iRand == 5:
-        #    sBodyPartAdj1 = man.FacialHair.GetAdj(NotList = UsedWords)
-        #    sBodyPartAdj2 = man.FacialHair.GetAdj(NotList = UsedWords + [sBodyPartAdj1])
-        #    sBodyPartNoun = man.FacialHair.GetNoun(NotList = UsedWords + [sBodyPartAdj1,sBodyPartAdj2])
-        #elif iRand == 6:
-        #    sBodyPartAdj1 = man.Hair.GetAdj(NotList = UsedWords)
-        #    sBodyPartAdj2 = man.Hair.GetAdj(NotList = UsedWords + [sBodyPartAdj1])
-        #    sBodyPartNoun = man.Hair.GetNoun(NotList = UsedWords + [sBodyPartAdj1,sBodyPartAdj2])
-        #elif iRand == 7:
-        #    sBodyPartAdj1 = man.Legs.GetAdj(NotList = UsedWords)
-        #    sBodyPartAdj2 = man.Legs.GetAdj(NotList = UsedWords + [sBodyPartAdj1])
-        #    sBodyPartNoun = man.Legs.GetNoun(NotList = UsedWords + [sBodyPartAdj1,sBodyPartAdj2])
-        #elif iRand == 8:
-        #    sBodyPartAdj1 = man.Jaw.GetAdj(NotList = UsedWords)
-        #    sBodyPartAdj2 = man.Jaw.GetAdj(NotList = UsedWords + [sBodyPartAdj1])
-        #    sBodyPartNoun = man.Jaw.GetNoun(NotList = UsedWords + [sBodyPartAdj1,sBodyPartAdj2])
-
-        #UsedWords += [sBodyPartAdj1,sBodyPartAdj2,sBodyPartNoun]
-
         sBodyAdj1 = man.GetAdj(NotList = UsedWords)
         sBodyAdj2 = man.GetAdj(NotList = UsedWords + [sBodyAdj1])
         sBodyNoun = man.GetNoun(NotList = UsedWords + [sBodyAdj1,sBodyAdj2])
