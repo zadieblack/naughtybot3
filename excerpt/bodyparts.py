@@ -1844,6 +1844,7 @@ class Penis(BodyParts):
                              'hardness',
                              'pole',
                              'rod',
+                             'sausage',
                              'serpent',
                              'shaft',
                              'snake',
@@ -2526,9 +2527,7 @@ class HairMale(BodyParts):
                'coif',
                'dreads',
                'fro',
-               'hair',
-               'hair',
-               'hair',
+               'hair','hair','hair',
                'locks'])
                
           self.AdjList(['curly',

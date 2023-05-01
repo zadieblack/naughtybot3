@@ -7737,11 +7737,12 @@ class Generator112(ExGen):
 ## {they slowly realized / the realization dawned} that
 ## they were not alone. 
 ## "Kaitlyn!" gasped Brook. "There's someone asleep on the bed!"
-## Brook turned to look. Her eyes widened. A man was sleeping on his
-## {side/back} atop the covers. His powerfully-built, hairy body was 
-## covered only by a pair of boxer shorts. The swollen head of his 
-## long, erect penis protruded the waist band. The massive organ
-## must have easily measured eight inches from the balls to the tip.
+## Brook turned to look. Her eyes widened. A tall, well-built young 
+## man with blonde, luxuriant locks was snoring on his side atop the 
+## covers. His supple body was covered only by a pair of tight 
+## briefs. The swollen head of his long, erect penis protruded 
+## above the waist band. The massive organ must have easily measured 
+## eight inches from the balls to the tip.
 ## "Shit, Brook," said Kaitlyn. "Is that your dad?!?"
 class Generator115(ExGen):
     def __init__(self):
@@ -7758,48 +7759,48 @@ class Generator115(ExGen):
 
         man = self.MaleBodyParts
 
-        UsedWords = ["naked","nude"]
+        UsedWords = ["naked","nude","pretty","beautiful"]
 
-        sBodyPartAdj1 = ""
-        sBodyPartAdj2 = ""
-        sBodyPartNoun = ""
+        #sBodyPartAdj1 = ""
+        #sBodyPartAdj2 = ""
+        #sBodyPartNoun = ""
 
-        iRand = randint(1,8)
-        #iRand = 1
-        if iRand == 1:
-            sBodyPartAdj1 = man.Ass.GetAdj(NotList = UsedWords)
-            sBodyPartAdj2 = man.Ass.GetAdj(NotList = UsedWords + [sBodyPartAdj1])
-            sBodyPartNoun = man.Ass.GetNoun(NotList = UsedWords + [sBodyPartAdj1,sBodyPartAdj2])
-        elif iRand == 2:
-            sBodyPartAdj1 = man.Ass.Buttocks.GetAdj(NotList = UsedWords)
-            sBodyPartAdj2 = man.Ass.Buttocks.GetAdj(NotList = UsedWords + [sBodyPartAdj1])
-            sBodyPartNoun = man.Ass.Buttocks.GetNoun(NotList = UsedWords + [sBodyPartAdj1,sBodyPartAdj2])
-        elif iRand == 3:
-            sBodyPartAdj1 = man.Shoulders.GetAdj(NotList = UsedWords)
-            sBodyPartAdj2 = man.Shoulders.GetAdj(NotList = UsedWords + [sBodyPartAdj1])
-            sBodyPartNoun = man.Shoulders.GetNoun(NotList = UsedWords + [sBodyPartAdj1,sBodyPartAdj2])
-        elif iRand == 4:
-            sBodyPartAdj1 = man.Chest.GetAdj(NotList = UsedWords)
-            sBodyPartAdj2 = man.Chest.GetAdj(NotList = UsedWords + [sBodyPartAdj1])
-            sBodyPartNoun = man.Chest.GetNoun(NotList = UsedWords + [sBodyPartAdj1,sBodyPartAdj2])
-        elif iRand == 5:
-            sBodyPartAdj1 = man.FacialHair.GetAdj(NotList = UsedWords)
-            sBodyPartAdj2 = man.FacialHair.GetAdj(NotList = UsedWords + [sBodyPartAdj1])
-            sBodyPartNoun = man.FacialHair.GetNoun(NotList = UsedWords + [sBodyPartAdj1,sBodyPartAdj2])
-        elif iRand == 6:
-            sBodyPartAdj1 = man.Hair.GetAdj(NotList = UsedWords)
-            sBodyPartAdj2 = man.Hair.GetAdj(NotList = UsedWords + [sBodyPartAdj1])
-            sBodyPartNoun = man.Hair.GetNoun(NotList = UsedWords + [sBodyPartAdj1,sBodyPartAdj2])
-        elif iRand == 7:
-            sBodyPartAdj1 = man.Legs.GetAdj(NotList = UsedWords)
-            sBodyPartAdj2 = man.Legs.GetAdj(NotList = UsedWords + [sBodyPartAdj1])
-            sBodyPartNoun = man.Legs.GetNoun(NotList = UsedWords + [sBodyPartAdj1,sBodyPartAdj2])
-        elif iRand == 8:
-            sBodyPartAdj1 = man.Jaw.GetAdj(NotList = UsedWords)
-            sBodyPartAdj2 = man.Jaw.GetAdj(NotList = UsedWords + [sBodyPartAdj1])
-            sBodyPartNoun = man.Jaw.GetNoun(NotList = UsedWords + [sBodyPartAdj1,sBodyPartAdj2])
+        #iRand = randint(1,8)
+        ##iRand = 1
+        #if iRand == 1:
+        #    sBodyPartAdj1 = man.Ass.GetAdj(NotList = UsedWords)
+        #    sBodyPartAdj2 = man.Ass.GetAdj(NotList = UsedWords + [sBodyPartAdj1])
+        #    sBodyPartNoun = man.Ass.GetNoun(NotList = UsedWords + [sBodyPartAdj1,sBodyPartAdj2])
+        #elif iRand == 2:
+        #    sBodyPartAdj1 = man.Ass.Buttocks.GetAdj(NotList = UsedWords)
+        #    sBodyPartAdj2 = man.Ass.Buttocks.GetAdj(NotList = UsedWords + [sBodyPartAdj1])
+        #    sBodyPartNoun = man.Ass.Buttocks.GetNoun(NotList = UsedWords + [sBodyPartAdj1,sBodyPartAdj2])
+        #elif iRand == 3:
+        #    sBodyPartAdj1 = man.Shoulders.GetAdj(NotList = UsedWords)
+        #    sBodyPartAdj2 = man.Shoulders.GetAdj(NotList = UsedWords + [sBodyPartAdj1])
+        #    sBodyPartNoun = man.Shoulders.GetNoun(NotList = UsedWords + [sBodyPartAdj1,sBodyPartAdj2])
+        #elif iRand == 4:
+        #    sBodyPartAdj1 = man.Chest.GetAdj(NotList = UsedWords)
+        #    sBodyPartAdj2 = man.Chest.GetAdj(NotList = UsedWords + [sBodyPartAdj1])
+        #    sBodyPartNoun = man.Chest.GetNoun(NotList = UsedWords + [sBodyPartAdj1,sBodyPartAdj2])
+        #elif iRand == 5:
+        #    sBodyPartAdj1 = man.FacialHair.GetAdj(NotList = UsedWords)
+        #    sBodyPartAdj2 = man.FacialHair.GetAdj(NotList = UsedWords + [sBodyPartAdj1])
+        #    sBodyPartNoun = man.FacialHair.GetNoun(NotList = UsedWords + [sBodyPartAdj1,sBodyPartAdj2])
+        #elif iRand == 6:
+        #    sBodyPartAdj1 = man.Hair.GetAdj(NotList = UsedWords)
+        #    sBodyPartAdj2 = man.Hair.GetAdj(NotList = UsedWords + [sBodyPartAdj1])
+        #    sBodyPartNoun = man.Hair.GetNoun(NotList = UsedWords + [sBodyPartAdj1,sBodyPartAdj2])
+        #elif iRand == 7:
+        #    sBodyPartAdj1 = man.Legs.GetAdj(NotList = UsedWords)
+        #    sBodyPartAdj2 = man.Legs.GetAdj(NotList = UsedWords + [sBodyPartAdj1])
+        #    sBodyPartNoun = man.Legs.GetNoun(NotList = UsedWords + [sBodyPartAdj1,sBodyPartAdj2])
+        #elif iRand == 8:
+        #    sBodyPartAdj1 = man.Jaw.GetAdj(NotList = UsedWords)
+        #    sBodyPartAdj2 = man.Jaw.GetAdj(NotList = UsedWords + [sBodyPartAdj1])
+        #    sBodyPartNoun = man.Jaw.GetNoun(NotList = UsedWords + [sBodyPartAdj1,sBodyPartAdj2])
 
-        UsedWords += [sBodyPartAdj1,sBodyPartAdj2,sBodyPartNoun]
+        #UsedWords += [sBodyPartAdj1,sBodyPartAdj2,sBodyPartNoun]
 
         sBodyAdj1 = man.GetAdj(NotList = UsedWords)
         sBodyAdj2 = man.GetAdj(NotList = UsedWords + [sBodyAdj1])
@@ -7815,7 +7816,7 @@ class Generator115(ExGen):
 
         sPenis2Adj1 = man.Penis.GetAdj(NotList = UsedWords)
         sPenis2Adj2 = man.Penis.GetAdj(NotList = UsedWords + [sPenis2Adj1])
-        sPenis2Noun = man.Penis.GetNoun(NotList = UsedWords + [sPenis2Adj1,sPenis2Adj2] + ["dick","cock"], bSillyNouns = False)
+        sPenis2Noun = man.Penis.GetNoun(NotList = UsedWords + [sPenis2Adj1,sPenis2Adj2] + ["dick","cock","thing","hardness"], bSillyNouns = False)
 
         UsedWords += [sPenis2Adj1,sPenis2Adj2,sPenis2Noun]
 
@@ -7824,12 +7825,114 @@ class Generator115(ExGen):
 
         UsedWords += [sBallsNoun,sTipNoun]
 
-        sTweet += "Stifling giggles, the two " + WordList(["teen girls","18-yo girls","teenage girls","tittering young ladies","freshman girls","co-eds",]).GetWord() + " "
-        sTweet += WordList(["crept","snuck","tiptoed","scurried stealthily"]).GetWord() + " "
-        sTweet += "into the " + WordList(["dim","darkened","unlit"]).GetWord() + " bedroom. "
-        sTweet += WordList(["In the nick of time","Quickly but quietly,","Just in time,",]).GetWord() + " " 
-        sTweet += "they " + WordList(["closed","shut"]).GetWord() + " the door "
-        sTweet += "before " + WordList(["they were discovered","they were caught","they could be found out","they got caught","they could be caught","anyone discovered them"]).GetWord() + ". "
+        sManDesc1 = WordList(["tall, lean",
+                              "tall, barrel-chested",
+                              "tall, broad-chested",
+                              "tall, brawny",
+                              "tall, athletic",
+                              "tall, strapping",
+                              "tall, powerfully-built",
+                              "tall, well-built"
+                              "tall, rugged",
+                              "tall, hairy",
+                              "tall, slender",
+                              "large, muscle-bound",
+                              "large, barrel-chested",
+                              "large, broad-chested",
+                              "large, powerfully-built",
+                              "large, well-built"
+                              "large, brawny",
+                              "large, rugged",
+                              "large, hairy",
+                              "large, sinewy",
+                              "lean, rugged",
+                              "lean, athletic",
+                              "lean, limber",
+                              "lean, sinewy",
+                              "compact, lean",
+                              "compact, athletic",
+                              "compact, limber",
+                              "compact, muscular",
+                              "compact, rugged",
+                              "slender, athletic",
+                              "slender, handsome",
+                              "sturdy, barrel-chested",
+                              "sturdy, powerfully-built",
+                              "sturdy, hairy",
+                              "sturdy, broad-chested",
+                             ]).GetWord(NotList = UsedWords) 
+        sManDesc2 = "man" #WordList(["man","man","young man","older man","gentleman"]).GetWord(NotList = UsedWords) 
+        sManDesc3 = WordList(["glossy blond hair",
+                              "long, luxuriant blond locks",
+                              "tight-cropped sandy-blond hair",
+                              "vibrant, wavy red locks",
+                              "flaming red locks",
+                              "vibrant red curls",
+                              "flowing locks of flaming red hair",
+                              "thick, curly brown hair",
+                              "smooth-shaven head",
+                              "head shaved shiny and smooth",
+                              "head shaved shiny and smooth",
+                              "dark hair streaked with silver",
+                              "silver hair and a craggy jaw",
+                              "flowing blond locks and a craggy jaw",
+                              "fiery red locks and a craggy jaw",
+                              "smooth-shaved skull and a craggy jaw",
+                              "luxuriant blond hair and a chiseled jaw",
+                              "wavy red locks and a chiseled jaw",
+                              "smooth-shaved skull and a chiseled jaw",
+                              "wavy brown hair and a chiseled jaw",
+                              "a chiseled jaw and thick, curly chest hair",
+                              "a craggy jaw and thick, dark chest hair",
+                              "thick, dark chest hair",
+                              "thick, luxuriant curls of chest hair",
+                              "thick thatch of chest hair",
+                              "clean-shaven jaw and thick blond hair",
+                              "clean-shaven jaw and a smooth bald head",
+                              "clean-shaven jaw and long, flowing locks",
+                              "clean-shaven jaw and slicked-back hair",
+                              "clean-shaven jaw and fiery red hair",
+                              "trimmed goatee and thick blond hair",
+                              "neat goatee and close-cropped hair",
+                              "neat goatee and dark, slicked-back hair",
+                              "trimmed goatee and a smooth-shaven head",
+                              "trimmed beard and a smooth-shaved head",
+                              "stubble beard and thick, dark hair",
+                              "stubble beard and flowing blond hair",
+                              "stubble beard and long, flowing hair",
+                              "thick red hair and beard",
+                              "long red hair and beard",
+                              "flowing red hair and a thick beard",
+                              "silver hair and a long, full beard",
+                              "hair and beard streaked with silver",
+                              "thick beard and flowing blond hair",
+                              "taut, well-defined muscles",
+                              "hard, well-defined muscles",
+                              "six-pack abs and tight glutes",
+                              "a six-pack of well-defined abs",
+                              "well-defined abs and taut buttocks",
+                              "tight, muscular buttocks",
+                              "taut, compact buttocks",
+                              "tight, well-defined glutes",
+                              "taut buttocks and strapping legs",
+                              "muscular buttocks and thick, trunk-like legs",
+                              "broad buttocks and trunk-like legs",
+                              "powerful buttocks and thick, trunk-like legs",
+                              "compact buttocks and slender, muscular legs",
+                              "taut buttocks and lean, slender legs",
+                              "powerful buttocks and strapping legs",
+                              "broad buttocks and powerful legs",
+                              "broad buttocks and sturdy legs",
+                             ]).GetWord(NotList = UsedWords) 
+        sManDesc4 = WordList(["fair","bronzed","coffee-colored","dark, shiny","leathery","sun-browned","tanned","supple","youthful",
+                              "smooth, dark","smooth, tanned","rugged, leathery","weathered",
+                             ]).GetWord(NotList = UsedWords) 
+
+        #sTweet += "Stifling giggles, the two " + WordList(["teen girls","18-year-old girls","cute 18-year-olds","teenage girls","cute teenage girls","pretty teenage girls","young ladies","pretty young ladies","freshman girls","co-eds","pretty co-eds","young women","pretty young women"]).GetWord() + " "
+        sTweet += "Stifling giggles, " + sGirlName1 + " and " + sGirlName2 + " "
+        sTweet += "hid in the " + WordList(["dim","darkened","unlit"]).GetWord() + " bedroom, "
+        sTweet += WordList(["closing","shutting"]).GetWord() + " the door "
+        sTweet += "before " + WordList(["they could be discovered","they could be caught","they could be found out",]).GetWord() + ". "
         sTweet += "As they waited breathlessly, "
         sTweet += WordList([sGirlName1 + " slowly realized",
                             "realization dawned on " + sGirlName1,
@@ -7839,27 +7942,21 @@ class Generator115(ExGen):
         sTweet += "that they were not alone.\n\n"
 
         sTweet += "\"" + sGirlName2 + "!\" "
-        sTweet += WordList(["cried","exclaimed","gasped"]).GetWord() + " "
-        sTweet += sGirlName1 + " softly, "
+        sTweet += "she " + WordList(["cried","exclaimed","gasped"]).GetWord() + " softly, "
         sTweet += "\"There's someone asleep on the bed!\"\n\n"
 
-        sTweet += sGirlName2 + " turned to look. Her eyes widened. "
-        sTweet += "A man was " + WordList(["sleeping","snoring","fast asleep"]).GetWord() + " "
-        sTweet += "on his side atop the covers. "
-
         iRand = randint(1,2)
-        iRand = 1
+        #iRand = 2
         if iRand == 1:
             # wearing pants
             sPenisHeadAdj = man.Penis.Head.GetAdj(NotList = UsedWords)
             sPenisHeadNoun = man.Penis.Head.GetNoun(NotList = UsedWords + [sPenisHeadAdj] + ["dick","cock"], bStdNouns = False)
-            UsedWords += [sPenisHeadAdj,sPenisHeadNoun]
-            if CoinFlip():
-                sTweet += "She couldn't help but notice his " + sBodyPartAdj1 + ", " + sBodyPartAdj2 + " " + sBodyPartNoun + ". "
-            else:
-                sTweet += "His " + sBodyPartNoun + " was " + sBodyPartAdj1 + " and " + sBodyPartAdj2 + ". "
-            sTweet += "His " + sBodyAdj1 + ", " + sBodyAdj2 + " " + sBodyNoun + " was "
-            sTweet += "covered only by a pair of " + WordList(["boxer shorts","tight, low-slung bluejeans", "tight briefs","paper thin pajama pants","a tight man-thong"]).GetWord() + ". "
+            UsedWords += [sPenisHeadAdj,sPenisHeadNoun,"shaft"]
+            sTweet += AddArticles(sManDesc1, bMakeUpper = True) + " " + sManDesc2 + " "
+            sTweet += "with " + sManDesc3 + " "
+            sTweet += "was "+ WordList(["sleeping","snoring","fast asleep"]).GetWord() + " on his side atop the covers. "
+            sTweet += "His " + sManDesc4 + " body was bare "
+            sTweet += "except for " + WordList(["a pair of boxer shorts","tight, low-slung bluejeans","a pair of tight briefs","a pair of paper thin pajama pants","a tight man-thong"]).GetWord() + ". "
             sTweet += "The " + sPenisHeadAdj + " " +  sPenisHeadNoun + " "
             sTweet += "of his " + sPenis1Adj1 + ", " + sPenis1Adj2 + " " + sPenis1Noun + " "
             sTweet += "protruded above the waist-band. "
@@ -7868,11 +7965,33 @@ class Generator115(ExGen):
             sTweet += WordList(["seven","eight","nine","ten","eleven","twelve","thirteen"]).GetWord() + " "
             sTweet += WordList(["","full ","and 1/2 "]).GetWord() + "inches "
             sTweet += "from " + sBallsNoun + " to " + sTipNoun + "."
-            sTweet += "\n\n"
+            
         elif iRand == 2:
             # naked
-            pass
+            sPenisHeadAdj = man.Penis.Head.GetAdj(NotList = UsedWords)
+            sPenisHeadNoun = man.Penis.Head.GetNoun(NotList = UsedWords + [sPenisHeadAdj] + ["dick","cock"], bStdNouns = False)
+            UsedWords += [sPenisHeadAdj,sPenisHeadNoun]
+            sTweet += AddArticles(sManDesc1, bMakeUpper = True) + " " + sManDesc2 + " "
+            sTweet += "with " + sManDesc3 + " "
+            sTweet += "was "+ WordList(["sleeping","snoring","fast asleep","sprawled"]).GetWord() + " on his side atop the covers. "
+            sTweet += "His " + sManDesc4 + " body " 
+            sTweet += "was " + WordList(["completely nude","totally naked","bare naked","fully naked","buck naked"]).GetWord() + ", "
+            sTweet += "and they could see "
+            sTweet += "that he " + WordList(["was rock hard","was hard as a rock","was fully erect","had a rigid erection","was throbbingly erect","had a rock-hard erection", "was extremely erect"]).GetWord() + ". "
+            sTweet += "His " + sPenis1Noun + " was " + sPenis1Adj1 + " and " + sPenis1Adj2 + " and "
+            sTweet += "must have measured " + WordList(["nearly ","at least ","a good ",""]).GetWord()
+            sTweet += WordList(["seven","eight","nine","ten","eleven","twelve","thirteen"]).GetWord() + " "
+            sTweet += WordList(["","full ","and 1/2 "]).GetWord() + "inches. "
+            sTweet += "As the " + WordList(["girls","women"]).GetWord() + " "
+            sTweet += WordList(["stared","gaped"]).GetWord() + " at his " + sPenis2Noun + ", "
+            sTweet += "a " + WordList(["small","tiny","little"]).GetWord() + " " 
+            sTweet += WordList(["bead","drop","droplet","dab"]).GetWord() + " "
+            sTweet += "of " + self.Semen.MediumDescription(NotList = UsedWords) + " "
+            sTweet += "oozed from the hole of the " + sPenisHeadAdj + " " + sPenisHeadNoun + " "
+            sTweet += "and trickled down the shaft."
+            #sTweet += "from " + sBallsNoun + " to " + sPenisHeadAdj + " " + sPenisHeadNoun + "."
         
+        sTweet += "\n\n"
         sTweet += "\"" + WordList(["Shit","Fuck","Jesus Christ","Holy Shit","Jesus Fucking Christ","Jesus H. Christ",]).GetWord() + ", "
         sTweet += sGirlName2 + ",\" said " + sGirlName1 + ", "
         sTweet += "\"Is that " + WordList(["your father","your step-father","your brother", "your brother " + sManName,
