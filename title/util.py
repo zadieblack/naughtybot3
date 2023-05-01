@@ -13,7 +13,7 @@ MAX_SEARCH_LOOPS = 8
 TWIT_USERNAME = 'erotica_ebooks'
 TWIT_CONTROLLER = 'zadieblack'
 
-Q_SIZE = 40
+Q_SIZE = 80
 HISTORYQ_FILENAME = 'title/history_q.txt'
 TWEETTXT_Q_SIZE = 20
 TWEETTXT_HISTORYQ_FILENAME = 'title/tweettxt_history_q.txt'

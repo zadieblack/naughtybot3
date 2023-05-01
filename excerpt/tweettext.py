@@ -6,7 +6,7 @@ from names import *
 from title.generators import GetTweet
 import excerpt.bodyparts
 
-MAX_EXCERPT_BOOKTITLE_LEN = 65
+MAX_EXCERPT_BOOKTITLE_LEN = 75
 
 TweetTxtHistoryQ = HistoryQ(10)
 
@@ -48,15 +48,23 @@ def BookTitleBuilder(maxlen = None):
           
      if not isinstance(maxlen, int):
           maxlen = MAX_EXCERPT_BOOKTITLE_LEN
+
+     GenExclList = [154,153,151,12,17,26,30,31,51,54,55,62,67,74,78,79,89,90,133,136,147]
          
      sTitle = ""
      gen = GetTweet(bTest = False, bTweet = False, bAllowPromo = False, bAllowFavTweets = False)
      sTitle = gen.ImgTxt
-     while len(sTitle) > maxlen:
+
+     iLoop = 1
+     print("excerpt.tweetxt.BookTitleBuilder(): starting loop")
+     while len(sTitle) > maxlen or int(gen.ID) in GenExclList or iLoop >= 50:
           gen = GetTweet(bTest = False, bTweet = False, bAllowPromo = False, bAllowFavTweets = False)
           sTitle = gen.ImgTxt
+          iLoop += 1
+     print("excerpt.tweetxt.BookTitleBuilder(): loop completed in " + str(iLoop) + " tries")
           
-     sTitle = sTitle.replace('\n',' ').replace(':',' - ').replace('\"','')
+     sTitle = sTitle.replace('\n',' ')
+     sTitle = sTitle.replace('\"','')
      sTitle = sTitle.replace('  ',' ') #remove double spaces
      return sTitle
      

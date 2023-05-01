@@ -12,7 +12,7 @@ MAX_GENERATOR_NO = 44
 MAX_SEARCH_LOOPS = 20
 TWIT_CONTROLLER = 'zadieblack'
 
-Q_SIZE = 40
+Q_SIZE = 80
 
 TweetHistoryQ = None
 
@@ -167,6 +167,41 @@ def AddArticles(sNounPhrase, bMakeUpper = False, cBracket = "", bSplitArticle = 
                sUpdatedPhrase = cBracket + sNounPhrase + cBracket
                
      return sUpdatedPhrase
+
+def SuperCapitalize(str, bFirstCharOnly = True):
+    sOutput = ""
+
+    if len(str) > 1:
+        if bFirstCharOnly:
+            if str[0].islower():
+                sOutput = str[0].upper() + str[1:]
+            else:
+                sOutput = str
+        else:
+            sOutput = str.capitalize()
+    else:
+        sOutput = str.upper()
+
+    return sOutput
+
+def SuperTitle(str, bFirstCharOnly = True):
+    sOutput = ""
+
+    if len(str) > 1:
+        if bFirstCharOnly:
+            for i,char in enumerate(str):
+                if i == 0:
+                    sOutput += str[i].upper()
+                elif i > 0 and str[i - 1] == " " and str[i].islower():
+                    sOutput += str[i].upper()
+                else:
+                    sOutput += str[i]
+        else:
+            sOutput = str.title()
+    else:
+        sOutput = str.upper()
+
+    return sOutput
 
 def CoinFlip():
      bHeads = True 

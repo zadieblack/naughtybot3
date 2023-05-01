@@ -14,7 +14,7 @@ TWIT_USERNAME = 'bot_lust'
 
 TESTIMAGE_PATH = 'testimages/'
 
-Q_SIZE = 30
+Q_SIZE = 80
 HISTORYQ_FILENAME = 'excerpt/history_q.txt'
 TWEETTXT_Q_SIZE = 20
 TWEETTXT_HISTORYQ_FILENAME = 'title/tweettxt_history_q.txt'

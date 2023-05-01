@@ -6241,7 +6241,7 @@ class Generator147(TitleGen):
         super().GenerateTweet()
         sTweet = ""
 
-        ExclGenList = [12,17,26,30,31,51,54,55,62,67,74,78,79,89,90,133,136,147]
+        ExclGenList = [12,17,26,30,31,51,54,55,62,67,74,78,79,89,90,133,136,147,154,153,151]
 
         ImgTxtGen = GetTweet(bTest = False, bTweet = False, iGeneratorNo = -1, bAllowPromo = False, bAllowFavTweets = False)
         while int(ImgTxtGen.ID) in ExclGenList or len(ImgTxtGen.ImgTxt) > 55:
@@ -6825,7 +6825,7 @@ class Generator156(TitleGen):
                                      "Dominant","Dwarf","Extreme","Furry",
                                      "Gay","Gimp","Group","Lesbian","MILF",
                                      "Non-consensual","Nun","Oral",
-                                     "Pregant","Priest","Public","Reverse",
+                                     "Pregnant","Priest","Public","Reverse",
                                      "Sadomasochistic","Sexual","Slave",
                                      "Submissive","Trans","Underage",
                                      "Unprotected"])

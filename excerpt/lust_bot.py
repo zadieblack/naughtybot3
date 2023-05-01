@@ -71,7 +71,7 @@ def InitBot(iTweetTimer,
             sTweet = Gen.GenerateTweet()
             if len(sTweet) > 0:
                 if Gen.Type != GeneratorType.Promo:
-                        sText = GetImgTweetText(bTest = False, TweetTxtHistoryQ = exutil.TweetTxtHistoryQ)
+                    sText = GetImgTweetText(bTest = False, TweetTxtHistoryQ = exutil.TweetTxtHistoryQ)
                     
                 print("\n===Here is your " + str(len(sTweet)) + " char tweet (" + str(i + 1) + " of " + str(iTweets) + ")===")
                 print("[" + sTweet + "]")

@@ -9,7 +9,10 @@ BodyPartHistoryQ = HistoryQ(10)
 
 class BodyParts:
      def __init__(self):
-          self._NounList = WordList([])
+          #self._NounList = WordList([])
+          self._StdNounList = WordList([])
+          self._DescNounList = WordList([])
+          self._SillyNounList = WordList([])
           self._AdjList = WordList([])
           self._ColorList = WordList([])
           self._DefaultNoun = ""
@@ -17,14 +20,33 @@ class BodyParts:
           
           self.NounHistoryQ = HistoryQ(3)
           self.AdjHistoryQ = HistoryQ(3)
-          
-     def NounList(self, NewNounList = None):
+        
+     def StdNounList(self, NewNounList = None):
           if NewNounList == None:
-               SetNounList = []
+               SetStdNounList = []
           else:
-               SetNounList = NewNounList 
+               SetStdNounList = NewNounList 
                
-          self._NounList = WordList(SetNounList)
+          self._StdNounList = WordList(SetStdNounList)
+
+     def DescNounList(self, NewNounList = None):
+          if NewNounList == None:
+               SetDescNounList = []
+          else:
+               SetDescNounList = NewNounList 
+               
+          self._DescNounList = WordList(SetDescNounList)
+
+     def SillyNounList(self, NewNounList = None):
+          if NewNounList == None:
+               SetSillyNounList = []
+          else:
+               SetSillyNounList = NewNounList 
+               
+          self._SillyNounList = WordList(SetSillyNounList)
+
+     def NounList(self, NewNounList = None):
+          self.StdNounList(NewNounList)
           
      def AdjList(self, NewAdjList = None):
           if NewAdjList == None:
@@ -76,14 +98,24 @@ class BodyParts:
                
           return sDefaultAdj
      
-     def GetNoun(self, sNot = "", NotList = None):
-          if NotList == None:
-               NotList = []
+     def GetNoun(self, sNot = "", NotList = None, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
+        sNoun = "" 
+        LocalNounList = []
+         
+        if NotList == None:
+            NotList = []
           
-          if sNot != "":
-               NotList.append(sNot)
-                    
-          return self._NounList.GetWord(sNot = sNot, NotList = NotList, SomeHistoryQ = BodyPartHistoryQ)
+        if sNot != "":
+            NotList.append(sNot)
+          
+        if bStdNouns:
+            LocalNounList += self._StdNounList.GetWordList()
+        if bSillyNouns:
+            LocalNounList += self._SillyNounList.GetWordList()
+        if bDescNouns:
+            LocalNounList += self._DescNounList.GetWordList()
+  
+        return WordList(LocalNounList).GetWord(sNot = sNot, NotList = NotList, SomeHistoryQ = BodyPartHistoryQ)
      
      def GetAdj(self, sNot = "", NotList = None):
           if NotList == None:
@@ -104,7 +136,16 @@ class BodyParts:
           return self._ColorList.GetWord(sNot = sNot, NotList = NotList, SomeHistoryQ = BodyPartHistoryQ)
           
      def GetNounList(self):
-          return self._NounList.List 
+          return self.GetStdNounList()
+
+     def GetStdNounList(self):
+          return self._StdNounList.List 
+
+     def GetDescNounList(self):
+          return self._DescNounList.List 
+
+     def GetSillyNounList(self):
+          return self._SillyNounList.List 
           
      def GetAdjList(self):
           return self._AdjList.List
@@ -121,7 +162,7 @@ class BodyParts:
           return bHasColors
 
      #noun only ("hair")
-     def ShortDescription(self, sNot = "", NotList = None):
+     def ShortDescription(self, sNot = "", NotList = None, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
           #print("ShortDesc sNot = " + str(sNot))
           if NotList == None:
                NotList = []
@@ -129,10 +170,10 @@ class BodyParts:
           if sNot != "":
                NotList.append(sNot)
                
-          return self.GetNoun(sNot = sNot, NotList = NotList)
+          return self.GetNoun(sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
      
      #adjective noun ("red hair")
-     def MediumDescription(self, sNot = "", NotList = None):
+     def MediumDescription(self, sNot = "", NotList = None, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
           sMediumDesc = ""
           
           if NotList == None:
@@ -145,12 +186,12 @@ class BodyParts:
                sMediumDesc = self.GetColor(sNot = sNot, NotList = NotList)
           else:
                sMediumDesc = self.GetAdj(sNot = sNot, NotList = NotList)
-          sMediumDesc += " " + self.GetNoun(sNot = sNot, NotList = NotList)
+          sMediumDesc += " " + self.GetNoun(sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
                
           return sMediumDesc
      
      #adjective1 adjective2 adjective3 noun ("long, wavy, red hair")
-     def FloweryDescription(self, sNot = "", NotList = None):
+     def FloweryDescription(self, sNot = "", NotList = None, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
           sFloweryDesc = ""
           
           if NotList == None:
@@ -159,7 +200,7 @@ class BodyParts:
           if sNot != "":
                NotList.append(sNot)
           
-          iNumAdjs = randint(1, 3)
+          iNumAdjs = choice([1,1,1,2,2,2,2,3])
           
           sAdj1 = ""
           sAdj2 = ""
@@ -186,11 +227,11 @@ class BodyParts:
                else:
                     sFloweryDesc += self.GetAdj(sNot = sNot, NotList = NotList)
                     
-          sFloweryDesc += " " + self.GetNoun(sNot = sNot, NotList = NotList)
+          sFloweryDesc += " " + self.GetNoun(sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
                
           return sFloweryDesc
      
-     def RandomDescription(self, sNot = "", NotList = None, bAllowShortDesc = True, bAllowLongDesc = True):
+     def RandomDescription(self, sNot = "", NotList = None, bAllowShortDesc = True, bAllowLongDesc = True, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
           sRandomDesc = ""
           
           if NotList == None:
@@ -200,26 +241,25 @@ class BodyParts:
                NotList.append(sNot)
           
           iRand = randint(0, 12)
-          
           if iRand in range(0, 3):
           #short desc if allowed 
                if bAllowShortDesc:
                     #use noun from the list or default noun
                     if CoinFlip():
-                         sRandomDesc = self.ShortDescription(sNot = sNot, NotList = NotList)
+                         sRandomDesc = self.ShortDescription(sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
                     else:
                          sRandomDesc = self.GetDefaultNoun(NotList = NotList)
                else:
-                    sRandomDesc = self.MediumDescription(sNot = sNot, NotList = NotList)
+                    sRandomDesc = self.MediumDescription(sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
           elif iRand in range(3,6):
           #medium desc 
-               sRandomDesc = self.MediumDescription(sNot = sNot, NotList = NotList)
+               sRandomDesc = self.MediumDescription(sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
           else:
           #flowery desc if allowed
                if bAllowLongDesc:
-                    sRandomDesc = self.FloweryDescription(sNot = sNot, NotList = NotList)
+                    sRandomDesc = self.FloweryDescription(sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
                else:
-                    sRandomDesc = self.MediumDescription(sNot = sNot, NotList = NotList)
+                    sRandomDesc = self.MediumDescription(sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
                
           return sRandomDesc
 
@@ -568,7 +608,8 @@ class Nipples(BodyParts):
                'nipples',
                'nipples',
                'nips',
-               'teats'])
+               'teats',
+               ])
                
           self.AdjList(['blossoming',
                'budding',
@@ -610,25 +651,32 @@ class Breasts(BodyParts):
           super().__init__()
           
           self.Nipples = []
-          
-          self.NounList(['boobies',
-               'boobs',
-               'bosoms','bosoms',
-               'breasts','breasts',
-               'buds','buds',
-               'bust',
-               'coconuts',
-               'dumplings',
-               'gazongas',
-               'globes','globes',
-               'jugs',
-               'knockers',
-               'mammaries',
-               'melons',
-               'mounds','mounds',
-               'orbs','orbs',
-               'teats',
-               'tits','titties'])
+
+          self.StdNounList(['boobs',
+                            'bosoms','bosoms',
+                            'breasts','breasts','breasts',
+                            'buds','buds',
+                            'bust',
+                            'tits',
+                           ])
+
+          self.DescNounList(['globes','globes',
+                             'orbs','orbs',
+                             'mounds','mounds',
+                           ])
+
+          self.SillyNounList(['boobies',
+                              'breasticles',
+                              'coconuts',
+                              'dumplings',
+                              'gazongas',
+                              'jugs',
+                              'knockers',
+                              'mammaries',
+                              'melons',
+                              'teats',
+                              'tatas','tiddies','titties'
+                             ])
                
           self.AdjList(['bouncy',
                'bountiful',
@@ -685,16 +733,19 @@ class Breasts(BodyParts):
 class Clitoris(BodyParts):
      def __init__(self):
           super().__init__()
-          
-          self.NounList(['clit',
-               'clit',
-               'clitoris',
-               'clitoris',
-               'love-button',
-               'love-nub',
-               'magic button',
-               'nub',
-               'pearl'])
+
+          self.StdNounList(['clit','clit','clit',
+                            'clitoris','clitoris',
+                           ])
+
+          self.DescNounList(['nub',
+                             'pearl'
+                            ])
+
+          self.SillyNounList(['love-button',
+                              'love-nub',
+                              'magic button',
+                             ])
                
           self.AdjList(['delicate',
                'engorged',
@@ -720,30 +771,36 @@ class VaginaInner(BodyParts):
 
      def __init__(self):
           super().__init__()
-          
-          self.NounList(['cherry',
-                    'cleft',
-                    'chamber',
-                    'chasm',
-                    'cock-sock',
-                    'cunt-hole',
-                    'fuck-tunnel',
-                    'fuckhole',
-                    'furrow',
-                    'gash',
-                    'hole',
-                    'honey hole',
-                    'honeypot',
-                    'keyhole',
-                    'love-channel',
-                    'love-tunnel',
-                    'passage',
-                    'slit',
-                    'tunnel',
-                    'vagina',
-                    'vaginal canal',
-                    'vestibule',
-                    'womanhood'])
+
+          self.StdNounList([
+                            'vagina',
+                            'vaginal canal',
+                            'vestibule',
+                            'womanhood'
+                           ])
+
+          self.DescNounList(['cherry',
+                             'cleft',
+                             'chamber',
+                             'chasm',
+                             'furrow',
+                             'gash',
+                             'hole',
+                             'passage',
+                             'slit',
+                             'tunnel',
+                            ])
+
+          self.SillyNounList(['cock-sock',
+                              'cunt-hole',
+                              'fuck-tunnel',
+                              'fuckhole',
+                              'honey hole',
+                              'honeypot',
+                              'keyhole',
+                              'love-channel',
+                              'love-tunnel',
+                             ])
                     
           self.AdjList(['cherry',
                     'cherry red',
@@ -783,15 +840,18 @@ class VaginaOuterLabia(BodyParts):
      def __init__(self):
           super().__init__()
           
-          self.NounList(['labia',
-                                    'lips',
-                                    'mons pubis',
-                                    'mound',
-                                    'nether lips',
-                                    'outer labia',
-                                    'outer pussy lips',
-                                    'pussy lips',
-                                    'vulva'])
+          self.StdNounList(['labia',
+                            'lips',
+                            'mons pubis',
+                            'outer labia',
+                            'outer pussy lips',
+                            'pussy lips',
+                            'vulva'])
+
+          self.DescNounList(['mound',
+                             'nether lips',
+                            ])
+
           self.AdjList(['bare',
                                    'dewy',
                                    'downy',
@@ -839,28 +899,34 @@ class VaginaInnerLabia(BodyParts):
 
      def __init__(self):
           super().__init__()
-          
-          self.NounList(['beef-curtains',
-                            'butterfly wings',
-                            'cunt-lips',
-                            'cunt-flaps',
-                            'flaps',
-                            'flower petals',
-                            'folds',
-                            'fringe',
-                            'inner labia',
+
+          self.StdNounList(['inner labia',
                             'labia',
-                            'lips',
-                            'meat curtains',
-                            'meat-flaps',
-                            'nether-lips',
-                            'petals',
-                            'piss-flaps',
-                            'pussy-flaps',
                             'pussy lips',
-                            'sex flaps',
-                            'sex-lips',
-                            'wizard sleeve'])
+                           ])
+
+          self.DescNounList(['butterfly wings',
+                                'flaps',
+                                'flower petals',
+                                'folds',
+                                'fringe',
+                                'lips',
+                                'petals',
+                               ])
+
+          self.SillyNounList(['beef-curtains',
+                              'cunt-lips',
+                              'cunt-flaps',
+                              'meat curtains',
+                              'meat-flaps',
+                              'nether-lips',
+                              'piss-flaps',
+                              'pussy-flaps',
+                              'sex flaps',
+                              'sex-lips',
+                              'wizard sleeve'
+                            ])
+
           self.AdjList(['beefy',
                         'chewy',
                         'dangling','dangling',
@@ -908,31 +974,34 @@ class Vagina(BodyParts):
      def __init__(self):
           super().__init__()
           
-          self.NounList(['cherry pie',
-                         'cock-garage',
-                         'cock-sock','cock-sock',
-                         'cooch',
-                         'coochie',
-                         'cunny',
-                         'cunt','cunt',
-                         'cunt-hole',
-                         'flower',
-                         'fuckhole',
-                         'fur-burger',
-                         'honey-hole',
-                         'honeypot',
-                         'love-muffin',
-                         'muff',
-                         'muffin',
-                         'peach',
-                         'pie',
-                         'pussy','pussy','pussy',
-                         'quim',
-                         'sex',
-                         'snatch','snatch',
-                         'twat','twat',
-                         'vagina','vagina',
-                         'womanhood'])
+          self.StdNounList(['cooch','coochie',
+                            'cunny',
+                            'cunt','cunt',
+                            'muff','muffin',
+                            'pussy','pussy','pussy',
+                            'quim',
+                            'sex',
+                            'snatch',
+                            'twat','twat',
+                            'vagina','vagina',
+                            'womanhood'
+                            ])
+
+          self.DescNounList(['flower',
+                             'peach',
+                            ])
+
+          self.SillyNounList(['cherry pie',
+                              'cock-garage',
+                              'cock-sock',
+                              'cunt-hole',
+                              'fuckhole',
+                              'fur-burger',
+                              'honey-hole',
+                              'honeypot',
+                              'love-muffin',
+                              'pie',
+                             ])
                             
           self.AdjList(['bare',
                          'cherry',
@@ -995,35 +1064,35 @@ class Vagina(BodyParts):
 class AnusFemale(BodyParts):
      def __init__(self):
           super().__init__()
-          
-          self.NounList(['anus',
-               'anus',
-               'anus',
-               'arse-cunt',
-               'asshole',
-               'back orifice',
-               'back passage',
-               'backdoor',
-               'bowels',
-               'bunghole',
-               'butthole',
-               'butt hole',
-               'corn hole',
-               'dirt-pipe',
-               'fart blaster',
-               'heinie hole',
-               'knot',
-               'poop-chute',
-               'poop-trap',
-               'pooper',
-               'rear orifice',
-               'rectum',
-               'rosebud',
-               'sphincter',
-               'sphincter',
-               'starfish',
-               'starfish'])
-               
+
+          self.StdNounList(['anus','anus','anus',
+                            'asshole','asshole',
+                            'bowels',
+                            'butthole','butt hole',
+                            'rectum',
+                            'sphincter','sphincter',
+                            ])
+
+          self.DescNounList(['back orifice',
+                             'back passage',
+                             'backdoor',
+                             'heinie hole',
+                             'knot',
+                             'rear orifice',
+                             'rosebud',
+                            ])
+
+          self.SillyNounList(['arse-cunt',
+                              'bunghole',
+                              'corn hole',
+                              'dirt-pipe',
+                              'fart blaster',
+                              'poop-chute',
+                              'poop-trap',
+                              'pooper',
+                              'starfish','starfish',
+                             ])
+       
           self.AdjList(['clenched',
                'forbidden',
                'fuckable',
@@ -1176,8 +1245,8 @@ class AssFemale(BodyParts):
           
           self.DefaultNoun("ass")
           
-     def ShortDescription(self, sNot = "", NotList = None, bAllowButtocks = False):
-          sDesc = super().ShortDescription(sNot = "", NotList = NotList)
+     def ShortDescription(self, sNot = "", NotList = None, bAllowButtocks = False, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
+          sDesc = super().ShortDescription(sNot = "", NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
           if NotList == None:
                NotList = []
           
@@ -1186,12 +1255,12 @@ class AssFemale(BodyParts):
 
           if bAllowButtocks:
                if randint(1,15) > 11:
-                    self.Buttocks.ShortDescription(sNot = sNot, NotList = NotList)
+                    self.Buttocks.ShortDescription(sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
           
           return sDesc
           
-     def MediumDescription(self, sNot = "",  NotList = None, bAllowButtocks = False):
-          sDesc = super().MediumDescription(sNot = sNot, NotList = NotList)
+     def MediumDescription(self, sNot = "",  NotList = None, bAllowButtocks = False, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
+          sDesc = super().MediumDescription(sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
           
           if NotList == None:
                NotList = []
@@ -1201,12 +1270,12 @@ class AssFemale(BodyParts):
           
           if bAllowButtocks:
                if randint(1,15) > 11:
-                    self.Buttocks.MediumDescription(sNot = sNot, NotList = NotList)
+                    self.Buttocks.MediumDescription(sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
                
           return sDesc 
           
-     def FloweryDescription(self, sNot = "", NotList = None, bAllowButtocks = False):
-          sDesc = super().FloweryDescription(sNot = sNot, NotList = NotList)
+     def FloweryDescription(self, sNot = "", NotList = None, bAllowButtocks = False, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
+          sDesc = super().FloweryDescription(sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
           
           if NotList == None:
                NotList = []
@@ -1216,12 +1285,12 @@ class AssFemale(BodyParts):
           
           if bAllowButtocks:
                if randint(1,15) > 11:
-                    self.Buttocks.FloweryDescription(sNot = sNot, NotList = NotList)
+                    self.Buttocks.FloweryDescription(sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
           
           return sDesc 
           
-     def RandomDescription(self, sNot = "", NotList = None, bAllowShortDesc = True, bAllowLongDesc = True, bAllowButtocks = False):
-          sDesc = super().RandomDescription(sNot = sNot, NotList = NotList, bAllowShortDesc = bAllowShortDesc, bAllowLongDesc = bAllowLongDesc)
+     def RandomDescription(self, sNot = "", NotList = None, bAllowShortDesc = True, bAllowLongDesc = True, bAllowButtocks = False, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
+          sDesc = super().RandomDescription(sNot = sNot, NotList = NotList, bAllowShortDesc = bAllowShortDesc, bAllowLongDesc = bAllowLongDesc, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
           
           if NotList == None:
                NotList = []
@@ -1233,7 +1302,8 @@ class AssFemale(BodyParts):
                if randint(1,15) > 11:
                     self.Buttocks.RandomDescription(sNot = sNot, NotList = NotList, 
                                                             bAllowShortDesc = bAllowShortDesc, 
-                                                            bAllowLongDesc = bAllowLongDesc)
+                                                            bAllowLongDesc = bAllowLongDesc,
+                                                            bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
           
           return sDesc 
           
@@ -1564,10 +1634,7 @@ class BodyFemale(BodyParts):
                iLoops = iLoops + 1
                
           return sBodyDesc
-          
-     
-     
-          
+
      def GetRandomIntimateParts(self, iNum, bIncludeInners = False, bAllowShortDesc = False):
           Parts = []
           AllParts = []
@@ -1636,6 +1703,7 @@ class PenisHead(BodyParts):
           super().__init__()
           
           self.NounList(['cock-head',
+               'dick-tip',
                'head',
                'head',
                'head',
@@ -1643,6 +1711,7 @@ class PenisHead(BodyParts):
                'knob',
                'knob',
                'mushroom',
+               'penis-head',
                'tip',
                'tip'])
                
@@ -1668,16 +1737,21 @@ class PenisHead(BodyParts):
 class Testicles(BodyParts):
      def __init__(self):
           super().__init__()
-          
-          self.NounList(['balls',
-               'ballsack',
-               'bollocks',
-               'gonads',
-               'nutsack',
-               'sack',
-               'silk purse',
-               'scrotum',
-               'testicles'])
+
+          self.StdNounList(['balls','balls','balls',     
+                            'gonads',
+                            'scrotum','scrotum',
+                            'testicles','testicles',
+                           ])
+
+          self.DescNounList(['sack',
+                             'silk purse',
+                            ])
+
+          self.SillyNounList(['ballsack','ballsacks',
+                              'bollocks',
+                              'nuts','nutsack',
+                             ])
                
           self.AdjList(['dangling',
                'downy',
@@ -1737,45 +1811,47 @@ class Penis(BodyParts):
           
      def __init__(self, bAllowBAP = True):
           super().__init__()
-          
-          self.NounList(['boner',
-               'cock',
-               'cock',
-               'cock',
-               'cock meat',
-               'cocksicle',
-               'dick',
-               'erection',
-               'girth',
-               'goo-gun',
-               'hardness',
-               'hard-on',
-               'hot-rod',
-               'joystick',
-               'lady-dagger',
-               'love-gun',
-               'meat',
-               'member',
-               'organ',
-               'package',
-               'penis',
-               'penis',
-               'penis',
-               'phallus',
-               'pole',
-               'popsicle',
-               'prick',
-               'ramrod',
-               'rod',
-               'schlong',
-               'serpent',
-               'shaft',
-               'snake',
-               'stalk',
-               'stem',
-               'thing',
-               'tool',
-               'wood'])
+
+          self.StdNounList(['cock','cock','cock',
+                            'dick','dick','dick',
+                            'erection','erection',
+                            'member',
+                            'penis','penis','penis','penis',
+                            'phallus',
+                            'prick',
+                           ])
+
+          self.DescNounList(['girth',
+                             'hardness',
+                             'package',
+                             'pole',
+                             'rod',
+                             'serpent',
+                             'shaft',
+                             'snake',
+                             'stalk',
+                             'stem',
+                            ])
+
+          self.SillyNounList(['boner',
+                              'cock meat',
+                              'cocksicle',
+                              'goo-gun',
+                              'hard-on',
+                              'hot-rod',
+                              'joystick',
+                              'lady-dagger',
+                              'love-gun',
+                              'meat',
+                              'monster',
+                              'organ',
+                              'popsicle',
+                              'ramrod',
+                              'schlong',
+                              'thing',
+                              'tool',
+                              'wood',
+                             ])
                
           self.AdjList(['beautiful',
                'beefy',
@@ -1791,6 +1867,7 @@ class Penis(BodyParts):
                'fat',
                'fevered',
                'fully erect',
+               'greasy',
                'hairy',
                'hairless',
                'hard',
@@ -1835,10 +1912,12 @@ class Penis(BodyParts):
                
           self.PenisBackPart = ['bayonette',
                'bone',
+               'burrito',
                'hammer',
                'lance',
                'meat',
                'missile',
+               'monster',
                'pipe',
                'pistol',
                'pole',
@@ -1895,8 +1974,8 @@ class Penis(BodyParts):
           
           return sLength
                
-     def ShortDescription(self, sNot = "", NotList = None, bAddLen = False):
-          sDesc = super().ShortDescription(sNot = "", NotList = NotList)
+     def ShortDescription(self, sNot = "", NotList = None, bAddLen = False, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
+          sDesc = super().ShortDescription(sNot = "", NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
           if NotList == None:
                NotList = []
           
@@ -1910,8 +1989,8 @@ class Penis(BodyParts):
           
           return sDesc
           
-     def MediumDescription(self, sNot = "",  NotList = None, bAddLen = False):
-          sDesc = super().MediumDescription(sNot = sNot, NotList = NotList)
+     def MediumDescription(self, sNot = "",  NotList = None, bAddLen = False, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
+          sDesc = super().MediumDescription(sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
           
           if NotList == None:
                NotList = []
@@ -1926,8 +2005,8 @@ class Penis(BodyParts):
                
           return sDesc 
           
-     def FloweryDescription(self, sNot = "", NotList = None, bAddLen = False):
-          sDesc = super().FloweryDescription(sNot = sNot, NotList = NotList)
+     def FloweryDescription(self, sNot = "", NotList = None, bAddLen = False, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
+          sDesc = super().FloweryDescription(sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
           
           if NotList == None:
                NotList = []
@@ -1942,8 +2021,8 @@ class Penis(BodyParts):
           
           return sDesc 
           
-     def RandomDescription(self, sNot = "", NotList = None, bAllowShortDesc = True, bAllowLongDesc = True, bAddLen = False):
-          sDesc = super().RandomDescription(sNot = sNot, NotList = NotList, bAllowShortDesc = bAllowShortDesc, bAllowLongDesc = bAllowLongDesc)
+     def RandomDescription(self, sNot = "", NotList = None, bAllowShortDesc = True, bAllowLongDesc = True, bAddLen = False, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
+          sDesc = super().RandomDescription(sNot = sNot, NotList = NotList, bAllowShortDesc = bAllowShortDesc, bAllowLongDesc = bAllowLongDesc, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
           
           if NotList == None:
                NotList = []
@@ -1961,43 +2040,60 @@ class Penis(BodyParts):
 class Semen(BodyParts):
      def __init__(self):
           super().__init__()
-          
-          self.NounList(['cock milk',
-               'cock-snot',
-               'cream',
-               'cum',
-               'jizm',
-               'jizz',
-               'load',
-               'lotion',
-               'man-custard',
-               'man-jam',
-               'man-milk',
-               'man-seed',
-               'sauce',
-               'seed',
-               'semen',
-               'sperm',
-               'splooge',
-               'spunk'])
+
+          self.StdNounList(['cum','cum','cum','cum',
+                            'seed','seed',
+                            'semen','semen','semen',
+                            'sperm','sperm',
+                            'splooge',
+                            'spunk',
+                           ])
+
+          self.DescNounList(['cream',
+                             'gravy',
+                             'lotion',
+                             'man-milk',
+                             'man-seed',
+                             'sauce',
+                            ])
+
+          self.SillyNounList(['baby batter',
+                                 'baby gravy',
+                                 'cock milk',
+                                 'cock-snot',
+                                 'daddy sauce',
+                                 'dick juice',
+                                 'jizm','jizz','jizz',
+                                 'load',
+                                 'love juice',
+                                 'man-custard',
+                                 'man-jam',
+                                 'man-o-naise',
+                                 'nut-butter',
+                                 'penis pudding',
+                                 'throat yogurt',
+                                 'trouser gravy',
+                                 'weiner sauce',
+                                ])
                
-          self.AdjList(['creamy',
+          self.AdjList(['creamy','creamy','creamy',
                'delicious',
                'glossy',
-               'gooey',
+               'gooey','gooey','gooey',
+               'hot','hot','hot',
                'nasty',
                'nourishing',
                'oozing',
                'ropy',
-               'salty',
+               'salty','salty',
                'silken',
                'silky',
-               'sloppy',
-               'sticky',
+               'sloppy','sloppy',
+               'sticky','sticky','sticky','sticky',
                'tasty',
-               'thick',
-               'warm',
-               'white-hot',
+               'thick','thick','thick','thick',
+               'warm','warm','warm',
+               'white-hot','white-hot',
                'yummy',
                'cream-colored',
                'milky',
@@ -2480,7 +2576,6 @@ class BodyMale(BodyParts):
             'physique',
             'bulk',
             'build',
-            'body',
             'physique'])
                
         self.AdjList(['beefy',
