@@ -7732,7 +7732,7 @@ class Generator112(ExGen):
 #        return sTweet
 
 ## Stifling giggles, the two girls snuck into the darkened bedroom. 
-## In  the nick of time, they {closed/shut} the door before they were 
+## In the nick of time, they {closed/shut} the door before they were 
 ## discovered. As they waited breathlessly, 
 ## {they slowly realized / the realization dawned} that
 ## they were not alone. 
@@ -7743,15 +7743,157 @@ class Generator112(ExGen):
 ## long, erect penis protruded the waist band. The massive organ
 ## must have easily measured eight inches from the balls to the tip.
 ## "Shit, Brook," said Kaitlyn. "Is that your dad?!?"
-#class Generator114(ExGen):
-#    def __init__(self):
-#        super().__init__(ID = 114, Priority = GenPriority.Normal)
+class Generator115(ExGen):
+    def __init__(self):
+        super().__init__(ID = 115, Priority = GenPriority.Normal)
      
-#    def GenerateTweet(self):
-#        super().GenerateTweet()
-#        sTweet = ""
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
 
-#        return sTweet
+        sGirlName1 = self.FemaleName.FirstName()
+        sGirlName2 = self.FemaleName.FirstName(NotList = [sGirlName1])
+        sManName = self.MaleName.FirstName()
+        sManLastName = names.AllLastNames().GetWord()
+
+        man = self.MaleBodyParts
+
+        UsedWords = ["naked","nude"]
+
+        sBodyPartAdj1 = ""
+        sBodyPartAdj2 = ""
+        sBodyPartNoun = ""
+
+        iRand = randint(1,8)
+        #iRand = 1
+        if iRand == 1:
+            sBodyPartAdj1 = man.Ass.GetAdj(NotList = UsedWords)
+            sBodyPartAdj2 = man.Ass.GetAdj(NotList = UsedWords + [sBodyPartAdj1])
+            sBodyPartNoun = man.Ass.GetNoun(NotList = UsedWords + [sBodyPartAdj1,sBodyPartAdj2])
+        elif iRand == 2:
+            sBodyPartAdj1 = man.Ass.Buttocks.GetAdj(NotList = UsedWords)
+            sBodyPartAdj2 = man.Ass.Buttocks.GetAdj(NotList = UsedWords + [sBodyPartAdj1])
+            sBodyPartNoun = man.Ass.Buttocks.GetNoun(NotList = UsedWords + [sBodyPartAdj1,sBodyPartAdj2])
+        elif iRand == 3:
+            sBodyPartAdj1 = man.Shoulders.GetAdj(NotList = UsedWords)
+            sBodyPartAdj2 = man.Shoulders.GetAdj(NotList = UsedWords + [sBodyPartAdj1])
+            sBodyPartNoun = man.Shoulders.GetNoun(NotList = UsedWords + [sBodyPartAdj1,sBodyPartAdj2])
+        elif iRand == 4:
+            sBodyPartAdj1 = man.Chest.GetAdj(NotList = UsedWords)
+            sBodyPartAdj2 = man.Chest.GetAdj(NotList = UsedWords + [sBodyPartAdj1])
+            sBodyPartNoun = man.Chest.GetNoun(NotList = UsedWords + [sBodyPartAdj1,sBodyPartAdj2])
+        elif iRand == 5:
+            sBodyPartAdj1 = man.FacialHair.GetAdj(NotList = UsedWords)
+            sBodyPartAdj2 = man.FacialHair.GetAdj(NotList = UsedWords + [sBodyPartAdj1])
+            sBodyPartNoun = man.FacialHair.GetNoun(NotList = UsedWords + [sBodyPartAdj1,sBodyPartAdj2])
+        elif iRand == 6:
+            sBodyPartAdj1 = man.Hair.GetAdj(NotList = UsedWords)
+            sBodyPartAdj2 = man.Hair.GetAdj(NotList = UsedWords + [sBodyPartAdj1])
+            sBodyPartNoun = man.Hair.GetNoun(NotList = UsedWords + [sBodyPartAdj1,sBodyPartAdj2])
+        elif iRand == 7:
+            sBodyPartAdj1 = man.Legs.GetAdj(NotList = UsedWords)
+            sBodyPartAdj2 = man.Legs.GetAdj(NotList = UsedWords + [sBodyPartAdj1])
+            sBodyPartNoun = man.Legs.GetNoun(NotList = UsedWords + [sBodyPartAdj1,sBodyPartAdj2])
+        elif iRand == 8:
+            sBodyPartAdj1 = man.Jaw.GetAdj(NotList = UsedWords)
+            sBodyPartAdj2 = man.Jaw.GetAdj(NotList = UsedWords + [sBodyPartAdj1])
+            sBodyPartNoun = man.Jaw.GetNoun(NotList = UsedWords + [sBodyPartAdj1,sBodyPartAdj2])
+
+        UsedWords += [sBodyPartAdj1,sBodyPartAdj2,sBodyPartNoun]
+
+        sBodyAdj1 = man.GetAdj(NotList = UsedWords)
+        sBodyAdj2 = man.GetAdj(NotList = UsedWords + [sBodyAdj1])
+        sBodyNoun = man.GetNoun(NotList = UsedWords + [sBodyAdj1,sBodyAdj2])
+
+        UsedWords += [sBodyAdj1,sBodyAdj2,sBodyNoun]
+
+        sPenis1Adj1 = man.Penis.GetAdj(NotList = UsedWords)
+        sPenis1Adj2 = man.Penis.GetAdj(NotList = UsedWords + [sPenis1Adj1])
+        sPenis1Noun = man.Penis.GetNoun(NotList = UsedWords + [sPenis1Adj1,sPenis1Adj2])
+
+        UsedWords += [sPenis1Adj1,sPenis1Adj2,sPenis1Noun]
+
+        sPenis2Adj1 = man.Penis.GetAdj(NotList = UsedWords)
+        sPenis2Adj2 = man.Penis.GetAdj(NotList = UsedWords + [sPenis2Adj1])
+        sPenis2Noun = man.Penis.GetNoun(NotList = UsedWords + [sPenis2Adj1,sPenis2Adj2] + ["dick","cock"], bSillyNouns = False)
+
+        UsedWords += [sPenis2Adj1,sPenis2Adj2,sPenis2Noun]
+
+        sBallsNoun = man.Penis.Testicles.GetNoun(NotList = UsedWords)
+        sTipNoun = man.Penis.Head.GetNoun(NotList = UsedWords + [sBallsNoun])
+
+        UsedWords += [sBallsNoun,sTipNoun]
+
+        sTweet += "Stifling giggles, the two " + WordList(["teen girls","18-yo girls","teenage girls","tittering young ladies","freshman girls","co-eds",]).GetWord() + " "
+        sTweet += WordList(["crept","snuck","tiptoed","scurried stealthily"]).GetWord() + " "
+        sTweet += "into the " + WordList(["dim","darkened","unlit"]).GetWord() + " bedroom. "
+        sTweet += WordList(["In the nick of time","Quickly but quietly,","Just in time,",]).GetWord() + " " 
+        sTweet += "they " + WordList(["closed","shut"]).GetWord() + " the door "
+        sTweet += "before " + WordList(["they were discovered","they were caught","they could be found out","they got caught","they could be caught","anyone discovered them"]).GetWord() + ". "
+        sTweet += "As they waited breathlessly, "
+        sTweet += WordList([sGirlName1 + " slowly realized",
+                            "realization dawned on " + sGirlName1,
+                            sGirlName1 + " suddenly realized",
+                            sGirlName1 + " gradually became aware",
+                            sGirlName1 + " realized with a shock"]).GetWord() + " "
+        sTweet += "that they were not alone.\n\n"
+
+        sTweet += "\"" + sGirlName2 + "!\" "
+        sTweet += WordList(["cried","exclaimed","gasped"]).GetWord() + " "
+        sTweet += sGirlName1 + " softly, "
+        sTweet += "\"There's someone asleep on the bed!\"\n\n"
+
+        sTweet += sGirlName2 + " turned to look. Her eyes widened. "
+        sTweet += "A man was " + WordList(["sleeping","snoring","fast asleep"]).GetWord() + " "
+        sTweet += "on his side atop the covers. "
+
+        iRand = randint(1,2)
+        iRand = 1
+        if iRand == 1:
+            # wearing pants
+            sPenisHeadAdj = man.Penis.Head.GetAdj(NotList = UsedWords)
+            sPenisHeadNoun = man.Penis.Head.GetNoun(NotList = UsedWords + [sPenisHeadAdj] + ["dick","cock"], bStdNouns = False)
+            UsedWords += [sPenisHeadAdj,sPenisHeadNoun]
+            if CoinFlip():
+                sTweet += "She couldn't help but notice his " + sBodyPartAdj1 + ", " + sBodyPartAdj2 + " " + sBodyPartNoun + ". "
+            else:
+                sTweet += "His " + sBodyPartNoun + " was " + sBodyPartAdj1 + " and " + sBodyPartAdj2 + ". "
+            sTweet += "His " + sBodyAdj1 + ", " + sBodyAdj2 + " " + sBodyNoun + " was "
+            sTweet += "covered only by a pair of " + WordList(["boxer shorts","tight, low-slung bluejeans", "tight briefs","paper thin pajama pants","a tight man-thong"]).GetWord() + ". "
+            sTweet += "The " + sPenisHeadAdj + " " +  sPenisHeadNoun + " "
+            sTweet += "of his " + sPenis1Adj1 + ", " + sPenis1Adj2 + " " + sPenis1Noun + " "
+            sTweet += "protruded above the waist-band. "
+            sTweet += "The " + sPenis2Adj1 + " " + sPenis2Noun + " "
+            sTweet += "must have measured " + WordList(["nearly ","at least ","a good ",""]).GetWord()
+            sTweet += WordList(["seven","eight","nine","ten","eleven","twelve","thirteen"]).GetWord() + " "
+            sTweet += WordList(["","full ","and 1/2 "]).GetWord() + "inches "
+            sTweet += "from " + sBallsNoun + " to " + sTipNoun + "."
+            sTweet += "\n\n"
+        elif iRand == 2:
+            # naked
+            pass
+        
+        sTweet += "\"" + WordList(["Shit","Fuck","Jesus Christ","Holy Shit","Jesus Fucking Christ","Jesus H. Christ",]).GetWord() + ", "
+        sTweet += sGirlName2 + ",\" said " + sGirlName1 + ", "
+        sTweet += "\"Is that " + WordList(["your father","your step-father","your brother", "your brother " + sManName,
+                                            "your twin brother","your step-brother","your step-brother " + sManName,
+                                            "your brother-in-law","your brother-in-law " + sManName,"your uncle",
+                                            "your Uncle " + sManName, "your dad","mom's boyfriend " + sManName,
+                                            "your step-dad","your roommate","your roommate " + sManName,
+                                            "your father-in-law","your granddad","mom's new boyfriend",
+                                            "your mom's new boyfriend","your cousin","your cousin " + sManName,
+                                            "our boss","our boss " + sManName,"the handyman","the pool guy",
+                                            "our professor","Professor " + sManLastName, "our nextdoor neighbor",
+                                            "our nextdoor neighbor Mr. " + sManLastName, "Dr. " + sManLastName,
+                                            "our mailman","our pastor","our minister","our coach",
+                                            "Coach " + sManLastName,"our tennis coach","our volleyball coach",
+                                            "our math teacher Mr. " + sManLastName,
+                                            "our English teacher Mr. " + sManLastName,
+                                            "our gym coach","Coach " + sManName,
+                                            ]).GetWord()
+        sTweet += "?!?\""
+
+        return sTweet
           
 #class GeneratorSelector():
 #    def __init__(self):

@@ -1715,29 +1715,31 @@ class PenisHead(BodyParts):
      def __init__(self):
           super().__init__()
           
-          self.NounList(['cock-head',
-               'dick-tip',
-               'head',
-               'head',
-               'head',
-               'helmet',
-               'knob',
-               'knob',
-               'mushroom',
-               'penis-head',
-               'tip',
-               'tip'])
+          self.StdNounList(['head','head','head',
+               'tip','tip','tip'])
+
+          self.DescNounList(['helmet',
+                             'mushroom','mushroom','mushroom',
+                            ])
+
+          self.SillyNounList(['cock-head',
+                              'dick-tip',
+                              'knob','knob',
+                             ])
                
-          self.AdjList(['bulging',
-               'dripping',
-               'engorged',
-               'glistening',
-               'pulsating',
-               'purple',
-               'smooth',
-               'swollen',
-               'throbbing',
-               'tumescent'])
+          self.AdjList(['broad',
+                        'bulging',
+                        'dripping',
+                        'engorged',
+                        'fat',
+                        'glistening',
+                        'pulsating',
+                        'purple',
+                        'smooth',
+                        'swollen',
+                        'thick',
+                        'throbbing',
+                        'tumescent'])
                
           self.ColorList(['black',
                'brown',
@@ -1828,15 +1830,18 @@ class Penis(BodyParts):
           self.StdNounList(['cock','cock','cock',
                             'dick','dick','dick',
                             'erection','erection',
+                            'hard-on',
                             'member',
+                            'organ',
                             'penis','penis','penis','penis',
                             'phallus',
                             'prick',
+                            'thing',
+                            'tool',
                            ])
 
           self.DescNounList(['girth',
                              'hardness',
-                             'package',
                              'pole',
                              'rod',
                              'serpent',
@@ -1850,19 +1855,15 @@ class Penis(BodyParts):
                               'cock meat',
                               'cocksicle',
                               'goo-gun',
-                              'hard-on',
                               'hot-rod',
                               'joystick',
                               'lady-dagger',
                               'love-gun',
                               'meat',
                               'monster',
-                              'organ',
                               'popsicle',
                               'ramrod',
                               'schlong',
-                              'thing',
-                              'tool',
                               'wood',
                              ])
                
@@ -2492,7 +2493,7 @@ class FacialHair(BodyParts):
                'luxuriant',
                'magnificent',
                'manly',
-               'measy',
+               'messy',
                'silken',
                'short',
                'thick',
