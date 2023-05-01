@@ -181,35 +181,73 @@ class Generator2(ExGen):
           sHisName = self.MaleName.FirstName()
           sHerName = self.FemaleName.FirstName()
           
+          PenisNotList = ['hardening']
           Penis = self.MaleBodyParts.Penis
           Ass = self.FemBodyParts.Ass
           
-          sHole1 = self.FemBodyParts.Ass.Anus.RandomDescription()
-          sHole2 = self.FemBodyParts.Ass.Anus.RandomDescription()
+          sHole1 = self.FemBodyParts.Ass.Anus.RandomDescription(NotList = ["loose","gaping","nasty","well-used"], bSillyNouns = False)
+          sHole2 = self.FemBodyParts.Ass.Anus.RandomDescription(bStdNouns = False)
           while sHole2 in sHole1:
-               sHole2 = self.FemBodyParts.Ass.Anus.RandomDescription()
+               sHole2 = self.FemBodyParts.Ass.Anus.RandomDescription(bStdNouns = False)
                
-          sVerb1 = self.VThrust.Past()
+          sVerb1 = WordList(['penetrated','impaled','desecrated','entered','thrust into','bored into','drilled into','eased into','pushed into']).GetWord() #self.VThrust.Past()
           sVerb2 = ""
           
-          sTweet = "Spreading open " + sHerName + "'s " + Ass.RandomDescription() + " "
-          sTweet += "with his " + WordList(['rough','strong','calloused','gentle-but-firm']).GetWord() + " hands, "
-          sTweet += "he " + sVerb1 + " her " + sHole1 + " with his " + Penis.RandomDescription() + ".\n\n"
+          sTweet += "Spreading open " 
+          if CoinFlip():
+            sTweet += WordList(["sweet","perky","nubile","innocent",
+                                "beautiful","pretty young",
+                                "virginal","lovely young","petite",
+                               ]).GetWord() + " "
+          sTweet += sHerName + "'s " 
+          if CoinFlip():
+              sTweet += Ass.RandomDescription() + " "
+          else:
+              sTweet += Ass.Buttocks.RandomDescription() + " "
+          sTweet += "with his " + WordList(['rough','strong','calloused','gentle-but-firm','large','ungentle','greedy']).GetWord() + " hands, "
+          sTweet += "he " + sVerb1 + " her " + sHole1 + " with his " + Penis.RandomDescription(NotList = PenisNotList, bSillyNouns = False) + ".\n\n"
           sTweet += "'Fuck me, " + sHisName + "!\' she " + self.VMoan.Past() + ". "
           
-          if CoinFlip():
-               sVerb = WordList(['Fuck','Do','Pound','Stuff','Ravish','Hammer','Impale','Ream','Plow']).GetWord()
+          iRand = randint(1,5)
+          if iRand == 1:
+               sVerb = WordList(['Fuck','Do','Pound','Stuff','Ravish','Hammer',
+                                 'Impale','Ream','Plow','Rail','Sodomize',]).GetWord()
                
                sTweet += "'" + sVerb + " me like I'm your " + self.FFWB.GetPerson() + "!'"
-          else:
+          elif iRand == 2:
                sVerb = WordList(['Fuck','Do','Pound','Stuff','Ravish','Hammer','Impale',
-                                     'Ream','Jack-hammer','Plow','Pump Into','Desecrate',
-                                     'Defile','Stretch','Probe','Fill']).GetWord()
-               sHole = WordList(['anus','ass','asshole','back-door','bowels','bunghole','butthole','corn-hole',
-                                     'dirt-pipe','fart-blaster','heinie-hole','poop-chute','poop-trap','rectum']).GetWord()
+                                 'Ream','Jack-hammer','Plow','Pump Into','Desecrate',
+                                 'Defile','Stretch','Probe','Fill','Wreck','Ruin']).GetWord()
                                      
-               sTweet += "'" + sVerb + " my " + sHole + " like I'm your " + self.FFWB.GetPerson() + "!'"
-          
+               sTweet += "'" + sVerb + " my " + sHole2 + " like I'm your " + self.FFWB.GetPerson() + "!'"
+          elif iRand == 3:
+              sVerb = WordList(['Cram','Hammer','Pack','Plow','Pound','Stuff','Ravish',
+                                'Ram','Stick','Shove',]).GetWord()
+              sTweet += "'" + sVerb + " your big " + Penis.RandomDescription(NotList = PenisNotList, bAllowLongDesc = False, bStdNouns = False) + " "
+              sTweet += WordList(["","straight ","right ","deep "]).GetWord() 
+              sTweet += "into my " + sHole2 + "!'"
+          elif iRand == 4:
+              sVerb = WordList(['Fuck','Hammer','Ream','Jack-hammer','Plow','Pound',]).GetWord()
+              sTweet += "'" + sVerb + " "
+              sTweet += "the shit out of my " + Ass.ShortDescription() + "! "
+              sTweet += WordList(["Shove it in!","Pack it tight!","Shove my shit in!","Shove my shit in! Pack it tight!","Sodomize me!"]).GetWord() + " "
+              sTweet += WordList(["Wreck","Ruin","Destroy","Ravage","Rape","Rail"]).GetWord() + " "
+              sTweet += "my " + WordList(["goddamn ","fucking ",""]).GetWord() 
+              sTweet += self.FemBodyParts.Ass.Anus.ShortDescription(bDescNouns = False) + "! "
+              sTweet += WordList(["I don't want to walk straight for days!",
+                                  "I don't want to be able to sit down for days!",
+                                  "I want it to gape like a cave!",
+                                  "Leave it a gaping cavern!",
+                                 ]).GetWord() + "'\n\n"
+              sTweet += "'Jesus, " + sHerName + ", you're my " + self.FFWB.GetPerson() + "!' he said."
+          elif iRand == 5:
+              sTweet += "\n\n"
+              sTweet += "'" + WordList(["No","Nah","Sorry",]).GetWord () + ", "
+              sTweet += "I don't think I can keep going,' he said. '"
+              sTweet += WordList(["It's just too tight","You're just too tight back there","Your ass is just too tight"]).GetWord() + ".'\n\n"
+              sTweet += "'" + WordList(["C'mon","Try a little harder","You can do it","Don't give up now","It's easy","It's not hard"]).GetWord() + ", baby,' she said. "
+              sTweet += "'Just pretend that I'm your " + self.FFWB.GetPerson() + ".'"
+
           return sTweet
 
 class Generator3(ExGen):

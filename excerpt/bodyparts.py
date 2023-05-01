@@ -1079,38 +1079,48 @@ class AnusFemale(BodyParts):
                              'heinie hole',
                              'knot',
                              'rear orifice',
+                             'rectal cavity',
                              'rosebud',
                             ])
 
           self.SillyNounList(['arse-cunt',
+                              'back pussy',
                               'bunghole',
+                              'chocolate starfish',
                               'corn hole',
                               'dirt-pipe',
+                              'dirt-box',
                               'fart blaster',
+                              'fart-box',
+                              'fart-hole',
                               'poop-chute',
                               'poop-trap',
                               'pooper',
+                              'shit-hole',
+                              'shitter',
                               'starfish','starfish',
                              ])
        
-          self.AdjList(['clenched',
+          self.AdjList(['brown',
+               'clenched',
                'forbidden',
                'fuckable',
                'gaping',
                'knotted',
                'lewd',
-               'little',
+               'little','little','little','little',
                'loose',
                'nasty',
                'naughty',
                'pert',
                'puckered',
+               'rusty',
                'shy',
                'smooth',
-               'snug',
+               'snug','snug',
                'taboo',
                'tender',
-               'tight',
+               'tight','tight','tight','tight',
                'wanton',
                'well-used',
                'willing',
@@ -1945,8 +1955,8 @@ class Penis(BodyParts):
           self.Testicles = Testicles()
           
           if bAllowBAP:
-               for i in range(0, int(len(self.GetNounList()) * (2/3))):
-                    self.GetNounList().append(self.BuildAPenis())
+               for i in range(0, int(len(self.GetSillyNounList()) * (2/3))):
+                    self.GetSillyNounList().append(self.BuildAPenis())
      
      def GetRandomPenisPart(self, sNot = None, NotList = None, bAllowShortDesc = False):
           if NotList == None:
