@@ -7,9 +7,163 @@ from util import *
 
 BodyPartHistoryQ = HistoryQ(10)
 
+class PartDescSet:
+    def __init__(self, ParentPart):
+        self._Adj1 = ""
+        self._Adj2 = ""
+        self._Adj3 = ""
+        self._Noun = ""
+        self._Color = ""
+        self._NotList = []
+        self._bStdNouns = True
+        self._bDescNouns = True
+        self._bSillyNouns = True
+        self._ParentPart = ParentPart
+
+        self.SetSelf()
+
+    def SetSelf(self):
+        ParentPart = self._ParentPart
+
+        if isinstance(ParentPart, BodyParts):
+            self._Adj1 = ParentPart.GetAdj(NotList = self._NotList)
+            self._Adj2 = ParentPart.GetAdj(NotList = self._NotList + [self._Adj1])
+            self._Adj3 = ParentPart.GetAdj(NotList = self._NotList + [self._Adj1,self._Adj2])
+            self._Noun = ParentPart.GetNoun(NotList = self._NotList + [self._Adj1,self._Adj2,self._Adj3], bStdNouns = self._bStdNouns, bDescNouns = self._bDescNouns, bSillyNouns = self._bSillyNouns)
+            
+            if len(ParentPart._ColorList.GetWordList()) > 0:
+                self._Color = ParentPart.GetColor(NotList = self._NotList)
+
+    def SetNotList(self, NotList):
+        self._NotList = NotList
+        self.SetSelf()
+
+    def SetStdNouns(self, bStdNouns):
+        self._bStdNouns = bStdNouns
+        self.SetSelf()
+
+    def SetDescNouns(self, bDescNouns):
+        self._bDescNouns = bDescNouns
+        self.SetSelf()
+
+    def SetSillyNouns(self, bSillyNouns):
+        self._bSillyNouns = bSillyNouns
+        self.SetSelf()
+
+    def SetAdj1(self, adj):
+        self._Adj1 = adj
+
+    def SetAdj2(self, adj):
+        self._Adj2 = adj
+
+    def SetAdj3(self, adj):
+        self._Adj3 = adj
+
+    def SetNoun(self, noun):
+        self._Noun = noun
+
+    def SetColor(self, color):
+        self._Color = color
+
+    def Adj1(self):
+        return self._Adj1
+
+    def Adj2(self):
+        return self._Adj2
+
+    def Adj3(self):
+        return self._Adj3
+
+    def Noun(self):
+        return self._Noun
+
+    def Color(self):
+        return self._Color
+
+    def bStdNouns(self):
+        return self._bStdNouns
+
+    def bDescNouns(self):
+        return self._bStdNouns
+
+    def bSillyNouns(self):
+        return self._bStdNouns
+
+    #def GetFullDesc(self):
+    #    sFullDesc = ""
+    #    iWordCnt = 0
+
+    #    if self.Noun() != "":
+    #        iWordCnt += 1
+    #        sFullDesc = self.Noun() + sFullDesc
+    #    if self.Color() != "":
+    #        iWordCnt += 1
+    #        if iWordCnt > 1:
+    #            sFullDesc = " " + sFullDesc
+    #        sFullDesc += self.Color()
+    #    if self.Adj3() != "":
+    #        iWordCnt += 1
+    #        if iWordCnt > 1:
+    #            sFullDesc = " " + sFullDesc
+    #        sFullDesc += self.Adj3()
+    #    if self.Adj2() != "":
+    #        iWordCnt += 1
+    #        if iWordCnt > 1:
+    #            sFullDesc = " " + sFullDesc
+    #        sFullDesc += self.Adj2()
+    #    if self.Adj1() != "":
+    #        iWordCnt += 1
+    #        if iWordCnt > 1:
+    #            sFullDesc = " " + sFullDesc
+    #        sFullDesc = self.Adj1()
+        
+
+    #    return sFullDesc
+
+    def GetFullDesc(self):
+        sFullDesc = ""
+        DescWordList = []
+
+        if self.Noun() != "":
+            DescWordList.insert(0, self.Noun())
+        if self.Color() != "":
+            DescWordList.insert(0, self.Color())
+        if self.Adj3() != "":
+            DescWordList.insert(0, self.Adj3())
+        if self.Adj2() != "":
+            DescWordList.insert(0, self.Adj2())
+        if self.Adj1() != "":
+            DescWordList.insert(0, self.Adj1())
+
+        if len(DescWordList) < 3:
+            sFullDesc = " ".join(DescWordList)
+        elif len(DescWordList) == 3:
+            sFullDesc = ", ".join(DescWordList[:1]) + ", " + " ".join(DescWordList[1:])
+        elif len(DescWordList) == 4:
+            sFullDesc = ", ".join(DescWordList[:-2]) + ", " + " ".join(DescWordList[-2:])
+        else:
+            sFullDesc = ", ".join(DescWordList[:-3]) + ", " + " ".join(DescWordList[-3:])
+        
+        return sFullDesc
+
+    def GetDescWordList(self):
+        DescWordList = []
+
+        if self.Noun() != "":
+            DescWordList.insert(0, self.Noun())
+        if self.Color() != "":
+            DescWordList.insert(0, self.Color())
+        if self.Adj3() != "":
+            DescWordList.insert(0, self.Adj3())
+        if self.Adj2() != "":
+            DescWordList.insert(0, self.Adj2())
+        if self.Adj1() != "":
+            DescWordList.insert(0, self.Adj1())
+
+        return DescWordList
+        
 class BodyParts:
      def __init__(self):
-          #self._NounList = WordList([])
           self._StdNounList = WordList([])
           self._DescNounList = WordList([])
           self._SillyNounList = WordList([])
@@ -20,6 +174,8 @@ class BodyParts:
           
           self.NounHistoryQ = HistoryQ(3)
           self.AdjHistoryQ = HistoryQ(3)
+
+          self.PartDescSet = PartDescSet(self)
         
      def StdNounList(self, NewNounList = None):
           if NewNounList == None:
@@ -29,6 +185,8 @@ class BodyParts:
                
           self._StdNounList = WordList(SetStdNounList)
 
+          self.PartDescSet.SetSelf()
+
      def DescNounList(self, NewNounList = None):
           if NewNounList == None:
                SetDescNounList = []
@@ -36,6 +194,8 @@ class BodyParts:
                SetDescNounList = NewNounList 
                
           self._DescNounList = WordList(SetDescNounList)
+
+          self.PartDescSet.SetSelf()
 
      def SillyNounList(self, NewNounList = None):
           if NewNounList == None:
@@ -45,8 +205,12 @@ class BodyParts:
                
           self._SillyNounList = WordList(SetSillyNounList)
 
+          self.PartDescSet.SetSelf()
+
      def NounList(self, NewNounList = None):
           self.StdNounList(NewNounList)
+
+          self.PartDescSet.SetSelf()
           
      def AdjList(self, NewAdjList = None):
           if NewAdjList == None:
@@ -55,6 +219,8 @@ class BodyParts:
                SetAdjList = NewAdjList
                
           self._AdjList = WordList(SetAdjList)
+
+          self.PartDescSet.SetSelf()
           
      def ColorList(self, NewColorList = None):
           if NewColorList == None:
@@ -63,6 +229,8 @@ class BodyParts:
                SetColorList = NewColorList
                
           self._ColorList = WordList(SetColorList)
+
+          self.PartDescSet.SetSelf()
           
      def DefaultNoun(self, NewNoun = None):
           if NewNoun == None:
@@ -115,7 +283,6 @@ class BodyParts:
         if bDescNouns:
             LocalNounList += self._DescNounList.GetWordList()
         if len(LocalNounList) == 0:
-            print("WARNING: Empty noun list, using StdNounList as default.")
             LocalNounList += self._StdNounList.GetWordList()
   
         return WordList(LocalNounList).GetWord(sNot = sNot, NotList = NotList, SomeHistoryQ = BodyPartHistoryQ)

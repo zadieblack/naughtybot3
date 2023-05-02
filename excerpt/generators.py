@@ -443,7 +443,7 @@ class Generator7(ExGen):
           iRand = randint(1,3)
           if iRand == 1:
                sTweet = self.FemaleName.FirstName() + " bit her lip. She lay on "
-               sTweet += Location.LyingOn + ", her " + self.FemBodyParts.Breasts.RandomDescription() + " " 
+               sTweet += Location.LyingOn + ", her " + self.FemBodyParts.Breasts.RandomDescription(bSillyNouns = False) + " " 
                sTweet += WordList(["heaving", "quivering", "trembling", "shuddering", "rising and falling"]).GetWord() + " "
                sTweet += "as " + self.FemaleName.FirstName() + " lubed up a " 
                sTweet += str(randint(8,16)) + " 1/2\" " + WordList(["black", "pink", "steel", "vibrating"]).GetWord() + " strap-on. "
@@ -452,7 +452,7 @@ class Generator7(ExGen):
                sTweet += "my lesbian lover was about to " 
           else:
                sTweet = self.FemaleName.FirstName() + " bit her lip. She lay on " + Location.LyingOn + ", "
-               sTweet += "her " + self.FemBodyParts.Breasts.RandomDescription() + " " 
+               sTweet += "her " + self.FemBodyParts.Breasts.RandomDescription(bSillyNouns = False) + " " 
                sTweet += WordList(["heaving", "quivering", "trembling", "shuddering", "rising and falling"]).GetWord() + " "
                sTweet += "as " + self.MaleName.FirstName() + " lubed up her " + self.FemBodyParts.Ass.Anus.RandomDescription() + ". "
                sTweet += "'" + self.Exclamation.GetWord().capitalize() + "' she said, "
@@ -534,12 +534,27 @@ class Generator9(ExGen):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
-               
+
+          Penis = self.MaleBodyParts.Penis
+
+          ## Testing PartDescSet 
+          #Penis.PartDescSet.SetColor("black")
+          #print("Penis().PartDescSet.GetDescWordList() = " + str(Penis.PartDescSet.GetDescWordList()))
+          #print("Penis().PartDescSet.GetFullDesc() full list = \"" + Penis.PartDescSet.GetFullDesc() + "\"")
+          #Penis.PartDescSet.SetColor("")
+          #print("Penis().PartDescSet.GetFullDesc() color removed  = \"" + Penis.PartDescSet.GetFullDesc() + "\"")
+          #Penis.PartDescSet.SetAdj3("")
+          #print("Penis().PartDescSet.GetFullDesc() adj3 removed = \"" + Penis.PartDescSet.GetFullDesc() + "\"")
+          #Penis.PartDescSet.SetAdj2("")
+          #print("Penis().PartDescSet.GetFullDesc() adj2 removed = \"" + Penis.PartDescSet.GetFullDesc() + "\"")
+          #Penis.PartDescSet.SetAdj1("")
+          #print("Penis().PartDescSet.GetFullDesc() adj1 removed = \"" + Penis.PartDescSet.GetFullDesc() + "\"")
+
           sTweet = "'What?' she asked. 'Hasn't a girl ever let you fuck her " + WordList(["big", "massive", "ample", "bountiful", "double-D", "jiggling", "pendulous", "swollen", "plump", "heavy", "hefty", "enormous", "fat"]).GetWord() + ", " + WordList(["oiled-up", "lubed-up", "greased-up", "baby oil-covered", "lotion-soaked"]).GetWord() + " " + self.FemBodyParts.Breasts.ShortDescription() + " with your "
           if CoinFlip():
-               sTweet += self.MaleBodyParts.Penis.RandomDescription(bAddLen = True) 
+               sTweet += Penis.RandomDescription(bAddLen = True) 
           else:
-               sTweet += self.MaleBodyParts.Penis.RandomDescription()
+               sTweet += Penis.RandomDescription()
           sTweet += " before?'\n\n'Only my " + self.FFWB.GetPerson() + ",' " + self.MaleName.FirstName() + " replied."
           
           return sTweet
