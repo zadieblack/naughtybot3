@@ -539,16 +539,23 @@ class Generator9(ExGen):
 
           ## Testing PartDescSet 
           #Penis.PartDescSet.SetColor("black")
+          #Penis.PartDescSet.AddAdj("triumphant")
+          #Penis.PartDescSet.AddAdj("up-thrust")
           #print("Penis().PartDescSet.GetDescWordList() = " + str(Penis.PartDescSet.GetDescWordList()))
           #print("Penis().PartDescSet.GetFullDesc() full list = \"" + Penis.PartDescSet.GetFullDesc() + "\"")
           #Penis.PartDescSet.SetColor("")
           #print("Penis().PartDescSet.GetFullDesc() color removed  = \"" + Penis.PartDescSet.GetFullDesc() + "\"")
-          #Penis.PartDescSet.SetAdj3("")
-          #print("Penis().PartDescSet.GetFullDesc() adj3 removed = \"" + Penis.PartDescSet.GetFullDesc() + "\"")
-          #Penis.PartDescSet.SetAdj2("")
-          #print("Penis().PartDescSet.GetFullDesc() adj2 removed = \"" + Penis.PartDescSet.GetFullDesc() + "\"")
-          #Penis.PartDescSet.SetAdj1("")
-          #print("Penis().PartDescSet.GetFullDesc() adj1 removed = \"" + Penis.PartDescSet.GetFullDesc() + "\"")
+          #Penis.PartDescSet.RemoveAdjByNum(3)
+          #print("Penis().PartDescSet.GetFullDesc() adj[3] removed = \"" + Penis.PartDescSet.GetFullDesc() + "\"")
+          #Penis.PartDescSet.RemoveAdjByNum(2)
+          #print("Penis().PartDescSet.GetFullDesc() adj[2] removed = \"" + Penis.PartDescSet.GetFullDesc() + "\"")
+          #Penis.PartDescSet.RemoveAdjByNum(1)
+          #print("Penis().PartDescSet.GetFullDesc() adj[1] removed = \"" + Penis.PartDescSet.GetFullDesc() + "\"")
+          #Penis.PartDescSet.RemoveAdj("up-thrust")
+          #print("Penis().PartDescSet.GetFullDesc() adj[up-thrust] removed = \"" + Penis.PartDescSet.GetFullDesc() + "\"")
+          print("Penis().MediumDescription() = \"" + Penis.MediumDescription() + "\"")
+          for i in range(8):
+            print("Penis().FloweryDescription() = \"" + Penis.FloweryDescription() + "\"")
 
           sTweet = "'What?' she asked. 'Hasn't a girl ever let you fuck her " + WordList(["big", "massive", "ample", "bountiful", "double-D", "jiggling", "pendulous", "swollen", "plump", "heavy", "hefty", "enormous", "fat"]).GetWord() + ", " + WordList(["oiled-up", "lubed-up", "greased-up", "baby oil-covered", "lotion-soaked"]).GetWord() + " " + self.FemBodyParts.Breasts.ShortDescription() + " with your "
           if CoinFlip():
