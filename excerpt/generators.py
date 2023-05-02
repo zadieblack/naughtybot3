@@ -553,9 +553,10 @@ class Generator9(ExGen):
           #print("Penis().PartDescSet.GetFullDesc() adj[1] removed = \"" + Penis.PartDescSet.GetFullDesc() + "\"")
           #Penis.PartDescSet.RemoveAdj("up-thrust")
           #print("Penis().PartDescSet.GetFullDesc() adj[up-thrust] removed = \"" + Penis.PartDescSet.GetFullDesc() + "\"")
-          print("Penis().MediumDescription() = \"" + Penis.MediumDescription() + "\"")
+          print("Penis().ShortDescription() = \"" + Penis.ShortDescription(bAddLen = True, bSillyNouns = False) + "\"")
+          print("Penis().MediumDescription() = \"" + Penis.MediumDescription(bAddLen = True) + "\"")
           for i in range(8):
-            print("Penis().FloweryDescription() = \"" + Penis.FloweryDescription() + "\"")
+            print("Penis().FloweryDescription() = \"" + Penis.FloweryDescription(bAddLen = True, NotList = ["meat"], bStdNouns = False, bDescNouns = False) + "\"")
 
           sTweet = "'What?' she asked. 'Hasn't a girl ever let you fuck her " + WordList(["big", "massive", "ample", "bountiful", "double-D", "jiggling", "pendulous", "swollen", "plump", "heavy", "hefty", "enormous", "fat"]).GetWord() + ", " + WordList(["oiled-up", "lubed-up", "greased-up", "baby oil-covered", "lotion-soaked"]).GetWord() + " " + self.FemBodyParts.Breasts.ShortDescription() + " with your "
           if CoinFlip():

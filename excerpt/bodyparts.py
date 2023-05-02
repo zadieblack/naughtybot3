@@ -8,7 +8,7 @@ from util import *
 BodyPartHistoryQ = HistoryQ(10)
 
 class PartDescSet:
-    def __init__(self, ParentPart, iNumAdjs = 3, NotList = [], bStdNouns = True, bDescNouns = True, bSillyNouns = True):
+    def __init__(self, ParentPart, iNumAdjs = 3, ExtraAdjList = None, NotList = [], bStdNouns = True, bDescNouns = True, bSillyNouns = True):
         self._ParentPart = ParentPart
         self._NotList = NotList
         self._bStdNouns = bStdNouns
@@ -18,18 +18,26 @@ class PartDescSet:
         self._Color = ""
         self._AdjList = []
 
-        self.SetSelf(iNumAdjs = iNumAdjs)
+        if ExtraAdjList is None:
+            ExtraAdjList = []
 
-    def SetSelf(self, iNumAdjs = 3):
+        self.SetSelf(iNumAdjs = iNumAdjs, ExtraAdjList = ExtraAdjList)
+
+    def SetSelf(self, iNumAdjs = 3, ExtraAdjList = None):
         ParentPart = self._ParentPart
+
+        if ExtraAdjList is None:
+            ExtraAdjList = []
 
         if isinstance(ParentPart, BodyParts):
             self._Noun = ParentPart.GetNoun(NotList = self._NotList + self._AdjList, bStdNouns = self._bStdNouns, bDescNouns = self._bDescNouns, bSillyNouns = self._bSillyNouns)
 
             for i in range(iNumAdjs):
                 sAdj = ParentPart.GetAdj(NotList = self._NotList + self._AdjList)
-                if sAdj != "":
-                    self.AddAdj(sAdj)
+                self.AddAdj(sAdj)
+
+            for adj in ExtraAdjList:
+                self.AddAdj(adj)
 
             if len(ParentPart._ColorList.GetWordList()) > 0:
                 self._Color = ParentPart.GetColor(NotList = self._NotList + self._AdjList + [self._Noun])
@@ -51,7 +59,8 @@ class PartDescSet:
         self.SetSelf()
 
     def AddAdj(self, adj):
-        return self._AdjList.append(adj)
+        if adj != "":
+            self._AdjList.append(adj)
 
     def RemoveAdj(self, adj):
         if adj in self._AdjList:
@@ -295,19 +304,24 @@ class BodyParts:
           return bHasColors
 
      #noun only ("hair")
-     def ShortDescription(self, sNot = "", NotList = None, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
-          #print("ShortDesc sNot = " + str(sNot))
+     def ShortDescription(self, ExtraAdjList = None, sNot = "", NotList = None, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
+          DescSet = None 
+         
           if NotList == None:
                NotList = []
           
           if sNot != "":
                NotList.append(sNot)
-               
-          return self.GetNoun(sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
+
+          if ExtraAdjList is None:
+              ExtraAdjList = []
+
+          DescSet = PartDescSet(self, ExtraAdjList = ExtraAdjList, iNumAdjs = 0, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
+
+          return DescSet.GetFullDesc(bColor = False)
      
      #adjective noun ("red hair")
-     def MediumDescription(self, sNot = "", NotList = None, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
-          sMediumDesc = ""
+     def MediumDescription(self, ExtraAdjList = None, sNot = "", NotList = None, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
           DescSet = None
           
           if NotList == None:
@@ -316,21 +330,12 @@ class BodyParts:
           if sNot != "":
                NotList.append(sNot)
           
-          DescSet = PartDescSet(self, iNumAdjs = 1, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
+          DescSet = PartDescSet(self, ExtraAdjList = ExtraAdjList, iNumAdjs = 1, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
           
-          if self.HasColors() and CoinFlip():
-               DescSet.AddColor(self.GetColor(sNot = sNot, NotList = NotList))
-               #sMediumDesc = self.GetColor(sNot = sNot, NotList = NotList)
-          #else:
-          #     DescSet.AddAdj(self.GetAdj(sNot = sNot, NotList = NotList))
-          #     #sMediumDesc = self.GetAdj(sNot = sNot, NotList = NotList)
-          #sMediumDesc += " " + self.GetNoun(sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
-               
-          return DescSet.GetFullDesc()
+          return DescSet.GetFullDesc(bColor = CoinFlip())
      
      #adjective1 adjective2 adjective3 noun ("long, wavy, red hair")
-     def FloweryDescription(self, sNot = "", NotList = None, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
-          sFloweryDesc = ""
+     def FloweryDescription(self, ExtraAdjList = None, sNot = "", NotList = None, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
           DescSet = None
           
           if NotList == None:
@@ -338,41 +343,17 @@ class BodyParts:
           
           if sNot != "":
                NotList.append(sNot)
+
+          if ExtraAdjList is None:
+              ExtraAdjList = []
           
           iNumAdjs = choice([1,1,1,2,2,2,2,3])
 
-          DescSet = PartDescSet(self, iNumAdjs = iNumAdjs, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
-          
-          #sAdj1 = ""
-          #sAdj2 = ""
-               
-          #if iNumAdjs == 3:
-          #     sAdj1 = self.GetAdj(sNot = sNot, NotList = NotList)
-          #     sAdj2 = self.GetAdj(sNot = sNot, NotList = NotList + [sAdj1])
-          #     sAdj3 = ""
-          #     if self.HasColors():
-          #          sAdj3 += self.GetColor(sNot = sNot, NotList = NotList + [sAdj1,sAdj2])
-          #     else:
-          #          sAdj3 += self.GetAdj(sNot = sNot, NotList = NotList + [sAdj1,sAdj2])
-          #     sFloweryDesc += sAdj1 + ", " + sAdj2 + ", " + sAdj3
-          #elif iNumAdjs == 2:
-          #     sAdj1 += self.GetAdj(sNot = sNot, NotList = NotList) 
-          #     if self.HasColors():
-          #          sAdj2 += self.GetColor(sNot = sNot, NotList = NotList + [sAdj1])
-          #     else: 
-          #          sAdj2 += self.GetAdj(sNot = sNot, NotList = NotList + [sAdj1]) 
-          #     sFloweryDesc += sAdj1 + ", " + self.GetAdj(sNot = sNot, NotList = NotList + [sAdj1])
-          #else:
-          #     if self.HasColors() and CoinFlip():
-          #          sFloweryDesc += self.GetColor(sNot = sNot, NotList = NotList)
-          #     else:
-          #          sFloweryDesc += self.GetAdj(sNot = sNot, NotList = NotList)
-                    
-          #sFloweryDesc += " " + self.GetNoun(sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
-               
+          DescSet = PartDescSet(self, ExtraAdjList = ExtraAdjList, iNumAdjs = iNumAdjs, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
+
           return DescSet.GetFullDesc(bColor = CoinFlip())
      
-     def RandomDescription(self, sNot = "", NotList = None, bAllowShortDesc = True, bAllowLongDesc = True, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
+     def RandomDescription(self, ExtraAdjList = None, sNot = "", NotList = None, bAllowShortDesc = True, bAllowLongDesc = True, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
           sRandomDesc = ""
           
           if NotList == None:
@@ -380,6 +361,9 @@ class BodyParts:
           
           if sNot != "":
                NotList.append(sNot)
+
+          if ExtraAdjList is None:
+              ExtraAdjList = []
           
           iRand = randint(0, 12)
           if iRand in range(0, 3):
@@ -387,20 +371,20 @@ class BodyParts:
                if bAllowShortDesc:
                     #use noun from the list or default noun
                     if CoinFlip():
-                         sRandomDesc = self.ShortDescription(sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
+                         sRandomDesc = self.ShortDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
                     else:
                          sRandomDesc = self.GetDefaultNoun(NotList = NotList)
                else:
-                    sRandomDesc = self.MediumDescription(sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
+                    sRandomDesc = self.MediumDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
           elif iRand in range(3,6):
           #medium desc 
-               sRandomDesc = self.MediumDescription(sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
+               sRandomDesc = self.MediumDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
           else:
           #flowery desc if allowed
                if bAllowLongDesc:
-                    sRandomDesc = self.FloweryDescription(sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
+                    sRandomDesc = self.FloweryDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
                else:
-                    sRandomDesc = self.MediumDescription(sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
+                    sRandomDesc = self.MediumDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
                
           return sRandomDesc
 
@@ -1206,17 +1190,19 @@ class AnusFemale(BodyParts):
      def __init__(self):
           super().__init__()
 
-          self.StdNounList(['anus','anus','anus',
-                            'asshole','asshole',
+          self.StdNounList(['anus','anus','anus','anus',
+                            'asshole','asshole','asshole','asshole',
                             'bowels',
-                            'butthole','butt hole',
-                            'rectum',
+                            'butthole','butthole','butt hole',
+                            'rectum','rectum',
                             'sphincter','sphincter',
                             ])
 
           self.DescNounList(['back orifice',
                              'back passage',
                              'backdoor',
+                             'brown hole',
+                             'brown star',
                              'heinie hole',
                              'knot',
                              'rear orifice',
@@ -1225,7 +1211,7 @@ class AnusFemale(BodyParts):
                             ])
 
           self.SillyNounList(['arse-cunt',
-                              'back pussy',
+                              'back-pussy',
                               'bunghole',
                               'chocolate starfish',
                               'corn hole',
@@ -2167,68 +2153,65 @@ class Penis(BodyParts):
           
           return sLength
                
-     def ShortDescription(self, sNot = "", NotList = None, bAddLen = False, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
-          sDesc = super().ShortDescription(sNot = "", NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
+     def ShortDescription(self, ExtraAdjList = None, sNot = "", NotList = None, bAddLen = False, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
           if NotList == None:
                NotList = []
           
           if sNot != "":
                NotList.append(sNot)
 
+          if ExtraAdjList is None:
+               ExtraAdjList = []
+
           if bAddLen:
-               Words = sDesc.split()
-               Words.insert(len(sDesc.split()) - 1, self.GenerateLength())
-               sDesc = " ".join(Words)
+               ExtraAdjList.append(self.GenerateLength())
           
-          return sDesc
+          return super().ShortDescription(sNot = "", ExtraAdjList = ExtraAdjList, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
           
-     def MediumDescription(self, sNot = "",  NotList = None, bAddLen = False, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
-          sDesc = super().MediumDescription(sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
-          
+     def MediumDescription(self, ExtraAdjList = None, sNot = "",  NotList = None, bAddLen = False, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
           if NotList == None:
                NotList = []
           
           if sNot != "":
                NotList.append(sNot)
-          
+
+          if ExtraAdjList is None:
+               ExtraAdjList = []
+
           if bAddLen:
-               Words = sDesc.split()
-               Words.insert(len(sDesc.split()) - 1, self.GenerateLength())
-               sDesc = " ".join(Words)
+               ExtraAdjList.append(self.GenerateLength())
                
-          return sDesc 
+          return super().MediumDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns) 
           
-     def FloweryDescription(self, sNot = "", NotList = None, bAddLen = False, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
-          sDesc = super().FloweryDescription(sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
-          
+     def FloweryDescription(self, ExtraAdjList = None, sNot = "", NotList = None, bAddLen = False, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
           if NotList == None:
                NotList = []
           
           if sNot != "":
                NotList.append(sNot)
-          
+
+          if ExtraAdjList is None:
+               ExtraAdjList = []
+
           if bAddLen:
-               Words = sDesc.split()
-               Words.insert(len(sDesc.split()) - 1, self.GenerateLength())
-               sDesc = " ".join(Words)
+               ExtraAdjList.append(self.GenerateLength())
           
-          return sDesc 
+          return super().FloweryDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns) 
           
-     def RandomDescription(self, sNot = "", NotList = None, bAllowShortDesc = True, bAllowLongDesc = True, bAddLen = False, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
-          sDesc = super().RandomDescription(sNot = sNot, NotList = NotList, bAllowShortDesc = bAllowShortDesc, bAllowLongDesc = bAllowLongDesc, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
-          
+     def RandomDescription(self, ExtraAdjList = None, sNot = "", NotList = None, bAllowShortDesc = True, bAllowLongDesc = True, bAddLen = False, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
           if NotList == None:
                NotList = []
           
           if sNot != "":
                NotList.append(sNot)
-               
+
+          if ExtraAdjList is None:
+               ExtraAdjList = []
+
           if bAddLen:
-               Words = sDesc.split()
-               Words.insert(len(sDesc.split()) - 1, self.GenerateLength())
-               sDesc = " ".join(Words)
+               ExtraAdjList.append(self.GenerateLength())
           
-          return sDesc 
+          return super().RandomDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, bAllowShortDesc = bAllowShortDesc, bAllowLongDesc = bAllowLongDesc, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns) 
      
 class Semen(BodyParts):
      def __init__(self):
