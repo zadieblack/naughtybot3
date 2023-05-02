@@ -308,6 +308,13 @@ class Generator4(ExGen):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          NewBreastTest = bodyparts.Breasts_new()
+          ReqTagList = ["silly","crude",]
+          ExclTagList = ["std","poetic"]
+          for i in range(4):
+              sNewNoun = NewBreastTest.GetNoun(ReqTagList = ReqTagList, ExclTagList = ExclTagList)
+              print(["NewBreastTest.GetNoun(ReqTagList = " + str(ReqTagList) + ", ExclTagList = " + str(ExclTagList) + ") = " + sNewNoun])
           
           sTweet += "'You may cum inside my " + self.FemBodyParts.Vagina.ShortDescription() + " if you like', " 
           sTweet += self.FemaleName.FirstName() + " instructed him, "
@@ -7995,6 +8002,23 @@ class Generator115(ExGen):
         sTweet += "?!?\""
 
         return sTweet
+
+## For Veronica, it was {the perfect / a magical} summer: she spent lazy mornings 
+## lounging by the {sea / pool}; 
+## {sweltering, tropical} nights dancing beneath a swollen moon; and 
+## {late afternoons / tea times / mid-afternoons}  
+## {being ass-fucked / being tea-bagged / getting her ass eaten } by her plumber, 
+## Lorenzo.
+## 
+#class Generator116(ExGen):
+#    def __init__(self):
+#        super().__init__(ID = 116, Priority = GenPriority.Normal)
+     
+#    def GenerateTweet(self):
+#        super().GenerateTweet()
+#        sTweet = ""
+
+#        return sTweet
           
 #class GeneratorSelector():
 #    def __init__(self):

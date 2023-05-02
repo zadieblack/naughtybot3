@@ -4,6 +4,7 @@
 
 from random import *
 from util import *
+import re 
 
 BodyPartHistoryQ = HistoryQ(10)
 
@@ -388,6 +389,351 @@ class BodyParts:
                
           return sRandomDesc
 
+class BodyParts_New:
+    def __init__(self):
+        self._NounLists = {"master": [], "std": []}
+        self._AdjLists = {"master": []}
+        self._DefaultNoun = ""
+        self._DefaultAdj = "naked"
+          
+        self.NounHistoryQ = HistoryQ(3)
+        self.AdjHistoryQ = HistoryQ(3)
+
+        self.PartDescSet = PartDescSet(self)
+
+    def GetNounList(self, sListName):
+        NounList = None
+
+        if sListName.lower() in self._NounLists:
+            NounList = self._NounLists[sListName]
+
+        return NounList 
+
+    def AddNounToList(self, sNoun, sListName, iPriority = None):
+        NounList = self.GetNounList(sListName)
+
+        if NounList is None:
+            #create
+            self._NounLists[sListName] = []
+
+        if iPriority is None:
+            iPriority = 1
+
+        if not self.IsNounInList(sNoun, sListName):
+            for i in range(iPriority):
+                self._NounLists[sListName].append(sNoun)
+
+    def IsNounInList(self, sNoun, sListName):
+        bIsNounInList = False 
+
+        NounList = self.GetNounList(sListName)
+        if not NounList is None:
+            if sNoun in NounList:
+                bIsNounInList = True
+
+        return bIsNounInList
+
+    def NounList(self, NewNounList):
+        #print("Entered NounList()")
+        for item in NewNounList:
+            sNoun = ""
+            iPriority = 1
+            TagList = []
+
+            #print(" item = \"" + item + "\"")
+
+            # clean string
+            item = item.strip()
+
+            # locate priority
+            #print(" Looking for priority")
+            matchPriority = re.search(r"(?<=[x])([\d]+)", item)
+            if matchPriority:
+                iPriority = int(matchPriority.group())
+                #print("  Priority found! iPriority = " + str(iPriority))
+            #else:
+                #print("  No priority found! iPriority = " + str(iPriority))
+
+            ItemSections = item.split(":")
+
+            # locate noun 
+            #print(" Looking for noun")
+            #print("  Looking for colon[:]")
+            if len(ItemSections) > 1:
+                #print("   Colon[:] found. ItemSections[0] = \"" + ItemSections[0] + "\"")
+                matchNoun = re.search(r"([x][\d]+)", ItemSections[0])
+                #print("   Looking for priority end point")
+                if matchNoun:
+                    sNoun = ItemSections[0][0:matchNoun.span()[0]]
+                    #print("    Priority end point found. sNoun = \"" + sNoun + "\"")
+                else:
+                    sNoun =  ItemSections[0]
+                    #print("    No priority endpoint found. Using ItemSections[0] as noun. sNoun = \"" + sNoun + "\"")
+                sNoun = sNoun.strip()
+            else:
+                sNoun = ItemSections[0].strip()
+                #print("   No colon[:] found. sNoun = \"" + sNoun + "\"")
+
+            # locate tag list 
+            #print(" Looking for tag list")
+            matchTags = re.search(r"(?<=[:])([\w\s,]*)", item)
+            if matchTags:
+                TagList = "".join(matchTags.group().split(" ")).split(",")
+                #print("  Tag list found. TagList = " + str(TagList) + "")
+            #else:
+                #print("  Tag list not found.")
+
+            self.AddNounToList(sNoun, "master", iPriority)
+            #print(" Added \"" + sNoun + "\" to master list.")
+            for tag in TagList:
+                self.AddNounToList(sNoun, tag, iPriority)
+                #print(" Added \"" + sNoun + "\" to " + tag + " list.")
+               
+        self.PartDescSet.SetSelf()
+
+    #def DescNounList(self, NewNounList = None):
+    #    if NewNounList == None:
+    #        SetDescNounList = []
+    #    else:
+    #        SetDescNounList = NewNounList 
+               
+    #    self._DescNounList = WordList(SetDescNounList)
+
+    #    self.PartDescSet.SetSelf()
+
+    #def SillyNounList(self, NewNounList = None):
+    #    if NewNounList == None:
+    #        SetSillyNounList = []
+    #    else:
+    #        SetSillyNounList = NewNounList 
+               
+    #    self._SillyNounList = WordList(SetSillyNounList)
+
+    #    self.PartDescSet.SetSelf()
+
+    #def NounList(self, NewNounList = None):
+    #    self.StdNounList(NewNounList)
+
+    #    self.PartDescSet.SetSelf()
+          
+    #def AdjList(self, NewAdjList = None):
+    #    if NewAdjList == None:
+    #        SetAdjList = []
+    #    else:
+    #        SetAdjList = NewAdjList
+               
+    #    self._AdjList = WordList(SetAdjList)
+
+    #    self.PartDescSet.SetSelf()
+          
+    #def ColorList(self, NewColorList = None):
+    #    if NewColorList == None:
+    #        SetColorList = []
+    #    else:
+    #        SetColorList = NewColorList
+               
+    #    self._ColorList = WordList(SetColorList)
+
+    #    self.PartDescSet.SetSelf()
+          
+    #def DefaultNoun(self, NewNoun = None):
+    #    if NewNoun == None:
+    #        NewNoun = ""
+               
+    #    self._DefaultNoun = NewNoun 
+     
+    #def DefaultAdj(self, NewAdj = None):
+    #    if NewAdj == None:
+    #        NewAdj = ""
+               
+    #    self._DefaultAdj = NewAdj 
+          
+    #def GetDefaultNoun(self, NotList = None):
+    #    sDefaultNoun = ""
+          
+    #    if NotList == None:
+    #        NotList = []
+
+    #    if self._DefaultNoun not in NotList:
+    #        sDefaultNoun = self._DefaultNoun
+               
+    #    return sDefaultNoun
+          
+    #def GetDefaultAdj(self, NotList = None):
+    #    sDefaultAdj = ""
+          
+    #    if NotList == None:
+    #        NotList = []
+
+    #    if self._DefaultAdj not in NotList:
+    #        sDefaultAdj = self._DefaultAdj
+               
+    #    return sDefaultAdj
+     
+    def GetNoun(self, sNot = "", NotList = None, ReqTagList = None, ExclTagList = None):
+        sNoun = "" 
+        LocalNounList = []
+        print("  Entered GetNoun()")
+         
+        if NotList == None:
+            NotList = []
+          
+        if sNot != "":
+            NotList.append(sNot)
+
+        if ExclTagList is None:
+            ExclTagList = []
+
+        ExclNounList = []
+        for nounlist in ExclTagList:
+            for noun in self.GetNounList(nounlist):
+                ExclNounList.append(noun)
+
+        if ReqTagList == None or len(ReqTagList) == 0:
+            #print("  ReqTagList is empty. Using master list.")
+            for noun in self.GetNounList("master"):
+                if not noun in ExclNounList:
+                    LocalNounList.append(noun)
+        else:
+            for taglistname in ReqTagList:
+                #print("  Adding taglist " + taglistname)
+                for noun in self.GetNounList(taglistname):
+                    if not noun in ExclNounList:
+                        LocalNounList.append(noun)
+
+        #print("  LocalNounList = " + str(LocalNounList) + "\n")
+
+        return WordList(LocalNounList).GetWord(sNot = sNot, NotList = NotList, SomeHistoryQ = BodyPartHistoryQ)
+     
+    #def GetAdj(self, sNot = "", NotList = None):
+    #    if NotList == None:
+    #        NotList = []
+          
+    #    if sNot != "":
+    #        NotList.append(sNot)
+                    
+    #    return self._AdjList.GetWord(sNot = sNot, NotList = NotList, SomeHistoryQ = BodyPartHistoryQ)
+          
+    #def GetColor(self, sNot = "", NotList = None):
+    #    if NotList == None:
+    #        NotList = []
+          
+    #    if sNot != "":
+    #        NotList.append(sNot)
+                    
+    #    return self._ColorList.GetWord(sNot = sNot, NotList = NotList, SomeHistoryQ = BodyPartHistoryQ)
+          
+    #def GetNounList(self):
+    #    return self.GetStdNounList()
+
+    #def GetStdNounList(self):
+    #    return self._StdNounList.List 
+
+    #def GetDescNounList(self):
+    #    return self._DescNounList.List 
+
+    #def GetSillyNounList(self):
+    #    return self._SillyNounList.List 
+          
+    #def GetAdjList(self):
+    #    return self._AdjList.List
+          
+    #def GetColorList(self):
+    #    return self._ColorList.List
+          
+    #def HasColors(self):
+    #    bHasColors = False 
+          
+    #    if len(self._ColorList.List) > 0:
+    #        bHasColors = True
+               
+    #    return bHasColors
+
+    ##noun only ("hair")
+    #def ShortDescription(self, ExtraAdjList = None, sNot = "", NotList = None, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
+    #    DescSet = None 
+         
+    #    if NotList == None:
+    #        NotList = []
+          
+    #    if sNot != "":
+    #        NotList.append(sNot)
+
+    #    if ExtraAdjList is None:
+    #        ExtraAdjList = []
+
+    #    DescSet = PartDescSet(self, ExtraAdjList = ExtraAdjList, iNumAdjs = 0, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
+
+    #    return DescSet.GetFullDesc(bColor = False)
+     
+    ##adjective noun ("red hair")
+    #def MediumDescription(self, ExtraAdjList = None, sNot = "", NotList = None, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
+    #    DescSet = None
+          
+    #    if NotList == None:
+    #        NotList = []
+          
+    #    if sNot != "":
+    #        NotList.append(sNot)
+          
+    #    DescSet = PartDescSet(self, ExtraAdjList = ExtraAdjList, iNumAdjs = 1, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
+          
+    #    return DescSet.GetFullDesc(bColor = CoinFlip())
+     
+    ##adjective1 adjective2 adjective3 noun ("long, wavy, red hair")
+    #def FloweryDescription(self, ExtraAdjList = None, sNot = "", NotList = None, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
+    #    DescSet = None
+          
+    #    if NotList == None:
+    #        NotList = []
+          
+    #    if sNot != "":
+    #        NotList.append(sNot)
+
+    #    if ExtraAdjList is None:
+    #        ExtraAdjList = []
+          
+    #    iNumAdjs = choice([1,1,1,2,2,2,2,3])
+
+    #    DescSet = PartDescSet(self, ExtraAdjList = ExtraAdjList, iNumAdjs = iNumAdjs, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
+
+    #    return DescSet.GetFullDesc(bColor = CoinFlip())
+     
+    #def RandomDescription(self, ExtraAdjList = None, sNot = "", NotList = None, bAllowShortDesc = True, bAllowLongDesc = True, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
+    #    sRandomDesc = ""
+          
+    #    if NotList == None:
+    #        NotList = []
+          
+    #    if sNot != "":
+    #        NotList.append(sNot)
+
+    #    if ExtraAdjList is None:
+    #        ExtraAdjList = []
+          
+    #    iRand = randint(0, 12)
+    #    if iRand in range(0, 3):
+    #    #short desc if allowed 
+    #        if bAllowShortDesc:
+    #            #use noun from the list or default noun
+    #            if CoinFlip():
+    #                    sRandomDesc = self.ShortDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
+    #            else:
+    #                    sRandomDesc = self.GetDefaultNoun(NotList = NotList)
+    #        else:
+    #            sRandomDesc = self.MediumDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
+    #    elif iRand in range(3,6):
+    #    #medium desc 
+    #        sRandomDesc = self.MediumDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
+    #    else:
+    #    #flowery desc if allowed
+    #        if bAllowLongDesc:
+    #            sRandomDesc = self.FloweryDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
+    #        else:
+    #            sRandomDesc = self.MediumDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
+               
+    #    return sRandomDesc
+
 class Face(BodyParts):
      def __init__(self):
           super().__init__()
@@ -770,6 +1116,86 @@ class Nipples(BodyParts):
           
           self.DefaultNoun("nipples")
           self.DefaultAdj("erect")
+
+class Breasts_new(BodyParts_New):
+     def __init__(self):
+          super().__init__()
+          
+          self.NounList(['boobies: silly,slang,plur',
+                         'boobs x2: std,slang,plur',
+                         'bosoms x2: std,poetic,plur',
+                         'breasticles x2: silly,crude,slang,plur',
+                         'breasts x3: std,clinical,default,plur',
+                         'buds x2: poetic,plur,desc,small,young',
+                         'bust: std,sing',
+                         'chest: std,sing',
+                         'coconuts: poetic,silly,slang,plur',
+                         'dumplings: poetic,silly,plur',
+                         'gazongas: silly,crude,slang,plur',
+                         'globes x2: poetic,silly,crude,desc,plur',
+                         'jugs: silly,crude,slang,plur',
+                         'knockers: silly,crude,slang,plur',
+                         'orbs x2: poetic,silly,desc,plur',
+                         'mammaries: silly,clinical,plur',
+                         'melons: silly,poetic,crude,desc,plur',
+                         'mounds x2: poetic,desc,plur',
+                         'tatas: silly,crude,slang,plur',
+                         'teats: std,clinical,desc,plur',
+                         'tiddies: silly,crude,slang,plur',
+                         'titties: silly,crude,slang,plur',
+                         'tits : std,crude,slang,plur',
+                        ])
+               
+          #self.AdjList(['bouncy: large,movement,pos',
+          #              'bountiful: large,poetic,pos',
+          #              'budding: small,young,poetic,pos',
+          #              'buxom: large,pos',
+          #              'delicious: super,poetic,pos',
+          #              'double-D: large,size,pos',
+          #              'full: large,poetic,pos',
+          #              'fulsome: large,poetic,pos',
+          #              'generous: large,poetic,pos',
+          #              'gentle: poetic,feel,pos',
+          #              'girlish: small,young,pos',
+          #              'glorious: super,pos',
+          #              'gorgeous: super,pos',
+          #              'heaving: movement,poetic,pos',
+          #              'heavy: large,feel,pos',
+          #              'impressive: super,large,pos',
+          #              'jiggling: large,movement,pos',
+          #              'juicy: large,super,feel,pos',
+          #              'luscious: large,super,pos',
+          #              'lush: large,super,pos',
+          #              'luxuriant: large,super,pos',
+          #              'magnificent: large,super,pos',
+          #              'nubile: young,pos',
+          #              'pale: color',
+          #              'pendulous: large,shape,older',
+          #              'perky: shape,young,pos',
+          #              'pert: shape,young,poetic,pos',
+          #              'petite: small,pos',
+          #              'plump: large,feel,shape,pos',
+          #              'proud: large,super,poetic,pos',
+          #              'quivering: movement,poetic,pos',
+          #              'ripe: young,poetic,pos',
+          #              'round: shape,pos',
+          #              'sensual: poetic,pos',
+          #              'shapely: shape,poetic,pos',
+          #              'smooth: feel,pos',
+          #              'soft: feel,pos',
+          #              'statuesque: large,poetic,pos',
+          #              'stunning: super,pos',
+          #              'succulent: super,poetic,pos',
+          #              'sumptuous: large,super,poetic,pos',
+          #              'supple: feel,poetic,pos',
+          #              'surgically-enhanced: large,shape,fake',
+          #              'swaying: movement,pos',
+          #              'sweet: super,young,pos',
+          #              'swollen: large,shape,pos',
+          #              'tender: feel,poetic,young,pos',
+          #              'voluptuous: large,poetic,pos'])
+          
+          #self.DefaultNoun("breasts")
           
 class Breasts(BodyParts):
      def __init__(self):
@@ -1381,68 +1807,6 @@ class AssFemale(BodyParts):
                             ])
           
           self.DefaultNoun("ass")
-          
-     def ShortDescription(self, sNot = "", NotList = None, bAllowButtocks = False, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
-          sDesc = super().ShortDescription(sNot = "", NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
-          if NotList == None:
-               NotList = []
-          
-          if sNot != "":
-               NotList.append(sNot)
-
-          if bAllowButtocks:
-               if randint(1,15) > 11:
-                    self.Buttocks.ShortDescription(sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
-          
-          return sDesc
-          
-     def MediumDescription(self, sNot = "",  NotList = None, bAllowButtocks = False, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
-          sDesc = super().MediumDescription(sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
-          
-          if NotList == None:
-               NotList = []
-          
-          if sNot != "":
-               NotList.append(sNot)
-          
-          if bAllowButtocks:
-               if randint(1,15) > 11:
-                    self.Buttocks.MediumDescription(sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
-               
-          return sDesc 
-          
-     def FloweryDescription(self, sNot = "", NotList = None, bAllowButtocks = False, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
-          sDesc = super().FloweryDescription(sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
-          
-          if NotList == None:
-               NotList = []
-          
-          if sNot != "":
-               NotList.append(sNot)
-          
-          if bAllowButtocks:
-               if randint(1,15) > 11:
-                    self.Buttocks.FloweryDescription(sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
-          
-          return sDesc 
-          
-     def RandomDescription(self, sNot = "", NotList = None, bAllowShortDesc = True, bAllowLongDesc = True, bAllowButtocks = False, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
-          sDesc = super().RandomDescription(sNot = sNot, NotList = NotList, bAllowShortDesc = bAllowShortDesc, bAllowLongDesc = bAllowLongDesc, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
-          
-          if NotList == None:
-               NotList = []
-          
-          if sNot != "":
-               NotList.append(sNot)
-               
-          if bAllowButtocks:
-               if randint(1,15) > 11:
-                    self.Buttocks.RandomDescription(sNot = sNot, NotList = NotList, 
-                                                            bAllowShortDesc = bAllowShortDesc, 
-                                                            bAllowLongDesc = bAllowLongDesc,
-                                                            bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
-          
-          return sDesc 
           
 class BodyFemale(BodyParts):
      def __init__(self):
