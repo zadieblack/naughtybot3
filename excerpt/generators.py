@@ -310,12 +310,6 @@ class Generator4(ExGen):
           sTweet = ""
 
           NewBreastTest = bodyparts.Breasts_new()
-          #ReqTagList = ["silly","crude",]
-          #ExclTagList = ["std","poetic"]
-          #for i in range(5):
-          #    sNewNoun = NewBreastTest.GetNoun(ReqTagList = ReqTagList, ExclTagList = ExclTagList)
-          #    print(["NewBreastTest.GetNoun(ReqTagList = " + str(ReqTagList) + ", ExclTagList = " + str(ExclTagList) + ") = " + sNewNoun])
-          
           #ReqTagList = ["size"]
           #ExclTagList = ["large"]
           #for i in range(5):
@@ -349,6 +343,21 @@ class Generator5(ExGen):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          NewAss = bodyparts.AssFemale_new()
+          NounReqTagList = []
+          NounExclTagList = []
+          AdjReqTagList = []
+          AdjExclTagList = []
+          for i in range(5):
+              sTest = ""
+              sTest += "She " + WordList(["bent over","bent over in front of him","slid her panties down","looked back at him",]).GetWord() + " and "
+              sTest += "spread the " + NewAss.Buttocks.RandomDescription(NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) + " "
+              sTest += "of her " + NewAss.RandomDescription(NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) + ", "
+              sTest += WordList(["revealing","exposing","shamelessly displaying","displaying"]).GetWord() + " "
+              sTest += "her " + NewAss.Anus.RandomDescription(NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) + " to him."
+              print("\n" + sTest + "\n")
+
 
           SementNotList = ["semen"]
                

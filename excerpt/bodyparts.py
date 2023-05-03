@@ -441,7 +441,7 @@ class PartDescSet_new:
     def SetSelf(self):
         ParentPart = self._ParentPart
 
-        if isinstance(ParentPart, BodyParts_New):
+        if isinstance(ParentPart, BodyParts_new):
             # Don't bother if bodypart adj lists or noun lists are empty
             if ParentPart.NounListLen() > 0 and ParentPart.AdjListLen() > 0:
                 NounReqTagList = []
@@ -521,14 +521,14 @@ class PartDescSet_new:
                     Adj3ExclTagList = self._ExclTagList
 
                 self._Noun = ParentPart.GetNoun(NotList = self._NotList + self._AdjList, ReqTagList = NounReqTagList, ExclTagList = NounExclTagList)
-                print("  ---")
+                #print("  ---")
                 global TagExclDict
                 UsedTagList = []
                 if self._bVaryAdjTags and len(AdjReqTagList) == 0:
                     for tag in ParentPart.GetUnitTags(self._Noun):
                         if tag in TagExclDict:
                             UsedTagList.append(tag)
-                    print("  Added any excluding noun tags for \"" + self._Noun + "\" to UsedTagList " + str(UsedTagList))
+                    #print("  Added any excluding noun tags for \"" + self._Noun + "\" to UsedTagList " + str(UsedTagList))
 
                 self.ClearAdjList()
                 for i in range(self._iNumAdjs):
@@ -561,7 +561,7 @@ class PartDescSet_new:
                                     LocalExclTagList.append(excltag)
                                     #print("    Detected tag \"" + tag + "\", excluding tags " + str(TagExclDict[tag]))
                 
-                    print("  Picked adj \"" + sAdj + "\" " + str(ParentPart.GetUnitTags(sAdj)) + "\n    excl tags " + str(LocalExclTagList) + "\n    used tags " + str(UsedTagList))
+                    #print("  Picked adj \"" + sAdj + "\" " + str(ParentPart.GetUnitTags(sAdj)) + "\n    excl tags " + str(LocalExclTagList) + "\n    used tags " + str(UsedTagList))
                     self.AddAdj(sAdj)
                     #print("  Adj list " + str(self._AdjList))
 
@@ -714,7 +714,7 @@ class PartDescSet_new:
             self.ExclNounTagList(["silly"])
         self.SetSelf()
 
-class BodyParts_New:
+class BodyParts_new:
     def __init__(self):
         self._AllUnitLists = {"adj": {"master": []}, "noun": {"master": [], "std": []}}
         self._UnitTags = dict()
@@ -1508,7 +1508,7 @@ class Nipples(BodyParts):
           self.DefaultNoun("nipples")
           self.DefaultAdj("erect")
 
-class Breasts_new(BodyParts_New):
+class Breasts_new(BodyParts_new):
      def __init__(self):
           super().__init__()
           
@@ -1591,6 +1591,7 @@ class Breasts_new(BodyParts_New):
                         'proud: large,super,poetic,',
                         'quivering: movement,poetic,',
                         'ripe: poetic,feel,shape,young',
+                        'rosy: color,poetic,white,young',
                         'round: shape,fake',
                         'sensual: poetic',
                         'shapely: shape,poetic',
@@ -2219,6 +2220,197 @@ class AssFemale(BodyParts):
                               'sun-kissed',
                               'tanned'
                             ])
+          
+          self.DefaultNoun("ass")
+
+class AnusFemale_new(BodyParts_new):
+     def __init__(self):
+          super().__init__()
+
+          self.NounList(['anus x4: std,default,clinical,sing',
+                         'arse-cunt: crude,sing',
+                         'asshole x4: std,slang,crude,sing',
+                         'back orifice: desc,clinical,sing',
+                         'back passage: desc,poetic,sing',
+                         'back-pussy: silly,crude,slang,sing',
+                         'backdoor: desc,slang,sing',
+                         'bowels: std,plur',
+                         'brown hole: desc,slang,crude,sing',
+                         'bunghole: silly,crude,slang,sing',
+                         'chocolate starfish: silly,crude,slang,sing',
+                         'corn hole: silly,crude,slang,sing',
+                         'dirt-pipe: crude,slang,sing',
+                         'dirt-box: crude,slang,sing',
+                         'fart-blaster: silly,crude,slang,sing',
+                         'fart-box: silly,crude,slang,sing',
+                         'fart-hole: silly,crude,slang,sing',
+                         'heinie hole: desc,slang,cute,sing',
+                         'knot: desc, sing',
+                         'poop-chute: crude,slang,desc,sing',
+                         'poop-trap: crude,slang,sing',
+                         'rear orifice: desc, clinical, sing',
+                         'rectal cavity: desc, clinical, sing',
+                         'rectum: std,clinical,sing',
+                         'ring: desc,sing',
+                         'rosebud: desc,slang,cute,poetic,crude,sing',
+                         'shit-hole: crude,slang,desc,sing',
+                         'shitter: crude,slang,sing',
+                         'sphincter x2: std,clinical,sing',
+                         'starfish x2: silly,cute,slang,poetic,crude,sing',
+                        ])
+       
+          self.AdjList(['brown: color',
+                        'clenched: small,tight,action',
+                        'flexing: action',
+                        'forbidden: taboo',
+                        'fuckable: horny',
+                        'gaping: large,gape',
+                        'knotted: small,tight,desc',
+                        'lewd: horny',
+                        'little x4: small,cute,',
+                        'loose: gape',
+                        'nasty: taboo',
+                        'naughty: horny',
+                        'pert: cute,young',
+                        'puckered: action',
+                        'rusty: desc,color',
+                        'shy: horny,taboo',
+                        'smooth: feel,desc',
+                        'snug x2: small,tight,cute,'
+                        'taboo: taboo',
+                        'tender: feel,desc,cute',
+                        'tight x4: small,tight',
+                        'wanton: horny',
+                        'well-used: gape,old',
+                        'willing: horny',
+                        'winking: small,tight,action',
+                       ])
+          
+          self.DefaultNoun("anus")
+          
+class ButtocksFemale_new(BodyParts_new):
+     def __init__(self):
+          super().__init__()
+     
+          self.NounList(['buns',
+               'butt-cheeks',
+               'buttocks',
+               'cheeks'])
+               
+          self.AdjList(['ample',
+               'chubby',
+               'curvaceous',
+               'curvy',
+               'cute',
+               'fat',
+               'honeyed',
+               'jiggling',
+               'juicy',
+               'luscious',
+               'muscular',
+               'plump',
+               'rotund',
+               'round',
+               'rounded',
+               'shapely','shapely','shapely',
+               'smooth',
+               'squeezable','squeezable',
+               'succulent',
+               'supple',
+               'sweet',
+               'tender',
+               'thick','thick','thick',
+               'tight',
+               'trim',
+               'voluptuous',
+               'well-rounded'])
+               
+          #self.ColorList(['bronzed',
+          #                    'black',
+          #                    'brown',
+          #                    'coffee-colored',
+          #                    'creamy',
+          #                    'dark',
+          #                    'pale',
+          #                    'pink',
+          #                    'rosy',
+          #                    'sun-kissed',
+          #                    'tanned'
+          #                  ])
+          
+          self.DefaultNoun("buttocks")
+          
+class AssFemale_new(BodyParts_new):
+     def __init__(self):
+          super().__init__()
+          
+          self.Anus = AnusFemale_new()
+          self.Buttocks = ButtocksFemale_new()
+          
+          self.NounList(['ass',
+               'backside',
+               'behind',
+               'booty',
+               'bottom',
+               'bum',
+               'butt',
+               'gluteous maximus',
+               'heinie',
+               'rump',
+               'tush',
+               'tushy'])
+               
+          self.AdjList(['ample',
+               'bountiful',
+               'broad',
+               'bubble-shaped',
+               'chubby',
+               'curvaceous',
+               'curvy',
+               'cute little',
+               'fat',
+               'fuckable',
+               'generous',
+               'glistening',
+               'huge',
+               'honeyed',
+               'jiggling',
+               'juicy',
+               'lush',
+               'luscious',
+               'muscular',
+               'nubile',
+               'pert',
+               'plump',
+               'ripe',
+               'rotund',
+               'round',
+               'rounded',
+               'shameless',
+               'shapely',
+               'succulent',
+               'supple',
+               'sweet',
+               'tender',
+               'thick','thick',
+               'tight',
+               'trim',
+               'voluptuous',
+               'womanly',
+               'well-rounded'])
+               
+          #self.ColorList(['bronzed',
+          #                    'black',
+          #                    'brown',
+          #                    'coffee-colored',
+          #                    'creamy',
+          #                    'dark',
+          #                    'pale',
+          #                    'pink',
+          #                    'rosy',
+          #                    'sun-kissed',
+          #                    'tanned'
+          #                  ])
           
           self.DefaultNoun("ass")
           
