@@ -389,54 +389,178 @@ class BodyParts:
                
           return sRandomDesc
 
+class PartDescSet_new:
+    def __init__(self, ParentPart, iNumAdjs = 3, ExtraAdjList = None, NotList = [], bStdNouns = True, bDescNouns = True, bSillyNouns = True):
+        self._ParentPart = ParentPart
+        self._NotList = NotList
+        self._Noun = ""
+        self._Color = ""
+        self._AdjList = []
+
+        if ExtraAdjList is None:
+            ExtraAdjList = []
+
+        self.SetSelf(iNumAdjs = iNumAdjs, ExtraAdjList = ExtraAdjList)
+
+    def SetSelf(self, iNumAdjs = 3, ExtraAdjList = None):
+        ParentPart = self._ParentPart
+
+        if ExtraAdjList is None:
+            ExtraAdjList = []
+
+        if isinstance(ParentPart, BodyParts_New):
+            self._Noun = ParentPart.GetNoun(NotList = self._NotList + self._AdjList)
+
+            for i in range(iNumAdjs):
+                sAdj = ParentPart.GetAdj(NotList = self._NotList + self._AdjList)
+                self.AddAdj(sAdj)
+
+            for adj in ExtraAdjList:
+                self.AddAdj(adj)
+
+            #if len(ParentPart._ColorList.GetWordList()) > 0:
+            #    self._Color = ParentPart.GetColor(NotList = self._NotList + self._AdjList + [self._Noun])
+
+    def SetNotList(self, NotList):
+        self._NotList = NotList
+        self.SetSelf()
+
+    def AddAdj(self, adj):
+        if adj != "":
+            self._AdjList.append(adj)
+
+    def RemoveAdj(self, adj):
+        if adj in self._AdjList:
+            self._AdjList.remove(adj)
+
+    def RemoveAdjByNum(self, inum):
+        if inum >= 0 and inum < len(self._AdjList):
+            self._AdjList.pop(inum)
+
+    def SetAdj(self, inum, adj):
+        if inum >= 0 and inum < len(self._AdjList):
+            self._AdjList[inum] = adj
+
+    def SetNoun(self, noun):
+        self._Noun = noun
+
+    def SetColor(self, color):
+        self._Color = color
+
+    def Adj(self, inum):
+        sAdj = ""
+        if inum >= 0 and inum < len(self._AdjList):
+            sAdj = self._AdjList[inum]
+        
+        return sAdj
+
+    def Noun(self):
+        return self._Noun
+
+    def Color(self):
+        return self._Color
+
+    def GetFullDesc(self, bColor = True):
+        sFullDesc = ""
+        DescWordList = []
+
+        if self.Noun() != "":
+            DescWordList.insert(0, self.Noun())
+        #if self.Color() != "" and bColor:
+        #    DescWordList.insert(0, self.Color())
+        DescWordList = self._AdjList + DescWordList
+
+        if len(DescWordList) < 3:
+            sFullDesc = " ".join(DescWordList)
+        elif len(DescWordList) == 3:
+            sFullDesc = ", ".join(DescWordList[:1]) + ", " + " ".join(DescWordList[1:])
+        elif len(DescWordList) == 4:
+            sFullDesc = ", ".join(DescWordList[:-2]) + ", " + " ".join(DescWordList[-2:])
+        else:
+            sFullDesc = ", ".join(DescWordList[:-3]) + ", " + " ".join(DescWordList[-3:])
+        
+        return sFullDesc
+
+    def GetDescWordList(self):
+        DescWordList = []
+
+        if self.Noun() != "":
+            DescWordList.insert(0, self.Noun())
+        #if self.Color() != "":
+        #    DescWordList.insert(0, self.Color())
+        DescWordList = self._AdjList + DescWordList
+
+        return DescWordList
+
 class BodyParts_New:
     def __init__(self):
-        self._NounLists = {"master": [], "std": []}
-        self._AdjLists = {"master": []}
+        self._AllUnitLists = {"adj": {"master": []}, "noun": {"master": [], "std": []}}
         self._DefaultNoun = ""
         self._DefaultAdj = "naked"
           
         self.NounHistoryQ = HistoryQ(3)
         self.AdjHistoryQ = HistoryQ(3)
 
-        self.PartDescSet = PartDescSet(self)
+        self.PartDescSet = PartDescSet_new(self)
+
+    def GetUnitList(self, sListName, sType):
+        UnitList = None
+        ListDict = self._AllUnitLists[sType.lower()]
+
+        if sListName.lower() in ListDict:
+            UnitList = ListDict[sListName]
+
+        return UnitList 
 
     def GetNounList(self, sListName):
-        NounList = None
+        return self.GetUnitList(sListName, "noun") 
 
-        if sListName.lower() in self._NounLists:
-            NounList = self._NounLists[sListName]
+    def GetAdjList(self, sListName):
+        return self.GetUnitList(sListName, "adj") 
 
-        return NounList 
+    def AddUnitToList(self, sUnit, sListName, sType, iPriority = None):
+        UnitList = self.GetUnitList(sListName, sType)
+        ListDict = self._AllUnitLists[sType.lower()]
 
-    def AddNounToList(self, sNoun, sListName, iPriority = None):
-        NounList = self.GetNounList(sListName)
-
-        if NounList is None:
+        if UnitList is None:
             #create
-            self._NounLists[sListName] = []
+            ListDict[sListName] = []
 
         if iPriority is None:
             iPriority = 1
 
-        if not self.IsNounInList(sNoun, sListName):
+        if not self.IsUnitInList(sUnit, sListName, sType):
             for i in range(iPriority):
-                self._NounLists[sListName].append(sNoun)
+                ListDict[sListName].append(sUnit)
+
+        self.PartDescSet.SetSelf()
+
+    def AddNounToList(self, sNoun, sListName, iPriority = None):
+        self.AddUnitToList(sNoun,sListName,"noun", iPriority = iPriority)
+
+    def AddAdjToList(self, sNoun, sListName, iPriority = None):
+        self.AddUnitToList(sNoun,sListName,"adj", iPriority = iPriority)
+
+    def IsUnitInList(self, sUnit, sListName, sType):
+        bIsUnitInList = False 
+
+        UnitList = self.GetUnitList(sListName, sType)
+        if not UnitList is None:
+            if sUnit in UnitList:
+                bIsUnitInList = True
+
+        return bIsUnitInList
 
     def IsNounInList(self, sNoun, sListName):
-        bIsNounInList = False 
+        return self.IsUnitInList(sNoun, sListName, "noun")
 
-        NounList = self.GetNounList(sListName)
-        if not NounList is None:
-            if sNoun in NounList:
-                bIsNounInList = True
+    def IsAdjInList(self, sNoun, sListName):
+        return self.IsUnitInList(sNoun, sListName, "adj")
 
-        return bIsNounInList
-
-    def NounList(self, NewNounList):
-        #print("Entered NounList()")
-        for item in NewNounList:
-            sNoun = ""
+    def UnitList(self, NewUnitList, sType):
+        #print("Entered UnitList()")
+        for item in NewUnitList:
+            sUnit = ""
             iPriority = 1
             TagList = []
 
@@ -456,23 +580,23 @@ class BodyParts_New:
 
             ItemSections = item.split(":")
 
-            # locate noun 
-            #print(" Looking for noun")
+            # locate Unit 
+            #print(" Looking for Unit")
             #print("  Looking for colon[:]")
             if len(ItemSections) > 1:
                 #print("   Colon[:] found. ItemSections[0] = \"" + ItemSections[0] + "\"")
-                matchNoun = re.search(r"([x][\d]+)", ItemSections[0])
+                matchUnit = re.search(r"([x][\d]+)", ItemSections[0])
                 #print("   Looking for priority end point")
-                if matchNoun:
-                    sNoun = ItemSections[0][0:matchNoun.span()[0]]
-                    #print("    Priority end point found. sNoun = \"" + sNoun + "\"")
+                if matchUnit:
+                    sUnit = ItemSections[0][0:matchUnit.span()[0]]
+                    #print("    Priority end point found. sUnit = \"" + sUnit + "\"")
                 else:
-                    sNoun =  ItemSections[0]
-                    #print("    No priority endpoint found. Using ItemSections[0] as noun. sNoun = \"" + sNoun + "\"")
-                sNoun = sNoun.strip()
+                    sUnit =  ItemSections[0]
+                    #print("    No priority endpoint found. Using ItemSections[0] as Unit. sUnit = \"" + sUnit + "\"")
+                sUnit = sUnit.strip()
             else:
-                sNoun = ItemSections[0].strip()
-                #print("   No colon[:] found. sNoun = \"" + sNoun + "\"")
+                sUnit = ItemSections[0].strip()
+                #print("   No colon[:] found. sUnit = \"" + sUnit + "\"")
 
             # locate tag list 
             #print(" Looking for tag list")
@@ -483,49 +607,20 @@ class BodyParts_New:
             #else:
                 #print("  Tag list not found.")
 
-            self.AddNounToList(sNoun, "master", iPriority)
-            #print(" Added \"" + sNoun + "\" to master list.")
+            self.AddUnitToList(sUnit, "master", sType, iPriority)
+            #print(" Added \"" + sUnit + "\" to master list.")
             for tag in TagList:
-                self.AddNounToList(sNoun, tag, iPriority)
-                #print(" Added \"" + sNoun + "\" to " + tag + " list.")
+                self.AddUnitToList(sUnit, tag, sType, iPriority)
+                #print(" Added \"" + sUnit + "\" to " + tag + " list.")
                
         self.PartDescSet.SetSelf()
 
-    #def DescNounList(self, NewNounList = None):
-    #    if NewNounList == None:
-    #        SetDescNounList = []
-    #    else:
-    #        SetDescNounList = NewNounList 
-               
-    #    self._DescNounList = WordList(SetDescNounList)
+    def NounList(self, NewNounList):
+        self.UnitList(NewNounList, "noun")
 
-    #    self.PartDescSet.SetSelf()
+    def AdjList(self, NewAdjList):
+        self.UnitList(NewAdjList, "adj")
 
-    #def SillyNounList(self, NewNounList = None):
-    #    if NewNounList == None:
-    #        SetSillyNounList = []
-    #    else:
-    #        SetSillyNounList = NewNounList 
-               
-    #    self._SillyNounList = WordList(SetSillyNounList)
-
-    #    self.PartDescSet.SetSelf()
-
-    #def NounList(self, NewNounList = None):
-    #    self.StdNounList(NewNounList)
-
-    #    self.PartDescSet.SetSelf()
-          
-    #def AdjList(self, NewAdjList = None):
-    #    if NewAdjList == None:
-    #        SetAdjList = []
-    #    else:
-    #        SetAdjList = NewAdjList
-               
-    #    self._AdjList = WordList(SetAdjList)
-
-    #    self.PartDescSet.SetSelf()
-          
     #def ColorList(self, NewColorList = None):
     #    if NewColorList == None:
     #        SetColorList = []
@@ -536,44 +631,44 @@ class BodyParts_New:
 
     #    self.PartDescSet.SetSelf()
           
-    #def DefaultNoun(self, NewNoun = None):
-    #    if NewNoun == None:
-    #        NewNoun = ""
+    def DefaultNoun(self, NewNoun = None):
+        if NewNoun == None:
+            NewNoun = ""
                
-    #    self._DefaultNoun = NewNoun 
+        self._DefaultNoun = NewNoun 
      
-    #def DefaultAdj(self, NewAdj = None):
-    #    if NewAdj == None:
-    #        NewAdj = ""
+    def DefaultAdj(self, NewAdj = None):
+        if NewAdj == None:
+            NewAdj = ""
                
-    #    self._DefaultAdj = NewAdj 
+        self._DefaultAdj = NewAdj 
           
-    #def GetDefaultNoun(self, NotList = None):
-    #    sDefaultNoun = ""
+    def GetDefaultNoun(self, NotList = None):
+        sDefaultNoun = ""
           
-    #    if NotList == None:
-    #        NotList = []
+        if NotList == None:
+            NotList = []
 
-    #    if self._DefaultNoun not in NotList:
-    #        sDefaultNoun = self._DefaultNoun
+        if self._DefaultNoun not in NotList:
+            sDefaultNoun = self._DefaultNoun
                
-    #    return sDefaultNoun
+        return sDefaultNoun
           
-    #def GetDefaultAdj(self, NotList = None):
-    #    sDefaultAdj = ""
+    def GetDefaultAdj(self, NotList = None):
+        sDefaultAdj = ""
           
-    #    if NotList == None:
-    #        NotList = []
+        if NotList == None:
+            NotList = []
 
-    #    if self._DefaultAdj not in NotList:
-    #        sDefaultAdj = self._DefaultAdj
+        if self._DefaultAdj not in NotList:
+            sDefaultAdj = self._DefaultAdj
                
-    #    return sDefaultAdj
+        return sDefaultAdj
      
-    def GetNoun(self, sNot = "", NotList = None, ReqTagList = None, ExclTagList = None):
-        sNoun = "" 
-        LocalNounList = []
-        print("  Entered GetNoun()")
+    def GetUnit(self, sType, sNot = "", NotList = None, ReqTagList = None, ExclTagList = None):
+        sUnit = "" 
+        LocalUnitList = []
+        #print("  Entered GetUnit()")
          
         if NotList == None:
             NotList = []
@@ -584,36 +679,33 @@ class BodyParts_New:
         if ExclTagList is None:
             ExclTagList = []
 
-        ExclNounList = []
-        for nounlist in ExclTagList:
-            for noun in self.GetNounList(nounlist):
-                ExclNounList.append(noun)
+        ExclUnitList = []
+        for Unitlist in ExclTagList:
+            for Unit in self.GetUnitList(Unitlist, sType):
+                ExclUnitList.append(Unit)
 
         if ReqTagList == None or len(ReqTagList) == 0:
             #print("  ReqTagList is empty. Using master list.")
-            for noun in self.GetNounList("master"):
-                if not noun in ExclNounList:
-                    LocalNounList.append(noun)
+            for Unit in self.GetUnitList("master", sType):
+                if not Unit in ExclUnitList:
+                    LocalUnitList.append(Unit)
         else:
             for taglistname in ReqTagList:
                 #print("  Adding taglist " + taglistname)
-                for noun in self.GetNounList(taglistname):
-                    if not noun in ExclNounList:
-                        LocalNounList.append(noun)
+                for Unit in self.GetUnitList(taglistname, sType):
+                    if not Unit in ExclUnitList:
+                        LocalUnitList.append(Unit)
 
-        #print("  LocalNounList = " + str(LocalNounList) + "\n")
+        #print("  LocalUnitList = " + str(LocalUnitList) + "\n")
 
-        return WordList(LocalNounList).GetWord(sNot = sNot, NotList = NotList, SomeHistoryQ = BodyPartHistoryQ)
-     
-    #def GetAdj(self, sNot = "", NotList = None):
-    #    if NotList == None:
-    #        NotList = []
-          
-    #    if sNot != "":
-    #        NotList.append(sNot)
-                    
-    #    return self._AdjList.GetWord(sNot = sNot, NotList = NotList, SomeHistoryQ = BodyPartHistoryQ)
-          
+        return WordList(LocalUnitList).GetWord(sNot = sNot, NotList = NotList, SomeHistoryQ = BodyPartHistoryQ)
+
+    def GetNoun(self, sNot = "", NotList = None, ReqTagList = None, ExclTagList = None):
+        return self.GetUnit("noun", sNot = sNot, NotList = NotList, ReqTagList = ReqTagList, ExclTagList = ExclTagList)
+
+    def GetAdj(self, sNot = "", NotList = None, ReqTagList = None, ExclTagList = None):
+        return self.GetUnit("adj", sNot = sNot, NotList = NotList, ReqTagList = ReqTagList, ExclTagList = ExclTagList)
+
     #def GetColor(self, sNot = "", NotList = None):
     #    if NotList == None:
     #        NotList = []
@@ -623,116 +715,96 @@ class BodyParts_New:
                     
     #    return self._ColorList.GetWord(sNot = sNot, NotList = NotList, SomeHistoryQ = BodyPartHistoryQ)
           
-    #def GetNounList(self):
-    #    return self.GetStdNounList()
-
-    #def GetStdNounList(self):
-    #    return self._StdNounList.List 
-
-    #def GetDescNounList(self):
-    #    return self._DescNounList.List 
-
-    #def GetSillyNounList(self):
-    #    return self._SillyNounList.List 
-          
-    #def GetAdjList(self):
-    #    return self._AdjList.List
-          
     #def GetColorList(self):
     #    return self._ColorList.List
           
-    #def HasColors(self):
-    #    bHasColors = False 
-          
-    #    if len(self._ColorList.List) > 0:
-    #        bHasColors = True
-               
-    #    return bHasColors
+    def HasColors(self):
+        return False
 
-    ##noun only ("hair")
-    #def ShortDescription(self, ExtraAdjList = None, sNot = "", NotList = None, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
-    #    DescSet = None 
+    #noun only ("hair")
+    def ShortDescription(self, ExtraAdjList = None, sNot = "", NotList = None):
+        DescSet = None 
          
-    #    if NotList == None:
-    #        NotList = []
+        if NotList == None:
+            NotList = []
           
-    #    if sNot != "":
-    #        NotList.append(sNot)
+        if sNot != "":
+            NotList.append(sNot)
 
-    #    if ExtraAdjList is None:
-    #        ExtraAdjList = []
+        if ExtraAdjList is None:
+            ExtraAdjList = []
 
-    #    DescSet = PartDescSet(self, ExtraAdjList = ExtraAdjList, iNumAdjs = 0, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
+        DescSet = PartDescSet_new(self, ExtraAdjList = ExtraAdjList, iNumAdjs = 0, NotList = NotList)
 
-    #    return DescSet.GetFullDesc(bColor = False)
+        return DescSet.GetFullDesc(bColor = False)
      
-    ##adjective noun ("red hair")
-    #def MediumDescription(self, ExtraAdjList = None, sNot = "", NotList = None, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
-    #    DescSet = None
+    #adjective noun ("red hair")
+    def MediumDescription(self, ExtraAdjList = None, sNot = "", NotList = None):
+        DescSet = None
           
-    #    if NotList == None:
-    #        NotList = []
+        if NotList == None:
+            NotList = []
           
-    #    if sNot != "":
-    #        NotList.append(sNot)
+        if sNot != "":
+            NotList.append(sNot)
           
-    #    DescSet = PartDescSet(self, ExtraAdjList = ExtraAdjList, iNumAdjs = 1, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
+        DescSet = PartDescSet_new(self, ExtraAdjList = ExtraAdjList, iNumAdjs = 1, NotList = NotList)
           
-    #    return DescSet.GetFullDesc(bColor = CoinFlip())
+        return DescSet.GetFullDesc(bColor = CoinFlip())
      
-    ##adjective1 adjective2 adjective3 noun ("long, wavy, red hair")
-    #def FloweryDescription(self, ExtraAdjList = None, sNot = "", NotList = None, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
-    #    DescSet = None
+    #adjective1 adjective2 adjective3 noun ("long, wavy, red hair")
+    def FloweryDescription(self, ExtraAdjList = None, sNot = "", NotList = None):
+        DescSet = None
           
-    #    if NotList == None:
-    #        NotList = []
+        if NotList == None:
+            NotList = []
           
-    #    if sNot != "":
-    #        NotList.append(sNot)
+        if sNot != "":
+            NotList.append(sNot)
 
-    #    if ExtraAdjList is None:
-    #        ExtraAdjList = []
+        if ExtraAdjList is None:
+            ExtraAdjList = []
           
-    #    iNumAdjs = choice([1,1,1,2,2,2,2,3])
+        iNumAdjs = choice([1,1,1,2,2,2,2,3])
 
-    #    DescSet = PartDescSet(self, ExtraAdjList = ExtraAdjList, iNumAdjs = iNumAdjs, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
+        DescSet = PartDescSet_new(self, ExtraAdjList = ExtraAdjList, iNumAdjs = iNumAdjs, NotList = NotList)
 
-    #    return DescSet.GetFullDesc(bColor = CoinFlip())
+        return DescSet.GetFullDesc(bColor = CoinFlip())
      
-    #def RandomDescription(self, ExtraAdjList = None, sNot = "", NotList = None, bAllowShortDesc = True, bAllowLongDesc = True, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
-    #    sRandomDesc = ""
+    def RandomDescription(self, ExtraAdjList = None, sNot = "", NotList = None, bAllowShortDesc = True, bAllowLongDesc = True):
+        sRandomDesc = ""
           
-    #    if NotList == None:
-    #        NotList = []
+        if NotList == None:
+            NotList = []
           
-    #    if sNot != "":
-    #        NotList.append(sNot)
+        if sNot != "":
+            NotList.append(sNot)
 
-    #    if ExtraAdjList is None:
-    #        ExtraAdjList = []
+        if ExtraAdjList is None:
+            ExtraAdjList = []
           
-    #    iRand = randint(0, 12)
-    #    if iRand in range(0, 3):
-    #    #short desc if allowed 
-    #        if bAllowShortDesc:
-    #            #use noun from the list or default noun
-    #            if CoinFlip():
-    #                    sRandomDesc = self.ShortDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
-    #            else:
-    #                    sRandomDesc = self.GetDefaultNoun(NotList = NotList)
-    #        else:
-    #            sRandomDesc = self.MediumDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
-    #    elif iRand in range(3,6):
-    #    #medium desc 
-    #        sRandomDesc = self.MediumDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
-    #    else:
-    #    #flowery desc if allowed
-    #        if bAllowLongDesc:
-    #            sRandomDesc = self.FloweryDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
-    #        else:
-    #            sRandomDesc = self.MediumDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
+        iRand = randint(0, 12)
+        if iRand in range(0, 3):
+        #short desc if allowed 
+            if bAllowShortDesc:
+                #use noun from the list or default noun
+                if CoinFlip():
+                        sRandomDesc = self.ShortDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList)
+                else:
+                        sRandomDesc = self.GetDefaultNoun(NotList = NotList)
+            else:
+                sRandomDesc = self.MediumDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList)
+        elif iRand in range(3,6):
+        #medium desc 
+            sRandomDesc = self.MediumDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList)
+        else:
+        #flowery desc if allowed
+            if bAllowLongDesc:
+                sRandomDesc = self.FloweryDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList)
+            else:
+                sRandomDesc = self.MediumDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList)
                
-    #    return sRandomDesc
+        return sRandomDesc
 
 class Face(BodyParts):
      def __init__(self):
@@ -1146,56 +1218,68 @@ class Breasts_new(BodyParts_New):
                          'tits : std,crude,slang,plur',
                         ])
                
-          #self.AdjList(['bouncy: large,movement,pos',
-          #              'bountiful: large,poetic,pos',
-          #              'budding: small,young,poetic,pos',
-          #              'buxom: large,pos',
-          #              'delicious: super,poetic,pos',
-          #              'double-D: large,size,pos',
-          #              'full: large,poetic,pos',
-          #              'fulsome: large,poetic,pos',
-          #              'generous: large,poetic,pos',
-          #              'gentle: poetic,feel,pos',
-          #              'girlish: small,young,pos',
-          #              'glorious: super,pos',
-          #              'gorgeous: super,pos',
-          #              'heaving: movement,poetic,pos',
-          #              'heavy: large,feel,pos',
-          #              'impressive: super,large,pos',
-          #              'jiggling: large,movement,pos',
-          #              'juicy: large,super,feel,pos',
-          #              'luscious: large,super,pos',
-          #              'lush: large,super,pos',
-          #              'luxuriant: large,super,pos',
-          #              'magnificent: large,super,pos',
-          #              'nubile: young,pos',
-          #              'pale: color',
-          #              'pendulous: large,shape,older',
-          #              'perky: shape,young,pos',
-          #              'pert: shape,young,poetic,pos',
-          #              'petite: small,pos',
-          #              'plump: large,feel,shape,pos',
-          #              'proud: large,super,poetic,pos',
-          #              'quivering: movement,poetic,pos',
-          #              'ripe: young,poetic,pos',
-          #              'round: shape,pos',
-          #              'sensual: poetic,pos',
-          #              'shapely: shape,poetic,pos',
-          #              'smooth: feel,pos',
-          #              'soft: feel,pos',
-          #              'statuesque: large,poetic,pos',
-          #              'stunning: super,pos',
-          #              'succulent: super,poetic,pos',
-          #              'sumptuous: large,super,poetic,pos',
-          #              'supple: feel,poetic,pos',
-          #              'surgically-enhanced: large,shape,fake',
-          #              'swaying: movement,pos',
-          #              'sweet: super,young,pos',
-          #              'swollen: large,shape,pos',
-          #              'tender: feel,poetic,young,pos',
-          #              'voluptuous: large,poetic,pos'])
+          self.AdjList(['A-cup: size,small,pos,white,black,old,young',
+                        'B-cup: size,small,pos,white,black,old,young',
+                        'black: color,pos,black,older,young',
+                        'bite-sized: size,small,pos,white,black,old,young',
+                        'bouncy: large,movement,pos,white,black,older,young',
+                        'bountiful: large,poetic,pos,white,black,older,young',
+                        'bronzed: color,pos,white,black,old,young',
+                        'brown: color,pos,black,older,young',
+                        'budding: small,poetic,pos,white,black,young',
+                        'buxom: large,pos,white,black,older,young',
+                        'chocolate: color,pos,black,older,young',
+                        'dark: color,pos,black,older,young',
+                        'D-cup: size,large,pos,white,black,old,young',
+                        'DDD: size,large,size,pos,white,black,old,young',
+                        'delicious: super,poetic,pos,white,black,older,young',
+                        'double-D: size,large,size,pos,white,black,older,young',
+                        'fair: color,pos,white,older,young',
+                        'fake: fake,large,size,feel,shape,pos,white,black,older,young',
+                        'full: large,poetic,pos,white,black,older,young',
+                        'fulsome: large,poetic,pos,white,black,older,young',
+                        'generous: size,large,poetic,pos,white,black,older,young',
+                        'gentle: poetic,feel,pos,white,black,older,young',
+                        'girlish: small,pos,white,black,young',
+                        'glorious: super,pos,white,black,older,young',
+                        'gorgeous: super,pos,white,black,older,young',
+                        'heaving: movement,poetic,pos,white,black,older,young',
+                        'heavy: large,feel,pos,white,black,older,young',
+                        'impressive: super,large,pos,white,black,older,young',
+                        'jiggling: movement,pos,white,black,older,young',
+                        'juicy: large,super,feel,pos,white,black,older,young',
+                        'luscious: large,super,pos,white,black,older,young',
+                        'lush: large,super,pos,white,black,older,young',
+                        'luxuriant: large,super,pos,white,black,older,young',
+                        'magnificent: large,super,pos,white,black,older,young',
+                        'nubile: pos,white,black,young',
+                        'pale: color,white,older,young',
+                        'pendulous: large,shape,older',
+                        'perky: shape,pos,white,black,young',
+                        'pert: shape,poetic,pos,white,black,old,young',
+                        'petite: size,small,pos,white,black,old,young',
+                        'plump: large,feel,shape,pos,white,black,old,young',
+                        'proud: large,super,poetic,pos,white,black,old,young',
+                        'quivering: movement,poetic,pos,white,black,old,young',
+                        'ripe: poetic,feel,shape,pos,white,black,old,young',
+                        'round: shape,pos,white,black,old,young',
+                        'sensual: poetic,pos,white,black,old,young',
+                        'shapely: shape,poetic,pos,white,black,old,young',
+                        'smooth: feel,pos,white,black,old,young',
+                        'soft: feel,pos,white,black,old,young',
+                        'statuesque: shape,large,poetic,pos,white,black,old,young',
+                        'stunning: super,pos,white,black,old,young',
+                        'succulent: super,poetic,pos,white,black,old,young',
+                        'sumptuous: large,super,poetic,pos,white,black,old,young',
+                        'supple: feel,poetic,pos,white,black,old,young',
+                        'surgically-enhanced: large,shape,fake,white,black,old,young',
+                        'swaying: large,movement,pos,white,black,old,young',
+                        'sweet: super,pos,white,black,old,young',
+                        'swollen: size,large,shape,pos,white,black,old,young',
+                        'tender: feel,poetic,pos,white,black,old,young',
+                        'voluptuous: size,large,poetic,pos,white,black,old,young'])
           
-          #self.DefaultNoun("breasts")
+          self.DefaultNoun("breasts")
           
 class Breasts(BodyParts):
      def __init__(self):

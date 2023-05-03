@@ -310,12 +310,26 @@ class Generator4(ExGen):
           sTweet = ""
 
           NewBreastTest = bodyparts.Breasts_new()
-          ReqTagList = ["silly","crude",]
-          ExclTagList = ["std","poetic"]
-          for i in range(4):
-              sNewNoun = NewBreastTest.GetNoun(ReqTagList = ReqTagList, ExclTagList = ExclTagList)
-              print(["NewBreastTest.GetNoun(ReqTagList = " + str(ReqTagList) + ", ExclTagList = " + str(ExclTagList) + ") = " + sNewNoun])
+          #ReqTagList = ["silly","crude",]
+          #ExclTagList = ["std","poetic"]
+          #for i in range(5):
+          #    sNewNoun = NewBreastTest.GetNoun(ReqTagList = ReqTagList, ExclTagList = ExclTagList)
+          #    print(["NewBreastTest.GetNoun(ReqTagList = " + str(ReqTagList) + ", ExclTagList = " + str(ExclTagList) + ") = " + sNewNoun])
           
+          #ReqTagList = ["size"]
+          #ExclTagList = ["large"]
+          #for i in range(5):
+          #    sNewAdj = NewBreastTest.GetAdj(ReqTagList = ReqTagList, ExclTagList = ExclTagList)
+          #    print(["NewBreastTest.GetAdj(ReqTagList = " + str(ReqTagList) + ", ExclTagList = " + str(ExclTagList) + ") = " + sNewAdj])
+          
+          for i in range(3):
+              print("NewBreastTest.ShortDescription() = " + NewBreastTest.ShortDescription())
+              print("NewBreastTest.MediumDescription() = " + NewBreastTest.MediumDescription())
+              print("NewBreastTest.FloweryDescription() = " + NewBreastTest.FloweryDescription())
+          
+          for i in range(3):
+              print("NewBreastTest.RandomDescription() = " + NewBreastTest.RandomDescription())
+
           sTweet += "'You may cum inside my " + self.FemBodyParts.Vagina.ShortDescription() + " if you like', " 
           sTweet += self.FemaleName.FirstName() + " instructed him, "
           sTweet += "'But only my " + self.MFWB.GetPerson() + " "
