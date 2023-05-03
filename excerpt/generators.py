@@ -321,14 +321,17 @@ class Generator4(ExGen):
           #for i in range(5):
           #    sNewAdj = NewBreastTest.GetAdj(ReqTagList = ReqTagList, ExclTagList = ExclTagList)
           #    print(["NewBreastTest.GetAdj(ReqTagList = " + str(ReqTagList) + ", ExclTagList = " + str(ExclTagList) + ") = " + sNewAdj])
+          NounReqTagList = []
+          NounExclTagList = []
+          AdjReqTagList = []
+          AdjExclTagList = []
+          for i in range(5):
+              #print("NewBreastTest.ShortDescription() = " + NewBreastTest.ShortDescription(NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList))
+              #print("NewBreastTest.MediumDescription() = " + NewBreastTest.MediumDescription(NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList))
+              print("\nNewBreastTest.FloweryDescription():\n  \"" + NewBreastTest.FloweryDescription(NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList)+"\"\n")
           
-          for i in range(3):
-              print("NewBreastTest.ShortDescription() = " + NewBreastTest.ShortDescription())
-              print("NewBreastTest.MediumDescription() = " + NewBreastTest.MediumDescription())
-              print("NewBreastTest.FloweryDescription() = " + NewBreastTest.FloweryDescription())
-          
-          for i in range(3):
-              print("NewBreastTest.RandomDescription() = " + NewBreastTest.RandomDescription())
+          #for i in range(3):
+          #    print("NewBreastTest.RandomDescription() = " + NewBreastTest.RandomDescription(NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList))
 
           sTweet += "'You may cum inside my " + self.FemBodyParts.Vagina.ShortDescription() + " if you like', " 
           sTweet += self.FemaleName.FirstName() + " instructed him, "
