@@ -69,9 +69,9 @@ class PartDescSet:
         if isinstance(ParentPart, BodyParts):
             # Don't bother if bodypart adj lists or noun lists are empty
 
-            bTestBreasts = False
-            if isinstance(ParentPart, Breasts):
-                bTestBreasts = True
+            #bTestBreasts = False
+            #if isinstance(ParentPart, Breasts):
+            #    bTestBreasts = True
 
             if ParentPart.NounListLen() > 0 and ParentPart.AdjListLen() > 0:
                 NounReqTagList = []
@@ -175,8 +175,8 @@ class PartDescSet:
                             ParentPart.AddUnitTag(Unit.sUnit,tag)
                             UsedTagList.append(tag)
 
-                if bTestBreasts and self._iNumAdjs > 3:
-                    print("  ---")
+                #if bTestBreasts and self._iNumAdjs > 3:
+                #    print("  ---")
                 for i in range(self._iNumAdjs):
                     LocalReqTagList = []
                     LocalExclTagList = []
@@ -212,8 +212,8 @@ class PartDescSet:
                                     #print("    Detected tag \"" + tag + "\", excluding tags " + str(TagExclDict[tag]))
                 
                     self.AddAdj(sAdj)
-                    if bTestBreasts:
-                        print("  Picked adj \"" + sAdj + "\" " + str(ParentPart.GetUnitTags(sAdj)) + "\n    excl tags " + str(LocalExclTagList) + "\n    used tags " + str(UsedTagList))
+                    #if bTestBreasts:
+                    #    print("  Picked adj \"" + sAdj + "\" " + str(ParentPart.GetUnitTags(sAdj)) + "\n    excl tags " + str(LocalExclTagList) + "\n    used tags " + str(UsedTagList))
                     #print("  Adj list " + str(self._AdjList))
 
                 # Sort 
@@ -1199,7 +1199,7 @@ class Breasts(BodyParts):
                         'breast implants: std,fake,plur',
                         'breasticles x2: silly,crude,slang,plur',
                         'breasts x3: std,clinical,default,plur',
-                        'buds x2: poetic,cute,plur,desc,small,young',
+                        'buds x2: poetic,cute,desc,small,young,plur',
                         'bust: std,sing',
                         'chest: std,sing',
                         'coconuts: poetic,silly,slang,cute,plur',
@@ -1296,7 +1296,10 @@ class Breasts(BodyParts):
 
         self.Nipples = Nipples()
 
-    def CupBuilder(self):
+    def CupBuilder(self, NotList = None):
+        if NotList == None:
+            NotList = []
+
         CupList = ["A-cup: small,cupsize",
                    "B-cup: small,cupsize",
                    "D-cup: large,cupsize",
@@ -1304,7 +1307,7 @@ class Breasts(BodyParts):
                    "triple-D cup: large,cupsize",
                   ]
 
-        return WordList(CupList).GetWord()
+        return WordList(CupList).GetWord(NotList = NotList)
 
     def ShortDescription(self, ExtraAdjList = None, sNot = "", NotList = None, bCupSize = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
         if NotList == None:
@@ -1320,7 +1323,8 @@ class Breasts(BodyParts):
             bCupSize = CoinFlip()
 
         if bCupSize and len(ExtraAdjList) == 0:
-            ExtraAdjList.append(self.CupBuilder())
+            ExtraAdjList.append(self.CupBuilder(NotList = NotList))
+            print("  Selected cup size is " + ExtraAdjList[0])
 
         return super().ShortDescription(sNot = "", ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList)
           
@@ -1338,7 +1342,8 @@ class Breasts(BodyParts):
             bCupSize = CoinFlip()
 
         if bCupSize and len(ExtraAdjList) == 0:
-            ExtraAdjList.append(self.CupBuilder())
+            ExtraAdjList.append(self.CupBuilder(NotList = NotList))
+            print("  Selected cup size is " + ExtraAdjList[0])
                
         return super().MediumDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
           
@@ -1356,7 +1361,8 @@ class Breasts(BodyParts):
             bCupSize = CoinFlip()
 
         if bCupSize and len(ExtraAdjList) == 0:
-            ExtraAdjList.append(self.CupBuilder())
+            ExtraAdjList.append(self.CupBuilder(NotList = NotList))
+            print("  Selected cup size is " + ExtraAdjList[0])
           
         return super().FloweryDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
           
@@ -1374,7 +1380,8 @@ class Breasts(BodyParts):
             bCupSize = CoinFlip()
 
         if bCupSize:
-            ExtraAdjList.append(self.CupBuilder())
+            ExtraAdjList.append(self.CupBuilder(NotList = NotList))
+            print("  Selected cup size is " + ExtraAdjList[0])
           
         return super().RandomDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
      

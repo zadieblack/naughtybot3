@@ -318,7 +318,7 @@ def FoundIn(sWord, SearchTarget):
           if len(SearchTarget) > 0:
                for s in SearchTarget:
                     if isinstance(s, str):
-                         if s.lower() in sWord.lower() or sWord.lower() in s.lower():
+                         if s.lower().find(sWord.lower()) >= 0 or sWord.lower().find(s.lower()) >= 0:
                               bFound = True
                               break
                
