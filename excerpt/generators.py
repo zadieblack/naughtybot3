@@ -169,8 +169,9 @@ class Generator1(ExGen):
           return sTweet
           
 class Generator2(ExGen):
-     # Spreading open her supple buttocks with his rough hands, he desecrated her well-used anus with his erect boner. 'Fuck me,
-     # Jordan!' she screamed. 'Pound me like your wife!'             
+     # Spreading open her supple buttocks with his rough hands, he desecrated her 
+     # well-used anus with his erect boner. 'Fuck me, Jordan!' she screamed. 
+     # 'Pound me like your wife!'             
      def __init__(self):
          super().__init__(ID = 2, Priority = GenPriority.High)
      
@@ -251,7 +252,8 @@ class Generator2(ExGen):
           return sTweet
 
 class Generator3(ExGen):
-     # 'Please, no!' she said, squirming as he bayonetted her pink cooch. 'Not while my yoga teacher is watching!'
+     # 'Please, no!' she said, squirming as he bayonetted her pink cooch. 'Not 
+     # while my yoga teacher is watching!'
      def __init__(self):
          super().__init__(ID = 3, Priority = GenPriority.Low)
      
@@ -301,7 +303,8 @@ class Generator3(ExGen):
           return sTweet
 
 class Generator4(ExGen):
-     # 'You may cum inside my womanhood if you like', she instructed him, 'But only my photographer is allowed to bayonette my sphincter.'     
+     # 'You may cum inside my womanhood if you like', she instructed him, 'But 
+     # only my photographer is allowed to bayonette my sphincter.'     
      def __init__(self):
          super().__init__(ID = 4, Priority = GenPriority.Normal)
      
@@ -315,14 +318,14 @@ class Generator4(ExGen):
           #for i in range(5):
           #    sNewAdj = NewBreastTest.GetAdj(ReqTagList = ReqTagList, ExclTagList = ExclTagList)
           #    print(["NewBreastTest.GetAdj(ReqTagList = " + str(ReqTagList) + ", ExclTagList = " + str(ExclTagList) + ") = " + sNewAdj])
-          NounReqTagList = []
-          NounExclTagList = []
-          AdjReqTagList = []
-          AdjExclTagList = []
-          for i in range(5):
-              #print("NewBreastTest.ShortDescription() = " + NewBreastTest.ShortDescription(NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList))
-              #print("NewBreastTest.MediumDescription() = " + NewBreastTest.MediumDescription(NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList))
-              print("\nNewBreastTest.FloweryDescription():\n  \"" + NewBreastTest.FloweryDescription(NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList)+"\"\n")
+          #NounReqTagList = []
+          #NounExclTagList = []
+          #AdjReqTagList = []
+          #AdjExclTagList = []
+          #for i in range(5):
+          #    #print("NewBreastTest.ShortDescription() = " + NewBreastTest.ShortDescription(NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList))
+          #    #print("NewBreastTest.MediumDescription() = " + NewBreastTest.MediumDescription(NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList))
+          #    print("\nNewBreastTest.FloweryDescription():\n  \"" + NewBreastTest.FloweryDescription(NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList)+"\"\n")
           
           #for i in range(3):
           #    print("NewBreastTest.RandomDescription() = " + NewBreastTest.RandomDescription(NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList))
@@ -336,7 +339,8 @@ class Generator4(ExGen):
           return sTweet
           
 class Generator5(ExGen):
-     # 'Oh, Leon,' she moaned, 'I'm so thirsty for your glossy spunk!' 'But Ophelia,' he said, 'You're my mother-in-law!'
+     # 'Oh, Leon,' she moaned, 'I'm so thirsty for your glossy spunk!' 'But 
+     # Ophelia,' he said, 'You're my mother-in-law!'
      def __init__(self):
          super().__init__(ID = 5, Priority = GenPriority.AboveAverage)
          
@@ -344,20 +348,19 @@ class Generator5(ExGen):
           super().GenerateTweet()
           sTweet = ""
 
-          NewAss = bodyparts.AssFemale_new()
-          NounReqTagList = []
-          NounExclTagList = []
-          AdjReqTagList = []
-          AdjExclTagList = []
-          for i in range(5):
-              sTest = ""
-              sTest += "She " + WordList(["bent over","bent over in front of him","slid her panties down","looked back at him",]).GetWord() + " and "
-              sTest += "spread the " + NewAss.Buttocks.RandomDescription(NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) + " "
-              sTest += "of her " + NewAss.RandomDescription(NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) + ", "
-              sTest += WordList(["revealing","exposing","shamelessly displaying","displaying"]).GetWord() + " "
-              sTest += "her " + NewAss.Anus.RandomDescription(NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) + " to him."
-              print("\n" + sTest + "\n")
-
+          #NewAss = bodyparts.AssFemale()
+          #NounReqTagList = []
+          #NounExclTagList = []
+          #AdjReqTagList = []
+          #AdjExclTagList = []
+          #for i in range(5):
+          #    sTest = ""
+          #    sTest += "She " + WordList(["bent over","bent over in front of him","slid her panties down","looked back at him",]).GetWord() + " and "
+          #    sTest += "spread the " + NewAss.Buttocks.RandomDescription(NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) + " "
+          #    sTest += "of her " + NewAss.RandomDescription(NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) + ", "
+          #    sTest += WordList(["revealing","exposing","shamelessly displaying","displaying"]).GetWord() + " "
+          #    sTest += "her " + NewAss.Anus.RandomDescription(NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) + " to him."
+          #    print("\n" + sTest + "\n")
 
           SementNotList = ["semen"]
                
@@ -379,7 +382,8 @@ class Generator5(ExGen):
           return sTweet
           
 class Generator6(ExGen):
-     # 'You don't have to hide the truth from me, Honey,' he said, 'Tom is a successful opthamologist and I'm just a lowly roadie!' 
+     # 'You don't have to hide the truth from me, Honey,' he said, 'Tom is a 
+     # successful opthamologist and I'm just a lowly roadie!' 
      # 'That's true,' she said, 'But YOU have a 8 1/2 inch fuck-pole!'     
      def __init__(self):
          super().__init__(ID = 6, Priority = GenPriority.Low)
@@ -461,8 +465,9 @@ class Generator6(ExGen):
           return sTweet
           
 class Generator7(ExGen):
-     # Charity bit her lip as Tristan fondled her heaving bosoms. 'Oh god,' she said, 'What would my pastor say 
-     # if he knew that I was letting my pool boy pump into my crack?'     
+     # Charity bit her lip as Tristan fondled her heaving bosoms. 'Oh god,' she 
+     # said, 'What would my pastor say if he knew that I was letting my pool 
+     # boy pump into my crack?'     
      def __init__(self):
          super().__init__(ID = 7, Priority = GenPriority.AboveAverage)
      
@@ -502,8 +507,10 @@ class Generator7(ExGen):
           return sTweet
 
 class Generator8(ExGen):
-     #Bianca bit her lip as he caressed her youthful thighs. 'Ferdinand!' she said, 'My orthodontist is in the next room!' 
-     #'Should we invite him?' he asked innocently, inserting a finger into her love channel.     
+     # Bianca bit her lip as he caressed her youthful thighs. 'Ferdinand!' she 
+     # said, 'My orthodontist is in the next room!' 
+     # 'Should we invite him?' he asked innocently, inserting a finger into 
+     # her love channel.     
      def __init__(self):
          super().__init__(ID = 8, Priority = GenPriority.Normal)
      
@@ -8045,6 +8052,49 @@ class Generator115(ExGen):
 #        sTweet = ""
 
 #        return sTweet
+
+## A dark shadow fell over Celia as she sunned herself by the pool. "'Sup Mrs. Jones," 
+## said a tall, shirtless figure.
+## "Oh! Ah, hi Davey!" Celia squeaked. For a moment she hadn't recognized her 
+## son's childhood friend. The boy's tanned, muscular body was covered in tattoos.
+## His jaw was covered in thick stubble. And he had pierced his nipples. She tried
+## not to stare. 
+## "My goodness, you've really grown over the summer!" she said. "If you're looking
+## "for Jack, I'm afraid he's not home."
+## "Nah, I'm good," said Davey, looking her up and down in her swimsuit. "You 
+## lookin' fine, Mrs. J. Now why don't you bend over and let Davey put some spunk 
+## in your trunk?"
+##
+## BONUS: Celia sighed and began unzipping his pants.
+##
+## BONUS: "I'm sorry?!?" she exclaimed.
+## "Don't play Mrs. J," he said. "I asked if you wanted some dairy in your cherry."
+#
+#class Generator117(ExGen):
+#    def __init__(self):
+#        super().__init__(ID = 117, Priority = GenPriority.Normal)
+     
+#    def GenerateTweet(self):
+#        super().GenerateTweet()
+#        sTweet = ""
+
+        WordList(["spunk in your trunk","splooge in your cooj","cream in your seam",
+                  "cock in your sock","sauce in your box","juice in your caboose",
+                  "nut in your butt","squirt up your skirt","shot in your twat",
+                  "jizz in your biz","gravy in your cave-y","goo in you",
+                  "mayonnaise between your legs","spit on your clit",
+                  "front up your cunt","beef in your queef","rod in your bod",
+                  "pole in your hole","schlong in your thong","tool in your grool",
+                  "power in your flower","wrench in your stench-trench",
+                  "man-snot in your twat","batch in your snatch",
+                  "honey in your cunny","dairy in your cherry","jam in your clam",
+                  "splash in your gash","paint on your taint","ham in your clam",
+                  "testicles between your breasticles","meat in your backseat",
+                 ]).GetWord()
+
+#        return sTweet
+
+
           
 #class GeneratorSelector():
 #    def __init__(self):

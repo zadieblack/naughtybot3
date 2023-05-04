@@ -1530,6 +1530,8 @@ class TweetTxtGen48(TweetTxtGen):
           
         return sText
 
+## A sweet, tender, and surprisingly soulful read right up to the part where
+## the heroine gets ass-fucked by a T-Rex
 # class TweetTxtGen49(TweetTxtGen):
      # The sexy read that was BANNED on Amazon! Now available on Smashwords
      # ID = 44
