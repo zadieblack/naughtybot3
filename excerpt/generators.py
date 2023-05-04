@@ -8116,66 +8116,72 @@ class Generator118(ExGen):
         sHisName = self.MaleName.FirstName()
 
         FemBack = self.FemBodyParts.Back
-        BackDescSet = FemBack.PartDescSet
-        BackDescSet.NotList(["curved"])
-        BackDescSet.AdjExclTagList(["nude"])
+        #BackDescSet = FemBack.PartDescSet
 
-        sTweet += sHerName + " was lying in the bed on her stomach"
-        if randint(1,6) == 6:
-            sTweet += " when she heard "
-            sTweet += WordList(["her father","her step-father","brother","Mr. " + names.ClassyLastNames().GetWord()]).GetWord() + " "
-            sTweet += "come into the room. He must have thought she was asleep. He pulled "
-        else:
-            sTweet += ". " + sHisName + " pulled "
-        sTweet += "the " + WordList(["covers","satin sheets","silk bedsheet"]).GetWord() + " "
-        sTweet += "down inch-by-inch, revealing more and more of " 
-        sTweet += "her " + WordList(["nude","naked"]).GetWord() + ", "
-        sTweet += self.FemBodyParts.FloweryDescription(AdjExclTagList = ["nude","super"]) + ". "
+
+        BreastDescSet = bodyparts.PartDescSet(self.FemBodyParts.Breasts, iNumAdjs = 4)
+        sTweet += "He admired her " + BreastDescSet.GetFullDesc() + ".\n\n"
+
+        BreastTest = self.FemBodyParts.Breasts
+        for i in range(10):
+            sTweet += "\nHe gazed admiringly at her " + BreastTest.RandomDescription(bAllowShortDesc = False, bCupSize = True)
+
+        #sTweet += sHerName + " was lying in the bed on her stomach"
+        #if randint(1,6) == 6:
+        #    sTweet += " when she heard "
+        #    sTweet += WordList(["her father","her step-father","brother","Mr. " + names.ClassyLastNames().GetWord()]).GetWord() + " "
+        #    sTweet += "come into the room. He must have thought she was asleep. He pulled "
+        #else:
+        #    sTweet += ". " + sHisName + " pulled "
+        #sTweet += "the " + WordList(["covers","satin sheets","silk bedsheet"]).GetWord() + " "
+        #sTweet += "down inch-by-inch, revealing more and more of " 
+        #sTweet += "her " + WordList(["nude","naked"]).GetWord() + ", "
+        #sTweet += self.FemBodyParts.FloweryDescription(AdjExclTagList = ["nude","super"]) + ". "
         
-        sTweet += WordList(["She felt shamefully exposed",
-                            "She could feel his gaze devouring her",
-                            "She wondered if he liked what he saw",
-                            "She knew that nothing was hidden from his view now",
-                            "Her heart was hammering in her chest",
-                            "Goosebumps pimpled her " + self.FemBodyParts.Skin.RandomDescription()]).GetWord() + ". "
+        #sTweet += WordList(["She felt shamefully exposed",
+        #                    "She could feel his gaze devouring her",
+        #                    "She wondered if he liked what he saw",
+        #                    "She knew that nothing was hidden from his view now",
+        #                    "Her heart was hammering in her chest",
+        #                    "Goosebumps pimpled her " + self.FemBodyParts.Skin.RandomDescription()]).GetWord() + ". "
 
-        sTweet += "Slowly, " + WordList(["he ran his finger down","his finger traced","his finger slid down","his hand moved down"]).GetWord() + " "
-        sTweet += "the " + BackDescSet.GetAdj(1) + " curve of her " + BackDescSet.GetAdj(2) + " " + BackDescSet.GetNoun() 
-        if CoinFlip():
-            sTweet += " "
-            sTweet += "until it reached the " + WordList(["crevice","cleft"]).GetWord() + " "
-            sTweet += "of her " + self.FemBodyParts.Ass.Buttocks.MediumDescription() 
-        sTweet += ". "
+        #sTweet += "Slowly, " + WordList(["he ran his finger down","his finger traced","his finger slid down","his hand moved down"]).GetWord() + " "
+        #sTweet += "the " + BackDescSet.GetAdj(1) + " curve of her " + BackDescSet.GetAdj(2) + " " + BackDescSet.GetNoun() 
+        #if CoinFlip():
+        #    sTweet += " "
+        #    sTweet += "until it reached the " + WordList(["crevice","cleft"]).GetWord() + " "
+        #    sTweet += "of her " + self.FemBodyParts.Ass.Buttocks.MediumDescription() 
+        #sTweet += ". "
 
-        sTweet += AddArticles(WordList(["tingle","tremor","quiver"]).GetWord(), bMakeUpper = True) + " "
-        sTweet += "ran thru her"
+        #sTweet += AddArticles(WordList(["tingle","tremor","quiver"]).GetWord(), bMakeUpper = True) + " "
+        #sTweet += "ran thru her"
 
-        iRand = randint(1,4)
-        if iRand == 1:
-            # "...her nipples stiffened..."
-            sTweet += ", and "
-            sTweet += "her " + self.FemBodyParts.Breasts.Nipples.MediumDescription(NotList = ["long","lengthy"], AdjExclTagList = ["erect","nude","horny"]) + " "
-            sTweet += WordList(["stiffened","hardened","lengthened",]).GetWord() + "."
-        elif iRand == 2:
-            # "...her quim moistened..."
-            sTweet += ", and "
-            sTweet += "her " + self.FemBodyParts.Vagina.MediumDescription(AdjExclTagList = ["super","wet","horny"]) + " "
-            sTweet += WordList(["moistened","seemed to radiate heat"]).GetWord() + "."
-        elif iRand == 3:
-            # "...her anal sphincter clenched..."
-            sTweet += ", and "
-            sTweet += "her " + self.FemBodyParts.Ass.Anus.MediumDescription(NotList = ["bowels","ring"], AdjReqTagList = ["sphincter"]) + " "
-            sTweet += WordList(["clenched","flexed","puckered","tightened"]).GetWord() + " "
-            sTweet += "in anticipation"
-            if CoinFlip():
-                sTweet += " around the " + WordList(["steel","large steel","black","huge black","bejeweled","8-inch"]).GetWord() + " "
-                sTweet += "buttplug she was wearing."
-            else:
-                sTweet += "."
-        elif iRand == 4:
-            # "...She clamped her thighs together..."
-            sTweet += ". She " + WordList(["clamped","clenched","squeezed"]).GetWord () + " "
-            sTweet += "her thighs together as she felt a trickle of moisture between them."
+        #iRand = randint(1,4)
+        #if iRand == 1:
+        #    # "...her nipples stiffened..."
+        #    sTweet += ", and "
+        #    sTweet += "her " + self.FemBodyParts.Breasts.Nipples.MediumDescription(NotList = ["long","lengthy"], AdjExclTagList = ["erect","nude","horny"]) + " "
+        #    sTweet += WordList(["stiffened","hardened","lengthened",]).GetWord() + "."
+        #elif iRand == 2:
+        #    # "...her quim moistened..."
+        #    sTweet += ", and "
+        #    sTweet += "her " + self.FemBodyParts.Vagina.MediumDescription(AdjExclTagList = ["super","wet","horny"]) + " "
+        #    sTweet += WordList(["moistened","seemed to radiate heat"]).GetWord() + "."
+        #elif iRand == 3:
+        #    # "...her anal sphincter clenched..."
+        #    sTweet += ", and "
+        #    sTweet += "her " + self.FemBodyParts.Ass.Anus.MediumDescription(NotList = ["bowels","ring"], AdjReqTagList = ["sphincter"]) + " "
+        #    sTweet += WordList(["clenched","flexed","puckered","tightened"]).GetWord() + " "
+        #    sTweet += "in anticipation"
+        #    if CoinFlip():
+        #        sTweet += " around the " + WordList(["steel","large steel","black","huge black","bejeweled","8-inch"]).GetWord() + " "
+        #        sTweet += "buttplug she was wearing."
+        #    else:
+        #        sTweet += "."
+        #elif iRand == 4:
+        #    # "...She clamped her thighs together..."
+        #    sTweet += ". She " + WordList(["clamped","clenched","squeezed"]).GetWord () + " "
+        #    sTweet += "her thighs together as she felt a trickle of moisture between them."
 
         return sTweet
 

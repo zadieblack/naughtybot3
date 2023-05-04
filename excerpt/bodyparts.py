@@ -15,6 +15,12 @@ TagExclDict = {"poc": ["whitepers"],
                "older": ["young"],
                "young": ["older"]}
 
+class ParsedUnit:
+    def __init__(self, sUnit = "", iPriority = 1, TagList = []):
+        self.sUnit = sUnit
+        self.iPriority = iPriority
+        self.TagList = TagList
+
 # This class attempts to create 'smart sets' of descriptive words. It will pick a number 
 # of adjectives (usually 3) and a noun for a given body part. It will try to avoid
 # picking the same words twice. In the case of adjs, it will even try to pick a diff
@@ -62,6 +68,11 @@ class PartDescSet:
 
         if isinstance(ParentPart, BodyParts):
             # Don't bother if bodypart adj lists or noun lists are empty
+
+            bTestBreasts = False
+            if isinstance(ParentPart, Breasts):
+                bTestBreasts = True
+
             if ParentPart.NounListLen() > 0 and ParentPart.AdjListLen() > 0:
                 NounReqTagList = []
                 if len(self._NounReqTagList) > 0:
@@ -150,6 +161,22 @@ class PartDescSet:
                     #print("  Added any excluding noun tags for \"" + self._Noun + "\" to UsedTagList " + str(UsedTagList))
 
                 self.ClearAdjList()
+
+                # Parse extra adjs list, add any tags to the parent
+                # and to the used tag lsit
+                ParsedExtraAdjList = []
+                for adj in self._ExtraAdjList:
+                    Unit = ParentPart.ParseUnit(adj)
+                    if Unit.sUnit != "":
+                        ParsedExtraAdjList.append(Unit.sUnit)
+                        #self.AddAdj(Unit.sUnit)
+                        for tag in Unit.TagList:
+                            #def AddUnitTag(self, sUnit, sTag):
+                            ParentPart.AddUnitTag(Unit.sUnit,tag)
+                            UsedTagList.append(tag)
+
+                if bTestBreasts and self._iNumAdjs > 3:
+                    print("  ---")
                 for i in range(self._iNumAdjs):
                     LocalReqTagList = []
                     LocalExclTagList = []
@@ -167,6 +194,10 @@ class PartDescSet:
                         LocalExclTagList = AdjExclTagList.copy()
 
                     sAdj = ParentPart.GetAdj(NotList = self._NotList + self._AdjList, ReqTagList = LocalReqTagList, ExclTagList = LocalExclTagList + UsedTagList)
+                    if sAdj == "":
+                        print("=*= WARNING =*= DescSetPart.SetSelf() unable to get more adjectives.\n")
+                        break
+
                     for tag in ParentPart.GetUnitTags(sAdj):
                         # Try and pick adjs from different tags if required tags are not set
                         if self._bVaryAdjTags and len(LocalReqTagList) == 0:
@@ -180,15 +211,47 @@ class PartDescSet:
                                     LocalExclTagList.append(excltag)
                                     #print("    Detected tag \"" + tag + "\", excluding tags " + str(TagExclDict[tag]))
                 
-                    #print("  Picked adj \"" + sAdj + "\" " + str(ParentPart.GetUnitTags(sAdj)) + "\n    excl tags " + str(LocalExclTagList) + "\n    used tags " + str(UsedTagList))
                     self.AddAdj(sAdj)
+                    if bTestBreasts:
+                        print("  Picked adj \"" + sAdj + "\" " + str(ParentPart.GetUnitTags(sAdj)) + "\n    excl tags " + str(LocalExclTagList) + "\n    used tags " + str(UsedTagList))
                     #print("  Adj list " + str(self._AdjList))
 
-                for adj in self._ExtraAdjList:
-                    self.AddAdj(adj)
+                # Sort 
+                #print("    Unsorted adj list is " + str(self._AdjList))
+                ExtraAdjBucket = ParsedExtraAdjList
+                AgeAdjBucket = []
+                ColorAdjBucket = []
+                OtherAdjBucket = []
+                SuperAdjBucket = []
+                for adj in self._AdjList:
+                    if "young" in ParentPart.GetUnitTags(adj) or "older" in ParentPart.GetUnitTags(adj):
+                        #print("      \"" + adj + "\" is an age adj.")
+                        AgeAdjBucket.append(adj)
+                    elif "color" in ParentPart.GetUnitTags(adj):
+                        #print("      \"" + adj + "\" is a color adj.")
+                        ColorAdjBucket.append(adj)
+                    elif "super" in ParentPart.GetUnitTags(adj):
+                        #print("      \"" + adj + "\" is a superlative adj.")
+                        SuperAdjBucket.append(adj)
+                    else:
+                        #print("      \"" + adj + "\" is a normal adj.")
+                        OtherAdjBucket.append(adj)
+                AgeAdjBucket.sort(key = str.lower)
+                ColorAdjBucket.sort(key = str.lower)
+                SuperAdjBucket.sort(key = str.lower)
+                OtherAdjBucket.sort(key = str.lower)
+                #self.ClearAdjList()
+                self._AdjList = SuperAdjBucket + OtherAdjBucket + ColorAdjBucket + AgeAdjBucket + ExtraAdjBucket
+                #print("    Sorted adj list is " + str(self._AdjList))
 
+                #print("  Final Adj List is " + str(self._AdjList))
+                DictAdjTags = dict()
+                for adj in self._AdjList:
+                    DictAdjTags[adj] = ParentPart.GetUnitTags(adj)
+                    #print("  Tags for \"" + adj + "\" are " + str(DictAdjTags[adj]))
                 #if len(ParentPart._ColorList.GetWordList()) > 0:
                 #    self._Color = ParentPart.GetColor(NotList = self._NotList + self._AdjList + [self._Noun])
+
 
     def NotList(self, NotList):
         self._NotList = NotList
@@ -285,7 +348,7 @@ class PartDescSet:
         DescWordList = []
 
         if self.GetNoun() != "":
-            DescWordList.insert(0, self.GetNoun())
+            DescWordList.append(self.GetNoun())
         #if self.Color() != "" and bColor:
         #    DescWordList.insert(0, self.Color())
         DescWordList = self._AdjList + DescWordList
@@ -412,7 +475,7 @@ class BodyParts:
 
             self.AddUnitTag(sUnit, sListName)
 
-        self.InitPartDescSet()
+        #self.InitPartDescSet()
 
     def AddNounToList(self, sNoun, sListName, iPriority = None):
         self.AddUnitToList(sNoun,sListName,"noun", iPriority = iPriority)
@@ -436,6 +499,39 @@ class BodyParts:
     def IsAdjInList(self, sNoun, sListName):
         return self.IsUnitInList(sNoun, sListName, "adj")
 
+    def ParseUnit(self, sParse):
+        sUnit = ""
+        iPriority = 1
+        TagList = []
+
+        # clean string
+        sUnit = sParse.strip()
+
+        # locate priority
+        matchPriority = re.search(r"(?<=[x])([\d]+)", sUnit)
+        if matchPriority:
+            iPriority = int(matchPriority.group())
+
+        ItemSections = sUnit.split(":")
+
+        # locate Unit 
+        if len(ItemSections) > 1:
+            matchUnit = re.search(r"([x][\d]+)", ItemSections[0])
+            if matchUnit:
+                sUnit = ItemSections[0][0:matchUnit.span()[0]]
+            else:
+                sUnit =  ItemSections[0]
+            sUnit = sUnit.strip()
+        else:
+            sUnit = ItemSections[0].strip()
+
+        # locate tag list 
+        matchTags = re.search(r"(?<=[:])([\w\s,]*)", sUnit)
+        if matchTags:
+            TagList = "".join(matchTags.group().split(" ")).split(",")
+
+        return ParsedUnit(sUnit, iPriority, TagList)
+
     def UnitList(self, NewUnitList, sType):
         #print("Entered UnitList()")
         for item in NewUnitList:
@@ -443,48 +539,10 @@ class BodyParts:
             iPriority = 1
             TagList = []
 
-            #print(" item = \"" + item + "\"")
-
-            # clean string
-            item = item.strip()
-
-            # locate priority
-            #print(" Looking for priority")
-            matchPriority = re.search(r"(?<=[x])([\d]+)", item)
-            if matchPriority:
-                iPriority = int(matchPriority.group())
-                #print("  Priority found! iPriority = " + str(iPriority))
-            #else:
-                #print("  No priority found! iPriority = " + str(iPriority))
-
-            ItemSections = item.split(":")
-
-            # locate Unit 
-            #print(" Looking for Unit")
-            #print("  Looking for colon[:]")
-            if len(ItemSections) > 1:
-                #print("   Colon[:] found. ItemSections[0] = \"" + ItemSections[0] + "\"")
-                matchUnit = re.search(r"([x][\d]+)", ItemSections[0])
-                #print("   Looking for priority end point")
-                if matchUnit:
-                    sUnit = ItemSections[0][0:matchUnit.span()[0]]
-                    #print("    Priority end point found. sUnit = \"" + sUnit + "\"")
-                else:
-                    sUnit =  ItemSections[0]
-                    #print("    No priority endpoint found. Using ItemSections[0] as Unit. sUnit = \"" + sUnit + "\"")
-                sUnit = sUnit.strip()
-            else:
-                sUnit = ItemSections[0].strip()
-                #print("   No colon[:] found. sUnit = \"" + sUnit + "\"")
-
-            # locate tag list 
-            #print(" Looking for tag list")
-            matchTags = re.search(r"(?<=[:])([\w\s,]*)", item)
-            if matchTags:
-                TagList = "".join(matchTags.group().split(" ")).split(",")
-                #print("  Tag list found. TagList = " + str(TagList) + "")
-            #else:
-                #print("  Tag list not found.")
+            Unit = self.ParseUnit(item)
+            sUnit = Unit.sUnit
+            iPriority = Unit.iPriority
+            TagList = Unit.TagList
 
             self.AddUnitToList(sUnit, "master", sType, iPriority)
             #print(" Added \"" + sUnit + "\" to master list.")
@@ -552,7 +610,7 @@ class BodyParts:
     def GetUnit(self, sType, sNot = "", NotList = None, ReqTagList = None, ExclTagList = None):
         sUnit = "" 
         LocalUnitList = []
-        #print("  Entered GetUnit()")
+        #print("      Entered GetUnit()")
          
         if NotList == None:
             NotList = []
@@ -562,24 +620,27 @@ class BodyParts:
 
         if ExclTagList is None:
             ExclTagList = []
+        #else:
+        #    print("      ExclTagList is + " + str(ExclTagList))
 
         ExclUnitList = []
         for unitlist in ExclTagList:
             #print("    Getting word units for " + unitlist)
             for unit in self.GetUnitList(unitlist, sType):
                 ExclUnitList.append(unit)
+        #print("      ExclUnitList is + " + str(ExclUnitList))
 
         if ReqTagList == None or len(ReqTagList) == 0:
             #print("  ReqTagList is empty. Using master list.")
-            for Unit in self.GetUnitList("master", sType):
-                if not Unit in ExclUnitList:
-                    LocalUnitList.append(Unit)
+            for unit in self.GetUnitList("master", sType):
+                if not unit in ExclUnitList:
+                    LocalUnitList.append(unit)
         else:
             for taglistname in ReqTagList:
                 #print("  Adding taglist " + taglistname)
-                for Unit in self.GetUnitList(taglistname, sType):
-                    if not Unit in ExclUnitList:
-                        LocalUnitList.append(Unit)
+                for unit in self.GetUnitList(taglistname, sType):
+                    if not unit in ExclUnitList:
+                        LocalUnitList.append(unit)
 
         #print("  LocalUnitList = " + str(LocalUnitList) + "\n")
 
@@ -1129,110 +1190,194 @@ class Nipples(BodyParts):
           self.DefaultAdj("erect")
 
 class Breasts(BodyParts):
-     def __init__(self):
-          super().__init__()
+    def __init__(self):
+        super().__init__()
           
-          self.NounList(['boobies: silly,slang,cute,plur',
-                         'boobs x2: std,slang,plur',
-                         'bosoms x2: std,poetic,plur',
-                         'breasticles x2: silly,crude,slang,plur',
-                         'breasts x3: std,clinical,default,plur',
-                         'buds x2: poetic,cute,plur,desc,small,young',
-                         'bust: std,sing',
-                         'chest: std,sing',
-                         'coconuts: poetic,silly,slang,cute,plur',
-                         'dumplings: poetic,silly,cute,plur',
-                         'gazongas: silly,crude,slang,plur',
-                         'globes x2: poetic,silly,crude,desc,plur',
-                         'jugs: silly,crude,slang,plur',
-                         'knockers: silly,crude,slang,plur',
-                         'orbs x2: poetic,silly,desc,plur',
-                         'mammaries: silly,clinical,plur',
-                         'melons: large,silly,poetic,crude,desc,plur',
-                         'milk-balloons: large,silly,crude,desc,plur',
-                         'mounds x2: poetic,desc,plur',
-                         'tatas: silly,crude,slang,cute,plur',
-                         'teats: std,clinical,desc,plur',
-                         'tiddies: silly,crude,slang,cute,plur',
-                         'titties: silly,crude,slang,cute,plur',
-                         'tits : std,crude,slang,plur',
-                        ])
+        self.NounList(['boobies: silly,slang,cute,plur',
+                        'boobs x2: std,slang,plur',
+                        'bosoms x2: std,poetic,plur',
+                        'breast implants: std,fake,plur',
+                        'breasticles x2: silly,crude,slang,plur',
+                        'breasts x3: std,clinical,default,plur',
+                        'buds x2: poetic,cute,plur,desc,small,young',
+                        'bust: std,sing',
+                        'chest: std,sing',
+                        'coconuts: poetic,silly,slang,cute,plur',
+                        'dumplings: poetic,silly,cute,plur',
+                        'gazongas: silly,crude,slang,plur',
+                        'globes x2: poetic,silly,crude,desc,plur',
+                        'implants: std,fake,plur',
+                        'jugs: silly,crude,slang,plur',
+                        'knockers: silly,crude,slang,plur',
+                        'orbs x2: poetic,silly,desc,plur',
+                        'mammaries: silly,clinical,plur',
+                        'melons: large,silly,poetic,crude,desc,plur',
+                        'milk-balloons: large,silly,crude,desc,milk,plur',
+                        'mommy milkers: silly,crude,milk,plur',
+                        'mounds x2: poetic,desc,plur',
+                        'tatas: silly,crude,slang,cute,plur',
+                        'teats: std,clinical,desc,plur',
+                        'tiddies: silly,crude,slang,cute,plur',
+                        'titties: silly,crude,slang,cute,plur',
+                        'tits : std,crude,slang,plur',
+                        'udders: crude,slang,large,plur',
+                    ])
                
-          # todo: A cup, B cup, etc should be inserted as 'extra adjs' so they show up
-          #       right before the noun
-          self.AdjList(['A cup: size,small',
-                        'B cup: size,small',
-                        'black: color,poc',
-                        'big: size,large',
-                        'bite-sized: size,small',
-                        'bouncy: large,movement',
-                        'bountiful: large,poetic',
-                        'bronzed: color',
-                        'brown: color,poc',
-                        'budding: small,poetic,young',
-                        'buxom: large',
-                        'chocolate: color,poc,taste',
-                        'chubby: large,size,shape',
-                        'creamy: color,whitepers,poetic,taste,horny',
-                        'dark: color,poc',
-                        'D cup: size,large',
-                        'DDD: size,large,size',
-                        'delicious: super,poetic,taste,horny',
-                        'double-D: size,large,size',
-                        'fair: color,whitepers',
-                        'fake: fake,large,size,feel,shape',
-                        'fat x3: large,size,feel,shape',
-                        'fuckable: large,horny',
-                        'full: large,poetic',
-                        'fulsome: large,poetic',
-                        'generous: size,large,poetic',
-                        'gentle: poetic,feel',
-                        'girlish: small,young',
-                        'glorious: super',
-                        'gorgeous: super',
-                        'heaving: movement,poetic',
-                        'heavy: large,feel',
-                        'impressive: super,large',
-                        'jiggling: movement',
-                        'juicy: large,super,feel,taste,horny',
-                        'luscious: large,super',
-                        'lush: large,super',
-                        'luxuriant: large,super',
-                        'magnificent: large,super',
-                        'nubile: pos,young,poetic',
-                        'oiled-up: color,feel',
-                        'pale: color,whitepers,young',
-                        'pendulous: large,shape,older',
-                        'perky: shape,young',
-                        'pert: shape,poetic,',
-                        'petite: size,small,',
-                        'plentiful: large,poetic,super',
-                        'plump: large,feel,shape,',
-                        'proud: large,super,poetic,',
-                        'quivering: movement,poetic,',
-                        'ripe: poetic,feel,shape,young',
-                        'rosy: color,poetic,whitepers,young',
-                        'round: shape,fake',
-                        'sensual: poetic',
-                        'shapely: shape,poetic',
-                        'smooth: feel,young',
-                        'soft: feel',
-                        'statuesque: shape,large,poetic',
-                        'stunning: super',
-                        'succulent: super,taste,poetic',
-                        'suckable: taste,horny',
-                        'sumptuous: large,super,poetic',
-                        'supple: feel,poetic,young',
-                        'surgically-enhanced: large,shape,fake',
-                        'swaying: large,movement',
-                        'sweet: super',
-                        'swollen: size,large,shape',
-                        'tender: feel,poetic',
-                        'voluptuous: size,large,poetic'])
+        self.AdjList(['black: color,poc',
+                    'big: size,large',
+                    'bite-sized: size,small',
+                    'bouncy: movement',
+                    'bountiful: large,poetic',
+                    'bronzed: color',
+                    'brown: color,poc',
+                    'budding: small,poetic,young',
+                    'buxom: large,poetic',
+                    'chocolate: color,poc,taste',
+                    'chubby: large,plussize',
+                    'creamy: color,whitepers,poetic,taste',
+                    'dark: color,poc',
+                    'delicious: super,poetic,taste',
+                    'enchanting: super,poetic,attractive',
+                    'fair: color,whitepers',
+                    'fake: fake,large',
+                    'fat x3: large,size,feel,plussize,shape',
+                    'fuckable: large,horny',
+                    'full: large,poetic',
+                    'fulsome: large,poetic',
+                    'generous: super,large,poetic',
+                    'gentle: poetic,feel',
+                    'girlish: small,young',
+                    'glistening: wet',
+                    'glorious: super',
+                    'gorgeous: super',
+                    'heaving: movement,poetic',
+                    'heavy: large,feel',
+                    'impressive: super,large',
+                    'jiggling: movement',
+                    'juicy: large,super,feel,taste,horny',
+                    'luscious: taste,super,poetic',
+                    'lush: super,poetic',
+                    'luxuriant: large,super,poetic',
+                    'magnificent: large,super,poetic',
+                    'maternal: older',
+                    'nubile: pos,young,poetic',
+                    'oiled-up: wet',
+                    'pale: color,whitepers,young',
+                    'pendulous: large,shape,older',
+                    'perky: shape,young',
+                    'pert: shape,poetic,',
+                    'petite: size,small,',
+                    'plentiful: large,poetic,super',
+                    'plump: large,feel,shape,',
+                    'proud: large,super,poetic,',
+                    'quivering: movement,poetic,',
+                    'ripe: poetic,feel,shape,young',
+                    'rosy: color,poetic,whitepers,young',
+                    'round: shape',
+                    'sagging: older',
+                    'sensual: poetic',
+                    'shapely: shape,poetic',
+                    'smooth: feel,young',
+                    'soft: feel',
+                    'statuesque: shape,large,poetic,older',
+                    'stunning: super',
+                    'succulent: super,taste,poetic',
+                    'suckable: taste,horny',
+                    'sumptuous: large,super,poetic',
+                    'supple: feel,poetic,young',
+                    'surgically-enhanced: large,shape,fake',
+                    'swaying: large,movement',
+                    'sweet: super',
+                    'swollen: size,large,shape',
+                    'tender: feel,poetic',
+                    'voluptuous: size,large,poetic'])
           
-          self.DefaultNoun("breasts")
+        self.DefaultNoun("breasts")
 
-          self.Nipples = Nipples()
+        self.Nipples = Nipples()
+
+    def CupBuilder(self):
+        CupList = ["A-cup: small,cupsize",
+                   "B-cup: small,cupsize",
+                   "D-cup: large,cupsize",
+                   "double-D cup: large,cupsize",
+                   "triple-D cup: large,cupsize",
+                  ]
+
+        return WordList(CupList).GetWord()
+
+    def ShortDescription(self, ExtraAdjList = None, sNot = "", NotList = None, bCupSize = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
+        if NotList == None:
+            NotList = []
+          
+        if sNot != "":
+            NotList.append(sNot)
+
+        if ExtraAdjList is None:
+            ExtraAdjList = []
+
+        if bCupSize is None:
+            bCupSize = CoinFlip()
+
+        if bCupSize and len(ExtraAdjList) == 0:
+            ExtraAdjList.append(self.CupBuilder())
+
+        return super().ShortDescription(sNot = "", ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList)
+          
+    def MediumDescription(self, ExtraAdjList = None, sNot = "",  NotList = None, bCupSize = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
+        if NotList == None:
+            NotList = []
+          
+        if sNot != "":
+            NotList.append(sNot)
+
+        if ExtraAdjList is None:
+            ExtraAdjList = []
+
+        if bCupSize is None:
+            bCupSize = CoinFlip()
+
+        if bCupSize and len(ExtraAdjList) == 0:
+            ExtraAdjList.append(self.CupBuilder())
+               
+        return super().MediumDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
+          
+    def FloweryDescription(self, ExtraAdjList = None, sNot = "", NotList = None, bCupSize = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
+        if NotList == None:
+            NotList = []
+          
+        if sNot != "":
+            NotList.append(sNot)
+
+        if ExtraAdjList is None:
+            ExtraAdjList = []
+
+        if bCupSize is None:
+            bCupSize = CoinFlip()
+
+        if bCupSize and len(ExtraAdjList) == 0:
+            ExtraAdjList.append(self.CupBuilder())
+          
+        return super().FloweryDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
+          
+    def RandomDescription(self, ExtraAdjList = None, sNot = "", NotList = None, bAllowShortDesc = True, bAllowLongDesc = True, bCupSize = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
+        if NotList == None:
+            NotList = []
+          
+        if sNot != "":
+            NotList.append(sNot)
+
+        if ExtraAdjList is None:
+            ExtraAdjList = []
+
+        if bCupSize is None:
+            bCupSize = CoinFlip()
+
+        if bCupSize:
+            ExtraAdjList.append(self.CupBuilder())
+          
+        return super().RandomDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
+     
           
 class Clitoris(BodyParts):
      def __init__(self):

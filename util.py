@@ -325,62 +325,74 @@ def FoundIn(sWord, SearchTarget):
      return bFound 
           
 class WordList:
-     def __init__(self, NewList = None):
-          if NewList == None:
-               self.List = []
-          else:
-               self.List = NewList
+    def __init__(self, NewList = None):
+        if NewList == None:
+            self.List = []
+        else:
+            self.List = NewList
                
-          self.DefaultWord = ""
+        self.DefaultWord = ""
           
-     def AddWord(self, word):
-          self.List.append(word)
+    def AddWord(self, word):
+        self.List.append(word)
      
-     def GetWord(self, sNot = "", NotList = None, SomeHistoryQ = None):
-          sWord = ""
+    def GetWord(self, sNot = "", NotList = None, SomeHistoryQ = None):
+        sWord = ""
           
-          if NotList is None:
-               NotList = []
+        if NotList is None:
+            NotList = []
                
-          if sNot != "":
-               NotList.append(sNot)
+        if sNot != "":
+            NotList.append(sNot)
                
-          if not self.List == None and len(self.List) > 0:
-               sWord = self.List[randint(0, len(self.List) - 1)]
-               
-               if SomeHistoryQ is None:
+        if not self.List == None and len(self.List) > 0:
+            # Remove NotList words from selection list
+            SelectList = self.List.copy()
+            for notword in NotList:
+                for i, word in enumerate(SelectList):
+                    if FoundIn(word,notword):
+                        SelectList.pop(i)
+
+            if len(SelectList) > 0:
+                sWord = SelectList[randint(0, len(SelectList) - 1)]
+
+                if not SomeHistoryQ is None:
                     i = 0
                     while FoundIn(sWord, NotList) and i < MAX_SEARCH_LOOPS:
-                         #print("Collision! '" + sWord + "' in NotList, trying again.")
-                         sWord = self.List[randint(0, len(self.List) - 1)]
-                         i += 1
-               else:
+                            #print("Collision! '" + sWord + "' in NotList, trying again.")
+                            sWord = SelectList[randint(0, len(SelectList) - 1)]
+                            i += 1
+                else:
                     i = 0
-                    while (not SomeHistoryQ.PushToHistoryQ(sWord) or FoundIn(sWord, NotList)) and i < MAX_SEARCH_LOOPS:
-                         #print("Collision! '" + sWord + "' in NotList, trying again.")
-                         sWord = self.List[randint(0, len(self.List) - 1)]
-                         i += 1
-                    
-          return sWord
+                    #while (not SomeHistoryQ.PushToHistoryQ(sWord) or FoundIn(sWord, NotList)) and i < MAX_SEARCH_LOOPS:
+                    #        #print("Collision! '" + sWord + "' in NotList, trying again.")
+                    #        sWord = SelectList[randint(0, len(SelectList) - 1)]
+                    #        i += 1
+            else:
+                print("=*= WARNING =*= WordList.GetWord() unable to select a word due to empty selection list.")
+                print("                List    = " + str(self.List))
+                print("                NotList = " + str(NotList) + "\n")
+ 
+        return sWord
           
-     def Length(self):
-          iLen = 0
+    def Length(self):
+        iLen = 0
           
-          if isinstance(self.List, list):
-               iLen = len(self.List)
+        if isinstance(self.List, list):
+            iLen = len(self.List)
                
-          return iLen
+        return iLen
           
-     def IsEmpty(self):
-          bIsEmpty = True 
+    def IsEmpty(self):
+        bIsEmpty = True 
           
-          if self.Length() > 0:
-               bIsEmpty = False 
+        if self.Length() > 0:
+            bIsEmpty = False 
           
-          return bIsEmpty
+        return bIsEmpty
           
-     def GetWordList(self):
-          return self.List
+    def GetWordList(self):
+        return self.List
           
 class NounAdjList:
      def __init__(self, NewNounList = None, NewAdjList = None):
