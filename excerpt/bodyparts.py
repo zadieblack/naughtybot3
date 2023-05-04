@@ -1274,7 +1274,6 @@ class Breasts(BodyParts):
                     'ripe: poetic,feel,shape,young',
                     'rosy: color,poetic,whitepers,young',
                     'round: shape',
-                    'sagging: older',
                     'sensual: poetic',
                     'shapely: shape,poetic',
                     'smooth: feel,young',
@@ -1290,6 +1289,7 @@ class Breasts(BodyParts):
                     'sweet: super',
                     'swollen: size,large,shape',
                     'tender: feel,poetic',
+                    'titanic: poetic,large',
                     'voluptuous: size,large,poetic'])
           
         self.DefaultNoun("breasts")

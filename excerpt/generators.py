@@ -7693,6 +7693,12 @@ class Generator112(ExGen):
         super().GenerateTweet()
         sTweet = ""
 
+        AdjExclTagList = ["small","wet"]
+        NounExclTagList = ["small"]
+        Boobs = self.FemBodyParts.Breasts
+        BreastDescSet = bodyparts.PartDescSet(Boobs, iNumAdjs = 3)
+        BreastDescSet.AdjExclTagList(AdjExclTagList)
+
         sGirlAdj1 = WordList(titmisc.HairColorFemale().GetWordList()
                              + titmisc.SkinColorFemale().GetWordList()
                              + titmisc.PhysCharFemale().GetWordList()
@@ -7715,11 +7721,6 @@ class Generator112(ExGen):
                             "frilly","diaphanous","elegant","provocative",
                             "sensuous",
                            ]).GetWord()
-
-        TitNotList = ["double d","gentle","swaying","bud","petite","double-D"]
-        sTitAdj1 = self.FemBodyParts.Breasts.GetAdj(NotList = TitNotList)
-        sTitAdj2 = self.FemBodyParts.Breasts.GetAdj(NotList = TitNotList + [sTitAdj1])
-        sTitNoun = self.FemBodyParts.Breasts.GetNoun(NotList = TitNotList + [sTitAdj1, sTitAdj2], bStdNouns = False)
 
         sThingToCover = ""
         if randint(1,3) == 2:
@@ -7747,9 +7748,8 @@ class Generator112(ExGen):
         sTweet += "\"Oh no!\" she cried. "
         sTweet += "\"Please " + WordList(["don't look", "don't stare", "no one look", "nobody look"]).GetWord() + " at "
         sTweet += "my " + WordList(["disgustingly","disgustingly","nauseatingly","shamefully",]).GetWord() + " "
-        sTweet += sTitAdj1 + " and " + sTitAdj2 + " "
-        sTweet += WordList(["double-D","triple-D","quadruple-D","DDD"]).GetWord() + " " 
-        sTweet += sTitNoun + "!\""
+        sTweet += BreastDescSet.GetAdj(2) + " and " + BreastDescSet.GetAdj(1) + " "
+        sTweet += Boobs.ShortDescription(NotList = ["A-cup","B-cup"], bCupSize = True, NounExclTagList = NounExclTagList, AdjExclTagList = AdjExclTagList) + "!\"" 
 
         return sTweet
 
