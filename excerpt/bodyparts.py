@@ -190,7 +190,7 @@ class PartDescSet:
                 #if len(ParentPart._ColorList.GetWordList()) > 0:
                 #    self._Color = ParentPart.GetColor(NotList = self._NotList + self._AdjList + [self._Noun])
 
-    def SetNotList(self, NotList):
+    def NotList(self, NotList):
         self._NotList = NotList
         self.SetSelf()
 
@@ -333,6 +333,7 @@ class PartDescSet:
             self.ExclNounTagList(["silly"])
         self.SetSelf()
 
+# BodyParts base class
 class BodyParts:
     def __init__(self):
         self._AllUnitLists = {"adj": {"master": []}, "noun": {"master": [], "std": []}}
@@ -382,10 +383,14 @@ class BodyParts:
 
         return UnitList 
 
-    def GetNounList(self, sListName):
+    def GetNounList(self, sListName = None):
+        if sListName is None:
+            sListName = "master"
         return self.GetUnitList(sListName, "noun") 
 
-    def GetAdjList(self, sListName):
+    def GetAdjList(self, sListName = None):
+        if sListName is None:
+            sListName = "master"
         return self.GetUnitList(sListName, "adj") 
 
     def AddUnitToList(self, sUnit, sListName, sType, iPriority = None):
@@ -675,7 +680,7 @@ class BodyParts:
             ExtraAdjList = []
           
         iNumAdjs = choice([1,1,1,2,2,2,2,3])
-
+        
         DescSet = PartDescSet(self, ExtraAdjList = ExtraAdjList, iNumAdjs = iNumAdjs, NotList = NotList)
         DescSet.NounReqTagList(NounReqTagList)
         DescSet.NounExclTagList(NounExclTagList)
@@ -724,34 +729,37 @@ class Face(BodyParts):
           super().__init__()
           
           self.NounList(['face x3: default,std,sing',
-                         'features: poetic,plur'])
+                         'features: poetic,plur'
+                        ])
           
-          self.AdjList(['adorable',
-                        'angelic',
-                        'beaming',
-                        'beautiful',
-                        'cute',
-                        'delicate',
-                        'elegant',
-                        'excited',
-                        'gentle',
-                        'gorgeous',
-                        'flushed',
-                        'freckled',
-                        'heart-shaped',
-                        'innocent',
-                        'lovely',
-                        'oval',
-                        'pale',
-                        'pretty',
-                        'radiant',
-                        'rosy',
-                        'round',
-                        'smiling',
-                        'startled',
-                        'sweet',
-                        'warm',
-                        'wide-eyed'])
+          self.AdjList(['adorable: super,cute,young,attractive',
+                        'angelic: super,cute,attractive',
+                        'beaming: emotion,happy',
+                        'beautiful: super,attractive',
+                        'cute: super,cute,attractive',
+                        'delicate: poetic',
+                        'dark: color',
+                        'elegant: older,attractive',
+                        'excited: emotion,happy',
+                        'expressive: emotion',
+                        'gentle: poetic',
+                        'gorgeous: super,attractive',
+                        'flushed: emotion,arousal',
+                        'freckled: color,whitepers',
+                        'heart-shaped: shape',
+                        'innocent: cute,young,virginal',
+                        'lovely: super,attractive',
+                        'oval: shape',
+                        'pale: color,whitepers',
+                        'pretty: attractive',
+                        'radiant: poetic',
+                        'rosy: color,young',
+                        'round: shape',
+                        'smiling: emotion,happy',
+                        'startled: emotion',
+                        'sweet: super,cute,attractive',
+                        'warm: feel',
+                        'wide-eyed: cute,attractive'])
                
           self.DefaultNoun('face')
           
@@ -762,82 +770,83 @@ class BackFemale(BodyParts):
           self.NounList(['back x4:default,std,sing',
                          'spine:std,clinical,sing'])
           
-          self.AdjList(['arched','arched',
-               'arching',
-               'bare',
-               'carved',
-               'concave',
-               'curved','curved',
-               'delicate',
-               'feminine',
-               'flexible',
-               'gently curved',
-               'graceful','graceful',
-               'lissome',
-               'lithe','lithe',
-               'long',
-               'naked',
-               'sculpted',
-               'sexy',
-               'sleek',
-               'slender','slender',
-               'slim','slim',
-               'smooth',
-               'tapered','tapered','tapered',
-               'tapering','tapering',
-               'well-defined',
-               'willowy','willowy'])
+          self.AdjList(['arched x2: shape',
+                         'arching: action',
+                         'bare: nude',
+                         'carved: poetic,shape',
+                         'concave: shape',
+                         'curved x2: shape',
+                         'delicate: super,attractive',
+                         'feminine: attractive',
+                         'flexible: flexible,attractive',
+                         'gently curved: shape, attractive',
+                         'graceful x2: athletic',
+                         'lissome: attractive,poetic,slender',
+                         'lithe x2: athletic,young,flexible,slender,poetic',
+                         'long: size,length,long',
+                         'naked: nude',
+                         'sculpted: poetic,attractive',
+                         'sexy: attractive',
+                         'sleek: slender',
+                         'slender x2: slender,shape',
+                         'slim x2: slender',
+                         'smooth: feel',
+                         'tapered x3: shape,slender',
+                         'tapering x2: shape,slender',
+                         'well-defined: shape',
+                         'willowy x2: slender,flexible,poetic'
+                        ])
                
           self.DefaultNoun('back')
+          self.DefaultAdj(['curved'])
           
 class Skin(BodyParts):
      def __init__(self):
           super().__init__()
           
           self.NounList(['skin x4: default,std,sing',
-                         'flesh: poetic,sing'])
-               
-          #self.ColorList(['almond-colored',
-          #                    'brown',
-          #                    'bronzed',
-          #                    'chocolate',
-          #                    'chocolate-colored',
-          #                    'coffee-colored',
-          #                    'creamy',
-          #                    'dark',
-          #                    'fresh pink',
-          #                    'honeyed',
-          #                    'pale',
-          #                    'pink',
-          #                    'porcelain',
-          #                    'rosy',
-          #                    'sun-browned',
-          #                    'sun-kissed'])
+                         'flesh: poetic,sing'
+                        ])
                               
-          self.AdjList([
-               'bare',
-               'delicate',
-               'exposed',
-               'freckled',
-               'gentle',
-               'gleaming',
-               'glistening',
-               'glowing',
-               'gossamer',
-               'luscious',
-               'naked',
-               'perfect',
-               'silken',
-               'soft',
-               'smooth',
-               'supple',
-               'sweet',
-               'tender',
-               'un-blemished',
-               'un-sullied',
-               'warm',
-               'yielding',
-               'youthful'])
+          self.AdjList(['almond-colored: asian,color',
+                        'bare: nude',
+                        'brown: color,poc',
+                        'chocolate: color,taste,poc,',
+                        'chocolate-colored: color,poc,',
+                        'coffee-colored: color,poc',
+                        'creamy: color,taste,whitepers',
+                        'dark: color,poc',
+                        'delicate: small,poetic,cute',
+                        'exposed: nude',
+                        'freckled: whitepers',
+                        'fresh pink: color,whitepers',
+                        'gentle: feel,poetic',
+                        'gleaming: poetic',
+                        'glistening: wet,poetic',
+                        'glowing: poetic',
+                        'gossamer: feel,poetic',
+                        'honeyed: color, taste,poetic',
+                        'luscious: taste,super,poetic',
+                        'naked: nude',
+                        'pale: color,whitepers',
+                        'perfect: super',
+                        'pink: color,whitepers,young',
+                        'porcelain: color,poetic,whitepers',
+                        'rosy: color,poetic,whitepers,young',
+                        'silken: feel',
+                        'soft: feel',
+                        'smooth: feel',
+                        'sun-browned: color',
+                        'sun-kissed: color',
+                        'supple: feel,young',
+                        'sweet: super,taste',
+                        'tender: feel,cute',
+                        'un-blemished: young,virginal,super',
+                        'un-sullied: young,virginal',
+                        'warm: feel',
+                        'yielding: feel',
+                        'youthful: young',
+                       ])
           
           self.DefaultNoun('skin')
           self.IsPlural = False
@@ -1514,13 +1523,13 @@ class Vagina(BodyParts):
                          'peach-fuzzed: hairy,young',
                          'puffy: shape,arousal',
                          'shameless: horny,slutty',
-                         'silken, poetic,feel',
+                         'silken: poetic,feel',
                          'slick: wet,feel',
                          'slutty: slutty,horny',
                          'smooth: feel,hairless',
                          'sopping: wet',
                          'succulent: super,poetic,taste',
-                         'suckable, horny,taste',
+                         'suckable: horny,taste',
                          'supple: feel,hairless,poetic,young',
                          'sweet: super',
                          'swollen: arousal,shape,feel',
@@ -1546,36 +1555,36 @@ class AnusFemale(BodyParts):
      def __init__(self):
           super().__init__()
 
-          self.NounList(['anus x4: std,default,clinical,sing',
-                         'arse-cunt: crude,sing',
-                         'asshole x4: std,slang,crude,sing',
-                         'back orifice: desc,clinical,sing',
-                         'back passage: desc,poetic,sing',
-                         'back-pussy: silly,crude,slang,sing',
-                         'backdoor: desc,slang,sing',
+          self.NounList(['anus x4: std,default,clinical,sphincter,sing',
+                         'arse-cunt: crude,orifice,sing',
+                         'asshole x4: std,slang,crude,sphincter,sing',
+                         'back orifice: desc,clinical,orifice,sing',
+                         'back passage: desc,poetic,orifice,sing',
+                         'back-pussy: silly,crude,slang,orifice,sing',
+                         'backdoor: desc,slang,orifice,sing',
                          'bowels: std,plur',
-                         'brown hole: desc,slang,crude,sing',
-                         'bunghole: silly,crude,slang,sing',
-                         'chocolate starfish: silly,crude,slang,sing',
-                         'corn hole: silly,crude,slang,sing',
-                         'dirt-pipe: crude,slang,sing',
-                         'dirt-box: crude,slang,sing',
-                         'fart-blaster: silly,crude,slang,sing',
-                         'fart-box: silly,crude,slang,sing',
-                         'fart-hole: silly,crude,slang,sing',
-                         'heinie hole: desc,slang,cute,sing',
-                         'knot: desc, sing',
-                         'poop-chute: crude,slang,desc,sing',
-                         'poop-trap: crude,slang,sing',
-                         'rear orifice: desc, clinical, sing',
-                         'rectal cavity: desc, clinical, sing',
-                         'rectum: std,clinical,sing',
-                         'ring: desc,sing',
+                         'brown hole: desc,slang,crude,sphincter,sing',
+                         'bunghole: silly,crude,slang,sphincter,sing',
+                         'chocolate starfish: silly,crude,slang,sphincter,sing',
+                         'corn hole: silly,crude,slang,sphincter,sing',
+                         'dirt-pipe: crude,slang,orifice,sing',
+                         'dirt-box: crude,slang,orifice,sing',
+                         'fart-blaster: silly,crude,slang,orifice,sing',
+                         'fart-box: silly,crude,slang,orifice,sing',
+                         'fart-hole: silly,crude,slang,sphincter,sing',
+                         'heinie hole: desc,slang,cute,sphincter,sing',
+                         'knot: desc,sphincter, sing',
+                         'poop-chute: crude,slang,desc,orifice,sing',
+                         'poop-trap: crude,slang,sing,sphincter',
+                         'rear orifice: desc, clinical, orifice,sing',
+                         'rectal cavity: desc, clinical, orifice,sing',
+                         'rectum: std,clinical,orifice,sing',
+                         'ring: desc,sphincter,sing',
                          'rosebud: desc,slang,cute,poetic,crude,sing',
-                         'shit-hole: crude,slang,desc,sing',
-                         'shitter: crude,slang,sing',
-                         'sphincter x2: std,clinical,sing',
-                         'starfish x2: silly,cute,slang,poetic,crude,sing',
+                         'shit-hole: crude,slang,desc,orifice,sing',
+                         'shitter: crude,slang,orifice,sing',
+                         'sphincter x2: std,clinical,sphincter,sing',
+                         'starfish x2: silly,cute,slang,poetic,sphincter,sing',
                         ])
        
           self.AdjList(['brown: color',
@@ -1737,59 +1746,59 @@ class BodyFemale(BodyParts):
      def __init__(self):
           super().__init__()
           
-          self.NounList(['anatomy',
+          self.NounList(['anatomy: std,sing',
                          'body x4: std,default,sing',
-                         'body',
-                         'curves',
-                         'figure',
-                         'form',
-                         'physique'])
+                         'curves: poetic,plur',
+                         'figure: std,sing',
+                         'form: std,sing',
+                         'physique: std,poetic,sing'])
                
-          self.AdjList(['beautiful',
-                        'black',
-                        'bronzed',
-                        'brown',
-                        'busty',
-                        'buxom',
-                        'coffee-colored',
-                        'curvaceous',
-                        'curvy',
-                        'feminine',
-                        'gorgeous',
-                        'leggy',
-                        'little',
-                        'lush',
-                        'luxuriant',
-                        'mocha',
-                        'model-esque',
-                        'nubile',
-                        'pale',
-                        'pink',
-                        'ravishing',
-                        'ripe',
-                        'sensual',
-                        'sexy',
-                        'shameless',
-                        'shapely',
-                        'slender',
-                        'statuesque',
-                        'stunning',
-                        'sultry',
-                        'sun-bronzed',
-                        'sun-kissed',
-                        'sweet',
-                        'tanned',
-                        'teenage',
-                        'tight',
-                        'voluptuous',
-                        'womanly',
-                        'young',
-                        'youthful',
+          self.AdjList(['beautiful: attractive,super',
+                        'black: color,poc',
+                        'bronzed: color',
+                        'brown: color,poc',
+                        'busty: bigtits',
+                        'buxom: bigtits',
+                        'coffee-colored: color,poc',
+                        'curvaceous: shape,curvy,bigtits,attractive',
+                        'curvy: shape,curvy',
+                        'feminine: curvy',
+                        'gorgeous: super,attractive',
+                        'leggy: longlegs',
+                        'little: size,small',
+                        'lush: poetic,super',
+                        'luxuriant: poetic,super',
+                        'mocha: color,poc',
+                        'model-esque: attractive',
+                        'nubile: young,virginal',
+                        'pale: color,whitepers',
+                        'pink: color,whitepers,young',
+                        'plus-size: size,large,plussize',
+                        'ravishing: super,attractive,horny',
+                        'ripe: poetic,attractive',
+                        'sensual: poetic,attractive,super',
+                        'sexy: attractive,super',
+                        'shameless: horny',
+                        'shapely: attractive,bigtits',
+                        'slender: slender',
+                        'statuesque: bigtits,older',
+                        'stunning: super,attractive',
+                        'sultry: attractive',
+                        'sun-bronzed: color',
+                        'sun-kissed: color',
+                        'sweet: super,attractive,taste',
+                        'tanned: color',
+                        'teenage: young',
+                        'tight: slender,size,small',
+                        'voluptuous: bigtits,curvy',
+                        'womanly: curvy',
+                        'young: young',
+                        'youthful: young',
                        ])
           
           self.DefaultNoun("body")
           self.DefaultAdj("nubile")
-          self.IsPlural = False
+
           self.Hair = Hair()
           self.Face = Face()
           self.Eyes = Eyes()
@@ -2436,7 +2445,7 @@ class Penis(BodyParts):
           
           return sLength
                
-     def ShortDescription(self, ExtraAdjList = None, sNot = "", NotList = None, bAddLen = False, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
+     def ShortDescription(self, ExtraAdjList = None, sNot = "", NotList = None, bAddLen = False, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
           if NotList == None:
                NotList = []
           
@@ -2449,9 +2458,9 @@ class Penis(BodyParts):
           if bAddLen:
                ExtraAdjList.append(self.GenerateLength())
           
-          return super().ShortDescription(sNot = "", ExtraAdjList = ExtraAdjList, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns)
+          return super().ShortDescription(sNot = "", ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList)
           
-     def MediumDescription(self, ExtraAdjList = None, sNot = "",  NotList = None, bAddLen = False, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
+     def MediumDescription(self, ExtraAdjList = None, sNot = "",  NotList = None, bAddLen = False, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
           if NotList == None:
                NotList = []
           
@@ -2464,9 +2473,9 @@ class Penis(BodyParts):
           if bAddLen:
                ExtraAdjList.append(self.GenerateLength())
                
-          return super().MediumDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns) 
+          return super().MediumDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
           
-     def FloweryDescription(self, ExtraAdjList = None, sNot = "", NotList = None, bAddLen = False, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
+     def FloweryDescription(self, ExtraAdjList = None, sNot = "", NotList = None, bAddLen = False, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
           if NotList == None:
                NotList = []
           
@@ -2479,9 +2488,9 @@ class Penis(BodyParts):
           if bAddLen:
                ExtraAdjList.append(self.GenerateLength())
           
-          return super().FloweryDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns) 
+          return super().FloweryDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
           
-     def RandomDescription(self, ExtraAdjList = None, sNot = "", NotList = None, bAllowShortDesc = True, bAllowLongDesc = True, bAddLen = False, bStdNouns = True, bDescNouns = True, bSillyNouns = True):
+     def RandomDescription(self, ExtraAdjList = None, sNot = "", NotList = None, bAllowShortDesc = True, bAllowLongDesc = True, bAddLen = False, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
           if NotList == None:
                NotList = []
           
@@ -2494,10 +2503,8 @@ class Penis(BodyParts):
           if bAddLen:
                ExtraAdjList.append(self.GenerateLength())
           
-          return super().RandomDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, bAllowShortDesc = bAllowShortDesc, bAllowLongDesc = bAllowLongDesc, bStdNouns = bStdNouns, bDescNouns = bDescNouns, bSillyNouns = bSillyNouns) 
+          return super().RandomDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
      
-
-
 class Semen(BodyParts):
      def __init__(self):
           super().__init__()

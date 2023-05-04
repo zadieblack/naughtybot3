@@ -859,11 +859,12 @@ class TweetTxtGen33(TweetTxtGen):
                                 "delightful", "sinful", "arousing", "naughty", "depraved", "lustful", "wicked", "outrageous", "delicious", 
                                 "stimulating", "sexy", "provocative", "lewd", "wicked", "shameless", "stimulating", "kinky", "juicy",
                                 "wanton"])
-        Celebs = WordList(["Abraham Lincoln", "Winston Churchill", "Barak Obama", "Mother Theresa", 
+        Celebs = WordList(["Abraham Lincoln", "Winston Churchill", "Barak Obama", "Mother Theresa", "Alexandria Ocasio-Cortez",
                                 "Salman Rushdie", "Albert Einstein", "Hillary Clinton", "Isaac Asimov", "Jonathan Franzen", 
                                 "Cormac McCarthy", "Ghandi", "Boutros Boutros-Ghali", "Bob Dylan", "The Dalai Lama", "Elon Musk", 
                                 "Warren Buffett", "Stephen King", "Bill Gates", "Billy Graham", "Jimmy Carter", "Oprah Winfrey",
-                                "Neil Armstrong", "Stephen Hawking", "Al Gore", "Bernie Sanders", "Dr. Anthony Fauci"])
+                                "Neil Armstrong", "Stephen Hawking", "Al Gore", "Bernie Sanders", "Dr. Anthony Fauci",
+                                "Vladimir Zelensky"])
         iRand = randint(1,8) 
         if iRand == 1:
             sAdj1 = Adjs.GetWord()

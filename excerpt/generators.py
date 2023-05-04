@@ -716,24 +716,28 @@ class Generator12(ExGen):
           
           sTweet += sHisName + "'s " + WordList(["heart skipped a beat","stomach did a somersault","jaw dropped"]).GetWord() + ". "
           sTweet += "She had " + self.FemBodyParts.DescRandomNakedParts(iNum = 5, sDivideChar = ';', 
-                                                                                       bPussy = True, bAss = True, bBoobs = True, bExplicit = False,
-                                                                                       bAllowLongDesc = True)  + ".\n\n"
+                                                                        bPussy = True, bAss = True, bBoobs = True, bExplicit = False,
+                                                                        bAllowLongDesc = True)  + ".\n\n"
           sTweet += "\"" + Seductions.GetWord() + "\" she said in a " + WordList(['deep, sexy voice','husky voice','throaty growl','sexy growl']).GetWord() + ".\n\n"
-          sTweet += ". . .\n\n"
-          sTweet += "\"And that's how I wound up " + WordList(["banging","fucking","going down on","having sex with",
-                                                                            "getting a hand-job from","getting a blow-job from",
-                                                                            "eating out","fingering","sixty-nining",
-                                                                            "tea-bagging","losing my virginity to",
-                                                                            "making a sex-tape with",
-                                                                            "getting an enema from",
-                                                                            "getting herpes from","impregnating",
-                                                                            "getting plugged with a strap-on by",
-                                                                            "paying $1200 to","having my face ridden by",
-                                                                            "eating the ass of","getting peed on by",
-                                                                            "getting a rim-job from","doing","boning","stuffing",
-                                                                            "doing doggy style with","having anal sex with",
-                                                                            "tit-fucking","giving a facial to","marrying"]).GetWord() + " "
-          sTweet += "my " + self.FFWB.GetPerson(NotList = FWBNotList) + "!\" explained " + sHisName + "."
+
+          if CoinFlip():
+              sTweet += ". . .\n\n"
+              sTweet += "\"And that's how I wound up " 
+              sTweet += WordList(["banging","fucking","going down on","having sex with",
+                                  "getting a hand-job from","getting a blow-job from",
+                                  "eating out","fingering","sixty-nining",
+                                  "tea-bagging","losing my virginity to",
+                                  "making a sex-tape with",
+                                  "getting an enema from",
+                                  "getting herpes from","impregnating",
+                                  "getting plugged with a strap-on by",
+                                  "paying $1200 to","having my face ridden by",
+                                  "eating the ass of","getting peed on by",
+                                  "getting a rim-job from","doing","boning","stuffing",
+                                  "doing doggy style with","having anal sex with",
+                                  "tit-fucking","giving a facial to","marrying"]).GetWord() + " "
+              sTweet += "my " + self.FFWB.GetPerson(NotList = FWBNotList) + "!\" "
+              sTweet += "explained " + sHisName + "."
 
           return sTweet
           
@@ -8094,7 +8098,126 @@ class Generator115(ExGen):
 
 #        return sTweet
 
+## Veronica was lying in bed on her stomach. Rafael pulled the covers down
+## inch-by-inch, revealing more and more of her naked body. She felt 
+## shamefully exposed. Then she felt his {touch/hand} on the nape of her
+## neck. Slowly, he ran his fingers down the tapered curve of her graceful
+## spine. A {tingle/tremor/quiver} ran thru her, and {her nipples stiffened/
+## her quim moistened/her anal sphincter clenched}.
+class Generator118(ExGen):
+    def __init__(self):
+        super().__init__(ID = 118, Priority = GenPriority.High)
+     
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
 
+        sHerName = self.FemaleName.FirstName()
+        sHisName = self.MaleName.FirstName()
+
+        FemBack = self.FemBodyParts.Back
+        BackDescSet = FemBack.PartDescSet
+        BackDescSet.NotList(["curved"])
+        BackDescSet.AdjExclTagList(["nude"])
+
+        sTweet += sHerName + " was lying in the bed on her stomach"
+        if randint(1,6) == 6:
+            sTweet += " when she heard "
+            sTweet += WordList(["her father","her step-father","brother","Mr. " + names.ClassyLastNames().GetWord()]).GetWord() + " "
+            sTweet += "come into the room. He must have thought she was asleep. He pulled "
+        else:
+            sTweet += ". " + sHisName + " pulled "
+        sTweet += "the " + WordList(["covers","satin sheets","silk bedsheet"]).GetWord() + " "
+        sTweet += "down inch-by-inch, revealing more and more of " 
+        sTweet += "her " + WordList(["nude","naked"]).GetWord() + ", "
+        sTweet += self.FemBodyParts.FloweryDescription(AdjExclTagList = ["nude","super"]) + ". "
+        
+        sTweet += WordList(["She felt shamefully exposed",
+                            "She could feel his gaze devouring her",
+                            "She wondered if he liked what he saw",
+                            "She knew that nothing was hidden from his view now",
+                            "Her heart was hammering in her chest",
+                            "Goosebumps pimpled her " + self.FemBodyParts.Skin.RandomDescription()]).GetWord() + ". "
+
+        sTweet += "Slowly, " + WordList(["he ran his finger down","his finger traced","his finger slid down","his hand moved down"]).GetWord() + " "
+        sTweet += "the " + BackDescSet.GetAdj(1) + " curve of her " + BackDescSet.GetAdj(2) + " " + BackDescSet.GetNoun() 
+        if CoinFlip():
+            sTweet += " "
+            sTweet += "until it reached the " + WordList(["crevice","cleft"]).GetWord() + " "
+            sTweet += "of her " + self.FemBodyParts.Ass.Buttocks.MediumDescription() 
+        sTweet += ". "
+
+        sTweet += AddArticles(WordList(["tingle","tremor","quiver"]).GetWord(), bMakeUpper = True) + " "
+        sTweet += "ran thru her"
+
+        iRand = randint(1,4)
+        if iRand == 1:
+            # "...her nipples stiffened..."
+            sTweet += ", and "
+            sTweet += "her " + self.FemBodyParts.Breasts.Nipples.MediumDescription(NotList = ["long","lengthy"], AdjExclTagList = ["erect","nude","horny"]) + " "
+            sTweet += WordList(["stiffened","hardened","lengthened",]).GetWord() + "."
+        elif iRand == 2:
+            # "...her quim moistened..."
+            sTweet += ", and "
+            sTweet += "her " + self.FemBodyParts.Vagina.MediumDescription(AdjExclTagList = ["super","wet","horny"]) + " "
+            sTweet += WordList(["moistened","seemed to radiate heat"]).GetWord() + "."
+        elif iRand == 3:
+            # "...her anal sphincter clenched..."
+            sTweet += ", and "
+            sTweet += "her " + self.FemBodyParts.Ass.Anus.MediumDescription(NotList = ["bowels","ring"], AdjReqTagList = ["sphincter"]) + " "
+            sTweet += WordList(["clenched","flexed","puckered","tightened"]).GetWord() + " "
+            sTweet += "in anticipation"
+            if CoinFlip():
+                sTweet += " around the " + WordList(["steel","large steel","black","huge black","bejeweled","8-inch"]).GetWord() + " "
+                sTweet += "buttplug she was wearing."
+            else:
+                sTweet += "."
+        elif iRand == 4:
+            # "...She clamped her thighs together..."
+            sTweet += ". She " + WordList(["clamped","clenched","squeezed"]).GetWord () + " "
+            sTweet += "her thighs together as she felt a trickle of moisture between them."
+
+        return sTweet
+
+#class Generator119(ExGen):
+#    def __init__(self):
+#        super().__init__(ID = 119, Priority = GenPriority.Normal)
+     
+#    def GenerateTweet(self):
+#        super().GenerateTweet()
+#        sTweet = ""
+
+#        return sTweet
+
+#class Generator120(ExGen):
+#    def __init__(self):
+#        super().__init__(ID = 120, Priority = GenPriority.Normal)
+     
+#    def GenerateTweet(self):
+#        super().GenerateTweet()
+#        sTweet = ""
+
+#        return sTweet
+
+#class Generator121(ExGen):
+#    def __init__(self):
+#        super().__init__(ID = 121, Priority = GenPriority.Normal)
+     
+#    def GenerateTweet(self):
+#        super().GenerateTweet()
+#        sTweet = ""
+
+#        return sTweet
+
+#class Generator122(ExGen):
+#    def __init__(self):
+#        super().__init__(ID = 122, Priority = GenPriority.Normal)
+     
+#    def GenerateTweet(self):
+#        super().GenerateTweet()
+#        sTweet = ""
+
+#        return sTweet
           
 #class GeneratorSelector():
 #    def __init__(self):
