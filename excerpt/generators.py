@@ -5350,7 +5350,10 @@ class Generator90(ExGen):
           super().GenerateTweet()
           sTweet = ""
           
-          PenisNotList = ['hard','thick','long','engorged','swollen','length','erect']
+          PenisNotList = []
+          #= ['hard','thick','long','engorged','swollen','length','erect']
+          ExclTagList = ["hard"]
+          Penis = self.MaleBodyParts.Penis
           sTweet = self.MaleName.FirstName() + " approached the bed completely naked. "
           sTweet += self.FemaleName.FirstName() + " drank in "
           if CoinFlip():
@@ -5363,24 +5366,27 @@ class Generator90(ExGen):
           if CoinFlip(): 
                sTweet += "reached down between her " + WordList(['legs','thighs']).GetWord() + " "
                sTweet += "and " + WordList(["sensually ","slowly ","gently ", ""]).GetWord()
-               sTweet += WordList(["rubbed","fingered","stroked","carressed","spread apart","massaged",
-                                       "masturbated","teased"]).GetWord() + " " 
+               sTweet += WordList(["rubbed","fingered","stroked","carressed","spread apart",
+                                   "massaged","tweaked","masturbated","teased",
+                                   "played with"]).GetWord() + " " 
                if CoinFlip():
-                    sTweet += "her " + self.FemBodyParts.Vagina.RandomDescription() + ". "
+                    sTweet += "her " + self.FemBodyParts.Vagina.OuterLabia.FloweryDescription() + ". "
                else:
-                    sTweet += "her " + self.FemBodyParts.Vagina.InnerLabia.RandomDescription() + ". "
-          else:
-               sTweet += WordList(["sensually ","slowly ","gently ", ""]).GetWord()
-               if CoinFlip():
-                    sTweet += WordList(["cupped","carressed","teased","stroked","squeezed"]).GetWord() + " "
-                    sTweet += "her " + self.FemBodyParts.Breasts.RandomDescription() + ". "
-               else:
-                    sTweet += WordList(["carressed","teased","stroked","squeezed","rubbed","pinched"]).GetWord() + " "
-                    sTweet += "her " + self.FemBodyParts.Breasts.Nipples.RandomDescription() + ". "
+                    sTweet += "her " + self.FemBodyParts.Vagina.InnerLabia.FloweryDescription() + ". "
+                # TODO: add clitoris
+          #else:
+          #     sTweet += WordList(["sensually ","slowly ","gently ", ""]).GetWord()
+          #     if CoinFlip():
+          #          sTweet += WordList(["cupped","carressed","teased","stroked","squeezed"]).GetWord() + " "
+          #          sTweet += "her " + self.FemBodyParts.Breasts.RandomDescription() + ". "
+          #     else:
+          #          sTweet += WordList(["carressed","teased","stroked","squeezed","rubbed","pinched"]).GetWord() + " "
+          #          sTweet += "her " + self.FemBodyParts.Breasts.Nipples.RandomDescription() + ". "
           sTweet += "\"Do you " + WordList(['like','want']).GetWord() + " this, " + self.TermsOfEndearment.GetWord() + "?\" "
-          sTweet += "she asked. He didn't reply, but his " + self.MaleBodyParts.Penis.RandomDescription(bAllowLongDesc = False, NotList = PenisNotList) + " "
-          sTweet += WordList(["thickened","lengthened","rose","swelled","became engorged","hardened",
-                                   "began to grow"]).GetWord() + " "
+          sTweet += "she asked. He didn't reply, but his " + Penis.FloweryDescription(bAddLen = False, NounExclTagList = ExclTagList, AdjExclTagList = ExclTagList) + " "
+          sTweet += WordList(["thickened","lengthened","rose","swelled",
+                              "became engorged","hardened","stiffened",
+                              "lengthened","began to grow"]).GetWord() + " "
           sTweet += "in anticipation."
 
           return sTweet
@@ -7200,55 +7206,57 @@ class Generator108(ExGen):
                                 "on the coarse beach sand","on the diving board",
                                 "on the seat of the motorcycle","on the hood of the truck",
                                 "in the back of the truck","on the floor of the shower stall",
-                                "on the massage table",
-                                ])
+                                "on the massage table","in the store display window",
+                                "on the bare mattress","on the luxrious king-sized bed",
+                                "on the backseat","on the hard, narrow bed",
+                                "on the reference desk","across the airline seats",
+                                "on the lineoleum floor","on the kitchen floor",
+                                "on the restroom floor","on the locker room floor",
+                                "on the bathroom tiles","on the tiled floor of the girl's showers",
+                                "on the tiled floor of the men's showers",
+                               ])
 
         Vaj = self.FemBodyParts.Vagina
 
         sTweet += sHerName + " " 
         sTweet += WordList(["cried out","gasped","moaned","panted",
                             "sighed","wailed","whimpered"]).GetWord() + ", "
-        sTweet += "her naked, " + WordList(["busty","buxom","curvy","flushed",
-                                            "girlish","lithe","moist","nubile",
-                                            "oiled-up",
-                                            "ravishing","shameless","slender",
-                                            "smooth","sweaty",
-                                            "voluptuous","womanly"]).GetWord() + " body "
+        sTweet += "her naked, " + self.FemBodyParts.MediumDescription(NounExclTagList = ["nude"]) + " "
         sTweet += WordList(["gyrating","heaving","quivering","trembling"]).GetWord() + " "
         sTweet += "in ecstasy " + SexLocation.GetWord() + ", "
-        sTweet += "as " + sHisName + " "
+        if CoinFlip():
+            sTweet += "as " + sHisName + " "
+        else:
+            Profession = WordList(titmisc.ProfBlueCollarMale().GetWordList()
+                                  + titmisc.ProfWhiteCollarMale().GetWordList()
+                                  + titmisc.ProfEducatorMale().GetWordList())
+            sTweet += "as the " + SmartLower(Profession.GetWord()) + " "
+
         sTweet += WordList(["came","climaxed","creamed","discharged",
                             "ejaculated","erupted","exploded","nutted",
-                            "splooged","spurted"]).GetWord() + " "
+                            "splooged","spurted","injected"]).GetWord() + " "
 
         if CoinFlip():
             if CoinFlip():
-                sTweet += self.Semen.MediumDescription() + " "
+                sTweet += self.Semen.RandomDescription(bAllowShortDesc = False) + " "
             else:
-                sTweet += WordList(["jets of","ropes of","spurts of ",]).GetWord() + " "
-                sTweet += self.Semen.MediumDescription() + " "
+                sTweet += WordList(["jets of","ropes of","spurts of",]).GetWord() + " "
+                sTweet += self.Semen.RandomDescription(bAllowShortDesc = False) + " "
 
         if CoinFlip():
             sTweet += "deep "
         sTweet += "inside her "
 
-        if randint(1,5) < 5:
-            if CoinFlip():
-                sTweet += WordList(["clenched","dewy","dripping","fertile","glistening",
-                                    "gushing","juicy","silken","sopping","tender",
-                                    "tight","velvet","wanton","well-used","wet"]).GetWord() + " "
-            sTweet += WordList(["beef taco","clam","cock sock","cunt-hole",
-                                "fish lips","fish taco","fuck-hole",
-                                "fuck-tunnel","fur burger","fur pie",
-                                "furrow","gash","goop chute","honey hole",
-                                "honey pot","hot pocket","love muffin",
-                                "meat sleeve","pie","sausage wallet",
-                                "sex lips","spunk trunk","tuna taco",
-                                "whisker biscuit","wizard sleeve",]).GetWord() + "."
-        else:
-            sTweet += self.FemBodyParts.Ass.Anus.MediumDescription() + "."
-
-        
+        iRand = randint(1,4)
+        if iRand == 1:
+            sTweet += Vaj.RandomDescription(NounExclTagList = ["std"]) + "."
+        elif iRand == 2:
+            NounExclTagList = ["std"]
+            sTweet += Vaj.InnerVag.RandomDescription(NounExclTagList = ["std"]) + "."
+        elif iRand == 3:
+            sTweet += self.FemBodyParts.Mouth.RandomDescription() + "."
+        elif iRand == 4:
+            sTweet += self.FemBodyParts.Ass.Anus.RandomDescription(bAllowShortDesc = False) + "."
 
         return sTweet
 

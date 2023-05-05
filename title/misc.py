@@ -1108,15 +1108,19 @@ class NationNounMale(WordList):
           
 class ProfBlueCollarMale(WordList):
      def __init__(self):
-          super().__init__(['Baggage Handler',
+          super().__init__(['Amazon Delivery Guy',
+               'Baggage Handler',
                'Carnie',
                'Cattle Wrangler',
                'Coal Miner',
                'Construction Worker',
                'Cop',
                'Cowboy',
+               'Delivery Guy',
                'Farmer',
+               'Farmhand',
                'Fire Fighter',
+               'Forklift Operator',
                'Garbage Man',
                'Gym Coach',
                'Long Haul Trucker',
@@ -1126,11 +1130,17 @@ class ProfBlueCollarMale(WordList):
                'Mechanic',
                'Pizza Delivery Guy',
                'Plumber',
+               'Poolboy',
                'Postman',
+               'Repairman',
                'Roadie',
+               'Roofer',
                'Sailor',
+               'Stevedore',
                'Tattoo Artist',
-               'Trucker'])
+               'Trucker',
+               'Uber Driver',
+              ])
 
 class ProfEducatorMale(WordList):
      def __init__(self):
