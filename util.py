@@ -315,12 +315,20 @@ def FoundIn(sWord, SearchTarget):
           SearchTarget = [SearchTarget]
      
      if isinstance(sWord, str) and isinstance(SearchTarget,list):
+          sLWord = sWord.lower()
           if len(SearchTarget) > 0:
                for s in SearchTarget:
                     if isinstance(s, str):
-                         if s.lower().find(sWord.lower()) >= 0 or sWord.lower().find(s.lower()) >= 0:
-                              bFound = True
-                              break
+                         sl = s.lower()
+                         if sLWord == sl:
+                             bFound = True
+                             break
+                         elif sLWord.find(sl) >= 0:
+                             bFound = True
+                             break
+                         elif sl.find(sLWord) >= 0:
+                             bFound = True
+                             break
                
      return bFound 
           

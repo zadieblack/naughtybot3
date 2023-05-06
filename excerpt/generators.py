@@ -8058,7 +8058,7 @@ class Generator117(ExGen):
                             "testicles between your breasticles","meat in your backseat",
                             "pocket rocket in your socket","stuffin' in dat muffin",
                             "cock-o in your fish taco","swole pole in your front-hole",
-                            "pork-roll in your pussy-hole",
+                            "pork-roll in your pussy-hole","slim-jim in your quim",
                          ])
         sLewdRhyme = LewdRhymes.GetWord()
 
@@ -8084,7 +8084,7 @@ class Generator117(ExGen):
                         sTxt += "was inked across his " + Chest.MediumDescription() + " "
                         sTxt += "in bold lettering"
                     else:
-                        sTxt += WordList(["An enormous winged dragon","An eagle holding a snake","A massive snarling tiger","A big, snarling wolf","An angel holding a flaming sword"]).GetWord() + " "
+                        sTxt += WordList(["An enormous winged dragon","An eagle holding a snake","A massive snarling tiger","A big, snarling wolf","An angel holding a flaming sword","A huge flaming skull",]).GetWord() + " "
                         sTxt += "was tattoed across his entire " + Chest.MediumDescription(NounExclTagList = ["plur"])
                 ManDescs.append(sTxt)
                 UsedManDescNos.append(1)
@@ -8155,11 +8155,11 @@ class Generator117(ExGen):
 
         if CoinFlip():
             if CoinFlip():
-                sTweet += "\n\n" + sHerName + " sighed. "
+                sTweet += "\n\n" + sHerName + " " + WordList(["sighed","shrugged"]).GetWord() + ", "
                 if CoinFlip():
-                    sTweet += "Then she sat up and began unzipping the front of his pants."
+                    sTweet += "then she sat up and began unzipping the front of his pants."
                 else:
-                    sTweet += "Then she grabbed the sides of her bottoms and slipped them down."
+                    sTweet += "then she grabbed the sides of her bottoms and slipped them down."
             else:
                 sTweet += "\n\n\"Excuse me?!?\" she exclaimed.\n\n"
                 sTweet += "\"Don't play, Mrs. " + sHerLastName[0] + ",\" he said. "
