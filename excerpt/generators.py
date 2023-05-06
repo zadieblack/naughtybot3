@@ -8028,29 +8028,141 @@ class Generator115(ExGen):
 ## BONUS: "I'm sorry?!?" she exclaimed.
 ## "Don't play Mrs. J," he said. "I asked if you wanted some dairy in your cherry."
 #
-#class Generator117(ExGen):
-#    def __init__(self):
-#        super().__init__(ID = 117, Priority = GenPriority.Normal)
+class Generator117(ExGen):
+    def __init__(self):
+        super().__init__(ID = 117, Priority = GenPriority.Normal)
      
-#    def GenerateTweet(self):
-#        super().GenerateTweet()
-#        sTweet = ""
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
 
-        WordList(["spunk in your trunk","splooge in your cooj","cream in your seam",
-                  "cock in your sock","sauce in your box","juice in your caboose",
-                  "nut in your butt","squirt up your skirt","shot in your twat",
-                  "jizz in your biz","gravy in your cave-y","goo in you",
-                  "mayonnaise between your legs","spit on your clit",
-                  "front up your cunt","beef in your queef","rod in your bod",
-                  "pole in your hole","schlong in your thong","tool in your grool",
-                  "power in your flower","wrench in your stench-trench",
-                  "man-snot in your twat","batch in your snatch",
-                  "honey in your cunny","dairy in your cherry","jam in your clam",
-                  "splash in your gash","paint on your taint","ham in your clam",
-                  "testicles between your breasticles","meat in your backseat",
-                 ]).GetWord()
+        sHerName = self.FemaleName.FirstName()
+        sHerLastName = names.PlainLastNames().GetWord()
+        sHisName = WordList(["Billy","Bobby","Davey","Eddy","Franky",
+                             "Freddy","Jeffy","Jimmy","Johnny",
+                             "Pauley","Ricky","Sammy","Stevey",
+                             "Timmy","Tommy",]).GetWord()
+        sSonName = self.MaleName.FirstName()
 
-#        return sTweet
+        LewdRhymes = WordList(["spunk in your trunk","splooge in your cooj","cream in your seam",
+                            "stalk in your cock-sock","sauce in your box","juice in your caboose",
+                            "nut in your butt","squirt up your skirt","shot in your twat",
+                            "jizz in your biz","gravy in your cave-y","goo in you",
+                            "mayonnaise between your legs","spit on your clit",
+                            "front up your cunt","beef in your queef","hot-rod in your mom-bod",
+                            "pole in your hole","schlong in your thong","tool in your grool",
+                            "wrench in your stench-trench","beef-bat in your kitty cat",
+                            "man-snot in your twat","batch in your snatch",
+                            "honey in your cunny","dairy in your cherry","jam in your clam",
+                            "splash in your gash","paint on your taint","ham in your clam",
+                            "testicles between your breasticles","meat in your backseat",
+                            "pocket rocket in your socket","stuffin' in dat muffin",
+                         ])
+        sLewdRhyme = LewdRhymes.GetWord()
+
+        ManDescs = []
+        UsedManDescNos = []
+        for i in range(2):
+            iManDescRand = randint(1,5)
+            while iManDescRand in UsedManDescNos:
+                iManDescRand = randint(1,5)
+            if iManDescRand == 1:
+                # Chest
+                Chest = self.MaleBodyParts.Chest
+                sTxt = ""
+                if CoinFlip():
+                    # Hairy
+                    sTxt += "His " + Chest.RandomDescription(AdjExclTagList = ["hairy"], NounExclTagList = ["plur"]) + " "
+                    sTxt += "was thick with dark, curly hair"
+                else:
+                    # Tattoos
+                    sTxt = ""
+                    if CoinFlip():
+                        sTxt += "\"" + WordList(["'RESPECT'","'STRENGTH'","'THUG LIFE'","'MERCY'"]).GetWord() + "\" "
+                        sTxt += "was inked across his " + Chest.MediumDescription() + " "
+                        sTxt += "in bold lettering"
+                    else:
+                        sTxt += WordList(["An enormous winged dragon","An eagle holding a snake","A massive snarling tiger","A big, snarling wolf","An angel holding a flaming sword"]).GetWord() + " "
+                        sTxt += "was tattoed across his entire " + Chest.MediumDescription(NounExclTagList = ["plur"])
+                ManDescs.append(sTxt)
+                UsedManDescNos.append(1)
+            elif iManDescRand == 2:
+                # tattooed skin
+                Arms = self.MaleBodyParts.Arms
+                sTxt = ""
+                if CoinFlip():
+                    sTxt += "Both his " + Arms.RandomDescription() + " were fully sleeved with tattoos"
+                else:
+                    sTxt += "His " + Arms.RandomDescription() + " were covered with tribal tattoos"
+                ManDescs.append(sTxt)
+                UsedManDescNos.append(2)
+            elif iManDescRand == 3:
+                # beard or stubble
+                Beard = self.MaleBodyParts.FacialHair
+                sTxt = "He sported " + AddArticles(Beard.RandomDescription())
+                ManDescs.append(sTxt)
+                UsedManDescNos.append(3)
+            elif iManDescRand == 4:
+                # hair
+                Hair = self.MaleBodyParts.Hair
+                sTxt = "His " + Hair.MediumDescription(NotList = ["dread","locks"], AdjReqTagList = ["color"]) + " "
+                sTxt += "was braided into ropy dreadlocks"
+                ManDescs.append(sTxt)
+                UsedManDescNos.append(4)
+            elif iManDescRand == 5:
+                # build
+                Body = self.MaleBodyParts
+                sTxt = "His " + Body.RandomDescription(NotList = ["muscle"]) + " rippled with muscle"
+                ManDescs.append(sTxt)
+                UsedManDescNos.append(5)
+
+        sManDesc1 = ManDescs[0]
+        sManDesc2 = ManDescs[1]
+        #sManDesc3 = ManDescs[2]
+
+        sFinalDesc = WordList(["his " + self.MaleBodyParts.Chest.Nipples.RandomDescription(bAllowLongDesc = False,NotList = ["pierced"]) + " had been pierced with " + WordList(["steel bars","steel rings","gold rings"]).GetWord(),
+                               "he smelled like weed" + WordList([" and tobacco"," and liquor"," and cigarettes",""]).GetWord(),
+                               "he had a facial tattoo that said " + WordList(["'FEAR'","'LOVER'","'PAIN'","'HURT'","'DEATH'","'REGRET'","'STATEMENT'","'13'","'666'"]).GetWord(),
+                               "a cross on a thick gold chain hung around his neck",
+                              ]).GetWord()
+
+        sTweet += "A dark shadow fell over " + sHerName + " " + sHerLastName + " "
+        sTweet += "as she sunned herself " + WordList(["by the pool","by the beach","on the deck","in the backyard","on the veranda","on the balcony","on a lawn chair","on the diving board"]).GetWord() + " "
+        sTweet += WordList(["in her swimsuit","in her bikini","in her sports bra and yoga pants","in her underwear","in her t-shirt and cutoffs","in a thong","topless"]).GetWord() + ". "
+        sTweet += "\"'Sup Mrs. " + sHerLastName + ",\" " 
+        sTweet += "said a tall, shirtless figure.\n\n"
+
+        sTweet += "\"Oh! " + WordList(["Ah","Er","Umm","Uh"]).GetWord() + ", "
+        sTweet += WordList(["hi","hello","'sup'",]).GetWord() + " " + sHisName + "!\" "
+        sTweet += sHerName + " " + WordList(["squeaked","stammered","stuttered","squealed","exclaimed"]).GetWord() + ". "
+        sTweet += "She had barely recognized her son's childhood friend. "
+
+        sTweet += sManDesc1 + ". " + sManDesc2 + ". " 
+        sTweet += "And " + sFinalDesc + ". "
+
+        sTweet += "\"My goodness, you've really grown over the summer!\" she said. "
+        sTweet += "\"But I'm afraid my son isn't home.\"\n\n"
+
+        sTweet += "\"You lookin' fine, Mrs. " + sHerLastName[0] + ",\" "
+        sTweet += "he said " + WordList(["approvingly","generously","appreciatively","respectfully","reverently"]).GetWord() + ", "
+        sTweet += "looking her up and down. "
+        sTweet += "\"Now why don't you " + WordList(["bend over","get naked","spread them thighs","spread dat booty","shake dat ass","open up them legs"]).GetWord() + " "
+        sTweet += "and let " + sHisName + " "
+        sTweet += "put his " + sLewdRhyme + ".\""
+
+        if CoinFlip():
+            if CoinFlip():
+                sTweet += "\n\n" + sHerName + " sighed. "
+                if CoinFlip():
+                    sTweet += "Then she sat up and began unzipping the front of his pants."
+                else:
+                    sTweet += "Then she grabbed the sides of her bottoms and slipped them down."
+            else:
+                sTweet += "\n\n\"Excuse me?!?\" she exclaimed.\n\n"
+                sTweet += "\"Don't play, Mrs. " + sHerLastName[0] + ",\" he said. "
+                sTweet += "\"I asked if you wanted my " + LewdRhymes.GetWord(NotList = [sLewdRhyme]) + ".\""
+
+        return sTweet
 
 ## Veronica was lying in bed on her stomach. Rafael pulled the covers down
 ## inch-by-inch, revealing more and more of her naked body. She felt 

@@ -1205,13 +1205,14 @@ class Nipples(BodyParts):
                         'pink: color,whitepers',
                         'plump: size,large,feel',
                         'pokey: arousal',
+                        'prominent: poetic',
                         'puffy: feel,',
                         'ripe: poetic,attractive',
                         'rose-colored: poetic,color,whitepers',
                         'rosebud: poetic,color,whitepers',
                         'sensitive: feel,poetic',
                         'shameless: horny',
-                        'shy: poetic,cute'
+                        'shy: poetic,cute',
                         'stiff: arousal,',
                         'stiffly erect: arousal',
                         'succulent: poetic,attractive,taste',
@@ -2939,6 +2940,46 @@ class MusclesMale(BodyParts):
           
           self.DefaultNoun("shoulders")
           self.DefaultAdj("broad")
+
+class NipplesMale(BodyParts):
+     def __init__(self):
+          super().__init__()
+          
+          self.NounList(['nipples: std,default,plur'])
+               
+          self.AdjList(['bare: nude',
+                        'bared: nude',
+                        'black: color, poc',
+                        'bold: poetic,hard',
+                        'broad: size,large',
+                        'brown: color,',
+                        'chocolate: color',
+                        'dark: color,',
+                        'dusky: color,poetic',
+                        'enormous: size,large',
+                        'erect: arousal,',
+                        'exposed: nude',
+                        'firm: arousal',
+                        'handsome: super,attractive',
+                        'hard: arousal,',
+                        'perfect: super,attractive',
+                        'pert: arousal,poetic,cute',
+                        'pierced: style',
+                        'pink: color,whitepers',
+                        'prominent: poetic',
+                        'reddish: color',
+                        'small: size,small',
+                        'stiff: arousal,',
+                        'stiffly erect: arousal',
+                        'sun-kissed: color',
+                        'tanned: color',
+                        'thick: size,large,arousal,',
+                        'tiny: size,small,',
+                        'turgid: arousal',
+                        'wide: size,large'])
+               
+          self.DefaultNoun("nipples")
+          self.DefaultAdj("erect")
           
 class ChestMale(BodyParts):
      def __init__(self):
@@ -2947,41 +2988,42 @@ class ChestMale(BodyParts):
           self.NounList(['chest x4: std,default,sing',
                          'pectorals: std,plur'])
                
-          self.AdjList(['bare',
-                        'brawny',
-                        'broad',
-                        'bronzed',
-                        'brown',
-                        'burly',
-                        'coffee-colored',
-                        'compact',
-                        'dark',
-                        'dark-thatched',
-                        'ebony',
-                        'expansive',
-                        'hairy',
-                        'lusty',
-                        'mighty',
-                        'muscular',
-                        'naked',
-                        'oiled',
-                        'powerful',
-                        'rippling',
-                        'ripped',
-                        'rugged',
-                        'strapping',
-                        'strong',
-                        'sturdy',
-                        'sun-browned',
-                        'tanned',
-                        'toned',
-                        'wide',
-                        'uncovered',
-                        'virile',
-                        'well-built',
-                        'well-defined',
-                        'well-oiled'])
-          
+          self.AdjList(['bare: nude',
+                        'brawny: muscular',
+                        'broad: size,large,wide',
+                        'bronzed: color',
+                        'brown: color,poc',
+                        'burly: muscular,size,large,shape',
+                        'coffee-colored: color,poc',
+                        'compact: size,small',
+                        'dark: color,poc',
+                        'dark-thatched: hairy',
+                        'ebony: color,poc',
+                        'expansive: size,large,wide',
+                        'hairy: hairy',
+                        'lusty: horny',
+                        'mighty: strong',
+                        'muscular: muscular',
+                        'naked: nude',
+                        'oiled: wet,shiny',
+                        'powerful: strong',
+                        'rippling: super,shape',
+                        'ripped: muscular',
+                        'rugged: attractive',
+                        'strapping: poetic,muscular,strong',
+                        'strong: strong',
+                        'sturdy: size,large',
+                        'sun-browned: color',
+                        'tanned: color',
+                        'toned: muscular',
+                        'wide: size,wide',
+                        'uncovered: nude',
+                        'virile: poetic,attractive',
+                        'well-built: muscular',
+                        'well-defined: muscular,shape',
+                        'well-oiled: wet,shiny'])
+
+          self.Nipples = NipplesMale()
           self.DefaultNoun("chest")
           self.DefaultAdj("broad")
           
@@ -3061,42 +3103,42 @@ class FacialHair(BodyParts):
      def __init__(self):
           super().__init__()
           
-          self.NounList(['beard x3',
-                         'fuzz',
-                         'goatee',
-                         'moustache',
-                         'stubble',
-                         'fro'])
+          self.NounList(['beard x3: beard,std,default,sing',
+                         'fuzz: stubble,std,sing',
+                         'goatee: goatee,std,sing',
+                         'moustache: moustache,std,sing',
+                         'stubble: stubble,std,sing',
+                         'fro: afro,std,poc,sing'])
                
-          self.AdjList(['black x2',
-                        'blonde x2',
-                        'bristling',
-                        'brown',
-                        'bushy',
-                        'coifed',
-                        'curly',
-                        'dark',
-                        'full',
-                        'glossy',
-                        'gray',
-                        'long',
-                        'luxuriant',
-                        'magnificent',
-                        'manly',
-                        'messy',
-                        'red',
-                        'sandy',
-                        'silken',
-                        'short',
-                        'thick',
-                        'trimmed',
-                        'unkempt',
-                        'untamed',
-                        'well-trimmed',
-                        'wild',
-                        'wiry'])
+          self.AdjList(['black x2: color',
+                        'blonde x2: color,whitepers',
+                        'bristling: style',
+                        'brown: color',
+                        'bushy: shape',
+                        'coifed: style',
+                        'curly: shape',
+                        'dark: color',
+                        'full: size,large',
+                        'glossy: shiny',
+                        'gray: color, older',
+                        'long: size,large',
+                        'luxuriant: super',
+                        'magnificent: super',
+                        'manly: attractive',
+                        'messy: style',
+                        'red: color, whitepers',
+                        'sandy: color,whitepers',
+                        'silken: feel,poetic',
+                        'short: size,small,style',
+                        'thick: size,large',
+                        'trimmed: style',
+                        'unkempt: style',
+                        'untamed: style',
+                        'well-trimmed: style',
+                        'wild: style',
+                        'wiry: style'])
           
-          self.DefaultNoun("hair")
+          self.DefaultNoun("beard")
           self.DefaultAdj("glossy")
           
 class HairMale(BodyParts):
