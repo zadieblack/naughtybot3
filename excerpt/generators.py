@@ -8057,6 +8057,8 @@ class Generator117(ExGen):
                             "splash in your gash","paint on your taint","ham in your clam",
                             "testicles between your breasticles","meat in your backseat",
                             "pocket rocket in your socket","stuffin' in dat muffin",
+                            "cock-o in your fish taco","swole pole in your front-hole",
+                            "pork-roll in your pussy-hole",
                          ])
         sLewdRhyme = LewdRhymes.GetWord()
 
@@ -8089,11 +8091,12 @@ class Generator117(ExGen):
             elif iManDescRand == 2:
                 # tattooed skin
                 Arms = self.MaleBodyParts.Arms
+                ArmsNotList = ["protect"]
                 sTxt = ""
                 if CoinFlip():
-                    sTxt += "Both his " + Arms.RandomDescription() + " were fully sleeved with tattoos"
+                    sTxt += "Both his " + Arms.RandomDescription(NotList = ArmsNotList) + " were fully sleeved with tattoos"
                 else:
-                    sTxt += "His " + Arms.RandomDescription() + " were covered with tribal tattoos"
+                    sTxt += "His " + Arms.RandomDescription(NotList = ArmsNotList) + " were covered with tribal tattoos"
                 ManDescs.append(sTxt)
                 UsedManDescNos.append(2)
             elif iManDescRand == 3:
@@ -8127,7 +8130,7 @@ class Generator117(ExGen):
                               ]).GetWord()
 
         sTweet += "A dark shadow fell over " + sHerName + " " + sHerLastName + " "
-        sTweet += "as she sunned herself " + WordList(["by the pool","by the beach","on the deck","in the backyard","on the veranda","on the balcony","on a lawn chair","on the diving board"]).GetWord() + " "
+        sTweet += "as she sunned herself " + WordList(["by the pool","on the deck","in the backyard","on the veranda","on the balcony","on a lawn chair","on the diving board"]).GetWord() + " "
         sTweet += WordList(["in her swimsuit","in her bikini","in her sports bra and yoga pants","in her underwear","in her t-shirt and cutoffs","in a thong","topless"]).GetWord() + ". "
         sTweet += "\"'Sup Mrs. " + sHerLastName + ",\" " 
         sTweet += "said a tall, shirtless figure.\n\n"

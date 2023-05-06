@@ -32,9 +32,395 @@ class ParsedUnit:
 # This class can also "describe" the words it has picked, outputting them as a string 
 # with proper spaces and commas. This functionality is used by MediumDescription() and
 # FloweryDescription().
-class PartDescSet:
-    def __init__(self, ParentPart, iNumAdjs = 3, ExtraAdjList = None, bVaryAdjTags = True, NotList = [], bStdNouns = True, bDescNouns = True, bSillyNouns = True):
-        self._ParentPart = ParentPart
+#class PartDescSet:
+#    def __init__(self, ParentPart, iNumAdjs = 3, ExtraAdjList = None, bVaryAdjTags = True, NotList = [], bStdNouns = True, bDescNouns = True, bSillyNouns = True):
+#        self._ParentPart = ParentPart
+#        self._NotList = NotList
+#        self._Noun = ""
+#        self._Color = ""
+#        self._iNumAdjs = iNumAdjs
+#        self._AdjList = []
+#        self._bVaryAdjTags = bVaryAdjTags
+
+#        self._ReqTagList = []
+#        self._ExclTagList = []
+#        self._NounReqTagList = []
+#        self._NounExclTagList = []
+#        self._AdjReqTagList = []
+#        self._AdjExclTagList = []
+#        self._Adj1ReqTagList = []
+#        self._Adj1ExclTagList = []
+#        self._Adj2ReqTagList = []
+#        self._Adj2ExclTagList = []
+#        self._Adj3ReqTagList = []
+#        self._Adj3ExclTagList = []
+
+#        if ExtraAdjList is None:
+#            self._ExtraAdjList = []
+#        else:
+#            self._ExtraAdjList = ExtraAdjList
+
+#        #self.SetStdNouns(bStdNouns)
+#        #self.SetDescNouns(bDescNouns)
+#        #self.SetSillyNouns(bDescNouns)
+
+#        self.SetSelf()
+
+#    def SetSelf(self):
+#        ParentPart = self._ParentPart
+
+#        if isinstance(ParentPart, BodyParts):
+#            # Don't bother if bodypart adj lists or noun lists are empty
+
+#            #bTestBreasts = False
+#            #if isinstance(ParentPart, Breasts):
+#            #    bTestBreasts = True
+
+#            if ParentPart.NounListLen() > 0 and ParentPart.AdjListLen() > 0:
+#                NounReqTagList = []
+#                if len(self._NounReqTagList) > 0:
+#                    NounReqTagList = self._NounReqTagList
+#                else:
+#                    NounReqTagList = self._ReqTagList
+
+#                NounExclTagList = []
+#                if len(self._NounExclTagList) > 0:
+#                    NounExclTagList = self._NounExclTagList
+#                else:
+#                    NounExclTagList = self._ExclTagList
+
+#                AdjReqTagList = []
+#                if len(self._AdjReqTagList) > 0:
+#                    AdjReqTagList = self._AdjReqTagList
+#                elif len(self._AdjReqTagList) > 0:
+#                    AdjReqTagList = self._AdjReqTagList
+#                else:
+#                    AdjReqTagList = self._ReqTagList
+
+#                AdjExclTagList = []
+#                if len(self._AdjExclTagList) > 0:
+#                    AdjExclTagList = self._AdjExclTagList
+#                elif len(self._AdjExclTagList) > 0:
+#                    AdjExclTagList = self._AdjExclTagList
+#                else:
+#                    AdjExclTagList = self._ExclTagList
+
+#                Adj1ReqTagList = [] 
+#                if len(self._Adj1ReqTagList) > 0:
+#                    Adj1ReqTagList = self._Adj1ReqTagList
+#                elif len(self._AdjReqTagList) > 0:
+#                    Adj1ReqTagList = self._AdjReqTagList
+#                else:
+#                    Adj1ReqTagList = self._ReqTagList
+
+#                Adj1ExclTagList = []
+#                if len(self._Adj1ExclTagList) > 0:
+#                    Adj1ExclTagList = self._Adj1ExclTagList
+#                elif len(self._AdjExclTagList) > 0:
+#                    Adj1ExclTagList = self._AdjExclTagList
+#                else:
+#                    Adj1ExclTagList = self._ExclTagList
+
+#                Adj2ReqTagList = []
+#                if len(self._Adj2ReqTagList) > 0:
+#                    Adj2ReqTagList = self._Adj2ReqTagList
+#                elif len(self._AdjReqTagList) > 0:
+#                    Adj2ReqTagList = self._AdjReqTagList
+#                else:
+#                    Adj2ReqTagList = self._ReqTagList
+
+#                Adj2ExclTagList = []
+#                if len(self._Adj2ExclTagList) > 0:
+#                    Adj2ExclTagList = self._Adj2ExclTagList
+#                elif len(self._AdjExclTagList) > 0:
+#                    Adj2ExclTagList = self._AdjExclTagList
+#                else:
+#                    Adj2ExclTagList = self._ExclTagList
+
+#                Adj3ReqTagList = []
+#                if len(self._Adj3ReqTagList) > 0:
+#                    Adj3ReqTagList = self._Adj3ReqTagList
+#                elif len(self._AdjReqTagList) > 0:
+#                    Adj3ReqTagList = self._AdjReqTagList
+#                else:
+#                    Adj3ReqTagList = self._ReqTagList
+
+#                Adj3ExclTagList = []
+#                if len(self._Adj3ExclTagList) > 0:
+#                    Adj3ExclTagList = self._Adj3ExclTagList
+#                elif len(self._AdjExclTagList) > 0:
+#                    Adj3ExclTagList = self._AdjExclTagList
+#                else:
+#                    Adj3ExclTagList = self._ExclTagList
+
+#                self._Noun = ParentPart.GetNoun(NotList = self._NotList + self._AdjList, ReqTagList = NounReqTagList, ExclTagList = NounExclTagList)
+#                #print("  ---")
+#                global TagExclDict
+#                UsedTagList = []
+#                if self._bVaryAdjTags and len(AdjReqTagList) == 0:
+#                    for tag in ParentPart.GetUnitTags(self._Noun):
+#                        if tag in TagExclDict:
+#                            UsedTagList.append(tag)
+#                    #print("  Added any excluding noun tags for \"" + self._Noun + "\" to UsedTagList " + str(UsedTagList))
+
+#                self.ClearAdjList()
+
+#                # Parse extra adjs list, add any tags to the parent
+#                # and to the used tag lsit
+#                ParsedExtraAdjList = []
+#                for adj in self._ExtraAdjList:
+#                    Unit = ParentPart.ParseUnit(adj)
+#                    if Unit.sUnit != "":
+#                        ParsedExtraAdjList.append(Unit.sUnit)
+#                        #self.AddAdj(Unit.sUnit)
+#                        for tag in Unit.TagList:
+#                            #def AddUnitTag(self, sUnit, sTag):
+#                            ParentPart.AddUnitTag(Unit.sUnit,tag)
+#                            UsedTagList.append(tag)
+
+#                #if bTestBreasts and self._iNumAdjs > 3:
+#                #    print("  ---")
+#                for i in range(self._iNumAdjs):
+#                    LocalReqTagList = []
+#                    LocalExclTagList = []
+#                    if i == 0:
+#                        LocalReqTagList = Adj1ReqTagList.copy()
+#                        LocalExclTagList = Adj1ExclTagList.copy()
+#                    elif i == 1:
+#                        LocalReqTagList = Adj2ReqTagList.copy()
+#                        LocalExclTagList = Adj2ExclTagList.copy()
+#                    elif i == 2:
+#                        LocalReqTagList = Adj3ReqTagList.copy()
+#                        LocalExclTagList = Adj3ExclTagList.copy()
+#                    else:
+#                        LocalReqTagList = AdjReqTagList.copy()
+#                        LocalExclTagList = AdjExclTagList.copy()
+
+#                    sAdj = ParentPart.GetAdj(NotList = self._NotList + self._AdjList, ReqTagList = LocalReqTagList, ExclTagList = LocalExclTagList + UsedTagList)
+#                    if sAdj == "":
+#                        print("=*= WARNING =*= DescSetPart.SetSelf() unable to get more adjectives.\n")
+#                        break
+
+#                    for tag in ParentPart.GetUnitTags(sAdj):
+#                        # Try and pick adjs from different tags if required tags are not set
+#                        if self._bVaryAdjTags and len(LocalReqTagList) == 0:
+#                            if not tag == "master":
+#                                UsedTagList.append(tag)
+
+#                        # Avoid choosing adjectives with mutally exclusive tags
+#                        if tag in TagExclDict:
+#                            for excltag in TagExclDict[tag]:
+#                                if not excltag in LocalExclTagList:
+#                                    LocalExclTagList.append(excltag)
+#                                    #print("    Detected tag \"" + tag + "\", excluding tags " + str(TagExclDict[tag]))
+                
+#                    self.AddAdj(sAdj)
+#                    #if bTestBreasts:
+#                    #    print("  Picked adj \"" + sAdj + "\" " + str(ParentPart.GetUnitTags(sAdj)) + "\n    excl tags " + str(LocalExclTagList) + "\n    used tags " + str(UsedTagList))
+#                    #print("  Adj list " + str(self._AdjList))
+
+#                # Sort 
+#                #print("    Unsorted adj list is " + str(self._AdjList))
+#                ExtraAdjBucket = ParsedExtraAdjList
+#                AgeAdjBucket = []
+#                ColorAdjBucket = []
+#                OtherAdjBucket = []
+#                SuperAdjBucket = []
+#                for adj in self._AdjList:
+#                    if "young" in ParentPart.GetUnitTags(adj) or "older" in ParentPart.GetUnitTags(adj):
+#                        #print("      \"" + adj + "\" is an age adj.")
+#                        AgeAdjBucket.append(adj)
+#                    elif "color" in ParentPart.GetUnitTags(adj):
+#                        #print("      \"" + adj + "\" is a color adj.")
+#                        ColorAdjBucket.append(adj)
+#                    elif "super" in ParentPart.GetUnitTags(adj):
+#                        #print("      \"" + adj + "\" is a superlative adj.")
+#                        SuperAdjBucket.append(adj)
+#                    else:
+#                        #print("      \"" + adj + "\" is a normal adj.")
+#                        OtherAdjBucket.append(adj)
+#                AgeAdjBucket.sort(key = str.lower)
+#                ColorAdjBucket.sort(key = str.lower)
+#                SuperAdjBucket.sort(key = str.lower)
+#                OtherAdjBucket.sort(key = str.lower)
+#                #self.ClearAdjList()
+#                self._AdjList = SuperAdjBucket + OtherAdjBucket + ColorAdjBucket + AgeAdjBucket + ExtraAdjBucket
+#                #print("    Sorted adj list is " + str(self._AdjList))
+
+#                #print("  Final Adj List is " + str(self._AdjList))
+#                DictAdjTags = dict()
+#                for adj in self._AdjList:
+#                    DictAdjTags[adj] = ParentPart.GetUnitTags(adj)
+#                    #print("  Tags for \"" + adj + "\" are " + str(DictAdjTags[adj]))
+#                #if len(ParentPart._ColorList.GetWordList()) > 0:
+#                #    self._Color = ParentPart.GetColor(NotList = self._NotList + self._AdjList + [self._Noun])
+
+
+#    def NotList(self, NotList):
+#        self._NotList = NotList
+#        self.SetSelf()
+
+#    def GetAdj(self, inum, adj):
+#        if inum >= 0 and inum < len(self._AdjList):
+#            self._AdjList[inum] = adj
+
+#    def AddAdj(self, adj):
+#        if adj != "":
+#            self._AdjList.append(adj)
+
+#    def RemoveAdj(self, adj):
+#        if adj in self._AdjList:
+#            self._AdjList.remove(adj)
+
+#    def RemoveAdjByNum(self, inum):
+#        if inum >= 0 and inum < len(self._AdjList):
+#            self._AdjList.pop(inum)
+
+#    def ClearAdjList(self):
+#        self._AdjList = []
+
+#    def Noun(self, noun):
+#        self._Noun = noun
+
+#    def Color(self, color):
+#        self._Color = color
+
+#    def ReqTagList(self, TagList):
+#        self._ReqTagList = TagList
+#        self.SetSelf()
+
+#    def ExclTagList(self, TagList):
+#        self._ExclTagList = TagList
+#        self.SetSelf()
+
+#    def NounReqTagList(self, TagList):
+#        self._NounReqTagList = TagList
+#        self.SetSelf()
+
+#    def NounExclTagList(self, TagList):
+#        self._NounExclTagList = TagList
+#        self.SetSelf()
+
+#    def AdjReqTagList(self, TagList):
+#        self._AdjReqTagList = TagList
+#        self.SetSelf()
+
+#    def AdjExclTagList(self, TagList):
+#        self._AdjExclTagList = TagList
+#        self.SetSelf()
+
+#    def Adj1ReqTagList(self, TagList):
+#        self._Adj1ReqTagList = TagList
+#        self.SetSelf()
+
+#    def Adj1ExclTagList(self, TagList):
+#        self._Adj1ExclTagList = TagList
+#        self.SetSelf()
+
+#    def Adj2ReqTagList(self, TagList):
+#        self._Adj2ReqTagList = TagList
+#        self.SetSelf()
+
+#    def Adj2ExclTagList(self, TagList):
+#        self._Adj2ExclTagList = TagList
+#        self.SetSelf()
+
+#    def Adj3ReqTagList(self, TagList):
+#        self._Adj3ReqTagList = TagList
+#        self.SetSelf()
+
+#    def Adj3ExclTagList(self, TagList):
+#        self._Adj3ExclTagList = TagList
+#        self.SetSelf()
+
+#    def GetAdj(self, inum):
+#        sAdj = ""
+#        if inum >= 0 and inum < len(self._AdjList):
+#            sAdj = self._AdjList[inum]
+        
+#        return sAdj
+
+#    def GetNoun(self):
+#        return self._Noun
+
+#    def GetColor(self):
+#        return self._Color
+
+#    def GetFullDesc(self, bColor = True):
+#        sFullDesc = ""
+#        DescWordList = []
+
+#        if self.GetNoun() != "":
+#            DescWordList.append(self.GetNoun())
+#        #if self.Color() != "" and bColor:
+#        #    DescWordList.insert(0, self.Color())
+#        DescWordList = self._AdjList + DescWordList
+
+#        if len(DescWordList) < 3:
+#            sFullDesc = " ".join(DescWordList)
+#        elif len(DescWordList) == 3:
+#            sFullDesc = ", ".join(DescWordList[:1]) + ", " + " ".join(DescWordList[1:])
+#        elif len(DescWordList) == 4:
+#            sFullDesc = ", ".join(DescWordList[:-2]) + ", " + " ".join(DescWordList[-2:])
+#        else:
+#            sFullDesc = ", ".join(DescWordList[:-3]) + ", " + " ".join(DescWordList[-3:])
+        
+#        return sFullDesc
+
+#    def GetDescWordList(self):
+#        DescWordList = []
+
+#        if self.Noun() != "":
+#            DescWordList.insert(0, self.Noun())
+#        #if self.Color() != "":
+#        #    DescWordList.insert(0, self.Color())
+#        DescWordList = self._AdjList + DescWordList
+
+#        return DescWordList
+
+#    def SetStdNouns(self, bStdNouns):
+#        if bStdNouns:
+#            self.ReqNounTagList(["std"])
+#        else:
+#            self.ExclNounTagList(["std"])
+#        self.SetSelf()
+
+#    def SetDescNouns(self, bDescNouns):
+#        if bDescNouns:
+#            self.ReqNounTagList(["desc"])
+#        else:
+#            self.ExclNounTagList(["desc"])
+#        self.SetSelf()
+
+#    def SetSillyNouns(self, bSillyNouns):
+#        if bSillyNouns:
+#            self.ReqNounTagList(["silly"])
+#        else:
+#            self.ExclNounTagList(["silly"])
+#        self.SetSelf()
+
+
+# ============================
+# *** Bodyparts base class ***
+# ============================
+
+class BodyParts:
+    def __init__(self, iNumAdjs = 5, ExtraAdjList = None, bVaryAdjTags = True, NotList = None):
+        # PDS init:
+        # def __init__(self, ParentPart, iNumAdjs = 3, ExtraAdjList = None, bVaryAdjTags = True, NotList = [], bStdNouns = True, bDescNouns = True, bSillyNouns = True):
+
+        self._AllUnitLists = {"adj": {"master": []}, "noun": {"master": [], "std": []}}
+        self._UnitTags = dict()
+        self._DefaultNoun = ""
+        self._DefaultAdj = "naked"
+          
+        self.NounHistoryQ = HistoryQ(3)
+        self.AdjHistoryQ = HistoryQ(3)
+
+        # PDS code
+        if NotList is None:
+            NotList = []
+
         self._NotList = NotList
         self._Noun = ""
         self._Color = ""
@@ -42,223 +428,154 @@ class PartDescSet:
         self._AdjList = []
         self._bVaryAdjTags = bVaryAdjTags
 
+        # Nouns and Adjs have their own specific required and excluded
+        # tag lists which they will use if available. Otherwise, they
+        # fall back on the general required and excluded tag lists.
         self._ReqTagList = []
         self._ExclTagList = []
         self._NounReqTagList = []
         self._NounExclTagList = []
         self._AdjReqTagList = []
         self._AdjExclTagList = []
-        self._Adj1ReqTagList = []
-        self._Adj1ExclTagList = []
-        self._Adj2ReqTagList = []
-        self._Adj2ExclTagList = []
-        self._Adj3ReqTagList = []
-        self._Adj3ExclTagList = []
 
         if ExtraAdjList is None:
             self._ExtraAdjList = []
         else:
             self._ExtraAdjList = ExtraAdjList
 
-        #self.SetStdNouns(bStdNouns)
-        #self.SetDescNouns(bDescNouns)
-        #self.SetSillyNouns(bDescNouns)
+        # self.Reset()
 
-        self.SetSelf()
+    # *** PDS methods ***
+    # -------------------
 
-    def SetSelf(self):
-        ParentPart = self._ParentPart
+    def Reset(self, iNumAdjs = None):
+        if iNumAdjs is None:
+            iNumAdjs = self._iNumAdjs
 
-        if isinstance(ParentPart, BodyParts):
-            # Don't bother if bodypart adj lists or noun lists are empty
+        if self.NounListLen() > 0 and self.AdjListLen() > 0:
+            NounReqTagList = []
+            if len(self._NounReqTagList) > 0:
+                NounReqTagList = self._NounReqTagList
+            else:
+                NounReqTagList = self._ReqTagList
 
-            #bTestBreasts = False
-            #if isinstance(ParentPart, Breasts):
-            #    bTestBreasts = True
+            NounExclTagList = []
+            if len(self._NounExclTagList) > 0:
+                NounExclTagList = self._NounExclTagList
+            else:
+                NounExclTagList = self._ExclTagList
 
-            if ParentPart.NounListLen() > 0 and ParentPart.AdjListLen() > 0:
-                NounReqTagList = []
-                if len(self._NounReqTagList) > 0:
-                    NounReqTagList = self._NounReqTagList
-                else:
-                    NounReqTagList = self._ReqTagList
+            AdjReqTagList = []
+            if len(self._AdjReqTagList) > 0:
+                AdjReqTagList = self._AdjReqTagList
+            elif len(self._AdjReqTagList) > 0:
+                AdjReqTagList = self._AdjReqTagList
+            else:
+                AdjReqTagList = self._ReqTagList
 
-                NounExclTagList = []
-                if len(self._NounExclTagList) > 0:
-                    NounExclTagList = self._NounExclTagList
-                else:
-                    NounExclTagList = self._ExclTagList
+            AdjExclTagList = []
+            if len(self._AdjExclTagList) > 0:
+                AdjExclTagList = self._AdjExclTagList
+            elif len(self._AdjExclTagList) > 0:
+                AdjExclTagList = self._AdjExclTagList
+            else:
+                AdjExclTagList = self._ExclTagList
 
-                AdjReqTagList = []
-                if len(self._AdjReqTagList) > 0:
-                    AdjReqTagList = self._AdjReqTagList
-                elif len(self._AdjReqTagList) > 0:
-                    AdjReqTagList = self._AdjReqTagList
-                else:
-                    AdjReqTagList = self._ReqTagList
+            self._Noun = self.GetNoun(NotList = self._NotList + self._AdjList, ReqTagList = NounReqTagList, ExclTagList = NounExclTagList)
+            #print("  ---")
+            global TagExclDict
+            UsedTagList = []
+            if self._bVaryAdjTags and len(AdjReqTagList) == 0:
+                for tag in self.GetUnitTags(self._Noun):
+                    if tag in TagExclDict:
+                        UsedTagList.append(tag)
+                #print("  Added any excluding noun tags for \"" + self._Noun + "\" to UsedTagList " + str(UsedTagList))
 
-                AdjExclTagList = []
-                if len(self._AdjExclTagList) > 0:
-                    AdjExclTagList = self._AdjExclTagList
-                elif len(self._AdjExclTagList) > 0:
-                    AdjExclTagList = self._AdjExclTagList
-                else:
-                    AdjExclTagList = self._ExclTagList
+            self.ClearAdjList()
 
-                Adj1ReqTagList = [] 
-                if len(self._Adj1ReqTagList) > 0:
-                    Adj1ReqTagList = self._Adj1ReqTagList
-                elif len(self._AdjReqTagList) > 0:
-                    Adj1ReqTagList = self._AdjReqTagList
-                else:
-                    Adj1ReqTagList = self._ReqTagList
-
-                Adj1ExclTagList = []
-                if len(self._Adj1ExclTagList) > 0:
-                    Adj1ExclTagList = self._Adj1ExclTagList
-                elif len(self._AdjExclTagList) > 0:
-                    Adj1ExclTagList = self._AdjExclTagList
-                else:
-                    Adj1ExclTagList = self._ExclTagList
-
-                Adj2ReqTagList = []
-                if len(self._Adj2ReqTagList) > 0:
-                    Adj2ReqTagList = self._Adj2ReqTagList
-                elif len(self._AdjReqTagList) > 0:
-                    Adj2ReqTagList = self._AdjReqTagList
-                else:
-                    Adj2ReqTagList = self._ReqTagList
-
-                Adj2ExclTagList = []
-                if len(self._Adj2ExclTagList) > 0:
-                    Adj2ExclTagList = self._Adj2ExclTagList
-                elif len(self._AdjExclTagList) > 0:
-                    Adj2ExclTagList = self._AdjExclTagList
-                else:
-                    Adj2ExclTagList = self._ExclTagList
-
-                Adj3ReqTagList = []
-                if len(self._Adj3ReqTagList) > 0:
-                    Adj3ReqTagList = self._Adj3ReqTagList
-                elif len(self._AdjReqTagList) > 0:
-                    Adj3ReqTagList = self._AdjReqTagList
-                else:
-                    Adj3ReqTagList = self._ReqTagList
-
-                Adj3ExclTagList = []
-                if len(self._Adj3ExclTagList) > 0:
-                    Adj3ExclTagList = self._Adj3ExclTagList
-                elif len(self._AdjExclTagList) > 0:
-                    Adj3ExclTagList = self._AdjExclTagList
-                else:
-                    Adj3ExclTagList = self._ExclTagList
-
-                self._Noun = ParentPart.GetNoun(NotList = self._NotList + self._AdjList, ReqTagList = NounReqTagList, ExclTagList = NounExclTagList)
-                #print("  ---")
-                global TagExclDict
-                UsedTagList = []
-                if self._bVaryAdjTags and len(AdjReqTagList) == 0:
-                    for tag in ParentPart.GetUnitTags(self._Noun):
-                        if tag in TagExclDict:
-                            UsedTagList.append(tag)
-                    #print("  Added any excluding noun tags for \"" + self._Noun + "\" to UsedTagList " + str(UsedTagList))
-
-                self.ClearAdjList()
-
-                # Parse extra adjs list, add any tags to the parent
-                # and to the used tag lsit
-                ParsedExtraAdjList = []
+            # Parse extra adjs list, add any tags to the parent
+            # and to the used tag list
+            ParsedExtraAdjList = []
+            if not self._ExtraAdjList is None:
                 for adj in self._ExtraAdjList:
-                    Unit = ParentPart.ParseUnit(adj)
+                    Unit = self.ParseUnit(adj)
                     if Unit.sUnit != "":
                         ParsedExtraAdjList.append(Unit.sUnit)
                         #self.AddAdj(Unit.sUnit)
                         for tag in Unit.TagList:
                             #def AddUnitTag(self, sUnit, sTag):
-                            ParentPart.AddUnitTag(Unit.sUnit,tag)
+                            self.AddUnitTag(Unit.sUnit,tag)
                             UsedTagList.append(tag)
 
-                #if bTestBreasts and self._iNumAdjs > 3:
-                #    print("  ---")
-                for i in range(self._iNumAdjs):
-                    LocalReqTagList = []
-                    LocalExclTagList = []
-                    if i == 0:
-                        LocalReqTagList = Adj1ReqTagList.copy()
-                        LocalExclTagList = Adj1ExclTagList.copy()
-                    elif i == 1:
-                        LocalReqTagList = Adj2ReqTagList.copy()
-                        LocalExclTagList = Adj2ExclTagList.copy()
-                    elif i == 2:
-                        LocalReqTagList = Adj3ReqTagList.copy()
-                        LocalExclTagList = Adj3ExclTagList.copy()
-                    else:
-                        LocalReqTagList = AdjReqTagList.copy()
-                        LocalExclTagList = AdjExclTagList.copy()
+            #if bTestBreasts and self._iNumAdjs > 3:
+            #    print("  ---")
+            for i in range(self._iNumAdjs):
+                LocalReqTagList = AdjReqTagList.copy()
+                LocalExclTagList = AdjExclTagList.copy()
 
-                    sAdj = ParentPart.GetAdj(NotList = self._NotList + self._AdjList, ReqTagList = LocalReqTagList, ExclTagList = LocalExclTagList + UsedTagList)
-                    if sAdj == "":
-                        print("=*= WARNING =*= DescSetPart.SetSelf() unable to get more adjectives.\n")
-                        break
+                sAdj = self.GetAdj(NotList = self._NotList + self._AdjList, ReqTagList = LocalReqTagList, ExclTagList = LocalExclTagList + UsedTagList)
+                if sAdj == "":
+                    print("=*= WARNING =*= DescSetPart.SetSelf() unable to get more adjectives.\n")
+                    break
 
-                    for tag in ParentPart.GetUnitTags(sAdj):
-                        # Try and pick adjs from different tags if required tags are not set
-                        if self._bVaryAdjTags and len(LocalReqTagList) == 0:
-                            if not tag == "master":
-                                UsedTagList.append(tag)
+                for tag in self.GetUnitTags(sAdj):
+                    # Try and pick adjs from different tags if required tags are not set
+                    if self._bVaryAdjTags and len(LocalReqTagList) == 0:
+                        if not tag == "master":
+                            UsedTagList.append(tag)
 
-                        # Avoid choosing adjectives with mutally exclusive tags
-                        if tag in TagExclDict:
-                            for excltag in TagExclDict[tag]:
-                                if not excltag in LocalExclTagList:
-                                    LocalExclTagList.append(excltag)
-                                    #print("    Detected tag \"" + tag + "\", excluding tags " + str(TagExclDict[tag]))
+                    # Avoid choosing adjectives with mutally exclusive tags
+                    if tag in TagExclDict:
+                        for excltag in TagExclDict[tag]:
+                            if not excltag in LocalExclTagList:
+                                LocalExclTagList.append(excltag)
+                                #print("    Detected tag \"" + tag + "\", excluding tags " + str(TagExclDict[tag]))
                 
-                    self.AddAdj(sAdj)
-                    #if bTestBreasts:
-                    #    print("  Picked adj \"" + sAdj + "\" " + str(ParentPart.GetUnitTags(sAdj)) + "\n    excl tags " + str(LocalExclTagList) + "\n    used tags " + str(UsedTagList))
-                    #print("  Adj list " + str(self._AdjList))
+                self.AddAdj(sAdj)
+                #if bTestBreasts:
+                #    print("  Picked adj \"" + sAdj + "\" " + str(self.GetUnitTags(sAdj)) + "\n    excl tags " + str(LocalExclTagList) + "\n    used tags " + str(UsedTagList))
+                #print("  Adj list " + str(self._AdjList))
 
-                # Sort 
-                #print("    Unsorted adj list is " + str(self._AdjList))
-                ExtraAdjBucket = ParsedExtraAdjList
-                AgeAdjBucket = []
-                ColorAdjBucket = []
-                OtherAdjBucket = []
-                SuperAdjBucket = []
-                for adj in self._AdjList:
-                    if "young" in ParentPart.GetUnitTags(adj) or "older" in ParentPart.GetUnitTags(adj):
-                        #print("      \"" + adj + "\" is an age adj.")
-                        AgeAdjBucket.append(adj)
-                    elif "color" in ParentPart.GetUnitTags(adj):
-                        #print("      \"" + adj + "\" is a color adj.")
-                        ColorAdjBucket.append(adj)
-                    elif "super" in ParentPart.GetUnitTags(adj):
-                        #print("      \"" + adj + "\" is a superlative adj.")
-                        SuperAdjBucket.append(adj)
-                    else:
-                        #print("      \"" + adj + "\" is a normal adj.")
-                        OtherAdjBucket.append(adj)
-                AgeAdjBucket.sort(key = str.lower)
-                ColorAdjBucket.sort(key = str.lower)
-                SuperAdjBucket.sort(key = str.lower)
-                OtherAdjBucket.sort(key = str.lower)
-                #self.ClearAdjList()
-                self._AdjList = SuperAdjBucket + OtherAdjBucket + ColorAdjBucket + AgeAdjBucket + ExtraAdjBucket
-                #print("    Sorted adj list is " + str(self._AdjList))
+            # Sort 
+            #print("    Unsorted adj list is " + str(self._AdjList))
+            ExtraAdjBucket = ParsedExtraAdjList
+            AgeAdjBucket = []
+            ColorAdjBucket = []
+            OtherAdjBucket = []
+            SuperAdjBucket = []
+            for adj in self._AdjList:
+                if "young" in self.GetUnitTags(adj) or "older" in self.GetUnitTags(adj):
+                    #print("      \"" + adj + "\" is an age adj.")
+                    AgeAdjBucket.append(adj)
+                elif "color" in self.GetUnitTags(adj):
+                    #print("      \"" + adj + "\" is a color adj.")
+                    ColorAdjBucket.append(adj)
+                elif "super" in self.GetUnitTags(adj):
+                    #print("      \"" + adj + "\" is a superlative adj.")
+                    SuperAdjBucket.append(adj)
+                else:
+                    #print("      \"" + adj + "\" is a normal adj.")
+                    OtherAdjBucket.append(adj)
+            AgeAdjBucket.sort(key = str.lower)
+            ColorAdjBucket.sort(key = str.lower)
+            SuperAdjBucket.sort(key = str.lower)
+            OtherAdjBucket.sort(key = str.lower)
+            #self.ClearAdjList()
+            self._AdjList = SuperAdjBucket + OtherAdjBucket + ColorAdjBucket + AgeAdjBucket + ExtraAdjBucket
+            #print("    Sorted adj list is " + str(self._AdjList))
 
-                #print("  Final Adj List is " + str(self._AdjList))
-                DictAdjTags = dict()
-                for adj in self._AdjList:
-                    DictAdjTags[adj] = ParentPart.GetUnitTags(adj)
-                    #print("  Tags for \"" + adj + "\" are " + str(DictAdjTags[adj]))
-                #if len(ParentPart._ColorList.GetWordList()) > 0:
-                #    self._Color = ParentPart.GetColor(NotList = self._NotList + self._AdjList + [self._Noun])
+            #print("  Final Adj List is " + str(self._AdjList))
+            DictAdjTags = dict()
+            for adj in self._AdjList:
+                DictAdjTags[adj] = self.GetUnitTags(adj)
+                #print("  Tags for \"" + adj + "\" are " + str(DictAdjTags[adj]))
+            #if len(self._ColorList.GetWordList()) > 0:
+            #    self._Color = self.GetColor(NotList = self._NotList + self._AdjList + [self._Noun])
 
 
     def NotList(self, NotList):
         self._NotList = NotList
-        self.SetSelf()
+        self.Reset()
 
     def GetAdj(self, inum, adj):
         if inum >= 0 and inum < len(self._AdjList):
@@ -287,51 +604,27 @@ class PartDescSet:
 
     def ReqTagList(self, TagList):
         self._ReqTagList = TagList
-        self.SetSelf()
+        self.Reset()
 
     def ExclTagList(self, TagList):
         self._ExclTagList = TagList
-        self.SetSelf()
+        self.Reset()
 
     def NounReqTagList(self, TagList):
         self._NounReqTagList = TagList
-        self.SetSelf()
+        self.Reset()
 
     def NounExclTagList(self, TagList):
         self._NounExclTagList = TagList
-        self.SetSelf()
+        self.Reset()
 
     def AdjReqTagList(self, TagList):
         self._AdjReqTagList = TagList
-        self.SetSelf()
+        self.Reset()
 
     def AdjExclTagList(self, TagList):
         self._AdjExclTagList = TagList
-        self.SetSelf()
-
-    def Adj1ReqTagList(self, TagList):
-        self._Adj1ReqTagList = TagList
-        self.SetSelf()
-
-    def Adj1ExclTagList(self, TagList):
-        self._Adj1ExclTagList = TagList
-        self.SetSelf()
-
-    def Adj2ReqTagList(self, TagList):
-        self._Adj2ReqTagList = TagList
-        self.SetSelf()
-
-    def Adj2ExclTagList(self, TagList):
-        self._Adj2ExclTagList = TagList
-        self.SetSelf()
-
-    def Adj3ReqTagList(self, TagList):
-        self._Adj3ReqTagList = TagList
-        self.SetSelf()
-
-    def Adj3ExclTagList(self, TagList):
-        self._Adj3ExclTagList = TagList
-        self.SetSelf()
+        self.Reset()
 
     def GetAdj(self, inum):
         sAdj = ""
@@ -346,15 +639,18 @@ class PartDescSet:
     def GetColor(self):
         return self._Color
 
-    def GetFullDesc(self, bColor = True):
+    def GetFullDesc(self, iNumAdjs, bColor = True):
         sFullDesc = ""
         DescWordList = []
 
+        for i in range(iNumAdjs):
+            if i < len(self._AdjList):
+                DescWordList.append(self._AdjList[i])
+            else:
+                break
+
         if self.GetNoun() != "":
             DescWordList.append(self.GetNoun())
-        #if self.Color() != "" and bColor:
-        #    DescWordList.insert(0, self.Color())
-        DescWordList = self._AdjList + DescWordList
 
         if len(DescWordList) < 3:
             sFullDesc = " ".join(DescWordList)
@@ -378,47 +674,8 @@ class PartDescSet:
 
         return DescWordList
 
-    def SetStdNouns(self, bStdNouns):
-        if bStdNouns:
-            self.ReqNounTagList(["std"])
-        else:
-            self.ExclNounTagList(["std"])
-        self.SetSelf()
-
-    def SetDescNouns(self, bDescNouns):
-        if bDescNouns:
-            self.ReqNounTagList(["desc"])
-        else:
-            self.ExclNounTagList(["desc"])
-        self.SetSelf()
-
-    def SetSillyNouns(self, bSillyNouns):
-        if bSillyNouns:
-            self.ReqNounTagList(["silly"])
-        else:
-            self.ExclNounTagList(["silly"])
-        self.SetSelf()
-
-# BodyParts base class
-class BodyParts:
-    def __init__(self):
-        self._AllUnitLists = {"adj": {"master": []}, "noun": {"master": [], "std": []}}
-        self._UnitTags = dict()
-        self._DefaultNoun = ""
-        self._DefaultAdj = "naked"
-          
-        self.NounHistoryQ = HistoryQ(3)
-        self.AdjHistoryQ = HistoryQ(3)
-
-        # No point in initializing the PartDescSet if this bodypart doesn't have its word lists
-        self.PartDescSet = None
-
-    # This must be run every time this object's unit lists are updated
-    def InitPartDescSet(self):
-        if self.PartDescSet is None:          
-            self.PartDescSet = PartDescSet(self)
-        else:
-            self.PartDescSet.SetSelf()
+    # *** Bodyparts methods ***
+    # -------------------------
 
     def SetUnitTags(self, sUnit, TagList):
         self._UnitTags[sUnit.lower()] = TagList 
@@ -477,8 +734,6 @@ class BodyParts:
                 ListDict[sListName.lower()].append(sUnit)
 
             self.AddUnitTag(sUnit, sListName)
-
-        #self.InitPartDescSet()
 
     def AddNounToList(self, sNoun, sListName, iPriority = None):
         self.AddUnitToList(sNoun,sListName,"noun", iPriority = iPriority)
@@ -554,13 +809,17 @@ class BodyParts:
                     self.AddUnitToList(sUnit, tag, sType, iPriority)
                 #print(" Added \"" + sUnit + "\" to " + tag + " list.")
                
-        self.InitPartDescSet()
+        self.Reset()
 
     def NounList(self, NewNounList):
         self.UnitList(NewNounList, "noun")
 
     def AdjList(self, NewAdjList):
         self.UnitList(NewAdjList, "adj")
+
+    def ExtraAdjList(self, ExtraAdjList):
+        self._ExtraAdjList = ExtraAdjList
+        self.Reset()
 
     def UnitListLen(self, sType):
         ListLen = 0 
@@ -657,8 +916,6 @@ class BodyParts:
 
     #noun only ("hair")
     def ShortDescription(self, ExtraAdjList = None, sNot = "", NotList = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
-        DescSet = None 
-         
         if NotList == None:
             NotList = []
           
@@ -680,18 +937,16 @@ class BodyParts:
         if ExtraAdjList is None:
             ExtraAdjList = []
 
-        DescSet = PartDescSet(self, ExtraAdjList = ExtraAdjList, iNumAdjs = 0, NotList = NotList)
-        DescSet.NounReqTagList(NounReqTagList)
-        DescSet.NounExclTagList(NounExclTagList)
-        DescSet.AdjReqTagList(AdjReqTagList)
-        DescSet.AdjExclTagList(AdjExclTagList)
+        self.ExtraAdjList(ExtraAdjList)
+        self.NounReqTagList(NounReqTagList)
+        self.NounExclTagList(NounExclTagList)
+        self.AdjReqTagList(AdjReqTagList)
+        self.AdjExclTagList(AdjExclTagList)
 
-        return DescSet.GetFullDesc(bColor = False)
+        return self.GetFullDesc(iNumAdjs = 0, bColor = False)
      
     #adjective noun ("red hair")
     def MediumDescription(self, ExtraAdjList = None, sNot = "", NotList = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
-        DescSet = None
-          
         if NotList == None:
             NotList = []
           
@@ -710,18 +965,16 @@ class BodyParts:
         if AdjExclTagList == None:
             AdjExclTagList = []
           
-        DescSet = PartDescSet(self, ExtraAdjList = ExtraAdjList, iNumAdjs = 1, NotList = NotList)
-        DescSet.NounReqTagList(NounReqTagList)
-        DescSet.NounExclTagList(NounExclTagList)
-        DescSet.AdjReqTagList(AdjReqTagList)
-        DescSet.AdjExclTagList(AdjExclTagList)
+        self.ExtraAdjList(ExtraAdjList)
+        self.NounReqTagList(NounReqTagList)
+        self.NounExclTagList(NounExclTagList)
+        self.AdjReqTagList(AdjReqTagList)
+        self.AdjExclTagList(AdjExclTagList)
           
-        return DescSet.GetFullDesc(bColor = CoinFlip())
+        return self.GetFullDesc(iNumAdjs = 1, bColor = CoinFlip())
      
     #adjective1 adjective2 adjective3 noun ("long, wavy, red hair")
     def FloweryDescription(self, ExtraAdjList = None, sNot = "", NotList = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
-        DescSet = None
-          
         if NotList == None:
             NotList = []
           
@@ -745,13 +998,13 @@ class BodyParts:
           
         iNumAdjs = choice([1,1,1,2,2,2,2,3])
         
-        DescSet = PartDescSet(self, ExtraAdjList = ExtraAdjList, iNumAdjs = iNumAdjs, NotList = NotList)
-        DescSet.NounReqTagList(NounReqTagList)
-        DescSet.NounExclTagList(NounExclTagList)
-        DescSet.AdjReqTagList(AdjReqTagList)
-        DescSet.AdjExclTagList(AdjExclTagList)
+        self.ExtraAdjList(ExtraAdjList)
+        self.NounReqTagList(NounReqTagList)
+        self.NounExclTagList(NounExclTagList)
+        self.AdjReqTagList(AdjReqTagList)
+        self.AdjExclTagList(AdjExclTagList)
 
-        return DescSet.GetFullDesc(bColor = CoinFlip())
+        return self.GetFullDesc(iNumAdjs = iNumAdjs, bColor = CoinFlip())
      
     def RandomDescription(self, ExtraAdjList = None, sNot = "", NotList = None, bAllowShortDesc = True, bAllowLongDesc = True, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
         sRandomDesc = ""
@@ -2904,42 +3157,42 @@ class MusclesMale(BodyParts):
      def __init__(self):
           super().__init__()
           
-          self.NounList(['muscles'])
+          self.NounList(['muscles: std,default,plur'])
                
-          self.AdjList(['bare',
-                        'brawny',
-                        'broad',
-                        'bronzed',
-                        'bulging',
-                        'burly',
-                        'chiseled',
-                        'dark',
-                        'hard',
-                        'hulking',
-                        'impressive',
-                        'lean',
-                        'magnificent',
-                        'massive',
-                        'mighty',
-                        'powerful',
-                        'robust',
-                        'rugged',
-                        'sinewy',
-                        'strapping','strapping',
-                        'strong',
-                        'sturdy',
-                        'supple',
-                        'tanned',
-                        'taut',
-                        'toned',
-                        'tight',
-                        'well-built',
-                        'well-defined',
-                        'whip-cord',
-                        'wood-carved'])
+          self.AdjList(['bare: nude',
+                        'brawny: large,strong',
+                        'broad: size,large,wide',
+                        'bronzed: color',
+                        'bulging: shape',
+                        'burly: strong',
+                        'chiseled: shape',
+                        'dark: color',
+                        'hard: feel',
+                        'hulking: size,large',
+                        'impressive: super',
+                        'lean: size,small',
+                        'magnificent: super',
+                        'massive: size,large',
+                        'mighty: strong',
+                        'powerful: strong',
+                        'robust: strong',
+                        'rugged: shape',
+                        'sinewy: poetic',
+                        'strapping x2: poetic',
+                        'strong: strong',
+                        'sturdy: strong',
+                        'supple: feel,young',
+                        'tanned: color',
+                        'taut: shape',
+                        'toned: shape',
+                        'tight: feel',
+                        'well-built: size,large',
+                        'well-defined: shape',
+                        'whip-cord: shape',
+                        'wood-carved: shape'])
           
-          self.DefaultNoun("shoulders")
-          self.DefaultAdj("broad")
+          self.DefaultNoun("muscles")
+          self.DefaultAdj("strapping")
 
 class NipplesMale(BodyParts):
      def __init__(self):
@@ -3108,7 +3361,7 @@ class FacialHair(BodyParts):
                          'goatee: goatee,std,sing',
                          'moustache: moustache,std,sing',
                          'stubble: stubble,std,sing',
-                         'fro: afro,std,poc,sing'])
+                        ])
                
           self.AdjList(['black x2: color',
                         'blonde x2: color,whitepers',
@@ -3154,32 +3407,32 @@ class HairMale(BodyParts):
                          'locks x3: std,plur'
                         ])
                
-          self.AdjList(['black x2',
-                        'blonde x2',
-                        'brunette',
-                        'coifed',
-                        'curly',
-                        'dark',
-                        'dyed-green',
-                        'flaming-red',
-                        'glossy',
-                        'golden',
-                        'graying',
-                        'long',
-                        'luxuriant',
-                        'measy',
-                        'platinum blonde',
-                        'punk blue',
-                        'red',
-                        'sandy',
-                        'silken',
-                        'shaggy',
-                        'short',
-                        'spiky',
-                        'untamed',
-                        'vibrant',
-                        'wavy',
-                        'wild'])
+          self.AdjList(['black x2: color',
+                        'blonde x2: color,whitepers',
+                        'brunette: color',
+                        'coifed: style',
+                        'curly: shape',
+                        'dark: color',
+                        'dyed-green: color,fake',
+                        'flaming-red: color,whitepers',
+                        'glossy: shiny',
+                        'golden: color,poetic,young,whitepers',
+                        'graying: color,older',
+                        'long: size,length,long',
+                        'luxuriant: super',
+                        'messy: style',
+                        'platinum blonde: color',
+                        'punk blue: color,fake',
+                        'red: color,whitepers',
+                        'sandy: color,whitepers',
+                        'silken: feel,poetic',
+                        'shaggy: style',
+                        'short: size,length,short,small',
+                        'spiky: style',
+                        'untamed: style',
+                        'vibrant: super',
+                        'wavy: shape',
+                        'wild: style'])
           
           self.DefaultNoun("hair")
           self.DefaultAdj("glossy")
