@@ -107,7 +107,7 @@ class BodyParts:
             else:
                 AdjExclTagList = self._ExclTagList
 
-            self._Noun = self.GetNoun(NotList = self._NotList + self._AdjList, ReqTagList = NounReqTagList, ExclTagList = NounExclTagList)
+            self._Noun = self.GetNewNoun(NotList = self._NotList + self._AdjList, ReqTagList = NounReqTagList, ExclTagList = NounExclTagList)
             #print("  ---")
             global TagExclDict
             UsedTagList = []
@@ -139,7 +139,7 @@ class BodyParts:
                 LocalReqTagList = AdjReqTagList.copy()
                 LocalExclTagList = AdjExclTagList.copy()
 
-                sAdj = self.GetAdj(NotList = self._NotList + self._AdjList, ReqTagList = LocalReqTagList, ExclTagList = LocalExclTagList + UsedTagList)
+                sAdj = self.GetNewAdj(NotList = self._NotList + self._AdjList, ReqTagList = LocalReqTagList, ExclTagList = LocalExclTagList + UsedTagList)
                 if sAdj == "":
                     print("=*= WARNING =*= DescSetPart.SetSelf() unable to get more adjectives.\n")
                     break
@@ -268,8 +268,10 @@ class BodyParts:
     def GetFullDesc(self, iNumAdjs, bColor = True):
         sFullDesc = ""
         DescWordList = []
-
-        for i in range(iNumAdjs):
+        
+        if len(self._AdjList) < iNumAdjs:
+            iNumAdjs = len(self._AdjList)
+        for i in range(len(self._AdjList) - iNumAdjs, len(self._AdjList)):
             if i < len(self._AdjList):
                 DescWordList.append(self._AdjList[i])
             else:
@@ -292,8 +294,10 @@ class BodyParts:
     def GetDescWordList(self):
         DescWordList = []
 
-        if self.Noun() != "":
-            DescWordList.insert(0, self.Noun())
+        sNoun = self.GetNoun()
+
+        if sNoun != "":
+            DescWordList.insert(0, sNoun)
         #if self.Color() != "":
         #    DescWordList.insert(0, self.Color())
         DescWordList = self._AdjList + DescWordList
@@ -437,6 +441,10 @@ class BodyParts:
                
         self.Reset()
 
+    def NotList(self, NewNotList):
+        self._NotList = NewNotList 
+        self.Reset()
+
     def NounList(self, NewNounList):
         self.UnitList(NewNounList, "noun")
 
@@ -500,11 +508,17 @@ class BodyParts:
         LocalUnitList = []
         #print("      Entered GetUnit()")
          
-        if NotList == None:
+        if NotList is None:
             NotList = []
           
         if sNot != "":
             NotList.append(sNot)
+
+        if ReqTagList is None:
+            ReqTagList = []
+
+        if ExclTagList is None:
+            ExclTagList == []
 
         if ExclTagList is None:
             ExclTagList = []
@@ -532,103 +546,172 @@ class BodyParts:
 
         #print("  LocalUnitList = " + str(LocalUnitList) + "\n")
 
-        return WordList(LocalUnitList).GetWord(sNot = sNot, NotList = NotList, SomeHistoryQ = BodyPartHistoryQ)
+        if len(LocalUnitList) > 0:
 
-    def GetNoun(self, sNot = "", NotList = None, ReqTagList = None, ExclTagList = None):
-        return self.GetUnit("noun", sNot = sNot, NotList = NotList, ReqTagList = ReqTagList, ExclTagList = ExclTagList)
+            # First, try with the not list, the excluded tag list, and the required tag list
 
-    def GetAdj(self, sNot = "", NotList = None, ReqTagList = None, ExclTagList = None):
-        return self.GetUnit("adj", sNot = sNot, NotList = NotList, ReqTagList = ReqTagList, ExclTagList = ExclTagList)
+            sUnit = WordList(LocalUnitList).GetWord(NotList = NotList + ExclUnitList)
+
+            if sUnit == "":
+                # Second, try with the not list and the required tag list
+                print("  GetUnit() could not retrieve word. Trying without excluded tag list.")
+                sUnit = WordList(LocalUnitList).GetWord(NotList = NotList)
+
+                if sUnit == "":
+                    # Third, try with just the not list
+                    print("   GetUnit() could not retrieve word. Trying without the required tag list.")
+                    sUnit = WordList(self.GetUnitList("master", sType)).GetWord(NotList = NotList)
+
+                    if sUnit == "":
+                        # Fourth, try without any constraints
+                        print("   GetUnit() could not retrieve word. Trying without the not list.")
+                        sUnit == WordList(self.GetUnitList("master", sType)).GetWord()
+            #print("  GetUnit() new word is \"" + sUnit + "\"")
+
+        return sUnit
+
+    def GetNewAdj(self, NotList = None, ReqTagList = None, ExclTagList = None):
+        sNewAdj = ""
+        
+        if NotList is None:
+            NotList = []
+        if ReqTagList is None:
+            ReqTagList = []
+        if ExclTagList is None:
+            ExclTagList = []
+
+        sNewAdj = self.GetUnit("adj", NotList = NotList, ReqTagList = ReqTagList, ExclTagList = ExclTagList)
+        for tag in self.GetUnitTags(sNewAdj):
+            self.AddUnitTag(sNewAdj, tag)
+
+        return sNewAdj
+
+    def GetNewNoun(self, NotList = None, ReqTagList = None, ExclTagList = None):
+        sNewNoun = ""
+
+        if NotList is None:
+            NotList = []
+        if ReqTagList is None:
+            ReqTagList = []
+        if ExclTagList is None:
+            ExclTagList = []
+
+        sNewNoun = self.GetUnit("noun", NotList = NotList, ReqTagList = ReqTagList, ExclTagList = ExclTagList)
+        for tag in self.GetUnitTags(sNewNoun):
+            self.AddUnitTag(sNewNoun, tag)
+
+        return sNewNoun
 
     #noun only ("hair")
     def ShortDescription(self, ExtraAdjList = None, sNot = "", NotList = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
-        if NotList == None:
-            NotList = []
-          
         if sNot != "":
             NotList.append(sNot)
+        
+        if NotList == None:
+            NotList = []
+        else:
+            self.NotList(NotList)
 
         if NounReqTagList == None:
             NounReqTagList = []
+        else:
+            self.NounReqTagList(NounReqTagList)
 
         if NounExclTagList == None:
             NounExclTagList = []
+        else:
+            self.NounExclTagList(NounExclTagList)
 
         if AdjReqTagList == None:
             AdjReqTagList = []
+        else:
+            self.AdjReqTagList(AdjReqTagList)
 
         if AdjExclTagList == None:
             AdjExclTagList = []
+        else:
+            self.AdjExclTagList(AdjExclTagList)
 
         if ExtraAdjList is None:
             ExtraAdjList = []
-
-        self.ExtraAdjList(ExtraAdjList)
-        self.NounReqTagList(NounReqTagList)
-        self.NounExclTagList(NounExclTagList)
-        self.AdjReqTagList(AdjReqTagList)
-        self.AdjExclTagList(AdjExclTagList)
+        else:
+            self.ExtraAdjList(ExtraAdjList)
 
         return self.GetFullDesc(iNumAdjs = 0, bColor = False)
      
     #adjective noun ("red hair")
     def MediumDescription(self, ExtraAdjList = None, sNot = "", NotList = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
-        if NotList == None:
-            NotList = []
-          
         if sNot != "":
             NotList.append(sNot)
+        
+        if NotList == None:
+            NotList = []
+        else:
+            self.NotList(NotList)
 
         if NounReqTagList == None:
             NounReqTagList = []
+        else:
+            self.NounReqTagList(NounReqTagList)
 
         if NounExclTagList == None:
             NounExclTagList = []
+        else:
+            self.NounExclTagList(NounExclTagList)
 
         if AdjReqTagList == None:
             AdjReqTagList = []
+        else:
+            self.AdjReqTagList(AdjReqTagList)
 
         if AdjExclTagList == None:
             AdjExclTagList = []
-          
-        self.ExtraAdjList(ExtraAdjList)
-        self.NounReqTagList(NounReqTagList)
-        self.NounExclTagList(NounExclTagList)
-        self.AdjReqTagList(AdjReqTagList)
-        self.AdjExclTagList(AdjExclTagList)
+        else:
+            self.AdjExclTagList(AdjExclTagList)
+
+        if ExtraAdjList is None:
+            ExtraAdjList = []
+        else:
+            self.ExtraAdjList(ExtraAdjList)
           
         return self.GetFullDesc(iNumAdjs = 1, bColor = CoinFlip())
      
     #adjective1 adjective2 adjective3 noun ("long, wavy, red hair")
     def FloweryDescription(self, ExtraAdjList = None, sNot = "", NotList = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
-        if NotList == None:
-            NotList = []
-          
         if sNot != "":
             NotList.append(sNot)
+        
+        if NotList == None:
+            NotList = []
+        else:
+            self.NotList(NotList)
 
         if NounReqTagList == None:
             NounReqTagList = []
+        else:
+            self.NounReqTagList(NounReqTagList)
 
         if NounExclTagList == None:
             NounExclTagList = []
+        else:
+            self.NounExclTagList(NounExclTagList)
 
         if AdjReqTagList == None:
             AdjReqTagList = []
+        else:
+            self.AdjReqTagList(AdjReqTagList)
 
         if AdjExclTagList == None:
             AdjExclTagList = []
+        else:
+            self.AdjExclTagList(AdjExclTagList)
 
         if ExtraAdjList is None:
             ExtraAdjList = []
+        else:
+            self.ExtraAdjList(ExtraAdjList)
           
         iNumAdjs = choice([1,1,1,2,2,2,2,3])
-        
-        self.ExtraAdjList(ExtraAdjList)
-        self.NounReqTagList(NounReqTagList)
-        self.NounExclTagList(NounExclTagList)
-        self.AdjReqTagList(AdjReqTagList)
-        self.AdjExclTagList(AdjExclTagList)
 
         return self.GetFullDesc(iNumAdjs = iNumAdjs, bColor = CoinFlip())
      
