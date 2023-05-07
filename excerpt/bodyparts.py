@@ -604,12 +604,16 @@ class BodyParts:
 
     #noun only ("hair")
     def ShortDescription(self, ExtraAdjList = None, sNot = "", NotList = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
-        if sNot != "":
-            NotList.append(sNot)
-        
         if NotList == None:
             NotList = []
+
+            if sNot != "":
+                NotList.append(sNot)
+                self.NotList(NotList)
         else:
+            if sNot != "":
+                NotList.append(sNot)
+
             self.NotList(NotList)
 
         if NounReqTagList == None:
@@ -641,12 +645,16 @@ class BodyParts:
      
     #adjective noun ("red hair")
     def MediumDescription(self, ExtraAdjList = None, sNot = "", NotList = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
-        if sNot != "":
-            NotList.append(sNot)
-        
         if NotList == None:
             NotList = []
+
+            if sNot != "":
+                NotList.append(sNot)
+                self.NotList(NotList)
         else:
+            if sNot != "":
+                NotList.append(sNot)
+
             self.NotList(NotList)
 
         if NounReqTagList == None:
@@ -678,12 +686,16 @@ class BodyParts:
      
     #adjective1 adjective2 adjective3 noun ("long, wavy, red hair")
     def FloweryDescription(self, ExtraAdjList = None, sNot = "", NotList = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
-        if sNot != "":
-            NotList.append(sNot)
-        
         if NotList == None:
             NotList = []
+
+            if sNot != "":
+                NotList.append(sNot)
+                self.NotList(NotList)
         else:
+            if sNot != "":
+                NotList.append(sNot)
+
             self.NotList(NotList)
 
         if NounReqTagList == None:
