@@ -149,7 +149,7 @@ class BodyParts:
                     stuff = "foo"
                 sAdj = self.GetNewAdj(NotList = self._NotList + [self._Noun] + self._AdjList, ReqTagList = LocalReqTagList, ExclTagList = LocalExclTagList + UsedTagList)
                 if sAdj == "":
-                    print("=*= WARNING =*= DescSetPart.SetSelf() unable to get more adjectives.\n")
+                    print("=*= WARNING =*= bodyparts.Reset() unable to get more adjectives.\n")
                     break
 
                 for tag in self.GetUnitTags(sAdj):
@@ -1740,6 +1740,7 @@ class AnusFemale(BodyParts):
 
           self.NounList(['anus x4: std,default,clinical,sphincter,sing',
                          'arse-cunt: crude,orifice,sing',
+                         'ass: std,orifice,sing',
                          'asshole x4: std,slang,crude,sphincter,sing',
                          'back orifice: desc,clinical,orifice,sing',
                          'back passage: desc,orifice,sing',
@@ -1803,51 +1804,58 @@ class ButtocksFemale(BodyParts):
      def __init__(self):
           super().__init__()
      
-          self.NounList(['buns',
-               'butt-cheeks',
-               'buttocks',
-               'cheeks'])
+          self.NounList(['buns: std,plur',
+                          'butt-cheeks: std,plur',
+                          'buttocks: std,clinical,plur',
+                          'cheeks:std,plur',
+                         ])
                
-          self.AdjList(['ample',
-               'chubby',
-               'curvaceous',
-               'curvy',
-               'cute',
-               'fat',
-               'honeyed',
-               'jiggling',
-               'juicy',
-               'luscious',
-               'muscular',
-               'plump',
-               'rotund',
-               'round',
-               'rounded',
-               'shapely','shapely','shapely',
-               'smooth',
-               'squeezable','squeezable',
-               'succulent',
-               'supple',
-               'sweet',
-               'tender',
-               'thick','thick','thick',
-               'tight',
-               'trim',
-               'voluptuous',
-               'well-rounded'])
-               
-          #self.ColorList(['bronzed',
-          #                    'black',
-          #                    'brown',
-          #                    'coffee-colored',
-          #                    'creamy',
-          #                    'dark',
-          #                    'pale',
-          #                    'pink',
-          #                    'rosy',
-          #                    'sun-kissed',
-          #                    'tanned'
-          #                  ])
+          self.AdjList(['ample: large,curvy',
+                        'big: size,large',
+                        'black: color,poc',
+                        'bronzed: color',
+                        'brown: color,poc',
+                        'bubble-butt: shape',
+                        'bubble-shaped: shape',
+                        'chubby: shape,plussize,curvy',
+                        'coffee-colored: color,poc',
+                        'creamy: color,whitepers',
+                        'curvaceous: shape,curvy',
+                        'curvy: curvy,shape',
+                        'cute: cute',
+                        'dark: color,poc',
+                        'fat: large,plussize',
+                        'honeyed: taste',
+                        'jiggling: movement',
+                        'juicy: wet,taste,horny',
+                        'lickable: taste,horny',
+                        'luscious: super,large',
+                        'muscular: strong',
+                        'pale: color,whitepers',
+                        'petite: size,small',
+                        'pink: color,whitepers',
+                        'plump: large,plussize,curvy',
+                        'rosy: color,whitepers',
+                        'rotund: large,plussize',
+                        'round: shape',
+                        'rounded: shape',
+                        'shapely x3: shape,attractive',
+                        'smooth: hairless,feel,texture',
+                        'squeezable x2: horny',
+                        'succulent: super,attractive,horny',
+                        'sun-browned: color',
+                        'sun-kissed: color',
+                        'supple: feel,texture,young',
+                        'sweet: attractive',
+                        'tender: feel',
+                        'tanned: color',
+                        'thick x3: size,large,shape,curvy',
+                        'tight: size,small',
+                        'trim: size,small',
+                        'voluptuous: shape,curvy,attractive',
+                        'well-rounded: shape',
+                        'well-tanned: color',
+                       ])
           
           self.DefaultNoun("buttocks")
           
@@ -1858,18 +1866,18 @@ class AssFemale(BodyParts):
           self.Anus = AnusFemale()
           self.Buttocks = ButtocksFemale()
           
-          self.NounList(['ass',
-               'backside',
-               'behind',
-               'booty',
-               'bottom',
-               'bum',
-               'butt',
-               'gluteous maximus',
-               'heinie',
-               'rump',
-               'tush',
-               'tushy'])
+          self.NounList(['ass: std,default,sing',
+               'backside: std,sing',
+               'behind: std,sing',
+               'booty: std,cute,slang,sing',
+               'bottom: std,desc,sing',
+               'bum: std,cute,slang,sing',
+               'butt" std,slang,sing',
+               'gluteous maximus: std,clinical,sing',
+               'heinie: std,cute,slang,sing',
+               'rump: desc,sing',
+               'tush: cute,slang,sing',
+               'tushy: cute,slang,sing'])
                
           self.AdjList(['ample',
                'bountiful',
