@@ -1137,11 +1137,18 @@ class Generator25(ExGen):
                sTweet += "'Don't worry baby,' he said, " + self.VThrust.Gerund() + " into her.\n\n"
                sTweet += Location.Caught + "\n\n"
                if CoinFlip():
-                    sTweet += "'" + self.Exclamation.GetWord().capitalize() + " I'm gonna cum!' said " + sHisName + ".\n\n"
+                    sTweet += "'" + self.Exclamation.GetWord().capitalize() + " " 
+                    sTweet += "I'm gonna cum!' said " + sHisName + ".\n\n"
                     sTweet += "'Wait, not yet!' she cried.\n\n"
-                    sTweet += "'Too late!' said " + sHisName + ". 'I'm " + self.VEjac.Gerund() + "!' And then, as " + Location.Consequence + ", he grabbed her by the hips and filled her " + self.FemBodyParts.Vagina.InnerVag.RandomDescription() + " with " + self.Semen.RandomDescription() + "."
+                    sTweet += "'Too late!' said " + sHisName + ". "
+                    sTweet += "'I'm " + self.VEjac.Gerund() + "!' "
+                    sTweet += "And then, as " + Location.Consequence + ", " 
+                    sTweet += "he grabbed her by the hips and "
+                    sTweet += "filled her " + self.FemBodyParts.Vagina.InnerVag.RandomDescription() + " "
+                    sTweet += "with " + self.Semen.RandomDescription() + "."
                else:
-                    sTweet += sHisName + " smiled at the " + Location.AuthorityFigure + ". 'It's okay if you want to watch us,' he said."
+                    sTweet += sHisName + " smiled at the " + Location.AuthorityFigure + ". " 
+                    sTweet += "'It's okay if you want to watch us,' he said."
           else:
                sTweet += "'But you want us to get caught, don't you, baby?' he purred. "
                sTweet += "'You want me to " + self.VThrust.Present() + " "
@@ -1898,27 +1905,66 @@ class Generator39(ExGen):
           Location = locations.LocationSelector().Location(PubPrivType = exutil.LocPubPrivType.Public, InOut = exutil.LocInOutType.Indoors)
           sHerName = self.FemaleName.FirstName()
           sHisName = self.MaleName.FirstName()
+
+          Penis = self.MaleBodyParts.Penis
+          Penis.ExclTagList(["hard"])
+
+          sExciteAdv = WordList(["feverishly","urgently","rapidly","vigorously","excitedly","furiously"]).GetWord()
+
           iRand = randint(1,3)
           iRandLength = randint (7,12)
           
-          sTweet += sHerName + " " + Location.RemoveFemaleClothing() + ". " + sHisName + " bent her over " + Location.BentOver + ". His " + self.MaleBodyParts.Penis.ShortDescription() + " was " + self.MaleBodyParts.Penis.GetAdj(sNot = "erect") + " and fully erect. "
+          sTweet += sHerName + " " + Location.RemoveFemaleClothing() + ". " 
+          sTweet += sHisName + " bent her over " + Location.BentOver + ". " 
+          sTweet += "His " + Penis.ShortDescription() + " " 
+          sTweet += "was " + self.MaleBodyParts.Penis.GetNewAdj() + " " 
+          sTweet += "and fully erect. "
+
           if CoinFlip():
-               sTweet += "He spread her " + self.FemBodyParts.Ass.MediumDescription() + " open and carefully eased into her " + self.FemBodyParts.Ass.Anus.RandomDescription(bAllowShortDesc = False) + ". "
+               sTweet += "He spread her " + self.FemBodyParts.Ass.MediumDescription() + " " 
+               sTweet += "open.\n\n" 
+               sTweet += "'But " + sHisName + ",' " 
+               sTweet += "she " + self.VMoan.Past() + ", "
+               sTweet += "as he carefully eased his " + Penis.MediumDescription() + " into "
+               sTweet += "her " + self.FemBodyParts.Ass.Anus.RandomDescription(bAllowShortDesc = False) + ", "
+               sTweet += "'" + Location.HurryReason + "!'\n\n"
+
           else:
-               sTweet += "He spread her legs and then eased all " + str(randint(5,13)) + " inches of his " + self.MaleBodyParts.Penis.MediumDescription() + " inside her " + self.FemBodyParts.Vagina.InnerVag.MediumDescription() + " and then began to " + self.VThrust.Present() + " into her. "
-          sTweet += "'But " + sHisName + ",' she " + self.VMoan.Past() + ", '" + Location.HurryReason + "!'\n\n"
-          sTweet += "'Don't worry, baby,' he said. 'No one will see us " + Location.NamePrep + ".'\n\n"
+               sTweet += "He spread her " + self.FemBodyParts.Legs.MediumDescription() + ".\n\n"
+               sTweet += "'But " + sHisName + ",' " 
+               sTweet += "she " + self.VMoan.Past() + ", "
+               sTweet += "as he eased all " + str(randint(5,13)) + " inches of " 
+               sTweet += "his " + Penis.MediumDescription() + " " 
+               sTweet += "inside her " + self.FemBodyParts.Vagina.InnerVag.MediumDescription() + ", "
+               sTweet += "'" + Location.HurryReason + "!'\n\n"
+
+          sTweet += "'Don't worry, baby,' he said. "
+          sTweet += "'No one is watching here " + Location.NamePrep + ".'\n\n"
           
           if CoinFlip():
+               # Man watching
+               Penis2 = bodyparts.Penis()
                if CoinFlip():
-                    sTweet += self.MaleName.FirstName() + " watched from his hiding place. His jeans were unzipped and he was stroking his " + self.MaleBodyParts.Penis.MediumDescription() + " feverishly."
+                    sTweet += self.MaleName.FirstName() + " watched from his hiding place. " 
+                    sTweet += "His jeans were unzipped and "
+                    sTweet += "he was stroking his " + Penis2.MediumDescription() + " "
+                    sTweet += sExciteAdv + "."
                else:
-                    sTweet += self.MaleName.FirstName() + " watched through the camera. He was stroking his " + self.MaleBodyParts.Penis.MediumDescription() + " feverishly."
+                    sTweet += self.MaleName.FirstName() + " watched through the camera. " 
+                    sTweet += "He was stroking his " + Penis2.MediumDescription() + " "
+                    sTweet += sExciteAdv + "."
           else:
+               #Woman watching
+               Vagina2 = bodyparts.Vagina()
                if CoinFlip():
-                    sTweet += self.FemaleName.FirstName() + " watched from her hiding place. Her hands were down her panties and she was frigging her " + self.FemBodyParts.Vagina.ShortDescription() + " furiously."
+                    sTweet += self.FemaleName.FirstName() + " watched from her hiding place. " 
+                    sTweet += "Her hands were down her panties and "
+                    sTweet += "she was frigging her " + Vagina2.ShortDescription() + " "
+                    sTweet += sExciteAdv + "."
                else:
-                    sTweet += self.FemaleName.FirstName() + " watched through the camera. She was frigging her " + self.FemBodyParts.Vagina.ShortDescription() + " furiously."
+                    sTweet += self.FemaleName.FirstName() + " watched through the camera. " 
+                    sTweet += "She was frigging her " + Vagina2.ShortDescription() + " "
+                    sTweet += sExciteAdv + "."
                
           return sTweet
           
@@ -2976,7 +3022,7 @@ class Generator59(ExGen):
           
           sTweet += self.FemaleName.FirstName() + " walked stiffly down the " + WordList(['stairs','steps','hall','sidewalk','street']).GetWord()
           sTweet += ", groaning with every step. \"" + self.Exclamation.GetWord(bExMk = False, bHappy = False).capitalize() + ",\" " 
-          sTweet += "she said. \"That's the last time I let " + AddArticles(Man.Desc).lower() + " " 
+          sTweet += "she said. \"That's the last time I let " + AddArticles(SmartLower(Man.Desc)) + " " 
           sTweet += Verbs.GetWord() + " my " + Anus.ShortDescription(NotList = ['fissure']) + "!\""
 
           return sTweet
@@ -5775,44 +5821,46 @@ class Generator96(ExGen):
         sHerName = self.FemaleName.FirstName()
         sColor = shmisc.Colors().GetWord().lower()
 
+        Body = self.FemBodyParts
         Breasts = self.FemBodyParts.Breasts 
         Ass = self.FemBodyParts.Ass
         Vagina = self.FemBodyParts.Vagina
         Hips = self.FemBodyParts.Hips
+        Skin = self.FemBodyParts.Skin
         Thighs = self.FemBodyParts.Thighs
 
-        sBreastAdj1 = Breasts.GetAdj()
-        sBreastAdj2 = Breasts.GetAdj(NotList = [sBreastAdj1])
+        sBreastAdj1 = Breasts.GetNewAdj()
+        sBreastAdj2 = Breasts.GetNewAdj()
 
         sTweet += sHerName + " let her "
         sTweet += WordList([sColor + " silk robe", sColor + " towel",
                             "skimpy " + sColor + " negligee",
                             "hip-hugging " + sColor + " dress",
-                            "slinky " + sColor + " gown"]).GetWord() + " "
+                            "slinky " + sColor + " gown",
+                            "tiny " + sColor + " swimsuit",
+                           ]).GetWord() + " "
         sTweet += "fall to the floor, revealing her "
-        sTweet += WordList(["slim","slender","curvaceous","voluptuous",
-                            "bosomy","nubile","statuesque","shapely",
-                            "mouth-watering","ripe"]).GetWord() + " "
-        sTweet += WordList(["naked","nude"]).GetWord() + " body. "
+        sTweet += Body.RandomDescription(bAllowShortDesc = False) + ". "
         sTweet += "Her breasts were " + sBreastAdj1 + " and " + sBreastAdj2 + ", "
         if CoinFlip():
-            sTweet += "her nipples were " + WordList(["brown","wide","rosy",
-                                                      "long and stiff",
-                                                      "proudly erect"]).GetWord() + ", "
+            sTweet += "her nipples were " + Breasts.Nipples.GetNewAdj() + " and " + Breasts.Nipples.GetNewAdj() + ", "
         if CoinFlip():
             sTweet += "her waist was " + WordList(["narrow","slender","thick"]).GetWord() + ", "
         if CoinFlip():
-            sTweet += "her " + Ass.GetNoun() + " was " + Ass.GetAdj() + ", "
+            sTweet += "her " + Ass.GetNoun() + " was " + Ass.GetNewAdj() + ", "
+        if CoinFlip():
+            sTweet += "her " + Skin.RandomDescription(NotList = ["oil"]) + " "
+            sTweet += "was dripping with oil, "
         sTweet += "and "
         if CoinFlip():
-            sTweet += "he could see her " + Vagina.MediumDescription() + " "
-            sTweet += "nestled between her " + Thighs.GetAdj() + " thighs"
+            sTweet += "her " + Vagina.MediumDescription(AdjExclTagList = ["silly"]) + " "
+            sTweet += "was nestled between " + Thighs.GetNewAdj() + " thighs"
         elif CoinFlip():
-            sTweet += "he could see her " + Vagina.OuterLabia.MediumDescription() + " "
-            sTweet += "nestled between her " + Thighs.GetAdj() + " thighs"
+            sTweet += "her " + Vagina.OuterLabia.MediumDescription(AdjExclTagList = ["silly"]) + " "
+            sTweet += "were nestled between " + Thighs.GetNewAdj() + " thighs"
         else: 
             sTweet += "a silver clit ring winked at him from her "
-            sTweet += Vagina.MediumDescription()
+            sTweet += Vagina.MediumDescription(AdjExclTagList = ["silly"])
         sTweet += ".\n\n"
         sTweet += "\"I want you, " + sHisName + ",\" "
         sTweet += "she " + WordList(["moaned","breathed","growled",
@@ -5820,22 +5868,41 @@ class Generator96(ExGen):
         sTweet += "\"" + WordList(["Come here and ravish me",
                                    "Take me right now",
                                    "Come and have your way with me",
-                                   "I want you inside of me"]).GetWord() + "!\"\n\n"
+                                   "Spread me open and take me",
+                                   "Bend me over and use me",
+                                   "Spend the night making love to me",
+                                   "I need a real man to make me a woman",
+                                   "I need you inside of me"]).GetWord() + "!\"\n\n"
         sTweet += "\"Do not tempt me, " + sHerName + ",\" " + sHisName + " said. "
         sTweet += "\"I promised " + self.FemaleName.FirstName(NotList = [sHerName]) + " "
-        sTweet += "that " + WordList(["I would be faithful to her for all eternity",
-                                      "that I would never love another",
-                                      "that my heart would forever be true to her",
-                                      "that my heart would belong only to her for all time"]).GetWord() + "!\"\n\n"
-        sTweet += "\"" + WordList(["I'll let you put it in my ass",
-                                   "We can try anal",
-                                   "I'll let you ride me bareback",
-                                   "I'll let you cum on my face",
-                                   "I know how to deep throat",
-                                   "I'll let you video the whole thing with your phone",
-                                   "I'll let you fuck my titties"]).GetWord() + ",\" "
-        sTweet += "said " + sHerName + ".\n\n"
-        sTweet += "\"Well,\" said " + sHisName + ", \"I suppose just this once couldn't hurt.\""
+        sTweet += "that " + WordList(["I would be faithful for all eternity",
+                                      "I would never love another",
+                                      "I would save my love for her alone",
+                                      "my heart would forever be true",
+                                      "my heart would be hers for all time",
+                                      "she was the only woman I could ever love"
+                                     ]).GetWord() + "!\"\n\n"
+        sTweet += "\"" + WordList(["What if I let you do my ass",
+                                   "Did I mention I love anal",
+                                   "Did I mention I like to do it bareback",
+                                   "Would you like to video us while we do it",
+                                   "What if you could video us with your phone",
+                                   "Did I mention I know how to deep throat",
+                                   "Did I mention how good I am at deep-throating",
+                                   "Did I mention how much I love to be tit-fucked",
+                                   "Did I mention I don't do condoms",
+                                   "Did I mention that I'm double-jointed",
+                                   "Did I mention that my twin sister will be joining us",
+                                   "Did I mention how much I love rough anal sex",
+                                   "Did I mention how much I love unprotected sex",
+                                   "Did I mention I like it in the butt",
+                                   "Did I mention that I'm a squirter",
+                                   "Did I mention that I'm into bondage",
+                                   "Did I mention that I have no gag reflex",
+                                   "Did I mention that you could take pictures",
+                                  ]).GetWord() + "?\" "
+        sTweet += "asked " + sHerName + ".\n\n"
+        sTweet += "\"I suppose just this once couldn't hurt,\" he said."
        
         return sTweet
     
@@ -8263,6 +8330,14 @@ class Generator118(ExGen):
 
         return sTweet
 
+## The massive green ogre stood at least 8-feet tall and was covered with ropy
+## muscle. His throbbing, up-thrust erection was the length of a man's arm. 
+## The nude little elf-maiden squealed and her chubby titties jiggled as he
+## thrust her forcefully down onto it.
+## "Hey Grok!" he called to the ogre on the other side of the village. "This
+## one is pink! What color is yours?"
+## "Beige," his friend called back. "But I think something's wrong with mine.
+## It's leaking."
 #class Generator119(ExGen):
 #    def __init__(self):
 #        super().__init__(ID = 119, Priority = GenPriority.Normal)

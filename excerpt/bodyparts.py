@@ -1492,6 +1492,7 @@ class VaginaInner(BodyParts):
                         'secret: taboo,cute,virginal',
                         'silken: feel',
                         'slick x2: wet,feel',
+                        'sloppy: wet',
                         'snug: tight',
                         'sopping x2: wet',
                         'spread: open,slutty',
