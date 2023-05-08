@@ -251,7 +251,7 @@ class SceneCowgirl(Scene):
           Actions.append(self.HerName.capitalize() + " straddled " + self.HisNamePos + " hips. ")
           
           if CoinFlip():
-               Actions.append("Grabbing his erect " + Penis.GetNoun(WordList = ["erection"]) + ", she guided it to her entrance. ")
+               Actions.append("Grabbing his erect " + Penis.GetNoun(NotList = ["erection"]) + ", she guided it to her entrance. ")
 
           Actions.append("She lowered her hips, impaling herself on his " + Penis.RandomDescription() )
           

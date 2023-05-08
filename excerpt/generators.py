@@ -7934,29 +7934,32 @@ class Generator115(ExGen):
         sManLastName = names.AllLastNames().GetWord()
 
         man = self.MaleBodyParts
+        man.AdjExclTagList = ["nude"]
 
         UsedWords = ["naked","nude","pretty","beautiful"]
 
         sBodyAdj1 = man.GetNewAdj(NotList = UsedWords)
         sBodyAdj2 = man.GetNewAdj(NotList = UsedWords + [sBodyAdj1])
-        sBodyNoun = man.GetNoun(NotList = UsedWords + [sBodyAdj1,sBodyAdj2])
+        sBodyNoun = man.GetNoun()
 
         UsedWords += [sBodyAdj1,sBodyAdj2,sBodyNoun]
+        Penis = self.MaleBodyParts.Penis
+        Penis.NotList(UsedWords)
 
-        sPenis1Adj1 = man.Penis.GetNewAdj(NotList = UsedWords)
-        sPenis1Adj2 = man.Penis.GetNewAdj(NotList = UsedWords + [sPenis1Adj1])
-        sPenis1Noun = man.Penis.GetNoun(NotList = UsedWords + [sPenis1Adj1,sPenis1Adj2])
+        sPenis1Adj1 = Penis.GetNewAdj(NotList = UsedWords)
+        sPenis1Adj2 = Penis.GetNewAdj(NotList = UsedWords)
+        sPenis1Noun = Penis.GetNewNoun(NotList = UsedWords)
 
         UsedWords += [sPenis1Adj1,sPenis1Adj2,sPenis1Noun]
 
-        sPenis2Adj1 = man.Penis.GetNewAdj(NotList = UsedWords)
-        sPenis2Adj2 = man.Penis.GetNewAdj(NotList = UsedWords + [sPenis2Adj1])
-        sPenis2Noun = man.Penis.GetNoun(NotList = UsedWords + [sPenis2Adj1,sPenis2Adj2] + ["dick","cock","thing","hardness"], NounExclTagList = ["silly"])
+        sPenis2Adj1 = Penis.GetNewAdj(NotList = UsedWords)
+        sPenis2Adj2 = Penis.GetNewAdj(NotList = UsedWords)
+        sPenis2Noun = Penis.GetNewNoun(NotList = UsedWords + ["dick","cock","thing","hardness"], ExclTagList = ["silly"])
 
         UsedWords += [sPenis2Adj1,sPenis2Adj2,sPenis2Noun]
 
-        sBallsNoun = man.Penis.Testicles.GetNoun(NotList = UsedWords)
-        sTipNoun = man.Penis.Head.GetNoun(NotList = UsedWords + [sBallsNoun])
+        sBallsNoun = Penis.Testicles.GetNewNoun(NotList = UsedWords)
+        sTipNoun = Penis.Head.GetNewNoun(NotList = UsedWords + [sBallsNoun])
 
         UsedWords += [sBallsNoun,sTipNoun]
 
@@ -8084,8 +8087,8 @@ class Generator115(ExGen):
         #iRand = 2
         if iRand == 1:
             # wearing pants
-            sPenisHeadAdj = man.Penis.Head.GetNewAdj(NotList = UsedWords)
-            sPenisHeadNoun = man.Penis.Head.GetNoun(NotList = UsedWords + [sPenisHeadAdj] + ["dick","cock"], NounExclTagList = ["std"])
+            sPenisHeadAdj = Penis.Head.GetNewAdj(NotList = UsedWords)
+            sPenisHeadNoun = Penis.Head.GetNewNoun(NotList = UsedWords + ["dick","cock"], ExclTagList = ["std"])
             UsedWords += [sPenisHeadAdj,sPenisHeadNoun,"shaft"]
             sTweet += AddArticles(sManDesc1, bMakeUpper = True) + " " + sManDesc2 + " "
             sTweet += "with " + sManDesc3 + " "
@@ -8103,8 +8106,8 @@ class Generator115(ExGen):
             
         elif iRand == 2:
             # naked
-            sPenisHeadAdj = man.Penis.Head.GetNewAdj(NotList = UsedWords)
-            sPenisHeadNoun = man.Penis.Head.GetNoun(NotList = UsedWords + [sPenisHeadAdj] + ["dick","cock"], NounExclTagList = ["std"])
+            sPenisHeadAdj = Penis.Head.GetNewAdj(NotList = UsedWords)
+            sPenisHeadNoun = Penis.Head.GetNewNoun(NotList = UsedWords + ["dick","cock"], ExclTagList = ["std"])
             UsedWords += [sPenisHeadAdj,sPenisHeadNoun]
             sTweet += AddArticles(sManDesc1, bMakeUpper = True) + " " + sManDesc2 + " "
             sTweet += "with " + sManDesc3 + " "
@@ -8112,7 +8115,7 @@ class Generator115(ExGen):
             sTweet += "His " + sManDesc4 + " body " 
             sTweet += "was " + WordList(["completely nude","totally naked","bare naked","fully naked","buck naked"]).GetWord() + ", "
             sTweet += "and they could see "
-            sTweet += "that he " + WordList(["was rock hard","was hard as a rock","was fully erect","had a rigid erection","was throbbingly erect","had a rock-hard erection", "was extremely erect"]).GetWord() + ". "
+            sTweet += "that he " + WordList(["was rock hard","was hard as a rock","was fully erect","sported a rigid erection","was throbbingly erect","sported a rock-hard erection", "was extremely erect"]).GetWord() + ". "
             sTweet += "His " + sPenis1Noun + " was " + sPenis1Adj1 + " and " + sPenis1Adj2 + " and "
             sTweet += "must have measured " + WordList(["nearly ","at least ","a good ",""]).GetWord()
             sTweet += WordList(["seven","eight","nine","ten","eleven","twelve","thirteen"]).GetWord() + " "
