@@ -3281,7 +3281,7 @@ class BodyMale(BodyParts):
                       'dark-thatched: hairy',
                       'godlike: super',
                       'handsome: attractive',
-                      'hardened: ',
+                      'hardened: strong',
                       'hearty: size,large',
                       'hung: bigdick',
                       'husky: size,large,plussize',

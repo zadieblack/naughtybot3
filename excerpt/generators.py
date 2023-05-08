@@ -5598,15 +5598,16 @@ class Generator92(ExGen):
           
           bod = self.MaleBodyParts
           sHisName1 = names.PlainNamesMale().FirstName()
-          sHisName2 = self.MaleName.FirstName()
+          #sHisName2 = self.MaleName.FirstName()
+          sHisName2 = "her " + WordList(["husband","husband","boyfriend","fiancé"]).GetWord()
           sHerName = self.FemaleName.FirstName()
           sJob = self.BlueCollar.GetPerson()
           MaleRelate = WordList(["father","step-father",
-                                      "brother","twin brother","step-brother","younger brother",
-                                      "ex","ex-boyfriend","ex-husband",
-                                      "son","step-son","son-in-law",
-                                      "boss","co-worker","husband","roommate"
-                                    ])
+                                 "brother","twin brother","step-brother","younger brother",
+                                 "ex","ex-boyfriend","ex-husband",
+                                 "son","step-son","son-in-law",
+                                 "boss","co-worker","roommate"
+                                ])
           PenisNotList = ["wood","boner","snake","stem","manhood","member","hardness","goo-gun","phallus",
                               "organ","serpent"]
                               
@@ -5622,18 +5623,18 @@ class Generator92(ExGen):
                                                                               "bangable","shredded","hard"]).GetWord() + " as fuck")
           ManDesc.append("he is hung like " + AddArticles(WordList(["horse","donkey","gorilla","porn star",
                                                                                         "stallion","bull","black guy","black man"]).GetWord()))
-          ManDesc.append("his " + bod.Ass.Buttocks.GetNoun() + " are tight as fuck")
-          ManDesc.append("his " + bod.Penis.GetNoun(NotList = PenisNotList) + " is " 
+          ManDesc.append("his " + bod.Ass.Buttocks.GetNewNoun() + " are tight as fuck")
+          ManDesc.append("his " + bod.Penis.GetNewNoun(NotList = PenisNotList) + " is " 
                                      + WordList(["huge","enormous","massive","magnificent","beautiful","impressive",
-                                                    "mouth-watering","spectacular","breath-taking"]).GetWord())
-          ManDesc.append("his " + bod.Penis.GetNoun(NotList = PenisNotList) + " must be like " 
+                                                 "mouth-watering","spectacular","breath-taking"]).GetWord())
+          ManDesc.append("his " + bod.Penis.GetNewNoun(NotList = PenisNotList) + " must be like " 
                                      + WordList(["seven","eight","nine","ten","eleven","twelve","fifteen"]).GetWord() 
                                      + "-inches long")                                                  
           
           sTweet += ManDesc[randint(0,len(ManDesc) - 1)] + "!\"\n\n"
           sTweet += "\"" + WordList(["God","Fuck","Oh my god","Seriously","Jesus"]).GetWord() + ", "
           if CoinFlip():
-               sTweet += self.TermsOfEndearment.GetWord(NotList = ["dear","darling","love"]) + ", "
+               sTweet += "babe, "
           else:
                sTweet += sHerName + ", "
           sTweet += "do we really have to talk about your " + MaleRelate.GetWord() + " right now?!?\" "
