@@ -78,6 +78,9 @@ class BodyParts:
         if iNumAdjs is None:
             iNumAdjs = self._iNumAdjs
 
+        self.ClearAdjList()
+        self._Noun = ""
+
         if self.NounListLen() > 0 and self.AdjListLen() > 0:
             NounReqTagList = []
             if len(self._NounReqTagList) > 0:
@@ -107,7 +110,10 @@ class BodyParts:
             else:
                 AdjExclTagList = self._ExclTagList
 
-            self._Noun = self.GetNewNoun(NotList = self._NotList + self._AdjList, ReqTagList = NounReqTagList, ExclTagList = NounExclTagList)
+            if isinstance(self, Breasts):
+                stuff = "foo"
+
+            self._Noun = self.GetNewNoun(NotList = self._NotList, ReqTagList = NounReqTagList, ExclTagList = NounExclTagList)
             #print("  ---")
             global TagExclDict
             UsedTagList = []
@@ -139,7 +145,9 @@ class BodyParts:
                 LocalReqTagList = AdjReqTagList.copy()
                 LocalExclTagList = AdjExclTagList.copy()
 
-                sAdj = self.GetNewAdj(NotList = self._NotList + self._AdjList, ReqTagList = LocalReqTagList, ExclTagList = LocalExclTagList + UsedTagList)
+                if isinstance(self, Breasts):
+                    stuff = "foo"
+                sAdj = self.GetNewAdj(NotList = self._NotList + [self._Noun] + self._AdjList, ReqTagList = LocalReqTagList, ExclTagList = LocalExclTagList + UsedTagList)
                 if sAdj == "":
                     print("=*= WARNING =*= DescSetPart.SetSelf() unable to get more adjectives.\n")
                     break
@@ -158,7 +166,7 @@ class BodyParts:
                                 #print("    Detected tag \"" + tag + "\", excluding tags " + str(TagExclDict[tag]))
                 
                 self.AddAdj(sAdj)
-                #if bTestBreasts:
+                #if isinstance(self, Breasts):
                 #    print("  Picked adj \"" + sAdj + "\" " + str(self.GetUnitTags(sAdj)) + "\n    excl tags " + str(LocalExclTagList) + "\n    used tags " + str(UsedTagList))
                 #print("  Adj list " + str(self._AdjList))
 
@@ -350,9 +358,13 @@ class BodyParts:
         UnitList = self.GetUnitList(sListName, sType)
         ListDict = self._AllUnitLists[sType.lower()]
 
+        if isinstance(self, Breasts):
+            pass
+
         if UnitList is None:
             #create
-            ListDict[sListName] = []
+            self._AllUnitLists[sType.lower()][ListDict]
+            #ListDict[sListName] = []
 
         if iPriority is None:
             iPriority = 1
@@ -400,25 +412,22 @@ class BodyParts:
         if matchPriority:
             iPriority = int(matchPriority.group())
 
-        ItemSections = sUnit.split(":")
-
         # locate Unit 
-        if len(ItemSections) > 1:
-            matchUnit = re.search(r"([x][\d]+)", ItemSections[0])
-            if matchUnit:
-                sUnit = ItemSections[0][0:matchUnit.span()[0]]
-            else:
-                sUnit =  ItemSections[0]
-            sUnit = sUnit.strip()
+        ItemSections = sUnit.split(":")
+        sUnitWord = ""
+        matchUnit = re.search(r"([x][\d]+)", ItemSections[0])
+        if matchUnit:
+            sUnitWord = ItemSections[0][0:matchUnit.span()[0]]
         else:
-            sUnit = ItemSections[0].strip()
+            sUnitWord =  ItemSections[0]
+        sUnitWord = sUnitWord.strip()
 
         # locate tag list 
         matchTags = re.search(r"(?<=[:])([\w\s,]*)", sUnit)
         if matchTags:
             TagList = "".join(matchTags.group().split(" ")).split(",")
 
-        return ParsedUnit(sUnit, iPriority, TagList)
+        return ParsedUnit(sUnitWord, iPriority, TagList)
 
     def UnitList(self, NewUnitList, sType):
         #print("Entered UnitList()")
@@ -426,6 +435,9 @@ class BodyParts:
             sUnit = ""
             iPriority = 1
             TagList = []
+
+            if isinstance(self, Breasts):
+                stuff = "foo"
 
             Unit = self.ParseUnit(item)
             sUnit = Unit.sUnit
@@ -526,9 +538,9 @@ class BodyParts:
         #    print("      ExclTagList is + " + str(ExclTagList))
 
         ExclUnitList = []
-        for unitlist in ExclTagList:
+        for tag in ExclTagList:
             #print("    Getting word units for " + unitlist)
-            for unit in self.GetUnitList(unitlist, sType):
+            for unit in self.GetUnitList(tag, sType):
                 ExclUnitList.append(unit)
         #print("      ExclUnitList is + " + str(ExclUnitList))
 
@@ -782,7 +794,7 @@ class Face(BodyParts):
                         'expressive: emotion',
                         'gentle: attitude',
                         'gorgeous: super,attractive',
-                        'flushed: emotion,arousal',
+                        'flushed: arousal',
                         'freckled: color,whitepers',
                         'heart-shaped: shape',
                         'innocent: attitude,cute,young,virginal',
@@ -1212,11 +1224,11 @@ class Breasts(BodyParts):
         super().__init__()
           
         self.NounList(['boobies: silly,slang,cute,plur',
-                        'boobs x2: std,slang,plur',
+                        'boobs x4: std,slang,plur',
                         'bosoms x2: std,plur',
                         'breast implants: std,fake,plur',
                         'breasticles x2: silly,crude,slang,plur',
-                        'breasts x3: std,clinical,default,plur',
+                        'breasts x4: std,clinical,default,plur',
                         'buds x2: cute,desc,small,young,plur',
                         'bust: std,sing',
                         'chest: std,sing',
@@ -1236,8 +1248,8 @@ class Breasts(BodyParts):
                         'tatas: silly,crude,slang,cute,plur',
                         'teats: std,clinical,desc,plur',
                         'tiddies: silly,crude,slang,cute,plur',
-                        'titties: silly,crude,slang,cute,plur',
-                        'tits : std,crude,slang,plur',
+                        'titties x2: silly,crude,slang,cute,plur',
+                        'tits x3: std,crude,slang,plur',
                         'udders: crude,slang,large,plur',
                     ])
                
