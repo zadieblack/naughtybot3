@@ -1354,7 +1354,7 @@ class Breasts(BodyParts):
 
         if bCupSize and len(ExtraAdjList) == 0:
             ExtraAdjList.append(self.CupBuilder(NotList = NotList))
-            print("  Selected cup size is " + ExtraAdjList[0])
+            #print("  Selected cup size is " + ExtraAdjList[0])
 
         return super().ShortDescription(sNot = "", ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList)
           
@@ -1373,7 +1373,7 @@ class Breasts(BodyParts):
 
         if bCupSize and len(ExtraAdjList) == 0:
             ExtraAdjList.append(self.CupBuilder(NotList = NotList))
-            print("  Selected cup size is " + ExtraAdjList[0])
+            #print("  Selected cup size is " + ExtraAdjList[0])
                
         return super().MediumDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
           
@@ -1392,7 +1392,7 @@ class Breasts(BodyParts):
 
         if bCupSize and len(ExtraAdjList) == 0:
             ExtraAdjList.append(self.CupBuilder(NotList = NotList))
-            print("  Selected cup size is " + ExtraAdjList[0])
+            #print("  Selected cup size is " + ExtraAdjList[0])
           
         return super().FloweryDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
           
@@ -1599,7 +1599,7 @@ class VaginaInnerLabia(BodyParts):
                          'nether-lips:  plur',
                          'petals: desc,cute,plur',
                          'piss-flaps: crude,plur',
-                         'pussy flaps, desc,crude,plur',
+                         'pussy flaps: desc,crude,plur',
                          'pussy lips: std,default,slang,plur',
                          'sex-flaps: silly,crude,plur',
                          'sex-lips: silly,plur',
@@ -2130,13 +2130,15 @@ class BodyFemale(BodyParts):
                
           return sBodyDesc
           
-     def GetNakedBodyPartDesc(self, part, bAllowLongDesc, sPossessive = None):
+     def GetNakedBodyPartDesc(self, part, bAllowLongDesc, sPossessive = None, NotList = None):
           sPartDesc = ""
+
+          if NotList is None:
+              NotList = []
           
           if sPossessive is None:
                sPossessive = ""
           
-          PartNotList = []
           bAddArticles = True
           
           if isinstance(part, Hips):
@@ -2152,17 +2154,20 @@ class BodyFemale(BodyParts):
           
           if not sPossessive == "":
                bAddArticles = False 
-               sPartDesc = sPossessive + " " + part.RandomDescription(bAllowShortDesc = False, bAllowLongDesc = bAllowLongDesc, NotList = PartNotList)
+               sPartDesc = sPossessive + " " + part.RandomDescription(bAllowShortDesc = False, bAllowLongDesc = bAllowLongDesc, NotList = NotList)
           else:
-               sPartDesc = part.RandomDescription(bAllowShortDesc = False, bAllowLongDesc = bAllowLongDesc, NotList = PartNotList)
+               sPartDesc = part.RandomDescription(bAllowShortDesc = False, bAllowLongDesc = bAllowLongDesc, NotList = NotList)
           
           if bAddArticles:
                sPartDesc = AddArticles(sPartDesc)
           
           return sPartDesc
      
-     def DescRandomNakedParts(self, iNum = 3, sDivideChar = ',', bBoobs = True, bPussy = False, bAss = False, bExplicit = False, bAllowLongDesc = True, sPossessive = None):
+     def DescRandomNakedParts(self, iNum = 3, sDivideChar = ',', bBoobs = True, bPussy = False, bAss = False, bExplicit = False, bAllowLongDesc = True, sPossessive = None, NotList = None):
           sBodyDesc = ""
+
+          if NotList is None:
+              NotList = []
           
           if sPossessive is None:
                sPossessive = ""
@@ -2252,6 +2257,7 @@ class BodyFemale(BodyParts):
           iLoops = 0
           while iLoops < iNum:
                sBodyDesc += self.GetNakedBodyPartDesc(SelectedParts[iLoops], bAllowLongDesc, sPossessive = sPossessive)
+               NotList += re.split(r',|\w|', sBodyDesc)
                if iLoops == iNum - 2:  
                     sBodyDesc += sDivideChar + " and "
                elif iLoops < iNum - 2:
