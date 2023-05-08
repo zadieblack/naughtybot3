@@ -251,7 +251,7 @@ class SceneCowgirl(Scene):
           Actions.append(self.HerName.capitalize() + " straddled " + self.HisNamePos + " hips. ")
           
           if CoinFlip():
-               Actions.append("Grabbing his erect " + Penis.GetNoun(sNot = "erection") + ", she guided it to her entrance. ")
+               Actions.append("Grabbing his erect " + Penis.GetNoun(WordList = ["erection"]) + ", she guided it to her entrance. ")
 
           Actions.append("She lowered her hips, impaling herself on his " + Penis.RandomDescription() )
           
@@ -310,7 +310,7 @@ class SceneCreamPie(Scene):
           else:
                sScene = "He was soon " + VEjac.Gerund() + " deep within her " + Anus.RandomDescription() + " as an intense orgasm wracked her body. "
           
-          sScene += Semen.GetAdj().capitalize() + " " + SemenGobs.GetWord() +" of " + Semen.GetNoun() + " " + DripVerbs.Past() + " from " + self.HerNamePos 
+          sScene += Semen.GetNewAdj().capitalize() + " " + SemenGobs.GetWord() +" of " + Semen.GetNoun() + " " + DripVerbs.Past() + " from " + self.HerNamePos 
           
           if bIsVagina:
                iRandPussyDesc = randint(1, 3)
@@ -426,7 +426,7 @@ class SceneDoggy(Scene):
           Actions = []
           
           if CoinFlip():
-               Actions.append(self.HerName.capitalize() + " got on her knees, showing him her lovely, " + Ass.GetAdj(sNot = "lovely") + " " + Ass.ShortDescription() + ", her " + Vagina.ShortDescription() + ", and her " + Ass.Anus.RandomDescription() + ". ")
+               Actions.append(self.HerName.capitalize() + " got on her knees, showing him her lovely, " + Ass.GetNewAdj(NotList = ["lovely"]) + " " + Ass.ShortDescription() + ", her " + Vagina.ShortDescription() + ", and her " + Ass.Anus.RandomDescription() + ". ")
           else:
                Actions.append(self.HisName.capitalize() + " bent her over, shoving her head down so that her " + Ass.MediumDescription() + " was up in the air, ready for his " + Penis.MediumDescription() + ". ")
                
@@ -547,7 +547,7 @@ class SceneFacial(Scene):
           if CoinFlip():
                Actions.append("And " + Gobs.GetWord() + " of " + Semen.ShortDescription() + " " + WordList(["glazed", "adorned", "spackled", "dripped down", "pooled on"]).GetWord() + " " + self.HerNamePos + " " + Breasts.RandomDescription())
           else:
-               Actions.append("And a single " + WordList(["globule", "pearl", "bead", "rope"]).GetWord() + " of " + Semen.RandomDescription() + " clung to " + self.HerNamePos + " " + Breasts.Nipples.GetAdj() + " nipple.")
+               Actions.append("And a single " + WordList(["globule", "pearl", "bead", "rope"]).GetWord() + " of " + Semen.RandomDescription() + " clung to " + self.HerNamePos + " " + Breasts.Nipples.GetNewAdj() + " nipple.")
           
           iRand = randint(1,5)
           for x in sorted(sample(range(0, len(Actions)), iRand)):
@@ -687,7 +687,7 @@ class SceneRimjobHerScene(Scene):
           Actions.append(" and then he spread her " + Ass.ShortDescription() + " apart, revealing her " + Anus.RandomDescription(bAllowShortDesc = True) + ". ")
                
           if CoinFlip():
-               Actions.append("He wet his finger with his tongue and then began to gently slide it around her " + Anus.GetAdj() + " rim. ")
+               Actions.append("He wet his finger with his tongue and then began to gently slide it around her " + Anus.GetNewAdj() + " rim. ")
           else:
                Actions.append("He nestled his face between her cheeks and gently kissed her rim. ")
                
@@ -801,7 +801,7 @@ class Scene69(Scene):
           sText = ""
           
           if CoinFlip():
-               Actions.append(self.HisName.capitalize() + " turned around and straddled " + self.HerNamePos + " " + FemBodyParts.Face.GetAdj() + " face and buried his face in her crotch. ")
+               Actions.append(self.HisName.capitalize() + " turned around and straddled " + self.HerNamePos + " " + FemBodyParts.Face.GetNewAdj() + " face and buried his face in her crotch. ")
           else:
                sText = self.HerName.capitalize() + " turned around and straddled " + self.HisNamePos + " face so that he had an intimate view of her " + Vagina.MediumDescription() + " and "
                if CoinFlip():
@@ -856,16 +856,16 @@ class SceneTitFuck(Scene):
           
           Actions = []
           
-          sBreastAdj1 = Breasts.GetAdj()
-          sPenisAdj1 = Penis.GetAdj()
+          sBreastAdj1 = Breasts.GetNewAdj()
+          sPenisAdj1 = Penis.GetNewAdj()
      
-          Actions.append(self.HerName.capitalize() + " squeezed her "+ sBreastAdj1 + ", " + Breasts.GetAdj(sNot=sBreastAdj1) + " " + Breasts.GetNoun() + " together. ")
+          Actions.append(self.HerName.capitalize() + " squeezed her "+ sBreastAdj1 + ", " + Breasts.GetNewAdj(NotList = [sBreastAdj1]) + " " + Breasts.GetNoun() + " together. ")
           if CoinFlip():
                Actions.append(self.HisName.capitalize() + " spit into them and she rubbed them together sensually until they were slick and gleaming. ")
           else:
                Actions.append(self.HisName .capitalize()+ " poured some baby oil on them and then began to massage her " + Breasts.ShortDescription() + " and " + Breasts.Nipples.RandomDescription(bAllowShortDesc = True) + " until she was squirming with pleasure. ")
                
-          Actions.append("Then he mounted her chest and began to slide his " + sPenisAdj1 + ", " + Penis.GetAdj(sNot = sPenisAdj1) + " " + Penis.ShortDescription() + " back-and-forth between them.")
+          Actions.append("Then he mounted her chest and began to slide his " + sPenisAdj1 + ", " + Penis.GetNewAdj(NotList = [sPenisAdj1]) + " " + Penis.ShortDescription() + " back-and-forth between them.")
      
           for x in range(0, len(Actions)):
                sScene += Actions[x]
