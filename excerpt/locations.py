@@ -2,14 +2,13 @@
 # -*- coding: utf-8 -*-
 # Locations module
 
-
-
 from random import *
 #from enum import * 
 
 import excerpt.util as exutil
 from util import CoinFlip
 import excerpt.bodyparts
+import excerpt.clothes as clothes
 
 class Location():
      Name = ""
@@ -26,7 +25,7 @@ class Location():
      MaleTopClothing = "tshirt"
      MaleBottomClothing = "jeans"
      FemaleTopClothing = "dress"
-     FemaleBottomClothing = "panties"
+     FemaleBottomClothing = clothes.Panties().RandomDescription()
      
      def RemoveMaleClothing(self):
           Penis = excerpt.bodyparts.Penis()
@@ -150,8 +149,8 @@ class Balcony(PublicLocation):
      Ground = "ground"
      MaleTopClothing = ""
      MaleBottomClothing = "boxer briefs"
-     FemaleTopClothing = "bra"
-     FemaleBottomClothing = "panties"
+     FemaleTopClothing = clothes.Bra().RandomDescription()
+     FemaleBottomClothing = clothes.Panties().RandomDescription()
 
 class Beach(PublicLocation):
      Name = "the beach"
@@ -171,8 +170,8 @@ class Beach(PublicLocation):
      Ground = "tiled floor"
      MaleTopClothing = ""
      MaleBottomClothing = "swim trunks"
-     FemaleTopClothing = "skimpy bikini top"
-     FemaleBottomClothing = "bikini bottoms"
+     FemaleTopClothing = clothes.BikiniTop().RandomDescription()
+     FemaleBottomClothing = clothes.BikiniBottoms().RandomDescription()
      
 class Boat(PrivateLocation):
      Name = "the boat"
@@ -186,8 +185,8 @@ class Boat(PrivateLocation):
      Ground = "deck"
      MaleTopClothing = ""
      MaleBottomClothing = "swim trunks"
-     FemaleTopClothing = "skimpy bikini top"
-     FemaleBottomClothing = "bikini bottoms"
+     FemaleTopClothing = clothes.BikiniTop().RandomDescription()
+     FemaleBottomClothing = clothes.BikiniBottoms().RandomDescription()
      
 class Bedroom(PrivateLocation):
      Name = "the bedroom"
@@ -199,8 +198,8 @@ class Bedroom(PrivateLocation):
      SittingOn = "a stack of cushions"
      LyingOn = "the king-sized bed"
      Ground = "the thick comforter"
-     FemaleTopClothing = "lacy bra"
-     FemaleBottomClothing = "sheer panties"
+     FemaleTopClothing = clothes.Bra().RandomDescription()
+     FemaleBottomClothing = clothes.Panties().RandomDescription()
      
 class CampingTent(PrivateLocation):
      Name = "a tent"
@@ -250,7 +249,7 @@ class Church(PublicLocation):
      Consequence = "as the minister looked on in horror"
      Ground = "soft carpet"
      FemaleTopClothing = "black dress"
-     FemaleBottomClothing = "thong panties"
+     FemaleBottomClothing = clothes.Panties().RandomDescription()
      
 class Classroom(PublicLocation):
      Name = "the classroom"
@@ -300,7 +299,7 @@ class Den(PrivateLocation):
      LyingOn = "the sofa"
      Ground = "the thick fur rug"
      FemaleTopClothing = "tight leather corset"
-     FemaleBottomClothing = "lacy silk panties"
+     FemaleBottomClothing = clothes.Panties().RandomDescription()
      
 class DoctorsOffice(PublicLocation):
      Name = "the doctor's office"
@@ -318,7 +317,7 @@ class DoctorsOffice(PublicLocation):
      Consequence = "a cute nurse in scrubs looked on in shock"
      Ground = "the floor"
      FemaleTopClothing = "yellow dress"
-     FemaleBottomClothing = "lacy silk panties"
+     FemaleBottomClothing = clothes.Panties().RandomDescription()
      
 class DormRoom(PrivateLocation):
      Name = "the dorm room"
@@ -349,7 +348,7 @@ class DressingRoom(PublicLocation):
      Consequence = "the clerk shouted 'I'm calling security'"
      Ground = "the carpet"
      FemaleTopClothing = "revealing red dress"
-     FemaleBottomClothing = "thong panties"
+     FemaleBottomClothing = clothes.Panties().RandomDescription()
      
 class Farm(PrivateLocation):     
      Name = "the farm"
@@ -378,8 +377,8 @@ class Hottub(PrivateLocation):
      SittingOn = "a seat in the tub" 
      LyingOn = "the side of the tub"
      Ground = "steaming water"
-     FemaleTopClothing = "skimpy bikini"
-     FemaleBottomClothing = "bikini bottoms"
+     FemaleTopClothing = clothes.BikiniTop().RandomDescription()
+     FemaleBottomClothing = clothes.BikiniBottoms().RandomDescription()
      MaleTopClothing = ""
      MaleBottomClothing = "swimming trunks"
      
@@ -433,7 +432,7 @@ class Kitchen(PrivateLocation):
      MaleTopClothing = ""
      MaleBottomClothing = "briefs"
      FemaleTopClothing = "oversized tshirt"
-     FemaleBottomClothing = "frilly panties"
+     FemaleBottomClothing = clothes.Panties().RandomDescription()
      
 class Library(PublicLocation):
      Name = "the library"
@@ -538,12 +537,12 @@ class OpenWindow(PublicLocation):
      Excuse = "'Let them,' he replied."
      Consequence = "the people next door looked on"
      Ground = "thick carpet"
-     FemaleTopClothing = "lacy bra"
-     FemaleBottomClothing = "red silk panties"
+     FemaleTopClothing = clothes.Bra().RandomDescription()
+     FemaleBottomClothing = clothes.Panties().RandomDescription()
      
 class ParkAfterDark(PublicLocation):
      Name = "the park"
-     NamePrep = "in the park after dark"
+     NamePrep = "in the park after sundown"
      BeginDesc = "The lush green park was transformed into a place of shadows and secrets in the moonlight."
      Despite = "being hidden only by the shadows"
      BentOver = "a park bench"
@@ -587,8 +586,8 @@ class PoolPatio(PrivateLocation):
      SittingOn = "a deck chair"
      LyingOn = "a patio chair"
      Ground = "the pool deck"
-     FemaleTopClothing = "skimpy bikini top"
-     FemaleBottomClothing = "g-string"
+     FemaleTopClothing = clothes.BikiniTop().RandomDescription()
+     FemaleBottomClothing = clothes.BikiniBottoms().RandomDescription()
      
 class PrivateBeach(PrivateLocation):
      Name = "a private beach"
@@ -604,8 +603,8 @@ class PrivateBeach(PrivateLocation):
      MaleTopClothing = ""
      MaleBottomClothing = "speedo"
      FemaleTopClothing = ""
-     FemaleTopClothing = "skimpy bikini top"
-     FemaleBottomClothing = "g-string"
+     FemaleTopClothing = clothes.BikiniTop().RandomDescription()
+     FemaleBottomClothing = clothes.BikiniBottoms().RandomDescription()
      
 class Shower(PrivateLocation):
      Name = "the shower"
@@ -659,8 +658,8 @@ class Surf(PublicLocation):
      Ground = "the dark green water"
      MaleTopClothing = ""
      MaleBottomClothing = "speedos"
-     FemaleTopClothing = "skimpy bikini top"
-     FemaleBottomClothing = "g-string"
+     FemaleTopClothing = clothes.BikiniTop().RandomDescription()
+     FemaleBottomClothing = clothes.BikiniBottoms().RandomDescription()
      
 class Woods(PublicLocation):
      Name = "the woods"

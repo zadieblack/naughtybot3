@@ -1872,7 +1872,7 @@ class AssFemale(BodyParts):
                'booty: std,cute,slang,sing',
                'bottom: std,desc,sing',
                'bum: std,cute,slang,sing',
-               'butt" std,slang,sing',
+               'butt: std,slang,sing',
                'gluteous maximus: std,clinical,sing',
                'heinie: std,cute,slang,sing',
                'rump: desc,sing',
