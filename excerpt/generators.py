@@ -2456,7 +2456,12 @@ class Generator46(ExGen):
           sHisName = self.MaleName.FirstName()
           sHerName = self.FemaleName.FirstName()
           
-          sTweet = sHisName + " found " + sHerName + " lying on her bed in her nightgown with her nose in a book and one hand down her lacy panties. She was frigging her " + self.FemBodyParts.GetRandomHole(bIncludeMouth = False, bAllowShortDesc = True) + " with urgent fingers.\n\n"
+          sTweet = sHisName + " found " + sHerName + " "
+          sTweet += "lying on her bed in her nightgown with " 
+          sTweet += "her nose in a book and one hand down " 
+          sTweet += "her " + clothes.Panties().RandomDescription(bAllowLongDesc = False) + ". " 
+          sTweet += "She was frigging her " + self.FemBodyParts.GetRandomHole(bIncludeMouth = False, bAllowShortDesc = True) + " "
+          sTweet += "with urgent fingers.\n\n"
           sTweet += "'What are you reading?' he asked.\n\n"
           sTweet += "'" + misc.BookTitleBuilder().GetTitle() + ",' " + sHerName + " " + self.VMoan.Past() + "."
           
@@ -3112,13 +3117,20 @@ class Generator57(ExGen):
                                "my flute", "my clarinet", "my giant foam finger"]).GetWord()
           sHole = Vag.InnerVag.RandomDescription()
 
-          sTweet += sHerName + " flung herself down on the bed. Lifting her hips she " + WordList(["pulled", "slid"]).GetWord() + " down her panties. "
+          sTweet += sHerName + " flung herself down on the bed. "
+          sTweet += "Lifting her hips, she " + WordList(["pulled", "slid"]).GetWord() + " " 
+          sTweet += "down her " + clothes.Panties().RandomDescription(bAllowLongDesc = False) + ". "
           sTweet += "Then she began to "
           sTweet += WordList(["gently", "tenderly", "vigorously", "energetically", "ardently", "fervently"]).GetWord() + " "
           sTweet += WordList(["massage", "pleasure", "rub", "caress", "stroke", "stimulate", "masturbate", "fondle", "finger"]).GetWord() + " "
-          sTweet += "her " + Vag.RandomDescription(NounExclTagList = ["silly"]) + ". She spread apart her " + Vag.OuterLabia.RandomDescription() + " and gently teased her " + Vag.Clitoris.RandomDescription() + ".\n\n"
+          sTweet += "her " + Vag.RandomDescription(NounExclTagList = ["silly"]) + ". " 
+          sTweet += "She spread apart her " + Vag.OuterLabia.RandomDescription() + " "
+          sTweet += "and gently teased her " + Vag.Clitoris.RandomDescription() + ".\n\n"
+
           sTweet += sHerName + " " + WordList(["reached under her pillow", "felt under the covers", "reached behind the night-stand"]).GetWord() + " and found her favorite object. "
-          sTweet += "Carefully, she inserted it into her " + Vag.InnerVag.RandomDescription(NounExclTagList = ["silly"]) + " and then began to "
+          sTweet += "Carefully, she inserted it " 
+          sTweet += "into her " + Vag.InnerVag.RandomDescription(NounExclTagList = ["silly"]) + " " 
+          sTweet += "and then began to "
           sTweet += WordList(["thrust it forcefully and repeatedly into her " + sHole,
                                    "saw it in and out of her " + sHole, 
                                    "violently penetrate her " + sHole,
@@ -5027,26 +5039,29 @@ class Generator81(ExGen):
           sTweet = ""
           
           GirlRace = WordList(["an Asian girl","a black girl","a Japanese girl",
-                                    "a redhead","a white chick","a fiery latina",
-                                    "a plus-sized woman","a black chick",
-                                    "a hispanic chick","a mature woman",
-                                    "your best friend's mom","your teacher",
-                                    "your boss","your boss's wife","your step-mom",
-                                    "a MILF","a black MILF","your mother-in-law",
-                                    "your black mother-in-law","your hispanic maid",
-                                    "a big black girl","a hispanic girl",
-                                    "a Japanese schoolgirl","a firecrotch",
-                                    "a blonde chick","a sweet little Asian girl",
-                                    "your Asian secretary"
-                                   ])
+                                "a redhead","a white chick","a fiery latina",
+                                "a plus-sized woman","a black chick",
+                                "a hispanic chick","a mature woman",
+                                "your best friend's mom","your teacher",
+                                "your boss","your boss's wife","your step-mom",
+                                "a MILF","a black MILF","your mother-in-law",
+                                "your black mother-in-law","your hispanic maid",
+                                "a big black girl","a hispanic girl",
+                                "a Japanese schoolgirl","a firecrotch",
+                                "a blonde chick","a sweet little Asian girl",
+                                "your Asian secretary"
+                               ])
                                     
           sHisName = self.MaleName.FirstName()
           sHerName = self.FemaleName.FirstName()
           
-          ProtestReasons = WordList(["I have a girlfriend!","I'm engaged to be married!","I'm a married man!","I have a wife!"])
+          ProtestReasons = WordList(["I have a girlfriend!","I'm engaged to be married!",
+                                     "I'm a married man!","I have a wife!",
+                                     "My wife is pregnant!","I'm getting married tomorrow!",
+                                     "I'm a priest!","I'm pastor of the church!"])
           SexyVoice = WordList(["purred","growled throatily","said in a husky voice","growled in a husky voice"])
           VerbFuck = WordList(["to be with","to do it with","to fuck","to bang","to make love to",
-                                    "to screw","to bone","to screw"])
+                               "to screw","to bone","to rail","to nail"])
           
           iRand = randint(1,3)
           
@@ -5054,20 +5069,20 @@ class Generator81(ExGen):
           # she bends over and takes off her panties
                sTweet += sHerName + " bent over in front of " + sHisName + ", "
                sTweet += "giving him an excellent view of her " + self.FemBodyParts.Ass.ShortDescription() + ". "
-               sTweet += "She sensually slipped her " + WordList(['panties','cute pink panties','lacey panties',
-                                                                           'red silk panties','skimpy thong',
-                                                                           'skimpy bikini bottom']).GetWord() + " "
-               sTweet += "over her " + self.FemBodyParts.Hips.GetNewAdj() + " hips, "
-               sTweet += "exposing her " + self.FemBodyParts.Vagina.RandomDescription() + ".\n\n"
+               sTweet += "She sensually slipped her " + clothes.Panties().RandomDescription(bAllowLongDesc = False) + " "
+               sTweet += "over her " + self.FemBodyParts.Hips.GetNewAdj(ExclTagList=["color"]) + " hips, "
+               sTweet += "exposing her " + self.FemBodyParts.Vagina.RandomDescription(AdjExclTagList=["color"]) + ".\n\n"
                sTweet += sHisName + " swallowed the lump in his throat. \"Oh God!\" he said. "
                sTweet += "\"You're so fucking " + WordList(['hot','sexy']).GetWord() + "! "
                sTweet += "But I can't! " + ProtestReasons.GetWord() + "\"\n\n"
-               sTweet += "\"Come on baby,\" she " + SexyVoice.GetWord() + ", shaking her " + self.FemBodyParts.Ass.RandomDescription() + ". "
+               sTweet += "\"Come on baby,\" she " + SexyVoice.GetWord() + ", "
+               sTweet += "shaking her " + self.FemBodyParts.Ass.RandomDescription(AdjExclTagList=["color"]) + ". "
           
           elif iRand == 2:
           # she pulls his dick out and starts to give him a blowjob
                sTweet += sHerName + " knelt in front of him and " + WordList(["unbuckled his belt","pulled down his zipper"]).GetWord() + ". "
-               sTweet += "Then she pulled his pants down, exposing his " + self.MaleBodyParts.Penis.ShortDescription() + ". "
+               sTweet += "Then she pulled his pants down, exposing " 
+               sTweet += "his " + self.MaleBodyParts.Penis.ShortDescription(NounExclTagList = ["silly","desc"]) + ". "
                sTweet += WordList(["It was already hard","It was already turgid with excitement",
                                         "It was already engorged with anticipation",
                                         "It was already erect, and a bead of precum hung from the tip",
@@ -5081,16 +5096,17 @@ class Generator81(ExGen):
           else:
           # she takes her top off and shows him her breasts
                sTweet += sHerName + " pulled her " + WordList(["sports bra","lacey bra","thin white t-shirt","skimpy bikini top"]).GetWord() + " "
-               sTweet += "over her head, exposing her " + self.FemBodyParts.Breasts.RandomDescription() + ". "
+               sTweet += "over her head, exposing her " + self.FemBodyParts.Breasts.RandomDescription(AdjExclTagList=["color"]) + ". "
                sTweet += sHisName + " swallowed the lump in his throat. \"Oh God!\" he said. "
                sTweet += "\"You're so fucking " + WordList(['hot','sexy']).GetWord() + "! "
                sTweet += "But I can't! " + ProtestReasons.GetWord() + "\"\n\n"
-               sTweet += "\"Come on baby,\" she " + SexyVoice.GetWord() + ", taking both his hands and guiding them to her " + self.FemBodyParts.Breasts.ShortDescription() + ". "
+               sTweet += "\"Come on baby,\" she " + SexyVoice.GetWord() + ", " 
+               sTweet += "taking both his hands and guiding them to " 
+               sTweet += "her " + self.FemBodyParts.Breasts.ShortDescription(AdjExclTagList=["color"]) + ". "
           
           Temptations = []
-          Temptations.append("\"I know you've always wanted " + VerbFuck.GetWord() + " " + GirlRace.GetWord() + "!\"")
-          Temptations.append("\"I won't tell. This could be your one chance " + VerbFuck.GetWord() + " " + GirlRace.GetWord() + "!\"")
-          Temptations.append("\"Don't you want to know what it's like " + VerbFuck.GetWord() + " " + GirlRace.GetWord() + "?\"")
+          Temptations.append("\"This could be your one chance " + VerbFuck.GetWord() + " " + GirlRace.GetWord() + "!\"")
+          Temptations.append("\"Don't you want to see what it's like " + VerbFuck.GetWord() + " " + GirlRace.GetWord() + "?\"")
           Temptations.append("\"Haven't you always fantasized about " + WordList(["banging","fucking","sleeping with","doing it with","being with"]).GetWord() + " " + GirlRace.GetWord() + "?\"")
           Temptations.append("\"Don't tell me you're going to pass up the chance " + VerbFuck.GetWord() + " " + GirlRace.GetWord() + "?\"")
           
@@ -6512,10 +6528,7 @@ class Generator101(ExGen):
                                                      "languidly","tantalizingly",
                                                      "sexily"
                                                      ]).GetWord() + " slid "
-        sTweet += "her " + WordList(["lacy","frilly",
-                                     "silky","sheer",
-                                     "satiny"
-                                     ]).GetWord() + " little panties "
+        sTweet += "her " + clothes.Panties().RandomDescription() + " "
         sTweet += "down over her " + Hips.MediumDescription() + ". "
         sTweet += "Then she bent forward over the " + WordList(["bed","bench","coffee table",
                                                                 "desk","kitchen counter","kitchen table",
