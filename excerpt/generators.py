@@ -8489,9 +8489,17 @@ class Generator119(ExGen):
         super().GenerateTweet()
         sTweet = ""
 
+        Undies = clothes.UnderwearFemale()
+        Bra = Undies.Bra
+        Panties = Undies.Panties
+
         Bikini = clothes.Bikini()
         Top = Bikini.Top
         Bottoms = Bikini.Bottoms
+
+        sTweet += "The lovely teen girl was wearing " + Undies.FloweryDescription() + " "
+        sTweet += "including " + AddArticles(Bra.RandomDescription(bAllowShortDesc = False)) + " "
+        sTweet += "and " + Panties.RandomDescription(bAllowShortDesc = False) + ".\n\n"
 
         sTweet += "The " + Bikini.RandomDescription(bAllowShortDesc = False) + " "
         #sTweet += "the " + Bikini.GetFullDesc(6) + " "

@@ -9,7 +9,7 @@ from excerpt.bodyparts import *
 ClothesColors = WordList(['black x4:',
                           'beige',
                           'blue x2:',
-                          'dark blue','navy blue','sky blue','baby blue',
+                          'dark blue','navy blue','sky blue','baby blue','pastel blue',
                           'brown','chocolate brown',
                           'chartreuse',
                           'coral',
@@ -17,14 +17,16 @@ ClothesColors = WordList(['black x4:',
                           'gold',
                           'green x2:',
                           'dark green','lime green','sea green',
-                          'neon green',
+                          'neon green','pastel green',
                           'indigo',
                           'lavender x2:',
+                          'lilac',
                           'magenta',
                           'maroon',
                           'mauve',
                           'orange','neon orange',
                           'peach',
+                          'periwinkle',
                           'pink x4:',
                           'hot pink x2:',
                           'purple x3:',
@@ -46,6 +48,9 @@ class Clothes(BodyParts):
 
         self.IsTop = False
         self.IsBottom = False 
+        self.AddColors = True
+
+        self.ColorsNotList = []
 
     # Override the AdjList creation call so we
     # can manually add the colors from the 
@@ -55,11 +60,13 @@ class Clothes(BodyParts):
 
         global ClothesColors 
         
-        for color in ClothesColors.GetWordList():
-            #def AddUnitToList(self, sUnit, sListName, sType, iPriority = None):
-            unit = self.ParseUnit(color)
-            self.AddUnitToList(unit.sUnit, "master", "adj", unit.iPriority)
-            self.AddUnitToList(unit.sUnit, "color", "adj", unit.iPriority)
+        if self.AddColors:
+            for color in ClothesColors.GetWordList():
+                unit = self.ParseUnit(color)
+                
+                if unit.sUnit not in self.ColorsNotList:
+                    self.AddUnitToList(unit.sUnit, "master", "adj", unit.iPriority)
+                    self.AddUnitToList(unit.sUnit, "color", "adj", unit.iPriority)
 
 class Bikini(Clothes):
      def __init__(self):
@@ -123,7 +130,9 @@ class BikiniBottoms(Clothes):
                          'thong x4: std,sing',
                         ])
           
-          self.AdjList(['crocheted: material,texture',
+          self.AdjList(['cheeky: super',
+                        'crocheted: material,texture',
+                        'crotchless: style,fetish',
                         'daring x2: skimpy',
                         'flimsy: skimpy',
                         'floral: pattern',
@@ -133,6 +142,7 @@ class BikiniBottoms(Clothes):
                         'little: size,small',
                         'metallic: texture',
                         'microscopic: size,small',
+                        'narrow: size,small',
                         'plaid: pattern',
                         'provocative: skimpy',
                         'polka-dot: pattern',
@@ -159,7 +169,7 @@ class BikiniBottoms(Clothes):
           self.DefaultNoun('bikini top')
           self.DefaultAdj('skimpy')
 
-          self.IsTop = True
+          self.IsBottom = True
 
 class BikiniTop(Clothes):
      def __init__(self):
@@ -181,7 +191,6 @@ class BikiniTop(Clothes):
                         'little: size,small',
                         'metallic: texture',
                         'microscopic: size,small',
-                        'narrow: size,small',
                         'plaid: pattern',
                         'provocative: skimpy',
                         'polka-dot: pattern',
@@ -208,4 +217,188 @@ class BikiniTop(Clothes):
           self.DefaultNoun('bikini top')
           self.DefaultAdj('skimpy')
 
+          self.IsTop = True
+
+class Bra(Clothes):
+     def __init__(self):
+          super().__init__()
+          
+          self.NounList(['bra x3: default,std,sing',
+                         'brassiere: std,sing',
+                         'cupless bra: variant,fetish,sing',
+                         'pushup bra: variant,sing',
+                         'strapless bra: variant,sing',
+                        ])
+          
+          self.AdjList(['cute: super',
+                        'daring: super',
+                        'delicate: super',
+                        'elegant: super',
+                        'fancy: super',
+                        'flowered: pattern',
+                        'full: size,large',
+                        'full-cup: size,large',
+                        'flimsy: material',
+                        'frilly: pattern,style',
+                        'Italian: style',
+                        'lace: material,pattern',
+                        'lacy: material,pattern',
+                        'large: size,large',
+                        'little: size,small',
+                        'meager: size,small',
+                        'miniscule: size,small',
+                        'modest: style,large',
+                        'padded: style',
+                        'petite: size,small',
+                        'provocative: super,skimpy',
+                        'revealing: skimpy',
+                        'ruffled: style',
+                        'satin: material',
+                        'seductive: super',
+                        'sequined: style,pattern',
+                        'sensuous: super',
+                        'sexy: super',
+                        'sheer: texture,seethru',
+                        'silk: material,texture',
+                        'silken: material,texture',
+                        'skimpy: skimpy',
+                        'soft: texture',
+                        'stunning: super',
+                        'tight x2: size,small',
+                        'tiny x3: size,small',
+                        'Victoria\'s Secret: style',
+                        'wispy: small',
+                       ])
+               
+          self.DefaultNoun('bra')
+          self.DefaultAdj('skimpy')
+
+          self.IsTop = True
+
+class Panties(Clothes):
+     def __init__(self):
+          super().__init__()
+          
+          self.NounList(['crotchless panties: variant,fetish,plur',
+                         'G-string panties: variant,plur',
+                         'panties x4: default,std,plur',
+                         'thong: variant,sing',
+                         'thong underwear: variant,sing',
+                         'underwear x2: std,sing',
+                        ])
+          
+          self.AdjList(['brief: size,small',
+                        'cheeky: skimpy',
+                        'cotton x2: material',
+                        'cute: super',
+                        'dainty: super',
+                        'delicate: super',
+                        'diaphanous: seethru',
+                        'fancy: super',
+                        'flimsy: super',
+                        'flowered: pattern',
+                        'French: style',
+                        'frilly: style',
+                        'Japanese: style',
+                        'lace x2: pattern,material',
+                        'lacey x2: pattern,material',
+                        'leopard print: pattern',
+                        'little x4: size,small',
+                        'naughty: super',
+                        'nylon: material',
+                        'plain: style,pattern',
+                        'polka-dotted: pattern',
+                        'pretty: super',
+                        'provocative: skimpy',
+                        'revealing: skimpy',
+                        'ruffled: style',
+                        'satin x2: material,texture',
+                        'scant: skimpy',
+                        'see-thru: pattern,texture,seethru',
+                        'sexy x2: super',
+                        'sheer: seethru,texture,pattern,material',
+                        'silk x2: material',
+                        'silken x2: material',
+                        'skimpy x2: skimpy',
+                        'soft: feel,texture',
+                        'teeny-tiny: size,small',
+                        'thin: size,small',
+                        'tight x2: size,small',
+                        'tiny x3: size,small',
+                        'wispy: super,small',
+                       ])
+               
+          self.DefaultNoun('panties')
+          self.DefaultAdj('little')
+
           self.IsBottom = True
+
+          self.ColorsNotList = ["gold","silver"]
+
+class UnderwearFemale(Clothes):
+     def __init__(self):
+          super().__init__()
+          
+          self.NounList(['bra and panties: std,plur',
+                         'lingerie x2: std,sing',
+                         'underclothes: std,plur',
+                         'underwear x4: std,default,sing',
+                         'undies: slang,plur',
+                        ])
+          
+          self.AdjList(['alluring: super',
+                        'brief: size,small',
+                        'cheeky: skimpy',
+                        'cotton x2: material',
+                        'cute: super',
+                        'dainty: super',
+                        'delicate: super',
+                        'diaphanous: seethru',
+                        'elaborate: super',
+                        'elegant: super',
+                        'erotic: super,fetish',
+                        'fancy: super',
+                        'flimsy: super',
+                        'flowered: pattern',
+                        'French: style',
+                        'frilly: style',
+                        'glamorous: super',
+                        'intimate: super',
+                        'Italian: style',
+                        'Japanese: style',
+                        'lace x2: pattern,material',
+                        'lacey x2: pattern,material',
+                        'leopard print: pattern',
+                        'luxurious: style',
+                        'naughty: super',
+                        'nylon: material',
+                        'Parisian: style',
+                        'plain: style,pattern',
+                        'polka-dotted: pattern',
+                        'pretty: super',
+                        'provocative: skimpy',
+                        'racy: skimpy',
+                        'revealing: skimpy',
+                        'ruffled: style',
+                        'satin x2: material,texture',
+                        'scant: skimpy',
+                        'seductive: super',
+                        'see-thru: pattern,texture,seethru',
+                        'sexy x4: super',
+                        'sheer: seethru,texture,pattern,material',
+                        'silk x2: material',
+                        'silken x2: material',
+                        'skimpy x2: skimpy',
+                        'slinky: super',
+                        'soft: feel,texture',
+                        'teeny-tiny: size,small',
+                        'thin: size,small',
+                        'tight x2: size,small',
+                        'tiny x3: size,small',
+                       ])
+               
+          self.DefaultNoun('underwear')
+          self.DefaultAdj('sexy')
+
+          self.Bra = Bra()
+          self.Panties = Panties()
