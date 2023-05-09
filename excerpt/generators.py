@@ -1468,7 +1468,11 @@ class Generator30(ExGen):
           return sTweet
           
 class Generator31(ExGen):
-     # Trevor walked in and froze. His step-sister lay on the bed totally nude. His wide eyes took in her heavy tits, wide hips, sticky folds, and puckered sphincter. The naked guy next to her was idly diddling her peach. He looked up at Trevor. 'You want in?' he asked.
+     # Trevor walked in and froze. His step-sister lay on the bed 
+     # totally nude. His wide eyes took in her heavy tits, wide 
+     # hips, sticky folds, and puckered sphincter. The naked guy 
+     # next to her was idly diddling her peach. He looked up at 
+     # Trevor. 'You want in, bro?' he asked.
      def __init__(self):
          super().__init__(ID = 31, Priority = GenPriority.AboveAverage)
      
@@ -1507,17 +1511,17 @@ class Generator31(ExGen):
           if iRand == 1:
                 # Fingering her inner vag
                 sTweet += "between her legs was " + sCasualAdvbs + " " 
-                sTweet += WordList(["fingering","finger-banging","exploring","thrusting his fingers into","sticking his fingers up","poking his fingers up"]).GetWord() + " " 
+                sTweet += WordList(["fingering","finger-banging","exploring","thrusting his fingers into","sticking his fingers up","poking his fingers up","diddling"]).GetWord() + " " 
                 sTweet += "her " + self.FemBodyParts.Vagina.InnerVag.RandomDescription(NounExclTagList = ["silly"], AdjExclTagList = ["nude"]) + ". "
           elif iRand == 2:
                 # Playing with her pussy lips
                 sTweet += "between her legs was " + sCasualAdvbs + " " 
-                sTweet += WordList(["playing with","toying with","tweaking","nibbling","teasing","sucking on"]).GetWord() + " " 
+                sTweet += WordList(["playing with","toying with","tweaking","nibbling","teasing","sucking on","diddling",]).GetWord() + " " 
                 sTweet += "her " + self.FemBodyParts.Vagina.InnerLabia.RandomDescription(NounExclTagList = ["silly"], AdjExclTagList = ["nude"]) + ". "
           elif iRand == 3:
                 # Playing with her pussy
                 sTweet += "between her legs was " + sCasualAdvbs + " " 
-                sTweet += WordList(["playing with","rubbing","massaging","stroking","teasing","licking"]).GetWord() + " " 
+                sTweet += WordList(["playing with","rubbing","massaging","stroking","teasing","licking","diddling"]).GetWord() + " " 
                 sTweet += "her " + self.FemBodyParts.Vagina.RandomDescription(NounExclTagList = ["silly"], AdjExclTagList = ["nude"]) + ". "
           elif iRand == 4:
                 # Fingering her anus
@@ -8489,30 +8493,48 @@ class Generator119(ExGen):
         super().GenerateTweet()
         sTweet = ""
 
-        Undies = clothes.UnderwearFemale()
-        Bra = Undies.Bra
-        Panties = Undies.Panties
+        #Undies = clothes.UnderwearFemale()
+        #Bra = Undies.Bra
+        #Panties = Undies.Panties
 
-        Bikini = clothes.Bikini()
-        Top = Bikini.Top
-        Bottoms = Bikini.Bottoms
+        #Bikini = clothes.Bikini()
+        #Top = Bikini.Top
+        #Bottoms = Bikini.Bottoms
 
-        sTweet += "The lovely teen girl was wearing " + Undies.FloweryDescription() + " "
-        sTweet += "including " + AddArticles(Bra.RandomDescription(bAllowShortDesc = False)) + " "
-        sTweet += "and " + Panties.RandomDescription(bAllowShortDesc = False) + ".\n\n"
+        #Sweats = clothes.WorkoutFemale()
+        #Top = Sweats.Top
+        #Bottom = Sweats.Bottom
 
-        sTweet += "The " + Bikini.RandomDescription(bAllowShortDesc = False) + " "
-        #sTweet += "the " + Bikini.GetFullDesc(6) + " "
-        sTweet += "she was wearing turned heads at the beach.\n\n"
+        #for i in range(4):
+        #    sTweet += "Flowery description: " + Sweats.FloweryDescription()  + "\n"
+        #    sTweet += "Random description: " + Sweats.RandomDescription(bAllowShortDesc = False) + "\n\n"
 
-        sTweet += "Her " + Top.RandomDescription(bAllowShortDesc = False) + " "
-        sTweet += "struggled to contain " 
-        sTweet += "her " + self.FemBodyParts.Breasts.RandomDescription() + ".\n\n"
+        #for i in range(4):
+        #    sTweet += "She was wearing her " + Sweats.FloweryDescription() + ": "
+        #    sTweet += AddArticles(Top.FloweryDescription()) + " and "
+        #    sTweet += Bottom.RandomDescription(bAllowShortDesc = False) + "."
 
-        sTweet += "Winking at him, she slipped "
-        sTweet += "her " + Bottoms.RandomDescription() + " "
-        sTweet += "down over "
-        sTweet += "her " + self.FemBodyParts.Hips.RandomDescription() + "."
+        #sTweet += "The lovely teen girl was wearing " + Undies.FloweryDescription() + " "
+        #sTweet += "including " + AddArticles(Bra.RandomDescription(bAllowShortDesc = False)) + " "
+        #sTweet += "and " + Panties.RandomDescription(bAllowShortDesc = False) + ".\n\n"
+
+        #sTweet += "The " + Bikini.RandomDescription(bAllowShortDesc = False) + " "
+        ##sTweet += "the " + Bikini.GetFullDesc(6) + " "
+        #sTweet += "she was wearing turned heads at the beach.\n\n"
+
+        #sTweet += "Her " + Top.RandomDescription(bAllowShortDesc = False) + " "
+        #sTweet += "struggled to contain " 
+        #sTweet += "her " + self.FemBodyParts.Breasts.RandomDescription() + ".\n\n"
+
+        #sTweet += "Winking at him, she slipped "
+        #sTweet += "her " + Bottoms.RandomDescription() + " "
+        #sTweet += "down over "
+        #sTweet += "her " + self.FemBodyParts.Hips.RandomDescription() + "."
+
+        for i in range(7):
+            Dress = clothes.EveningDress()
+            sTweet += "She was wearing a " + Dress.RandomDescription(bAllowShortDesc = False) + " "
+            sTweet += "that showed off her curves to great effect.\n\n"
 
         return sTweet
 

@@ -1117,6 +1117,7 @@ class ProfBlueCollarMale(WordList):
                'Cop',
                'Cowboy',
                'Delivery Guy',
+               'Dockworker',
                'Farmer',
                'Farmhand',
                'Fire Fighter',

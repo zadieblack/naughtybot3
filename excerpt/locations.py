@@ -397,8 +397,8 @@ class Gym(PublicLocation):
      Consequence = "the girl with the leotard watched open-mouthed"
      AuthorityFigure = "someone"
      Ground = "rubber mat"
-     FemaleTopClothing = "sports bra"
-     FemaleBottomClothing = "tight spandex yoga pants"
+     FemaleTopClothing = clothes.SportsBra().RandomDescription()
+     FemaleBottomClothing = clothes.YogaPants().RandomDescription()
      
 class HikingTrail(PublicLocation):
      Name = "the hiking trail"
@@ -416,7 +416,7 @@ class HikingTrail(PublicLocation):
      Consequence = "a bearded hiker looked on in surprise"
      AuthorityFigure = "a park ranger"
      Ground = "the rocky mountainside"
-     FemaleTopClothing = "sports bra"
+     FemaleTopClothing = clothes.SportsBra().RandomDescription()
      FemaleBottomClothing = "spandex shorts"
      
 class Kitchen(PrivateLocation):
@@ -638,7 +638,7 @@ class StarbucksBathroom(PublicLocation):
      AuthorityFigure = "a Starbucks barista"
      Ground = "tiled floor"
      FemaleTopClothing = "gray pencil dress"
-     FemaleBottomClothing = "thong panties"
+     FemaleBottomClothing = clothes.Panties().RandomDescription()
      
 class Surf(PublicLocation):
      Name = "the surf"
@@ -691,8 +691,8 @@ class YogaStudio(PrivateLocation):
      SittingOn = "a balance ball"
      LyingOn = "a yoga mat"
      Ground = "the purple yoga mat"
-     FemaleTopClothing = "sports bra"
-     FemaleBottomClothing = "spandex yoga pants"
+     FemaleTopClothing = clothes.SportsBra().RandomDescription()
+     FemaleBottomClothing = clothes.YogaPants().RandomDescription()
 
      
 class LocationSelector():

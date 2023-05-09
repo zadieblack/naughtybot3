@@ -653,7 +653,7 @@ class BodyParts:
         else:
             self.ExtraAdjList(ExtraAdjList)
 
-        return self.GetFullDesc(iNumAdjs = 0, bColor = False)
+        return self.GetFullDesc(iNumAdjs = 0)
      
     #adjective noun ("red hair")
     def MediumDescription(self, ExtraAdjList = None, sNot = "", NotList = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
@@ -694,7 +694,7 @@ class BodyParts:
         else:
             self.ExtraAdjList(ExtraAdjList)
           
-        return self.GetFullDesc(iNumAdjs = 1, bColor = CoinFlip())
+        return self.GetFullDesc(iNumAdjs = 1)
      
     #adjective1 adjective2 adjective3 noun ("long, wavy, red hair")
     def FloweryDescription(self, ExtraAdjList = None, sNot = "", NotList = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
@@ -737,7 +737,7 @@ class BodyParts:
           
         iNumAdjs = choice([1,1,1,2,2,2,2,3])
 
-        return self.GetFullDesc(iNumAdjs = iNumAdjs, bColor = CoinFlip())
+        return self.GetFullDesc(iNumAdjs = iNumAdjs)
      
     def RandomDescription(self, ExtraAdjList = None, sNot = "", NotList = None, bAllowShortDesc = True, bAllowLongDesc = True, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
         sRandomDesc = ""
