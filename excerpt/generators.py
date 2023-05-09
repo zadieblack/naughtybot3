@@ -32,6 +32,7 @@ import names
 from excerpt.scenes import SceneSelector
 
 import excerpt.bodyparts as bodyparts
+import excerpt.clothes as clothes
 import excerpt.verbs as verbs
 import misc as shmisc
 import excerpt.misc as misc
@@ -8480,15 +8481,32 @@ class Generator118(ExGen):
 ## "I think something's wrong with this beige one," his friend replied. "It's 
 ## making squeaking sounds, and I think it's saying 
 ## {the word 'lube'/'wrong hole'}."
-#class Generator119(ExGen):
-#    def __init__(self):
-#        super().__init__(ID = 119, Priority = GenPriority.Normal)
+class Generator119(ExGen):
+    def __init__(self):
+        super().__init__(ID = 119, Priority = GenPriority.Normal)
      
-#    def GenerateTweet(self):
-#        super().GenerateTweet()
-#        sTweet = ""
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
 
-#        return sTweet
+        Bikini = clothes.Bikini()
+        Top = Bikini.Top
+        Bottoms = Bikini.Bottoms
+
+        sTweet += "The " + Bikini.RandomDescription(bAllowShortDesc = False) + " "
+        #sTweet += "the " + Bikini.GetFullDesc(6) + " "
+        sTweet += "she was wearing turned heads at the beach.\n\n"
+
+        sTweet += "Her " + Top.RandomDescription(bAllowShortDesc = False) + " "
+        sTweet += "struggled to contain " 
+        sTweet += "her " + self.FemBodyParts.Breasts.RandomDescription() + ".\n\n"
+
+        sTweet += "Winking at him, she slipped "
+        sTweet += "her " + Bottoms.RandomDescription() + " "
+        sTweet += "down over "
+        sTweet += "her " + self.FemBodyParts.Hips.RandomDescription() + "."
+
+        return sTweet
 
 #class Generator120(ExGen):
 #    def __init__(self):

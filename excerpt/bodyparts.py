@@ -848,7 +848,7 @@ class BackFemale(BodyParts):
                         ])
                
           self.DefaultNoun('back')
-          self.DefaultAdj(['curved'])
+          self.DefaultAdj('curved')
           
 class Skin(BodyParts):
      def __init__(self):
