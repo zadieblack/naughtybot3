@@ -180,6 +180,8 @@ def GetBGImg(iPicNo = 0):
      return BGImg
 
 def CreateImg(sText):
+     sText = sText.strip()
+
      # create Image object with the input image
      
      ImgBase = GetBGImg()
