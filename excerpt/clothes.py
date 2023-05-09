@@ -347,8 +347,7 @@ class Panties(Clothes):
      def __init__(self):
           super().__init__()
           
-          self.NounList(['crotchless panties: variant,fetish,plur',
-                         'G-string panties: variant,plur',
+          self.NounList(['G-string panties: variant,plur',
                          'panties x4: default,std,plur',
                          'thong: variant,sing',
                          'thong underwear: variant,sing',
