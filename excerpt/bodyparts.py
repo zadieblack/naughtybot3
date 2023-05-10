@@ -178,15 +178,19 @@ class BodyParts:
             OtherAdjBucket = []
             SuperAdjBucket = []
             for adj in self._AdjList:
-                if "special" in self.GetUnitTags(adj):
+                adjtags = self.GetUnitTags(adj)
+                #if isinstance(self, Breasts):
+                #    print("Adj \"" + adj + "\" has tags " + str(adjtags))
+                if "special" in adjtags:
                     SpecialAdjBucket.append(adj)
-                elif "young" in self.GetUnitTags(adj) or "older" in self.GetUnitTags(adj):
+                #elif "young" in self.GetUnitTags(adj) or "older" in self.GetUnitTags(adj):
+                elif "age" in adjtags:
                     #print("      \"" + adj + "\" is an age adj.")
                     AgeAdjBucket.append(adj)
-                elif "color" in self.GetUnitTags(adj):
+                elif "color" in adjtags:
                     #print("      \"" + adj + "\" is a color adj.")
                     ColorAdjBucket.append(adj)
-                elif "super" in self.GetUnitTags(adj):
+                elif "super" in adjtags:
                     #print("      \"" + adj + "\" is a superlative adj.")
                     SuperAdjBucket.append(adj)
                 else:
@@ -197,6 +201,14 @@ class BodyParts:
             SuperAdjBucket.sort(key = str.lower)
             OtherAdjBucket.sort(key = str.lower)
             SpecialAdjBucket.sort(key = str.lower)
+
+            #if isinstance(self, Breasts):
+            #    print("SpecialAdjBucket is " + str(SpecialAdjBucket))
+            #    print("AgeAdjBucket is " + str(AgeAdjBucket))
+            #    print("ColorAdjBucket is " + str(ColorAdjBucket))
+            #    print("OtherAdjBucket is " + str(OtherAdjBucket))
+            #    print("SuperAdjBucket is " + str(SuperAdjBucket))
+            #    print("ExtraAdjBucket is " + str(ExtraAdjBucket))
 
             self._AdjList = SuperAdjBucket + OtherAdjBucket + ColorAdjBucket + AgeAdjBucket + SpecialAdjBucket + ExtraAdjBucket
 
@@ -326,22 +338,22 @@ class BodyParts:
     # -------------------------
 
     def SetUnitTags(self, sUnit, TagList):
-        self._UnitTags[sUnit.lower()] = TagList 
+        self._UnitTags[sUnit] = TagList 
 
     def AddUnitTag(self, sUnit, sTag):
         # If a unit does not have a tag list, add an entry
         if not sUnit in self._UnitTags:
-             self._UnitTags[sUnit.lower()] = []
+             self._UnitTags[sUnit] = []
  
         # No duplicates
-        if not sTag in self._UnitTags[sUnit.lower()]:
-            self._UnitTags[sUnit.lower()].append(sTag)
+        if not sTag in self._UnitTags[sUnit]:
+            self._UnitTags[sUnit].append(sTag)
 
     def GetUnitTags(self, sUnit):
         UnitTags = [] 
 
         if sUnit in self._UnitTags:
-            UnitTags = self._UnitTags[sUnit.lower()]
+            UnitTags = self._UnitTags[sUnit]
 
         return UnitTags
 
@@ -536,9 +548,6 @@ class BodyParts:
         if ExclTagList is None:
             ExclTagList = []
 
-        if not self._EnableSpecials:
-            ExclTagList.append("special")
-
         ExclUnitList = []
         for tag in ExclTagList:
             #print("    Getting word units for " + unitlist)
@@ -546,6 +555,12 @@ class BodyParts:
                 for unit in self.GetUnitList(tag, sType):
                     ExclUnitList.append(unit)
         #print("      ExclUnitList is + " + str(ExclUnitList))
+
+        if isinstance(self, Breasts):
+            kung = "foo"
+        if not self._EnableSpecials:
+            for unit in self.GetUnitList("special", sType):
+                ExclUnitList.append(unit)
 
         if ReqTagList == None or len(ReqTagList) == 0:
             #print("  ReqTagList is empty. Using master list.")
@@ -1251,6 +1266,7 @@ class Breasts(BodyParts):
                     'buxom: large',
                     'chocolate: color,poc,taste',
                     'chubby: large,plussize',
+                    'college girl: age,young',
                     'creamy: color,whitepers,taste',
                     'dark: color,poc',
                     'delicious: super,taste',
@@ -1263,7 +1279,7 @@ class Breasts(BodyParts):
                     'fulsome: large',
                     'generous: super,large',
                     'gentle: feel',
-                    'girlish: small,young',
+                    'girlish: age,small,young',
                     'glistening: wet',
                     'glorious: super',
                     'gorgeous: super',
@@ -1276,8 +1292,10 @@ class Breasts(BodyParts):
                     'lush: super',
                     'luxuriant: large,super',
                     'magnificent: large,super',
-                    'maternal: older',
-                    'nubile: pos,young',
+                    'maternal: age,older',
+                    'mature: age,older',
+                    'MILF: age,older',
+                    'nubile: age,young',
                     'oiled-up: wet',
                     'pale: color,whitepers,young',
                     'pendulous: large,shape,older',
@@ -1305,9 +1323,12 @@ class Breasts(BodyParts):
                     'swaying: large,movement',
                     'sweet: super',
                     'swollen: size,large,shape',
+                    'teenage: age,young',
                     'tender: feel',
                     'titanic: large',
-                    'voluptuous: size,large'])
+                    'voluptuous: size,large',
+                    'youthful: age,young',
+                     ])
           
         self.DefaultNoun("breasts")
 
@@ -1328,20 +1349,21 @@ class Breasts(BodyParts):
             for cupsize in CupList:
                 NewAdjList.append(cupsize)
 
+        #print("Amended Breasts NewAdjList is " + str(NewAdjList))
         super().AdjList(NewAdjList)
 
-    def CupBuilder(self, NotList = None):
-        if NotList == None:
-            NotList = []
+    #def CupBuilder(self, NotList = None):
+    #    if NotList == None:
+    #        NotList = []
 
-        CupList = ["A-cup: small,cupsize",
-                   "B-cup: small,cupsize",
-                   "D-cup: large,cupsize",
-                   "double-D cup: large,cupsize",
-                   "triple-D cup: large,cupsize",
-                  ]
+    #    CupList = ["A-cup: small,cupsize",
+    #               "B-cup: small,cupsize",
+    #               "D-cup: large,cupsize",
+    #               "double-D cup: large,cupsize",
+    #               "triple-D cup: large,cupsize",
+    #              ]
 
-        return WordList(CupList).GetWord(NotList = NotList)
+    #    return WordList(CupList).GetWord(NotList = NotList)
 
     def AllowCupSize(self, bCupSize = True):
         self._bCupSize = bCupSize
