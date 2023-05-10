@@ -4172,15 +4172,25 @@ class Generator69(ExGen):
           sHerName = self.FemaleName.FirstName()
 
           Ass = self.FemBodyParts.Ass
+          Ass.AdjExclTagList(["gape",])
+
+          Butthole = Ass.Anus
+          Butthole.AdjExclTagList(["gape",])
+
           Pussy = self.FemBodyParts.Vagina
+          Pussy.AdjReqTagList(["wet","horny","age"])
+          Pussy.AdjExclTagList(["hairy","hairless"])
+
           Tits = self.FemBodyParts.Breasts
+          Tits.AdjExclTagList(["color","silly"])
+
           Dick = self.MaleBodyParts.Penis 
           Dick.AdjExclTagList(["shape","silly"])
           
           sTweet = "\"Make love to me, " + sHisName + "!\" " + sHerName + " said. "
           sTweet += "\"Make love to me right now, right here " + Location.NamePrep + "! " 
           
-          iRand = randint(1,4)
+          iRand = randint(1,5)
           
           if iRand == 1:
           #tits
@@ -4211,10 +4221,13 @@ class Generator69(ExGen):
                
                sTweet += sThrust.capitalize()  + " my " 
                sTweet += Ass.FloweryDescription() + "!\""
-          else:
+          elif iRand == 4:
           #asshole 
                sTweet += "Spread my " + Ass.ShortDescription() + " "
-               sTweet += "and make love to my " + Ass.Anus.FloweryDescription() + "!\""
+               sTweet += "and make love to my " + Butthole.FloweryDescription() + "!\""
+          elif iRand == 5:
+               sTweet += "Make love to my " + WordList(["mouth","mouth-hole","throat"]).GetWord() + " "
+               sTweet += "with your " + Dick.RandomDescription(bAllowShortDesc = False) + "!\""
 
           return sTweet
           
