@@ -513,8 +513,8 @@ class BodyParts:
         if ReqTagList is None:
             ReqTagList = []
 
-        if ExclTagList is None:
-            ExclTagList == []
+        #if ExclTagList is None:
+        #    ExclTagList == []
 
         if ExclTagList is None:
             ExclTagList = []
@@ -543,8 +543,14 @@ class BodyParts:
 
         #print("  LocalUnitList = " + str(LocalUnitList) + "\n")
 
-        if len(LocalUnitList) > 0:
+        if len(LocalUnitList) == 0:
+            if ReqTagList == None or len(ReqTagList) == 0:
+                LocalUnitList += self.GetUnitList("master", sType)
+        else:
+            for taglistname in ReqTagList:
+                LocalUnitList += self.GetUnitList(taglistname, sType)
 
+        if len(LocalUnitList) > 0:
             # First, try with the not list, the excluded tag list, and the required tag list
 
             sUnit = WordList(LocalUnitList).GetWord(NotList = NotList + ExclUnitList)
@@ -620,6 +626,8 @@ class BodyParts:
             ExclTagList = []
 
         UsedTagList = self.GetUnitTags(self.GetNoun())
+        if isinstance(self,BackFemale):
+            foo = "bar"
 
         sNewNoun = self.GetUnit("noun", NotList = NotList, ReqTagList = ReqTagList, ExclTagList = ExclTagList + UsedTagList)
         for tag in self.GetUnitTags(sNewNoun):
@@ -2443,6 +2451,7 @@ class Penis(BodyParts):
                         'bent: shape',
                         'big x4: size,large',
                         'broad x2: size,wide',
+                        'bulbous: shape',
                         'bulging x2: hard,large,shape'
                         'burning: feel,warm',
                         'carefully man-scaped: style',
@@ -2477,6 +2486,7 @@ class Penis(BodyParts):
                         'huge: size,large',
                         'hugely erect: size,large,hard',
                         'impressive: super',
+                        'knobby: shape',
                         'legendary: super',
                         'lengthy: length,long',
                         'long: length,long',
@@ -2564,6 +2574,7 @@ class Penis(BodyParts):
                                'torpedo',
                                'tube',
                                'weapon',
+                               'weasel',
                                'worm']
           
           self.DefaultNoun("cock")

@@ -8503,7 +8503,7 @@ class Generator118(ExGen):
         if CoinFlip():
             sTweet += " "
             sTweet += "until it reached the " + WordList(["crevice","cleft"]).GetWord() + " "
-            sTweet += "of her " + self.FemBodyParts.Ass.Buttocks.MediumDescription() 
+            sTweet += "between her " + self.FemBodyParts.Ass.Buttocks.MediumDescription() 
         sTweet += ". "
 
         sTweet += AddArticles(WordList(["tingle","tremor","quiver"]).GetWord(), bMakeUpper = True) + " "
