@@ -1317,81 +1317,57 @@ class Breasts(BodyParts):
 
         return WordList(CupList).GetWord(NotList = NotList)
 
-    def ShortDescription(self, ExtraAdjList = None, sNot = "", NotList = None, bCupSize = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
-        if NotList == None:
-            NotList = []
-          
-        if sNot != "":
-            NotList.append(sNot)
-
-        if ExtraAdjList is None:
-            ExtraAdjList = []
-
-        if bCupSize is None:
-            bCupSize = CoinFlip()
-
-        if bCupSize and len(ExtraAdjList) == 0:
-            ExtraAdjList.append(self.CupBuilder(NotList = NotList))
-            #print("  Selected cup size is " + ExtraAdjList[0])
-
-        return super().ShortDescription(sNot = "", ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList)
-          
-    def MediumDescription(self, ExtraAdjList = None, sNot = "",  NotList = None, bCupSize = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
-        if NotList == None:
-            NotList = []
-          
-        if sNot != "":
-            NotList.append(sNot)
-
-        if ExtraAdjList is None:
-            ExtraAdjList = []
-
-        if bCupSize is None:
-            bCupSize = CoinFlip()
-
-        if bCupSize and len(ExtraAdjList) == 0:
-            ExtraAdjList.append(self.CupBuilder(NotList = NotList))
-            #print("  Selected cup size is " + ExtraAdjList[0])
-               
-        return super().MediumDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
-          
-    def FloweryDescription(self, ExtraAdjList = None, sNot = "", NotList = None, bCupSize = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
-        if NotList == None:
-            NotList = []
-          
-        if sNot != "":
-            NotList.append(sNot)
-
-        if ExtraAdjList is None:
-            ExtraAdjList = []
-
-        if bCupSize is None:
-            bCupSize = CoinFlip()
-
-        if bCupSize and len(ExtraAdjList) == 0:
-            ExtraAdjList.append(self.CupBuilder(NotList = NotList))
-            #print("  Selected cup size is " + ExtraAdjList[0])
-          
-        return super().FloweryDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
-          
-    def RandomDescription(self, ExtraAdjList = None, sNot = "", NotList = None, bAllowShortDesc = True, bAllowLongDesc = True, bCupSize = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
-        if NotList == None:
-            NotList = []
-          
-        if sNot != "":
-            NotList.append(sNot)
-
-        if ExtraAdjList is None:
-            ExtraAdjList = []
-
+    def ShortDescription(self, ExtraAdjList = None, NotList = None, bCupSize = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
         if bCupSize is None:
             bCupSize = CoinFlip()
 
         if bCupSize:
+            if ExtraAdjList is None:
+                ExtraAdjList = []
+
             ExtraAdjList.append(self.CupBuilder(NotList = NotList))
-            print("  Selected cup size is " + ExtraAdjList[0])
+            #print("  Selected cup size is " + ExtraAdjList[0])
+
+        return super().ShortDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList)
           
-        return super().RandomDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
+    def MediumDescription(self, ExtraAdjList = None, NotList = None, bCupSize = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
+        if bCupSize is None:
+            bCupSize = CoinFlip()
+
+        if bCupSize:
+            if ExtraAdjList is None:
+                ExtraAdjList = []
+
+            ExtraAdjList.append(self.CupBuilder(NotList = NotList))
+            #print("  Selected cup size is " + ExtraAdjList[0])
+               
+        return super().MediumDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
+          
+    def FloweryDescription(self, ExtraAdjList = None, NotList = None, bCupSize = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
+        if bCupSize is None:
+            bCupSize = CoinFlip()
+
+        if bCupSize:
+            if ExtraAdjList is None:
+                ExtraAdjList = []
+
+            ExtraAdjList.append(self.CupBuilder(NotList = NotList))
+            #print("  Selected cup size is " + ExtraAdjList[0])
+          
+        return super().FloweryDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
+          
+    def RandomDescription(self, ExtraAdjList = None, NotList = None, bAllowShortDesc = True, bAllowLongDesc = True, bCupSize = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
+        if bCupSize is None:
+            bCupSize = CoinFlip()
+
+        if bCupSize:
+            if ExtraAdjList is None:
+                ExtraAdjList = []
+
+            ExtraAdjList.append(self.CupBuilder(NotList = NotList))
+            #print("  Selected cup size is " + ExtraAdjList[0])
+          
+        return super().RandomDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
      
           
 class Clitoris(BodyParts):
@@ -2628,7 +2604,7 @@ class Penis(BodyParts):
                    
                ExtraAdjList.append(self.GenerateLength())
           
-          return super().ShortDescription(sNot = "", ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList)
+          return super().ShortDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList)
           
      def MediumDescription(self, ExtraAdjList = None, NotList = None, bAddLen = False, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
           if bAddLen:

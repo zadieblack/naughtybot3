@@ -41,7 +41,7 @@ ClothesColors = WordList(['black x5: color',
                           'maroon: color',
                           'mauve: color',
                           # ----- Oranges -----
-                          'orang: colore',
+                          'orange: color',
                           'neon orange: color',
                           # -------------------
 
@@ -80,17 +80,9 @@ ClothesColors = WordList(['black x5: color',
 class FemWardrobe():
     def GetBottom(self):
         Bottoms = [BikiniBottoms(),
-                   BikiniBottoms(),
-                   BikiniBottoms(),
-                   BikiniBottoms(),
-                   DaisyDukes(),
                    DaisyDukes(),
                    Panties(),
-                   Panties(),
-                   Panties(),
                    ShortsFemale(),
-                   ShortsFemale(),
-                   YogaPants(),
                    YogaPants(),
                   ]
 
@@ -98,20 +90,14 @@ class FemWardrobe():
 
     def GetTop(self, bDresses = False ):
         Tops = [BikiniTop(),
-                BikiniTop(),
-                BikiniTop(),
                 Bra(),
-                Bra(),
-                Bra(),
-                Bra(),
-                SportsBra(),
                 SportsBra(),
                 TshirtFemale(),
                ]
 
         if bDresses:
             Dresses = [EveningDress(),
-                       EveningDress(),
+                       Nightgown(),
                        RobeFemale(),
                       ]
 
@@ -997,4 +983,4 @@ class Heels(Clothes):
 #   x high heels
 #   - blouse
 #   - skirt
-#   - robe/nightgown/negligee/shift(/kimono?)
+#   X robe/nightgown/negligee/shift(/kimono?)
