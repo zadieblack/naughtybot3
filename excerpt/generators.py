@@ -7957,15 +7957,6 @@ class Generator112(ExGen):
                            ).GetWord(NotList = [sGirlAdj1])
         sGirlRaceNation = titmisc.GirlFemale().GetWord(NotList = [sGirlAdj2])
 
-        #sBraColor = WordList(["black","black","red","red","white","purple",
-        #                      "pink","scarlet","crimson","lavender","pale",
-        #                      "French",
-        #                     ]).GetWord()
-        #sBraAdj = WordList(["lacy","lacy","snug","strapless","silky",
-        #                    "skimpy","sheer","tight-fitting","delicate",
-        #                    "frilly","diaphanous","elegant","provocative",
-        #                    "sensuous",
-        #                   ]).GetWord()
         Bra = clothes.Bra()
         Bra.NotList(["cupless","sheer",])
         Bra.AdjExclTagList(["skimpy"])
@@ -8112,7 +8103,7 @@ class Generator115(ExGen):
                               "tall, athletic",
                               "tall, strapping",
                               "tall, powerfully-built",
-                              "tall, well-built"
+                              "tall, well-built",
                               "tall, rugged",
                               "tall, hairy",
                               "tall, slender",
@@ -8380,7 +8371,7 @@ class Generator117(ExGen):
                     # Tattoos
                     sTxt = ""
                     if CoinFlip():
-                        sTxt += "\"" + WordList(["'RESPECT'","'STRENGTH'","'THUG LIFE'","'MERCY'"]).GetWord() + "\" "
+                        sTxt += "\"" + WordList(["RESPECT","STRENGTH","THUG LIFE","MERCY"]).GetWord() + "\" "
                         sTxt += "was inked across his " + Chest.MediumDescription() + " "
                         sTxt += "in bold lettering"
                     else:
@@ -8402,13 +8393,15 @@ class Generator117(ExGen):
             elif iManDescRand == 3:
                 # beard or stubble
                 Beard = self.MaleBodyParts.FacialHair
+                Beard.NotList(["gray"])
                 sTxt = "He sported " + AddArticles(Beard.RandomDescription())
                 ManDescs.append(sTxt)
                 UsedManDescNos.append(3)
             elif iManDescRand == 4:
                 # hair
                 Hair = self.MaleBodyParts.Hair
-                sTxt = "His " + Hair.MediumDescription(NotList = ["dread","locks"], AdjReqTagList = ["color"]) + " "
+                Hair.NotList(["gray","dread","locks"])
+                sTxt = "His " + Hair.MediumDescription(AdjReqTagList = ["color"]) + " "
                 sTxt += "was braided into ropy dreadlocks"
                 ManDescs.append(sTxt)
                 UsedManDescNos.append(4)
@@ -8425,7 +8418,7 @@ class Generator117(ExGen):
 
         sFinalDesc = WordList(["his " + self.MaleBodyParts.Chest.Nipples.RandomDescription(bAllowLongDesc = False,NotList = ["pierced"]) + " had been pierced with " + WordList(["steel bars","steel rings","gold rings"]).GetWord(),
                                "he smelled like weed" + WordList([" and tobacco"," and liquor"," and cigarettes",""]).GetWord(),
-                               "he had a facial tattoo that said " + WordList(["'FEAR'","'LOVER'","'PAIN'","'HURT'","'DEATH'","'REGRET'","'STATEMENT'","'13'","'666'"]).GetWord(),
+                               "he had a facial tattoo that read '" + WordList(["FEAR","LOVER","PAIN","HURT","DEATH","REGRET","STATEMENT","13","666"]).GetWord() + "'",
                                "a cross on a thick gold chain hung around his neck",
                               ]).GetWord()
 

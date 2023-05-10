@@ -267,14 +267,6 @@ class BodyParts:
     def GetFullDesc(self, iNumAdjs, bColor = True):
         sFullDesc = ""
         DescWordList = self._AdjList.copy()
-        
-        #if len(self._AdjList) < iNumAdjs:
-        #    iNumAdjs = len(self._AdjList)
-        #for i in range(len(self._AdjList) - iNumAdjs, len(self._AdjList)):
-        #    if i < len(self._AdjList):
-        #        DescWordList.append(self._AdjList[i])
-        #    else:
-        #        break
 
         if iNumAdjs < len(DescWordList):
             for i in range(len(DescWordList) - iNumAdjs):
