@@ -8654,7 +8654,7 @@ class Generator120(ExGen):
 
         if CoinFlip():
             # Top
-            Garment = clothes.FemWardrobe().GetTop(bDresses = True)
+            Garment = clothes.FemWardrobe().GetTop(NotList = [clothes.Bra], bDresses = True)
 
             sTweet += "stripped off her " + Garment.FloweryDescription() + ", "
             sTweet += WordList(["revealing","exposing","unveiling"]).GetWord() + " " 
@@ -8693,11 +8693,7 @@ class Generator120(ExGen):
         else:
             sTweet += "she wrapped the " + Garment.GetNewAdj() + " garment "
         sTweet += "around his " + self.MaleBodyParts.Penis.RandomDescription(bAllowShortDesc = False, NounExclTagList = ["silly","small"], AdjExclTagList = ["horny","shape","super"]) + ". "
-        sTweet += WordList(["Then she began to jack him off with it",
-                            "Then she began to jerk him off with it",
-                            "Then she began to wank him off with it",
-                            "Then she began to stroke him off with it",
-                           ]).GetWord() + "."
+        sTweet += "Then she began to " + WordList(["beat","jack","jerk","stroke","wank"]).GetWord() + " him off with it."
 
         return sTweet
 

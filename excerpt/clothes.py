@@ -78,32 +78,58 @@ ClothesColors = WordList(['black x5: color',
                          ])
 
 class FemWardrobe():
-    def GetBottom(self):
-        Bottoms = [BikiniBottoms(),
-                   DaisyDukes(),
-                   Panties(),
-                   ShortsFemale(),
-                   YogaPants(),
+    def GetBottom(self, NotList = None):
+        if NotList is None:
+            NotList = []
+
+        Bottoms = [BikiniBottoms,
+                   DaisyDukes,
+                   Panties,
+                   ShortsFemale,
+                   YogaPants,
                   ]
 
-        return choice(Bottoms)
+        if len(NotList) > 0:
+            Bottoms = self.ExclNotList(Bottoms, NotList)
 
-    def GetTop(self, bDresses = False ):
-        Tops = [BikiniTop(),
-                Bra(),
-                SportsBra(),
-                TshirtFemale(),
+        return choice(Bottoms)()
+
+    def GetTop(self, NotList = None, bDresses = False):
+        if NotList is None:
+            NotList = []
+
+        Tops = [BikiniTop,
+                Bra,
+                SportsBra,
+                TshirtFemale,
                ]
 
         if bDresses:
-            Dresses = [EveningDress(),
-                       Nightgown(),
-                       RobeFemale(),
+            Dresses = [EveningDress,
+                       Nightgown,
+                       RobeFemale,
                       ]
 
             Tops = Tops + Dresses
 
-        return choice(Tops)
+        if len(NotList) > 0:
+            Tops = self.ExclNotList(Tops, NotList)
+
+        return choice(Tops)()
+
+    def ExclNotList(self, List, NotList):
+        CleanList = []
+
+        for litem in List:
+            bInNL = False
+            for nlitem in NotList:
+                if litem == nlitem:
+                    bInNL = True
+                    break
+            if not bInNL:
+                CleanList.append(litem)
+
+        return CleanList
 
 class Clothes(BodyParts):
     def __init__(self):
@@ -232,7 +258,6 @@ class BikiniBottoms(Clothes):
                         'thin: size,small',
                         'tight x2: size,small',
                         'tiny x3: size,small',
-                        'triangular: shape',
                         'V-shaped x3: shape',
                         'vivid: super',
                        ])
@@ -284,7 +309,6 @@ class BikiniTop(Clothes):
                         'tight x2: size,small',
                         'tiny x3: size,small',
                         'translucent: texture,material',
-                        'triangular: shape',
                         'V-shaped x3: shape',
                         'vivid: super',
                        ])
