@@ -2049,7 +2049,7 @@ class Generator38(ExGen):
           
                sTweet = sBirthdayName + " entered the bedroom. " + sGiverName + " was lying on the bed wearing nothing "
                sTweet += "but " + WordList(["a leather corset","a jeweled butt-plug","a red garter around her thigh", 
-                                                  "crotchless panties", "red high heels"]).GetWord() + ". His gaze lingered on "
+                                            "crotchless panties", clothes.Heels().FloweryDescription()]).GetWord() + ". His gaze lingered on "
                
                sTweet += Woman1.DescRandomNakedParts(iNum = 4, bAllowLongDesc = True, bPussy = True, bAss = True, 
                                                      sPossessive = "her", sDivideChar = ";")
@@ -3985,7 +3985,7 @@ class Generator66(ExGen):
           sTweet += "She " + WordList(['was stark naked','was buck naked','was completely naked',
                                               'was in nothing but her birthday suit','wasn\'t wearing a stitch of clothing',
                                               'had no clothes on','was stripped to the skin',
-                                              'was wearing nothing but a pair of red heels',
+                                              'was wearing nothing but a pair of ' + clothes.Heels().MediumDescription(),
                                               'was shamelessly naked']).GetWord() 
           sTweet += ". "
           
@@ -4375,52 +4375,53 @@ class Generator72(ExGen):
           
           sHisName = self.MaleName.FirstName() 
           sHerName = WordList(['Alice','Ann','Barbara','Beth','Carol','Christy','Cindy','Cynthia','Darlene',
-                                    'Debbie','Gladys','Jane','Janet','Jenny','Jill','Joyce','Karen','Kimberly',
-                                    'Lisa','Marsha','Martha','Nancy','Patricia','Patty','Sarah','Sharon','Sherry',
-                                    'Susan','Suzie','Tammy','Wendy']).GetWord()
+                                'Debbie','Gladys','Jane','Janet','Jenny','Jill','Joyce','Karen','Kimberly',
+                                'Lisa','Marsha','Martha','Nancy','Patricia','Patty','Sarah','Sharon','Sherry',
+                                'Susan','Suzie','Tammy','Wendy']).GetWord()
           
           sPenis = self.MaleBodyParts.Penis.ShortDescription()
           sLabia = self.FemBodyParts.Vagina.OuterLabia.RandomDescription(bAllowShortDesc = False)
           
           sTweet = sHisName + " walked into the " + WordList(['apartment','house']).GetWord() + ". "
           sTweet += "\"" + sHerName + ", I'm home!\" he " + WordList(['announced','called out','called','shouted']).GetWord() + ".\n\n"
-          sTweet += "The bedroom door opened and " + WordList(['a naked woman','a completely nude woman',
-                                                                            'a woman wearing nothing but red heels',
-                                                                            'a woman who was completely nude except for a pair of sneakers',
-                                                                            'a woman wearing nothing but an open bathrobe',
-                                                                            'a woman in a see-thru negligee']).GetWord() + " walked out. "
+          sTweet += "The bedroom door opened and " 
+          sTweet += WordList(['a naked woman','a completely nude woman',
+                                'a woman wearing nothing but ' + clothes.Heels().RandomDescription(),
+                                'a woman who was completely nude except for a pair of sneakers',
+                                'a woman wearing nothing but an open bathrobe',
+                                'a woman in a see-thru negligee']).GetWord() + " walked out. "
           sTweet += "She had " 
           sTweet += self.FemBodyParts.DescRandomNakedParts(iNum = 4, bAllowLongDesc = True, sDivideChar = ";", bAss = True, bPussy = True) + ". "
           sTweet += WordList(["She was wearing a clit piercing",
-                                              "She had a tattoo above her pussy that read '" + WordList(['slut','whore','fuck-hole','fuck me','Daddy\'s Hole']).GetWord() + "'",
-                                              "He could clearly see her " + sLabia,
-                                              "Her skin was gleaming with baby oil"]).GetWord() + ".\n\n"
+                                "She had a tattoo above her pussy that read '" + WordList(['slut','whore','fuck-hole','fuck me','Daddy\'s Hole']).GetWord() + "'",
+                                "He could clearly see her " + sLabia,
+                                "Her skin was gleaming with baby oil"]).GetWord() + ".\n\n"
           sTweet += "\"" + sHerName + " isn't here,\" she purred. "
           sTweet += "\"" + WordList(["And unlike her, I do anal.",
-                                         "I guess you'll have to fuck me, instead.",
-                                         "And the kids are asleep, Mr. " + names.PlainLastNames().GetWord() + ". Won't you please bend me over and " + WordList(["pound me hard","make me squeal","stuff my holes","fuck my brains out"]).GetWord() + "?",
-                                         "And the kids are asleep, Mr. " + names.PlainLastNames().GetWord() + ". It's time to pay the babysitter. I take cash, credit, or " + WordList(["dick","cock"]).GetWord() + ".",
-                                         "And the kids are asleep, Mr. " + names.PlainLastNames().GetWord() + ". Now, this " + WordList(["naughty","slutty","horny","hot"]).GetWord() + " little babysitter wants to play with daddy.",
-                                         "And I sent the kids next door. I've been such a " + WordList(["bad","naughty"]).GetWord() +" little babysitter, daddy. How are you going to " + WordList(["punish","discipline"]).GetWord() + " me?",
-                                         "But she says to tell you Happy Birthday.",
-                                         "So take off your pants and let me get to work on that " + sPenis + ".",
-                                         "So why don't you get naked and join me in the shower?",
-                                         "So it's time to spend some quality time with your " + WordList(['mother-in-law','sister-in-law','daughter-in-law','step-daughter','step-mom','step-sister','housekeeper','babysitter']).GetWord() + ".",
-                                         "So why don't you get naked and join me in the " + WordList(["shower","bathtub","jacuzzi","hot tub"]).GetWord() + "?",
-                                         "It's just you, me, and your big " + sPenis + ".",
-                                         "It's just you, me, and my " + WordList(["horny little","dripping wet"]).GetWord() + " " + self.FemBodyParts.Vagina.ShortDescription(NotList = ["vagina","sex","womanhood","flower"]) + ".",
-                                         "It's just you, me, and my twin sister.",
-                                         "Just me. And I'm dripping wet and horny as hell.",
-                                         "But I'll bet my pussy is tighter than hers.",
-                                         "But I won't make you pull out",
-                                         "So bend me over that sofa and put a baby in me.",
-                                         "And unlike her, I " + WordList(["do anal","love anal","like to be butt-fucked","love getting fucked in the ass"]).GetWord() + ".",
-                                         "And unlike her, I give really good head.",
-                                         "And unlike her, I'm not banging your nextdoor neighbor.",
-                                         "Now pull your pants down so I can suck your " + sPenis + ".",
-                                         "But I'm way more fun than that little whore.",
-                                         "She'll watch us on the webcam.",
-                                         "Now do you want to " + WordList(["fuck","nail","stuff","sodomize"]).GetWord() + " my " + self.FemBodyParts.Ass.Anus.ShortDescription() + " or not?"
+                                        "I guess you'll have to fuck me, instead.",
+                                        "And the kids are asleep, Mr. " + names.PlainLastNames().GetWord() + ". Won't you please bend me over and " + WordList(["pound me hard","make me squeal","stuff my holes","fuck my brains out"]).GetWord() + "?",
+                                        "And the kids are asleep, Mr. " + names.PlainLastNames().GetWord() + ". It's time to pay the babysitter. I take cash, credit, or " + WordList(["dick","cock"]).GetWord() + ".",
+                                        "And the kids are asleep, Mr. " + names.PlainLastNames().GetWord() + ". Now, this " + WordList(["naughty","slutty","horny","hot"]).GetWord() + " little babysitter wants to play with daddy.",
+                                        "And I sent the kids next door. I've been such a " + WordList(["bad","naughty"]).GetWord() +" little babysitter, daddy. How are you going to " + WordList(["punish","discipline"]).GetWord() + " me?",
+                                        "But she says to tell you Happy Birthday.",
+                                        "So take off your pants and let me get to work on that " + sPenis + ".",
+                                        "So why don't you get naked and join me in the shower?",
+                                        "So it's time to spend some quality time with your " + WordList(['mother-in-law','sister-in-law','daughter-in-law','step-daughter','step-mom','step-sister','housekeeper','babysitter']).GetWord() + ".",
+                                        "So why don't you get naked and join me in the " + WordList(["shower","bathtub","jacuzzi","hot tub"]).GetWord() + "?",
+                                        "It's just you, me, and your big " + sPenis + ".",
+                                        "It's just you, me, and my " + WordList(["horny little","dripping wet"]).GetWord() + " " + self.FemBodyParts.Vagina.ShortDescription(NotList = ["vagina","sex","womanhood","flower"]) + ".",
+                                        "It's just you, me, and my twin sister.",
+                                        "Just me. And I'm dripping wet and horny as hell.",
+                                        "But I'll bet my pussy is tighter than hers.",
+                                        "But I won't make you pull out",
+                                        "So bend me over that sofa and put a baby in me.",
+                                        "And unlike her, I " + WordList(["do anal","love anal","like to be butt-fucked","love getting fucked in the ass"]).GetWord() + ".",
+                                        "And unlike her, I give really good head.",
+                                        "And unlike her, I'm not banging your nextdoor neighbor.",
+                                        "Now pull your pants down so I can suck your " + sPenis + ".",
+                                        "But I'm way more fun than that little whore.",
+                                        "She'll watch us on the webcam.",
+                                        "Now do you want to " + WordList(["fuck","nail","stuff","sodomize"]).GetWord() + " my " + self.FemBodyParts.Ass.Anus.ShortDescription() + " or not?"
                                       ]).GetWord() + "\""
           
 
@@ -8583,9 +8584,12 @@ class Generator119(ExGen):
         ##sTweet += "the " + Bikini.GetFullDesc(6) + " "
         #sTweet += "she was wearing turned heads at the beach.\n\n"
 
-        #sTweet += "Her " + Top.RandomDescription(bAllowShortDesc = False) + " "
-        #sTweet += "struggled to contain " 
-        #sTweet += "her " + self.FemBodyParts.Breasts.RandomDescription() + ".\n\n"
+        
+        for i in range(6):
+            Top = clothes.CropTop()
+            sTweet += "Her " + Top.FloweryDescription() + " "
+            sTweet += "struggled to contain " 
+            sTweet += "her " + self.FemBodyParts.Breasts.RandomDescription() + ".\n\n"
 
         #sTweet += "Winking at him, she slipped "
         #sTweet += "her " + Bottoms.RandomDescription() + " "
@@ -8616,9 +8620,9 @@ class Generator119(ExGen):
         #    sTweet += "---\n"
         #    print("OpenRobe described.")
 
-        for i in range(14):
-            sTweet += "He was surprised to see her standing there in "
-            sTweet += "the dark, wearing only a " + clothes.Nightgown().RandomDescription() + "\n\n"
+        #for i in range(14):
+        #    sTweet += "He was surprised to see her standing there in "
+        #    sTweet += "the dark, wearing only a " + clothes.Nightgown().RandomDescription() + "\n\n"
 
         return sTweet
 
@@ -8634,7 +8638,7 @@ class Generator120(ExGen):
         super().GenerateTweet()
         sTweet = ""
 
-        print("\nExcerpt generator 120 ---------")
+        #print("\nExcerpt generator 120 ---------")
         sHisName = self.MaleName.FirstName()
         sHerName = self.FemaleName.FirstName()
 
@@ -8649,7 +8653,7 @@ class Generator120(ExGen):
         if CoinFlip():
             # Top
             Garment = clothes.FemWardrobe().GetTop(NotList = [clothes.Bra], bDresses = True)
-            print("Top Garment() initialized")
+            #print("Top Garment() initialized")
             sTweet += "stripped off her " + Garment.FloweryDescription() + ", "
             sTweet += WordList(["revealing","exposing","unveiling"]).GetWord() + " " 
             if CoinFlip():
@@ -8662,7 +8666,7 @@ class Generator120(ExGen):
         else:
             # Bottom
             Garment = clothes.FemWardrobe().GetBottom()
-            print("Bottom Garment() initialized")
+            #print("Bottom Garment() initialized")
             sTweet += "slid her " + Garment.FloweryDescription() + " "
             if CoinFlip():
                 sTweet += "down over her " + self.FemBodyParts.Ass.RandomDescription(bAllowShortDesc = False, NounExclTagList = ["silly"], AdjExclTagList = ["horny"]) + ". "
@@ -8671,9 +8675,9 @@ class Generator120(ExGen):
             sTweet += "Then she knelt down in front of him"
             iCounter += 1
             if CoinFlip():
-                sTweet += ". He could see "
-                sTweet += "her " + self.FemBodyParts.Vagina.RandomDescription(bAllowShortDesc = False, NounExclTagList = ["silly"]) + " "
-                sTweet += "nestled between her " + self.FemBodyParts.Thighs.RandomDescription(bAllowShortDesc = False, NounExclTagList = ["silly"]) + ". "
+                sTweet += ", shamelessly naked. "
+                sTweet += "Her " + self.FemBodyParts.Vagina.RandomDescription(bAllowShortDesc = False, NounExclTagList = ["silly"]) + " "
+                sTweet += "nestled between " + self.FemBodyParts.Thighs.RandomDescription(bAllowShortDesc = False, NounExclTagList = ["silly"]) + ". "
                 iCounter += 2
             else:
                 sTweet += ", naked and eager. "
@@ -8688,7 +8692,12 @@ class Generator120(ExGen):
         else:
             sTweet += "she wrapped the " + Garment.GetRandomAdj() + " garment "
         sTweet += "around his " + self.MaleBodyParts.Penis.RandomDescription(bAllowShortDesc = False, NounExclTagList = ["silly","small"], AdjExclTagList = ["horny","shape","super"]) + ". "
-        sTweet += "Then she began to " + WordList(["beat","jack","jerk","stroke","wank"]).GetWord() + " him off with it."
+        sTweet += "Then she began to " + WordList(["beat","jack","jerk","stroke","wank"]).GetWord() + " him off " 
+        sTweet += "with "
+        if Garment.IsPlural():
+            sTweet += "them."
+        else:
+            sTweet += "it."
 
         return sTweet
 

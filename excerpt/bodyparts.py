@@ -261,6 +261,24 @@ class BodyParts:
     def GetNoun(self):
         return self._Noun
 
+    def IsPlural(self):
+        bIsPlural = False
+
+        NounTags = self.GetUnitTags(self.GetNoun())
+        if 'plur' in NounTags:
+            bIsPlural = True
+
+        return bIsPlural
+
+    def IsSing(self):
+        bIsSing = False
+
+        NounTags = self.GetUnitTags(self.GetNoun())
+        if 'sing' in NounTags:
+            bIsSing = True
+
+        return bIsSing
+
     def GetColor(self):
         return self._Color
 
@@ -1214,7 +1232,6 @@ class Breasts(BodyParts):
         self.NounList(['boobies: silly,slang,cute,plur',
                         'boobs x4: std,slang,plur',
                         'bosoms x2: std,plur',
-                        'breast implants: std,fake,plur',
                         'breasticles x2: silly,crude,slang,plur',
                         'breasts x4: std,clinical,default,plur',
                         'buds x2: cute,desc,small,young,plur',
@@ -1222,9 +1239,9 @@ class Breasts(BodyParts):
                         'chest: std,sing',
                         'coconuts: silly,slang,cute,plur',
                         'dumplings: silly,cute,plur',
+                        'fake boobs: std,slang,fake,plur',
                         'gazongas: silly,crude,slang,plur',
                         'globes x2: silly,crude,desc,plur',
-                        'implants: std,fake,plur',
                         'jugs: silly,crude,slang,plur',
                         'knockers: silly,crude,slang,plur',
                         'orbs x2: silly,desc,plur',
