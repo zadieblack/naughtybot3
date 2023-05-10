@@ -8641,6 +8641,7 @@ class Generator120(ExGen):
         super().GenerateTweet()
         sTweet = ""
 
+        print("\nExcerpt generator 120 ---------")
         sHisName = self.MaleName.FirstName()
         sHerName = self.FemaleName.FirstName()
 
@@ -8655,43 +8656,44 @@ class Generator120(ExGen):
         if CoinFlip():
             # Top
             Garment = clothes.FemWardrobe().GetTop(NotList = [clothes.Bra], bDresses = True)
-
+            print("Top Garment() initialized")
             sTweet += "stripped off her " + Garment.FloweryDescription() + ", "
             sTweet += WordList(["revealing","exposing","unveiling"]).GetWord() + " " 
             if CoinFlip():
                 sTweet += "her " + self.FemBodyParts.Breasts.FloweryDescription(NounExclTagList = ["silly"]) + ". "
+                iCounter += 1
             else:
                 sTweet += "her " + self.FemBodyParts.MediumDescription(AdjExclTagList = ["nude"]) + " "
                 sTweet += "and " + self.FemBodyParts.Breasts.MediumDescription(NounExclTagList = ["silly"], AdjExclTagList = ["nude"]) + ". "
-                iCounter += 1
+                iCounter += 2
         else:
             # Bottom
             Garment = clothes.FemWardrobe().GetBottom()
-
+            print("Bottom Garment() initialized")
             sTweet += "slid her " + Garment.FloweryDescription() + " "
-            iCounter += 1
             if CoinFlip():
                 sTweet += "down over her " + self.FemBodyParts.Ass.RandomDescription(bAllowShortDesc = False, NounExclTagList = ["silly"], AdjExclTagList = ["horny"]) + ". "
             else:
                 sTweet += "down over her " + self.FemBodyParts.Hips.RandomDescription(bAllowShortDesc = False, NounExclTagList = ["silly"], AdjExclTagList = ["horny"]) + ". "
             sTweet += "Then she knelt down in front of him"
+            iCounter += 1
             if CoinFlip():
                 sTweet += ". He could see "
                 sTweet += "her " + self.FemBodyParts.Vagina.RandomDescription(bAllowShortDesc = False, NounExclTagList = ["silly"]) + " "
                 sTweet += "nestled between her " + self.FemBodyParts.Thighs.RandomDescription(bAllowShortDesc = False, NounExclTagList = ["silly"]) + ". "
-                iCounter += 1
+                iCounter += 2
             else:
                 sTweet += ", naked and eager. "
-
+        #print("Garment descriptive word list: " + str(Garment.GetDescWordList()))
         if CoinFlip():
             sTweet += "With gentle hands, "
         else:
             sTweet += "Gazing up at him with her " + self.FemBodyParts.Eyes.FloweryDescription() + ", "
             iCounter += 1
-        if iCounter >= 2:
+        if iCounter > 2:
             sTweet += "she wrapped the " + Garment.GetNoun() + " "
         else:
-            sTweet += "she wrapped the " + Garment.GetNewAdj() + " garment "
+            sTweet += "she wrapped the " + Garment.GetRandomAdj() + " garment "
         sTweet += "around his " + self.MaleBodyParts.Penis.RandomDescription(bAllowShortDesc = False, NounExclTagList = ["silly","small"], AdjExclTagList = ["horny","shape","super"]) + ". "
         sTweet += "Then she began to " + WordList(["beat","jack","jerk","stroke","wank"]).GetWord() + " him off with it."
 

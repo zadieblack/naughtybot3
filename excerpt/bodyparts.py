@@ -76,8 +76,8 @@ class BodyParts:
     # *** PDS methods ***
     # -------------------
 
-    def Reset(self, iNumAdjs = None):
-        # print("<< RESET! >>")
+    def Reset(self, sCalledBy, iNumAdjs = None):
+        #print("<< Reset called by " + self.__class__.__name__ + "." + sCalledBy + "() >>")
         if iNumAdjs is None:
             iNumAdjs = self._iNumAdjs
 
@@ -113,9 +113,6 @@ class BodyParts:
             else:
                 AdjExclTagList = self._ExclTagList
 
-            if isinstance(self, Breasts):
-                stuff = "foo"
-
             self._Noun = self.GetNewNoun(NotList = self._NotList, ReqTagList = NounReqTagList, ExclTagList = NounExclTagList)
             #print("  ---")
             global TagExclDict
@@ -142,8 +139,6 @@ class BodyParts:
                             self.AddUnitTag(Unit.sUnit,tag)
                             UsedTagList.append(tag)
 
-            #if bTestBreasts and self._iNumAdjs > 3:
-            #    print("  ---")
             for i in range(self._iNumAdjs):
                 LocalReqTagList = AdjReqTagList.copy()
                 LocalExclTagList = AdjExclTagList.copy()
@@ -197,22 +192,12 @@ class BodyParts:
             ColorAdjBucket.sort(key = str.lower)
             SuperAdjBucket.sort(key = str.lower)
             OtherAdjBucket.sort(key = str.lower)
-            #self.ClearAdjList()
+
             self._AdjList = SuperAdjBucket + OtherAdjBucket + ColorAdjBucket + AgeAdjBucket + ExtraAdjBucket
-            #print("    Sorted adj list is " + str(self._AdjList))
 
-            #print("  Final Adj List is " + str(self._AdjList))
-            DictAdjTags = dict()
-            for adj in self._AdjList:
-                DictAdjTags[adj] = self.GetUnitTags(adj)
-                #print("  Tags for \"" + adj + "\" are " + str(DictAdjTags[adj]))
-            #if len(self._ColorList.GetWordList()) > 0:
-            #    self._Color = self.GetColor(NotList = self._NotList + self._AdjList + [self._Noun])
-
-
-    def NotList(self, NotList):
-        self._NotList = NotList
-        self.Reset()
+            #DictAdjTags = dict()
+            #for adj in self._AdjList:
+            #    DictAdjTags[adj] = self.GetUnitTags(adj)
 
     def GetAdj(self, inum, adj):
         if inum >= 0 and inum < len(self._AdjList):
@@ -241,27 +226,30 @@ class BodyParts:
 
     def ReqTagList(self, TagList):
         self._ReqTagList = TagList
-        self.Reset()
+        self.Reset("ReqTagList")
 
     def ExclTagList(self, TagList):
         self._ExclTagList = TagList
-        self.Reset()
+        self.Reset("ExclTagList")
 
     def NounReqTagList(self, TagList):
         self._NounReqTagList = TagList
-        self.Reset()
+        self.Reset("NounReqTagList")
 
     def NounExclTagList(self, TagList):
         self._NounExclTagList = TagList
-        self.Reset()
+        self.Reset("NounExclTagList")
 
     def AdjReqTagList(self, TagList):
         self._AdjReqTagList = TagList
-        self.Reset()
+        self.Reset("AdjReqTagList")
 
     def AdjExclTagList(self, TagList):
         self._AdjExclTagList = TagList
-        self.Reset()
+        self.Reset("AdjExclTagList")
+
+    def GetRandomAdj(self):
+        return choice(self._AdjList)
 
     def GetAdj(self, inum):
         sAdj = ""
@@ -365,9 +353,6 @@ class BodyParts:
         UnitList = self.GetUnitList(sListName, sType)
         ListDict = self._AllUnitLists[sType.lower()]
 
-        if isinstance(self, Breasts):
-            pass
-
         if UnitList is None:
             #create
             self._AllUnitLists[sType.lower()][ListDict]
@@ -458,11 +443,11 @@ class BodyParts:
                     self.AddUnitToList(sUnit, tag, sType, iPriority)
                 #print(" Added \"" + sUnit + "\" to " + tag + " list.")
                
-        self.Reset()
+        self.Reset("UnitList_" + sType)
 
-    def NotList(self, NewNotList):
-        self._NotList = NewNotList 
-        self.Reset()
+    def NotList(self, NotList):
+        self._NotList = NotList
+        self.Reset("NotList")
 
     def NounList(self, NewNounList):
         self.UnitList(NewNounList, "noun")
@@ -472,7 +457,7 @@ class BodyParts:
 
     def ExtraAdjList(self, ExtraAdjList):
         self._ExtraAdjList = ExtraAdjList
-        self.Reset()
+        self.Reset("ExtraAdjList")
 
     def UnitListLen(self, sType):
         ListLen = 0 
@@ -547,8 +532,9 @@ class BodyParts:
         ExclUnitList = []
         for tag in ExclTagList:
             #print("    Getting word units for " + unitlist)
-            for unit in self.GetUnitList(tag, sType):
-                ExclUnitList.append(unit)
+            if tag.lower() != "master":
+                for unit in self.GetUnitList(tag, sType):
+                    ExclUnitList.append(unit)
         #print("      ExclUnitList is + " + str(ExclUnitList))
 
         if ReqTagList == None or len(ReqTagList) == 0:
@@ -599,7 +585,33 @@ class BodyParts:
         if ExclTagList is None:
             ExclTagList = []
 
-        sNewAdj = self.GetUnit("adj", NotList = NotList, ReqTagList = ReqTagList, ExclTagList = ExclTagList)
+        UsedTagList = []
+        for adj in self._AdjList:
+            UsedTagList += self.GetUnitTags(adj)
+
+        sNewAdj = self.GetUnit("adj", NotList = NotList, ReqTagList = ReqTagList, ExclTagList = ExclTagList + UsedTagList)
+
+        #iTryCount = 0
+        #bTryAgain = True
+        #while bTryAgain and iTryCount < MAX_SEARCH_LOOPS:
+        #    sNewAdj = self.GetUnit("adj", NotList = NotList, ReqTagList = ReqTagList, ExclTagList = ExclTagList)
+        #    bTagAlreadyUsed = False
+
+        #    for newadjtag in self.GetUnitTags(sNewAdj):
+        #        if newadjtag in UsedTagList:
+        #            bTagAlreadyUsed = True
+        #            break
+
+        #    if not bTagAlreadyUsed:
+        #        bTryAgain = False
+        #    iTryCount += 1
+
+        #if iTryCount >= MAX_SEARCH_LOOPS:
+        #    print("WARNING: bodyparts.GetNewAdj() max attempts exceeded. Accepting sNewAdj value: " + sNewAdj)
+
+        #def IsUnitInList(self, sUnit, sListName, sType):
+        #while self.IsAdjInList(
+        
         for tag in self.GetUnitTags(sNewAdj):
             self.AddUnitTag(sNewAdj, tag)
 
@@ -615,7 +627,9 @@ class BodyParts:
         if ExclTagList is None:
             ExclTagList = []
 
-        sNewNoun = self.GetUnit("noun", NotList = NotList, ReqTagList = ReqTagList, ExclTagList = ExclTagList)
+        UsedTagList = self.GetUnitTags(self.GetNoun())
+
+        sNewNoun = self.GetUnit("noun", NotList = NotList, ReqTagList = ReqTagList, ExclTagList = ExclTagList + UsedTagList)
         for tag in self.GetUnitTags(sNewNoun):
             self.AddUnitTag(sNewNoun, tag)
 
