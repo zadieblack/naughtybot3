@@ -6,39 +6,75 @@ from random import *
 from util import *
 from excerpt.bodyparts import *
 
-ClothesColors = WordList(['black x5:',
-                          'beige',
-                          'blue x2:',
-                          'dark blue','navy blue','sky blue','baby blue','pastel blue',
-                          'brown','chocolate brown',
-                          'chartreuse',
-                          'cream-colored',
-                          'gold',
-                          'green x2:',
-                          'dark green','lime green','sea green',
-                          'neon green','pastel green',
-                          'indigo',
-                          'lavender x2:',
-                          'lilac',
-                          'magenta',
-                          'maroon',
-                          'mauve',
-                          'orange','neon orange',
-                          'peach',
-                          'periwinkle',
-                          'pink x4:',
-                          'hot pink x2:',
-                          'purple x3:',
-                          'red x5:',
-                          'blood red','bright red','ruby red',
-                          'silver',
-                          'tan',
-                          'turquoise',
-                          'violet x3:',
-                          'yellow',
-                          'bright yellow','canary yellow','dayglow yellow','lemon yellow',
-                          'white x2:',
-                          'pure white',
+ClothesColors = WordList(['black x5: color',
+                          'beige: color',
+                          # ------ Blues ------
+                          'blue x2: color',
+                          'dark blue: color',
+                          'navy blue: color',
+                          'sky blue: color',
+                          'baby blue: color',
+                          'pastel blue: color',
+                          # -------------------
+
+                          # ------ Browns -----
+                          'brown: color',
+                          'chocolate brown: color',
+                          # -------------------
+
+                          'chartreuse: color',
+                          'cream-colored: color',
+                          'gold: color',
+                          # ----- Greens ------
+                          'green x2: color',
+                          'dark green: color',
+                          'lime green: color',
+                          'sea green: color',
+                          'neon green: color',
+                          'pastel green: color',
+                          # -------------------
+
+                          'indigo: color',
+                          'lavender x2: color',
+                          'lilac: color',
+                          'magenta: color',
+                          'maroon: color',
+                          'mauve: color',
+                          # ----- Oranges -----
+                          'orang: colore',
+                          'neon orange: color',
+                          # -------------------
+
+                          'peach: color',
+                          'periwinkle: color',
+                          # ------ Pinks ------
+                          'pink x4: color',
+                          'hot pink x2: color',
+                          # -------------------
+
+                          'purple x3: color',
+                          # ------ Reds -------
+                          'red x5: color',
+                          'blood red: color',
+                          'bright red: color',
+                          'ruby red: color',
+                          # -------------------
+
+                          'silver: color',
+                          'turquoise: color',
+                          'violet x3: color',
+                          # ----- Yellows -----
+                          'yellow: color',
+                          'bright yellow: color',
+                          'canary yellow: color',
+                          'dayglow yellow: color',
+                          'lemon yellow: color',
+                          # -------------------
+
+                          # ----- Whites ------
+                          'white x2: color',
+                          'pure white: color',
+                          # -------------------
                          ])
 
 class FemWardrobe():
@@ -76,6 +112,7 @@ class FemWardrobe():
         if bDresses:
             Dresses = [EveningDress(),
                        EveningDress(),
+                       RobeFemale(),
                       ]
 
             Tops = Tops + Dresses
@@ -97,8 +134,6 @@ class Clothes(BodyParts):
     # can manually add the colors from the 
     # ClothesColors list to each adj list.
     def AdjList(self, NewAdjList):
-        super().AdjList(NewAdjList)
-
         global ClothesColors 
         
         if self.AddColors:
@@ -106,8 +141,11 @@ class Clothes(BodyParts):
                 unit = self.ParseUnit(color)
                 
                 if not FoundIn(unit.sUnit, self.ColorsNotList):
-                    self.AddUnitToList(unit.sUnit, "master", "adj", unit.iPriority)
-                    self.AddUnitToList(unit.sUnit, "color", "adj", unit.iPriority)
+                    NewAdjList.append(color)
+                    #self.AddUnitToList(unit.sUnit, "master", "adj", unit.iPriority)
+                    #self.AddUnitToList(unit.sUnit, "color", "adj", unit.iPriority)
+
+        super().AdjList(NewAdjList)
 
 class Bikini(Clothes):
      def __init__(self):
@@ -798,6 +836,52 @@ class TshirtFemale(Clothes):
                
           self.DefaultNoun('t-shirt')
           self.DefaultAdj('white')
+
+          self.IsTop = True
+
+class RobeFemale(Clothes):
+     def __init__(self):
+          super().__init__()
+
+          self.ColorsNotList = ["black"]
+
+          self.NounList(['bathrobe x3: variant,sing',
+                         'kimono: variant,sing',
+                         'robe x4: std,default,sing',
+                         'satin bathrobe: std,material,sing',
+                         'satin robe x2: std,material,sing',
+                         'silk robe x2: std,material,silk,sing',
+                        ])
+          
+          self.AdjList(['beautiful: super',
+                        'clingy: skimpy',
+                        'comfortable: texture',
+                        'cozy: texture,thick',
+                        'diaphanous: seethru,thickness,thin',
+                        'embroidered: style',
+                        'flimsy: thickness',
+                        'flowered: style',
+                        'gauzy: thickness,thin',
+                        'glossy: texture,shiny',
+                        'gossamer: texture,thin,shiny,seethru',
+                        'light: thickness,thin',
+                        'long: length,long',
+                        'loose: style',
+                        'paper-thin: thickness,thin',
+                        'plush: texture,material,thick',
+                        'silken: texture,silk',
+                        'silky: texture,silk',
+                        'simple: style,super',
+                        'short: length,short',
+                        'soft: texture',
+                        'thick: thickness,thick'
+                        'thin x4: thickness,thin',
+                        'tightly-wrapped: style',
+                        'warm: feel,thick',
+                       ])
+               
+          self.DefaultNoun('robe')
+          self.DefaultAdj('loose robe')
 
           self.IsTop = True
 

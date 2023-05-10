@@ -20,6 +20,8 @@ TagExclDict = {"poc": ["whitepers"],
                "short": ["tall"],
                "slender": ["plussize"],
                "plussize": ["slender"],
+               "thick": ["thin"],
+               "thin": ["thick"],
               }
 
 class ParsedUnit:
@@ -34,7 +36,7 @@ class ParsedUnit:
 
 
 class BodyParts:
-    def __init__(self, iNumAdjs = 5, ExtraAdjList = None, bVaryAdjTags = True, NotList = None):
+    def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = True, NotList = None):
         self._AllUnitLists = {"adj": {"master": []}, "noun": {"master": [], "std": []}}
         self._UnitTags = dict()
         self._DefaultNoun = ""
@@ -75,6 +77,7 @@ class BodyParts:
     # -------------------
 
     def Reset(self, iNumAdjs = None):
+        # print("<< RESET! >>")
         if iNumAdjs is None:
             iNumAdjs = self._iNumAdjs
 
@@ -275,15 +278,19 @@ class BodyParts:
 
     def GetFullDesc(self, iNumAdjs, bColor = True):
         sFullDesc = ""
-        DescWordList = []
+        DescWordList = self._AdjList.copy()
         
-        if len(self._AdjList) < iNumAdjs:
-            iNumAdjs = len(self._AdjList)
-        for i in range(len(self._AdjList) - iNumAdjs, len(self._AdjList)):
-            if i < len(self._AdjList):
-                DescWordList.append(self._AdjList[i])
-            else:
-                break
+        #if len(self._AdjList) < iNumAdjs:
+        #    iNumAdjs = len(self._AdjList)
+        #for i in range(len(self._AdjList) - iNumAdjs, len(self._AdjList)):
+        #    if i < len(self._AdjList):
+        #        DescWordList.append(self._AdjList[i])
+        #    else:
+        #        break
+
+        if iNumAdjs < len(DescWordList):
+            for i in range(len(DescWordList) - iNumAdjs):
+                DescWordList.remove(choice(DescWordList))
 
         if self.GetNoun() != "":
             DescWordList.append(self.GetNoun())
@@ -615,17 +622,10 @@ class BodyParts:
         return sNewNoun
 
     #noun only ("hair")
-    def ShortDescription(self, ExtraAdjList = None, sNot = "", NotList = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
+    def ShortDescription(self, ExtraAdjList = None, NotList = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
         if NotList == None:
             NotList = []
-
-            if sNot != "":
-                NotList.append(sNot)
-                self.NotList(NotList)
         else:
-            if sNot != "":
-                NotList.append(sNot)
-
             self.NotList(NotList)
 
         if NounReqTagList == None:
@@ -656,17 +656,10 @@ class BodyParts:
         return self.GetFullDesc(iNumAdjs = 0)
      
     #adjective noun ("red hair")
-    def MediumDescription(self, ExtraAdjList = None, sNot = "", NotList = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
+    def MediumDescription(self, ExtraAdjList = None, NotList = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
         if NotList == None:
             NotList = []
-
-            if sNot != "":
-                NotList.append(sNot)
-                self.NotList(NotList)
         else:
-            if sNot != "":
-                NotList.append(sNot)
-
             self.NotList(NotList)
 
         if NounReqTagList == None:
@@ -697,17 +690,10 @@ class BodyParts:
         return self.GetFullDesc(iNumAdjs = 1)
      
     #adjective1 adjective2 adjective3 noun ("long, wavy, red hair")
-    def FloweryDescription(self, ExtraAdjList = None, sNot = "", NotList = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
+    def FloweryDescription(self, ExtraAdjList = None, NotList = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
         if NotList == None:
             NotList = []
-
-            if sNot != "":
-                NotList.append(sNot)
-                self.NotList(NotList)
         else:
-            if sNot != "":
-                NotList.append(sNot)
-
             self.NotList(NotList)
 
         if NounReqTagList == None:
@@ -739,17 +725,9 @@ class BodyParts:
 
         return self.GetFullDesc(iNumAdjs = iNumAdjs)
      
-    def RandomDescription(self, ExtraAdjList = None, sNot = "", NotList = None, bAllowShortDesc = True, bAllowLongDesc = True, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
+    def RandomDescription(self, ExtraAdjList = None, NotList = None, bAllowShortDesc = True, bAllowLongDesc = True, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
+                              # ExtraAdjList = None, NotList = None,                                                NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None
         sRandomDesc = ""
-          
-        if NotList == None:
-            NotList = []
-          
-        if sNot != "":
-            NotList.append(sNot)
-
-        if ExtraAdjList is None:
-            ExtraAdjList = []
           
         iRand = randint(0, 12)
         if iRand in range(0, 3):
@@ -757,20 +735,20 @@ class BodyParts:
             if bAllowShortDesc:
                 #use noun from the list or default noun
                 if CoinFlip():
-                        sRandomDesc = self.ShortDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList)
+                        sRandomDesc = self.ShortDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList)
                 else:
                         sRandomDesc = self.GetDefaultNoun(NotList = NotList)
             else:
-                sRandomDesc = self.MediumDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList)
+                sRandomDesc = self.MediumDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList)
         elif iRand in range(3,6):
         #medium desc 
-            sRandomDesc = self.MediumDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList)
+            sRandomDesc = self.MediumDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList)
         else:
         #flowery desc if allowed
             if bAllowLongDesc:
-                sRandomDesc = self.FloweryDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList)
+                sRandomDesc = self.FloweryDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList)
             else:
-                sRandomDesc = self.MediumDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList)
+                sRandomDesc = self.MediumDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList)
                
         return sRandomDesc
 
@@ -2643,65 +2621,41 @@ class Penis(BodyParts):
           
           return sLength
                
-     def ShortDescription(self, ExtraAdjList = None, sNot = "", NotList = None, bAddLen = False, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
-          if NotList == None:
-               NotList = []
-          
-          if sNot != "":
-               NotList.append(sNot)
-
-          if ExtraAdjList is None:
-               ExtraAdjList = []
-
+     def ShortDescription(self, ExtraAdjList = None, NotList = None, bAddLen = False, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
           if bAddLen:
+               if ExtraAdjList is None:
+                   ExtraAdjList = []
+                   
                ExtraAdjList.append(self.GenerateLength())
           
           return super().ShortDescription(sNot = "", ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList)
           
-     def MediumDescription(self, ExtraAdjList = None, sNot = "",  NotList = None, bAddLen = False, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
-          if NotList == None:
-               NotList = []
-          
-          if sNot != "":
-               NotList.append(sNot)
-
-          if ExtraAdjList is None:
-               ExtraAdjList = []
-
+     def MediumDescription(self, ExtraAdjList = None, NotList = None, bAddLen = False, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
           if bAddLen:
+               if ExtraAdjList is None:
+                   ExtraAdjList = []
+                   
                ExtraAdjList.append(self.GenerateLength())
                
-          return super().MediumDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
+          return super().MediumDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
           
-     def FloweryDescription(self, ExtraAdjList = None, sNot = "", NotList = None, bAddLen = False, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
-          if NotList == None:
-               NotList = []
-          
-          if sNot != "":
-               NotList.append(sNot)
-
-          if ExtraAdjList is None:
-               ExtraAdjList = []
-
+     def FloweryDescription(self, ExtraAdjList = None, NotList = None, bAddLen = False, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
           if bAddLen:
+               if ExtraAdjList is None:
+                   ExtraAdjList = []
+                   
                ExtraAdjList.append(self.GenerateLength())
           
-          return super().FloweryDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
+          return super().FloweryDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
           
-     def RandomDescription(self, ExtraAdjList = None, sNot = "", NotList = None, bAllowShortDesc = True, bAllowLongDesc = True, bAddLen = False, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
-          if NotList == None:
-               NotList = []
-          
-          if sNot != "":
-               NotList.append(sNot)
-
-          if ExtraAdjList is None:
-               ExtraAdjList = []
-
+     def RandomDescription(self, ExtraAdjList = None, NotList = None, bAllowShortDesc = True, bAllowLongDesc = True, bAddLen = False, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
           if bAddLen:
+               if ExtraAdjList is None:
+                   ExtraAdjList = []
+                   
                ExtraAdjList.append(self.GenerateLength())
           
-          return super().RandomDescription(ExtraAdjList = ExtraAdjList, sNot = sNot, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
+          return super().RandomDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
      
 class Semen(BodyParts):
      def __init__(self):

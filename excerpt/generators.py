@@ -8604,13 +8604,24 @@ class Generator119(ExGen):
         #    sTweet += "She was wearing a " + Dress.RandomDescription(bAllowShortDesc = False) + " "
         #    sTweet += "that showed off her curves to great effect.\n\n"
 
+        #for i in range(12):
+        #    #Dukes = clothes.DaisyDukes()
+        #    #Shorts = clothes.ShortsFemale()
+        #    sTweet += "She was stunning in her " + clothes.FemWardrobe().GetTop(bDresses = False).RandomDescription(bAllowShortDesc = False) + ", "
+        #    sTweet += "her " + clothes.FemWardrobe().GetBottom().RandomDescription(bAllowShortDesc = False) + " and "
+        #    sTweet += clothes.Heels().RandomDescription() + ".\n"
+        #    sTweet += "---\n"
+
         for i in range(12):
             #Dukes = clothes.DaisyDukes()
             #Shorts = clothes.ShortsFemale()
-            sTweet += "She was stunning in her " + clothes.FemWardrobe().GetTop(bDresses = False).RandomDescription(bAllowShortDesc = False) + ", "
-            sTweet += "her " + clothes.FemWardrobe().GetBottom().RandomDescription(bAllowShortDesc = False) + " and "
-            sTweet += clothes.Heels().RandomDescription() + ".\n"
+            ClosedRobe = clothes.RobeFemale()
+            sTweet += "She was wearing a " + ClosedRobe.RandomDescription() + ".\n"
+            OpenRobe = clothes.RobeFemale()
+            sTweet += "She opened her " + OpenRobe.FloweryDescription() + " "
+            sTweet += "to him to reveal her stunning naked body.\n"
             sTweet += "---\n"
+            print("OpenRobe described.")
 
         return sTweet
 
