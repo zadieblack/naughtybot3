@@ -4170,6 +4170,12 @@ class Generator69(ExGen):
           
           sHisName = self.MaleName.FirstName()
           sHerName = self.FemaleName.FirstName()
+
+          Ass = self.FemBodyParts.Ass
+          Pussy = self.FemBodyParts.Vagina
+          Tits = self.FemBodyParts.Breasts
+          Dick = self.MaleBodyParts.Penis 
+          Dick.AdjExclTagList(["shape","silly"])
           
           sTweet = "\"Make love to me, " + sHisName + "!\" " + sHerName + " said. "
           sTweet += "\"Make love to me right now, right here " + Location.NamePrep + "! " 
@@ -4178,38 +4184,37 @@ class Generator69(ExGen):
           
           if iRand == 1:
           #tits
-               Tits = self.FemBodyParts.Breasts
-               Dick = self.MaleBodyParts.Penis 
-               
                if CoinFlip():
-                    sTweet += "Rub your " + Dick.FloweryDescription() + " all over my " + Tits.RandomDescription() + "!\""
+                    sTweet += "Rub your " + Dick.FloweryDescription() + " "
+                    sTweet += "all over my " + Tits.RandomDescription() + "!\""
                else:
-                    sThrust = WordList(['fuck','ravish','thrust into']).GetWord()
+                    sThrust = WordList(['fuck','plow','ravish',]).GetWord()
                     
-                    sTweet += sThrust.capitalize() + " my " + Tits.RandomDescription() + " with your " + Dick.RandomDescription() + "!\""
+                    sTweet += sThrust.capitalize() + " " 
+                    sTweet += "my " + Tits.RandomDescription() + " " 
+                    sTweet += "with your " + Dick.RandomDescription() + "!\""
           elif iRand == 2:
           #pussy 
-               Pussy = self.FemBodyParts.Vagina
                sThrust = self.VThrust.Present()
-               
                if CoinFlip():
                     sTweet += "Bend me over and "
-                    sTweet += sThrust + " my " + Pussy.FloweryDescription() + "!\""
+                    sTweet += sThrust + " my " 
+                    sTweet += Pussy.FloweryDescription() + "!\""
                else: 
                     sTweet += "Spread my legs and "
-                    sTweet += sThrust + " my " + Pussy.FloweryDescription() + "!\""
+                    sTweet += sThrust + " my "
+                    sTweet += Pussy.FloweryDescription() + "!\""
           elif iRand == 3:
           #ass 
-               Ass = self.FemBodyParts.Ass
+               
                sThrust = self.VThrust.Present()
                
-               sTweet += sThrust.capitalize()  + " my " + Ass.FloweryDescription() + "!\""
+               sTweet += sThrust.capitalize()  + " my " 
+               sTweet += Ass.FloweryDescription() + "!\""
           else:
           #asshole 
-               Ass = self.FemBodyParts.Ass
-               Asshole = self.FemBodyParts.Ass.Anus
-               
-               sTweet += "Spread my " + Ass.ShortDescription() + " and make love to my " + Asshole.FloweryDescription() + "!\""
+               sTweet += "Spread my " + Ass.ShortDescription() + " "
+               sTweet += "and make love to my " + Ass.Anus.FloweryDescription() + "!\""
 
           return sTweet
           
