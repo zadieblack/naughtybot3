@@ -625,11 +625,7 @@ class BodyParts:
         if ExclTagList is None:
             ExclTagList = []
 
-        UsedTagList = self.GetUnitTags(self.GetNoun())
-        if isinstance(self,BackFemale):
-            foo = "bar"
-
-        sNewNoun = self.GetUnit("noun", NotList = NotList, ReqTagList = ReqTagList, ExclTagList = ExclTagList + UsedTagList)
+        sNewNoun = self.GetUnit("noun", NotList = NotList, ReqTagList = ReqTagList, ExclTagList = ExclTagList)
         for tag in self.GetUnitTags(sNewNoun):
             self.AddUnitTag(sNewNoun, tag)
 
