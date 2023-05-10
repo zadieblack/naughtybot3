@@ -36,7 +36,7 @@ class ParsedUnit:
 
 
 class BodyParts:
-    def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = True, NotList = None):
+    def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = True, NotList = None, bEnableSpecials = False):
         self._AllUnitLists = {"adj": {"master": []}, "noun": {"master": [], "std": []}}
         self._UnitTags = dict()
         self._DefaultNoun = ""
@@ -52,6 +52,7 @@ class BodyParts:
         self._NotList = NotList
         self._Noun = ""
         self._Color = ""
+        self._EnableSpecials = bEnableSpecials
         self._iNumAdjs = iNumAdjs
         self._AdjList = []
         self._bVaryAdjTags = bVaryAdjTags
@@ -123,7 +124,7 @@ class BodyParts:
                         UsedTagList.append(tag)
                 #print("  Added any excluding noun tags for \"" + self._Noun + "\" to UsedTagList " + str(UsedTagList))
 
-            self.ClearAdjList()
+            #self.ClearAdjList()
 
             # Parse extra adjs list, add any tags to the parent
             # and to the used tag list
@@ -171,12 +172,15 @@ class BodyParts:
             # Sort 
             #print("    Unsorted adj list is " + str(self._AdjList))
             ExtraAdjBucket = ParsedExtraAdjList
+            SpecialAdjBucket = []
             AgeAdjBucket = []
             ColorAdjBucket = []
             OtherAdjBucket = []
             SuperAdjBucket = []
             for adj in self._AdjList:
-                if "young" in self.GetUnitTags(adj) or "older" in self.GetUnitTags(adj):
+                if "special" in self.GetUnitTags(adj):
+                    SpecialAdjBucket.append(adj)
+                elif "young" in self.GetUnitTags(adj) or "older" in self.GetUnitTags(adj):
                     #print("      \"" + adj + "\" is an age adj.")
                     AgeAdjBucket.append(adj)
                 elif "color" in self.GetUnitTags(adj):
@@ -192,8 +196,9 @@ class BodyParts:
             ColorAdjBucket.sort(key = str.lower)
             SuperAdjBucket.sort(key = str.lower)
             OtherAdjBucket.sort(key = str.lower)
+            SpecialAdjBucket.sort(key = str.lower)
 
-            self._AdjList = SuperAdjBucket + OtherAdjBucket + ColorAdjBucket + AgeAdjBucket + ExtraAdjBucket
+            self._AdjList = SuperAdjBucket + OtherAdjBucket + ColorAdjBucket + AgeAdjBucket + SpecialAdjBucket + ExtraAdjBucket
 
             #DictAdjTags = dict()
             #for adj in self._AdjList:
@@ -517,27 +522,22 @@ class BodyParts:
                
         return sDefaultAdj
      
-    def GetUnit(self, sType, sNot = "", NotList = None, ReqTagList = None, ExclTagList = None):
+    def GetUnit(self, sType, NotList = None, ReqTagList = None, ExclTagList = None):
         sUnit = "" 
         LocalUnitList = []
         #print("      Entered GetUnit()")
          
         if NotList is None:
             NotList = []
-          
-        if sNot != "":
-            NotList.append(sNot)
 
         if ReqTagList is None:
             ReqTagList = []
 
-        #if ExclTagList is None:
-        #    ExclTagList == []
-
         if ExclTagList is None:
             ExclTagList = []
-        #else:
-        #    print("      ExclTagList is + " + str(ExclTagList))
+
+        if not self._EnableSpecials:
+            ExclTagList.append("special")
 
         ExclUnitList = []
         for tag in ExclTagList:
@@ -606,30 +606,10 @@ class BodyParts:
             UsedTagList += self.GetUnitTags(adj)
 
         sNewAdj = self.GetUnit("adj", NotList = NotList, ReqTagList = ReqTagList, ExclTagList = ExclTagList + UsedTagList)
-
-        #iTryCount = 0
-        #bTryAgain = True
-        #while bTryAgain and iTryCount < MAX_SEARCH_LOOPS:
-        #    sNewAdj = self.GetUnit("adj", NotList = NotList, ReqTagList = ReqTagList, ExclTagList = ExclTagList)
-        #    bTagAlreadyUsed = False
-
-        #    for newadjtag in self.GetUnitTags(sNewAdj):
-        #        if newadjtag in UsedTagList:
-        #            bTagAlreadyUsed = True
-        #            break
-
-        #    if not bTagAlreadyUsed:
-        #        bTryAgain = False
-        #    iTryCount += 1
-
-        #if iTryCount >= MAX_SEARCH_LOOPS:
-        #    print("WARNING: bodyparts.GetNewAdj() max attempts exceeded. Accepting sNewAdj value: " + sNewAdj)
-
-        #def IsUnitInList(self, sUnit, sListName, sType):
-        #while self.IsAdjInList(
         
-        for tag in self.GetUnitTags(sNewAdj):
-            self.AddUnitTag(sNewAdj, tag)
+        for tag in self.GetUnitTags(sNewAdj): 
+            if not tag.lower() == "master":
+                self.AddUnitTag(sNewAdj, tag)
 
         return sNewAdj
 
@@ -1226,8 +1206,10 @@ class Nipples(BodyParts):
           self.DefaultAdj("erect")
 
 class Breasts(BodyParts):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, bCupSize = False, iNumAdjs = 4):
+        super().__init__(bEnableSpecials = bCupSize)
+
+        self._bCupSize = bCupSize
           
         self.NounList(['boobies: silly,slang,cute,plur',
                         'boobs x4: std,slang,plur',
@@ -1331,6 +1313,23 @@ class Breasts(BodyParts):
 
         self.Nipples = Nipples()
 
+    # Override the AdjList creation call so we
+    # can manually add the colors from the 
+    # ClothesColors list to each adj list.
+    def AdjList(self, NewAdjList):
+        CupList = ["A-cup x3: small,cupsize,special",
+                   "B-cup x2: small,cupsize,special",
+                   "D-cup x3: large,cupsize,special",
+                   "double-D cup x3: large,cupsize,special",
+                   "triple-D cup x4: large,cupsize,special",
+                  ]
+        
+        if self._bCupSize:
+            for cupsize in CupList:
+                NewAdjList.append(cupsize)
+
+        super().AdjList(NewAdjList)
+
     def CupBuilder(self, NotList = None):
         if NotList == None:
             NotList = []
@@ -1344,56 +1343,62 @@ class Breasts(BodyParts):
 
         return WordList(CupList).GetWord(NotList = NotList)
 
+    def AllowCupSize(self, bCupSize = True):
+        self._bCupSize = bCupSize
+
+        self.AdjList(self.GetAdjList())
+
     def ShortDescription(self, ExtraAdjList = None, NotList = None, bCupSize = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
         if bCupSize is None:
-            bCupSize = CoinFlip()
+            bCupSize = self._bCupSize
 
-        if bCupSize:
-            if ExtraAdjList is None:
-                ExtraAdjList = []
+        if bCupSize and not self._bCupSize:
+            self.AllowCupSize(bCupSize = bCupSize)
 
-            ExtraAdjList.append(self.CupBuilder(NotList = NotList))
+        #if bCupSize:
+        #    if ExtraAdjList is None:
+        #        ExtraAdjList = []
+
+        #    ExtraAdjList.append(self.CupBuilder(NotList = NotList))
             #print("  Selected cup size is " + ExtraAdjList[0])
 
         return super().ShortDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList)
           
     def MediumDescription(self, ExtraAdjList = None, NotList = None, bCupSize = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
         if bCupSize is None:
-            bCupSize = CoinFlip()
+            bCupSize = self._bCupSize
 
-        if bCupSize:
-            if ExtraAdjList is None:
-                ExtraAdjList = []
+        if bCupSize and not self._bCupSize:
+            self.AllowCupSize(bCupSize = bCupSize)
 
-            ExtraAdjList.append(self.CupBuilder(NotList = NotList))
-            #print("  Selected cup size is " + ExtraAdjList[0])
+        #if bCupSize:
+        #    if ExtraAdjList is None:
+        #        ExtraAdjList = []
+
+        #    ExtraAdjList.append(self.CupBuilder(NotList = NotList))
+        #    #print("  Selected cup size is " + ExtraAdjList[0])
                
         return super().MediumDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
           
     def FloweryDescription(self, ExtraAdjList = None, NotList = None, bCupSize = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
         if bCupSize is None:
-            bCupSize = CoinFlip()
+            bCupSize = self._bCupSize
 
-        if bCupSize:
-            if ExtraAdjList is None:
-                ExtraAdjList = []
+        if bCupSize and not self._bCupSize:
+            self.AllowCupSize(bCupSize = bCupSize)
 
-            ExtraAdjList.append(self.CupBuilder(NotList = NotList))
-            #print("  Selected cup size is " + ExtraAdjList[0])
+        #if bCupSize:
+        #    if ExtraAdjList is None:
+        #        ExtraAdjList = []
+
+        #    ExtraAdjList.append(self.CupBuilder(NotList = NotList))
+        #    #print("  Selected cup size is " + ExtraAdjList[0])
           
         return super().FloweryDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
           
     def RandomDescription(self, ExtraAdjList = None, NotList = None, bAllowShortDesc = True, bAllowLongDesc = True, bCupSize = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
-        if bCupSize is None:
-            bCupSize = CoinFlip()
+        self._bCupSize = bCupSize
 
-        if bCupSize:
-            if ExtraAdjList is None:
-                ExtraAdjList = []
-
-            ExtraAdjList.append(self.CupBuilder(NotList = NotList))
-            #print("  Selected cup size is " + ExtraAdjList[0])
-          
         return super().RandomDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
      
           

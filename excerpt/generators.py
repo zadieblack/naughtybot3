@@ -7698,7 +7698,7 @@ class Generator110(ExGen):
         if iRand == 1:
             # buttocks
             sAssAdj1 = self.MaleBodyParts.Ass.GetNewAdj()
-            sAssAdj2 = self.MaleBodyParts.Ass.GetNewAdj(NotList = [sAssAdj1])
+            sAssAdj2 = self.MaleBodyParts.Ass.GetNewAdj()
             sAssNoun = self.MaleBodyParts.Ass.GetNoun()
             sTweet += "He had the " + sAssAdj1 + ", " + sAssAdj2 + " " + sAssNoun + " "
             sTweet += "of " + sSuspectID + "."
@@ -7794,9 +7794,11 @@ class Generator111(ExGen):
         sTweet += "\"" + WordList(["I must say","I must say","I have to say","I declare","I must admit"]).GetWord() + ",\" "
         sTweet += "said " + sHerName1 + ", \"the new " + JobsMale.GetWord() + " "
         sTweet += "seems " + WordList(["so kind","so polite","so well-mannered","so friendly","so nice","so charming"]).GetWord() + ". "
-        sTweet += "And so " + WordList(["handsome","handsome","cute","fit","tall","well-built","hot","gorgeous","good looking",]).GetWord() + ",\" she added. \"Don't you think so, " + sHerName2 + "?\"\n\n"
+        sTweet += "And so " + WordList(["handsome","handsome","cute","fit","tall","well-built","hot","gorgeous","good looking",]).GetWord() + ",\" she added. " 
+        sTweet += "\"Don't you think so, " + sHerName2 + "?\"\n\n"
 
-        sTweet += "\"Well,\" said " + sHerName2 + " with a shy giggle, \"Let's just say that "
+        sTweet += "\"Well,\" said " + sHerName2 + " with a shy giggle, " 
+        sTweet += "\"Let's just say that "
 
         bAddLen = False
         bAllowCoda = True
@@ -7942,9 +7944,11 @@ class Generator112(ExGen):
         sTweet = ""
 
         ExclTagList = ["small","wet"]
-        Boobs = self.FemBodyParts.Breasts
-        Boobs.ExclTagList(ExclTagList)
-
+        Boobs = bodyparts.Breasts(bCupSize = True)
+        Boobs.AdjExclTagList(ExclTagList)
+        sTweet += "Boobs\n * adj list = " + str(Boobs._AdjList)
+        sTweet += "\n * adj excl tag list = " + str(Boobs._AdjExclTagList)
+        sTweet += "\n\n"
         sGirlAdj1 = WordList(titmisc.HairColorFemale().GetWordList()
                              + titmisc.SkinColorFemale().GetWordList()
                              + titmisc.PhysCharFemale().GetWordList()
@@ -7986,13 +7990,13 @@ class Generator112(ExGen):
                                      "clapped her hands over her " + sThingToCover,
                                      "crossed her arms over her " + sThingToCover,
                                     ]).GetWord() + ".\n\n"
-        sBoobMedDesc = Boobs.MediumDescription(NotList = ["A-cup","B-cup"], bCupSize = True)
+        #sBoobMedDesc = Boobs.MediumDescription()
 
         sTweet += "\"Oh no!\" she cried. "
         sTweet += "\"Please " + WordList(["don't look", "don't stare", "no one look", "nobody look"]).GetWord() + " at "
         sTweet += "my " + WordList(["disgustingly","disgustingly","nauseatingly","shamefully",]).GetWord() + " "
-        sTweet += Boobs.GetNewAdj() + " and " + Boobs.GetNewAdj() + " "
-        sTweet += sBoobMedDesc + "!\"" 
+        sTweet += Boobs.GetAdj(1) + " and " + Boobs.GetAdj(2) + " "
+        sTweet += Boobs.GetAdj(3) + " " + Boobs.GetNoun() + "!\"" 
 
         return sTweet
 
