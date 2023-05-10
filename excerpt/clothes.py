@@ -175,16 +175,16 @@ class Bikini(Clothes):
                         'metallic: texture',
                         'microscopic: size,small',
                         'plaid: pattern',
-                        'provocative: skimpy',
+                        'provocative: skimpy,super',
                         'polka-dot: pattern',
                         'racy: super,skimpy',
-                        'revealing: skimpy',
+                        'revealing: skimpy,super',
+                        'risqué: skimpy,super',
                         'ruffled: style',
                         'scant: skimpy',
                         'sexy: super',
                         'sheer: seethru,texture,pattern,material',
                         'skimpy x2: skimpy',
-                        'snug: skimpy',
                         #'spandex: material',
                         'striped: pattern',
                         'stunning: super',
@@ -654,7 +654,7 @@ class EveningDress(Clothes):
                         'gorgeous: super',
                         'jet-black: color',
                         'knee-length: length,medium',
-                        'lacey x2: pattern,material',
+                        'lacy x2: pattern,material',
                         'long: length,long',
                         'luxurious: style',
                         'mini: short,skimpy',
@@ -882,6 +882,76 @@ class RobeFemale(Clothes):
                
           self.DefaultNoun('robe')
           self.DefaultAdj('loose robe')
+
+          self.IsTop = True
+
+class Nightgown(Clothes):
+     def __init__(self):
+          super().__init__()
+
+          #self.ColorsNotList = ["black"]
+
+          self.NounList(['babydoll x2: variant,lingerie,sing',
+                         'chemise x2: variant,sing',
+                         'negligee x4: variant,lingerie,sing',
+                         'nightgown x4: std,default,sing',
+                         'satin babydoll: variant,lingerie,material,sing',
+                         'satin chemise: variant,material,sing',
+                         'satin negligee: variant,lingerie,material,sing',
+                         'satin nightgown: std,material,sing',
+                         'satin shift: variant,material,sing',
+                         'silk babydoll: variant,lingerie,material,silk,sing',
+                         'silk chemise: variant,material,silk,sing',
+                         'silk negligee: variant,lingerie,material,silk,sing',
+                         'silk nightgown: std,material,silk,sing',
+                         'silk shift: variant,material,silk,sing',
+                         'shift: variant,sing',
+                        ])
+          
+          self.AdjList(['brief: size,small',
+                        'beautiful: super',
+                        'cute: super',
+                        'dainty: super',
+                        'delicate: super',
+                        'diaphanous: seethru,thickness,thin',
+                        'embroidered: style',
+                        'exquisite: super',
+                        'flimsy: thickness,thin',
+                        'frilly x3: style',
+                        'gauzy: thickness,thin',
+                        'gossamer: texture,thin,shiny,seethru',
+                        'intimate: super,skimpy',
+                        'lace: texture,material',
+                        'lacy: texture',
+                        'little: size,small',
+                        'loose: style',
+                        'naughty: super',
+                        'old-fashioned: style',
+                        'paper-thin: thickness,thin',
+                        'pretty: super',
+                        'provocative: skimpy',
+                        'racy: super,skimpy',
+                        'revealing: skimpy',
+                        'ruffled: style',
+                        'scant: skimpy',
+                        'seductive: super',
+                        'see-thru: pattern,texture,seethru',
+                        'sexy x2: super',
+                        'sheer: seethru,texture,pattern,material',
+                        'short: length,short',
+                        'silken: texture,silk',
+                        'silky: texture,silk',
+                        'simple: style,super',
+                        'slinky: super,skimpy',
+                        'skimpy: skimpy',
+                        'suggestive: super,skimpy',
+                        'thigh-length: length,medium',
+                        'thin x4: thickness,thin',
+                        'wispy: super,small',
+                       ])
+               
+          self.DefaultNoun('nightgown')
+          self.DefaultAdj('lacy')
 
           self.IsTop = True
 

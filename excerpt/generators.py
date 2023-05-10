@@ -8612,16 +8612,20 @@ class Generator119(ExGen):
         #    sTweet += clothes.Heels().RandomDescription() + ".\n"
         #    sTweet += "---\n"
 
-        for i in range(12):
-            #Dukes = clothes.DaisyDukes()
-            #Shorts = clothes.ShortsFemale()
-            ClosedRobe = clothes.RobeFemale()
-            sTweet += "She was wearing a " + ClosedRobe.RandomDescription() + ".\n"
-            OpenRobe = clothes.RobeFemale()
-            sTweet += "She opened her " + OpenRobe.FloweryDescription() + " "
-            sTweet += "to him to reveal her stunning naked body.\n"
-            sTweet += "---\n"
-            print("OpenRobe described.")
+        #for i in range(12):
+        #    #Dukes = clothes.DaisyDukes()
+        #    #Shorts = clothes.ShortsFemale()
+        #    ClosedRobe = clothes.RobeFemale()
+        #    sTweet += "She was wearing a " + ClosedRobe.RandomDescription() + ".\n"
+        #    OpenRobe = clothes.RobeFemale()
+        #    sTweet += "She opened her " + OpenRobe.FloweryDescription() + " "
+        #    sTweet += "to him to reveal her stunning naked body.\n"
+        #    sTweet += "---\n"
+        #    print("OpenRobe described.")
+
+        for i in range(14):
+            sTweet += "He was surprised to see her standing there in "
+            sTweet += "the dark, wearing only a " + clothes.Nightgown().RandomDescription() + "\n\n"
 
         return sTweet
 
