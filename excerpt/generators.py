@@ -2629,7 +2629,7 @@ class Generator50(ExGen):
           sText3 = ""
           
                
-          sText1 = "a skimpy " + DressColor.GetWord() + " bikini and matching thong."
+          sText1 = AddArticles(clothing.Bikini().FloweryDescription(NounReqTagList = ["skimpy"])) + " and matching thong."
           sText2 = "She slipped the thong down over her hips exposing "
           sText2 += "her " + WordList(["bald","hairless","shaved"]).GetWord() + " "
           sText2 += Vag.ShortDescription() + ". "
@@ -2640,7 +2640,7 @@ class Generator50(ExGen):
           sText3 = 'this'
           Teases.append([sText1, sText2, sText3])     
           #---------
-          sText1 = "a skimpy " + DressColor.GetWord() + " bikini and matching thong."
+          sText1 = AddArticles(clothing.Bikini().FloweryDescription(NounReqTagList = ["skimpy"])) + " and matching thong."
           sText2 = "She turned her back to him, showing him her " + Ass.RandomDescription() + ". "
           sText2 += "Then she yanked her thong down, bent forward and "
           sText2 += "spread her " + WordList(["buns","buttocks","cheeks"]).GetWord() + " apart. "
@@ -7957,15 +7957,18 @@ class Generator112(ExGen):
                            ).GetWord(NotList = [sGirlAdj1])
         sGirlRaceNation = titmisc.GirlFemale().GetWord(NotList = [sGirlAdj2])
 
-        sBraColor = WordList(["black","black","red","red","white","purple",
-                              "pink","scarlet","crimson","lavender","pale",
-                              "French",
-                             ]).GetWord()
-        sBraAdj = WordList(["lacy","lacy","snug","strapless","silky",
-                            "skimpy","sheer","tight-fitting","delicate",
-                            "frilly","diaphanous","elegant","provocative",
-                            "sensuous",
-                           ]).GetWord()
+        #sBraColor = WordList(["black","black","red","red","white","purple",
+        #                      "pink","scarlet","crimson","lavender","pale",
+        #                      "French",
+        #                     ]).GetWord()
+        #sBraAdj = WordList(["lacy","lacy","snug","strapless","silky",
+        #                    "skimpy","sheer","tight-fitting","delicate",
+        #                    "frilly","diaphanous","elegant","provocative",
+        #                    "sensuous",
+        #                   ]).GetWord()
+        Bra = clothes.Bra()
+        Bra.NotList(["cupless","sheer",])
+        Bra.AdjExclTagList(["skimpy"])
 
         sThingToCover = ""
         if randint(1,3) == 2:
@@ -7982,7 +7985,8 @@ class Generator112(ExGen):
             sTweet += "the " + SmartLower(sGirlAdj1) + " " + SmartLower(sGirlJob) + "'s "
         else:
             sTweet += "the " + SmartLower(sGirlAdj2) + " " + SuperCapitalize(sGirlRaceNation.lower()) + "'s "
-        sTweet += sBraAdj + " " + sBraColor + " brassiere "
+        #sTweet += sBraAdj + " " + sBraColor + " brassiere "
+        sTweet += Bra.FloweryDescription() + " "
         sTweet += "was " + WordList(["ripped","torn","yanked",]).GetWord() + " right off. "
         sTweet += "She " + WordList(["squealed","shrieked","screamed","gasped","shrieked","cried out"]).GetWord() + " "
         sTweet += "and " + WordList(["covered herself with her hands",
@@ -8595,13 +8599,25 @@ class Generator119(ExGen):
         #sTweet += "down over "
         #sTweet += "her " + self.FemBodyParts.Hips.RandomDescription() + "."
 
-        for i in range(7):
-            Dress = clothes.EveningDress()
-            sTweet += "She was wearing a " + Dress.RandomDescription(bAllowShortDesc = False) + " "
-            sTweet += "that showed off her curves to great effect.\n\n"
+        #for i in range(7):
+        #    Dress = clothes.EveningDress()
+        #    sTweet += "She was wearing a " + Dress.RandomDescription(bAllowShortDesc = False) + " "
+        #    sTweet += "that showed off her curves to great effect.\n\n"
+
+        for i in range(12):
+            #Dukes = clothes.DaisyDukes()
+            #Shorts = clothes.ShortsFemale()
+            sTweet += "She was stunning in her " + clothes.FemWardrobe().GetTop(bDresses = False).RandomDescription(bAllowShortDesc = False) + ", "
+            sTweet += "her " + clothes.FemWardrobe().GetBottom().RandomDescription(bAllowShortDesc = False) + " and "
+            sTweet += clothes.Heels().RandomDescription() + ".\n"
+            sTweet += "---\n"
 
         return sTweet
 
+## Juan watched, wide-eyed, as Carla stripped off her white cotton 
+## t-shirt, revealing her fulsome breasts. With gentle hands she 
+## wrapped the garment around his throbbing shaft. Then she began 
+## to jack him off with it.
 #class Generator120(ExGen):
 #    def __init__(self):
 #        super().__init__(ID = 120, Priority = GenPriority.Normal)

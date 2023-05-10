@@ -518,7 +518,7 @@ class Office(PublicLocation):
      AuthorityFigure = "your boss"
      Ground = "carpet"
      FemaleTopClothing = "gray pencil dress"
-     FemaleBottomClothing = "thong panties"
+     FemaleBottomClothing = clothes.Panties().RandomDescription()
      MaleTopClothing = "dress shirt"
      MaleBottomClothing = "slacks"
      

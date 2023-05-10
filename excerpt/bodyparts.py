@@ -1946,6 +1946,7 @@ class BodyFemale(BodyParts):
                
           self.AdjList(['beautiful: attractive,super',
                         'black: color,poc',
+                        'breathtaking: super',
                         'bronzed: color',
                         'brown: color,poc',
                         'busty: bigtits',
