@@ -4175,7 +4175,7 @@ class Generator69(ExGen):
           Ass.AdjExclTagList(["gape",])
 
           Butthole = Ass.Anus
-          Butthole.AdjExclTagList(["gape",])
+          Butthole.AdjExclTagList(["gape","action"])
 
           Pussy = self.FemBodyParts.Vagina
           Pussy.AdjReqTagList(["wet","horny","age"])
@@ -4206,14 +4206,19 @@ class Generator69(ExGen):
           elif iRand == 2:
           #pussy 
                sThrust = self.VThrust.Present()
-               if CoinFlip():
+               iRand2 = randint(1,3)
+               if iRand2 == 1:
                     sTweet += "Bend me over and "
                     sTweet += sThrust + " my " 
                     sTweet += Pussy.FloweryDescription() + "!\""
-               else: 
+               elif iRand2 == 2: 
                     sTweet += "Spread my legs and "
                     sTweet += sThrust + " my "
                     sTweet += Pussy.FloweryDescription() + "!\""
+               elif iRand2 == 3:
+                    Dick.AdjExclTagList(["shape"])
+                    sTweet += "I need your " + Dick.RandomDescription() + " "
+                    sTweet += "inside my " + Pussy.InnerVag.RandomDescription() + "!\""
           elif iRand == 3:
           #ass 
                
@@ -4248,20 +4253,26 @@ class Generator70(ExGen):
           
           sHisName = self.MaleName.FirstName()
           sHerName = self.FemaleName.FirstName()
+
+          NounExclTagList = ["silly"]
+
+          Lips = self.FemBodyParts.Lips
+          Mouth = self.FemBodyParts.Mouth 
+          Mouth.ExclTagList(NounExclTagList)
           
           Penis = self.MaleBodyParts.Penis 
+          Penis.ExclTagList(NounExclTagList)
           Tip = self.MaleBodyParts.Penis.Head 
-          Mouth = self.FemBodyParts.Mouth 
+          Tip.ExclTagList(NounExclTagList)
+          Nuts = self.MaleBodyParts.Penis.Testicles 
+          Nuts.ExclTagList(NounExclTagList)
           Semen = self.Semen 
+          Semen.ExclTagList(NounExclTagList)
           
-          SemenNoun = WordList(['jizm','jizz','load','man-milk','man-seed','seed','semen','semen',
-                                     'sperm','sperm','splooge','spunk'])
-          SemenAdjs = WordList(['creamy','gooey','milky','nasty','oozing','ropy','salty',
-                                     'sloppy','sticky','thick','warm','white-hot','hot'])
-          sSemenNoun1 = SemenNoun.GetWord()
-          sSemenNoun2 = SemenNoun.GetWord(NotList = [sSemenNoun1])
+          sSemenNoun1 = Semen.GetNewNoun()
+          sSemenNoun2 = Semen.GetNewNoun()
           
-          sNutsNoun = Penis.Testicles.ShortDescription()
+          sNutsNoun = Penis.Testicles.GetNoun()
           
           sVCumming = self.VEjac.Gerund()
           
@@ -4271,36 +4282,41 @@ class Generator70(ExGen):
           if CoinFlip():
                sTweet += "undid his belt buckle and pulled his dick out of his pants. "
           else:
-               sTweet += "unzipped and pulled his pants down. He held his dick in front of her face. "
+               sTweet += "unzipped and pulled his pants down. "
+               sTweet += "He held his meaty penis up to her " + self.FemBodyParts.Face.MediumDescription() + ". "
           sTweet += "\"" + WordList(['Suck it','Suck on it','Take me in your mouth','Suck me off',
-                                           'Put my ' + Penis.ShortDescription() + ' in your mouth',
-                                           'Suck on my ' + Penis.RandomDescription(bAllowLongDesc = False),
-                                           'Service me with your mouth']).GetWord() + ",\" he commanded. "
+                                     'Take my ' + Penis.RandomDescription(bAllowLongDesc = False) + ' in your mouth',
+                                     'Put my ' + Penis.GetNewNoun() + ' in your mouth',
+                                     'Taste my ' + Penis.GetNewNoun(),
+                                     'Suck on my ' + Penis.RandomDescription(bAllowLongDesc = False),
+                                     'Service me with your mouth']).GetWord() + ",\" he commanded. "
           sTweet += sHerName + " " + WordList(['obediently','submissively']).GetWord() + " "
-          sTweet += "wrapped her " + WordList(['full','red','cherry red','moist','black-painted','scarlet']).GetWord() + " "
-          sTweet += "lips around his " + Tip.RandomDescription(bAllowShortDesc = False) + ". "
+          sTweet += "wrapped her " + Lips.MediumDescription() + " "
+          sTweet += "around his " + Tip.RandomDescription(bAllowShortDesc = False) + ". "
           sTweet += "\"" + WordList(["Let's see how deep you can take it,",
-                                           "I want you to gag on it,",
-                                           "C'mon, choke on it,",
-                                           "Good girl. Take it deep,",
-                                           "Take it deep in your throat like a good little slut,",
-                                           "You want more, don't you little slut?",
-                                           "I want you to take it all, little cock-sock,"]).GetWord() + "\" he said. "
+                                     "I want you to gag on it,",
+                                     "C'mon, choke on it,",
+                                     "Deeper, bitch,",
+                                     "Good girl. Take it deep,",
+                                     "Take it deep in your throat like a good little slut,",
+                                     "You want more, don't you little slut?",
+                                     "I want you to take it all, little cock-sock,"]).GetWord() + "\" he said. "
           sTweet += "She nearly " + WordList(['gagged','choked']).GetWord() + " "
           sTweet += "as he thrust his " + Penis.MediumDescription(bAddLen = True) + " " 
           sTweet += "down her throat. He began fucking her " + WordList(['face','mouth']).GetWord() + " " 
           sTweet += WordList(['forcefully','vigorously','powerfully','furiously','hard']).GetWord() + ". " 
-          sTweet += "His " + WordList(['hairy','wrinkled','pendulous']).GetWord() + " "
-          if sNutsNoun[-1:] == 's':
-               sTweet += sNutsNoun + " were slapping against her chin. "
+          sTweet += "His " + Nuts.RandomDescription() + " "
+          if Nuts.IsSing:
+              sTweet += "was "
           else:
-               sTweet += sNutsNoun + " was slapping against her chin. "
+              sTweet += "were "
+          sTweet += "slapping against her chin. "
           sTweet += WordList(['Tears of black eyeliner were dripping down her face.',
                                    'Saliva was dribbling down it.']).GetWord() + " "
           sTweet += "\n\n"
           sTweet += "\"" + WordList(["I'm cumming!","I'm gonna cum!","Oh fuck I'm cumming!"]).GetWord() + "\" "
           sTweet += "he " + WordList(['gasped','groaned','moaned','cried']).GetWord() + ". "
-          sTweet += "She felt him pumping " + SemenAdjs.GetWord() + " " + sSemenNoun1 + " down her throat. "
+          sTweet += "She felt him pumping " + Semen.GetNewAdj() + " " + sSemenNoun1 + " down her throat. "
           sTweet += "She couldn't take it all! She was " + WordList(['choking on','gagging on']).GetWord() + " " 
           sTweet += "his " + sSemenNoun2 + "!\n\n"
           
@@ -4312,21 +4328,21 @@ class Generator70(ExGen):
           
           sTweet += "\"Did I just have a sex dream about "
           sTweet += WordList(["my sister's boyfriend","my best friend's boyfriend","my new step-dad",
-                                   "my pastor","my priest","my step-son","my pool boy","my brother",
-                                   "my English teacher","my biology professor","my father-in-law",
-                                   "my boss","my manager","my mom's boyfriend","my algebra teacher",
-                                   "my accountant","my sister's husband","my brother-in-law",
-                                   "my step-brother","my co-worker","my gym coach","psychiatrist",
-                                   "one of my son's friend","the guy from accounting",
-                                   "one of my students","one of my husband's friends",
-                                   "the IT guy","the drywall installer","the handy man",
-                                   "my biology teacher","my history teacher","my orthodontist",
-                                   "my mom's boyfriend","my daughter's boyfriend","youth pastor",
-                                   "my best friend's husband","my French teacher","my Uber driver",
-                                   "Dr. " + names.RegularLastNames().GetWord(),
-                                   "Mr. " + names.RegularLastNames().GetWord(),
-                                   "Professor " + names.RegularLastNames().GetWord()
-                                   ]).GetWord() + "?!?\""
+                                "my pastor","my priest","my step-son","my pool boy","my brother",
+                                "my English teacher","my biology professor","my father-in-law",
+                                "my boss","my manager","mom's boyfriend","my algebra teacher",
+                                "my accountant","my brother-in-law","my brother-in-law",
+                                "my step-brother","my gym coach","my psychiatrist",
+                                "one of my son's friend","the guy from accounting",
+                                "one of my students","that guy from IT","my half-brother",
+                                "the Amazon delivery guy","the plumber","my handy man",
+                                "my biology teacher","my history teacher","my orthodontist",
+                                "my daughter's boyfriend","my youth pastor","my math tutor",
+                                "my French teacher","my Uber driver","the dean",
+                                "Dr. " + names.RegularLastNames().GetWord(),
+                                "Mr. " + names.RegularLastNames().GetWord(),
+                                "Professor " + names.RegularLastNames().GetWord()
+                                ]).GetWord() + "?!?\""
           
           return sTweet
           

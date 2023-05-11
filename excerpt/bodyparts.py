@@ -1937,7 +1937,8 @@ class AssFemale(BodyParts):
                         'sexy: super',
                         'shameless: horny',
                         'shapely: shape,super',
-                        'skinny: width,narrow',
+                        'skinny: width,narrow,slender',
+                        'slutty: horny',
                         'smooth: texture,hairless',
                         'stately: age,older',
                         'stinky: smelly',
@@ -1963,6 +1964,7 @@ class AssFemale(BodyParts):
                         'wide: width,wide',
                         'womanly: super,curvy',
                         'youthful: age,young',
+                        'yummy: super',
                        ])
           
           self.DefaultNoun("ass")
@@ -2409,7 +2411,7 @@ class Testicles(BodyParts):
                          'sack: desc,sing',
                          'scrotum x2: std,clinical,sing',
                          'silk purse: desc,sing',
-                         'testicles x2',
+                         'testicles x2: std,clinical,plur',
                         ])
                
           self.AdjList(['dangling',
