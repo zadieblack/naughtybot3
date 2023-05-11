@@ -2629,7 +2629,7 @@ class Generator50(ExGen):
           sText3 = ""
           
                
-          sText1 = AddArticles(clothing.Bikini().FloweryDescription(NounReqTagList = ["skimpy"])) + " and matching thong."
+          sText1 = AddArticles(clothes.Bikini().FloweryDescription(NounReqTagList = ["skimpy"])) + " and matching thong."
           sText2 = "She slipped the thong down over her hips exposing "
           sText2 += "her " + WordList(["bald","hairless","shaved"]).GetWord() + " "
           sText2 += Vag.ShortDescription() + ". "
@@ -2640,7 +2640,7 @@ class Generator50(ExGen):
           sText3 = 'this'
           Teases.append([sText1, sText2, sText3])     
           #---------
-          sText1 = AddArticles(clothing.Bikini().FloweryDescription(NounReqTagList = ["skimpy"])) + " and matching thong."
+          sText1 = AddArticles(clothes.Bikini().FloweryDescription(NounReqTagList = ["skimpy"])) + " and matching thong."
           sText2 = "She turned her back to him, showing him her " + Ass.RandomDescription() + ". "
           sText2 += "Then she yanked her thong down, bent forward and "
           sText2 += "spread her " + WordList(["buns","buttocks","cheeks"]).GetWord() + " apart. "
@@ -8853,6 +8853,24 @@ class Generator121(ExGen):
                 sTweet += "the next level is much more... intense.\""
             else:
                 sTweet += "it to be very... persuasive.\""
+
+        # "I take it you are... enjoying, our new 'Internal Massage
+        # Therapy,' Mrs. Johnson?" asked the masseuse. 
+        # "G-g-god yessssss!" wailed Sandra.
+        # ---------------------------------------------------------
+        # "F-f-father O'Banyon, I confess that I have { had impure
+        # thoughts / committed a carnal sin / defiled my body with
+        # sins of the flesh / sinned with another young acolyte }. 
+        # Please, forgive me!"
+        # "I am sorry my dear, but filthier the sin, the stricter
+        # the punishment. Sister Eva, bring me the { hot
+        # wax / the leather flogger / the leather paddle / the 
+        # rod of rectal correction / the steel collar }."
+        # ---------------------------------------------------------
+        # "You've been a very naughty girl, haven't you Sandra?" 
+        # the man asked. 
+        # "Yes, { Mr. Smith / Principal Bumstadt / Daddy }," Sandra
+        # gasped.
 
         return sTweet
 

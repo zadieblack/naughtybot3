@@ -1285,6 +1285,7 @@ class Breasts(BodyParts):
                     'glistening: wet',
                     'glorious: super',
                     'gorgeous: super',
+                    'grapefruit-sized: size,large',
                     'heaving: movement',
                     'heavy: large,feel',
                     'impressive: super,large',
@@ -2658,21 +2659,18 @@ class Penis(BodyParts):
                     self.AddNounToList(sBAP,"silly")
                     self.AddNounToList(sBAP,"crude")
      
-     def GetRandomPenisPart(self, sNot = None, NotList = None, bAllowShortDesc = False):
+     def GetRandomPenisPart(self, NotList = None, bAllowShortDesc = False):
           if NotList == None:
                NotList = []
-          
-          if sNot != "":
-               NotList.append(sNot)
                
           iRand = randint(1,3)
           
           if iRand == 1:
-               return self.Head.RandomDescription(sNot = sNot, NotList = NotList, bAllowShortDesc = bAllowShortDesc)
+               return self.Head.RandomDescription(NotList = NotList, bAllowShortDesc = bAllowShortDesc)
           elif iRand == 2: 
-               return self.Testicles.RandomDescription(sNot = sNot, NotList = NotList, bAllowShortDesc = bAllowShortDesc)
+               return self.Testicles.RandomDescription(NotList = NotList, bAllowShortDesc = bAllowShortDesc)
           else:
-               return self.RandomDescription(sNot = sNot, NotList = NotList, bAllowShortDesc = bAllowShortDesc)
+               return self.RandomDescription(NotList = NotList, bAllowShortDesc = bAllowShortDesc)
                
      def GenerateLength(self):
           sLength = ""
