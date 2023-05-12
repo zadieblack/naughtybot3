@@ -33,12 +33,12 @@ RaceAsian = Race("asian",
 class BodyParts(NounPhrase):
     pass
 
-GenPhysTraits       = namedtuple("GenPhysTraits",
-                                 "FirstName LastName Gender Race PubeStyle",
-                                 defaults = ["","","",None,""]
-                                )
+GenPhysTraits = namedtuple("GenPhysTraits",
+                           "FirstName LastName Gender Race PubeStyle",
+                           defaults = ["","","",None,""]
+                          )
 class Lover():
-    def __init__(self, Gender = "female", NewGenTraits = None):
+    def __init__(self, Gender, NewGenTraits = None):
         self.FirstName = ""
         self.LastName = ""
         self.Gender = ""
@@ -50,7 +50,7 @@ class Lover():
         self.NipColor = ""
         self.PubeStyle = ""
 
-        global GenPhysTraits
+        self._TagLists = TagListParams()
 
         if NewGenTraits is None or not isinstance(NewGenTraits, GenPhysTraits):
             NewGenTraits = GenPhysTraits()
@@ -70,15 +70,11 @@ class Lover():
             self.LastName = NewGenTraits.LastName
         else:
             self.LastName = names.RegularLastNames().GetWord()
-                
-        global RaceCauc
-        global RacePOC
-        global RaceAsian
 
         if NewGenTraits.Race and isinstance(Race, NewGenTraits.Race):
             self.Race = NewGenTraits.Race
         else:
-            self.Race = choice([RaceCauc,RacePOC,RaceAsian])
+            self.Race = choice([RaceCauc,RacePOC,]) # Add RaceAsian
 
         self.RaceName = self.Race.Name
 
@@ -110,55 +106,30 @@ class Man(Lover):
         self.FacialHairStyle = ""
         self.DickInches = 0
 
-        # Bodyparts
-        self.Arms = ArmsMale()
-        self.Ass = AssMale()
-        self.Body = BodyMale()
-        self.Chest = ChestMale()
-        self.Eyes = EyesMale()
-        self.FacialHair = FacialHair()
-        self.Hair = HairMale()
-        self.Jaw = JawMale()
-        self.Legs = LegsMale()
-        self.Muscles = MusclesMale()
-        self.Penis = Penis()
-        self.Shoulders = ShouldersMale()
-        self.Skin = SkinMale()
-
-        # Bodypart lists
-        self.BodyParts = [self.Arms,self.Ass,self.Ass.Anus,
-                          self.Ass.Buttocks,self.Body,self.Chest,
-                          self.Eyes,self.FacialHair,self.Hair,
-                          self.Jaw,self.Legs,self.Muscles,
-                          self.Penis,self.Penis.Head,self.Penis.Testicles,
-                          self.Shoulders,self.Skin,
-                         ]
-        self.HeadParts = [self.Eyes,self.FacialHair,self.Hair,
-                          self.Jaw,
-                         ]
-        self.ClothedParts = [self.Arms,self.Chest,self.Eyes,
-                             self.FacialHair,self.Hair,self.Jaw,
-                             self.Legs,self.Shoulders,self.Skin,
-                            ]
-        self.NakedDescParts = [self.Ass,self.Body,self.Chest,self.Legs,
-                               self.Penis,self.Shoulders,
-                              ]
-        self.NakedDescPartsInners = [self.Ass,self.Body,self.Chest,self.Legs,
-                                     self.Penis,self.Penis.Head,self.Penis.Testicles,
-                                     self.Shoulders,
-                                    ]
-        self.NaughtyParts = [self.Ass,self.Penis,self.Penis.Head,self.Penis.Testicles]
-
-        global MalePhysTraits
+        TagLists = self._TagLists
 
         if NewMaleTraits is None or not isinstance(NewMaleTraits, MalePhysTraits):
             NewMaleTraits = MalePhysTraits()
         
+        # Handle race
+        if self.RaceName == "caucasian":
+            TagLists.adj_excl.append("poc")
+            TagLists.noun_excl.append("poc")
+        elif self.RaceName == "poc":
+            TagLists.adj_excl.append("cauc")
+            TagLists.noun_excl.append("cauc")
+
+        # Handle age 
         if NewMaleTraits.AgeCat:
             self.AgeCat = NewMaleTraits.AgeCat
         else:
             self.AgeCat = choice(["teen","college","twenties","thirties","middleaged","older"])
                 
+        if self.AgeCat in ["teen","college","twenties"]:
+            TagLists.adj_excl.append("older")
+        else:
+            TagLists.adj_excl.append("young")
+
         if NewMaleTraits.Age:
             self.Age = NewMaleTraits.Age
         else:
@@ -175,12 +146,14 @@ class Man(Lover):
             elif self.AgeCat == "older":
                 self.Age = randint(55,65)
 
-        # Set attributes if not blank, otherwise randomize
+        # Handle height
         if NewMaleTraits.HeightType:
             self.HeightType = NewMaleTraits.HeightType
         else:
             self.HeightType = choice(["short","medium","tall"])
 
+        # Handle body type
+        # TODO: This lacks consistent tags
         if NewMaleTraits.BodyType:
             self.BodyType = NewMaleTraits.BodyType
         else:
@@ -198,6 +171,7 @@ class Man(Lover):
         else:
             self.FacialHairStyle = choice(["beard","goatee","moustache","shaved","stubble"])
 
+        # Handle dick size
         if NewMaleTraits.DickInches:
             self.DickInches = NewMaleTraits.DickInches
         else:
@@ -215,6 +189,65 @@ class Man(Lover):
                                       14
                                      ])
 
+        if self.DickInches > 6:
+            TagLists.adj_excl.append("bigdick")
+        else:
+            TagLists.adj_excl.append("smalldick")
+
+        # Bodyparts
+        self.Arms = ArmsMale(TagLists = TagLists)
+
+        self.Ass = AssMale(TagLists = TagLists)
+        self.Anus = AnusFemale(TagLists = TagLists)
+        self.Buttocks = ButtocksMale(TagLists = TagLists)
+
+        if self.HeightType == "short":
+            BodyTagLists = TagListParams(adj_excl = ["tall"] + TagLists.adj_excl)
+        elif self.HeightType == "tall":
+            BodyTagLists = TagListParams(adj_excl = ["short"] + TagLists.adj_excl)
+        else:
+            BodyTagLists = TagListParams(adj_excl = ["short","tall"] + TagLists.adj_excl)
+
+        self.Body = BodyMale(TagLists = BodyTagLists)
+        self.Chest = ChestMale(TagLists = TagLists)
+        self.Eyes = EyesMale(TagLists = TagLists)
+        self.FacialHair = FacialHair(TagLists = TagLists)
+        self.Hair = HairMale(TagLists = TagLists)
+        self.Jaw = JawMale(TagLists = TagLists)
+        self.Legs = LegsMale(TagLists = TagLists)
+        self.Muscles = MusclesMale(TagLists = TagLists)
+
+        self.Penis = Penis(TagLists = TagLists)
+        self.Head = PenisHead(TagLists = TagLists)
+        self.Testicles = Testicles(TagLists = TagLists)
+
+        self.Shoulders = ShouldersMale(TagLists = TagLists)
+        self.Skin = SkinMale(TagLists = TagLists)
+
+        # Bodypart lists
+        self.BodyParts = [self.Arms,self.Ass,self.Ass.Anus,
+                          self.Buttocks,self.Body,self.Chest,
+                          self.Eyes,self.FacialHair,self.Hair,
+                          self.Jaw,self.Legs,self.Muscles,
+                          self.Penis,self.Head,self.Testicles,
+                          self.Shoulders,self.Skin,
+                         ]
+        self.HeadParts = [self.Eyes,self.FacialHair,self.Hair,
+                          self.Jaw,
+                         ]
+        self.ClothedParts = [self.Arms,self.Chest,self.Eyes,
+                             self.FacialHair,self.Hair,self.Jaw,
+                             self.Legs,self.Shoulders,self.Skin,
+                            ]
+        self.NakedDescParts = [self.Ass,self.Body,self.Chest,self.Legs,
+                               self.Penis,self.Shoulders,
+                              ]
+        self.NakedDescPartsInners = [self.Ass,self.Body,self.Chest,self.Legs,
+                                     self.Penis,self.Head,self.Testicles,
+                                     self.Shoulders,
+                                    ]
+        self.NaughtyParts = [self.Ass,self.Penis,self.Penis.Head,self.Penis.Testicles]
+
         sDesc = "My name is " + self.FirstName + " " + self.LastName + ". "
         sDesc += "I am a " + str(self.Age) + "-year-old " + self.RaceName + " " + self.Gender + ". "
         sDesc += "I have " + self.HairColor + " hair, " + self.EyeColor + " eyes, " + self.SkinColor + " skin, and my nipples are " + self.NipColor + ". "
@@ -222,8 +255,10 @@ class Man(Lover):
         sDesc += "I proudly sport a " + str(self.DickInches) + "-inch cock "
         sDesc += "and I keep my pubes " + self.PubeStyle + "! "
         sDesc += "Some of my other notable physical characteristics are "
-        sDesc += "my " + choice(self.BodyParts).FloweryDescription() + " and "
-        sDesc += "my " + choice(self.BodyParts).FloweryDescription() + "."
+        sDesc += "my " + self.Body.FloweryDescription() + ", "
+        sDesc += "my " + self.Skin.FloweryDescription() + ", "
+        sDesc += "my " + self.Eyes.FloweryDescription() + ", "
+        sDesc += "and my " + self.Hair.FloweryDescription() + ". "
         print(sDesc + "\n")
 
 FemPhysTraits = namedtuple("FemPhysTraits",
@@ -241,54 +276,6 @@ class Woman(Lover):
         self.HairStyle = ""
         self.BustSize = ""
         self.Virgin = False
-
-        self.Ass = AssFemale()
-        self.Back = BackFemale()
-        self.Body = BodyFemale()
-        self.Breasts = Breasts()
-        self.Eyes = Eyes()
-        self.Face = Face()
-        self.Hair = Hair()
-        self.Hips = Hips()
-        self.Legs = Legs()
-        self.Lips = Lips()
-        self.Mouth = Mouth()
-        self.Skin = Skin()
-        self.Thighs = Thighs()
-        self.Vagina = Vagina()
-
-        # Bodypart lists
-        self.BodyParts = [self.Ass,self.Ass.Anus,self.Ass.Buttocks,
-                          self.Back,self.Body,self.Breasts,
-                          self.Breasts.Nipples,self.Eyes,self.Face,
-                          self.Hair,self.Hips,self.Legs,
-                          self.Lips,self.Mouth,self.Skin,
-                          self.Thighs,self.Vagina,self.Vagina.Clitoris,
-                          self.Vagina.InnerLabia,self.Vagina.InnerVag,
-                          self.Vagina.OuterLabia,
-                         ]
-        self.HeadParts = [self.Eyes,self.Face,self.Hair,
-                          self.Lips,self.Mouth]
-        self.ClothedParts = [self.Breasts,self.Body,self.Eyes,
-                             self.Face,self.Hair,self.Hips,
-                             self.Legs,self.Lips,self.Mouth,
-                             self.Skin,
-                            ]
-        self.IntimateParts = [self.Ass,self.Back,self.Breasts,
-                              self.Breasts.Nipples,self.Hips,self.Legs,
-                              self.Thighs,self.Vagina,
-                             ]
-        self.IntimatePartsInners = [self.Ass,self.Ass.Anus,self.Back,
-                                    self.Breasts,self.Breasts.Nipples,self.Hips,
-                                    self.Legs,self.Thighs,self.Vagina,
-                                    self.Vagina.Clitoris,self.Vagina.InnerLabia,self.Vagina.InnerVag,
-                                    self.Vagina.OuterLabia,
-                                   ]
-        self.NaughtyParts = [self.Ass,self.Ass.Anus,self.Breasts,
-                             self.Breasts.Nipples,self.Vagina,self.Vagina.Clitoris,
-                             self.Vagina.InnerLabia,self.Vagina.InnerVag,self.Vagina.OuterLabia,]
-
-        global FemPhysTraits
 
         if NewFemTraits is None or not isinstance(NewFemTraits, FemPhysTraits):
             NewFemTraits = FemPhysTraits()
@@ -329,6 +316,60 @@ class Woman(Lover):
         if NewFemTraits.Virgin:
             self.Virgin = NewFemTraits.Virgin
 
+        self.Ass = AssFemale()
+        self.Anus = self.Ass.Anus 
+        self.Buttocks = self.Ass.Buttocks
+        self.Back = BackFemale()
+        self.Body = BodyFemale()
+        self.Breasts = Breasts()
+        self.Nipples = self.Breasts.Nipples
+        self.Eyes = Eyes()
+        self.Face = Face()
+        self.Hair = Hair()
+        self.Hips = Hips()
+        self.Legs = Legs()
+        self.Lips = Lips()
+        self.Mouth = Mouth()
+        self.Skin = Skin()
+        self.Thighs = Thighs()
+        self.Vagina = Vagina()
+        self.Clitoris = self.Vagina.Clitoris
+        self.InnerLabia = self.Vagina.InnerLabia
+        self.InnerVag = self.Vagina.InnerVag
+        self.OuterLabia = self.Vagina.OuterLabia
+
+        # Bodypart lists
+        self.BodyParts = [self.Anus,self.Ass,self.Back,
+                          self.Body,self.Breasts,self.Buttocks,
+                          self.Eyes,self.Face,self.Hair,
+                          self.Hips,self.Legs,self.Lips,
+                          self.Mouth,self.Nipples,self.Skin,
+                          self.Thighs,self.Vagina,self.Vagina.Clitoris,
+                          self.Vagina.InnerLabia,self.Vagina.InnerVag,
+                          self.Vagina.OuterLabia,
+                         ]
+        self.HeadParts = [self.Eyes,self.Face,self.Hair,
+                          self.Lips,self.Mouth]
+        self.ClothedParts = [self.Breasts,self.Body,self.Eyes,
+                             self.Face,self.Hair,self.Hips,
+                             self.Legs,self.Lips,self.Mouth,
+                             self.Skin,
+                            ]
+        self.IntimateParts = [self.Ass,self.Back,self.Breasts,
+                              self.Breasts.Nipples,self.Hips,self.Legs,
+                              self.Thighs,self.Vagina,
+                             ]
+        self.IntimatePartsInners = [self.Ass,self.Anus,self.Back,
+                                    self.Breasts,self.Nipples,self.Hips,
+                                    self.Legs,self.Thighs,self.Vagina,
+                                    self.Clitoris,self.InnerLabia,self.InnerVag,
+                                    self.Vagina.OuterLabia,
+                                   ]
+        self.NaughtyParts = [self.Ass,self.Anus,self.Breasts,
+                             self.Nipples,self.Vagina,self.Clitoris,
+                             self.InnerLabia,self.InnerVag,self.OuterLabia,]
+
+
         sDesc = "My name is " + self.FirstName + " " + self.LastName + ". "
         sDesc += "I am a " + str(self.Age) + "-year-old " + self.RaceName + " " + self.Gender + ". "
         sDesc += "I have " + self.HairColor + " hair, " + self.EyeColor + " eyes, and " + self.SkinColor + " skin. "
@@ -345,8 +386,6 @@ class Woman(Lover):
         else:
             sDesc += "I've lost my virginity."
         print(sDesc + "\n")
-
-
 
 #A lover() object is a collection of attributes and body parts.
 #	- Attributes like:
@@ -366,12 +405,10 @@ class Woman(Lover):
 #   - All body parts are automatically intialized with tag restrictions to make sure they are consistent 
 #   - Initialized body parts properties don't change when Reset is called 
 #   - Could have other attributes, such as a profession.
-class Lover():
-    pass
 
 class Face(BodyParts):
-     def __init__(self):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
           self.NounList(['face x3: default,std,sing',
                          'features: poetic,plur'
@@ -390,12 +427,12 @@ class Face(BodyParts):
                         'gentle: attitude',
                         'gorgeous: super,attractive',
                         'flushed: arousal',
-                        'freckled: color,whitepers',
+                        'freckled: color,cauc',
                         'heart-shaped: shape',
                         'innocent: attitude,cute,young,virginal',
                         'lovely: super,attractive',
                         'oval: shape',
-                        'pale: color,whitepers',
+                        'pale: color,cauc',
                         'pretty: attractive',
                         'radiant: ',
                         'rosy: color,young',
@@ -446,8 +483,8 @@ class BackFemale(BodyParts):
           self.DefaultAdj('curved')
           
 class Skin(BodyParts):
-     def __init__(self):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
           self.NounList(['skin x4: default,std,sing',
                          'flesh: sing'
@@ -459,12 +496,12 @@ class Skin(BodyParts):
                         'chocolate: color,taste,poc,',
                         'chocolate-colored: color,poc,',
                         'coffee-colored: color,poc',
-                        'creamy: texture,color,taste,whitepers',
+                        'creamy: texture,color,taste,cauc',
                         'dark: color,poc',
                         'delicate: texture,cute',
                         'exposed: nude',
-                        'freckled: texture,whitepers',
-                        'fresh pink: color,whitepers',
+                        'freckled: texture,cauc',
+                        'fresh pink: color,cauc',
                         'gentle: feel,texture',
                         'gleaming: texture,shiny',
                         'glistening: wet,texture,shiny',
@@ -474,11 +511,11 @@ class Skin(BodyParts):
                         'luscious: taste,super',
                         'lustrous x2: texture,shiny',
                         'naked: nude',
-                        'pale: color,whitepers',
+                        'pale: color,cauc',
                         'perfect: super',
-                        'pink: color,whitepers,young',
-                        'porcelain: color,texture,whitepers',
-                        'rosy: color,texture,whitepers,young',
+                        'pink: color,cauc,young',
+                        'porcelain: color,texture,cauc',
+                        'rosy: color,texture,cauc,young',
                         'silken: feel,texture',
                         'soft: feel,texture',
                         'smooth: feel,texture',
@@ -498,8 +535,8 @@ class Skin(BodyParts):
           self.IsPlural = False
           
 class Mouth(BodyParts):
-     def __init__(self):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
           self.NounList(['mouth x4: default,std,sing',
                          'mouth-hole: silly,crude,sing'])
@@ -527,8 +564,8 @@ class Mouth(BodyParts):
           self.IsPlural = False
           
 class Lips(BodyParts):
-     def __init__(self):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
           self.NounList(['lips: default,std,plur'])
                
@@ -562,16 +599,16 @@ class Lips(BodyParts):
           self.DefaultAdj("full")
           
 class Eyes(BodyParts):
-     def __init__(self):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
           self.NounList(['eyes: std,default,plur'])
                
           self.AdjList(['alluring: attractive',
                         'beautiful: attractive',
                         'bewitching: attractive',
-                        'bright: attractive,young,whitepers',
-                        'blue x4: color,whitepers',
+                        'bright: attractive,young,cauc',
+                        'blue x4: color,cauc',
                         'brown x3: color',
                         'captivating: attractive',
                         'clear: attractive,desc',
@@ -581,13 +618,13 @@ class Eyes(BodyParts):
                         'electrifying: attractive',
                         'enchanting: attractive',
                         'exotic: attractive',
-                        'gray x2: color,whitepers',
-                        'green x3: color,whitepers',
-                        'hazel x2: color,whitepers',
+                        'gray x2: color,cauc',
+                        'green x3: color,cauc',
+                        'hazel x2: color,cauc',
                         'kind: emotion',
                         'large: size,large,desc',
                         'mischievous: emotion',
-                        'pale: color,whitepers',
+                        'pale: color,cauc',
                         'piercing: ',
                         #'slanted: asian',
                         'soulful: attractive',
@@ -599,8 +636,8 @@ class Eyes(BodyParts):
           self.DefaultAdj("bewitching")
           
 class Hips(BodyParts):
-     def __init__(self):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
           self.NounList(['hips: std,default,plur'])
                
@@ -625,8 +662,8 @@ class Hips(BodyParts):
           self.DefaultNoun("hips")
           
 class Hair(BodyParts):
-     def __init__(self):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
           self.NounList(['braids: style,plur',
                          'hair x4: std,default,sing',
@@ -635,10 +672,10 @@ class Hair(BodyParts):
                          'pig-tails: style,young,plur',
                          ])
                
-          self.AdjList(['auburn: color,whitepers',
+          self.AdjList(['auburn: color,cauc',
                         'black x2:color',
-                        'blonde x4: color,whitepers',
-                        'brunette x3: color,whitepers',
+                        'blonde x4: color,cauc',
+                        'brunette x3: color,cauc',
                         'curly: shape,style',
                         'braided: style',
                         'dark x2: color',
@@ -647,18 +684,18 @@ class Hair(BodyParts):
                         'dyed-pink: color,fake',
                         'dyed-purple: color,fake',
                         'fashionable: style',
-                        'flaming-red: color,whitepers',
+                        'flaming-red: color,cauc',
                         'flowing: poetic'
                         'glossy: feel',
-                        'golden: color,whitepers',
+                        'golden: color,cauc',
                         'kinky black-girl: color,poc',
                         'long: length',
                         'luxuriant: feel',
                         'pixie cut: style',
-                        'platinum blonde x2: color,whitepers',
+                        'platinum blonde x2: color,cauc',
                         'punk blue: color,fake,style',
-                        'red: color,whitepers',
-                        'sandy: color,whitepers',
+                        'red: color,cauc',
+                        'sandy: color,cauc',
                         'silken: feel',
                         'short: length',
                         'straight: shape,style',
@@ -669,8 +706,8 @@ class Hair(BodyParts):
           self.DefaultAdj("flowing")
           
 class Legs(BodyParts):
-     def __init__(self):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
           self.NounList(['legs: std,default,plur'])
                
@@ -720,8 +757,8 @@ class Legs(BodyParts):
           self.DefaultNoun("legs")
           
 class Thighs(BodyParts):
-     def __init__(self):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
           self.NounList(['thighs: std,default,plur'])
                
@@ -736,10 +773,10 @@ class Thighs(BodyParts):
                         'inviting: horny',
                         'luscious: super',
                         'nubile: young',
-                        'pale: color,whitepers',
+                        'pale: color,cauc',
                         'plump: curvy,chubby'
                         'powerful: fit,strong',
-                        'porcelain: color,whitepers',
+                        'porcelain: color,cauc',
                         'ripe: attractive',
                         'rounded: shape',
                         'sensual: attractive',
@@ -759,8 +796,8 @@ class Thighs(BodyParts):
           self.DefaultNoun("thighs")
           
 class Nipples(BodyParts):
-     def __init__(self):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
           self.NounList(['nipples x4: std,default,plur',
                          'nips: silly,plur',
@@ -789,14 +826,14 @@ class Nipples(BodyParts):
                         'petite: size,small,cute,',
                         'pert: arousal,cute',
                         'pierced: style',
-                        'pink: color,whitepers',
+                        'pink: color,cauc',
                         'plump: size,large,feel',
                         'pokey: arousal',
                         'prominent: poetic',
                         'puffy: feel,',
                         'ripe: attractive',
-                        'rose-colored: color,whitepers',
-                        'rosebud: color,whitepers',
+                        'rose-colored: color,cauc',
+                        'rosebud: color,cauc',
                         'sensitive: feel',
                         'shameless: horny',
                         'shy: cute',
@@ -816,8 +853,8 @@ class Nipples(BodyParts):
           self.DefaultAdj("erect")
 
 class Breasts(BodyParts):
-    def __init__(self, bCupSize = False, iNumAdjs = 4):
-        super().__init__(bEnableSpecials = bCupSize)
+    def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None, bCupSize = False):
+        super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials = bCupSize, NotList = NotList, TagLists = TagLists)
 
         self._bCupSize = bCupSize
           
@@ -862,11 +899,11 @@ class Breasts(BodyParts):
                     'chocolate: color,poc,taste',
                     'chubby: large,plussize',
                     'college girl: age,young',
-                    'creamy: color,whitepers,taste',
+                    'creamy: color,cauc,taste',
                     'dark: color,poc',
                     'delicious: super,taste',
                     'enchanting: super,attractive',
-                    'fair: color,whitepers',
+                    'fair: color,cauc',
                     'fake: fake,large',
                     'fat x3: large,size,feel,plussize,shape',
                     'flouncing: movement',
@@ -894,7 +931,7 @@ class Breasts(BodyParts):
                     'MILF: age,older',
                     'nubile: age,young',
                     'oiled-up: wet',
-                    'pale: color,whitepers,young',
+                    'pale: color,cauc,young',
                     'pendulous: large,shape,older',
                     'perky: shape,young',
                     'pert: shape,',
@@ -904,7 +941,7 @@ class Breasts(BodyParts):
                     'proud: large,super,',
                     'quivering: movement,',
                     'ripe: feel,shape,young',
-                    'rosy: color,whitepers,young',
+                    'rosy: color,cauc,young',
                     'round: shape',
                     'sensual: poetic',
                     'shapely: shape',
@@ -1022,8 +1059,8 @@ class Breasts(BodyParts):
      
           
 class Clitoris(BodyParts):
-     def __init__(self):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
 
           self.NounList(['bean: desc,silly,slang,sing',
                          'clit x3: std,slang,sing',
@@ -1058,9 +1095,8 @@ class Clitoris(BodyParts):
           self.IsPlural = False
 
 class VaginaInner(BodyParts):
-
-     def __init__(self):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
 
           self.NounList(['baby-maker: silly,crude,sing',
                          'cherry: crude,desc,slang,sing',
@@ -1128,9 +1164,8 @@ class VaginaInner(BodyParts):
           self.IsPlural = False
      
 class VaginaOuterLabia(BodyParts):
-
-     def __init__(self):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
           self.NounList(['labia: std,default,plur',
                          'lips: std,desc,plur',
@@ -1185,9 +1220,8 @@ class VaginaOuterLabia(BodyParts):
           self.DefaultNoun("mons pubis")
 
 class VaginaInnerLabia(BodyParts):
-
-     def __init__(self):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
 
           self.NounList(['beef-curtains: silly,crude,plur',
                          'butterfly wings:  desc, cute, plur',
@@ -1250,8 +1284,8 @@ class Vagina(BodyParts):
      OuterLabia = []
      Clitoris = []
      
-     def __init__(self):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
           self.NounList(['cherry pie: silly,cute,slang,young,sing',
                          'cock-garage: silly,crude,slang,sing',
@@ -1343,8 +1377,8 @@ class Vagina(BodyParts):
           self.Clitoris = Clitoris()
 
 class AnusFemale(BodyParts):
-     def __init__(self):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
 
           self.NounList(['anus x4: std,default,clinical,sphincter,sing',
                          'arse-cunt: crude,orifice,sing',
@@ -1409,8 +1443,8 @@ class AnusFemale(BodyParts):
           self.DefaultNoun("anus")
           
 class ButtocksFemale(BodyParts):
-     def __init__(self):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
      
           self.NounList(['buns: std,plur',
                           'butt-cheeks: std,plur',
@@ -1427,7 +1461,7 @@ class ButtocksFemale(BodyParts):
                         'bubble-shaped: shape',
                         'chubby: shape,plussize,curvy',
                         'coffee-colored: color,poc',
-                        'creamy: color,whitepers',
+                        'creamy: color,cauc',
                         'curvaceous: shape,curvy',
                         'curvy: curvy,shape',
                         'cute: cute',
@@ -1439,11 +1473,11 @@ class ButtocksFemale(BodyParts):
                         'lickable: taste,horny',
                         'luscious: super,large',
                         'muscular: strong',
-                        'pale: color,whitepers',
+                        'pale: color,cauc',
                         'petite: size,small',
-                        'pink: color,whitepers',
+                        'pink: color,cauc',
                         'plump: large,plussize,curvy',
-                        'rosy: color,whitepers',
+                        'rosy: color,cauc',
                         'rotund: large,plussize',
                         'round: shape',
                         'rounded: shape',
@@ -1468,8 +1502,8 @@ class ButtocksFemale(BodyParts):
           self.DefaultNoun("buttocks")
           
 class AssFemale(BodyParts):
-     def __init__(self):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
           self.Anus = AnusFemale()
           self.Buttocks = ButtocksFemale()
@@ -1500,7 +1534,7 @@ class AssFemale(BodyParts):
                         'bubble-shaped: shape,curvy',
                         'chubby: plussize',
                         'coffee-colored: color,poc',
-                        'creamy: color,texture,whitepers',
+                        'creamy: color,texture,cauc',
                         'curvaceous: curvy',
                         'curvy: curvy',
                         'cute: cute,size,small',
@@ -1523,13 +1557,13 @@ class AssFemale(BodyParts):
                         'muscular: muscular,shape',
                         'naked: nude',
                         'nubile: age,young',
-                        'pale: color,whitepers',
+                        'pale: color,cauc',
                         'perfect: super',
                         'pert: shape',
-                        'pink: color,whitepers',
+                        'pink: color,cauc',
                         'plump: curvy,plussize',
                         'ripe: super',
-                        'rosy: color,whitepers',
+                        'rosy: color,cauc',
                         'rotund: shape,size,large',
                         'round: shape',
                         'rounded: shape',
@@ -1560,7 +1594,7 @@ class AssFemale(BodyParts):
                         'virgin: age,young',
                         'voluptuous: curvy',
                         'well-rounded: super,shape',
-                        'white: color,whitepers',
+                        'white: color,cauc',
                         'wide: width,wide',
                         'womanly: super,curvy',
                         'youthful: age,young',
@@ -1570,8 +1604,8 @@ class AssFemale(BodyParts):
           self.DefaultNoun("ass")
           
 class BodyFemale(BodyParts):
-     def __init__(self):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
           self.NounList(['anatomy: std,sing',
                          'body x4: std,default,sing',
@@ -1599,8 +1633,8 @@ class BodyFemale(BodyParts):
                         'mocha: color,poc',
                         'model-esque: attractive',
                         'nubile: young,virginal',
-                        'pale: color,whitepers',
-                        'pink: color,whitepers,young',
+                        'pale: color,cauc',
+                        'pink: color,cauc,young',
                         'plus-size: size,large,plussize',
                         'ravishing: super,attractive,horny',
                         'ripe: attractive',
@@ -1967,8 +2001,8 @@ class BodyFemale(BodyParts):
           return sHole
           
 class PenisHead(BodyParts):
-     def __init__(self):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
           self.NounList(['cock-head: silly,slang,sing',
                          'dick-tip: silly,crude,slang,sing',
@@ -1999,8 +2033,8 @@ class PenisHead(BodyParts):
           self.IsPlural = False
           
 class Testicles(BodyParts):
-     def __init__(self):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
 
           self.NounList(['balls x3: std,default,plur', 
                          'ballsack x2: silly,crude,slang,plur',
@@ -2070,8 +2104,8 @@ class Penis(BodyParts):
                
           return sPenis
           
-     def __init__(self, bAllowBAP = True):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None, bAllowBAP = True):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
 
           self.NounList(['boner: silly,crude,hard,sing',
                          'choad: crude,slang,small,sing',
@@ -2112,6 +2146,7 @@ class Penis(BodyParts):
                          'wood: crude,slang,sing'
                         ])
 
+          # large, wide, 
           self.AdjList(['bald: hairless',
                         'black: color,poc',
                         'beautiful: super',
@@ -2168,7 +2203,7 @@ class Penis(BodyParts):
                         'mouth-watering: horny',
                         'oily: wet,shiny',
                         'pierced: style',
-                        'pink: color,whitepers',
+                        'pink: color,cauc',
                         'powerful: horny,super',
                         'pretty: attractive',
                         'proud: poetic',
@@ -2181,16 +2216,18 @@ class Penis(BodyParts):
                         'rigid: hard',
                         'rock-hard: hard',
                         'serpentine: shape',
+                        'short: small,short',
                         'silken: feel',
                         'smooth x3: hairless,feel',
                         'stiff x2: hard',
                         'strong x3: super,horny',
+                        'stubby x5: small,short',
                         'swollen x2: hard,large',
-                        'tall: length,long',
+                        'tall: length,long,large',
                         'tasty x3: taste,horny',
                         'thick x3: size,wide',
                         'throbbing x2: feel,throb',
-                        'towering: length,long,size,large',
+                        'towering: length,long,size,large,long',
                         'tumescent: hard',
                         'turgid x2:hard',
                         'uncircumcized: style, cut',
@@ -2316,8 +2353,8 @@ class Penis(BodyParts):
           return super().RandomDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
      
 class Semen(BodyParts):
-     def __init__(self):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
 
           self.NounList(['baby batter: silly,slang,sing',
                          'baby gravy: silly,crude,slang,sing',
@@ -2377,8 +2414,8 @@ class Semen(BodyParts):
           self.DefaultAdj("gooey")
           
 class ButtocksMale(BodyParts):
-     def __init__(self):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
           self.NounList(['buns: std,cute,desc,plur',
                          'butt cheeks: std,slang,plur',
@@ -2412,8 +2449,8 @@ class ButtocksMale(BodyParts):
           self.DefaultNoun("buttocks")
           
 class AssMale(BodyParts):
-     def __init__(self):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
           self.Anus = AnusFemale()
           self.Buttocks = ButtocksMale()
@@ -2457,8 +2494,8 @@ class AssMale(BodyParts):
           self.DefaultNoun("buttocks")
           
 class SkinMale(BodyParts):
-     def __init__(self):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
           self.NounList(['skin x4: default,std,sing',
                          'flesh x2: std,sing',
@@ -2472,12 +2509,12 @@ class SkinMale(BodyParts):
                         'dark: color,poc',
                         'ebony: color,poc',
                         'exposed: bare',
-                        'freckled: color,whitepers',
+                        'freckled: color,cauc',
                         'glistening: shiny,wet,texture',
                         'hairy: hairy',
                         'leathery: feel,texture,older',
                         'naked: nude',
-                        'pale: color,whitepers',
+                        'pale: color,cauc',
                         'rough: texture',
                         'rugged: texture',
                         'smooth: texture',
@@ -2493,8 +2530,8 @@ class SkinMale(BodyParts):
           self.DefaultAdj("rugged")
           
 class ShouldersMale(BodyParts):
-     def __init__(self):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
           self.NounList(['shoulders'])
                
@@ -2506,7 +2543,7 @@ class ShouldersMale(BodyParts):
                         'coffee-colored: color,poc',
                         'dark: color,poc',
                         'ebony: color,poc',
-                        'freckled: color,whitepers',
+                        'freckled: color,cauc',
                         'mighty: strong',
                         'muscular: shape,strong',
                         'naked: nude',
@@ -2524,8 +2561,8 @@ class ShouldersMale(BodyParts):
           self.DefaultAdj("broad")
           
 class MusclesMale(BodyParts):
-     def __init__(self):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
           self.NounList(['muscles: std,default,plur'])
                
@@ -2565,8 +2602,8 @@ class MusclesMale(BodyParts):
           self.DefaultAdj("strapping")
 
 class NipplesMale(BodyParts):
-     def __init__(self):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
           self.NounList(['nipples: std,default,plur'])
                
@@ -2588,7 +2625,7 @@ class NipplesMale(BodyParts):
                         'perfect: super,attractive',
                         'pert: arousal,cute',
                         'pierced: style',
-                        'pink: color,whitepers',
+                        'pink: color,cauc',
                         'prominent: poetic',
                         'reddish: color',
                         'small: size,small',
@@ -2605,8 +2642,8 @@ class NipplesMale(BodyParts):
           self.DefaultAdj("erect")
           
 class ChestMale(BodyParts):
-     def __init__(self):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
           self.NounList(['chest x4: std,default,sing',
                          'pectorals: std,plur'])
@@ -2651,8 +2688,8 @@ class ChestMale(BodyParts):
           self.DefaultAdj("broad")
           
 class ArmsMale(BodyParts):
-     def __init__(self):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
           self.NounList(['arms x4: std,default,plur',
                          'limbs: std,plur'])
@@ -2685,14 +2722,14 @@ class ArmsMale(BodyParts):
           self.DefaultAdj("muscular")
           
 class EyesMale(BodyParts):
-     def __init__(self):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
           self.NounList(['eyes'])
                
           self.AdjList(['alluring: attractive',
                         'beautiful: super',
-                        'blue: color,whitepers',
+                        'blue: color,cauc',
                         'bright: shiny',
                         'brown: color',
                         'brooding: emotion',
@@ -2704,10 +2741,10 @@ class EyesMale(BodyParts):
                         'earnest: emotion',
                         'electric: attractive',
                         'electrifying: attractive',
-                        'gray: color, whitepers',
-                        'green: color, whitepers',
-                        'hazel: color, whitepers',
-                        'icy-blue: color, whitepers',
+                        'gray: color, cauc',
+                        'green: color, cauc',
+                        'hazel: color, cauc',
+                        'icy-blue: color, cauc',
                         'kind: emotion',
                         'large: size,large',
                         'mischievous: emotion',
@@ -2717,7 +2754,7 @@ class EyesMale(BodyParts):
                         'soulful: emotion',
                         'sparkling: shiny',
                         'steely: emotion',
-                        'steely-blue: color, whitepers',
+                        'steely-blue: color, cauc',
                         'stern: emotion',
                         'sweet: young,attractive',
                         'youthful: young',
@@ -2728,8 +2765,8 @@ class EyesMale(BodyParts):
           self.DefaultAdj("penetrating")
 
 class FacialHair(BodyParts):
-     def __init__(self):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
           self.NounList(['beard x3: beard,std,default,sing',
                          'fuzz: stubble,std,sing',
@@ -2739,7 +2776,7 @@ class FacialHair(BodyParts):
                         ])
                
           self.AdjList(['black x2: color',
-                        'blonde x2: color,whitepers',
+                        'blonde x2: color,cauc',
                         'bristling: style',
                         'brown: color',
                         'bushy: shape',
@@ -2754,8 +2791,8 @@ class FacialHair(BodyParts):
                         'magnificent: super',
                         'manly: attractive',
                         'messy: style',
-                        'red: color, whitepers',
-                        'sandy: color,whitepers',
+                        'red: color, cauc',
+                        'sandy: color,cauc',
                         'silken: feel',
                         'short: size,small,style',
                         'thick: size,large',
@@ -2770,8 +2807,8 @@ class FacialHair(BodyParts):
           self.DefaultAdj("glossy")
           
 class HairMale(BodyParts):
-     def __init__(self):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
           self.NounList(['afro: std,poc,sing',
                          'bouffant: std,sing',
@@ -2783,23 +2820,23 @@ class HairMale(BodyParts):
                         ])
                
           self.AdjList(['black x2: color',
-                        'blonde x2: color,whitepers',
+                        'blonde x2: color,cauc',
                         'brunette: color',
                         'coifed: style',
                         'curly: shape',
                         'dark: color',
                         'dyed-green: color,fake',
-                        'flaming-red: color,whitepers',
+                        'flaming-red: color,cauc',
                         'glossy: shiny',
-                        'golden: color,young,whitepers',
+                        'golden: color,young,cauc',
                         'graying: color,older',
                         'long: size,length,long',
                         'luxuriant: super',
                         'messy: style',
                         'platinum blonde: color',
                         'punk blue: color,fake',
-                        'red: color,whitepers',
-                        'sandy: color,whitepers',
+                        'red: color,cauc',
+                        'sandy: color,cauc',
                         'silken: feel',
                         'shaggy: style',
                         'short: size,length,short,small',
@@ -2813,8 +2850,8 @@ class HairMale(BodyParts):
           self.DefaultAdj("glossy")
           
 class LegsMale(BodyParts):
-     def __init__(self):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
           self.NounList(['legs x3: std,default,plur',
                          'calves: std,plur',
@@ -2851,8 +2888,8 @@ class LegsMale(BodyParts):
           self.DefaultAdj("sinewy")
           
 class JawMale(BodyParts):
-     def __init__(self):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
           self.NounList(['jaw'])
                
@@ -2879,8 +2916,8 @@ class JawMale(BodyParts):
           self.DefaultAdj("chiseled")
           
 class BodyMale(BodyParts):     
-    def __init__(self):
-        super().__init__()
+    def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+        super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
         self.NounList(['body x4: std,default,sing',
                        'build: std,sing',
@@ -3254,7 +3291,8 @@ class BodyMale(BodyParts):
         return Parts
 
 
-for i in range(4):
+for i in range(6):
     TestMale = Man()
-for i in range(4):
-    TestFem = Woman()
+
+#for i in range(4):
+#    TestFem = Woman()

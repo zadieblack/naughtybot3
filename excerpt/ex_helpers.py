@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 # Excerpt Helpers module
 
+from collections import namedtuple
 from random import *
 from util import *
 import re 
@@ -24,11 +25,18 @@ TagExclDict = {"poc": ["whitepers"],
                "thin": ["thick"],
               }
 
-class ParsedUnit:
-    def __init__(self, sUnit = "", iPriority = 1, TagList = []):
-        self.sUnit = sUnit
-        self.iPriority = iPriority
-        self.TagList = TagList
+#ReqTagList = []
+#ExclTagList = []
+#NounReqTagList = []
+#NounExclTagList = []
+#AdjReqTagList = []
+#AdjExclTagList = []
+
+TagListParams = namedtuple("TagListParams","excl req adj_excl adj_req noun_excl noun_req",
+                      defaults = [[], [], [], [], [], []])
+
+ParsedUnit = namedtuple("ParsedUnit","sUnit iPriority TagList",
+                        defaults=["",1,[]])
 
 # =============================
 # *** NounPhrase base class ***
@@ -58,7 +66,13 @@ class ParsedUnit:
 # if needed. 
 
 class NounPhrase:
-    def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = True, NotList = None, bEnableSpecials = False):
+    def __init__(self, iNumAdjs = 4, 
+                       ExtraAdjList = None, 
+                       bVaryAdjTags = True, 
+                       bEnableSpecials = False,
+                       NotList = None,
+                       TagLists = None
+                ):
         self._AllUnitLists = {"adj": {"master": []}, "noun": {"master": [], "std": []}}
         self._UnitTags = dict()
         self._DefaultNoun = ""
@@ -67,10 +81,12 @@ class NounPhrase:
         self.NounHistoryQ = HistoryQ(3)
         self.AdjHistoryQ = HistoryQ(3)
 
-        # PDS code
+        if ExtraAdjList is None:
+            ExtraAdjList = []
         if NotList is None:
             NotList = []
 
+        self._ExtraAdjList = ExtraAdjList
         self._NotList = NotList
         self._Noun = ""
         self._Color = ""
@@ -82,17 +98,16 @@ class NounPhrase:
         # Nouns and Adjs have their own specific required and excluded
         # tag lists which they will use if available. Otherwise, they
         # fall back on the general required and excluded tag lists.
-        self._ReqTagList = []
-        self._ExclTagList = []
-        self._NounReqTagList = []
-        self._NounExclTagList = []
-        self._AdjReqTagList = []
-        self._AdjExclTagList = []
+        if TagLists is None or not isinstance(TagLists, TagListParams):
+            #print("WARNING - NounPhrase.init(): TagLists not found, creating new instance")
+            TagLists = TagListParams()
 
-        if ExtraAdjList is None:
-            self._ExtraAdjList = []
-        else:
-            self._ExtraAdjList = ExtraAdjList
+        self._ExclTagList = TagLists.excl
+        self._ReqTagList = TagLists.req
+        self._NounExclTagList = TagLists.noun_excl
+        self._NounReqTagList = TagLists.noun_req
+        self._AdjExclTagList = TagLists.adj_excl
+        self._AdjReqTagList = TagLists.adj_req
 
         # self.Reset()
 
