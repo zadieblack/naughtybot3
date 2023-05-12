@@ -4,7 +4,7 @@
 
 from random import *
 from util import *
-from excerpt.bodyparts import *
+from excerpt.ex_helpers import *
 
 ClothesColors = WordList(['amber: color',
                           'black x5: color',
@@ -136,7 +136,7 @@ class FemWardrobe():
 
         return CleanList
 
-class Clothes(BodyParts):
+class Clothes(NounPhrase):
     def __init__(self):
         super().__init__()
 
@@ -859,6 +859,8 @@ class ShortsFemale(Clothes):
                         'skimpy x2: skimpy',
                         'skintight: tight',
                         'snug x2: tight',
+                        'sporty: super',
+                        'striped: pattern',
                         'teeny: size,small',
                         'teeny-tiny: tight',
                         'thigh-length: medium',

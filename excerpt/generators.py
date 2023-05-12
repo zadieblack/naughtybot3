@@ -1663,28 +1663,28 @@ class Generator33(ExGen):
           
           sHerName = self.FemaleName.FirstName()
           LastNames = WordList(['Beaver','Bell','Bottoms','Brown','Butts','Chang','Church','Clark',
-                                     'Cox','Cummings','Davis','Devlyn','Goodbody','Gray','Green','Hancock',
-                                     'Hill','Jefferson','Johnson','Jones','King','Lee','Long','Lopez',
-                                     'Moore','Moorecox','Muncher','Peach','Pearl','Peckwood','Peters',
-                                     'Philmore','Popper','Robinson','Rogers','Ross','Sanderson',
-                                     'Smith','St. Claire','Taylor','Wang','White','Williams','Wilson',
-                                     'Woody','Black'])
+                                'Cox','Cummings','Davis','Devlyn','Goodbody','Gray','Green','Hancock',
+                                'Hill','Jefferson','Johnson','Jones','King','Lee','Long','Lopez',
+                                'Moore','Moorecox','Muncher','Peach','Pearl','Peckwood','Peters',
+                                'Philmore','Popper','Robinson','Rogers','Ross','Sanderson',
+                                'Smith','St. Claire','Taylor','Wang','White','Williams','Wilson',
+                                'Woody','Black'])
           Jobs = WordList(['babysitter','barista','English teacher','guidance counselor','maid',
-                                'marriage counselor','math tutor','parole officer','secretary',
-                                'Sunday School teacher','teacher','psychiatrist','teacher\'s aid',
-                                'office manager','research assistant','real estate agent',
-                                'coach','wife\'s pregnancy surrogate',
-                                'student','pupil','house maid','nanny','nurse','yoga instructor',
-                                'therapist''personal assistant'])
+                            'marriage counselor','math tutor','parole officer','secretary',
+                            'Sunday School teacher','teacher','psychiatrist','teacher\'s aid',
+                            'office manager','research assistant','real estate agent',
+                            'coach','wife\'s pregnancy surrogate',
+                            'student','pupil','house maid','nanny','nurse','yoga instructor',
+                            'therapist''personal assistant'])
                                 
           Others = WordList(['mom','dad','my husband','your wife','your girlfriend','your fiancé',
-                                 'my boyfriend','my fiancé','your brother-in-law','your other employees',
-                                 'the rest of the class','the other nurses'])
+                             'my boyfriend','my fiancé','your brother-in-law','your other employees',
+                             'the rest of the class','the other nurses'])
                                  
           MouthPhrases = WordList(['dirty little mouth','insatiable mouth','filthy little mouth',
-                                         'insolent mouth','whore mouth','full lips','cherry lips',
-                                         'sweet lips','innocent mouth','dick-sucking lips',
-                                         'cock-sucking lips','cock-hungry mouth','soft lips'])
+                                    'insolent mouth','whore mouth','full lips','cherry lips',
+                                    'sweet lips','innocent mouth','dick-sucking lips',
+                                    'cock-sucking lips','cock-hungry mouth','soft lips'])
           sMouthPhrase = MouthPhrases.GetWord()
           sMouthOwnVerb = ""
           if "lips" in sMouthPhrase:
@@ -1694,8 +1694,11 @@ class Generator33(ExGen):
           
           VagNames = WordList(['cunt','flower','love-muffin','pussy','quim','sex','snatch','twat','vagina','womanhood'])
           SubAdjs = WordList(['little','little','dirty','nasty','dirty','filthy','little black','little blonde',
-                                   'little Asian','little redheaded','little white','shameless','little brown'])
-          SubNouns = WordList(["cum slut","fuck toy","cum rag","whore","sex slave","slave girl","fuck bunny","slut","cock-slut"])
+                              'little Asian','little redheaded','little white','shameless','little brown',
+                              'trashy little',])
+          SubNouns = WordList(["cum slut","fuck-doll","cum rag","whore","whore","sex slave","cum-dumpster",
+                               "slave girl","slut","cock-slut","fuck-doll","butt-slut","anal whore",
+                              ])
           
           sTweet = "\"I own you now,\" he said to " + sHerName + ". "
           sTweet += "\"Your " + sMouthPhrase + " " + sMouthOwnVerb + " to me now. "
@@ -1705,19 +1708,23 @@ class Generator33(ExGen):
           
           if CoinFlip():
                sTweet += "\"Ooh, yes " + WordList(['master','daddy','sir']).GetWord() + "!\" said " + sHerName + ". "
-               sTweet += "\"Make me your " + SubAdjs.GetWord() + " " + SubNouns.GetWord() + "! "
-               
                if CoinFlip():
-                    sTweet += "But hang on,\" she added. \"Am I still going to be your " + Jobs.GetWord() + "?\""
-               else:
-                    sTweet += "But hang on,\" she added. \"What do we tell " + Others.GetWord() + "?\""
-          else:
-               sLastName = LastNames.GetWord()
+                    sTweet += "\"Make me your " + SubAdjs.GetWord() + " " + SubNouns.GetWord() 
+               else: 
+                    sTweet += "\"Use me and throw me away like the "+ SubAdjs.GetWord() + " " + SubNouns.GetWord() + " I am"
+               sTweet += "!\"\n\n"
                
-               sTweet += "\"Ooh, yes Mr. " + sLastName + "!\" she said. "
-               sTweet += "\"Make me your " + SubAdjs.GetWord() + " " + SubNouns.GetWord() + "! "
-               sTweet += "But hang on,\" she added. \"What about Mrs. " + sLastName + "?\""
-          
+               iRand = randint(1,3)
+               if iRand == 1:
+                    sTweet += "\"But, hang on,\" " + sHerName + " added. " 
+                    sTweet += "\"Am I still gonna be your " + Jobs.GetWord() + "?\""
+               elif iRand == 2:
+                    sTweet += "\"But, hang on,\" " + sHerName + " added. " 
+                    sTweet += "\"What do we tell " + Others.GetWord() + "?\""
+               elif iRand == 3:
+                    sTweet += "\"But, hang on,\" " + sHerName + " added. " 
+                    sTweet += "\"What about your wife?\""
+
           return sTweet
           
 class Generator34(ExGen):

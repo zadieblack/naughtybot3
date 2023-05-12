@@ -2,778 +2,267 @@
 # -*- coding: utf-8 -*-
 # Body Parts module
 
+from collections import namedtuple
 from random import *
+
 from util import *
-import re 
+from excerpt.ex_helpers import *
+import names as names
 
-BodyPartHistoryQ = HistoryQ(10)
+Race = namedtuple("Race", "Name HairColor EyeColor SkinColor NipColor")
 
-TagExclDict = {"poc": ["whitepers"],
-               "whitepers": ["poc"],
-               "large": ["small"],
-               "small": ["large"],
-               "older": ["young"],
-               "young": ["older"],
-               "hairless": ["hairy"],
-               "hairy": ["hairless"],
-               "tall": ["short"],
-               "short": ["tall"],
-               "slender": ["plussize"],
-               "plussize": ["slender"],
-               "thick": ["thin"],
-               "thin": ["thick"],
-              }
+RaceCauc  = Race("caucasian",
+                 ["black","blonde","brown","dark","gray","red"],
+                 ["amber","blue","brown","dark","gray","green","hazel"],
+                 ["beige","creamy","freckled","fresh pink","honeyed","light","pale","pink","porcelain","rosy","tanned","sun-bronzed","sun-browned","sun-kissed","white"],
+                 ["brown","dark","pink","rosy","tan"]
+                )
+RacePOC   = Race("poc",
+                 ["black","brown","dark",],
+                 ["amber","brown","dark",],
+                 ["black","beige","bronze","bronzed","brown","chocolate","chocolate-colored","coffee-colored","dark","dark brown","honeyed","light brown","mocha","tan"],
+                 ["brown","chocolate","chocolate-colored","coffee-colored","dark","dark brown","honeyed","light brown","mocha"]
+               )
+RaceAsian = Race("asian",
+                 ["black","brown","dark",],
+                 ["brown","dark",],
+                 ["almond","beige","brown","creamy","freckled","light","light brown","pale","porcelain","tan","sun-bronzed","sun-browned","sun-kissed","white"],
+                 ["brown","chocolate","chocolate-colored","coffee-colored","dark","dark brown","honeyed","light brown","mocha"]
+                )
 
-class ParsedUnit:
-    def __init__(self, sUnit = "", iPriority = 1, TagList = []):
-        self.sUnit = sUnit
-        self.iPriority = iPriority
-        self.TagList = TagList
+class BodyParts(NounPhrase):
+    pass
 
-# ============================
-# *** Bodyparts base class ***
-# ============================
+GenPhysTraits       = namedtuple("GenPhysTraits",
+                                 "FirstName LastName Gender Race PubeStyle",
+                                 defaults = ["","","",None,""]
+                                )
+class Lover():
+    def __init__(self, Gender = "female", NewGenTraits = None):
+        self.FirstName = ""
+        self.LastName = ""
+        self.Gender = ""
+        self.Race = None
+        self.RaceName = ""
+        self.HairColor = ""
+        self.EyeColor = ""
+        self.SkinColor = ""
+        self.NipColor = ""
+        self.PubeStyle = ""
 
+        global GenPhysTraits
 
-class BodyParts:
-    def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = True, NotList = None, bEnableSpecials = False):
-        self._AllUnitLists = {"adj": {"master": []}, "noun": {"master": [], "std": []}}
-        self._UnitTags = dict()
-        self._DefaultNoun = ""
-        self._DefaultAdj = "naked"
-          
-        self.NounHistoryQ = HistoryQ(3)
-        self.AdjHistoryQ = HistoryQ(3)
+        if NewGenTraits is None or not isinstance(NewGenTraits, GenPhysTraits):
+            NewGenTraits = GenPhysTraits()
+        
+        # Set attributes if not blank, otherwise randomize
+        self.Gender = Gender
 
-        # PDS code
-        if NotList is None:
-            NotList = []
-
-        self._NotList = NotList
-        self._Noun = ""
-        self._Color = ""
-        self._EnableSpecials = bEnableSpecials
-        self._iNumAdjs = iNumAdjs
-        self._AdjList = []
-        self._bVaryAdjTags = bVaryAdjTags
-
-        # Nouns and Adjs have their own specific required and excluded
-        # tag lists which they will use if available. Otherwise, they
-        # fall back on the general required and excluded tag lists.
-        self._ReqTagList = []
-        self._ExclTagList = []
-        self._NounReqTagList = []
-        self._NounExclTagList = []
-        self._AdjReqTagList = []
-        self._AdjExclTagList = []
-
-        if ExtraAdjList is None:
-            self._ExtraAdjList = []
+        if NewGenTraits.FirstName:
+            self.FirstName = NewGenTraits.FirstName
         else:
-            self._ExtraAdjList = ExtraAdjList
-
-        # self.Reset()
-
-    # *** PDS methods ***
-    # -------------------
-
-    def Reset(self, sCalledBy, iNumAdjs = None):
-        #print("<< Reset called by " + self.__class__.__name__ + "." + sCalledBy + "() >>")
-        if iNumAdjs is None:
-            iNumAdjs = self._iNumAdjs
-
-        self.ClearAdjList()
-        self._Noun = ""
-
-        if self.NounListLen() > 0 and self.AdjListLen() > 0:
-            NounReqTagList = []
-            if len(self._NounReqTagList) > 0:
-                NounReqTagList = self._NounReqTagList
+            if self.Gender == "male":
+                self.FirstName = names.NamesMale().FirstName()
             else:
-                NounReqTagList = self._ReqTagList
+                self.FirstName = names.NamesFemale().FirstName()
 
-            NounExclTagList = []
-            if len(self._NounExclTagList) > 0:
-                NounExclTagList = self._NounExclTagList
-            else:
-                NounExclTagList = self._ExclTagList
-
-            AdjReqTagList = []
-            if len(self._AdjReqTagList) > 0:
-                AdjReqTagList = self._AdjReqTagList
-            elif len(self._AdjReqTagList) > 0:
-                AdjReqTagList = self._AdjReqTagList
-            else:
-                AdjReqTagList = self._ReqTagList
-
-            AdjExclTagList = []
-            if len(self._AdjExclTagList) > 0:
-                AdjExclTagList = self._AdjExclTagList
-            elif len(self._AdjExclTagList) > 0:
-                AdjExclTagList = self._AdjExclTagList
-            else:
-                AdjExclTagList = self._ExclTagList
-
-            self._Noun = self.GetNewNoun(NotList = self._NotList, ReqTagList = NounReqTagList, ExclTagList = NounExclTagList)
-            #print("  ---")
-            global TagExclDict
-            UsedTagList = []
-            if self._bVaryAdjTags and len(AdjReqTagList) == 0:
-                for tag in self.GetUnitTags(self._Noun):
-                    if tag in TagExclDict:
-                        UsedTagList.append(tag)
-                #print("  Added any excluding noun tags for \"" + self._Noun + "\" to UsedTagList " + str(UsedTagList))
-
-            #self.ClearAdjList()
-
-            # Parse extra adjs list, add any tags to the parent
-            # and to the used tag list
-            ParsedExtraAdjList = []
-            if not self._ExtraAdjList is None:
-                for adj in self._ExtraAdjList:
-                    Unit = self.ParseUnit(adj)
-                    if Unit.sUnit != "":
-                        ParsedExtraAdjList.append(Unit.sUnit)
-                        #self.AddAdj(Unit.sUnit)
-                        for tag in Unit.TagList:
-                            #def AddUnitTag(self, sUnit, sTag):
-                            self.AddUnitTag(Unit.sUnit,tag)
-                            UsedTagList.append(tag)
-
-            for i in range(self._iNumAdjs):
-                LocalReqTagList = AdjReqTagList.copy()
-                LocalExclTagList = AdjExclTagList.copy()
-
-                if isinstance(self, Breasts):
-                    stuff = "foo"
-                sAdj = self.GetNewAdj(NotList = self._NotList + [self._Noun] + self._AdjList, ReqTagList = LocalReqTagList, ExclTagList = LocalExclTagList + UsedTagList)
-                if sAdj == "":
-                    print("=*= WARNING =*= bodyparts.Reset() unable to get more adjectives.\n")
-                    break
-
-                for tag in self.GetUnitTags(sAdj):
-                    # Try and pick adjs from different tags if required tags are not set
-                    if self._bVaryAdjTags and len(LocalReqTagList) == 0:
-                        if not tag == "master":
-                            UsedTagList.append(tag)
-
-                    # Avoid choosing adjectives with mutally exclusive tags
-                    if tag in TagExclDict:
-                        for excltag in TagExclDict[tag]:
-                            if not excltag in LocalExclTagList:
-                                LocalExclTagList.append(excltag)
-                                #print("    Detected tag \"" + tag + "\", excluding tags " + str(TagExclDict[tag]))
+        if NewGenTraits.LastName:
+            self.LastName = NewGenTraits.LastName
+        else:
+            self.LastName = names.RegularLastNames().GetWord()
                 
-                self.AddAdj(sAdj)
-                #if isinstance(self, Breasts):
-                #    print("  Picked adj \"" + sAdj + "\" " + str(self.GetUnitTags(sAdj)) + "\n    excl tags " + str(LocalExclTagList) + "\n    used tags " + str(UsedTagList))
-                #print("  Adj list " + str(self._AdjList))
+        global RaceCauc
+        global RacePOC
+        global RaceAsian
 
-            # Sort 
-            #print("    Unsorted adj list is " + str(self._AdjList))
-            ExtraAdjBucket = ParsedExtraAdjList
-            SpecialAdjBucket = []
-            AgeAdjBucket = []
-            ColorAdjBucket = []
-            OtherAdjBucket = []
-            SuperAdjBucket = []
-            for adj in self._AdjList:
-                adjtags = self.GetUnitTags(adj)
-                #if isinstance(self, Breasts):
-                #    print("Adj \"" + adj + "\" has tags " + str(adjtags))
-                if "special" in adjtags:
-                    SpecialAdjBucket.append(adj)
-                #elif "young" in self.GetUnitTags(adj) or "older" in self.GetUnitTags(adj):
-                elif "age" in adjtags:
-                    #print("      \"" + adj + "\" is an age adj.")
-                    AgeAdjBucket.append(adj)
-                elif "color" in adjtags:
-                    #print("      \"" + adj + "\" is a color adj.")
-                    ColorAdjBucket.append(adj)
-                elif "super" in adjtags:
-                    #print("      \"" + adj + "\" is a superlative adj.")
-                    SuperAdjBucket.append(adj)
-                else:
-                    #print("      \"" + adj + "\" is a normal adj.")
-                    OtherAdjBucket.append(adj)
-            AgeAdjBucket.sort(key = str.lower)
-            ColorAdjBucket.sort(key = str.lower)
-            SuperAdjBucket.sort(key = str.lower)
-            OtherAdjBucket.sort(key = str.lower)
-            SpecialAdjBucket.sort(key = str.lower)
+        if NewGenTraits.Race and isinstance(Race, NewGenTraits.Race):
+            self.Race = NewGenTraits.Race
+        else:
+            self.Race = choice([RaceCauc,RacePOC,RaceAsian])
 
-            #if isinstance(self, Breasts):
-            #    print("SpecialAdjBucket is " + str(SpecialAdjBucket))
-            #    print("AgeAdjBucket is " + str(AgeAdjBucket))
-            #    print("ColorAdjBucket is " + str(ColorAdjBucket))
-            #    print("OtherAdjBucket is " + str(OtherAdjBucket))
-            #    print("SuperAdjBucket is " + str(SuperAdjBucket))
-            #    print("ExtraAdjBucket is " + str(ExtraAdjBucket))
+        self.RaceName = self.Race.Name
 
-            self._AdjList = SuperAdjBucket + OtherAdjBucket + ColorAdjBucket + AgeAdjBucket + SpecialAdjBucket + ExtraAdjBucket
+        if NewGenTraits.PubeStyle:
+            self.PubeStyle = NewGenTraits.PubeStyle
+        else:
+            self.PubeStyle = choice(["hairy","shaved","trimmed"])
 
-            #DictAdjTags = dict()
-            #for adj in self._AdjList:
-            #    DictAdjTags[adj] = self.GetUnitTags(adj)
+        self.HairColor = choice(self.Race.HairColor)
+        self.EyeColor = choice(self.Race.EyeColor)
+        self.SkinColor = choice(self.Race.SkinColor)
+        self.NipColor = choice(self.Race.NipColor)
 
-    def GetAdj(self, inum, adj):
-        if inum >= 0 and inum < len(self._AdjList):
-            self._AdjList[inum] = adj
+MalePhysTraits      = namedtuple("MalePhysTraits",
+                                 "AgeCat Age HeightType BodyType HairStyle DickInches",
+                                 defaults = ["",0,"","","",0]
+                                )
 
-    def AddAdj(self, adj):
-        if adj != "":
-            self._AdjList.append(adj)
+class Man(Lover):
+    def __init__(self, NewGenTraits = None, NewMaleTraits = None):
+        super().__init__("male", NewGenTraits = NewGenTraits)
 
-    def RemoveAdj(self, adj):
-        if adj in self._AdjList:
-            self._AdjList.remove(adj)
+        self.AgeCat = ""
+        self.Age = 0
+        self.HeightType = ""
+        self.BodyType = ""
+        self.HairStyle = ""
+        self.DickInches = 0
 
-    def RemoveAdjByNum(self, inum):
-        if inum >= 0 and inum < len(self._AdjList):
-            self._AdjList.pop(inum)
+        global MalePhysTraits
 
-    def ClearAdjList(self):
-        self._AdjList = []
-
-    def Noun(self, noun):
-        self._Noun = noun
-
-    def Color(self, color):
-        self._Color = color
-
-    def ReqTagList(self, TagList):
-        self._ReqTagList = TagList
-        self.Reset("ReqTagList")
-
-    def ExclTagList(self, TagList):
-        self._ExclTagList = TagList
-        self.Reset("ExclTagList")
-
-    def NounReqTagList(self, TagList):
-        self._NounReqTagList = TagList
-        self.Reset("NounReqTagList")
-
-    def NounExclTagList(self, TagList):
-        self._NounExclTagList = TagList
-        self.Reset("NounExclTagList")
-
-    def AdjReqTagList(self, TagList):
-        self._AdjReqTagList = TagList
-        self.Reset("AdjReqTagList")
-
-    def AdjExclTagList(self, TagList):
-        self._AdjExclTagList = TagList
-        self.Reset("AdjExclTagList")
-
-    def GetRandomAdj(self):
-        return choice(self._AdjList)
-
-    def GetAdj(self, inum):
-        sAdj = ""
-        if inum >= 0 and inum < len(self._AdjList):
-            sAdj = self._AdjList[inum]
+        if NewMaleTraits is None or not isinstance(NewMaleTraits, MalePhysTraits):
+            NewMaleTraits = MalePhysTraits()
         
-        return sAdj
-
-    def GetNoun(self):
-        return self._Noun
-
-    def IsPlural(self):
-        bIsPlural = False
-
-        NounTags = self.GetUnitTags(self.GetNoun())
-        if 'plur' in NounTags:
-            bIsPlural = True
-
-        return bIsPlural
-
-    def IsSing(self):
-        bIsSing = False
-
-        NounTags = self.GetUnitTags(self.GetNoun())
-        if 'sing' in NounTags:
-            bIsSing = True
-
-        return bIsSing
-
-    def GetColor(self):
-        return self._Color
-
-    def GetFullDesc(self, iNumAdjs, bColor = True):
-        sFullDesc = ""
-        DescWordList = self._AdjList.copy()
-
-        if iNumAdjs < len(DescWordList):
-            for i in range(len(DescWordList) - iNumAdjs):
-                DescWordList.remove(choice(DescWordList))
-
-        if self.GetNoun() != "":
-            DescWordList.append(self.GetNoun())
-
-        if len(DescWordList) < 3:
-            sFullDesc = " ".join(DescWordList)
-        elif len(DescWordList) == 3:
-            sFullDesc = ", ".join(DescWordList[:1]) + ", " + " ".join(DescWordList[1:])
-        elif len(DescWordList) == 4:
-            sFullDesc = ", ".join(DescWordList[:-2]) + ", " + " ".join(DescWordList[-2:])
+        if NewMaleTraits.AgeCat:
+            self.AgeCat = NewMaleTraits.AgeCat
         else:
-            sFullDesc = ", ".join(DescWordList[:-3]) + ", " + " ".join(DescWordList[-3:])
-        
-        return sFullDesc
-
-    def GetDescWordList(self):
-        DescWordList = []
-
-        sNoun = self.GetNoun()
-
-        if sNoun != "":
-            DescWordList.insert(0, sNoun)
-        #if self.Color() != "":
-        #    DescWordList.insert(0, self.Color())
-        DescWordList = self._AdjList + DescWordList
-
-        return DescWordList
-
-    # *** Bodyparts methods ***
-    # -------------------------
-
-    def SetUnitTags(self, sUnit, TagList):
-        self._UnitTags[sUnit] = TagList 
-
-    def AddUnitTag(self, sUnit, sTag):
-        # If a unit does not have a tag list, add an entry
-        if not sUnit in self._UnitTags:
-             self._UnitTags[sUnit] = []
- 
-        # No duplicates
-        if not sTag in self._UnitTags[sUnit]:
-            self._UnitTags[sUnit].append(sTag)
-
-    def GetUnitTags(self, sUnit):
-        UnitTags = [] 
-
-        if sUnit in self._UnitTags:
-            UnitTags = self._UnitTags[sUnit]
-
-        return UnitTags
-
-    def GetUnitList(self, sListName, sType):
-        UnitList = []
-        ListDict = self._AllUnitLists[sType.lower()]
-
-        if sListName.lower() in ListDict:
-            UnitList = ListDict[sListName.lower()]
-
-        return UnitList 
-
-    def GetNounList(self, sListName = None):
-        if sListName is None:
-            sListName = "master"
-        return self.GetUnitList(sListName, "noun") 
-
-    def GetAdjList(self, sListName = None):
-        if sListName is None:
-            sListName = "master"
-        return self.GetUnitList(sListName, "adj") 
-
-    def AddUnitToList(self, sUnit, sListName, sType, iPriority = None):
-        UnitList = self.GetUnitList(sListName, sType)
-        ListDict = self._AllUnitLists[sType.lower()]
-
-        if UnitList is None:
-            #create
-            self._AllUnitLists[sType.lower()][ListDict]
-            #ListDict[sListName] = []
-
-        if iPriority is None:
-            iPriority = 1
-
-        if not self.IsUnitInList(sUnit, sListName, sType):
-            for i in range(iPriority):
-                if not sListName.lower() in ListDict:
-                    ListDict[sListName.lower()] = []
-                ListDict[sListName.lower()].append(sUnit)
-
-            self.AddUnitTag(sUnit, sListName)
-
-    def AddNounToList(self, sNoun, sListName, iPriority = None):
-        self.AddUnitToList(sNoun,sListName,"noun", iPriority = iPriority)
-
-    def AddAdjToList(self, sNoun, sListName, iPriority = None):
-        self.AddUnitToList(sNoun,sListName,"adj", iPriority = iPriority)
-
-    def IsUnitInList(self, sUnit, sListName, sType):
-        bIsUnitInList = False 
-
-        UnitList = self.GetUnitList(sListName, sType)
-        if not UnitList is None:
-            if sUnit.lower() in UnitList:
-                bIsUnitInList = True
-
-        return bIsUnitInList
-
-    def IsNounInList(self, sNoun, sListName):
-        return self.IsUnitInList(sNoun, sListName, "noun")
-
-    def IsAdjInList(self, sNoun, sListName):
-        return self.IsUnitInList(sNoun, sListName, "adj")
-
-    def ParseUnit(self, sParse):
-        sUnit = ""
-        iPriority = 1
-        TagList = []
-
-        # clean string
-        sUnit = sParse.strip()
-
-        # locate priority
-        matchPriority = re.search(r"(?<=[x])([\d]+)", sUnit)
-        if matchPriority:
-            iPriority = int(matchPriority.group())
-
-        # locate Unit 
-        ItemSections = sUnit.split(":")
-        sUnitWord = ""
-        matchUnit = re.search(r"([x][\d]+)", ItemSections[0])
-        if matchUnit:
-            sUnitWord = ItemSections[0][0:matchUnit.span()[0]]
+            self.AgeCat = choice(["teen","college","twenties","thirties","middleaged","older"])
+                
+        if NewMaleTraits.Age:
+            self.Age = NewMaleTraits.Age
         else:
-            sUnitWord =  ItemSections[0]
-        sUnitWord = sUnitWord.strip()
+            if self.AgeCat == "teen":
+                self.Age = randint(17,19)
+            elif self.AgeCat == "college":
+                self.Age = randint(20,24)
+            elif self.AgeCat == "twenties":
+                self.Age = randint(25,29)
+            elif self.AgeCat == "thirties":
+                self.Age = randint(30,39)
+            elif self.AgeCat == "middleaged":
+                self.Age = randint(40,55)
+            elif self.AgeCat == "older":
+                self.Age = randint(55,65)
 
-        # locate tag list 
-        matchTags = re.search(r"(?<=[:])([\w\s,]*)", sUnit)
-        if matchTags:
-            TagList = "".join(matchTags.group().split(" ")).split(",")
-
-        return ParsedUnit(sUnitWord, iPriority, TagList)
-
-    def UnitList(self, NewUnitList, sType):
-        #print("Entered UnitList()")
-        for item in NewUnitList:
-            sUnit = ""
-            iPriority = 1
-            TagList = []
-
-            if isinstance(self, Breasts):
-                stuff = "foo"
-
-            Unit = self.ParseUnit(item)
-            sUnit = Unit.sUnit
-            iPriority = Unit.iPriority
-            TagList = Unit.TagList
-
-            self.AddUnitToList(sUnit, "master", sType, iPriority)
-            #print(" Added \"" + sUnit + "\" to master list.")
-            for tag in TagList:
-                if tag.strip() != "":
-                    self.AddUnitToList(sUnit, tag, sType, iPriority)
-                #print(" Added \"" + sUnit + "\" to " + tag + " list.")
-               
-        self.Reset("UnitList_" + sType)
-
-    def NotList(self, NotList):
-        self._NotList = NotList
-        self.Reset("NotList")
-
-    def NounList(self, NewNounList):
-        self.UnitList(NewNounList, "noun")
-
-    def AdjList(self, NewAdjList):
-        self.UnitList(NewAdjList, "adj")
-
-    def ExtraAdjList(self, ExtraAdjList):
-        self._ExtraAdjList = ExtraAdjList
-        self.Reset("ExtraAdjList")
-
-    def UnitListLen(self, sType):
-        ListLen = 0 
-        ListDict = self._AllUnitLists[sType.lower()]
-
-        ListLen = len(ListDict["master"])
-
-        return ListLen
-
-    def NounListLen(self):
-        return self.UnitListLen("noun")
-
-    def AdjListLen(self):
-        return self.UnitListLen("adj")
-          
-    def DefaultNoun(self, NewNoun = None):
-        if NewNoun == None:
-            NewNoun = ""
-               
-        self._DefaultNoun = NewNoun 
-     
-    def DefaultAdj(self, NewAdj = None):
-        if NewAdj == None:
-            NewAdj = ""
-               
-        self._DefaultAdj = NewAdj 
-          
-    def GetDefaultNoun(self, NotList = None):
-        sDefaultNoun = ""
-          
-        if NotList == None:
-            NotList = []
-
-        if self._DefaultNoun not in NotList:
-            sDefaultNoun = self._DefaultNoun
-               
-        return sDefaultNoun
-          
-    def GetDefaultAdj(self, NotList = None):
-        sDefaultAdj = ""
-          
-        if NotList == None:
-            NotList = []
-
-        if self._DefaultAdj not in NotList:
-            sDefaultAdj = self._DefaultAdj
-               
-        return sDefaultAdj
-     
-    def GetUnit(self, sType, NotList = None, ReqTagList = None, ExclTagList = None):
-        sUnit = "" 
-        LocalUnitList = []
-        #print("      Entered GetUnit()")
-         
-        if NotList is None:
-            NotList = []
-
-        if ReqTagList is None:
-            ReqTagList = []
-
-        if ExclTagList is None:
-            ExclTagList = []
-
-        ExclUnitList = []
-        for tag in ExclTagList:
-            #print("    Getting word units for " + unitlist)
-            if tag.lower() != "master":
-                for unit in self.GetUnitList(tag, sType):
-                    ExclUnitList.append(unit)
-        #print("      ExclUnitList is + " + str(ExclUnitList))
-
-        if isinstance(self, Breasts):
-            kung = "foo"
-        if not self._EnableSpecials:
-            for unit in self.GetUnitList("special", sType):
-                ExclUnitList.append(unit)
-
-        if ReqTagList == None or len(ReqTagList) == 0:
-            #print("  ReqTagList is empty. Using master list.")
-            for unit in self.GetUnitList("master", sType):
-                if not unit in ExclUnitList:
-                    LocalUnitList.append(unit)
+        # Set attributes if not blank, otherwise randomize
+        if NewMaleTraits.HeightType:
+            self.HeightType = NewMaleTraits.HeightType
         else:
-            for taglistname in ReqTagList:
-                #print("  Adding taglist " + taglistname)
-                for unit in self.GetUnitList(taglistname, sType):
-                    if not unit in ExclUnitList:
-                        LocalUnitList.append(unit)
+            self.HeightType = choice(["short","medium","tall"])
 
-        #print("  LocalUnitList = " + str(LocalUnitList) + "\n")
-
-        if len(LocalUnitList) == 0:
-            if ReqTagList == None or len(ReqTagList) == 0:
-                LocalUnitList += self.GetUnitList("master", sType)
+        if NewMaleTraits.BodyType:
+            self.BodyType = NewMaleTraits.BodyType
         else:
-            for taglistname in ReqTagList:
-                LocalUnitList += self.GetUnitList(taglistname, sType)
+            self.BodyType = choice(["slender","medium","muscular","sturdy"])
 
-        if len(LocalUnitList) > 0:
-            # First, try with the not list, the excluded tag list, and the required tag list
-
-            sUnit = WordList(LocalUnitList).GetWord(NotList = NotList + ExclUnitList)
-
-            if sUnit == "":
-                # Second, try with the not list and the required tag list
-                print("  GetUnit() could not retrieve word. Trying without excluded tag list.")
-                sUnit = WordList(LocalUnitList).GetWord(NotList = NotList)
-
-                if sUnit == "":
-                    # Third, try with just the not list
-                    print("   GetUnit() could not retrieve word. Trying without the required tag list.")
-                    sUnit = WordList(self.GetUnitList("master", sType)).GetWord(NotList = NotList)
-
-                    if sUnit == "":
-                        # Fourth, try without any constraints
-                        print("   GetUnit() could not retrieve word. Trying without the not list.")
-                        sUnit == WordList(self.GetUnitList("master", sType)).GetWord()
-            #print("  GetUnit() new word is \"" + sUnit + "\"")
-
-        return sUnit
-
-    def GetNewAdj(self, NotList = None, ReqTagList = None, ExclTagList = None):
-        sNewAdj = ""
-        
-        if NotList is None:
-            NotList = []
-        if ReqTagList is None:
-            ReqTagList = []
-        if ExclTagList is None:
-            ExclTagList = []
-
-        UsedTagList = []
-        for adj in self._AdjList:
-            UsedTagList += self.GetUnitTags(adj)
-
-        sNewAdj = self.GetUnit("adj", NotList = NotList, ReqTagList = ReqTagList, ExclTagList = ExclTagList + UsedTagList)
-        
-        for tag in self.GetUnitTags(sNewAdj): 
-            if not tag.lower() == "master":
-                self.AddUnitTag(sNewAdj, tag)
-
-        return sNewAdj
-
-    def GetNewNoun(self, NotList = None, ReqTagList = None, ExclTagList = None):
-        sNewNoun = ""
-
-        if NotList is None:
-            NotList = []
-        if ReqTagList is None:
-            ReqTagList = []
-        if ExclTagList is None:
-            ExclTagList = []
-
-        sNewNoun = self.GetUnit("noun", NotList = NotList, ReqTagList = ReqTagList, ExclTagList = ExclTagList)
-        for tag in self.GetUnitTags(sNewNoun):
-            self.AddUnitTag(sNewNoun, tag)
-
-        return sNewNoun
-
-    #noun only ("hair")
-    def ShortDescription(self, ExtraAdjList = None, NotList = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
-        if NotList == None:
-            NotList = []
+        if NewMaleTraits.HairStyle:
+            self.HairStyle = NewMaleTraits.HairStyle
         else:
-            self.NotList(NotList)
+            self.HairStyle = choice(["shaved","bald","normal"])
 
-        if NounReqTagList == None:
-            NounReqTagList = []
+        if NewMaleTraits.DickInches:
+            self.DickInches = NewMaleTraits.DickInches
         else:
-            self.NounReqTagList(NounReqTagList)
+            # Yes, we want to favor ridiculous-sized dicks. That
+            # makes it funnier.
+            self.DickInches = choice([5, 5,
+                                      6, 6, 6, 6,
+                                      7, 7, 7, 7, 7, 7,
+                                      8, 8, 8, 8, 8,
+                                      9, 9, 9, 9,
+                                      10,10,10,10,
+                                      11,11,11,
+                                      12,12,12,
+                                      13,13,
+                                      14
+                                     ])
 
-        if NounExclTagList == None:
-            NounExclTagList = []
-        else:
-            self.NounExclTagList(NounExclTagList)
+        sDesc = "My name is " + self.FirstName + " " + self.LastName + ". "
+        sDesc += "I am a " + str(self.Age) + "-year-old " + self.RaceName + " " + self.Gender + ". "
+        sDesc += "I have " + self.HairColor + " hair, " + self.EyeColor + " eyes, " + self.SkinColor + " skin, and my nipples are " + self.NipColor + ". "
+        sDesc += "I am a " + self.HeightType + ", " + self.BodyType + " man. "
+        sDesc += "I proudly sport a " + str(self.DickInches) + "-inch cock "
+        sDesc += "and I keep my pubes " + self.PubeStyle + "!"
+        print(sDesc + "\n")
 
-        if AdjReqTagList == None:
-            AdjReqTagList = []
-        else:
-            self.AdjReqTagList(AdjReqTagList)
+#for i in range(4):
+#    TestMale = Man()
 
-        if AdjExclTagList == None:
-            AdjExclTagList = []
-        else:
-            self.AdjExclTagList(AdjExclTagList)
+FemPhysTraits = namedtuple("FemPhysTraits",
+                           "AgeCat Age BodyType BustSize HairStyle",
+                           defaults = ["",0,"","",""]
+                          )
 
-        if ExtraAdjList is None:
-            ExtraAdjList = []
-        else:
-            self.ExtraAdjList(ExtraAdjList)
+class Woman(Lover):
+    def __init__(self, NewGenTraits = None, NewFemTraits = None):
+        super().__init__("female", NewGenTraits = NewGenTraits)
 
-        return self.GetFullDesc(iNumAdjs = 0)
-     
-    #adjective noun ("red hair")
-    def MediumDescription(self, ExtraAdjList = None, NotList = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
-        if NotList == None:
-            NotList = []
-        else:
-            self.NotList(NotList)
+        self.AgeCat = ""
+        self.Age = 0
+        self.BodyType = ""
+        self.HairStyle = ""
+        self.BustSize = ""
 
-        if NounReqTagList == None:
-            NounReqTagList = []
-        else:
-            self.NounReqTagList(NounReqTagList)
+        global FemPhysTraits
 
-        if NounExclTagList == None:
-            NounExclTagList = []
-        else:
-            self.NounExclTagList(NounExclTagList)
+        if NewFemTraits is None or not isinstance(NewFemTraits, FemPhysTraits):
+            NewFemTraits = FemPhysTraits()
 
-        if AdjReqTagList == None:
-            AdjReqTagList = []
+        if NewFemTraits.AgeCat:
+            self.AgeCat = NewFemTraits.AgeCat
         else:
-            self.AdjReqTagList(AdjReqTagList)
+            self.AgeCat = choice(["teen","college","twenties","milf"])
+                
 
-        if AdjExclTagList == None:
-            AdjExclTagList = []
+        if NewFemTraits.Age:
+            self.Age = NewFemTraits.Age
         else:
-            self.AdjExclTagList(AdjExclTagList)
-
-        if ExtraAdjList is None:
-            ExtraAdjList = []
-        else:
-            self.ExtraAdjList(ExtraAdjList)
-          
-        return self.GetFullDesc(iNumAdjs = 1)
-     
-    #adjective1 adjective2 adjective3 noun ("long, wavy, red hair")
-    def FloweryDescription(self, ExtraAdjList = None, NotList = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
-        if NotList == None:
-            NotList = []
-        else:
-            self.NotList(NotList)
-
-        if NounReqTagList == None:
-            NounReqTagList = []
-        else:
-            self.NounReqTagList(NounReqTagList)
-
-        if NounExclTagList == None:
-            NounExclTagList = []
-        else:
-            self.NounExclTagList(NounExclTagList)
-
-        if AdjReqTagList == None:
-            AdjReqTagList = []
-        else:
-            self.AdjReqTagList(AdjReqTagList)
-
-        if AdjExclTagList == None:
-            AdjExclTagList = []
-        else:
-            self.AdjExclTagList(AdjExclTagList)
-
-        if ExtraAdjList is None:
-            ExtraAdjList = []
-        else:
-            self.ExtraAdjList(ExtraAdjList)
-          
-        iNumAdjs = choice([1,1,1,2,2,2,2,3])
-
-        return self.GetFullDesc(iNumAdjs = iNumAdjs)
-     
-    def RandomDescription(self, ExtraAdjList = None, NotList = None, bAllowShortDesc = True, bAllowLongDesc = True, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
-                              # ExtraAdjList = None, NotList = None,                                                NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None
-        sRandomDesc = ""
-          
-        iRand = randint(0, 12)
-        if iRand in range(0, 3):
-        #short desc if allowed 
-            if bAllowShortDesc:
-                #use noun from the list or default noun
-                if CoinFlip():
-                        sRandomDesc = self.ShortDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList)
-                else:
-                        sRandomDesc = self.GetDefaultNoun(NotList = NotList)
+            if self.AgeCat == "teen":
+                self.Age = randint(16,17)
+            elif self.AgeCat == "college":
+                self.Age = randint(18,22)
+            elif self.AgeCat == "twenties":
+                self.Age = randint(22,29)
             else:
-                sRandomDesc = self.MediumDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList)
-        elif iRand in range(3,6):
-        #medium desc 
-            sRandomDesc = self.MediumDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList)
+                self.Age = randint(30,50)
+
+        if NewFemTraits.BodyType:
+            self.BodyType = NewFemTraits.BodyType
         else:
-        #flowery desc if allowed
-            if bAllowLongDesc:
-                sRandomDesc = self.FloweryDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList)
-            else:
-                sRandomDesc = self.MediumDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList)
-               
-        return sRandomDesc
+            self.BodyType = choice(["slender","avg","curvy","plussize"])
+        
+        if NewFemTraits.HairStyle:
+            self.HairStyle = NewFemTraits.HairStyle
+        else:
+            self.HairStyle = choice(["long","short","curly"])
+        
+        if NewFemTraits.BustSize:
+            self.BustSize = NewFemTraits.BustSize
+        else:
+            self.BustSize = choice(["small","normal","large","huge"])
+
+        sDesc = "My name is " + self.FirstName + " " + self.LastName + ". "
+        sDesc += "I am a " + str(self.Age) + "-year-old " + self.RaceName + " " + self.Gender + ". "
+        sDesc += "I have " + self.HairColor + " hair, " + self.EyeColor + " eyes, and " + self.SkinColor + " skin. "
+        sDesc += "I am a " + self.BodyType + " woman "
+        sDesc += "with a " + str(self.BustSize) + " bust "
+        sDesc += "with " + self.NipColor + " nipples, "
+        sDesc += "and I keep my pubes " + self.PubeStyle + "!"
+        print(sDesc + "\n")
+
+for i in range(4):
+    TestFem = Woman()
+
+#A lover() object is a collection of attributes and body parts.
+#	- Attributes like:
+#		- Gender 
+#		- Race 
+#		- Age
+#			- General categories but also pick a specific year 
+#		- Hair color 
+#       - Eye color
+#       - Skin color
+#		- Bust size
+#       - Nipple color
+#		- Whether pubes are shaved or trimmed
+#   - Body parts are stored in a list. 
+#       - Example: [Hair,Eyes,Breasts,Back,Thighs,Vagina,Ass,Legs]
+#       - Or possibly sub-lists such as Chest, Genitalia and Backside
+#   - All body parts are automatically intialized with tag restrictions to make sure they are consistent 
+#   - Initialized body parts properties don't change when Reset is called 
+#   - Could have other attributes, such as a profession.
+class Lover():
+    pass
 
 class Face(BodyParts):
      def __init__(self):
@@ -1894,6 +1383,7 @@ class AssFemale(BodyParts):
                'tushy: cute,slang,sing'])
                
           self.AdjList(['ample: super,large',
+                        'apple-shaped: shape',
                         'bare: nude',
                         'big: size,large',
                         'big, fat: size,large,curvy,plussize',
@@ -1911,6 +1401,7 @@ class AssFemale(BodyParts):
                         'cute: cute,size,small',
                         'cute little: cute,size,small',
                         'dark: color,poc',
+                        'delightful: super',
                         'fat x4: plussize',
                         'firm: strong,texture',
                         'fuckable: horny',
@@ -1943,6 +1434,7 @@ class AssFemale(BodyParts):
                         'skinny: width,narrow,slender',
                         'slutty: horny',
                         'smooth: texture,hairless',
+                        'squeezable: super',
                         'stately: age,older',
                         'stinky: smelly',
                         'succulent: super,taste',
