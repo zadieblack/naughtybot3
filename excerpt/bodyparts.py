@@ -406,7 +406,17 @@ class Woman(Lover):
 #   - Initialized body parts properties don't change when Reset is called 
 #   - Could have other attributes, such as a profession.
 
-class Face(BodyParts):
+class MaleBodyParts(BodyParts):
+    def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
+          self.Gender = "male"
+
+class FemaleBodyParts(BodyParts):
+    def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
+          self.Gender = "female"
+
+class Face(FemaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
@@ -445,7 +455,7 @@ class Face(BodyParts):
                
           self.DefaultNoun('face')
           
-class BackFemale(BodyParts):
+class BackFemale(FemaleBodyParts):
      def __init__(self):
           super().__init__()
           
@@ -482,7 +492,7 @@ class BackFemale(BodyParts):
           self.DefaultNoun('back')
           self.DefaultAdj('curved')
           
-class Skin(BodyParts):
+class Skin(FemaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
@@ -534,7 +544,7 @@ class Skin(BodyParts):
           self.DefaultNoun('skin')
           self.IsPlural = False
           
-class Mouth(BodyParts):
+class Mouth(FemaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
@@ -563,7 +573,7 @@ class Mouth(BodyParts):
           self.DefaultAdj("insatiable")
           self.IsPlural = False
           
-class Lips(BodyParts):
+class Lips(FemaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
@@ -598,7 +608,7 @@ class Lips(BodyParts):
           self.DefaultNoun("lips")
           self.DefaultAdj("full")
           
-class Eyes(BodyParts):
+class Eyes(FemaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
@@ -635,7 +645,7 @@ class Eyes(BodyParts):
           self.DefaultNoun("eyes")
           self.DefaultAdj("bewitching")
           
-class Hips(BodyParts):
+class Hips(FemaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
@@ -661,7 +671,7 @@ class Hips(BodyParts):
           
           self.DefaultNoun("hips")
           
-class Hair(BodyParts):
+class Hair(FemaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
@@ -705,7 +715,7 @@ class Hair(BodyParts):
           self.DefaultNoun("hair")
           self.DefaultAdj("flowing")
           
-class Legs(BodyParts):
+class Legs(FemaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
@@ -756,7 +766,7 @@ class Legs(BodyParts):
           
           self.DefaultNoun("legs")
           
-class Thighs(BodyParts):
+class Thighs(FemaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
@@ -795,7 +805,7 @@ class Thighs(BodyParts):
           
           self.DefaultNoun("thighs")
           
-class Nipples(BodyParts):
+class Nipples(FemaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
@@ -852,7 +862,7 @@ class Nipples(BodyParts):
           self.DefaultNoun("nipples")
           self.DefaultAdj("erect")
 
-class Breasts(BodyParts):
+class Breasts(FemaleBodyParts):
     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None, bCupSize = False):
         super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials = bCupSize, NotList = NotList, TagLists = TagLists)
 
@@ -1058,7 +1068,7 @@ class Breasts(BodyParts):
         return super().RandomDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
      
           
-class Clitoris(BodyParts):
+class Clitoris(FemaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
 
@@ -1094,7 +1104,7 @@ class Clitoris(BodyParts):
           self.DefaultNoun("clit")
           self.IsPlural = False
 
-class VaginaInner(BodyParts):
+class VaginaInner(FemaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
 
@@ -1163,7 +1173,7 @@ class VaginaInner(BodyParts):
           self.DefaultNoun("vaginal canal")
           self.IsPlural = False
      
-class VaginaOuterLabia(BodyParts):
+class VaginaOuterLabia(FemaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
@@ -1219,7 +1229,7 @@ class VaginaOuterLabia(BodyParts):
                
           self.DefaultNoun("mons pubis")
 
-class VaginaInnerLabia(BodyParts):
+class VaginaInnerLabia(FemaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
 
@@ -1278,7 +1288,7 @@ class VaginaInnerLabia(BodyParts):
                               
           self.DefaultNoun("inner labia")
                
-class Vagina(BodyParts):
+class Vagina(FemaleBodyParts):
      InnerVag = []
      InnerLabia = []
      OuterLabia = []
@@ -1376,7 +1386,7 @@ class Vagina(BodyParts):
           self.InnerLabia = VaginaInnerLabia()
           self.Clitoris = Clitoris()
 
-class AnusFemale(BodyParts):
+class AnusFemale(FemaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
 
@@ -1442,7 +1452,7 @@ class AnusFemale(BodyParts):
           
           self.DefaultNoun("anus")
           
-class ButtocksFemale(BodyParts):
+class ButtocksFemale(FemaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
      
@@ -1501,7 +1511,7 @@ class ButtocksFemale(BodyParts):
           
           self.DefaultNoun("buttocks")
           
-class AssFemale(BodyParts):
+class AssFemale(FemaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
@@ -1603,7 +1613,7 @@ class AssFemale(BodyParts):
           
           self.DefaultNoun("ass")
           
-class BodyFemale(BodyParts):
+class BodyFemale(FemaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
@@ -2000,7 +2010,7 @@ class BodyFemale(BodyParts):
           
           return sHole
           
-class PenisHead(BodyParts):
+class PenisHead(MaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
@@ -2032,7 +2042,7 @@ class PenisHead(BodyParts):
           self.DefaultNoun("head")
           self.IsPlural = False
           
-class Testicles(BodyParts):
+class Testicles(MaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
 
@@ -2068,7 +2078,7 @@ class Testicles(BodyParts):
           
           self.DefaultNoun("testicles")
 
-class Penis(BodyParts):
+class Penis(MaleBodyParts):
      def BuildAPenis(self, NotList = []):
           sPenis = ""
           
@@ -2352,7 +2362,7 @@ class Penis(BodyParts):
           
           return super().RandomDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
      
-class Semen(BodyParts):
+class Semen(MaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
 
@@ -2413,7 +2423,7 @@ class Semen(BodyParts):
           self.DefaultNoun("semen")
           self.DefaultAdj("gooey")
           
-class ButtocksMale(BodyParts):
+class ButtocksMale(MaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
@@ -2448,7 +2458,7 @@ class ButtocksMale(BodyParts):
           
           self.DefaultNoun("buttocks")
           
-class AssMale(BodyParts):
+class AssMale(MaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
@@ -2493,7 +2503,7 @@ class AssMale(BodyParts):
           
           self.DefaultNoun("buttocks")
           
-class SkinMale(BodyParts):
+class SkinMale(MaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
@@ -2529,7 +2539,7 @@ class SkinMale(BodyParts):
           self.DefaultNoun("skin")
           self.DefaultAdj("rugged")
           
-class ShouldersMale(BodyParts):
+class ShouldersMale(MaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
@@ -2560,7 +2570,7 @@ class ShouldersMale(BodyParts):
           self.DefaultNoun("shoulders")
           self.DefaultAdj("broad")
           
-class MusclesMale(BodyParts):
+class MusclesMale(MaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
@@ -2601,7 +2611,7 @@ class MusclesMale(BodyParts):
           self.DefaultNoun("muscles")
           self.DefaultAdj("strapping")
 
-class NipplesMale(BodyParts):
+class NipplesMale(MaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
@@ -2641,7 +2651,7 @@ class NipplesMale(BodyParts):
           self.DefaultNoun("nipples")
           self.DefaultAdj("erect")
           
-class ChestMale(BodyParts):
+class ChestMale(MaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
@@ -2687,7 +2697,7 @@ class ChestMale(BodyParts):
           self.DefaultNoun("chest")
           self.DefaultAdj("broad")
           
-class ArmsMale(BodyParts):
+class ArmsMale(MaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
@@ -2721,7 +2731,7 @@ class ArmsMale(BodyParts):
           self.DefaultNoun("arms")
           self.DefaultAdj("muscular")
           
-class EyesMale(BodyParts):
+class EyesMale(MaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
@@ -2764,7 +2774,7 @@ class EyesMale(BodyParts):
           self.DefaultNoun("eyes")
           self.DefaultAdj("penetrating")
 
-class FacialHair(BodyParts):
+class FacialHair(MaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
@@ -2806,7 +2816,7 @@ class FacialHair(BodyParts):
           self.DefaultNoun("beard")
           self.DefaultAdj("glossy")
           
-class HairMale(BodyParts):
+class HairMale(MaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
@@ -2849,7 +2859,7 @@ class HairMale(BodyParts):
           self.DefaultNoun("hair")
           self.DefaultAdj("glossy")
           
-class LegsMale(BodyParts):
+class LegsMale(MaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
@@ -2887,7 +2897,7 @@ class LegsMale(BodyParts):
           self.DefaultNoun("legs")
           self.DefaultAdj("sinewy")
           
-class JawMale(BodyParts):
+class JawMale(MaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
@@ -2915,7 +2925,7 @@ class JawMale(BodyParts):
           self.DefaultNoun("jaw")
           self.DefaultAdj("chiseled")
           
-class BodyMale(BodyParts):     
+class BodyMale(MaleBodyParts):     
     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
         super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
