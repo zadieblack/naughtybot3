@@ -92,10 +92,10 @@ class Lover():
         self.SkinColor = choice(self.Race.SkinColor)
         self.NipColor = choice(self.Race.NipColor)
 
-MalePhysTraits      = namedtuple("MalePhysTraits",
-                                 "AgeCat Age HeightType BodyType HairStyle DickInches",
-                                 defaults = ["",0,"","","",0]
-                                )
+MalePhysTraits = namedtuple("MalePhysTraits",
+                            "AgeCat Age HeightType BodyType HairStyle HasFacialHair FacialHairStyle DickInches",
+                            defaults = ["",0,"","",False,"","",0]
+                           )
 
 class Man(Lover):
     def __init__(self, NewGenTraits = None, NewMaleTraits = None):
@@ -106,7 +106,48 @@ class Man(Lover):
         self.HeightType = ""
         self.BodyType = ""
         self.HairStyle = ""
+        self.HasFacialHair = False
+        self.FacialHairStyle = ""
         self.DickInches = 0
+
+        # Bodyparts
+        self.Arms = ArmsMale()
+        self.Ass = AssMale()
+        self.Body = BodyMale()
+        self.Chest = ChestMale()
+        self.Eyes = EyesMale()
+        self.FacialHair = FacialHair()
+        self.Hair = HairMale()
+        self.Jaw = JawMale()
+        self.Legs = LegsMale()
+        self.Muscles = MusclesMale()
+        self.Penis = Penis()
+        self.Shoulders = ShouldersMale()
+        self.Skin = SkinMale()
+
+        # Bodypart lists
+        self.BodyParts = [self.Arms,self.Ass,self.Ass.Anus,
+                          self.Ass.Buttocks,self.Body,self.Chest,
+                          self.Eyes,self.FacialHair,self.Hair,
+                          self.Jaw,self.Legs,self.Muscles,
+                          self.Penis,self.Penis.Head,self.Penis.Testicles,
+                          self.Shoulders,self.Skin,
+                         ]
+        self.HeadParts = [self.Eyes,self.FacialHair,self.Hair,
+                          self.Jaw,
+                         ]
+        self.ClothedParts = [self.Arms,self.Chest,self.Eyes,
+                             self.FacialHair,self.Hair,self.Jaw,
+                             self.Legs,self.Shoulders,self.Skin,
+                            ]
+        self.NakedDescParts = [self.Ass,self.Body,self.Chest,self.Legs,
+                               self.Penis,self.Shoulders,
+                              ]
+        self.NakedDescPartsInners = [self.Ass,self.Body,self.Chest,self.Legs,
+                                     self.Penis,self.Penis.Head,self.Penis.Testicles,
+                                     self.Shoulders,
+                                    ]
+        self.NaughtyParts = [self.Ass,self.Penis,self.Penis.Head,self.Penis.Testicles]
 
         global MalePhysTraits
 
@@ -150,6 +191,13 @@ class Man(Lover):
         else:
             self.HairStyle = choice(["shaved","bald","normal"])
 
+        self.HasFacialHair = NewMaleTraits.HasFacialHair 
+
+        if NewMaleTraits.FacialHairStyle:
+            self.FacialHairStyle = NewMaleTraits.FacialHairStyle
+        else:
+            self.FacialHairStyle = choice(["beard","goatee","moustache","shaved","stubble"])
+
         if NewMaleTraits.DickInches:
             self.DickInches = NewMaleTraits.DickInches
         else:
@@ -172,15 +220,15 @@ class Man(Lover):
         sDesc += "I have " + self.HairColor + " hair, " + self.EyeColor + " eyes, " + self.SkinColor + " skin, and my nipples are " + self.NipColor + ". "
         sDesc += "I am a " + self.HeightType + ", " + self.BodyType + " man. "
         sDesc += "I proudly sport a " + str(self.DickInches) + "-inch cock "
-        sDesc += "and I keep my pubes " + self.PubeStyle + "!"
+        sDesc += "and I keep my pubes " + self.PubeStyle + "! "
+        sDesc += "Some of my other notable physical characteristics are "
+        sDesc += "my " + choice(self.BodyParts).FloweryDescription() + " and "
+        sDesc += "my " + choice(self.BodyParts).FloweryDescription() + "."
         print(sDesc + "\n")
 
-#for i in range(4):
-#    TestMale = Man()
-
 FemPhysTraits = namedtuple("FemPhysTraits",
-                           "AgeCat Age BodyType BustSize HairStyle",
-                           defaults = ["",0,"","",""]
+                           "AgeCat Age BodyType BustSize HairStyle Virgin",
+                           defaults = ["",0,"","","", False]
                           )
 
 class Woman(Lover):
@@ -192,6 +240,53 @@ class Woman(Lover):
         self.BodyType = ""
         self.HairStyle = ""
         self.BustSize = ""
+        self.Virgin = False
+
+        self.Ass = AssFemale()
+        self.Back = BackFemale()
+        self.Body = BodyFemale()
+        self.Breasts = Breasts()
+        self.Eyes = Eyes()
+        self.Face = Face()
+        self.Hair = Hair()
+        self.Hips = Hips()
+        self.Legs = Legs()
+        self.Lips = Lips()
+        self.Mouth = Mouth()
+        self.Skin = Skin()
+        self.Thighs = Thighs()
+        self.Vagina = Vagina()
+
+        # Bodypart lists
+        self.BodyParts = [self.Ass,self.Ass.Anus,self.Ass.Buttocks,
+                          self.Back,self.Body,self.Breasts,
+                          self.Breasts.Nipples,self.Eyes,self.Face,
+                          self.Hair,self.Hips,self.Legs,
+                          self.Lips,self.Mouth,self.Skin,
+                          self.Thighs,self.Vagina,self.Vagina.Clitoris,
+                          self.Vagina.InnerLabia,self.Vagina.InnerVag,
+                          self.Vagina.OuterLabia,
+                         ]
+        self.HeadParts = [self.Eyes,self.Face,self.Hair,
+                          self.Lips,self.Mouth]
+        self.ClothedParts = [self.Breasts,self.Body,self.Eyes,
+                             self.Face,self.Hair,self.Hips,
+                             self.Legs,self.Lips,self.Mouth,
+                             self.Skin,
+                            ]
+        self.IntimateParts = [self.Ass,self.Back,self.Breasts,
+                              self.Breasts.Nipples,self.Hips,self.Legs,
+                              self.Thighs,self.Vagina,
+                             ]
+        self.IntimatePartsInners = [self.Ass,self.Ass.Anus,self.Back,
+                                    self.Breasts,self.Breasts.Nipples,self.Hips,
+                                    self.Legs,self.Thighs,self.Vagina,
+                                    self.Vagina.Clitoris,self.Vagina.InnerLabia,self.Vagina.InnerVag,
+                                    self.Vagina.OuterLabia,
+                                   ]
+        self.NaughtyParts = [self.Ass,self.Ass.Anus,self.Breasts,
+                             self.Breasts.Nipples,self.Vagina,self.Vagina.Clitoris,
+                             self.Vagina.InnerLabia,self.Vagina.InnerVag,self.Vagina.OuterLabia,]
 
         global FemPhysTraits
 
@@ -231,17 +326,27 @@ class Woman(Lover):
         else:
             self.BustSize = choice(["small","normal","large","huge"])
 
+        if NewFemTraits.Virgin:
+            self.Virgin = NewFemTraits.Virgin
+
         sDesc = "My name is " + self.FirstName + " " + self.LastName + ". "
         sDesc += "I am a " + str(self.Age) + "-year-old " + self.RaceName + " " + self.Gender + ". "
         sDesc += "I have " + self.HairColor + " hair, " + self.EyeColor + " eyes, and " + self.SkinColor + " skin. "
         sDesc += "I am a " + self.BodyType + " woman "
         sDesc += "with a " + str(self.BustSize) + " bust "
         sDesc += "with " + self.NipColor + " nipples, "
-        sDesc += "and I keep my pubes " + self.PubeStyle + "!"
+        sDesc += "and I keep my pubes " + self.PubeStyle + "! "
+        sDesc += "Some of my other notable physical characteristics are "
+        sDesc += "my " + choice(self.BodyParts).FloweryDescription() + " and "
+        sDesc += "my " + choice(self.BodyParts).FloweryDescription() + ". "
+        sDesc += "Don't tell anyone, but "
+        if self.Virgin:
+            sDesc += "I'm a virgin."
+        else:
+            sDesc += "I've lost my virginity."
         print(sDesc + "\n")
 
-for i in range(4):
-    TestFem = Woman()
+
 
 #A lover() object is a collection of attributes and body parts.
 #	- Attributes like:
@@ -3147,3 +3252,9 @@ class BodyMale(BodyParts):
             Parts.append(AllParts[x])
                
         return Parts
+
+
+for i in range(4):
+    TestMale = Man()
+for i in range(4):
+    TestFem = Woman()
