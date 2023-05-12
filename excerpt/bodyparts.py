@@ -78,10 +78,30 @@ class Lover():
 
         self.RaceName = self.Race.Name
 
+        TagLists = self._TagLists
+
+        # Handle race
+        if self.RaceName == "caucasian":
+            TagLists.adj_excl.append("poc")
+            TagLists.noun_excl.append("poc")
+        elif self.RaceName == "poc":
+            TagLists.adj_excl.append("cauc")
+            TagLists.noun_excl.append("cauc")
+
         if NewGenTraits.PubeStyle:
             self.PubeStyle = NewGenTraits.PubeStyle
         else:
             self.PubeStyle = choice(["hairy","shaved","trimmed"])
+
+        if self.PubeStyle == "hairy":
+            TagLists.adj_excl.append("shaved")
+            TagLists.adj_excl.append("trimmed")
+        elif self.PubeStyle == "trimmed":
+            TagLists.adj_excl.append("shaved")
+            TagLists.adj_excl.append("hairy")
+        elif self.PubeStyle == "shaved":
+            TagLists.adj_excl.append("trimmed")
+            TagLists.adj_excl.append("hairy")
 
         self.HairColor = choice(self.Race.HairColor)
         self.EyeColor = choice(self.Race.EyeColor)
@@ -89,8 +109,8 @@ class Lover():
         self.NipColor = choice(self.Race.NipColor)
 
 MalePhysTraits = namedtuple("MalePhysTraits",
-                            "AgeCat Age HeightType BodyType HairStyle HasFacialHair FacialHairStyle DickInches",
-                            defaults = ["",0,"","",False,"","",0]
+                            "AgeCat Age HeightType BodyType HairStyle HasFacialHair FacialHairStyle DickInches IsCircumcised",
+                            defaults = ["",0,"","",False,"","",0,None]
                            )
 
 class Man(Lover):
@@ -105,20 +125,13 @@ class Man(Lover):
         self.HasFacialHair = False
         self.FacialHairStyle = ""
         self.DickInches = 0
+        self.IsCircumcised = False
 
         TagLists = self._TagLists
 
         if NewMaleTraits is None or not isinstance(NewMaleTraits, MalePhysTraits):
             NewMaleTraits = MalePhysTraits()
         
-        # Handle race
-        if self.RaceName == "caucasian":
-            TagLists.adj_excl.append("poc")
-            TagLists.noun_excl.append("poc")
-        elif self.RaceName == "poc":
-            TagLists.adj_excl.append("cauc")
-            TagLists.noun_excl.append("cauc")
-
         # Handle age 
         if NewMaleTraits.AgeCat:
             self.AgeCat = NewMaleTraits.AgeCat
@@ -177,9 +190,12 @@ class Man(Lover):
         else:
             # Yes, we want to favor ridiculous-sized dicks. That
             # makes it funnier.
-            self.DickInches = choice([5, 5,
+            self.DickInches = choice([2,
+                                      3,
+                                      4,
+                                      5, 5,
                                       6, 6, 6, 6,
-                                      7, 7, 7, 7, 7, 7,
+                                      7, 7, 7, 7, 7, 
                                       8, 8, 8, 8, 8,
                                       9, 9, 9, 9,
                                       10,10,10,10,
@@ -189,10 +205,22 @@ class Man(Lover):
                                       14
                                      ])
 
-        if self.DickInches > 6:
-            TagLists.adj_excl.append("bigdick")
-        else:
+        if self.DickInches < 5:
             TagLists.adj_excl.append("smalldick")
+            TagLists.noun_excl.append("smalldick")
+        elif self.DickInches >= 7:
+            TagLists.adj_excl.append("bigdick")
+            TagLists.noun_excl.append("bigdick")
+        else:
+            TagLists.adj_excl.append("bigdick")
+            TagLists.adj_excl.append("smalldick")
+            TagLists.noun_excl.append("bigdick")
+            TagLists.noun_excl.append("smalldick")
+
+        if NewMaleTraits.IsCircumcised is None:
+            self.IsCircumcised = CoinFlip()
+        else:
+            self.IsCircumcised = NewMaleTraits.IsCircumcized
 
         # Bodyparts
         self.Arms = ArmsMale(TagLists = TagLists)
@@ -217,7 +245,12 @@ class Man(Lover):
         self.Legs = LegsMale(TagLists = TagLists)
         self.Muscles = MusclesMale(TagLists = TagLists)
 
-        self.Penis = Penis(TagLists = TagLists)
+        if self.IsCircumcised:
+            PenisTagLists = TagListParams(adj_excl = ["cut"] + TagLists.adj_excl)
+        else:
+            PenisTagLists = TagListParams(adj_excl = ["uncut"] + TagLists.adj_excl)
+
+        self.Penis = Penis(TagLists = PenisTagLists)
         self.Head = PenisHead(TagLists = TagLists)
         self.Testicles = Testicles(TagLists = TagLists)
 
@@ -248,22 +281,28 @@ class Man(Lover):
                                     ]
         self.NaughtyParts = [self.Ass,self.Penis,self.Penis.Head,self.Penis.Testicles]
 
+        sCut = ""
+        if self.IsCircumcised:
+            sCut = "circumcised"
+        else:
+            sCut = "uncircumcised"
+
         sDesc = "My name is " + self.FirstName + " " + self.LastName + ". "
         sDesc += "I am a " + str(self.Age) + "-year-old " + self.RaceName + " " + self.Gender + ". "
-        sDesc += "I have " + self.HairColor + " hair, " + self.EyeColor + " eyes, " + self.SkinColor + " skin, and my nipples are " + self.NipColor + ". "
         sDesc += "I am a " + self.HeightType + ", " + self.BodyType + " man. "
         sDesc += "I proudly sport a " + str(self.DickInches) + "-inch cock "
         sDesc += "and I keep my pubes " + self.PubeStyle + "! "
         sDesc += "Some of my other notable physical characteristics are "
+        sDesc += "my " + self.Eyes.FloweryDescription() + ", "
+        sDesc += "my " + self.Hair.FloweryDescription() + ", "
         sDesc += "my " + self.Body.FloweryDescription() + ", "
         sDesc += "my " + self.Skin.FloweryDescription() + ", "
-        sDesc += "my " + self.Eyes.FloweryDescription() + ", "
-        sDesc += "and my " + self.Hair.FloweryDescription() + ". "
+        sDesc += "and my " + sCut + " " + self.Penis.FloweryDescription() + "."
         print(sDesc + "\n")
 
 FemPhysTraits = namedtuple("FemPhysTraits",
-                           "AgeCat Age BodyType BustSize HairStyle Virgin",
-                           defaults = ["",0,"","","", False]
+                           "AgeCat Age BodyType BustSize HasFakeTits HairStyle IsVirgin",
+                           defaults = ["",0,"","",None,"", None]
                           )
 
 class Woman(Lover):
@@ -275,7 +314,10 @@ class Woman(Lover):
         self.BodyType = ""
         self.HairStyle = ""
         self.BustSize = ""
-        self.Virgin = False
+        self.HasFakeTits = False
+        self.IsVirgin = False
+
+        TagLists = self._TagLists
 
         if NewFemTraits is None or not isinstance(NewFemTraits, FemPhysTraits):
             NewFemTraits = FemPhysTraits()
@@ -283,9 +325,8 @@ class Woman(Lover):
         if NewFemTraits.AgeCat:
             self.AgeCat = NewFemTraits.AgeCat
         else:
-            self.AgeCat = choice(["teen","college","twenties","milf"])
+            self.AgeCat = choice(["teen","college","college","twenties","twenties","milf","milf"])
                 
-
         if NewFemTraits.Age:
             self.Age = NewFemTraits.Age
         else:
@@ -298,10 +339,20 @@ class Woman(Lover):
             else:
                 self.Age = randint(30,50)
 
+        if self.AgeCat in ["teen","college","twenties"]:
+            TagLists.adj_excl.append("older")
+        else:
+            TagLists.adj_excl.append("young")
+
         if NewFemTraits.BodyType:
             self.BodyType = NewFemTraits.BodyType
         else:
             self.BodyType = choice(["slender","avg","curvy","plussize"])
+
+        if self.BodyType in ["slender","avg"]:
+            TagLists.adj_excl.append("plussize")
+        elif self.BodyType in ["curvy","plussize"]:
+            TagLists.adj_excl.append("slender")
         
         if NewFemTraits.HairStyle:
             self.HairStyle = NewFemTraits.HairStyle
@@ -313,30 +364,70 @@ class Woman(Lover):
         else:
             self.BustSize = choice(["small","normal","large","huge"])
 
-        if NewFemTraits.Virgin:
-            self.Virgin = NewFemTraits.Virgin
+        if isinstance(NewFemTraits.HasFakeTits, bool):
+            self.HasFakeTits = NewFemTraits.HasFakeTits
+        else:
+            if self.BustSize in ["large","huge"]:
+                self.HasFakeTits = choice([False,False,True])
+            else:
+                self.HasFakeTits = False
 
-        self.Ass = AssFemale()
-        self.Anus = self.Ass.Anus 
-        self.Buttocks = self.Ass.Buttocks
-        self.Back = BackFemale()
-        self.Body = BodyFemale()
-        self.Breasts = Breasts()
-        self.Nipples = self.Breasts.Nipples
-        self.Eyes = Eyes()
-        self.Face = Face()
-        self.Hair = Hair()
-        self.Hips = Hips()
-        self.Legs = Legs()
-        self.Lips = Lips()
-        self.Mouth = Mouth()
-        self.Skin = Skin()
-        self.Thighs = Thighs()
-        self.Vagina = Vagina()
-        self.Clitoris = self.Vagina.Clitoris
-        self.InnerLabia = self.Vagina.InnerLabia
-        self.InnerVag = self.Vagina.InnerVag
-        self.OuterLabia = self.Vagina.OuterLabia
+        if isinstance(NewFemTraits.IsVirgin, bool):
+            self.IsVirgin = NewFemTraits.IsVirgin
+        else:
+            if self.AgeCat in ["college","twenties"]:
+                self.IsVirgin = choice([True,False,False,False])
+            elif self.AgeCat in ["teen"]:
+                self.IsVirgin = CoinFlip()
+            else:
+                self.IsVirgin = False
+
+        if not self.IsVirgin:
+            TagLists.adj_excl.append("virginal")
+            TagLists.adj_excl.append("tight")
+
+        self.Ass = AssFemale(TagLists = TagLists)
+        self.Anus = AnusFemale(TagLists = TagLists)
+        self.Buttocks = ButtocksFemale(TagLists = TagLists)
+        self.Back = BackFemale(TagLists = TagLists)
+        self.Body = BodyFemale(TagLists = TagLists)
+
+        BreastTagLists = None
+        if self.BustSize == "small":
+            BreastTagLists = TagListParams(adj_excl = ["bigtits"] + TagLists.adj_excl, noun_excl = ["bigtits"] + TagLists.noun_excl)
+        elif self.BustSize == "large":
+            BreastTagLists = TagListParams(adj_excl = ["smalltits"] + TagLists.adj_excl, noun_excl = ["smalltits"] + TagLists.noun_excl)
+        else:
+            BreastTagLists = TagListParams(adj_excl = TagLists.adj_excl, noun_excl = TagLists.noun_excl)
+
+        if not self.HasFakeTits:
+            BreastTagLists.adj_excl.append("fake")
+            BreastTagLists.noun_excl.append("fake")
+
+        self.Breasts = Breasts(TagLists = BreastTagLists)
+        self.Nipples = Nipples(TagLists = TagLists)
+        self.Eyes = Eyes(TagLists = TagLists)
+        self.Face = Face(TagLists = TagLists)
+        self.Hair = Hair(TagLists = TagLists)
+        self.Hips = Hips(TagLists = TagLists)
+        self.Legs = Legs(TagLists = TagLists)
+        self.Lips = Lips(TagLists = TagLists)
+        self.Mouth = Mouth(TagLists = TagLists)
+        self.Skin = Skin(TagLists = TagLists)
+        self.Thighs = Thighs(TagLists = TagLists)
+
+        if self.PubeStyle == "shaved":
+            VagTagLists = TagListParams(adj_excl = ["hairy","trimmed"] + TagLists.adj_excl, noun_excl = ["hairy","trimmed"])
+        elif self.PubeStyle == "hairy":
+            VagTagLists = TagListParams(adj_excl = ["shaved","trimmed"] + TagLists.adj_excl, noun_excl = ["shaved","trimmed"])
+        elif self.PubeStyle == "trimmed":
+            VagTagLists = TagListParams(adj_excl = ["shaved","hairy"] + TagLists.adj_excl, noun_excl = ["shaved","hairy"])
+
+        self.Vagina = Vagina(TagLists = VagTagLists)
+        self.Clitoris = Clitoris(TagLists = TagLists)
+        self.InnerLabia = VaginaInnerLabia(TagLists = TagLists)
+        self.InnerVagina = VaginaInner(TagLists = TagLists)
+        self.OuterLabia = VaginaOuterLabia(TagLists = TagLists)
 
         # Bodypart lists
         self.BodyParts = [self.Anus,self.Ass,self.Back,
@@ -344,9 +435,9 @@ class Woman(Lover):
                           self.Eyes,self.Face,self.Hair,
                           self.Hips,self.Legs,self.Lips,
                           self.Mouth,self.Nipples,self.Skin,
-                          self.Thighs,self.Vagina,self.Vagina.Clitoris,
-                          self.Vagina.InnerLabia,self.Vagina.InnerVag,
-                          self.Vagina.OuterLabia,
+                          self.Thighs,self.Vagina,self.Clitoris,
+                          self.InnerLabia,self.InnerVagina,
+                          self.OuterLabia,
                          ]
         self.HeadParts = [self.Eyes,self.Face,self.Hair,
                           self.Lips,self.Mouth]
@@ -362,29 +453,31 @@ class Woman(Lover):
         self.IntimatePartsInners = [self.Ass,self.Anus,self.Back,
                                     self.Breasts,self.Nipples,self.Hips,
                                     self.Legs,self.Thighs,self.Vagina,
-                                    self.Clitoris,self.InnerLabia,self.InnerVag,
+                                    self.Clitoris,self.InnerLabia,self.InnerVagina,
                                     self.Vagina.OuterLabia,
                                    ]
         self.NaughtyParts = [self.Ass,self.Anus,self.Breasts,
                              self.Nipples,self.Vagina,self.Clitoris,
-                             self.InnerLabia,self.InnerVag,self.OuterLabia,]
+                             self.InnerLabia,self.InnerVagina,self.OuterLabia,]
 
-
-        sDesc = "My name is " + self.FirstName + " " + self.LastName + ". "
-        sDesc += "I am a " + str(self.Age) + "-year-old " + self.RaceName + " " + self.Gender + ". "
-        sDesc += "I have " + self.HairColor + " hair, " + self.EyeColor + " eyes, and " + self.SkinColor + " skin. "
-        sDesc += "I am a " + self.BodyType + " woman "
-        sDesc += "with a " + str(self.BustSize) + " bust "
-        sDesc += "with " + self.NipColor + " nipples, "
-        sDesc += "and I keep my pubes " + self.PubeStyle + "! "
-        sDesc += "Some of my other notable physical characteristics are "
-        sDesc += "my " + choice(self.BodyParts).FloweryDescription() + " and "
-        sDesc += "my " + choice(self.BodyParts).FloweryDescription() + ". "
-        sDesc += "Don't tell anyone, but "
-        if self.Virgin:
-            sDesc += "I'm a virgin."
-        else:
-            sDesc += "I've lost my virginity."
+        sAge = "AgeCat: " + self.AgeCat
+        sRace = "Race: " + self.RaceName
+        sBodyType = "BodyType: " + self.BodyType
+        sBustSize = "BustSize: " + self.BustSize
+        sVirgin = "IsVirgin: " + str(self.IsVirgin)
+        sFakeTits = "HasFakeTits: " + str(self.HasFakeTits)
+        sPubeStyle = "PubeStyle: " + self.PubeStyle
+        sDesc = "[" + sAge.ljust(20) + sRace.ljust(20) + sBodyType.ljust(20) + sVirgin.ljust(20)  
+        sDesc += sBustSize.ljust(20) + sFakeTits.ljust(20) + sPubeStyle.ljust(19) + "]\n"
+        sDesc += "My name is " + self.FirstName + " " + self.LastName + ". "
+        sDesc += "I am a " + str(self.Age) + "-year-old woman. "
+        sDesc += "Some of my notable physical characteristics are "
+        sDesc += "my " + self.Eyes.FloweryDescription() + ", "
+        sDesc += "my " + self.Hair.FloweryDescription() + ", "
+        sDesc += "my " + self.Skin.FloweryDescription() + ", "
+        sDesc += "my " + self.Breasts.FloweryDescription() + " "
+        sDesc += "with " + self.Nipples.FloweryDescription() + ", "
+        sDesc += "and my " + self.Vagina.FloweryDescription() + ". "
         print(sDesc + "\n")
 
 #A lover() object is a collection of attributes and body parts.
@@ -456,8 +549,8 @@ class Face(FemaleBodyParts):
           self.DefaultNoun('face')
           
 class BackFemale(FemaleBodyParts):
-     def __init__(self):
-          super().__init__()
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
           self.NounList(['back x4:default,std,sing',
                          'spine:std,clinical,sing'])
@@ -869,109 +962,112 @@ class Breasts(FemaleBodyParts):
         self._bCupSize = bCupSize
           
         self.NounList(['boobies: silly,slang,cute,plur',
-                        'boobs x4: std,slang,plur',
-                        'bosoms x2: std,plur',
-                        'breasticles x2: silly,crude,slang,plur',
-                        'breasts x4: std,clinical,default,plur',
-                        'buds x2: cute,desc,small,young,plur',
-                        'bust: std,sing',
-                        'chest: std,sing',
-                        'coconuts: silly,slang,cute,plur',
-                        'dumplings: silly,cute,plur',
-                        'fake boobs: std,slang,fake,plur',
-                        'gazongas: silly,crude,slang,plur',
-                        'globes x2: silly,crude,desc,plur',
-                        'jugs: silly,crude,slang,plur',
-                        'knockers: silly,crude,slang,plur',
-                        'orbs x2: silly,desc,plur',
-                        'mammaries: silly,clinical,plur',
-                        'melons: large,silly,crude,desc,plur',
-                        'milk-balloons: large,silly,crude,desc,milk,plur',
-                        'mommy milkers: silly,crude,milk,plur',
-                        'mounds x2: desc,plur',
-                        'tatas: silly,crude,slang,cute,plur',
-                        'teats: std,clinical,desc,plur',
-                        'tiddies: silly,crude,slang,cute,plur',
-                        'titties x2: silly,crude,slang,cute,plur',
-                        'tits x3: std,crude,slang,plur',
-                        'udders: crude,slang,large,plur',
+                       'boobs x4: std,slang,plur',
+                       'bosoms x2: std,plur',
+                       'breasticles x2: silly,crude,slang,plur',
+                       'breasts x4: std,clinical,default,plur',
+                       'buds x2: cute,desc,smalltits,young,plur',
+                       'bust: std,sing',
+                       'chest: std,sing',
+                       'coconuts: silly,slang,bigtits,cute,plur',
+                       'dumplings: silly,cute,plur',
+                       'fake boobs: std,slang,bigtits,fake,plur',
+                       'gazongas: silly,crude,slang,plur',
+                       'globes x2: silly,crude,bigtits,desc,plur',
+                       'jugs: silly,crude,bigtits,slang,plur',
+                       'knockers: silly,crude,bigtits,slang,plur',
+                       'orbs x2: silly,bigtits,desc,plur',
+                       'mammaries: silly,clinical,plur',
+                       'melons: silly,bigtits,crude,desc,plur',
+                       'milk-balloons: bigtits,silly,crude,desc,milk,plur',
+                       'mommy milkers: silly,crude,bigtits,milk,plur',
+                       'mounds x2: smalltits,desc,plur',
+                       'tatas: silly,crude,slang,cute,plur',
+                       'teats: std,clinical,desc,plur',
+                       'tiddies: silly,crude,slang,cute,plur',
+                       'titties x2: silly,crude,slang,cute,plur',
+                       'tits x3: std,crude,slang,plur',
+                       'udders: crude,slang,bigtits,plur',
                     ])
                
         self.AdjList(['black: color,poc',
-                    'big: size,large',
-                    'bite-sized: size,small',
-                    'bouncy: movement',
-                    'bountiful: large',
-                    'bronzed: color',
-                    'brown: color,poc',
-                    'budding: small,young',
-                    'buxom: large',
-                    'chocolate: color,poc,taste',
-                    'chubby: large,plussize',
-                    'college girl: age,young',
-                    'creamy: color,cauc,taste',
-                    'dark: color,poc',
-                    'delicious: super,taste',
-                    'enchanting: super,attractive',
-                    'fair: color,cauc',
-                    'fake: fake,large',
-                    'fat x3: large,size,feel,plussize,shape',
-                    'flouncing: movement',
-                    'fuckable: large,horny',
-                    'full: large',
-                    'fulsome: large',
-                    'generous: super,large',
-                    'gentle: feel',
-                    'girlish: age,small,young',
-                    'glistening: wet',
-                    'glorious: super',
-                    'gorgeous: super',
-                    'grapefruit-sized: size,large',
-                    'heaving: movement',
-                    'heavy: large,feel',
-                    'impressive: super,large',
-                    'jiggling: movement',
-                    'juicy: large,super,feel,taste,horny',
-                    'luscious: taste,super',
-                    'lush: super',
-                    'luxuriant: large,super',
-                    'magnificent: large,super',
-                    'maternal: age,older',
-                    'mature: age,older',
-                    'MILF: age,older',
-                    'nubile: age,young',
-                    'oiled-up: wet',
-                    'pale: color,cauc,young',
-                    'pendulous: large,shape,older',
-                    'perky: shape,young',
-                    'pert: shape,',
-                    'petite: size,small,',
-                    'plentiful: large,super',
-                    'plump: large,feel,shape,',
-                    'proud: large,super,',
-                    'quivering: movement,',
-                    'ripe: feel,shape,young',
-                    'rosy: color,cauc,young',
-                    'round: shape',
-                    'sensual: poetic',
-                    'shapely: shape',
-                    'smooth: feel,young',
-                    'soft: feel',
-                    'statuesque: shape,large,older',
-                    'stunning: super',
-                    'succulent: super,taste',
-                    'suckable: taste,horny',
-                    'sumptuous: large,super',
-                    'supple: feel,young',
-                    'surgically-enhanced: large,shape,fake',
-                    'swaying: large,movement',
-                    'sweet: super',
-                    'swollen: size,large,shape',
-                    'teenage: age,young',
-                    'tender: feel',
-                    'titanic: large',
-                    'voluptuous: size,large',
-                    'youthful: age,young',
+                      'big: size,bigtits',
+                      'bite-sized: size,smalltits',
+                      'bouncy: movement',
+                      'bountiful: bigtits',
+                      'bronzed: color',
+                      'brown: color,poc',
+                      'budding: smalltits,young',
+                      'buxom: bigtits',
+                      'chocolate: color,poc,taste',
+                      'college girl: age,young',
+                      'creamy: color,cauc,taste',
+                      'dark: color,poc',
+                      'delicious: super,taste',
+                      'enchanting: super,attractive',
+                      'fair: color,cauc',
+                      'fake: fake,bigtits',
+                      'fat x3: bigtits,size,feel,plussize,shape',
+                      'flouncing: movement',
+                      'fuckable: bigtits,horny',
+                      'full: bigtits',
+                      'fulsome: bigtits',
+                      'generous: super,bigtits',
+                      'gentle: feel',
+                      'girlish: age,smalltits,young',
+                      'glistening: wet',
+                      'glorious: super',
+                      'gorgeous: super',
+                      'grapefruit-sized: size,bigtits',
+                      'heaving: movement',
+                      'heavy: bigtits,feel',
+                      'impressive: super,bigtits',
+                      'jiggling: movement',
+                      'juicy: bigtits,super,feel,taste,horny',
+                      'little: smalltits,size',
+                      'luscious: taste,super',
+                      'lush: super',
+                      'luxuriant: bigtits,super',
+                      'magnificent: bigtits,super',
+                      'maternal: age,older',
+                      'mature: age,older',
+                      'MILF: age,older',
+                      'nubile: age,young',
+                      'oiled-up: wet',
+                      'pale: color,cauc,young',
+                      'pendulous: bigtits,shape,older',
+                      'perky: shape,young',
+                      'pert: shape,',
+                      'petite: size,smalltits,',
+                      'plentiful: bigtits,super',
+                      'plump: bigtits,feel,shape,',
+                      'proud: bigtits,super,',
+                      'quivering: movement,',
+                      'ripe: feel,shape,young',
+                      'rosy: color,cauc,young',
+                      'round: shape',
+                      'sensual: poetic',
+                      'shapely: shape',
+                      'small: smalltits',
+                      'smooth: feel,young',
+                      'soft: feel',
+                      'statuesque: shape,bigtits,older',
+                      'stunning: super',
+                      'succulent: super,taste',
+                      'suckable: taste,horny',
+                      'sumptuous: bigtits,super',
+                      'supple: feel,young',
+                      'surgically-enhanced: bigtits,shape,fake',
+                      'swaying: bigtits,movement',
+                      'sweet: super',
+                      'swollen: size,bigtits,shape',
+                      'teenage: age,young',
+                      'tender: feel',
+                      'titanic: bigtits',
+                      'tiny: smalltits',
+                      'voluptuous: size,bigtits',
+                      'well-formed: shape',
+                      'youthful: age,young',
                      ])
           
         self.DefaultNoun("breasts")
@@ -1190,7 +1286,7 @@ class VaginaOuterLabia(FemaleBodyParts):
 
           self.AdjList(['bare: nude',
                         'dewy: wet',
-                        'downy: hairy,feel,young',
+                        'downy: hairy,feel',
                         'down-thatched: hairy,feel',
                         'dripping: wet',
                         'fat x2: size,large,shape',
@@ -1198,8 +1294,8 @@ class VaginaOuterLabia(FemaleBodyParts):
                         'flushed: arousal,color',
                         'fur-lined: hairy',
                         'girlish: young',
-                        'gleaming wet: wet',
-                        'glistening: wet',
+                        'gleaming wet: wet,shaved',
+                        'glistening: wet,shaved',
                         'hairless: hairless',
                         'honeyed: wet,taste',
                         'juicy: wet,taste,attractive',
@@ -1324,58 +1420,66 @@ class Vagina(FemaleBodyParts):
                          'womanhood: std,sing',
                         ])
                             
-          self.AdjList(['bare: nude',
-                         'cherry: young,virginal',
-                         'clenched: tight',
-                         'delightful: super',
-                         'dewy: wet',
-                         'down-thatched: hairy,young',
-                         'dripping: wet',
-                         'exposed: bare,horny',
-                         'fuckable: horny',
-                         'fur-lined: hairy',
-                         'girlish: young',
-                         'gleaming wet: wet',
-                         'glistening: wet',
-                         'gushing: wet',
-                         'hairless: hairless',
-                         'honeyed: taste',
-                         'horny: horny,arousal',
-                         'hungry: horny',
-                         'juicy: taste,super,horny',
-                         'leaky: wet,slutty',
-                         'lewd: horny',
-                         'lickable: taste,horny',
-                         'luscious: super,taste',
-                         'lush: super',
-                         'lustful: horny',
-                         'MILF: age,older,horny',
-                         'moist: wet',
-                         'naked: nude',
-                         'needful: horny',
-                         'peach-fuzzed: hairy,young',
-                         'puffy: shape,arousal',
-                         'shameless: horny',
-                         'silken: feel,texture',
-                         'slick: wet,feel,texture',
-                         'slutty: horny',
-                         'smooth: feel,hairless',
-                         'sopping: wet',
-                         'succulent: super,taste',
-                         'suckable: horny,taste',
-                         'supple: feel,hairless,young',
-                         'sweet: super',
-                         'swollen: arousal,shape,feel',
-                         'teenage: age,young',
-                         'tender: feel,cute',
-                         'tight x4: tight',
-                         'trim: hairy,cute',
-                         'unsullied: virginal',
-                         'velvet: feel',
-                         'virgin: virgin,age,young',
-                         'wanton: horny',
-                         'well-used: slutty',
-                         'willing: horny'])
+          self.AdjList(['bald: shaved',
+                        'bare: nude,hairless',
+                        'cherry: young,virginal',
+                        'clenched: tight',
+                        'delightful: super',
+                        'dewy: wet',
+                        'down-thatched: hairy,young',
+                        'dripping: wet',
+                        'exposed: bare,horny',
+                        'fluffy: hairy',
+                        'fuckable: horny',
+                        'fur-lined: hairy',
+                        'girlish: young',
+                        'gleaming wet: wet',
+                        'glistening: wet',
+                        'gushing: wet',
+                        'hairless: shaved',
+                        'honeyed: taste',
+                        'horny: horny,arousal',
+                        'hungry: horny',
+                        'juicy: taste,super,horny',
+                        'leaky: wet,slutty',
+                        'lewd: horny',
+                        'lickable: taste,horny',
+                        'luscious: super,taste',
+                        'lush: super',
+                        'lustful: horny',
+                        'MILF: age,older,horny',
+                        'moist: wet',
+                        'mouth-watering: horny',
+                        'naked: nude',
+                        'needful: horny',
+                        'peach-fuzzed: hairy,young',
+                        'puffy: shape,arousal',
+                        'shameless: horny',
+                        'shaved: shaved',
+                        'silken: feel,shaved,texture',
+                        'slick: wet,feel,texture',
+                        'slutty: horny',
+                        'smooth: feel,shaved',
+                        'smooth-shaven: shaved',
+                        'sopping: wet',
+                        'succulent: super,taste',
+                        'suckable: horny,taste',
+                        'supple: feel,shaved,young',
+                        'sweet: super',
+                        'swollen: arousal,shape,feel',
+                        'teenage: age,young',
+                        'tender: feel,cute',
+                        'tight x4: tight',
+                        'trim: trimmed,cute',
+                        'unsullied: virginal',
+                        'velvet: feel',
+                        'virgin: virginal,age,young',
+                        'wanton: horny',
+                        'well-groomed: trimmed',
+                        'well-trimmed: trimmed',
+                        'well-used: slutty',
+                        'willing: horny'
+                       ])
 
           # todo: Add "is wet" parameter
           
@@ -2118,7 +2222,7 @@ class Penis(MaleBodyParts):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
 
           self.NounList(['boner: silly,crude,hard,sing',
-                         'choad: crude,slang,small,sing',
+                         'choad: crude,slang,smalldick,sing',
                          'cock x3: std,default,slang,crude,sing',
                          'cock-meat: crude,sing',
                          'cocksicle: silly,crude,slang,sing',
@@ -2134,9 +2238,9 @@ class Penis(MaleBodyParts):
                          'love-gun: silly,slang,sing',
                          'meat: crude,slang,sing',
                          'member: std,clinical,sing',
-                         'monster: silly,hard,sing',
+                         'monster: silly,hard,bigdick,sing',
                          'organ: std,clinical,sing,',
-                         'pecker: std,slang,small',
+                         'pecker: std,slang,smalldick',
                          'penis x4: std,clinical,sing',
                          'phallus: std,sing',
                          'pole: desc,hard,sing',
@@ -2160,30 +2264,30 @@ class Penis(MaleBodyParts):
           self.AdjList(['bald: hairless',
                         'black: color,poc',
                         'beautiful: super',
-                        'beefy: large,taste',
+                        'beefy: bigdick,taste',
                         'bent: shape',
-                        'big x4: size,large',
-                        'broad x2: size,wide',
+                        'big x4: size,bigdick',
+                        'broad x2: width,wide',
                         'bulbous: shape',
-                        'bulging x2: hard,large,shape'
+                        'bulging x2: hard,bigdick,shape'
                         'burning: feel,warm',
-                        'carefully man-scaped: style',
+                        'carefully man-scaped: style,trimmed',
                         'circumcized: cut',
                         'crooked: shape',
                         'curved: shape',
                         'delicious: taste,horny,super',
                         'dripping: wet',
                         'engorged x2: hard',
-                        'enormous: size,large',
-                        'enormously erect: size,large,hard',
+                        'enormous: size,bigdick',
+                        'enormously erect: size,bigdick,hard',
                         'erect x2: hard',
-                        'fat x4: size,large',
+                        'fat x4: size,width,wide',
                         'fevered: feel,warm',
                         'feverish: feel,warm',
                         'firm x3: hard,feel',
                         'fully engorged: hard',
                         'fully erect: hard',
-                        'girthy x2: size,wide',
+                        'girthy x2: width,wide',
                         'glistening: wet,shiny',
                         'god-like: super',
                         'gorgeous: super,attractive',
@@ -2192,24 +2296,24 @@ class Penis(MaleBodyParts):
                         'hairless: hairless',
                         'hard x3: hard',
                         'hardened: hard',
-                        'heavy: large,feel',
-                        'hefty: large',
+                        'heavy: bigdick,feel',
+                        'hefty: bigdick',
                         'hooked: shape',
                         'hot x2: feel,attractive,super',
-                        'huge: size,large',
-                        'hugely erect: size,large,hard',
+                        'huge: size,bigdick',
+                        'hugely erect: size,bigdick,hard',
                         'impressive: super',
                         'knobby: shape',
                         'legendary: super',
-                        'lengthy: length,long',
-                        'long: length,long',
-                        'lovingly man-scaped: style',
+                        'lengthy: length,long,bigdick',
+                        'long: length,long,bigdick',
+                        'lovingly man-scaped: style,trimmed',
                         'lustful x2: horny',
                         'magnificient: super',
-                        'massive: size,large',
-                        'massively erect: size,large,hard',
+                        'massive: size,bigdick',
+                        'massively erect: size,bigdick,hard',
                         'meaty x3: feel,taste',
-                        'monstrous: super,large',
+                        'monstrous: super,bigdick',
                         'mouth-watering: horny',
                         'oily: wet,shiny',
                         'pierced: style',
@@ -2226,18 +2330,19 @@ class Penis(MaleBodyParts):
                         'rigid: hard',
                         'rock-hard: hard',
                         'serpentine: shape',
-                        'short: small,short',
+                        'short: smalldick,length,short',
                         'silken: feel',
+                        'skinny: width,narrow,smalldick',
                         'smooth x3: hairless,feel',
                         'stiff x2: hard',
                         'strong x3: super,horny',
-                        'stubby x5: small,short',
-                        'swollen x2: hard,large',
-                        'tall: length,long,large',
+                        'stubby x5: smalldick,short',
+                        'swollen x2: hard',
+                        'tall: length,long,bigdick',
                         'tasty x3: taste,horny',
-                        'thick x3: size,wide',
+                        'thick x3: width,wide',
                         'throbbing x2: feel,throb',
-                        'towering: length,long,size,large,long',
+                        'towering: length,long,size,bigdick',
                         'tumescent: hard',
                         'turgid x2:hard',
                         'uncircumcized: style, cut',
@@ -3301,8 +3406,8 @@ class BodyMale(MaleBodyParts):
         return Parts
 
 
-for i in range(6):
-    TestMale = Man()
+#for i in range(6):
+#    TestMale = Man()
 
-#for i in range(4):
-#    TestFem = Woman()
+for i in range(6):
+    TestFem = Woman()

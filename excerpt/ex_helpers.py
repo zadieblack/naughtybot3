@@ -9,20 +9,27 @@ import re
 
 BodyPartHistoryQ = HistoryQ(10)
 
-TagExclDict = {"poc": ["whitepers"],
-               "whitepers": ["poc"],
+TagExclDict = {"bigdick": ["smalldick"],
+               "cauc": ["poc"],
+               "hairy": ["shaved","trimmed"],
                "large": ["small"],
-               "small": ["large"],
+               "loose": ["tight"],
                "older": ["young"],
-               "young": ["older"],
-               "hairless": ["hairy"],
-               "hairy": ["hairless"],
-               "tall": ["short"],
+               "poc": ["cauc"],
+               "plussize": ["slender"],
+               "shaved": ["hairy","trimmed"],
                "short": ["tall"],
                "slender": ["plussize"],
-               "plussize": ["slender"],
+               "slutty": ["virginal"],
+               "small": ["large"],
+               "smalldick": ["bigdick"],
+               "tall": ["short"],
                "thick": ["thin"],
                "thin": ["thick"],
+               "tight": ["loose"],
+               "trimmed": ["hairy","shaved"],
+               "virginal": ["slutty"],
+               "young": ["older"],
               }
 
 #ReqTagList = []
