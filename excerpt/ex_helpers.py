@@ -129,6 +129,7 @@ class NounPhrase:
         self.ClearAdjList()
         self._Noun = ""
 
+        NounTagList = []
         if self.NounListLen() > 0 and self.AdjListLen() > 0:
             NounReqTagList = []
             if len(self._NounReqTagList) > 0:
@@ -165,9 +166,12 @@ class NounPhrase:
             if self._bVaryAdjTags and len(AdjReqTagList) == 0:
                 for tag in self.GetUnitTags(self._Noun):
                     if tag in TagExclDict:
-                        UsedTagList.append(tag)
+                        NounTagList.append(tag)
+                        #UsedTagList.append(tag)
                 #print("  Added any excluding noun tags for \"" + self._Noun + "\" to UsedTagList " + str(UsedTagList))
-
+            for nountag in NounTagList:
+                for tag in TagExclDict[nountag]:
+                    UsedTagList.append(tag)
             #self.ClearAdjList()
 
             # Parse extra adjs list, add any tags to the parent

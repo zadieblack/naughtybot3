@@ -8773,10 +8773,11 @@ class Generator121(ExGen):
              def __init__(self, iNumAdjs = 2, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
                   super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
-                  self.NounList(["wand x2:","tube","phallus","device","rod","prosthetic appendage","piston","cylinder","instrument"])
+                  self.NounList(["wand x2:","tube","phallus","device","rod","prosthetic","piston","cylinder","instrument"])
                
-                  self.AdjList(["mechanical","plastic","silicone","stainless steel",
+                  self.AdjList(["mechanical","plastic","silicone","stainless steel","black",
                                 "glass","pink","translucent","latex","gleaming steel",
+                                "rubber",
                                ])
           
                   self.DefaultNoun("lips")
@@ -8797,17 +8798,17 @@ class Generator121(ExGen):
         sTweet += "of pleasure.\n\n"
 
         sTweet += "Putting his hand on one of her " + self.FemBodyParts.Thighs.RandomDescription() + ", "
-        sTweet += "he " + WordList(["gently","carefully","delicately"]).GetWord() + " "
+        sTweet += "he " + WordList(["gently","carefully","delicately","boldly","confidently"]).GetWord() + " "
         sTweet += "inserted the " + Dildo.GetNoun() + " deep into "
         if CoinFlip():
-            sTweet += "her " + self.Woman.Vagina.FloweryDescription(NounExclTagList = ["silly"]) + ". "
+            sTweet += "her " + self.Woman.Vagina.FloweryDescription(NounExclTagList = ["silly"], NotList = ["deep"]) + ". "
         else:
             sTweet += "her " + self.Woman.InnerVagina.FloweryDescription(NotList = ["deep"], NounExclTagList = ["silly"]) + ". "
         
         Reactions = WordList()
         UsedRNos = []
         for i in range(3):
-            iRNo = randint(1,6)
+            iRNo = randint(1,7)
             while iRNo in UsedRNos:
                 iRNo = randint(1,5)
             if iRNo == 1:
@@ -8844,6 +8845,10 @@ class Generator121(ExGen):
                 sTxt += self.Woman.Vagina.GetNewNoun()
                 Reactions.AddWord(sTxt)
                 UsedRNos.append(iRNo)
+            elif iRNo == 7:
+                sTxt = "Her " + self.Woman.Back.RandomDescription(NotList = ['arch']) + " arched"
+                Reactions.AddWord(sTxt)
+                UsedRNos.append(iRNo)
 
         sReaction1 = Reactions.GetWord()
         sReaction2 = Reactions.GetWord(NotList = [sReaction1])
@@ -8854,7 +8859,7 @@ class Generator121(ExGen):
             sTweet += sReaction2 + ". "
         sTweet += sReaction3 + ".\n\n"
 
-        iRand = randint(6,7)
+        iRand = randint(1,10)
         if iRand < 4:
             sTweet += "\"D-d-doctor,\", she gasped in a shaky voice, "
             sTweet += "\"are you SURE "
@@ -8863,7 +8868,7 @@ class Generator121(ExGen):
         elif iRand < 6:
             sTweet += "\"As you can see, class,\" "
             sTweet += WordList(["the doctor","the professor"]).GetWord() + " said, "
-            sTweet += "\"" + WordList(["The patient","Our volunteer","The subject"]).GetWord() + " "
+            sTweet += "\"" + WordList(["The patient","Our volunteer","The subject", "This student volunteer"]).GetWord() + " "
             sTweet += "responds strongly to " + WordList(["the device","the stimulus","stimulation"]).GetWord() + ". "
             sTweet += "Now observe closely as I attempt an even higher setting.\""
         elif iRand < 8:
@@ -8874,12 +8879,26 @@ class Generator121(ExGen):
             sTweet += "He " + WordList(["unzipped his trousers","reached into his trousers","reached down"]).GetWord() + " and "
             sTweet += WordList(["pulled out","pulled out","fished out","exposed","took hold of"]).GetWord() + " "
             sTweet += "his " + self.Man.Penis.FloweryDescription(NounExclTagList = ["smalldick","silly","desc"], AdjExclTagList = ["smalldick","horny"]) + "."
-        elif iRand == 8:
+        elif iRand < 10:
+            sTweet += "The doctor " + WordList(["furrowed his brow","frowned","narrowed his eyes"]).GetWord() + " as he looked at "
+            sTweet += "the screen next to him. \"Oh dear,\" he said.\n\n"
+            sTweet += "\"Wh-wh-what's the diagnosis?\" gasped " + WordList(["the " + self.Woman.Desc, sHerName]).GetWord() + ".\n\n"
+            sTweet += "\"I'm afraid " 
+            sTweet += WordList(["my readings","these readings","my instruments","my scans","the scans"]).GetWord() + " "
+            sTweet += WordList(["show","clearly show","clearly indicate"]).GetWord() + " that "
+            sTweet += "you're a " + WordList(["filthy","filthy","nasty","nasty",
+                                              "dirty","dirty","cock-hungry",
+                                              "shameless","sleezy","brazen",
+                                              "wanton","trashy","lewd","skanky"]).GetWord() + " "
+            sTweet += "little " + WordList(["slut","slut","whore","hoe","cum-dumpster","cunt","spunk-bucket","slag","bitch"]).GetWord() + ",\" he said."
+        elif iRand == 10:
             sTweet += "\"Are you ready to talk, Fraulein?\" "
-            sTweet += "asked Doctor " + WordList(["Schmidt","Heinrich","Schulze","Von Blitzschlag",
-                                                  "Von Richter","Geizler","Zarhoff","Kleinerstein",
-                                                 ]).GetWord() + ".\n\n"
-            sTweet += "\"" + WordList(["Never!","I'll never talk!","You won't get a thing out of me!","I'd rather die, scum!","You'll have to kill me first!"]).GetWord() + "\" "
+            sTweet += "Doctor " + WordList(["Schmidt","Heinrich","Schulze","Von Blitzschlag",
+                                            "Von Richter","Geizler","Zarhoff","Kleinerstein",
+                                            "Heimbach","Durchdenwald","Kitzler",
+                                           ]).GetWord() + " "
+            sTweet += "asked the " + self.Woman.Desc + ".\n\n"
+            sTweet += "\"" + WordList(["Never!","I'll never talk!","You won't get a thing out of me!","I'd rather die, scum!","You'll have to kill me first!","Nein! I'll never talk!"]).GetWord() + "\" "
             sTweet += "she gasped defiantly.\n\n"
             sTweet += "\"Ve vill see about that,\" said the Doctor. \"'Zis is only "
             sTweet += "ze device's lowest setting. I think you vill find "
@@ -8910,11 +8929,7 @@ class Generator121(ExGen):
         # next to him. "Oh dear," he said.
         # "What-what's the diagnosis?" she gasped. 
         # "I'm afraid that you're a nasty little slut," he said.
-        # ---------------------------------------------------------
-        # "Is-is it working, doctor?" she gasped.
-        # "I'm afraid not," he said. "I'm going to have to resort
-        # to a more effective therapeutic tool." He unzipped his
-        # pants and pulled out his long, hairy dick.
+
 
         return sTweet
 
