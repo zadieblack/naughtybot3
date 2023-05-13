@@ -4,12 +4,13 @@
 
 import sys #, threading, traceback
 from random import *
+import re
 
 import excerpt.util as exutil
 import util as shutil
 import excerpt.locations as locations
 import misc as mainmisc
-import re
+import excerpt.ex_helpers as helpers
 
 from util import CoinFlip
 from util import WordList
@@ -53,8 +54,12 @@ PromoHistoryQ = shutil.HistoryQ(2)
      
 class ExGen(Generator):
      def GenerateTweet(self):
-          self.MaleBodyParts = bodyparts.BodyMale()
-          self.FemBodyParts = bodyparts.BodyFemale()
+          self.Man = bodyparts.Man()
+          self.Woman = bodyparts.Woman()
+
+          self.MaleBodyParts = self.Man.Body
+          self.FemBodyParts = self.Woman.Body
+
           self.Semen = bodyparts.Semen()
           
           self.Event = misc.Events()
@@ -8763,27 +8768,41 @@ class Generator121(ExGen):
         sTweet = ""
 
         sHerName = self.FemaleName.FirstName()
-        sDildo = WordList(["wand","wand","tube","phallus","device","rod","prosthetic appendage"]).GetWord()
 
+        class Dildo(helpers.NounPhrase):
+             def __init__(self, iNumAdjs = 2, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+                  super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
+          
+                  self.NounList(["wand x2:","tube","phallus","device","rod","prosthetic appendage","piston","cylinder","instrument"])
+               
+                  self.AdjList(["mechanical","plastic","silicone","stainless steel",
+                                "glass","pink","translucent","latex","gleaming steel",
+                               ])
+          
+                  self.DefaultNoun("lips")
+                  self.DefaultAdj("full")
+        #sDildo = WordList(["wand","wand","tube","phallus","device","rod","prosthetic appendage"]).GetWord()
+        Dildo = Dildo()
         sTweet += sHerName + " was lying on her back, "
         sTweet += WordList(["buck naked","totally nude","completely naked","stripped completely naked","nude and exposed","her body naked and exposed","nude and indecent"]).GetWord() + ", "
-        sTweet += "her " + self.FemBodyParts.Legs.RandomDescription() + " "
+        sTweet += "her " + self.Woman.Legs.RandomDescription() + " "
         sTweet += WordList(["spread","open","spread apart","spread-eagled","spread wide open","wide open"]).GetWord() + ". "
-        sTweet += "The " + self.MaleBodyParts.GetNewAdj() + " man "
+        sTweet += "The " + self.Man.Body.GetNewAdj() + " man "
         sTweet += "standing between them pressed "
-        sTweet += "a vibrating " + WordList(["mechanical","plastic","silicone","stainless steel","glass","pink","translucent","PVC","latex"]).GetWord() + " "
-        sTweet += sDildo + " "
-        sTweet += "against her " + self.FemBodyParts.Vagina.Clitoris.RandomDescription() + ". "
-        sTweet += "She suppressed " + WordList(["a low moan","a cry","a quavering wail","a loud moan","an ecstatic wail","an ecstatic moan","an involuntary cry"]).GetWord () + " "
+        #sTweet += "a vibrating " + WordList(["mechanical","plastic","silicone","stainless steel","glass","pink","translucent","PVC","latex"]).GetWord() + " "
+        #sTweet += sDildo + " "
+        sTweet += "a vibrating " + Dildo.MediumDescription() + " "
+        sTweet += "against her " + self.Woman.Clitoris.RandomDescription() + ". "
+        sTweet += "She " + WordList(["suppressed","barely suppressed","could not quite suppress","failed to suppress"]).GetWord() + " " + WordList(["a low moan","a cry","a quavering wail","a loud moan","an ecstatic wail","an ecstatic moan","an involuntary cry"]).GetWord () + " "
         sTweet += "of pleasure.\n\n"
 
         sTweet += "Putting his hand on one of her " + self.FemBodyParts.Thighs.RandomDescription() + ", "
         sTweet += "he " + WordList(["gently","carefully","delicately"]).GetWord() + " "
-        sTweet += "inserted the " + sDildo + " deep into "
+        sTweet += "inserted the " + Dildo.GetNoun() + " deep into "
         if CoinFlip():
-            sTweet += "her " + self.FemBodyParts.Vagina.FloweryDescription(NounExclTagList = ["silly"]) + ". "
+            sTweet += "her " + self.Woman.Vagina.FloweryDescription(NounExclTagList = ["silly"]) + ". "
         else:
-            sTweet += "her " + self.FemBodyParts.Vagina.InnerVag.FloweryDescription(NotList = ["deep"], NounExclTagList = ["silly"]) + ". "
+            sTweet += "her " + self.Woman.InnerVagina.FloweryDescription(NotList = ["deep"], NounExclTagList = ["silly"]) + ". "
         
         Reactions = WordList()
         UsedRNos = []
@@ -8792,9 +8811,9 @@ class Generator121(ExGen):
             while iRNo in UsedRNos:
                 iRNo = randint(1,5)
             if iRNo == 1:
-                sTxt = "Her " + self.FemBodyParts.Skin.RandomDescription() + " was "
-                sTxt += WordList(["beaded with","damp with","flushed and damp","dewy",]).GetWord() + " "
-                sTxt += "with " + WordList(["moisture","drops of moisture","sweat"]).GetWord()
+                sTxt = "Her " + self.Woman.Skin.RandomDescription() + " was "
+                sTxt += WordList(["beaded","damp","flushed and damp","glistening","dewy","slick","dripping"]).GetWord() + " "
+                sTxt += "with " + WordList(["moisture","drops of moisture","sweat","a sheen of moisture"]).GetWord()
                 Reactions.AddWord(sTxt)
                 UsedRNos.append(iRNo)
             elif iRNo == 2:
@@ -8804,25 +8823,25 @@ class Generator121(ExGen):
                 Reactions.AddWord(sTxt)
                 UsedRNos.append(iRNo)
             elif iRNo == 3:
-                sTxt = "Her " + self.FemBodyParts.Breasts.FloweryDescription(NounExclTagList = ["silly","crude"]) + " "
+                sTxt = "Her " + self.Woman.Breasts.FloweryDescription(NounExclTagList = ["silly","crude"]) + " "
                 sTxt += WordList(["were quivering","trembled","wobbled","were jiggling","quavered","were heaving","were quavering"]).GetWord()
                 Reactions.AddWord(sTxt)
                 UsedRNos.append(iRNo)
             elif iRNo == 4:
-                sTxt = "Her " + self.FemBodyParts.Breasts.Nipples.RandomDescription(AdjExclTagList = ["hard"]) + " "
+                sTxt = "Her " + self.Woman.Nipples.RandomDescription(AdjExclTagList = ["hard"]) + " "
                 sTxt += WordList(["stiffened","hardened","lengthened","were engorged","were firmly erect","hardened"]).GetWord()
                 Reactions.AddWord(sTxt)
                 UsedRNos.append(iRNo)
             elif iRNo == 5:
-                sTxt = "Her " + self.FemBodyParts.Ass.Anus.ShortDescription(NounReqTagList = ["sphincter"]) + " "
+                sTxt = "Her " + self.Woman.Anus.ShortDescription(NounReqTagList = ["sphincter"]) + " "
                 sTxt += WordList(["clenched","puckered","flexed",]).GetWord()
                 Reactions.AddWord(sTxt)
                 UsedRNos.append(iRNo)
             elif iRNo == 6:
                 sTxt = "Shameful " + WordList(["moisture","fluids","juices","wetness"]).GetWord() + " "
                 sTxt += WordList(["trickled from","beaded on","oozed from","gushed from","leaked from"]).GetWord() + " "
-                sTxt += "her " + self.FemBodyParts.Vagina.GetNewAdj() + " "
-                sTxt += self.FemBodyParts.Vagina.GetNewNoun()
+                sTxt += "her " + self.Woman.Vagina.GetNewAdj() + " "
+                sTxt += self.Woman.Vagina.GetNewNoun()
                 Reactions.AddWord(sTxt)
                 UsedRNos.append(iRNo)
 
@@ -8835,7 +8854,7 @@ class Generator121(ExGen):
             sTweet += sReaction2 + ". "
         sTweet += sReaction3 + ".\n\n"
 
-        iRand = randint(1,6)
+        iRand = randint(6,7)
         if iRand < 4:
             sTweet += "\"D-d-doctor,\", she gasped in a shaky voice, "
             sTweet += "\"are you SURE "
@@ -8847,7 +8866,15 @@ class Generator121(ExGen):
             sTweet += "\"" + WordList(["The patient","Our volunteer","The subject"]).GetWord() + " "
             sTweet += "responds strongly to " + WordList(["the device","the stimulus","stimulation"]).GetWord() + ". "
             sTweet += "Now observe closely as I attempt an even higher setting.\""
-        elif iRand == 6:
+        elif iRand < 8:
+            sTweet += "\"Is... is it working, doctor?\" she gasped.\n\n"
+            sTweet += "\"I'm afraid not,\" he said to the " + self.Woman.Desc + ". " 
+            sTweet += "\"I'm going to have "
+            sTweet += "to employ a more potent therapeutic tool.\" "
+            sTweet += "He " + WordList(["unzipped his trousers","reached into his trousers","reached down"]).GetWord() + " and "
+            sTweet += WordList(["pulled out","pulled out","fished out","exposed","took hold of"]).GetWord() + " "
+            sTweet += "his " + self.Man.Penis.FloweryDescription(NounExclTagList = ["smalldick","silly","desc"], AdjExclTagList = ["smalldick","horny"]) + "."
+        elif iRand == 8:
             sTweet += "\"Are you ready to talk, Fraulein?\" "
             sTweet += "asked Doctor " + WordList(["Schmidt","Heinrich","Schulze","Von Blitzschlag",
                                                   "Von Richter","Geizler","Zarhoff","Kleinerstein",
@@ -8878,6 +8905,16 @@ class Generator121(ExGen):
         # the man asked. 
         # "Yes, { Mr. Smith / Principal Bumstadt / Daddy }," Sandra
         # gasped.
+        # ---------------------------------------------------------
+        # The doctor furrowed his brow as he looked at the screen
+        # next to him. "Oh dear," he said.
+        # "What-what's the diagnosis?" she gasped. 
+        # "I'm afraid that you're a nasty little slut," he said.
+        # ---------------------------------------------------------
+        # "Is-is it working, doctor?" she gasped.
+        # "I'm afraid not," he said. "I'm going to have to resort
+        # to a more effective therapeutic tool." He unzipped his
+        # pants and pulled out his long, hairy dick.
 
         return sTweet
 

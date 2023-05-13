@@ -20,7 +20,7 @@ RaceCauc  = Race("caucasian",
 RacePOC   = Race("poc",
                  ["black","brown","dark",],
                  ["amber","brown","dark",],
-                 ["black","beige","bronze","bronzed","brown","chocolate","chocolate-colored","coffee-colored","dark","dark brown","honeyed","light brown","mocha","tan"],
+                 ["black","beige","bronze","bronzed","brown","chocolate","chocolate-colored","coffee-colored","dark","dark brown","ebony","honeyed","light brown","mocha","tan"],
                  ["brown","chocolate","chocolate-colored","coffee-colored","dark","dark brown","honeyed","light brown","mocha"]
                )
 RaceAsian = Race("asian",
@@ -287,28 +287,111 @@ class Man(Lover):
         else:
             sCut = "uncircumcised"
 
-        sDesc = "My name is " + self.FirstName + " " + self.LastName + ". "
-        sDesc += "I am a " + str(self.Age) + "-year-old " + self.RaceName + " " + self.Gender + ". "
-        sDesc += "I am a " + self.HeightType + ", " + self.BodyType + " man. "
-        sDesc += "I proudly sport a " + str(self.DickInches) + "-inch cock "
-        sDesc += "and I keep my pubes " + self.PubeStyle + "! "
-        sDesc += "Some of my other notable physical characteristics are "
-        sDesc += "my " + self.Eyes.FloweryDescription() + ", "
-        sDesc += "my " + self.Hair.FloweryDescription() + ", "
-        sDesc += "my " + self.Body.FloweryDescription() + ", "
-        sDesc += "my " + self.Skin.FloweryDescription() + ", "
-        sDesc += "and my " + sCut + " " + self.Penis.FloweryDescription() + "."
-        print(sDesc + "\n")
+        #sDesc = "My name is " + self.FirstName + " " + self.LastName + ". "
+        #sDesc += "I am a " + str(self.Age) + "-year-old " + self.RaceName + " " + self.Gender + ". "
+        #sDesc += "I am a " + self.HeightType + ", " + self.BodyType + " man. "
+        #sDesc += "I proudly sport a " + str(self.DickInches) + "-inch cock "
+        #sDesc += "and I keep my pubes " + self.PubeStyle + "! "
+        #sDesc += "Some of my other notable physical characteristics are "
+        #sDesc += "my " + self.Eyes.FloweryDescription() + ", "
+        #sDesc += "my " + self.Hair.FloweryDescription() + ", "
+        #sDesc += "my " + self.Body.FloweryDescription() + ", "
+        #sDesc += "my " + self.Skin.FloweryDescription() + ", "
+        #sDesc += "and my " + sCut + " " + self.Penis.FloweryDescription() + "."
+        #print(sDesc + "\n")
 
 FemPhysTraits = namedtuple("FemPhysTraits",
                            "AgeCat Age BodyType BustSize HasFakeTits HairStyle IsVirgin",
                            defaults = ["",0,"","",None,"", None]
                           )
 
+class Female(NounPhrase):
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
+          
+          self.NounList(['co-ed: std,college,sing',
+                         'college girl: std,college,sing',
+                         'divorcee: std,older,milf',
+                         'fashion model: prof,young,sing',
+                         'girl: std,young,sing',
+                         'housewife: older,milf,prof,sing',
+                         'mother: std,mother,older,sing',
+                         'nurse: prof,sing',
+                         'schoolgirl: prof,young,teen,sing',
+                         'secretary: prof,twenties,sing',
+                         'single mom: prof,mother,sing',
+                         'teacher: prof,older,sing',
+                         'teen girl: std,young,teen,sing',
+                         'teenage girl: std,young,teen,sing',
+                         'virgin: std,virginal,young,sing',
+                         'wife: std,relate,older,sing',
+                         'woman: default,std,sing',
+                         'young woman: default,young,std,sing',
+                        ])
+          
+          self.AdjList(['ample-bosomed: bigtits',
+                        'athletic: muscular,shape',
+                        'black: color,poc',
+                        'blonde: hair,cauc',
+                        'blue-eyed: eyes,cauc',
+                        'big-titted: bigtits',
+                        'bosomy: bigtits,shape',
+                        'bronzed: color,tan',
+                        'brown-eyed: eyes',
+                        'brunette: hair,cauc',
+                        'busty: bigtits',
+                        'buxom: bigtits',
+                        'chubby: plussize,shape',
+                        'curvaceous: curvy,shape',
+                        'dark-eyed: eyes',
+                        'doe-eyed: eyes',
+                        'ebony: color,poc',
+                        'fit: muscular',
+                        'flat-chested: smalltits',
+                        'full-figured: bigtits,shape',
+                        'horny: slutty',
+                        'hot: super',
+                        'innocent: virginal',
+                        'latina: poc',
+                        'kinky-haired: hair,poc',
+                        'leggy: longlegs,shape',
+                        'little: size,small,short',
+                        'matronly: age,older',
+                        'mature: age,older',
+                        'nubile: age,young',
+                        'pale: color,cauc',
+                        'plump: curvy,plussize,shape',
+                        'prim: virginal,super',
+                        'raven-haired: hair',
+                        'redhead: hair,cauc',
+                        'round-bottomed: curvy,shape',
+                        'Rubenesque: plussize,shape',
+                        'sexy: slutty,super',
+                        'shapely: curvy,bigtits,shape',
+                        'skinny: slender',
+                        'slender: slender',
+                        'slutty: slutty',
+                        'stacked: bigtits,shape',
+                        'statuesque: bigtits,shape',
+                        'tanned: color,cauc',
+                        'tight-bodied: slender',
+                        'twentysomething: twenties,young,age',
+                        'voluptuous: bigtits,curvy,shape',
+                        'waifish: slender',
+                        'white: color,cauc',
+                        'wide-bottomed: curvy,shape,bigbutt'
+                        'young: age,young',
+                       ])
+               
+          self.DefaultNoun('woman')
+          self.DefaultAdj('busty')
+
 class Woman(Lover):
     def __init__(self, NewGenTraits = None, NewFemTraits = None):
         super().__init__("female", NewGenTraits = NewGenTraits)
-
+        self.Noun = ""
+        self.Desc = ""
+        self.DescWords = ""
         self.AgeCat = ""
         self.Age = 0
         self.BodyType = ""
@@ -384,7 +467,7 @@ class Woman(Lover):
 
         if not self.IsVirgin:
             TagLists.adj_excl.append("virginal")
-            TagLists.adj_excl.append("tight")
+            #TagLists.adj_req.append("tight")
 
         self.Ass = AssFemale(TagLists = TagLists)
         self.Anus = AnusFemale(TagLists = TagLists)
@@ -397,8 +480,12 @@ class Woman(Lover):
             BreastTagLists = TagListParams(adj_excl = ["bigtits"] + TagLists.adj_excl, noun_excl = ["bigtits"] + TagLists.noun_excl)
         elif self.BustSize == "large":
             BreastTagLists = TagListParams(adj_excl = ["smalltits"] + TagLists.adj_excl, noun_excl = ["smalltits"] + TagLists.noun_excl)
+            TagLists.adj_excl.append("smalltits")
+            TagLists.noun_excl.append("smalltits")
         else:
             BreastTagLists = TagListParams(adj_excl = TagLists.adj_excl, noun_excl = TagLists.noun_excl)
+            TagLists.adj_excl.append("bigtits")
+            TagLists.noun_excl.append("bigtits")
 
         if not self.HasFakeTits:
             BreastTagLists.adj_excl.append("fake")
@@ -460,25 +547,30 @@ class Woman(Lover):
                              self.Nipples,self.Vagina,self.Clitoris,
                              self.InnerLabia,self.InnerVagina,self.OuterLabia,]
 
-        sAge = "AgeCat: " + self.AgeCat
-        sRace = "Race: " + self.RaceName
-        sBodyType = "BodyType: " + self.BodyType
-        sBustSize = "BustSize: " + self.BustSize
-        sVirgin = "IsVirgin: " + str(self.IsVirgin)
-        sFakeTits = "HasFakeTits: " + str(self.HasFakeTits)
-        sPubeStyle = "PubeStyle: " + self.PubeStyle
-        sDesc = "[" + sAge.ljust(20) + sRace.ljust(20) + sBodyType.ljust(20) + sVirgin.ljust(20)  
-        sDesc += sBustSize.ljust(20) + sFakeTits.ljust(20) + sPubeStyle.ljust(19) + "]\n"
-        sDesc += "My name is " + self.FirstName + " " + self.LastName + ". "
-        sDesc += "I am a " + str(self.Age) + "-year-old woman. "
-        sDesc += "Some of my notable physical characteristics are "
-        sDesc += "my " + self.Eyes.FloweryDescription() + ", "
-        sDesc += "my " + self.Hair.FloweryDescription() + ", "
-        sDesc += "my " + self.Skin.FloweryDescription() + ", "
-        sDesc += "my " + self.Breasts.FloweryDescription() + " "
-        sDesc += "with " + self.Nipples.FloweryDescription() + ", "
-        sDesc += "and my " + self.Vagina.FloweryDescription() + ". "
-        print(sDesc + "\n")
+        ThisWoman = Female(TagLists = TagLists)
+        self.Noun = ThisWoman.GetNoun()
+        self.Desc = ThisWoman.FloweryDescription()
+        self.DescWords = ThisWoman.GetDescWordList()
+
+        #sAge = "AgeCat: " + self.AgeCat
+        #sRace = "Race: " + self.RaceName
+        #sBodyType = "BodyType: " + self.BodyType
+        #sBustSize = "BustSize: " + self.BustSize
+        #sVirgin = "IsVirgin: " + str(self.IsVirgin)
+        #sFakeTits = "HasFakeTits: " + str(self.HasFakeTits)
+        #sPubeStyle = "PubeStyle: " + self.PubeStyle
+        #sDesc = "[" + sAge.ljust(20) + sRace.ljust(20) + sBodyType.ljust(20) + sVirgin.ljust(20)  
+        #sDesc += sBustSize.ljust(20) + sFakeTits.ljust(20) + sPubeStyle.ljust(19) + "]\n"
+        #sDesc += "My name is " + self.FirstName + " " + self.LastName + ". "
+        #sDesc += "I am a " + str(self.Age) + "-year-old woman. "
+        #sDesc += "Some of my notable physical characteristics are "
+        #sDesc += "my " + self.Eyes.FloweryDescription() + ", "
+        #sDesc += "my " + self.Hair.FloweryDescription() + ", "
+        #sDesc += "my " + self.Skin.FloweryDescription() + ", "
+        #sDesc += "my " + self.Breasts.FloweryDescription() + " "
+        #sDesc += "with " + self.Nipples.FloweryDescription() + ", "
+        #sDesc += "and my " + self.Vagina.FloweryDescription() + ". "
+        #print(sDesc + "\n")
 
 #A lover() object is a collection of attributes and body parts.
 #	- Attributes like:
@@ -839,7 +931,6 @@ class Legs(FemaleBodyParts):
                         'sinuous: attractive,flexible',
                         'smooth: feel,hairless',
                         'supple: feel,soft,young',
-                        'tall: length,long',
                         'tan: color',
                         'tanned: color',
                         'toned: fit',
@@ -1532,26 +1623,33 @@ class AnusFemale(FemaleBodyParts):
                         'flexing: action',
                         'forbidden: taboo',
                         'fuckable: horny',
-                        'gaping: large,gape',
+                        'gaping: large,gape,loose',
                         'knotted: small,tight,desc',
                         'lewd: horny',
                         'little x4: small,cute,',
-                        'loose: gape',
+                        'loose: gape,loose',
+                        'MILF: age,older,milf',
                         'nasty: taboo',
                         'naughty: horny',
                         'pert: cute,young',
+                        'perverted: slutty',
                         'puckered: action',
                         'rusty: desc,color',
+                        'shameful: taboo',
                         'shy: horny,taboo',
+                        'sinful: taboo',
                         'smooth: feel,desc',
                         'snug x2: small,tight,cute,'
                         'taboo: taboo',
+                        'teasing: horny',
                         'tender: feel,desc,cute',
                         'tight x4: small,tight',
                         'wanton: horny',
-                        'well-used: gape,old',
+                        'well-used: gape,older,slutty,loose',
                         'willing: horny',
                         'winking: small,tight,action',
+                        'virgin: virginal',
+                        'vulgar: taboo',
                        ])
           
           self.DefaultNoun("anus")
@@ -1575,6 +1673,7 @@ class ButtocksFemale(FemaleBodyParts):
                         'bubble-shaped: shape',
                         'chubby: shape,plussize,curvy',
                         'coffee-colored: color,poc',
+                        'college-girl: college,age,young',
                         'creamy: color,cauc',
                         'curvaceous: shape,curvy',
                         'curvy: curvy,shape',
@@ -1586,6 +1685,7 @@ class ButtocksFemale(FemaleBodyParts):
                         'juicy: wet,taste,horny',
                         'lickable: taste,horny',
                         'luscious: super,large',
+                        'MILF: age,older,milf',
                         'muscular: strong',
                         'pale: color,cauc',
                         'petite: size,small',
@@ -1605,6 +1705,7 @@ class ButtocksFemale(FemaleBodyParts):
                         'sweet: attractive',
                         'tender: feel',
                         'tanned: color',
+                        'teen: age,young,teen',
                         'thick x3: size,large,shape,curvy',
                         'tight: size,small',
                         'trim: size,small',
@@ -1648,6 +1749,7 @@ class AssFemale(FemaleBodyParts):
                         'bubble-shaped: shape,curvy',
                         'chubby: plussize',
                         'coffee-colored: color,poc',
+                        'college-girl: age,college',
                         'creamy: color,texture,cauc',
                         'curvaceous: curvy',
                         'curvy: curvy',
@@ -1701,6 +1803,7 @@ class AssFemale(FemaleBodyParts):
                         'tender: feel,super',
                         'tanned: color',
                         'taut: muscular',
+                        'teenage: teen,age,young',
                         'thick x2: width,wide,curvy',
                         'tight x2: size,small',
                         'toned: firm,texture',
