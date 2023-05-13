@@ -24,6 +24,7 @@ from gen import *
 from excerpt.locations import LocationSelector
 
 import excerpt.bodyparts as bodyparts
+from excerpt.ex_helpers import TagListParams
 import excerpt.verbs as verbs
 #import excerpt.misc as misc
 import excerpt.scenes as scenes
@@ -692,37 +693,50 @@ class Generator12(ExGen):
           sHisName = names.PlainNamesMale().FirstName()
           sHerName = self.FemaleName.FirstName()
           
-          sToE = WordList(self.TermsOfEndearment.GetWordList() + ['daddy']).GetWord(NotList = ["love","dear"])
-          
           FWBNotList = ['wife','roommate']
           #BodyNotList = ['naked','nude','leaky','body']
           Intros = WordList(["'s towel dropped to the floor, revealing her naked body",
                                    " opened her bathrobe to reveal her naked body",
                                    "'s " + clothes.Panties().RandomDescription(bAllowLongDesc = False) + " fell to the floor",
                                    " pushed the bed-sheets aside, revealing her naked body"])
-          Seductions = WordList(["This is all for you, " + sToE + ",",
-                                      "I'm so horny for your " + self.MaleBodyParts.Penis.ShortDescription() + ", " + sToE + ",",
-                                      "Let's play a little game, " + sToE + ",",
-                                      sToE.title() + ", do you think my little body is sexy?",
-                                      "Come to mommy, " + sToE + ",",
-                                      "I'm bored, " + sToE + ". Want to play a game with me?",
-                                      "Oops! Looks like I dropped something! I'll just bend over and pick that up,",
-                                      "I haven't had a man in such a long time, and I'm SO horny,",
-                                      "I've been waiting so long for this, " + sToE + ",",
-                                      "Mommy needs a little favor, " + sToE + ",",
-                                      "Could you do me a teensy favor and rub me down with baby oil?"
-                                     ])
+          Seductions = WordList(["Let's play a little game, baby,",
+                                 "Come to mommy, baby,",
+                                 "Come lay down so mommy can ride your face, baby,",
+                                 "Please tell me you eat ass,",
+                                 "Hope " + WordList(["you're hungry","you've got a big appetite"]).GetWord() + " because you're about to eat some " + self.Woman.Vagina.ShortDescription() + ",",
+                                 "There's a bottle on the bedside table. Why don't you grab it and start " + WordList(["oiling","lubing"]).GetWord() + " me up?",
+                                 "I'm so tense, baby. Why don't you come here and give me a little rub-down?",
+                                 WordList(["My husband","Daddy","My father","Mom"]).GetWord() + " won't be home " + WordList(["for hours","for two whole hours","for three whole hours","until morning","until tomorrow","for an hour","tonight"]).GetWord() + ", baby,",
+                                 "Do mommy a favor and bring her " + WordList(["the lube","the condoms and lube","that vibrator","the baby oil","the butt plug","the big pink dildo"]).GetWord() + ", would you?",
+                                 "I'm bored, baby. Let's play a game,",
+                                 "Oops! Looks like I dropped something! I'll just bend over and pick that up,",
+                                 "I haven't had a man in such a long time, and I'm SO horny,",
+                                 "Mommy needs a little favor, baby,",
+                                 "Mommy needs some protein, baby,",
+                                 "I need you to put a baby in my " + WordList(["ass","mouth","throat"]).GetWord() + ",",
+                                 "It doesn't count as sex if we only do anal,",
+                                 "I can't get pregnant if you only do my ass,",
+                                 "Mommy's thirsty for " + self.Semen.ShortDescription() + ", baby,",
+                                 "Want to test out my new birth control pills?",
+                                 "It's time for my nightly enema, baby,",
+                                 "Could you do me a teensy favor and rub me down with baby oil?",
+                                 "My " + self.Woman.Vagina.ShortDescription() + " is " + WordList(["leaking like a sieve","gushing like a fountain","wetter than an otter's pocket","wetter than a nun in a cucumber patch","gushing like a waterfall"]).GetWord() + ", baby,",
+                                 "I just " + WordList(["took out the butt-plug","gave myself an enema"]).GetWord() + " so my ass is ready to go,",
+                                ])
           
-          sTweet = sHerName + Intros.GetWord() + ". " 
+          if CoinFlip():
+            sTweet = sHerName + Intros.GetWord() + ". " 
+          else:
+            sTweet = "The " + self.Woman.Desc + Intros.GetWord() + ". " 
           
           sTweet += sHisName + "'s " + WordList(["heart skipped a beat","stomach did a somersault","jaw dropped"]).GetWord() + ". "
           sTweet += "She had " + self.FemBodyParts.DescRandomNakedParts(iNum = 5, sDivideChar = ';', 
                                                                         bPussy = True, bAss = True, bBoobs = True, bExplicit = False,
                                                                         bAllowLongDesc = True)  + ".\n\n"
-          sTweet += "\"" + Seductions.GetWord() + "\" she said in a " + WordList(['deep, sexy voice','husky voice','throaty growl','sexy growl']).GetWord() + ".\n\n"
+          sTweet += "\"" + Seductions.GetWord() + "\" she " + WordList(["said in a husky voice","purred","growled","said in a throaty voice"]).GetWord() + "."
 
           if CoinFlip():
-              sTweet += ". . .\n\n"
+              sTweet += "\n\n. . .\n\n"
               sTweet += "\"And that's how I wound up " 
               sTweet += WordList(["banging","fucking","going down on","having sex with",
                                   "getting a hand-job from","getting a blow-job from",
@@ -8782,7 +8796,6 @@ class Generator121(ExGen):
           
                   self.DefaultNoun("lips")
                   self.DefaultAdj("full")
-        #sDildo = WordList(["wand","wand","tube","phallus","device","rod","prosthetic appendage"]).GetWord()
         Dildo = Dildo()
         sTweet += sHerName + " was lying on her back, "
         sTweet += WordList(["buck naked","totally nude","completely naked","stripped completely naked","nude and exposed","her body naked and exposed","nude and indecent"]).GetWord() + ", "
@@ -8790,11 +8803,9 @@ class Generator121(ExGen):
         sTweet += WordList(["spread","open","spread apart","spread-eagled","spread wide open","wide open"]).GetWord() + ". "
         sTweet += "The " + self.Man.Body.GetNewAdj() + " man "
         sTweet += "standing between them pressed "
-        #sTweet += "a vibrating " + WordList(["mechanical","plastic","silicone","stainless steel","glass","pink","translucent","PVC","latex"]).GetWord() + " "
-        #sTweet += sDildo + " "
         sTweet += "a vibrating " + Dildo.MediumDescription() + " "
         sTweet += "against her " + self.Woman.Clitoris.RandomDescription() + ". "
-        sTweet += "She " + WordList(["suppressed","barely suppressed","could not quite suppress","failed to suppress"]).GetWord() + " " + WordList(["a low moan","a cry","a quavering wail","a loud moan","an ecstatic wail","an ecstatic moan","an involuntary cry"]).GetWord () + " "
+        sTweet += "She " + WordList(["suppressed","barely suppressed","could not quite suppress","failed to suppress"]).GetWord() + " " + WordList(["a low moan","a cry","a shuddering wail","a loud moan","an ecstatic wail","an ecstatic moan","an involuntary cry"]).GetWord () + " "
         sTweet += "of pleasure.\n\n"
 
         sTweet += "Putting his hand on one of her " + self.FemBodyParts.Thighs.RandomDescription() + ", "
@@ -8825,7 +8836,7 @@ class Generator121(ExGen):
                 UsedRNos.append(iRNo)
             elif iRNo == 3:
                 sTxt = "Her " + self.Woman.Breasts.FloweryDescription(NounExclTagList = ["silly","crude"]) + " "
-                sTxt += WordList(["were quivering","trembled","wobbled","were jiggling","quavered","were heaving","were quavering"]).GetWord()
+                sTxt += WordList(["were quivering","quivered","trembled","wobbled","were jiggling","quavered","were heaving","heaved","were quivering","trembled"]).GetWord()
                 Reactions.AddWord(sTxt)
                 UsedRNos.append(iRNo)
             elif iRNo == 4:
@@ -8882,14 +8893,15 @@ class Generator121(ExGen):
         elif iRand < 10:
             sTweet += "The doctor " + WordList(["furrowed his brow","frowned","narrowed his eyes"]).GetWord() + " as he looked at "
             sTweet += "the screen next to him. \"Oh dear,\" he said.\n\n"
-            sTweet += "\"Wh-wh-what's the diagnosis?\" gasped " + WordList(["the " + self.Woman.Desc, sHerName]).GetWord() + ".\n\n"
+            sTweet += "\"What is it doctor?\" gasped " + WordList(["the " + self.Woman.Desc, sHerName]).GetWord() + ".\n\n"
             sTweet += "\"I'm afraid " 
-            sTweet += WordList(["my readings","these readings","my instruments","my scans","the scans"]).GetWord() + " "
-            sTweet += WordList(["show","clearly show","clearly indicate"]).GetWord() + " that "
+            sTweet += WordList(["my readings","these readings","my instruments","my scans","the scans","my tests","these tests"]).GetWord() + " "
+            sTweet += WordList(["show","clearly show","clearly indicate","show conclusively","confirm"]).GetWord() + " that "
             sTweet += "you're a " + WordList(["filthy","filthy","nasty","nasty",
                                               "dirty","dirty","cock-hungry",
-                                              "shameless","sleezy","brazen",
-                                              "wanton","trashy","lewd","skanky"]).GetWord() + " "
+                                              "shameless","brazen","wanton",
+                                              "trashy","lewd","skanky","ghetto",
+                                              ]).GetWord() + " "
             sTweet += "little " + WordList(["slut","slut","whore","hoe","cum-dumpster","cunt","spunk-bucket","slag","bitch"]).GetWord() + ",\" he said."
         elif iRand == 10:
             sTweet += "\"Are you ready to talk, Fraulein?\" "

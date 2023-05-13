@@ -9,7 +9,7 @@ from util import *
 
 PATH = "excerpt/resources/"
 FONT = "NoticiaText-Regular.ttf"
-MAX_IMG_NUM = 88
+MAX_IMG_NUM = 94
 
 BGImgQ = HistoryQ(iQSize = 50)
 
@@ -130,6 +130,8 @@ def FormatText(sText, size, color):
           
      #print("FormatText() Final font size is " + str(iFontSize))
                
+     # The last number below sets the transparency for the overlay
+     # underneath the text 
      ImgTxt = Image.new('RGBA', (base_width, base_height), (0,0,0,95))
      draw = ImageDraw.Draw(ImgTxt)
 

@@ -222,13 +222,72 @@ class Man(Lover):
         else:
             self.IsCircumcised = NewMaleTraits.IsCircumcized
 
-        # Bodyparts
+        # ===============
+        # Setup bodyparts
+        # ===============
+
+        # Arms
         self.Arms = ArmsMale(TagLists = TagLists)
 
-        self.Ass = AssMale(TagLists = TagLists)
+        # Ass
+
         self.Anus = AnusFemale(TagLists = TagLists)
         self.Buttocks = ButtocksMale(TagLists = TagLists)
+        self.Ass = AssMale(TagLists = TagLists)
+        self.Ass.Anus = self.Anus
+        self.Ass.Buttocks = self.Buttocks
 
+        # Chest 
+
+        self.Chest = ChestMale(TagLists = TagLists)
+
+        # Eyes
+
+        self.Eyes = EyesMale(TagLists = TagLists)
+
+        # Facial Hair
+
+        self.FacialHair = FacialHair(TagLists = TagLists)
+
+        # Hair
+
+        self.Hair = HairMale(TagLists = TagLists)
+
+        # Jaw
+
+        self.Jaw = JawMale(TagLists = TagLists)
+
+        # Legs
+
+        self.Legs = LegsMale(TagLists = TagLists)
+
+        # Muscles
+
+        self.Muscles = MusclesMale(TagLists = TagLists)
+
+        # Penis
+
+        self.Head = PenisHead(TagLists = TagLists)
+        self.Testicles = Testicles(TagLists = TagLists)
+
+        if self.IsCircumcised:
+            PenisTagLists = TagListParams(adj_excl = ["cut"] + TagLists.adj_excl)
+        else:
+            PenisTagLists = TagListParams(adj_excl = ["uncut"] + TagLists.adj_excl)
+
+        self.Penis = Penis(TagLists = PenisTagLists)
+        self.Penis.Head = self.Head
+        self.Penis.Testicles = self.Testicles
+
+        # Shoulders
+
+        self.Shoulders = ShouldersMale(TagLists = TagLists)
+
+        # Skin
+
+        self.Skin = SkinMale(TagLists = TagLists)
+
+        # Body
         if self.HeightType == "short":
             BodyTagLists = TagListParams(adj_excl = ["tall"] + TagLists.adj_excl)
         elif self.HeightType == "tall":
@@ -237,25 +296,18 @@ class Man(Lover):
             BodyTagLists = TagListParams(adj_excl = ["short","tall"] + TagLists.adj_excl)
 
         self.Body = BodyMale(TagLists = BodyTagLists)
-        self.Chest = ChestMale(TagLists = TagLists)
-        self.Eyes = EyesMale(TagLists = TagLists)
-        self.FacialHair = FacialHair(TagLists = TagLists)
-        self.Hair = HairMale(TagLists = TagLists)
-        self.Jaw = JawMale(TagLists = TagLists)
-        self.Legs = LegsMale(TagLists = TagLists)
-        self.Muscles = MusclesMale(TagLists = TagLists)
-
-        if self.IsCircumcised:
-            PenisTagLists = TagListParams(adj_excl = ["cut"] + TagLists.adj_excl)
-        else:
-            PenisTagLists = TagListParams(adj_excl = ["uncut"] + TagLists.adj_excl)
-
-        self.Penis = Penis(TagLists = PenisTagLists)
-        self.Head = PenisHead(TagLists = TagLists)
-        self.Testicles = Testicles(TagLists = TagLists)
-
-        self.Shoulders = ShouldersMale(TagLists = TagLists)
-        self.Skin = SkinMale(TagLists = TagLists)
+        self.Body.FacialHair = self.FacialHair
+        self.Body.Hair = self.Hair
+        self.Body.Eyes = self.Eyes
+        self.Body.Jaw = self.Jaw
+        self.Body.Legs = self.Legs
+        self.Body.Skin = self.Skin
+        self.Body.Shoulders = self.Shoulders
+        self.Body.Muscles = self.Muscles
+        self.Body.Chest = self.Chest
+        self.Body.Arms = self.Arms
+        self.Body.Ass = self.Ass
+        self.Body.Penis = self.Penis
 
         # Bodypart lists
         self.BodyParts = [self.Arms,self.Ass,self.Ass.Anus,
@@ -309,70 +361,70 @@ class Female(NounPhrase):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
-          self.NounList(['bimbo: std,sing',
+          self.NounList(['bimbo: std,cauc,sing',
                          'co-ed: std,college,sing',
                          'college girl: std,college,sing',
                          'divorcee: std,older,milf',
                          'fashion model: prof,young,sing',
-                         'girl: std,young,sing',
+                         'girl x4: std,young,sing',
                          'housewife: older,milf,prof,sing',
-                         'mature woman: older,milf,std,sing',
+                         'mature woman x2: older,milf,std,sing',
                          'mom: std,mother,older,sing',
                          'nurse: prof,sing',
                          'schoolgirl: prof,young,teen,sing',
                          'secretary: prof,twenties,sing',
                          'single mom: prof,mother,sing',
                          'teacher: prof,older,sing',
-                         'teen girl: std,young,teen,sing',
-                         'teenage girl: std,young,teen,sing',
+                         'teen girl x2: std,young,teen,sing',
+                         'teenage girl x2: std,young,teen,sing',
                          'virgin: std,virginal,young,sing',
                          'wife: std,relate,older,sing',
-                         'woman: default,std,sing',
+                         'woman x4: default,std,sing',
                          'young woman: default,young,std,sing',
                         ])
           
           self.AdjList(['ample-bosomed: bigtits',
                         'athletic: muscular,shape',
-                        'black: color,poc',
-                        'blonde: hair,cauc',
-                        'blue-eyed: eyes,cauc',
+                        'black x3: color,poc',
+                        'blonde x2: hair,cauc',
+                        'blue-eyed x3: eyes,cauc',
                         'big-titted: bigtits',
                         'bosomy: bigtits,shape',
                         'bronzed: color,tan',
-                        'brown-eyed: eyes',
-                        'brunette: hair,cauc',
+                        'brown-eyed x2: eyes',
+                        'brunette x3: hair,cauc',
                         'busty: bigtits',
                         'buxom: bigtits',
                         'chubby: plussize,shape',
+                        'curly-haired: hair',
                         'curvaceous: curvy,shape',
                         'dark-eyed: eyes',
                         'doe-eyed: eyes',
-                        'ebony: color,poc',
+                        'ebony x3: color,poc',
                         'fit: muscular',
                         'flat-chested: smalltits',
                         'full-figured: bigtits,shape',
-                        'horny: slutty',
-                        'hot: super',
-                        'innocent: virginal',
-                        'latina: poc',
+                        'green-eyed: eyes,cauc',
+                        'latina x3: poc',
                         'kinky-haired: hair,poc',
                         'leggy: longlegs,shape',
                         'little: size,small,short',
                         'matronly: age,older',
-                        'mature: age,older',
-                        'nubile: age,young',
+                        'mature x3: age,older',
+                        'nubile x2: age,young',
                         'pale: color,cauc',
                         'plump: curvy,plussize,shape',
+                        'pig-tailed: hair',
+                        'pony-tailed: hair',
                         'prim: virginal,super',
                         'raven-haired: hair',
-                        'redhead: hair,cauc',
+                        'redheaded x3: hair,cauc',
                         'round-bottomed: curvy,shape',
                         'Rubenesque: plussize,shape',
-                        'sexy: slutty,super',
                         'shapely: curvy,bigtits,shape',
+                        'short-haired: hair',
                         'skinny: slender',
                         'slender: slender',
-                        'slutty: slutty',
                         'stacked: bigtits,shape',
                         'statuesque: bigtits,shape',
                         'tanned: color,cauc',
@@ -470,12 +522,22 @@ class Woman(Lover):
         if not self.IsVirgin:
             TagLists.adj_excl.append("virginal")
             #TagLists.adj_req.append("tight")
+        # ===============
+        # Setup bodyparts
+        # ===============
 
-        self.Ass = AssFemale(TagLists = TagLists)
+        # Ass
         self.Anus = AnusFemale(TagLists = TagLists)
         self.Buttocks = ButtocksFemale(TagLists = TagLists)
+        self.Ass = AssFemale(TagLists = TagLists)
+        self.Ass.Anus = self.Anus
+        self.Ass.Buttocks = self.Buttocks
+
+        # Back
         self.Back = BackFemale(TagLists = TagLists)
-        self.Body = BodyFemale(TagLists = TagLists)
+
+        # Breasts
+        self.Nipples = Nipples(TagLists = TagLists)
 
         BreastTagLists = None
         if self.BustSize == "small":
@@ -494,16 +556,40 @@ class Woman(Lover):
             BreastTagLists.noun_excl.append("fake")
 
         self.Breasts = Breasts(TagLists = BreastTagLists)
-        self.Nipples = Nipples(TagLists = TagLists)
+        self.Breasts.Nipples = self.Nipples
+
+        # Eyes
         self.Eyes = Eyes(TagLists = TagLists)
+
+        # Face
         self.Face = Face(TagLists = TagLists)
+
+        # Hair 
         self.Hair = Hair(TagLists = TagLists)
+
+        # Hips
         self.Hips = Hips(TagLists = TagLists)
+
+        # Legs
         self.Legs = Legs(TagLists = TagLists)
+
+        # Lips
         self.Lips = Lips(TagLists = TagLists)
+
+        # Mouth
         self.Mouth = Mouth(TagLists = TagLists)
+
+        # Skin
         self.Skin = Skin(TagLists = TagLists)
+
+        # Thighs
         self.Thighs = Thighs(TagLists = TagLists)
+
+        # Vagina
+        self.Clitoris = Clitoris(TagLists = TagLists)
+        self.InnerLabia = VaginaInnerLabia(TagLists = TagLists)
+        self.InnerVagina = VaginaInner(TagLists = TagLists)
+        self.OuterLabia = VaginaOuterLabia(TagLists = TagLists)
 
         if self.PubeStyle == "shaved":
             VagTagLists = TagListParams(adj_excl = ["hairy","trimmed"] + TagLists.adj_excl, noun_excl = ["hairy","trimmed"])
@@ -513,10 +599,26 @@ class Woman(Lover):
             VagTagLists = TagListParams(adj_excl = ["shaved","hairy"] + TagLists.adj_excl, noun_excl = ["shaved","hairy"])
 
         self.Vagina = Vagina(TagLists = VagTagLists)
-        self.Clitoris = Clitoris(TagLists = TagLists)
-        self.InnerLabia = VaginaInnerLabia(TagLists = TagLists)
-        self.InnerVagina = VaginaInner(TagLists = TagLists)
-        self.OuterLabia = VaginaOuterLabia(TagLists = TagLists)
+        self.Vagina.Clitoris = self.Clitoris
+        self.Vagina.InnerVag = self.InnerVagina
+        self.Vagina.OuterLabia = self.Vagina.OuterLabia
+        self.Vagina.InnerLabia = self.InnerLabia
+
+        # Body
+        self.Body = BodyFemale(TagLists = TagLists)
+        self.Body.Hair = self.Hair
+        self.Body.Face = self.Face
+        self.Body.Eyes = self.Eyes
+        self.Body.Lips = self.Lips
+        self.Body.Mouth = self.Mouth
+        self.Body.Hips = self.Hips
+        self.Body.Back = self.Back
+        self.Body.Legs = self.Legs
+        self.Body.Skin = self.Skin
+        self.Body.Thighs = self.Thighs
+        self.Body.Breasts = self.Breasts
+        self.Body.Vagina = self.Vagina
+        self.Body.Ass = self.Ass
 
         # Bodypart lists
         self.BodyParts = [self.Anus,self.Ass,self.Back,
@@ -554,15 +656,15 @@ class Woman(Lover):
         self.Desc = ThisWoman.FloweryDescription()
         self.DescWords = ThisWoman.GetDescWordList()
 
-        #sAge = "AgeCat: " + self.AgeCat
-        #sRace = "Race: " + self.RaceName
-        #sBodyType = "BodyType: " + self.BodyType
-        #sBustSize = "BustSize: " + self.BustSize
-        #sVirgin = "IsVirgin: " + str(self.IsVirgin)
-        #sFakeTits = "HasFakeTits: " + str(self.HasFakeTits)
-        #sPubeStyle = "PubeStyle: " + self.PubeStyle
-        #sDesc = "[" + sAge.ljust(20) + sRace.ljust(20) + sBodyType.ljust(20) + sVirgin.ljust(20)  
-        #sDesc += sBustSize.ljust(20) + sFakeTits.ljust(20) + sPubeStyle.ljust(19) + "]\n"
+        sAge = "AgeCat: " + self.AgeCat
+        sRace = "Race: " + self.RaceName
+        sBodyType = "BodyType: " + self.BodyType
+        sBustSize = "BustSize: " + self.BustSize
+        sVirgin = "IsVirgin: " + str(self.IsVirgin)
+        sFakeTits = "HasFakeTits: " + str(self.HasFakeTits)
+        sPubeStyle = "PubeStyle: " + self.PubeStyle
+        sDesc = "[" + sAge.ljust(20) + sRace.ljust(20) + sBodyType.ljust(20) + sVirgin.ljust(20)  
+        sDesc += sBustSize.ljust(20) + sFakeTits.ljust(20) + sPubeStyle.ljust(19) + "]\n"
         #sDesc += "My name is " + self.FirstName + " " + self.LastName + ". "
         #sDesc += "I am a " + str(self.Age) + "-year-old woman. "
         #sDesc += "Some of my notable physical characteristics are "
@@ -572,7 +674,7 @@ class Woman(Lover):
         #sDesc += "my " + self.Breasts.FloweryDescription() + " "
         #sDesc += "with " + self.Nipples.FloweryDescription() + ", "
         #sDesc += "and my " + self.Vagina.FloweryDescription() + ". "
-        #print(sDesc + "\n")
+        print(sDesc + "\n")
 
 #A lover() object is a collection of attributes and body parts.
 #	- Attributes like:
@@ -869,35 +971,77 @@ class Hair(FemaleBodyParts):
                          'pig-tails: style,young,plur',
                          ])
                
-          self.AdjList(['auburn: color,cauc',
+          self.AdjList(['abundant: volume,thickhair',
+                        'auburn: color,cauc',
+                        'beautiful: super',
+                        'big: volume,thickhair',
                         'black x2:color',
+                        'bleached: color',
                         'blonde x4: color,cauc',
+                        'brilliant: super,shiny',
                         'brunette x3: color,cauc',
+                        'bushy: shape,texture,style,unkempt,volume,thickhair',
+                        'coal-black: color',
+                        'coppery: color,cauc',
+                        'crimped: style,texture',
+                        'crinkly: feel,texture',
+                        'cropped: length,short',
                         'curly: shape,style',
-                        'braided: style',
+                        'cute: super',
+                        'braided: style,kempt,bound',
                         'dark x2: color',
                         'dyed-blue: color,fake',
                         'dyed-green: color,fake',
                         'dyed-pink: color,fake',
                         'dyed-purple: color,fake',
+                        'fair: color,cauc',
                         'fashionable: style',
+                        'fine: texture',
                         'flaming-red: color,cauc',
-                        'flowing: poetic'
-                        'glossy: feel',
+                        'flaxen: color,cauc',
+                        'flowing: texture,loose',
+                        'fluffy: texture,volume,thickhair',
+                        'frizzled: texture',
+                        'full-bodied: volume,thickhair',
+                        'glossy: feel,texture',
                         'golden: color,cauc',
                         'kinky black-girl: color,poc',
-                        'long: length',
-                        'luxuriant: feel',
-                        'pixie cut: style',
+                        'long: length,long',
+                        'lovely: super',
+                        'lustrous: shiny',
+                        'luxuriant: super,volume,thickhair',
+                        'natural: super',
+                        'permed: style,kempt',
+                        'pixie-cut: style',
                         'platinum blonde x2: color,cauc',
+                        'pulled-back: style,bound',
                         'punk blue: color,fake,style',
                         'red: color,cauc',
+                        'satiny: texture,shiny',
                         'sandy: color,cauc',
+                        'scarlet: color,cauc',
+                        'severe: style,bound',
+                        'short: length,short',
                         'silken: feel',
-                        'short: length',
+                        'silvery: color,older',
+                        'sleek: texture',
+                        'shoulder-length: length,medium',
+                        'soft: feel',
                         'straight: shape,style',
+                        'stringy: texture,volume,thinhair',
+                        'tangled: style,unkempt',
+                        'thick: volume,thickhair',
+                        'tightly-bound: style,bound',
+                        'unbound: style,loose',
+                        'unruly: style,unkempt',
                         'vibrant: poetic',
-                        'wavy: shape,style'])
+                        'waist-length: length,long',
+                        'wavy: shape,style',
+                        'white: color,older',
+                        'wild: style,unkempt,loose',
+                        'wiry: texture',
+                        'wispy: texture,volume,thinhair',
+                       ])
           
           self.DefaultNoun("hair")
           self.DefaultAdj("flowing")
@@ -1478,11 +1622,6 @@ class VaginaInnerLabia(FemaleBodyParts):
           self.DefaultNoun("inner labia")
                
 class Vagina(FemaleBodyParts):
-     InnerVag = []
-     InnerLabia = []
-     OuterLabia = []
-     Clitoris = []
-     
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
@@ -3522,5 +3661,5 @@ class BodyMale(MaleBodyParts):
 #for i in range(6):
 #    TestMale = Man()
 
-for i in range(6):
-    TestFem = Woman()
+#for i in range(6):
+#    TestFem = Woman()
