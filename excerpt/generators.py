@@ -5688,11 +5688,7 @@ class Generator89(ExGen):
             sLube = WordList(["butter", "KY jelly", "peanut butter", "yoghurt", "vaseline", 
                               "almond butter"]).GetWord()
             sTweet += "you lubed me up with " + sLube + " and "
-            sTweet += "fisted my " + WordList(["ass","asshole","butthole","anus","rectum",
-                                               "backdoor","starfish","corn-hole",
-                                               "bung-hole","sphincter","rear-orifice",
-                                               "starfish","pooper"
-                                               ]).GetWord()
+            sTweet += "fisted my " + self.Woman.Ass.RandomDescription(NounExclTagList = ["std","sphincter"])
         elif iRand == 2:
             sBinding = WordList(["put a ball-gag on you","handcuffed you",
                                  "put " + AddArticles(shmisc.Colors().GetWord()).lower() + " dress on you",
@@ -5744,18 +5740,19 @@ class Generator89(ExGen):
                                         "wife","ex-husband","ex-wife"]).GetWord()  
         elif iRand == 7:
             sTweet += "I " + WordList(["blew you","deep-throated you","sucked you off","gave you head",
-                                       "went down on you","sucked your cock","sucked your dick"
+                                       "went down on you","sucked your cock","sucked your dick",
+                                       "gave you sloppy head",
                                        ]).GetWord() + " "
             sTweet += WordList(["behind the bar","behind the club","in the men's room","in the dressing room",
                                 "behind the bleachers","in the janitor's closet","in the ladies room",
                                 "in the park","in the back of your van","in that parking garage",
-                                "in the men's locker room"]).GetWord()
+                                "in the men's locker room","under the table at the restaurant"]).GetWord()
         elif iRand == 8:
             sTweet += "you and " + names.PlainNamesMale().FirstName() + " "
-            sTweet += WordList(["spit-roasted me","double-penetrated me","took my virginity","double-stuffed my ass",
+            sTweet += WordList(["spit-roasted me","double-penetrated me","both took my virginity","double-stuffed my ass",
                                 "double-stuffed me in the hotel room","filmed me sucking your cocks",
-                                "took turns plowing me from behind","fucked me in the hot tub",
-                                "took me on the sex swing"
+                                "took turns plowing me from behind","took turns fucking me in the hot tub",
+                                "took me on the sex swing","took turns doing my ass","gave me the three-hole special",
                                 ]).GetWord()
 
         sTweet += "?\" asked " + sHerName + "."
@@ -8690,7 +8687,7 @@ class Generator118(ExGen):
 ## {the word 'lube'/'wrong hole'}."
 class Generator119(ExGen):
     def __init__(self):
-        super().__init__(ID = 119, Priority = GenPriority.Normal)
+        super().__init__(ID = 119, Priority = GenPriority.Normal, Disabled = True)
      
     def GenerateTweet(self):
         super().GenerateTweet()
