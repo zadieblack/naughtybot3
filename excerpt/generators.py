@@ -828,22 +828,56 @@ class Generator15(ExGen):
           sHerName = self.FemaleName.FirstName()
           sHisName = self.MaleName.FirstName()
 
-          sTweet = "'" + sHisName + ", my love, where are you?' called " + self.FemaleName.FirstName() + " from the next room.\n\n"
+          sTweet = "\"" + sHisName + ", " 
+          sTweet += WordList(["my dear","my sweet","dear","sweetie","honey"]).GetWord() + ", " 
+          sTweet += "where are you?\" called " + self.FemaleName.FirstName() + " from the next room.\n\n"
           sTweet += sHisName + " looked down at " + sHerName + ". "
           
-          iRand = randint(1,4)
+          iRand = randint(1,6)
           if iRand == 1:
-               sTweet += "Her head was cupped in his hands as she bobbed up and down on his " + self.MaleBodyParts.Penis.FloweryDescription() + ".\n\n"
+               sTweet += "She was bobbing up and down " 
+               sTweet += "on his " + self.Man.Penis.FloweryDescription(NounExclTagList = ["silly"]) + ".\n\n"
           elif iRand == 2:
-               iRandCockLen = randint(6,10)
-               sTweet += "Tears trailed from her " + self.FemBodyParts.Eyes.RandomDescription() + " as she took his " + self.MaleBodyParts.Penis.FloweryDescription(bAddLen = True) + " deep into her throat.\n\n"
+               sTweet += "Tears trailed from the " + self.Woman.Desc + "'s " 
+               sTweet += self.Woman.Eyes.RandomDescription() + " as she took " 
+               sTweet += "his " + self.Man.Penis.FloweryDescription(bAddLen = True, NounExclTagList = ["silly"]) + " " 
+               sTweet += "deep into her throat.\n\n"
           elif iRand == 3:
-               iRandCockLen = randint(6,10)
-               sTweet += "Her " + self.FemBodyParts.Lips.GetNewAdj() + " lips were wrapped around his " + self.MaleBodyParts.Penis.Head.RandomDescription(bAllowShortDesc = True) + " and she was gently massaging his " + self.MaleBodyParts.Penis.Testicles.ShortDescription() + ".\n\n"
-          else:
-               sTweet += "Her " + self.FemBodyParts.Eyes.RandomDescription() + " were locked on his as she wrapped her " + self.FemBodyParts.Mouth.RandomDescription() + " around his " + self.MaleBodyParts.Penis.FloweryDescription() + ".\n\n"
-          
-          sTweet += "'I'll just be a minute dear,' " + sHisName + " replied."
+               sTweet += "The " + self.Woman.Desc + "'s " 
+               sTweet += self.Woman.Lips.RandomDescription() + " " 
+               sTweet += "were wrapped around his " + self.Man.Penis.Head.RandomDescription(bAllowShortDesc = True) + " " 
+               sTweet += "and she was gently massaging his " + self.Man.Penis.Testicles.ShortDescription() + ".\n\n"
+          elif iRand == 4:
+               sTweet += "The " + self.Woman.Desc + "'s " 
+               sTweet += self.Woman.Eyes.RandomDescription() + " " 
+               sTweet += "were locked on his as "
+               sTweet += WordList(["she slurped noisily on","she sucked on","she sloppily slurped on","she fellated"]).GetWord() + " "
+               sTweet += "his " + self.Man.Penis.FloweryDescription(NounExclTagList = ["silly"]) + " " 
+               sTweet += "with her " + self.Woman.Mouth.RandomDescription() + ".\n\n"
+          elif iRand == 5:
+               sTweet += "The " + self.Woman.Desc + " gagged softly " 
+               sTweet += "as she took the " + self.Man.Head.FloweryDescription() + " "
+               sTweet += "of his " + self.Man.Penis.ShortDescription(NounExclTagList = ["silly"]) + " " 
+               sTweet += "deeper into her throat.\n\n"
+          elif iRand == 6:
+               sTweet += "His " + self.Man.Testicles.RandomDescription(bAllowLongDesc = False) + " "
+               if self.Man.Testicles.IsSing():
+                   sTweet += "was slapping against " 
+               else:
+                   sTweet += "were slapping against " 
+               sTweet += "her " + WordList(["delicate","pretty","pointed","dainty"]).GetWord() + " chin "
+               if self.Man.DickInches > 4:
+                   sTweet += "as she took the entire " + str(self.Man.DickInches) + "-inch " 
+                   sTweet += WordList(["length","shaft","stem"]).GetWord() + " " 
+                   sTweet += "of his " + self.Man.Penis.RandomDescription(NotList = ["length","shaft","stem"], NounExclTagList = ["silly"]) + " " 
+                   sTweet += "down her throat."
+               else:
+                   sTweet += "as she took his entire " + self.Man.Penis.RandomDescription(NounExclTagList = ["silly"]) + " "
+                   sTweet += "in her " + self.Woman.Mouth.RandomDescription() + "."
+               sTweet += "\n\n"
+
+          sTweet += "\"" + WordList(["I'm just about to come","I'll just be a minute","I'm just finishing something up","I'm almost there"]).GetWord() + ", my love,\" "
+          sTweet += sHisName + " replied."
 
           return sTweet
           
@@ -859,8 +893,31 @@ class Generator16(ExGen):
           super().GenerateTweet()
           sTweet = ""
           
-          sTweet = self.MaleName.FirstName() + " squeezed and sucked on " + self.FemaleName.FirstName() + "'s " + self.FemBodyParts.Breasts.RandomDescription() + " as he fingered her " + self.FemBodyParts.Vagina.Clitoris.RandomDescription() + " and " + self.VThrust.Past() + " her " + self.FemBodyParts.GetRandomHole() + ".\n\n"
-          sTweet += "'" + self.Exclamation.GetWord(bHappy = True).capitalize() + "' " + self.VMoan.Past() + " " + self.MaleName.FirstName() + ", stroking his " + self.MaleBodyParts.Penis.RandomDescription() + " as he looked on, 'I can't believe I'm watching my " + self.FemaleSO.GetWord() + " " + self.VSexWith.Present() + " " + AddArticles(self.WhiteCollar.GetPerson()) + "!'"
+          sTweet = "The " + self.Man.Man.RandomDescription(NotList = ["college","teen","boy"], NounExclTagList = ["prof","relate"]) + " squeezed and sucked " 
+          sTweet += "on " + self.Woman.FirstName + "'s " 
+          sTweet += self.Woman.Breasts.RandomDescription() + " " 
+          sTweet += "as he fingered her " + self.Woman.Vagina.Clitoris.RandomDescription() + " " 
+          sTweet += "and " + self.VThrust.Past() + " " 
+          sTweet += "her " + self.Woman.Body.GetRandomHole() + ".\n\n"
+          sTweet += "\"" + self.Exclamation.GetWord(bHappy = True).capitalize() + "\" " 
+          sTweet += self.VMoan.Past() + " " + self.MaleName.FirstName() + ", " 
+          
+          # Penis doesn't belong to main lover, so use a different one
+          sTweet += "stroking his " + self.MaleBodyParts.Penis.RandomDescription(bAllowLongDesc = False, NounExclTagList = ["silly"], AdjExclTagList = ["bigdick"]) + " " 
+          sTweet += "as he " + WordList(["looked on","watched them on his phone"]).GetWord() + ", " 
+          sTweet += "\"I can't believe I'm watching "
+          sTweet += "my wife " 
+          sTweet += self.VSexWith.Present() + " " 
+
+          iRand = randint(1,3)
+          if iRand == 1:
+                sTweet += AddArticles(self.WhiteCollar.GetPerson()) 
+          elif iRand == 2:
+                sTweet += AddArticles(self.BlueCollar.GetPerson()) 
+          elif iRand == 3:
+                sTweet += AddArticles(titmisc.NationNounMale().GetWord(NotList = ["American"]).capitalize())
+            
+          sTweet += "!\""
           
           return sTweet
           

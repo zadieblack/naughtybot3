@@ -366,18 +366,6 @@ class Man(Lover):
                                       14
                                      ])
 
-        if self.DickInches < 5:
-            LTagLists.adj_excl.append("smalldick")
-            LTagLists.noun_excl.append("smalldick")
-        elif self.DickInches >= 7:
-            LTagLists.adj_excl.append("bigdick")
-            LTagLists.noun_excl.append("bigdick")
-        else:
-            LTagLists.adj_excl.append("bigdick")
-            LTagLists.adj_excl.append("smalldick")
-            LTagLists.noun_excl.append("bigdick")
-            LTagLists.noun_excl.append("smalldick")
-
         if NewMaleTraits.IsCircumcised is None:
             self.IsCircumcised = CoinFlip()
         else:
@@ -431,10 +419,18 @@ class Man(Lover):
         self.Head = PenisHead(TagLists = LTagLists)
         self.Testicles = Testicles(TagLists = LTagLists)
 
-        if self.IsCircumcised:
-            PenisTagLists = exh.TagLists(adj_excl = ["cut"] + LTagLists.adj_excl)
+        PenisTagLists = None
+        if self.DickInches > 8:
+            PenisTagLists = exh.TagLists(adj_excl = ["smalldick"] + LTagLists.adj_excl,noun_excl = ["bigdick"])
+        elif self.DickInches > 5 and self.DickInches < 8:
+            PenisTagLists = exh.TagLists(adj_excl = ["bigdick","smalldick"] + LTagLists.adj_excl,noun_excl = ["bigdick","smalldick"])
         else:
-            PenisTagLists = exh.TagLists(adj_excl = ["uncut"] + LTagLists.adj_excl)
+            PenisTagLists = exh.TagLists(adj_excl = ["bigdick"] + LTagLists.adj_excl,noun_excl = ["smalldick"])
+
+        if self.IsCircumcised:
+            PenisTagLists.adj_excl.append("cut")
+        else:
+            PenisTagLists.adj_excl.append("uncut")
 
         self.Penis = Penis(TagLists = PenisTagLists)
         self.Penis.Head = self.Head
@@ -494,10 +490,10 @@ class Man(Lover):
                                     ]
         self.NaughtyParts = [self.Ass,self.Penis,self.Penis.Head,self.Penis.Testicles]
 
-        LMan = Male(TagLists = LTagLists)
-        self.Noun = LMan.GetNoun()
-        self.Desc = LMan.FloweryDescription()
-        self.DescWords = LMan.GetDescWordList()
+        self.Man = Male(TagLists = LTagLists)
+        self.Noun = self.Man.GetNoun()
+        self.Desc = self.Man.FloweryDescription()
+        self.DescWords = self.Man.GetDescWordList()
 
         sCut = ""
         if self.IsCircumcised:
@@ -514,7 +510,7 @@ class Man(Lover):
         sPubeStyle = "PubeStyle: " + self.PubeStyle
         sDesc = "[Gender: Male".ljust(20) + sAge.ljust(20) + sRace.ljust(20) + sHeightType.ljust(20) 
         sDesc += sBodyType.ljust(21) + sDickInches.ljust(20) + sCirc.ljust(20) 
-        sDesc += sPubeStyle.ljust(19) + "]\n"
+        sDesc += sPubeStyle.ljust(19) + "]"
         #sDesc = "My name is " + self.FirstName + " " + self.LastName + ". "
         #sDesc += "I am a " + str(self.Age) + "-year-old " + self.RaceName + " " + self.Gender + ". "
         #sDesc += "I am a " + self.HeightType + ", " + self.BodyType + " man. "
@@ -526,7 +522,7 @@ class Man(Lover):
         #sDesc += "my " + self.Body.FloweryDescription() + ", "
         #sDesc += "my " + self.Skin.FloweryDescription() + ", "
         #sDesc += "and my " + sCut + " " + self.Penis.FloweryDescription() + "."
-        print(sDesc + "\n")
+        print(sDesc)
 
 FemPhysTraits = namedtuple("FemPhysTraits",
                            "AgeCat Age BodyType BustSize HasFakeTits HairStyle IsVirgin",
@@ -543,6 +539,7 @@ class Female(NounPhrase):
                          'divorcee: std,older,milf',
                          'fashion model: prof,young,sing',
                          'girl x4: std,young,sing',
+                         'housemaid: prof,sing',
                          'housewife: older,milf,prof,sing',
                          'mature woman x2: older,milf,std,sing',
                          'mom: std,mother,older,sing',
@@ -827,10 +824,10 @@ class Woman(Lover):
                              self.Nipples,self.Vagina,self.Clitoris,
                              self.InnerLabia,self.InnerVagina,self.OuterLabia,]
 
-        ThisWoman = Female(TagLists = LTagLists)
-        self.Noun = ThisWoman.GetNoun()
-        self.Desc = ThisWoman.FloweryDescription()
-        self.DescWords = ThisWoman.GetDescWordList()
+        self.Woman = Female(TagLists = LTagLists)
+        self.Noun = self.Woman.GetNoun()
+        self.Desc = self.Woman.FloweryDescription()
+        self.DescWords = self.Woman.GetDescWordList()
 
         sAge = "AgeCat: " + self.AgeCat
         sRace = "Race: " + self.RaceName
@@ -840,7 +837,7 @@ class Woman(Lover):
         sFakeTits = "HasFakeTits: " + str(self.HasFakeTits)
         sPubeStyle = "PubeStyle: " + self.PubeStyle
         sDesc = "[Gender: Female".ljust(20) + sAge.ljust(20) + sRace.ljust(20) + sBodyType.ljust(20) 
-        sDesc += sVirgin.ljust(20) + sBustSize.ljust(20) + sFakeTits.ljust(20) + sPubeStyle.ljust(19) + "]\n"
+        sDesc += sVirgin.ljust(20) + sBustSize.ljust(20) + sFakeTits.ljust(20) + sPubeStyle.ljust(19) + "]"
         #sDesc += "My name is " + self.FirstName + " " + self.LastName + ". "
         #sDesc += "I am a " + str(self.Age) + "-year-old woman. "
         #sDesc += "Some of my notable physical characteristics are "
@@ -850,7 +847,7 @@ class Woman(Lover):
         #sDesc += "my " + self.Breasts.FloweryDescription() + " "
         #sDesc += "with " + self.Nipples.FloweryDescription() + ", "
         #sDesc += "and my " + self.Vagina.FloweryDescription() + ". "
-        print(sDesc + "\n")
+        print(sDesc)
 
 #A lover() object is a collection of attributes and body parts.
 #	- Attributes like:
@@ -2547,21 +2544,22 @@ class PenisHead(MaleBodyParts):
                          'tip x3: std, default,sing',
                         ])
                
-          self.AdjList(['broad',
-                        'brown',
-                        'bulging',
-                        'dripping',
-                        'engorged',
-                        'fat',
-                        'glistening',
-                        'pulsating',
-                        'purple',
-                        'red',
-                        'smooth',
-                        'swollen',
-                        'thick',
-                        'throbbing',
-                        'tumescent'])
+          self.AdjList(['broad: width,thick',
+                        'brown: color,poc',
+                        'bulging: shape',
+                        'dripping: wet',
+                        'engorged: aroused',
+                        'fat: shape',
+                        'glistening: shiny',
+                        'pulsating: motion',
+                        'purple: color',
+                        'red: color',
+                        'smooth: texture,feel',
+                        'swollen: thick, aroused',
+                        'thick: width,thick',
+                        'throbbing: motion',
+                        'tumescent: aroused'
+                       ])
           
           self.DefaultNoun("head")
           self.IsPlural = False
