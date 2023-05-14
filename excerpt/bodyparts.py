@@ -11,6 +11,42 @@ import excerpt.ex_helpers as exh
 from excerpt.ex_helpers import NounPhrase
 import names as names
 
+SkinColors = ["almond: color,asian",
+              "beige: color,male",
+              "black x4: color,poc",
+              "bronze: color,poc",
+              "bronzed: color,poc",
+              "brown: color,poc",
+              "chococlate: color,poc",
+              "chocolate-colored: color,poc",
+              "coffee-colored: color,poc",
+              "copper-skinned: color,poc",
+              "creamy: color,cauc,female",
+              "cream-colored: color,cauc,female",
+              "dark: color,poc",
+              "dark brown: color,poc",
+              "ebony: color,poc,female",
+              "fair: color,cauc,female",
+              "freckled: color,cauc",
+              "fresh pink: color,cauc,female",
+              "honeyed: color",
+              "light: color,cauc",
+              "light brown",
+              "mocha: color,poc",
+              "pale: color,cauc",
+              "pink: color,cauc",
+              "porcelain: color,cauc",
+              "rosy: color,cauc,female",
+              "tan: color,poc",
+              "tanned: color,cauc",
+              "sun-bronzed: color,cauc",
+              "sun-browned: color,cauc",
+              "sun-kissed: color,cauc",
+              "well-tanned:color,cauc",
+              "white: color,cauc",
+              "light brown","mocha","tan",
+             ]
+
 Race = namedtuple("Race", "Name HairColor EyeColor SkinColor NipColor")
 
 RaceCauc  = Race("caucasian",
@@ -33,7 +69,18 @@ RaceAsian = Race("asian",
                 )
 
 class BodyParts(exh.NounPhrase):
-    pass
+    def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
+
+          self.AddSkinColors = False 
+
+    def AdjList(self, NewAdjList):
+        if self.AddSkinColors:
+            for color in SkinColors:
+                NewAdjList.append(color)
+
+        NewAdjList.sort()
+        super().AdjList(NewAdjList)
 
 GenPhysTraits = namedtuple("GenPhysTraits",
                            "FirstName LastName Gender Race PubeStyle",
@@ -59,6 +106,11 @@ class Lover():
         
         # Set attributes if not blank, otherwise randomize
         self.Gender = Gender
+
+        if self.Gender == "female":
+            self._TagLists.adj_excl.append("male")
+        elif self.Gender == "male":
+            self._TagLists.adj_excl.append("female")
 
         if NewGenTraits.FirstName:
             self.FirstName = NewGenTraits.FirstName
@@ -833,6 +885,8 @@ class Face(FemaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
+          self.AddSkinColors = True
+
           self.NounList(['face x3: default,std,sing',
                          'features: poetic,plur'
                         ])
@@ -843,22 +897,22 @@ class Face(FemaleBodyParts):
                         'beautiful: super,attractive',
                         'cute: super,cute,attractive',
                         'delicate: cute',
-                        'dark: color',
+                        #'dark: color',
                         'elegant: older,attractive',
                         'excited: emotion,happy',
                         'expressive: emotion',
                         'gentle: attitude',
                         'gorgeous: super,attractive',
                         'flushed: arousal',
-                        'freckled: color,cauc',
+                        #'freckled: color,cauc',
                         'heart-shaped: shape',
                         'innocent: attitude,cute,young,virginal',
                         'lovely: super,attractive',
                         'oval: shape',
-                        'pale: color,cauc',
+                        #'pale: color,cauc',
                         'pretty: attractive',
                         'radiant: ',
-                        'rosy: color,young',
+                        #'rosy: color,young',
                         'round: shape',
                         'smiling: emotion,happy',
                         'startled: emotion',
@@ -872,6 +926,8 @@ class BackFemale(FemaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
+          self.AddSkinColors = True
+
           self.NounList(['back x4:default,std,sing',
                          'spine:std,clinical,sing'])
           
@@ -909,41 +965,42 @@ class Skin(FemaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
+          self.AddSkinColors = True
           self.NounList(['skin x4: default,std,sing',
                          'flesh: sing'
                         ])
                               
-          self.AdjList(['almond-colored: asian,color',
+          self.AdjList([#'almond-colored: asian,color',
                         'bare: nude',
-                        'brown: color,poc',
-                        'chocolate: color,taste,poc,',
-                        'chocolate-colored: color,poc,',
-                        'coffee-colored: color,poc',
-                        'creamy: texture,color,taste,cauc',
-                        'dark: color,poc',
+                        #'brown: color,poc',
+                        #'chocolate: color,taste,poc,',
+                        #'chocolate-colored: color,poc,',
+                        #'coffee-colored: color,poc',
+                        #'creamy: texture,color,taste,cauc',
+                        #'dark: color,poc',
                         'delicate: texture,cute',
                         'exposed: nude',
-                        'freckled: texture,cauc',
-                        'fresh pink: color,cauc',
+                        #'freckled: texture,cauc',
+                        #'fresh pink: color,cauc',
                         'gentle: feel,texture',
                         'gleaming: texture,shiny',
                         'glistening: wet,texture,shiny',
                         'glowing: texture',
                         'gossamer: feel,texture',
-                        'honeyed: color, taste,texture',
+                        #'honeyed: color, taste,texture',
                         'luscious: taste,super',
                         'lustrous x2: texture,shiny',
                         'naked: nude',
-                        'pale: color,cauc',
+                        #'pale: color,cauc',
                         'perfect: super',
-                        'pink: color,cauc,young',
-                        'porcelain: color,texture,cauc',
-                        'rosy: color,texture,cauc,young',
+                        #'pink: color,cauc,young',
+                        #'porcelain: color,texture,cauc',
+                        #'rosy: color,texture,cauc,young',
                         'silken: feel,texture',
                         'soft: feel,texture',
                         'smooth: feel,texture',
-                        'sun-browned: color',
-                        'sun-kissed: color',
+                        #'sun-browned: color',
+                        #'sun-kissed: color',
                         'supple: feel,young,texture',
                         'sweet: super,taste',
                         'tender: feel,cute',
@@ -1062,6 +1119,8 @@ class Hips(FemaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
+          self.AddSkinColors = True
+
           self.NounList(['hips: std,default,plur'])
                
           self.AdjList(['curvy: width,wide,shape,desc',
@@ -1174,6 +1233,8 @@ class Legs(FemaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
+          self.AddSkinColors = True
+
           self.NounList(['legs: std,default,plur'])
                
           self.AdjList(['athletic: fit',
@@ -1201,8 +1262,8 @@ class Legs(FemaleBodyParts):
                         'sinuous: attractive,flexible',
                         'smooth: feel,hairless',
                         'supple: feel,soft,young',
-                        'tan: color',
-                        'tanned: color',
+                        #'tan: color',
+                        #'tanned: color',
                         'toned: fit',
                         'sexy: attractive',
                         'shapely: fit',
@@ -1224,10 +1285,12 @@ class Thighs(FemaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
+          self.AddSkinColors = True
+
           self.NounList(['thighs: std,default,plur'])
                
           self.AdjList(['bare: nude',
-                        'bronzed: color,tan',
+                        #'bronzed: color,tan',
                         'chubby: curvy,chubby',
                         'comely: attractive, poetic',
                         'delectable: super,taste',
@@ -1237,10 +1300,10 @@ class Thighs(FemaleBodyParts):
                         'inviting: horny',
                         'luscious: super',
                         'nubile: young',
-                        'pale: color,cauc',
+                        #'pale: color,cauc',
                         'plump: curvy,chubby'
                         'powerful: fit,strong',
-                        'porcelain: color,cauc',
+                        #'porcelain: color,cauc',
                         'ripe: attractive',
                         'rounded: shape',
                         'sensual: attractive',
@@ -1249,7 +1312,7 @@ class Thighs(FemaleBodyParts):
                         'silken: feel',
                         'smooth: feel,hairless',
                         'soft: feel',
-                        'tanned: color,tan',
+                        #'tanned: color,tan',
                         'tender: feel',
                         'thick x2: large,chubby',
                         'un-sullied: young, virginal',
@@ -1273,11 +1336,11 @@ class Nipples(FemaleBodyParts):
                         'bared: nude',
                         'black: color, poc',
                         'blossoming: young',
-                        'brown: color,',
+                        'brown x3: color,',
                         'budding: cute',
                         'chocolate: color',
                         'dainty: size,small,cute',
-                        'dark: color,',
+                        'dark x3: color,',
                         'dusky: color',
                         'enormous: size,large',
                         'erect: arousal,',
@@ -1290,13 +1353,13 @@ class Nipples(FemaleBodyParts):
                         'petite: size,small,cute,',
                         'pert: arousal,cute',
                         'pierced: style',
-                        'pink: color,cauc',
+                        'pink x3: color,cauc',
                         'plump: size,large,feel',
                         'pokey: arousal',
                         'prominent: poetic',
                         'puffy: feel,',
                         'ripe: attractive',
-                        'rose-colored: color,cauc',
+                        'rose-colored x2: color,cauc',
                         'rosebud: color,cauc',
                         'sensitive: feel',
                         'shameless: horny',
@@ -1321,6 +1384,7 @@ class Breasts(FemaleBodyParts):
         super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials = bCupSize, NotList = NotList, TagLists = TagLists)
 
         self._bCupSize = bCupSize
+        self.AddSkinColors = True
           
         self.NounList(['boobies: silly,slang,cute,plur',
                        'boobs x4: std,slang,plur',
@@ -1351,22 +1415,22 @@ class Breasts(FemaleBodyParts):
                        'udders: crude,slang,bigtits,plur',
                     ])
                
-        self.AdjList(['black: color,poc',
+        self.AdjList([#'black: color,poc',
                       'big: size,bigtits',
                       'bite-sized: size,smalltits',
                       'bouncy: movement',
                       'bountiful: bigtits',
-                      'bronzed: color',
-                      'brown: color,poc',
+                      #'bronzed: color',
+                      #'brown: color,poc',
                       'budding: smalltits,young',
                       'buxom: bigtits',
-                      'chocolate: color,poc,taste',
+                      #'chocolate: color,poc,taste',
                       'college girl: age,young',
-                      'creamy: color,cauc,taste',
-                      'dark: color,poc',
+                      #'creamy: color,cauc,taste',
+                      #'dark: color,poc',
                       'delicious: super,taste',
                       'enchanting: super,attractive',
-                      'fair: color,cauc',
+                      #'fair: color,cauc',
                       'fake: fake,bigtits',
                       'fat x3: bigtits,size,feel,plussize,shape',
                       'flouncing: movement',
@@ -1395,7 +1459,7 @@ class Breasts(FemaleBodyParts):
                       'MILF: age,older',
                       'nubile: age,young',
                       'oiled-up: wet',
-                      'pale: color,cauc,young',
+                      #'pale: color,cauc,young',
                       'pendulous: bigtits,shape,older',
                       'perky: shape,young',
                       'pert: shape,',
@@ -1405,7 +1469,7 @@ class Breasts(FemaleBodyParts):
                       'proud: bigtits,super,',
                       'quivering: movement,',
                       'ripe: feel,shape,young',
-                      'rosy: color,cauc,young',
+                      #'rosy: color,cauc,young',
                       'round: shape',
                       'sensual: poetic',
                       'shapely: shape',
@@ -1478,13 +1542,6 @@ class Breasts(FemaleBodyParts):
         if bCupSize and not self._bCupSize:
             self.AllowCupSize(bCupSize = bCupSize)
 
-        #if bCupSize:
-        #    if ExtraAdjList is None:
-        #        ExtraAdjList = []
-
-        #    ExtraAdjList.append(self.CupBuilder(NotList = NotList))
-            #print("  Selected cup size is " + ExtraAdjList[0])
-
         return super().ShortDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList)
           
     def MediumDescription(self, ExtraAdjList = None, NotList = None, bCupSize = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
@@ -1493,13 +1550,6 @@ class Breasts(FemaleBodyParts):
 
         if bCupSize and not self._bCupSize:
             self.AllowCupSize(bCupSize = bCupSize)
-
-        #if bCupSize:
-        #    if ExtraAdjList is None:
-        #        ExtraAdjList = []
-
-        #    ExtraAdjList.append(self.CupBuilder(NotList = NotList))
-        #    #print("  Selected cup size is " + ExtraAdjList[0])
                
         return super().MediumDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
           
@@ -1509,13 +1559,6 @@ class Breasts(FemaleBodyParts):
 
         if bCupSize and not self._bCupSize:
             self.AllowCupSize(bCupSize = bCupSize)
-
-        #if bCupSize:
-        #    if ExtraAdjList is None:
-        #        ExtraAdjList = []
-
-        #    ExtraAdjList.append(self.CupBuilder(NotList = NotList))
-        #    #print("  Selected cup size is " + ExtraAdjList[0])
           
         return super().FloweryDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
           
@@ -1928,6 +1971,8 @@ class ButtocksFemale(FemaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
      
+          self.AddSkinColors = True
+
           self.NounList(['buns: std,plur',
                           'butt-cheeks: std,plur',
                           'buttocks: std,clinical,plur',
@@ -1936,32 +1981,32 @@ class ButtocksFemale(FemaleBodyParts):
                
           self.AdjList(['ample: large,curvy',
                         'big: size,large',
-                        'black: color,poc',
-                        'bronzed: color',
-                        'brown: color,poc',
+                        #'black: color,poc',
+                        #'bronzed: color',
+                        #'brown: color,poc',
                         'bubble-butt: shape',
                         'bubble-shaped: shape',
                         'chubby: shape,plussize,curvy',
-                        'coffee-colored: color,poc',
+                        #'coffee-colored: color,poc',
                         'college-girl: college,age,young',
-                        'creamy: color,cauc',
+                        #'creamy: color,cauc',
                         'curvaceous: shape,curvy',
                         'curvy: curvy,shape',
                         'cute: cute',
-                        'dark: color,poc',
+                        #'dark: color,poc',
                         'fat: large,plussize',
-                        'honeyed: taste',
+                        #'honeyed: taste',
                         'jiggling: movement',
                         'juicy: wet,taste,horny',
                         'lickable: taste,horny',
                         'luscious: super,large',
                         'MILF: age,older,milf',
                         'muscular: strong',
-                        'pale: color,cauc',
+                        #'pale: color,cauc',
                         'petite: size,small',
-                        'pink: color,cauc',
+                        #'pink: color,cauc',
                         'plump: large,plussize,curvy',
-                        'rosy: color,cauc',
+                        #'rosy: color,cauc',
                         'rotund: large,plussize',
                         'round: shape',
                         'rounded: shape',
@@ -1969,19 +2014,19 @@ class ButtocksFemale(FemaleBodyParts):
                         'smooth: hairless,feel,texture',
                         'squeezable x2: horny',
                         'succulent: super,attractive,horny',
-                        'sun-browned: color',
-                        'sun-kissed: color',
+                        #'sun-browned: color',
+                        #'sun-kissed: color',
                         'supple: feel,texture,young',
                         'sweet: attractive',
                         'tender: feel',
-                        'tanned: color',
+                        #'tanned: color',
                         'teen: age,young,teen',
                         'thick x3: size,large,shape,curvy',
                         'tight: size,small',
                         'trim: size,small',
                         'voluptuous: shape,curvy,attractive',
                         'well-rounded: shape',
-                        'well-tanned: color',
+                        #'well-tanned: color',
                        ])
           
           self.DefaultNoun("buttocks")
@@ -2094,6 +2139,8 @@ class BodyFemale(FemaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
+          self.AddSkinColors = True
+
           self.NounList(['anatomy: std,sing',
                          'body x4: std,default,sing',
                          'curves: plur',
@@ -2102,13 +2149,13 @@ class BodyFemale(FemaleBodyParts):
                          'physique: std,sing'])
                
           self.AdjList(['beautiful: attractive,super',
-                        'black: color,poc',
+                        #'black: color,poc',
                         'breathtaking: super',
-                        'bronzed: color',
-                        'brown: color,poc',
+                        #'bronzed: color',
+                        #'brown: color,poc',
                         'busty: bigtits',
                         'buxom: bigtits',
-                        'coffee-colored: color,poc',
+                        #'coffee-colored: color,poc',
                         'curvaceous: shape,curvy,bigtits,attractive',
                         'curvy: shape,curvy',
                         'feminine: curvy',
@@ -2117,11 +2164,11 @@ class BodyFemale(FemaleBodyParts):
                         'little: size,small',
                         'lush: super',
                         'luxuriant: super',
-                        'mocha: color,poc',
+                        #'mocha: color,poc',
                         'model-esque: attractive',
                         'nubile: young,virginal',
-                        'pale: color,cauc',
-                        'pink: color,cauc,young',
+                        #'pale: color,cauc',
+                        #'pink: color,cauc,young',
                         'plus-size: size,large,plussize',
                         'ravishing: super,attractive,horny',
                         'ripe: attractive',
@@ -2136,7 +2183,7 @@ class BodyFemale(FemaleBodyParts):
                         'sun-bronzed: color',
                         'sun-kissed: color',
                         'sweet: super,attractive,taste',
-                        'tanned: color',
+                        #'tanned: color',
                         'teenage: young',
                         'tight: slender,size,small',
                         'voluptuous: bigtits,curvy',
@@ -2635,7 +2682,7 @@ class Penis(MaleBodyParts):
 
           # large, wide, 
           self.AdjList(['bald: hairless',
-                        'black: color,poc',
+                        'black x4: color,poc',
                         'beautiful: super',
                         'beefy: bigdick,taste',
                         'bent: shape',
@@ -2645,9 +2692,11 @@ class Penis(MaleBodyParts):
                         'bulging x2: hard,bigdick,shape'
                         'burning: feel,warm',
                         'carefully man-scaped: style,trimmed',
+                        'chocolate x2: color,poc',
                         'circumcised: cut',
                         'crooked: shape',
                         'curved: shape',
+                        'dark: color,poc',
                         'delicious: taste,horny,super',
                         'dripping: wet',
                         'dusky: color',
@@ -2691,13 +2740,14 @@ class Penis(MaleBodyParts):
                         'monstrous: super,bigdick',
                         'mouth-watering: horny',
                         'oily: wet,shiny',
+                        'pale: color,cauc',
                         'pierced: style',
-                        'pink: color,cauc',
+                        'pink x3: color,cauc',
                         'powerful: horny,super',
                         'pretty: attractive',
                         'proud: poetic',
                         'pulsating: feel,throb',
-                        'purple: color',
+                        'purple x2: color',
                         'raging: hard',
                         'rampant: hard',
                         'red: color',
@@ -2908,6 +2958,8 @@ class ButtocksMale(MaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
+          self.AddSkinColors = True
+
           self.NounList(['buns: std,cute,desc,plur',
                          'butt cheeks: std,slang,plur',
                          'buttocks: std,default,clinical,plur',
@@ -2916,7 +2968,7 @@ class ButtocksMale(MaleBodyParts):
                
           self.AdjList(['beefy: large',
                         'broad: size,wide',
-                        'bronzed: color',
+                        #'bronzed: color',
                         'chiseled: shape',
                         'compact: size,small,shape',
                         'hairy: hairy',
@@ -2930,7 +2982,7 @@ class ButtocksMale(MaleBodyParts):
                         'strapping: strong',
                         'swole: size,large,shape',
                         'taut: strong',
-                        'tan: color',
+                        #'tan: color',
                         'tight x2: size,small,shape',
                         'trim: size,narrow,shape',
                         'virile: attractive',
@@ -2946,6 +2998,8 @@ class AssMale(MaleBodyParts):
           self.Anus = AnusFemale()
           self.Buttocks = ButtocksMale()
           
+          self.AddSkinColors = True
+
           self.NounList(['ass x3: std,slang,default,sing',
                          'backside: std,sing',
                          'behind: std,sing',
@@ -2960,7 +3014,7 @@ class AssMale(MaleBodyParts):
                
           self.AdjList(['beefy: large',
                         'broad: size,wide',
-                        'bronzed: color',
+                        #'bronzed: color',
                         'chiseled: shape',
                         'compact: size,small',
                         'hairy: hairy',
@@ -2988,30 +3042,32 @@ class SkinMale(MaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
+          self.AddSkinColors = True
+
           self.NounList(['skin x4: default,std,sing',
                          'flesh x2: std,sing',
                          'hide: std,sing',
                         ])
                
           self.AdjList(['bare: nude',
-                        'bronzed: color',
-                        'brown: color,poc',
-                        'coffee-colored: color,poc',
-                        'dark: color,poc',
-                        'ebony: color,poc',
+                        #'bronzed: color',
+                        #'brown: color,poc',
+                        #'coffee-colored: color,poc',
+                        #'dark: color,poc',
+                        #'ebony: color,poc',
                         'exposed: bare',
-                        'freckled: color,cauc',
+                        #'freckled: color,cauc',
                         'glistening: shiny,wet,texture',
                         'hairy: hairy',
                         'leathery: feel,texture,older',
                         'naked: nude',
-                        'pale: color,cauc',
+                        #'pale: color,cauc',
                         'rough: texture',
                         'rugged: texture',
                         'smooth: texture',
-                        'sun-browned: color',
+                        #'sun-browned: color',
                         'supple: feel,young,texture',
-                        'tanned: color',
+                        #'tanned: color',
                         'tough: texture',
                         'warm: feel',
                         'weathered: texture,older',
@@ -3024,17 +3080,19 @@ class ShouldersMale(MaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
+          self.AddSkinColors = True 
+
           self.NounList(['shoulders'])
                
           self.AdjList(['bare: nude',
                         'brawny: strong,large',
                         'broad: size,wide',
-                        'bronzed: color',
-                        'brown: color,poc',
-                        'coffee-colored: color,poc',
-                        'dark: color,poc',
-                        'ebony: color,poc',
-                        'freckled: color,cauc',
+                        #'bronzed: color',
+                        #'brown: color,poc',
+                        #'coffee-colored: color,poc',
+                        #'dark: color,poc',
+                        #'ebony: color,poc',
+                        #'freckled: color,cauc',
                         'mighty: strong',
                         'muscular: shape,strong',
                         'naked: nude',
@@ -3043,8 +3101,8 @@ class ShouldersMale(MaleBodyParts):
                         'square: shape,wide',
                         'strong: strong',
                         'sturdy: strong',
-                        'sun-browned: color',
-                        'tanned: color',
+                        #'sun-browned: color',
+                        #'tanned: color',
                         'well-built: shape',
                         'wide: size,wide'])
 
@@ -3055,16 +3113,18 @@ class MusclesMale(MaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
+          self.AddSkinColors = True
+
           self.NounList(['muscles: std,default,plur'])
                
           self.AdjList(['bare: nude',
                         'brawny: large,strong',
                         'broad: size,large,wide',
-                        'bronzed: color',
+                        #'bronzed: color',
                         'bulging: shape',
                         'burly: strong',
                         'chiseled: shape',
-                        'dark: color',
+                        #'dark: color',
                         'hard: feel',
                         'hulking: size,large',
                         'impressive: super',
@@ -3080,7 +3140,7 @@ class MusclesMale(MaleBodyParts):
                         'strong: strong',
                         'sturdy: strong',
                         'supple: feel,young',
-                        'tanned: color',
+                        #'tanned: color',
                         'taut: shape',
                         'toned: shape',
                         'tight: feel',
@@ -3136,20 +3196,22 @@ class ChestMale(MaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
+          self.AddSkinColors = True
+
           self.NounList(['chest x4: std,default,sing',
                          'pectorals: std,plur'])
                
           self.AdjList(['bare: nude',
                         'brawny: muscular',
                         'broad: size,large,wide',
-                        'bronzed: color',
-                        'brown: color,poc',
+                        #'bronzed: color',
+                        #'brown: color,poc',
                         'burly: muscular,size,large,shape',
-                        'coffee-colored: color,poc',
+                        #'coffee-colored: color,poc',
                         'compact: size,small',
-                        'dark: color,poc',
+                        #'dark: color,poc',
                         'dark-thatched: hairy',
-                        'ebony: color,poc',
+                        #'ebony: color,poc',
                         'expansive: size,large,wide',
                         'hairy: hairy',
                         'lusty: horny',
@@ -3164,8 +3226,8 @@ class ChestMale(MaleBodyParts):
                         'strapping: muscular,strong',
                         'strong: strong',
                         'sturdy: size,large',
-                        'sun-browned: color',
-                        'tanned: color',
+                        #'sun-browned: color',
+                        #'tanned: color',
                         'toned: muscular',
                         'wide: size,wide',
                         'uncovered: nude',
@@ -3182,13 +3244,15 @@ class ArmsMale(MaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
+          self.AddSkinColors = True
+
           self.NounList(['arms x4: std,default,plur',
                          'limbs: std,plur'])
                
           self.AdjList(['athletic: shape',
                         'bare: nude',
                         'brawny: strong',
-                        'bronzed: color',
+                        #'bronzed: color',
                         'burly: shape,strong',
                         'long: size,length,long',
                         'mighty: strong',
@@ -3343,7 +3407,8 @@ class HairMale(MaleBodyParts):
 class LegsMale(MaleBodyParts):
      def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
           super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
-          
+          self.AddSkinColors = True
+
           self.NounList(['legs x3: std,default,plur',
                          'calves: std,plur',
                          'limbs: std,plur',
@@ -3352,7 +3417,7 @@ class LegsMale(MaleBodyParts):
           self.AdjList(['athletic: shape',
                         'bare: nude',
                         'brawny: strong,large,shape',
-                        'bronzed: color',
+                        #'bronzed: color',
                         'burly: strong,large,shape',
                         'long: length,long',
                         'mighty: strong',
@@ -3410,6 +3475,8 @@ class BodyMale(MaleBodyParts):
     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
         super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
           
+        self.AddSkinColors = True
+
         self.NounList(['body x4: std,default,sing',
                        'build: std,sing',
                        'bulk: std,large,heavy,sing',
@@ -3420,7 +3487,7 @@ class BodyMale(MaleBodyParts):
         self.AdjList(['beefy: large',
                       'brawny: strong,shape',
                       'broad: size,wide',
-                      'bronzed: color',
+                      #'bronzed: color',
                       'burly: strong,shape,size,wide',
                       'commanding: attitude',
                       'compact: size,small',
