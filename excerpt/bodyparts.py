@@ -118,6 +118,7 @@ class Male(NounPhrase):
                          'bachelor: twenties,unmarried,sing',
                          'boy: teen,sing',
                          'brother: poc,sing',
+                         'college boy: college,sing',
                          'college guy: college,sing',
                          'cop: prof,sing',
                          'cowboy: prof,sing',

@@ -11,10 +11,12 @@ BodyPartHistoryQ = HistoryQ(10)
 
 TagExclDict = {"bigdick": ["smalldick"],
                "cauc": ["poc"],
+               "college": ["teen","twenties","thirties","middleaged"],
                "hairy": ["shaved","trimmed"],
                "large": ["small"],
                "loose": ["tight"],
-               "older": ["young"],
+               "middleaged": ["teen","college","twenties","thirties"],
+               "older": ["teen","college","twenties",],
                "poc": ["cauc"],
                "plussize": ["slender"],
                "shaved": ["hairy","trimmed"],
@@ -24,20 +26,16 @@ TagExclDict = {"bigdick": ["smalldick"],
                "small": ["large"],
                "smalldick": ["bigdick"],
                "tall": ["short"],
+               "teen": ["college","twenties","thirties","middleaged"],
                "thick": ["thin"],
                "thin": ["thick"],
+               "thirties": ["teen","college","twenties","middleaged"],
                "tight": ["loose"],
+               "twenties": ["teen","college","thirties","middleaged"],
                "trimmed": ["hairy","shaved"],
                "virginal": ["slutty"],
-               "young": ["older"],
+               "young": ["thirties","middleaged","older"],
               }
-
-#ReqTagList = []
-#ExclTagList = []
-#NounReqTagList = []
-#NounExclTagList = []
-#AdjReqTagList = []
-#AdjExclTagList = []
 
 TagLists = namedtuple("TagListNT","excl req adj_excl adj_req noun_excl noun_req",
                       defaults = [[], [], [], [], [], []])
@@ -109,12 +107,19 @@ class NounPhrase:
             #print("WARNING - NounPhrase.init(): TagLists not found, creating new instance")
             TLParam = TagLists()
 
-        self._ExclTagList = TLParam.excl
-        self._ReqTagList = TLParam.req
-        self._NounExclTagList = TLParam.noun_excl
-        self._NounReqTagList = TLParam.noun_req
-        self._AdjExclTagList = TLParam.adj_excl
-        self._AdjReqTagList = TLParam.adj_req
+        self._ExclTagList = []
+        self._ReqTagList = []
+        self._NounExclTagList = []
+        self._NounReqTagList = []
+        self._AdjExclTagList = []
+        self._AdjReqTagList = []
+
+        self._PermExclTagList = TLParam.excl
+        self._PermReqTagList = TLParam.req
+        self._PermNounExclTagList = TLParam.noun_excl
+        self._PermNounReqTagList = TLParam.noun_req
+        self._PermAdjExclTagList = TLParam.adj_excl
+        self._PermAdjReqTagList = TLParam.adj_req
 
         # self.Reset()
 
@@ -133,31 +138,27 @@ class NounPhrase:
         if self.NounListLen() > 0 and self.AdjListLen() > 0:
             NounReqTagList = []
             if len(self._NounReqTagList) > 0:
-                NounReqTagList = self._NounReqTagList
+                NounReqTagList = self._NounReqTagList + self._PermNounReqTagList + _PermReqTagList
             else:
-                NounReqTagList = self._ReqTagList
+                NounReqTagList = self._ReqTagList + self._PermNounReqTagList + self._PermReqTagList
 
             NounExclTagList = []
             if len(self._NounExclTagList) > 0:
-                NounExclTagList = self._NounExclTagList
+                NounExclTagList = self._NounExclTagList + self._PermNounExclTagList + self._PermExclTagList
             else:
-                NounExclTagList = self._ExclTagList
+                NounExclTagList = self._ExclTagList + self._PermNounExclTagList + self._PermExclTagList
 
             AdjReqTagList = []
             if len(self._AdjReqTagList) > 0:
-                AdjReqTagList = self._AdjReqTagList
-            elif len(self._AdjReqTagList) > 0:
-                AdjReqTagList = self._AdjReqTagList
+                AdjReqTagList = self._AdjReqTagList + self._PermAdjReqTagList + self._PermReqTagList
             else:
-                AdjReqTagList = self._ReqTagList
+                AdjReqTagList = self._ReqTagList + self._PermAdjReqTagList + self._PermReqTagList
 
             AdjExclTagList = []
             if len(self._AdjExclTagList) > 0:
-                AdjExclTagList = self._AdjExclTagList
-            elif len(self._AdjExclTagList) > 0:
-                AdjExclTagList = self._AdjExclTagList
+                AdjExclTagList = self._AdjExclTagList + self._PermAdjExclTagList + self._PermExclTagList
             else:
-                AdjExclTagList = self._ExclTagList
+                AdjExclTagList = self._ExclTagList + self._PermAdjExclTagList + self._PermExclTagList
 
             self._Noun = self.GetNewNoun(NotList = self._NotList, ReqTagList = NounReqTagList, ExclTagList = NounExclTagList)
             #print("  ---")
