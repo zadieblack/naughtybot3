@@ -39,7 +39,7 @@ TagExclDict = {"bigdick": ["smalldick"],
 #AdjReqTagList = []
 #AdjExclTagList = []
 
-TagListParams = namedtuple("TagListParams","excl req adj_excl adj_req noun_excl noun_req",
+TagLists = namedtuple("TagListNT","excl req adj_excl adj_req noun_excl noun_req",
                       defaults = [[], [], [], [], [], []])
 
 ParsedUnit = namedtuple("ParsedUnit","sUnit iPriority TagList",
@@ -78,7 +78,7 @@ class NounPhrase:
                        bVaryAdjTags = True, 
                        bEnableSpecials = False,
                        NotList = None,
-                       TagLists = None
+                       TLParam = None
                 ):
         self._AllUnitLists = {"adj": {"master": []}, "noun": {"master": [], "std": []}}
         self._UnitTags = dict()
@@ -105,16 +105,16 @@ class NounPhrase:
         # Nouns and Adjs have their own specific required and excluded
         # tag lists which they will use if available. Otherwise, they
         # fall back on the general required and excluded tag lists.
-        if TagLists is None or not isinstance(TagLists, TagListParams):
+        if TLParam is None or not isinstance(TLParam, TagLists):
             #print("WARNING - NounPhrase.init(): TagLists not found, creating new instance")
-            TagLists = TagListParams()
+            TLParam = TagLists()
 
-        self._ExclTagList = TagLists.excl
-        self._ReqTagList = TagLists.req
-        self._NounExclTagList = TagLists.noun_excl
-        self._NounReqTagList = TagLists.noun_req
-        self._AdjExclTagList = TagLists.adj_excl
-        self._AdjReqTagList = TagLists.adj_req
+        self._ExclTagList = TLParam.excl
+        self._ReqTagList = TLParam.req
+        self._NounExclTagList = TLParam.noun_excl
+        self._NounReqTagList = TLParam.noun_req
+        self._AdjExclTagList = TLParam.adj_excl
+        self._AdjReqTagList = TLParam.adj_req
 
         # self.Reset()
 

@@ -24,7 +24,7 @@ from gen import *
 from excerpt.locations import LocationSelector
 
 import excerpt.bodyparts as bodyparts
-from excerpt.ex_helpers import TagListParams
+from excerpt.ex_helpers import TagLists
 import excerpt.verbs as verbs
 #import excerpt.misc as misc
 import excerpt.scenes as scenes
@@ -935,11 +935,15 @@ class Generator19(ExGen):
           
           sGirlfriendName = self.FemaleName.FirstName()
           sTweet = "Unaware " + sGirlfriendName + " was watching him, " 
-          sTweet += self.MaleName.FirstName() + " pulled his tshirt and jeans off. "
+          if CoinFlip():
+            sTweet += self.Man.FirstName + " "
+          else:
+            sTweet += "the " + self.Man.Desc + " "
+          sTweet += "pulled his tshirt and jeans off. "
           sTweet += "Her eyes widened at the sight of "
-          sTweet += self.MaleBodyParts.DescRandomNakedParts(iNum = 5, sDivideChar = ";", bPenis = False, sPossessive = "his")
+          sTweet += self.Man.Body.DescRandomNakedParts(iNum = 5, sDivideChar = ";", bPenis = False, sPossessive = "his")
           sTweet += ". But what made her mouth water was "
-          sTweet += "the " + self.MaleBodyParts.Penis.FloweryDescription() + " between his legs."
+          sTweet += "the " + self.Man.Penis.FloweryDescription() + " between his legs."
           
           return sTweet
           

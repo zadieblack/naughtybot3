@@ -6,7 +6,9 @@ from collections import namedtuple
 from random import *
 
 from util import *
-from excerpt.ex_helpers import *
+#from excerpt.ex_helpers import *
+import excerpt.ex_helpers as exh
+from excerpt.ex_helpers import NounPhrase
 import names as names
 
 Race = namedtuple("Race", "Name HairColor EyeColor SkinColor NipColor")
@@ -30,7 +32,7 @@ RaceAsian = Race("asian",
                  ["brown","chocolate","chocolate-colored","coffee-colored","dark","dark brown","honeyed","light brown","mocha"]
                 )
 
-class BodyParts(NounPhrase):
+class BodyParts(exh.NounPhrase):
     pass
 
 GenPhysTraits = namedtuple("GenPhysTraits",
@@ -50,7 +52,7 @@ class Lover():
         self.NipColor = ""
         self.PubeStyle = ""
 
-        self._TagLists = TagListParams()
+        self._TagLists = exh.TagLists()
 
         if NewGenTraits is None or not isinstance(NewGenTraits, GenPhysTraits):
             NewGenTraits = GenPhysTraits()
@@ -108,6 +110,109 @@ class Lover():
         self.SkinColor = choice(self.Race.SkinColor)
         self.NipColor = choice(self.Race.NipColor)
 
+class Male(NounPhrase):
+     def __init__(self, iNumAdjs = 4, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
+          super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
+          
+          self.NounList(['athlete: prof,sing',
+                         'bachelor: twenties,unmarried,sing',
+                         'boy: teen,sing',
+                         'brother: poc,sing',
+                         'college guy: college,sing',
+                         'cop: prof,sing',
+                         'cowboy: prof,sing',
+                         'dad: relate,sing',
+                         'DILF: relate,sing',
+                         'doctor: prof,sing',
+                         'gentleman: middleaged,older,wealthy,sing',
+                         'husband: relate,married,sing',
+                         'father-in-law: father,relate,married,sing',
+                         'fighter pilot: prof,sing',
+                         'firefighter: prof,sing',
+                         'frat boy: college,young,sing',
+                         'jock: prof,teen,college,unmarried,sing',
+                         'lawyer: prof,sing',
+                         'lumberjack: prof,sing',
+                         'man x4: std,default,sing',
+                         'older man x2: older,sing',
+                         'outdoorsman: prof,sing',
+                         'single dad: thirties,middleaged,prof,relate,sing',
+                         'stay-at-home dad: prof,thirties,middleaged,sing',
+                         'stud: strong,handsome,ladiesman,sing',
+                         'teenage boy: young,sing',
+                         'young man: std,young,sing',
+                        ])
+          
+          self.AdjList(['athletic: muscular,shape',
+                        'authoritative: super',
+                        'bald: hair,bald',
+                        'balding: hair,bald',
+                        'big: size,large',
+                        'black x3: color,poc',
+                        'blonde x2: hair,cauc',
+                        'blue-eyed x3: eyes,cauc',
+                        'bearded: facialhair,beard',
+                        'bony: slender,',
+                        'broad-chested: width,wide',
+                        'bronzed: color,tan',
+                        'brown-eyed x2: eyes',
+                        'brunette x3: hair,cauc',
+                        'buff x2: strong,muscular',
+                        'dark-eyed: eyes',
+                        'clean-cut: facialhair,shaved',
+                        'clean-shaven: facialhair,shaved',
+                        'chiseled: handsome',
+                        'compact: width,narrow,height,short',
+                        'copper-skinned: color,poc',
+                        'confident: attitude',
+                        'dadbod: shape,normal',
+                        'dark-skinned: color,poc',
+                        'ebony x3: color,poc',
+                        'energetic: attitude',
+                        'experienced: older',
+                        'fatherly: older',
+                        'fit: muscular',
+                        'goateed: facialhair,goatee',
+                        'green-eyed: eyes,cauc',
+                        'graying: hair,older',
+                        'gruff: attitude,thirties,middleaged,older',
+                        'hairy: hairy',
+                        'heavily-tattoed: style',
+                        'heavy: size,large',
+                        'handsome: super',
+                        'imposing: super,tall,large',
+                        'latino x3: poc',
+                        'long-haired: hair',
+                        'kinky-haired: hair,poc',
+                        'massive: size,large',
+                        'mature x3: age,older',
+                        'middle-aged: age,middleaged',
+                        'moustachioed: facialhair,moustache',
+                        'muscular: strong,athletic',
+                        'pale: color,cauc',
+                        'raven-haired: hair',
+                        'redheaded x3: hair,cauc',
+                        'shaved: hair, bald',
+                        'short-haired: hair',
+                        'skinny: slender',
+                        'slender: slender',
+                        'square-jawed: jawshape,square',
+                        'strong: strong',
+                        'stubbled: facialhair,stubble',
+                        'studly: super',
+                        'tall: height,tall',
+                        'tanned: color,cauc',
+                        'twentysomething: twenties,young,age',
+                        'short: height,short',
+                        'wealthy: status,rich',
+                        'well-built: strong,shape',
+                        'white: color,cauc',
+                        'young: age,young',
+                       ])
+               
+          self.DefaultNoun('man')
+          self.DefaultAdj('bearded')
+
 MalePhysTraits = namedtuple("MalePhysTraits",
                             "AgeCat Age HeightType BodyType HairStyle HasFacialHair FacialHairStyle DickInches IsCircumcised",
                             defaults = ["",0,"","",False,"","",0,None]
@@ -116,7 +221,10 @@ MalePhysTraits = namedtuple("MalePhysTraits",
 class Man(Lover):
     def __init__(self, NewGenTraits = None, NewMaleTraits = None):
         super().__init__("male", NewGenTraits = NewGenTraits)
-
+        
+        self.Noun = ""
+        self.Desc = ""
+        self.DescWords = ""
         self.AgeCat = ""
         self.Age = 0
         self.HeightType = ""
@@ -127,7 +235,7 @@ class Man(Lover):
         self.DickInches = 0
         self.IsCircumcised = False
 
-        TagLists = self._TagLists
+        LTagLists = self._TagLists
 
         if NewMaleTraits is None or not isinstance(NewMaleTraits, MalePhysTraits):
             NewMaleTraits = MalePhysTraits()
@@ -139,9 +247,9 @@ class Man(Lover):
             self.AgeCat = choice(["teen","college","twenties","thirties","middleaged","older"])
                 
         if self.AgeCat in ["teen","college","twenties"]:
-            TagLists.adj_excl.append("older")
+            LTagLists.adj_excl.append("older")
         else:
-            TagLists.adj_excl.append("young")
+            LTagLists.adj_excl.append("young")
 
         if NewMaleTraits.Age:
             self.Age = NewMaleTraits.Age
@@ -206,16 +314,16 @@ class Man(Lover):
                                      ])
 
         if self.DickInches < 5:
-            TagLists.adj_excl.append("smalldick")
-            TagLists.noun_excl.append("smalldick")
+            LTagLists.adj_excl.append("smalldick")
+            LTagLists.noun_excl.append("smalldick")
         elif self.DickInches >= 7:
-            TagLists.adj_excl.append("bigdick")
-            TagLists.noun_excl.append("bigdick")
+            LTagLists.adj_excl.append("bigdick")
+            LTagLists.noun_excl.append("bigdick")
         else:
-            TagLists.adj_excl.append("bigdick")
-            TagLists.adj_excl.append("smalldick")
-            TagLists.noun_excl.append("bigdick")
-            TagLists.noun_excl.append("smalldick")
+            LTagLists.adj_excl.append("bigdick")
+            LTagLists.adj_excl.append("smalldick")
+            LTagLists.noun_excl.append("bigdick")
+            LTagLists.noun_excl.append("smalldick")
 
         if NewMaleTraits.IsCircumcised is None:
             self.IsCircumcised = CoinFlip()
@@ -227,53 +335,53 @@ class Man(Lover):
         # ===============
 
         # Arms
-        self.Arms = ArmsMale(TagLists = TagLists)
+        self.Arms = ArmsMale(TagLists = LTagLists)
 
         # Ass
 
-        self.Anus = AnusFemale(TagLists = TagLists)
-        self.Buttocks = ButtocksMale(TagLists = TagLists)
-        self.Ass = AssMale(TagLists = TagLists)
+        self.Anus = AnusFemale(TagLists = LTagLists)
+        self.Buttocks = ButtocksMale(TagLists = LTagLists)
+        self.Ass = AssMale(TagLists = LTagLists)
         self.Ass.Anus = self.Anus
         self.Ass.Buttocks = self.Buttocks
 
         # Chest 
 
-        self.Chest = ChestMale(TagLists = TagLists)
+        self.Chest = ChestMale(TagLists = LTagLists)
 
         # Eyes
 
-        self.Eyes = EyesMale(TagLists = TagLists)
+        self.Eyes = EyesMale(TagLists = LTagLists)
 
         # Facial Hair
 
-        self.FacialHair = FacialHair(TagLists = TagLists)
+        self.FacialHair = FacialHair(TagLists = LTagLists)
 
         # Hair
 
-        self.Hair = HairMale(TagLists = TagLists)
+        self.Hair = HairMale(TagLists = LTagLists)
 
         # Jaw
 
-        self.Jaw = JawMale(TagLists = TagLists)
+        self.Jaw = JawMale(TagLists = LTagLists)
 
         # Legs
 
-        self.Legs = LegsMale(TagLists = TagLists)
+        self.Legs = LegsMale(TagLists = LTagLists)
 
         # Muscles
 
-        self.Muscles = MusclesMale(TagLists = TagLists)
+        self.Muscles = MusclesMale(TagLists = LTagLists)
 
         # Penis
 
-        self.Head = PenisHead(TagLists = TagLists)
-        self.Testicles = Testicles(TagLists = TagLists)
+        self.Head = PenisHead(TagLists = LTagLists)
+        self.Testicles = Testicles(TagLists = LTagLists)
 
         if self.IsCircumcised:
-            PenisTagLists = TagListParams(adj_excl = ["cut"] + TagLists.adj_excl)
+            PenisTagLists = exh.TagLists(adj_excl = ["cut"] + LTagLists.adj_excl)
         else:
-            PenisTagLists = TagListParams(adj_excl = ["uncut"] + TagLists.adj_excl)
+            PenisTagLists = exh.TagLists(adj_excl = ["uncut"] + LTagLists.adj_excl)
 
         self.Penis = Penis(TagLists = PenisTagLists)
         self.Penis.Head = self.Head
@@ -281,19 +389,19 @@ class Man(Lover):
 
         # Shoulders
 
-        self.Shoulders = ShouldersMale(TagLists = TagLists)
+        self.Shoulders = ShouldersMale(TagLists = LTagLists)
 
         # Skin
 
-        self.Skin = SkinMale(TagLists = TagLists)
+        self.Skin = SkinMale(TagLists = LTagLists)
 
         # Body
         if self.HeightType == "short":
-            BodyTagLists = TagListParams(adj_excl = ["tall"] + TagLists.adj_excl)
+            BodyTagLists = exh.TagLists(adj_excl = ["tall"] + LTagLists.adj_excl)
         elif self.HeightType == "tall":
-            BodyTagLists = TagListParams(adj_excl = ["short"] + TagLists.adj_excl)
+            BodyTagLists = exh.TagLists(adj_excl = ["short"] + LTagLists.adj_excl)
         else:
-            BodyTagLists = TagListParams(adj_excl = ["short","tall"] + TagLists.adj_excl)
+            BodyTagLists = exh.TagLists(adj_excl = ["short","tall"] + LTagLists.adj_excl)
 
         self.Body = BodyMale(TagLists = BodyTagLists)
         self.Body.FacialHair = self.FacialHair
@@ -333,12 +441,27 @@ class Man(Lover):
                                     ]
         self.NaughtyParts = [self.Ass,self.Penis,self.Penis.Head,self.Penis.Testicles]
 
+        LMan = Male(TagLists = LTagLists)
+        self.Noun = LMan.GetNoun()
+        self.Desc = LMan.FloweryDescription()
+        self.DescWords = LMan.GetDescWordList()
+
         sCut = ""
         if self.IsCircumcised:
             sCut = "circumcised"
         else:
             sCut = "uncircumcised"
 
+        sAge = "AgeCat: " + self.AgeCat
+        sRace = "Race: " + self.RaceName
+        sHeightType = "HeightType: " + self.HeightType
+        sBodyType = "BodyType: " + self.BodyType
+        sDickInches = "DickInches: " + str(self.DickInches) + "\""
+        sCirc = "IsCirc: " + str(self.IsCircumcised)
+        sPubeStyle = "PubeStyle: " + self.PubeStyle
+        sDesc = "[Gender: Male".ljust(20) + sAge.ljust(20) + sRace.ljust(20) + sHeightType.ljust(20) 
+        sDesc += sBodyType.ljust(21) + sDickInches.ljust(20) + sCirc.ljust(20) 
+        sDesc += sPubeStyle.ljust(19) + "]\n"
         #sDesc = "My name is " + self.FirstName + " " + self.LastName + ". "
         #sDesc += "I am a " + str(self.Age) + "-year-old " + self.RaceName + " " + self.Gender + ". "
         #sDesc += "I am a " + self.HeightType + ", " + self.BodyType + " man. "
@@ -350,7 +473,7 @@ class Man(Lover):
         #sDesc += "my " + self.Body.FloweryDescription() + ", "
         #sDesc += "my " + self.Skin.FloweryDescription() + ", "
         #sDesc += "and my " + sCut + " " + self.Penis.FloweryDescription() + "."
-        #print(sDesc + "\n")
+        print(sDesc + "\n")
 
 FemPhysTraits = namedtuple("FemPhysTraits",
                            "AgeCat Age BodyType BustSize HasFakeTits HairStyle IsVirgin",
@@ -454,7 +577,7 @@ class Woman(Lover):
         self.HasFakeTits = False
         self.IsVirgin = False
 
-        TagLists = self._TagLists
+        LTagLists = self._TagLists
 
         if NewFemTraits is None or not isinstance(NewFemTraits, FemPhysTraits):
             NewFemTraits = FemPhysTraits()
@@ -477,9 +600,9 @@ class Woman(Lover):
                 self.Age = randint(30,50)
 
         if self.AgeCat in ["teen","college","twenties"]:
-            TagLists.adj_excl.append("older")
+            LTagLists.adj_excl.append("older")
         else:
-            TagLists.adj_excl.append("young")
+            LTagLists.adj_excl.append("young")
 
         if NewFemTraits.BodyType:
             self.BodyType = NewFemTraits.BodyType
@@ -487,9 +610,9 @@ class Woman(Lover):
             self.BodyType = choice(["slender","avg","curvy","plussize"])
 
         if self.BodyType in ["slender","avg"]:
-            TagLists.adj_excl.append("plussize")
+            LTagLists.adj_excl.append("plussize")
         elif self.BodyType in ["curvy","plussize"]:
-            TagLists.adj_excl.append("slender")
+            LTagLists.adj_excl.append("slender")
         
         if NewFemTraits.HairStyle:
             self.HairStyle = NewFemTraits.HairStyle
@@ -520,36 +643,36 @@ class Woman(Lover):
                 self.IsVirgin = False
 
         if not self.IsVirgin:
-            TagLists.adj_excl.append("virginal")
-            #TagLists.adj_req.append("tight")
+            LTagLists.adj_excl.append("virginal")
+            #LTagLists.adj_req.append("tight")
         # ===============
         # Setup bodyparts
         # ===============
 
         # Ass
-        self.Anus = AnusFemale(TagLists = TagLists)
-        self.Buttocks = ButtocksFemale(TagLists = TagLists)
-        self.Ass = AssFemale(TagLists = TagLists)
+        self.Anus = AnusFemale(TagLists = LTagLists)
+        self.Buttocks = ButtocksFemale(TagLists = LTagLists)
+        self.Ass = AssFemale(TagLists = LTagLists)
         self.Ass.Anus = self.Anus
         self.Ass.Buttocks = self.Buttocks
 
         # Back
-        self.Back = BackFemale(TagLists = TagLists)
+        self.Back = BackFemale(TagLists = LTagLists)
 
         # Breasts
-        self.Nipples = Nipples(TagLists = TagLists)
+        self.Nipples = Nipples(TagLists = LTagLists)
 
         BreastTagLists = None
         if self.BustSize == "small":
-            BreastTagLists = TagListParams(adj_excl = ["bigtits"] + TagLists.adj_excl, noun_excl = ["bigtits"] + TagLists.noun_excl)
+            BreastTagLists = exh.TagLists(adj_excl = ["bigtits"] + LTagLists.adj_excl, noun_excl = ["bigtits"] + LTagLists.noun_excl)
         elif self.BustSize == "large":
-            BreastTagLists = TagListParams(adj_excl = ["smalltits"] + TagLists.adj_excl, noun_excl = ["smalltits"] + TagLists.noun_excl)
-            TagLists.adj_excl.append("smalltits")
-            TagLists.noun_excl.append("smalltits")
+            BreastTagLists = exh.TagLists(adj_excl = ["smalltits"] + LTagLists.adj_excl, noun_excl = ["smalltits"] + LTagLists.noun_excl)
+            LTagLists.adj_excl.append("smalltits")
+            LTagLists.noun_excl.append("smalltits")
         else:
-            BreastTagLists = TagListParams(adj_excl = TagLists.adj_excl, noun_excl = TagLists.noun_excl)
-            TagLists.adj_excl.append("bigtits")
-            TagLists.noun_excl.append("bigtits")
+            BreastTagLists = exh.TagLists(adj_excl = LTagLists.adj_excl, noun_excl = LTagLists.noun_excl)
+            LTagLists.adj_excl.append("bigtits")
+            LTagLists.noun_excl.append("bigtits")
 
         if not self.HasFakeTits:
             BreastTagLists.adj_excl.append("fake")
@@ -559,44 +682,44 @@ class Woman(Lover):
         self.Breasts.Nipples = self.Nipples
 
         # Eyes
-        self.Eyes = Eyes(TagLists = TagLists)
+        self.Eyes = Eyes(TagLists = LTagLists)
 
         # Face
-        self.Face = Face(TagLists = TagLists)
+        self.Face = Face(TagLists = LTagLists)
 
         # Hair 
-        self.Hair = Hair(TagLists = TagLists)
+        self.Hair = Hair(TagLists = LTagLists)
 
         # Hips
-        self.Hips = Hips(TagLists = TagLists)
+        self.Hips = Hips(TagLists = LTagLists)
 
         # Legs
-        self.Legs = Legs(TagLists = TagLists)
+        self.Legs = Legs(TagLists = LTagLists)
 
         # Lips
-        self.Lips = Lips(TagLists = TagLists)
+        self.Lips = Lips(TagLists = LTagLists)
 
         # Mouth
-        self.Mouth = Mouth(TagLists = TagLists)
+        self.Mouth = Mouth(TagLists = LTagLists)
 
         # Skin
-        self.Skin = Skin(TagLists = TagLists)
+        self.Skin = Skin(TagLists = LTagLists)
 
         # Thighs
-        self.Thighs = Thighs(TagLists = TagLists)
+        self.Thighs = Thighs(TagLists = LTagLists)
 
         # Vagina
-        self.Clitoris = Clitoris(TagLists = TagLists)
-        self.InnerLabia = VaginaInnerLabia(TagLists = TagLists)
-        self.InnerVagina = VaginaInner(TagLists = TagLists)
-        self.OuterLabia = VaginaOuterLabia(TagLists = TagLists)
+        self.Clitoris = Clitoris(TagLists = LTagLists)
+        self.InnerLabia = VaginaInnerLabia(TagLists = LTagLists)
+        self.InnerVagina = VaginaInner(TagLists = LTagLists)
+        self.OuterLabia = VaginaOuterLabia(TagLists = LTagLists)
 
         if self.PubeStyle == "shaved":
-            VagTagLists = TagListParams(adj_excl = ["hairy","trimmed"] + TagLists.adj_excl, noun_excl = ["hairy","trimmed"])
+            VagTagLists = exh.TagLists(adj_excl = ["hairy","trimmed"] + LTagLists.adj_excl, noun_excl = ["hairy","trimmed"])
         elif self.PubeStyle == "hairy":
-            VagTagLists = TagListParams(adj_excl = ["shaved","trimmed"] + TagLists.adj_excl, noun_excl = ["shaved","trimmed"])
+            VagTagLists = exh.TagLists(adj_excl = ["shaved","trimmed"] + LTagLists.adj_excl, noun_excl = ["shaved","trimmed"])
         elif self.PubeStyle == "trimmed":
-            VagTagLists = TagListParams(adj_excl = ["shaved","hairy"] + TagLists.adj_excl, noun_excl = ["shaved","hairy"])
+            VagTagLists = exh.TagLists(adj_excl = ["shaved","hairy"] + LTagLists.adj_excl, noun_excl = ["shaved","hairy"])
 
         self.Vagina = Vagina(TagLists = VagTagLists)
         self.Vagina.Clitoris = self.Clitoris
@@ -605,7 +728,7 @@ class Woman(Lover):
         self.Vagina.InnerLabia = self.InnerLabia
 
         # Body
-        self.Body = BodyFemale(TagLists = TagLists)
+        self.Body = BodyFemale(TagLists = LTagLists)
         self.Body.Hair = self.Hair
         self.Body.Face = self.Face
         self.Body.Eyes = self.Eyes
@@ -651,7 +774,7 @@ class Woman(Lover):
                              self.Nipples,self.Vagina,self.Clitoris,
                              self.InnerLabia,self.InnerVagina,self.OuterLabia,]
 
-        ThisWoman = Female(TagLists = TagLists)
+        ThisWoman = Female(TagLists = LTagLists)
         self.Noun = ThisWoman.GetNoun()
         self.Desc = ThisWoman.FloweryDescription()
         self.DescWords = ThisWoman.GetDescWordList()
@@ -663,8 +786,8 @@ class Woman(Lover):
         sVirgin = "IsVirgin: " + str(self.IsVirgin)
         sFakeTits = "HasFakeTits: " + str(self.HasFakeTits)
         sPubeStyle = "PubeStyle: " + self.PubeStyle
-        sDesc = "[" + sAge.ljust(20) + sRace.ljust(20) + sBodyType.ljust(20) + sVirgin.ljust(20)  
-        sDesc += sBustSize.ljust(20) + sFakeTits.ljust(20) + sPubeStyle.ljust(19) + "]\n"
+        sDesc = "[Gender: Female".ljust(20) + sAge.ljust(20) + sRace.ljust(20) + sBodyType.ljust(20) 
+        sDesc += sVirgin.ljust(20) + sBustSize.ljust(20) + sFakeTits.ljust(20) + sPubeStyle.ljust(19) + "]\n"
         #sDesc += "My name is " + self.FirstName + " " + self.LastName + ". "
         #sDesc += "I am a " + str(self.Age) + "-year-old woman. "
         #sDesc += "Some of my notable physical characteristics are "
