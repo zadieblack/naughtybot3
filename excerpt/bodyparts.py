@@ -4,6 +4,7 @@
 
 from collections import namedtuple
 from random import *
+import re 
 
 from util import *
 #from excerpt.ex_helpers import *
@@ -2848,10 +2849,14 @@ class Penis(MaleBodyParts):
      def GenerateLength(self):
           sLength = ""
           
-          sLength = str(randint(6, 13))
-          if CoinFlip():
+          iInch = randint(5, 15)
+          sLength = str(iInch)
+          if randint(1,3) == 2:
                sLength += " 1/2"
-          sLength += "-inch"
+          sLength += "-inch: size"
+
+          if iInch > 7:
+              sLength += ",bigdick"
           
           return sLength
                

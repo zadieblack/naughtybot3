@@ -140,7 +140,7 @@ class NounPhrase:
         if self.NounListLen() > 0 and self.AdjListLen() > 0:
             NounReqTagList = []
             if len(self._NounReqTagList) > 0:
-                NounReqTagList = self._NounReqTagList + self._PermNounReqTagList + _PermReqTagList
+                NounReqTagList = self._NounReqTagList + self._PermNounReqTagList + self._PermReqTagList
             else:
                 NounReqTagList = self._ReqTagList + self._PermNounReqTagList + self._PermReqTagList
 

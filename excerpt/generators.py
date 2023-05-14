@@ -587,7 +587,7 @@ class Generator9(ExGen):
           Penis = self.MaleBodyParts.Penis
           Breasts = self.FemBodyParts.Breasts
           Breasts.NounExclTagList(["small","crude"])
-          Breasts.AdjExclTagList(["color","small","attractive"])
+          Breasts.AdjExclTagList(["color","small","attractive","age"])
 
           sTweet += "'What?' she asked. 'Hasn't a girl ever let you fuck " 
           #sTweet += "her " + WordList(["big", "massive", "ample", "bountiful", "double-D", "jiggling", "pendulous", "swollen", "plump", "heavy", "hefty", "enormous", "fat"]).GetWord() + ", " 
@@ -931,9 +931,27 @@ class Generator17(ExGen):
           super().GenerateTweet()
           sTweet = ""
           
-          sWhiteCollarJob = self.WhiteCollar.GetPerson()
-          sTweet = self.FemaleName.FirstName() + " stared with innocent " + self.FemBodyParts.Eyes.MediumDescription() + " at his " + self.MaleBodyParts.Penis.MediumDescription() + ". 'Does every " + sWhiteCollarJob + " have a... thing like this?' she asked.\n\n"
-          sTweet += "'No darling,' said " + self.MaleName.FirstName() + " chuckling. 'Not every " + sWhiteCollarJob + " has a " + self.MaleBodyParts.Penis.ShortDescription(bAddLen = True) + ". Now massage my " + self.MaleBodyParts.Penis.Testicles.RandomDescription() + " while you suck on my " + self.MaleBodyParts.Penis.Head.ShortDescription() + ".'"
+          sManType = ""
+
+          iRand = randint(1,3)
+          if iRand == 1:
+                sManType = self.WhiteCollar.GetPerson()
+          elif iRand == 2:
+                sManType = self.BlueCollar.GetPerson()
+          elif iRand == 3:
+                sManType = titmisc.NationNounMale().GetWord(NotList = ["american","space","spanish"]).capitalize()
+
+          sTweet += self.FemaleName.FirstName() + " stared with " 
+          sTweet += "innocent " + self.Woman.Eyes.MediumDescription(NotList = ["innocent"]) + " " 
+          sTweet += "at his " + bodyparts.Penis(iNumAdjs = 3, TagLists = TagLists(adj_req = ["bigdick","hard"])).MediumDescription(AdjExclTagList = ["smalldick"]) + ". " 
+          sTweet += "\"Does every " + sManType + " " 
+          sTweet += "have a... a thing like that one?\" she asked.\n\n"
+          sTweet += "'No darling,' said " + self.Man.FirstName + " chuckling. " 
+          sTweet += "\"Not every " + sManType + " has " 
+          sTweet += "a " + self.Man.Penis.MediumDescription(bAddLen = True, NounExclTagList = ["silly"], AdjExclTagList = ["wet","shape"]) + ". " 
+          sTweet += "Now, " + WordList(["I need you to","I want you to"]).GetWord() + " " 
+          sTweet += "massage my " + self.Man.Penis.Testicles.RandomDescription() + " " 
+          sTweet += "while you suck on the " + self.Man.Penis.Head.ShortDescription() + ".\""
           
           return sTweet
           
@@ -8067,9 +8085,7 @@ class Generator112(ExGen):
         ExclTagList = ["small","wet"]
         Boobs = bodyparts.Breasts(bCupSize = True)
         Boobs.AdjExclTagList(ExclTagList)
-        sTweet += "Boobs\n * adj list = " + str(Boobs._AdjList)
-        sTweet += "\n * adj excl tag list = " + str(Boobs._AdjExclTagList)
-        sTweet += "\n\n"
+
         sGirlAdj1 = WordList(titmisc.HairColorFemale().GetWordList()
                              + titmisc.SkinColorFemale().GetWordList()
                              + titmisc.PhysCharFemale().GetWordList()
