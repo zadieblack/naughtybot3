@@ -166,12 +166,16 @@ class NounPhrase:
             #print("  ---")
             global TagExclDict
             UsedTagList = []
+
+            # ! Confused about what's supposed to be happening below
+            # ------------------------------------------------------
             if self._bVaryAdjTags and len(AdjReqTagList) == 0:
                 for tag in self.GetUnitTags(self._Noun):
                     if tag in TagExclDict:
                         NounTagList.append(tag)
                         #UsedTagList.append(tag)
                 #print("  Added any excluding noun tags for \"" + self._Noun + "\" to UsedTagList " + str(UsedTagList))
+            # ------------------------------------------------------
             for nountag in NounTagList:
                 for tag in TagExclDict[nountag]:
                     UsedTagList.append(tag)

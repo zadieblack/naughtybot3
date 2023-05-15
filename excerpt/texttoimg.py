@@ -9,7 +9,7 @@ from util import *
 
 PATH = "excerpt/resources/"
 FONT = "NoticiaText-Regular.ttf"
-MAX_IMG_NUM = 104
+MAX_IMG_NUM = 108
 
 BGImgQ = HistoryQ(iQSize = 50)
 
@@ -166,14 +166,14 @@ def GetBGImg(iPicNo = 0):
      BGImg = None 
      
      if iPicNo == 0:
-          iPicNo = randint(1, MAX_IMG_NUM)
+          iPicNo = randint(89, MAX_IMG_NUM)
 
           i = 1
 
           while not BGImgQ.PushToHistoryQ(iPicNo) and i < 1000:
                iPicNo = randint(1, MAX_IMG_NUM)
                i = i + 1
-          #iPicNo = 100
+          #iPicNo = 106
      try:
           BGImg = Image.open(PATH + "bg_" + str(iPicNo) + ".jpg").convert('RGBA')
      except IOError as e:

@@ -102,7 +102,12 @@ def InitBot(iTweetTimer,
                             PostToReddit_botlust(sLinkTitle = sText, sLinkURL = util.ExtractURLFromStatus(status))
 
                 excerpt.util.TweetHistoryQ.LogHistoryQ()
-                              
+            
+            Gen = None
+            currentDT = None 
+            image = None 
+            ImgFile = None
+
             i += 1
     except IOError as e:
         print("*** ERROR in lust_bot() ***\nFile IO Error: " + str(e))

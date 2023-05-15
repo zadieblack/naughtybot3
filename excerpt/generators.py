@@ -3112,7 +3112,7 @@ class Generator55(ExGen):
                #penis
                sTweet += "and his " + self.MaleBodyParts.Penis.FloweryDescription(bAddLen = True)
                if CoinFlip():
-                    sTweet += " and the way " + self.Semen.RandomDescription() + " " + VDrip.Past() + " from its " + self.MaleBodyParts.Penis.Head.FloweryDescription() 
+                    sTweet += " and the way " + self.Semen.RandomDescription(NounExclAdjList = ["silly"]) + " " + VDrip.Past() + " from its " + self.MaleBodyParts.Penis.Head.FloweryDescription() 
           elif CoinFlip():
                #testicles
                sTweet += "and his " + self.MaleBodyParts.Penis.FloweryDescription(bAddLen = True) + " and his "
