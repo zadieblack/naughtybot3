@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 # Excerpt Helpers module
 
+from dataclasses import dataclass, field
 from collections import namedtuple
 from random import *
 from util import *
@@ -39,8 +40,17 @@ TagExclDict = {"bigdick": ["smalldick"],
                "young": ["thirties","middleaged","older"],
               }
 
-TagLists = namedtuple("TagListNT","excl req adj_excl adj_req noun_excl noun_req",
-                      defaults = [[], [], [], [], [], []])
+@dataclass 
+class TagLists:
+    excl: list = field(default_factory=list)
+    req: list = field(default_factory=list)
+    adj_excl: list = field(default_factory=list)
+    adj_req: list = field(default_factory=list)
+    noun_excl: list = field(default_factory=list)
+    noun_req: list = field(default_factory=list)
+
+#TagLists = namedtuple("TagListNT","excl req adj_excl adj_req noun_excl noun_req",
+#                      defaults = [[], [], [], [], [], []])
 
 ParsedUnit = namedtuple("ParsedUnit","sUnit iPriority TagList",
                         defaults=["",1,[]])
@@ -169,16 +179,18 @@ class NounPhrase:
 
             # ! Confused about what's supposed to be happening below
             # ------------------------------------------------------
-            if self._bVaryAdjTags and len(AdjReqTagList) == 0:
-                for tag in self.GetUnitTags(self._Noun):
-                    if tag in TagExclDict:
-                        NounTagList.append(tag)
+            # if self._bVaryAdjTags and len(AdjReqTagList) == 0:
+            for tag in self.GetUnitTags(self._Noun):
+                if not tag in NounTagList:
+                    NounTagList.append(tag)
                         #UsedTagList.append(tag)
                 #print("  Added any excluding noun tags for \"" + self._Noun + "\" to UsedTagList " + str(UsedTagList))
             # ------------------------------------------------------
             for nountag in NounTagList:
-                for tag in TagExclDict[nountag]:
-                    UsedTagList.append(tag)
+                if nountag in TagExclDict:
+                    for tag in TagExclDict[nountag]:
+                        if not tag in UsedTagList:
+                            UsedTagList.append(tag)
             #self.ClearAdjList()
 
             # Parse extra adjs list, add any tags to the parent
@@ -193,7 +205,8 @@ class NounPhrase:
                         for tag in Unit.TagList:
                             #def AddUnitTag(self, sUnit, sTag):
                             self.AddUnitTag(Unit.sUnit,tag)
-                            UsedTagList.append(tag)
+                            if not tag in UsedTagList:
+                                UsedTagList.append(tag)
 
             for i in range(self._iNumAdjs):
                 LocalReqTagList = AdjReqTagList.copy()
@@ -207,7 +220,7 @@ class NounPhrase:
                 for tag in self.GetUnitTags(sAdj):
                     # Try and pick adjs from different tags if required tags are not set
                     if self._bVaryAdjTags and len(LocalReqTagList) == 0:
-                        if not tag == "master":
+                        if not tag == "master" and not tag in UsedTagList:
                             UsedTagList.append(tag)
 
                     # Avoid choosing adjectives with mutally exclusive tags
