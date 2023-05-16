@@ -8879,108 +8879,216 @@ class Generator121(ExGen):
         else:
             sTweet += "her " + self.Woman.InnerVagina.FloweryDescription(NotList = ["deep"], NounExclTagList = ["silly"]) + ". "
         
-        Reactions = WordList()
-        UsedRNos = []
-        for i in range(3):
-            iRNo = randint(1,7)
-            while iRNo in UsedRNos:
-                iRNo = randint(1,5)
-            if iRNo == 1:
-                sTxt = "Her " + self.Woman.Skin.RandomDescription() + " was "
-                sTxt += WordList(["beaded","damp","flushed and damp","glistening","dewy","slick","dripping"]).GetWord() + " "
-                sTxt += "with " + WordList(["moisture","drops of moisture","sweat","a sheen of moisture"]).GetWord()
-                Reactions.AddWord(sTxt)
-                UsedRNos.append(iRNo)
-            elif iRNo == 2:
-                sTxt = "The " + WordList(["powerful","intense","sexual","erotic"]).GetWord() + " "
-                sTxt += WordList(["sensation","stimulation","vibrations"]).GetWord() + " "
-                sTxt += "caused her toes to curl" 
-                Reactions.AddWord(sTxt)
-                UsedRNos.append(iRNo)
-            elif iRNo == 3:
-                sTxt = "Her " + self.Woman.Breasts.FloweryDescription(NounExclTagList = ["silly","crude"]) + " "
-                sTxt += WordList(["were quivering","quivered","trembled","wobbled","were jiggling","quavered","were heaving","heaved","were quivering","trembled"]).GetWord()
-                Reactions.AddWord(sTxt)
-                UsedRNos.append(iRNo)
-            elif iRNo == 4:
-                sTxt = "Her " + self.Woman.Nipples.RandomDescription(AdjExclTagList = ["hard"]) + " "
-                sTxt += WordList(["stiffened","hardened","lengthened","were engorged","were firmly erect","hardened"]).GetWord()
-                Reactions.AddWord(sTxt)
-                UsedRNos.append(iRNo)
-            elif iRNo == 5:
-                sTxt = "Her " + self.Woman.Anus.ShortDescription(NounReqTagList = ["sphincter"]) + " "
-                sTxt += WordList(["clenched","puckered","flexed",]).GetWord()
-                Reactions.AddWord(sTxt)
-                UsedRNos.append(iRNo)
-            elif iRNo == 6:
-                sTxt = "Shameful " + WordList(["moisture","fluids","juices","wetness"]).GetWord() + " "
-                sTxt += WordList(["trickled from","beaded on","oozed from","gushed from","leaked from"]).GetWord() + " "
-                sTxt += "her " + self.Woman.Vagina.GetNewAdj() + " "
-                sTxt += self.Woman.Vagina.GetNewNoun()
-                Reactions.AddWord(sTxt)
-                UsedRNos.append(iRNo)
-            elif iRNo == 7:
-                sTxt = "Her " + self.Woman.Back.RandomDescription(NotList = ['arch']) + " arched"
-                Reactions.AddWord(sTxt)
-                UsedRNos.append(iRNo)
+        Selector = SectionSelector()
 
-        sReaction1 = Reactions.GetWord()
-        sReaction2 = Reactions.GetWord(NotList = [sReaction1])
-        sReaction3 = Reactions.GetWord(NotList = [sReaction1,sReaction2])
+        # skin beaded with moisture
+        sTxt = "Her " + self.Woman.Skin.RandomDescription() + " was "
+        sTxt += WordList(["beaded","damp","flushed and damp","glistening","dewy","slick","dripping"]).GetWord() + " "
+        sTxt += "with " + WordList(["moisture","drops of moisture","sweat","a sheen of moisture"]).GetWord()
+        Selector.AddSection(sTxt)
 
-        sTweet += sReaction1 + ". "
+        # toes curl
+        sTxt = "The " + WordList(["powerful","intense","sexual","erotic"]).GetWord() + " "
+        sTxt += WordList(["sensation","stimulation","vibrations"]).GetWord() + " "
+        sTxt += "caused her toes to curl" 
+        Selector.AddSection(sTxt)
+
+        # breasts tremble
+        sTxt = "Her " + self.Woman.Breasts.FloweryDescription(NounExclTagList = ["silly","crude"]) + " "
+        sTxt += WordList(["were quivering","quivered","trembled","wobbled","were jiggling","quavered","were heaving","heaved","were quivering","trembled"]).GetWord()
+        Selector.AddSection(sTxt)
+
+        # nipples harden
+        sTxt = "Her " + self.Woman.Nipples.RandomDescription(AdjExclTagList = ["hard"]) + " "
+        sTxt += WordList(["stiffened","hardened","lengthened","were engorged","were firmly erect","hardened"]).GetWord()
+        Selector.AddSection(sTxt)
+
+        # anus puckers
+        sTxt = "Her " + self.Woman.Anus.ShortDescription(NounReqTagList = ["sphincter"]) + " "
+        sTxt += WordList(["clenched","puckered","flexed",]).GetWord()
+        Selector.AddSection(sTxt)
+
+        # pussy moistens
+        sTxt = "Shameful " + WordList(["moisture","fluids","juices","wetness"]).GetWord() + " "
+        sTxt += WordList(["trickled from","beaded on","oozed from","gushed from","leaked from"]).GetWord() + " "
+        sTxt += "her " + self.Woman.Vagina.GetNewAdj() + " "
+        sTxt += self.Woman.Vagina.GetNewNoun()
+        Selector.AddSection(sTxt)
+
+        # back arches
+        sTxt = "Her " + self.Woman.Back.RandomDescription(NotList = ['arch']) + " arched"
+        Selector.AddSection(sTxt)
+
+
+        #Reactions = WordList()
+        #UsedRNos = []
+        #for i in range(3):
+        #    iRNo = randint(1,7)
+        #    while iRNo in UsedRNos:
+        #        iRNo = randint(1,5)
+        #    if iRNo == 1:
+        #        sTxt = "Her " + self.Woman.Skin.RandomDescription() + " was "
+        #        sTxt += WordList(["beaded","damp","flushed and damp","glistening","dewy","slick","dripping"]).GetWord() + " "
+        #        sTxt += "with " + WordList(["moisture","drops of moisture","sweat","a sheen of moisture"]).GetWord()
+        #        Reactions.AddWord(sTxt)
+        #        UsedRNos.append(iRNo)
+        #    elif iRNo == 2:
+        #        sTxt = "The " + WordList(["powerful","intense","sexual","erotic"]).GetWord() + " "
+        #        sTxt += WordList(["sensation","stimulation","vibrations"]).GetWord() + " "
+        #        sTxt += "caused her toes to curl" 
+        #        Reactions.AddWord(sTxt)
+        #        UsedRNos.append(iRNo)
+        #    elif iRNo == 3:
+        #        sTxt = "Her " + self.Woman.Breasts.FloweryDescription(NounExclTagList = ["silly","crude"]) + " "
+        #        sTxt += WordList(["were quivering","quivered","trembled","wobbled","were jiggling","quavered","were heaving","heaved","were quivering","trembled"]).GetWord()
+        #        Reactions.AddWord(sTxt)
+        #        UsedRNos.append(iRNo)
+        #    elif iRNo == 4:
+        #        sTxt = "Her " + self.Woman.Nipples.RandomDescription(AdjExclTagList = ["hard"]) + " "
+        #        sTxt += WordList(["stiffened","hardened","lengthened","were engorged","were firmly erect","hardened"]).GetWord()
+        #        Reactions.AddWord(sTxt)
+        #        UsedRNos.append(iRNo)
+        #    elif iRNo == 5:
+        #        sTxt = "Her " + self.Woman.Anus.ShortDescription(NounReqTagList = ["sphincter"]) + " "
+        #        sTxt += WordList(["clenched","puckered","flexed",]).GetWord()
+        #        Reactions.AddWord(sTxt)
+        #        UsedRNos.append(iRNo)
+        #    elif iRNo == 6:
+        #        sTxt = "Shameful " + WordList(["moisture","fluids","juices","wetness"]).GetWord() + " "
+        #        sTxt += WordList(["trickled from","beaded on","oozed from","gushed from","leaked from"]).GetWord() + " "
+        #        sTxt += "her " + self.Woman.Vagina.GetNewAdj() + " "
+        #        sTxt += self.Woman.Vagina.GetNewNoun()
+        #        Reactions.AddWord(sTxt)
+        #        UsedRNos.append(iRNo)
+        #    elif iRNo == 7:
+        #        sTxt = "Her " + self.Woman.Back.RandomDescription(NotList = ['arch']) + " arched"
+        #        Reactions.AddWord(sTxt)
+        #        UsedRNos.append(iRNo)
+
+        #sReaction1 = Reactions.GetWord()
+        #sReaction2 = Reactions.GetWord(NotList = [sReaction1])
+        #sReaction3 = Reactions.GetWord(NotList = [sReaction1,sReaction2])
+
+        #sTweet += sReaction1 + ". "
+        #if CoinFlip():
+        #    sTweet += sReaction2 + ". "
+        #sTweet += sReaction3 + ".\n\n"
+
+        sTweet += Selector.GetSection() + ". "
         if CoinFlip():
-            sTweet += sReaction2 + ". "
-        sTweet += sReaction3 + ".\n\n"
+            sTweet += Selector.GetSection() + ". "
+        sTweet += Selector.GetSection() + ".\n\n"
 
-        iRand = randint(1,10)
-        if iRand < 4:
-            sTweet += "\"D-d-doctor,\", she gasped in a shaky voice, "
-            sTweet += "\"are you SURE "
-            sTweet += WordList(["this is medically necessary",
-                               ]).GetWord() + "?\""
-        elif iRand < 6:
-            sTweet += "\"As you can see, class,\" "
-            sTweet += WordList(["the doctor","the professor"]).GetWord() + " said, "
-            sTweet += "\"" + WordList(["The patient","Our volunteer","The subject", "This student volunteer"]).GetWord() + " "
-            sTweet += "responds strongly to " + WordList(["the device","the stimulus","stimulation"]).GetWord() + ". "
-            sTweet += "Now observe closely as I attempt an even higher setting.\""
-        elif iRand < 8:
-            sTweet += "\"Is... is it working, doctor?\" she gasped.\n\n"
-            sTweet += "\"I'm afraid not,\" he said to the " + self.Woman.Desc + ". " 
-            sTweet += "\"I'm going to have "
-            sTweet += "to employ a more potent therapeutic tool.\" "
-            sTweet += "He " + WordList(["unzipped his trousers","reached into his trousers","reached down"]).GetWord() + " and "
-            sTweet += WordList(["pulled out","pulled out","fished out","exposed","took hold of"]).GetWord() + " "
-            sTweet += "his " + self.Man.Penis.FloweryDescription(NounExclTagList = ["smalldick","silly","desc"], AdjExclTagList = ["smalldick","horny"]) + "."
-        elif iRand < 10:
-            sTweet += "The doctor " + WordList(["furrowed his brow","frowned","narrowed his eyes"]).GetWord() + " as he looked at "
-            sTweet += "the screen next to him. \"Oh dear,\" he said.\n\n"
-            sTweet += "\"What is it doctor?\" gasped " + WordList(["the " + self.Woman.Desc, sHerName]).GetWord() + ".\n\n"
-            sTweet += "\"I'm afraid " 
-            sTweet += WordList(["my readings","these readings","my instruments","my scans","the scans","my tests","these tests"]).GetWord() + " "
-            sTweet += WordList(["show","clearly show","clearly indicate","show conclusively","confirm"]).GetWord() + " that "
-            sTweet += "you're a " + WordList(["filthy","filthy","nasty","nasty",
-                                              "dirty","dirty","cock-hungry",
-                                              "shameless","brazen","wanton",
-                                              "trashy","lewd","skanky","ghetto",
-                                              ]).GetWord() + " "
-            sTweet += "little " + WordList(["slut","slut","whore","hoe","cum-dumpster","cunt","spunk-bucket","slag","bitch"]).GetWord() + ",\" he said."
-        elif iRand == 10:
-            sTweet += "\"Are you ready to talk, Fraulein?\" "
-            sTweet += "Doctor " + WordList(["Schmidt","Heinrich","Schulze","Von Blitzschlag",
-                                            "Von Richter","Geizler","Zarhoff","Kleinerstein",
-                                            "Heimbach","Durchdenwald","Kitzler",
-                                           ]).GetWord() + " "
-            sTweet += "asked the " + self.Woman.Desc + ".\n\n"
-            sTweet += "\"" + WordList(["Never!","I'll never talk!","You won't get a thing out of me!","I'd rather die, scum!","You'll have to kill me first!","Nein! I'll never talk!"]).GetWord() + "\" "
-            sTweet += "she gasped defiantly.\n\n"
-            sTweet += "\"Ve vill see about that,\" said the Doctor. \"'Zis is only "
-            sTweet += "ze device's lowest setting. I think you vill find "
-            if CoinFlip():
-                sTweet += "the next level is much more... intense.\""
-            else:
-                sTweet += "it to be very... persuasive.\""
+        Selector = SectionSelector()
+        sTxt = ""
+
+        # Medically necessary
+        sTxt = "\"D-d-doctor,\", she gasped in a shaky voice, "
+        sTxt += "\"are you SURE "
+        sTxt += WordList(["this is medically necessary",
+                         ]).GetWord() + "?\""
+        Selector.AddSection(sTxt, Priority = GenPriority.AboveAverage)
+
+        # Class demonstration
+        sTxt = "\"As you can see, class,\" "
+        sTxt += WordList(["the doctor","the professor"]).GetWord() + " said, "
+        sTxt += "\"" + WordList(["The patient","Our volunteer","The subject", "This student volunteer"]).GetWord() + " "
+        sTxt += "responds strongly to " + WordList(["the device","the stimulus","stimulation"]).GetWord() + ". "
+        sTxt += "Now observe closely as I attempt an even higher setting.\""
+        Selector.AddSection(sTxt)
+
+        # Potent tool
+        sTxt = "\"Is... is it working, doctor?\" she gasped.\n\n"
+        sTxt += "\"I'm afraid not,\" he said to the " + self.Woman.Desc + ". " 
+        sTxt += "\"I'm going to have "
+        sTxt += "to employ a more potent therapeutic tool.\" "
+        sTxt += "He " + WordList(["unzipped his trousers","reached into his trousers","reached down"]).GetWord() + " and "
+        sTxt += WordList(["pulled out","pulled out","fished out","exposed","took hold of"]).GetWord() + " "
+        sTxt += "his " + self.Man.Penis.FloweryDescription(NounExclTagList = ["smalldick","silly","desc"], AdjExclTagList = ["smalldick","horny"]) + "."
+        Selector.AddSection(sTxt)
+
+        # Filthy little slut
+        sTxt = "The doctor " + WordList(["furrowed his brow","frowned","narrowed his eyes"]).GetWord() + " as he looked at "
+        sTxt += "the screen next to him. \"Oh dear,\" he said.\n\n"
+        sTxt += "\"What is it doctor?\" gasped " + WordList(["the " + self.Woman.Desc, sHerName]).GetWord() + ".\n\n"
+        sTxt += "\"I'm afraid " 
+        sTxt += WordList(["my readings","these readings","my instruments","my scans","the scans","my tests","these tests"]).GetWord() + " "
+        sTxt += WordList(["show","clearly show","clearly indicate","show conclusively","confirm"]).GetWord() + " that "
+        sTxt += "you're a " + WordList(["filthy","filthy","nasty","nasty",
+                                        "dirty","dirty","cock-hungry",
+                                        "shameless","brazen","wanton",
+                                        "trashy","lewd","skanky","ghetto",
+                                        ]).GetWord() + " "
+        sTxt += "little " + WordList(["slut","slut","whore","hoe","cum-dumpster","cunt","spunk-bucket","slag","bitch"]).GetWord() + ",\" he said."
+        Selector.AddSection(sTxt)
+
+        # German doctor
+        sTxt = "\"Are you ready to talk, Fraulein?\" "
+        sTxt += "Doctor " + WordList(["Schmidt","Heinrich","Schulze","Von Blitzschlag",
+                                      "Von Richter","Geizler","Zarhoff","Kleinerstein",
+                                      "Heimbach","Durchdenwald","Kitzler",
+                                     ]).GetWord() + " "
+        sTxt += "asked the " + self.Woman.Desc + ".\n\n"
+        sTxt += "\"" + WordList(["Never!","I'll never talk!","You won't get a thing out of me!","I'd rather die, scum!","You'll have to kill me first!","Nein! I'll never talk!"]).GetWord() + "\" "
+        sTxt += "she gasped defiantly.\n\n"
+        sTxt += "\"Ve vill see about that,\" said the Doctor. \"'Zis is only "
+        sTxt += "ze device's lowest setting. I think you vill find "
+        if CoinFlip():
+            sTxt += "the next level is much more... intense.\""
+        else:
+            sTxt += "it to be very... persuasive.\""
+        Selector.AddSection(sTxt, Priority = GenPriority.Lowest)
+
+        sTweet += Selector.GetSection()
+
+        #iRand = randint(1,10)
+        #if iRand < 4:
+        #    sTweet += "\"D-d-doctor,\", she gasped in a shaky voice, "
+        #    sTweet += "\"are you SURE "
+        #    sTweet += WordList(["this is medically necessary",
+        #                       ]).GetWord() + "?\""
+        #elif iRand < 6:
+        #    sTweet += "\"As you can see, class,\" "
+        #    sTweet += WordList(["the doctor","the professor"]).GetWord() + " said, "
+        #    sTweet += "\"" + WordList(["The patient","Our volunteer","The subject", "This student volunteer"]).GetWord() + " "
+        #    sTweet += "responds strongly to " + WordList(["the device","the stimulus","stimulation"]).GetWord() + ". "
+        #    sTweet += "Now observe closely as I attempt an even higher setting.\""
+        #elif iRand < 8:
+        #    sTweet += "\"Is... is it working, doctor?\" she gasped.\n\n"
+        #    sTweet += "\"I'm afraid not,\" he said to the " + self.Woman.Desc + ". " 
+        #    sTweet += "\"I'm going to have "
+        #    sTweet += "to employ a more potent therapeutic tool.\" "
+        #    sTweet += "He " + WordList(["unzipped his trousers","reached into his trousers","reached down"]).GetWord() + " and "
+        #    sTweet += WordList(["pulled out","pulled out","fished out","exposed","took hold of"]).GetWord() + " "
+        #    sTweet += "his " + self.Man.Penis.FloweryDescription(NounExclTagList = ["smalldick","silly","desc"], AdjExclTagList = ["smalldick","horny"]) + "."
+        #elif iRand < 10:
+        #    sTweet += "The doctor " + WordList(["furrowed his brow","frowned","narrowed his eyes"]).GetWord() + " as he looked at "
+        #    sTweet += "the screen next to him. \"Oh dear,\" he said.\n\n"
+        #    sTweet += "\"What is it doctor?\" gasped " + WordList(["the " + self.Woman.Desc, sHerName]).GetWord() + ".\n\n"
+        #    sTweet += "\"I'm afraid " 
+        #    sTweet += WordList(["my readings","these readings","my instruments","my scans","the scans","my tests","these tests"]).GetWord() + " "
+        #    sTweet += WordList(["show","clearly show","clearly indicate","show conclusively","confirm"]).GetWord() + " that "
+        #    sTweet += "you're a " + WordList(["filthy","filthy","nasty","nasty",
+        #                                      "dirty","dirty","cock-hungry",
+        #                                      "shameless","brazen","wanton",
+        #                                      "trashy","lewd","skanky","ghetto",
+        #                                      ]).GetWord() + " "
+        #    sTweet += "little " + WordList(["slut","slut","whore","hoe","cum-dumpster","cunt","spunk-bucket","slag","bitch"]).GetWord() + ",\" he said."
+        #elif iRand == 10:
+        #    sTweet += "\"Are you ready to talk, Fraulein?\" "
+        #    sTweet += "Doctor " + WordList(["Schmidt","Heinrich","Schulze","Von Blitzschlag",
+        #                                    "Von Richter","Geizler","Zarhoff","Kleinerstein",
+        #                                    "Heimbach","Durchdenwald","Kitzler",
+        #                                   ]).GetWord() + " "
+        #    sTweet += "asked the " + self.Woman.Desc + ".\n\n"
+        #    sTweet += "\"" + WordList(["Never!","I'll never talk!","You won't get a thing out of me!","I'd rather die, scum!","You'll have to kill me first!","Nein! I'll never talk!"]).GetWord() + "\" "
+        #    sTweet += "she gasped defiantly.\n\n"
+        #    sTweet += "\"Ve vill see about that,\" said the Doctor. \"'Zis is only "
+        #    sTweet += "ze device's lowest setting. I think you vill find "
+        #    if CoinFlip():
+        #        sTweet += "the next level is much more... intense.\""
+        #    else:
+        #        sTweet += "it to be very... persuasive.\""
 
         # "I take it you are... enjoying, our new 'Internal Massage
         # Therapy,' Mrs. Johnson?" asked the masseuse. 
