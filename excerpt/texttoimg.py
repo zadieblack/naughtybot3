@@ -173,7 +173,7 @@ def GetBGImg(iPicNo = 0):
           while not BGImgQ.PushToHistoryQ(iPicNo) and i < 1000:
                iPicNo = randint(1, MAX_IMG_NUM)
                i = i + 1
-          #iPicNo = 111
+          # iPicNo = 112
      try:
           BGImg = Image.open(PATH + "bg_" + str(iPicNo) + ".jpg").convert('RGBA')
      except IOError as e:

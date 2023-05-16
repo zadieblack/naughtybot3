@@ -2732,7 +2732,6 @@ class Generator50(ExGen):
           sText1 = ""
           sText2 = ""
           sText3 = ""
-          
                
           sText1 = AddArticles(clothes.Bikini().FloweryDescription(NounReqTagList = ["skimpy"])) + " and matching thong."
           sText2 = "She slipped the thong down over her hips exposing "
@@ -3040,71 +3039,71 @@ class Generator55(ExGen):
           
           sTweet = "'No,' thought " + sHerName + ", 'I can never forgive " + sHisName + " for "
           sTweet += WordList(["fucking my twin sister", 
-                                   "having anal sex with my step-mom", 
-                                   "rimming my best friend", 
-                                   "drilling the entire cheerleading squad",
-                                   "suggesting we have a threesome with my sister",
-                                   "spooning naked with my sister", 
-                                   "stepping on my cat", 
-                                   "refusing to go down on me", 
-                                   "drop-kicking my Pomeranian",
-                                   "playing Fantasy Football on our anniversary", 
-                                   "finger-banging his secretary", 
-                                   "what happened during the threesome", 
-                                   "what happened during the orgy",
-                                   "fingering his step-daughter's butt-hole",
-                                   "showing up drunk to the Bat Mitzvah", 
-                                   "asking me to get implants", 
-                                   "giving me a wet willy", 
-                                   "mistaking my twin sister for me in the shower",
-                                   "getting that full-body tattoo", 
-                                   "giving me that awful tattoo", 
-                                   "telling my ex I was into water sports",
-                                   "giving the pool boy a blowjob", 
-                                   "getting an erection during church",
-                                   "calling my mother a fat whore", 
-                                   "titty-fucking my best friend",
-                                   "sexting my sister", 
-                                   "showing everyone those pictures", 
-                                   "letting my labradoodle escape", 
-                                   "refusing to marry me",
-                                   "suggesting I get breast implants", 
-                                   "ruining my favorite dress with semen stains", 
-                                   "puking in my mom's spaghetti",
-                                   "shaving his chest hair", 
-                                   "shaving his pubes",
-                                   "putting it in the wrong hole",
-                                   "wearing my lingerie", 
-                                   "farting in my face during sex", 
-                                   "using my favorite panties as a cum rag",
-                                   "showering with the neighbor",
-                                   "investing our savings in Bitcoin", 
-                                   "what he did in the sauna with Raoul", 
-                                   "forgetting our three-month anniversary",
-                                   "refusing to eat my ass", 
-                                   "getting cum in my eye at church",
-                                   "not being able to find my clitoris", 
-                                   "what he wrote in my yearbook", 
-                                   "staring at my mom's tits", 
-                                   "using my vibrator without telling me",
-                                   "giving me chlamydia", 
-                                   "calling me 'Karen' in bed", 
-                                   "buying me a Nickleback album for my birthday",
-                                   "shaving my maltipoo", 
-                                   "dying my pubes purple", 
-                                   "unfollowing me on Facebook",
-                                   "sharing my mom's nude selfies online",
-                                   "giving the Uber driver a blowjob",
-                                   "eating out that bikini model", 
-                                   "calling them my 'piss-flaps'", 
-                                   "calling them my 'meat balloons'",
-                                   "calling my mother 'a raging thunder-cunt'", 
-                                   "putting it in my pooper"]).GetWord() + ". "
+                                "having anal sex with my step-mom", 
+                                "rimming my best friend", 
+                                "drilling the entire cheerleading squad",
+                                "suggesting we have a threesome with my sister",
+                                "spooning naked with my sister", 
+                                "stepping on my cat", 
+                                "refusing to go down on me", 
+                                "drop-kicking my Pomeranian",
+                                "playing Fantasy Football on our anniversary", 
+                                "finger-banging his secretary", 
+                                "what happened during the threesome", 
+                                "what happened during the orgy",
+                                "fingering his step-daughter's butt-hole",
+                                "showing up drunk to the Bat Mitzvah", 
+                                "asking me to get implants", 
+                                "giving me a wet willy", 
+                                "mistaking my twin sister for me in the shower",
+                                "getting that full-body tattoo", 
+                                "giving me that awful tattoo", 
+                                "telling my ex I was into water sports",
+                                "giving the pool boy a blowjob", 
+                                "getting an erection during church",
+                                "calling my mother a fat whore", 
+                                "titty-fucking my best friend",
+                                "sexting my sister", 
+                                "showing everyone those pictures", 
+                                "letting my labradoodle escape", 
+                                "refusing to marry me",
+                                "suggesting I get breast implants", 
+                                "ruining my favorite dress with semen stains", 
+                                "puking in my mom's spaghetti",
+                                "shaving his chest hair", 
+                                "shaving his pubes",
+                                "putting it in the wrong hole",
+                                "wearing my lingerie", 
+                                "farting in my face during sex", 
+                                "using my favorite panties as a cum rag",
+                                "showering with the neighbor",
+                                "investing our savings in Bitcoin", 
+                                "what he did in the sauna with Raoul", 
+                                "forgetting our three-month anniversary",
+                                "refusing to eat my ass", 
+                                "getting cum in my eye at church",
+                                "not being able to find my clitoris", 
+                                "what he wrote in my yearbook", 
+                                "staring at my mom's tits", 
+                                "using my vibrator without telling me",
+                                "giving me chlamydia", 
+                                "calling me 'Karen' in bed", 
+                                "buying me a Nickleback album for my birthday",
+                                "shaving my maltipoo", 
+                                "dying my pubes purple", 
+                                "unfollowing me on Facebook",
+                                "sharing my mom's nude selfies online",
+                                "giving the Uber driver a blowjob",
+                                "eating out that bikini model", 
+                                "calling them my 'piss-flaps'", 
+                                "calling them my 'meat balloons'",
+                                "calling my mother 'a raging thunder-cunt'", 
+                                "putting it in my pooper"]).GetWord() + ". "
           sTweet += WordList(["I have to cut him out of my life once and for all.", 
-                                   "This time we are really through.",
-                                   "This time he has gone too far. We are finished.",
-                                   "I never want to see him again, ever.",
-                                   "I have to let him go, once and for all."]).GetWord() + " "
+                                "This time we are really through.",
+                                "This time he has gone too far. We are finished.",
+                                "I never want to see him again, ever.",
+                                "I have to let him go, once and for all."]).GetWord() + " "
           sTweet += "No more will I stare at his picture. I must forget about his "
           sTweet += sFantasy1 + ", " + sFantasy2 + ", "
           
@@ -3688,19 +3687,19 @@ class Generator63(ExGen):
           #Line 7
           sTweet += "\"But you know we cannot,\" she said, \""
           sTweet += WordList(["I am married to your " + MaleRelations.GetWord(),
-                                     "I am fucking " + names.PlainNamesMale().FirstName() + " the " + Occupations.GetWord(),
-                                     "I am married to " + names.PlainNamesMale().FirstName() + " the " + Occupations.GetWord(),
-                                     "I am having " + names.PlainNamesMale().FirstName() + " the " + Occupations.GetWord() + "'s baby",
-                                     "I am pregnant with your " + MaleRelations.GetWord() + "'s baby",
-                                     "I am pregnant with the king's baby",
-                                     "You're my " + MaleRelations.GetWord(),
-                                     "You're only a poor " + Occupations.GetWord(),
-                                     "You're a priest",
-                                     "I'm a nun",
-                                     "You are shorter than I am",
-                                     "You're a dwarf",
-                                     "You're not Jewish"
-                                   ]).GetWord()
+                                "I am fucking " + names.PlainNamesMale().FirstName() + " the " + Occupations.GetWord(),
+                                "I am married to " + names.PlainNamesMale().FirstName() + " the " + Occupations.GetWord(),
+                                "I am having " + names.PlainNamesMale().FirstName() + " the " + Occupations.GetWord() + "'s baby",
+                                "I am pregnant with your " + MaleRelations.GetWord() + "'s baby",
+                                "I am pregnant with the king's baby",
+                                "You're my " + MaleRelations.GetWord(),
+                                "You're only a poor " + Occupations.GetWord(),
+                                "You're a priest",
+                                "I'm a nun",
+                                "You are shorter than I am",
+                                "You're a dwarf",
+                                "You're not Jewish"
+                            ]).GetWord()
           sTweet += "!\""
           
           return sTweet
@@ -3973,7 +3972,7 @@ class Generator65(ExGen):
           sPornoType = WordList(['ass-to-ass','ass-to-mouth','anal gape','public humiliation','gang-bang','interracial gang-bang',
                                       'furry','furry gang-bang','interracial anal','double anal penetration']).GetWord()
           
-          BodyParts = self.FemBodyParts
+          BodyParts = self.Woman
           SelectedPart = WordList([BodyParts.Breasts,BodyParts.Breasts.Nipples,BodyParts.Vagina,BodyParts.Vagina.OuterLabia,
                                         BodyParts.Vagina.InnerLabia,BodyParts.Ass,BodyParts.Ass.Anus,BodyParts.Thighs,
                                          BodyParts.Vagina.InnerVag,BodyParts.Vagina.Clitoris]).GetWord()
@@ -6168,13 +6167,13 @@ class Generator96(ExGen):
         sHerName = self.FemaleName.FirstName()
         sColor = shmisc.Colors().GetWord().lower()
 
-        Body = self.FemBodyParts
-        Breasts = self.FemBodyParts.Breasts 
-        Ass = self.FemBodyParts.Ass
-        Vagina = self.FemBodyParts.Vagina
-        Hips = self.FemBodyParts.Hips
-        Skin = self.FemBodyParts.Skin
-        Thighs = self.FemBodyParts.Thighs
+        Body = self.Woman.Body
+        Breasts = self.Woman.Breasts 
+        Ass = self.Woman.Ass
+        Vagina = self.Woman.Vagina
+        Hips = self.Woman.Hips
+        Skin = self.Woman.Skin
+        Thighs = self.Woman.Thighs
 
         sBreastAdj1 = Breasts.GetNewAdj()
         sBreastAdj2 = Breasts.GetNewAdj()
@@ -6482,12 +6481,12 @@ class Generator99(ExGen):
         
         sTweet += "\"I love you too, my " + Adjs.GetWord() + " " + Nouns.GetWord() + "!\" he panted "
 
-        AnusFemale = self.FemBodyParts.Ass.Anus
-        AssFemale = self.FemBodyParts.Ass
-        Balls = self.MaleBodyParts.Penis.Testicles
-        Dick = self.MaleBodyParts.Penis
-        Vaj = self.FemBodyParts.Vagina
-        Tits = self.FemBodyParts.Breasts
+        AnusFemale = self.Woman.Ass.Anus
+        AssFemale = self.Woman.Ass
+        Balls = self.Man.Penis.Testicles
+        Dick = self.Man.Penis
+        Vaj = self.Woman.Vagina
+        Tits = self.Woman.Breasts
         sTweet += "as he " + WordList(["ate her ass",
                                         "tongued her " + AnusFemale.ShortDescription(),
                                         "shoved his " + WordList(["lubricated","vaseline-covered","oiled-up"]).GetWord() + " fist deeper into her " + AnusFemale.ShortDescription(),
@@ -6651,10 +6650,10 @@ class Generator101(ExGen):
         sHerName = self.FemaleName.FirstName()
         sHisName = self.MaleName.FirstName()
 
-        Hips = self.FemBodyParts.Hips
-        Ass = self.FemBodyParts.Ass
+        Hips = self.Woman.Hips
+        Ass = self.Woman.Ass
         Buns = Ass.Buttocks
-        Pussy = self.FemBodyParts.Vagina
+        Pussy = self.Woman.Vagina
 
         sTweet += sHisName + " felt his heart " + WordList(["hammering","pounding",
                                                             "beating hard","thumping",
@@ -8691,7 +8690,7 @@ class Generator118(ExGen):
 ## {the word 'lube'/'wrong hole'}."
 class Generator119(ExGen):
     def __init__(self):
-        super().__init__(ID = 119, Priority = GenPriority.Normal, Disabled = True)
+        super().__init__(ID = 119, Priority = GenPriority.Normal, Disabled = False)
      
     def GenerateTweet(self):
         super().GenerateTweet()
@@ -8726,12 +8725,17 @@ class Generator119(ExGen):
         ##sTweet += "the " + Bikini.GetFullDesc(6) + " "
         #sTweet += "she was wearing turned heads at the beach.\n\n"
 
+        for i in range(3):
+            sTweet += "The " + self.Woman.Desc + " "
+            sTweet += "lifted up her " + clothes.ShortSkirt().RandomDescription(bAllowShortDesc = False) + ", "
+            sTweet += "revealing that she had failed to put on any "
+            sTweet += "panties underneath.\n\n"
         
-        for i in range(6):
-            Top = clothes.CropTop()
-            sTweet += "Her " + Top.FloweryDescription() + " "
-            sTweet += "struggled to contain " 
-            sTweet += "her " + self.FemBodyParts.Breasts.RandomDescription() + ".\n\n"
+        #for i in range(6):
+        #    Top = clothes.CropTop()
+        #    sTweet += "Her " + Top.FloweryDescription() + " "
+        #    sTweet += "struggled to contain " 
+        #    sTweet += "her " + self.FemBodyParts.Breasts.RandomDescription() + ".\n\n"
 
         #sTweet += "Winking at him, she slipped "
         #sTweet += "her " + Bottoms.RandomDescription() + " "

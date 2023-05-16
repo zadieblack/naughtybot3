@@ -89,6 +89,7 @@ class FemWardrobe():
                    Panties,
                    Pantyhose,
                    ShortsFemale,
+                   ShortSkirt,
                    YogaPants,
                   ]
 
@@ -296,8 +297,7 @@ class Bikini(Clothes):
                          'two-piece bathing suit: std,sing',
                         ])
           
-          self.AdjList([#'crocheted: material,texture',
-                        'daring x2: skimpy',
+          self.AdjList(['daring x2: skimpy',
                         'eye-watering: super',
                         'flimsy: skimpy',
                         'floral: pattern',
@@ -319,7 +319,6 @@ class Bikini(Clothes):
                         'sexy: super',
                         'sheer: seethru,texture,pattern,material',
                         'skimpy x2: skimpy',
-                        #'spandex: material',
                         'striped: pattern',
                         'stunning: super',
                         'teeny-tiny: size,small',
@@ -349,8 +348,6 @@ class BikiniBottoms(Clothes):
                         ])
           
           self.AdjList(['cheeky: super',
-                        #'crocheted: material,texture',
-                        #'crotchless: style,fetish',
                         'daring x2: skimpy',
                         'flimsy: skimpy',
                         'floral: pattern',
@@ -373,7 +370,6 @@ class BikiniBottoms(Clothes):
                         'shocking: super',
                         'skimpy x2: skimpy',
                         'slender: size,small,skimpy',
-                        #'spandex: material',
                         'stretchy: stretchy',
                         'stunning: super',
                         'teeny-tiny: size,small',
@@ -402,8 +398,7 @@ class BikiniTop(Clothes):
                          'strapless bikini x3: variant,sing',
                         ])
           
-          self.AdjList([#'crocheted: material,texture',
-                        'daring x2: skimpy',
+          self.AdjList(['daring x2: skimpy',
                         'flimsy: skimpy',
                         'floral: pattern',
                         'hot: super',
@@ -424,7 +419,6 @@ class BikiniTop(Clothes):
                         'shocking: super',
                         'skimpy x2: skimpy',
                         'slender: size,small,skimpy',
-                        #'spandex: material',
                         'stringy: skimpy',
                         'stunning: super',
                         'teeny-tiny: size,small',
@@ -535,10 +529,8 @@ class Bra(Clothes):
                         'fancy: super',
                         'flowered: pattern',
                         'full: size,large',
-                        #'full-cup: size,large',
                         'flimsy: material',
                         'frilly: pattern,style',
-                        #'Italian: style',
                         'lace: material,pattern',
                         'lacy: material,pattern',
                         'large: size,large',
@@ -564,7 +556,6 @@ class Bra(Clothes):
                         'stunning: super',
                         'tight x2: size,small',
                         'tiny x3: size,small',
-                        #'Victoria\'s Secret: style',
                         'wispy: small',
                        ])
                
@@ -595,7 +586,6 @@ class Panties(Clothes):
           
           self.AdjList(['brief: size,small',
                         'cheeky: skimpy',
-                        #'cotton x2: material',
                         'cute: super',
                         'dainty: super',
                         'delicate: super',
@@ -603,9 +593,7 @@ class Panties(Clothes):
                         'fancy: super',
                         'flimsy: super',
                         'flowered: pattern',
-                        #'French: style',
                         'frilly x3: style',
-                        #'Japanese: style',
                         'gossamer: texture,material',
                         'lace x2: pattern,material',
                         'lacey x4: pattern,material',
@@ -828,6 +816,76 @@ class EveningDress(Clothes):
           self.DefaultNoun('evening gown')
           self.DefaultAdj('sexy')
 
+class ShortSkirt(Clothes):
+     def __init__(self):
+          super().__init__()
+          
+          self.AddColors = True
+          self.IsBottom = True
+          
+          self.NounList(['bubble skirt: variant,sing',
+                         'denim skirt: variant,denim,material,sing',
+                         'leather skirt: variant,leather,material,sing',
+                         'microskirt: variant,short,sing',
+                         'miniskirt x2: variant,short,sing',
+                         'short skirt x2: std,short,sing',
+                         'skirt x4: std,default,sing',
+                        ])
+          
+          self.AdjList(['abbreviated: skimpy',
+                        'breezy: super',
+                        'brief: skimpy',
+                        'crisp: super',
+                        'cute: super',
+                        'clingy: tight',
+                        'cute: super',
+                        'dainty: super',
+                        'delightful: super',
+                        'denim: material,color,texture',
+                        'flirtatious: super',
+                        'floral: pattern',
+                        'flowered x2: pattern',
+                        'form-fitting: tight',
+                        'frilly: style',
+                        'girly: super,young',
+                        'high-waisted: style',
+                        'hip-hugging: tight',
+                        'hot: super',
+                        'linen: material',
+                        'little x4: size,small',
+                        'metallic: texture,material',
+                        'narrow: width,narrow,tight',
+                        'petite: size,small',
+                        'plaid: pattern,color',
+                        'pleated x3: texture,style',
+                        'polka-dot: pattern',
+                        'pretty: super',
+                        'prim: super',
+                        'ruffled: style',
+                        'sexy x2: super',
+                        'silken: texture,material',
+                        'slim: width,narrow,tight',
+                        'slinky: super,skimpy',
+                        'slitted: stle',
+                        'snug x2: tight',
+                        'striped: pattern',
+                        'suggestive: super',
+                        'tantalizing: super',
+                        'tasteful: super,modest',
+                        'thigh-length: length,short',
+                        'thin: thickness,thin',
+                        'teeny: size,small',
+                        'teeny-tiny: tight',
+                        'thigh-length: medium',
+                        'tight x2: tight',
+                        'tiny x3: tight',
+                        'wool: material',
+                       ])
+               
+          self.DefaultNoun('skirt')
+          self.DefaultAdj('snug')
+
+
 class ShortsFemale(Clothes):
      def __init__(self):
           super().__init__()
@@ -976,8 +1034,6 @@ class TshirtFemale(Clothes):
                         'casual: style',
                         'clingy: skimpy',
                         'comfortable: texture',
-                        #'cotton: material',
-                        #'cut-off: style,shape',
                         'diaphanous: seethru',
                         'faded: color',
                         'flimsy: thickness',
@@ -998,7 +1054,6 @@ class TshirtFemale(Clothes):
                         'thin x4: thickness',
                         'tight x3: size,small,tight',
                         'tiny x3: size,small',
-                        #'v-neck: shape',
                         'white x3: color',
                         'plain white: color',
                         'yellow: color',
@@ -1227,6 +1282,6 @@ class Heels(Clothes):
 
 # TODO:
 #   x high heels
-#   - blouse
+#   X blouse
 #   - skirt
 #   X robe/nightgown/negligee/shift(/kimono?)

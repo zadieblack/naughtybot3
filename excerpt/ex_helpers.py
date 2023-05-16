@@ -899,11 +899,6 @@ class SectionSelector():
         if len(Bucket) > 0:
             iCount = 0
             Section = choice(Bucket)
-            #while Section[0] in self.UsedSectionsQ and iCount < MAXSECTIONBUCKETTRIES:
-            #    Section = choice(Bucket)
-            #    iCount += 1
-
-            #self.UsedSectionsQ.append(Section[0])
             Bucket.remove(Section)
             SectionTxt = Section[1]
         else:
