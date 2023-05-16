@@ -831,7 +831,9 @@ class SectionSelector():
     #        self.Priority = Priority
 
     def __init__(self):
-        #self.Sections = []
+        self.Reset()
+
+    def Reset(self):
         self.SuperHighBucket = []
         self.HighBucket = []
         self.AboveAverageBucket = []
@@ -840,7 +842,7 @@ class SectionSelector():
         self.LowestBucket = []
 
         self.iNumSections = 0
-        self.UsedSectionsQ = []
+        #self.UsedSectionsQ = []
 
     def AddSection(self, Txt, Priority = GenPriority.Normal):
         Bucket = None
@@ -897,11 +899,12 @@ class SectionSelector():
         if len(Bucket) > 0:
             iCount = 0
             Section = choice(Bucket)
-            while Section[0] in self.UsedSectionsQ and iCount < MAXSECTIONBUCKETTRIES:
-                Section = choice(Bucket)
-                iCount += 1
+            #while Section[0] in self.UsedSectionsQ and iCount < MAXSECTIONBUCKETTRIES:
+            #    Section = choice(Bucket)
+            #    iCount += 1
 
-            self.UsedSectionsQ.append(Section[0])
+            #self.UsedSectionsQ.append(Section[0])
+            Bucket.remove(Section)
             SectionTxt = Section[1]
         else:
             SectionTxt = ""
