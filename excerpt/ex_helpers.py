@@ -8,6 +8,7 @@ from random import *
 from util import *
 import re 
 
+MAXSECTIONBUCKETTRIES = 100
 BodyPartHistoryQ = HistoryQ(10)
 
 TagExclDict = {"bigdick": ["smalldick"],
@@ -823,3 +824,86 @@ class NounPhrase:
                
         return sRandomDesc
 
+class SectionSelector():
+    #class Section():
+    #    def init(self, Txt, Priority = GenPriority.Normal):
+    #        self.Txt = Txt
+    #        self.Priority = Priority
+
+    def __init__(self):
+        #self.Sections = []
+        self.SuperHighBucket = []
+        self.HighBucket = []
+        self.AboveAverageBucket = []
+        self.NormalBucket = []
+        self.LowBucket = []
+        self.LowestBucket = []
+
+        self.iNumSections = 0
+        self.UsedSectionsQ = []
+
+    def AddSection(self, Txt, Priority = GenPriority.Normal):
+        Bucket = None
+
+        self.iNumSections += 1
+
+        if Priority == GenPriority.SuperHigh:
+            Bucket = self.SuperHighBucket
+        elif Priority == GenPriority.High:
+            Bucket = self.HighBucket
+        elif Priority == GenPriority.AboveAverage:
+            Bucket = self.AboveAverageBucket
+        elif Priority == GenPriority.Low:
+            Bucket = self.LowBucket
+        elif Priority == GenPriority.Lowest:
+            Bucket = self.LowestBucket
+        else:
+            Bucket = self.NormalBucket
+        
+        Bucket.append((self.iNumSections, Txt))
+        
+        return self.iNumSections
+
+    def GetSection(self):
+        SectionTxt = ""
+        Section = None
+
+        Bucket = []
+        iCount = 0
+        while len(Bucket) == 0 and iCount < MAXSECTIONBUCKETTRIES:
+            iChance = randint(1, 55) # 1 + 2 + 4 + 8 + 16 + 24 = 56
+            
+            if iChance == 1:
+                Bucket = self.LowestBucket
+            elif iChance >= 2 and iChance < 4:      # 2x lowest
+                Bucket = self.LowBucket 
+            elif iChance >= 4 and iChance < 8:      # 2x low
+                Bucket = self.NormalBucket 
+            elif iChance >= 8 and iChance < 16:      # 2x normal
+                Bucket = self.AboveAverageBucket
+            elif iChance >= 16 and iChance < 32:     # 2x above average
+                Bucket = self.HighBucket
+            elif iChance >= 32 and iChance < 56:     # 1.5x high
+                Bucket = self.SuperHighBucket
+            else:
+                Bucket = self.NormalBucket
+                print("=*= WARNING =*= Default bucket (normal) selected (iChance == " + str(iChance) + "). Bucket contains " + str(len(Bucket)) + " items.\n")
+
+            iCount = iCount + 1
+
+        if iCount >= MAXSECTIONBUCKETTRIES:
+            print("=*= WARNING =*= Maximum attempts to choose a bucket exceeded for " + self.GeneratorClassName + " GetBucket(). Bucket " + str(Bucket) + " accepted by default.\n")
+
+        if len(Bucket) > 0:
+            iCount = 0
+            Section = choice(Bucket)
+            while Section[0] in self.UsedSectionsQ and iCount < MAXSECTIONBUCKETTRIES:
+                Section = choice(Bucket)
+                iCount += 1
+
+            self.UsedSectionsQ.append(Section[0])
+            SectionTxt = Section[1]
+        else:
+            SectionTxt = ""
+
+        return SectionTxt

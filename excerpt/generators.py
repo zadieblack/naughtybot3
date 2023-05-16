@@ -24,7 +24,7 @@ from gen import *
 from excerpt.locations import LocationSelector
 
 import excerpt.bodyparts as bodyparts
-from excerpt.ex_helpers import TagLists
+from excerpt.ex_helpers import *
 import excerpt.verbs as verbs
 #import excerpt.misc as misc
 import excerpt.scenes as scenes
@@ -8489,71 +8489,59 @@ class Generator117(ExGen):
                             "pocket rocket in your socket","stuffin' in dat muffin",
                             "cock-o in your fish taco","swole pole in your front-hole",
                             "pork-roll in your pussy-hole","slim-jim in your quim",
+                            "meat rocket in your fish pocket","cock-o in your choco taco",
                          ])
         sLewdRhyme = LewdRhymes.GetWord()
 
-        ManDescs = []
-        UsedManDescNos = []
-        for i in range(2):
-            iManDescRand = randint(1,5)
-            while iManDescRand in UsedManDescNos:
-                iManDescRand = randint(1,5)
-            if iManDescRand == 1:
-                # Chest
-                Chest = self.MaleBodyParts.Chest
-                sTxt = ""
-                if CoinFlip():
-                    # Hairy
-                    sTxt += "His " + Chest.RandomDescription(AdjExclTagList = ["hairy"], NounExclTagList = ["plur"]) + " "
-                    sTxt += "was thick with dark, curly hair"
-                else:
-                    # Tattoos
-                    sTxt = ""
-                    if CoinFlip():
-                        sTxt += "\"" + WordList(["RESPECT","STRENGTH","THUG LIFE","MERCY"]).GetWord() + "\" "
-                        sTxt += "was inked across his " + Chest.MediumDescription() + " "
-                        sTxt += "in bold lettering"
-                    else:
-                        sTxt += WordList(["An enormous winged dragon","An eagle holding a snake","A massive snarling tiger","A big, snarling wolf","An angel holding a flaming sword","A huge flaming skull",]).GetWord() + " "
-                        sTxt += "was tattoed across his entire " + Chest.MediumDescription(NounExclTagList = ["plur"])
-                ManDescs.append(sTxt)
-                UsedManDescNos.append(1)
-            elif iManDescRand == 2:
-                # tattooed skin
-                Arms = self.MaleBodyParts.Arms
-                ArmsNotList = ["protect"]
-                sTxt = ""
-                if CoinFlip():
-                    sTxt += "Both his " + Arms.RandomDescription(NotList = ArmsNotList) + " were fully sleeved with tattoos"
-                else:
-                    sTxt += "His " + Arms.RandomDescription(NotList = ArmsNotList) + " were covered with tribal tattoos"
-                ManDescs.append(sTxt)
-                UsedManDescNos.append(2)
-            elif iManDescRand == 3:
-                # beard or stubble
-                Beard = self.MaleBodyParts.FacialHair
-                Beard.NotList(["gray"])
-                sTxt = "He sported " + AddArticles(Beard.RandomDescription())
-                ManDescs.append(sTxt)
-                UsedManDescNos.append(3)
-            elif iManDescRand == 4:
-                # hair
-                Hair = self.MaleBodyParts.Hair
-                Hair.NotList(["gray","dread","locks"])
-                sTxt = "His " + Hair.MediumDescription(AdjReqTagList = ["color"]) + " "
-                sTxt += "was braided into ropy dreadlocks"
-                ManDescs.append(sTxt)
-                UsedManDescNos.append(4)
-            elif iManDescRand == 5:
-                # build
-                Body = self.MaleBodyParts
-                sTxt = "His " + Body.RandomDescription(NotList = ["muscle"]) + " rippled with muscle"
-                ManDescs.append(sTxt)
-                UsedManDescNos.append(5)
+        sTxt = ""
+        Selector = SectionSelector()
+        
+        # Chest
+        Chest = self.MaleBodyParts.Chest
+        sTxt = ""
+        if CoinFlip():
+            # Hairy
+            sTxt += "His " + Chest.RandomDescription(AdjExclTagList = ["hairy"], NounExclTagList = ["plur"]) + " "
+            sTxt += "was thick with dark, curly hair"
+        else:
+            # Tattoos
+            sTxt = ""
+            if CoinFlip():
+                sTxt += "\"" + WordList(["RESPECT","STRENGTH","THUG LIFE","MERCY"]).GetWord() + "\" "
+                sTxt += "was inked across his " + Chest.MediumDescription() + " "
+                sTxt += "in bold lettering"
+            else:
+                sTxt += WordList(["An enormous winged dragon","An eagle holding a snake","A massive snarling tiger","A big, snarling wolf","An angel holding a flaming sword","A huge flaming skull",]).GetWord() + " "
+                sTxt += "was tattoed across his entire " + Chest.MediumDescription(NounExclTagList = ["plur"])
+        Selector.AddSection(sTxt)
 
-        sManDesc1 = ManDescs[0]
-        sManDesc2 = ManDescs[1]
-        #sManDesc3 = ManDescs[2]
+        # tattooed skin
+        Arms = self.MaleBodyParts.Arms
+        ArmsNotList = ["protect"]
+        sTxt = ""
+        if CoinFlip():
+            sTxt += "Both his " + Arms.RandomDescription(NotList = ArmsNotList) + " were fully sleeved with tattoos"
+        else:
+            sTxt += "His " + Arms.RandomDescription(NotList = ArmsNotList) + " were covered with tribal tattoos"
+        Selector.AddSection(sTxt)
+
+        # beard or stubble
+        Beard = self.MaleBodyParts.FacialHair
+        Beard.NotList(["gray"])
+        sTxt = "He sported " + AddArticles(Beard.RandomDescription())
+        Selector.AddSection(sTxt)
+
+        # hair
+        Hair = self.MaleBodyParts.Hair
+        Hair.NotList(["gray","dread","locks"])
+        sTxt = "His " + Hair.MediumDescription(AdjReqTagList = ["color"], AdjExclTagList = ["fake"]) + " "
+        sTxt += "was braided into ropy dreadlocks"
+        Selector.AddSection(sTxt)
+
+        # build
+        Body = self.MaleBodyParts
+        sTxt = "His " + Body.RandomDescription(NotList = ["muscle"]) + " rippled with muscle"
+        Selector.AddSection(sTxt)
 
         sFinalDesc = WordList(["his " + self.MaleBodyParts.Chest.Nipples.RandomDescription(bAllowLongDesc = False,NotList = ["pierced"]) + " had been pierced with " + WordList(["steel bars","steel rings","gold rings"]).GetWord(),
                                "he smelled like weed" + WordList([" and tobacco"," and liquor"," and cigarettes",""]).GetWord(),
@@ -8572,7 +8560,8 @@ class Generator117(ExGen):
         sTweet += sHerName + " " + WordList(["squeaked","stammered","stuttered","squealed","exclaimed"]).GetWord() + ". "
         sTweet += "She had barely recognized her son's childhood friend. "
 
-        sTweet += sManDesc1 + ". " + sManDesc2 + ". " 
+        #sTweet += sManDesc1 + ". " + sManDesc2 + ". " 
+        sTweet += Selector.GetSection() + ". " + Selector.GetSection() + ". " 
         sTweet += "And " + sFinalDesc + ". "
 
         sTweet += "\"My goodness, you've really grown over the summer!\" she said. "
