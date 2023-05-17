@@ -10,7 +10,7 @@ import excerpt.util as exutil
 import util as shutil
 import excerpt.locations as locations
 import misc as mainmisc
-import excerpt.ex_helpers as helpers
+#import excerpt.ex_helpers as helpers
 
 from util import CoinFlip
 from util import WordList
@@ -943,7 +943,7 @@ class Generator17(ExGen):
 
           sTweet += self.FemaleName.FirstName() + " stared with " 
           sTweet += "innocent " + self.Woman.Eyes.MediumDescription(NotList = ["innocent"]) + " " 
-          sTweet += "at his " + bodyparts.Penis(iNumAdjs = 3, TagLists = TagLists(adj_req = ["bigdick","hard"])).MediumDescription(AdjExclTagList = ["smalldick"]) + ". " 
+          sTweet += "at his " + bodyparts.Penis(NPParams(iNumAdjs = 3), TagLists = TagLists(adj_req = ["bigdick","hard"])).MediumDescription(AdjExclTagList = ["smalldick"]) + ". " 
           sTweet += "\"Does every " + sManType + " " 
           sTweet += "have a... a thing like that one?\" she asked.\n\n"
           sTweet += "'No darling,' said " + self.Man.FirstName + " chuckling. " 
@@ -8864,9 +8864,10 @@ class Generator121(ExGen):
 
         sHerName = self.FemaleName.FirstName()
 
-        class Dildo(helpers.NounPhrase):
-             def __init__(self, iNumAdjs = 2, ExtraAdjList = None, bVaryAdjTags = None, bEnableSpecials = False, NotList = None, TagLists = None):
-                  super().__init__(iNumAdjs, ExtraAdjList, bVaryAdjTags, bEnableSpecials, NotList, TagLists)
+        class Dildo(NounPhrase):
+             def __init__(self, Params = None, NotList = None, TagLists = None):
+                  Params = NPParams(iNumAdjs = 2)
+                  super().__init__(Params, NotList, TagLists)
           
                   self.NounList(["wand x2:","tube","phallus","device","rod","prosthetic","piston","cylinder","instrument"])
                

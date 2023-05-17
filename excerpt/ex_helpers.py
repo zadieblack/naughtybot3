@@ -63,9 +63,6 @@ class TagLists:
     noun_excl: list = field(default_factory=list)
     noun_req: list = field(default_factory=list)
 
-#ParsedUnit = namedtuple("ParsedUnit","sUnit iPriority TagList",
-#                        defaults=["",1,[]])
-
 @dataclass
 class ParsedUnit:
     sUnit: str = ""
@@ -100,10 +97,11 @@ class ParsedUnit:
 # if needed. 
 
 class NounPhrase:
-    def __init__(self, iNumAdjs = 4, 
-                       bVaryAdjTags = True, 
-                       ExtraAdjList = None, 
-                       bEnableSpecials = False,
+    def __init__(self, Params = None,
+                       #iNumAdjs = 4, 
+                       #bVaryAdjTags = True, 
+                       #ExtraAdjList = None, 
+                       #bEnableSpecials = False,
                        NotList = None,
                        TLParam = None
                 ):
@@ -115,19 +113,20 @@ class NounPhrase:
         self.NounHistoryQ = HistoryQ(3)
         self.AdjHistoryQ = HistoryQ(3)
 
-        if ExtraAdjList is None:
-            ExtraAdjList = []
+        if Params is None:
+            Params = NPParams()
+
         if NotList is None:
             NotList = []
 
-        self._ExtraAdjList = ExtraAdjList
+        self._iNumAdjs = Params.iNumAdjs
+        self._bVaryAdjTags = Params.bVaryAdjTags
+        self._ExtraAdjList = Params.ExtraAdjList
+        self._EnableSpecials = Params.bEnableSpecials
+        self._AdjList = []
         self._NotList = NotList
         self._Noun = ""
         self._Color = ""
-        self._EnableSpecials = bEnableSpecials
-        self._iNumAdjs = iNumAdjs
-        self._AdjList = []
-        self._bVaryAdjTags = bVaryAdjTags
 
         # Nouns and Adjs have their own specific required and excluded
         # tag lists which they will use if available. Otherwise, they
