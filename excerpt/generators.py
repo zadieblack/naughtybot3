@@ -9025,6 +9025,9 @@ class Generator121(ExGen):
 
         return sTweet
 
+# A man is having sex with a beautiful woman. Then we learn he is
+# working his way down a lineup of an entire cheerleading squad.
+
 #class Generator122(ExGen):
 #    def __init__(self):
 #        super().__init__(ID = 122, Priority = GenPriority.Normal)

@@ -12,6 +12,7 @@ MAXSECTIONBUCKETTRIES = 100
 BodyPartHistoryQ = HistoryQ(10)
 
 TagExclDict = {"bigdick": ["smalldick"],
+               "bigtits": ["smalltits"],
                "cauc": ["poc"],
                "college": ["teen","twenties","thirties","middleaged"],
                "female": ["male"],
@@ -29,6 +30,7 @@ TagExclDict = {"bigdick": ["smalldick"],
                "slutty": ["virginal"],
                "small": ["large"],
                "smalldick": ["bigdick"],
+               "smalltits": ["bigtits"],
                "tall": ["short"],
                "teen": ["college","twenties","thirties","middleaged"],
                "thick": ["thin"],
@@ -40,6 +42,17 @@ TagExclDict = {"bigdick": ["smalldick"],
                "virginal": ["slutty"],
                "young": ["thirties","middleaged","older"],
               }
+#iNumAdjs = 4, 
+#bVaryAdjTags = True, 
+#ExtraAdjList = None, 
+#bEnableSpecials = False,
+
+@dataclass 
+class NPParams:
+    iNumAdjs: int = 4
+    bVaryAdjTags: bool = True
+    bEnableSpecials: bool = False
+    ExtraAdjList: list = field(default_factory=list)
 
 @dataclass 
 class TagLists:
@@ -50,11 +63,14 @@ class TagLists:
     noun_excl: list = field(default_factory=list)
     noun_req: list = field(default_factory=list)
 
-#TagLists = namedtuple("TagListNT","excl req adj_excl adj_req noun_excl noun_req",
-#                      defaults = [[], [], [], [], [], []])
+#ParsedUnit = namedtuple("ParsedUnit","sUnit iPriority TagList",
+#                        defaults=["",1,[]])
 
-ParsedUnit = namedtuple("ParsedUnit","sUnit iPriority TagList",
-                        defaults=["",1,[]])
+@dataclass
+class ParsedUnit:
+    sUnit: str = ""
+    iPriority: int = 1
+    TagList: list = field(default_factory=list)
 
 # =============================
 # *** NounPhrase base class ***
@@ -65,10 +81,10 @@ ParsedUnit = namedtuple("ParsedUnit","sUnit iPriority TagList",
 # number of adjectives.
 
 # NounPhrase objects will have lists of nouns and adjectives. 
-# The NounPhrase object picks a noun and some adjs at random,
-# although the choice may be constrained by other parameters.
-# It then strings them together in a way that hopefully makes
-# grammatical sense.
+# The NounPhrase object picks a noun and some adjs at random 
+# from those lists, although the choice may be constrained by 
+# other parameters. It then strings them together in a way 
+# that hopefully makes grammatical sense.
 
 # Words in the word list can have tags which divide them into 
 # categories. Ideally in a noun phrase we want different 
@@ -85,8 +101,8 @@ ParsedUnit = namedtuple("ParsedUnit","sUnit iPriority TagList",
 
 class NounPhrase:
     def __init__(self, iNumAdjs = 4, 
-                       ExtraAdjList = None, 
                        bVaryAdjTags = True, 
+                       ExtraAdjList = None, 
                        bEnableSpecials = False,
                        NotList = None,
                        TLParam = None

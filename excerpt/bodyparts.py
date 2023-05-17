@@ -523,7 +523,7 @@ class Man(Lover):
         #sDesc += "my " + self.Body.FloweryDescription() + ", "
         #sDesc += "my " + self.Skin.FloweryDescription() + ", "
         #sDesc += "and my " + sCut + " " + self.Penis.FloweryDescription() + "."
-        print(sDesc)
+        #print(sDesc)
 
 FemPhysTraits = namedtuple("FemPhysTraits",
                            "AgeCat Age BodyType BustSize HasFakeTits HairStyle IsVirgin",
@@ -848,7 +848,7 @@ class Woman(Lover):
         #sDesc += "my " + self.Breasts.FloweryDescription() + " "
         #sDesc += "with " + self.Nipples.FloweryDescription() + ", "
         #sDesc += "and my " + self.Vagina.FloweryDescription() + ". "
-        print(sDesc)
+        #print(sDesc)
 
 #A lover() object is a collection of attributes and body parts.
 #	- Attributes like:
