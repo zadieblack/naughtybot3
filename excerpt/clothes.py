@@ -101,8 +101,11 @@ class Clothes(NounPhrase):
                 unit = self.ParseUnit(color)
                 
                 if not FoundIn(unit.sUnit, self.ColorsNotList):
-                    if not self.Gender is None and (self.Gender == "male" and not "fem" in unit.TagList):
-                        NewAdjList.append(color)
+                    if not self.Gender is None:
+                       if self.Gender == "male" and not "fem" in unit.TagList:
+                           NewAdjList.append(color)
+                       elif self.Gender == "female":
+                           NewAdjList.append(color)
 
         super().AdjList(NewAdjList)
 
