@@ -42,17 +42,12 @@ TagExclDict = {"bigdick": ["smalldick"],
                "virginal": ["slutty"],
                "young": ["thirties","middleaged","older"],
               }
-#iNumAdjs = 4, 
-#bVaryAdjTags = True, 
-#ExtraAdjList = None, 
-#bEnableSpecials = False,
 
 @dataclass 
 class NPParams:
     iNumAdjs: int = 4
     bVaryAdjTags: bool = True
     bEnableSpecials: bool = False
-    ExtraAdjList: list = field(default_factory=list)
 
 @dataclass 
 class TagLists:
@@ -60,6 +55,7 @@ class TagLists:
     req: list = field(default_factory=list)
     adj_excl: list = field(default_factory=list)
     adj_req: list = field(default_factory=list)
+    adj_extra: list = field(default_factory=list)
     noun_excl: list = field(default_factory=list)
     noun_req: list = field(default_factory=list)
 
@@ -103,7 +99,7 @@ class NounPhrase:
                        #ExtraAdjList = None, 
                        #bEnableSpecials = False,
                        NotList = None,
-                       TLParam = None
+                       TLParams = None
                 ):
         self._AllUnitLists = {"adj": {"master": []}, "noun": {"master": [], "std": []}}
         self._UnitTags = dict()
@@ -116,24 +112,23 @@ class NounPhrase:
         if Params is None:
             Params = NPParams()
 
+        # Nouns and Adjs have their own specific required and excluded
+        # tag lists which they will use if available. Otherwise, they
+        # fall back on the general required and excluded tag lists.
+        if TLParams is None or not isinstance(TLParams, TagLists):
+            #print("WARNING - NounPhrase.init(): TagLists not found, creating new instance")
+            TLParams = TagLists()
+
         if NotList is None:
             NotList = []
 
         self._iNumAdjs = Params.iNumAdjs
         self._bVaryAdjTags = Params.bVaryAdjTags
-        self._ExtraAdjList = Params.ExtraAdjList
         self._EnableSpecials = Params.bEnableSpecials
         self._AdjList = []
         self._NotList = NotList
         self._Noun = ""
         self._Color = ""
-
-        # Nouns and Adjs have their own specific required and excluded
-        # tag lists which they will use if available. Otherwise, they
-        # fall back on the general required and excluded tag lists.
-        if TLParam is None or not isinstance(TLParam, TagLists):
-            #print("WARNING - NounPhrase.init(): TagLists not found, creating new instance")
-            TLParam = TagLists()
 
         self._ExclTagList = []
         self._ReqTagList = []
@@ -142,12 +137,14 @@ class NounPhrase:
         self._AdjExclTagList = []
         self._AdjReqTagList = []
 
-        self._PermExclTagList = TLParam.excl
-        self._PermReqTagList = TLParam.req
-        self._PermNounExclTagList = TLParam.noun_excl
-        self._PermNounReqTagList = TLParam.noun_req
-        self._PermAdjExclTagList = TLParam.adj_excl
-        self._PermAdjReqTagList = TLParam.adj_req
+        self._PermExclTagList = TLParams.excl
+        self._PermReqTagList = TLParams.req
+        self._PermNounExclTagList = TLParams.noun_excl
+        self._PermNounReqTagList = TLParams.noun_req
+        self._PermAdjExclTagList = TLParams.adj_excl
+        self._PermAdjReqTagList = TLParams.adj_req
+        
+        self._ExtraAdjList = TLParams.adj_extra
 
         # self.Reset()
 
@@ -708,112 +705,69 @@ class NounPhrase:
 
         return sNewNoun
 
+    def UpdateTagLists(self, TLParams = None):
+        if TLParams is None:
+            TLParams = TagLists()
+
+        if len(TLParams.req) > 0:
+            self.ReqTagList(TLParams.req)
+
+        if len(TLParams.excl) > 0:
+            self.ExclTagList(TLParams.excl)
+
+        if len(TLParams.noun_req) > 0:
+            self.NounReqTagList(TLParams.noun_req)
+
+        if len(TLParams.noun_excl) > 0:
+            self.NounExclTagList(TLParams.noun_excl)
+
+        if len(TLParams.adj_req) > 0:
+            self.AdjReqTagList(TLParams.adj_req)
+
+        if len(TLParams.adj_excl) > 0:
+            self.AdjExclTagList(TLParams.adj_excl)
+
+        if len(TLParams.adj_extra) > 0:
+            self.AdjReqTagList(TLParams.adj_extra)
+
+        return True
+
     #noun only ("hair")
-    def ShortDescription(self, ExtraAdjList = None, NotList = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
+    def ShortDescription(self, NotList = None, TLParams = None): #, ExtraAdjList = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
         if NotList == None:
             NotList = []
         else:
             self.NotList(NotList)
 
-        if NounReqTagList == None:
-            NounReqTagList = []
-        else:
-            self.NounReqTagList(NounReqTagList)
-
-        if NounExclTagList == None:
-            NounExclTagList = []
-        else:
-            self.NounExclTagList(NounExclTagList)
-
-        if AdjReqTagList == None:
-            AdjReqTagList = []
-        else:
-            self.AdjReqTagList(AdjReqTagList)
-
-        if AdjExclTagList == None:
-            AdjExclTagList = []
-        else:
-            self.AdjExclTagList(AdjExclTagList)
-
-        if ExtraAdjList is None:
-            ExtraAdjList = []
-        else:
-            self.ExtraAdjList(ExtraAdjList)
+        self.UpdateTagLists(TLParams)
 
         return self.GetFullDesc(iNumAdjs = 0)
      
     #adjective noun ("red hair")
-    def MediumDescription(self, ExtraAdjList = None, NotList = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
+    def MediumDescription(self, NotList = None, TLParams = None):
         if NotList == None:
             NotList = []
         else:
             self.NotList(NotList)
 
-        if NounReqTagList == None:
-            NounReqTagList = []
-        else:
-            self.NounReqTagList(NounReqTagList)
-
-        if NounExclTagList == None:
-            NounExclTagList = []
-        else:
-            self.NounExclTagList(NounExclTagList)
-
-        if AdjReqTagList == None:
-            AdjReqTagList = []
-        else:
-            self.AdjReqTagList(AdjReqTagList)
-
-        if AdjExclTagList == None:
-            AdjExclTagList = []
-        else:
-            self.AdjExclTagList(AdjExclTagList)
-
-        if ExtraAdjList is None:
-            ExtraAdjList = []
-        else:
-            self.ExtraAdjList(ExtraAdjList)
+        self.UpdateTagLists(TLParams)
           
         return self.GetFullDesc(iNumAdjs = 1)
      
     #adjective1 adjective2 adjective3 noun ("long, wavy, red hair")
-    def FloweryDescription(self, ExtraAdjList = None, NotList = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
+    def FloweryDescription(self, NotList = None, TLParams = None):
         if NotList == None:
             NotList = []
         else:
             self.NotList(NotList)
 
-        if NounReqTagList == None:
-            NounReqTagList = []
-        else:
-            self.NounReqTagList(NounReqTagList)
-
-        if NounExclTagList == None:
-            NounExclTagList = []
-        else:
-            self.NounExclTagList(NounExclTagList)
-
-        if AdjReqTagList == None:
-            AdjReqTagList = []
-        else:
-            self.AdjReqTagList(AdjReqTagList)
-
-        if AdjExclTagList == None:
-            AdjExclTagList = []
-        else:
-            self.AdjExclTagList(AdjExclTagList)
-
-        if ExtraAdjList is None:
-            ExtraAdjList = []
-        else:
-            self.ExtraAdjList(ExtraAdjList)
+        self.UpdateTagLists(TLParams)
           
         iNumAdjs = choice([1,1,1,2,2,2,2,3])
 
         return self.GetFullDesc(iNumAdjs = iNumAdjs)
      
-    def RandomDescription(self, ExtraAdjList = None, NotList = None, bAllowShortDesc = True, bAllowLongDesc = True, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
-                              # ExtraAdjList = None, NotList = None,                                                NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None
+    def RandomDescription(self, bAllowShortDesc = True, bAllowLongDesc = True, NotList = None, TLParams = None):
         sRandomDesc = ""
           
         iRand = randint(0, 12)
@@ -822,20 +776,20 @@ class NounPhrase:
             if bAllowShortDesc:
                 #use noun from the list or default noun
                 if CoinFlip():
-                        sRandomDesc = self.ShortDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList)
+                        sRandomDesc = self.ShortDescription(NotList = NotList, TLParams = TLParams)
                 else:
                         sRandomDesc = self.GetDefaultNoun(NotList = NotList)
             else:
-                sRandomDesc = self.MediumDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList)
+                sRandomDesc = self.MediumDescription(NotList = NotList, TLParams = TLParams)
         elif iRand in range(3,6):
         #medium desc 
-            sRandomDesc = self.MediumDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList)
+            sRandomDesc = self.MediumDescription(NotList = NotList, TLParams = TLParams)
         else:
         #flowery desc if allowed
             if bAllowLongDesc:
-                sRandomDesc = self.FloweryDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList)
+                sRandomDesc = self.FloweryDescription(NotList = NotList, TLParams = TLParams)
             else:
-                sRandomDesc = self.MediumDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList)
+                sRandomDesc = self.MediumDescription(NotList = NotList, TLParams = TLParams)
                
         return sRandomDesc
 

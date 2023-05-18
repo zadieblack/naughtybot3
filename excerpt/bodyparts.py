@@ -8,8 +8,7 @@ import re
 
 from util import *
 #from excerpt.ex_helpers import *
-import excerpt.ex_helpers as exh
-from excerpt.ex_helpers import NounPhrase
+from excerpt.ex_helpers import *
 import names as names
 
 SkinColors = ["almond: color,asian",
@@ -69,7 +68,7 @@ RaceAsian = Race("asian",
                  ["brown","chocolate","chocolate-colored","coffee-colored","dark","dark brown","honeyed","light brown","mocha"]
                 )
 
-class BodyParts(exh.NounPhrase):
+class BodyParts(NounPhrase):
     def __init__(self, Params = None, NotList = None, TagLists = None):
           super().__init__(Params, NotList, TagLists)
 
@@ -100,7 +99,7 @@ class Lover():
         self.NipColor = ""
         self.PubeStyle = ""
 
-        self._TagLists = exh.TagLists()
+        self._TagLists = TagLists()
 
         if NewGenTraits is None or not isinstance(NewGenTraits, GenPhysTraits):
             NewGenTraits = GenPhysTraits()
@@ -133,15 +132,15 @@ class Lover():
 
         self.RaceName = self.Race.Name
 
-        TagLists = self._TagLists
+        LTagLists = self._TagLists
 
         # Handle race
         if self.RaceName == "caucasian":
-            TagLists.adj_excl.append("poc")
-            TagLists.noun_excl.append("poc")
+            LTagLists.adj_excl.append("poc")
+            LTagLists.noun_excl.append("poc")
         elif self.RaceName == "poc":
-            TagLists.adj_excl.append("cauc")
-            TagLists.noun_excl.append("cauc")
+            LTagLists.adj_excl.append("cauc")
+            LTagLists.noun_excl.append("cauc")
 
         if NewGenTraits.PubeStyle:
             self.PubeStyle = NewGenTraits.PubeStyle
@@ -149,14 +148,14 @@ class Lover():
             self.PubeStyle = choice(["hairy","shaved","trimmed"])
 
         if self.PubeStyle == "hairy":
-            TagLists.adj_excl.append("shaved")
-            TagLists.adj_excl.append("trimmed")
+            LTagLists.adj_excl.append("shaved")
+            LTagLists.adj_excl.append("trimmed")
         elif self.PubeStyle == "trimmed":
-            TagLists.adj_excl.append("shaved")
-            TagLists.adj_excl.append("hairy")
+            LTagLists.adj_excl.append("shaved")
+            LTagLists.adj_excl.append("hairy")
         elif self.PubeStyle == "shaved":
-            TagLists.adj_excl.append("trimmed")
-            TagLists.adj_excl.append("hairy")
+            LTagLists.adj_excl.append("trimmed")
+            LTagLists.adj_excl.append("hairy")
 
         self.HairColor = choice(self.Race.HairColor)
         self.EyeColor = choice(self.Race.EyeColor)
@@ -423,11 +422,11 @@ class Man(Lover):
 
         PenisTagLists = None
         if self.DickInches > 8:
-            PenisTagLists = exh.TagLists(adj_excl = ["smalldick"] + LTagLists.adj_excl,noun_excl = ["bigdick"])
+            PenisTagLists = TagLists(adj_excl = ["smalldick"] + LTagLists.adj_excl,noun_excl = ["bigdick"])
         elif self.DickInches > 5 and self.DickInches < 8:
-            PenisTagLists = exh.TagLists(adj_excl = ["bigdick","smalldick"] + LTagLists.adj_excl,noun_excl = ["bigdick","smalldick"])
+            PenisTagLists = TagLists(adj_excl = ["bigdick","smalldick"] + LTagLists.adj_excl,noun_excl = ["bigdick","smalldick"])
         else:
-            PenisTagLists = exh.TagLists(adj_excl = ["bigdick"] + LTagLists.adj_excl,noun_excl = ["smalldick"])
+            PenisTagLists = TagLists(adj_excl = ["bigdick"] + LTagLists.adj_excl,noun_excl = ["smalldick"])
 
         if self.IsCircumcised:
             PenisTagLists.adj_excl.append("cut")
@@ -448,11 +447,11 @@ class Man(Lover):
 
         # Body
         if self.HeightType == "short":
-            BodyTagLists = exh.TagLists(adj_excl = ["tall"] + LTagLists.adj_excl)
+            BodyTagLists = TagLists(adj_excl = ["tall"] + LTagLists.adj_excl)
         elif self.HeightType == "tall":
-            BodyTagLists = exh.TagLists(adj_excl = ["short"] + LTagLists.adj_excl)
+            BodyTagLists = TagLists(adj_excl = ["short"] + LTagLists.adj_excl)
         else:
-            BodyTagLists = exh.TagLists(adj_excl = ["short","tall"] + LTagLists.adj_excl)
+            BodyTagLists = TagLists(adj_excl = ["short","tall"] + LTagLists.adj_excl)
 
         self.Body = BodyMale(TagLists = BodyTagLists)
         self.Body.FacialHair = self.FacialHair
@@ -716,13 +715,13 @@ class Woman(Lover):
 
         BreastTagLists = None
         if self.BustSize == "small":
-            BreastTagLists = exh.TagLists(adj_excl = ["bigtits"] + LTagLists.adj_excl, noun_excl = ["bigtits"] + LTagLists.noun_excl)
+            BreastTagLists = TagLists(adj_excl = ["bigtits"] + LTagLists.adj_excl, noun_excl = ["bigtits"] + LTagLists.noun_excl)
         elif self.BustSize == "large":
-            BreastTagLists = exh.TagLists(adj_excl = ["smalltits"] + LTagLists.adj_excl, noun_excl = ["smalltits"] + LTagLists.noun_excl)
+            BreastTagLists = TagLists(adj_excl = ["smalltits"] + LTagLists.adj_excl, noun_excl = ["smalltits"] + LTagLists.noun_excl)
             LTagLists.adj_excl.append("smalltits")
             LTagLists.noun_excl.append("smalltits")
         else:
-            BreastTagLists = exh.TagLists(adj_excl = LTagLists.adj_excl, noun_excl = LTagLists.noun_excl)
+            BreastTagLists = TagLists(adj_excl = LTagLists.adj_excl, noun_excl = LTagLists.noun_excl)
             LTagLists.adj_excl.append("bigtits")
             LTagLists.noun_excl.append("bigtits")
 
@@ -767,11 +766,11 @@ class Woman(Lover):
         self.OuterLabia = VaginaOuterLabia(TagLists = LTagLists)
 
         if self.PubeStyle == "shaved":
-            VagTagLists = exh.TagLists(adj_excl = ["hairy","trimmed"] + LTagLists.adj_excl, noun_excl = ["hairy","trimmed"])
+            VagTagLists = TagLists(adj_excl = ["hairy","trimmed"] + LTagLists.adj_excl, noun_excl = ["hairy","trimmed"])
         elif self.PubeStyle == "hairy":
-            VagTagLists = exh.TagLists(adj_excl = ["shaved","trimmed"] + LTagLists.adj_excl, noun_excl = ["shaved","trimmed"])
+            VagTagLists = TagLists(adj_excl = ["shaved","trimmed"] + LTagLists.adj_excl, noun_excl = ["shaved","trimmed"])
         elif self.PubeStyle == "trimmed":
-            VagTagLists = exh.TagLists(adj_excl = ["shaved","hairy"] + LTagLists.adj_excl, noun_excl = ["shaved","hairy"])
+            VagTagLists = TagLists(adj_excl = ["shaved","hairy"] + LTagLists.adj_excl, noun_excl = ["shaved","hairy"])
 
         self.Vagina = Vagina(TagLists = VagTagLists)
         self.Vagina.Clitoris = self.Clitoris
@@ -896,22 +895,18 @@ class Face(FemaleBodyParts):
                         'beautiful: super,attractive',
                         'cute: super,cute,attractive',
                         'delicate: cute',
-                        #'dark: color',
                         'elegant: older,attractive',
                         'excited: emotion,happy',
                         'expressive: emotion',
                         'gentle: attitude',
                         'gorgeous: super,attractive',
                         'flushed: arousal',
-                        #'freckled: color,cauc',
                         'heart-shaped: shape',
                         'innocent: attitude,cute,young,virginal',
                         'lovely: super,attractive',
                         'oval: shape',
-                        #'pale: color,cauc',
                         'pretty: attractive',
                         'radiant: ',
-                        #'rosy: color,young',
                         'round: shape',
                         'smiling: emotion,happy',
                         'startled: emotion',
@@ -969,37 +964,21 @@ class Skin(FemaleBodyParts):
                          'flesh: sing'
                         ])
                               
-          self.AdjList([#'almond-colored: asian,color',
-                        'bare: nude',
-                        #'brown: color,poc',
-                        #'chocolate: color,taste,poc,',
-                        #'chocolate-colored: color,poc,',
-                        #'coffee-colored: color,poc',
-                        #'creamy: texture,color,taste,cauc',
-                        #'dark: color,poc',
+          self.AdjList(['bare: nude',
                         'delicate: texture,cute',
                         'exposed: nude',
-                        #'freckled: texture,cauc',
-                        #'fresh pink: color,cauc',
                         'gentle: feel,texture',
                         'gleaming: texture,shiny',
                         'glistening: wet,texture,shiny',
                         'glowing: texture',
                         'gossamer: feel,texture',
-                        #'honeyed: color, taste,texture',
                         'luscious: taste,super',
                         'lustrous x2: texture,shiny',
                         'naked: nude',
-                        #'pale: color,cauc',
                         'perfect: super',
-                        #'pink: color,cauc,young',
-                        #'porcelain: color,texture,cauc',
-                        #'rosy: color,texture,cauc,young',
                         'silken: feel,texture',
                         'soft: feel,texture',
                         'smooth: feel,texture',
-                        #'sun-browned: color',
-                        #'sun-kissed: color',
                         'supple: feel,young,texture',
                         'sweet: super,taste',
                         'tender: feel,cute',
@@ -1086,9 +1065,10 @@ class Eyes(FemaleBodyParts):
           self.AdjList(['alluring: attractive',
                         'beautiful: attractive',
                         'bewitching: attractive',
+                        'big: size,large',
                         'bright: attractive,young,cauc',
                         'blue x4: color,cauc',
-                        'brown x3: color',
+                        'brown x2: color',
                         'captivating: attractive',
                         'clear: attractive,desc',
                         'dazzling: attractive,shiny',
@@ -1096,6 +1076,7 @@ class Eyes(FemaleBodyParts):
                         'electric: attractive',
                         'electrifying: attractive',
                         'enchanting: attractive',
+                        'enormous: size,large',
                         'exotic: attractive',
                         'gray x2: color,cauc',
                         'green x3: color,cauc',
@@ -1109,7 +1090,7 @@ class Eyes(FemaleBodyParts):
                         'soulful: attractive',
                         'sparkling: attractive,shiny',
                         'sweet: attractive',
-                        'wide: size,large'])
+                        'wide x3: size,large'])
           
           self.DefaultNoun("eyes")
           self.DefaultAdj("bewitching")
@@ -1125,6 +1106,7 @@ class Hips(FemaleBodyParts):
           self.AdjList(['curvy: width,wide,shape,desc',
                         'curvaceous: wide,width',
                         'bare: nude',
+                        'broad: width,wide',
                         'fertile: width,wide,horny',
                         'girlish: shape,width,narrow,young',
                         'narrow: shape,width,narrow',
@@ -1511,37 +1493,37 @@ class Breasts(FemaleBodyParts):
 
         self.AdjList(self.GetAdjList())
 
-    def ShortDescription(self, ExtraAdjList = None, NotList = None, bCupSize = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
+    def ShortDescription(self, NotList = None, TLParams = None, bCupSize = None):
         if bCupSize is None:
             bCupSize = self._bCupSize
 
         if bCupSize and not self._bCupSize:
             self.AllowCupSize(bCupSize = bCupSize)
 
-        return super().ShortDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList)
+        return super().ShortDescription(NotList, TLParams)
           
-    def MediumDescription(self, ExtraAdjList = None, NotList = None, bCupSize = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
+    def MediumDescription(self, NotList = None, TLParams = None, bCupSize = None):
         if bCupSize is None:
             bCupSize = self._bCupSize
 
         if bCupSize and not self._bCupSize:
             self.AllowCupSize(bCupSize = bCupSize)
                
-        return super().MediumDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
+        return super().MediumDescription(NotList, TLParams) 
           
-    def FloweryDescription(self, ExtraAdjList = None, NotList = None, bCupSize = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
+    def FloweryDescription(self, NotList = None, TLParams = None, bCupSize = None):
         if bCupSize is None:
             bCupSize = self._bCupSize
 
         if bCupSize and not self._bCupSize:
             self.AllowCupSize(bCupSize = bCupSize)
           
-        return super().FloweryDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
+        return super().FloweryDescription(NotList, TLParams) 
           
-    def RandomDescription(self, ExtraAdjList = None, NotList = None, bAllowShortDesc = True, bAllowLongDesc = True, bCupSize = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
+    def RandomDescription(self, bAllowShortDesc = True, bAllowLongDesc = True, NotList = None, TLParams = None, bCupSize = None):
         self._bCupSize = bCupSize
 
-        return super().RandomDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
+        return super().RandomDescription(NotList, TLParams) 
      
           
 class Clitoris(FemaleBodyParts):
@@ -2816,41 +2798,37 @@ class Penis(MaleBodyParts):
           
           return sLength
                
-     def ShortDescription(self, ExtraAdjList = None, NotList = None, bAddLen = False, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
+     def ShortDescription(self, NotList = None, TLParams = None, bAddLen = False):
           if bAddLen:
-               if ExtraAdjList is None:
-                   ExtraAdjList = []
-                   
-               ExtraAdjList.append(self.GenerateLength())
+               if TLParams is None:
+                   TLParams = TagLists()
+                   TLParams.adj_extra.append(self.GenerateLength())
           
-          return super().ShortDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList)
+          return super().ShortDescription(NotList, TLParams)
           
-     def MediumDescription(self, ExtraAdjList = None, NotList = None, bAddLen = False, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
+     def MediumDescription(self, NotList = None, TLParams = None, bAddLen = False):
           if bAddLen:
-               if ExtraAdjList is None:
-                   ExtraAdjList = []
-                   
-               ExtraAdjList.append(self.GenerateLength())
+               if TLParams is None:
+                   TLParams = TagLists()
+                   TLParams.adj_extra.append(self.GenerateLength())
                
-          return super().MediumDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
+          return super().MediumDescription(NotList, TLParams) 
           
-     def FloweryDescription(self, ExtraAdjList = None, NotList = None, bAddLen = False, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
+     def FloweryDescription(self, NotList = None, TLParams = None, bAddLen = False):
           if bAddLen:
-               if ExtraAdjList is None:
-                   ExtraAdjList = []
-                   
-               ExtraAdjList.append(self.GenerateLength())
+               if TLParams is None:
+                   TLParams = TagLists()
+                   TLParams.adj_extra.append(self.GenerateLength())
           
-          return super().FloweryDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
+          return super().FloweryDescription(NotList, TLParams) 
           
-     def RandomDescription(self, ExtraAdjList = None, NotList = None, bAllowShortDesc = True, bAllowLongDesc = True, bAddLen = False, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
+     def RandomDescription(self, NotList = None, TLParams = None, bAllowShortDesc = True, bAllowLongDesc = True, bAddLen = False):
           if bAddLen:
-               if ExtraAdjList is None:
-                   ExtraAdjList = []
-                   
-               ExtraAdjList.append(self.GenerateLength())
+               if TLParams is None:
+                   TLParams = TagLists()
+                   TLParams.adj_extra.append(self.GenerateLength())
           
-          return super().RandomDescription(ExtraAdjList = ExtraAdjList, NotList = NotList, NounReqTagList = NounReqTagList, NounExclTagList = NounExclTagList, AdjReqTagList = AdjReqTagList, AdjExclTagList = AdjExclTagList) 
+          return super().RandomDescription(NotList, TLParams) 
      
 class Semen(MaleBodyParts):
      def __init__(self, Params = None, NotList = None, TagLists = None):

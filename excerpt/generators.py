@@ -586,7 +586,7 @@ class Generator9(ExGen):
 
           Penis = self.MaleBodyParts.Penis
           Breasts = self.FemBodyParts.Breasts
-          Breasts.NounExclTagList(["small","crude"])
+          Breasts.NounExclTagList(["smalltits","crude"])
           Breasts.AdjExclTagList(["color","small","attractive","age"])
 
           sTweet += "'What?' she asked. 'Hasn't a girl ever let you fuck " 
