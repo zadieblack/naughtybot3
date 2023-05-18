@@ -121,6 +121,7 @@ class FemWardrobe():
         self.Blouse = Blouse()
         self.Bra = Bra()
         self.CropTop = CropTop()
+        self.Dress = Dress()
         self.EveningDress = EveningDress()
         self.Nightgown = Nightgown()
         self.Robe = RobeFemale()
@@ -155,7 +156,7 @@ class FemWardrobe():
                         self.ShortSkirt,self.YogaPants
                        ]
 
-        self.Dresses = [self.EveningDress]
+        self.Dresses = [self.Dress,self.EveningDress]
 
         self.Tops = [self.BikiniTop, self.Blouse,self.Bra,self.CropTop,
                      self.EveningDress,self.Nightgown,self.Robe,
@@ -197,7 +198,8 @@ class FemWardrobe():
                ]
 
         if bDresses:
-            Dresses = [EveningDress,
+            Dresses = [Dress,
+                       EveningDress,
                        Nightgown,
                        RobeFemale,
                       ]
@@ -229,6 +231,55 @@ class FemaleClothes(Clothes):
           super().__init__()
 
 # --- Tops ---
+
+class BikiniTop(FemaleClothes):
+     def __init__(self):
+          super().__init__()
+          
+          self.NounList(['bikini x4: default,std,sing',
+                         'bikini top x2: default,std,sing',
+                         'crocheted bikini: variant,material,sing',
+                         'crocheted bikini top: variant,material,sing',
+                         'spandex bikini: variant,material,sing',
+                         'spandex bikini top: variant,material,sing',
+                         'strapless bikini x3: variant,sing',
+                        ])
+          
+          self.AdjList(['daring x2: skimpy',
+                        'flimsy: skimpy',
+                        'floral: pattern',
+                        'hot: super',
+                        'immodest: skimpy',
+                        'leopard print: pattern',
+                        'little: size,small',
+                        'metallic: texture',
+                        'microscopic: size,small',
+                        'plaid: pattern',
+                        'provocative: skimpy',
+                        'polka-dot: pattern',
+                        'racy: super,skimpy',
+                        'revealing: skimpy',
+                        'ruffled: style',
+                        'scant: skimpy',
+                        'sexy: super',
+                        'sheer: seethru,texture,pattern,material,fetish',
+                        'shocking: super',
+                        'skimpy x2: skimpy',
+                        'slender: size,small,skimpy',
+                        'stringy: skimpy',
+                        'stunning: super',
+                        'teeny-tiny: size,small',
+                        'tight x2: size,small',
+                        'tiny x3: size,small',
+                        'translucent: texture,material',
+                        'V-shaped x3: shape',
+                        'vivid: super',
+                       ])
+               
+          self.DefaultNoun('bikini top')
+          self.DefaultAdj('skimpy')
+
+          self.IsTop = True
 
 class Blouse(FemaleClothes):
      def __init__(self):
@@ -287,55 +338,6 @@ class Blouse(FemaleClothes):
                
           self.DefaultNoun('blouse')
           self.DefaultAdj('prim')
-
-          self.IsTop = True
-
-class BikiniTop(FemaleClothes):
-     def __init__(self):
-          super().__init__()
-          
-          self.NounList(['bikini x4: default,std,sing',
-                         'bikini top x2: default,std,sing',
-                         'crocheted bikini: variant,material,sing',
-                         'crocheted bikini top: variant,material,sing',
-                         'spandex bikini: variant,material,sing',
-                         'spandex bikini top: variant,material,sing',
-                         'strapless bikini x3: variant,sing',
-                        ])
-          
-          self.AdjList(['daring x2: skimpy',
-                        'flimsy: skimpy',
-                        'floral: pattern',
-                        'hot: super',
-                        'immodest: skimpy',
-                        'leopard print: pattern',
-                        'little: size,small',
-                        'metallic: texture',
-                        'microscopic: size,small',
-                        'plaid: pattern',
-                        'provocative: skimpy',
-                        'polka-dot: pattern',
-                        'racy: super,skimpy',
-                        'revealing: skimpy',
-                        'ruffled: style',
-                        'scant: skimpy',
-                        'sexy: super',
-                        'sheer: seethru,texture,pattern,material,fetish',
-                        'shocking: super',
-                        'skimpy x2: skimpy',
-                        'slender: size,small,skimpy',
-                        'stringy: skimpy',
-                        'stunning: super',
-                        'teeny-tiny: size,small',
-                        'tight x2: size,small',
-                        'tiny x3: size,small',
-                        'translucent: texture,material',
-                        'V-shaped x3: shape',
-                        'vivid: super',
-                       ])
-               
-          self.DefaultNoun('bikini top')
-          self.DefaultAdj('skimpy')
 
           self.IsTop = True
 
@@ -454,6 +456,97 @@ class CropTop(FemaleClothes):
           self.DefaultAdj('midriff-baring')
 
           self.IsTop = True
+
+class Dress(FemaleClothes):
+     def __init__(self):
+          super().__init__()
+          
+          self.AddColors = True
+          self.IsDress = True
+          
+          self.NounList(['dress x3: std,default,sing',
+                         'minidress: variant,short,skimpy,sing',
+                         'pencil dress: variant,tight,slender,sing'
+                         'sleeveless dress: variant,shape,sing',
+                         'strapless dress: variant,shape,sing',
+                         'sundress: variant,sing',
+                         'tropical dress: variant,sing',
+                        ])
+          
+          self.AdjList(['ample: bigtits',
+                        'backless: style',
+                        'breezy: super',
+                        'brief: size,small',
+                        'brocaded: pattern,material',
+                        'beautiful: super',
+                        'cute: super',
+                        'dainty: super',
+                        'calico: pattern,color',
+                        'clingy x2: tight',
+                        'demure: modest,skimpy,seethru,tight',
+                        'elegant: super',
+                        'enchanting: super',
+                        'fancy: super',
+                        'fashionable: super',
+                        'flared: shape',
+                        'flimsy: super',
+                        'flirty: super',
+                        'floor-length: length,long',
+                        'floral: pattern',
+                        'flowered: pattern',
+                        'flowing: long,shape',
+                        'form-fitting: tight',
+                        'frilly: style',
+                        'girlish: super,style,young',
+                        'gorgeous: super',
+                        'high-waisted: style',
+                        'knee-length: length,medium',
+                        'lacy: pattern,material,texture',
+                        'long: length,long',
+                        'lovely: super',
+                        'low-cut: shape,skimpy',
+                        'modest: modest,skimpy,seethru,tight',
+                        'plaid: pattern,color',
+                        'pleated: texture',
+                        'polka-dot: pattern',
+                        'pretty: super',
+                        'plunging: neckline',
+                        'revealing: skimpy',
+                        'ruffled: style',
+                        'sassy: super',
+                        'satin x2: material,texture',
+                        'scandalous: super',
+                        'scant: skimpy',
+                        'scoop-neck: shape',
+                        'see-thru: pattern,texture,seethru',
+                        'sexy x4: super',
+                        'sheer: seethru,texture,pattern,material',
+                        'short: length,short',
+                        'short-skirted: shape,skirt,length,short',
+                        'silk x2: material',
+                        'silken x2: material',
+                        'simple: style',
+                        'sizzling: super',
+                        'skimpy x2: skimpy',
+                        'sleazy: super,skimpy',
+                        'slender x2: shape',
+                        'soft: texture',
+                        'striped: pattern',
+                        'stunning: super',
+                        'stylish: super',
+                        'swirly: shape',
+                        'tawdry: super,skimpy',
+                        'thigh-length: length,short',
+                        'tight x2: size,small',
+                        'tiny x3: size,small',
+                        'V-necked: shape,',
+                        'velvety: material,texture',
+                        'vintage: style',
+                        'wispy: pattern,texture,material',
+                       ])
+               
+          self.DefaultNoun('dress')
+          self.DefaultAdj('cute')
 
 class EveningDress(FemaleClothes):
      def __init__(self):

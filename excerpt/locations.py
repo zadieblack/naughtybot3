@@ -30,7 +30,7 @@ class Location():
         self.Despite = ""
         self.MaleTopClothing = self.MaleWardrobe.Tshirt.RandomDescription(bAllowLongDesc = False)
         self.MaleBottomClothing = self.MaleWardrobe.Jeans.RandomDescription(bAllowLongDesc = False)
-        self.FemaleTopClothing = "dress"
+        self.FemaleTopClothing = self.FemWardrobe.Dress.RandomDescription(bAllowLongDesc = False)
         self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDescription(bAllowLongDesc = False)
      
     def RemoveMaleClothing(self):
@@ -280,7 +280,7 @@ class Church(PublicLocation):
         self.Excuse = "'We were just praying!' he replied."
         self.Consequence = "as the minister looked on in horror"
         self.Ground = "soft carpet"
-        self.FemaleTopClothing = "black dress"
+        self.FemaleTopClothing = self.FemWardrobe.Dress.RandomDescription(bAllowLongDesc = False)
         self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDescription(bAllowLongDesc = False)
      
 class Classroom(PublicLocation):
@@ -360,7 +360,7 @@ class DoctorsOffice(PublicLocation):
         self.AuthorityFigure = "the nurse"
         self.Consequence = "a cute nurse in scrubs looked on in shock"
         self.Ground = "the floor"
-        self.FemaleTopClothing = "yellow dress"
+        self.FemaleTopClothing = self.FemWardrobe.Dress.RandomDescription(bAllowLongDesc = False)
         self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDescription(bAllowLongDesc = False)
      
 class DormRoom(PrivateLocation):
@@ -397,7 +397,7 @@ class DressingRoom(PublicLocation):
         self.AuthorityFigure = "the store clerk"
         self.Consequence = "the clerk shouted 'I'm calling security'"
         self.Ground = "the carpet"
-        self.FemaleTopClothing = "revealing red dress"
+        self.FemaleTopClothing = self.FemWardrobe.Dress.RandomDescription(bAllowLongDesc = False)
         self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDescription(bAllowLongDesc = False)
      
 class Farm(PrivateLocation):     
@@ -597,7 +597,7 @@ class Office(PublicLocation):
         self.Excuse = "'This isn't what it looks like!' he shouted."
         self.AuthorityFigure = "your boss"
         self.Ground = "carpet"
-        self.FemaleTopClothing = "gray pencil dress"
+        self.FemaleTopClothing = self.FemWardrobe.Dress.RandomDescription(bAllowLongDesc = False)
         self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDescription(bAllowLongDesc = False)
         self.MaleTopClothing = "dress shirt"
         self.MaleBottomClothing = "slacks"
@@ -662,7 +662,7 @@ class ParkBench(PublicLocation):
         self.Excuse = "'I'm not stopping now, baby!' he panted."
         self.Consequence = "the jogger looked on with surprise"
         self.Ground = "the ground"
-        self.FemaleTopClothing = "sundress"
+        self.FemaleTopClothing = self.FemWardrobe.Dress.RandomDescription(bAllowLongDesc = False)
      
 class PoolPatio(PrivateLocation):
     def __init__(self):
@@ -738,7 +738,7 @@ class StarbucksBathroom(PublicLocation):
         self.Consequence = "someone called, 'I think they're having sex in the Starbucks bathroom'"
         self.AuthorityFigure = "a Starbucks barista"
         self.Ground = "tiled floor"
-        self.FemaleTopClothing = "gray pencil dress"
+        self.FemaleTopClothing = self.FemWardrobe.Dress.RandomDescription(bAllowLongDesc = False)
         self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDescription(bAllowLongDesc = False)
      
 class Surf(PublicLocation):
