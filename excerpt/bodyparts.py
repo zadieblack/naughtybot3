@@ -1493,37 +1493,37 @@ class Breasts(FemaleBodyParts):
 
         self.AdjList(self.GetAdjList())
 
-    def ShortDescription(self, NotList = None, TLParams = None, bCupSize = None):
+    def ShortDescription(self, NotList = None, TagLists = None, bCupSize = None):
         if bCupSize is None:
             bCupSize = self._bCupSize
 
         if bCupSize and not self._bCupSize:
             self.AllowCupSize(bCupSize = bCupSize)
 
-        return super().ShortDescription(NotList, TLParams)
+        return super().ShortDescription(NotList, TagLists)
           
-    def MediumDescription(self, NotList = None, TLParams = None, bCupSize = None):
+    def MediumDescription(self, NotList = None, TagLists = None, bCupSize = None):
         if bCupSize is None:
             bCupSize = self._bCupSize
 
         if bCupSize and not self._bCupSize:
             self.AllowCupSize(bCupSize = bCupSize)
                
-        return super().MediumDescription(NotList, TLParams) 
+        return super().MediumDescription(NotList, TagLists) 
           
-    def FloweryDescription(self, NotList = None, TLParams = None, bCupSize = None):
+    def FloweryDescription(self, NotList = None, TagLists = None, bCupSize = None):
         if bCupSize is None:
             bCupSize = self._bCupSize
 
         if bCupSize and not self._bCupSize:
             self.AllowCupSize(bCupSize = bCupSize)
           
-        return super().FloweryDescription(NotList, TLParams) 
+        return super().FloweryDescription(NotList, TagLists) 
           
-    def RandomDescription(self, bAllowShortDesc = True, bAllowLongDesc = True, NotList = None, TLParams = None, bCupSize = None):
+    def RandomDescription(self, bAllowShortDesc = True, bAllowLongDesc = True, NotList = None, TagLists = None, bCupSize = None):
         self._bCupSize = bCupSize
 
-        return super().RandomDescription(NotList, TLParams) 
+        return super().RandomDescription(NotList, TagLists) 
      
           
 class Clitoris(FemaleBodyParts):
@@ -2797,38 +2797,41 @@ class Penis(MaleBodyParts):
               sLength += ",bigdick"
           
           return sLength
+
+     def GetTLClass(self):
+         return TagLists()
                
-     def ShortDescription(self, NotList = None, TLParams = None, bAddLen = False):
+     def ShortDescription(self, NotList = None, TagLists = None, bAddLen = False):
           if bAddLen:
-               if TLParams is None:
-                   TLParams = TagLists()
-                   TLParams.adj_extra.append(self.GenerateLength())
+               if TagLists is None:
+                   TagLists = self.GetTLClass()
+                   TagLists.adj_extra.append(self.GenerateLength())
           
-          return super().ShortDescription(NotList, TLParams)
+          return super().ShortDescription(NotList, TagLists)
           
-     def MediumDescription(self, NotList = None, TLParams = None, bAddLen = False):
+     def MediumDescription(self, NotList = None, TagLists = None, bAddLen = False):
           if bAddLen:
-               if TLParams is None:
-                   TLParams = TagLists()
-                   TLParams.adj_extra.append(self.GenerateLength())
+               if TagLists is None:
+                   TagLists = self.GetTLClass()
+                   TagLists.adj_extra.append(self.GenerateLength())
                
-          return super().MediumDescription(NotList, TLParams) 
+          return super().MediumDescription(NotList, TagLists) 
           
-     def FloweryDescription(self, NotList = None, TLParams = None, bAddLen = False):
+     def FloweryDescription(self, NotList = None, TagLists = None, bAddLen = False):
           if bAddLen:
-               if TLParams is None:
-                   TLParams = TagLists()
-                   TLParams.adj_extra.append(self.GenerateLength())
+               if TagLists is None:
+                   TagLists = self.GetTLClass()
+                   TagLists.adj_extra.append(self.GenerateLength())
           
-          return super().FloweryDescription(NotList, TLParams) 
+          return super().FloweryDescription(NotList, TagLists) 
           
-     def RandomDescription(self, NotList = None, TLParams = None, bAllowShortDesc = True, bAllowLongDesc = True, bAddLen = False):
+     def RandomDescription(self, NotList = None, TagLists = None, bAllowShortDesc = True, bAllowLongDesc = True, bAddLen = False):
           if bAddLen:
-               if TLParams is None:
-                   TLParams = TagLists()
-                   TLParams.adj_extra.append(self.GenerateLength())
+               if TagLists is None:
+                   TagLists = self.GetTLClass()
+                   TagLists.adj_extra.append(self.GenerateLength())
           
-          return super().RandomDescription(NotList, TLParams) 
+          return super().RandomDescription(NotList, TagLists) 
      
 class Semen(MaleBodyParts):
      def __init__(self, Params = None, NotList = None, TagLists = None):
