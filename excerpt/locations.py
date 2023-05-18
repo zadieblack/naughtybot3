@@ -597,7 +597,7 @@ class Office(PublicLocation):
         self.Excuse = "'This isn't what it looks like!' he shouted."
         self.AuthorityFigure = "your boss"
         self.Ground = "carpet"
-        self.FemaleTopClothing = self.FemWardrobe.Dress.RandomDescription(bAllowLongDesc = False)
+        self.FemaleTopClothing = self.FemWardrobe.PencilDress.RandomDescription(bAllowLongDesc = False)
         self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDescription(bAllowLongDesc = False)
         self.MaleTopClothing = "dress shirt"
         self.MaleBottomClothing = "slacks"

@@ -124,6 +124,7 @@ class FemWardrobe():
         self.Dress = Dress()
         self.EveningDress = EveningDress()
         self.Nightgown = Nightgown()
+        self.PencilDress = PencilDress()
         self.Robe = RobeFemale()
         self.SportsBra = SportsBra()
         self.Tshirt = TshirtFemale()
@@ -156,11 +157,10 @@ class FemWardrobe():
                         self.ShortSkirt,self.YogaPants
                        ]
 
-        self.Dresses = [self.Dress,self.EveningDress]
+        self.Dresses = [self.Dress,self.EveningDress,self.PencilDress]
 
         self.Tops = [self.BikiniTop, self.Blouse,self.Bra,self.CropTop,
-                     self.EveningDress,self.Nightgown,self.Robe,
-                     self.SportsBra,self.Tshirt
+                     self.Nightgown,self.Robe,self.SportsBra,self.Tshirt
                     ]
 
         self.Underwear = [self.Bra,self.Nightgown,self.Panties,
@@ -170,15 +170,7 @@ class FemWardrobe():
         if NotList is None:
             NotList = []
 
-        Bottoms = [BikiniBottoms,
-                   DaisyDukes,
-                   JeansFemale,
-                   Panties,
-                   Pantyhose,
-                   ShortsFemale,
-                   ShortSkirt,
-                   YogaPants,
-                  ]
+        Bottoms = self.Bottoms.copy()
 
         if len(NotList) > 0:
             Bottoms = self.ExclNotList(Bottoms, NotList)
@@ -189,22 +181,10 @@ class FemWardrobe():
         if NotList is None:
             NotList = []
 
-        Tops = [BikiniTop,
-                Blouse,
-                Bra,
-                CropTop,
-                SportsBra,
-                TshirtFemale,
-               ]
+        Tops = self.Tops.copy()
 
         if bDresses:
-            Dresses = [Dress,
-                       EveningDress,
-                       Nightgown,
-                       RobeFemale,
-                      ]
-
-            Tops = Tops + Dresses
+            Tops = Tops + self.Dresses.copy()
 
         if len(NotList) > 0:
             Tops = self.ExclNotList(Tops, NotList)
@@ -466,7 +446,6 @@ class Dress(FemaleClothes):
           
           self.NounList(['dress x3: std,default,sing',
                          'minidress: variant,short,skimpy,sing',
-                         'pencil dress: variant,tight,slender,sing'
                          'sleeveless dress: variant,shape,sing',
                          'strapless dress: variant,shape,sing',
                          'sundress: variant,sing',
@@ -699,6 +678,59 @@ class Nightgown(FemaleClothes):
           self.DefaultAdj('lacy')
 
           self.IsTop = True
+
+class PencilDress(FemaleClothes):
+     def __init__(self):
+          super().__init__()
+          
+          self.AddColors = False
+          self.IsDress = True
+          
+          self.NounList(['pencil dress: variant,tight,slender,sing',
+                        ])
+          
+          self.AdjList(['black x3: color',
+                        'beige: color',
+                        'businesslike x3: super',
+                        'cream-colored: color',
+                        'dark gray: color',
+                        'demure: modest,skimpy,seethru,tight',
+                        'elegant: super',
+                        'fashionable: super',
+                        'form-fitting x2: tight',
+                        'gorgeous: super',
+                        'gray x2: color',
+                        'high-waisted: style',
+                        'hip-hugging: tight',
+                        'knee-length: length,medium',
+                        'low-cut: shape,skimpy',
+                        'modest: modest,skimpy,seethru,tight',
+                        'pleated: texture',
+                        'ruffled: style',
+                        'sassy: super',
+                        'satin x2: material,texture',
+                        'severe: super',
+                        'sexy x2: super',
+                        'sharp: super',
+                        'short: length,short',
+                        'short-skirted: shape,skirt,length,short',
+                        'silk x2: material',
+                        'silken x2: material',
+                        'sizzling: super',
+                        'slender x2: shape',
+                        'sleek: super',
+                        'soft: texture',
+                        'striped: pattern',
+                        'stunning: super',
+                        'stylish: super',
+                        'tan: color',
+                        'thigh-length: length,short',
+                        'tight x2: size,small',
+                        'white: color',
+                       ])
+               
+          self.DefaultNoun('pencil dress')
+          self.DefaultAdj('businesslike')
 
 class RobeFemale(FemaleClothes):
      def __init__(self):
