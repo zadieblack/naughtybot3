@@ -9098,6 +9098,13 @@ class Generator121(ExGen):
 
 #        return sTweet
 
+# Two people having a sex scene. "Oh baby, this is amazing," says the
+# man. 
+#
+# "It's a little weird doing this with him watching," she says.
+#
+# "Mr. Peterson from the bank? Just forget he's there," he says.
+
 #class Generator124(ExGen):
 #    def __init__(self):
 #        super().__init__(ID = 124, Priority = GenPriority.Normal)

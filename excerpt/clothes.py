@@ -135,7 +135,7 @@ class FemWardrobe():
         self.Panties = Panties()
         self.Pantyhose = Pantyhose()
         self.Shorts = ShortsFemale()
-        self.Skirt = ShortSkirt()
+        self.ShortSkirt = ShortSkirt()
         self.YogaPants = YogaPants()
 
         # Combos & Dresses
@@ -152,7 +152,7 @@ class FemWardrobe():
 
         self.Bottoms = [self.BikiniBottoms,self.DaisyDukes,self.Jeans,
                         self.Panties,self.Pantyhose,self.Shorts,
-                        self.Skirt,self.YogaPants
+                        self.ShortSkirt,self.YogaPants
                        ]
 
         self.Dresses = [self.EveningDress]
@@ -1522,5 +1522,6 @@ class JeansMale(MaleClothes):
 #   - Male suit
 #   - Male swimsuit
 #   - Trousers/Slacks
+#   - Button-down shirt
 #   - Khakis
 #   - Tank top
