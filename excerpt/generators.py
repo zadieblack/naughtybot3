@@ -96,6 +96,9 @@ class ExGen(Generator):
           self.WealthyWoman = people.JobWealthyFemale()
           self.WhiteCollar = people.JobWhiteCollar()
           self.BlueCollar = people.JobBlueCollar()
+
+          self.FemWardrobe = clothes.FemWardrobe()
+          self.MaleWardrobe = clothes.MaleWardrobe()
      
           return ""
           
@@ -1014,7 +1017,8 @@ class Generator19(ExGen):
             sTweet += self.Man.FirstName + " "
           else:
             sTweet += "the " + self.Man.Desc + " "
-          sTweet += "pulled his tshirt and jeans off. "
+          sTweet += "pulled his " + self.MaleWardrobe.Tshirt.RandomDescription(bAllowLongDesc = False) + " " 
+          sTweet += "and " + self.MaleWardrobe.Jeans.RandomDescription(bAllowLongDesc = False) + " off. "
           sTweet += "Her eyes widened at the sight of "
           sTweet += self.Man.Body.DescRandomNakedParts(iNum = 5, sDivideChar = ";", bPenis = False, sPossessive = "his")
           sTweet += ". But what made her mouth water was "
@@ -1320,6 +1324,9 @@ class Generator26(ExGen):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          NotList = []
+          TLParams = TagLists(noun_excl = ["silly"])
           
           Location = LocationSelector().Location(PubPrivType = exutil.LocPubPrivType.Public)
           sHerName = self.FemaleName.FirstName()
@@ -1327,8 +1334,17 @@ class Generator26(ExGen):
           iRand = randint(1,3)
           iRandLength = randint (7,12)
           
-          sTweet = sHisName + " and " + sHerName + " could barely keep their hands off each other as they tore off their clothes. " + sHisName + " grabbed her and squeezed her bare " + self.FemBodyParts.Ass.RandomDescription() + " as he explored her " + self.FemBodyParts.Mouth.RandomDescription() + " with his tongue.\n\n"
-          sTweet += sHerName + " got on her knees and began to " + self.VForeplay.Present() + " his " + str(iRandLength) + "\" " + self.MaleBodyParts.Penis.ShortDescription() + " and " + self.VForeplay.Present() + " his " + self.MaleBodyParts.Penis.Testicles.RandomDescription() + ".\n\n"
+          sTweet += sHisName + " and " + sHerName + " " 
+          sTweet += "could barely keep their hands off each other "
+          sTweet += "as they tore off their clothes. " 
+          sTweet += sHisName + " grabbed her and squeezed " 
+          sTweet += "her bare " + self.FemBodyParts.Ass.RandomDescription(TagLists = TLParams) + " " 
+          sTweet += "as he explored her " + self.FemBodyParts.Mouth.RandomDescription(TagLists = TLParams) + " with his tongue.\n\n"
+          sTweet += sHerName + " got on her knees " 
+          sTweet += "and began to " + self.VForeplay.Present() + " " 
+          sTweet += "his " + str(iRandLength) + "\" " + self.MaleBodyParts.Penis.ShortDescription(NotList, TLParams) + " "
+          sTweet += "and " + self.VForeplay.Present() + " " 
+          sTweet += "his " + self.MaleBodyParts.Penis.Testicles.RandomDescription(TagLists = TLParams) + ".\n\n"
           sTweet += "Suddenly, " + sHerName + " froze. " + Location.Caught + "\n\n"
           sTweet += Location.Excuse + "\n\n"
           sTweet += "'" + self.Exclamation.GetWord(bSad = True).capitalize() + "' " + sHerName + " exclaimed. 'I knew it was a bad idea to do this " + Location.NamePrep + "!'"
@@ -2274,6 +2290,13 @@ class Generator39(ExGen):
                
           return sTweet
           
+# Waves rolled onto the sand. They had the beach all to themselves.  
+# Clarence slipped Sydney's daring bikini bottoms down over her 
+# wanton hips. She sat down a beach chair and spread her legs, 
+# exposing her moist, unsullied lips.
+
+# 'Clarence' she said ardently. 'I want you in me right now. I want 
+# you to ravish me with your big, glistening sultan's phallus!'
 class Generator40(ExGen):
      def __init__(self):
          super().__init__(ID = 40, Priority = GenPriority.Low)
@@ -2691,7 +2714,13 @@ class Generator49(ExGen):
           sBlueCollarJob = self.BlueCollar.GetPerson()
           sWhiteCollar = self.WhiteCollar.GetPerson()
           
-          sTweet = "'Now remember', " + sHerName + " said, 'When you meet my parents, you can't tell them that you're " + AddArticles(sBlueCollarJob) + " and that we met when " + sShortScene + " " + Location.NamePrep + ". You are a successful " + sWhiteCollar + " and your name is " + sHisName + ".'"
+          sTweet += "'Now remember', " + sHerName + " said, " 
+          sTweet += "'When you meet my parents, you can't tell them " 
+          sTweet += "that you're " + AddArticles(sBlueCollarJob) + " " 
+          sTweet += "and that we met when " + sShortScene + " " 
+          sTweet += Location.NamePrep + ". " 
+          sTweet += "You are a successful " + sWhiteCollar + " " 
+          sTweet += "and your name is " + sHisName + ".'"
           
           return sTweet
 
@@ -9036,6 +9065,82 @@ class Generator121(ExGen):
 #class Generator122(ExGen):
 #    def __init__(self):
 #        super().__init__(ID = 122, Priority = GenPriority.Normal)
+     
+#    def GenerateTweet(self):
+#        super().GenerateTweet()
+#        sTweet = ""
+
+#        return sTweet
+ 
+# \"I can't wait another second!\" exclaimed John. \"I must have you
+# this instant!\" 
+#
+# \"But John-\" Penelope began, but she was cut off as he picked her
+# lithe body up and threw her onto the kitchen table. She squealed
+# as he tore her bra open, exposing her juicy, ripe globes. Before
+# she knew what was happening, {she was buck naked / her panties were
+# around her ankle } and he was between her spread legs, his rampant
+# cock buried up to the hilt inside her gushing snatch.
+#
+# A tall blond man strolled into the kitchen, saw them, and froze.
+#
+# "Who the hell is this?" demanded Johnl.
+#
+# "I was trying to tell you," she said. "My brother is here to visit!"
+
+#class Generator123(ExGen):
+#    def __init__(self):
+#        super().__init__(ID = 123, Priority = GenPriority.Normal)
+     
+#    def GenerateTweet(self):
+#        super().GenerateTweet()
+#        sTweet = ""
+
+#        return sTweet
+
+#class Generator124(ExGen):
+#    def __init__(self):
+#        super().__init__(ID = 124, Priority = GenPriority.Normal)
+     
+#    def GenerateTweet(self):
+#        super().GenerateTweet()
+#        sTweet = ""
+
+#        return sTweet
+
+#class Generator125(ExGen):
+#    def __init__(self):
+#        super().__init__(ID = 125, Priority = GenPriority.Normal)
+     
+#    def GenerateTweet(self):
+#        super().GenerateTweet()
+#        sTweet = ""
+
+#        return sTweet
+
+#class Generator126(ExGen):
+#    def __init__(self):
+#        super().__init__(ID = 126, Priority = GenPriority.Normal)
+     
+#    def GenerateTweet(self):
+#        super().GenerateTweet()
+#        sTweet = ""
+
+#        return sTweet
+
+#class Generator127(ExGen):
+#    def __init__(self):
+#        super().__init__(ID = 127, Priority = GenPriority.Normal)
+     
+#    def GenerateTweet(self):
+#        super().GenerateTweet()
+#        sTweet = ""
+
+#        return sTweet
+
+#class Generator128(ExGen):
+#    def __init__(self):
+#        super().__init__(ID = 128, Priority = GenPriority.Normal)
      
 #    def GenerateTweet(self):
 #        super().GenerateTweet()

@@ -118,9 +118,9 @@ class FemWardrobe():
         self.Blouse = Blouse()
         self.Bra = Bra()
         self.CropTop = CropTop()
-        self.EveningGown = EveningGown()
-        self.NightGown = NightGown()
-        self.Robe = Robe()
+        self.EveningDress = EveningDress()
+        self.Nightgown = Nightgown()
+        self.Robe = RobeFemale()
         self.SportsBra = SportsBra()
         self.Tshirt = TshirtFemale()
         
@@ -139,11 +139,11 @@ class FemWardrobe():
 
         self.Bikini = Bikini()
         self.Underwear = UnderwearFemale()
-        self.WorkoutClothes = WorkoutClothes()
+        self.Workout = WorkoutFemale()
 
         # Other
 
-        self.HighHeels = HighHeels()
+        self.Heels = Heels()
 
         # Clothing pools
 
@@ -155,7 +155,7 @@ class FemWardrobe():
         self.Dresses = [self.EveningDress]
 
         self.Tops = [self.BikiniTop, self.Blouse,self.Bra,self.CropTop,
-                     self.EveningGown,self.NightGown,self.Robe,
+                     self.EveningDress,self.Nightgown,self.Robe,
                      self.SportsBra,self.Tshirt
                     ]
 
@@ -451,6 +451,88 @@ class CropTop(FemaleClothes):
           self.DefaultAdj('midriff-baring')
 
           self.IsTop = True
+
+class EveningDress(FemaleClothes):
+     def __init__(self):
+          super().__init__()
+          
+          self.AddColors = False
+          self.IsDress = True
+          
+          self.NounList(['cocktail dress x2: std,sing',
+                         'cocktail gown x2: std,sing',
+                         'evening gown x2: std,default,sing',
+                         'evening dress x2: std,sing',
+                         'French evening dress: variant,style,sing',
+                         'French mini dress: variant,style,sing',
+                         'mini dress: variant,shape,sing',
+                         'Parisian evening gown: variant,style,sing',
+                         'sheath dress: variant,shape,sing',
+                        ])
+          
+          self.AdjList(['alluring: super',
+                        'audacious: super',
+                        'backless: style',
+                        'brief: size,small',
+                        'black x4: color',
+                        'chiffon: material',
+                        'clingy x2: tight',
+                        'crimson: color',
+                        'diaphanous: seethru',
+                        'elegant: super',
+                        'fancy: super',
+                        'fashionable: super',
+                        'flared: shape',
+                        'flimsy: super',
+                        'floor-length: length,long',
+                        'form-fitting: tight',
+                        'frilly: style',
+                        'glamorous: super',
+                        'gold: color,material',
+                        'gorgeous: super',
+                        'jet-black: color',
+                        'knee-length: length,medium',
+                        'lacy x2: pattern,material',
+                        'long: length,long',
+                        'luxurious: style',
+                        'mini: short,skimpy',
+                        'plunging: neckline',
+                        'provocative: super',
+                        'red x3: color',
+                        'revealing: skimpy',
+                        'ruffled: style',
+                        'satin x2: material,texture',
+                        'scandalous: super',
+                        'scant: skimpy',
+                        'scarlet: color',
+                        'seductive: super',
+                        'see-thru: pattern,texture,seethru',
+                        'sexy x4: super',
+                        'sheer: seethru,texture,pattern,material',
+                        'shimmering: shiny',
+                        'short: length,short',
+                        'short-skirted: shape,skirt,length,short',
+                        'silk x2: material',
+                        'silken x2: material',
+                        'silver: color,material',
+                        'skimpy x2: skimpy',
+                        'slender x2: shape',
+                        'slinky x4: super',
+                        'slit: shape',
+                        'sequined: material',
+                        'sparkling: shiny',
+                        'stunning: super',
+                        'thigh-length: length,short',
+                        'tight x2: size,small',
+                        'tiny x3: size,small',
+                        'translucent: seethru,texture',
+                        'V-necked: shape,',
+                        'velvet: material',
+                        'voluptuous: shape,bust',
+                       ])
+               
+          self.DefaultNoun('evening gown')
+          self.DefaultAdj('sexy')
 
 class Nightgown(FemaleClothes):
      def __init__(self):
@@ -1131,88 +1213,6 @@ class Bikini(FemaleClothes):
           self.Bottoms = BikiniBottoms()
           self.Top = BikiniTop()
 
-class EveningDress(FemaleClothes):
-     def __init__(self):
-          super().__init__()
-          
-          self.AddColors = False
-          self.IsDress = True
-          
-          self.NounList(['cocktail dress x2: std,sing',
-                         'cocktail gown x2: std,sing',
-                         'evening gown x2: std,default,sing',
-                         'evening dress x2: std,sing',
-                         'French evening dress: variant,style,sing',
-                         'French mini dress: variant,style,sing',
-                         'mini dress: variant,shape,sing',
-                         'Parisian evening gown: variant,style,sing',
-                         'sheath dress: variant,shape,sing',
-                        ])
-          
-          self.AdjList(['alluring: super',
-                        'audacious: super',
-                        'backless: style',
-                        'brief: size,small',
-                        'black x4: color',
-                        'chiffon: material',
-                        'clingy x2: tight',
-                        'crimson: color',
-                        'diaphanous: seethru',
-                        'elegant: super',
-                        'fancy: super',
-                        'fashionable: super',
-                        'flared: shape',
-                        'flimsy: super',
-                        'floor-length: length,long',
-                        'form-fitting: tight',
-                        'frilly: style',
-                        'glamorous: super',
-                        'gold: color,material',
-                        'gorgeous: super',
-                        'jet-black: color',
-                        'knee-length: length,medium',
-                        'lacy x2: pattern,material',
-                        'long: length,long',
-                        'luxurious: style',
-                        'mini: short,skimpy',
-                        'plunging: neckline',
-                        'provocative: super',
-                        'red x3: color',
-                        'revealing: skimpy',
-                        'ruffled: style',
-                        'satin x2: material,texture',
-                        'scandalous: super',
-                        'scant: skimpy',
-                        'scarlet: color',
-                        'seductive: super',
-                        'see-thru: pattern,texture,seethru',
-                        'sexy x4: super',
-                        'sheer: seethru,texture,pattern,material',
-                        'shimmering: shiny',
-                        'short: length,short',
-                        'short-skirted: shape,skirt,length,short',
-                        'silk x2: material',
-                        'silken x2: material',
-                        'silver: color,material',
-                        'skimpy x2: skimpy',
-                        'slender x2: shape',
-                        'slinky x4: super',
-                        'slit: shape',
-                        'sequined: material',
-                        'sparkling: shiny',
-                        'stunning: super',
-                        'thigh-length: length,short',
-                        'tight x2: size,small',
-                        'tiny x3: size,small',
-                        'translucent: seethru,texture',
-                        'V-necked: shape,',
-                        'velvet: material',
-                        'voluptuous: shape,bust',
-                       ])
-               
-          self.DefaultNoun('evening gown')
-          self.DefaultAdj('sexy')
-
 class UnderwearFemale(FemaleClothes):
      def __init__(self):
           super().__init__()
@@ -1520,3 +1520,4 @@ class JeansMale(MaleClothes):
 #   - Male swimsuit
 #   - Trousers/Slacks
 #   - Khakis
+#   - Tank top
