@@ -6,7 +6,7 @@ from random import *
 from util import *
 from excerpt.ex_helpers import *
 
-ClothesColors = WordList(['amber: color',
+ClothesColors = WordList(['amber: color,fem',
                           'black x5: color',
                           'beige: color',
                           # ------ Blues ------
@@ -14,8 +14,8 @@ ClothesColors = WordList(['amber: color',
                           'dark blue: color',
                           'navy blue: color',
                           'sky blue: color',
-                          'baby blue: color',
-                          'pastel blue: color',
+                          'baby blue: color,fem',
+                          'pastel blue: color,fem',
                           # -------------------
 
                           # ------ Browns -----
@@ -23,7 +23,7 @@ ClothesColors = WordList(['amber: color',
                           'chocolate brown: color',
                           # -------------------
 
-                          'chartreuse: color',
+                          'chartreuse: color,fem',
                           'cream-colored: color',
                           'gold: color',
                           # ----- Greens ------
@@ -36,34 +36,34 @@ ClothesColors = WordList(['amber: color',
                           # -------------------
 
                           'indigo: color',
-                          'lavender x2: color',
-                          'lilac: color',
-                          'magenta: color',
+                          'lavender x2: color,fem',
+                          'lilac: color,fem',
+                          'magenta: color,fem',
                           'maroon: color',
-                          'mauve: color',
+                          'mauve: color,fem',
                           # ----- Oranges -----
                           'orange: color',
                           'neon orange: color',
                           # -------------------
 
-                          'peach: color',
-                          'periwinkle: color',
+                          'peach: color,fem',
+                          'periwinkle: color,fem',
                           # ------ Pinks ------
                           'pink x4: color',
                           'hot pink x2: color',
                           # -------------------
 
-                          'purple x3: color',
+                          'purple x3: color,fem',
                           # ------ Reds -------
                           'red x5: color',
                           'blood red: color',
                           'bright red: color',
-                          'ruby red: color',
+                          'ruby red: color,fem',
                           # -------------------
 
                           'silver: color',
-                          'turquoise: color',
-                          'violet x3: color',
+                          'turquoise: color,fem',
+                          'violet x3: color,fem',
                           # ----- Yellows -----
                           'yellow: color',
                           'bright yellow: color',
@@ -101,9 +101,8 @@ class Clothes(NounPhrase):
                 unit = self.ParseUnit(color)
                 
                 if not FoundIn(unit.sUnit, self.ColorsNotList):
-                    NewAdjList.append(color)
-                    #self.AddUnitToList(unit.sUnit, "master", "adj", unit.iPriority)
-                    #self.AddUnitToList(unit.sUnit, "color", "adj", unit.iPriority)
+                    if not self.Gender is None and (self.Gender == "male" and not "fem" in unit.TagList):
+                        NewAdjList.append(color)
 
         super().AdjList(NewAdjList)
 
@@ -221,9 +220,14 @@ class FemWardrobe():
 
         return CleanList
 
+class FemaleClothes(Clothes):
+     def __init__(self):
+          self.Gender = "female"
+          super().__init__()
+
 # --- Tops ---
 
-class Blouse(Clothes):
+class Blouse(FemaleClothes):
      def __init__(self):
           super().__init__()
 
@@ -283,7 +287,7 @@ class Blouse(Clothes):
 
           self.IsTop = True
 
-class BikiniTop(Clothes):
+class BikiniTop(FemaleClothes):
      def __init__(self):
           super().__init__()
           
@@ -332,7 +336,7 @@ class BikiniTop(Clothes):
 
           self.IsTop = True
 
-class Bra(Clothes):
+class Bra(FemaleClothes):
      def __init__(self):
           super().__init__()
 
@@ -392,7 +396,7 @@ class Bra(Clothes):
 
           self.IsTop = True
 
-class CropTop(Clothes):
+class CropTop(FemaleClothes):
      def __init__(self):
           super().__init__()
 
@@ -448,7 +452,7 @@ class CropTop(Clothes):
 
           self.IsTop = True
 
-class Nightgown(Clothes):
+class Nightgown(FemaleClothes):
      def __init__(self):
           super().__init__()
 
@@ -518,7 +522,7 @@ class Nightgown(Clothes):
 
           self.IsTop = True
 
-class RobeFemale(Clothes):
+class RobeFemale(FemaleClothes):
      def __init__(self):
           super().__init__()
 
@@ -564,7 +568,7 @@ class RobeFemale(Clothes):
 
           self.IsTop = True
 
-class SportsBra(Clothes):
+class SportsBra(FemaleClothes):
      def __init__(self):
           super().__init__()
 
@@ -603,7 +607,7 @@ class SportsBra(Clothes):
 
           self.IsTop = True
 
-class TshirtFemale(Clothes):
+class TshirtFemale(FemaleClothes):
      def __init__(self):
           super().__init__()
           
@@ -657,7 +661,7 @@ class TshirtFemale(Clothes):
 
 # --- Bottoms ---
 
-class BikiniBottoms(Clothes):
+class BikiniBottoms(FemaleClothes):
      def __init__(self):
           super().__init__()
           
@@ -709,7 +713,7 @@ class BikiniBottoms(Clothes):
 
           self.IsBottom = True
 
-class DaisyDukes(Clothes):
+class DaisyDukes(FemaleClothes):
      def __init__(self):
           super().__init__()
           
@@ -755,7 +759,7 @@ class DaisyDukes(Clothes):
 
           self.IsBottom = True
 
-class JeansFemale(Clothes):
+class JeansFemale(FemaleClothes):
      def __init__(self):
           super().__init__()
           
@@ -792,7 +796,7 @@ class JeansFemale(Clothes):
 
           self.IsBottom = True
 
-class Panties(Clothes):
+class Panties(FemaleClothes):
      def __init__(self):
           super().__init__()
 
@@ -856,7 +860,7 @@ class Panties(Clothes):
 
           self.IsBottom = True
 
-class Pantyhose(Clothes):
+class Pantyhose(FemaleClothes):
      def __init__(self):
           super().__init__()
 
@@ -918,7 +922,7 @@ class Pantyhose(Clothes):
           self.DefaultNoun('pantyhose')
           self.DefaultAdj('glossy')
 
-class ShortsFemale(Clothes):
+class ShortsFemale(FemaleClothes):
      def __init__(self):
           super().__init__()
           
@@ -963,7 +967,7 @@ class ShortsFemale(Clothes):
 
           self.IsBottom = True
 
-class ShortSkirt(Clothes):
+class ShortSkirt(FemaleClothes):
      def __init__(self):
           super().__init__()
           
@@ -1032,7 +1036,7 @@ class ShortSkirt(Clothes):
           self.DefaultNoun('skirt')
           self.DefaultAdj('snug')
 
-class YogaPants(Clothes):
+class YogaPants(FemaleClothes):
      def __init__(self):
           super().__init__()
 
@@ -1076,7 +1080,7 @@ class YogaPants(Clothes):
 
 # --- Combos and Dresses ---
 
-class Bikini(Clothes):
+class Bikini(FemaleClothes):
      def __init__(self):
           super().__init__()
           
@@ -1127,7 +1131,7 @@ class Bikini(Clothes):
           self.Bottoms = BikiniBottoms()
           self.Top = BikiniTop()
 
-class EveningDress(Clothes):
+class EveningDress(FemaleClothes):
      def __init__(self):
           super().__init__()
           
@@ -1209,7 +1213,7 @@ class EveningDress(Clothes):
           self.DefaultNoun('evening gown')
           self.DefaultAdj('sexy')
 
-class UnderwearFemale(Clothes):
+class UnderwearFemale(FemaleClothes):
      def __init__(self):
           super().__init__()
 
@@ -1279,7 +1283,7 @@ class UnderwearFemale(Clothes):
           self.Bra = Bra()
           self.Panties = Panties()
 
-class WorkoutFemale(Clothes):
+class WorkoutFemale(FemaleClothes):
      def __init__(self):
           super().__init__()
           
@@ -1308,7 +1312,7 @@ class WorkoutFemale(Clothes):
 
 # --- Other ---
 
-class Heels(Clothes):
+class Heels(FemaleClothes):
      def __init__(self):
           super().__init__()
           
@@ -1408,7 +1412,12 @@ class MaleWardrobe():
 
 # --- Tops ---
 
-class TshirtMale(Clothes):
+class MaleClothes(Clothes):
+     def __init__(self):
+          self.Gender = "male"
+          super().__init__()
+
+class TshirtMale(MaleClothes):
      def __init__(self):
           super().__init__()
           
@@ -1439,10 +1448,8 @@ class TshirtMale(Clothes):
                         'old: distressed',
                         'oversized: size,large',
                         'pristine: dirty',
-                        'see-thru: seethru',
                         'sexy: super',
                         'simple: style',
-                        'skimpy: skimpy',
                         'small: size,small',
                         'soft: texture',
                         'snug x2: tight',
@@ -1460,7 +1467,7 @@ class TshirtMale(Clothes):
 
 # --- Bottoms ---
 
-class JeansMale(Clothes):
+class JeansMale(MaleClothes):
      def __init__(self):
           super().__init__()
           

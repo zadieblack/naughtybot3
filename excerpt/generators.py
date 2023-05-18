@@ -8724,11 +8724,16 @@ class Generator119(ExGen):
         ##sTweet += "the " + Bikini.GetFullDesc(6) + " "
         #sTweet += "she was wearing turned heads at the beach.\n\n"
 
-        for i in range(3):
-            sTweet += "The " + self.Woman.Desc + " "
-            sTweet += "lifted up her " + clothes.ShortSkirt().RandomDescription(bAllowShortDesc = False) + ", "
-            sTweet += "revealing that she had failed to put on any "
-            sTweet += "panties underneath.\n\n"
+        #for i in range(3):
+        #    sTweet += "The " + self.Woman.Desc + " "
+        #    sTweet += "lifted up her " + clothes.ShortSkirt().RandomDescription(bAllowShortDesc = False) + ", "
+        #    sTweet += "revealing that she had failed to put on any "
+        #    sTweet += "panties underneath.\n\n"
+
+        for i in range(12):
+            sTweet += "The " + WordList(["dude","guy","bro","man"]).GetWord() + " "
+            sTweet += "was wearing a " + clothes.MaleWardrobe().Tshirt.FloweryDescription() + " "
+            sTweet += "and a pair of " + clothes.MaleWardrobe().Jeans.FloweryDescription() + ".\n\n"
         
         #for i in range(6):
         #    Top = clothes.CropTop()
