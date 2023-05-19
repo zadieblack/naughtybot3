@@ -14,7 +14,15 @@ Loc_FemWardrobe = clothes.FemWardrobe()
 Loc_MaleWardrobe = clothes.MaleWardrobe()
 
 class Location():
-    def __init__(self):
+    def __init__(self, LocMan = None, LocWoman = None):
+        if LocMan is None:
+            LocMan = excerpt.bodyparts.Man()
+        if LocWoman is None:
+            LocWoman = excerpt.bodyparts.Woman()
+
+        self.Man = LocMan
+        self.Woman = LocWoman
+
         self.FemWardrobe = Loc_FemWardrobe
         self.MaleWardrobe = Loc_MaleWardrobe
         self.Name = ""
@@ -34,24 +42,30 @@ class Location():
         self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDescription(bAllowLongDesc = False)
      
     def RemoveMaleClothing(self):
-        Penis = excerpt.bodyparts.Penis()
         sTakeItOff = ""
-          
-        if not self.MaleTopClothing == "":
-            sTakeItOff = "stripped off his " + self.MaleTopClothing + " and pulled down his " + self.MaleBottomClothing  + " exposing his " + bodyparts.Penis.RandomDescription(bAllowLongDesc = False)
-        elif not self.MaleBottomClothing == "":
-            sTakeItOff = "pulled down his " + self.MaleBottomClothing + " exposing his " + bodyparts.Penis.RandomDescription(bAllowLongDesc = False)
-        else: 
-            sTakeItOff = "was naked, his " + excerpt.bodyparts.Penis.RandomDescription(bAllowLongDesc = False) + " on full display"
 
-        sTakeItOff += excerpt.bodyparts.Penis.RandomDescription(bAllowLongDesc = False)     
+        ExposedParts = None
+        if CoinFlip():
+            ExposedParts = self.Man.Penis
+        else:
+            ExposedParts = self.Man.Ass
+        sExposedParts = ExposedParts.RandomDescription(bAllowLongDesc = False)
+           
+        if not self.MaleTopClothing == "":
+            sTakeItOff = "stripped off his " + self.MaleTopClothing + " and pulled down his " + self.MaleBottomClothing  + " exposing his " + sExposedParts
+        elif not self.MaleBottomClothing == "":
+            sTakeItOff = "pulled down his " + self.MaleBottomClothing + " exposing his " + sExposedParts
+        else: 
+            sTakeItOff = "was naked, his " + sExposedParts + " on full display"
+
+        #sTakeItOff += excerpt.bodyparts.Penis.RandomDescription(bAllowLongDesc = False)     
           
         return sTakeItOff
                
     def RemoveFemaleClothing(self):
-        Vagina = excerpt.bodyparts.Vagina()
-        Ass = excerpt.bodyparts.AssFemale()
-        Breasts = excerpt.bodyparts.Breasts()
+        Vagina = self.Woman.Vagina
+        Ass = self.Woman.Ass
+        Breasts = self.Woman.Breasts
 
         sTakeItOff = ""
           
@@ -112,6 +126,7 @@ class Location():
         return sPutItOn
           
 class PublicLocation(Location):
+    PubPriv = exutil.LocPubPrivType.Public
     def __init__(self):
         super().__init__()
         
@@ -122,9 +137,21 @@ class PublicLocation(Location):
         self.AuthorityFigure = ""
      
 class PrivateLocation(Location):
-     pass
+    PubPriv = exutil.LocPubPrivType.Private
+
+class PublicOutdoors(PublicLocation):
+    InOut = exutil.LocInOutType.Outdoors
+
+class PublicIndoors(PublicLocation):
+    InOut = exutil.LocInOutType.Indoors
+
+class PrivateOutdoors(PrivateLocation):
+    InOut = exutil.LocInOutType.Outdoors
+
+class PrivateIndoors(PrivateLocation):
+    InOut = exutil.LocInOutType.Indoors
      
-class Alley(PublicLocation):
+class Alley(PublicOutdoors):
     def __init__(self):
         super().__init__()
 
@@ -143,13 +170,12 @@ class Alley(PublicLocation):
         self.Consequence = "as the bartender watched them"
         self.Ground = "the pavement"
 
-class Balcony(PublicLocation):
+class Balcony(PublicOutdoors):
     def __init__(self):
         super().__init__()
 
         self.Name = "the hotel balcony"
         self.NamePrep = "on the hotel balcony"
-        self.Loc = exutil.LocInOutType.Outdoors
         self.BeginDesc = "The city spread out below them and the horizon was blue ocean."
         self.Despite = "the fact that they were exposed to anyone who looked up"
         self.BentOver = "the balcony rail"
@@ -163,17 +189,16 @@ class Balcony(PublicLocation):
         self.Consequence = "a small crowd gathered to watch them"
         self.Ground = "ground"
         self.MaleTopClothing = ""
-        self.MaleBottomClothing = self.MaleWardobe.GetUnderwear().RandomDescription(bAllowLongDesc = False)
+        self.MaleBottomClothing = self.MaleWardrobe.GetUnderwear().RandomDescription(bAllowLongDesc = False)
         self.FemaleTopClothing = self.FemWardrobe.Bra.RandomDescription(bAllowLongDesc = False)
         self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDescription(bAllowLongDesc = False)
 
-class Beach(PublicLocation):
+class Beach(PublicOutdoors):
     def __init__(self):
         super().__init__()
 
         self.Name = "the beach"
         self.NamePrep = "at the beach"
-        self.Loc = exutil.LocInOutType.Outdoors
         self.BeginDesc = "A hot sun shone down as blue waves lapped at the sand."
         self.Despite = "the sand that got into every crack"
         self.BentOver = "the sand dune"
@@ -194,7 +219,7 @@ class Beach(PublicLocation):
         self.FemaleTopClothing = self.FemWardrobe.BikiniTop.RandomDescription(bAllowLongDesc = False)
         self.FemaleBottomClothing = self.FemWardrobe.BikiniBottoms.RandomDescription(bAllowLongDesc = False)
      
-class Boat(PrivateLocation):
+class Boat(PrivateIndoors):
     def __init__(self):
         super().__init__()
 
@@ -215,7 +240,7 @@ class Boat(PrivateLocation):
         self.FemaleTopClothing = self.FemWardrobe.BikiniTop.RandomDescription(bAllowLongDesc = False)
         self.FemaleBottomClothing = self.FemWardrobe.BikiniBottoms.RandomDescription(bAllowLongDesc = False)
      
-class Bedroom(PrivateLocation):
+class Bedroom(PrivateIndoors):
     def __init__(self):
         super().__init__()
 
@@ -231,13 +256,12 @@ class Bedroom(PrivateLocation):
         self.FemaleTopClothing = self.FemWardrobe.Bra.RandomDescription(bAllowLongDesc = False)
         self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDescription(bAllowLongDesc = False)
      
-class CampingTent(PrivateLocation):
+class CampingTent(PrivateIndoors):
     def __init__(self):
         super().__init__()
 
         self.Name = "a tent"
         self.NamePrep = "in a tent"
-        self.Loc = exutil.LocInOutType.Indoors
         self.Despite = "the thin canvas walls of the tent"
         self.BeginDesc = "The tent was just big enough for two."
         self.BentOver = "her heavy backpack"
@@ -248,7 +272,7 @@ class CampingTent(PrivateLocation):
         self.FemaleTopClothing = "cute little sweater"
         self.FemaleBottomClothing = self.FemWardrobe.Jeans.RandomDescription(bAllowLongDesc = False)
      
-class CarBackseat(PublicLocation):
+class CarBackseat(PublicIndoors):
     def __init__(self):
         super().__init__()
         self.Name = "the backseat of the car"
@@ -268,7 +292,7 @@ class CarBackseat(PublicLocation):
         self.FemaleTopClothing = self.FemWardrobe.Blouse.RandomDescription(bAllowLongDesc = False)
         self.FemaleBottomClothing = self.FemWardrobe.ShortSkirt.RandomDescription(bAllowLongDesc = False)
      
-class Church(PublicLocation):
+class Church(PublicIndoors):
     def __init__(self):
         super().__init__()
 
@@ -289,7 +313,7 @@ class Church(PublicLocation):
         self.FemaleTopClothing = self.FemWardrobe.Dress.RandomDescription(bAllowLongDesc = False)
         self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDescription(bAllowLongDesc = False)
      
-class Classroom(PublicLocation):
+class Classroom(PublicIndoors):
     def __init__(self):
         super().__init__()
 
@@ -310,7 +334,7 @@ class Classroom(PublicLocation):
         self.FemaleTopClothing = self.FemWardrobe.Blouse.RandomDescription(bAllowLongDesc = False)
         self.FemaleBottomClothing = self.FemWardrobe.ShortSkirt.RandomDescription(bAllowLongDesc = False)
      
-class ClubParkingLot(PublicLocation):
+class ClubParkingLot(PublicIndoors):
     def __init__(self):
         super().__init__()
 
@@ -331,7 +355,7 @@ class ClubParkingLot(PublicLocation):
         self.FemaleTopClothing = self.FemWardrobe.Blouse.RandomDescription(bAllowLongDesc = False)
         self.FemaleBottomClothing = self.FemWardrobe.ShortSkirt.RandomDescription(bAllowLongDesc = False)
      
-class Den(PrivateLocation):
+class Den(PrivateIndoors):
     def __init__(self):
         super().__init__()
 
@@ -348,7 +372,7 @@ class Den(PrivateLocation):
         self.FemaleTopClothing = "tight leather corset"
         self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDescription(bAllowLongDesc = False)
      
-class DoctorsOffice(PublicLocation):
+class DoctorsOffice(PublicIndoors):
     def __init__(self):
         super().__init__()
 
@@ -369,7 +393,7 @@ class DoctorsOffice(PublicLocation):
         self.FemaleTopClothing = self.FemWardrobe.Dress.RandomDescription(bAllowLongDesc = False)
         self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDescription(bAllowLongDesc = False)
      
-class DormRoom(PrivateLocation):
+class DormRoom(PrivateIndoors):
     def __init__(self):
         super().__init__()
 
@@ -385,7 +409,7 @@ class DormRoom(PrivateLocation):
         self.FemaleTopClothing = self.FemWardrobe.Tshirt.RandomDescription(bAllowLongDesc = False)
         self.FemaleBottomClothing = self.FemWardrobe.Jeans.RandomDescription(bAllowLongDesc = False)
      
-class DressingRoom(PublicLocation):
+class DressingRoom(PublicIndoors):
     def __init__(self):
         super().__init__()
 
@@ -406,13 +430,12 @@ class DressingRoom(PublicLocation):
         self.FemaleTopClothing = self.FemWardrobe.Dress.RandomDescription(bAllowLongDesc = False)
         self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDescription(bAllowLongDesc = False)
      
-class Farm(PrivateLocation):     
+class Farm(PrivateOutdoors):     
     def __init__(self):
         super().__init__()
 
         self.Name ="the farm"
         self.NamePrep ="on a farm"
-        self.Loc = exutil.LocInOutType.Outdoors
         self.Despite = "the mooing of nearby cows"
         self.BeginDesc = "A rambling wood fence encircled a field dotted with hay bales."
         self.BentOver = "a wood fence"
@@ -425,13 +448,12 @@ class Farm(PrivateLocation):
         self.MaleTopClothing = self.MaleWardrobe.Tshirt.RandomDescription(bAllowLongDesc = False)
         self.MaleBottomClothing = self.MaleWardrobe.Tshirt.RandomDescription(bAllowLongDesc = False)
      
-class Hottub(PrivateLocation):
+class Hottub(PrivateOutdoors):
     def __init__(self):
         super().__init__()
 
         self.Name ="the hot tub"
         self.NamePrep ="in the hot tub"
-        self.Loc = exutil.LocInOutType.Outdoors
         self.Despite = "the heat"
         self.BeginDesc = "They slipped into the warm water of the hot tub."
         self.BentOver = "the side of the tub"
@@ -447,7 +469,7 @@ class Hottub(PrivateLocation):
         else:
             self.MaleBottomClothing = self.MaleWardrobe.Speedo.RandomDescription(bAllowLongDesc = False)
      
-class Gym(PublicLocation):
+class Gym(PublicIndoors):
     def __init__(self):
         super().__init__()
 
@@ -468,13 +490,12 @@ class Gym(PublicLocation):
         self.FemaleTopClothing = self.FemWardrobe.SportsBra.RandomDescription(bAllowLongDesc = False)
         self.FemaleBottomClothing = self.FemWardrobe.YogaPants.RandomDescription(bAllowLongDesc = False)
      
-class HikingTrail(PublicLocation):
+class HikingTrail(PublicOutdoors):
     def __init__(self):
         super().__init__()
 
         self.Name ="the hiking trail"
         self.NamePrep ="on the side of a mountain"
-        self.Loc = exutil.LocInOutType.Outdoors
         self.BeginDesc = "The hike up the mountain had been exhausting, but the stunning view was worth it."
         self.Despite = "the dirt and mosquitos"
         self.BentOver = "a large boulder"
@@ -490,7 +511,7 @@ class HikingTrail(PublicLocation):
         self.FemaleTopClothing = self.FemWardrobe.SportsBra.RandomDescription(bAllowLongDesc = False)
         self.FemaleBottomClothing = "spandex shorts"
      
-class Kitchen(PrivateLocation):
+class Kitchen(PrivateIndoors):
     def __init__(self):
         super().__init__()
 
@@ -508,7 +529,7 @@ class Kitchen(PrivateLocation):
         self.FemaleTopClothing = self.FemWardrobe.Tshirt.RandomDescription(bAllowLongDesc = False)
         self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDescription(bAllowLongDesc = False)
      
-class Library(PublicLocation):
+class Library(PublicIndoors):
     def __init__(self):
         super().__init__()
 
@@ -529,7 +550,7 @@ class Library(PublicLocation):
         self.FemaleTopClothing = self.FemWardrobe.Blouse.RandomDescription(bAllowLongDesc = False)
         self.FemaleBottomClothing = self.FemWardrobe.ShortSkirt.RandomDescription(bAllowLongDesc = False)
      
-class MassageRoom(PrivateLocation):
+class MassageRoom(PrivateIndoors):
     def __init__(self):
         super().__init__()
 
@@ -546,7 +567,7 @@ class MassageRoom(PrivateLocation):
         self.MaleTopClothing = ""
         self.MaleBottomClothing = "towel"
      
-class MensRoom(PublicLocation):
+class MensRoom(PublicIndoors):
     def __init__(self):
         super().__init__()
 
@@ -567,7 +588,7 @@ class MensRoom(PublicLocation):
         self.FemaleTopClothing = self.FemWardrobe.Blouse.RandomDescription(bAllowLongDesc = False)
         self.FemaleBottomClothing = self.FemWardrobe.ShortSkirt.RandomDescription(bAllowLongDesc = False)
      
-class MovieTheater(PublicLocation):
+class MovieTheater(PublicIndoors):
     def __init__(self):
         super().__init__()
 
@@ -588,7 +609,7 @@ class MovieTheater(PublicLocation):
         self.FemaleTopClothing = "tight sweater"
         self.FemaleBottomClothing = "hip-hugging pants"
 
-class Office(PublicLocation):
+class Office(PublicIndoors):
     def __init__(self):
         super().__init__()
 
@@ -611,7 +632,7 @@ class Office(PublicLocation):
         self.MaleTopClothing = "dress shirt"
         self.MaleBottomClothing = self.MaleWardrobe.Slacks.RandomDescription(bAllowLongDesc = False)
      
-class OpenWindow(PublicLocation):
+class OpenWindow(PublicIndoors):
     def __init__(self):
         super().__init__()
 
@@ -632,7 +653,7 @@ class OpenWindow(PublicLocation):
         self.FemaleTopClothing = self.FemWardrobe.Bra.RandomDescription(bAllowLongDesc = False)
         self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDescription(bAllowLongDesc = False)
      
-class ParkAfterDark(PublicLocation):
+class ParkAfterDark(PublicOutdoors):
     def __init__(self):
         super().__init__()
 
@@ -653,7 +674,7 @@ class ParkAfterDark(PublicLocation):
         self.FemaleTopClothing = "tight sweater"
         self.FemaleBottomClothing = self.FemWardrobe.Jeans.RandomDescription(bAllowLongDesc = False)
      
-class ParkBench(PublicLocation):
+class ParkBench(PublicOutdoors):
     def __init__(self):
         super().__init__()
 
@@ -673,13 +694,12 @@ class ParkBench(PublicLocation):
         self.Ground = "the ground"
         self.FemaleTopClothing = self.FemWardrobe.Dress.RandomDescription(bAllowLongDesc = False)
      
-class PoolPatio(PrivateLocation):
+class PoolPatio(PrivateOutdoors):
     def __init__(self):
         super().__init__()
 
         self.Name ="the pool patio"
         self.NamePrep ="beside the pool"
-        self.Loc = exutil.LocInOutType.Outdoors
         self.Despite = "some fumbling awkwardness"
         self.BeginDesc = "The sun was high in the sky and the pool water looked cool and inviting."
         self.BentOver = "the pool steps"
@@ -690,13 +710,12 @@ class PoolPatio(PrivateLocation):
         self.FemaleTopClothing = self.FemWardrobe.BikiniTop.RandomDescription(bAllowLongDesc = False)
         self.FemaleBottomClothing = self.FemWardrobe.BikiniBottoms.RandomDescription(bAllowLongDesc = False)
      
-class PrivateBeach(PrivateLocation):
+class PrivateBeach(PrivateOutdoors):
     def __init__(self):
         super().__init__()
 
         self.Name ="a private beach"
         self.NamePrep ="on a private beach"
-        self.Loc = exutil.LocInOutType.Outdoors
         self.BeginDesc = "Waves rolled onto the sand. They had the beach all to themselves."
         self.Despite = "the sand that got into every crack"
         self.BentOver = "a sand dune"
@@ -710,13 +729,12 @@ class PrivateBeach(PrivateLocation):
         self.FemaleTopClothing = self.FemWardrobe.BikiniTop.RandomDescription(bAllowLongDesc = False)
         self.FemaleBottomClothing = self.FemWardrobe.BikiniBottoms.RandomDescription(bAllowLongDesc = False)
      
-class Shower(PrivateLocation):
+class Shower(PrivateIndoors):
     def __init__(self):
         super().__init__()
 
         self.Name ="the shower"
         self.NamePrep ="in the shower"
-        self.Loc = exutil.LocInOutType.Indoors
         self.Despite = "the slippery floor"
         self.BeginDesc = "The hot shower water rained down on them."
         self.BentOver = "against the wall"
@@ -729,7 +747,7 @@ class Shower(PrivateLocation):
         self.MaleTopClothing = ""
         self.MaleBottomClothing = ""
      
-class StarbucksBathroom(PublicLocation):
+class StarbucksBathroom(PublicIndoors):
     def __init__(self):
         super().__init__()
 
@@ -750,13 +768,12 @@ class StarbucksBathroom(PublicLocation):
         self.FemaleTopClothing = self.FemWardrobe.Dress.RandomDescription(bAllowLongDesc = False)
         self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDescription(bAllowLongDesc = False)
      
-class Surf(PublicLocation):
+class Surf(PublicOutdoors):
     def __init__(self):
         super().__init__()
 
         self.Name ="the surf"
         self.NamePrep ="in the water at the beach"
-        self.Loc = exutil.LocInOutType.Outdoors
         self.BeginDesc = "A hot sun shone down as the waves crested against their bodies."
         self.Despite = "the breaking waves"
         self.BentOver = "in the water"
@@ -777,13 +794,12 @@ class Surf(PublicLocation):
         self.FemaleTopClothing = self.FemWardrobe.BikiniTop.RandomDescription(bAllowLongDesc = False)
         self.FemaleBottomClothing = self.FemWardrobe.BikiniBottoms.RandomDescription(bAllowLongDesc = False)
      
-class Woods(PublicLocation):
+class Woods(PublicOutdoors):
     def __init__(self):
         super().__init__()
 
         self.Name ="the woods"
         self.NamePrep ="out in the woods"
-        self.Loc = exutil.LocInOutType.Outdoors
         self.BeginDesc = "The leafy trees were thick in every direction."
         self.Despite = "the dirt and mosquitos"
         self.BentOver = "a mossy log"
@@ -799,13 +815,12 @@ class Woods(PublicLocation):
         self.FemaleTopClothing = "cute flannel top"
         self.FemaleBottomClothing = self.FemWardrobe.Jeans.RandomDescription(bAllowLongDesc = False)
      
-class YogaStudio(PrivateLocation):
+class YogaStudio(PrivateIndoors):
     def __init__(self):
         super().__init__()
 
         self.Name ="a yoga studio"
         self.NamePrep ="in a yoga studio"
-        self.Loc = exutil.LocInOutType.Indoors
         self.BeginDesc = "The relaxing drone of zen meditation music filled the warm studio."
         self.Despite = "not having stretched properly"
         self.BentOver = "a large yoga ball"
@@ -822,12 +837,12 @@ class LocationSelector():
           self.Locations = [] 
 
           for sub in PublicLocation.__subclasses__():
-               self.Locations.append(sub())
+               self.Locations.append(sub)
                
           for sub in PrivateLocation.__subclasses__():
-               self.Locations.append(sub())
+               self.Locations.append(sub)
      
-     def Location(self, InOut = exutil.LocInOutType.Either, PubPrivType = exutil.LocPubPrivType.Either):
+     def Location(self, InOut = exutil.LocInOutType.Either, PubPrivType = exutil.LocPubPrivType.Either, LocMan = None, LocWoman = None):
           ThisLoc = Location()
           MatchingLocations = []
           
@@ -836,21 +851,19 @@ class LocationSelector():
           if PubPrivType == None:
                PubPrivType = LocPubPrivType.Either
 
+          # PubPriv = exutil.LocPubPrivType.Private
+          # InOut = exutil.LocInOutType.Outdoors
           if not self.Locations is None and len(self.Locations) > 0:
                for loc in self.Locations:
-                    if InOut == exutil.LocInOutType.Either or loc.Loc == InOut:
-                         if PubPrivType == exutil.LocPubPrivType.Public and isinstance(loc, PublicLocation):
-                              MatchingLocations.append(loc)
-                         elif PubPrivType == exutil.LocPubPrivType.Private and isinstance(loc, PrivateLocation):
-                              MatchingLocations.append(loc)
-                         elif PubPrivType == exutil.LocPubPrivType.Either:
+                    if InOut == exutil.LocInOutType.Either or loc.InOut == InOut:
+                         if PubPrivType == exutil.LocPubPrivType.Either or loc.PubPriv == PubPrivType:
                               MatchingLocations.append(loc)
                
                if len(MatchingLocations) > 0:
                     iRand = randint(0, len(MatchingLocations) - 1)
                     ThisLoc = MatchingLocations[iRand]
           
-          return ThisLoc
+          return ThisLoc(LocMan = LocMan, LocWoman = LocWoman)
           
      
      

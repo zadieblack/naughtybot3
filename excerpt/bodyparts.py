@@ -82,10 +82,18 @@ class BodyParts(NounPhrase):
         NewAdjList.sort()
         super().AdjList(NewAdjList)
 
-GenPhysTraits = namedtuple("GenPhysTraits",
-                           "FirstName LastName Gender Race PubeStyle",
-                           defaults = ["","","",None,""]
-                          )
+@dataclass
+class GenPhysTraits:
+    FirstName: str = ""
+    LastName: str = ""
+    Gender: str = ""
+    Race: Race = None
+    PubeStyle: str = ""
+
+#GenPhysTraits = namedtuple("GenPhysTraits",
+#                           "FirstName LastName Gender Race PubeStyle",
+#                           defaults = ["","","",None,""]
+#                          )
 class Lover():
     def __init__(self, Gender, NewGenTraits = None):
         self.FirstName = ""
@@ -525,10 +533,20 @@ class Man(Lover):
         #sDesc += "and my " + sCut + " " + self.Penis.FloweryDescription() + "."
         #print(sDesc)
 
-FemPhysTraits = namedtuple("FemPhysTraits",
-                           "AgeCat Age BodyType BustSize HasFakeTits HairStyle IsVirgin",
-                           defaults = ["",0,"","",None,"", None]
-                          )
+#FemPhysTraits = namedtuple("FemPhysTraits",
+#                           "AgeCat Age BodyType BustSize HasFakeTits HairStyle IsVirgin",
+#                           defaults = ["",0,"","",None,"", None]
+#                          )
+
+@dataclass
+class FemPhysTraits:
+    AgeCat: str = ""
+    Age: int = 0
+    BodyType: str = ""
+    BustSize: str = ""
+    HasFakeTits: bool = False
+    HairStyle: str = ""
+    IsVirgin: bool = False
 
 class Female(NounPhrase):
      def __init__(self, Params = None, NotList = None, TagLists = None):
@@ -560,7 +578,7 @@ class Female(NounPhrase):
           self.AdjList(['ample-bosomed: bigtits',
                         'athletic: muscular,shape',
                         'black x3: color,poc',
-                        'blonde x2: hair,cauc',
+                        'blonde x2: hair,cauc,color',
                         'blue-eyed x3: eyes,cauc',
                         'big-titted: bigtits',
                         'bosomy: bigtits,shape',
@@ -579,7 +597,7 @@ class Female(NounPhrase):
                         'flat-chested: smalltits',
                         'full-figured: bigtits,shape',
                         'green-eyed: eyes,cauc',
-                        'latina x3: poc',
+                        'latina x3: poc,color',
                         'kinky-haired: hair,poc',
                         'leggy: longlegs,shape',
                         'little: size,small,short',
@@ -630,15 +648,18 @@ class Woman(Lover):
 
         LTagLists = self._TagLists
 
+        bRandomize = False
+
         if NewFemTraits is None or not isinstance(NewFemTraits, FemPhysTraits):
             NewFemTraits = FemPhysTraits()
+            bRandomize = True
 
         if NewFemTraits.AgeCat:
             self.AgeCat = NewFemTraits.AgeCat
         else:
             self.AgeCat = choice(["teen","college","college","twenties","twenties","milf","milf"])
                 
-        if NewFemTraits.Age:
+        if NewFemTraits.Age > 0 and not bRandomize:
             self.Age = NewFemTraits.Age
         else:
             if self.AgeCat == "teen":
@@ -675,7 +696,7 @@ class Woman(Lover):
         else:
             self.BustSize = choice(["small","normal","large","huge"])
 
-        if isinstance(NewFemTraits.HasFakeTits, bool):
+        if isinstance(NewFemTraits.HasFakeTits, bool) and not bRandomize:
             self.HasFakeTits = NewFemTraits.HasFakeTits
         else:
             if self.BustSize in ["large","huge"]:
@@ -683,7 +704,7 @@ class Woman(Lover):
             else:
                 self.HasFakeTits = False
 
-        if isinstance(NewFemTraits.IsVirgin, bool):
+        if NewFemTraits.IsVirgin in [True,False] and not bRandomize:
             self.IsVirgin = NewFemTraits.IsVirgin
         else:
             if self.AgeCat in ["college","twenties"]:
@@ -825,7 +846,10 @@ class Woman(Lover):
                              self.Nipples,self.Vagina,self.Clitoris,
                              self.InnerLabia,self.InnerVagina,self.OuterLabia,]
 
-        self.Woman = Female(TagLists = LTagLists)
+        WomanNotList = []
+        if not self.IsVirgin:
+            WomanNotList += ["virgin","virginal"]
+        self.Woman = Female(NotList = WomanNotList, TagLists = LTagLists)
         self.Noun = self.Woman.GetNoun()
         self.Desc = self.Woman.FloweryDescription()
         self.DescWords = self.Woman.GetDescWordList()
