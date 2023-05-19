@@ -1977,12 +1977,13 @@ class ThongMale(MaleClothes):
 #   X blouse
 #   X skirt
 #   X robe/nightgown/negligee/shift(/kimono?)
-#   - Male blue jeans
-#   - Male boxers
-#   - Male briefs
+#   X Male blue jeans
+#   X Male boxers
+#   X Male briefs
 #   - Male suit
-#   - Male swimsuit
-#   - Trousers/Slacks
+#   X Male swimsuit
+#   X Trousers/Slacks
 #   - Button-down shirt
-#   - Khakis
+#   X Khakis
 #   - Tank top
+#   - Leather pants

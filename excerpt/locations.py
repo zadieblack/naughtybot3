@@ -163,7 +163,7 @@ class Balcony(PublicLocation):
         self.Consequence = "a small crowd gathered to watch them"
         self.Ground = "ground"
         self.MaleTopClothing = ""
-        self.MaleBottomClothing = "boxer briefs"
+        self.MaleBottomClothing = self.MaleWardobe.GetUnderwear().RandomDescription(bAllowLongDesc = False)
         self.FemaleTopClothing = self.FemWardrobe.Bra.RandomDescription(bAllowLongDesc = False)
         self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDescription(bAllowLongDesc = False)
 
@@ -442,7 +442,10 @@ class Hottub(PrivateLocation):
         self.FemaleTopClothing = self.FemWardrobe.BikiniTop.RandomDescription(bAllowLongDesc = False)
         self.FemaleBottomClothing = self.FemWardrobe.BikiniBottoms.RandomDescription(bAllowLongDesc = False)
         self.MaleTopClothing = ""
-        self.MaleBottomClothing = "swimming trunks"
+        if CoinFlip():
+            self.MaleBottomClothing = self.MaleWardrobe.Trunks.RandomDescription(bAllowLongDesc = False)
+        else:
+            self.MaleBottomClothing = self.MaleWardrobe.Speedo.RandomDescription(bAllowLongDesc = False)
      
 class Gym(PublicLocation):
     def __init__(self):
@@ -501,7 +504,7 @@ class Kitchen(PrivateLocation):
         self.LyingOn = "on the kitchen table"
         self.Ground = "black and white tiled floor"
         self.MaleTopClothing = ""
-        self.MaleBottomClothing = "briefs"
+        self.MaleBottomClothing = self.MaleWardrobe.GetUnderwear().RandomDescription(bAllowLongDesc = False)
         self.FemaleTopClothing = self.FemWardrobe.Tshirt.RandomDescription(bAllowLongDesc = False)
         self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDescription(bAllowLongDesc = False)
      
