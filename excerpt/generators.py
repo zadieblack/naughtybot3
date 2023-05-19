@@ -4836,7 +4836,7 @@ class Generator76(ExGen):
                     "Cum-slut","Deep-throat","Dogging",
                     "Diaper","Dick-lips","Dick-sucking","Dirt-pipe",
                     "Dirty","Enema","Exhibitionist",
-                    "Facial","Fleshlight",
+                    "Facial","Fleshlight","Firehose",
                     "Fuck-doll","Fuckable","Gagging",
                     "Gaping","Gushing","Handjob","Horny",
                     "HuCow","Insertion","Interracial",
@@ -4848,15 +4848,19 @@ class Generator76(ExGen):
                     "Rim-job","Sixty-nining","Sodomy",
                     "Sperm-bank","Squirting","Stinky",
                     "Suction","Three-holes","Tit-fuck",
-                    "Tit-job","Toilet","Vaginal","Wet",
+                    "Tit-job","Toilet","Vaginal","Vaseline","Wet",
                     "Wanton","Watersports",]
         GirlNames = names.PlainNamesFemale().GetFirstNamesList()
         NickName = GetRhymingPair(Prefixes, GirlNames)
         if len(NickName) > 1:
-            sNickName = NickName[0] + " " + NickName[1]
-        if CoinFlip() and CoinFlip():
-            sNickName = "little " + sNickName
+            if CoinFlip() and CoinFlip():
+                sNickName = "Little " + NickName[0] + " " + NickName[1]
+            else:
+                sNickName = "'" + NickName[0] + " " + NickName[1] + "'"
+        else:
+            "'Squirting Myrtle'"
 
+        TLParams = TagLists(noun_excl = ["silly"])
         Tits = Girl.Breasts 
         Ass = Girl.Ass 
           
@@ -4890,7 +4894,8 @@ class Generator76(ExGen):
             sTxt += "her " + self.FemWardrobe.Dress.RandomDescription(bAllowLongDesc = False) + " "
         else:
             sTxt += "her " + self.FemWardrobe.Blouse.RandomDescription(bAllowLongDesc = False) + " "
-        sTxt += "and opened it, " + sShameAdj + " baring her " + Girl.Breasts.FloweryDescription() + " to him. "
+        sTxt += "and opened it, " + sShameAdj + " baring " 
+        sTxt += "her " + Girl.Breasts.FloweryDescription(TagLists = TLParams) + " to him. "
         Selector.AddSection(sTxt)
 
         # Lifts her skirts
@@ -4898,15 +4903,15 @@ class Generator76(ExGen):
         sTxt += "revealing that she wasn't wearing any panties underneath. His "
         sTxt += "hungry gaze devoured the sight of "
         if CoinFlip():
-            sTxt += "her " + Girl.Ass.FloweryDescription() + ". "
+            sTxt += "her " + Girl.Ass.FloweryDescription(TagLists = TLParams) + ". "
         else:
-            sTxt += "her " + Girl.Vagina.FloweryDescription() + ". "
+            sTxt += "her " + Girl.Vagina.FloweryDescription(TagLists = TLParams) + ". "
         Selector.AddSection(sTxt)
 
         # Pulls down her tube top
-        sTxt = "She pulled down her " + self.FemWardrobe.CropTop.RandomDescription(bAllowLongDesc = False) + ", "
-        sTxt += sShameAdj + " "
-        sTxt += "exposing her " + Girl.Breasts.FloweryDescription() + " to him. "
+        sTxt = "She grabbed her " + self.FemWardrobe.CropTop.RandomDescription(bAllowLongDesc = False) + " "
+        sTxt += "and yanked it down, " 
+        sTxt += sShameAdj + " exposing her " + Girl.Breasts.FloweryDescription(TagLists = TLParams) + " to him. "
         Selector.AddSection(sTxt)
 
         # Takes off her panties
@@ -4916,9 +4921,10 @@ class Generator76(ExGen):
         Selector.AddSection(sTxt)
 
         # Opens her robe
+        Girl.Breasts.NounExclTagList(["silly"])
         sTxt = "She opened her " + self.FemWardrobe.Robe.RandomDescription(bAllowLongDesc = False) + ", "
         sTxt += sShameAdj + " revealing her naked " + Girl.Body.RandomDescription(TagLists = TagLists(adj_excl = ["nude"])) + " underneath. "
-        if Girl.Breasts.IsSing():
+        if Girl.Breasts.IsPlural():
             sTxt += "Her " + Girl.Breasts.GetNoun() + " were " 
         else:
             sTxt += "Her " + Girl.Breasts.GetNoun() + " was " 
@@ -4928,14 +4934,14 @@ class Generator76(ExGen):
         # Pulls off her sports bra
         sTxt = "She pulled her " + self.FemWardrobe.SportsBra.RandomDescription(bAllowLongDesc = False) + " off over her head, "
         sTxt += sShameAdj + " "
-        sTxt += "exposing her " + Girl.Breasts.FloweryDescription() + " to him. "
+        sTxt += "exposing her " + Girl.Breasts.FloweryDescription(TagLists = TLParams) + " to him. "
         Selector.AddSection(sTxt)
 
         # Pulls down bottoms
         BottomPiece = choice([self.FemWardrobe.DaisyDukes,self.FemWardrobe.Jeans,self.FemWardrobe.Panties,self.FemWardrobe.Shorts,self.FemWardrobe.YogaPants])
         sTxt = "She slid her " + BottomPiece.RandomDescription(bAllowLongDesc = False) + " "
         sTxt += "down over her " + Girl.Hips.RandomDescription(bAllowLongDesc = False) + ", "
-        sTxt += sShameAdj + " baring her " + Girl.Ass.FloweryDescription() + " to him. "
+        sTxt += sShameAdj + " baring her " + Girl.Ass.FloweryDescription(TagLists = TLParams) + " to him. "
         Selector.AddSection(sTxt)
 
         sTweet += Selector.GetSection()
@@ -4949,7 +4955,7 @@ class Generator76(ExGen):
                             "how I got the nickname","how I earned the name",
                             "why the neighborhood boys call me","why the guys at school call me",
                             ]).GetWord() + " "
-        sTweet += "'" + sNickName + "'?\" she asked."
+        sTweet += sNickName + "?\" she asked."
 
         return sTweet
           
