@@ -187,7 +187,10 @@ class Beach(PublicLocation):
         self.Consequence = "the lifeguard watched"
         self.Ground = "tiled floor"
         self.MaleTopClothing = ""
-        self.MaleBottomClothing = "swim trunks"
+        if CoinFlip():
+            self.MaleBottomClothing = self.MaleWardrobe.Trunks.RandomDescription(bAllowLongDesc = False)
+        else:
+            self.MaleBottomClothing = self.MaleWardrobe.Speedo.RandomDescription(bAllowLongDesc = False)
         self.FemaleTopClothing = self.FemWardrobe.BikiniTop.RandomDescription(bAllowLongDesc = False)
         self.FemaleBottomClothing = self.FemWardrobe.BikiniBottoms.RandomDescription(bAllowLongDesc = False)
      
@@ -205,7 +208,10 @@ class Boat(PrivateLocation):
         self.LyingOn = "the deck"
         self.Ground = "deck"
         self.MaleTopClothing = ""
-        self.MaleBottomClothing = "swim trunks"
+        if CoinFlip():
+            self.MaleBottomClothing = self.MaleWardrobe.Trunks.RandomDescription(bAllowLongDesc = False)
+        else:
+            self.MaleBottomClothing = self.MaleWardrobe.Speedo.RandomDescription(bAllowLongDesc = False)
         self.FemaleTopClothing = self.FemWardrobe.BikiniTop.RandomDescription(bAllowLongDesc = False)
         self.FemaleBottomClothing = self.FemWardrobe.BikiniBottoms.RandomDescription(bAllowLongDesc = False)
      
@@ -761,7 +767,10 @@ class Surf(PublicLocation):
         self.AuthorityFigure = "the lifeguard"
         self.Ground = "the dark green water"
         self.MaleTopClothing = ""
-        self.MaleBottomClothing = "speedos"
+        if CoinFlip():
+            self.MaleBottomClothing = self.MaleWardrobe.Trunks.RandomDescription(bAllowLongDesc = False)
+        else:
+            self.MaleBottomClothing = self.MaleWardrobe.Speedo.RandomDescription(bAllowLongDesc = False)
         self.FemaleTopClothing = self.FemWardrobe.BikiniTop.RandomDescription(bAllowLongDesc = False)
         self.FemaleBottomClothing = self.FemWardrobe.BikiniBottoms.RandomDescription(bAllowLongDesc = False)
      
@@ -823,42 +832,17 @@ class LocationSelector():
                InOut = exutil.LocInOutType.Either
           if PubPrivType == None:
                PubPrivType = LocPubPrivType.Either
-          #print("PubPrivType class is [" + str(PubPrivType.__class__) + "]")
-          #print("LocPubPrivType.Public is [" + str(exutil.LocPubPrivType.Public) + "]")
-          #print("PubPrivType is LocPubPrivType.Public is <" + str(PubPrivType is exutil.LocPubPrivType.Public) + ">!")
-          
-          #print("Getting a location that is PubPrivType " + str(PubPrivType) + " and InOut type " + str(InOut) + ".")
-          #print("Length of self.Locations[] is " + str(len(self.Locations)))
-          
+
           if not self.Locations is None and len(self.Locations) > 0:
                for loc in self.Locations:
-                    #print("loc class is " + str(loc.__class__))
-                    #print("Loc [" + loc.Name + "] is " + str(loc.Loc) + " and " + loc.__class__.__name__)
                     if InOut == exutil.LocInOutType.Either or loc.Loc == InOut:
-                         # print("[loc is " + str(loc.__class__) + "\n" + 
-                                # " PubPrivType = " + str(PubPrivType) + "\n"
-                               # " isinstance of class PublicLocation = " + str(isinstance(loc, PublicLocation)) + "\n" +
-                                # " isinstance of class PrivateLocation = " + str(isinstance(loc, PrivateLocation)) + "]")
-                         #if PubPrivType == LocPubPrivType.Public:
-                              #print("PubPrivType is definitely LocPubPrivType.Public!")
-                         #else:
-                              #print("Whoops! PubPrivType is *NOT* LocPubPrivType.Public!")
-                         #if isinstance(loc, PublicLocation):
-                              #print("isinstance(loc, PublicLocation) is definitely True!")
-                         #else:
-                              #print("Whoops! isinstance(loc, PublicLocation) is *NOT* True!")
-                         
                          if PubPrivType == exutil.LocPubPrivType.Public and isinstance(loc, PublicLocation):
                               MatchingLocations.append(loc)
-                              #print("Public Location added to list.")
                          elif PubPrivType == exutil.LocPubPrivType.Private and isinstance(loc, PrivateLocation):
                               MatchingLocations.append(loc)
-                              #print("Private Location added to list.")
                          elif PubPrivType == exutil.LocPubPrivType.Either:
                               MatchingLocations.append(loc)
-                              #print("Any Type Location added to list.")
                
-               #print("Length of MatchingLocations[] is " + str(len(MatchingLocations)))
                if len(MatchingLocations) > 0:
                     iRand = randint(0, len(MatchingLocations) - 1)
                     ThisLoc = MatchingLocations[iRand]

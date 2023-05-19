@@ -8392,7 +8392,7 @@ class Generator115(ExGen):
         sTweet += "\"There's someone asleep on the bed!\"\n\n"
 
         iRand = randint(1,2)
-        #iRand = 2
+        iRand = 1
         if iRand == 1:
             # wearing pants
             sPenisHeadAdj = Penis.Head.GetNewAdj(NotList = UsedWords)
@@ -8402,7 +8402,11 @@ class Generator115(ExGen):
             sTweet += "with " + sManDesc3 + " "
             sTweet += "was "+ WordList(["sleeping","snoring","fast asleep"]).GetWord() + " on his side atop the covers. "
             sTweet += "His " + sManDesc4 + " body was bare "
-            sTweet += "except for " + WordList(["a pair of boxer shorts","tight, low-slung bluejeans","a pair of tight briefs","a pair of paper thin pajama pants","a tight man-thong"]).GetWord() + ". "
+            sTweet += "except for " + WordList(["a pair of " + self.MaleWardrobe.Boxers.RandomDescription(bAllowLongDesc = False),
+                                                "a pair of " + self.MaleWardrobe.Jeans.RandomDescription(bAllowLongDesc = False),
+                                                "a pair of " + self.MaleWardrobe.Briefs.RandomDescription(bAllowLongDesc = False),
+                                                "a " + self.MaleWardrobe.Thong.RandomDescription(bAllowLongDesc = False),
+                                                "a pair of paper thin pajama pants",]).GetWord() + ". "
             sTweet += "The " + sPenisHeadAdj + " " +  sPenisHeadNoun + " "
             sTweet += "of his " + sPenis1Adj1 + ", " + sPenis1Adj2 + " " + sPenis1Noun + " "
             sTweet += "protruded above the waist-band. "

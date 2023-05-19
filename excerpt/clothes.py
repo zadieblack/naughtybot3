@@ -1490,22 +1490,36 @@ class MaleWardrobe():
         
         # Bottoms
 
+        self.Boxers = Boxers()
+        self.Briefs = Briefs()
         self.Jeans = JeansMale()
+        self.Speedo = Speedo()
+        self.Thong = ThongMale()
+        self.Trunks = SwimTrunks()
 
         # Clothing pools
 
-        self.Bottoms = [self.Jeans
+        self.Bottoms = [self.Boxers,
+                        self.Briefs,
+                        self.Jeans,
+                        self.Speedo,
+                        self.Thong,
+                        self.Trunks,
                        ]
 
-        self.Tops = [self.Tshirt
+        self.Tops = [self.Tshirt,
                     ]
+
+        self.Underwear = [self.Boxers,
+                          self.Briefs,
+                          self.Thong
+                         ]
 
     def GetBottom(self, NotList = None):
         if NotList is None:
             NotList = []
 
-        Bottoms = [JeansMale,
-                  ]
+        Bottoms = self.Bottoms.copy()
 
         if len(NotList) > 0:
             Bottoms = self.ExclNotList(Bottoms, NotList)
@@ -1516,8 +1530,7 @@ class MaleWardrobe():
         if NotList is None:
             NotList = []
 
-        Tops = [TshirtMale,
-               ]
+        Tops = self.Tops.copy()
 
         if len(NotList) > 0:
             Tops = self.ExclNotList(Tops, NotList)
@@ -1595,6 +1608,89 @@ class TshirtMale(MaleClothes):
 
 # --- Bottoms ---
 
+class Boxers(MaleClothes):
+     def __init__(self):
+          super().__init__()
+          
+          self.AddColors = True 
+          self.IsBottom = True
+          self.IsUnderwear = True
+
+          self.NounList(['boxers: std,default,plur',
+                        ])
+          
+          self.AdjList(['baggy: loose, shape',
+                        'brief: skimpy,tight',
+                        'bulging: bigdick,shape',
+                        'cotton: material',
+                        'flimsy: skimpy',
+                        'gingham: pattern',
+                        'loose: fit',
+                        'paper-thin: thickness,thin',
+                        'plaid: pattern',
+                        'polka-dotted: pattern',
+                        'see-thru: see-thru,skimpy',
+                        'sexy: super',
+                        'short: length,short',
+                        'silk: material,silk',
+                        'snug: tight',
+                        'soft: feel',
+                        'soggy: wet',
+                        'striped: pattern',
+                        'taut: tight',
+                        'thin: thickness,thin',
+                        'tight x2: tight',
+                        'woven: texture',
+                       ])
+               
+          self.DefaultNoun('boxers')
+          self.DefaultAdj('snug')
+
+class Briefs(MaleClothes):
+     def __init__(self):
+          super().__init__()
+          
+          self.AddColors = False 
+          self.IsUnderwear = True
+          self.IsBottom = True
+
+          self.NounList(['boxer briefs: variant,plur',
+                         'briefs x3: std,default,plur',
+                         'underwear x2: std,sing',
+                        ])
+          
+          self.AdjList(['black x2: color',
+                        'brief: skimpy,tight',
+                        'bulging: bigdick,shape',
+                        'clingy: tight',
+                        'cotton: material',
+                        'flimsy: skimpy',
+                        'little: size,small',
+                        'meager: skimpy',
+                        'mesh: texture,material',
+                        'microscopic: size,small',
+                        'plain white: style,color',
+                        'red: color',
+                        'seductive: super',
+                        'see-thru: seethru,skimpy',
+                        'sexy: super',
+                        'skimpy: skimpy',
+                        'slender: width,narrow',
+                        'snug: tight',
+                        'spandex: material',
+                        'taut: tight',
+                        'thin: thickness,thin',
+                        'tight x2: tight',
+                        'tiny: size,small,skimpy',
+                        'V-shaped: shape',
+                        'white x4: color',
+                       ])
+               
+          self.DefaultNoun('briefs')
+          self.DefaultAdj('plain white')
+
+          self.IsBottom = True
+
 class JeansMale(MaleClothes):
      def __init__(self):
           super().__init__()
@@ -1632,9 +1728,126 @@ class JeansMale(MaleClothes):
 
           self.IsBottom = True
 
+class Speedo(MaleClothes):
+     def __init__(self):
+          super().__init__()
+          
+          self.AddColors = True 
 
+          self.NounList(['speedo: std,default,sing',
+                         'speedos: std,plur',
+                         'swim briefs: std,plur',
+                         'thong: std,sing',
+                        ])
+          
+          self.AdjList(['brief: skimpy,tight',
+                        'bulging: bigdick,shape',
+                        'clingy: tight',
+                        'damp: wet',
+                        'flashy: super',
+                        'flimsy: skimpy',
+                        'little: size,small',
+                        'nylon: material',
+                        'sexy: super',
+                        'sleek: super',
+                        'slender: width,narrow',
+                        'slick: super',
+                        'snug: tight',
+                        'spandex: material',
+                        'taut: tight',
+                        'thin: thickness,thin',
+                        'tight x2: tight',
+                        'tiny: size,small,skimpy',
+                       ])
+               
+          self.DefaultNoun('speedo')
+          self.DefaultAdj('tight')
 
+          self.IsBottom = True
 
+class SwimTrunks(MaleClothes):
+     def __init__(self):
+          super().__init__()
+          
+          self.AddColors = True 
+
+          self.NounList(['bathing suit: std,sing',
+                         'boardshorts x2: variant,plur',
+                         'swim shorts: std,plur',
+                         'swimsuit: std,sing',
+                         'swim trunks x3: std,default,plur',
+                        ])
+          
+          self.AdjList(['baggy: loose, shape',
+                        'brief: skimpy,tight',
+                        'bulging: bigdick,shape',
+                        'clingy: tight',
+                        'damp: wet',
+                        'flashy: super',
+                        'flimsy: skimpy',
+                        'knee-length: length,long',
+                        'loose: fit',
+                        'nylon: material',
+                        'polyester: material',
+                        'see-thru: see-thru,skimpy',
+                        'sleek: super',
+                        'slick: super',
+                        'short: length,short',
+                        'snug: tight',
+                        'soggy: wet',
+                        'square-cut: style,shape',
+                        'thin: thickness,thin',
+                        'tight x2: tight',
+                        'tropical: style',
+                       ])
+               
+          self.DefaultNoun('swim trunks')
+          self.DefaultAdj('snug')
+
+          self.IsBottom = True
+
+class ThongMale(MaleClothes):
+     def __init__(self):
+          super().__init__()
+          
+          self.AddColors = True 
+          self.IsBottom = True
+          self.IsUnderwear = True
+
+          self.NounList(['G-string: std,sing',
+                         'man-thong: std,sing',
+                         'thong x3: std,default,sing',
+                        ])
+          
+          self.AdjList(['brief: skimpy,tight',
+                        'bulging: bigdick,shape',
+                        'cheeky: skimpy',
+                        'clingy: tight',
+                        'cotton: material',
+                        'flashy: super',
+                        'flimsy: skimpy',
+                        'leopard print: pattern,color',
+                        'little x3: size,small',
+                        'nylon: material',
+                        'sexy: super',
+                        'sheer: seethru,texture,pattern,material',
+                        'silk: material',
+                        'sleek: super',
+                        'slender: width,narrow',
+                        'slick: super',
+                        'snug: tight',
+                        'spandex: material',
+                        'T-backed: shape',
+                        'taut: tight',
+                        'thin: thickness,thin',
+                        'tight x4: tight',
+                        'tiny: size,small,skimpy',
+                       ])
+               
+          self.DefaultNoun('thong')
+          self.DefaultAdj('tight')
+
+          
 
 # TODO:
 #   x high heels
