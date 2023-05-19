@@ -346,15 +346,16 @@ class Generator5(ExGen):
           sTweet += "she " + self.VMoan.Past() +", "
 
           iRand = randint(1,9)
+          #iRand = 3
           if iRand == 1:
               sTweet += "naked in his " + self.MaleBodyParts.Arms.RandomDescription()
           elif iRand == 2:
               sTweet += WordList(["writhing","squirming","wiggling"]).GetWord() + " "
               sTweet += WordList(["erotically","sensuously"]).GetWord() + " on the bed"
           elif iRand == 3:
-              sTweet += "pulling his " + self.MaleBodyParts.Penis.RandomDescription(bAllowLongDesc = False) + " " 
-              sTweet += "out of his " + WordList(["blue jeans","khaki pants","trousers",
-                                                  "swim trunks","briefs","boxers"]).GetWord()
+              sTweet += WordList(["fishing","pulling"]).GetWord() + " his "
+              sTweet += self.MaleBodyParts.Penis.RandomDescription(bAllowLongDesc = False) + " " 
+              sTweet += "out of his " + self.MaleWardrobe.GetBottom().RandomDescription(bAllowLongDesc = False)
           elif iRand == 4:
               sTweet += "spreading her " + self.FemBodyParts.Legs.RandomDescription() + " " 
               sTweet += "and shamelessly displaying her " + self.FemBodyParts.Vagina.InnerVag.RandomDescription()
@@ -3335,7 +3336,9 @@ class Generator58(ExGen):
                sActualName = "Baby " + sHisName
           
           if CoinFlip():
-               sTweet = sHerName + " undid " + sHisName + "'s heavy belt buckle and pulled his blue jeans down his " + WordList(["lean", "bony", "muscular", "narrow", "powerful"]).GetWord() + " hips. "
+               sTweet = sHerName + " undid " + sHisName + "'s heavy belt buckle and pulled " 
+               sTweet += "his " + self.MaleWardrobe.Jeans.RandomDescription(bAllowLongDesc = False) + " " 
+               sTweet += "down his " + WordList(["lean", "bony", "muscular", "narrow", "powerful"]).GetWord() + " hips. "
           else:
                sTweet = sHerName + " unzipped " + sHisName + "'s zipper. "
           sTweet += "\"Ooh, baby, what do we have here?\" she " + WordList(["purred", "cooed", "growled sexily"]).GetWord() + ". \"Is it " + AddArticles("'" + sShort1 + "'") + "? " + AddArticles("'" + sShort2 + "'").capitalize() + "? Maybe it's " + AddArticles("'" + sShort3 + "'") + "!\"\n"
@@ -3544,12 +3547,14 @@ class Generator62(ExGen):
           sHisName = self.MaleName.FirstName()
           sHerName = self.FemaleName.FirstName()
           
-          sUndress = WordList(["rip my panties off","pull my panties down","rip my jeans off",
-                                    "peel my jeggings off","pull my yoga pants down","pull my dress up",
-                                    "rip my dress off","pull my skirt down","rip my bikini off",
-                                    "rip my scanty lingerie off","pull my bikini bottoms down",
-                                    "rip my pantyhose open","pull my Daisy Dukes down",
-                                    "pull my thong down"]).GetWord()
+          sBottoms = self.FemWardrobe.GetBottom().RandomDescription(bAllowLongDesc = False)
+          sUndress = WordList(["rip my " + sBottoms + " off","pull my " + sBottoms + " down",]).GetWord()
+          #sUndress = WordList(["rip my panties off","pull my panties down","rip my jeans off",
+          #                          "peel my jeggings off","pull my yoga pants down","pull my dress up",
+          #                          "rip my dress off","pull my skirt down","rip my bikini off",
+          #                          "rip my scanty lingerie off","pull my bikini bottoms down",
+          #                          "rip my pantyhose open","pull my Daisy Dukes down",
+          #                          "pull my thong down"]).GetWord()
                          
           sRealLocation = WordList(["this Wendy's","this Shake Shack","Applebee's","this Krispy Kreme",
                                           "this CVS Pharmacy","this McDonald's","this Pizza Hut","this Taco Bell",
@@ -6577,10 +6582,11 @@ class Generator100(ExGen):
         sDickAdj = DickAdjs.GetWord()
 
         sTweet += sPerson1Pronoun.capitalize() + " unbuckled " + sPerson2Name + "'s belt, "
-        sTweet += "unzipped his " + WordList(["khaki pants","bluejeans","trousers",
-                                              "gray slacks","black slacks","leather pants",
-                                              "tight pants","pleated trousers"
-                                             ]).GetWord() + ", "
+        sTweet += "unzipped his " + self.MaleWardrobe.GetTrousers().RandomDescription(bAllowLongDesc = False) + ", "
+        #sTweet += "unzipped his " + WordList(["khaki pants","bluejeans","trousers",
+        #                                      "gray slacks","black slacks","leather pants",
+        #                                      "tight pants","pleated trousers"
+        #                                     ]).GetWord() + ", "
         sTweet += "and pulled out his " + sDickAdj + " " + Penis1.ShortDescription(NotList = DickNotList + [sDickAdj]) + ". "
         if CoinFlip():
             #cock 
@@ -8392,7 +8398,7 @@ class Generator115(ExGen):
         sTweet += "\"There's someone asleep on the bed!\"\n\n"
 
         iRand = randint(1,2)
-        iRand = 1
+        #iRand = 1
         if iRand == 1:
             # wearing pants
             sPenisHeadAdj = Penis.Head.GetNewAdj(NotList = UsedWords)

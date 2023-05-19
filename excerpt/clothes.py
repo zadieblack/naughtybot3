@@ -175,7 +175,7 @@ class FemWardrobe():
         if len(NotList) > 0:
             Bottoms = self.ExclNotList(Bottoms, NotList)
 
-        return choice(Bottoms)()
+        return choice(Bottoms)
 
     def GetTop(self, NotList = None, bDresses = False):
         if NotList is None:
@@ -189,7 +189,7 @@ class FemWardrobe():
         if len(NotList) > 0:
             Tops = self.ExclNotList(Tops, NotList)
 
-        return choice(Tops)()
+        return choice(Tops)
 
     def ExclNotList(self, List, NotList):
         CleanList = []
@@ -1493,6 +1493,8 @@ class MaleWardrobe():
         self.Boxers = Boxers()
         self.Briefs = Briefs()
         self.Jeans = JeansMale()
+        self.Khakis = Khakis()
+        self.Slacks = Slacks()
         self.Speedo = Speedo()
         self.Thong = ThongMale()
         self.Trunks = SwimTrunks()
@@ -1502,6 +1504,8 @@ class MaleWardrobe():
         self.Bottoms = [self.Boxers,
                         self.Briefs,
                         self.Jeans,
+                        self.Khakis,
+                        self.Slacks,
                         self.Speedo,
                         self.Thong,
                         self.Trunks,
@@ -1510,9 +1514,11 @@ class MaleWardrobe():
         self.Tops = [self.Tshirt,
                     ]
 
+        self.Trousers = [self.Jeans,self.Khakis,self.Slacks]
+
         self.Underwear = [self.Boxers,
                           self.Briefs,
-                          self.Thong
+                          self.Thong,
                          ]
 
     def GetBottom(self, NotList = None):
@@ -1524,7 +1530,7 @@ class MaleWardrobe():
         if len(NotList) > 0:
             Bottoms = self.ExclNotList(Bottoms, NotList)
 
-        return choice(Bottoms)()
+        return choice(Bottoms)
 
     def GetTop(self, NotList = None, bDresses = False):
         if NotList is None:
@@ -1535,7 +1541,29 @@ class MaleWardrobe():
         if len(NotList) > 0:
             Tops = self.ExclNotList(Tops, NotList)
 
-        return choice(Tops)()
+        return choice(Tops)
+
+    def GetTrousers(self, NotList = None):
+        if NotList is None:
+            NotList = []
+
+        Trousers = self.Trousers.copy()
+
+        if len(NotList) > 0:
+            Trousers = self.ExclNotList(Trousers, NotList)
+
+        return choice(Trousers)
+
+    def GetUnderwear(self, NotList = None):
+        if NotList is None:
+            NotList = []
+
+        Underwears = self.Underwear.copy()
+
+        if len(NotList) > 0:
+            Underwears = self.ExclNotList(Underwears, NotList)
+
+        return choice(Underwears)
 
     def ExclNotList(self, List, NotList):
         CleanList = []
@@ -1721,6 +1749,101 @@ class JeansMale(MaleClothes):
                         'unzipped: style',
                         'well-worn: distressed',
                         'worn: distressed',
+                       ])
+               
+          self.DefaultNoun('bluejeans')
+          self.DefaultAdj('faded')
+
+          self.IsBottom = True
+
+class Khakis(MaleClothes):
+     def __init__(self):
+          super().__init__()
+          
+          self.AddColors = False 
+
+          self.NounList(['khakis: std,default,plur',
+                        ])
+          
+          self.AdjList(['baggy: fit,loose,shape',
+                        'beige x2: color',
+                        'business-like: super,style',
+                        'casual: super,style',
+                        'comfortable: super',
+                        'confident: super',
+                        'crisp: style',
+                        'fitted: style',
+                        'gray x3: color',
+                        'long: length,long',
+                        'loose: fit,loose,shape',
+                        'navy blue x2: color',
+                        'neat: super',
+                        'pleated: style',
+                        'pressed: style',
+                        'sharp: super',
+                        'silver x2: color',
+                        'skinny: slender,shape',
+                        'slim: slender,shape',
+                        'snug x2: tight',
+                        'stylish: super',
+                        'tailored: super',
+                        'tall: super',
+                        'tan: color',
+                        'tapered: style',
+                        'tight x2: tight',
+                        'tight-fitted: tight',
+                        'trim: slender',
+                        'unbuttoned: style',
+                        'unzipped: style',
+                       ])
+               
+          self.DefaultNoun('bluejeans')
+          self.DefaultAdj('faded')
+
+          self.IsBottom = True
+
+class Slacks(MaleClothes):
+     def __init__(self):
+          super().__init__()
+          
+          self.AddColors = False 
+
+          self.NounList(['chinos: variant,plur',
+                         'dress pants: std,plur',
+                         'slacks x2: std,default,plur',
+                         'suit pants: variant,plur',
+                         'trousers: std,plur',
+                        ])
+          
+          self.AdjList(['beige x2: color',
+                        'black x2: color',
+                        'brown: color',
+                        'business-like: super',
+                        'confident: super',
+                        'crisp: style',
+                        'dark gray x3: color',
+                        'fitted: style',
+                        'fine: super',
+                        'gray x3: color',
+                        'long: length,long',
+                        'navy blue x2: color',
+                        'pleated: style',
+                        'pressed: style',
+                        'sharp: super',
+                        'silver x2: color',
+                        'skinny: slender,shape',
+                        'slim: slender,shape',
+                        'snug x2: tight',
+                        'tailored: super',
+                        'tall: super',
+                        'tan x2: color',
+                        'tapered: style',
+                        'tight x2: tight',
+                        'tight-fitted: tight',
+                        'trim: slender',
+                        'unbuttoned: style',
+                        'unzipped: style',
+                        'white: color',
                        ])
                
           self.DefaultNoun('bluejeans')

@@ -606,7 +606,7 @@ class Office(PublicLocation):
         self.FemaleTopClothing = self.FemWardrobe.PencilDress.RandomDescription(bAllowLongDesc = False)
         self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDescription(bAllowLongDesc = False)
         self.MaleTopClothing = "dress shirt"
-        self.MaleBottomClothing = "slacks"
+        self.MaleBottomClothing = self.MaleWardrobe.Slacks.RandomDescription(bAllowLongDesc = False)
      
 class OpenWindow(PublicLocation):
     def __init__(self):
