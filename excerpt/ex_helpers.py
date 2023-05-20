@@ -767,13 +767,13 @@ class NounPhrase:
 
         return self.GetFullDesc(iNumAdjs = iNumAdjs)
      
-    def RandomDescription(self, bAllowShortDesc = True, bAllowLongDesc = True, NotList = None, TagLists = None):
+    def RandomDescription(self, bShortDesc = True, bLongDesc = True, NotList = None, TagLists = None):
         sRandomDesc = ""
           
         iRand = randint(0, 12)
         if iRand in range(0, 3):
         #short desc if allowed 
-            if bAllowShortDesc:
+            if bShortDesc:
                 #use noun from the list or default noun
                 if CoinFlip():
                         sRandomDesc = self.ShortDescription(NotList = NotList, TagLists = TagLists)
@@ -786,7 +786,7 @@ class NounPhrase:
             sRandomDesc = self.MediumDescription(NotList = NotList, TagLists = TagLists)
         else:
         #flowery desc if allowed
-            if bAllowLongDesc:
+            if bLongDesc:
                 sRandomDesc = self.FloweryDescription(NotList = NotList, TagLists = TagLists)
             else:
                 sRandomDesc = self.MediumDescription(NotList = NotList, TagLists = TagLists)
