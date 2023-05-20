@@ -44,6 +44,11 @@ TagExclDict = {"bigdick": ["smalldick"],
                "young": ["thirties","middleaged","older","milf"],
               }
 
+AdjMods = WordList(["extremely",
+                    "incredibly",
+                    "really",
+                    "very",])
+
 @dataclass 
 class NPParams:
     iNumAdjs: int = 4
@@ -226,7 +231,8 @@ class NounPhrase:
                     print("=*= WARNING =*= bodyparts.Reset() unable to get more adjectives.\n")
                     break
 
-                for tag in self.GetUnitTags(sAdj):
+                NewAdjTags = self.GetUnitTags(sAdj)
+                for tag in NewAdjTags:
                     # Try and pick adjs from different tags if required tags are not set
                     if self._bVaryAdjTags and len(LocalReqTagList) == 0:
                         if not tag == "master" and not tag in UsedTagList:
@@ -238,7 +244,7 @@ class NounPhrase:
                             if not excltag in LocalExclTagList:
                                 LocalExclTagList.append(excltag)
                                 #print("    Detected tag \"" + tag + "\", excluding tags " + str(TagExclDict[tag]))
-                
+
                 self.AddAdj(sAdj)
 
             # Sort 

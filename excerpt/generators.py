@@ -1877,9 +1877,10 @@ class Generator34(ExGen):
                                 ]).GetWord()
           HoleNotList = ["vagina","anus","asshole","knot","sphincter","bowels"]
 
-          sBottoms = WordList(['pants','Daisy Dukes','spandex yoga pants','booty shorts',
-                               'panties','blue jeans','thong'
-                               ]).GetWord()
+          sBottoms = self.FemWardrobe.GetBottom().RandomDesc(bLongDesc = False)
+          #sBottoms = WordList(['pants','Daisy Dukes','spandex yoga pants','booty shorts',
+          #                     'panties','blue jeans','thong'
+          #                     ]).GetWord()
 
           if CoinFlip() and CoinFlip():
                sHole = self.FemBodyParts.Ass.Anus.ShortDesc(NotList = HoleNotList)
@@ -5380,7 +5381,7 @@ class Generator81(ExGen):
           else:
           # she takes her top off and shows him her breasts
                sTweet += sHerName + " pulled her " + WordList(["sports bra","lacey bra","thin white t-shirt","skimpy bikini top"]).GetWord() + " "
-               sTweet += "over her head, exposing her " + self.FemBodyParts.Breasts.RandomDesc(AdjExclTagList=["color"]) + ". "
+               sTweet += "over her head, exposing her " + self.FemBodyParts.Breasts.RandomDesc(TagLists = TagLists(adj_excl = ["color"])) + ". "
                sTweet += sHisName + " swallowed the lump in his throat. \"Oh God!\" he said. "
                sTweet += "\"You're so fucking " + WordList(['hot','sexy']).GetWord() + "! "
                sTweet += "But I can't! " + ProtestReasons.GetWord() + "\"\n\n"
@@ -8861,11 +8862,6 @@ class Generator119(ExGen):
         #    sTweet += "Flowery description: " + Sweats.FloweryDesc()  + "\n"
         #    sTweet += "Random description: " + Sweats.RandomDesc(bShortDesc = False) + "\n\n"
 
-        #for i in range(4):
-        #    sTweet += "She was wearing her " + Sweats.FloweryDesc() + ": "
-        #    sTweet += AddArticles(Top.FloweryDesc()) + " and "
-        #    sTweet += Bottom.RandomDesc(bShortDesc = False) + "."
-
         #sTweet += "The lovely teen girl was wearing " + Undies.FloweryDesc() + " "
         #sTweet += "including " + AddArticles(Bra.RandomDesc(bShortDesc = False)) + " "
         #sTweet += "and " + Panties.RandomDesc(bShortDesc = False) + ".\n\n"
@@ -8874,22 +8870,22 @@ class Generator119(ExGen):
         ##sTweet += "the " + Bikini.GetFullDesc(6) + " "
         #sTweet += "she was wearing turned heads at the beach.\n\n"
 
-        #for i in range(3):
-        #    sTweet += "The " + self.Woman.Desc + " "
-        #    sTweet += "lifted up her " + clothes.ShortSkirt().RandomDesc(bShortDesc = False) + ", "
-        #    sTweet += "revealing that she had failed to put on any "
-        #    sTweet += "panties underneath.\n\n"
+        for i in range(3):
+            sTweet += "The " + self.Woman.Desc + " "
+            sTweet += "lifted up her " + clothes.ShortSkirt().FloweryDesc() + ", "
+            sTweet += "revealing that she had failed to put on any "
+            sTweet += "panties underneath.\n\n"
 
         for i in range(12):
             sTweet += "The " + WordList(["dude","guy","bro","man"]).GetWord() + " "
             sTweet += "was wearing a " + clothes.MaleWardrobe().Tshirt.FloweryDesc() + " "
             sTweet += "and a pair of " + clothes.MaleWardrobe().Jeans.FloweryDesc() + ".\n\n"
         
-        #for i in range(6):
-        #    Top = clothes.CropTop()
-        #    sTweet += "Her " + Top.FloweryDesc() + " "
-        #    sTweet += "struggled to contain " 
-        #    sTweet += "her " + self.FemBodyParts.Breasts.RandomDesc() + ".\n\n"
+        for i in range(6):
+            Top = clothes.CropTop()
+            sTweet += "Her " + Top.FloweryDesc() + " "
+            sTweet += "struggled to contain " 
+            sTweet += "her " + self.FemBodyParts.Breasts.RandomDesc() + ".\n\n"
 
         #sTweet += "Winking at him, she slipped "
         #sTweet += "her " + Bottoms.RandomDesc() + " "
@@ -9048,7 +9044,7 @@ class Generator121(ExGen):
         sTweet += "he " + WordList(["gently","carefully","delicately","boldly","confidently"]).GetWord() + " "
         sTweet += "inserted the " + Dildo.GetNoun() + " deep into "
         if CoinFlip():
-            sTweet += "her " + self.Woman.Vagina.FloweryDesc(TagLists = TagLists(noun_excl = ["silly"], NotList = ["deep"])) + ". "
+            sTweet += "her " + self.Woman.Vagina.FloweryDesc(NotList = ["deep"], TagLists = TagLists(noun_excl = ["silly"])) + ". "
         else:
             sTweet += "her " + self.Woman.InnerVagina.FloweryDesc(NotList = ["deep"], TagLists = TagLists(noun_excl = ["silly"])) + ". "
         
