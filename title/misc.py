@@ -455,24 +455,24 @@ class ProfFemale(WordList):
 class NiceGirlNouns(WordList):
      def __init__(self):
           super().__init__(["Babysitter",
-                                "Bride",
-                                "Fiancé",
-                                "Girlfriend",
-                                "Governess",
-                                "House Maid",
-                                "Housewife",
-                                "Librarian",
-                                "Maid",
-                                "Piano Teacher",
-                                "Teacher",
-                                "Secretary",
-                                "Schoolgirl",
-                                "Small-Town Girl",
-                                "Stay-at-Home Wife",
-                                "Step-Daughter",
-                                "Step-Mom",
-                                "Step-Sister",
-                                "Wife"])
+                            "Bride",
+                            "Fiancé",
+                            "Girlfriend",
+                            "Governess",
+                            "House Maid",
+                            "Housewife",
+                            "Librarian",
+                            "Maid",
+                            "Piano Teacher",
+                            "Teacher",
+                            "Secretary",
+                            "Schoolgirl",
+                            "Small-Town Girl",
+                            "Stay-at-Home Wife",
+                            "Step-Daughter",
+                            "Step-Mom",
+                            "Step-Sister",
+                            "Wife"])
                                 
 class ProfLesbian(WordList):
      def __init__(self):

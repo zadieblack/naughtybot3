@@ -748,17 +748,17 @@ class PublicBathroom(PublicIndoors):
                            "Whole Foods"]).GetWord()
         sBath = WordList(["bathroom","restroom","men's room","ladies room"]).GetWord()
         sTileCondition = WordList(["white","stained","streaked","chipped","polished","grimy"]).GetWord() 
-        TopFemClothing = self.FemWardrobe.GetTop(bDresses = True,
-                                                 NotList = [clothes.BikiniTop(),
-                                                            clothes.Bra(),
-                                                            clothes.EveningDress(),
-                                                            clothes.Nightgown(),
-                                                            clothes.RobeFemale(),
-                                                            clothes.SportsBra(),
-                                                           ])
+        if CoinFlip():
+            TopFemClothing = self.FemWardrobe.GetTop(bDresses = False,
+                                                     NotList = ["bikini","bra","eveningdress",
+                                                                "nightgown","robe","sportsbra",
+                                                               ])
 
-        BottomFemClothing = self.FemWardrobe.GetBottom(NotList = [clothes.BikiniBottoms()])
+            BottomFemClothing = self.FemWardrobe.GetBottom(NotList = ["bikini"])
+        else:
+            TopFemClothing = self.FemWardrobe.GetDress()
 
+            BottomFemClothing = self.FemWardrobe.Panties
         self.Name = sPlace + " " + sBath
         self.NamePrep ="in the " + sBath + " at " + sPlace
         self.BeginDesc = "The " + sPlace + " " + sBath + " " 

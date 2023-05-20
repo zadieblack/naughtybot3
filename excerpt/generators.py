@@ -8950,7 +8950,7 @@ class Generator120(ExGen):
 
         if CoinFlip():
             # Top
-            Garment = clothes.FemWardrobe().GetTop(NotList = [clothes.Bra], bDresses = True)
+            Garment = clothes.FemWardrobe().GetTop(NotList = ["bra"], bDresses = True)
             #print("Top Garment() initialized")
             sTweet += "stripped off her " + Garment.FloweryDescription() + ", "
             sTweet += WordList(["revealing","exposing","unveiling"]).GetWord() + " " 

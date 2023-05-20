@@ -191,13 +191,24 @@ class FemWardrobe():
 
         return choice(Tops)
 
+    def GetDress(self, NotList = None):
+        if NotList is None:
+            NotList = []
+
+        Dresses = self.Dresses.copy()
+
+        if len(NotList) > 0:
+            Dresses = self.ExclNotList(Tops, NotList)
+
+        return choice(Dresses)
+
     def ExclNotList(self, List, NotList):
         CleanList = []
 
         for litem in List:
             bInNL = False
             for nlitem in NotList:
-                if litem == nlitem:
+                if FoundIn(litem.__class__ .__name__, nlitem):
                     bInNL = True
                     break
             if not bInNL:

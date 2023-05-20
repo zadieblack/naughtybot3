@@ -1051,7 +1051,6 @@ class TitleTemplate29(TitleTemplate):
 # [TWO LINES]
 # LONG ONE OR TWO LINE TOP ROW
 # Part III
-
 class TitleTemplate30(TitleTemplate):
     # Generators: 145
     def __init__(self):
@@ -1227,6 +1226,43 @@ class TitleTemplate35(TitleTemplate):
                      MaxRows = 1,
                      ColorType = LineColorType.MainTitle,
                      AllLower = True)
+
+
+# [FOUR LINES]
+# LARGE TOP LINE
+# of a
+# LARGE BOTTOM LINE
+# Medium-length subtitle
+
+# Generators: 157
+class TitleTemplate36(TitleTemplate):
+    
+    def __init__(self):
+        super().__init__()
+
+        # Large medium-length top line 
+        self.AddLine(FontName = "Verona-ExtraBold.otf",
+                     FontMaxSize = 24,
+                     MaxRows = 1,
+                     ColorType = LineColorType.MainTitle)
+
+        # Small short second line
+        self.AddLine(FontName = "MutterKrauseNormal.ttf",
+                     FontMaxSize = 12,
+                     MaxRows = 1,
+                     ColorType = LineColorType.SecondTitle)
+
+        # Large medium-length top line 
+        self.AddLine(FontName = "Verona-ExtraBold.otf",
+                     FontMaxSize = 24,
+                     MaxRows = 1,
+                     ColorType = LineColorType.MainTitle)
+
+        # Small possible tag-line
+        self.AddLine(FontName = "MutterKrauseNormal.ttf",
+                     FontMaxSize = 10,
+                     MaxRows = 2,
+                     ColorType = LineColorType.SmallText)
 
 # Title templates are generators and can be randomly selected but we aren't using this right now
 

@@ -6839,6 +6839,105 @@ class Generator156(TitleGen):
 
         return sTweet     
 
+# Prom Queen
+# to
+# Butt Slut
+# An innocent small-town girl adventure
+class Generator157(TitleGen):
+    def __init__(self):
+        super().__init__(ID = 157, Priority = GenPriority.Normal)
+        self.Template = templates.TitleTemplate36()
+     
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
+
+        self.ReqTemplateTags = ["woman"]
+        self.Orients = [OSTRAIGHT,ONEUTRAL]
+        self.Groups = [GCOUP,GGROUP,GSING]
+
+        FromGirlList = WordList(["Airline Stewardess",
+                                 "Babysitter",
+                                 "Ballerina",
+                                 "Beauty Queen",
+                                 "Bride",
+                                 "Chaste Nun",
+                                 "Cheer Squad Captain",
+                                 "Church Girl",
+                                 "Countess",
+                                 "Dutchess",
+                                 "Empress",
+                                 "Girl Boss",
+                                 "Good Girl",
+                                 "Heiress",
+                                 "Housewife",
+                                 "Lady",
+                                 "Librarian",
+                                 "Maiden",
+                                 "Pastor's Wife",
+                                 "Prima Donna",
+                                 "Princess","Princess","Princess",
+                                 "Prom Queen",
+                                 "Queen",
+                                 "Queen Bee",
+                                 "Virgin",
+                                 "Young Lady",
+                                ])
+
+        ToGirlList = WordList(["Anal Bimbo",
+                                "Anal Whore",
+                                "Ass Whore",
+                                "Bukkake Babe",
+                                "Call Girl",
+                                "Cheap Whore",
+                                "Cum Bucket",
+                                "Cum Dumpster",
+                                "BDSM Sub",
+                                "Butt Slut",
+                                "Concubine",
+                                "Gangbang Girl",
+                                "Gangbang Ho",
+                                "Gangsta's Ho",
+                                "Harlot",
+                                "Hoochie",
+                                "Hooker",
+                                "Human Furniture",
+                                "Lady Gimp",
+                                "Lap Dancer",
+                                "Love Slave",
+                                "Nymphomaniac",
+                                "Pain Slut",
+                                "Pleasure Slave",
+                                "Pole Dancer",
+                                "Porn Star",
+                                "Sex Slave",
+                                "Slave Girl",
+                                "Street Walker",
+                                "Stripper",
+                                "Whore",
+                                "Working Girl",
+                                ])
+
+        sFromGirl = FromGirlList.GetWord()
+        sToGirl = ToGirlList.GetWord()
+
+        Woman = char.FemaleChar(bAddAnArticle = True, Type = GirlType.Good,
+                                MaxChars = 35,
+                                bAllowSpecies = False,
+                                NotList = [sFromGirl,sToGirl,
+                                           "alien","bdsm","elf","fairy",
+                                           "futa","mermaid","nymph",
+                                           "succubus","vampire"],
+                                ExclList = [GenModFemale,MaritalStatusFemale,RelateFemale,SpeciesFemale])
+
+        sTweet += sFromGirl + "\n"
+        sTweet += "TO\n"
+        sTweet += sToGirl + "\n"
+        sTweet += AddArticles(WordList(["Journey","Tale"]).GetWord(), bMakeUpper = True) + " of "
+        sTweet += "Self-Discovery for " + Woman.Desc
+
+        return sTweet    
+
 # Testing innuendo name generators          
 class Generator999(TitleGen):     
      def __init__(self):
