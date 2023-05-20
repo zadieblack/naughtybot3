@@ -501,7 +501,7 @@ class Man(Lover):
 
         self.Man = Male(TagLists = LTagLists)
         self.Noun = self.Man.GetNoun()
-        self.Desc = self.Man.FloweryDescription()
+        self.Desc = self.Man.FloweryDesc()
         self.DescWords = self.Man.GetDescWordList()
 
         sCut = ""
@@ -526,11 +526,11 @@ class Man(Lover):
         #sDesc += "I proudly sport a " + str(self.DickInches) + "-inch cock "
         #sDesc += "and I keep my pubes " + self.PubeStyle + "! "
         #sDesc += "Some of my other notable physical characteristics are "
-        #sDesc += "my " + self.Eyes.FloweryDescription() + ", "
-        #sDesc += "my " + self.Hair.FloweryDescription() + ", "
-        #sDesc += "my " + self.Body.FloweryDescription() + ", "
-        #sDesc += "my " + self.Skin.FloweryDescription() + ", "
-        #sDesc += "and my " + sCut + " " + self.Penis.FloweryDescription() + "."
+        #sDesc += "my " + self.Eyes.FloweryDesc() + ", "
+        #sDesc += "my " + self.Hair.FloweryDesc() + ", "
+        #sDesc += "my " + self.Body.FloweryDesc() + ", "
+        #sDesc += "my " + self.Skin.FloweryDesc() + ", "
+        #sDesc += "and my " + sCut + " " + self.Penis.FloweryDesc() + "."
         #print(sDesc)
 
 #FemPhysTraits = namedtuple("FemPhysTraits",
@@ -857,7 +857,7 @@ class Woman(Lover):
             WomanNotList += ["virgin","virginal"]
         self.Woman = Female(NotList = WomanNotList, TagLists = LTagLists)
         self.Noun = self.Woman.GetNoun()
-        self.Desc = self.Woman.FloweryDescription()
+        self.Desc = self.Woman.FloweryDesc()
         self.DescWords = self.Woman.GetDescWordList()
 
         sAge = "AgeCat: " + self.AgeCat
@@ -872,12 +872,12 @@ class Woman(Lover):
         #sDesc += "My name is " + self.FirstName + " " + self.LastName + ". "
         #sDesc += "I am a " + str(self.Age) + "-year-old woman. "
         #sDesc += "Some of my notable physical characteristics are "
-        #sDesc += "my " + self.Eyes.FloweryDescription() + ", "
-        #sDesc += "my " + self.Hair.FloweryDescription() + ", "
-        #sDesc += "my " + self.Skin.FloweryDescription() + ", "
-        #sDesc += "my " + self.Breasts.FloweryDescription() + " "
-        #sDesc += "with " + self.Nipples.FloweryDescription() + ", "
-        #sDesc += "and my " + self.Vagina.FloweryDescription() + ". "
+        #sDesc += "my " + self.Eyes.FloweryDesc() + ", "
+        #sDesc += "my " + self.Hair.FloweryDesc() + ", "
+        #sDesc += "my " + self.Skin.FloweryDesc() + ", "
+        #sDesc += "my " + self.Breasts.FloweryDesc() + " "
+        #sDesc += "with " + self.Nipples.FloweryDesc() + ", "
+        #sDesc += "and my " + self.Vagina.FloweryDesc() + ". "
         #print(sDesc)
 
 #A lover() object is a collection of attributes and body parts.
@@ -1523,37 +1523,37 @@ class Breasts(FemaleBodyParts):
 
         self.AdjList(self.GetAdjList())
 
-    def ShortDescription(self, NotList = None, TagLists = None, bCupSize = None):
+    def ShortDesc(self, NotList = None, TagLists = None, bCupSize = None):
         if bCupSize is None:
             bCupSize = self._bCupSize
 
         if bCupSize and not self._bCupSize:
             self.AllowCupSize(bCupSize = bCupSize)
 
-        return super().ShortDescription(NotList, TagLists)
+        return super().ShortDesc(NotList, TagLists)
           
-    def MediumDescription(self, NotList = None, TagLists = None, bCupSize = None):
+    def MediumDesc(self, NotList = None, TagLists = None, bCupSize = None):
         if bCupSize is None:
             bCupSize = self._bCupSize
 
         if bCupSize and not self._bCupSize:
             self.AllowCupSize(bCupSize = bCupSize)
                
-        return super().MediumDescription(NotList, TagLists) 
+        return super().MediumDesc(NotList, TagLists) 
           
-    def FloweryDescription(self, NotList = None, TagLists = None, bCupSize = None):
+    def FloweryDesc(self, NotList = None, TagLists = None, bCupSize = None):
         if bCupSize is None:
             bCupSize = self._bCupSize
 
         if bCupSize and not self._bCupSize:
             self.AllowCupSize(bCupSize = bCupSize)
           
-        return super().FloweryDescription(NotList, TagLists) 
+        return super().FloweryDesc(NotList, TagLists) 
           
-    def RandomDescription(self, bShortDesc = True, bLongDesc = True, NotList = None, TagLists = None, bCupSize = None):
+    def RandomDesc(self, bShortDesc = True, bLongDesc = True, NotList = None, TagLists = None, bCupSize = None):
         self._bCupSize = bCupSize
 
-        return super().RandomDescription(NotList, TagLists) 
+        return super().RandomDesc(NotList, TagLists) 
      
           
 class Clitoris(FemaleBodyParts):
@@ -2212,9 +2212,9 @@ class BodyFemale(FemaleBodyParts):
           #print(" - PartNotList is [" + str(PartNotList) + "]\n")
           if not sPossessive == "":
                bAddArticles = False 
-               sPartDesc = sPossessive + " " + part.RandomDescription(bShortDesc = False, bLongDesc = bLongDesc, NotList = PartNotList)
+               sPartDesc = sPossessive + " " + part.RandomDesc(bShortDesc = False, bLongDesc = bLongDesc, NotList = PartNotList)
           else:
-               sPartDesc = part.RandomDescription(bShortDesc = False, bLongDesc = bLongDesc, NotList = PartNotList)
+               sPartDesc = part.RandomDesc(bShortDesc = False, bLongDesc = bLongDesc, NotList = PartNotList)
                if bAddArticles:
                     sPartDesc = AddArticles(sPartDesc)
           
@@ -2325,9 +2325,9 @@ class BodyFemale(FemaleBodyParts):
           
           if not sPossessive == "":
                bAddArticles = False 
-               sPartDesc = sPossessive + " " + part.RandomDescription(bShortDesc = False, bLongDesc = bLongDesc, NotList = NotList)
+               sPartDesc = sPossessive + " " + part.RandomDesc(bShortDesc = False, bLongDesc = bLongDesc, NotList = NotList)
           else:
-               sPartDesc = part.RandomDescription(bShortDesc = False, bLongDesc = bLongDesc, NotList = NotList)
+               sPartDesc = part.RandomDesc(bShortDesc = False, bLongDesc = bLongDesc, NotList = NotList)
           
           if bAddArticles:
                sPartDesc = AddArticles(sPartDesc)
@@ -2442,25 +2442,25 @@ class BodyFemale(FemaleBodyParts):
           AllParts = []
           
           if bIncludeInners:
-               AllParts.append(self.Hips.RandomDescription(bShortDesc = bShortDesc))
-               AllParts.append(self.Legs.RandomDescription(bShortDesc = bShortDesc))
-               AllParts.append(self.Breasts.RandomDescription(bShortDesc = bShortDesc))
-               AllParts.append(self.Breasts.Nipples.RandomDescription(bShortDesc = bShortDesc))
-               AllParts.append(self.Thighs.RandomDescription(bShortDesc = bShortDesc))
-               AllParts.append(self.Ass.RandomDescription(bShortDesc = bShortDesc))
-               AllParts.append(self.Ass.Anus.RandomDescription(bShortDesc = bShortDesc))
-               AllParts.append(self.Vagina.RandomDescription(bShortDesc = bShortDesc))
-               AllParts.append(self.Vagina.OuterLabia.RandomDescription(bShortDesc = bShortDesc))
-               AllParts.append(self.Vagina.InnerLabia.RandomDescription(bShortDesc = bShortDesc))
-               AllParts.append(self.Vagina.InnerVag.RandomDescription(bShortDesc = bShortDesc))
+               AllParts.append(self.Hips.RandomDesc(bShortDesc = bShortDesc))
+               AllParts.append(self.Legs.RandomDesc(bShortDesc = bShortDesc))
+               AllParts.append(self.Breasts.RandomDesc(bShortDesc = bShortDesc))
+               AllParts.append(self.Breasts.Nipples.RandomDesc(bShortDesc = bShortDesc))
+               AllParts.append(self.Thighs.RandomDesc(bShortDesc = bShortDesc))
+               AllParts.append(self.Ass.RandomDesc(bShortDesc = bShortDesc))
+               AllParts.append(self.Ass.Anus.RandomDesc(bShortDesc = bShortDesc))
+               AllParts.append(self.Vagina.RandomDesc(bShortDesc = bShortDesc))
+               AllParts.append(self.Vagina.OuterLabia.RandomDesc(bShortDesc = bShortDesc))
+               AllParts.append(self.Vagina.InnerLabia.RandomDesc(bShortDesc = bShortDesc))
+               AllParts.append(self.Vagina.InnerVag.RandomDesc(bShortDesc = bShortDesc))
           else:
-               AllParts.append(self.Hips.RandomDescription(bShortDesc = bShortDesc))
-               AllParts.append(self.Legs.RandomDescription(bShortDesc = bShortDesc))
-               AllParts.append(self.Breasts.RandomDescription(bShortDesc = bShortDesc))
-               AllParts.append(self.Breasts.Nipples.RandomDescription(bShortDesc = bShortDesc))
-               AllParts.append(self.Thighs.RandomDescription(bShortDesc = bShortDesc))
-               AllParts.append(self.Ass.RandomDescription(bShortDesc = bShortDesc))
-               AllParts.append(self.Vagina.RandomDescription(bShortDesc = bShortDesc))
+               AllParts.append(self.Hips.RandomDesc(bShortDesc = bShortDesc))
+               AllParts.append(self.Legs.RandomDesc(bShortDesc = bShortDesc))
+               AllParts.append(self.Breasts.RandomDesc(bShortDesc = bShortDesc))
+               AllParts.append(self.Breasts.Nipples.RandomDesc(bShortDesc = bShortDesc))
+               AllParts.append(self.Thighs.RandomDesc(bShortDesc = bShortDesc))
+               AllParts.append(self.Ass.RandomDesc(bShortDesc = bShortDesc))
+               AllParts.append(self.Vagina.RandomDesc(bShortDesc = bShortDesc))
                
           for x in sorted(sample(range(0, len(AllParts)), iNum)):
                Parts.append(AllParts[x])
@@ -2473,14 +2473,14 @@ class BodyFemale(FemaleBodyParts):
           if bIncludeMouth:
                Holes = [3]
           
-               Holes[0] = self.Mouth.RandomDescription()
-               Holes[1] = self.Vagina.RandomDescription()
-               Holes[2] = self.Ass.Anus.RandomDescription()
+               Holes[0] = self.Mouth.RandomDesc()
+               Holes[1] = self.Vagina.RandomDesc()
+               Holes[2] = self.Ass.Anus.RandomDesc()
           else:
                Holes = [2]
                
-               Holes[0] = self.Vagina.RandomDescription()
-               Holes[1] = self.Ass.Anus.RandomDescription()
+               Holes[0] = self.Vagina.RandomDesc()
+               Holes[1] = self.Ass.Anus.RandomDesc()
           
           return Holes
           
@@ -2488,12 +2488,12 @@ class BodyFemale(FemaleBodyParts):
           sHole = ""
           Holes = []
           if bIncludeMouth:          
-               Holes.append(self.Mouth.RandomDescription(bShortDesc = bShortDesc, bLongDesc = bLongDesc))
-               Holes.append(self.Vagina.RandomDescription(bShortDesc = bShortDesc, bLongDesc = bLongDesc))
-               Holes.append(self.Ass.Anus.RandomDescription(bShortDesc = bShortDesc, bLongDesc = bLongDesc))
+               Holes.append(self.Mouth.RandomDesc(bShortDesc = bShortDesc, bLongDesc = bLongDesc))
+               Holes.append(self.Vagina.RandomDesc(bShortDesc = bShortDesc, bLongDesc = bLongDesc))
+               Holes.append(self.Ass.Anus.RandomDesc(bShortDesc = bShortDesc, bLongDesc = bLongDesc))
           else:
-               Holes.append(self.Vagina.RandomDescription(bShortDesc = bShortDesc, bLongDesc = bLongDesc))
-               Holes.append(self.Ass.Anus.RandomDescription(bShortDesc = bShortDesc, bLongDesc = bLongDesc))
+               Holes.append(self.Vagina.RandomDesc(bShortDesc = bShortDesc, bLongDesc = bLongDesc))
+               Holes.append(self.Ass.Anus.RandomDesc(bShortDesc = bShortDesc, bLongDesc = bLongDesc))
           
           iRand = randint(0, len(Holes) - 1)
           sHole = Holes[iRand]
@@ -2808,11 +2808,11 @@ class Penis(MaleBodyParts):
           iRand = randint(1,3)
           
           if iRand == 1:
-               return self.Head.RandomDescription(NotList = NotList, bShortDesc = bShortDesc)
+               return self.Head.RandomDesc(NotList = NotList, bShortDesc = bShortDesc)
           elif iRand == 2: 
-               return self.Testicles.RandomDescription(NotList = NotList, bShortDesc = bShortDesc)
+               return self.Testicles.RandomDesc(NotList = NotList, bShortDesc = bShortDesc)
           else:
-               return self.RandomDescription(NotList = NotList, bShortDesc = bShortDesc)
+               return self.RandomDesc(NotList = NotList, bShortDesc = bShortDesc)
                
      def GenerateLength(self):
           sLength = ""
@@ -2831,37 +2831,37 @@ class Penis(MaleBodyParts):
      def GetTLClass(self):
          return TagLists()
                
-     def ShortDescription(self, NotList = None, TagLists = None, bAddLen = False):
+     def ShortDesc(self, NotList = None, TagLists = None, bAddLen = False):
           if bAddLen:
                if TagLists is None:
                    TagLists = self.GetTLClass()
                    TagLists.adj_extra.append(self.GenerateLength())
           
-          return super().ShortDescription(NotList, TagLists)
+          return super().ShortDesc(NotList, TagLists)
           
-     def MediumDescription(self, NotList = None, TagLists = None, bAddLen = False):
+     def MediumDesc(self, NotList = None, TagLists = None, bAddLen = False):
           if bAddLen:
                if TagLists is None:
                    TagLists = self.GetTLClass()
                    TagLists.adj_extra.append(self.GenerateLength())
                
-          return super().MediumDescription(NotList, TagLists) 
+          return super().MediumDesc(NotList, TagLists) 
           
-     def FloweryDescription(self, NotList = None, TagLists = None, bAddLen = False):
+     def FloweryDesc(self, NotList = None, TagLists = None, bAddLen = False):
           if bAddLen:
                if TagLists is None:
                    TagLists = self.GetTLClass()
                    TagLists.adj_extra.append(self.GenerateLength())
           
-          return super().FloweryDescription(NotList, TagLists) 
+          return super().FloweryDesc(NotList, TagLists) 
           
-     def RandomDescription(self, NotList = None, TagLists = None, bShortDesc = True, bLongDesc = True, bAddLen = False):
+     def RandomDesc(self, NotList = None, TagLists = None, bShortDesc = True, bLongDesc = True, bAddLen = False):
           if bAddLen:
                if TagLists is None:
                    TagLists = self.GetTLClass()
                    TagLists.adj_extra.append(self.GenerateLength())
           
-          return super().RandomDescription(NotList, TagLists) 
+          return super().RandomDesc(NotList, TagLists) 
      
 class Semen(MaleBodyParts):
      def __init__(self, Params = None, NotList = None, TagLists = None):
@@ -3533,9 +3533,9 @@ class BodyMale(MaleBodyParts):
                
         if not sPossessive == "":
             bAddArticles = False 
-            sPartDesc = sPossessive + " " + part.RandomDescription(bShortDesc = False, bLongDesc = bLongDesc, NotList = PartNotList)
+            sPartDesc = sPossessive + " " + part.RandomDesc(bShortDesc = False, bLongDesc = bLongDesc, NotList = PartNotList)
         else:
-            sPartDesc = part.RandomDescription(bShortDesc = False, bLongDesc = bLongDesc, NotList = PartNotList)
+            sPartDesc = part.RandomDesc(bShortDesc = False, bLongDesc = bLongDesc, NotList = PartNotList)
             if bAddArticles:
                 sPartDesc = AddArticles(sPartDesc)
           
@@ -3658,9 +3658,9 @@ class BodyMale(MaleBodyParts):
             bAddArticles = False 
                
         if not sPossessive == "":
-            sPartDesc = sPossessive + " " + part.RandomDescription(bShortDesc = False, bLongDesc = bLongDesc, NotList = PartNotList)
+            sPartDesc = sPossessive + " " + part.RandomDesc(bShortDesc = False, bLongDesc = bLongDesc, NotList = PartNotList)
         else:
-            sPartDesc = part.RandomDescription(bShortDesc = False, bLongDesc = bLongDesc, NotList = PartNotList)
+            sPartDesc = part.RandomDesc(bShortDesc = False, bLongDesc = bLongDesc, NotList = PartNotList)
           
             if bAddArticles:
                 sPartDesc = AddArticles(sPartDesc)
@@ -3770,20 +3770,20 @@ class BodyMale(MaleBodyParts):
         AllParts = []
           
         if bIncludeInners:
-            AllParts.append(self.Shoulders.RandomDescription(bShortDesc = bShortDesc))
-            AllParts.append(self.Chest.RandomDescription(bShortDesc = bShortDesc))
-            AllParts.append(self.Legs.RandomDescription(bShortDesc = bShortDesc))
-            AllParts.append(self.Ass.RandomDescription(bShortDesc = bShortDesc))
-            AllParts.append(self.Penis.RandomDescription(bShortDesc = bShortDesc))
-            AllParts.append(self.Penis.Head.RandomDescription(bShortDesc = bShortDesc))
-            AllParts.append(self.Penis.Testicles.RandomDescription(bShortDesc = bShortDesc))
+            AllParts.append(self.Shoulders.RandomDesc(bShortDesc = bShortDesc))
+            AllParts.append(self.Chest.RandomDesc(bShortDesc = bShortDesc))
+            AllParts.append(self.Legs.RandomDesc(bShortDesc = bShortDesc))
+            AllParts.append(self.Ass.RandomDesc(bShortDesc = bShortDesc))
+            AllParts.append(self.Penis.RandomDesc(bShortDesc = bShortDesc))
+            AllParts.append(self.Penis.Head.RandomDesc(bShortDesc = bShortDesc))
+            AllParts.append(self.Penis.Testicles.RandomDesc(bShortDesc = bShortDesc))
         else:
-            AllParts.append(self.RandomDescription(bShortDesc = bShortDesc))
-            AllParts.append(self.Shoulders.RandomDescription(bShortDesc = bShortDesc))
-            AllParts.append(self.Chest.RandomDescription(bShortDesc = bShortDesc))
-            AllParts.append(self.Legs.RandomDescription(bShortDesc = bShortDesc))
-            AllParts.append(self.Ass.RandomDescription(bShortDesc = bShortDesc))
-            AllParts.append(self.Penis.RandomDescription(bShortDesc = bShortDesc))
+            AllParts.append(self.RandomDesc(bShortDesc = bShortDesc))
+            AllParts.append(self.Shoulders.RandomDesc(bShortDesc = bShortDesc))
+            AllParts.append(self.Chest.RandomDesc(bShortDesc = bShortDesc))
+            AllParts.append(self.Legs.RandomDesc(bShortDesc = bShortDesc))
+            AllParts.append(self.Ass.RandomDesc(bShortDesc = bShortDesc))
+            AllParts.append(self.Penis.RandomDesc(bShortDesc = bShortDesc))
                
         for x in sorted(sample(range(0, len(AllParts)), iNum)):
             Parts.append(AllParts[x])

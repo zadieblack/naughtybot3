@@ -729,7 +729,7 @@ class NounPhrase:
         return True
 
     #noun only ("hair")
-    def ShortDescription(self, NotList = None, TagLists = None): #, ExtraAdjList = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
+    def ShortDesc(self, NotList = None, TagLists = None): #, ExtraAdjList = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
         if NotList == None:
             NotList = []
         else:
@@ -740,7 +740,7 @@ class NounPhrase:
         return self.GetFullDesc(iNumAdjs = 0)
      
     #adjective noun ("red hair")
-    def MediumDescription(self, NotList = None, TagLists = None):
+    def MediumDesc(self, NotList = None, TagLists = None):
         if NotList == None:
             NotList = []
         else:
@@ -751,7 +751,7 @@ class NounPhrase:
         return self.GetFullDesc(iNumAdjs = 1)
      
     #adjective1 adjective2 adjective3 noun ("long, wavy, red hair")
-    def FloweryDescription(self, NotList = None, TagLists = None):
+    def FloweryDesc(self, NotList = None, TagLists = None):
         if NotList == None:
             NotList = []
         else:
@@ -763,7 +763,7 @@ class NounPhrase:
 
         return self.GetFullDesc(iNumAdjs = iNumAdjs)
      
-    def RandomDescription(self, bShortDesc = True, bLongDesc = True, NotList = None, TagLists = None):
+    def RandomDesc(self, bShortDesc = True, bLongDesc = True, NotList = None, TagLists = None):
         sRandomDesc = ""
           
         iRand = randint(0, 12)
@@ -772,20 +772,20 @@ class NounPhrase:
             if bShortDesc:
                 #use noun from the list or default noun
                 if CoinFlip():
-                        sRandomDesc = self.ShortDescription(NotList = NotList, TagLists = TagLists)
+                        sRandomDesc = self.ShortDesc(NotList = NotList, TagLists = TagLists)
                 else:
                         sRandomDesc = self.GetDefaultNoun(NotList = NotList)
             else:
-                sRandomDesc = self.MediumDescription(NotList = NotList, TagLists = TagLists)
+                sRandomDesc = self.MediumDesc(NotList = NotList, TagLists = TagLists)
         elif iRand in range(3,6):
         #medium desc 
-            sRandomDesc = self.MediumDescription(NotList = NotList, TagLists = TagLists)
+            sRandomDesc = self.MediumDesc(NotList = NotList, TagLists = TagLists)
         else:
         #flowery desc if allowed
             if bLongDesc:
-                sRandomDesc = self.FloweryDescription(NotList = NotList, TagLists = TagLists)
+                sRandomDesc = self.FloweryDesc(NotList = NotList, TagLists = TagLists)
             else:
-                sRandomDesc = self.MediumDescription(NotList = NotList, TagLists = TagLists)
+                sRandomDesc = self.MediumDesc(NotList = NotList, TagLists = TagLists)
                
         return sRandomDesc
 

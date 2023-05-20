@@ -152,29 +152,29 @@ class Generator1(ExGen):
           sTweet += self.VThrust.Past() + " " 
           sTweet += sHerName + "'s " 
           if bAnal:
-            sTweet += self.FemBodyParts.Ass.RandomDescription(bLongDesc = False, TagLists = TagLists(noun_excl = ["silly"])) + " "
+            sTweet += self.FemBodyParts.Ass.RandomDesc(bLongDesc = False, TagLists = TagLists(noun_excl = ["silly"])) + " "
           else:
-            sTweet += self.FemBodyParts.Vagina.RandomDescription(bLongDesc = False, TagLists = TagLists(noun_excl = ["silly"])) + " "
-          sTweet += "with his " + self.MaleBodyParts.Penis.RandomDescription(TagLists = TagLists(noun_excl = ["silly"])) + "." 
+            sTweet += self.FemBodyParts.Vagina.RandomDesc(bLongDesc = False, TagLists = TagLists(noun_excl = ["silly"])) + " "
+          sTweet += "with his " + self.MaleBodyParts.Penis.RandomDesc(TagLists = TagLists(noun_excl = ["silly"])) + "." 
           
           sTweet += "\n\n" 
           sTweet += "\"" + sVerb.capitalize() + " "
-          sTweet += "my " + self.FemBodyParts.Breasts.ShortDescription(TagLists = TagLists(noun_excl = ["desc"])) + "!\" "
+          sTweet += "my " + self.FemBodyParts.Breasts.ShortDesc(TagLists = TagLists(noun_excl = ["desc"])) + "!\" "
           sTweet += sHerName + " " + self.VMoan.Past() + ". "
           sTweet += "\"" + sVerb.capitalize() + " them "
           sTweet += WordList(["","","hard ","mercilessly ","gently ","softly "]).GetWord()
           sTweet += "while you fill "
           if bAnal:
             if CoinFlip():
-                sTweet += "my " + self.FemBodyParts.Ass.ShortDescription() + " "
+                sTweet += "my " + self.FemBodyParts.Ass.ShortDesc() + " "
             else:
-                sTweet += "my " + self.FemBodyParts.Ass.Anus.ShortDescription(TagLists = TagLists(noun_excl = ["std","desc"])) + " "
+                sTweet += "my " + self.FemBodyParts.Ass.Anus.ShortDesc(TagLists = TagLists(noun_excl = ["std","desc"])) + " "
           else:
             if CoinFlip():
-                sTweet += "my " + self.FemBodyParts.Vagina.ShortDescription(TagLists = TagLists(noun_excl = ["std","desc"])) + " "
+                sTweet += "my " + self.FemBodyParts.Vagina.ShortDesc(TagLists = TagLists(noun_excl = ["std","desc"])) + " "
             else:
-                sTweet += "my " + self.FemBodyParts.Vagina.InnerVag.ShortDescription(TagLists = TagLists(noun_excl = ["std","silly"])) + " "
-          sTweet += "with your " + self.Semen.FloweryDescription(TagLists = TagLists(noun_excl = ["std"])) + "!\""
+                sTweet += "my " + self.FemBodyParts.Vagina.InnerVag.ShortDesc(TagLists = TagLists(noun_excl = ["std","silly"])) + " "
+          sTweet += "with your " + self.Semen.FloweryDesc(TagLists = TagLists(noun_excl = ["std"])) + "!\""
           
           return sTweet
           
@@ -196,10 +196,10 @@ class Generator2(ExGen):
           Penis = self.MaleBodyParts.Penis
           Ass = self.FemBodyParts.Ass
           
-          sHole1 = self.FemBodyParts.Ass.Anus.RandomDescription(TagLists = TagLists(noun_excl = ["silly","crude"], adj_excl = ["taboo","horny","gape"]))
-          sHole2 = self.FemBodyParts.Ass.Anus.RandomDescription(TagLists = TagLists(noun_excl = ["std"]))
+          sHole1 = self.FemBodyParts.Ass.Anus.RandomDesc(TagLists = TagLists(noun_excl = ["silly","crude"], adj_excl = ["taboo","horny","gape"]))
+          sHole2 = self.FemBodyParts.Ass.Anus.RandomDesc(TagLists = TagLists(noun_excl = ["std"]))
           while sHole2 in sHole1:
-               sHole2 = self.FemBodyParts.Ass.Anus.RandomDescription(TagLists = TagLists(noun_excl = ["std"]))
+               sHole2 = self.FemBodyParts.Ass.Anus.RandomDesc(TagLists = TagLists(noun_excl = ["std"]))
                
           sVerb1 = WordList(['penetrated','impaled','desecrated','entered','thrust into','bored into','drilled into','eased into','pushed into']).GetWord() #self.VThrust.Past()
           sVerb2 = ""
@@ -212,11 +212,11 @@ class Generator2(ExGen):
                                ]).GetWord() + " "
           sTweet += sHerName + "'s " 
           if CoinFlip():
-              sTweet += Ass.RandomDescription() + " "
+              sTweet += Ass.RandomDesc() + " "
           else:
-              sTweet += Ass.Buttocks.RandomDescription() + " "
+              sTweet += Ass.Buttocks.RandomDesc() + " "
           sTweet += "with his " + WordList(['rough','strong','calloused','gentle-but-firm','large','ungentle','greedy']).GetWord() + " hands, "
-          sTweet += "he " + sVerb1 + " her " + sHole1 + " with his " + Penis.RandomDescription(NotList = PenisNotList, TagLists = TagLists(noun_excl = ["silly"])) + ".\n\n"
+          sTweet += "he " + sVerb1 + " her " + sHole1 + " with his " + Penis.RandomDesc(NotList = PenisNotList, TagLists = TagLists(noun_excl = ["silly"])) + ".\n\n"
           sTweet += "'Fuck me, " + sHisName + "!\' she " + self.VMoan.Past() + ". "
           
           iRand = randint(1,5)
@@ -234,17 +234,17 @@ class Generator2(ExGen):
           elif iRand == 3:
               sVerb = WordList(['Cram','Hammer','Pack','Plow','Pound','Stuff','Ravish',
                                 'Ram','Stick','Shove',]).GetWord()
-              sTweet += "'" + sVerb + " your big " + Penis.RandomDescription(NotList = PenisNotList, bLongDesc = False, TagLists = TagLists(noun_excl = ["std"])) + " "
+              sTweet += "'" + sVerb + " your big " + Penis.RandomDesc(NotList = PenisNotList, bLongDesc = False, TagLists = TagLists(noun_excl = ["std"])) + " "
               sTweet += WordList(["","straight ","right ","deep "]).GetWord() 
               sTweet += "into my " + sHole2 + "!'"
           elif iRand == 4:
               sVerb = WordList(['Fuck','Hammer','Ream','Jack-hammer','Plow','Pound',]).GetWord()
               sTweet += "'" + sVerb + " "
-              sTweet += "the shit out of my " + Ass.ShortDescription() + "! "
+              sTweet += "the shit out of my " + Ass.ShortDesc() + "! "
               sTweet += WordList(["Shove it in!","Pack it tight!","Shove my shit in!","Shove my shit in! Pack it tight!","Sodomize me!"]).GetWord() + " "
               sTweet += WordList(["Wreck","Ruin","Destroy","Ravage","Rape","Rail"]).GetWord() + " "
               sTweet += "my " + WordList(["goddamn ","fucking ",""]).GetWord() 
-              sTweet += self.FemBodyParts.Ass.Anus.ShortDescription(TagLists = TagLists(noun_excl = ["std"])) + "! "
+              sTweet += self.FemBodyParts.Ass.Anus.ShortDesc(TagLists = TagLists(noun_excl = ["std"])) + "! "
               sTweet += WordList(["I don't want to walk straight for days!",
                                   "I don't want to be able to sit down for days!",
                                   "I want it to gape like a cave!",
@@ -296,18 +296,18 @@ class Generator3(ExGen):
                                 'rubbed','lubed up','dildoed','massaged','oiled up','bayonetted',
                                 'inserted a finger into','inserted two fingers into',
                                 'inserted three fingers into','inserted his fist into',
-                                'rubbed his ' + self.MaleBodyParts.Penis.RandomDescription(bLongDesc = False) + ' against',
-                                'eased his ' + self.MaleBodyParts.Penis.Head.RandomDescription(bLongDesc = False) + ' into'])
+                                'rubbed his ' + self.MaleBodyParts.Penis.RandomDesc(bLongDesc = False) + ' against',
+                                'eased his ' + self.MaleBodyParts.Penis.Head.RandomDesc(bLongDesc = False) + ' into'])
                
           sTweet = "'Please!' " + self.FemaleName.FirstName() + " " + Moans.GetWord() + ", squirming with pleasure "
           sTweet += "as " + self.MaleName.FirstName() + " " + Verbs.GetWord() + " "
           if CoinFlip():
-               sTweet += "her " + self.FemBodyParts.Vagina.RandomDescription(bLongDesc = False) + ". "
+               sTweet += "her " + self.FemBodyParts.Vagina.RandomDesc(bLongDesc = False) + ". "
           else:
                if CoinFlip():
-                    sTweet += "her " + self.FemBodyParts.Ass.RandomDescription(bLongDesc = False) + ". "
+                    sTweet += "her " + self.FemBodyParts.Ass.RandomDesc(bLongDesc = False) + ". "
                else:
-                    sTweet += "her " + self.FemBodyParts.Ass.Anus.RandomDescription(bLongDesc = False) + ". "
+                    sTweet += "her " + self.FemBodyParts.Ass.Anus.RandomDesc(bLongDesc = False) + ". "
           sTweet += "'Not here where " + Watchers.GetWord() + " can see us!'"
           
           return sTweet
@@ -322,11 +322,11 @@ class Generator4(ExGen):
           super().GenerateTweet()
           sTweet = ""
 
-          sTweet += "'You may cum inside my " + self.FemBodyParts.Vagina.ShortDescription() + " if you like', " 
+          sTweet += "'You may cum inside my " + self.FemBodyParts.Vagina.ShortDesc() + " if you like', " 
           sTweet += self.FemaleName.FirstName() + " instructed him, "
           sTweet += "'But only my " + self.MFWB.GetPerson() + " "
           sTweet += "is allowed to " + self.VThrust.Present() + " "
-          sTweet += "my " + self.FemBodyParts.Ass.Anus.RandomDescription(bLongDesc = False) + "'."
+          sTweet += "my " + self.FemBodyParts.Ass.Anus.RandomDesc(bLongDesc = False) + "'."
           
           return sTweet
           
@@ -348,34 +348,34 @@ class Generator5(ExGen):
           iRand = randint(1,9)
           #iRand = 3
           if iRand == 1:
-              sTweet += "naked in his " + self.MaleBodyParts.Arms.RandomDescription()
+              sTweet += "naked in his " + self.MaleBodyParts.Arms.RandomDesc()
           elif iRand == 2:
               sTweet += WordList(["writhing","squirming","wiggling"]).GetWord() + " "
               sTweet += WordList(["erotically","sensuously"]).GetWord() + " on the bed"
           elif iRand == 3:
               sTweet += WordList(["fishing","pulling"]).GetWord() + " his "
-              sTweet += self.MaleBodyParts.Penis.RandomDescription(bLongDesc = False) + " " 
-              sTweet += "out of his " + self.MaleWardrobe.GetBottom().RandomDescription(bLongDesc = False)
+              sTweet += self.MaleBodyParts.Penis.RandomDesc(bLongDesc = False) + " " 
+              sTweet += "out of his " + self.MaleWardrobe.GetBottom().RandomDesc(bLongDesc = False)
           elif iRand == 4:
-              sTweet += "spreading her " + self.FemBodyParts.Legs.RandomDescription() + " " 
-              sTweet += "and shamelessly displaying her " + self.FemBodyParts.Vagina.InnerVag.RandomDescription()
+              sTweet += "spreading her " + self.FemBodyParts.Legs.RandomDesc() + " " 
+              sTweet += "and shamelessly displaying her " + self.FemBodyParts.Vagina.InnerVag.RandomDesc()
           elif iRand == 5:
-              sTweet += "presenting her bare " + self.FemBodyParts.Ass.RandomDescription(bLongDesc = False, TagLists = TagLists(adj_excl = ["nude"])) + " to him"
+              sTweet += "presenting her bare " + self.FemBodyParts.Ass.RandomDesc(bLongDesc = False, TagLists = TagLists(adj_excl = ["nude"])) + " to him"
           elif iRand == 6:
-              sTweet += "brushing his " + self.MaleBodyParts.Penis.Testicles.MediumDescription() + " "
-              sTweet += "with her " + self.FemBodyParts.Lips.MediumDescription()
+              sTweet += "brushing his " + self.MaleBodyParts.Penis.Testicles.MediumDesc() + " "
+              sTweet += "with her " + self.FemBodyParts.Lips.MediumDesc()
           elif iRand == 7:
-              sTweet += "gazing into his " + self.MaleBodyParts.Eyes.RandomDescription()
+              sTweet += "gazing into his " + self.MaleBodyParts.Eyes.RandomDesc()
           elif iRand == 8:
-              sTweet += "rubbing his " + self.MaleBodyParts.Penis.RandomDescription(TagLists = TagLists(noun_excl = ["silly","crude"])) + " "
-              sTweet += "against her " + self.FemBodyParts.Face.RandomDescription(TagLists = TagLists(adj_excl = ["emotion"]))
+              sTweet += "rubbing his " + self.MaleBodyParts.Penis.RandomDesc(TagLists = TagLists(noun_excl = ["silly","crude"])) + " "
+              sTweet += "against her " + self.FemBodyParts.Face.RandomDesc(TagLists = TagLists(adj_excl = ["emotion"]))
           elif iRand == 9:
               sTweet += WordList(["carressing","stroking","cupping","touching","rubbing","fondling"]).GetWord() + " "
-              sTweet += "her " + self.FemBodyParts.Breasts.RandomDescription() + " "
+              sTweet += "her " + self.FemBodyParts.Breasts.RandomDesc() + " "
               sTweet += WordList(["sensually","erotically","seductively","passionately"]).GetWord()
           sTweet += ", "
 
-          sSemen = self.Semen.RandomDescription(NotList = SemenNotList)
+          sSemen = self.Semen.RandomDesc(NotList = SemenNotList)
           sTweet += "'" + WordList(["I'm so thirsty for your " + sSemen,
                                     "I crave the taste of your " + sSemen,
                                     "I need to be filled with your " + sSemen,
@@ -457,20 +457,20 @@ class Generator6(ExGen):
             #print("iRand == 1")
             if bGay:
                 sTweet += "Now hurry up and " + WordList(["stuff","rail","sodomize"]).GetWord() + " "
-                sTweet += "my " + self.FemBodyParts.Ass.Anus.ShortDescription() + " "
-                sTweet += "with that " + self.MaleBodyParts.Penis.RandomDescription(bShortDesc = False, NotList = DickNotList, bAddLen = True) + " of yours"
+                sTweet += "my " + self.FemBodyParts.Ass.Anus.ShortDesc() + " "
+                sTweet += "with that " + self.MaleBodyParts.Penis.RandomDesc(bShortDesc = False, NotList = DickNotList, bAddLen = True) + " of yours"
             else:
                 sTweet += "Now hurry up and " + WordList(['stuff','fill','do','plow','ravish','pound','fuck']).GetWord() + " me with that "
-                sTweet += self.MaleBodyParts.Penis.RandomDescription(bShortDesc = False, NotList = DickNotList, bAddLen = True) + " of yours"
+                sTweet += self.MaleBodyParts.Penis.RandomDesc(bShortDesc = False, NotList = DickNotList, bAddLen = True) + " of yours"
           elif iRand == 2:
             #print("iRand == 2")
             sTweet += "Now " + WordList(["unzip","unzip your pants","pull down your shorts","pull down your pants","pull down your briefs","unzip your bluejeans","pull down your underwear",]).GetWord() + " "
             sTweet += WordList(["and show me","and let me see","so I can play with","so I can get a taste of","and pull out","and get out"]).GetWord() + " "
-            sTweet += "that " + self.MaleBodyParts.Penis.RandomDescription(bShortDesc = False, NotList = DickNotList + ["hard","erect","lengthy"], bAddLen = True) + " of yours"
+            sTweet += "that " + self.MaleBodyParts.Penis.RandomDesc(bShortDesc = False, NotList = DickNotList + ["hard","erect","lengthy"], bAddLen = True) + " of yours"
           elif iRand == 3:
             #print("iRand == 3")
             sTweet += "Now " + WordList(["show me","let me see","I need to play with","I need to see","it's time to show me"]).GetWord() + " "
-            sTweet += "that " + self.MaleBodyParts.Penis.RandomDescription(bShortDesc = False, NotList = DickNotList + ["hard","erect","lengthy"], bAddLen = True, TagLists = TagLists(noun_excl = ["std","desc"])) + " "
+            sTweet += "that " + self.MaleBodyParts.Penis.RandomDesc(bShortDesc = False, NotList = DickNotList + ["hard","erect","lengthy"], bAddLen = True, TagLists = TagLists(noun_excl = ["std","desc"])) + " "
             sTweet += WordList(["between your legs","hanging between your legs","dangling between your legs","in your pants","hiding in your pants","you keep in your pants"]).GetWord()
             
           sTweet += "!'"
@@ -494,7 +494,7 @@ class Generator7(ExGen):
           iRand = randint(1,3)
           if iRand == 1:
                sTweet = self.FemaleName.FirstName() + " bit her lip. She lay on "
-               sTweet += Location.LyingOn + ", her " + self.FemBodyParts.Breasts.RandomDescription(TagLists = TagLists(noun_excl = ["silly"])) + " " 
+               sTweet += Location.LyingOn + ", her " + self.FemBodyParts.Breasts.RandomDesc(TagLists = TagLists(noun_excl = ["silly"])) + " " 
                sTweet += WordList(["heaving", "quivering", "trembling", "shuddering", "rising and falling"]).GetWord() + " "
                sTweet += "as " + self.FemaleName.FirstName() + " lubed up a " 
                sTweet += str(randint(8,16)) + " 1/2\" " + WordList(["black", "pink", "steel", "vibrating"]).GetWord() + " strap-on. "
@@ -503,9 +503,9 @@ class Generator7(ExGen):
                sTweet += "my lesbian lover was about to " 
           else:
                sTweet = self.FemaleName.FirstName() + " bit her lip. She lay on " + Location.LyingOn + ", "
-               sTweet += "her " + self.FemBodyParts.Breasts.RandomDescription(TagLists = TagLists(noun_excl = ["silly"])) + " " 
+               sTweet += "her " + self.FemBodyParts.Breasts.RandomDesc(TagLists = TagLists(noun_excl = ["silly"])) + " " 
                sTweet += WordList(["heaving", "quivering", "trembling", "shuddering", "rising and falling"]).GetWord() + " "
-               sTweet += "as " + self.MaleName.FirstName() + " lubed up her " + self.FemBodyParts.Ass.Anus.RandomDescription() + ". "
+               sTweet += "as " + self.MaleName.FirstName() + " lubed up her " + self.FemBodyParts.Ass.Anus.RandomDesc() + ". "
                sTweet += "'" + self.Exclamation.GetWord().capitalize() + "' she said, "
                sTweet += "'What would Father " + self.MaleName.FirstName() + " say if he knew that "
                sTweet += "my " + self.MFWB.GetPerson() + " was about to " 
@@ -515,7 +515,7 @@ class Generator7(ExGen):
                sTweet += Verbs.GetWord(NotList = ['hammer','impale','nail']) + " my ass " + Location.NamePrep + "?'"
           else:
           #asshole 
-               sTweet += Verbs.GetWord(NotList = ['bang','do']) + " my " + self.FemBodyParts.Ass.Anus.ShortDescription() + " " + Location.NamePrep + "?'"
+               sTweet += Verbs.GetWord(NotList = ['bang','do']) + " my " + self.FemBodyParts.Ass.Anus.ShortDesc() + " " + Location.NamePrep + "?'"
           
           return sTweet
 
@@ -547,16 +547,16 @@ class Generator8(ExGen):
                                         "four fingers", "her wadded up dirty panties", "a thumb", "a toe",
                                         "a strap-on"]).GetWord()
                                              
-          FondleParts = WordList([self.FemBodyParts.Vagina.RandomDescription(),
-                                    self.FemBodyParts.Thighs.RandomDescription(),
-                                    self.FemBodyParts.Ass.RandomDescription(),
-                                    self.FemBodyParts.Vagina.InnerLabia.RandomDescription(),
-                                    self.FemBodyParts.Vagina.OuterLabia.RandomDescription(),
-                                    self.FemBodyParts.Ass.Anus.RandomDescription(),
-                                    self.FemBodyParts.Breasts.RandomDescription(),
-                                    self.FemBodyParts.Breasts.Nipples.RandomDescription(),
-                                    self.FemBodyParts.Hips.RandomDescription(),
-                                    self.FemBodyParts.Skin.RandomDescription()])
+          FondleParts = WordList([self.FemBodyParts.Vagina.RandomDesc(),
+                                    self.FemBodyParts.Thighs.RandomDesc(),
+                                    self.FemBodyParts.Ass.RandomDesc(),
+                                    self.FemBodyParts.Vagina.InnerLabia.RandomDesc(),
+                                    self.FemBodyParts.Vagina.OuterLabia.RandomDesc(),
+                                    self.FemBodyParts.Ass.Anus.RandomDesc(),
+                                    self.FemBodyParts.Breasts.RandomDesc(),
+                                    self.FemBodyParts.Breasts.Nipples.RandomDesc(),
+                                    self.FemBodyParts.Hips.RandomDesc(),
+                                    self.FemBodyParts.Skin.RandomDesc()])
                                         
           
           if CoinFlip():
@@ -601,9 +601,9 @@ class Generator9(ExGen):
           sTweet += WordList(["oiled-up", "lubed-up", "greased-up", "baby oil-covered", "lotion-soaked"]).GetWord() + " " 
           sTweet += self.FemBodyParts.Breasts.GetNoun() + " with your "
           if CoinFlip():
-               sTweet += Penis.RandomDescription(bAddLen = True) 
+               sTweet += Penis.RandomDesc(bAddLen = True) 
           else:
-               sTweet += Penis.RandomDescription()
+               sTweet += Penis.RandomDesc()
           sTweet += " before?'\n\n'Only my " + self.FFWB.GetPerson() + ",' " + self.MaleName.FirstName() + " replied."
           
           return sTweet
@@ -624,13 +624,13 @@ class Generator10(ExGen):
           sTweet += self.WealthyWoman.GetPerson() + ". "
           
           if CoinFlip():
-               sTweet += "Ripping open her blouse, she exposed her " + self.FemBodyParts.Breasts.RandomDescription() + " " 
+               sTweet += "Ripping open her blouse, she exposed her " + self.FemBodyParts.Breasts.RandomDesc() + " " 
                sTweet += "to him. 'Come, my little " + self.BlueCollar.GetPerson() + ". I need you to " 
                sTweet += self.VForeplay.Present() + " my " + self.FemBodyParts.GetRandomIntimateParts(1, True, True)[0] 
                sTweet += " and cover my " + self.FemBodyParts.GetRandomIntimateParts(1, False, True)[0] + " "
-               sTweet += "in your " + self.Semen.RandomDescription() + ".'"
+               sTweet += "in your " + self.Semen.RandomDesc() + ".'"
           else:
-               sTweet += "Ripping open her blouse, she exposed her " + self.FemBodyParts.Breasts.RandomDescription() + " "
+               sTweet += "Ripping open her blouse, she exposed her " + self.FemBodyParts.Breasts.RandomDesc() + " "
                sTweet += "to " + self.FemaleName.FirstName() + ". 'Come, my " + self.FFWB.GetPerson() + ". I need you to " 
                sTweet += self.VForeplay.Present() + " my " + self.FemBodyParts.GetRandomIntimateParts(1, True, True)[0] + " "
                sTweet += "and then " + WordList(["finger-bang", "fist", "eat out", "lick"]).GetWord() + " "
@@ -660,25 +660,25 @@ class Generator11(ExGen):
           sTweet += ". But most of all I love " 
           
           Endings = []
-          Endings.append("the way you look with my " + self.MaleBodyParts.Penis.GetRandomPenisPart() + " in your " + self.FemBodyParts.Mouth.RandomDescription(bShortDesc = True))
-          Endings.append("the way you look with my " + self.Semen.MediumDescription() + " all over your " + Parts.Face.MediumDescription())
-          Endings.append("the way you look with my " + self.Semen.MediumDescription() + " dripping down your chin")
-          Endings.append("the way you look with my " + self.Semen.MediumDescription() + " all over your " + self.FemBodyParts.Breasts.RandomDescription() + "")
-          Endings.append("the way you look with my " + self.MaleBodyParts.Penis.Testicles.RandomDescription() + " slapping against your chin")
-          Endings.append("the way you look with my " + self.MaleBodyParts.Penis.Testicles.MediumDescription() + " in your " + Parts.Mouth.MediumDescription())
-          Endings.append("the way you look when I'm fucking your " + Parts.Mouth.MediumDescription() + " with my " + self.MaleBodyParts.Penis.RandomDescription())
-          Endings.append("the way you look with your " + Parts.Lips.RandomDescription() + " around my " + self.MaleBodyParts.Penis.RandomDescription(bShortDesc = True) + "")
+          Endings.append("the way you look with my " + self.MaleBodyParts.Penis.GetRandomPenisPart() + " in your " + self.FemBodyParts.Mouth.RandomDesc(bShortDesc = True))
+          Endings.append("the way you look with my " + self.Semen.MediumDesc() + " all over your " + Parts.Face.MediumDesc())
+          Endings.append("the way you look with my " + self.Semen.MediumDesc() + " dripping down your chin")
+          Endings.append("the way you look with my " + self.Semen.MediumDesc() + " all over your " + self.FemBodyParts.Breasts.RandomDesc() + "")
+          Endings.append("the way you look with my " + self.MaleBodyParts.Penis.Testicles.RandomDesc() + " slapping against your chin")
+          Endings.append("the way you look with my " + self.MaleBodyParts.Penis.Testicles.MediumDesc() + " in your " + Parts.Mouth.MediumDesc())
+          Endings.append("the way you look when I'm fucking your " + Parts.Mouth.MediumDesc() + " with my " + self.MaleBodyParts.Penis.RandomDesc())
+          Endings.append("the way you look with your " + Parts.Lips.RandomDesc() + " around my " + self.MaleBodyParts.Penis.RandomDesc(bShortDesc = True) + "")
           Endings.append("the way you look at me when I'm " + WordList(['balls-deep in','buried to the hilt inside','deep inside','stuffing','pounding']).GetWord() + " " + WordList(["your sister","your twin-sister","your step-sister","your best friend","the babysitter","your step-mom","my secretary","the yoga instructor","that stripper Wendy","some college slut I picked up at the club"]).GetWord())
-          Endings.append("the way you look with my " + self.MaleBodyParts.Penis.Testicles.MediumDescription() + " stuffed in your " + Parts.Mouth.MediumDescription())
-          Endings.append("how you shriek when I whip your " + Parts.Ass.MediumDescription() + " with a riding crop")
+          Endings.append("the way you look with my " + self.MaleBodyParts.Penis.Testicles.MediumDesc() + " stuffed in your " + Parts.Mouth.MediumDesc())
+          Endings.append("how you shriek when I whip your " + Parts.Ass.MediumDesc() + " with a riding crop")
           Endings.append("how you let me " + WordList(['pound','drill','fuck','gape','stuff','finger','violate','cream','cream-pie']).GetWord() + " your little " + WordList(['sphincter','anus','asshole','bunghole','dirt pipe','pooper']).GetWord())
-          Endings.append("the way you look with my monogrammed butt-plug in your " + Parts.Ass.Anus.RandomDescription())
-          Endings.append("the way you look with a ball-gag in your " + Parts.Mouth.MediumDescription())
-          Endings.append("the way your black eyeliner runs as you gag on my " + self.MaleBodyParts.Penis.RandomDescription())
-          Endings.append("the way you look with my entire fist up your " + Parts.Ass.Anus.RandomDescription(TagLists = TagLists(noun_excl = ["sphincter"])))
-          Endings.append("the way you look with your " + Parts.Breasts.RandomDescription() + " " + WordList(["dripping with","covered in","glazed with","spattered with",]).GetWord() + " my " + self.Semen.RandomDescription())
+          Endings.append("the way you look with my monogrammed butt-plug in your " + Parts.Ass.Anus.RandomDesc())
+          Endings.append("the way you look with a ball-gag in your " + Parts.Mouth.MediumDesc())
+          Endings.append("the way your black eyeliner runs as you gag on my " + self.MaleBodyParts.Penis.RandomDesc())
+          Endings.append("the way you look with my entire fist up your " + Parts.Ass.Anus.RandomDesc(TagLists = TagLists(noun_excl = ["sphincter"])))
+          Endings.append("the way you look with your " + Parts.Breasts.RandomDesc() + " " + WordList(["dripping with","covered in","glazed with","spattered with",]).GetWord() + " my " + self.Semen.RandomDesc())
           Endings.append("the way you look when you're tied to the bed while my friends gangbang your holes")
-          Endings.append("the way you look with " + self.Semen.RandomDescription(TagLists = TagLists(noun_excl = ["silly","crude"])) + " oozing from your " + Parts.Ass.Anus.RandomDescription(TagLists = TagLists(adj_req = ["orifice","gape","horny"])))
+          Endings.append("the way you look with " + self.Semen.RandomDesc(TagLists = TagLists(noun_excl = ["silly","crude"])) + " oozing from your " + Parts.Ass.Anus.RandomDesc(TagLists = TagLists(adj_req = ["orifice","gape","horny"])))
 
           sTweet += Endings[randint(0,len(Endings)) - 1] + ".\""
           
@@ -701,13 +701,13 @@ class Generator12(ExGen):
           #BodyNotList = ['naked','nude','leaky','body']
           Intros = WordList(["'s towel dropped to the floor, revealing her naked body",
                                    " opened her bathrobe to reveal her naked body",
-                                   "'s " + clothes.Panties().RandomDescription(bLongDesc = False) + " fell to the floor",
+                                   "'s " + clothes.Panties().RandomDesc(bLongDesc = False) + " fell to the floor",
                                    " pushed the bed-sheets aside, revealing her naked body"])
           Seductions = WordList(["Let's play a little game, baby,",
                                  "Come to mommy, baby,",
                                  "Come lay down so mommy can ride your face, baby,",
                                  "Please tell me you eat ass,",
-                                 "Hope " + WordList(["you're hungry","you've got a big appetite"]).GetWord() + " because you're about to eat some " + self.Woman.Vagina.ShortDescription() + ",",
+                                 "Hope " + WordList(["you're hungry","you've got a big appetite"]).GetWord() + " because you're about to eat some " + self.Woman.Vagina.ShortDesc() + ",",
                                  "There's a bottle on the bedside table. Why don't you grab it and start " + WordList(["oiling","lubing"]).GetWord() + " me up?",
                                  "I'm so tense, baby. Why don't you come here and give me a little rub-down?",
                                  WordList(["My husband","Daddy","My father","Mom"]).GetWord() + " won't be home " + WordList(["for hours","for two whole hours","for three whole hours","until morning","until tomorrow","for an hour","tonight"]).GetWord() + ", baby,",
@@ -720,11 +720,11 @@ class Generator12(ExGen):
                                  "I need you to put a baby in my " + WordList(["ass","mouth","throat"]).GetWord() + ",",
                                  "It doesn't count as sex if we only do anal,",
                                  "I can't get pregnant if you only do my ass,",
-                                 "Mommy's thirsty for " + self.Semen.ShortDescription() + ", baby,",
+                                 "Mommy's thirsty for " + self.Semen.ShortDesc() + ", baby,",
                                  "Want to test out my new birth control pills?",
                                  "It's time for my nightly enema, baby,",
                                  "Could you do me a teensy favor and rub me down with baby oil?",
-                                 "My " + self.Woman.Vagina.ShortDescription() + " is " + WordList(["leaking like a sieve","gushing like a fountain","wetter than an otter's pocket","wetter than a nun in a cucumber patch","gushing like a waterfall"]).GetWord() + ", baby,",
+                                 "My " + self.Woman.Vagina.ShortDesc() + " is " + WordList(["leaking like a sieve","gushing like a fountain","wetter than an otter's pocket","wetter than a nun in a cucumber patch","gushing like a waterfall"]).GetWord() + ", baby,",
                                  "I just " + WordList(["took out the butt-plug","gave myself an enema"]).GetWord() + " so my ass is ready to go,",
                                 ])
           
@@ -773,20 +773,20 @@ class Generator13(ExGen):
           iRand = randint(1,3)
           sGirlfriendName = self.FemaleName.FirstName()
           if CoinFlip():
-               sTweet = "'Oh thank God,' he said to the " + self.FemBodyParts.Eyes.GetNewAdj() + "-eyed woman with the " + self.FemBodyParts.Hair.RandomDescription(bShortDesc = False) + ". 'You saved me. How can I ever repay you?'\n\n"
+               sTweet = "'Oh thank God,' he said to the " + self.FemBodyParts.Eyes.GetNewAdj() + "-eyed woman with the " + self.FemBodyParts.Hair.RandomDesc(bShortDesc = False) + ". 'You saved me. How can I ever repay you?'\n\n"
                sTweet += "'My name is " + sGirlfriendName + ",' she said. Then she "
           else:
-               sTweet = "'Oh thank God " + sGirlfriendName + ",' " + self.FemaleName.FirstName() + " said to her " + self.FemBodyParts.Eyes.GetNewAdj() + "-eyed " + self.FFWB.GetPerson() + " with the " + self.FemBodyParts.Hair.RandomDescription(bShortDesc = False) + ". 'You saved me. How can I ever repay you?'\n\n" + sGirlfriendName + " "
+               sTweet = "'Oh thank God " + sGirlfriendName + ",' " + self.FemaleName.FirstName() + " said to her " + self.FemBodyParts.Eyes.GetNewAdj() + "-eyed " + self.FFWB.GetPerson() + " with the " + self.FemBodyParts.Hair.RandomDesc(bShortDesc = False) + ". 'You saved me. How can I ever repay you?'\n\n" + sGirlfriendName + " "
                
           if iRand == 1:
-               sTweet +=  "bent over and pulled down her panties, revealing her " + self.FemBodyParts.Ass.RandomDescription() + ".\n\n"
-               sTweet += "'You can start by licking my " + self.FemBodyParts.Ass.Anus.ShortDescription() + ",' she said."
+               sTweet +=  "bent over and pulled down her panties, revealing her " + self.FemBodyParts.Ass.RandomDesc() + ".\n\n"
+               sTweet += "'You can start by licking my " + self.FemBodyParts.Ass.Anus.ShortDesc() + ",' she said."
           elif iRand == 2:
-               sTweet += "bent over and pulled down her panties, revealing her " + self.FemBodyParts.Vagina.OuterLabia.RandomDescription() + ".\n\n"
-               sTweet += "'You can start by eating out my filthy little " + self.FemBodyParts.Vagina.ShortDescription() + ",' she said."
+               sTweet += "bent over and pulled down her panties, revealing her " + self.FemBodyParts.Vagina.OuterLabia.RandomDesc() + ".\n\n"
+               sTweet += "'You can start by eating out my filthy little " + self.FemBodyParts.Vagina.ShortDesc() + ",' she said."
           else:
-               sTweet += "bent over and pulled down her panties, revealing her " + self.FemBodyParts.Vagina.OuterLabia.RandomDescription() + ".\n\n"
-               sTweet += "'You can start by fisting my " + self.FemBodyParts.Vagina.InnerVag.ShortDescription() + ",' she said."
+               sTweet += "bent over and pulled down her panties, revealing her " + self.FemBodyParts.Vagina.OuterLabia.RandomDesc() + ".\n\n"
+               sTweet += "'You can start by fisting my " + self.FemBodyParts.Vagina.InnerVag.ShortDesc() + ",' she said."
           
           return sTweet
      
@@ -809,13 +809,13 @@ class Generator14(ExGen):
           
           if iRand == 1:
                sTweet = "'Oh " + sHisName1 + ",' she said, 'I've never been with " + AddArticles(self.WealthyMan.GetPerson()) + " before.'\n\n"
-               sTweet += "'Fear not, my " + self.TermsOfEndearment.GetWord() + ", I would never hurt you,' he said as he began to " + self.VMakeLove.Present() + " her " + self.FemBodyParts.GetRandomHole() + " with his " +self.MaleBodyParts.Penis.RandomDescription(bAddLen = True) + "."
+               sTweet += "'Fear not, my " + self.TermsOfEndearment.GetWord() + ", I would never hurt you,' he said as he began to " + self.VMakeLove.Present() + " her " + self.FemBodyParts.GetRandomHole() + " with his " +self.MaleBodyParts.Penis.RandomDesc(bAddLen = True) + "."
           elif iRand == 2:
                sTweet = "'Oh " + sHerName1 + ",' she said, 'I've never been with " + AddArticles(self.WealthyWoman.GetPerson()) + " before.'\n\n"
                sTweet += "'Fear not, my " + self.TermsOfEndearment.GetWord() + ", I would never hurt you,' " + sHerName1 + " said as she " + self.VMakeLove.Past() + " " + self.FemaleName.FirstName() + "'s " + self.FemBodyParts.GetRandomHole() + " with " + str(randint(2,5)) + " fingers."
           else:
                sTweet = "'Oh " + sHisName1 + ",' " + sHisName2 + " said, 'I've never been with " + AddArticles(self.WealthyMan.GetPerson()) + " before.'\n\n"
-               sTweet += "'Fear not, my sweet boy, I would never hurt you,' " + sHisName1 + " said as he began to " + self.VMakeLove.Present() + " " + sHisName2 + "'s " + self.FemBodyParts.Ass.Anus.ShortDescription() + " with his " + self.MaleBodyParts.Penis.RandomDescription(bAddLen = True) + "."
+               sTweet += "'Fear not, my sweet boy, I would never hurt you,' " + sHisName1 + " said as he began to " + self.VMakeLove.Present() + " " + sHisName2 + "'s " + self.FemBodyParts.Ass.Anus.ShortDesc() + " with his " + self.MaleBodyParts.Penis.RandomDesc(bAddLen = True) + "."
           
           return sTweet
           
@@ -840,31 +840,31 @@ class Generator15(ExGen):
           iRand = randint(1,6)
           if iRand == 1:
                sTweet += "She was bobbing up and down " 
-               sTweet += "on his " + self.Man.Penis.FloweryDescription(TagLists = TagLists(noun_excl = ["silly"])) + ".\n\n"
+               sTweet += "on his " + self.Man.Penis.FloweryDesc(TagLists = TagLists(noun_excl = ["silly"])) + ".\n\n"
           elif iRand == 2:
                sTweet += "Tears trailed from the " + self.Woman.Desc + "'s " 
-               sTweet += self.Woman.Eyes.RandomDescription() + " as she took " 
-               sTweet += "his " + self.Man.Penis.FloweryDescription(bAddLen = True, TagLists = TagLists(noun_excl = ["silly"])) + " " 
+               sTweet += self.Woman.Eyes.RandomDesc() + " as she took " 
+               sTweet += "his " + self.Man.Penis.FloweryDesc(bAddLen = True, TagLists = TagLists(noun_excl = ["silly"])) + " " 
                sTweet += "deep into her throat.\n\n"
           elif iRand == 3:
                sTweet += "The " + self.Woman.Desc + "'s " 
-               sTweet += self.Woman.Lips.RandomDescription() + " " 
-               sTweet += "were wrapped around his " + self.Man.Penis.Head.RandomDescription(bShortDesc = True) + " " 
-               sTweet += "and she was gently massaging his " + self.Man.Penis.Testicles.ShortDescription() + ".\n\n"
+               sTweet += self.Woman.Lips.RandomDesc() + " " 
+               sTweet += "were wrapped around his " + self.Man.Penis.Head.RandomDesc(bShortDesc = True) + " " 
+               sTweet += "and she was gently massaging his " + self.Man.Penis.Testicles.ShortDesc() + ".\n\n"
           elif iRand == 4:
                sTweet += "The " + self.Woman.Desc + "'s " 
-               sTweet += self.Woman.Eyes.RandomDescription() + " " 
+               sTweet += self.Woman.Eyes.RandomDesc() + " " 
                sTweet += "were locked on his as "
                sTweet += WordList(["she slurped noisily on","she sucked on","she sloppily slurped on","she fellated"]).GetWord() + " "
-               sTweet += "his " + self.Man.Penis.FloweryDescription(TagLists = TagLists(noun_excl = ["silly"])) + " " 
-               sTweet += "with her " + self.Woman.Mouth.RandomDescription() + ".\n\n"
+               sTweet += "his " + self.Man.Penis.FloweryDesc(TagLists = TagLists(noun_excl = ["silly"])) + " " 
+               sTweet += "with her " + self.Woman.Mouth.RandomDesc() + ".\n\n"
           elif iRand == 5:
                sTweet += "The " + self.Woman.Desc + " gagged softly " 
-               sTweet += "as she took the " + self.Man.Head.FloweryDescription() + " "
-               sTweet += "of his " + self.Man.Penis.ShortDescription(TagLists = TagLists(noun_excl = ["silly"])) + " " 
+               sTweet += "as she took the " + self.Man.Head.FloweryDesc() + " "
+               sTweet += "of his " + self.Man.Penis.ShortDesc(TagLists = TagLists(noun_excl = ["silly"])) + " " 
                sTweet += "deeper into her throat.\n\n"
           elif iRand == 6:
-               sTweet += "His " + self.Man.Testicles.RandomDescription(bLongDesc = False) + " "
+               sTweet += "His " + self.Man.Testicles.RandomDesc(bLongDesc = False) + " "
                if self.Man.Testicles.IsSing():
                    sTweet += "was slapping against " 
                else:
@@ -873,11 +873,11 @@ class Generator15(ExGen):
                if self.Man.DickInches > 4:
                    sTweet += "as she took the entire " + str(self.Man.DickInches) + "-inch " 
                    sTweet += WordList(["length","shaft","stem"]).GetWord() + " " 
-                   sTweet += "of his " + self.Man.Penis.RandomDescription(NotList = ["length","shaft","stem"], TagLists = TagLists(noun_excl = ["silly"])) + " " 
+                   sTweet += "of his " + self.Man.Penis.RandomDesc(NotList = ["length","shaft","stem"], TagLists = TagLists(noun_excl = ["silly"])) + " " 
                    sTweet += "down her throat."
                else:
-                   sTweet += "as she took his entire " + self.Man.Penis.RandomDescription(TagLists = TagLists(noun_excl = ["silly"])) + " "
-                   sTweet += "in her " + self.Woman.Mouth.RandomDescription() + "."
+                   sTweet += "as she took his entire " + self.Man.Penis.RandomDesc(TagLists = TagLists(noun_excl = ["silly"])) + " "
+                   sTweet += "in her " + self.Woman.Mouth.RandomDesc() + "."
                sTweet += "\n\n"
 
           sTweet += "\"" + WordList(["I'm just about to come","I'll just be a minute","I'm just finishing something up","I'm almost there"]).GetWord() + ", my love,\" "
@@ -897,17 +897,17 @@ class Generator16(ExGen):
           super().GenerateTweet()
           sTweet = ""
           
-          sTweet = "The " + self.Man.Man.RandomDescription(NotList = ["college","teen","boy"], TagLists = TagLists(noun_excl = ["prof","relate"])) + " squeezed and sucked " 
+          sTweet = "The " + self.Man.Man.RandomDesc(NotList = ["college","teen","boy"], TagLists = TagLists(noun_excl = ["prof","relate"])) + " squeezed and sucked " 
           sTweet += "on " + self.Woman.FirstName + "'s " 
-          sTweet += self.Woman.Breasts.RandomDescription() + " " 
-          sTweet += "as he fingered her " + self.Woman.Vagina.Clitoris.RandomDescription() + " " 
+          sTweet += self.Woman.Breasts.RandomDesc() + " " 
+          sTweet += "as he fingered her " + self.Woman.Vagina.Clitoris.RandomDesc() + " " 
           sTweet += "and " + self.VThrust.Past() + " " 
           sTweet += "her " + self.Woman.Body.GetRandomHole() + ".\n\n"
           sTweet += "\"" + self.Exclamation.GetWord(bHappy = True).capitalize() + "\" " 
           sTweet += self.VMoan.Past() + " " + self.MaleName.FirstName() + ", " 
           
           # Penis doesn't belong to main lover, so use a different one
-          sTweet += "stroking his " + self.MaleBodyParts.Penis.RandomDescription(bLongDesc = False, TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["bigdick"])) + " " 
+          sTweet += "stroking his " + self.MaleBodyParts.Penis.RandomDesc(bLongDesc = False, TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["bigdick"])) + " " 
           sTweet += "as he " + WordList(["looked on","watched them on his phone"]).GetWord() + ", " 
           sTweet += "\"I can't believe I'm watching "
           sTweet += "my wife " 
@@ -946,16 +946,16 @@ class Generator17(ExGen):
                 sManType = titmisc.NationNounMale().GetWord(NotList = ["american","space","spanish"]).capitalize()
 
           sTweet += self.FemaleName.FirstName() + " stared with " 
-          sTweet += "innocent " + self.Woman.Eyes.MediumDescription(NotList = ["innocent"]) + " " 
-          sTweet += "at his " + bodyparts.Penis(NPParams(iNumAdjs = 3), TagLists = TagLists(adj_req = ["bigdick","hard"], adj_excl = ["smalldick"])).MediumDescription() + ". " 
+          sTweet += "innocent " + self.Woman.Eyes.MediumDesc(NotList = ["innocent"]) + " " 
+          sTweet += "at his " + bodyparts.Penis(NPParams(iNumAdjs = 3), TagLists = TagLists(adj_req = ["bigdick","hard"], adj_excl = ["smalldick"])).MediumDesc() + ". " 
           sTweet += "\"Does every " + sManType + " " 
           sTweet += "have a... a thing like that one?\" she asked.\n\n"
           sTweet += "'No darling,' said " + self.Man.FirstName + " chuckling. " 
           sTweet += "\"Not every " + sManType + " has " 
-          sTweet += "a " + self.Man.Penis.MediumDescription(bAddLen = True, TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["wet","shape"])) + ". " 
+          sTweet += "a " + self.Man.Penis.MediumDesc(bAddLen = True, TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["wet","shape"])) + ". " 
           sTweet += "Now, " + WordList(["I need you to","I want you to"]).GetWord() + " " 
-          sTweet += "massage my " + self.Man.Penis.Testicles.RandomDescription() + " " 
-          sTweet += "while you suck on the " + self.Man.Penis.Head.ShortDescription() + ".\""
+          sTweet += "massage my " + self.Man.Penis.Testicles.RandomDesc() + " " 
+          sTweet += "while you suck on the " + self.Man.Penis.Head.ShortDesc() + ".\""
           
           return sTweet
           
@@ -979,19 +979,19 @@ class Generator18(ExGen):
           iRand = randint(1,5)
           if iRand == 1:
                #Ass
-               sTweet += self.FemBodyParts.Ass.FloweryDescription(NotList = ['backside','cheeks','rear','bottom','behind'])
+               sTweet += self.FemBodyParts.Ass.FloweryDesc(NotList = ['backside','cheeks','rear','bottom','behind'])
           elif iRand == 2:
                #Asshole
-               sTweet += self.FemBodyParts.Ass.Anus.FloweryDescription(NotList = ['back','butt','behind'])
+               sTweet += self.FemBodyParts.Ass.Anus.FloweryDesc(NotList = ['back','butt','behind'])
           elif iRand == 3:
                #Vag
-               sTweet += self.FemBodyParts.Vagina.FloweryDescription(NotList = ['vag','virgin','mound'])
+               sTweet += self.FemBodyParts.Vagina.FloweryDesc(NotList = ['vag','virgin','mound'])
           elif iRand == 4:
                #Inner labia
-               sTweet += self.FemBodyParts.Vagina.InnerLabia.FloweryDescription(NotList = ['virgin','petals'])
+               sTweet += self.FemBodyParts.Vagina.InnerLabia.FloweryDesc(NotList = ['virgin','petals'])
           else:
                #Outer labia
-               sTweet += self.FemBodyParts.Vagina.OuterLabia.FloweryDescription(NotList = ['virgin','mons pubis','petals','mound','vulva'])
+               sTweet += self.FemBodyParts.Vagina.OuterLabia.FloweryDesc(NotList = ['virgin','mons pubis','petals','mound','vulva'])
           
           sTweet += ".'\n\n"
           if CoinFlip():
@@ -1018,12 +1018,12 @@ class Generator19(ExGen):
             sTweet += self.Man.FirstName + " "
           else:
             sTweet += "the " + self.Man.Desc + " "
-          sTweet += "pulled his " + self.MaleWardrobe.Tshirt.RandomDescription(bLongDesc = False) + " " 
-          sTweet += "and " + self.MaleWardrobe.Jeans.RandomDescription(bLongDesc = False) + " off. "
+          sTweet += "pulled his " + self.MaleWardrobe.Tshirt.RandomDesc(bLongDesc = False) + " " 
+          sTweet += "and " + self.MaleWardrobe.Jeans.RandomDesc(bLongDesc = False) + " off. "
           sTweet += "Her eyes widened at the sight of "
           sTweet += self.Man.Body.DescRandomNakedParts(iNum = 5, sDivideChar = ";", bPenis = False, sPossessive = "his")
           sTweet += ". But what made her mouth water was "
-          sTweet += "the " + self.Man.Penis.FloweryDescription() + " between his legs."
+          sTweet += "the " + self.Man.Penis.FloweryDesc() + " between his legs."
           
           return sTweet
           
@@ -1042,26 +1042,26 @@ class Generator20(ExGen):
           sTweet += "A " + WordList(['thrill','shiver','tingle']).GetWord() + " "
           sTweet += "ran through " + self.FemaleName.FirstName() + " at the sight of "
           if CoinFlip():
-               sTweet += "his " + self.MaleBodyParts.Eyes.RandomDescription(bShortDesc = False) + ", "
+               sTweet += "his " + self.MaleBodyParts.Eyes.RandomDesc(bShortDesc = False) + ", "
           else:
-               sTweet += "his " + self.MaleBodyParts.Jaw.RandomDescription(bShortDesc = False) + ", "
+               sTweet += "his " + self.MaleBodyParts.Jaw.RandomDesc(bShortDesc = False) + ", "
           sTweet += self.MaleBodyParts.DescRandomNakedParts(iNum = 4, sDivideChar = ";",bAss = True, bPenis = True, sPossessive = "his")
           sTweet += ".\n\n"
           sTweet += "She could hardly believe that in a few minutes this man would be "
           iRand = randint(1,8)
           if iRand in [1,3]:
                #ass 
-               sTweet += self.VThrust.Gerund() + " her virgin " + self.FemBodyParts.Ass.Anus.ShortDescription()
+               sTweet += self.VThrust.Gerund() + " her virgin " + self.FemBodyParts.Ass.Anus.ShortDesc()
           elif iRand in [4]:
                #mouth
                sTweet += self.VThrust.Gerund() + " her "
-               sTweet += self.FemBodyParts.Mouth.RandomDescription()
+               sTweet += self.FemBodyParts.Mouth.RandomDesc()
           elif iRand in [5]:
                #other 
-               sTweet += "deep inside her, filling her with his " + self.Semen.RandomDescription()
+               sTweet += "deep inside her, filling her with his " + self.Semen.RandomDesc()
           else:
                #cunt
-               sTweet += self.VThrust.Gerund() + " her virgin " + self.FemBodyParts.Vagina.ShortDescription()
+               sTweet += self.VThrust.Gerund() + " her virgin " + self.FemBodyParts.Vagina.ShortDesc()
                
           
           sTweet += "!"
@@ -1080,7 +1080,7 @@ class Generator20(ExGen):
           # super().GenerateTweet()
           # sTweet = ""
           
-          # sTweet = self.FemaleName.FirstName() + " stroked " + self.MaleName.FirstName() + "'s " + self.MaleBodyParts.Penis.RandomDescription() + " vigorously. Suddenly its " + self.MaleBodyParts.Penis.Head.RandomDescription() + " swelled and he " + self.VEjac.Past() + ", sending gobs of " + self.Semen.RandomDescription() + " all over her "
+          # sTweet = self.FemaleName.FirstName() + " stroked " + self.MaleName.FirstName() + "'s " + self.MaleBodyParts.Penis.RandomDesc() + " vigorously. Suddenly its " + self.MaleBodyParts.Penis.Head.RandomDesc() + " swelled and he " + self.VEjac.Past() + ", sending gobs of " + self.Semen.RandomDesc() + " all over her "
           
           # Parts = self.FemBodyParts.GetRandomBodyParts(iNum = 3, bIncludeInners = False)
           # for part in Parts:
@@ -1148,15 +1148,15 @@ class Generator23(ExGen):
           sWhiteCollar = self.WhiteCollar.GetPerson()
           sFFWB1 = FemRelations.GetWord()
           sFFWB2 = ForbiddenLoves.GetWord(NotList = [sFFWB1])
-          sTweet = "'My " + sFFWB1 + " thinks " + AddArticles(sWhiteCollar) + " and his " + sFFWB2 + " can never find love together,' said " + self.MaleName.FirstName() + " as " + self.FemaleName.FirstName() + " lay exhausted in his " + self.MaleBodyParts.Arms.MediumDescription() + ".\n\n"
+          sTweet = "'My " + sFFWB1 + " thinks " + AddArticles(sWhiteCollar) + " and his " + sFFWB2 + " can never find love together,' said " + self.MaleName.FirstName() + " as " + self.FemaleName.FirstName() + " lay exhausted in his " + self.MaleBodyParts.Arms.MediumDesc() + ".\n\n"
           sTweet += "'You're no " + sWhiteCollar + ",' she replied, panting. "
           sTweet += "'You're the mayor of " + sVerb.capitalize() + " My "
           if not shutil.FoundIn(sVerb,"fuck") and randint(1,3) == 3:
                sTweet += "Fucking "
           if CoinFlip():
-               sTweet += self.FemBodyParts.Vagina.ShortDescription(NotList = ['womanhood','flower','cooch','honey','sex','muff']).title() 
+               sTweet += self.FemBodyParts.Vagina.ShortDesc(NotList = ['womanhood','flower','cooch','honey','sex','muff']).title() 
           else:
-               sTweet += self.FemBodyParts.Ass.ShortDescription().title()
+               sTweet += self.FemBodyParts.Ass.ShortDesc().title()
           sTweet += " City!'"
           
           return sTweet
@@ -1193,9 +1193,9 @@ class Generator24(ExGen):
 
           if CoinFlip():
                if bMale:
-                    sTweet += sHisName + " took the " + self.WomanAdjs.GetWord() + " woman in his " + self.MaleBodyParts.Arms.MediumDescription() + ". "
+                    sTweet += sHisName + " took the " + self.WomanAdjs.GetWord() + " woman in his " + self.MaleBodyParts.Arms.MediumDesc() + ". "
                else: 
-                    sTweet += sHerName + " sighed as " + sHisName + " began to squeeze her " + self.FemBodyParts.Breasts.MediumDescription() + " and kiss the nape of her neck. "
+                    sTweet += sHerName + " sighed as " + sHisName + " began to squeeze her " + self.FemBodyParts.Breasts.MediumDesc() + " and kiss the nape of her neck. "
                Scene1 = SceneSelect.GetScene(Tags = {exutil.TAG_DONE_TO_HER}, NotTags = {exutil.TAG_CLIMAX}, sHisName = sHisName, sHerName = sHerName, Location = Location)
                
                sTweet += "First " + Scene1.SceneShortDesc3P + ", then "
@@ -1233,9 +1233,9 @@ class Generator24(ExGen):
                     sTweet += "Then, " + ScenePosition.SceneShortDesc3P + ". At last he could stand it no longer, so " + SceneClimax.SceneShortDesc3P + ".\n\n"
                else:
                     if bMale:
-                         sTweet += sHisName + " took the " + self.WomanAdjs.GetWord() + " woman in his " + self.MaleBodyParts.Arms.MediumDescription() + ". "
+                         sTweet += sHisName + " took the " + self.WomanAdjs.GetWord() + " woman in his " + self.MaleBodyParts.Arms.MediumDesc() + ". "
                     else: 
-                         sTweet += sHerName + " carressed the man's " + self.MaleBodyParts.MediumDescription() + ". "
+                         sTweet += sHerName + " carressed the man's " + self.MaleBodyParts.MediumDesc() + ". "
                          
                     sTweet += "First, " + SceneForeplay.SceneShortDesc3P + " until at last she was ready. "
                     
@@ -1280,13 +1280,13 @@ class Generator25(ExGen):
           sTweet = sHerName + " knelt " + Location.KneelingOn + " and " + sHisName + " began to lick her "
           
           if iRand == 1:
-               sTweet += self.FemBodyParts.Vagina.OuterLabia.RandomDescription() + ". "
+               sTweet += self.FemBodyParts.Vagina.OuterLabia.RandomDesc() + ". "
           elif iRand == 2:
-               sTweet += self.FemBodyParts.Vagina.InnerLabia.RandomDescription() + ". "
+               sTweet += self.FemBodyParts.Vagina.InnerLabia.RandomDesc() + ". "
           else:
-               sTweet += self.FemBodyParts.Ass.Anus.RandomDescription() + ". "
+               sTweet += self.FemBodyParts.Ass.Anus.RandomDesc() + ". "
                
-          sTweet += sHisName + " eased his " + self.MaleBodyParts.Penis.RandomDescription() + " into her " + self.FemBodyParts.Vagina.InnerVag.RandomDescription() + ".\n\n"
+          sTweet += sHisName + " eased his " + self.MaleBodyParts.Penis.RandomDesc() + " into her " + self.FemBodyParts.Vagina.InnerVag.RandomDesc() + ".\n\n"
           sTweet += "'But " + sHisName + ",' she said, '" + Location.HurryReason + "!'\n\n"
           
           if CoinFlip():
@@ -1300,8 +1300,8 @@ class Generator25(ExGen):
                     sTweet += "'I'm " + self.VEjac.Gerund() + "!' "
                     sTweet += "And then, as " + Location.Consequence + ", " 
                     sTweet += "he grabbed her by the hips and "
-                    sTweet += "filled her " + self.FemBodyParts.Vagina.InnerVag.RandomDescription() + " "
-                    sTweet += "with " + self.Semen.RandomDescription() + "."
+                    sTweet += "filled her " + self.FemBodyParts.Vagina.InnerVag.RandomDesc() + " "
+                    sTweet += "with " + self.Semen.RandomDesc() + "."
                else:
                     sTweet += sHisName + " smiled at the " + Location.AuthorityFigure + ". " 
                     sTweet += "'It's okay if you want to watch us,' he said."
@@ -1312,8 +1312,8 @@ class Generator25(ExGen):
                sTweet += self.FemBodyParts.Vagina.GetNoun() + " " 
                sTweet += "in front of " + Location.AuthorityFigure + ". " 
                sTweet += "You want them to see every single detail as "
-               sTweet += "I pump your " + self.FemBodyParts.Vagina.InnerVag.RandomDescription() + " "
-               sTweet += "full of my " + self.Semen.RandomDescription() + ", don't you?'\n\n"
+               sTweet += "I pump your " + self.FemBodyParts.Vagina.InnerVag.RandomDesc() + " "
+               sTweet += "full of my " + self.Semen.RandomDesc() + ", don't you?'\n\n"
                sTweet += "'Oh, " + WordList(["fuck","hell","Jesus Christ, ","God, "]).GetWord() + " yes!' she " + self.VMoan.Past() + "."
           
           return sTweet
@@ -1340,13 +1340,13 @@ class Generator26(ExGen):
           sTweet += "could barely keep their hands off each other "
           sTweet += "as they tore off their clothes. " 
           sTweet += sHisName + " grabbed her and squeezed " 
-          sTweet += "her bare " + self.FemBodyParts.Ass.RandomDescription(TagLists = TLParams) + " " 
-          sTweet += "as he explored her " + self.FemBodyParts.Mouth.RandomDescription(TagLists = TLParams) + " with his tongue.\n\n"
+          sTweet += "her bare " + self.FemBodyParts.Ass.RandomDesc(TagLists = TLParams) + " " 
+          sTweet += "as he explored her " + self.FemBodyParts.Mouth.RandomDesc(TagLists = TLParams) + " with his tongue.\n\n"
           sTweet += sHerName + " got on her knees " 
           sTweet += "and began to " + self.VForeplay.Present() + " " 
-          sTweet += "his " + str(iRandLength) + "\" " + self.MaleBodyParts.Penis.ShortDescription(NotList, TLParams) + " "
+          sTweet += "his " + str(iRandLength) + "\" " + self.MaleBodyParts.Penis.ShortDesc(NotList, TLParams) + " "
           sTweet += "and " + self.VForeplay.Present() + " " 
-          sTweet += "his " + self.MaleBodyParts.Penis.Testicles.RandomDescription(TagLists = TLParams) + ".\n\n"
+          sTweet += "his " + self.MaleBodyParts.Penis.Testicles.RandomDesc(TagLists = TLParams) + ".\n\n"
           sTweet += "Suddenly, " + sHerName + " froze. " + Location.Caught + "\n\n"
           sTweet += Location.Excuse + "\n\n"
           sTweet += "'" + self.Exclamation.GetWord(bSad = True).capitalize() + "' " + sHerName + " exclaimed. 'I knew it was a bad idea to do this " + Location.NamePrep + "!'"
@@ -1386,19 +1386,19 @@ class Generator27(ExGen):
           sTweet += "\"I *am* " + AddArticles(sBadGirlName).lower() + ",\" she said. "
           sTweet += "\"I'm one for *you*, " + sHisName + ". "
           sTweet += "I'm " + AddArticles(sBadGirlName) + " for "
-          sTweet += "your " + self.MaleBodyParts.Penis.RandomDescription(bAddLen = True) + " "
+          sTweet += "your " + self.MaleBodyParts.Penis.RandomDesc(bAddLen = True) + " "
           sTweet += "in my " + self.FemBodyParts.GetRandomHole(bIncludeMouth = True, bShortDesc = True, bLongDesc = False) + ".\"\n\n"
           sTweet += "\"You're also " + AddArticles(sBadGirlName).lower() + " because "
           if CoinFlip():
                if CoinFlip():
                     sTweet += "you let " + AddArticles(self.BlueCollar.GetPerson()) + " "
                     sTweet += self.VThrust.Present(NotList = VThrustNotList) + " "
-                    sTweet += "your " + self.FemBodyParts.Ass.Anus.ShortDescription() + " " 
+                    sTweet += "your " + self.FemBodyParts.Ass.Anus.ShortDesc() + " " 
                     sTweet += Locations.GetWord() + ",\" he said."
                else:
                     sTweet += "you let " + AddArticles(self.BlueCollar.GetPerson()) + " "
                     sTweet += WordList(["motor-boat","titty-fuck"]).GetWord() + " "
-                    sTweet += "your " + self.FemBodyParts.Breasts.ShortDescription() + " " 
+                    sTweet += "your " + self.FemBodyParts.Breasts.ShortDesc() + " " 
                     sTweet += Locations.GetWord() + ",\" he said."
           else:
                if CoinFlip():
@@ -1432,11 +1432,11 @@ class Generator28(ExGen):
                sTweet += sHisName + " ripped " + sHerName + "'s " + Location.FemaleBottomClothing + " off. "
           sTweet += "She sat down " + Location.SittingOn + " and spread her legs. " + sHisName + " began to "
           if CoinFlip():
-               sTweet += self.VForeplay.Present() + " her " + self.FemBodyParts.Vagina.OuterLabia.RandomDescription() + " vigorously.\n\n" 
+               sTweet += self.VForeplay.Present() + " her " + self.FemBodyParts.Vagina.OuterLabia.RandomDesc() + " vigorously.\n\n" 
           else: 
-               sTweet += self.VForeplay.Present() + " her " + self.FemBodyParts.Vagina.InnerLabia.RandomDescription() + " tenderly.\n\n"
-          sTweet += "'I'm ready!' she " + self.VMoan.Past() + ". 'I want that " + self.MaleBodyParts.Penis.RandomDescription() + " in me right now!'\n\n"
-          sTweet += "He inserted his " + self.MaleBodyParts.Penis.ShortDescription() + " into her " + self.FemBodyParts.Vagina.InnerVag.MediumDescription() + " and began to " + self.VThrust.Present() + " it roughly.\n\n"
+               sTweet += self.VForeplay.Present() + " her " + self.FemBodyParts.Vagina.InnerLabia.RandomDesc() + " tenderly.\n\n"
+          sTweet += "'I'm ready!' she " + self.VMoan.Past() + ". 'I want that " + self.MaleBodyParts.Penis.RandomDesc() + " in me right now!'\n\n"
+          sTweet += "He inserted his " + self.MaleBodyParts.Penis.ShortDesc() + " into her " + self.FemBodyParts.Vagina.InnerVag.MediumDesc() + " and began to " + self.VThrust.Present() + " it roughly.\n\n"
           sTweet += "'Harder, baby, I want you to " + self.VEjac.Present() + " inside,' she " + self.VMoan.Past() + ". Then she looked over at her " + self.MaleSO.GetWord() + ", " + self.MaleName.FirstName() + "."
           
           iRand = randint(1,4)
@@ -1482,7 +1482,7 @@ class Generator29(ExGen):
           iRand = randint(1,3)
           if iRand == 1:
                sTweet += "lying on her bed in her nightgown "
-               sTweet += "With her nose in a book and one hand down her " + clothes.Panties().RandomDescription() + ". She was "
+               sTweet += "With her nose in a book and one hand down her " + clothes.Panties().RandomDesc() + ". She was "
           elif iRand == 2:
                sTweet += "naked in the bathtub, surrounded by candles, with a paperback book in one hand. "
                sTweet += "With her other hand she was "
@@ -1497,10 +1497,10 @@ class Generator29(ExGen):
                sTweet += WordList(["frigging","massaging","messaging","rubbing",
                                    "stroking","playing with","carressing",
                                    "fingering"]).GetWord() + " "
-               sTweet += "her " + self.FemBodyParts.Vagina.ShortDescription(NotList = CombinedNotList, TagLists = TagLists(noun_excl = ["silly"]))
+               sTweet += "her " + self.FemBodyParts.Vagina.ShortDesc(NotList = CombinedNotList, TagLists = TagLists(noun_excl = ["silly"]))
           else:
                sTweet += WordList(["penetrating","thrusting into","violating"]).GetWord() + " "
-               sTweet += "her " + self.FemBodyParts.Ass.Anus.ShortDescription(NotList = CombinedNotList, TagLists = TagLists(noun_excl = ["silly"])) + " "
+               sTweet += "her " + self.FemBodyParts.Ass.Anus.ShortDesc(NotList = CombinedNotList, TagLists = TagLists(noun_excl = ["silly"])) + " "
                sTweet += "with " + WordList(["her index finger","two fingers","three fingers","a realistic black dildo",
                                              "a large metal butt plug","a buzzing vibrator","her balled up fist",
                                              "her lubricated fist","a huge horse-cock dildo","an electric toothbrush",
@@ -1568,17 +1568,17 @@ class Generator30(ExGen):
           
           sTweet = "'C'mere baby,' she said. 'I want you to suck on my "
           if CoinFlip():
-               sTweet += self.FemBodyParts.Breasts.ShortDescription() + ". "
+               sTweet += self.FemBodyParts.Breasts.ShortDesc() + ". "
           else:
-               sTweet += self.FemBodyParts.Breasts.Nipples.RandomDescription() + ". "
+               sTweet += self.FemBodyParts.Breasts.Nipples.RandomDesc() + ". "
           if CoinFlip():
-               sTweet += "I want to feel your " + self.MaleBodyParts.Penis.RandomDescription() + " against my " + self.FemBodyParts.Ass.ShortDescription() + " "
+               sTweet += "I want to feel your " + self.MaleBodyParts.Penis.RandomDesc() + " against my " + self.FemBodyParts.Ass.ShortDesc() + " "
           else:
-               sTweet += "I want you to spread my legs wide and " + self.VForeplay.Present() + " my " + self.FemBodyParts.Vagina.Clitoris.RandomDescription() + " "
+               sTweet += "I want you to spread my legs wide and " + self.VForeplay.Present() + " my " + self.FemBodyParts.Vagina.Clitoris.RandomDesc() + " "
           if CoinFlip():
-               sTweet += "and then I want you to " + self.VMakeLove.Present() + " my " + self.FemBodyParts.Vagina.RandomDescription() + ".'\n\n"
+               sTweet += "and then I want you to " + self.VMakeLove.Present() + " my " + self.FemBodyParts.Vagina.RandomDesc() + ".'\n\n"
           else:
-               sTweet += "and then I want you to fill my " + self.FemBodyParts.Vagina.InnerVag.RandomDescription() + " with your " + self.Semen.RandomDescription() + ".'\n\n"
+               sTweet += "and then I want you to fill my " + self.FemBodyParts.Vagina.InnerVag.RandomDesc() + " with your " + self.Semen.RandomDesc() + ".'\n\n"
           
           sTweet += "'Ooooh, yes,' " + self.VMoan.Past() + " " + self.MaleName.FirstName() + ". 'But my " + sMoral + " says it's wrong to do this with my " + sFWB + ".'"
           
@@ -1615,7 +1615,7 @@ class Generator31(ExGen):
           sTweet += "Her " + sBodyAdj1 + ", " + sBodyAdj2 + " body "
           sTweet += "was totally naked. "
           if CoinFlip():
-              sTweet += "Her " + Woman.Skin.RandomDescription(NotList = [sBodyAdj1,sBodyAdj2], TagLists = TagLists(adj_excl = ["nude"])) + " "
+              sTweet += "Her " + Woman.Skin.RandomDesc(NotList = [sBodyAdj1,sBodyAdj2], TagLists = TagLists(adj_excl = ["nude"])) + " "
               sTweet += WordList(["glistened with","was beaded with"]).GetWord() + " " 
               sTweet += WordList(["sweat","moisture","a sheen of sweat"]).GetWord() + ". "
           else:
@@ -1629,49 +1629,49 @@ class Generator31(ExGen):
                 # Fingering her inner vag
                 sTweet += "between her legs was " + sCasualAdvbs + " " 
                 sTweet += WordList(["fingering","finger-banging","exploring","thrusting his fingers into","sticking his fingers up","poking his fingers up","diddling"]).GetWord() + " " 
-                sTweet += "her " + self.FemBodyParts.Vagina.InnerVag.RandomDescription(TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["nude"])) + ". "
+                sTweet += "her " + self.FemBodyParts.Vagina.InnerVag.RandomDesc(TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["nude"])) + ". "
           elif iRand == 2:
                 # Playing with her pussy lips
                 sTweet += "between her legs was " + sCasualAdvbs + " " 
                 sTweet += WordList(["playing with","toying with","tweaking","nibbling","teasing","sucking on","diddling",]).GetWord() + " " 
-                sTweet += "her " + self.FemBodyParts.Vagina.InnerLabia.RandomDescription(TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["nude"])) + ". "
+                sTweet += "her " + self.FemBodyParts.Vagina.InnerLabia.RandomDesc(TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["nude"])) + ". "
           elif iRand == 3:
                 # Playing with her pussy
                 sTweet += "between her legs was " + sCasualAdvbs + " " 
                 sTweet += WordList(["playing with","rubbing","massaging","stroking","teasing","licking","diddling"]).GetWord() + " " 
-                sTweet += "her " + self.FemBodyParts.Vagina.RandomDescription(TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["nude"])) + ". "
+                sTweet += "her " + self.FemBodyParts.Vagina.RandomDesc(TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["nude"])) + ". "
           elif iRand == 4:
                 # Fingering her anus
                 sTweet += "behind her had a finger " + sCasualAdvbs + " inserted knuckle deep " 
-                sTweet += "into her " + self.FemBodyParts.Ass.Anus.RandomDescription(TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["nude"])) + ". "
+                sTweet += "into her " + self.FemBodyParts.Ass.Anus.RandomDesc(TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["nude"])) + ". "
           elif iRand == 5:
                 # Playing with her tits
                 sTweet += "next to her was " + sCasualAdvbs + " " 
                 sTweet += WordList(["playing with","toying with","tweaking","nibbling","teasing","sucking on","stroking","rubbing","squeezing","fondling"]).GetWord() + " " 
-                sTweet += "her " + self.FemBodyParts.Breasts.RandomDescription(TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["nude"])) + ". "
+                sTweet += "her " + self.FemBodyParts.Breasts.RandomDesc(TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["nude"])) + ". "
           elif iRand == 6:
                 # Playing with her nipples
                 sTweet += "next to her was " + sCasualAdvbs + " " 
                 sTweet += WordList(["playing with","toying with","tweaking","nibbling","teasing","sucking on","stroking","pinching","squeezing","fondling"]).GetWord() + " " 
-                sTweet += "her " + self.FemBodyParts.Breasts.Nipples.RandomDescription(TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["nude"])) + ". "
+                sTweet += "her " + self.FemBodyParts.Breasts.Nipples.RandomDesc(TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["nude"])) + ". "
           elif iRand == 7:
                 # Spreading her legs
                 sTweet += "lying between her legs was "
-                sTweet += "spreading her " + self.FemBodyParts.Vagina.InnerVag.RandomDescription(TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["nude"])) + " wide. "
+                sTweet += "spreading her " + self.FemBodyParts.Vagina.InnerVag.RandomDesc(TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["nude"])) + " wide. "
           elif iRand == 8:
                 # Dry-humping
                 sTweet += "on top of her was " + sCasualAdvbs + " dry-humping her, " 
-                sTweet += "rubbing his " + Dude.Penis.RandomDescription() + " " 
+                sTweet += "rubbing his " + Dude.Penis.RandomDesc() + " " 
 
                 iRand = randint(1,4)
                 if iRand == 1:
-                    sTweet += "between her " + self.FemBodyParts.Breasts.RandomDescription(TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["nude"]))
+                    sTweet += "between her " + self.FemBodyParts.Breasts.RandomDesc(TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["nude"]))
                 elif iRand == 2:
-                    sTweet += "against her " + self.FemBodyParts.Thighs.RandomDescription(TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["nude"]))
+                    sTweet += "against her " + self.FemBodyParts.Thighs.RandomDesc(TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["nude"]))
                 elif iRand == 3:
-                    sTweet += "between her" + self.FemBodyParts.Ass.Buttocks.RandomDescription(TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["nude"]))
+                    sTweet += "between her" + self.FemBodyParts.Ass.Buttocks.RandomDesc(TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["nude"]))
                 elif iRand == 4:
-                    sTweet += "against her" + self.FemBodyParts.Face.RandomDescription(TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["nude"]))
+                    sTweet += "against her" + self.FemBodyParts.Face.RandomDesc(TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["nude"]))
 
                 sTweet += ". "
 
@@ -1718,9 +1718,9 @@ class Generator32(ExGen):
           sTweet += "'What's that?' he asked.\n\n"
           if iRand == 1:
                sTweet += "She bent over and hiked her skirt up, showing him " 
-               sTweet += "her " + self.FemBodyParts.Ass.RandomDescription() + ". " 
-               sTweet += "Then she pulled her " + clothes.Panties().RandomDescription(bLongDesc = False) + " aside, "
-               sTweet += "revealing her " + self.FemBodyParts.Ass.Anus.RandomDescription() + ".\n\n"
+               sTweet += "her " + self.FemBodyParts.Ass.RandomDesc() + ". " 
+               sTweet += "Then she pulled her " + clothes.Panties().RandomDesc(bLongDesc = False) + " aside, "
+               sTweet += "revealing her " + self.FemBodyParts.Ass.Anus.RandomDesc() + ".\n\n"
           elif iRand == 2:
                Vaj = self.FemBodyParts.Vagina
                Vaj.NounExclTagList(["silly"])
@@ -1728,10 +1728,10 @@ class Generator32(ExGen):
                Vaj.OuterLabia.NotList(["shy"])
                sTweet += "She lifted up her short skirt and he saw that "
                sTweet += "she wasn't wearing panties. "
-               sTweet += "Her " + Vaj.InnerLabia.RandomDescription() + " "
-               sTweet += "peeked out shyly from her " + Vaj.OuterLabia.RandomDescription() + "."
+               sTweet += "Her " + Vaj.InnerLabia.RandomDesc() + " "
+               sTweet += "peeked out shyly from her " + Vaj.OuterLabia.RandomDesc() + "."
                if CoinFlip():
-                    sTweet += " Her " + self.FemBodyParts.Vagina.ShortDescription() + " "
+                    sTweet += " Her " + self.FemBodyParts.Vagina.ShortDesc() + " "
                     sTweet += "was shaved smooth and bare"
                else:
                     sTweet += " Her bush had been carefully trimmed " 
@@ -1742,12 +1742,12 @@ class Generator32(ExGen):
           elif iRand == 3:
                Boobs = self.FemBodyParts.Breasts
                Boobs.AdjExclTagList(["wet","small"])
-               sTweet += "She pulled her " + Boobs.RandomDescription(bCupSize = False) + " " 
+               sTweet += "She pulled her " + Boobs.RandomDesc(bCupSize = False) + " " 
                sTweet += "out of her low-cut blouse. "
                sTweet += "They were " + self.FemBodyParts.Breasts.GetNewAdj() + " " 
                sTweet += "and " + self.FemBodyParts.Breasts.GetNewAdj() + " and "
                sTweet += "gleaming with oil. "
-               sTweet += "She rolled her " + self.FemBodyParts.Breasts.Nipples.RandomDescription() + " "
+               sTweet += "She rolled her " + self.FemBodyParts.Breasts.Nipples.RandomDesc() + " "
                sTweet += "between her fingers.\n\n"
           elif iRand == 4:
                Anus = self.FemBodyParts.Ass.Anus
@@ -1759,7 +1759,7 @@ class Generator32(ExGen):
                               ])
                sTweet += "She bent over in front of him, revealing that "
                sTweet += "she was wearing " + Toy.GetWord() + " "
-               sTweet += "in her " + Anus.RandomDescription() + ".\n\n"
+               sTweet += "in her " + Anus.RandomDesc() + ".\n\n"
 
           sTweet += "'" + Events.GetWord() + ", baby,' she said."
           
@@ -1820,8 +1820,8 @@ class Generator33(ExGen):
           sTweet = "\"I own you now,\" he said to " + sHerName + ". "
           sTweet += "\"Your " + sMouthPhrase + " " + sMouthOwnVerb + " to me now. "
           sTweet += "So do your " + self.FemBodyParts.Breasts.GetNewAdj() + " " + WordList(["tits","boobs","titties","breasts","melons"]).GetWord() + " "
-          sTweet += "and the " + self.FemBodyParts.Vagina.InnerLabia.RandomDescription() + " of your " + VagNames.GetWord() + ". "
-          sTweet += "Even your " + self.FemBodyParts.Ass.RandomDescription() + " is mine now to do with as I please.\"\n\n"
+          sTweet += "and the " + self.FemBodyParts.Vagina.InnerLabia.RandomDesc() + " of your " + VagNames.GetWord() + ". "
+          sTweet += "Even your " + self.FemBodyParts.Ass.RandomDesc() + " is mine now to do with as I please.\"\n\n"
           
           if CoinFlip():
                sTweet += "\"Ooh, yes " + WordList(['master','daddy','sir']).GetWord() + "!\" said " + sHerName + ". "
@@ -1882,7 +1882,7 @@ class Generator34(ExGen):
                                ]).GetWord()
 
           if CoinFlip() and CoinFlip():
-               sHole = self.FemBodyParts.Ass.Anus.ShortDescription(NotList = HoleNotList)
+               sHole = self.FemBodyParts.Ass.Anus.ShortDesc(NotList = HoleNotList)
           else:       
                sHole = mainmisc.VaginaSlang().GetWord()
           
@@ -1911,13 +1911,13 @@ class Generator35(ExGen):
           
           sTweet = "'Oh " + sHisName + ",' " + self.FemaleName.FirstName() + " said to him. They were sitting together " + Location.NamePrep + ". 'I love you so much. I just want to be with you and make you happy. Just tell me how,' she said, giving him a peck on the lips.\n\n"
           if iRand == 1:
-               sTweet += "'I want to rub my " + self.MaleBodyParts.Penis.ShortDescription() + " on your " + self.FemBodyParts.Breasts.RandomDescription(bLongDesc = False) + "', he said."
+               sTweet += "'I want to rub my " + self.MaleBodyParts.Penis.ShortDesc() + " on your " + self.FemBodyParts.Breasts.RandomDesc(bLongDesc = False) + "', he said."
           elif iRand == 2:
-               sTweet += "'I want to put my finger in your " + self.FemBodyParts.Ass.Anus.ShortDescription() + ",' he said."
+               sTweet += "'I want to put my finger in your " + self.FemBodyParts.Ass.Anus.ShortDesc() + ",' he said."
           elif iRand == 3:
-               sTweet += "'I want to put my " + self.MaleBodyParts.Penis.Testicles.ShortDescription() + " in your mouth,' he said."
+               sTweet += "'I want to put my " + self.MaleBodyParts.Penis.Testicles.ShortDesc() + " in your mouth,' he said."
           elif iRand == 4:
-               sTweet += "'I want to fist your " + self.FemBodyParts.Vagina.MediumDescription() + ",' he said."
+               sTweet += "'I want to fist your " + self.FemBodyParts.Vagina.MediumDesc() + ",' he said."
           elif iRand == 5:
                sActs = WordList(["throat fuck","finger bang","tea bag","titty-fuck","bang","have sex with","butt-fuck",
                                      "ass-fuck","impregnate","fist","creampie"]).GetWord()
@@ -1936,7 +1936,7 @@ class Generator35(ExGen):
                                      "you to get your clit pierced","to fist your poop-chute"]).GetWord()
                sTweet += "'I want " + sFilthyAct + ",' he said."
           else:
-               sTweet += "'I want you to lick my " + self.FemBodyParts.Ass.Anus.ShortDescription() + ",' he said."
+               sTweet += "'I want you to lick my " + self.FemBodyParts.Ass.Anus.ShortDesc() + ",' he said."
           
           return sTweet
           
@@ -1959,7 +1959,7 @@ class Generator36(ExGen):
           Feast.append("her " + self.FemBodyParts.GetNewAdj(NotList = ["womanly"]) + " " + self.FemBodyParts.GetNoun() + " was covered with fruits and berries")
           Feast.append("her navel was a goblet brimming with liquor") 
           Feast.append("her full, " + self.FemBodyParts.Breasts.GetNewAdj(NotList = ["full"]) + " " + self.FemBodyParts.Breasts.GetNoun() + " were topped with whip cream")
-          Feast.append("the inside of her " + self.FemBodyParts.Thighs.ShortDescription() + " were glazed with chocolate")
+          Feast.append("the inside of her " + self.FemBodyParts.Thighs.ShortDesc() + " were glazed with chocolate")
           Feast.append("her " + self.FemBodyParts.Vagina.OuterLabia.GetNoun() + " gleamed with sticky honey")
                
           sFeast = ""
@@ -1971,7 +1971,7 @@ class Generator36(ExGen):
           else: 
                sFeast = "A "
                     
-          sTweet += sFeast + "single, ripe strawberry was stuffed in her " + self.FemBodyParts.Vagina.MediumDescription() + ". "
+          sTweet += sFeast + "single, ripe strawberry was stuffed in her " + self.FemBodyParts.Vagina.MediumDesc() + ". "
           sTweet += "'Gentlemen,' said the " + self.WealthyMan.GetPerson() + ", 'Let's feast!'\n\n"
           sTweet += "'" + self.Exclamation.GetWord().capitalize() + "' thought " + self.MaleName.FirstName() + ", 'That's my " + self.FFWB.GetPerson() + "!'"
           
@@ -2173,7 +2173,7 @@ class Generator38(ExGen):
           
                sTweet = sBirthdayName + " entered the bedroom. " + sGiverName + " was lying on the bed wearing nothing "
                sTweet += "but " + WordList(["a leather corset","a jeweled butt-plug","a red garter around her thigh", 
-                                            "crotchless panties", clothes.Heels().FloweryDescription()]).GetWord() + ". His gaze lingered on "
+                                            "crotchless panties", clothes.Heels().FloweryDesc()]).GetWord() + ". His gaze lingered on "
                
                sTweet += Woman1.DescRandomNakedParts(iNum = 4, bLongDesc = True, bPussy = True, bAss = True, 
                                                      sPossessive = "her", sDivideChar = ";")
@@ -2188,7 +2188,7 @@ class Generator38(ExGen):
                sTweet = sBirthdayName + " entered the bedroom. " + sGiverName + " was wearing nothing "
                sTweet += "but " + WordList(["a cowboy hat","a leather jacket","a cock ring","a bowtie",
                                                   "a pair of cowboy boots", "a leather body harness"]).GetWord() + " "
-               sTweet += "and his " + Man1.RandomDescription() + " gleamed with oil. Her gazed lingered on "
+               sTweet += "and his " + Man1.RandomDesc() + " gleamed with oil. Her gazed lingered on "
                
                sTweet += Man1.DescRandomNakedParts(iNum = 4, bAss = True, bPenis = True,
                                                    sPossessive = "his", sDivideChar = ";")
@@ -2210,7 +2210,7 @@ class Generator38(ExGen):
                sTweet += "stepped thru the bathroom door. " 
                sTweet += "He opened his robe to reveal his naked body. "
                sTweet += "His strapping chest was " + Man2.Chest.GetNewAdj(NotList = ["strapping"]) + " "
-               sTweet += "and his " + Man2.Penis.ShortDescription(bAddLen = True) + " " 
+               sTweet += "and his " + Man2.Penis.ShortDesc(bAddLen = True) + " " 
                sTweet += "was " + Man2.Penis.GetNewAdj() + " " 
                sTweet += "and " + Man2.Penis.GetNewAdj() + ".\n\n"
                
@@ -2242,26 +2242,26 @@ class Generator39(ExGen):
           
           sTweet += sHerName + " " + Location.RemoveFemaleClothing() + ". " 
           sTweet += sHisName + " bent her over " + Location.BentOver + ". " 
-          sTweet += "His " + Penis.ShortDescription() + " " 
+          sTweet += "His " + Penis.ShortDesc() + " " 
           sTweet += "was " + self.MaleBodyParts.Penis.GetNewAdj() + " " 
           sTweet += "and fully erect. "
 
           if CoinFlip():
-               sTweet += "He spread her " + self.FemBodyParts.Ass.MediumDescription() + " " 
+               sTweet += "He spread her " + self.FemBodyParts.Ass.MediumDesc() + " " 
                sTweet += "open.\n\n" 
                sTweet += "'But " + sHisName + ",' " 
                sTweet += "she " + self.VMoan.Past() + ", "
-               sTweet += "as he carefully eased his " + Penis.MediumDescription() + " into "
-               sTweet += "her " + self.FemBodyParts.Ass.Anus.RandomDescription(bShortDesc = False) + ", "
+               sTweet += "as he carefully eased his " + Penis.MediumDesc() + " into "
+               sTweet += "her " + self.FemBodyParts.Ass.Anus.RandomDesc(bShortDesc = False) + ", "
                sTweet += "'" + Location.HurryReason + "!'\n\n"
 
           else:
-               sTweet += "He spread her " + self.FemBodyParts.Legs.MediumDescription() + ".\n\n"
+               sTweet += "He spread her " + self.FemBodyParts.Legs.MediumDesc() + ".\n\n"
                sTweet += "'But " + sHisName + ",' " 
                sTweet += "she " + self.VMoan.Past() + ", "
                sTweet += "as he eased all " + str(randint(5,13)) + " inches of " 
-               sTweet += "his " + Penis.MediumDescription() + " " 
-               sTweet += "inside her " + self.FemBodyParts.Vagina.InnerVag.MediumDescription() + ", "
+               sTweet += "his " + Penis.MediumDesc() + " " 
+               sTweet += "inside her " + self.FemBodyParts.Vagina.InnerVag.MediumDesc() + ", "
                sTweet += "'" + Location.HurryReason + "!'\n\n"
 
           sTweet += "'Don't worry, baby,' he said. "
@@ -2272,24 +2272,24 @@ class Generator39(ExGen):
                Penis2 = bodyparts.Penis()
                if CoinFlip():
                     sTweet += self.MaleName.FirstName() + " watched from his hiding place. " 
-                    sTweet += "His " + self.MaleWardrobe.GetTrousers().RandomDescription(bLongDesc = False) + " were unzipped and "
-                    sTweet += "he was stroking his " + Penis2.MediumDescription() + " "
+                    sTweet += "His " + self.MaleWardrobe.GetTrousers().RandomDesc(bLongDesc = False) + " were unzipped and "
+                    sTweet += "he was stroking his " + Penis2.MediumDesc() + " "
                     sTweet += sExciteAdv + "."
                else:
                     sTweet += self.MaleName.FirstName() + " watched through the camera. " 
-                    sTweet += "He was stroking his " + Penis2.MediumDescription() + " "
+                    sTweet += "He was stroking his " + Penis2.MediumDesc() + " "
                     sTweet += sExciteAdv + "."
           else:
                #Woman watching
                Vagina2 = bodyparts.Vagina()
                if CoinFlip():
                     sTweet += self.FemaleName.FirstName() + " watched from her hiding place. " 
-                    sTweet += "Her hands were down her " + self.FemWardrobe.Panties.RandomDescription(bLongDesc = False) + " and "
-                    sTweet += "she was frigging her " + Vagina2.ShortDescription() + " "
+                    sTweet += "Her hands were down her " + self.FemWardrobe.Panties.RandomDesc(bLongDesc = False) + " and "
+                    sTweet += "she was frigging her " + Vagina2.ShortDesc() + " "
                     sTweet += sExciteAdv + "."
                else:
                     sTweet += self.FemaleName.FirstName() + " watched through the camera. " 
-                    sTweet += "She was frigging her " + Vagina2.ShortDescription() + " "
+                    sTweet += "She was frigging her " + Vagina2.ShortDesc() + " "
                     sTweet += sExciteAdv + "."
                
           return sTweet
@@ -2332,15 +2332,15 @@ class Generator40(ExGen):
                
           sExposed = ""
           if CoinFlip():
-               sExposed = self.FemBodyParts.Vagina.ShortDescription(NotList = ["exposed"])
+               sExposed = self.FemBodyParts.Vagina.ShortDesc(NotList = ["exposed"])
           else:
-               sExposed = self.FemBodyParts.Vagina.OuterLabia.ShortDescription(NotList = ["exposed"])
+               sExposed = self.FemBodyParts.Vagina.OuterLabia.ShortDesc(NotList = ["exposed"])
           
           sTweet = sSceneStart + " "
           if not Location.FemaleBottomClothing == "": 
                sTweet += sHisName + " slipped " + sHerName + "'s " 
                sTweet += Location.FemaleBottomClothing + " down "
-               sTweet += "over her " + self.FemBodyParts.Hips.RandomDescription(bShortDesc = True) + ". "
+               sTweet += "over her " + self.FemBodyParts.Hips.RandomDesc(bShortDesc = True) + ". "
           else:
                sTweet += sHerName + " was already naked and wet for " + sHisName + ". "
           sTweet += "She sat down " + Location.SittingOn + " "
@@ -2352,7 +2352,7 @@ class Generator40(ExGen):
           sTweet += "I want you to " + VerbFill.GetWord() + " me "
           sTweet += "with your big, " + self.MaleBodyParts.Penis.GetNewAdj(NotList = ["big"]) + " " 
           sTweet += sMaleJob + "'s " 
-          sTweet += self.MaleBodyParts.Penis.ShortDescription(bAddLen = True) + "!'"
+          sTweet += self.MaleBodyParts.Penis.ShortDesc(bAddLen = True) + "!'"
           
           return sTweet
           
@@ -2417,25 +2417,25 @@ class Generator42(ExGen):
           Location = locations.LocationSelector().Location()
           
           if CoinFlip():
-               sTweet = "'Oh " + sHerName + "', he sighed as he held her in his " + self.MaleBodyParts.Arms.GetNewAdj() + " " + self.MaleBodyParts.Arms.GetNoun() + " " + Location.NamePrep + ", 'I never want this moment to end. I want to stare into your " + self.FemBodyParts.Eyes.MediumDescription() + " and "
+               sTweet = "'Oh " + sHerName + "', he sighed as he held her in his " + self.MaleBodyParts.Arms.GetNewAdj() + " " + self.MaleBodyParts.Arms.GetNoun() + " " + Location.NamePrep + ", 'I never want this moment to end. I want to stare into your " + self.FemBodyParts.Eyes.MediumDesc() + " and "
                
                iRand = randint(1,3)
                if iRand == 1:
-                    sTweet += "kiss your " + self.FemBodyParts.Breasts.MediumDescription() 
+                    sTweet += "kiss your " + self.FemBodyParts.Breasts.MediumDesc() 
                elif iRand == 2:
-                    sTweet += "kiss your " + self.FemBodyParts.Lips.MediumDescription()
+                    sTweet += "kiss your " + self.FemBodyParts.Lips.MediumDesc()
                else:
-                    sTweet += "kiss you all over your " + self.FemBodyParts.Skin.MediumDescription()
+                    sTweet += "kiss you all over your " + self.FemBodyParts.Skin.MediumDesc()
                
                sTweet += " forever. I want to " + self.VSexActByMale.Present(NotList = ['jerk off']) + " you all night long.'"
           
           else:
-               sTweet = "'Oh " + sHisName + "', she sighed as he held her in his " + self.MaleBodyParts.Arms.GetNewAdj() + " " + self.MaleBodyParts.Arms.GetNoun() + " " + Location.NamePrep + ", 'I never want this moment to end. I want to stare into your " + self.MaleBodyParts.Eyes.MediumDescription() + " and "
+               sTweet = "'Oh " + sHisName + "', she sighed as he held her in his " + self.MaleBodyParts.Arms.GetNewAdj() + " " + self.MaleBodyParts.Arms.GetNoun() + " " + Location.NamePrep + ", 'I never want this moment to end. I want to stare into your " + self.MaleBodyParts.Eyes.MediumDesc() + " and "
                
                if CoinFlip():
-                    sTweet += "kiss your " + self.MaleBodyParts.Jaw.MediumDescription() 
+                    sTweet += "kiss your " + self.MaleBodyParts.Jaw.MediumDesc() 
                else:
-                    sTweet += "put my head against your " + self.MaleBodyParts.Chest.MediumDescription()
+                    sTweet += "put my head against your " + self.MaleBodyParts.Chest.MediumDesc()
                
                sTweet += " forever. I want to " + self.VSexActByFemale.Present() + " you all night long.'"
           
@@ -2462,9 +2462,9 @@ class Generator43(ExGen):
           elif iRand == 2:
                sHole = ""
                if CoinFlip():
-                    sHole = self.FemBodyParts.Vagina.ShortDescription()
+                    sHole = self.FemBodyParts.Vagina.ShortDesc()
                else:
-                    sHole = self.FemBodyParts.Ass.Anus.ShortDescription()
+                    sHole = self.FemBodyParts.Ass.Anus.ShortDesc()
                sTweet += " 'Besides, her " + sHole + " smells like " + WordList(["fish", "garlic", "pickles", "vinegar", "sour milk", "spinach"]).GetWord() + ".'"
           elif iRand == 3:
                sHole = self.FemBodyParts.GetRandomHole(bIncludeMouth = False, bLongDesc = False, bShortDesc = True)
@@ -2472,7 +2472,7 @@ class Generator43(ExGen):
           elif iRand == 4:
                sTweet += "\n\n'Good,' she said. 'Anyway, I'll bet she doesn't let you " + self.VSexActByMale.Present() + " her like I do.'"
           elif iRand == 5:
-               sTweet += " 'Do you think I'd buy a solid gold butt plug for anyone else's " + self.FemBodyParts.Ass.Anus.MediumDescription() + " but yours?'"
+               sTweet += " 'Do you think I'd buy a solid gold butt plug for anyone else's " + self.FemBodyParts.Ass.Anus.MediumDesc() + " but yours?'"
           else:
                sTweet += " 'She means nothing to me. She's only my " + self.FemaleSO.GetPerson() + ".'"
                
@@ -2499,10 +2499,10 @@ class Generator44(ExGen):
           if CoinFlip() and CoinFlip():
           #do breasts
                if CoinFlip():
-                    sTweet += "He slid one strap of her " + DressAdj + " " + DressColor + " dress off her shoulder. Then he boldly pulled out one of her " + Breasts.RandomDescription() + ". He squeezed it " + WordList(["gently", "tenderly", "delicately", "softly", "lovingly"]).GetWord() 
+                    sTweet += "He slid one strap of her " + DressAdj + " " + DressColor + " dress off her shoulder. Then he boldly pulled out one of her " + Breasts.RandomDesc() + ". He squeezed it " + WordList(["gently", "tenderly", "delicately", "softly", "lovingly"]).GetWord() 
                else:
-                    sTweet += "He grabbed the top of her strapless " + DressColor + " gown and tugged it down, revealing her " + Breasts.RandomDescription() + ". He cupped them with his hands and squeezed them " + WordList(["gently", "tenderly", "delicately", "softly", "lovingly"]).GetWord() 
-               sTweet += ". Then he began to " + WordList(["suck", "lick", "kiss"]).GetWord() + " her " + Breasts.Nipples.RandomDescription() + "."
+                    sTweet += "He grabbed the top of her strapless " + DressColor + " gown and tugged it down, revealing her " + Breasts.RandomDesc() + ". He cupped them with his hands and squeezed them " + WordList(["gently", "tenderly", "delicately", "softly", "lovingly"]).GetWord() 
+               sTweet += ". Then he began to " + WordList(["suck", "lick", "kiss"]).GetWord() + " her " + Breasts.Nipples.RandomDesc() + "."
                     
           else:
           #do ass
@@ -2510,19 +2510,19 @@ class Generator44(ExGen):
                     sTweet += "She grinned wickedly and spun around. "
                else:
                     sTweet += "'Right answer', she said, turning around. "
-               sTweet += "She lifted up the hem of her " + DressAdj + " " + DressColor + " dress, showing him her " + Ass.RandomDescription() + " and " 
+               sTweet += "She lifted up the hem of her " + DressAdj + " " + DressColor + " dress, showing him her " + Ass.RandomDesc() + " and " 
                if CoinFlip():
-                    sTweet += Vagina.RandomDescription()
+                    sTweet += Vagina.RandomDesc()
                else:
-                    sTweet += Vagina.OuterLabia.RandomDescription()
+                    sTweet += Vagina.OuterLabia.RandomDesc()
                sTweet += ".\n\n"
                
                sTweet += WordList(["'Now remember,' she said, 'Just the tip.'", 
-                                        "'Put your finger in my " + Ass.Anus.ShortDescription() + ",' she said.",
-                                        "'Do you want to do me in my " + Vagina.ShortDescription() + " or my " + Ass.Anus.ShortDescription() + "?' she asked.",
+                                        "'Put your finger in my " + Ass.Anus.ShortDesc() + ",' she said.",
+                                        "'Do you want to do me in my " + Vagina.ShortDesc() + " or my " + Ass.Anus.ShortDesc() + "?' she asked.",
                                         "'Pick a hole, daddy,' she said.", 
-                                        "'My " + Vagina.ShortDescription() + " is yours, daddy,' she said.",
-                                        "'My " + Ass.Anus.ShortDescription() + " is yours, daddy,' she said.",
+                                        "'My " + Vagina.ShortDesc() + " is yours, daddy,' she said.",
+                                        "'My " + Ass.Anus.ShortDesc() + " is yours, daddy,' she said.",
                                         "'Remember, no butt stuff', she said.", 
                                         "'Take me hard, daddy,' she said.",
                                         "'I want you to pop my anal cherry, baby,' she said.",
@@ -2531,13 +2531,13 @@ class Generator44(ExGen):
                                         "'Spank me hard, I've been very naughty, daddy!' she said.",
                                         "'I like it rough, daddy,' she purred.",
                                         "'Lube me up, daddy,' she purred.",
-                                        "'Cum fill me with your " + self.Semen.RandomDescription() + ",' she moaned.",
-                                        "'Come lube up my " + Ass.Anus.ShortDescription() + ",' she said.",
+                                        "'Cum fill me with your " + self.Semen.RandomDesc() + ",' she moaned.",
+                                        "'Come lube up my " + Ass.Anus.ShortDesc() + ",' she said.",
                                         "'All my holes are yours, daddy,' she purred.",
-                                        "'Now I want you to stuff me with that big " + self.MaleBodyParts.Penis.ShortDescription() + ",' she said.", 
+                                        "'Now I want you to stuff me with that big " + self.MaleBodyParts.Penis.ShortDesc() + ",' she said.", 
                                         "'The trick is not to wear anything underneath,' she said.", 
                                         "'I need you to bang me like a screen door, baby,' she said.",
-                                        "'I even shaved my " + Vagina.ShortDescription() + " for you, daddy,' she said."
+                                        "'I even shaved my " + Vagina.ShortDesc() + " for you, daddy,' she said."
                                      ]).GetWord()
                
           
@@ -2569,9 +2569,9 @@ class Generator45(ExGen):
                if CoinFlip():
                     sTweet += "'Why don't you snuggle it against my " + self.FemBodyParts.Ass.GetNoun() + ",' she suggested."
                else:
-                    sTweet += "'I'll use my mouth,' she said. Then she scooted down and began to " + self.VOralMale.Present() + " his " + self.MaleBodyParts.Penis.RandomDescription(bShortDesc = True) + "."
+                    sTweet += "'I'll use my mouth,' she said. Then she scooted down and began to " + self.VOralMale.Present() + " his " + self.MaleBodyParts.Penis.RandomDesc(bShortDesc = True) + "."
           else:
-                    sTweet += "'Why don't you put it in here?' she asked. Then " + sHisName + " felt her hands guiding his " + self.MaleBodyParts.Penis.MediumDescription() + " into her " + self.FemBodyParts.GetRandomHole(bIncludeMouth = False) + "."
+                    sTweet += "'Why don't you put it in here?' she asked. Then " + sHisName + " felt her hands guiding his " + self.MaleBodyParts.Penis.MediumDesc() + " into her " + self.FemBodyParts.GetRandomHole(bIncludeMouth = False) + "."
                
           return sTweet
 
@@ -2592,7 +2592,7 @@ class Generator46(ExGen):
           sTweet = sHisName + " found " + sHerName + " "
           sTweet += "lying on her bed in her nightgown with " 
           sTweet += "her nose in a book and one hand down " 
-          sTweet += "her " + clothes.Panties().RandomDescription(bLongDesc = False) + ". " 
+          sTweet += "her " + clothes.Panties().RandomDesc(bLongDesc = False) + ". " 
           sTweet += "She was frigging her " + self.FemBodyParts.GetRandomHole(bIncludeMouth = False, bShortDesc = True) + " "
           sTweet += "with urgent fingers.\n\n"
           sTweet += "'What are you reading?' he asked.\n\n"
@@ -2625,11 +2625,11 @@ class Generator47(ExGen):
           sHisName = self.MaleName.FirstName()
           sHerName = self.FemaleName.FirstName()
           
-          sTweet = sHerName + " felt the " + Penis.Head.RandomDescription(bShortDesc = True) + " of " + sHisName + "'s " + Penis.ShortDescription() + " against the tight ring of her " + Anus.ShortDescription(NotList = ["anus"]) + ". 'Oh, go slowly!' she " + self.VMoan.Past() + ".\n\n"
-          sTweet += WordList(["Gently", "Tenderly", "Carefully", "Lovingly", "Patiently"]).GetWord() + " but " + WordList(["firmly", "forcefully", "powerfully", "unwaveringly", "decisively"]).GetWord() + ", applying lots of lube, " + sHisName + " eased his " + Penis.RandomDescription(bAddLen = True) + " into her " + Anus.RandomDescription(bLongDesc = False) + ". "
+          sTweet = sHerName + " felt the " + Penis.Head.RandomDesc(bShortDesc = True) + " of " + sHisName + "'s " + Penis.ShortDesc() + " against the tight ring of her " + Anus.ShortDesc(NotList = ["anus"]) + ". 'Oh, go slowly!' she " + self.VMoan.Past() + ".\n\n"
+          sTweet += WordList(["Gently", "Tenderly", "Carefully", "Lovingly", "Patiently"]).GetWord() + " but " + WordList(["firmly", "forcefully", "powerfully", "unwaveringly", "decisively"]).GetWord() + ", applying lots of lube, " + sHisName + " eased his " + Penis.RandomDesc(bAddLen = True) + " into her " + Anus.RandomDesc(bLongDesc = False) + ". "
           sTweet += " At last he was " + WordList(["balls-deep", "buried to the hilt", 
-                                                             "up to his " + Penis.Testicles.RandomDescription(bShortDesc = True)]).GetWord() + " "
-          sTweet += "inside her " + Ass.RandomDescription(bShortDesc = True, NotList = ['behind','buns','buttocks','cheeks']) + ". "
+                                                             "up to his " + Penis.Testicles.RandomDesc(bShortDesc = True)]).GetWord() + " "
+          sTweet += "inside her " + Ass.RandomDesc(bShortDesc = True, NotList = ['behind','buns','buttocks','cheeks']) + ". "
           sTweet += "'" + self.Exclamation.GetWord(bHappy = True, bExMk = False).capitalize() + ", " 
           sTweet += self.TermsOfEndearment.GetWord() + ", you're so tight!' "
           sTweet += "he " + self.VMoan.Past(NotList = ['purr','sigh','wail']) + ".\n\n"
@@ -2656,13 +2656,13 @@ class Generator47(ExGen):
                                                'Over fifty','At least sixty-nine','Over a hundred',
                                                'Over two hundred','Dozens and dozens of']).GetWord() + " "
                sTweet += "men have " + sFuck1 + " "
-               sTweet += "my " + self.FemBodyParts.Vagina.ShortDescription() + ", " 
+               sTweet += "my " + self.FemBodyParts.Vagina.ShortDesc() + ", " 
                sTweet += self.TermsOfEndearment.GetWord() + ",' she said. "
-               sTweet += "'But you're the only one I'll ever let " + sFuck2 + " my " + Anus.ShortDescription() + "!'"
+               sTweet += "'But you're the only one I'll ever let " + sFuck2 + " my " + Anus.ShortDesc() + "!'"
           elif iRand == 4:
                sTweet += sHerName + " " + WordList(["squeezed","clenched","contracted","constricted"]).GetWord() + " "
                sTweet += "her " + WordList(["sphincter", "bowels", "anus", "rectum", "asshole"]).GetWord() + " "
-               sTweet += "tightly around his " + Penis.ShortDescription() + ". " 
+               sTweet += "tightly around his " + Penis.ShortDesc() + ". " 
                sTweet += sHisName + " " + WordList(['gasped','moaned']).GetWord() + " aloud. "
                sTweet += "'That means \"I love you\" " + self.TermsOfEndearment.GetWord() + ",' she said to him."
           elif iRand == 5:
@@ -2767,42 +2767,42 @@ class Generator50(ExGen):
           sText2 = ""
           sText3 = ""
                
-          sText1 = AddArticles(clothes.Bikini().FloweryDescription(TagLists = TagLists(noun_req = ["skimpy"]))) + " and matching thong."
+          sText1 = AddArticles(clothes.Bikini().FloweryDesc(TagLists = TagLists(noun_req = ["skimpy"]))) + " and matching thong."
           sText2 = "She slipped the thong down over her hips exposing "
           sText2 += "her " + WordList(["bald","hairless","shaved"]).GetWord() + " "
-          sText2 += Vag.ShortDescription() + ". "
+          sText2 += Vag.ShortDesc() + ". "
           sText2 += "Her " 
-          sText2 += WordList([Vag.OuterLabia.RandomDescription(NotList = ['mons pubis','sleave']) + " were pierced with shiny silver rings",
-                                   Vag.InnerLabia.RandomDescription(NotList = ['sleave']) + " were pierced with shiny silver rings",
-                                   Vag.Clitoris.RandomDescription() + " was pierced with a shiny silver bar"]).GetWord()
+          sText2 += WordList([Vag.OuterLabia.RandomDesc(NotList = ['mons pubis','sleave']) + " were pierced with shiny silver rings",
+                                   Vag.InnerLabia.RandomDesc(NotList = ['sleave']) + " were pierced with shiny silver rings",
+                                   Vag.Clitoris.RandomDesc() + " was pierced with a shiny silver bar"]).GetWord()
           sText3 = 'this'
           Teases.append([sText1, sText2, sText3])     
           #---------
-          sText1 = AddArticles(clothes.Bikini().FloweryDescription(TagLists = TagLists(noun_req = ["skimpy"]))) + " and matching thong."
-          sText2 = "She turned her back to him, showing him her " + Ass.RandomDescription() + ". "
+          sText1 = AddArticles(clothes.Bikini().FloweryDesc(TagLists = TagLists(noun_req = ["skimpy"]))) + " and matching thong."
+          sText2 = "She turned her back to him, showing him her " + Ass.RandomDesc() + ". "
           sText2 += "Then she yanked her thong down, bent forward and "
           sText2 += "spread her " + WordList(["buns","buttocks","cheeks"]).GetWord() + " apart. "
           sText2 += "He saw that she had " 
           sText2 += WordList(["the word '" + sHisName + "'","a heart","the words 'FUCK HOLE'","the words 'DADDY'S HOLE'"]).GetWord() + " "
-          sText2 += "tattooed around her " + Ass.Anus.ShortDescription(NotList = ["bowels"])
+          sText2 += "tattooed around her " + Ass.Anus.ShortDesc(NotList = ["bowels"])
           sText3 = 'this'
           Teases.append([sText1, sText2, sText3])     
           #---------
           sText1 = "a little " + DressColor.GetWord() + " dress which hugged her every curve."
           sText2 = "She pulled the hem of her dress up. She was not wearing panties. "
-          sText2 += WordList(["Her thatch of dark pubes had been shaved into an arrow pointing straight at her " + Vag.RandomDescription(),
-                                  "A small silver stud winked at him from between her " + Vag.InnerLabia.RandomDescription(NotList = ['sleave']),
-                                   "The words 'FUCK ME' had been tattooed directly above her " + Vag.RandomDescription()]).GetWord()
+          sText2 += WordList(["Her thatch of dark pubes had been shaved into an arrow pointing straight at her " + Vag.RandomDesc(),
+                                  "A small silver stud winked at him from between her " + Vag.InnerLabia.RandomDesc(NotList = ['sleave']),
+                                   "The words 'FUCK ME' had been tattooed directly above her " + Vag.RandomDesc()]).GetWord()
           sText3 = 'this'
           Teases.append([sText1, sText2, sText3])                              
           #---------
           sText1 = "a little " + DressColor.GetWord() + " dress which hugged her every curve."
           sText2 = "She turned away from him and pulled the hem of her dress up, revealing her " + WordList(["bare","naked"]).GetWord() + " "
-          sText2 += Ass.RandomDescription(NotList = ["buns","buttocks","cheeks"]) + ". "
+          sText2 += Ass.RandomDesc(NotList = ["buns","buttocks","cheeks"]) + ". "
           sText2 += "Then she bent forward and spread her " + WordList(["buns","buttocks","cheeks"]).GetWord() + " apart. "
           sText2 += "He saw that " 
           sText2 += WordList(["the word '" + sHisName + "'","a heart","the words 'FUCK HOLE'","the words 'DADDY'S HOLE'"]).GetWord() + " "
-          sText2 += "had been tattooed around her " + Ass.Anus.ShortDescription(NotList = ["bowels"])
+          sText2 += "had been tattooed around her " + Ass.Anus.ShortDesc(NotList = ["bowels"])
           sText3 = 'this'
           Teases.append([sText1, sText2, sText3])     
           #---------
@@ -2810,7 +2810,7 @@ class Generator50(ExGen):
           sText1 += "and a VERY tight pair of cut-off jean shorts."
           sText2 = "She pulled her top down, revealing a " + BreastSizeAdj1.GetWord() + " pair of " 
           sText2 += "surgically-enhanced " + BreastSizeAdj2.GetWord() + " " 
-          sText2 += Breasts.ShortDescription(NotList = ["buds","bust","rack"]) 
+          sText2 += Breasts.ShortDesc(NotList = ["buds","bust","rack"]) 
           if CoinFlip():
                sText2 += ". "
                sText2 += WordList(["Large","Little"]).GetWord() + " " + WordList(["gold","silver","bronze"]).GetWord() + " "
@@ -2822,7 +2822,7 @@ class Generator50(ExGen):
           sText1 += "and a skimpy pair of Daisy Dukes."
           sText2 = "She pulled up her t-shirt, flashing a " + BreastSizeAdj1.GetWord() + " pair of " 
           sText2 += "surgically-enhanced " + BreastSizeAdj2.GetWord() + " " 
-          sText2 += Breasts.ShortDescription(NotList = ["buds","bust","rack"]) 
+          sText2 += Breasts.ShortDesc(NotList = ["buds","bust","rack"]) 
           if CoinFlip():
                sText2 += ". "
                sText2 += WordList(["Large","Little"]).GetWord() + " " + WordList(["gold","silver","bronze"]).GetWord() + " "
@@ -2833,7 +2833,7 @@ class Generator50(ExGen):
           sText1 = "a tight " + DressColor.GetWord() + " t-shirt "
           sText1 += "and a VERY tight pair of cut-off jean shorts."
           sText2 = "She unzipped her shorts and pulled out "
-          sText2 += "a " + self.MaleBodyParts.Penis.FloweryDescription() 
+          sText2 += "a " + self.MaleBodyParts.Penis.FloweryDesc() 
           sText3 = 'this'
           Teases.append([sText1, sText2, sText3])     
           
@@ -3044,11 +3044,11 @@ class Generator54(ExGen):
           
           sTweet = "'" + self.Exclamation.GetWord(bExMk = False).capitalize() + ", " + sHisName + ",' " + sHerName + " " + self.VMoan.Past() + ". "
           if CoinFlip():
-               sTweet += "'I need you right now. I want you to pull my " + Location.FemaleBottomClothing + " off, spread my " + self.FemBodyParts.Legs.MediumDescription() + " and " + WordList(["fill me", "stuff me", "impale me", "enter me"]).GetWord() + " with your big " + self.MaleBodyParts.Penis.RandomDescription() + ". "
+               sTweet += "'I need you right now. I want you to pull my " + Location.FemaleBottomClothing + " off, spread my " + self.FemBodyParts.Legs.MediumDesc() + " and " + WordList(["fill me", "stuff me", "impale me", "enter me"]).GetWord() + " with your big " + self.MaleBodyParts.Penis.RandomDesc() + ". "
           else:
-               sTweet += "'I need you right now. I want you to pull my " + Location.FemaleBottomClothing + " off, bend me over, spank my " + self.FemBodyParts.Ass.MediumDescription() + ", and then " + WordList(["fill me", "stuff me", "impale me", "enter me"]).GetWord() + " with your big " + self.MaleBodyParts.Penis.RandomDescription() + ". "
+               sTweet += "'I need you right now. I want you to pull my " + Location.FemaleBottomClothing + " off, bend me over, spank my " + self.FemBodyParts.Ass.MediumDesc() + ", and then " + WordList(["fill me", "stuff me", "impale me", "enter me"]).GetWord() + " with your big " + self.MaleBodyParts.Penis.RandomDesc() + ". "
           
-          sTweet += self.VThrust.Present().capitalize() + " my " + self.FemBodyParts.Vagina.RandomDescription() + " until you " + self.VEjac.Present() + " inside it. I need you to fill me with your " + self.Semen.RandomDescription(bShortDesc = True) + ", right here, right now, " + Location.NamePrep + "!'"
+          sTweet += self.VThrust.Present().capitalize() + " my " + self.FemBodyParts.Vagina.RandomDesc() + " until you " + self.VEjac.Present() + " inside it. I need you to fill me with your " + self.Semen.RandomDesc(bShortDesc = True) + ", right here, right now, " + Location.NamePrep + "!'"
           return sTweet
 
 class Generator55(ExGen):
@@ -3143,19 +3143,19 @@ class Generator55(ExGen):
           
           if CoinFlip():
                #penis
-               sTweet += "and his " + self.MaleBodyParts.Penis.FloweryDescription(bAddLen = True)
+               sTweet += "and his " + self.MaleBodyParts.Penis.FloweryDesc(bAddLen = True)
                if CoinFlip():
-                    sTweet += " and the way " + self.Semen.RandomDescription(TagLists = TagLists(noun_excl = ["silly"])) + " " + VDrip.Past() + " from its " + self.MaleBodyParts.Penis.Head.FloweryDescription() 
+                    sTweet += " and the way " + self.Semen.RandomDesc(TagLists = TagLists(noun_excl = ["silly"])) + " " + VDrip.Past() + " from its " + self.MaleBodyParts.Penis.Head.FloweryDesc() 
           elif CoinFlip():
                #testicles
-               sTweet += "and his " + self.MaleBodyParts.Penis.FloweryDescription(bAddLen = True) + " and his "
-               sTweet += self.MaleBodyParts.Penis.Testicles.FloweryDescription()
+               sTweet += "and his " + self.MaleBodyParts.Penis.FloweryDesc(bAddLen = True) + " and his "
+               sTweet += self.MaleBodyParts.Penis.Testicles.FloweryDesc()
           elif CoinFlip():
                #ass
-               sTweet += Fantasies.GetWord(NotList = [sFantasy1,sFantasy2]) + ", and his " + self.MaleBodyParts.Ass.FloweryDescription()
+               sTweet += Fantasies.GetWord(NotList = [sFantasy1,sFantasy2]) + ", and his " + self.MaleBodyParts.Ass.FloweryDesc()
           else:
                #sexing 
-               sTweet += self.MaleBodyParts.Ass.FloweryDescription() + ", "
+               sTweet += self.MaleBodyParts.Ass.FloweryDesc() + ", "
                sTweet += "and the way he " + WordList(["fucked me on the kitchen table",
                                                                "bent me over the billiard table and fucked me",
                                                                "fucked me on top of a grand piano",
@@ -3204,7 +3204,7 @@ class Generator56(ExGen):
                     sTweet += part + "; "
                else:
                     sTweet += "and her " + part + "."
-          sTweet += "\n\nA long arm snaked around and grabbed his " + self.MaleBodyParts.Penis.FloweryDescription() + "."
+          sTweet += "\n\nA long arm snaked around and grabbed his " + self.MaleBodyParts.Penis.FloweryDesc() + "."
           sTweet += "\n\n'I haven't forgotten about you, " + sHerName2 + ",' " + sHisName + " said, turning to the sumptuous " + sHerSkinHair2 + " lying on the other side of him. "
           if CoinFlip():
                sTweet += SceneForeplay.Scene() + "\n\n"
@@ -3253,30 +3253,30 @@ class Generator57(ExGen):
                                "a baseball bat", "my TV remote", "an eggplant", "corn on the cob", "Coke bottle", 
                                "a plunger", "a crucifix", "a toothpaste tube", "a bowling pin", "a broomstick",
                                "my flute", "my clarinet", "my giant foam finger"]).GetWord()
-          sHole = Vag.InnerVag.RandomDescription()
+          sHole = Vag.InnerVag.RandomDesc()
 
           sTweet += sHerName + " flung herself down on the bed. "
           sTweet += "Lifting her hips, she " + WordList(["pulled", "slid"]).GetWord() + " " 
-          sTweet += "down her " + clothes.Panties().RandomDescription(bLongDesc = False) + ". "
+          sTweet += "down her " + clothes.Panties().RandomDesc(bLongDesc = False) + ". "
           sTweet += "Then she began to "
           sTweet += WordList(["gently", "tenderly", "vigorously", "energetically", "ardently", "fervently"]).GetWord() + " "
           sTweet += WordList(["massage", "pleasure", "rub", "caress", "stroke", "stimulate", "masturbate", "fondle", "finger"]).GetWord() + " "
-          sTweet += "her " + Vag.RandomDescription(TagLists = TagLists(noun_excl = ["silly"])) + ". " 
-          sTweet += "She spread apart her " + Vag.OuterLabia.RandomDescription() + " "
-          sTweet += "and gently teased her " + Vag.Clitoris.RandomDescription() + ".\n\n"
+          sTweet += "her " + Vag.RandomDesc(TagLists = TagLists(noun_excl = ["silly"])) + ". " 
+          sTweet += "She spread apart her " + Vag.OuterLabia.RandomDesc() + " "
+          sTweet += "and gently teased her " + Vag.Clitoris.RandomDesc() + ".\n\n"
 
           sTweet += sHerName + " " + WordList(["reached under her pillow", "felt under the covers", "reached behind the night-stand"]).GetWord() + " and found her favorite object. "
           sTweet += "Carefully, she inserted it " 
-          sTweet += "into her " + Vag.InnerVag.RandomDescription(TagLists = TagLists(noun_excl = ["silly"])) + " " 
+          sTweet += "into her " + Vag.InnerVag.RandomDesc(TagLists = TagLists(noun_excl = ["silly"])) + " " 
           sTweet += "and then began to "
           sTweet += WordList(["thrust it forcefully and repeatedly into her " + sHole,
                                    "saw it in and out of her " + sHole, 
                                    "violently penetrate her " + sHole,
                                    "impale her " + sHole + " with it",
                                    "plunge it deep into her " + sHole,
-                                   "use her " + Vag.RandomDescription(bLongDesc = False) + " with it", 
+                                   "use her " + Vag.RandomDesc(bLongDesc = False) + " with it", 
                                    "wantonly stuff her " + sHole + " with it",
-                                   "grind her " + Vag.RandomDescription(bLongDesc = False) + " on it"]).GetWord() + ".\n\n"
+                                   "grind her " + Vag.RandomDesc(bLongDesc = False) + " on it"]).GetWord() + ".\n\n"
           sTweet += "Suddenly, the door flew open and her " 
           if CoinFlip():
                sTweet += WordList(["older brother", "dad", "step-dad", "step-brother", "step-son"]).GetWord() + " walked in.\n\n"
@@ -3341,7 +3341,7 @@ class Generator58(ExGen):
           
           if CoinFlip():
                sTweet = sHerName + " undid " + sHisName + "'s heavy belt buckle and pulled " 
-               sTweet += "his " + self.MaleWardrobe.Jeans.RandomDescription(bLongDesc = False) + " " 
+               sTweet += "his " + self.MaleWardrobe.Jeans.RandomDesc(bLongDesc = False) + " " 
                sTweet += "down his " + WordList(["lean", "bony", "muscular", "narrow", "powerful"]).GetWord() + " hips. "
           else:
                sTweet = sHerName + " unzipped " + sHisName + "'s zipper. "
@@ -3376,7 +3376,7 @@ class Generator59(ExGen):
           sTweet += self.FemaleName.FirstName() + " walked stiffly down the " + WordList(['stairs','steps','hall','sidewalk','street']).GetWord()
           sTweet += ", groaning with every step. \"" + self.Exclamation.GetWord(bExMk = False, bHappy = False).capitalize() + ",\" " 
           sTweet += "she said. \"That's the last time I let " + AddArticles(SmartLower(Man.Desc)) + " " 
-          sTweet += Verbs.GetWord() + " my " + Anus.ShortDescription(NotList = ['fissure']) + "!\""
+          sTweet += Verbs.GetWord() + " my " + Anus.ShortDesc(NotList = ['fissure']) + "!\""
 
           return sTweet
           
@@ -3486,7 +3486,7 @@ class Generator61(ExGen):
                Cock = self.MaleBodyParts.Penis 
                
                sTweet = sHisName + " walked into the bedroom and froze. His " + self.FemaleSO.GetPerson() + " " + sHerName + " "
-               sTweet += "and another man were naked on the bed. She was bouncing up and down on his " + Cock.RandomDescription(bShortDesc = False) + ".\n\n"
+               sTweet += "and another man were naked on the bed. She was bouncing up and down on his " + Cock.RandomDesc(bShortDesc = False) + ".\n\n"
                sTweet += "'My god, " + sHerName + "', " + sHisName + " shouted angrily. 'You and your " + self.MFWB.GetPerson(NotList = MFWBNotList) + "??'"
           elif iRand == 2:
                #Man cheating on woman
@@ -3499,7 +3499,7 @@ class Generator61(ExGen):
                sVerbed = WordList(["rode","pistoned into","fucked","drilled","pounded","bored into","hammered","impaled","plowed","ravished","stuffed"]).GetWord()
                
                sTweet = sHerName + " walked into the bedroom and froze. Her " + self.MaleSO.GetPerson() + " " + sHisName + " "
-               sTweet += "was on the bed between the legs of a naked woman. Her " + Breasts.RandomDescription(bShortDesc = False) + " " 
+               sTweet += "was on the bed between the legs of a naked woman. Her " + Breasts.RandomDesc(bShortDesc = False) + " " 
                sTweet += WordList(['bounced vigorously','flopped about']).GetWord() + " as he " + sVerbed + " her " + WordList(["passionately","deeply"]).GetWord() + ".\n\n"
                sTweet += "'My god, " + sHisName + "', she shouted angrily. 'You and your " + self.FFWB.GetPerson(NotList = FFWBNotList) + "??'"
           elif iRand == 3:
@@ -3513,7 +3513,7 @@ class Generator61(ExGen):
                
                sTweet = sHerName1 + " walked into the bedroom and froze. Her " + self.FemaleSO.GetPerson() + " " + sHerName2 + " "
                sTweet += "was naked on the bed with another woman between her legs. The woman was " 
-               sTweet += "finger-banging her so hard that her " + Breasts.RandomDescription(bShortDesc = False) + " were bouncing up and down as she moaned " + WordList(['passionately','huskily']).GetWord() + ".\n\n"
+               sTweet += "finger-banging her so hard that her " + Breasts.RandomDesc(bShortDesc = False) + " were bouncing up and down as she moaned " + WordList(['passionately','huskily']).GetWord() + ".\n\n"
                sTweet += "'My god, " + sHerName2 + "', " + sHerName1 + " shouted angrily. 'You and your " + self.FFWB.GetPerson(NotList = FFWBNotList) + "??'"
                
           else:
@@ -3529,9 +3529,9 @@ class Generator61(ExGen):
                sVerbing = WordList(['pounding','drilling','slamming','burrowing','plowing']).GetWord()
                
                sTweet = sHisName1 + " walked into the bedroom and froze. His " + self.MaleSO.GetPerson() + " " + sHisName2 + " "
-               sTweet += "was on his knees on the bed, naked. Another man was behind him, his " + Cock.RandomDescription(bShortDesc = False) + " " 
+               sTweet += "was on his knees on the bed, naked. Another man was behind him, his " + Cock.RandomDesc(bShortDesc = False) + " " 
                sTweet += sVerbing + " " + WordList(["passionately","deeply"]).GetWord() + " "
-               sTweet += "between " + sHisName2 + "'s " + Ass.RandomDescription(bShortDesc = False) + " with every thrust.\n\n"
+               sTweet += "between " + sHisName2 + "'s " + Ass.RandomDesc(bShortDesc = False) + " with every thrust.\n\n"
                sTweet += "'My god, " + sHisName2 + "', he shouted angrily. 'You and your " + self.MFWB.GetPerson(NotList = MFWBNotList) + "??'"
 
           return sTweet
@@ -3551,7 +3551,7 @@ class Generator62(ExGen):
           sHisName = self.MaleName.FirstName()
           sHerName = self.FemaleName.FirstName()
           
-          sBottoms = self.FemWardrobe.GetBottom().RandomDescription(bLongDesc = False)
+          sBottoms = self.FemWardrobe.GetBottom().RandomDesc(bLongDesc = False)
           sUndress = WordList(["rip my " + sBottoms + " off","pull my " + sBottoms + " down",]).GetWord()
           #sUndress = WordList(["rip my panties off","pull my panties down","rip my jeans off",
           #                          "peel my jeggings off","pull my yoga pants down","pull my dress up",
@@ -3572,21 +3572,21 @@ class Generator62(ExGen):
           
           sTweet = "'Ohh, " + sHisName + ",' " + sHerName + " " + self.VMoan.Past() + ". "
           if CoinFlip():
-               sTweet += "'I want you so bad. I want you to " + sUndress + ", spread my legs and " + WordList(["fill me","stuff me", "impale me","enter me","pound me","ravish me"]).GetWord() + " with your big " + self.MaleBodyParts.Penis.RandomDescription() + ". "
+               sTweet += "'I want you so bad. I want you to " + sUndress + ", spread my legs and " + WordList(["fill me","stuff me", "impale me","enter me","pound me","ravish me"]).GetWord() + " with your big " + self.MaleBodyParts.Penis.RandomDesc() + ". "
           else:
-               sTweet += "'I want you so bad. I want you to " + sUndress + ", bend me over, spank my " + self.FemBodyParts.Ass.MediumDescription() + ", and then " + WordList(["fill me", "stuff me", "impale me", "enter me"]).GetWord() + " with your big " + self.MaleBodyParts.Penis.RandomDescription() + ". "
+               sTweet += "'I want you so bad. I want you to " + sUndress + ", bend me over, spank my " + self.FemBodyParts.Ass.MediumDesc() + ", and then " + WordList(["fill me", "stuff me", "impale me", "enter me"]).GetWord() + " with your big " + self.MaleBodyParts.Penis.RandomDesc() + ". "
           
-          sTweet += self.VThrust.Present().capitalize() + " my " + self.FemBodyParts.Vagina.RandomDescription()
+          sTweet += self.VThrust.Present().capitalize() + " my " + self.FemBodyParts.Vagina.RandomDesc()
           
           iRand = randint(1,4)
           if iRand == 1:
-                sTweet += " until you " + self.VEjac.Present() + " inside it. Fill me with your " + self.Semen.RandomDescription(bShortDesc = True) + "!'\n\n"
+                sTweet += " until you " + self.VEjac.Present() + " inside it. Fill me with your " + self.Semen.RandomDesc(bShortDesc = True) + "!'\n\n"
           elif iRand == 2:
-               sTweet += ". Then I want you to " + self.VEjac.Present() + " your " + self.Semen.RandomDescription(bShortDesc = True) + " all over my " + self.FemBodyParts.Breasts.RandomDescription() + "!'\n\n"
+               sTweet += ". Then I want you to " + self.VEjac.Present() + " your " + self.Semen.RandomDesc(bShortDesc = True) + " all over my " + self.FemBodyParts.Breasts.RandomDesc() + "!'\n\n"
           elif iRand == 3:
-               sTweet += ". And then I want you to " + self.VThrust.Present() + " my " + self.FemBodyParts.Ass.RandomDescription() + " deep and hard until you " + self.VEjac.Present() + " inside my " + self.FemBodyParts.Ass.Anus.RandomDescription() + "!'\n\n"
+               sTweet += ". And then I want you to " + self.VThrust.Present() + " my " + self.FemBodyParts.Ass.RandomDesc() + " deep and hard until you " + self.VEjac.Present() + " inside my " + self.FemBodyParts.Ass.Anus.RandomDesc() + "!'\n\n"
           else:
-               sTweet += ". Then I want you to " + self.VEjac.Present() + " your " + self.Semen.RandomDescription(bShortDesc = True) + " "
+               sTweet += ". Then I want you to " + self.VEjac.Present() + " your " + self.Semen.RandomDesc(bShortDesc = True) + " "
                sTweet += WordList(["all over my face","in my mouth","all over my naked body","down my throat","in my ass","all over my ass","all over my pussy"]).GetWord() + "!'\n\n"
           
           sTweet += "'Excuse me ma'am,' said " + sHisName + ", 'I'm afraid I'm going to have to ask you to leave " + sRealLocation + ".'"
@@ -4058,7 +4058,7 @@ class Generator65(ExGen):
                                                               "June bug","lovey dovey","peach","peaches-and-cream","pumpkin",
                                                               "turtle dove","wifey"
                                                             ]).GetWord().title() + "?\" he asked, "
-          sTweet += sGerund + " her " + SelectedPart.RandomDescription(bLongDesc = False) + ".\n\n"
+          sTweet += sGerund + " her " + SelectedPart.RandomDesc(bLongDesc = False) + ".\n\n"
           sTweet += "\"" + sSecret + "!\""
 
           return sTweet
@@ -4127,7 +4127,7 @@ class Generator66(ExGen):
           sTweet += "She " + WordList(['was stark naked','was buck naked','was completely naked',
                                               'was in nothing but her birthday suit','wasn\'t wearing a stitch of clothing',
                                               'had no clothes on','was stripped to the skin',
-                                              'was wearing nothing but a pair of ' + clothes.Heels().MediumDescription(),
+                                              'was wearing nothing but a pair of ' + clothes.Heels().MediumDesc(),
                                               'was shamelessly naked']).GetWord() 
           sTweet += ". "
           
@@ -4135,7 +4135,7 @@ class Generator66(ExGen):
           
           if iRand == 1:
                sTweet += "His wide eyes took in every inch of her bare, " + SkinAdjs.GetWord() + " skin, " 
-               sTweet += "from her " + BreastAdjs.GetWord() + " " + WomanTits.ShortDescription() + " "
+               sTweet += "from her " + BreastAdjs.GetWord() + " " + WomanTits.ShortDesc() + " "
                sTweet += "down to her " + LegsAdjs.GetWord() + " legs "
                sTweet += "and the " + WordList(['patch of dark pubes','trim triangle of pubes',
                                                         'thatch of soft pubes','curly pubes', 
@@ -4144,16 +4144,16 @@ class Generator66(ExGen):
           elif iRand == 2:
                sPussyAdj1 = PussyAdjs.GetWord() 
                sTweet += "Her " + AssNPs.GetWord() + " was " + AssAdjs.GetWord() + " "
-               sTweet += "and her " + WomanTits.ShortDescription() + " " + BreastAdjs.GetWord() + ". "
-               sTweet += "Her " + WomanPussy.ShortDescription() + " was " + sPussyAdj1 + " and " + PussyAdjs.GetWord(NotList = [sPussyAdj1]) + ". "
+               sTweet += "and her " + WomanTits.ShortDesc() + " " + BreastAdjs.GetWord() + ". "
+               sTweet += "Her " + WomanPussy.ShortDesc() + " was " + sPussyAdj1 + " and " + PussyAdjs.GetWord(NotList = [sPussyAdj1]) + ". "
                sTweet += "She had steel rings piercing her " + NippAdjs.GetWord() + " nipples. "
           elif iRand == 3:
                sTweet += "He had never seen a woman with such "
-               sTweet += BreastAdjs.GetWord() + " " + WomanTits.ShortDescription() + " "
-               sTweet += "or such " + WomanLegs.MediumDescription() + ". "
-               sTweet += "He could clearly see her " + PussyAdjs.GetWord() + " " + WomanPussy.ShortDescription() + ". "
+               sTweet += BreastAdjs.GetWord() + " " + WomanTits.ShortDesc() + " "
+               sTweet += "or such " + WomanLegs.MediumDesc() + ". "
+               sTweet += "He could clearly see her " + PussyAdjs.GetWord() + " " + WomanPussy.ShortDesc() + ". "
                sTweet += "It looked good enough to eat. "
-               sTweet += "For that matter, so did her " + AssAdjs.GetWord() + " " + WomanAss.ShortDescription() + ". "
+               sTweet += "For that matter, so did her " + AssAdjs.GetWord() + " " + WomanAss.ShortDesc() + ". "
           elif iRand == 4:
                sLegsAdj1 = LegsAdjs.GetWord()
                sTweet += "She was young and her body was extremely fit. "
@@ -4161,22 +4161,22 @@ class Generator66(ExGen):
                sTweet += WordList(['breasts','tits','titties','boobs']).GetWord() + " "
                sTweet += "were high and tight. "
                sTweet += "Her legs were " + sLegsAdj1 + " and " + LegsAdjs.GetWord(NotList = [sLegsAdj1]) + " "
-               sTweet += "and her " + WomanAss.ShortDescription() + " " + AssAdjs.GetWord() + "."
+               sTweet += "and her " + WomanAss.ShortDesc() + " " + AssAdjs.GetWord() + "."
           elif iRand == 5:
                sBreastAdj1 = BreastAdjs.GetWord()
                sAssAdj1 = AssAdjs.GetWord()
                sPussyAdj1 = PussyAdjs.GetWord()
                sTweet += "His jaw dropped at the sight of her smooth, " + SkinAdjs.GetWord() + " skin, "
-               sTweet += "her " + sBreastAdj1 + ", " + BreastAdjs.GetWord(NotList = [sBreastAdj1]) + " " + WomanTits.ShortDescription() + ", "
+               sTweet += "her " + sBreastAdj1 + ", " + BreastAdjs.GetWord(NotList = [sBreastAdj1]) + " " + WomanTits.ShortDesc() + ", "
                sTweet += "her " + sAssAdj1 + ", " + AssAdjs.GetWord(NotList = [sAssAdj1]) + " " + AssNPs.GetWord() + ", "
-               sTweet += "and her shameless, " + sPussyAdj1 + ", " + PussyAdjs.GetWord(NotList = [sPussyAdj1]) + " " + WomanPussy.ShortDescription() + ". "
+               sTweet += "and her shameless, " + sPussyAdj1 + ", " + PussyAdjs.GetWord(NotList = [sPussyAdj1]) + " " + WomanPussy.ShortDesc() + ". "
           else:
                sPussyAdj1 = PussyAdjs.GetWord()
-               sTweet += "Her nude body was stunning. She had " + BreastAdjs.GetWord() + " " + WomanTits.ShortDescription() + " "
+               sTweet += "Her nude body was stunning. She had " + BreastAdjs.GetWord() + " " + WomanTits.ShortDesc() + " "
                sTweet += "with " + NippAdjs.GetWord() + " nipples, "
                sTweet += "a " + sAss + ", and her legs were long and " + LegsAdjs.GetWord(NotList = ['long']) + ". "
                sTweet += "She was standing with legs apart "
-               sTweet += "and he could clearly see her shameless, " + sPussyAdj1 + ", " + PussyAdjs.GetWord(NotList = [sPussyAdj1]) + " " + WomanPussy.ShortDescription() + " "
+               sTweet += "and he could clearly see her shameless, " + sPussyAdj1 + ", " + PussyAdjs.GetWord(NotList = [sPussyAdj1]) + " " + WomanPussy.ShortDesc() + " "
                if CoinFlip():
                     sTweet += "and the " + WordList(['little folds','purple lips','pink ruffle']).GetWord() + " of her labia dangling from it. "
                else:
@@ -4218,16 +4218,16 @@ class Generator67(ExGen):
                                               'cutoff shorts were pulled down around her thighs',
                                               'thong was pulled to one side']).GetWord() + ". "
           sTweet += "With her left hand " + WordList(['she tweaked the erect nub of her nipple',
-                                                                'she squeezed her ' + Tits.ShortDescription(),
+                                                                'she squeezed her ' + Tits.ShortDesc(),
                                                                 'she rubbed her clit',
-                                                                'she fingered her ' + Ass.Anus.MediumDescription()]).GetWord() + ". "
+                                                                'she fingered her ' + Ass.Anus.MediumDesc()]).GetWord() + ". "
           sTweet += "With her right " + WordList(['hand she had two fingers in',
                                                             'hand she had three fingers in',
                                                             'she shoved her entire fist deep into',
                                                             'she inserted a steel dildo into',
                                                             'she inserted the handle of her hairbrush deep into',
                                                             'she thrust a 13-inch black dildo deep into']).GetWord() + " "
-          sTweet += "her " + Vag.RandomDescription() + " "
+          sTweet += "her " + Vag.RandomDesc() + " "
           sTweet += "as she lost herself in " + WordList(['lustful','naughty','forbidden','shameless','wanton','filthy',
                                                                       'dirty','illicit']).GetWord() + " fantasy."
           sTweet += "\n\n"
@@ -4281,10 +4281,10 @@ class Generator68(ExGen):
                sTweet += "that were taking turns " + sVerb + " her "
                if CoinFlip():
                     Pussy = self.FemBodyParts.Vagina
-                    sTweet += Pussy.ShortDescription() 
+                    sTweet += Pussy.ShortDesc() 
                else:
                     Ass = self.FemBodyParts.Ass
-                    sTweet += Ass.ShortDescription()
+                    sTweet += Ass.ShortDesc()
                sTweet += "."
           else:
           #man 
@@ -4293,7 +4293,7 @@ class Generator68(ExGen):
                
                sTweet += "\"We can't let my wife find out about this,\" said " + sHisName + " to the "
                sTweet += sNum + " " + WordList([sMenAdj1,sMenAdj1 + " " + sMenAdj2,sMenAdj2]).GetWord() + " " + sMen + " "
-               sTweet += "that were taking turns " + sVerb + " his " + Ass.ShortDescription() + "."
+               sTweet += "that were taking turns " + sVerb + " his " + Ass.ShortDesc() + "."
 
           return sTweet
           
@@ -4337,14 +4337,14 @@ class Generator69(ExGen):
           if iRand == 1:
           #tits
                if CoinFlip():
-                    sTweet += "Rub your " + Dick.FloweryDescription() + " "
-                    sTweet += "all over my " + Tits.RandomDescription() + "!\""
+                    sTweet += "Rub your " + Dick.FloweryDesc() + " "
+                    sTweet += "all over my " + Tits.RandomDesc() + "!\""
                else:
                     sThrust = WordList(['fuck','plow','ravish',]).GetWord()
                     
                     sTweet += sThrust.capitalize() + " " 
-                    sTweet += "my " + Tits.RandomDescription() + " " 
-                    sTweet += "with your " + Dick.RandomDescription() + "!\""
+                    sTweet += "my " + Tits.RandomDesc() + " " 
+                    sTweet += "with your " + Dick.RandomDesc() + "!\""
           elif iRand == 2:
           #pussy 
                sThrust = self.VThrust.Present()
@@ -4352,29 +4352,29 @@ class Generator69(ExGen):
                if iRand2 == 1:
                     sTweet += "Bend me over and "
                     sTweet += sThrust + " my " 
-                    sTweet += Pussy.FloweryDescription() + "!\""
+                    sTweet += Pussy.FloweryDesc() + "!\""
                elif iRand2 == 2: 
                     sTweet += "Spread my legs and "
                     sTweet += sThrust + " my "
-                    sTweet += Pussy.FloweryDescription() + "!\""
+                    sTweet += Pussy.FloweryDesc() + "!\""
                elif iRand2 == 3:
                     Dick.AdjExclTagList(["shape"])
-                    sTweet += "I need your " + Dick.RandomDescription() + " "
-                    sTweet += "inside my " + Pussy.InnerVag.RandomDescription() + "!\""
+                    sTweet += "I need your " + Dick.RandomDesc() + " "
+                    sTweet += "inside my " + Pussy.InnerVag.RandomDesc() + "!\""
           elif iRand == 3:
           #ass 
                
                sThrust = self.VThrust.Present()
                
                sTweet += sThrust.capitalize()  + " my " 
-               sTweet += Ass.FloweryDescription() + "!\""
+               sTweet += Ass.FloweryDesc() + "!\""
           elif iRand == 4:
           #asshole 
-               sTweet += "Spread my " + Ass.ShortDescription() + " "
-               sTweet += "and make love to my " + Butthole.FloweryDescription() + "!\""
+               sTweet += "Spread my " + Ass.ShortDesc() + " "
+               sTweet += "and make love to my " + Butthole.FloweryDesc() + "!\""
           elif iRand == 5:
                sTweet += "Make love to my " + WordList(["mouth","mouth-hole","throat"]).GetWord() + " "
-               sTweet += "with your " + Dick.RandomDescription(bShortDesc = False) + "!\""
+               sTweet += "with your " + Dick.RandomDesc(bShortDesc = False) + "!\""
 
           return sTweet
           
@@ -4425,16 +4425,16 @@ class Generator70(ExGen):
                sTweet += "undid his belt buckle and pulled his dick out of his pants. "
           else:
                sTweet += "unzipped and pulled his pants down. "
-               sTweet += "He held his meaty penis up to her " + self.FemBodyParts.Face.MediumDescription() + ". "
+               sTweet += "He held his meaty penis up to her " + self.FemBodyParts.Face.MediumDesc() + ". "
           sTweet += "\"" + WordList(['Suck it','Suck on it','Take me in your mouth','Suck me off',
-                                     'Take my ' + Penis.RandomDescription(bLongDesc = False) + ' in your mouth',
+                                     'Take my ' + Penis.RandomDesc(bLongDesc = False) + ' in your mouth',
                                      'Put my ' + Penis.GetNewNoun() + ' in your mouth',
                                      'Taste my ' + Penis.GetNewNoun(),
-                                     'Suck on my ' + Penis.RandomDescription(bLongDesc = False),
+                                     'Suck on my ' + Penis.RandomDesc(bLongDesc = False),
                                      'Service me with your mouth']).GetWord() + ",\" he commanded. "
           sTweet += sHerName + " " + WordList(['obediently','submissively']).GetWord() + " "
-          sTweet += "wrapped her " + Lips.MediumDescription() + " "
-          sTweet += "around his " + Tip.RandomDescription(bShortDesc = False) + ". "
+          sTweet += "wrapped her " + Lips.MediumDesc() + " "
+          sTweet += "around his " + Tip.RandomDesc(bShortDesc = False) + ". "
           sTweet += "\"" + WordList(["Let's see how deep you can take it,",
                                      "I want you to gag on it,",
                                      "C'mon, choke on it,",
@@ -4444,10 +4444,10 @@ class Generator70(ExGen):
                                      "You want more, don't you little slut?",
                                      "I want you to take it all, little cock-sock,"]).GetWord() + "\" he said. "
           sTweet += "She nearly " + WordList(['gagged','choked']).GetWord() + " "
-          sTweet += "as he thrust his " + Penis.MediumDescription(bAddLen = True) + " " 
+          sTweet += "as he thrust his " + Penis.MediumDesc(bAddLen = True) + " " 
           sTweet += "down her throat. He began fucking her " + WordList(['face','mouth']).GetWord() + " " 
           sTweet += WordList(['forcefully','vigorously','powerfully','furiously','hard']).GetWord() + ". " 
-          sTweet += "His " + Nuts.RandomDescription() + " "
+          sTweet += "His " + Nuts.RandomDesc() + " "
           if Nuts.IsSing:
               sTweet += "was "
           else:
@@ -4555,14 +4555,14 @@ class Generator72(ExGen):
                                 'Lisa','Marsha','Martha','Nancy','Patricia','Patty','Sarah','Sharon','Sherry',
                                 'Susan','Suzie','Tammy','Wendy']).GetWord()
           
-          sPenis = self.MaleBodyParts.Penis.ShortDescription()
-          sLabia = self.FemBodyParts.Vagina.OuterLabia.RandomDescription(bShortDesc = False)
+          sPenis = self.MaleBodyParts.Penis.ShortDesc()
+          sLabia = self.FemBodyParts.Vagina.OuterLabia.RandomDesc(bShortDesc = False)
           
           sTweet = sHisName + " walked into the " + WordList(['apartment','house']).GetWord() + ". "
           sTweet += "\"" + sHerName + ", I'm home!\" he " + WordList(['announced','called out','called','shouted']).GetWord() + ".\n\n"
           sTweet += "The bedroom door opened and " 
           sTweet += WordList(['a naked woman','a completely nude woman',
-                                'a woman wearing nothing but ' + clothes.Heels().RandomDescription(),
+                                'a woman wearing nothing but ' + clothes.Heels().RandomDesc(),
                                 'a woman who was completely nude except for a pair of sneakers',
                                 'a woman wearing nothing but an open bathrobe',
                                 'a woman in a see-thru negligee']).GetWord() + " walked out. "
@@ -4585,7 +4585,7 @@ class Generator72(ExGen):
                                         "So it's time to spend some quality time with your " + WordList(['mother-in-law','sister-in-law','daughter-in-law','step-daughter','step-mom','step-sister','housekeeper','babysitter']).GetWord() + ".",
                                         "So why don't you get naked and join me in the " + WordList(["shower","bathtub","jacuzzi","hot tub"]).GetWord() + "?",
                                         "It's just you, me, and your big " + sPenis + ".",
-                                        "It's just you, me, and my " + WordList(["horny little","dripping wet"]).GetWord() + " " + self.FemBodyParts.Vagina.ShortDescription(NotList = ["vagina","sex","womanhood","flower"]) + ".",
+                                        "It's just you, me, and my " + WordList(["horny little","dripping wet"]).GetWord() + " " + self.FemBodyParts.Vagina.ShortDesc(NotList = ["vagina","sex","womanhood","flower"]) + ".",
                                         "It's just you, me, and my twin sister.",
                                         "Just me. And I'm dripping wet and horny as hell.",
                                         "But I'll bet my pussy is tighter than hers.",
@@ -4597,7 +4597,7 @@ class Generator72(ExGen):
                                         "Now pull your pants down so I can suck your " + sPenis + ".",
                                         "But I'm way more fun than that little whore.",
                                         "She'll watch us on the webcam.",
-                                        "Now do you want to " + WordList(["fuck","nail","stuff","sodomize"]).GetWord() + " my " + self.FemBodyParts.Ass.Anus.ShortDescription() + " or not?"
+                                        "Now do you want to " + WordList(["fuck","nail","stuff","sodomize"]).GetWord() + " my " + self.FemBodyParts.Ass.Anus.ShortDesc() + " or not?"
                                       ]).GetWord() + "\""
           
 
@@ -4639,8 +4639,8 @@ class Generator73(ExGen):
                                   "I'm getting his tattoo of his name on my face",
                                   "He's taking my anal virginity at the prom",
                                   "I'm getting gang-banged by his " + str(randint(2,20)) + " friends",
-                                  "I'm getting a full-sized tattoo of his " + self.MaleBodyParts.Penis.ShortDescription(),
-                                  "I'm getting his name tattooed around my " + self.FemBodyParts.Ass.Anus.ShortDescription(),
+                                  "I'm getting a full-sized tattoo of his " + self.MaleBodyParts.Penis.ShortDesc(),
+                                  "I'm getting his name tattooed around my " + self.FemBodyParts.Ass.Anus.ShortDesc(),
                                   "I'm trying hardcore bondage with him at the underground sex dungeon",
                                    "I'm going with him to the underground sex club",
                                   "I'm wearing this butt plug with his name carved on it",
@@ -4702,18 +4702,18 @@ class Generator74(ExGen):
                Dick = self.MaleBodyParts.Penis 
                Ass = self.FemBodyParts.Ass.Anus
                sTweet += "anal sex.\" With that he " + WordList(['carefully','gently','softly']).GetWord() + " "
-               sTweet += "eased his " + Dick.FloweryDescription() + " into her " + Ass.RandomDescription()
+               sTweet += "eased his " + Dick.FloweryDesc() + " into her " + Ass.RandomDesc()
           
           elif iRand == 2:
           #tit-fucking
                Tits = self.FemBodyParts.Breasts 
                Dick = self.MaleBodyParts.Penis 
                sTweet += "titty-fucking.\" With that he began to " + WordList(['thrust','piston','jackhammer']).GetWord() + " "
-               sTweet += "his " + Dick.FloweryDescription() + " "
+               sTweet += "his " + Dick.FloweryDesc() + " "
                sTweet += "between her " + WordList(['large','juicy','enormous','heavy','glorious','heaving',
                                                              'magnificent','generous','pendulous','plump','ripe',
                                                              'succulent','voluptuous']).GetWord() + ", " 
-               sTweet += "oiled-up " + Tits.ShortDescription() 
+               sTweet += "oiled-up " + Tits.ShortDesc() 
                
            
           elif iRand == 3:
@@ -4724,7 +4724,7 @@ class Generator74(ExGen):
                sTweet += "Then she opened her " + WordList(['greedy mouth','full lips','candy-colored lips','red lips',
                                                                        'luscious lips','sensual mouth','sweet little mouth',
                                                                        'cherry lips','succulent lips','innocent mouth']).GetWord() + " and "
-               sTweet += "took his " + Dick.FloweryDescription() + " down her throat"
+               sTweet += "took his " + Dick.FloweryDesc() + " down her throat"
           
           else:
           #fisting 
@@ -4733,10 +4733,10 @@ class Generator74(ExGen):
                sTweet += "into her " 
                if CoinFlip():
                     Asshole = self.FemBodyParts.Ass.Anus 
-                    sTweet += Asshole.RandomDescription() 
+                    sTweet += Asshole.RandomDesc() 
                else:
                     Vag = self.FemBodyParts.Vagina
-                    sTweet += Vag.RandomDescription()
+                    sTweet += Vag.RandomDesc()
           
           sTweet += ". "
 
@@ -4862,7 +4862,7 @@ class Generator76(ExGen):
         Tits = Girl.Breasts 
         Ass = Girl.Ass 
           
-        sLips = Girl.Lips.RandomDescription(bLongDesc = False)
+        sLips = Girl.Lips.RandomDesc(bLongDesc = False)
           
         #sTweet += Location.BeginDesc + " "
         sTweet += "The " + Girl.Desc + " " 
@@ -4889,42 +4889,42 @@ class Generator76(ExGen):
         # Unbuttons her dress / blouse
         sTxt = "She unbuttoned " 
         if CoinFlip():
-            sTxt += "her " + self.FemWardrobe.Dress.RandomDescription(bLongDesc = False) + " "
+            sTxt += "her " + self.FemWardrobe.Dress.RandomDesc(bLongDesc = False) + " "
         else:
-            sTxt += "her " + self.FemWardrobe.Blouse.RandomDescription(bLongDesc = False) + " "
+            sTxt += "her " + self.FemWardrobe.Blouse.RandomDesc(bLongDesc = False) + " "
         sTxt += "and opened it, " + sShameAdj + " baring " 
-        sTxt += "her " + Girl.Breasts.FloweryDescription(TagLists = TLParams) + " to him. "
+        sTxt += "her " + Girl.Breasts.FloweryDesc(TagLists = TLParams) + " to him. "
         Selector.AddSection(sTxt)
 
         # Lifts her skirts
-        sTxt = "She lifted up the hem of her " + self.FemWardrobe.ShortSkirt.RandomDescription(bLongDesc = False) + ", "
+        sTxt = "She lifted up the hem of her " + self.FemWardrobe.ShortSkirt.RandomDesc(bLongDesc = False) + ", "
         sTxt += "revealing that she wasn't wearing any panties underneath. His "
         sTxt += "hungry gaze devoured the sight of "
         if CoinFlip():
-            sTxt += "her " + Girl.Ass.FloweryDescription(TagLists = TLParams) + ". "
+            sTxt += "her " + Girl.Ass.FloweryDesc(TagLists = TLParams) + ". "
         else:
-            sTxt += "her " + Girl.Vagina.FloweryDescription(TagLists = TLParams) + ". "
+            sTxt += "her " + Girl.Vagina.FloweryDesc(TagLists = TLParams) + ". "
         Selector.AddSection(sTxt)
 
         # Pulls down her tube top
-        sTxt = "She grabbed her " + self.FemWardrobe.CropTop.RandomDescription(bLongDesc = False) + " "
+        sTxt = "She grabbed her " + self.FemWardrobe.CropTop.RandomDesc(bLongDesc = False) + " "
         sTxt += "and yanked it down, " 
-        sTxt += sShameAdj + " exposing her " + Girl.Breasts.FloweryDescription(TagLists = TLParams) + " to him. "
+        sTxt += sShameAdj + " exposing her " + Girl.Breasts.FloweryDesc(TagLists = TLParams) + " to him. "
         Selector.AddSection(sTxt)
 
         # Takes off her panties
-        sTxt = "She reached under her " + self.FemWardrobe.ShortSkirt.RandomDescription(bLongDesc = False) + " "
+        sTxt = "She reached under her " + self.FemWardrobe.ShortSkirt.RandomDesc(bLongDesc = False) + " "
         if self.FemWardrobe.Panties.IsPlural():
-            sTxt += "and pulled down a pair of " + self.FemWardrobe.Panties.RandomDescription(bLongDesc = False) + " "
+            sTxt += "and pulled down a pair of " + self.FemWardrobe.Panties.RandomDesc(bLongDesc = False) + " "
         else:
-            sTxt += "and pulled down her " + self.FemWardrobe.Panties.RandomDescription(bLongDesc = False) + " "
+            sTxt += "and pulled down her " + self.FemWardrobe.Panties.RandomDesc(bLongDesc = False) + " "
         sTxt += "which she casually tossed in the corner. "
         Selector.AddSection(sTxt)
 
         # Opens her robe
         Girl.Breasts.NounExclTagList(["silly"])
-        sTxt = "She opened her " + self.FemWardrobe.Robe.RandomDescription(bLongDesc = False) + ", "
-        sTxt += sShameAdj + " revealing her naked " + Girl.Body.RandomDescription(TagLists = TagLists(adj_excl = ["nude"])) + " underneath. "
+        sTxt = "She opened her " + self.FemWardrobe.Robe.RandomDesc(bLongDesc = False) + ", "
+        sTxt += sShameAdj + " revealing her naked " + Girl.Body.RandomDesc(TagLists = TagLists(adj_excl = ["nude"])) + " underneath. "
         if Girl.Breasts.IsPlural():
             sTxt += "Her " + Girl.Breasts.GetNoun() + " were " 
         else:
@@ -4933,16 +4933,16 @@ class Generator76(ExGen):
         Selector.AddSection(sTxt)
 
         # Pulls off her sports bra
-        sTxt = "She pulled her " + self.FemWardrobe.SportsBra.RandomDescription(bLongDesc = False) + " off over her head, "
+        sTxt = "She pulled her " + self.FemWardrobe.SportsBra.RandomDesc(bLongDesc = False) + " off over her head, "
         sTxt += sShameAdj + " "
-        sTxt += "exposing her " + Girl.Breasts.FloweryDescription(TagLists = TLParams) + " to him. "
+        sTxt += "exposing her " + Girl.Breasts.FloweryDesc(TagLists = TLParams) + " to him. "
         Selector.AddSection(sTxt)
 
         # Pulls down bottoms
         BottomPiece = choice([self.FemWardrobe.DaisyDukes,self.FemWardrobe.Jeans,self.FemWardrobe.Panties,self.FemWardrobe.Shorts,self.FemWardrobe.YogaPants])
-        sTxt = "She slid her " + BottomPiece.RandomDescription(bLongDesc = False) + " "
-        sTxt += "down over her " + Girl.Hips.RandomDescription(bLongDesc = False) + ", "
-        sTxt += sShameAdj + " baring her " + Girl.Ass.FloweryDescription(TagLists = TLParams) + " to him. "
+        sTxt = "She slid her " + BottomPiece.RandomDesc(bLongDesc = False) + " "
+        sTxt += "down over her " + Girl.Hips.RandomDesc(bLongDesc = False) + ", "
+        sTxt += sShameAdj + " baring her " + Girl.Ass.FloweryDesc(TagLists = TLParams) + " to him. "
         Selector.AddSection(sTxt)
 
         sTweet += Selector.GetSection()
@@ -4950,17 +4950,17 @@ class Generator76(ExGen):
         if CoinFlip():
             sTweet += "Dropping to her knees, she began " 
             sTweet += WordList(["unzipping","unbuttoning","unbuckling"]).GetWord() + " "
-            sTweet += "his " + self.MaleWardrobe.GetTrousers().RandomDescription(bLongDesc = False) + ".\n\n"
+            sTweet += "his " + self.MaleWardrobe.GetTrousers().RandomDesc(bLongDesc = False) + ".\n\n"
         else:
             sTweet += "Bending over in front of him, she reached back and "
-            sTweet += "spread her " + Girl.Buttocks.RandomDescription(TagLists = TLParams) + " "
+            sTweet += "spread her " + Girl.Buttocks.RandomDesc(TagLists = TLParams) + " "
             if CoinFlip():
-                sTweet += "so he could see her " + Girl.Vagina.RandomDescription()
+                sTweet += "so he could see her " + Girl.Vagina.RandomDesc()
             elif CoinFlip():
-                sTweet += "so he could see her " + Girl.Vagina.RandomDescription() + " and "
-                sTweet += "her " + Girl.Anus.RandomDescription(TagLists = TLParams)
+                sTweet += "so he could see her " + Girl.Vagina.RandomDesc() + " and "
+                sTweet += "her " + Girl.Anus.RandomDesc(TagLists = TLParams)
             else:
-                sTweet += "so he could see her " + Girl.Anus.RandomDescription()
+                sTweet += "so he could see her " + Girl.Anus.RandomDesc()
             sTweet += ".\n\n"
         sTweet += "\"Ready to find out " 
         sTweet += WordList(["why everyone calls me","why everyone around here calls me",
@@ -5236,9 +5236,9 @@ class Generator79(ExGen):
           
           #Cock description 
           CockDesc = []
-          CockDesc.append("big " + Cock.ShortDescription())
-          CockDesc.append("big, " + Cock.MediumDescription())
-          CockDesc.append(Cock.FloweryDescription())
+          CockDesc.append("big " + Cock.ShortDesc())
+          CockDesc.append("big, " + Cock.MediumDesc())
+          CockDesc.append(Cock.FloweryDesc())
           sTweet += CockDesc[randint(0,len(CockDesc) - 1)] + " of yours!\"\n\n"
           
           sTweet += sHisName + " could hold back no longer. "
@@ -5257,9 +5257,9 @@ class Generator79(ExGen):
                if CoinFlip():
                #pussy 
                     if CoinFlip():
-                         sHole += Vag.InnerVag.ShortDescription() 
+                         sHole += Vag.InnerVag.ShortDesc() 
                     else:
-                         sHole += Vag.ShortDescription()
+                         sHole += Vag.ShortDesc()
                else:
                #ass
                     sHole += WordList(['ass','anus','asshole','butt-hole','rear-entrance','rectum','bowels']).GetWord() 
@@ -5267,9 +5267,9 @@ class Generator79(ExGen):
                #Climax
                if CoinFlip():
                     sTweet += "Then he " + WordList(["bucked his hips", "thrust deep"]).GetWord() + " and began to fill his "
-                    sTweet += sForbiddenLover + "'s " + sHole + " with his " + self.Semen.RandomDescription() + "."
+                    sTweet += sForbiddenLover + "'s " + sHole + " with his " + self.Semen.RandomDesc() + "."
                else:
-                    sTweet += "Then he began to pump " + self.Semen.RandomDescription() + " deep into "
+                    sTweet += "Then he began to pump " + self.Semen.RandomDesc() + " deep into "
                     sTweet += "his " + sForbiddenLover + "'s " + sHole + "."
           else: 
                sTweet += WordList(["Yes! Yes!!","I'm gonna cum","Yes! I'm gonna cum",
@@ -5352,21 +5352,21 @@ class Generator81(ExGen):
           if iRand == 1:
           # she bends over and takes off her panties
                sTweet += sHerName + " bent over in front of " + sHisName + ", "
-               sTweet += "giving him an excellent view of her " + self.FemBodyParts.Ass.ShortDescription() + ". "
-               sTweet += "She sensually slipped her " + clothes.Panties().RandomDescription(bLongDesc = False) + " "
+               sTweet += "giving him an excellent view of her " + self.FemBodyParts.Ass.ShortDesc() + ". "
+               sTweet += "She sensually slipped her " + clothes.Panties().RandomDesc(bLongDesc = False) + " "
                sTweet += "over her " + self.FemBodyParts.Hips.GetNewAdj(TagLists = TagLists(excl =["color"])) + " hips, "
-               sTweet += "exposing her " + self.FemBodyParts.Vagina.RandomDescription(TagLists = TagLists(adj_excl =["color"])) + ".\n\n"
+               sTweet += "exposing her " + self.FemBodyParts.Vagina.RandomDesc(TagLists = TagLists(adj_excl =["color"])) + ".\n\n"
                sTweet += sHisName + " swallowed the lump in his throat. \"Oh God!\" he said. "
                sTweet += "\"You're so fucking " + WordList(['hot','sexy']).GetWord() + "! "
                sTweet += "But I can't! " + ProtestReasons.GetWord() + "\"\n\n"
                sTweet += "\"Come on baby,\" she " + SexyVoice.GetWord() + ", "
-               sTweet += "shaking her " + self.FemBodyParts.Ass.RandomDescription(TagLists = TagLists(adj_excl =["color"])) + ". "
+               sTweet += "shaking her " + self.FemBodyParts.Ass.RandomDesc(TagLists = TagLists(adj_excl =["color"])) + ". "
           
           elif iRand == 2:
           # she pulls his dick out and starts to give him a blowjob
                sTweet += sHerName + " knelt in front of him and " + WordList(["unbuckled his belt","pulled down his zipper"]).GetWord() + ". "
                sTweet += "Then she pulled his pants down, exposing " 
-               sTweet += "his " + self.MaleBodyParts.Penis.ShortDescription(TagLists = TagLists(noun_excl = ["silly","desc"])) + ". "
+               sTweet += "his " + self.MaleBodyParts.Penis.ShortDesc(TagLists = TagLists(noun_excl = ["silly","desc"])) + ". "
                sTweet += WordList(["It was already hard","It was already turgid with excitement",
                                         "It was already engorged with anticipation",
                                         "It was already erect, and a bead of precum hung from the tip",
@@ -5375,18 +5375,18 @@ class Generator81(ExGen):
                sTweet += sHisName + " swallowed the lump in his throat. \"Oh God!\" he said. "
                sTweet += "\"You're so fucking " + WordList(['hot','sexy']).GetWord() + "! "
                sTweet += "But I can't! " + ProtestReasons.GetWord() + "\"\n\n"
-               sTweet += "\"Come on baby,\" she " + SexyVoice.GetWord() + ", placing a kiss on his " + self.MaleBodyParts.Penis.RandomDescription() + ". "
+               sTweet += "\"Come on baby,\" she " + SexyVoice.GetWord() + ", placing a kiss on his " + self.MaleBodyParts.Penis.RandomDesc() + ". "
           
           else:
           # she takes her top off and shows him her breasts
                sTweet += sHerName + " pulled her " + WordList(["sports bra","lacey bra","thin white t-shirt","skimpy bikini top"]).GetWord() + " "
-               sTweet += "over her head, exposing her " + self.FemBodyParts.Breasts.RandomDescription(AdjExclTagList=["color"]) + ". "
+               sTweet += "over her head, exposing her " + self.FemBodyParts.Breasts.RandomDesc(AdjExclTagList=["color"]) + ". "
                sTweet += sHisName + " swallowed the lump in his throat. \"Oh God!\" he said. "
                sTweet += "\"You're so fucking " + WordList(['hot','sexy']).GetWord() + "! "
                sTweet += "But I can't! " + ProtestReasons.GetWord() + "\"\n\n"
                sTweet += "\"Come on baby,\" she " + SexyVoice.GetWord() + ", " 
                sTweet += "taking both his hands and guiding them to " 
-               sTweet += "her " + self.FemBodyParts.Breasts.ShortDescription(TagLists = TagLists(adj_excl = ["color"])) + ". "
+               sTweet += "her " + self.FemBodyParts.Breasts.ShortDesc(TagLists = TagLists(adj_excl = ["color"])) + ". "
           
           Temptations = []
           Temptations.append("\"This could be your one chance " + VerbFuck.GetWord() + " " + GirlRace.GetWord() + "!\"")
@@ -5433,20 +5433,20 @@ class Generator82(ExGen):
           if CoinFlip():
                
                if CoinFlip():
-                    sTweet += "Then he spread her " + self.FemBodyParts.Legs.RandomDescription(bLongDesc = False) + " apart and "
+                    sTweet += "Then he spread her " + self.FemBodyParts.Legs.RandomDesc(bLongDesc = False) + " apart and "
                     sTweet += "began to " + WordList(["tenderly","gently","sensually"]).GetWord() + " "
                     sTweet += WordList(["lick","finger","rub","stroke","carress","fist","insert two fingers into","eat","tongue"]).GetWord() + " her "
-                    sTweet += self.FemBodyParts.Vagina.RandomDescription()
+                    sTweet += self.FemBodyParts.Vagina.RandomDesc()
                else:
-                    sTweet += "Then he spread her " + self.FemBodyParts.Ass.RandomDescription(bLongDesc = False) + " apart and "
+                    sTweet += "Then he spread her " + self.FemBodyParts.Ass.RandomDesc(bLongDesc = False) + " apart and "
                     sTweet += WordList(["tenderly","gently","sensually"]).GetWord() + " began to "
                     sTweet += WordList(["lick","finger","rub","stroke","carress","fist","insert two fingers into","eat","rim"]).GetWord() + " her "
-                    sTweet += self.FemBodyParts.Ass.Anus.RandomDescription()
+                    sTweet += self.FemBodyParts.Ass.Anus.RandomDesc()
           else:
                sTweet += "Then he began to " + WordList(["rub","carress","squeeze","massage","rub oil onto","massage oil into"]).GetWord() + " "
-               sTweet += "her " + self.FemBodyParts.Breasts.RandomDescription()
+               sTweet += "her " + self.FemBodyParts.Breasts.RandomDesc()
                if CoinFlip():
-                    sTweet += " and her " + self.FemBodyParts.Breasts.Nipples.RandomDescription()
+                    sTweet += " and her " + self.FemBodyParts.Breasts.Nipples.RandomDesc()
           sTweet += "."
                
 
@@ -5470,7 +5470,7 @@ class Generator83(ExGen):
                sTitsAdj2 = Tits.GetNewAdj() 
                
           Ass = self.FemBodyParts.Ass
-          sAss = Ass.ShortDescription()
+          sAss = Ass.ShortDesc()
           
           sAssAdj1 = Ass.GetNewAdj()
           sAssAdj2 = Ass.GetNewAdj() 
@@ -5501,7 +5501,7 @@ class Generator83(ExGen):
           sTweet += WordList(['sighed','cried','wept']).GetWord() + " " + sHerName + ". "
           sTweet += "\"What man would want " + AddArticles(sPlainAdj1) + ", " + sPlainAdj2 + " " + sBoringJob + ", "
           sTweet += "especially one with a pair of " + sTitsAdj1 + ", " + sTitsAdj2 + " "  
-          sTweet += WordList(['D-cup','DD-cup','DDD-cup','double-D','triple-D']).GetWord() + " " + Tits.ShortDescription() + " "
+          sTweet += WordList(['D-cup','DD-cup','DDD-cup','double-D','triple-D']).GetWord() + " " + Tits.ShortDesc() + " "
           
           
           Endings = []
@@ -5544,10 +5544,10 @@ class Generator84(ExGen):
           Legs = self.FemBodyParts.Legs
           Ass = self.FemBodyParts.Ass 
           
-          sPussy = Pussy.ShortDescription(NotList = ['flower'])
-          sDick = Dick.RandomDescription(bLongDesc = False, NotList = ['beautiful'])
-          sAss = Ass.RandomDescription(NotList = ['cheeks','buns','buttocks','fuckable','sweet','bountiful','glistening'])
-          sAnus = Ass.Anus.ShortDescription(NotList = ['knot']) 
+          sPussy = Pussy.ShortDesc(NotList = ['flower'])
+          sDick = Dick.RandomDesc(bLongDesc = False, NotList = ['beautiful'])
+          sAss = Ass.RandomDesc(NotList = ['cheeks','buns','buttocks','fuckable','sweet','bountiful','glistening'])
+          sAnus = Ass.Anus.ShortDesc(NotList = ['knot']) 
           
           ToENotList = ['dear']
           sToE1 = self.TermsOfEndearment.GetWord(NotList = ToENotList)
@@ -5563,22 +5563,22 @@ class Generator84(ExGen):
           sTweet += sHerName + " was naked underneath him. "
           if CoinFlip():
                if CoinFlip():
-                    sTweet += "He put his hand between her " + Thighs.RandomDescription() + " "
+                    sTweet += "He put his hand between her " + Thighs.RandomDesc() + " "
                     sTweet += "and spread them apart.\n\n"
                else:
-                    sTweet += "He put his hand between her " + Legs.RandomDescription(bLongDesc = False) + " "
+                    sTweet += "He put his hand between her " + Legs.RandomDesc(bLongDesc = False) + " "
                     sTweet += "and spread them apart.\n\n"
           else:
                if CoinFlip():
-                    sTweet += "He squeezed her " + Tits.RandomDescription() + " " 
+                    sTweet += "He squeezed her " + Tits.RandomDesc() + " " 
                else:
-                    sTweet += "He kissed her " + Tits.RandomDescription() + " " 
-               sTweet += "and then began to suck eagerly on her " + Tits.Nipples.RandomDescription() + ".\n\n"
+                    sTweet += "He kissed her " + Tits.RandomDesc() + " " 
+               sTweet += "and then began to suck eagerly on her " + Tits.Nipples.RandomDesc() + ".\n\n"
           sTweet += sHerName + " felt his " + sDick + " "
           if CoinFlip():
-               sTweet += "probing her " + Pussy.InnerLabia.RandomDescription(bLongDesc = False) + ". "
+               sTweet += "probing her " + Pussy.InnerLabia.RandomDesc(bLongDesc = False) + ". "
           else: 
-               sTweet += "pressing against her " + Pussy.OuterLabia.RandomDescription(bLongDesc = False) + ". "
+               sTweet += "pressing against her " + Pussy.OuterLabia.RandomDesc(bLongDesc = False) + ". "
           sTweet += "\"No " + sHisName + ", wait!\" she said breathlessly. "
           sTweet += "\"I'm saving my " + sPussy + " for marriage.\"\n\n"
           sTweet += "\"" + WordList(["Awww, please, " + sToE2,"Awww, c'mon " + sToE2,
@@ -5665,18 +5665,18 @@ class Generator86(ExGen):
                                "a baseball bat", "my TV remote", "an eggplant", "corn on the cob", "Coke bottle", 
                                "a plunger", "a crucifix", "a toothpaste tube", "a bowling pin", "a broomstick",
                                "my flute", "my clarinet", "my giant foam finger"]).GetWord()
-          sHole = Vag.InnerVag.RandomDescription()
+          sHole = Vag.InnerVag.RandomDesc()
           
           sTweet += sHerName + " lay back on the bed and moaned as she "
           sTweet += WordList(["gently", "tenderly", "vigorously", "energetically", "ardently", "fervently"]).GetWord() + " "
           sTweet += WordList(["massaged", "pleasured", "rubbed", "caressed", "stroked", "stimulated", "masturbated", 
                                    "fondled", "fingered"]).GetWord() + " "
-          sTweet += "her " + Vag.RandomDescription() + ". "
-          sTweet += "She spread apart her " + Vag.OuterLabia.RandomDescription() + " "
-          sTweet += "and gently teased her " + Vag.Clitoris.RandomDescription() + ".\n\n"
+          sTweet += "her " + Vag.RandomDesc() + ". "
+          sTweet += "She spread apart her " + Vag.OuterLabia.RandomDesc() + " "
+          sTweet += "and gently teased her " + Vag.Clitoris.RandomDesc() + ".\n\n"
           sTweet += "She " + WordList(["reached under her pillow", "felt under the covers", "reached behind the night-stand"]).GetWord() + " "
           sTweet += "and found her favorite object and a bottle of lube. "
-          sTweet += "After lubing it up, she very carefully inserted it into her " + Anus.RandomDescription() + ". "
+          sTweet += "After lubing it up, she very carefully inserted it into her " + Anus.RandomDesc() + ". "
           sTweet += "She " + WordList(["moaned","sighed","gasped"]).GetWord() + " with pleasure as she "
           sTweet += WordList(["thrust it forcefully in and out",
                                    "slid it gently in and out",
@@ -5736,11 +5736,11 @@ class Generator87(ExGen):
           else:
                sTweet += "\"I'm " + HornyTerms.GetWord() + " right now, so I need you to "
           if CoinFlip():
-               sTweet += "pull out that " + self.MaleBodyParts.Penis.RandomDescription(bLongDesc = False, NotList = PenisNotList) + " of yours "
+               sTweet += "pull out that " + self.MaleBodyParts.Penis.RandomDesc(bLongDesc = False, NotList = PenisNotList) + " of yours "
                sTweet += WordList(["so I can suck you off","and put it in my mouth","and fuck my mouth with it",
                                         "and put it between my tits","and tit-fuck me",
                                         "and stick it down my throat",
-                                        "and cover my titties in " + self.Semen.ShortDescription(),
+                                        "and cover my titties in " + self.Semen.ShortDesc(),
                                         "and fuck my brains out with it","and pound me til I can't walk",
                                         "and fuck the shit out of me with it",
                                         "and start filling my holes with it",
@@ -5760,7 +5760,7 @@ class Generator87(ExGen):
                                                        'poop-trap','shit-hole']).GetWord() + " "
                sTweet += WordList(["until I can't walk","until my legs shake","until I'm dizzy",
                                         "until I can't walk straight","until it's raw","until I can't see straight",
-                                        "until the " + self.Semen.ShortDescription() + " runs down my thighs",
+                                        "until the " + self.Semen.ShortDesc() + " runs down my thighs",
                                         "all " + WordList(['fucking','goddamn','damn']).GetWord() + " " + WordList(['night','weekend']).GetWord(),
                                         "until I cum","until I squirt","until I scream","like you're my ex-husband"
                                         ]).GetWord() + "."
@@ -5832,7 +5832,7 @@ class Generator89(ExGen):
             sLube = WordList(["butter", "KY jelly", "peanut butter", "yoghurt", "vaseline", 
                               "almond butter"]).GetWord()
             sTweet += "you lubed me up with " + sLube + " and "
-            sTweet += "fisted my " + self.Woman.Ass.RandomDescription(TagLists = TagLists(noun_excl = ["std","sphincter"]))
+            sTweet += "fisted my " + self.Woman.Ass.RandomDesc(TagLists = TagLists(noun_excl = ["std","sphincter"]))
         elif iRand == 2:
             sBinding = WordList(["put a ball-gag on you","handcuffed you",
                                  "put " + AddArticles(shmisc.Colors().GetWord()).lower() + " dress on you",
@@ -5917,9 +5917,9 @@ class Generator90(ExGen):
           sTweet = self.MaleName.FirstName() + " approached the bed completely naked. "
           sTweet += self.FemaleName.FirstName() + " drank in "
           if CoinFlip():
-               sTweet += "his " + self.MaleBodyParts.Eyes.RandomDescription(bShortDesc = False) + ", "
+               sTweet += "his " + self.MaleBodyParts.Eyes.RandomDesc(bShortDesc = False) + ", "
           else:
-               sTweet += "his " + self.MaleBodyParts.Jaw.RandomDescription(bShortDesc = False) + ", "
+               sTweet += "his " + self.MaleBodyParts.Jaw.RandomDesc(bShortDesc = False) + ", "
           sTweet += self.MaleBodyParts.DescRandomNakedParts(iNum = 4, sDivideChar = ";",bAss = True, bPenis = False, sPossessive = "his")
           sTweet += ".\n\n"
           sTweet += "She "
@@ -5930,13 +5930,13 @@ class Generator90(ExGen):
                                    "massaged","tweaked","masturbated","teased",
                                    "played with"]).GetWord() + " " 
                if CoinFlip():
-                    sTweet += "her " + self.FemBodyParts.Vagina.OuterLabia.FloweryDescription() + ". "
+                    sTweet += "her " + self.FemBodyParts.Vagina.OuterLabia.FloweryDesc() + ". "
                else:
-                    sTweet += "her " + self.FemBodyParts.Vagina.InnerLabia.FloweryDescription() + ". "
+                    sTweet += "her " + self.FemBodyParts.Vagina.InnerLabia.FloweryDesc() + ". "
                 # TODO: add clitoris
 
           sTweet += "\"Do you " + WordList(['like','want']).GetWord() + " this, " + self.TermsOfEndearment.GetWord() + "?\" "
-          sTweet += "she asked. He didn't reply, but his " + Penis.FloweryDescription(bAddLen = False, TagLists = TagLists(excl = ExclTagList)) + " "
+          sTweet += "she asked. He didn't reply, but his " + Penis.FloweryDesc(bAddLen = False, TagLists = TagLists(excl = ExclTagList)) + " "
           sTweet += WordList(["thickened","lengthened","rose","swelled",
                               "became engorged","hardened","stiffened",
                               "lengthened","began to grow"]).GetWord() + " "
@@ -6061,7 +6061,7 @@ class Generator92(ExGen):
           sTweet += WordList(["gasped","panted","puffed"]).GetWord() + " " + sHisName2 + " "
           sTweet += "as he " + WordList([WordList(["pounded","jack-hammered","fucked","drilled"]).GetWord() + " her " 
                                                             + WordList(["from behind","doggy-style","holes"]).GetWord(),
-                                                "tit-fucked her lubed-up " + self.FemBodyParts.Breasts.ShortDescription() + " vigorously",
+                                                "tit-fucked her lubed-up " + self.FemBodyParts.Breasts.ShortDesc() + " vigorously",
                                                 "fucked her on the " + WordList(["kitchen counter","kitchen table",
                                                                                  "water-bed","coffee table",
                                                                                  "filthy mattress","bathroom floor",
@@ -6126,20 +6126,20 @@ class Generator93(ExGen):
            elif iRand == 2:
                sRoom = "crossed the pool patio"
                sGarmentDesc = "a " + sColor + " bikini"
-               sSexyNotice = "her " + self.FemBodyParts.Breasts.MediumDescription()
+               sSexyNotice = "her " + self.FemBodyParts.Breasts.MediumDesc()
                sDrink = "a martini"
                sFlash = "she pulled her top down for a split second, flashing him her " 
-               sFlash += self.FemBodyParts.Breasts.MediumDescription() 
+               sFlash += self.FemBodyParts.Breasts.MediumDesc() 
            elif iRand == 3:
                sRoom = "through the living room"
                sGarmentDesc = "a tight " + sColor + " sports bra and yoga pants"
                sSexyNotice = "her erect nipples poking against the tight spandex"
                sDrink = "a lite beer"
                sFlash = "she pulled down her yoga pants, flashing him her bare "
-               sFlash += self.FemBodyParts.Ass.MediumDescription() 
+               sFlash += self.FemBodyParts.Ass.MediumDesc() 
            elif iRand == 4:
                sRoom = "by the bathroom"
-               sGarmentDesc = "nothing but a " + sColor + " towel wrapped around her " + self.FemBodyParts.Breasts.MediumDescription()
+               sGarmentDesc = "nothing but a " + sColor + " towel wrapped around her " + self.FemBodyParts.Breasts.MediumDesc()
                sSexyNotice = "her curvaceous, dripping wet figure"
                sDrink = "a glass of Chardonnay"
                sFlash = "she opened her towel, revealing her smooth, voluptuous, naked body"
@@ -6158,7 +6158,7 @@ class Generator93(ExGen):
 
            iRand = randint(1,7)
            if iRand == 1:
-               sTweet += "\"I enjoyed having your " + self.MaleBodyParts.Penis.Testicles.MediumDescription() + " "
+               sTweet += "\"I enjoyed having your " + self.MaleBodyParts.Penis.Testicles.MediumDesc() + " "
                sTweet += "in my mouth last night,\" she whispered."
            elif iRand == 2:
                sTweet += "\"I really enjoyed going down on you in front of Mr. " + sMILFName + " last night,\" she whispered."
@@ -6167,9 +6167,9 @@ class Generator93(ExGen):
            elif iRand == 4:
                sTweet += "\"Mr. " + sMILFName + " really enjoyed watching you take me from behind last night,\" she whispered."
            elif iRand == 5:
-                sTweet += "\"Your " + self.MaleBodyParts.Penis.MediumDescription() + " felt so good in my ass last night,\" she whispered."
+                sTweet += "\"Your " + self.MaleBodyParts.Penis.MediumDesc() + " felt so good in my ass last night,\" she whispered."
            elif iRand == 6:
-                sTweet += "\"I really loved feeling your " + self.MaleBodyParts.Penis.MediumDescription() + " between my " + self.FemBodyParts.Breasts.ShortDescription() + " last night,\" she whispered."
+                sTweet += "\"I really loved feeling your " + self.MaleBodyParts.Penis.MediumDesc() + " between my " + self.FemBodyParts.Breasts.ShortDesc() + " last night,\" she whispered."
            else:
                sTweet += "\"I loved being spit-roasted by you and Mr. " + sMILFName + " last night,\" she whispered."
            
@@ -6210,26 +6210,26 @@ class Generator94(ExGen):
         iRand = randint(1,4)
         if iRand == 1:
             sTweet += "Saliva was dripping from her chin as she bobbed up and down "
-            sTweet += "on his " + self.MaleBodyParts.Penis.FloweryDescription() + ".\n\n"
+            sTweet += "on his " + self.MaleBodyParts.Penis.FloweryDesc() + ".\n\n"
         elif iRand == 2:
-            sTweet += "Tears trailed from her " + self.FemBodyParts.Eyes.RandomDescription() + " "
+            sTweet += "Tears trailed from her " + self.FemBodyParts.Eyes.RandomDesc() + " "
             sTweet += "as she " + WordList(["gagged","choked"]).GetWord() + " "
-            sTweet += "on his " + self.MaleBodyParts.Penis.FloweryDescription(bAddLen = True) + ".\n\n"
+            sTweet += "on his " + self.MaleBodyParts.Penis.FloweryDesc(bAddLen = True) + ".\n\n"
         elif iRand == 3:
-            sTweet += "His " + self.MaleBodyParts.Penis.RandomDescription(bShortDesc = True) + " was slapping "
-            sTweet += "against her " + self.FemBodyParts.Face.MediumDescription() + " as she "
-            sTweet += "sucked on his " + self.MaleBodyParts.Penis.Testicles.ShortDescription() + ".\n\n"
+            sTweet += "His " + self.MaleBodyParts.Penis.RandomDesc(bShortDesc = True) + " was slapping "
+            sTweet += "against her " + self.FemBodyParts.Face.MediumDesc() + " as she "
+            sTweet += "sucked on his " + self.MaleBodyParts.Penis.Testicles.ShortDesc() + ".\n\n"
         elif iRand == 4:
-            sTweet += "Her " + self.FemBodyParts.Eyes.RandomDescription() + " were "
+            sTweet += "Her " + self.FemBodyParts.Eyes.RandomDesc() + " were "
             sTweet += "locked on his as she "
             sTweet += "sucked " + WordList(["vigorously","passionately","earnestly",
                                             "skillfully","hungrily"]).GetWord() + " "
-            sTweet += "on his " + self.MaleBodyParts.Penis.FloweryDescription() + ".\n\n"
+            sTweet += "on his " + self.MaleBodyParts.Penis.FloweryDesc() + ".\n\n"
         else:
-            sTweet += "Her " + self.FemBodyParts.Eyes.RandomDescription() + " were "
+            sTweet += "Her " + self.FemBodyParts.Eyes.RandomDesc() + " were "
             sTweet += "locked on his and "
-            sTweet += "her " + self.FemBodyParts.Lips.RandomDescription() + " were wrapped "
-            sTweet += "around his " + self.MaleBodyParts.Penis.FloweryDescription() + ".\n\n"
+            sTweet += "her " + self.FemBodyParts.Lips.RandomDesc() + " were wrapped "
+            sTweet += "around his " + self.MaleBodyParts.Penis.FloweryDesc() + ".\n\n"
         
         sTweet += "\"I haven't seen her anywhere,\" " + sHisName + " shouted back."
 
@@ -6265,27 +6265,27 @@ class Generator95(ExGen):
         iRand = randint(1,4)
         if iRand == 1:
             sTweet += "Saliva was dripping from his chin as he bobbed up and down "
-            sTweet += "on " + sHisName + "'s " + self.MaleBodyParts.Penis.FloweryDescription() + ".\n\n"
+            sTweet += "on " + sHisName + "'s " + self.MaleBodyParts.Penis.FloweryDesc() + ".\n\n"
         elif iRand == 2:
-            sTweet += "Tears trailed from his " + self.MaleBodyParts.Eyes.RandomDescription() + " "
+            sTweet += "Tears trailed from his " + self.MaleBodyParts.Eyes.RandomDesc() + " "
             sTweet += "as he " + WordList(["gagged","choked"]).GetWord() + " "
-            sTweet += "on " + sHisName + "'s " + self.MaleBodyParts.Penis.FloweryDescription(bAddLen = True) + ".\n\n"
+            sTweet += "on " + sHisName + "'s " + self.MaleBodyParts.Penis.FloweryDesc(bAddLen = True) + ".\n\n"
         elif iRand == 3:
-            sTweet += "His " + self.MaleBodyParts.Penis.RandomDescription(bShortDesc = True) + " was slapping "
+            sTweet += "His " + self.MaleBodyParts.Penis.RandomDesc(bShortDesc = True) + " was slapping "
             sTweet += "against " + sOtherManName + "'s "
             sTweet += WordList(["youthful","handsome","boyish","chiseled"]).GetWord() + " face as he "
-            sTweet += "sucked on his " + self.MaleBodyParts.Penis.Testicles.ShortDescription() + ".\n\n"
+            sTweet += "sucked on his " + self.MaleBodyParts.Penis.Testicles.ShortDesc() + ".\n\n"
         elif iRand == 4:
-            sTweet += "His " + self.MaleBodyParts.Eyes.RandomDescription() + " were "
+            sTweet += "His " + self.MaleBodyParts.Eyes.RandomDesc() + " were "
             sTweet += "locked with his as he "
             sTweet += "sucked " + WordList(["vigorously","passionately","earnestly",
                                             "skillfully","hungrily"]).GetWord() + " "
-            sTweet += "on " + sHisName + "'s " + self.MaleBodyParts.Penis.FloweryDescription() + ".\n\n"
+            sTweet += "on " + sHisName + "'s " + self.MaleBodyParts.Penis.FloweryDesc() + ".\n\n"
         else:
-            sTweet += "His " + self.MaleBodyParts.Eyes.RandomDescription() + " were "
+            sTweet += "His " + self.MaleBodyParts.Eyes.RandomDesc() + " were "
             sTweet += "locked on his and "
             sTweet += "his " + WordList(["full","pouty","sensual","moist","wanton"]).GetWord() + " lips were wrapped "
-            sTweet += "around " + sHisName + "'s " + self.MaleBodyParts.Penis.FloweryDescription() + ".\n\n"
+            sTweet += "around " + sHisName + "'s " + self.MaleBodyParts.Penis.FloweryDesc() + ".\n\n"
         
         sTweet += "\"I haven't seen him anywhere,\" " + sHisName + " shouted back."
 
@@ -6331,7 +6331,7 @@ class Generator96(ExGen):
                             "tiny " + sColor + " swimsuit",
                            ]).GetWord() + " "
         sTweet += "fall to the floor, revealing her "
-        sTweet += Body.RandomDescription(bShortDesc = False) + ". "
+        sTweet += Body.RandomDesc(bShortDesc = False) + ". "
         sTweet += "Her breasts were " + sBreastAdj1 + " and " + sBreastAdj2 + ", "
         if CoinFlip():
             sTweet += "her nipples were " + Breasts.Nipples.GetNewAdj() + " and " + Breasts.Nipples.GetNewAdj() + ", "
@@ -6340,18 +6340,18 @@ class Generator96(ExGen):
         if CoinFlip():
             sTweet += "her " + Ass.GetNoun() + " was " + Ass.GetNewAdj() + ", "
         if CoinFlip():
-            sTweet += "her " + Skin.RandomDescription(NotList = ["oil"]) + " "
+            sTweet += "her " + Skin.RandomDesc(NotList = ["oil"]) + " "
             sTweet += "was dripping with oil, "
         sTweet += "and "
         if CoinFlip():
-            sTweet += "her " + Vagina.MediumDescription(TagLists = TagLists(adj_excl = ["silly"])) + " "
+            sTweet += "her " + Vagina.MediumDesc(TagLists = TagLists(adj_excl = ["silly"])) + " "
             sTweet += "was nestled between " + Thighs.GetNewAdj() + " thighs"
         elif CoinFlip():
-            sTweet += "her " + Vagina.OuterLabia.MediumDescription(TagLists = TagLists(adj_excl = ["silly"])) + " "
+            sTweet += "her " + Vagina.OuterLabia.MediumDesc(TagLists = TagLists(adj_excl = ["silly"])) + " "
             sTweet += "were nestled between " + Thighs.GetNewAdj() + " thighs"
         else: 
             sTweet += "a silver clit ring winked at him from her "
-            sTweet += Vagina.MediumDescription(TagLists = TagLists(adj_excl = ["silly"]))
+            sTweet += Vagina.MediumDesc(TagLists = TagLists(adj_excl = ["silly"]))
         sTweet += ".\n\n"
         sTweet += "\"I want you, " + sHisName + ",\" "
         sTweet += "she " + WordList(["moaned","breathed","growled",
@@ -6421,7 +6421,7 @@ class Generator97(ExGen):
            DickNotList = ["penis","dick","erection","girth","goo-gun","hardness","member",
                            "organ","package","phallus","prick","schlong","stem","thing",
                            "tool","wood", "lady-dagger"]
-           sDickNoun = self.MaleBodyParts.Penis.ShortDescription(NotList = DickNotList)
+           sDickNoun = self.MaleBodyParts.Penis.ShortDesc(NotList = DickNotList)
            sDickAdj = WordList(["hard","hard","nasty","fat","rock-hard","fucking"]).GetWord()
            sDick = sDickAdj + " " + sDickNoun
 
@@ -6455,7 +6455,7 @@ class Generator97(ExGen):
            FilthyPhrases.append(WordList(["Fill","Stuff","Rape","Pound"]).GetWord() + " my holes with your " + sDick)
            FilthyPhrases.append("Choke me out while you fuck my whore " + WordList(["cunt","twat","cunt-hole","pussy","snatch","cock-sock","twat-box"]).GetWord())
            FilthyPhrases.append("Make me your " + WordList(["whore","slut","bitch"]).GetWord() + " with your " + sDick)
-           FilthyPhrases.append("Fill my " + WordList(["fucking","filthy","dirty"]).GetWord() + " " + WordList(["cunt","twat","fuck-hole","hole","minge","cooter","snatch","vag"]).GetWord() + " with your " + WordList(["nasty ","sticky ","goddamn ",""]).GetWord() + self.Semen.ShortDescription())
+           FilthyPhrases.append("Fill my " + WordList(["fucking","filthy","dirty"]).GetWord() + " " + WordList(["cunt","twat","fuck-hole","hole","minge","cooter","snatch","vag"]).GetWord() + " with your " + WordList(["nasty ","sticky ","goddamn ",""]).GetWord() + self.Semen.ShortDesc())
            FilthyPhrases.append("Shove your " + sDick + " into my mouth and shoot your " + WordList(["cum","jizz","spunk","sperm","splooge"]).GetWord() + " down my fucking throat")
 
            sTweet += choice(FilthyPhrases) + "!\""
@@ -6633,22 +6633,22 @@ class Generator99(ExGen):
         Vaj = self.Woman.Vagina
         Tits = self.Woman.Breasts
         sTweet += "as he " + WordList(["ate her ass",
-                                        "tongued her " + AnusFemale.ShortDescription(),
-                                        "shoved his " + WordList(["lubricated","vaseline-covered","oiled-up"]).GetWord() + " fist deeper into her " + AnusFemale.ShortDescription(),
-                                        "inserted his " + WordList(["lubricated","vaseline-covered","oiled-up"]).GetWord() + " fist into her " + Vaj.ShortDescription(),
-                                        "rubbed his " + WordList(["hairy","wrinkled","fleshy"]).GetWord() + " " + Balls.ShortDescription() + " against her face",
-                                        "rubbed his " + WordList(["hairy","wrinkled","fleshy"]).GetWord() + " " + Dick.ShortDescription() + " against her face",
-                                        "sodomized her virgin " + AssFemale.ShortDescription(),
-                                        "thrust his " + Dick.ShortDescription() + " between her " + Tits.MediumDescription(),
-                                        "thrust his " + Dick.ShortDescription() + " deep into her " + AnusFemale.ShortDescription(),
-                                        "injected the enema into her " + AnusFemale.ShortDescription(),
+                                        "tongued her " + AnusFemale.ShortDesc(),
+                                        "shoved his " + WordList(["lubricated","vaseline-covered","oiled-up"]).GetWord() + " fist deeper into her " + AnusFemale.ShortDesc(),
+                                        "inserted his " + WordList(["lubricated","vaseline-covered","oiled-up"]).GetWord() + " fist into her " + Vaj.ShortDesc(),
+                                        "rubbed his " + WordList(["hairy","wrinkled","fleshy"]).GetWord() + " " + Balls.ShortDesc() + " against her face",
+                                        "rubbed his " + WordList(["hairy","wrinkled","fleshy"]).GetWord() + " " + Dick.ShortDesc() + " against her face",
+                                        "sodomized her virgin " + AssFemale.ShortDesc(),
+                                        "thrust his " + Dick.ShortDesc() + " between her " + Tits.MediumDesc(),
+                                        "thrust his " + Dick.ShortDesc() + " deep into her " + AnusFemale.ShortDesc(),
+                                        "injected the enema into her " + AnusFemale.ShortDesc(),
                                         "as he fucked her " + WordList(["lubed-up","oiled-up","greased-up"]).GetWord() + " tits",
                                         "tit-fucked her",
-                                        "pushed the " + WordList(["eleven-inch","twelve-inch","thirteen-inch","foot-long","twenty-inch"]).GetWord() + " " + WordList(["black","glass","steel"]).GetWord() + " dildo deeper into her " + Vaj.ShortDescription(),
-                                        "pushed the " + WordList(["eleven-inch","twelve-inch","thirteen-inch","foot-long","twenty-inch"]).GetWord() + " " + WordList(["black","glass","steel"]).GetWord() + " dildo deeper into her " + AnusFemale.ShortDescription(),
+                                        "pushed the " + WordList(["eleven-inch","twelve-inch","thirteen-inch","foot-long","twenty-inch"]).GetWord() + " " + WordList(["black","glass","steel"]).GetWord() + " dildo deeper into her " + Vaj.ShortDesc(),
+                                        "pushed the " + WordList(["eleven-inch","twelve-inch","thirteen-inch","foot-long","twenty-inch"]).GetWord() + " " + WordList(["black","glass","steel"]).GetWord() + " dildo deeper into her " + AnusFemale.ShortDesc(),
                                         WordList(["sprayed his urine","urinated","pissed","peed"]).GetWord() + " all over her",
                                         "as he pounded her " + WordList(["best friend","maid-of-honor","mom","sister","twin sister"]).GetWord(),
-                                        "spread his ass-cheeks and lowered his " + self.MaleBodyParts.Ass.Anus.ShortDescription() + " onto her face",
+                                        "spread his ass-cheeks and lowered his " + self.MaleBodyParts.Ass.Anus.ShortDesc() + " onto her face",
                                        ]).GetWord() + "."
         
         return sTweet
@@ -6693,24 +6693,24 @@ class Generator100(ExGen):
         sDickAdj = DickAdjs.GetWord()
 
         sTweet += sPerson1Pronoun.capitalize() + " unbuckled " + sPerson2Name + "'s belt, "
-        sTweet += "unzipped his " + self.MaleWardrobe.GetTrousers().RandomDescription(bLongDesc = False) + ", "
+        sTweet += "unzipped his " + self.MaleWardrobe.GetTrousers().RandomDesc(bLongDesc = False) + ", "
         #sTweet += "unzipped his " + WordList(["khaki pants","bluejeans","trousers",
         #                                      "gray slacks","black slacks","leather pants",
         #                                      "tight pants","pleated trousers"
         #                                     ]).GetWord() + ", "
-        sTweet += "and pulled out his " + sDickAdj + " " + Penis1.ShortDescription(NotList = DickNotList + [sDickAdj]) + ". "
+        sTweet += "and pulled out his " + sDickAdj + " " + Penis1.ShortDesc(NotList = DickNotList + [sDickAdj]) + ". "
         if CoinFlip():
             #cock 
-            sTweet += "His " + Penis2.ShortDescription(NotList = ["fuck","thing"]) + " " #Penis.BuildAPenis(NotList = ['fuck']) + " " 
+            sTweet += "His " + Penis2.ShortDesc(NotList = ["fuck","thing"]) + " " #Penis.BuildAPenis(NotList = ['fuck']) + " " 
             sTweet += "began to " + WordList(["swell","engorge","fatten","grow","lengthen",
                                               "rise","extend","harden"]).GetWord()
         elif CoinFlip():
             # head
-            sTweet += "The " + Head.ShortDescription() + " "
+            sTweet += "The " + Head.ShortDesc() + " "
             sTweet += "began to " + WordList(["swell","engorge","fatten","grow"]).GetWord()
         else:
             # balls
-            sTweet += "His " + Balls.ShortDescription() + " began to tighten"
+            sTweet += "His " + Balls.ShortDesc() + " began to tighten"
 
         sTweet += " at the " + WordList(["touch","strokes","caresses","fondling",
                                          "ministrations"
@@ -6810,8 +6810,8 @@ class Generator101(ExGen):
                                                      "languidly","tantalizingly",
                                                      "sexily"
                                                      ]).GetWord() + " slid "
-        sTweet += "her " + clothes.Panties().RandomDescription() + " "
-        sTweet += "down over her " + Hips.MediumDescription() + ". "
+        sTweet += "her " + clothes.Panties().RandomDesc() + " "
+        sTweet += "down over her " + Hips.MediumDesc() + ". "
         sTweet += "Then she bent forward over the " + WordList(["bed","bench","coffee table",
                                                                 "desk","kitchen counter","kitchen table",
                                                                 "loveseat","seat","sofa",
@@ -6819,27 +6819,27 @@ class Generator101(ExGen):
                                                                 "side of the trampoline","work bench","conference room table"
                                                                 ]).GetWord() + ", "
         sTweet += WordList(["displaying","exposing","offering","presenting"]).GetWord() + " "
-        sTweet += "her " + Ass.FloweryDescription() + " to him. "
+        sTweet += "her " + Ass.FloweryDesc() + " to him. "
         sTweet += "Kneeling behind her, he " + WordList(["gently","lightly","softly","tenderly"]).GetWord() + " "
         if CoinFlip():
             # kisses it
             
             sTweet += WordList(["brushed","kissed","nuzzled","bussed"
-                                ]).GetWord() + " one of her " + Buns.RandomDescription()
+                                ]).GetWord() + " one of her " + Buns.RandomDesc()
             sTweet += " with his lips"
         else:
             # caresses it
             sTweet += WordList(["brushed","caressed","squeezed","stroked","fondled"
-                                ]).GetWord() + " her " + Buns.RandomDescription()
+                                ]).GetWord() + " her " + Buns.RandomDesc()
         sTweet += ". Then he spread her open and "
         if CoinFlip():
             # nibbles her labia
             sTweet += "began to " + WordList(["nibble","suck on","tongue and tease"]).GetWord() + " "
-            sTweet += "her " + Pussy.InnerLabia.FloweryDescription()
+            sTweet += "her " + Pussy.InnerLabia.FloweryDesc()
         else:
             # tongues her anus
             sTweet += "began to " + WordList(["lick the rim of","taste","lap at","penetrate","lick","rim"]).GetWord() + " "
-            sTweet += "her " + Ass.Anus.FloweryDescription() + " with his tongue"
+            sTweet += "her " + Ass.Anus.FloweryDesc() + " with his tongue"
         sTweet += "."
 
         return sTweet
@@ -6868,19 +6868,19 @@ class Generator102(ExGen):
         sTweet += "Then she " + WordList(["slowly","sensually"]).GetWord() + " "
         
         sTweet += WordList(["opened her bath towel",
-                            "opened her " + clothes.Blouse().RandomDescription(bLongDesc = False),
-                            "opened her " + clothes.RobeFemale().RandomDescription(bLongDesc = False),
+                            "opened her " + clothes.Blouse().RandomDesc(bLongDesc = False),
+                            "opened her " + clothes.RobeFemale().RandomDesc(bLongDesc = False),
                             "opened her uniform",
-                            "pulled off her " + clothes.BikiniTop().RandomDescription(bLongDesc = False),
-                            "pulled off her " + clothes.Bra().RandomDescription(bLongDesc = False),
-                            "pulled down her " + clothes.SportsBra().RandomDescription(bLongDesc = False),
-                            "pulled up her " + clothes.TshirtFemale().RandomDescription(bLongDesc = False),
-                            "undid her " + clothes.Bikini().RandomDescription(bLongDesc = False),
-                            "pulled down her " + clothes.CropTop().RandomDescription(bLongDesc = False),
+                            "pulled off her " + clothes.BikiniTop().RandomDesc(bLongDesc = False),
+                            "pulled off her " + clothes.Bra().RandomDesc(bLongDesc = False),
+                            "pulled down her " + clothes.SportsBra().RandomDesc(bLongDesc = False),
+                            "pulled up her " + clothes.TshirtFemale().RandomDesc(bLongDesc = False),
+                            "undid her " + clothes.Bikini().RandomDesc(bLongDesc = False),
+                            "pulled down her " + clothes.CropTop().RandomDesc(bLongDesc = False),
                             ]).GetWord() + ", "
 
         sTweet += WordList(["revealing","exposing","baring"]).GetWord() + " "
-        sTweet += "her " + self.Woman.Breasts.FloweryDescription(TagLists = TagLists(adj_excl = ["smalltits"], noun_excl = ["smalltits","silly","sing"])) + " to him.\n\n"
+        sTweet += "her " + self.Woman.Breasts.FloweryDesc(TagLists = TagLists(adj_excl = ["smalltits"], noun_excl = ["smalltits","silly","sing"])) + " to him.\n\n"
 
         TittyAdjs = WordList(["bangin'",
                               "big-ass",
@@ -6955,27 +6955,27 @@ class Generator103(ExGen):
                           ]
 
         sTweet += "Mrs. " + sMILFName + " bent over in front of him "
-        sTweet += "and spread the cheeks of her " + Ass.ShortDescription() + ", "
+        sTweet += "and spread the cheeks of her " + Ass.ShortDesc() + ", "
         sTweet += "shamelessly displaying her "
         iRand = randint(1,3)
         if iRand == 1:
             #anus
-            sAnus1 = Anus.ShortDescription(NotList = PhraseNotList, TagLists = TagLists(noun_excl = ["silly"]))
+            sAnus1 = Anus.ShortDesc(NotList = PhraseNotList, TagLists = TagLists(noun_excl = ["silly"]))
             PhraseNotList += re.split('\W+', sAnus1)
             sTweet += sAnus1
         elif iRand == 2:
             #cunt
             bIsPussy = True
-            sPussy1 = Pussy.RandomDescription(NotList = PhraseNotList, TagLists = TagLists(noun_excl = ["silly"]))
+            sPussy1 = Pussy.RandomDesc(NotList = PhraseNotList, TagLists = TagLists(noun_excl = ["silly"]))
             PhraseNotList += re.split('\W+', sPussy1)
             sTweet += sPussy1
         else:
             #anus and cunt
             if CoinFlip():
                 bIsPussy = True
-            sPussy1 = Pussy.ShortDescription(NotList = PhraseNotList, TagLists = TagLists(noun_excl = ["silly"]))
+            sPussy1 = Pussy.ShortDesc(NotList = PhraseNotList, TagLists = TagLists(noun_excl = ["silly"]))
             PhraseNotList += re.split('\W+', sPussy1)
-            sAnus1 = Anus.ShortDescription(NotList = PhraseNotList, TagLists = TagLists(noun_excl = ["silly"]))
+            sAnus1 = Anus.ShortDesc(NotList = PhraseNotList, TagLists = TagLists(noun_excl = ["silly"]))
             PhraseNotList += re.split('\W+', sAnus1)
             sTweet += sPussy1 + " and " + sAnus1
         sTweet += ".\n\n"
@@ -6989,27 +6989,27 @@ class Generator103(ExGen):
         if bIsPussy:
             if CoinFlip():
                 #pussy
-                sPussy2 = PussyAdjList.GetWord() + " " + Pussy.ShortDescription(NotList = PhraseNotList)
+                sPussy2 = PussyAdjList.GetWord() + " " + Pussy.ShortDesc(NotList = PhraseNotList)
                 PhraseNotList += re.split('\W+', sPussy2)
                 sTweet += sPussy2
             else:
                 #inner hole
-                sPussy2 = PussyAdjList.GetWord() + " " + Pussy.InnerVag.ShortDescription(NotList = PhraseNotList)
+                sPussy2 = PussyAdjList.GetWord() + " " + Pussy.InnerVag.ShortDesc(NotList = PhraseNotList)
                 PhraseNotList += re.split('\W+', sPussy2)
                 sTweet += sPussy2
         else:
             if CoinFlip():
                 #ass
-                sAnus2 = Ass.RandomDescription(NotList = PhraseNotList)
+                sAnus2 = Ass.RandomDesc(NotList = PhraseNotList)
                 PhraseNotList += re.split('\W+', sAnus2)
                 sTweet += sAnus2
             else:
                 #anus
-                sAnus2 = AnusAdjList.GetWord() + " " + Anus.ShortDescription(NotList = PhraseNotList)
+                sAnus2 = AnusAdjList.GetWord() + " " + Anus.ShortDesc(NotList = PhraseNotList)
                 PhraseNotList += re.split('\W+', sAnus2)
                 sTweet += sAnus2
         sTweet += " "
-        sTweet += "with your " + Penis.FloweryDescription(NotList = PenisNotList + PhraseNotList + PenisAdjNotList) + "!\""
+        sTweet += "with your " + Penis.FloweryDesc(NotList = PenisNotList + PhraseNotList + PenisAdjNotList) + "!\""
 
         return sTweet
           
@@ -7079,42 +7079,42 @@ class Generator104(ExGen):
                                  "rimmed","sucked","violated"]).GetWord() + " "
                 sAct += "his " + sFemRelate
                 if CoinFlip():
-                    sAct += "'s " + self.FemBodyParts.Ass.RandomDescription(bLongDesc = False)
+                    sAct += "'s " + self.FemBodyParts.Ass.RandomDesc(bLongDesc = False)
                 else:
-                    sAct += "'s " + self.FemBodyParts.Ass.Anus.ShortDescription()
+                    sAct += "'s " + self.FemBodyParts.Ass.Anus.ShortDesc()
             elif iRand == 3:
                 sAct = "he "
                 sAct += WordList(["ate","desecrated","drilled","fingered","fisted","fucked",
                                  "hammered","humped","penetrated","plowed","pounded",
                                  "rimmed","sucked","violated"]).GetWord() + " "
                 sAct += "his " + sFemRelate
-                sAct += "'s " + self.FemBodyParts.Vagina.RandomDescription(bLongDesc = False)
+                sAct += "'s " + self.FemBodyParts.Vagina.RandomDesc(bLongDesc = False)
             elif iRand == 4:
                 sAct = "he "
                 sAct += WordList(["fucked","humped","rode","tit-fucked","titty-fucked"]).GetWord() + " "
                 sAct += "his " + sFemRelate
-                sAct += "'s " + self.FemBodyParts.Breasts.RandomDescription(bLongDesc = False,
+                sAct += "'s " + self.FemBodyParts.Breasts.RandomDesc(bLongDesc = False,
                                                                             NotList = ["budding","small","little"])
             elif iRand == 5:
                 sAct = "his " + sFemRelate + " "
                 sAct += WordList(["blew","deep throated","fellated","gagged on","sucked"
                                   ]).GetWord() + " "
-                sAct += "his " + bodyparts.Penis(bAllowBAP = False).RandomDescription(bLongDesc = False)
+                sAct += "his " + bodyparts.Penis(bAllowBAP = False).RandomDesc(bLongDesc = False)
             elif iRand == 6:
                 sAct = "his " + sFemRelate + " "
                 sAct += WordList(["chugged","drained","drank","guzzled","slurped down"
                                   ]).GetWord() + " "
                 sAct += WordList(["a cup","a glass","a beer stein","a mug"]).GetWord() + " "
-                sAct += "of his " + bodyparts.Semen().RandomDescription(bLongDesc = False)
+                sAct += "of his " + bodyparts.Semen().RandomDesc(bLongDesc = False)
             elif iRand == 7:
                 sAct += "he "
                 sAct += WordList(["drank","guzzled","licked","lapped"]).GetWord() + " "
-                sAct += bodyparts.Semen().RandomDescription(bLongDesc = False) + " "
+                sAct += bodyparts.Semen().RandomDesc(bLongDesc = False) + " "
                 sAct += "out of his " + sFemRelate + "'s "
                 if CoinFlip():
-                    sAct += self.FemBodyParts.Vagina.RandomDescription(bLongDesc = False)
+                    sAct += self.FemBodyParts.Vagina.RandomDesc(bLongDesc = False)
                 else:
-                    sAct += self.FemBodyParts.Ass.Anus.RandomDescription(bLongDesc = False)
+                    sAct += self.FemBodyParts.Ass.Anus.RandomDesc(bLongDesc = False)
             sWhile = "while her " + WordList(["boyfriend watched","husband watched","husband watched","boyfriend filmed them","husband filmed them","friend filmed them","friends watched"]).GetWord()
 
         else:
@@ -7141,13 +7141,13 @@ class Generator104(ExGen):
                 sAct += WordList(["caressed","licked","played with","stroked","rubbed her tits on"
                                  "toyed with"]).GetWord() + " "
                 sAct += "her " + sMaleRelate + "'s "
-                sAct += bodyparts.Penis(bAllowBAP = False).RandomDescription(bLongDesc = False)
+                sAct += bodyparts.Penis(bAllowBAP = False).RandomDesc(bLongDesc = False)
             elif iRand == 3:
                 #butt stuff
                 sAct += "she "
                 sAct += WordList(["ate","ate out","fingered","fisted","licked","pegged"]).GetWord() + " "
                 sAct += "her " + sMaleRelate + "'s "
-                sAct += self.MaleBodyParts.Ass.Anus.ShortDescription()
+                sAct += self.MaleBodyParts.Ass.Anus.ShortDesc()
             elif iRand == 4:
                 #face riding
                 sAct += "she "
@@ -7158,16 +7158,16 @@ class Generator104(ExGen):
                 sAct += "she "
                 sAct += WordList(["bounced on","humped","rode","straddled"]).GetWord() + " "
                 sAct += "her " + sMaleRelate + "'s "
-                sAct += bodyparts.Penis(bAllowBAP = False).RandomDescription(bLongDesc = False)
+                sAct += bodyparts.Penis(bAllowBAP = False).RandomDesc(bLongDesc = False)
             elif iRand == 6:
                 sAct += "her " + sMaleRelate + " "
                 sAct += WordList(["drank","guzzled","licked","lapped"]).GetWord() + " "
-                sAct += bodyparts.Semen().RandomDescription(bLongDesc = False) + " "
+                sAct += bodyparts.Semen().RandomDesc(bLongDesc = False) + " "
                 sAct += "out of her " 
                 if CoinFlip():
-                    sAct += self.FemBodyParts.Vagina.RandomDescription(bLongDesc = False)
+                    sAct += self.FemBodyParts.Vagina.RandomDesc(bLongDesc = False)
                 else:
-                    sAct += self.FemBodyParts.Ass.Anus.RandomDescription(bLongDesc = False)
+                    sAct += self.FemBodyParts.Ass.Anus.RandomDesc(bLongDesc = False)
             sWhile = "while his " + WordList(["boyfriend watched","husband watched","husband watched","girlfriend watched","wife watched","wife filmed them","friend watched","friend filmed them","friends watched"]).GetWord()
 
         iRand = randint(1,3)
@@ -7248,7 +7248,7 @@ class Generator105(ExGen):
                                "star quarterback","step-brother","step-dad",
                                "step-son","student","teammate","tutor"])
         if bGrabAss:
-            sAss = self.MaleBodyParts.Ass.MediumDescription()
+            sAss = self.MaleBodyParts.Ass.MediumDesc()
             sTweet += "He reached down and put his hands on his " + MaleRelate.GetWord() + "'s "
             sTweet += sAss + ". "
             sTweet += "Then he began to " + WordList(["gently","sensually","smoothly","tenderly"]).GetWord() + " "
@@ -7259,7 +7259,7 @@ class Generator105(ExGen):
                 sTweet += "it."
         else:
             sTweet += "He reached down and took hold of his " + MaleRelate.GetWord() + "'s "
-            sTweet += self.MaleBodyParts.Penis.MediumDescription(bAddLen = bAddLen, NotList = PenisNotList) + ". "
+            sTweet += self.MaleBodyParts.Penis.MediumDesc(bAddLen = bAddLen, NotList = PenisNotList) + ". "
             sTweet += "Then he began to " + WordList(["carefully","gently","sensually","softly","tenderly"]).GetWord() + " "
             sTweet += WordList(["caress","rub","stroke"]).GetWord() + " it."
             
@@ -7389,10 +7389,10 @@ class Generator106(ExGen):
                                        "gave him head",
                                        "sucked him off",
                                        "sucked his cock",
-                                       "sucked his " + Dick.ShortDescription()
+                                       "sucked his " + Dick.ShortDesc()
                                       ]).GetWord()
             if CoinFlip():
-                sTweet += " and stuck my thumb up his " + self.MaleBodyParts.Ass.Anus.ShortDescription()
+                sTweet += " and stuck my thumb up his " + self.MaleBodyParts.Ass.Anus.ShortDesc()
                 bPart2 = False
         elif iRand == 3:
             # rode his dick
@@ -7400,7 +7400,7 @@ class Generator106(ExGen):
             sTweet += "I " + WordList(["bounced on","rode","fucked"]).GetWord() + " "
             sTweet += "his " + WordList(["fat","greasy","nasty","throbbing","hard","rock hard",
                                          "big black","uncircumcized","hairy"]).GetWord() + " "
-            sTweet += Dick.ShortDescription(NotList=["penis","organ","girth","thing","phallus"]) 
+            sTweet += Dick.ShortDesc(NotList=["penis","organ","girth","thing","phallus"]) 
             if CoinFlip():
                 sTweet + " " + WordList(["for like an hour",
                                          "for hours",
@@ -7412,13 +7412,13 @@ class Generator106(ExGen):
             sTweet += "he " + WordList(["butt-fucked me",
                                         "fucked me in the ass",
                                         "fucked my ass",
-                                        "fucked my " + FemAss.ShortDescription(),
-                                        "fucked my " + FemAnus.ShortDescription()
+                                        "fucked my " + FemAss.ShortDesc(),
+                                        "fucked my " + FemAnus.ShortDesc()
                                         ]).GetWord()
         elif iRand == 5:
             # handjob
             sTweet += "I " + WordList(["beat his meat",
-                                      "diddled his " + Dick.ShortDescription(),
+                                      "diddled his " + Dick.ShortDesc(),
                                       "jacked him off",
                                       "jerked him off",
                                       "wanked him off"
@@ -7434,23 +7434,23 @@ class Generator106(ExGen):
         elif iRand == 7:
             # sat on his face
             sTweet += "I sat on his face and made him " + WordList(["eat me out",
-                                                                    "eat my " + Pussy.ShortDescription(),
-                                                                    "lick my " + Pussy.ShortDescription(),
-                                                                    "suck my " + Pussy.ShortDescription(),
+                                                                    "eat my " + Pussy.ShortDesc(),
+                                                                    "lick my " + Pussy.ShortDesc(),
+                                                                    "suck my " + Pussy.ShortDesc(),
                                                                     ]).GetWord()
         elif iRand == 8:
             # titty fuck
-            sTweet += "I lubed up his " + Dick.ShortDescription() + " with my saliva and let him "
+            sTweet += "I lubed up his " + Dick.ShortDesc() + " with my saliva and let him "
             sTweet += WordList(["fuck my titties","tit-fuck me","titty-fuck me"]).GetWord()
         elif iRand == 9:
             # spit roasted
             sTweet += "two of his " + WordList(["buddies","friends"]).GetWord() + " spit-roasted me"
         elif iRand == 10:
             # masturbation
-            sTweet += "I " + WordList(["diddled myself","diddled my " + Pussy.ShortDescription(),
-                                       "frigged myself","frigged my" + Pussy.ShortDescription(),
+            sTweet += "I " + WordList(["diddled myself","diddled my " + Pussy.ShortDesc(),
+                                       "frigged myself","frigged my" + Pussy.ShortDesc(),
                                        "jilled myself",
-                                       "played with myself","played with my " + Pussy.ShortDescription(),
+                                       "played with myself","played with my " + Pussy.ShortDesc(),
                                        "rubbed one out",
                                        ]).GetWord() + " "
             if CoinFlip():
@@ -7460,9 +7460,9 @@ class Generator106(ExGen):
             bPart2 = False
         elif iRand == 11:
             # ate my ass
-            sTweet += "he " + WordList(["ate my ass","ate my " + FemAnus.ShortDescription(),
-                                        "licked my " + FemAnus.ShortDescription(),
-                                        "tongued my " + FemAnus.ShortDescription(),
+            sTweet += "he " + WordList(["ate my ass","ate my " + FemAnus.ShortDesc(),
+                                        "licked my " + FemAnus.ShortDesc(),
+                                        "tongued my " + FemAnus.ShortDesc(),
                                         "gave me a rim-job",
                                         ]).GetWord()
         elif iRand == 12:
@@ -7480,7 +7480,7 @@ class Generator106(ExGen):
                                 "flogged me with a leather whip",
                                 "whipped my ass with a riding crop",
                                 "used a clit pump on me",
-                                "inserted an XL butt plug into my " + FemAnus.ShortDescription(),
+                                "inserted an XL butt plug into my " + FemAnus.ShortDesc(),
                                 "gave me an enema",
                                 "used a steel dildo on me",
                                 "dripped hot wax on my tits",
@@ -7509,7 +7509,7 @@ class Generator106(ExGen):
                                         "spanked my ass",]).GetWord() + " "
             sTweet += "while he " + WordList(["destroyed","drilled","hammered",
                                               "plowed","pounded","rode","stuffed"]).GetWord() + " "
-            sTweet += "my " + Pussy.ShortDescription(NotList = ["flower","vagina","womanhood"])
+            sTweet += "my " + Pussy.ShortDesc(NotList = ["flower","vagina","womanhood"])
             sTweet += " " + WordList(["for hours",
                                         "for like an hour",
                                         "all night long",
@@ -7610,7 +7610,7 @@ class Generator106(ExGen):
                 if CoinFlip():
                     sTweet += " his " + WordList(["piss","pee","urine"]).GetWord()
                 else:
-                    sTweet += " his " + bodyparts.Semen().MediumDescription()
+                    sTweet += " his " + bodyparts.Semen().MediumDesc()
             
 
         sTweet += ".\""
@@ -7697,9 +7697,9 @@ class Generator107(ExGen):
         sTweet += WordList(["pulled out", "whipped out"]).GetWord() + " "
 
         if CoinFlip():
-            sTweet += "his " + bodyparts.Penis(bAllowBAP = False).ShortDescription(NotList = DickNotList) + " "
+            sTweet += "his " + bodyparts.Penis(bAllowBAP = False).ShortDesc(NotList = DickNotList) + " "
         else:
-            sTweet += "his " + bodyparts.Penis(bAllowBAP = False).MediumDescription(NotList = DickNotList) + " "
+            sTweet += "his " + bodyparts.Penis(bAllowBAP = False).MediumDesc(NotList = DickNotList) + " "
         sTweet += "and started "
 
         iRand = randint(1,6)
@@ -7707,12 +7707,12 @@ class Generator107(ExGen):
         if iRand == 1:
             sTweet += WordList(["dry-humping","hot-dogging","grinding it against"
                                 ]).GetWord() + " "
-            sTweet += "her " + bodyparts.AssFemale().ShortDescription()
+            sTweet += "her " + bodyparts.AssFemale().ShortDesc()
         elif iRand == 2:
             sTweet += WordList(["motor-boating","sucking on","nibbling","tit-fucking",
                                 "playing with","rubbing it on",
                                 ]).GetWord() + " "
-            sTweet += "her " + bodyparts.Breasts().ShortDescription()
+            sTweet += "her " + bodyparts.Breasts().ShortDesc()
         elif iRand == 3:
             sTweet += WordList(["sixty-nining with her",
                                 "doing her doggy style",
@@ -7732,11 +7732,11 @@ class Generator107(ExGen):
 
             iRand = randint(1,6)
             if iRand == 6:
-                sTweet += "her " + bodyparts.AssFemale().ShortDescription()
+                sTweet += "her " + bodyparts.AssFemale().ShortDesc()
             elif iRand == 5:
-                sTweet += "her " + bodyparts.AnusFemale().ShortDescription()
+                sTweet += "her " + bodyparts.AnusFemale().ShortDesc()
             else:
-                sTweet += "her " + bodyparts.Vagina().ShortDescription()
+                sTweet += "her " + bodyparts.Vagina().ShortDesc()
 
         sTweet += "."
 
@@ -7786,7 +7786,7 @@ class Generator108(ExGen):
         sTweet += sHerName + " " 
         sTweet += WordList(["cried out","gasped","moaned","panted",
                             "sighed","wailed","whimpered"]).GetWord() + ", "
-        sTweet += "her naked, " + self.FemBodyParts.MediumDescription(TagLists = TagLists(noun_excl = ["nude"])) + " "
+        sTweet += "her naked, " + self.FemBodyParts.MediumDesc(TagLists = TagLists(noun_excl = ["nude"])) + " "
         sTweet += WordList(["gyrating","heaving","quivering","trembling"]).GetWord() + " "
         sTweet += "in ecstasy " + SexLocation.GetWord() + ", "
         if CoinFlip():
@@ -7803,10 +7803,10 @@ class Generator108(ExGen):
 
         if CoinFlip():
             if CoinFlip():
-                sTweet += self.Semen.RandomDescription(bShortDesc = False) + " "
+                sTweet += self.Semen.RandomDesc(bShortDesc = False) + " "
             else:
                 sTweet += WordList(["jets of","ropes of","spurts of",]).GetWord() + " "
-                sTweet += self.Semen.RandomDescription(bShortDesc = False) + " "
+                sTweet += self.Semen.RandomDesc(bShortDesc = False) + " "
 
         if CoinFlip():
             sTweet += "deep "
@@ -7814,13 +7814,13 @@ class Generator108(ExGen):
 
         iRand = randint(1,4)
         if iRand == 1:
-            sTweet += Vaj.RandomDescription(TagLists = TagLists(noun_excl = ["std"])) + "."
+            sTweet += Vaj.RandomDesc(TagLists = TagLists(noun_excl = ["std"])) + "."
         elif iRand == 2:
-            sTweet += Vaj.InnerVag.RandomDescription(TagLists = TagLists(noun_excl = ["std"])) + "."
+            sTweet += Vaj.InnerVag.RandomDesc(TagLists = TagLists(noun_excl = ["std"])) + "."
         elif iRand == 3:
-            sTweet += self.FemBodyParts.Mouth.RandomDescription() + "."
+            sTweet += self.FemBodyParts.Mouth.RandomDesc() + "."
         elif iRand == 4:
-            sTweet += self.FemBodyParts.Ass.Anus.RandomDescription(bShortDesc = False) + "."
+            sTweet += self.FemBodyParts.Ass.Anus.RandomDesc(bShortDesc = False) + "."
 
         return sTweet
 
@@ -7977,7 +7977,7 @@ class Generator110(ExGen):
         elif iRand == 2:
             # dick
             sDickLen = str(randint(6, 13)) + " inches"
-            sTweet += "I would say his " + bodyparts.Penis(bAllowBAP = False).MediumDescription(NotList = DickNotList) + " "
+            sTweet += "I would say his " + bodyparts.Penis(bAllowBAP = False).MediumDesc(NotList = DickNotList) + " "
             sTweet += "was at least " + sDickLen + ". "
             sTweet += WordList(["It","He"]).GetWord() + " was "
             sTweet += WordList(["fully erect","extremely erect","rigidly erect","very erect"]).GetWord()+ "."
@@ -8082,12 +8082,12 @@ class Generator111(ExGen):
 
         # ...ready to bounce up and down on his dick...
         sTxt = WordList(["I want to bounce up and down on that man's","I want to bounce on that man's","I need to bounce on his","I'm ready to take a ride on that","I'm ready to bounce on that man's","mama wants to ride on that man's","mama needs a ride on that","I really need a ride on that","I really need a ride on that man's","I won't be happy til I get to bounce on that man's","I won't be happy til I get to pogo-stick on that"]).GetWord() + " " 
-        sTxt += self.Man.Penis.RandomDescription(NotList = DickNotList, TagLists = TagLists(adj_excl = ["shape"]))
+        sTxt += self.Man.Penis.RandomDesc(NotList = DickNotList, TagLists = TagLists(adj_excl = ["shape"]))
         Selector.AddSection(sTxt)
 
         # ...ride his black cock like a naughty pony...
         sTxt = WordList(["I plan to ride his","I've got plans to ride that man's","I want to ride that man's","I need to ride that man's"]).GetWord() + " "
-        sTxt += self.Man.Penis.RandomDescription(NotList = DickNotList, bAddLen = bAddLen, TagLists = TagLists(adj_excl = ["shape"])) + " "
+        sTxt += self.Man.Penis.RandomDesc(NotList = DickNotList, bAddLen = bAddLen, TagLists = TagLists(adj_excl = ["shape"])) + " "
         sTxt += WordList(["like a naughty pony","like a pogo stick","like a stripper pole","like a bucking bronco","like a rodeo","like a naked cowgirl","like a mechanical bull","like a bike",]).GetWord()
         Selector.AddSection(sTxt)
 
@@ -8097,14 +8097,14 @@ class Generator111(ExGen):
             # pussy
             sTxt += "balls-deep in my "
             if CoinFlip():
-                sTxt += self.Woman.Anus.ShortDescription()
+                sTxt += self.Woman.Anus.ShortDesc()
             else:
-                sTxt += self.Woman.Ass.ShortDescription()
+                sTxt += self.Woman.Ass.ShortDesc()
         else:
             # ass
             sTxt += "balls-deep inside my " 
             if CoinFlip():
-                sTxt += self.Woman.Vagina.ShortDescription(NotList = VajNotList)
+                sTxt += self.Woman.Vagina.ShortDesc(NotList = VajNotList)
             else:
                 sTxt += mainmisc.VaginaSlang().GetWord()
         Selector.AddSection(sTxt)
@@ -8113,7 +8113,7 @@ class Generator111(ExGen):
         #bAllowCoda = False
         #sTxt = "when I was talking to him at lunch, "
         #if CoinFlip():
-        #    sTxt += "my " + bodyparts.Vagina().ShortDescription(NotList = VajNotList) + " was "
+        #    sTxt += "my " + bodyparts.Vagina().ShortDesc(NotList = VajNotList) + " was "
         #else:
         #    sTxt += "my " + mainmisc.VaginaSlang().GetWord() + " was "
         #sTxt += "gushing like " + WordList(["a broken fire hydrant", "Niagra falls", "a firehose", "a broken sprinkler"]).GetWord()
@@ -8122,17 +8122,17 @@ class Generator111(ExGen):
         # ...I would absolute suck...
         sTxt = WordList(["I want to suck","I'd like to suck","I would absolutely suck","I need to suck","I want to drink","I would 100% suck","I need to drink","I would guzzle","I'm down to suck",]).GetWord() + " "
         sTxt += WordList(["the","every last ounce of","every last drop of",]).GetWord() + " "
-        sTxt += self.Semen.RandomDescription(NotList = SemenNotList) + " "
+        sTxt += self.Semen.RandomDesc(NotList = SemenNotList) + " "
         sTxt += WordList(["right out of his","right out of that man's","straight out of that man's","out of that man's","directly from that man's"]).GetWord() + " "
         if randint(1,3) < 3:
-            sTxt += self.Man.Penis.ShortDescription(NotList = DickNotList, TagLists = TagLists(adj_excl = ["shape"]))
+            sTxt += self.Man.Penis.ShortDesc(NotList = DickNotList, TagLists = TagLists(adj_excl = ["shape"]))
         else:
-            sTxt += self.Man.Penis.RandomDescription(NotList = DickNotList, TagLists = TagLists(adj_excl = ["shape"]))
+            sTxt += self.Man.Penis.RandomDesc(NotList = DickNotList, TagLists = TagLists(adj_excl = ["shape"]))
         Selector.AddSection(sTxt)
 
         # ...panty-load of his man milk...
         sTxt = "I would love " + WordList(["a pussy-full","a vag-full","a cunt-full","a panty-load","an internal injection","an ass-load","a twat-full","a butt-load"]).GetWord() + " "
-        sTxt += "of his "+ self.Semen.RandomDescription(NotList = SemenNotList)
+        sTxt += "of his "+ self.Semen.RandomDesc(NotList = SemenNotList)
         Selector.AddSection(sTxt)
 
         # ...raw-dog me and knock me up...
@@ -8145,9 +8145,9 @@ class Generator111(ExGen):
         sTxt = "I'm ready to "
         if CoinFlip():
             sTxt += WordList(["gag on his","choke on his"]).GetWord() + " "
-            sTxt += self.Man.Penis.RandomDescription(NotList = DickNotList, bAddLen = bAddLen, TagLists = TagLists(adj_excl = ["shape"]))
+            sTxt += self.Man.Penis.RandomDesc(NotList = DickNotList, bAddLen = bAddLen, TagLists = TagLists(adj_excl = ["shape"]))
         else:
-            sTxt += "feel his " + self.Man.Penis.RandomDescription(NotList = DickNotList, bAddLen = bAddLen) + " "
+            sTxt += "feel his " + self.Man.Penis.RandomDesc(NotList = DickNotList, bAddLen = bAddLen) + " "
             sTxt += "tickling my tonsils"
         Selector.AddSection(sTxt)
 
@@ -8157,48 +8157,48 @@ class Generator111(ExGen):
             sTxt += WordList(["to split me up the middle","to split me in two","to split me in half"]).GetWord() + " "
         else:
             sTxt += WordList(["to wreck","to ruin","to destroy",]).GetWord() + " "
-            sTxt += "my " + self.Woman.Vagina.ShortDescription(NotList = VajNotList) + " "
-        sTxt += "with his " + self.Man.Penis.FloweryDescription(NotList = DickNotList, bAddLen = True, TagLists = TagLists(adj_excl = ["shape"]) )
+            sTxt += "my " + self.Woman.Vagina.ShortDesc(NotList = VajNotList) + " "
+        sTxt += "with his " + self.Man.Penis.FloweryDesc(NotList = DickNotList, bAddLen = True, TagLists = TagLists(adj_excl = ["shape"]) )
         Selector.AddSection(sTxt)
 
         # ...rail my twat any time...
         sTxt = "I'd let that man " + WordList(["drill","fuck","jackhammer","nail","plow","pound","rail","ram","rape","ream","stuff"]).GetWord () + " my "
         iRand = randint(1,5)
         if iRand == 1:
-            sTxt += self.Woman.Vagina.ShortDescription(NotList = VajNotList)
+            sTxt += self.Woman.Vagina.ShortDesc(NotList = VajNotList)
         elif iRand == 2:
-            sTxt += self.Woman.Ass.ShortDescription()
+            sTxt += self.Woman.Ass.ShortDesc()
         elif iRand == 3:
-            sTxt += self.Woman.Anus.ShortDescription()
+            sTxt += self.Woman.Anus.ShortDesc()
         elif iRand == 4:
-            sTxt += self.Woman.InnerVagina.ShortDescription(NotList = VajNotList)
+            sTxt += self.Woman.InnerVagina.ShortDesc(NotList = VajNotList)
         else:
             sTxt += WordList(["knockers","tits","titties","mouth","mouth-hole","throat"]).GetWord() 
-        sTxt += " with his " + self.Man.Penis.RandomDescription(NotList = DickNotList, TagLists = TagLists(adj_excl = ["shape"])) + " "
+        sTxt += " with his " + self.Man.Penis.RandomDesc(NotList = DickNotList, TagLists = TagLists(adj_excl = ["shape"])) + " "
         sTxt += WordList(["anytime","anytime he wants","anywhere and anytime","without a second thought",]).GetWord()
         Selector.AddSection(sTxt)
 
         # ...nut his juice all over my big, fat titties...
         CumVerb = WordList(["blow","nut","unload","spray","spurt","jizz",]).GetWord()
         sTxt = "I'd like him to " + CumVerb + " "
-        sTxt += "his " + self.Semen.RandomDescription(NotList = SemenNotList + [CumVerb]) + " "
+        sTxt += "his " + self.Semen.RandomDesc(NotList = SemenNotList + [CumVerb]) + " "
         sTxt += "all over my big fat titties"
         Selector.AddSection(sTxt)
 
         # park his beef bus in my tuna taco 
         sTxt = "I'm ready for him " + WordList(["to park","to stick"]).GetWord() + " "
-        sTxt += "his " + self.Man.Penis.ShortDescription(NotList = DickNotList , TagLists = TagLists(noun_excl = ["std","clinical","desc"], adj_excl = ["shape"])) + " "
+        sTxt += "his " + self.Man.Penis.ShortDesc(NotList = DickNotList , TagLists = TagLists(noun_excl = ["std","clinical","desc"], adj_excl = ["shape"])) + " "
         sTxt += "in my " + mainmisc.VaginaSlang().GetWord(NotList = ["cunt","kitty","pussy","quim","snatch","vag","womanhood"]) 
         Selector.AddSection(sTxt)
 
         # ...polish his pole with my cunt juices...
         sTxt = WordList(["I need","I'd like","I want"]).GetWord() + " " + WordList(["to polish","to grease up","to lube up","to cover"]).GetWord() + " "
         sTxt += WordList(["his","that man's"]).GetWord() + " "
-        sTxt += self.Man.Penis.ShortDescription(NotList = DickNotList, TagLists = TagLists(adj_excl = ["shape"])) + " "
+        sTxt += self.Man.Penis.ShortDesc(NotList = DickNotList, TagLists = TagLists(adj_excl = ["shape"])) + " "
         if randint(1,7) == 7:
             sTxt += "with my panty "
         else:
-            sTxt += "with my " + self.Woman.Vagina.ShortDescription(NotList = VajNotList + ["cock-sock","cock-garage","hole","cherry pie","honeypot"]) + " "
+            sTxt += "with my " + self.Woman.Vagina.ShortDesc(NotList = VajNotList + ["cock-sock","cock-garage","hole","cherry pie","honeypot"]) + " "
         sTxt += WordList(["juice","juice","nectar","sauce"]).GetWord()
         Selector.AddSection(sTxt)
 
@@ -8269,7 +8269,7 @@ class Generator112(ExGen):
         else:
             sTweet += "the " + SmartLower(sGirlAdj2) + " " + SuperCapitalize(sGirlRaceNation.lower()) + "'s "
         #sTweet += sBraAdj + " " + sBraColor + " brassiere "
-        sTweet += Bra.FloweryDescription() + " "
+        sTweet += Bra.FloweryDesc() + " "
         sTweet += "was " + WordList(["ripped","torn","yanked",]).GetWord() + " right off. "
         sTweet += "She " + WordList(["squealed","shrieked","screamed","gasped","shrieked","cried out"]).GetWord() + " "
         sTweet += "and " + WordList(["covered herself with her hands",
@@ -8277,7 +8277,7 @@ class Generator112(ExGen):
                                      "clapped her hands over her " + sThingToCover,
                                      "crossed her arms over her " + sThingToCover,
                                     ]).GetWord() + ".\n\n"
-        #sBoobMedDesc = Boobs.MediumDescription()
+        #sBoobMedDesc = Boobs.MediumDesc()
 
         sTweet += "\"Oh no!\" she cried. "
         sTweet += "\"Please " + WordList(["don't look", "don't stare", "no one look", "nobody look"]).GetWord() + " at "
@@ -8519,10 +8519,10 @@ class Generator115(ExGen):
             sTweet += "with " + sManDesc3 + " "
             sTweet += "was "+ WordList(["sleeping","snoring","fast asleep"]).GetWord() + " on his side atop the covers. "
             sTweet += "His " + sManDesc4 + " body was bare "
-            sTweet += "except for " + WordList(["a pair of " + self.MaleWardrobe.Boxers.RandomDescription(bLongDesc = False),
-                                                "a pair of " + self.MaleWardrobe.Jeans.RandomDescription(bLongDesc = False),
-                                                "a pair of " + self.MaleWardrobe.Briefs.RandomDescription(bLongDesc = False),
-                                                "a " + self.MaleWardrobe.Thong.RandomDescription(bLongDesc = False),
+            sTweet += "except for " + WordList(["a pair of " + self.MaleWardrobe.Boxers.RandomDesc(bLongDesc = False),
+                                                "a pair of " + self.MaleWardrobe.Jeans.RandomDesc(bLongDesc = False),
+                                                "a pair of " + self.MaleWardrobe.Briefs.RandomDesc(bLongDesc = False),
+                                                "a " + self.MaleWardrobe.Thong.RandomDesc(bLongDesc = False),
                                                 "a pair of paper thin pajama pants",]).GetWord() + ". "
             sTweet += "The " + sPenisHeadAdj + " " +  sPenisHeadNoun + " "
             sTweet += "of his " + sPenis1Adj1 + ", " + sPenis1Adj2 + " " + sPenis1Noun + " "
@@ -8553,7 +8553,7 @@ class Generator115(ExGen):
             sTweet += WordList(["stared","gaped"]).GetWord() + " at his " + sPenis2Noun + ", "
             sTweet += "a " + WordList(["small","tiny","little"]).GetWord() + " " 
             sTweet += WordList(["bead","drop","droplet","dab"]).GetWord() + " "
-            sTweet += "of " + self.Semen.MediumDescription(NotList = UsedWords) + " "
+            sTweet += "of " + self.Semen.MediumDesc(NotList = UsedWords) + " "
             sTweet += "oozed from the hole of the " + sPenisHeadAdj + " " + sPenisHeadNoun + " "
             sTweet += "and trickled down the shaft."
             #sTweet += "from " + sBallsNoun + " to " + sPenisHeadAdj + " " + sPenisHeadNoun + "."
@@ -8658,18 +8658,18 @@ class Generator117(ExGen):
         sTxt = ""
         if CoinFlip():
             # Hairy
-            sTxt += "His " + Chest.RandomDescription(TagLists = TagLists(adj_excl = ["hairy"], noun_excl = ["plur"])) + " "
+            sTxt += "His " + Chest.RandomDesc(TagLists = TagLists(adj_excl = ["hairy"], noun_excl = ["plur"])) + " "
             sTxt += "was thick with dark, curly hair"
         else:
             # Tattoos
             sTxt = ""
             if CoinFlip():
                 sTxt += "\"" + WordList(["RESPECT","STRENGTH","THUG LIFE","MERCY"]).GetWord() + "\" "
-                sTxt += "was inked across his " + Chest.MediumDescription() + " "
+                sTxt += "was inked across his " + Chest.MediumDesc() + " "
                 sTxt += "in bold lettering"
             else:
                 sTxt += WordList(["An enormous winged dragon","An eagle holding a snake","A massive snarling tiger","A big, snarling wolf","An angel holding a flaming sword","A huge flaming skull",]).GetWord() + " "
-                sTxt += "was tattoed across his entire " + Chest.MediumDescription(TagLists = TagLists(noun_excl = ["plur"]))
+                sTxt += "was tattoed across his entire " + Chest.MediumDesc(TagLists = TagLists(noun_excl = ["plur"]))
         Selector.AddSection(sTxt)
 
         # tattooed skin
@@ -8677,30 +8677,30 @@ class Generator117(ExGen):
         ArmsNotList = ["protect"]
         sTxt = ""
         if CoinFlip():
-            sTxt += "Both his " + Arms.RandomDescription(NotList = ArmsNotList) + " were fully sleeved with tattoos"
+            sTxt += "Both his " + Arms.RandomDesc(NotList = ArmsNotList) + " were fully sleeved with tattoos"
         else:
-            sTxt += "His " + Arms.RandomDescription(NotList = ArmsNotList) + " were covered with tribal tattoos"
+            sTxt += "His " + Arms.RandomDesc(NotList = ArmsNotList) + " were covered with tribal tattoos"
         Selector.AddSection(sTxt)
 
         # beard or stubble
         Beard = self.MaleBodyParts.FacialHair
         Beard.NotList(["gray"])
-        sTxt = "He sported " + AddArticles(Beard.RandomDescription())
+        sTxt = "He sported " + AddArticles(Beard.RandomDesc())
         Selector.AddSection(sTxt)
 
         # hair
         Hair = self.MaleBodyParts.Hair
         Hair.NotList(["gray","dread","locks"])
-        sTxt = "His " + Hair.MediumDescription(TagLists = TagLists(adj_req = ["color"], adj_excl = ["fake"])) + " "
+        sTxt = "His " + Hair.MediumDesc(TagLists = TagLists(adj_req = ["color"], adj_excl = ["fake"])) + " "
         sTxt += "was braided into ropy dreadlocks"
         Selector.AddSection(sTxt)
 
         # build
         Body = self.MaleBodyParts
-        sTxt = "His " + Body.RandomDescription(NotList = ["muscle"]) + " rippled with muscle"
+        sTxt = "His " + Body.RandomDesc(NotList = ["muscle"]) + " rippled with muscle"
         Selector.AddSection(sTxt)
 
-        sFinalDesc = WordList(["his " + self.MaleBodyParts.Chest.Nipples.RandomDescription(bLongDesc = False,NotList = ["pierced"]) + " had been pierced with " + WordList(["steel bars","steel rings","gold rings"]).GetWord(),
+        sFinalDesc = WordList(["his " + self.MaleBodyParts.Chest.Nipples.RandomDesc(bLongDesc = False,NotList = ["pierced"]) + " had been pierced with " + WordList(["steel bars","steel rings","gold rings"]).GetWord(),
                                "he smelled like weed" + WordList([" and tobacco"," and liquor"," and cigarettes",""]).GetWord(),
                                "he had a facial tattoo that read '" + WordList(["FEAR","LOVER","PAIN","HURT","DEATH","REGRET","STATEMENT","13","666"]).GetWord() + "'",
                                "a cross on a thick gold chain hung around his neck",
@@ -8774,21 +8774,21 @@ class Generator118(ExGen):
         sTweet += "the " + WordList(["covers","satin sheets","silk bedsheet"]).GetWord() + " "
         sTweet += "down inch-by-inch, revealing more and more of " 
         sTweet += "her " + WordList(["nude","naked"]).GetWord() + ", "
-        sTweet += self.FemBodyParts.FloweryDescription(TagLists = TagLists(adj_excl = ["nude","super"])) + ". "
+        sTweet += self.FemBodyParts.FloweryDesc(TagLists = TagLists(adj_excl = ["nude","super"])) + ". "
         
         sTweet += WordList(["She felt shamefully exposed",
                             "She could feel his gaze devouring her",
                             "She wondered if he liked what he saw",
                             "She knew that nothing was hidden from his view now",
                             "Her heart was hammering in her chest",
-                            "Goosebumps pimpled her " + self.FemBodyParts.Skin.RandomDescription()]).GetWord() + ". "
+                            "Goosebumps pimpled her " + self.FemBodyParts.Skin.RandomDesc()]).GetWord() + ". "
 
         sTweet += "Slowly, " + WordList(["he ran his finger down","his finger traced","his finger slid down","his hand moved down"]).GetWord() + " "
         sTweet += "the " + Back.GetNewAdj() + " curve of her " + Back.GetNewAdj() + " " + Back.GetNewNoun()
         if CoinFlip():
             sTweet += " "
             sTweet += "until it reached the " + WordList(["crevice","cleft"]).GetWord() + " "
-            sTweet += "between her " + self.FemBodyParts.Ass.Buttocks.MediumDescription() 
+            sTweet += "between her " + self.FemBodyParts.Ass.Buttocks.MediumDesc() 
         sTweet += ". "
 
         sTweet += AddArticles(WordList(["tingle","tremor","quiver"]).GetWord(), bMakeUpper = True) + " "
@@ -8798,19 +8798,19 @@ class Generator118(ExGen):
 
         # "...her nipples stiffened..."
         sTxt = ", and "
-        sTxt += "her " + self.FemBodyParts.Breasts.Nipples.MediumDescription(NotList = ["long","lengthy"], TagLists = TagLists(adj_excl = ["erect","nude","horny"])) + " "
+        sTxt += "her " + self.FemBodyParts.Breasts.Nipples.MediumDesc(NotList = ["long","lengthy"], TagLists = TagLists(adj_excl = ["erect","nude","horny"])) + " "
         sTxt += WordList(["stiffened","hardened","lengthened",]).GetWord() + "."
         Selector.AddSection(sTxt)
 
         # "...her quim moistened..."
         sTxt = ", and "
-        sTxt += "her " + self.FemBodyParts.Vagina.MediumDescription(TagLists = TagLists(adj_excl = ["super","wet","horny"])) + " "
+        sTxt += "her " + self.FemBodyParts.Vagina.MediumDesc(TagLists = TagLists(adj_excl = ["super","wet","horny"])) + " "
         sTxt += WordList(["moistened","seemed to radiate heat"]).GetWord() + "."
         Selector.AddSection(sTxt)
 
         # "...her anal sphincter clenched..."
         sTxt = ", and "
-        sTxt += "her " + self.FemBodyParts.Ass.Anus.MediumDescription(NotList = ["bowels","ring"], TagLists = TagLists(adj_req = ["sphincter"])) + " "
+        sTxt += "her " + self.FemBodyParts.Ass.Anus.MediumDesc(NotList = ["bowels","ring"], TagLists = TagLists(adj_req = ["sphincter"])) + " "
         sTxt += WordList(["clenched","flexed","puckered","tightened"]).GetWord() + " "
         sTxt += "in anticipation"
         if CoinFlip():
@@ -8858,71 +8858,71 @@ class Generator119(ExGen):
         #Bottom = Sweats.Bottom
 
         #for i in range(4):
-        #    sTweet += "Flowery description: " + Sweats.FloweryDescription()  + "\n"
-        #    sTweet += "Random description: " + Sweats.RandomDescription(bShortDesc = False) + "\n\n"
+        #    sTweet += "Flowery description: " + Sweats.FloweryDesc()  + "\n"
+        #    sTweet += "Random description: " + Sweats.RandomDesc(bShortDesc = False) + "\n\n"
 
         #for i in range(4):
-        #    sTweet += "She was wearing her " + Sweats.FloweryDescription() + ": "
-        #    sTweet += AddArticles(Top.FloweryDescription()) + " and "
-        #    sTweet += Bottom.RandomDescription(bShortDesc = False) + "."
+        #    sTweet += "She was wearing her " + Sweats.FloweryDesc() + ": "
+        #    sTweet += AddArticles(Top.FloweryDesc()) + " and "
+        #    sTweet += Bottom.RandomDesc(bShortDesc = False) + "."
 
-        #sTweet += "The lovely teen girl was wearing " + Undies.FloweryDescription() + " "
-        #sTweet += "including " + AddArticles(Bra.RandomDescription(bShortDesc = False)) + " "
-        #sTweet += "and " + Panties.RandomDescription(bShortDesc = False) + ".\n\n"
+        #sTweet += "The lovely teen girl was wearing " + Undies.FloweryDesc() + " "
+        #sTweet += "including " + AddArticles(Bra.RandomDesc(bShortDesc = False)) + " "
+        #sTweet += "and " + Panties.RandomDesc(bShortDesc = False) + ".\n\n"
 
-        #sTweet += "The " + Bikini.RandomDescription(bShortDesc = False) + " "
+        #sTweet += "The " + Bikini.RandomDesc(bShortDesc = False) + " "
         ##sTweet += "the " + Bikini.GetFullDesc(6) + " "
         #sTweet += "she was wearing turned heads at the beach.\n\n"
 
         #for i in range(3):
         #    sTweet += "The " + self.Woman.Desc + " "
-        #    sTweet += "lifted up her " + clothes.ShortSkirt().RandomDescription(bShortDesc = False) + ", "
+        #    sTweet += "lifted up her " + clothes.ShortSkirt().RandomDesc(bShortDesc = False) + ", "
         #    sTweet += "revealing that she had failed to put on any "
         #    sTweet += "panties underneath.\n\n"
 
         for i in range(12):
             sTweet += "The " + WordList(["dude","guy","bro","man"]).GetWord() + " "
-            sTweet += "was wearing a " + clothes.MaleWardrobe().Tshirt.FloweryDescription() + " "
-            sTweet += "and a pair of " + clothes.MaleWardrobe().Jeans.FloweryDescription() + ".\n\n"
+            sTweet += "was wearing a " + clothes.MaleWardrobe().Tshirt.FloweryDesc() + " "
+            sTweet += "and a pair of " + clothes.MaleWardrobe().Jeans.FloweryDesc() + ".\n\n"
         
         #for i in range(6):
         #    Top = clothes.CropTop()
-        #    sTweet += "Her " + Top.FloweryDescription() + " "
+        #    sTweet += "Her " + Top.FloweryDesc() + " "
         #    sTweet += "struggled to contain " 
-        #    sTweet += "her " + self.FemBodyParts.Breasts.RandomDescription() + ".\n\n"
+        #    sTweet += "her " + self.FemBodyParts.Breasts.RandomDesc() + ".\n\n"
 
         #sTweet += "Winking at him, she slipped "
-        #sTweet += "her " + Bottoms.RandomDescription() + " "
+        #sTweet += "her " + Bottoms.RandomDesc() + " "
         #sTweet += "down over "
-        #sTweet += "her " + self.FemBodyParts.Hips.RandomDescription() + "."
+        #sTweet += "her " + self.FemBodyParts.Hips.RandomDesc() + "."
 
         #for i in range(7):
         #    Dress = clothes.EveningDress()
-        #    sTweet += "She was wearing a " + Dress.RandomDescription(bShortDesc = False) + " "
+        #    sTweet += "She was wearing a " + Dress.RandomDesc(bShortDesc = False) + " "
         #    sTweet += "that showed off her curves to great effect.\n\n"
 
         #for i in range(12):
         #    #Dukes = clothes.DaisyDukes()
         #    #Shorts = clothes.ShortsFemale()
-        #    sTweet += "She was stunning in her " + clothes.FemWardrobe().GetTop(bDresses = False).RandomDescription(bShortDesc = False) + ", "
-        #    sTweet += "her " + clothes.FemWardrobe().GetBottom().RandomDescription(bShortDesc = False) + " and "
-        #    sTweet += clothes.Heels().RandomDescription() + ".\n"
+        #    sTweet += "She was stunning in her " + clothes.FemWardrobe().GetTop(bDresses = False).RandomDesc(bShortDesc = False) + ", "
+        #    sTweet += "her " + clothes.FemWardrobe().GetBottom().RandomDesc(bShortDesc = False) + " and "
+        #    sTweet += clothes.Heels().RandomDesc() + ".\n"
         #    sTweet += "---\n"
 
         #for i in range(12):
         #    #Dukes = clothes.DaisyDukes()
         #    #Shorts = clothes.ShortsFemale()
         #    ClosedRobe = clothes.RobeFemale()
-        #    sTweet += "She was wearing a " + ClosedRobe.RandomDescription() + ".\n"
+        #    sTweet += "She was wearing a " + ClosedRobe.RandomDesc() + ".\n"
         #    OpenRobe = clothes.RobeFemale()
-        #    sTweet += "She opened her " + OpenRobe.FloweryDescription() + " "
+        #    sTweet += "She opened her " + OpenRobe.FloweryDesc() + " "
         #    sTweet += "to him to reveal her stunning naked body.\n"
         #    sTweet += "---\n"
         #    print("OpenRobe described.")
 
         #for i in range(14):
         #    sTweet += "He was surprised to see her standing there in "
-        #    sTweet += "the dark, wearing only a " + clothes.Nightgown().RandomDescription() + "\n\n"
+        #    sTweet += "the dark, wearing only a " + clothes.Nightgown().RandomDesc() + "\n\n"
 
         return sTweet
 
@@ -8953,30 +8953,30 @@ class Generator120(ExGen):
             # Top
             Garment = clothes.FemWardrobe().GetTop(NotList = ["bra"], bDresses = True)
             #print("Top Garment() initialized")
-            sTweet += "stripped off her " + Garment.FloweryDescription() + ", "
+            sTweet += "stripped off her " + Garment.FloweryDesc() + ", "
             sTweet += WordList(["revealing","exposing","unveiling"]).GetWord() + " " 
             if CoinFlip():
-                sTweet += "her " + self.FemBodyParts.Breasts.FloweryDescription(TagLists = TagLists(noun_excl = ["silly"])) + ". "
+                sTweet += "her " + self.FemBodyParts.Breasts.FloweryDesc(TagLists = TagLists(noun_excl = ["silly"])) + ". "
                 iCounter += 1
             else:
-                sTweet += "her " + self.FemBodyParts.MediumDescription(TagLists = TagLists(adj_excl = ["nude"])) + " "
-                sTweet += "and " + self.FemBodyParts.Breasts.MediumDescription(TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["nude"])) + ". "
+                sTweet += "her " + self.FemBodyParts.MediumDesc(TagLists = TagLists(adj_excl = ["nude"])) + " "
+                sTweet += "and " + self.FemBodyParts.Breasts.MediumDesc(TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["nude"])) + ". "
                 iCounter += 2
         else:
             # Bottom
             Garment = clothes.FemWardrobe().GetBottom()
             #print("Bottom Garment() initialized")
-            sTweet += "slid her " + Garment.FloweryDescription() + " "
+            sTweet += "slid her " + Garment.FloweryDesc() + " "
             if CoinFlip():
-                sTweet += "down over her " + self.FemBodyParts.Ass.RandomDescription(bShortDesc = False, TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["horny"])) + ". "
+                sTweet += "down over her " + self.FemBodyParts.Ass.RandomDesc(bShortDesc = False, TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["horny"])) + ". "
             else:
-                sTweet += "down over her " + self.FemBodyParts.Hips.RandomDescription(bShortDesc = False, TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["horny"])) + ". "
+                sTweet += "down over her " + self.FemBodyParts.Hips.RandomDesc(bShortDesc = False, TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["horny"])) + ". "
             sTweet += "Then she knelt down in front of him"
             iCounter += 1
             if CoinFlip():
                 sTweet += ", shamelessly naked. "
-                sTweet += "Her " + self.FemBodyParts.Vagina.RandomDescription(bShortDesc = False, TagLists = TagLists(noun_excl = ["silly"])) + " "
-                sTweet += "nestled between " + self.FemBodyParts.Thighs.RandomDescription(bShortDesc = False, TagLists = TagLists(noun_excl = ["silly"])) + ". "
+                sTweet += "Her " + self.FemBodyParts.Vagina.RandomDesc(bShortDesc = False, TagLists = TagLists(noun_excl = ["silly"])) + " "
+                sTweet += "nestled between " + self.FemBodyParts.Thighs.RandomDesc(bShortDesc = False, TagLists = TagLists(noun_excl = ["silly"])) + ". "
                 iCounter += 2
             else:
                 sTweet += ", naked and eager. "
@@ -8984,13 +8984,13 @@ class Generator120(ExGen):
         if CoinFlip():
             sTweet += "With gentle hands, "
         else:
-            sTweet += "Gazing up at him with her " + self.FemBodyParts.Eyes.FloweryDescription() + ", "
+            sTweet += "Gazing up at him with her " + self.FemBodyParts.Eyes.FloweryDesc() + ", "
             iCounter += 1
         if iCounter > 2:
             sTweet += "she wrapped the " + Garment.GetNoun() + " "
         else:
             sTweet += "she wrapped the " + Garment.GetRandomAdj() + " garment "
-        sTweet += "around his " + self.MaleBodyParts.Penis.RandomDescription(bShortDesc = False, TagLists = TagLists(noun_excl = ["silly","small"], adj_excl = ["horny","shape","super"])) + ". "
+        sTweet += "around his " + self.MaleBodyParts.Penis.RandomDesc(bShortDesc = False, TagLists = TagLists(noun_excl = ["silly","small"], adj_excl = ["horny","shape","super"])) + ". "
         sTweet += "Then she began to " + WordList(["beat","jack","jerk","stroke","wank"]).GetWord() + " him off " 
         sTweet += "with "
         if Garment.IsPlural():
@@ -9035,27 +9035,27 @@ class Generator121(ExGen):
         Dildo = Dildo()
         sTweet += sHerName + " was lying on her back, "
         sTweet += WordList(["buck naked","totally nude","completely naked","stripped completely naked","nude and exposed","her body naked and exposed","nude and indecent"]).GetWord() + ", "
-        sTweet += "her " + self.Woman.Legs.RandomDescription() + " "
+        sTweet += "her " + self.Woman.Legs.RandomDesc() + " "
         sTweet += WordList(["spread","open","spread apart","spread-eagled","spread wide open","wide open"]).GetWord() + ". "
         sTweet += "The " + self.Man.Body.GetNewAdj() + " man "
         sTweet += "standing between them pressed "
-        sTweet += "a vibrating " + Dildo.MediumDescription() + " "
-        sTweet += "against her " + self.Woman.Clitoris.RandomDescription() + ". "
+        sTweet += "a vibrating " + Dildo.MediumDesc() + " "
+        sTweet += "against her " + self.Woman.Clitoris.RandomDesc() + ". "
         sTweet += "She " + WordList(["suppressed","barely suppressed","could not quite suppress","failed to suppress"]).GetWord() + " " + WordList(["a low moan","a cry","a shuddering wail","a loud moan","an ecstatic wail","an ecstatic moan","an involuntary cry"]).GetWord () + " "
         sTweet += "of pleasure.\n\n"
 
-        sTweet += "Putting his hand on one of her " + self.FemBodyParts.Thighs.RandomDescription() + ", "
+        sTweet += "Putting his hand on one of her " + self.FemBodyParts.Thighs.RandomDesc() + ", "
         sTweet += "he " + WordList(["gently","carefully","delicately","boldly","confidently"]).GetWord() + " "
         sTweet += "inserted the " + Dildo.GetNoun() + " deep into "
         if CoinFlip():
-            sTweet += "her " + self.Woman.Vagina.FloweryDescription(TagLists = TagLists(noun_excl = ["silly"], NotList = ["deep"])) + ". "
+            sTweet += "her " + self.Woman.Vagina.FloweryDesc(TagLists = TagLists(noun_excl = ["silly"], NotList = ["deep"])) + ". "
         else:
-            sTweet += "her " + self.Woman.InnerVagina.FloweryDescription(NotList = ["deep"], TagLists = TagLists(noun_excl = ["silly"])) + ". "
+            sTweet += "her " + self.Woman.InnerVagina.FloweryDesc(NotList = ["deep"], TagLists = TagLists(noun_excl = ["silly"])) + ". "
         
         Selector = SectionSelector()
 
         # skin beaded with moisture
-        sTxt = "Her " + self.Woman.Skin.RandomDescription() + " was "
+        sTxt = "Her " + self.Woman.Skin.RandomDesc() + " was "
         sTxt += WordList(["beaded","damp","flushed and damp","glistening","dewy","slick","dripping"]).GetWord() + " "
         sTxt += "with " + WordList(["moisture","drops of moisture","sweat","a sheen of moisture"]).GetWord()
         Selector.AddSection(sTxt)
@@ -9067,17 +9067,17 @@ class Generator121(ExGen):
         Selector.AddSection(sTxt)
 
         # breasts tremble
-        sTxt = "Her " + self.Woman.Breasts.FloweryDescription(TagLists = TagLists(noun_excl = ["silly","crude"])) + " "
+        sTxt = "Her " + self.Woman.Breasts.FloweryDesc(TagLists = TagLists(noun_excl = ["silly","crude"])) + " "
         sTxt += WordList(["were quivering","quivered","trembled","wobbled","were jiggling","quavered","were heaving","heaved","were quivering","trembled"]).GetWord()
         Selector.AddSection(sTxt)
 
         # nipples harden
-        sTxt = "Her " + self.Woman.Nipples.RandomDescription(TagLists = TagLists(adj_excl = ["hard"])) + " "
+        sTxt = "Her " + self.Woman.Nipples.RandomDesc(TagLists = TagLists(adj_excl = ["hard"])) + " "
         sTxt += WordList(["stiffened","hardened","lengthened","were engorged","were firmly erect","hardened"]).GetWord()
         Selector.AddSection(sTxt)
 
         # anus puckers
-        sTxt = "Her " + self.Woman.Anus.ShortDescription(TagLists = TagLists(noun_req = ["sphincter"])) + " "
+        sTxt = "Her " + self.Woman.Anus.ShortDesc(TagLists = TagLists(noun_req = ["sphincter"])) + " "
         sTxt += WordList(["clenched","puckered","flexed",]).GetWord()
         Selector.AddSection(sTxt)
 
@@ -9089,7 +9089,7 @@ class Generator121(ExGen):
         Selector.AddSection(sTxt)
 
         # back arches
-        sTxt = "Her " + self.Woman.Back.RandomDescription(NotList = ['arch']) + " arched"
+        sTxt = "Her " + self.Woman.Back.RandomDesc(NotList = ['arch']) + " arched"
         Selector.AddSection(sTxt)
 
         sTweet += Selector.GetSection() + ". "
@@ -9122,7 +9122,7 @@ class Generator121(ExGen):
         sTxt += "to employ a more potent therapeutic tool.\" "
         sTxt += "He " + WordList(["unzipped his trousers","reached into his trousers","reached down"]).GetWord() + " and "
         sTxt += WordList(["pulled out","pulled out","fished out","exposed","took hold of"]).GetWord() + " "
-        sTxt += "his " + self.Man.Penis.FloweryDescription(TagLists = TagLists(noun_excl = ["smalldick","silly","desc"], adj_excl = ["smalldick","horny"])) + "."
+        sTxt += "his " + self.Man.Penis.FloweryDesc(TagLists = TagLists(noun_excl = ["smalldick","silly","desc"], adj_excl = ["smalldick","horny"])) + "."
         Selector.AddSection(sTxt)
 
         # Filthy little slut

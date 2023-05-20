@@ -36,10 +36,10 @@ class Location():
         self.LyingOn = ""
         self.Ground = "ground"
         self.Despite = ""
-        self.MaleTopClothing = self.MaleWardrobe.Tshirt.RandomDescription(bLongDesc = False)
-        self.MaleBottomClothing = self.MaleWardrobe.Jeans.RandomDescription(bLongDesc = False)
-        self.FemaleTopClothing = self.FemWardrobe.Dress.RandomDescription(bLongDesc = False)
-        self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDescription(bLongDesc = False)
+        self.MaleTopClothing = self.MaleWardrobe.Tshirt.RandomDesc(bLongDesc = False)
+        self.MaleBottomClothing = self.MaleWardrobe.Jeans.RandomDesc(bLongDesc = False)
+        self.FemaleTopClothing = self.FemWardrobe.Dress.RandomDesc(bLongDesc = False)
+        self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDesc(bLongDesc = False)
      
     def RemoveMaleClothing(self):
         sTakeItOff = ""
@@ -49,7 +49,7 @@ class Location():
             ExposedParts = self.Man.Penis
         else:
             ExposedParts = self.Man.Ass
-        sExposedParts = ExposedParts.RandomDescription(bLongDesc = False)
+        sExposedParts = ExposedParts.RandomDesc(bLongDesc = False)
            
         if not self.MaleTopClothing == "":
             sTakeItOff = "stripped off his " + self.MaleTopClothing + " and pulled down his " + self.MaleBottomClothing  + " exposing his " + sExposedParts
@@ -58,7 +58,7 @@ class Location():
         else: 
             sTakeItOff = "was naked, his " + sExposedParts + " on full display"
 
-        #sTakeItOff += excerpt.bodyparts.Penis.RandomDescription(bLongDesc = False)     
+        #sTakeItOff += excerpt.bodyparts.Penis.RandomDesc(bLongDesc = False)     
           
         return sTakeItOff
                
@@ -73,24 +73,24 @@ class Location():
             if CoinFlip():
                 sTakeItOff += "pulled off her " + self.FemaleTopClothing + " and slipped out of her " + self.FemaleBottomClothing + ", "
                 if CoinFlip():
-                        sTakeItOff += "baring her " + Vagina.RandomDescription(bLongDesc = False)
+                        sTakeItOff += "baring her " + Vagina.RandomDesc(bLongDesc = False)
                 else:
-                        sTakeItOff += "revealing her " + Ass.RandomDescription(bLongDesc = False)
+                        sTakeItOff += "revealing her " + Ass.RandomDesc(bLongDesc = False)
             else:
-                sTakeItOff += "slipped out of her " + self.FemaleBottomClothing + " and pulled off her " + self.FemaleTopClothing + ", revealing her " + Breasts.RandomDescription(bLongDesc = False)
+                sTakeItOff += "slipped out of her " + self.FemaleBottomClothing + " and pulled off her " + self.FemaleTopClothing + ", revealing her " + Breasts.RandomDesc(bLongDesc = False)
         elif not self.FemaleBottomClothing == "":
             if CoinFlip():
-                sTakeItOff += "pulled down her " + self.FemaleBottomClothing + ", baring her " + Vagina.RandomDescription(bLongDesc = False)
+                sTakeItOff += "pulled down her " + self.FemaleBottomClothing + ", baring her " + Vagina.RandomDesc(bLongDesc = False)
             else:
-                sTakeItOff += "pulled down her " + self.FemaleBottomClothing + ", revealing her " + Ass.RandomDescription(bLongDesc = False)
+                sTakeItOff += "pulled down her " + self.FemaleBottomClothing + ", revealing her " + Ass.RandomDesc(bLongDesc = False)
         elif not self.FemaleTopClothing == "":
-            sTakeItOff += "pulled off her " + self.FemaleTopClothing + ", revealing her " + Breasts.RandomDescription(bLongDesc = False)
+            sTakeItOff += "pulled off her " + self.FemaleTopClothing + ", revealing her " + Breasts.RandomDesc(bLongDesc = False)
         else:
-            sTakeItOff += "was naked, her " + Breasts.RandomDescription(bLongDesc = False) + " and "
+            sTakeItOff += "was naked, her " + Breasts.RandomDesc(bLongDesc = False) + " and "
             if CoinFlip():
-                sTakeItOff += Ass.RandomDescription(bLongDesc = False)
+                sTakeItOff += Ass.RandomDesc(bLongDesc = False)
             else:
-                sTakeItOff += Vagina.RandomDescription(bLongDesc = False)
+                sTakeItOff += Vagina.RandomDesc(bLongDesc = False)
             sTakeItOff += " exposed in all their glory"
                
         return sTakeItOff
@@ -189,9 +189,9 @@ class Balcony(PublicOutdoors):
         self.Consequence = "a small crowd gathered to watch them"
         self.Ground = "ground"
         self.MaleTopClothing = ""
-        self.MaleBottomClothing = self.MaleWardrobe.GetUnderwear().RandomDescription(bLongDesc = False)
-        self.FemaleTopClothing = self.FemWardrobe.Bra.RandomDescription(bLongDesc = False)
-        self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDescription(bLongDesc = False)
+        self.MaleBottomClothing = self.MaleWardrobe.GetUnderwear().RandomDesc(bLongDesc = False)
+        self.FemaleTopClothing = self.FemWardrobe.Bra.RandomDesc(bLongDesc = False)
+        self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDesc(bLongDesc = False)
 
 class Beach(PublicOutdoors):
     def __init__(self, LocMan = None, LocWoman = None):
@@ -213,11 +213,11 @@ class Beach(PublicOutdoors):
         self.Ground = "tiled floor"
         self.MaleTopClothing = ""
         if CoinFlip():
-            self.MaleBottomClothing = self.MaleWardrobe.Trunks.RandomDescription(bLongDesc = False)
+            self.MaleBottomClothing = self.MaleWardrobe.Trunks.RandomDesc(bLongDesc = False)
         else:
-            self.MaleBottomClothing = self.MaleWardrobe.Speedo.RandomDescription(bLongDesc = False)
-        self.FemaleTopClothing = self.FemWardrobe.BikiniTop.RandomDescription(bLongDesc = False)
-        self.FemaleBottomClothing = self.FemWardrobe.BikiniBottoms.RandomDescription(bLongDesc = False)
+            self.MaleBottomClothing = self.MaleWardrobe.Speedo.RandomDesc(bLongDesc = False)
+        self.FemaleTopClothing = self.FemWardrobe.BikiniTop.RandomDesc(bLongDesc = False)
+        self.FemaleBottomClothing = self.FemWardrobe.BikiniBottoms.RandomDesc(bLongDesc = False)
      
 class Boat(PrivateIndoors):
     def __init__(self, LocMan = None, LocWoman = None):
@@ -234,11 +234,11 @@ class Boat(PrivateIndoors):
         self.Ground = "deck"
         self.MaleTopClothing = ""
         if CoinFlip():
-            self.MaleBottomClothing = self.MaleWardrobe.Trunks.RandomDescription(bLongDesc = False)
+            self.MaleBottomClothing = self.MaleWardrobe.Trunks.RandomDesc(bLongDesc = False)
         else:
-            self.MaleBottomClothing = self.MaleWardrobe.Speedo.RandomDescription(bLongDesc = False)
-        self.FemaleTopClothing = self.FemWardrobe.BikiniTop.RandomDescription(bLongDesc = False)
-        self.FemaleBottomClothing = self.FemWardrobe.BikiniBottoms.RandomDescription(bLongDesc = False)
+            self.MaleBottomClothing = self.MaleWardrobe.Speedo.RandomDesc(bLongDesc = False)
+        self.FemaleTopClothing = self.FemWardrobe.BikiniTop.RandomDesc(bLongDesc = False)
+        self.FemaleBottomClothing = self.FemWardrobe.BikiniBottoms.RandomDesc(bLongDesc = False)
      
 class Bedroom(PrivateIndoors):
     def __init__(self, LocMan = None, LocWoman = None):
@@ -253,8 +253,8 @@ class Bedroom(PrivateIndoors):
         self.SittingOn = "a stack of cushions"
         self.LyingOn = "the king-sized bed"
         self.Ground = "the thick comforter"
-        self.FemaleTopClothing = self.FemWardrobe.Bra.RandomDescription(bLongDesc = False)
-        self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDescription(bLongDesc = False)
+        self.FemaleTopClothing = self.FemWardrobe.Bra.RandomDesc(bLongDesc = False)
+        self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDesc(bLongDesc = False)
      
 class CampingTent(PrivateIndoors):
     def __init__(self, LocMan = None, LocWoman = None):
@@ -270,7 +270,7 @@ class CampingTent(PrivateIndoors):
         self.LyingOn = "a sleeping bag"
         self.Ground = "the thick sleeping bag"
         self.FemaleTopClothing = "cute little sweater"
-        self.FemaleBottomClothing = self.FemWardrobe.Jeans.RandomDescription(bLongDesc = False)
+        self.FemaleBottomClothing = self.FemWardrobe.Jeans.RandomDesc(bLongDesc = False)
      
 class CarBackseat(PublicIndoors):
     def __init__(self, LocMan = None, LocWoman = None):
@@ -290,8 +290,8 @@ class CarBackseat(PublicIndoors):
         self.AuthorityFigure = "a policeman"
         self.Consequence = "the cop shone his flashlight through the window"
         self.Ground = "leather upholstery"
-        self.FemaleTopClothing = self.FemWardrobe.Blouse.RandomDescription(bLongDesc = False)
-        self.FemaleBottomClothing = self.FemWardrobe.ShortSkirt.RandomDescription(bLongDesc = False)
+        self.FemaleTopClothing = self.FemWardrobe.Blouse.RandomDesc(bLongDesc = False)
+        self.FemaleBottomClothing = self.FemWardrobe.ShortSkirt.RandomDesc(bLongDesc = False)
      
 class Church(PublicIndoors):
     def __init__(self, LocMan = None, LocWoman = None):
@@ -311,8 +311,8 @@ class Church(PublicIndoors):
         self.Excuse = "'We were just praying!' he replied."
         self.Consequence = "as the minister looked on in horror"
         self.Ground = "soft carpet"
-        self.FemaleTopClothing = self.FemWardrobe.Dress.RandomDescription(bLongDesc = False)
-        self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDescription(bLongDesc = False)
+        self.FemaleTopClothing = self.FemWardrobe.Dress.RandomDesc(bLongDesc = False)
+        self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDesc(bLongDesc = False)
      
 class Classroom(PublicIndoors):
     def __init__(self, LocMan = None, LocWoman = None):
@@ -332,8 +332,8 @@ class Classroom(PublicIndoors):
         self.Excuse = "'This isn't what it looks like!' he said."
         self.Consequence = "the student tugged feverishly at his crotch"
         self.Ground = "the floor"
-        self.FemaleTopClothing = self.FemWardrobe.Blouse.RandomDescription(bLongDesc = False)
-        self.FemaleBottomClothing = self.FemWardrobe.ShortSkirt.RandomDescription(bLongDesc = False)
+        self.FemaleTopClothing = self.FemWardrobe.Blouse.RandomDesc(bLongDesc = False)
+        self.FemaleBottomClothing = self.FemWardrobe.ShortSkirt.RandomDesc(bLongDesc = False)
      
 class ClubParkingLot(PublicIndoors):
     def __init__(self, LocMan = None, LocWoman = None):
@@ -353,8 +353,8 @@ class ClubParkingLot(PublicIndoors):
         self.AuthorityFigure = "a bouncer"
         self.Consequence = "as the bouncer watched them"
         self.Ground = "the hood of the car"
-        self.FemaleTopClothing = self.FemWardrobe.Blouse.RandomDescription(bLongDesc = False)
-        self.FemaleBottomClothing = self.FemWardrobe.ShortSkirt.RandomDescription(bLongDesc = False)
+        self.FemaleTopClothing = self.FemWardrobe.Blouse.RandomDesc(bLongDesc = False)
+        self.FemaleBottomClothing = self.FemWardrobe.ShortSkirt.RandomDesc(bLongDesc = False)
      
 class Den(PrivateIndoors):
     def __init__(self, LocMan = None, LocWoman = None):
@@ -371,7 +371,7 @@ class Den(PrivateIndoors):
         self.LyingOn = "the sofa"
         self.Ground = "the thick fur rug"
         self.FemaleTopClothing = "tight leather corset"
-        self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDescription(bLongDesc = False)
+        self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDesc(bLongDesc = False)
      
 class DoctorsOffice(PublicIndoors):
     def __init__(self, LocMan = None, LocWoman = None):
@@ -391,8 +391,8 @@ class DoctorsOffice(PublicIndoors):
         self.AuthorityFigure = "the nurse"
         self.Consequence = "a cute nurse in scrubs looked on in shock"
         self.Ground = "the floor"
-        self.FemaleTopClothing = self.FemWardrobe.Dress.RandomDescription(bLongDesc = False)
-        self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDescription(bLongDesc = False)
+        self.FemaleTopClothing = self.FemWardrobe.Dress.RandomDesc(bLongDesc = False)
+        self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDesc(bLongDesc = False)
      
 class DormRoom(PrivateIndoors):
     def __init__(self, LocMan = None, LocWoman = None):
@@ -407,8 +407,8 @@ class DormRoom(PrivateIndoors):
         self.SittingOn = "on the edge of the bed"
         self.LyingOn = "on the tiny bed"
         self.Ground = "the thin carpet"
-        self.FemaleTopClothing = self.FemWardrobe.Tshirt.RandomDescription(bLongDesc = False)
-        self.FemaleBottomClothing = self.FemWardrobe.Jeans.RandomDescription(bLongDesc = False)
+        self.FemaleTopClothing = self.FemWardrobe.Tshirt.RandomDesc(bLongDesc = False)
+        self.FemaleBottomClothing = self.FemWardrobe.Jeans.RandomDesc(bLongDesc = False)
      
 class DressingRoom(PublicIndoors):
     def __init__(self, LocMan = None, LocWoman = None):
@@ -428,8 +428,8 @@ class DressingRoom(PublicIndoors):
         self.AuthorityFigure = "the store clerk"
         self.Consequence = "the clerk shouted 'I'm calling security'"
         self.Ground = "the carpet"
-        self.FemaleTopClothing = self.FemWardrobe.Dress.RandomDescription(bLongDesc = False)
-        self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDescription(bLongDesc = False)
+        self.FemaleTopClothing = self.FemWardrobe.Dress.RandomDesc(bLongDesc = False)
+        self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDesc(bLongDesc = False)
      
 class Farm(PrivateOutdoors):     
     def __init__(self, LocMan = None, LocWoman = None):
@@ -444,10 +444,10 @@ class Farm(PrivateOutdoors):
         self.SittingOn = "a square hay bale" 
         self.LyingOn = "the lush green grass"
         self.Ground = "the grass"
-        self.FemaleTopClothing = self.FemWardrobe.Tshirt.RandomDescription(bLongDesc = False)
-        self.FemaleBottomClothing = self.FemWardrobe.Jeans.RandomDescription(bLongDesc = False)
-        self.MaleTopClothing = self.MaleWardrobe.Tshirt.RandomDescription(bLongDesc = False)
-        self.MaleBottomClothing = self.MaleWardrobe.Tshirt.RandomDescription(bLongDesc = False)
+        self.FemaleTopClothing = self.FemWardrobe.Tshirt.RandomDesc(bLongDesc = False)
+        self.FemaleBottomClothing = self.FemWardrobe.Jeans.RandomDesc(bLongDesc = False)
+        self.MaleTopClothing = self.MaleWardrobe.Tshirt.RandomDesc(bLongDesc = False)
+        self.MaleBottomClothing = self.MaleWardrobe.Tshirt.RandomDesc(bLongDesc = False)
      
 class Hottub(PrivateOutdoors):
     def __init__(self, LocMan = None, LocWoman = None):
@@ -462,13 +462,13 @@ class Hottub(PrivateOutdoors):
         self.SittingOn = "a seat in the tub" 
         self.LyingOn = "the side of the tub"
         self.Ground = "steaming water"
-        self.FemaleTopClothing = self.FemWardrobe.BikiniTop.RandomDescription(bLongDesc = False)
-        self.FemaleBottomClothing = self.FemWardrobe.BikiniBottoms.RandomDescription(bLongDesc = False)
+        self.FemaleTopClothing = self.FemWardrobe.BikiniTop.RandomDesc(bLongDesc = False)
+        self.FemaleBottomClothing = self.FemWardrobe.BikiniBottoms.RandomDesc(bLongDesc = False)
         self.MaleTopClothing = ""
         if CoinFlip():
-            self.MaleBottomClothing = self.MaleWardrobe.Trunks.RandomDescription(bLongDesc = False)
+            self.MaleBottomClothing = self.MaleWardrobe.Trunks.RandomDesc(bLongDesc = False)
         else:
-            self.MaleBottomClothing = self.MaleWardrobe.Speedo.RandomDescription(bLongDesc = False)
+            self.MaleBottomClothing = self.MaleWardrobe.Speedo.RandomDesc(bLongDesc = False)
      
 class Gym(PublicIndoors):
     def __init__(self, LocMan = None, LocWoman = None):
@@ -488,8 +488,8 @@ class Gym(PublicIndoors):
         self.Consequence = "the girl with the leotard watched open-mouthed"
         self.AuthorityFigure = "someone"
         self.Ground = "rubber mat"
-        self.FemaleTopClothing = self.FemWardrobe.SportsBra.RandomDescription(bLongDesc = False)
-        self.FemaleBottomClothing = self.FemWardrobe.YogaPants.RandomDescription(bLongDesc = False)
+        self.FemaleTopClothing = self.FemWardrobe.SportsBra.RandomDesc(bLongDesc = False)
+        self.FemaleBottomClothing = self.FemWardrobe.YogaPants.RandomDesc(bLongDesc = False)
      
 class HikingTrail(PublicOutdoors):
     def __init__(self, LocMan = None, LocWoman = None):
@@ -509,7 +509,7 @@ class HikingTrail(PublicOutdoors):
         self.Consequence = "a bearded hiker looked on in surprise"
         self.AuthorityFigure = "a park ranger"
         self.Ground = "the rocky mountainside"
-        self.FemaleTopClothing = self.FemWardrobe.SportsBra.RandomDescription(bLongDesc = False)
+        self.FemaleTopClothing = self.FemWardrobe.SportsBra.RandomDesc(bLongDesc = False)
         self.FemaleBottomClothing = "spandex shorts"
      
 class Kitchen(PrivateIndoors):
@@ -526,9 +526,9 @@ class Kitchen(PrivateIndoors):
         self.LyingOn = "on the kitchen table"
         self.Ground = "black and white tiled floor"
         self.MaleTopClothing = ""
-        self.MaleBottomClothing = self.MaleWardrobe.GetUnderwear().RandomDescription(bLongDesc = False)
-        self.FemaleTopClothing = self.FemWardrobe.Tshirt.RandomDescription(bLongDesc = False)
-        self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDescription(bLongDesc = False)
+        self.MaleBottomClothing = self.MaleWardrobe.GetUnderwear().RandomDesc(bLongDesc = False)
+        self.FemaleTopClothing = self.FemWardrobe.Tshirt.RandomDesc(bLongDesc = False)
+        self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDesc(bLongDesc = False)
      
 class Library(PublicIndoors):
     def __init__(self, LocMan = None, LocWoman = None):
@@ -548,8 +548,8 @@ class Library(PublicIndoors):
         self.Excuse = "'We are just about to check out!' he called back."
         self.AuthorityFigure = "the librarian"
         self.Ground = "soft carpet"
-        self.FemaleTopClothing = self.FemWardrobe.Blouse.RandomDescription(bLongDesc = False)
-        self.FemaleBottomClothing = self.FemWardrobe.ShortSkirt.RandomDescription(bLongDesc = False)
+        self.FemaleTopClothing = self.FemWardrobe.Blouse.RandomDesc(bLongDesc = False)
+        self.FemaleBottomClothing = self.FemWardrobe.ShortSkirt.RandomDesc(bLongDesc = False)
      
 class MassageRoom(PrivateIndoors):
     def __init__(self, LocMan = None, LocWoman = None):
@@ -586,8 +586,8 @@ class MensRoom(PublicIndoors):
         self.AuthorityFigure = "some strange man"
         self.Excuse = "'Busy!' he shouted back."
         self.Ground = "tiled floor"
-        self.FemaleTopClothing = self.FemWardrobe.Blouse.RandomDescription(bLongDesc = False)
-        self.FemaleBottomClothing = self.FemWardrobe.ShortSkirt.RandomDescription(bLongDesc = False)
+        self.FemaleTopClothing = self.FemWardrobe.Blouse.RandomDesc(bLongDesc = False)
+        self.FemaleBottomClothing = self.FemWardrobe.ShortSkirt.RandomDesc(bLongDesc = False)
      
 class MovieTheater(PublicIndoors):
     def __init__(self, LocMan = None, LocWoman = None):
@@ -628,10 +628,10 @@ class Office(PublicIndoors):
         self.Excuse = "'This isn't what it looks like!' he shouted."
         self.AuthorityFigure = "your boss"
         self.Ground = "carpet"
-        self.FemaleTopClothing = self.FemWardrobe.PencilDress.RandomDescription(bLongDesc = False)
-        self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDescription(bLongDesc = False)
+        self.FemaleTopClothing = self.FemWardrobe.PencilDress.RandomDesc(bLongDesc = False)
+        self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDesc(bLongDesc = False)
         self.MaleTopClothing = "dress shirt"
-        self.MaleBottomClothing = self.MaleWardrobe.Slacks.RandomDescription(bLongDesc = False)
+        self.MaleBottomClothing = self.MaleWardrobe.Slacks.RandomDesc(bLongDesc = False)
      
 class OpenWindow(PublicIndoors):
     def __init__(self, LocMan = None, LocWoman = None):
@@ -651,8 +651,8 @@ class OpenWindow(PublicIndoors):
         self.Excuse = "'Let them,' he replied."
         self.Consequence = "the people next door looked on"
         self.Ground = "thick carpet"
-        self.FemaleTopClothing = self.FemWardrobe.Bra.RandomDescription(bLongDesc = False)
-        self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDescription(bLongDesc = False)
+        self.FemaleTopClothing = self.FemWardrobe.Bra.RandomDesc(bLongDesc = False)
+        self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDesc(bLongDesc = False)
      
 class ParkAfterDark(PublicOutdoors):
     def __init__(self, LocMan = None, LocWoman = None):
@@ -673,7 +673,7 @@ class ParkAfterDark(PublicOutdoors):
         self.Consequence = "the watchman enjoyed the view"
         self.Ground = "the ground"
         self.FemaleTopClothing = "tight sweater"
-        self.FemaleBottomClothing = self.FemWardrobe.Jeans.RandomDescription(bLongDesc = False)
+        self.FemaleBottomClothing = self.FemWardrobe.Jeans.RandomDesc(bLongDesc = False)
      
 class ParkBench(PublicOutdoors):
     def __init__(self, LocMan = None, LocWoman = None):
@@ -693,7 +693,7 @@ class ParkBench(PublicOutdoors):
         self.Excuse = "'I'm not stopping now, baby!' he panted."
         self.Consequence = "the jogger looked on with surprise"
         self.Ground = "the ground"
-        self.FemaleTopClothing = self.FemWardrobe.Dress.RandomDescription(bLongDesc = False)
+        self.FemaleTopClothing = self.FemWardrobe.Dress.RandomDesc(bLongDesc = False)
      
 class PoolPatio(PrivateOutdoors):
     def __init__(self, LocMan = None, LocWoman = None):
@@ -708,8 +708,8 @@ class PoolPatio(PrivateOutdoors):
         self.SittingOn = "a deck chair"
         self.LyingOn = "a patio chair"
         self.Ground = "the pool deck"
-        self.FemaleTopClothing = self.FemWardrobe.BikiniTop.RandomDescription(bLongDesc = False)
-        self.FemaleBottomClothing = self.FemWardrobe.BikiniBottoms.RandomDescription(bLongDesc = False)
+        self.FemaleTopClothing = self.FemWardrobe.BikiniTop.RandomDesc(bLongDesc = False)
+        self.FemaleBottomClothing = self.FemWardrobe.BikiniBottoms.RandomDesc(bLongDesc = False)
      
 class PrivateBeach(PrivateOutdoors):
     def __init__(self, LocMan = None, LocWoman = None):
@@ -727,8 +727,8 @@ class PrivateBeach(PrivateOutdoors):
         self.MaleTopClothing = ""
         self.MaleBottomClothing = "speedo"
         self.FemaleTopClothing = ""
-        self.FemaleTopClothing = self.FemWardrobe.BikiniTop.RandomDescription(bLongDesc = False)
-        self.FemaleBottomClothing = self.FemWardrobe.BikiniBottoms.RandomDescription(bLongDesc = False)
+        self.FemaleTopClothing = self.FemWardrobe.BikiniTop.RandomDesc(bLongDesc = False)
+        self.FemaleBottomClothing = self.FemWardrobe.BikiniBottoms.RandomDesc(bLongDesc = False)
      
 class PublicBathroom(PublicIndoors):
     def __init__(self, LocMan = None, LocWoman = None):
@@ -783,8 +783,8 @@ class PublicBathroom(PublicIndoors):
         self.Consequence = "someone called, 'I think they're fucking in the " + sPlace + " " + sBath + "'"
         self.AuthorityFigure = sPlace + " employee"
         self.Ground = sTileCondition + " tiled floor"
-        self.FemaleTopClothing = TopFemClothing.RandomDescription(bLongDesc = False)
-        self.FemaleBottomClothing = BottomFemClothing.RandomDescription(bLongDesc = False)
+        self.FemaleTopClothing = TopFemClothing.RandomDesc(bLongDesc = False)
+        self.FemaleBottomClothing = BottomFemClothing.RandomDesc(bLongDesc = False)
      
 class Shower(PrivateIndoors):
     def __init__(self, LocMan = None, LocWoman = None):
@@ -822,8 +822,8 @@ class StarbucksBathroom(PublicIndoors):
         self.Consequence = "someone called, 'I think they're having sex in the Starbucks bathroom'"
         self.AuthorityFigure = "a Starbucks barista"
         self.Ground = "tiled floor"
-        self.FemaleTopClothing = self.FemWardrobe.Dress.RandomDescription(bLongDesc = False)
-        self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDescription(bLongDesc = False)
+        self.FemaleTopClothing = self.FemWardrobe.Dress.RandomDesc(bLongDesc = False)
+        self.FemaleBottomClothing = self.FemWardrobe.Panties.RandomDesc(bLongDesc = False)
      
 class Surf(PublicOutdoors):
     def __init__(self, LocMan = None, LocWoman = None):
@@ -845,11 +845,11 @@ class Surf(PublicOutdoors):
         self.Ground = "the dark green water"
         self.MaleTopClothing = ""
         if CoinFlip():
-            self.MaleBottomClothing = self.MaleWardrobe.Trunks.RandomDescription(bLongDesc = False)
+            self.MaleBottomClothing = self.MaleWardrobe.Trunks.RandomDesc(bLongDesc = False)
         else:
-            self.MaleBottomClothing = self.MaleWardrobe.Speedo.RandomDescription(bLongDesc = False)
-        self.FemaleTopClothing = self.FemWardrobe.BikiniTop.RandomDescription(bLongDesc = False)
-        self.FemaleBottomClothing = self.FemWardrobe.BikiniBottoms.RandomDescription(bLongDesc = False)
+            self.MaleBottomClothing = self.MaleWardrobe.Speedo.RandomDesc(bLongDesc = False)
+        self.FemaleTopClothing = self.FemWardrobe.BikiniTop.RandomDesc(bLongDesc = False)
+        self.FemaleBottomClothing = self.FemWardrobe.BikiniBottoms.RandomDesc(bLongDesc = False)
      
 class Woods(PublicOutdoors):
     def __init__(self, LocMan = None, LocWoman = None):
@@ -870,7 +870,7 @@ class Woods(PublicOutdoors):
         self.AuthorityFigure = "someone"
         self.Ground = "thick carpet of leaves"
         self.FemaleTopClothing = "cute flannel top"
-        self.FemaleBottomClothing = self.FemWardrobe.Jeans.RandomDescription(bLongDesc = False)
+        self.FemaleBottomClothing = self.FemWardrobe.Jeans.RandomDesc(bLongDesc = False)
      
 class YogaStudio(PrivateIndoors):
     def __init__(self, LocMan = None, LocWoman = None):
@@ -885,8 +885,8 @@ class YogaStudio(PrivateIndoors):
         self.SittingOn = "a balance ball"
         self.LyingOn = "a yoga mat"
         self.Ground = "the purple yoga mat"
-        self.FemaleTopClothing = self.FemWardrobe.SportsBra.RandomDescription(bLongDesc = False)
-        self.FemaleBottomClothing = self.FemWardrobe.YogaPants.RandomDescription(bLongDesc = False)
+        self.FemaleTopClothing = self.FemWardrobe.SportsBra.RandomDesc(bLongDesc = False)
+        self.FemaleBottomClothing = self.FemWardrobe.YogaPants.RandomDesc(bLongDesc = False)
 
      
 class LocationSelector():
