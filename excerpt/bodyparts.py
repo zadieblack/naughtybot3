@@ -677,8 +677,10 @@ class Woman(Lover):
 
         if self.AgeCat in ["teen","college","twenties"]:
             LTagLists.adj_excl.append("older")
+            LTagLists.noun_excl.append("older")
         else:
             LTagLists.adj_excl.append("young")
+            LTagLists.noun_excl.append("young")
 
         if NewFemTraits.BodyType:
             self.BodyType = NewFemTraits.BodyType

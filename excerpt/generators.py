@@ -1177,7 +1177,7 @@ class Generator24(ExGen):
           sTweet = ""
           
           Location = locations.LocationSelector().Location()
-          
+
           sTweet = Location.BeginDesc + " "
           
           bMale = CoinFlip()
@@ -1272,6 +1272,7 @@ class Generator25(ExGen):
           sTweet = ""
           
           Location = LocationSelector().Location(PubPrivType = exutil.LocPubPrivType.Public)
+          
           sHerName = self.FemaleName.FirstName()
           sHisName = self.MaleName.FirstName()
           iRand = randint(1,3)
@@ -1422,6 +1423,7 @@ class Generator28(ExGen):
           sTweet = ""
           
           Location = locations.LocationSelector().Location()
+          
           sHisName = self.MaleName.FirstName()
           sHerName = self.FemaleName.FirstName()
           
@@ -2225,7 +2227,8 @@ class Generator39(ExGen):
           super().GenerateTweet()
           sTweet = ""
           
-          Location = locations.LocationSelector().Location(PubPrivType = exutil.LocPubPrivType.Public, InOut = exutil.LocInOutType.Indoors)
+          #Location = locations.LocationSelector().Location(PubPrivType = exutil.LocPubPrivType.Public, InOut = exutil.LocInOutType.Indoors)
+          Location = locations.PublicBathroom()
           sHerName = self.FemaleName.FirstName()
           sHisName = self.MaleName.FirstName()
 
@@ -4832,17 +4835,17 @@ class Generator76(ExGen):
                     "Dirt-pipe","Dirty","Dogging","Donkey",
                     "Dump-truck","Enema","Exhibitionist",
                     "Facial","Fleshlight","Firehose",
-                    "Fuck-doll","Fuckable","Gagging",
+                    "Free-hole","Fuck-doll","Gagging",
                     "Gaping","Gushing","Handjob","Horny",
                     "HuCow","Insertion","Interracial",
                     "Jack-off","Jail-bait","Jerk-off",
-                    "Juicy","Kinky","Lewd","Lollipop",
-                    "Loose","Loose-lips",
+                    "Juicy","Kinky","Lewd","Limber",
+                    "Lollipop","Loose","Loose-lips",
                     "Milk-maid","Milkshake","Motor-boat",
                     "Nasty","Nutsack","Nympho","Pee-play",
-                    "Perverted","Poundtown","Prolapse","Quickie",
-                    "Rectal","Rosebud","Rim-job","Sloppy",
-                    "Sodomy",
+                    "Perverted","Pogo-stick","Pole-vaulting",
+                    "Prolapse","Quickie","Rectal","Rosebud",
+                    "Rim-job","Sloppy","Sodomy",
                     "Sperm-bank","Squirting","Starfish","Stinky",
                     "Suction","Tea-bag","Three-holes","Tit-fuck",
                     "Tit-job","Toilet","Vaginal","Vaseline","Wet",

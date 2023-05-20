@@ -14,13 +14,14 @@ BodyPartHistoryQ = HistoryQ(10)
 TagExclDict = {"bigdick": ["smalldick"],
                "bigtits": ["smalltits"],
                "cauc": ["poc"],
-               "college": ["teen","twenties","thirties","middleaged"],
+               "college": ["teen","twenties","thirties","middleaged","milf","older"],
                "female": ["male"],
                "hairy": ["shaved","trimmed"],
                "large": ["small"],
                "loose": ["tight"],
                "male": ["female"],
                "middleaged": ["teen","college","twenties","thirties"],
+               "milf": ["teen","college","twenties","young"],
                "older": ["teen","college","twenties","young"],
                "poc": ["cauc"],
                "plussize": ["slender"],
@@ -32,15 +33,15 @@ TagExclDict = {"bigdick": ["smalldick"],
                "smalldick": ["bigdick"],
                "smalltits": ["bigtits"],
                "tall": ["short"],
-               "teen": ["college","twenties","thirties","middleaged"],
+               "teen": ["college","twenties","thirties","middleaged","milf"],
                "thick": ["thin"],
                "thin": ["thick"],
                "thirties": ["teen","college","twenties","middleaged"],
                "tight": ["loose"],
-               "twenties": ["teen","college","thirties","middleaged"],
+               "twenties": ["teen","college","middleaged","older","thirties",],
                "trimmed": ["hairy","shaved"],
                "virginal": ["slutty"],
-               "young": ["thirties","middleaged","older"],
+               "young": ["thirties","middleaged","older","milf"],
               }
 
 @dataclass 
@@ -190,15 +191,10 @@ class NounPhrase:
             global TagExclDict
             UsedTagList = []
 
-            # ! Confused about what's supposed to be happening below
-            # ------------------------------------------------------
-            # if self._bVaryAdjTags and len(AdjReqTagList) == 0:
             for tag in self.GetUnitTags(self._Noun):
                 if not tag in NounTagList:
                     NounTagList.append(tag)
-                        #UsedTagList.append(tag)
-                #print("  Added any excluding noun tags for \"" + self._Noun + "\" to UsedTagList " + str(UsedTagList))
-            # ------------------------------------------------------
+
             for nountag in NounTagList:
                 if nountag in TagExclDict:
                     for tag in TagExclDict[nountag]:
