@@ -2227,8 +2227,8 @@ class Generator39(ExGen):
           super().GenerateTweet()
           sTweet = ""
           
-          #Location = locations.LocationSelector().Location(PubPrivType = exutil.LocPubPrivType.Public, InOut = exutil.LocInOutType.Indoors)
-          Location = locations.PublicBathroom()
+          Location = locations.LocationSelector().Location(PubPrivType = exutil.LocPubPrivType.Public, InOut = exutil.LocInOutType.Indoors)
+
           sHerName = self.FemaleName.FirstName()
           sHisName = self.MaleName.FirstName()
 
@@ -2309,7 +2309,8 @@ class Generator40(ExGen):
           super().GenerateTweet()
           sTweet = ""
           
-          Location = locations.LocationSelector().Location()
+          #Location = locations.LocationSelector().Location()
+          Location = locations.PublicBathroom()
           sHisName = self.MaleName.FirstName()
           sHerName = self.FemaleName.FirstName()
           

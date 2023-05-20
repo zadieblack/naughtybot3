@@ -109,6 +109,9 @@ class Clothes(NounPhrase):
 
         super().AdjList(NewAdjList)
 
+    def TakeItOff(self):
+        return "removed their " + self.RandomDescription(bLongDesc = False)
+
 # ***********************
 # *** Female Clothing ***
 # ***********************
@@ -217,9 +220,13 @@ class FemWardrobe():
         return CleanList
 
 class FemaleClothes(Clothes):
-     def __init__(self):
-          self.Gender = "female"
-          super().__init__()
+    def __init__(self):
+        self.Gender = "female"
+        super().__init__()
+
+    def TakeItOff(self):
+        return "removed her " + self.RandomDescription(bLongDesc = False)
+
 
 # --- Tops ---
 
@@ -271,6 +278,10 @@ class BikiniTop(FemaleClothes):
           self.DefaultAdj('skimpy')
 
           self.IsTop = True
+
+     def TakeItOff(self):
+        sRemoveVerb = WordList(["pulled down","pulled up","took off","untied"]).GetWord()
+        return sRemoveVerb + " her " + self.RandomDescription(bLongDesc = False)
 
 class Blouse(FemaleClothes):
      def __init__(self):
@@ -332,6 +343,10 @@ class Blouse(FemaleClothes):
 
           self.IsTop = True
 
+     def TakeItOff(self):
+        sRemoveVerb = WordList(["opened","took off","stripped off"]).GetWord()
+        return sRemoveVerb + " her " + self.RandomDescription(bLongDesc = False)
+
 class Bra(FemaleClothes):
      def __init__(self):
           super().__init__()
@@ -392,6 +407,10 @@ class Bra(FemaleClothes):
 
           self.IsTop = True
 
+     def TakeItOff(self):
+        sRemoveVerb = WordList(["pulled down","pulled up","took off","opened","unhooked","stripped off"]).GetWord()
+        return sRemoveVerb + " her " + self.RandomDescription(bLongDesc = False)
+
 class CropTop(FemaleClothes):
      def __init__(self):
           super().__init__()
@@ -447,6 +466,10 @@ class CropTop(FemaleClothes):
           self.DefaultAdj('midriff-baring')
 
           self.IsTop = True
+
+     def TakeItOff(self):
+        sRemoveVerb = WordList(["pulled down","took off","stripped off"]).GetWord()
+        return sRemoveVerb + " her " + self.RandomDescription(bLongDesc = False)
 
 class Dress(FemaleClothes):
      def __init__(self):
@@ -538,6 +561,10 @@ class Dress(FemaleClothes):
           self.DefaultNoun('dress')
           self.DefaultAdj('cute')
 
+     def TakeItOff(self):
+        sRemoveVerb = WordList(["took off","stripped off","pulled off"]).GetWord()
+        return sRemoveVerb + " her " + self.RandomDescription(bLongDesc = False)
+
 class EveningDress(FemaleClothes):
      def __init__(self):
           super().__init__()
@@ -620,6 +647,10 @@ class EveningDress(FemaleClothes):
           self.DefaultNoun('evening gown')
           self.DefaultAdj('sexy')
 
+     def TakeItOff(self):
+        sRemoveVerb = WordList(["shrugged off","pulled off","pulled down","took off","stripped off","pulled off"]).GetWord()
+        return sRemoveVerb + " her " + self.RandomDescription(bLongDesc = False)
+
 class Nightgown(FemaleClothes):
      def __init__(self):
           super().__init__()
@@ -690,6 +721,10 @@ class Nightgown(FemaleClothes):
 
           self.IsTop = True
 
+     def TakeItOff(self):
+        sRemoveVerb = WordList(["took off","opened","pulled off"]).GetWord()
+        return sRemoveVerb + " her " + self.RandomDescription(bLongDesc = False)
+
 class PencilDress(FemaleClothes):
      def __init__(self):
           super().__init__()
@@ -743,6 +778,11 @@ class PencilDress(FemaleClothes):
           self.DefaultNoun('pencil dress')
           self.DefaultAdj('businesslike')
 
+     def TakeItOff(self):
+        sRemoveVerb = WordList(["took off","stripped off","unzipped"]).GetWord()
+        return sRemoveVerb + " her " + self.RandomDescription(bLongDesc = False)
+
+
 class RobeFemale(FemaleClothes):
      def __init__(self):
           super().__init__()
@@ -789,6 +829,11 @@ class RobeFemale(FemaleClothes):
 
           self.IsTop = True
 
+     def TakeItOff(self):
+        sRemoveVerb = WordList(["opened","shrugged off"]).GetWord()
+        return sRemoveVerb + " her " + self.RandomDescription(bLongDesc = False)
+
+
 class SportsBra(FemaleClothes):
      def __init__(self):
           super().__init__()
@@ -827,6 +872,11 @@ class SportsBra(FemaleClothes):
           self.DefaultAdj('black')
 
           self.IsTop = True
+
+     def TakeItOff(self):
+        sRemoveVerb = WordList(["took off","stripped off","pulled off"]).GetWord()
+        return sRemoveVerb + " her " + self.RandomDescription(bLongDesc = False)
+
 
 class TshirtFemale(FemaleClothes):
      def __init__(self):
@@ -878,6 +928,10 @@ class TshirtFemale(FemaleClothes):
           self.DefaultAdj('white')
 
           self.IsTop = True
+
+     def TakeItOff(self):
+        sRemoveVerb = WordList(["took off","stripped off","pulled off"]).GetWord()
+        return sRemoveVerb + " her " + self.RandomDescription(bLongDesc = False)
 
 
 # --- Bottoms ---
@@ -934,6 +988,11 @@ class BikiniBottoms(FemaleClothes):
 
           self.IsBottom = True
 
+     def TakeItOff(self):
+        sRemoveVerb = WordList(["took off","stripped off","pulled off","pulled down","pulled up","untied"]).GetWord()
+        return sRemoveVerb + " her " + self.RandomDescription(bLongDesc = False)
+
+
 class DaisyDukes(FemaleClothes):
      def __init__(self):
           super().__init__()
@@ -980,6 +1039,11 @@ class DaisyDukes(FemaleClothes):
 
           self.IsBottom = True
 
+     def TakeItOff(self):
+        sRemoveVerb = WordList(["slid","pushed"]).GetWord()
+        return sRemoveVerb + " her " + self.RandomDescription(bLongDesc = False) + " down"
+
+
 class JeansFemale(FemaleClothes):
      def __init__(self):
           super().__init__()
@@ -1016,6 +1080,7 @@ class JeansFemale(FemaleClothes):
           self.DefaultAdj('tight')
 
           self.IsBottom = True
+
 
 class Panties(FemaleClothes):
      def __init__(self):
@@ -1593,9 +1658,12 @@ class MaleWardrobe():
 # --- Tops ---
 
 class MaleClothes(Clothes):
-     def __init__(self):
-          self.Gender = "male"
-          super().__init__()
+    def __init__(self):
+        self.Gender = "male"
+        super().__init__()
+
+    def TakeItOff(self):
+        return "removed his " + self.RandomDescription(bLongDesc = False)
 
 class TshirtMale(MaleClothes):
      def __init__(self):
