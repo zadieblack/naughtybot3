@@ -590,6 +590,7 @@ class TantricTechniques(NounAdjList):
                             "Chimichanga",
                             "Cowgirl",
                             "Delight",
+                            "Diaper",
                             "Donkey",
                             "Dwarf",
                             "Enema",

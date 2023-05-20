@@ -553,6 +553,9 @@ class Female(NounPhrase):
           super().__init__(Params, NotList, TagLists)
           
           self.NounList(['bimbo: std,cauc,sing',
+                         'black girl: color,poc,sing',
+                         'blonde: hair,cauc,sing',
+                         'brunette: hair,cauc,sing',
                          'co-ed: std,college,sing',
                          'college girl: std,college,sing',
                          'divorcee: std,older,milf',
@@ -563,6 +566,7 @@ class Female(NounPhrase):
                          'mature woman x2: older,milf,std,sing',
                          'mom: std,mother,older,sing',
                          'nurse: prof,sing',
+                         'redhead: hair,cauc,sing',
                          'schoolgirl: prof,young,teen,sing',
                          'secretary: prof,twenties,sing',
                          'single mom: prof,mother,sing',

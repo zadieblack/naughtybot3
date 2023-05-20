@@ -4822,41 +4822,35 @@ class Generator76(ExGen):
 
         Guy = self.Man
         Girl = bodyparts.Woman(NewFemTraits = NewFemTraits)
-          
-        Location = locations.LocationSelector().Location(PubPrivType = exutil.LocPubPrivType.Private, LocMan = Guy, LocWoman = Girl)
-        if CoinFlip() and not Location.FemaleTopClothing == "":
-            Location.FemaleTopClothing = ""
-        elif not Location.FemaleBottomClothing == "":
-            Location.FemaleBottomClothing = ""
 
         Prefixes = ["Ahegao","Anal","Ass-to-mouth","Backdoor",
                     "Ball-sucking","Bareback","Blowjob",
                     "Blumpkin","Brown-lips","Butt-slut","Choking",
-                    "Cock-sock","Cornhole","Creampie","Cum-dumpster",
-                    "Cum-slut","Deep-throat","Dogging",
-                    "Diaper","Dick-lips","Dick-sucking","Dirt-pipe",
-                    "Dirty","Enema","Exhibitionist",
+                    "Cock-sock","Cornhole","Creampie","Creamy",
+                    "Cum-dumpster","Cum-slut","Deep-throat",
+                    "Dental","Diaper","Dick-lips","Dick-sucking",
+                    "Dirt-pipe","Dirty","Dogging","Donkey",
+                    "Dump-truck","Enema","Exhibitionist",
                     "Facial","Fleshlight","Firehose",
                     "Fuck-doll","Fuckable","Gagging",
                     "Gaping","Gushing","Handjob","Horny",
                     "HuCow","Insertion","Interracial",
-                    "Jack-off","Jerk-off","Juicy","Kinky","Lewd","Lollipop",
+                    "Jack-off","Jail-bait","Jerk-off",
+                    "Juicy","Kinky","Lewd","Lollipop",
                     "Loose","Loose-lips",
                     "Milk-maid","Milkshake","Motor-boat",
                     "Nasty","Nutsack","Nympho","Pee-play",
-                    "Perverted","Poundtown","Quickie","Rosebud",
-                    "Rim-job","Sixty-nining","Sodomy",
-                    "Sperm-bank","Squirting","Stinky",
-                    "Suction","Three-holes","Tit-fuck",
+                    "Perverted","Poundtown","Prolapse","Quickie",
+                    "Rectal","Rosebud","Rim-job","Sloppy",
+                    "Sodomy",
+                    "Sperm-bank","Squirting","Starfish","Stinky",
+                    "Suction","Tea-bag","Three-holes","Tit-fuck",
                     "Tit-job","Toilet","Vaginal","Vaseline","Wet",
                     "Wanton","Watersports",]
         GirlNames = names.PlainNamesFemale().GetFirstNamesList()
         NickName = GetRhymingPair(Prefixes, GirlNames)
         if len(NickName) > 1:
-            if CoinFlip() and CoinFlip():
-                sNickName = "Little " + NickName[0] + " " + NickName[1]
-            else:
-                sNickName = "'" + NickName[0] + " " + NickName[1] + "'"
+            sNickName = "'" + NickName[0] + " " + NickName[1] + "'"
         else:
             "'Squirting Myrtle'"
 
@@ -4873,7 +4867,7 @@ class Generator76(ExGen):
                                     "men's room","maintenance room",
                                     "stall","storage closet",
                                     "stock room","backroom","office",
-                                    "bathroom",
+                                    "bathroom","dressing room",
                                     ]).GetWord() + " door"
         sTweet += WordList([" and locked it",""]).GetWord () + ". "
         sTweet += "\"" + WordList(["I guess we're all alone now","Looks like we're alone now","Looks like its just you and me"]).GetWord() + ",\" "
@@ -4916,7 +4910,10 @@ class Generator76(ExGen):
 
         # Takes off her panties
         sTxt = "She reached under her " + self.FemWardrobe.ShortSkirt.RandomDescription(bAllowLongDesc = False) + " "
-        sTxt += "and pulled down a pair of " + self.FemWardrobe.Panties.RandomDescription(bAllowLongDesc = False) + " "
+        if self.FemWardrobe.Panties.IsPlural():
+            sTxt += "and pulled down a pair of " + self.FemWardrobe.Panties.RandomDescription(bAllowLongDesc = False) + " "
+        else:
+            sTxt += "and pulled down her " + self.FemWardrobe.Panties.RandomDescription(bAllowLongDesc = False) + " "
         sTxt += "which she casually tossed in the corner. "
         Selector.AddSection(sTxt)
 
@@ -4945,9 +4942,22 @@ class Generator76(ExGen):
         Selector.AddSection(sTxt)
 
         sTweet += Selector.GetSection()
-        sTweet += "Dropping to her knees, she began " 
-        sTweet += WordList(["unzipping","unbuttoning","unbuckling"]).GetWord() + " "
-        sTweet += "his " + self.MaleWardrobe.GetTrousers().RandomDescription(bAllowLongDesc = False) + ".\n\n"
+
+        if CoinFlip():
+            sTweet += "Dropping to her knees, she began " 
+            sTweet += WordList(["unzipping","unbuttoning","unbuckling"]).GetWord() + " "
+            sTweet += "his " + self.MaleWardrobe.GetTrousers().RandomDescription(bAllowLongDesc = False) + ".\n\n"
+        else:
+            sTweet += "Bending over in front of him, she reached back and "
+            sTweet += "spread her " + Girl.Buttocks.RandomDescription(TagLists = TLParams) + " "
+            if CoinFlip():
+                sTweet += "so he could see her " + Girl.Vagina.RandomDescription()
+            elif CoinFlip():
+                sTweet += "so he could see her " + Girl.Vagina.RandomDescription() + " and "
+                sTweet += "her " + Girl.Anus.RandomDescription(TagLists = TLParams)
+            else:
+                sTweet += "so he could see her " + Girl.Anus.RandomDescription()
+            sTweet += ".\n\n"
         sTweet += "\"Ready to find out " 
         sTweet += WordList(["why everyone calls me","why everyone around here calls me",
                             "why the guys call me","why the boys call me","why the guys around here call me",

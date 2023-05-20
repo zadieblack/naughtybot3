@@ -182,7 +182,9 @@ class PlainNamesFemale(Names):
      def __init__(self):
           super().__init__()
           self.SetFirstNames(['Alice',
+                              'Amanda',
                               'Amber',
+                              'Amy',
                               'Anne',
                               'Annie',
                               'Beatrice',
@@ -213,7 +215,10 @@ class PlainNamesFemale(Names):
                               'Ginger',
                               'Grace',
                               'Gwen',
+                              'Hannah',
                               'Harriet',
+                              'Heather',
+                              'Helen',
                               'Holly',
                               'Irene',
                               'Jane',
@@ -252,6 +257,7 @@ class PlainNamesFemale(Names):
                               'Pamela',
                               'Patty',
                               'Paula',
+                              'Phyllis',
                               'Rachael',
                               'Rebecca',
                               'Rose',
@@ -271,6 +277,8 @@ class PlainNamesFemale(Names):
                               'Tina',
                               'Tiffany',
                               'Vicky',
+                              'Wanda',
+                              'Wendy',
                              ])
                                       
 class InnuendoNamesFemale(Names):
