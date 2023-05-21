@@ -935,7 +935,6 @@ class Woman(Lover):
                    'cute: super,young',
                    'doe-eyed: eyes',
                    'exotic: super,poc',
-                   'little: size,small,short',
                    'lovely: super',
                    'matronly: age,older',
                    'nubile x2: age,young',
@@ -955,7 +954,7 @@ class Woman(Lover):
         elif self.BodyType in ["curvy"]:
             AdjList += ['curvaceous: curvy,shape','round-bottomed: curvy,shape','shapely: curvy,shape']
         elif self.BodyType in ["slender"]:
-            AdjList += ['elfin: slender','limber:slender,flexible','lithe: slender,flexible','petite: short,small,slender','skinny: slender','slender: slender','tight-bodied: slender','waifish: slender',]
+            AdjList += ['elfin: slender','limber:slender,flexible','lithe: slender,flexible','little: size,small,slender','petite: short,small,slender','skinny: slender','slender: slender','tight-bodied: slender','waifish: slender',]
 
         if self.EyeColor in ["blue"]:
             AdjList += ['blue-eyed x3: eyes,cauc',]
@@ -973,7 +972,9 @@ class Woman(Lover):
         if self.Height in ["tall"]:
             AdjList += ['tall: height,tall','willowy: height,tall']
         elif self.Height in ["short"]:
-            AdjList += ['petite: short,small,slender','short: height,short',]
+            AdjList += ['little: height,short','petite: short,small,slender','short: height,short',]
+        else:
+            AdjList += ['little: height,short',]
 
         if self.HairStyle in ["bobbed"]:
             AdjList += ['bobbed: hairstyle,bob,shorthair',]
