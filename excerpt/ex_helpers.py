@@ -550,6 +550,9 @@ class NounPhrase:
     def AdjList(self, NewAdjList):
         self.UnitList(NewAdjList, "adj")
 
+    def ColorList(self, NewColorList):
+        self.UnitList(NewColorList, "color")
+
     def ExtraAdjList(self, ExtraAdjList):
         self._ExtraAdjList = ExtraAdjList
         self.Reset("ExtraAdjList")

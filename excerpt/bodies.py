@@ -128,7 +128,7 @@ class Lover():
         self.HairColor = choice(self.Race.HairColor)
         self.EyeColor = choice(self.Race.EyeColor)
 
-        if self.Race in ["asian","caucasian"] and self.IsTan:
+        if self.Race in ["asian","caucasian"] and not self.HairColor in ["red"] and self.IsTan:
             self.SkinColor = choice(TanColors)
         else:
             self.SkinColor = choice(self.Race.SkinColor)
