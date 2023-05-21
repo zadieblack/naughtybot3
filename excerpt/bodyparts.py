@@ -905,7 +905,7 @@ class Woman(Lover):
         #sDesc += "my " + self.Breasts.FloweryDesc() + " "
         #sDesc += "with " + self.Nipples.FloweryDesc() + ", "
         #sDesc += "and my " + self.Vagina.FloweryDesc() + ". "
-        print(sDesc)
+        print("\n" + sDesc)
 
     def BuildDesc(self):
         NounList = []
