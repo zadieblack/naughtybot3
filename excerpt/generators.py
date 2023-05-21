@@ -4111,8 +4111,8 @@ class Generator66(ExGen):
                sTweet += "from her " + Tits.MediumDesc() + " "
                sTweet += "down to her " + Legs.MediumDesc() + " "
                sTweet += "and the " + WordList(['patch of dark pubes','trim triangle of pubes',
-                                                        'thatch of soft pubes','curly pubes', 
-                                                        'peach-fuzzed pubic mound']).GetWord() + " "
+                                                'thatch of soft pubes','curly pubes', 
+                                                'peach-fuzzed pubic mound']).GetWord() + " "
                sTweet += "nestled between them."
           elif iRand == 2: 
                sTweet += "Her " + Ass.GetNoun() + " was " + Ass.GetRandomAdj() + " "
@@ -4138,10 +4138,9 @@ class Generator66(ExGen):
                sTweet += "her " + Ass.FloweryDesc() + ", "
                sTweet += "and her shameless, " + Pussy.FloweryDesc(NotList = ["shameless"]) + ". "
           else:
-               sPussyAdj1 = PussyAdjs.GetWord()
                sTweet += "Her nude body was stunning. She had " + Tits.MediumDesc() + " "
                sTweet += "with " + Nips.MediumDesc() + ", "
-               sTweet += "a " + sAss + ", and her legs were long and " + Legs.GetNewAdj(NotList = ['long']) + ". "
+               sTweet += "a " + Ass.RandomDesc() + ", and her legs were long and " + Legs.GetNewAdj(NotList = ['long']) + ". "
                sTweet += "She was standing with legs apart "
                sTweet += "and he could clearly see her shameless, " + Pussy.FloweryDesc() + " "
                if CoinFlip():
