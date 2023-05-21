@@ -128,7 +128,7 @@ class Lover():
         self.HairColor = choice(self.Race.HairColor)
         self.EyeColor = choice(self.Race.EyeColor)
 
-        if self.Race in ["asian","cauc"] and self.IsTan:
+        if self.Race in ["asian","caucasian"] and self.IsTan:
             self.SkinColor = choice(TanColors)
         else:
             self.SkinColor = choice(self.Race.SkinColor)
@@ -860,10 +860,13 @@ class Woman(Lover):
         sBustSize = "BustSize: " + self.BustSize
         sVirgin = "IsVirgin: " + str(self.IsVirgin)
         sFakeTits = "HasFakeTits: " + str(self.HasFakeTits)
+        sIsFit = "IsFit: " + str(self.IsFit)
+        sIsTan = "IsTan: " + str(self.IsTan)
         sPubeStyle = "PubeStyle: " + self.PubeStyle
         sDesc = "[Gender: Female".ljust(20) + sAge.ljust(20) + sRace.ljust(20) + sBodyType.ljust(20) 
         sDesc += sSkinColor.ljust(20) + sHairColor.ljust(20) + sEyeColor.ljust(20) + sNipColor.ljust(20)
-        sDesc += sVirgin.ljust(20) + sBustSize.ljust(20) + sFakeTits.ljust(20) + sPubeStyle.ljust(19) + "]"
+        sDesc += sVirgin.ljust(20) + sBustSize.ljust(20) + sFakeTits.ljust(20) + sPubeStyle.ljust(20) 
+        sDesc += sIsFit.ljust(20) + sIsTan.ljust(59) + "]"
 
         print("\n" + sDesc)
 
@@ -1003,21 +1006,8 @@ class Woman(Lover):
         self.Woman.NounList(NounList)
         self.Woman.AdjList(AdjList)
         self.Noun = self.Woman.GetNoun()
-        self.Desc = self.Woman.FloweryDesc()
+        self.Desc = self.Woman.FloweryDesc(TagLists = TagLists(adj_excl = ["color"]))
         self.DescWords = self.Woman.GetDescWordList()
 
         return True
 
-
-    #'bronzed: color,tan',
-    #'curly-haired: hair',
-    #'latina x3: poc,color',
-    #'kinky-haired: hair,poc',
-    #'leggy: longlegs,shape',
-    #'pale: color,cauc',
-    #'pig-tailed: hair',
-    #'pony-tailed: hair',
-    #'prim: virginal,super',
-    #'short-haired: hair',
-    #'tanned: color,cauc',
-    #'wide-bottomed: curvy,shape,bigbutt'
