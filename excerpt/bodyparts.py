@@ -47,25 +47,35 @@ SkinColors = ["almond: color,asian",
               "light brown","mocha","tan",
              ]
 
-Race = namedtuple("Race", "Name HairColor EyeColor SkinColor NipColor")
+#Race = namedtuple("Race", "Name HairColor EyeColor SkinColor NipColor")
 
-RaceCauc  = Race("caucasian",
-                 ["black","blonde","brown","dark","gray","red"],
-                 ["amber","blue","brown","dark","gray","green","hazel"],
-                 ["beige","creamy","freckled","fresh pink","honeyed","light","pale","pink","porcelain","rosy","tanned","sun-bronzed","sun-browned","sun-kissed","white"],
-                 ["brown","dark","pink","rosy","tan"]
+@dataclass
+class Race:
+    Name: str = ""
+    EyeColor: list = field(default_factory=list)
+    HairColor: list = field(default_factory=list)
+    NipColor: list = field(default_factory=list)
+    SkinColor: list = field(default_factory=list)
+    
+    
+
+RaceCauc  = Race(Name = "caucasian",
+                 EyeColor = ["amber","blue","brown","dark","gray","green","hazel"],
+                 HairColor = ["black","blonde","brown","dark","gray","red"],
+                 NipColor = ["brown","dark","pink","rosy","tan"],
+                 SkinColor = ["beige","creamy","freckled","fresh pink","honeyed","light","pale","pink","porcelain","rosy","tanned","sun-bronzed","sun-browned","sun-kissed","white"]
                 )
-RacePOC   = Race("poc",
-                 ["black","brown","dark",],
-                 ["amber","brown","dark",],
-                 ["black","beige","bronze","bronzed","brown","chocolate","chocolate-colored","coffee-colored","dark","dark brown","ebony","honeyed","light brown","mocha","tan"],
-                 ["brown","chocolate","chocolate-colored","coffee-colored","dark","dark brown","honeyed","light brown","mocha"]
+RacePOC   = Race(Name = "poc",
+                 EyeColor = ["amber","brown","dark",],
+                 HairColor = ["black","brown","dark",],
+                 NipColor = ["brown","chocolate","chocolate-colored","coffee-colored","dark","dark brown","honeyed","light brown","mocha"],
+                 SkinColor = ["black","beige","bronze","bronzed","brown","chocolate","chocolate-colored","coffee-colored","dark","dark brown","ebony","honeyed","light brown","mocha","tan"]
                )
-RaceAsian = Race("asian",
-                 ["black","brown","dark",],
-                 ["brown","dark",],
-                 ["almond","beige","brown","creamy","freckled","light","light brown","pale","porcelain","tan","sun-bronzed","sun-browned","sun-kissed","white"],
-                 ["brown","chocolate","chocolate-colored","coffee-colored","dark","dark brown","honeyed","light brown","mocha"]
+RaceAsian = Race(Name = "asian",
+                 EyeColor = ["brown","dark",],
+                 HairColor = ["black","brown","dark",],
+                 NipColor = ["brown","chocolate","chocolate-colored","coffee-colored","dark","dark brown","honeyed","light brown","mocha"],
+                 SkinColor = ["almond","beige","brown","creamy","freckled","light","light brown","pale","porcelain","tan","sun-bronzed","sun-browned","sun-kissed","white"]
                 )
 
 class BodyParts(NounPhrase):
@@ -101,10 +111,10 @@ class Lover():
         self.Gender = ""
         self.Race = None
         self.RaceName = ""
-        self.HairColor = ""
         self.EyeColor = ""
-        self.SkinColor = ""
+        self.HairColor = ""
         self.NipColor = ""
+        self.SkinColor = ""
         self.PubeStyle = ""
 
         self._TagLists = TagLists()
@@ -140,6 +150,11 @@ class Lover():
 
         self.RaceName = self.Race.Name
 
+        self.EyeColor = choice(self.Race.EyeColor)
+        self.HairColor = choice(self.Race.HairColor)
+        self.NipColor = choice(self.Race.NipColor)
+        self.SkinColor = choice(self.Race.SkinColor)
+        
         LTagLists = self._TagLists
 
         # Handle race
@@ -650,6 +665,11 @@ class Woman(Lover):
         self.HasFakeTits = False
         self.IsVirgin = False
 
+        EyeParams = NPParams(sColor = self.EyeColor)
+        HairParams = NPParams(sColor = self.HairColor)
+        NipParams = NPParams(sColor = self.NipColor)
+        SkinParams = NPParams(sColor = self.SkinColor)
+        
         LTagLists = self._TagLists
 
         bRandomize = False
@@ -729,16 +749,16 @@ class Woman(Lover):
 
         # Ass
         self.Anus = AnusFemale(TagLists = LTagLists)
-        self.Buttocks = ButtocksFemale(TagLists = LTagLists)
-        self.Ass = AssFemale(TagLists = LTagLists)
+        self.Buttocks = ButtocksFemale(Params = SkinParams, TagLists = LTagLists)
+        self.Ass = AssFemale(Params = SkinParams, TagLists = LTagLists)
         self.Ass.Anus = self.Anus
         self.Ass.Buttocks = self.Buttocks
 
         # Back
-        self.Back = BackFemale(TagLists = LTagLists)
+        self.Back = BackFemale(Params = SkinParams, TagLists = LTagLists)
 
         # Breasts
-        self.Nipples = Nipples(TagLists = LTagLists)
+        self.Nipples = Nipples(Params = NipParams, TagLists = LTagLists)
 
         BreastTagLists = None
         if self.BustSize == "small":
@@ -756,23 +776,23 @@ class Woman(Lover):
             BreastTagLists.adj_excl.append("fake")
             BreastTagLists.noun_excl.append("fake")
 
-        self.Breasts = Breasts(TagLists = BreastTagLists)
+        self.Breasts = Breasts(Params = SkinParams, TagLists = BreastTagLists)
         self.Breasts.Nipples = self.Nipples
 
         # Eyes
-        self.Eyes = Eyes(TagLists = LTagLists)
+        self.Eyes = Eyes(Params = EyeParams, TagLists = LTagLists)
 
         # Face
-        self.Face = Face(TagLists = LTagLists)
+        self.Face = Face(Params = SkinParams, TagLists = LTagLists)
 
         # Hair 
-        self.Hair = Hair(TagLists = LTagLists)
+        self.Hair = Hair(Params = HairParams, TagLists = LTagLists)
 
         # Hips
-        self.Hips = Hips(TagLists = LTagLists)
+        self.Hips = Hips(Params = SkinParams, TagLists = LTagLists)
 
         # Legs
-        self.Legs = Legs(TagLists = LTagLists)
+        self.Legs = Legs(Params = SkinParams, TagLists = LTagLists)
 
         # Lips
         self.Lips = Lips(TagLists = LTagLists)
@@ -781,10 +801,10 @@ class Woman(Lover):
         self.Mouth = Mouth(TagLists = LTagLists)
 
         # Skin
-        self.Skin = Skin(TagLists = LTagLists)
+        self.Skin = Skin(Params = SkinParams, TagLists = LTagLists)
 
         # Thighs
-        self.Thighs = Thighs(TagLists = LTagLists)
+        self.Thighs = Thighs(Params = SkinParams, TagLists = LTagLists)
 
         # Vagina
         self.Clitoris = Clitoris(TagLists = LTagLists)
@@ -806,7 +826,7 @@ class Woman(Lover):
         self.Vagina.InnerLabia = self.InnerLabia
 
         # Body
-        self.Body = BodyFemale(TagLists = LTagLists)
+        self.Body = BodyFemale(Params = SkinParams, TagLists = LTagLists)
         self.Body.Hair = self.Hair
         self.Body.Face = self.Face
         self.Body.Eyes = self.Eyes
@@ -862,12 +882,17 @@ class Woman(Lover):
 
         sAge = "AgeCat: " + self.AgeCat
         sRace = "Race: " + self.RaceName
+        sEyeColor = "Eyes: " + self.EyeColor
+        sHairColor = "Hair: " + self.HairColor
+        sNipColor = "Nips: " + self.NipColor
+        sSkinColor = "Skin: " + self.SkinColor
         sBodyType = "BodyType: " + self.BodyType
         sBustSize = "BustSize: " + self.BustSize
         sVirgin = "IsVirgin: " + str(self.IsVirgin)
         sFakeTits = "HasFakeTits: " + str(self.HasFakeTits)
         sPubeStyle = "PubeStyle: " + self.PubeStyle
         sDesc = "[Gender: Female".ljust(20) + sAge.ljust(20) + sRace.ljust(20) + sBodyType.ljust(20) 
+        sDesc += sSkinColor.ljust(20) + sHairColor.ljust(20) + sEyeColor.ljust(20) + sNipColor.ljust(20)
         sDesc += sVirgin.ljust(20) + sBustSize.ljust(20) + sFakeTits.ljust(20) + sPubeStyle.ljust(19) + "]"
         #sDesc += "My name is " + self.FirstName + " " + self.LastName + ". "
         #sDesc += "I am a " + str(self.Age) + "-year-old woman. "
@@ -878,7 +903,7 @@ class Woman(Lover):
         #sDesc += "my " + self.Breasts.FloweryDesc() + " "
         #sDesc += "with " + self.Nipples.FloweryDesc() + ", "
         #sDesc += "and my " + self.Vagina.FloweryDesc() + ". "
-        #print(sDesc)
+        print(sDesc)
 
 #A lover() object is a collection of attributes and body parts.
 #	- Attributes like:

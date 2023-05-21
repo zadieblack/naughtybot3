@@ -54,6 +54,7 @@ class NPParams:
     iNumAdjs: int = 4
     bVaryAdjTags: bool = True
     bEnableSpecials: bool = False
+    sColor: str = ""
 
 @dataclass 
 class TagLists:
@@ -131,10 +132,10 @@ class NounPhrase:
         self._iNumAdjs = Params.iNumAdjs
         self._bVaryAdjTags = Params.bVaryAdjTags
         self._EnableSpecials = Params.bEnableSpecials
+        self._Color = Params.sColor
         self._AdjList = []
         self._NotList = NotList
         self._Noun = ""
-        self._Color = ""
 
         self._ExclTagList = []
         self._ReqTagList = []
@@ -149,7 +150,7 @@ class NounPhrase:
         self._PermNounReqTagList = TLParams.noun_req
         self._PermAdjExclTagList = TLParams.adj_excl
         self._PermAdjReqTagList = TLParams.adj_req
-        
+
         self._ExtraAdjList = TLParams.adj_extra
 
         # self.Reset()
@@ -222,7 +223,11 @@ class NounPhrase:
                             if not tag in UsedTagList:
                                 UsedTagList.append(tag)
 
-            for i in range(self._iNumAdjs):
+            # Get color
+            if not self._Color:
+                self._Color = self.GetNewAdj(NotList = self._NotList + [self._Noun] + self._AdjList, ReqTagList = ["color"], ExclTagList = AdjExclTagList + UsedTagList)
+
+            for i in range(self._iNumAdjs - 1):
                 LocalReqTagList = AdjReqTagList.copy()
                 LocalExclTagList = AdjExclTagList.copy()
 
@@ -263,8 +268,8 @@ class NounPhrase:
                 elif "age" in adjtags:
                     #print("      \"" + adj + "\" is an age adj.")
                     AgeAdjBucket.append(adj)
-                elif "color" in adjtags:
-                    #print("      \"" + adj + "\" is a color adj.")
+                #elif "color" in adjtags:
+                #    #print("      \"" + adj + "\" is a color adj.")
                     ColorAdjBucket.append(adj)
                 elif "super" in adjtags:
                     #print("      \"" + adj + "\" is a superlative adj.")
@@ -273,20 +278,18 @@ class NounPhrase:
                     #print("      \"" + adj + "\" is a normal adj.")
                     OtherAdjBucket.append(adj)
             AgeAdjBucket.sort(key = str.lower)
-            ColorAdjBucket.sort(key = str.lower)
+            #ColorAdjBucket.sort(key = str.lower)
             SuperAdjBucket.sort(key = str.lower)
             OtherAdjBucket.sort(key = str.lower)
             SpecialAdjBucket.sort(key = str.lower)
 
-            self._AdjList = SuperAdjBucket + OtherAdjBucket + ColorAdjBucket + AgeAdjBucket + SpecialAdjBucket + ExtraAdjBucket
+            self._AdjList = SuperAdjBucket + OtherAdjBucket + [self._Color] + AgeAdjBucket + SpecialAdjBucket + ExtraAdjBucket
 
-            #DictAdjTags = dict()
-            #for adj in self._AdjList:
-            #    DictAdjTags[adj] = self.GetUnitTags(adj)
+            return True
 
-    def GetAdj(self, inum, adj):
-        if inum >= 0 and inum < len(self._AdjList):
-            self._AdjList[inum] = adj
+    #def GetAdj(self, inum, adj):
+    #    if inum >= 0 and inum < len(self._AdjList):
+    #        self._AdjList[inum] = adj
 
     def AddAdj(self, adj):
         if adj != "":
