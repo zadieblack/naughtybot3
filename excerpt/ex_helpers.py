@@ -153,11 +153,11 @@ class NounPhrase:
 
         self._ExtraAdjList = TLParams.adj_extra
 
-        # self.Reset()
 
-    # *** PDS methods ***
-    # -------------------
+    # *** Reset method ***
+    # --------------------
 
+    # Re-select noun and all adjectives
     def Reset(self, sCalledBy, iNumAdjs = None):
         #print("<< Reset called by " + self.__class__.__name__ + "." + sCalledBy + "() >>")
         if iNumAdjs is None:
@@ -252,14 +252,13 @@ class NounPhrase:
 
                 self.AddAdj(sAdj)
 
-            # Sort 
-            #print("    Unsorted adj list is " + str(self._AdjList))
             ExtraAdjBucket = ParsedExtraAdjList
             SpecialAdjBucket = []
             AgeAdjBucket = []
             ColorAdjBucket = []
             OtherAdjBucket = []
             SuperAdjBucket = []
+
             for adj in self._AdjList:
                 adjtags = self.GetUnitTags(adj)
                 if "special" in adjtags:
@@ -287,130 +286,35 @@ class NounPhrase:
 
             return True
 
-    #def GetAdj(self, inum, adj):
-    #    if inum >= 0 and inum < len(self._AdjList):
-    #        self._AdjList[inum] = adj
+    # *** Alphabetized standard methods ***
+    # -------------------------------------
 
+    # Add an adjective to _AdjList
     def AddAdj(self, adj):
         if adj != "":
             self._AdjList.append(adj)
+        return True
 
-    def RemoveAdj(self, adj):
-        if adj in self._AdjList:
-            self._AdjList.remove(adj)
+    # Add an adjective to a tag list
+    def AddAdjToList(self, sNoun, sListName, iPriority = None):
+        self.AddUnitToList(sNoun,sListName,"adj", iPriority = iPriority)
+        return True
 
-    def RemoveAdjByNum(self, inum):
-        if inum >= 0 and inum < len(self._AdjList):
-            self._AdjList.pop(inum)
+    # Add a noun to a tag list
+    def AddNounToList(self, sNoun, sListName, iPriority = None):
+        self.AddUnitToList(sNoun,sListName,"noun", iPriority = iPriority)
+        return True
 
-    def ClearAdjList(self):
-        self._AdjList = []
+    # SET the AdjList
+    def AdjList(self, NewAdjList):
+        self.UnitList(NewAdjList, "adj")
+        return True
 
-    def Noun(self, noun):
-        self._Noun = noun
+    # Get the length of the AdjList
+    def AdjListLen(self):
+        return self.UnitListLen("adj")
 
-    def Color(self, color):
-        self._Color = color
-
-    def ReqTagList(self, TagList):
-        self._ReqTagList = TagList
-        self.Reset("ReqTagList")
-
-    def ExclTagList(self, TagList):
-        self._ExclTagList = TagList
-        self.Reset("ExclTagList")
-
-    def NounReqTagList(self, TagList):
-        self._NounReqTagList = TagList
-        self.Reset("NounReqTagList")
-
-    def NounExclTagList(self, TagList):
-        self._NounExclTagList = TagList
-        self.Reset("NounExclTagList")
-
-    def AdjReqTagList(self, TagList):
-        self._AdjReqTagList = TagList
-        self.Reset("AdjReqTagList")
-
-    def AdjExclTagList(self, TagList):
-        self._AdjExclTagList = TagList
-        self.Reset("AdjExclTagList")
-
-    def GetRandomAdj(self):
-        return choice(self._AdjList)
-
-    def GetAdj(self, inum):
-        sAdj = ""
-        if inum >= 0 and inum < len(self._AdjList):
-            sAdj = self._AdjList[inum]
-        
-        return sAdj
-
-    def GetNoun(self):
-        return self._Noun
-
-    def IsPlural(self):
-        bIsPlural = False
-
-        NounTags = self.GetUnitTags(self.GetNoun())
-        if 'plur' in NounTags:
-            bIsPlural = True
-
-        return bIsPlural
-
-    def IsSing(self):
-        bIsSing = False
-
-        NounTags = self.GetUnitTags(self.GetNoun())
-        if 'sing' in NounTags:
-            bIsSing = True
-
-        return bIsSing
-
-    def GetColor(self):
-        return self._Color
-
-    def GetFullDesc(self, iNumAdjs, bColor = True):
-        sFullDesc = ""
-        DescWordList = self._AdjList.copy()
-
-        if iNumAdjs < len(DescWordList):
-            for i in range(len(DescWordList) - iNumAdjs):
-                DescWordList.remove(choice(DescWordList))
-
-        if self.GetNoun() != "":
-            DescWordList.append(self.GetNoun())
-
-        if len(DescWordList) < 3:
-            sFullDesc = " ".join(DescWordList)
-        elif len(DescWordList) == 3:
-            sFullDesc = ", ".join(DescWordList[:1]) + ", " + " ".join(DescWordList[1:])
-        elif len(DescWordList) == 4:
-            sFullDesc = ", ".join(DescWordList[:-2]) + ", " + " ".join(DescWordList[-2:])
-        else:
-            sFullDesc = ", ".join(DescWordList[:-3]) + ", " + " ".join(DescWordList[-3:])
-        
-        return sFullDesc
-
-    def GetDescWordList(self):
-        DescWordList = []
-
-        sNoun = self.GetNoun()
-
-        if sNoun != "":
-            DescWordList.insert(0, sNoun)
-        #if self.Color() != "":
-        #    DescWordList.insert(0, self.Color())
-        DescWordList = self._AdjList + DescWordList
-
-        return DescWordList
-
-    # *** Bodyparts methods ***
-    # -------------------------
-
-    def SetUnitTags(self, sUnit, TagList):
-        self._UnitTags[sUnit] = TagList 
-
+    # Add a tag for a specified unit
     def AddUnitTag(self, sUnit, sTag):
         # If a unit does not have a tag list, add an entry
         if not sUnit in self._UnitTags:
@@ -420,33 +324,7 @@ class NounPhrase:
         if not sTag in self._UnitTags[sUnit]:
             self._UnitTags[sUnit].append(sTag)
 
-    def GetUnitTags(self, sUnit):
-        UnitTags = [] 
-
-        if sUnit in self._UnitTags:
-            UnitTags = self._UnitTags[sUnit]
-
-        return UnitTags
-
-    def GetUnitList(self, sListName, sType):
-        UnitList = []
-        ListDict = self._AllUnitLists[sType.lower()]
-
-        if sListName.lower() in ListDict:
-            UnitList = ListDict[sListName.lower()]
-
-        return UnitList 
-
-    def GetNounList(self, sListName = None):
-        if sListName is None:
-            sListName = "master"
-        return self.GetUnitList(sListName, "noun") 
-
-    def GetAdjList(self, sListName = None):
-        if sListName is None:
-            sListName = "master"
-        return self.GetUnitList(sListName, "adj") 
-
+    # Add a unit to a list. Create list if that list doesn't exist.
     def AddUnitToList(self, sUnit, sListName, sType, iPriority = None):
         UnitList = self.GetUnitList(sListName, sType)
         ListDict = self._AllUnitLists[sType.lower()]
@@ -467,133 +345,53 @@ class NounPhrase:
 
             self.AddUnitTag(sUnit, sListName)
 
-    def AddNounToList(self, sNoun, sListName, iPriority = None):
-        self.AddUnitToList(sNoun,sListName,"noun", iPriority = iPriority)
+    # Clear the _AdjList
+    def ClearAdjList(self):
+        self._AdjList = []
+        return True
 
-    def AddAdjToList(self, sNoun, sListName, iPriority = None):
-        self.AddUnitToList(sNoun,sListName,"adj", iPriority = iPriority)
-
-    def IsUnitInList(self, sUnit, sListName, sType):
-        bIsUnitInList = False 
-
-        UnitList = self.GetUnitList(sListName, sType)
-        if not UnitList is None:
-            if sUnit.lower() in UnitList:
-                bIsUnitInList = True
-
-        return bIsUnitInList
-
-    def IsNounInList(self, sNoun, sListName):
-        return self.IsUnitInList(sNoun, sListName, "noun")
-
-    def IsAdjInList(self, sNoun, sListName):
-        return self.IsUnitInList(sNoun, sListName, "adj")
-
-    def ParseUnit(self, sParse):
-        sUnit = ""
-        iPriority = 1
-        TagList = []
-
-        # clean string
-        sUnit = sParse.strip()
-
-        # locate priority
-        matchPriority = re.search(r"(?<=[x])([\d]+)", sUnit)
-        if matchPriority:
-            iPriority = int(matchPriority.group())
-
-        # locate Unit 
-        ItemSections = sUnit.split(":")
-        sUnitWord = ""
-        matchUnit = re.search(r"([x][\d]+)", ItemSections[0])
-        if matchUnit:
-            sUnitWord = ItemSections[0][0:matchUnit.span()[0]]
-        else:
-            sUnitWord =  ItemSections[0]
-        sUnitWord = sUnitWord.strip()
-
-        # locate tag list 
-        matchTags = re.search(r"(?<=[:])([\w\s,]*)", sUnit)
-        if matchTags:
-            TagList = "".join(matchTags.group().split(" ")).split(",")
-
-        return ParsedUnit(sUnitWord, iPriority, TagList)
-
-    def UnitList(self, NewUnitList, sType):
-        #print("Entered UnitList()")
-        for item in NewUnitList:
-            sUnit = ""
-            iPriority = 1
-            TagList = []
-
-            Unit = self.ParseUnit(item)
-            sUnit = Unit.sUnit
-            iPriority = Unit.iPriority
-            TagList = Unit.TagList
-
-            self.AddUnitToList(sUnit, "master", sType, iPriority)
-            #print(" Added \"" + sUnit + "\" to master list.")
-            for tag in TagList:
-                if tag.strip() != "":
-                    self.AddUnitToList(sUnit, tag, sType, iPriority)
-                #print(" Added \"" + sUnit + "\" to " + tag + " list.")
-               
-        self.Reset("UnitList_" + sType)
-
-    def NotList(self, NotList):
-        self._NotList = NotList
-        self.Reset("NotList")
-
-    def NounList(self, NewNounList):
-        self.UnitList(NewNounList, "noun")
-
-    def AdjList(self, NewAdjList):
-        self.UnitList(NewAdjList, "adj")
-
-    def ColorList(self, NewColorList):
-        self.UnitList(NewColorList, "color")
-
-    def ExtraAdjList(self, ExtraAdjList):
-        self._ExtraAdjList = ExtraAdjList
-        self.Reset("ExtraAdjList")
-
-    def UnitListLen(self, sType):
-        ListLen = 0 
-        ListDict = self._AllUnitLists[sType.lower()]
-
-        ListLen = len(ListDict["master"])
-
-        return ListLen
-
-    def NounListLen(self):
-        return self.UnitListLen("noun")
-
-    def AdjListLen(self):
-        return self.UnitListLen("adj")
-          
-    def DefaultNoun(self, NewNoun = None):
-        if NewNoun == None:
-            NewNoun = ""
-               
-        self._DefaultNoun = NewNoun 
+    # SET the color
+    def Color(self, color):
+        self._Color = color
+        return True
      
+    # SET the default adj
     def DefaultAdj(self, NewAdj = None):
         if NewAdj == None:
             NewAdj = ""
                
         self._DefaultAdj = NewAdj 
-          
-    def GetDefaultNoun(self, NotList = None):
-        sDefaultNoun = ""
-          
-        if NotList == None:
-            NotList = []
 
-        if self._DefaultNoun not in NotList:
-            sDefaultNoun = self._DefaultNoun
+    # SET the default noun
+    def DefaultNoun(self, NewNoun = None):
+        if NewNoun == None:
+            NewNoun = ""
                
-        return sDefaultNoun
+        self._DefaultNoun = NewNoun 
+
+    # Get a randomly-selected adj from the _AdjList
+    def GetRandomAdj(self):
+        return choice(self._AdjList)
+
+    # Get a specified adj from the _AdjList
+    def GetAdj(self, inum):
+        sAdj = ""
+        if inum >= 0 and inum < len(self._AdjList):
+            sAdj = self._AdjList[inum]
+        
+        return sAdj
+
+    # Get the AdjList
+    def GetAdjList(self, sListName = None):
+        if sListName is None:
+            sListName = "master"
+        return self.GetUnitList(sListName, "adj") 
+
+    # Get the color
+    def GetColor(self):
+        return self._Color
           
+    # Get the default adj
     def GetDefaultAdj(self, NotList = None):
         sDefaultAdj = ""
           
@@ -604,7 +402,90 @@ class NounPhrase:
             sDefaultAdj = self._DefaultAdj
                
         return sDefaultAdj
-     
+
+    # Get the default noun
+    def GetDefaultNoun(self, NotList = None):
+        sDefaultNoun = ""
+          
+        if NotList == None:
+            NotList = []
+
+        if self._DefaultNoun not in NotList:
+            sDefaultNoun = self._DefaultNoun
+               
+        return sDefaultNoun
+
+    # Get all selected adjs and nouns as a list
+    def GetDescWordList(self):
+        DescWordList = []
+
+        sNoun = self.GetNoun()
+
+        if sNoun != "":
+            DescWordList.insert(0, sNoun)
+        #if self.Color() != "":
+        #    DescWordList.insert(0, self.Color())
+        DescWordList = self._AdjList + DescWordList
+
+        return DescWordList
+
+    # Get a new adjective that is not in the current _AdjList but
+    # does not conflict with it
+    def GetNewAdj(self, NotList = None, ReqTagList = None, ExclTagList = None):
+        sNewAdj = ""
+        
+        if NotList is None:
+            NotList = []
+        if ReqTagList is None:
+            ReqTagList = []
+        if ExclTagList is None:
+            ExclTagList = []
+
+        UsedTagList = []
+        for adj in self._AdjList:
+            UsedTagList += self.GetUnitTags(adj)
+
+        sNewAdj = self.GetUnit("adj", NotList = NotList, ReqTagList = ReqTagList, ExclTagList = ExclTagList + UsedTagList)
+        
+        for tag in self.GetUnitTags(sNewAdj): 
+            if not tag.lower() == "master":
+                self.AddUnitTag(sNewAdj, tag)
+
+        return sNewAdj
+
+    # Get a new noun that is not the current noun but does not
+    # conflict with it.
+    def GetNewNoun(self, NotList = None, ReqTagList = None, ExclTagList = None):
+        sNewNoun = ""
+
+        if NotList is None:
+            NotList = []
+        if ReqTagList is None:
+            ReqTagList = []
+        if ExclTagList is None:
+            ExclTagList = []
+
+        if self.NounListLen() > 1 and not self._Noun == "":
+            sNewNoun = self.GetUnit("noun", NotList = NotList + [self._Noun], ReqTagList = ReqTagList, ExclTagList = ExclTagList)
+        else:
+            sNewNoun = self.GetUnit("noun", NotList = NotList, ReqTagList = ReqTagList, ExclTagList = ExclTagList)
+        
+        for tag in self.GetUnitTags(sNewNoun):
+            self.AddUnitTag(sNewNoun, tag)
+
+        return sNewNoun
+
+    # Get the current selected noun
+    def GetNoun(self):
+        return self._Noun
+
+    # Get the NounList
+    def GetNounList(self, sListName = None):
+        if sListName is None:
+            sListName = "master"
+        return self.GetUnitList(sListName, "noun") 
+
+    # Get a unit of any type: adj, noun, or color
     def GetUnit(self, sType, NotList = None, ReqTagList = None, ExclTagList = None):
         sUnit = "" 
         LocalUnitList = []
@@ -675,44 +556,165 @@ class NounPhrase:
 
         return sUnit
 
-    def GetNewAdj(self, NotList = None, ReqTagList = None, ExclTagList = None):
-        sNewAdj = ""
-        
-        if NotList is None:
-            NotList = []
-        if ReqTagList is None:
-            ReqTagList = []
-        if ExclTagList is None:
-            ExclTagList = []
+    # Get the tags for a specified unit
+    def GetUnitTags(self, sUnit):
+        UnitTags = [] 
 
-        UsedTagList = []
-        for adj in self._AdjList:
-            UsedTagList += self.GetUnitTags(adj)
+        if sUnit in self._UnitTags:
+            UnitTags = self._UnitTags[sUnit]
 
-        sNewAdj = self.GetUnit("adj", NotList = NotList, ReqTagList = ReqTagList, ExclTagList = ExclTagList + UsedTagList)
-        
-        for tag in self.GetUnitTags(sNewAdj): 
-            if not tag.lower() == "master":
-                self.AddUnitTag(sNewAdj, tag)
+        return UnitTags
 
-        return sNewAdj
+    # Get a list of a specified type (noun, adj, or color)
+    def GetUnitList(self, sListName, sType):
+        UnitList = []
+        ListDict = self._AllUnitLists[sType.lower()]
 
-    def GetNewNoun(self, NotList = None, ReqTagList = None, ExclTagList = None):
-        sNewNoun = ""
+        if sListName.lower() in ListDict:
+            UnitList = ListDict[sListName.lower()]
 
-        if NotList is None:
-            NotList = []
-        if ReqTagList is None:
-            ReqTagList = []
-        if ExclTagList is None:
-            ExclTagList = []
+        return UnitList 
 
-        sNewNoun = self.GetUnit("noun", NotList = NotList, ReqTagList = ReqTagList, ExclTagList = ExclTagList)
-        for tag in self.GetUnitTags(sNewNoun):
-            self.AddUnitTag(sNewNoun, tag)
+    # Return true if specified adj in specified list
+    def IsAdjInList(self, sAdj, sListName):
+        return self.IsUnitInList(sAdj, sListName, "adj")
 
-        return sNewNoun
+    # Return true if specified noun in specified list
+    def IsNounInList(self, sNoun, sListName):
+        return self.IsUnitInList(sNoun, sListName, "noun")
 
+    # Return true if current noun is plural
+    def IsPlural(self):
+        bIsPlural = False
+
+        NounTags = self.GetUnitTags(self.GetNoun())
+        if 'plur' in NounTags:
+            bIsPlural = True
+
+        return bIsPlural
+
+    # Return true if current noun is singular
+    def IsSing(self):
+        bIsSing = False
+
+        NounTags = self.GetUnitTags(self.GetNoun())
+        if 'sing' in NounTags:
+            bIsSing = True
+
+        return bIsSing
+
+    # Return true if specified unit word in specified list
+    def IsUnitInList(self, sUnit, sListName, sType):
+        bIsUnitInList = False 
+
+        UnitList = self.GetUnitList(sListName, sType)
+        if not UnitList is None:
+            if sUnit.lower() in UnitList:
+                bIsUnitInList = True
+
+        return bIsUnitInList
+
+    # SET the currently selected noun
+    def Noun(self, noun):
+        self._Noun = noun
+
+        return True
+
+    # Gets the length of the NounList
+    def NounListLen(self):
+        return self.UnitListLen("noun")
+
+    # Parse a string and extract tags and priority, if any
+    def ParseUnit(self, sParse):
+        sUnit = ""
+        iPriority = 1
+        TagList = []
+
+        # clean string
+        sUnit = sParse.strip()
+
+        # locate priority
+        matchPriority = re.search(r"(?<=[x])([\d]+)", sUnit)
+        if matchPriority:
+            iPriority = int(matchPriority.group())
+
+        # locate Unit 
+        ItemSections = sUnit.split(":")
+        sUnitWord = ""
+        matchUnit = re.search(r"([x][\d]+)", ItemSections[0])
+        if matchUnit:
+            sUnitWord = ItemSections[0][0:matchUnit.span()[0]]
+        else:
+            sUnitWord =  ItemSections[0]
+        sUnitWord = sUnitWord.strip()
+
+        # locate tag list 
+        matchTags = re.search(r"(?<=[:])([\w\s,]*)", sUnit)
+        if matchTags:
+            TagList = "".join(matchTags.group().split(" ")).split(",")
+
+        return ParsedUnit(sUnitWord, iPriority, TagList)
+
+    # Remove an adjective from the currently selected adjs (_AdjList)
+    # by value
+    def RemoveAdj(self, adj):
+        bSuccess = False
+        if adj in self._AdjList:
+            self._AdjList.remove(adj)
+            bSuccess = True
+
+        return bSuccess
+
+    # Remove an adj from the currently selected adjs (_AdjList)
+    # by index
+    def RemoveAdjByNum(self, inum):
+        bSuccess = False
+        if inum >= 0 and inum < len(self._AdjList):
+            self._AdjList.pop(inum)
+            bSuccess = True
+
+        return bSuccess
+
+    # Set the tags for a specified unit word
+    def SetUnitTags(self, sUnit, TagList):
+        self._UnitTags[sUnit] = TagList 
+
+        return True
+
+    # SET a specified unit list (NounList, AdjList, or ColorList)
+    def UnitList(self, NewUnitList, sType):
+        #print("Entered UnitList()")
+        for item in NewUnitList:
+            sUnit = ""
+            iPriority = 1
+            TagList = []
+
+            Unit = self.ParseUnit(item)
+            sUnit = Unit.sUnit
+            iPriority = Unit.iPriority
+            TagList = Unit.TagList
+
+            self.AddUnitToList(sUnit, "master", sType, iPriority)
+            #print(" Added \"" + sUnit + "\" to master list.")
+            for tag in TagList:
+                if tag.strip() != "":
+                    self.AddUnitToList(sUnit, tag, sType, iPriority)
+                #print(" Added \"" + sUnit + "\" to " + tag + " list.")
+               
+        self.Reset("UnitList_" + sType)
+
+        return True
+
+    # Get the length of a specified list (AdjList, NounList, ColorList)
+    def UnitListLen(self, sType):
+        ListLen = 0 
+        ListDict = self._AllUnitLists[sType.lower()]
+
+        ListLen = len(ListDict["master"])
+
+        return ListLen
+
+    # Update any and all tag lists
     def UpdateTagLists(self, TLParams = None):
         if TLParams is None:
             TLParams = TagLists()
@@ -740,7 +742,98 @@ class NounPhrase:
 
         return True
 
-    #noun only ("hair")
+
+    # *** Set the tag lists ***
+    # -------------------------
+
+    # SET the ColorList
+    def ColorList(self, NewColorList):
+        self.UnitList(NewColorList, "color")
+        self.Reset("ColorList")
+        return True
+
+    # SET the excluded tag list (general)
+    def ExclTagList(self, TagList):
+        self._ExclTagList = TagList
+        self.Reset("ExclTagList")
+        return True
+
+    # SET the extra adj list
+    def ExtraAdjList(self, ExtraAdjList):
+        self._ExtraAdjList = ExtraAdjList
+        self.Reset("ExtraAdjList")
+        return True
+
+    # SET the excluded adj tag list
+    def AdjExclTagList(self, TagList):
+        self._AdjExclTagList = TagList
+        self.Reset("AdjExclTagList")
+        return True
+
+    # SET the required adj tag list
+    def AdjReqTagList(self, TagList):
+        self._AdjReqTagList = TagList
+        self.Reset("AdjReqTagList")
+        return True
+    
+    # SET the NounList
+    def NounList(self, NewNounList):
+        self.UnitList(NewNounList, "noun")
+        self.Reset("NotList")
+        return True
+
+    # SET the excluded noun tag list
+    def NounExclTagList(self, TagList):
+        self._NounExclTagList = TagList
+        self.Reset("NounExclTagList")
+        return True
+
+    # SET the required noun tag list
+    def NounReqTagList(self, TagList):
+        self._NounReqTagList = TagList
+        self.Reset("NounReqTagList")
+        return True
+
+    # SET the NotList
+    def NotList(self, NotList):
+        self._NotList = NotList
+        self.Reset("NotList")
+        return True
+
+    # SET the required tag list (general)
+    def ReqTagList(self, TagList):
+        self._ReqTagList = TagList
+        self.Reset("ReqTagList")
+        return True
+
+
+    # *** Description Methods ***
+    # ---------------------------
+
+    # Get selected adjectives and nouns as a comma-separated string
+    def GetFullDesc(self, iNumAdjs, bColor = True):
+        sFullDesc = ""
+        DescWordList = self._AdjList.copy()
+
+        if iNumAdjs < len(DescWordList):
+            for i in range(len(DescWordList) - iNumAdjs):
+                DescWordList.remove(choice(DescWordList))
+
+        if self.GetNoun() != "":
+            DescWordList.append(self.GetNoun())
+
+        if len(DescWordList) < 3:
+            sFullDesc = " ".join(DescWordList)
+        elif len(DescWordList) == 3:
+            sFullDesc = ", ".join(DescWordList[:1]) + ", " + " ".join(DescWordList[1:])
+        elif len(DescWordList) == 4:
+            sFullDesc = ", ".join(DescWordList[:-2]) + ", " + " ".join(DescWordList[-2:])
+        else:
+            sFullDesc = ", ".join(DescWordList[:-3]) + ", " + " ".join(DescWordList[-3:])
+        
+        return sFullDesc
+
+    # Gets a string description of the noun only ("hair")
     def ShortDesc(self, NotList = None, TagLists = None): #, ExtraAdjList = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
         if NotList == None:
             NotList = []
@@ -751,7 +844,7 @@ class NounPhrase:
 
         return self.GetFullDesc(iNumAdjs = 0)
      
-    #adjective noun ("red hair")
+    # Gets a string description of one adjective plus the noun ("red hair")
     def MediumDesc(self, NotList = None, TagLists = None):
         if NotList == None:
             NotList = []
@@ -762,7 +855,7 @@ class NounPhrase:
           
         return self.GetFullDesc(iNumAdjs = 1)
      
-    #adjective1 adjective2 adjective3 noun ("long, wavy, red hair")
+    # Gets a string description of 1-3 adjs plus the noun ("long, wavy, red hair")
     def FloweryDesc(self, NotList = None, TagLists = None):
         if NotList == None:
             NotList = []
@@ -775,6 +868,7 @@ class NounPhrase:
 
         return self.GetFullDesc(iNumAdjs = iNumAdjs)
      
+    # Chooses either ShortDesc, MediumDesc, or FloweryDesc at random
     def RandomDesc(self, bShortDesc = True, bLongDesc = True, NotList = None, TagLists = None):
         sRandomDesc = ""
           
@@ -800,6 +894,15 @@ class NounPhrase:
                 sRandomDesc = self.MediumDesc(NotList = NotList, TagLists = TagLists)
                
         return sRandomDesc
+
+# =============================
+# *** SectionSelector class ***
+# =============================
+
+# This class allows you to put a bunch of strings into it
+# and then get back one at random. Each time you get 
+# a string it is removed, so strings will never be
+# repeated. Strings can have priorities.
 
 class SectionSelector():
     #class Section():
