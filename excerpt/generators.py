@@ -24,24 +24,20 @@ from gen import *
 from excerpt.locations import LocationSelector
 
 import excerpt.bodyparts as bodyparts
+import excerpt.bodies as bodies
 from excerpt.ex_helpers import *
+import excerpt.clothes as clothes
 import excerpt.verbs as verbs
-#import excerpt.misc as misc
+import excerpt.people as people
+import excerpt.texttoimg as texttoimg
+import excerpt.misc as misc
+import misc as shmisc
 import excerpt.scenes as scenes
 #import excerpt.names as names
 import names 
 
 from excerpt.scenes import SceneSelector
 
-import excerpt.bodyparts as bodyparts
-import excerpt.clothes as clothes
-import excerpt.verbs as verbs
-import misc as shmisc
-import excerpt.misc as misc
-import excerpt.scenes as scenes
-
-import excerpt.people as people
-import excerpt.texttoimg as texttoimg
 import title.misc as titmisc
 import title.people as titpeople
 import title.chargenerator as titchar
@@ -55,8 +51,8 @@ PromoHistoryQ = shutil.HistoryQ(2)
      
 class ExGen(Generator):
      def GenerateTweet(self):
-          self.Man = bodyparts.Man()
-          self.Woman = bodyparts.Woman()
+          self.Man = bodies.Man()
+          self.Woman = bodies.Woman()
 
           self.MaleBodyParts = self.Man.Body
           self.FemBodyParts = self.Woman.Body
@@ -4088,6 +4084,7 @@ class Generator66(ExGen):
           NotList = ["shameless","virgin"]
           Lady = self.Woman 
           Body = Lady.Body 
+          Body.NounExclTagList(["silly","plur","virginal"])
           Skin = Lady.Skin 
           Tits = Lady.Breasts
           Tits.NounExclTagList(["silly","sing","virginal"])
@@ -4096,20 +4093,25 @@ class Generator66(ExGen):
           Legs = Lady.Legs 
           Ass = Lady.Ass 
           Ass.NounExclTagList(["silly","virginal"])
-          Ass.NotList(NotList)
+          Ass.NotList(NotList + ["stinky"])
           Pussy = Lady.Vagina
           Pussy.NounExclTagList(["silly","virginal"])
           Pussy.NotList(NotList)
+
+          sHeels = clothes.Heels().MediumDesc()
 
           sTweet = sHisName + " " + WordList(['wrapped','knocked','banged']).GetWord() + " on the door and "
           sTweet += AddArticles(Lady.Desc) + " opened it. "
           sTweet += "She " + WordList(['was stark naked','was buck naked','was completely naked',
                                         'wore nothing but her birthday suit','wasn\'t wearing a stitch of clothing',
-                                        'had no clothes on','was stripped to the skin',
-                                        'was stark naked except for a pair of ' + clothes.Heels().MediumDesc(),
+                                        'had no clothes on','had no clothes on whatsoever',
+                                        'was stripped to the skin',
+                                        'was buck naked except for a pair of ' + sHeels,
+                                        'was completely naked except for a pair of ' + sHeels,
+                                        'was stark naked except for a pair of ' + sHeels,
                                         'was stripped completely bare',
                                         'wore nothing but red lipstick',
-                                        'wore nothing but a pair of ' + clothes.Heels().MediumDesc(),
+                                        'wore nothing but a pair of ' + sHeels,
                                         'was shamelessly naked']).GetWord() 
           sTweet += ". "
           
