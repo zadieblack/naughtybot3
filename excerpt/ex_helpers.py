@@ -108,7 +108,11 @@ class NounPhrase:
                        NotList = None,
                        TLParams = None
                 ):
-        self._AllUnitLists = {"adj": {"master": []}, "noun": {"master": [], "std": []}}
+        self._AllUnitLists = {"adj":    {"master": []}, 
+                              "color":  {"master": []},
+                              "noun":   {"master": [], 
+                                         "std": []}
+                             }
         self._UnitTags = dict()
         self._DefaultNoun = ""
         self._DefaultAdj = "naked"
@@ -214,20 +218,26 @@ class NounPhrase:
             if not self._ExtraAdjList is None:
                 for adj in self._ExtraAdjList:
                     Unit = self.ParseUnit(adj)
-                    if Unit.sUnit != "":
-                        ParsedExtraAdjList.append(Unit.sUnit)
+                    sUnit = Unit.sUnit.strip()
+                    if sUnit != "":
+                        ParsedExtraAdjList.append(sUnit)
                         #self.AddAdj(Unit.sUnit)
                         for tag in Unit.TagList:
-                            #def AddUnitTag(self, sUnit, sTag):
-                            self.AddUnitTag(Unit.sUnit,tag)
+                            self.AddUnitTag(sUnit,tag)
                             if not tag in UsedTagList:
                                 UsedTagList.append(tag)
 
             # Get color
-            if not self._Color:
-                self._Color = self.GetNewAdj(NotList = self._NotList + [self._Noun] + self._AdjList, ReqTagList = ["color"], ExclTagList = AdjExclTagList + UsedTagList)
+            if not self.GetColor():
+                if self.ColorListLen() > 0:
+                    self.Color(self.GetNewColor(NotList = self._NotList + [self._Noun] + self._AdjList, ReqTagList = ["color"], ExclTagList = AdjExclTagList))
 
-            for i in range(self._iNumAdjs - 1):
+            iColorAdjNum = 0
+            if not self.GetColor():
+                self.AddAdj(self.GetColor())
+                iColorAdjNum += 1
+
+            for i in range(self._iNumAdjs - iColorAdjNum):
                 LocalReqTagList = AdjReqTagList.copy()
                 LocalExclTagList = AdjExclTagList.copy()
 
@@ -252,12 +262,16 @@ class NounPhrase:
 
                 self.AddAdj(sAdj)
 
+            #print("Reset() : Selected _AdjList is " + str(self._AdjList))
             ExtraAdjBucket = ParsedExtraAdjList
             SpecialAdjBucket = []
             AgeAdjBucket = []
             ColorAdjBucket = []
             OtherAdjBucket = []
             SuperAdjBucket = []
+
+            if self.GetColor():
+                ColorAdjBucket.append(self.GetColor())
 
             for adj in self._AdjList:
                 adjtags = self.GetUnitTags(adj)
@@ -277,12 +291,12 @@ class NounPhrase:
                     #print("      \"" + adj + "\" is a normal adj.")
                     OtherAdjBucket.append(adj)
             AgeAdjBucket.sort(key = str.lower)
-            #ColorAdjBucket.sort(key = str.lower)
+            ColorAdjBucket.sort(key = str.lower)
             SuperAdjBucket.sort(key = str.lower)
             OtherAdjBucket.sort(key = str.lower)
             SpecialAdjBucket.sort(key = str.lower)
 
-            self._AdjList = SuperAdjBucket + OtherAdjBucket + [self._Color] + AgeAdjBucket + SpecialAdjBucket + ExtraAdjBucket
+            self._AdjList = SuperAdjBucket + OtherAdjBucket + ColorAdjBucket + AgeAdjBucket + SpecialAdjBucket + ExtraAdjBucket
 
             return True
 
@@ -354,6 +368,16 @@ class NounPhrase:
     def Color(self, color):
         self._Color = color
         return True
+
+    # SET the ColorList
+    def ColorList(self, NewColorList):
+        self.UnitList(NewColorList, "color")
+        self.Reset("ColorList")
+        return True
+
+    # Get the length of the ColorList
+    def ColorListLen(self):
+        return self.UnitListLen("color")
      
     # SET the default adj
     def DefaultAdj(self, NewAdj = None):
@@ -389,7 +413,16 @@ class NounPhrase:
 
     # Get the color
     def GetColor(self):
-        return self._Color
+        sColor = ""
+
+        if not self._Color is None and isinstance(self._Color, str):
+            sColor = self._Color.strip()
+
+        return sColor
+
+    # Get the ColorList
+    def GetColorList(self):
+        return self.GetUnitList(sListName, "color") 
           
     # Get the default adj
     def GetDefaultAdj(self, NotList = None):
@@ -423,8 +456,6 @@ class NounPhrase:
 
         if sNoun != "":
             DescWordList.insert(0, sNoun)
-        #if self.Color() != "":
-        #    DescWordList.insert(0, self.Color())
         DescWordList = self._AdjList + DescWordList
 
         return DescWordList
@@ -452,6 +483,21 @@ class NounPhrase:
                 self.AddUnitTag(sNewAdj, tag)
 
         return sNewAdj
+
+    # Get a new color. Does NOT check to see if there is a 
+    # currently selected color
+    def GetNewColor(self, NotList = None, ReqTagList = None, ExclTagList = None):
+        sNewColor = ""
+        
+        if NotList is None:
+            NotList = []
+
+        sNewColor = self.GetUnit("color", NotList = NotList, ReqTagList = ReqTagList, ExclTagList = ExclTagList)
+        for tag in self.GetUnitTags(sNewColor): 
+            if not tag.lower() == "master":
+                self.AddUnitTag(sNewColor, tag)
+
+        return sNewColor
 
     # Get a new noun that is not the current noun but does not
     # conflict with it.
@@ -746,12 +792,6 @@ class NounPhrase:
     # *** Set the tag lists ***
     # -------------------------
 
-    # SET the ColorList
-    def ColorList(self, NewColorList):
-        self.UnitList(NewColorList, "color")
-        self.Reset("ColorList")
-        return True
-
     # SET the excluded tag list (general)
     def ExclTagList(self, TagList):
         self._ExclTagList = TagList
@@ -811,10 +851,11 @@ class NounPhrase:
     # ---------------------------
 
     # Get selected adjectives and nouns as a comma-separated string
-    def GetFullDesc(self, iNumAdjs, bColor = True):
+    def GetFullDesc(self, iNumAdjs):
         sFullDesc = ""
         DescWordList = self._AdjList.copy()
 
+        #print("GetFullDesc(" + str(iNumAdjs) + ") Unfiltered _AdjList = " + str(DescWordList))
         if iNumAdjs < len(DescWordList):
             for i in range(len(DescWordList) - iNumAdjs):
                 DescWordList.remove(choice(DescWordList))
@@ -822,10 +863,13 @@ class NounPhrase:
         if self.GetNoun() != "":
             DescWordList.append(self.GetNoun())
 
-        if len(DescWordList) < 3:
-            sFullDesc = " ".join(DescWordList)
+        #print("   DescWordList (filtered) = " + str(DescWordList))
+        if len(DescWordList) == 1:
+            sFullDesc = DescWordList[0]
+        elif len(DescWordList) == 2:
+            sFullDesc = DescWordList[0] + " " + DescWordList[1]
         elif len(DescWordList) == 3:
-            sFullDesc = ", ".join(DescWordList[:1]) + ", " + " ".join(DescWordList[1:])
+            sFullDesc = ", ".join(DescWordList[:1]) + ", " + " ".join(DescWordList[2:])
         elif len(DescWordList) == 4:
             sFullDesc = ", ".join(DescWordList[:-2]) + ", " + " ".join(DescWordList[-2:])
         else:

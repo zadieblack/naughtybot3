@@ -127,18 +127,8 @@ RaceAsian = Race(Name = "latin",
 
 
 class BodyParts(NounPhrase):
-    def __init__(self, Params = None, NotList = None, TagLists = None):
-          super().__init__(Params, NotList, TagLists)
-
-          self.AddSkinColors = False 
-
-    def AdjList(self, NewAdjList):
-        if self.AddSkinColors:
-            for color in SkinColors:
-                NewAdjList.append(color)
-
-        NewAdjList.sort()
-        super().AdjList(NewAdjList)
+    def AddSkinColors(self):
+        super().ColorList(SkinColors)
 
 class MaleBodyParts(BodyParts):
     def __init__(self, Params = None, NotList = None, TagLists = None):
@@ -154,7 +144,7 @@ class Face(FemaleBodyParts):
      def __init__(self, Params = None, NotList = None, TagLists = None):
           super().__init__(Params, NotList, TagLists)
           
-          self.AddSkinColors = True
+          self.AddSkinColors()
 
           self.NounList(['face x3: default,std,sing',
                          'features: poetic,plur'
@@ -191,7 +181,7 @@ class BackFemale(FemaleBodyParts):
      def __init__(self, Params = None, NotList = None, TagLists = None):
           super().__init__(Params, NotList, TagLists)
           
-          self.AddSkinColors = True
+          self.AddSkinColors()
 
           self.NounList(['back x4:default,std,sing',
                          'spine:std,clinical,sing'])
@@ -230,7 +220,7 @@ class Skin(FemaleBodyParts):
      def __init__(self, Params = None, NotList = None, TagLists = None):
           super().__init__(Params, NotList, TagLists)
           
-          self.AddSkinColors = True
+          self.AddSkinColors()
           self.NounList(['skin x4: default,std,sing',
                          'flesh: sing'
                         ])
@@ -370,7 +360,7 @@ class Hips(FemaleBodyParts):
      def __init__(self, Params = None, NotList = None, TagLists = None):
           super().__init__(Params, NotList, TagLists)
           
-          self.AddSkinColors = True
+          self.AddSkinColors()
 
           self.NounList(['hips: std,default,plur'])
                
@@ -485,7 +475,7 @@ class Legs(FemaleBodyParts):
      def __init__(self, Params = None, NotList = None, TagLists = None):
           super().__init__(Params, NotList, TagLists)
           
-          self.AddSkinColors = True
+          self.AddSkinColors()
 
           self.NounList(['legs: std,default,plur'])
                
@@ -537,7 +527,7 @@ class Thighs(FemaleBodyParts):
      def __init__(self, Params = None, NotList = None, TagLists = None):
           super().__init__(Params, NotList, TagLists)
           
-          self.AddSkinColors = True
+          self.AddSkinColors()
 
           self.NounList(['thighs: std,default,plur'])
                
@@ -635,7 +625,7 @@ class Breasts(FemaleBodyParts):
     def __init__(self, Params = None, NotList = None, TagLists = None, bCupSize = False):
         super().__init__(Params, NotList, TagLists)
         self._bCupSize = bCupSize
-        self.AddSkinColors = True
+        self.AddSkinColors()
           
         self.NounList(['boobies: silly,slang,cute,plur',
                        'boobs x4: std,slang,plur',
@@ -1200,7 +1190,7 @@ class ButtocksFemale(FemaleBodyParts):
      def __init__(self, Params = None, NotList = None, TagLists = None):
           super().__init__(Params, NotList, TagLists)
      
-          self.AddSkinColors = True
+          self.AddSkinColors()
 
           self.NounList(['buns: std,plur',
                           'butt-cheeks: std,plur',
@@ -1354,7 +1344,7 @@ class BodyFemale(FemaleBodyParts):
      def __init__(self, Params = None, NotList = None, TagLists = None):
           super().__init__(Params, NotList, TagLists)
           
-          self.AddSkinColors = True
+          self.AddSkinColors()
 
           self.NounList(['anatomy: std,sing',
                          'body x4: std,default,sing',
@@ -2169,7 +2159,7 @@ class ButtocksMale(MaleBodyParts):
      def __init__(self, Params = None, NotList = None, TagLists = None):
           super().__init__(Params, NotList, TagLists)
           
-          self.AddSkinColors = True
+          self.AddSkinColors()
 
           self.NounList(['buns: std,cute,desc,plur',
                          'butt cheeks: std,slang,plur',
@@ -2209,7 +2199,7 @@ class AssMale(MaleBodyParts):
           self.Anus = AnusFemale()
           self.Buttocks = ButtocksMale()
           
-          self.AddSkinColors = True
+          self.AddSkinColors()
 
           self.NounList(['ass x3: std,slang,default,sing',
                          'backside: std,sing',
@@ -2253,7 +2243,7 @@ class SkinMale(MaleBodyParts):
      def __init__(self, Params = None, NotList = None, TagLists = None):
           super().__init__(Params, NotList, TagLists)
           
-          self.AddSkinColors = True
+          self.AddSkinColors()
 
           self.NounList(['skin x4: default,std,sing',
                          'flesh x2: std,sing',
@@ -2282,7 +2272,7 @@ class ShouldersMale(MaleBodyParts):
      def __init__(self, Params = None, NotList = None, TagLists = None):
           super().__init__(Params, NotList, TagLists)
           
-          self.AddSkinColors = True 
+          self.AddSkinColors() 
 
           self.NounList(['shoulders'])
                
@@ -2307,7 +2297,7 @@ class MusclesMale(MaleBodyParts):
      def __init__(self, Params = None, NotList = None, TagLists = None):
           super().__init__(Params, NotList, TagLists)
           
-          self.AddSkinColors = True
+          self.AddSkinColors()
 
           self.NounList(['muscles: std,default,plur'])
                
@@ -2387,7 +2377,7 @@ class ChestMale(MaleBodyParts):
      def __init__(self, Params = None, NotList = None, TagLists = None):
           super().__init__(Params, NotList, TagLists)
           
-          self.AddSkinColors = True
+          self.AddSkinColors()
 
           self.NounList(['chest x4: std,default,sing',
                          'pectorals: std,plur'])
@@ -2428,7 +2418,7 @@ class ArmsMale(MaleBodyParts):
      def __init__(self, Params = None, NotList = None, TagLists = None):
           super().__init__(Params, NotList, TagLists)
           
-          self.AddSkinColors = True
+          self.AddSkinColors()
 
           self.NounList(['arms x4: std,default,plur',
                          'limbs: std,plur'])
@@ -2590,7 +2580,7 @@ class HairMale(MaleBodyParts):
 class LegsMale(MaleBodyParts):
      def __init__(self, Params = None, NotList = None, TagLists = None):
           super().__init__(Params, NotList, TagLists)
-          self.AddSkinColors = True
+          self.AddSkinColors()
 
           self.NounList(['legs x3: std,default,plur',
                          'calves: std,plur',
@@ -2658,7 +2648,7 @@ class BodyMale(MaleBodyParts):
     def __init__(self, Params = None, NotList = None, TagLists = None):
         super().__init__(Params, NotList, TagLists)
           
-        self.AddSkinColors = True
+        self.AddSkinColors()
 
         self.NounList(['body x4: std,default,sing',
                        'build: std,sing',

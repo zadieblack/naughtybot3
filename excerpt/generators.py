@@ -4100,7 +4100,7 @@ class Generator66(ExGen):
 
           sHeels = clothes.Heels().MediumDesc()
 
-          sTweet = sHisName + " " + WordList(['wrapped','knocked','banged']).GetWord() + " on the door and "
+          sTweet = sHisName + " " + WordList(['rapped','knocked','banged']).GetWord() + " on the door and "
           sTweet += AddArticles(Lady.Desc) + " opened it. "
           sTweet += "She " + WordList(['was stark naked','was buck naked','was completely naked',
                                         'wore nothing but her birthday suit','wasn\'t wearing a stitch of clothing',

@@ -86,28 +86,27 @@ class Clothes(NounPhrase):
         self.IsBottom = False 
         self.IsDress = False
         self.IsUnderwear = False
-        self.AddColors = True
-
         self.ColorsNotList = []
 
-    # Override the AdjList creation call so we
-    # can manually add the colors from the 
-    # ClothesColors list to each adj list.
-    def AdjList(self, NewAdjList):
-        global ClothesColors 
-        
-        if self.AddColors:
-            for color in ClothesColors.GetWordList():
-                unit = self.ParseUnit(color)
-                
-                if not FoundIn(unit.sUnit, self.ColorsNotList):
-                    if not self.Gender is None:
-                       if self.Gender == "male" and not "fem" in unit.TagList:
-                           NewAdjList.append(color)
-                       elif self.Gender == "female":
-                           NewAdjList.append(color)
+    def AddClothesColors(self):
+        NewColorList = []
 
-        super().AdjList(NewAdjList)
+        for color in ClothesColors.GetWordList():
+            unit = self.ParseUnit(color)
+                
+            if self.ColorsNotList is None:
+                self.ColorsNotList = []
+
+            if not FoundIn(unit.sUnit, self.ColorsNotList):
+                if not self.Gender is None:
+                    if self.Gender == "male" and not "fem" in unit.TagList:
+                        NewColorList.append(unit.sUnit)
+                    elif self.Gender == "female":
+                        NewColorList.append(unit.sUnit)
+
+        self.ColorList(NewColorList)
+
+        return
 
     def TakeItOff(self):
         return "removed their " + self.RandomDescription(bLongDesc = False)
@@ -233,6 +232,8 @@ class FemaleClothes(Clothes):
 class BikiniTop(FemaleClothes):
      def __init__(self):
           super().__init__()
+
+          self.AddClothesColors()
           
           self.NounList(['bikini x4: default,std,sing',
                          'bikini top x2: default,std,sing',
@@ -286,6 +287,8 @@ class BikiniTop(FemaleClothes):
 class Blouse(FemaleClothes):
      def __init__(self):
           super().__init__()
+
+          self.AddClothesColors()
 
           self.NounList(['blouse x3: std,default,sing',
                          'shirt: std,sing',
@@ -352,6 +355,7 @@ class Bra(FemaleClothes):
           super().__init__()
 
           self.IsUnderwear = True
+          self.AddClothesColors()
           
           self.NounList(['bra x5: default,std,sing',
                          'brassiere x3: std,sing',
@@ -415,6 +419,8 @@ class CropTop(FemaleClothes):
      def __init__(self):
           super().__init__()
 
+          self.AddClothesColors()
+
           self.NounList(['crop-top x3: std,default,sing',
                          'tube-top: variant,sing',
                         ])
@@ -475,7 +481,7 @@ class Dress(FemaleClothes):
      def __init__(self):
           super().__init__()
           
-          self.AddColors = True
+          self.AddClothesColors()
           self.IsDress = True
           
           self.NounList(['dress x3: std,default,sing',
@@ -656,6 +662,7 @@ class Nightgown(FemaleClothes):
           super().__init__()
 
           self.IsUnderwear = True
+          self.AddClothesColors()
 
           self.NounList(['babydoll x2: variant,lingerie,sing',
                          'chemise x2: variant,sing',
@@ -788,6 +795,7 @@ class RobeFemale(FemaleClothes):
           super().__init__()
 
           self.ColorsNotList = ["black"]
+          self.AddClothesColors()
 
           self.NounList(['bathrobe x3: variant,sing',
                          'kimono: variant,sing',
@@ -839,6 +847,7 @@ class SportsBra(FemaleClothes):
           super().__init__()
 
           self.IsUnderwear = True
+          self.AddClothesColors()
           
           self.NounList(['lycra sports bra: variant,material,sing',
                          'microfiber sports bra: variant,material,sing',
@@ -939,6 +948,8 @@ class TshirtFemale(FemaleClothes):
 class BikiniBottoms(FemaleClothes):
      def __init__(self):
           super().__init__()
+
+          self.AddClothesColors()
           
           self.NounList(['bikini bottoms x4: default,std,plur',
                          'Brazilian bikini bottoms: std,plur',
@@ -1089,6 +1100,7 @@ class Panties(FemaleClothes):
           self.IsUnderwear = True
 
           self.ColorsNotList = ["gold","silver"]
+          self.AddClothesColors()
           
           self.NounList(['cotton panties: std,material,plur',
                          'French panties: variant,style,plur',
@@ -1213,6 +1225,7 @@ class ShortsFemale(FemaleClothes):
           super().__init__()
           
           self.ColorsNotList = ["gold","silver"]
+          self.AddClothesColors()
           
           self.NounList(['booty shorts: variant,plur',
                          'hotpants: variant,plur',
@@ -1257,7 +1270,7 @@ class ShortSkirt(FemaleClothes):
      def __init__(self):
           super().__init__()
           
-          self.AddColors = True
+          self.AddClothesColors()
           self.IsBottom = True
           
           self.NounList(['bubble skirt: variant,sing',
@@ -1327,6 +1340,7 @@ class YogaPants(FemaleClothes):
           super().__init__()
 
           self.ColorsNotList = ['white','cream']
+          self.AddClothesColors()
           
           self.NounList(['leggings x3: std,plur',
                          'Lululemon yoga pants: variant,style,plur',
@@ -1369,6 +1383,8 @@ class YogaPants(FemaleClothes):
 class Bikini(FemaleClothes):
      def __init__(self):
           super().__init__()
+
+          self.AddClothesColors()
           
           self.NounList(['bikini x4: default,std,sing',
                          'crocheted bikini: variant,material,sing',
@@ -1422,6 +1438,7 @@ class UnderwearFemale(FemaleClothes):
           super().__init__()
 
           self.IsUnderwear = True
+          self.AddClothesColors()
           
           self.NounList(['bra and panties: std,plur',
                          'lingerie x2: std,sing',
@@ -1490,17 +1507,19 @@ class UnderwearFemale(FemaleClothes):
 class WorkoutFemale(FemaleClothes):
      def __init__(self):
           super().__init__()
+
+          self.AddClothesColors()
           
-          self.NounList(['activewear',
+          self.NounList(['activewear: std,sing',
                          'gym clothes: std,plur',
                          'Lululemons: style,brand,plur',
                          'workout clothes: std,default,plur',
                          'workout wear: std,sing',
                         ])
           
-          self.AdjList(['body-hugging: tight',
-                        'figure-hugging: tight',
-                        'form-fitting: tight',
+          self.AdjList(['body-hugging: shape',
+                        'figure-hugging: shape',
+                        'form-fitting: shape',
                         'sexy: super',
                         'skin-tight: tight',
                         'spandex: material',
@@ -1520,7 +1539,7 @@ class Heels(FemaleClothes):
      def __init__(self):
           super().__init__()
           
-          self.AddColors = True
+          self.AddClothesColors()
 
           self.NounList(['French heels: variant,style,plur',
                          'four-inch heels: variant,length,plur',
@@ -1669,7 +1688,7 @@ class TshirtMale(MaleClothes):
      def __init__(self):
           super().__init__()
           
-          self.AddColors = True
+          self.AddClothesColors()
 
           self.NounList(['athletic tee: variant,sing',
                          'band shirt: variant,style,sing',
@@ -1719,7 +1738,7 @@ class Boxers(MaleClothes):
      def __init__(self):
           super().__init__()
           
-          self.AddColors = True 
+          self.AddClothesColors() 
           self.IsBottom = True
           self.IsUnderwear = True
 
@@ -1934,7 +1953,7 @@ class Speedo(MaleClothes):
      def __init__(self):
           super().__init__()
           
-          self.AddColors = True 
+          self.AddClothesColors() 
 
           self.NounList(['speedo: std,default,sing',
                          'speedos: std,plur',
@@ -1971,7 +1990,7 @@ class SwimTrunks(MaleClothes):
      def __init__(self):
           super().__init__()
           
-          self.AddColors = True 
+          self.AddClothesColors() 
 
           self.NounList(['bathing suit: std,sing',
                          'boardshorts x2: variant,plur',
@@ -2012,7 +2031,7 @@ class ThongMale(MaleClothes):
      def __init__(self):
           super().__init__()
           
-          self.AddColors = True 
+          self.AddClothesColors() 
           self.IsBottom = True
           self.IsUnderwear = True
 

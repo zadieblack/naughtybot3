@@ -6424,13 +6424,13 @@ class Generator150(TitleGen):
 
         iRand = randint(1,4)
         if iRand == 2:
-            sTweet += "Big Black " + Penis.ShortDescription(NotList = DickNotList).title()
+            sTweet += "Big Black " + Penis.ShortDesc(NotList = DickNotList).title()
         elif iRand == 3:
-            sTweet += Penis.GenerateLength() + " " + Penis.ShortDescription(NotList = DickNotList).title()
+            sTweet += Penis.GenerateLength() + " " + Penis.ShortDesc(NotList = DickNotList).title()
         elif iRand == 4:
-            sTweet += "Big Black " + str(randint(7,15)) + "-inch " + Penis.ShortDescription(NotList = DickNotList).title()
+            sTweet += "Big Black " + str(randint(7,15)) + "-inch " + Penis.ShortDesc(NotList = DickNotList).title()
         else:
-            sTweet += Penis.MediumDescription(NotList = DickNotList).title()
+            sTweet += Penis.MediumDesc(NotList = DickNotList).title()
 
         return sTweet
 
@@ -6631,13 +6631,13 @@ class Generator154(TitleGen):
 
         iRand = randint(1,4)
         if iRand == 2:
-            sPenis += Sizes.GetWord() + " " + Penis.ShortDescription(NotList = DickNotList)
+            sPenis += Sizes.GetWord() + " " + Penis.ShortDesc(NotList = DickNotList)
         elif iRand == 3:
-            sPenis += Penis.GenerateLength() + " " + Penis.ShortDescription(NotList = DickNotList)
+            sPenis += Penis.GenerateLength() + " " + Penis.ShortDesc(NotList = DickNotList)
         elif iRand == 4:
-            sPenis += Sizes.GetWord() + " " + str(randint(7,15)) + "-inch " + Penis.ShortDescription(NotList = DickNotList)
+            sPenis += Sizes.GetWord() + " " + str(randint(7,15)) + "-inch " + Penis.ShortDesc(NotList = DickNotList)
         else:
-            sPenis += Penis.MediumDescription(NotList = DickNotList)
+            sPenis += Penis.MediumDesc(NotList = DickNotList)
 
         sTweet += sPenis.lower() + "!"
 

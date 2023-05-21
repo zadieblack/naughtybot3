@@ -964,6 +964,12 @@ class Woman(Lover):
         else:
             AdjList += ['brown-eyed x2: eyes','dark-eyed: eyes',]
 
+        if self.RaceName in ["caucasian"]:
+            if self.IsTan:
+                AdjList += TanColors
+            else:
+                AdjList += ['fair: color,cauc','freckled: color,cauc','pale: color,cauc','fair: color,cauc',]
+
         if self.Height in ["tall"]:
             AdjList += ['tall: height,tall','willowy: height,tall']
         elif self.Height in ["short"]:
@@ -1002,7 +1008,7 @@ class Woman(Lover):
         if self.IsVirgin:
             AdjList += ['virginal: virginal',]
 
-        self.Woman = NounPhrase(NPParams(sColor = GetSkinonym(self.SkinColor)))
+        self.Woman = NounPhrase()
         self.Woman.NounList(NounList)
         self.Woman.AdjList(AdjList)
         self.Noun = self.Woman.GetNoun()
