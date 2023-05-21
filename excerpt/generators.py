@@ -4085,23 +4085,21 @@ class Generator66(ExGen):
           
           sPizza = sPizzaType + " " + PizzaMeatToppings.GetWord() + " pizza with " + PizzaExtraToppings.GetWord() + " and " + PizzaBonus.GetWord()
           
-          NotList = ["shameless"]
+          NotList = ["shameless","virgin"]
           Lady = self.Woman 
           Body = Lady.Body 
           Skin = Lady.Skin 
           Tits = Lady.Breasts
-          Tits.NounExclTagList(["silly","sing"])
+          Tits.NounExclTagList(["silly","sing","virginal"])
           Tits.NotList(NotList)
           Nips = Lady.Breasts.Nipples
           Legs = Lady.Legs 
           Ass = Lady.Ass 
-          Ass.NounExclTagList(["silly"])
+          Ass.NounExclTagList(["silly","virginal"])
           Ass.NotList(NotList)
           Pussy = Lady.Vagina
-          Pussy.NounExclTagList(["silly"])
+          Pussy.NounExclTagList(["silly","virginal"])
           Pussy.NotList(NotList)
-
-          TLParams = TagLists(noun_excl = ["silly"])
 
           sTweet = sHisName + " " + WordList(['wrapped','knocked','banged']).GetWord() + " on the door and "
           sTweet += AddArticles(Lady.Desc) + " opened it. "

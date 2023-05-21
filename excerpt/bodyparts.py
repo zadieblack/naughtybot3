@@ -56,27 +56,31 @@ class Race:
     HairColor: list = field(default_factory=list)
     NipColor: list = field(default_factory=list)
     SkinColor: list = field(default_factory=list)
-    
-    
+    FemHairStyle: list = field(default_factory=list)
 
 RaceCauc  = Race(Name = "caucasian",
                  EyeColor = ["amber","blue","brown","dark","gray","green","hazel"],
                  HairColor = ["black","blonde","brown","dark","gray","red"],
                  NipColor = ["brown","dark","pink","rosy","tan"],
-                 SkinColor = ["beige","creamy","freckled","fresh pink","honeyed","light","pale","pink","porcelain","rosy","tanned","sun-bronzed","sun-browned","sun-kissed","white"]
+                 SkinColor = ["beige","creamy","freckled","fresh pink","honeyed","light","pale","pink","porcelain","rosy","tanned","sun-bronzed","sun-browned","sun-kissed","white"],
+                 FemHairStyle = ["big","bobbed","braids","curls","long","pigtails","pixie","ponytail","short","updo"]
                 )
 RacePOC   = Race(Name = "poc",
                  EyeColor = ["amber","brown","dark",],
                  HairColor = ["black","brown","dark",],
                  NipColor = ["brown","chocolate","chocolate-colored","coffee-colored","dark","dark brown","honeyed","light brown","mocha"],
-                 SkinColor = ["black","beige","bronze","bronzed","brown","chocolate","chocolate-colored","coffee-colored","dark","dark brown","ebony","honeyed","light brown","mocha","tan"]
+                 SkinColor = ["black","beige","bronze","bronzed","brown","chocolate","chocolate-colored","coffee-colored","dark","dark brown","ebony","honeyed","light brown","mocha","tan"],
+                 FemHairStyle = ["cornrows","curls","fro","kinky","long","pixie","short","updo"]
                )
 RaceAsian = Race(Name = "asian",
                  EyeColor = ["brown","dark",],
                  HairColor = ["black","brown","dark",],
                  NipColor = ["brown","chocolate","chocolate-colored","coffee-colored","dark","dark brown","honeyed","light brown","mocha"],
-                 SkinColor = ["almond","beige","brown","creamy","freckled","light","light brown","pale","porcelain","tan","sun-bronzed","sun-browned","sun-kissed","white"]
+                 SkinColor = ["almond","beige","brown","creamy","freckled","light","light brown","pale","porcelain","tan","sun-bronzed","sun-browned","sun-kissed","white"],
+                 FemHairStyle = ["braids","long","pigtails","pixie","ponytail","short",]
                 )
+
+
 
 class BodyParts(NounPhrase):
     def __init__(self, Params = None, NotList = None, TagLists = None):
@@ -98,6 +102,8 @@ class GenPhysTraits:
     LastName: str = ""
     Gender: str = ""
     Race: Race = None
+    Height: str = ""
+    IsFit: bool = False
     PubeStyle: str = ""
 
 #GenPhysTraits = namedtuple("GenPhysTraits",
@@ -109,18 +115,24 @@ class Lover():
         self.FirstName = ""
         self.LastName = ""
         self.Gender = ""
+        self.Height = ""
+        self.IsFit = False
         self.Race = None
         self.RaceName = ""
         self.EyeColor = ""
         self.HairColor = ""
         self.NipColor = ""
         self.SkinColor = ""
+        self.IsTan = False
         self.PubeStyle = ""
 
         self._TagLists = TagLists()
 
+        bRandomize = False
+
         if NewGenTraits is None or not isinstance(NewGenTraits, GenPhysTraits):
             NewGenTraits = GenPhysTraits()
+            bRandomize = True
         
         # Set attributes if not blank, otherwise randomize
         self.Gender = Gender
@@ -143,6 +155,16 @@ class Lover():
         else:
             self.LastName = names.RegularLastNames().GetWord()
 
+        if NewGenTraits.Height:
+            self.Height = NewGenTraits.Height
+        else:
+            self.Height = choice(["tall","medium","medium","short"])
+
+        if not bRandomize:
+            self.IsFit = NewGenTraits.IsFit
+        else:
+            self.IsFit = choice([True,False,False])
+
         if NewGenTraits.Race and isinstance(Race, NewGenTraits.Race):
             self.Race = NewGenTraits.Race
         else:
@@ -154,6 +176,11 @@ class Lover():
         self.HairColor = choice(self.Race.HairColor)
         self.NipColor = choice(self.Race.NipColor)
         self.SkinColor = choice(self.Race.SkinColor)
+
+        if not bRandomize:
+            self.IsTan = NewGenTraits.IsTan
+        else:
+            self.IsTan = choice([True,False,False])
         
         LTagLists = self._TagLists
 
@@ -715,7 +742,7 @@ class Woman(Lover):
         if NewFemTraits.HairStyle:
             self.HairStyle = NewFemTraits.HairStyle
         else:
-            self.HairStyle = choice(["long","short","curly"])
+            self.HairStyle = choice(self.Race.FemHairStyle)
         
         if NewFemTraits.BustSize:
             self.BustSize = NewFemTraits.BustSize
@@ -896,15 +923,7 @@ class Woman(Lover):
         sDesc = "[Gender: Female".ljust(20) + sAge.ljust(20) + sRace.ljust(20) + sBodyType.ljust(20) 
         sDesc += sSkinColor.ljust(20) + sHairColor.ljust(20) + sEyeColor.ljust(20) + sNipColor.ljust(20)
         sDesc += sVirgin.ljust(20) + sBustSize.ljust(20) + sFakeTits.ljust(20) + sPubeStyle.ljust(19) + "]"
-        #sDesc += "My name is " + self.FirstName + " " + self.LastName + ". "
-        #sDesc += "I am a " + str(self.Age) + "-year-old woman. "
-        #sDesc += "Some of my notable physical characteristics are "
-        #sDesc += "my " + self.Eyes.FloweryDesc() + ", "
-        #sDesc += "my " + self.Hair.FloweryDesc() + ", "
-        #sDesc += "my " + self.Skin.FloweryDesc() + ", "
-        #sDesc += "my " + self.Breasts.FloweryDesc() + " "
-        #sDesc += "with " + self.Nipples.FloweryDesc() + ", "
-        #sDesc += "and my " + self.Vagina.FloweryDesc() + ". "
+
         print("\n" + sDesc)
 
     def BuildDesc(self):
@@ -967,18 +986,23 @@ class Woman(Lover):
 
         self.Noun = choice(NounList)
 
-        AdjList = ['doe-eyed: eyes','little: size,small,short',]
+        AdjList = ['doe-eyed: eyes',
+                   'little: size,small,short',
+                   'matronly: age,older',
+                   'nubile x2: age,young',
+                  ]
+
         if self.BustSize in ["large","huge"]:
             AdjList += ['ample-bosomed: bigtits','big-titted: bigtits','bosomy: bigtits,shape','busty: bigtits','buxom: bigtits','full-figured: bigtits,shape','shapely: curvy,bigtits,shape','stacked: bigtits,shape','statuesque: bigtits,shape','voluptuous: bigtits,curvy,shape',]
         elif self.BustSize in ["small"]:
-            AdjList += ['flat-chested: smalltits',]
+            AdjList += ['flat-chested: smalltits','lithe: slender,flexible','skinny: slender','slender: slender','tight-bodied: slender','waifish: slender',]
             
         if self.BodyType in ["plussize"]:
              AdjList += ['chubby: plussize,shape','Rubenesque: plussize,shape','plump: curvy,plussize,shape',]
         elif self.BodyType in ["curvy"]:
-            AdjList += ['curvaceous: curvy,shape','round-bottomed: curvy,shape',]
+            AdjList += ['curvaceous: curvy,shape','round-bottomed: curvy,shape','shapely: curvy,shape']
         elif self.BodyType in ["slender"]:
-            AdjList += ['skinny: slender','slender: slender','tight-bodied: slender','waifish: slender',]
+            AdjList += ['limber:slender,flexible','lithe: slender,flexible','skinny: slender','slender: slender','tight-bodied: slender','waifish: slender',]
 
         if self.EyeColor in ["blue"]:
             AdjList += ['blue-eyed x3: eyes,cauc',]
@@ -986,6 +1010,48 @@ class Woman(Lover):
             AdjList += ['green-eyed: eyes,cauc',]
         else:
             AdjList += ['brown-eyed x2: eyes','dark-eyed: eyes',]
+
+        if self.Height in ["tall"]:
+            AdjList += ['tall: height,tall','willowy: height,tall']
+        elif self.Height in ["short"]:
+            AdjList += ['short: height,short',]
+
+        #["big","bobbed","braids","curls","long","pigtails","pixie","ponytail","short","updo"]
+        #["cornrows","curls","fro","kinky","long","pixie","short","updo"]
+        #["braids","long","pigtails","pixie","ponytail","short",]
+
+        if self.HairStyle in ["bobbed"]:
+            AdjList += ['bobbed: hairstyle,bob',]
+        elif self.HairStyle in ["braids"]:
+            AdjList += ['braided: hairstyle,braids',]
+        elif self.HairStyle in ["cornrows"]:
+            AdjList += ['cornrowed: hairstyle,cornrows,poc',]
+        elif self.HairStyle in ["curls"]:
+            AdjList += ['curly: hairstyle,curls',]
+        elif self.HairStyle in ["fro"]:
+            AdjList += ['afro\'d: hairstyle,fro,poc',]
+        elif self.HairStyle in ["kinky"]:
+            AdjList += ['kinky-haired: hairstyle,kinky,poc',]
+        elif self.HairStyle in ["long"]:
+            AdjList += ['long-haired: hairstyle,longhair',]
+        elif self.HairStyle in ["pigtails"]:
+            AdjList += ['pigtailed: hairstyle,pigtails',]
+        elif self.HairStyle in ["pixie"]:
+            AdjList += ['pixie-cut: hairstyle,pixie',]
+        elif self.HairStyle in ["ponytail"]:
+            AdjList += ['pony-tailed: hairstyle,ponytail',]
+        elif self.HairStyle in ["short"]:
+            AdjList += ['short-haired: hairstyle,shorthair','short-cropped: hairstyle,shorthair',]
+        elif self.HairStyle in ["updo"]:
+            AdjList += ['big-haired: hairstyle,updo','permed: hairstyle,updo',]
+
+        if self.IsFit:
+            AdjList += ['athletic: muscular,shape','fit: muscular','trim: slender,shape']
+        else:
+            AdjList += ['dainty: small,fragile','delicate: fragile',]
+
+        if self.IsVirgin:
+            AdjList += ['virginal: virginal',]
 
         self.Woman = NounPhrase(NPParams(sColor = self.SkinColor))
         self.Woman.NounList(NounList)
@@ -997,16 +1063,11 @@ class Woman(Lover):
         return True
 
 
-    #'athletic: muscular,shape',
     #'bronzed: color,tan',
     #'curly-haired: hair',
-    #'doe-eyed: eyes',
-    #'fit: muscular',
     #'latina x3: poc,color',
     #'kinky-haired: hair,poc',
     #'leggy: longlegs,shape',
-    #'matronly: age,older',
-    #'nubile x2: age,young',
     #'pale: color,cauc',
     #'pig-tailed: hair',
     #'pony-tailed: hair',
