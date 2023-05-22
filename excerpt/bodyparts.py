@@ -117,15 +117,17 @@ RaceAsian = Race(Name = "asian",
                  HairColor = ["black","brown","dark",],
                  NipColor = ["brown","chocolate","chocolate-colored","coffee-colored","dark","dark brown","honeyed","light brown","mocha"],
                  SkinColor = ["almond","beige","brown","creamy","freckled","light","light brown","pale","porcelain","tan","sun-bronzed","sun-browned","sun-kissed","white"],
-                 FemHairStyle = ["braids","long","pigtails","pixie","ponytail","short",]
+                 FemHairStyle = ["braids","long","pigtails","pixie","ponytail","short",],
+                 MaleHairStyle = ["bald","buzz-cut","crew-cut","long-haired","ponytail","shaved","short-haired","slicked-back"]
                 )
-RaceAsian = Race(Name = "latin",
+RaceLatin = Race(Name = "latin",
                  TagName = "latin",
                  EyeColor = ["amber","brown","dark","hazel"],
                  HairColor = ["black","brown","dark",],
                  NipColor = ["brown","chocolate","chocolate-colored","coffee-colored","dark","dark brown","honeyed","light brown","mocha","tan"],
                  SkinColor = ["beige","bronze","brown","copper","creamy","dark","freckled","light","light brown",],
-                 FemHairStyle = ["braids","curls","kinky","long","pigtails","pixie","ponytail","short","updo"]
+                 FemHairStyle = ["braids","curls","kinky","long","pigtails","pixie","ponytail","short","updo"],
+                 MaleHairStyle = ["buzz-cut","cornrows","crew-cut","curly","dreadlocks","kinky","ponytail","shaved","short-haired","slicked-back"]
                 )
 
 
