@@ -91,6 +91,7 @@ class Race:
     NipColor: list = field(default_factory=list)
     SkinColor: list = field(default_factory=list)
     FemHairStyle: list = field(default_factory=list)
+    MaleHairStyle: list = field(default_factory=list)
 
 RaceCauc  = Race(Name = "caucasian",
                  TagName = "cauc",
@@ -98,7 +99,8 @@ RaceCauc  = Race(Name = "caucasian",
                  HairColor = ["black","blonde","brown","dark","gray","red"],
                  NipColor = ["brown","dark","pink","rosy","tan"],
                  SkinColor = ["beige","creamy","freckled","fresh pink","honeyed","light","pale","pink","porcelain","rosy","tanned","sun-bronzed","sun-browned","sun-kissed","white"],
-                 FemHairStyle = ["big","bobbed","braids","curls","long","pigtails","pixie","ponytail","short","updo"]
+                 FemHairStyle = ["big","bobbed","braids","curls","long","pigtails","pixie","ponytail","short","updo"],
+                 MaleHairStyle = ["bald","buzz-cut","crew-cut","curly","long-haired","ponytail","mullet","shaved","short-haired","slicked-back"]
                 )
 RacePOC   = Race(Name = "poc",
                  TagName = "poc",
@@ -106,7 +108,8 @@ RacePOC   = Race(Name = "poc",
                  HairColor = ["black","brown","dark",],
                  NipColor = ["brown","chocolate","chocolate-colored","coffee-colored","dark","dark brown","honeyed","light brown","mocha"],
                  SkinColor = ["black","beige","bronze","bronzed","brown","chocolate","chocolate-colored","coffee-colored","dark","dark brown","ebony","honeyed","light brown","mocha","tan"],
-                 FemHairStyle = ["cornrows","curls","fro","kinky","long","pixie","short","updo"]
+                 FemHairStyle = ["cornrows","curls","fro","kinky","long","pixie","short","updo"],
+                 MaleHairStyle = ["afro","buzz-cut","cornrows","crew-cut","curly","dreadlocks","kinky",]
                )
 RaceAsian = Race(Name = "asian",
                  TagName = "asian",

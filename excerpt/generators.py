@@ -4073,6 +4073,7 @@ class Generator66(ExGen):
           sTweet = ""
           
           sHisName = self.MaleName.FirstName()
+          #sHisName = "The " + self.Man.Desc
           
           sPizzaType = WordList(['deep dish','extra-large','stuffed crust']).GetWord()
           PizzaMeatToppings = WordList(['beef','meatballs','pepperoni','sausage','salami','hot dog', 'meat lovers'])
