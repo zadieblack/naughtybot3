@@ -869,7 +869,7 @@ class NounPhrase:
         elif len(DescWordList) == 2:
             sFullDesc = DescWordList[0] + " " + DescWordList[1]
         elif len(DescWordList) == 3:
-            sFullDesc = ", ".join(DescWordList[:1]) + ", " + " ".join(DescWordList[2:])
+            sFullDesc = ", ".join(DescWordList[:1]) + ", " + " ".join(DescWordList[1:])
         elif len(DescWordList) == 4:
             sFullDesc = ", ".join(DescWordList[:-2]) + ", " + " ".join(DescWordList[-2:])
         else:
