@@ -22,6 +22,7 @@ TagExclDict = {"bigdick": ["smalldick"],
                "male": ["female"],
                "middleaged": ["teen","college","twenties","thirties"],
                "milf": ["teen","college","twenties","young"],
+               "narrow": ["wide"],
                "older": ["teen","college","twenties","young"],
                "poc": ["cauc"],
                "plussize": ["slender"],
@@ -41,6 +42,7 @@ TagExclDict = {"bigdick": ["smalldick"],
                "twenties": ["teen","college","middleaged","older","thirties",],
                "trimmed": ["hairy","shaved"],
                "virginal": ["slutty"],
+               "wide": ["narrow"],
                "young": ["thirties","middleaged","older","milf"],
               }
 
@@ -141,12 +143,13 @@ class NounPhrase:
         self._NotList = NotList
         self._Noun = ""
 
-        self._ExclTagList = []
-        self._ReqTagList = []
-        self._NounExclTagList = []
-        self._NounReqTagList = []
+        self._AdjExtraTagList = []
         self._AdjExclTagList = []
         self._AdjReqTagList = []
+        self._ExclTagList = []
+        self._NounExclTagList = []
+        self._NounReqTagList = []
+        self._ReqTagList = []
 
         self._PermExclTagList = TLParams.excl
         self._PermReqTagList = TLParams.req
@@ -171,132 +174,118 @@ class NounPhrase:
         self._Noun = ""
 
         NounTagList = []
-        if self.NounListLen() > 0 and self.AdjListLen() > 0:
-            NounReqTagList = []
-            if len(self._NounReqTagList) > 0:
-                NounReqTagList = self._NounReqTagList + self._PermNounReqTagList + self._PermReqTagList
-            else:
-                NounReqTagList = self._ReqTagList + self._PermNounReqTagList + self._PermReqTagList
+        UsedTagList = []
+        if self.NounListLen() > 0:
+            # Sets are unique, so we can convert each list 
+            # to a set, OR them together, and convert back
+            # to a list that is now free of duplicates.
+            AdjExclTagList = list(set(self._AdjExclTagList) | set(self._ExclTagList) | set(self._PermAdjExclTagList) | set(self._PermExclTagList))
+            
+            AdjReqTagList = list(set(self._AdjReqTagList) | set(self._ReqTagList) | set(self._PermAdjReqTagList) | set(self._PermReqTagList))
 
-            NounExclTagList = []
-            if len(self._NounExclTagList) > 0:
-                NounExclTagList = self._NounExclTagList + self._PermNounExclTagList + self._PermExclTagList
-            else:
-                NounExclTagList = self._ExclTagList + self._PermNounExclTagList + self._PermExclTagList
-
-            AdjReqTagList = []
-            if len(self._AdjReqTagList) > 0:
-                AdjReqTagList = self._AdjReqTagList + self._PermAdjReqTagList + self._PermReqTagList
-            else:
-                AdjReqTagList = self._ReqTagList + self._PermAdjReqTagList + self._PermReqTagList
-
-            AdjExclTagList = []
-            if len(self._AdjExclTagList) > 0:
-                AdjExclTagList = self._AdjExclTagList + self._PermAdjExclTagList + self._PermExclTagList
-            else:
-                AdjExclTagList = self._ExclTagList + self._PermAdjExclTagList + self._PermExclTagList
+            NounExclTagList = list(set(self._ExclTagList) | set(self._NounExclTagList) | set(self._PermExclTagList) | set(self._PermNounExclTagList))
+            
+            NounReqTagList = list(set(self._ReqTagList) | set(self._NounReqTagList) | set(self._PermReqTagList) | set(self._PermNounReqTagList))
 
             self._Noun = self.GetNewNoun(NotList = self._NotList, ReqTagList = NounReqTagList, ExclTagList = NounExclTagList)
             #print("  ---")
-            global TagExclDict
-            UsedTagList = []
+            if self.AdjListLen() > 0:
+                for tag in self.GetUnitTags(self._Noun):
+                    if not tag in NounTagList:
+                        if not tag.lower() == "master":
+                            NounTagList.append(tag)
 
-            for tag in self.GetUnitTags(self._Noun):
-                if not tag in NounTagList:
-                    NounTagList.append(tag)
-
-            for nountag in NounTagList:
-                if nountag in TagExclDict:
-                    for tag in TagExclDict[nountag]:
-                        if not tag in UsedTagList:
-                            UsedTagList.append(tag)
-            #self.ClearAdjList()
-
-            # Parse extra adjs list, add any tags to the parent
-            # and to the used tag list
-            ParsedExtraAdjList = []
-            if not self._ExtraAdjList is None:
-                for adj in self._ExtraAdjList:
-                    Unit = self.ParseUnit(adj)
-                    sUnit = Unit.sUnit.strip()
-                    if sUnit != "":
-                        ParsedExtraAdjList.append(sUnit)
-                        #self.AddAdj(Unit.sUnit)
-                        for tag in Unit.TagList:
-                            self.AddUnitTag(sUnit,tag)
+                for nountag in NounTagList:
+                    if nountag in TagExclDict:
+                        for tag in TagExclDict[nountag]:
                             if not tag in UsedTagList:
                                 UsedTagList.append(tag)
+       
+                # Parse extra adjs list, add any tags to the parent
+                # and to the used tag list
+                ParsedExtraAdjList = []
+                if not self._ExtraAdjList is None:
+                    for adj in self._ExtraAdjList:
+                        Unit = self.ParseUnit(adj)
+                        sUnit = Unit.sUnit.strip()
+                        if sUnit != "":
+                            ParsedExtraAdjList.append(sUnit)
+                            #self.AddAdj(Unit.sUnit)
+                            for tag in Unit.TagList:
+                                self.AddUnitTag(sUnit,tag)
+                                if not tag in UsedTagList:
+                                    UsedTagList.append(tag)
 
-            # Get color
-            if not self.GetColor():
-                if self.ColorListLen() > 0:
-                    self.Color(self.GetNewColor(NotList = self._NotList + [self._Noun] + self._AdjList, ReqTagList = ["color"], ExclTagList = AdjExclTagList))
+                # Get color
+                if not self.GetColor():
+                    if self.ColorListLen() > 0:
+                        self.Color(self.GetNewColor(NotList = self._NotList + [self._Noun] + self._AdjList, ReqTagList = ["color"], ExclTagList = AdjExclTagList))
 
-            iColorAdjNum = 0
-            if not self.GetColor():
-                self.AddAdj(self.GetColor())
-                iColorAdjNum += 1
+                iColorAdjNum = 0
+                if not self.GetColor():
+                    self.AddAdj(self.GetColor())
+                    iColorAdjNum += 1
 
-            for i in range(self._iNumAdjs - iColorAdjNum):
-                LocalReqTagList = AdjReqTagList.copy()
-                LocalExclTagList = AdjExclTagList.copy()
+                for i in range(self._iNumAdjs - iColorAdjNum):
+                    LocalReqTagList = AdjReqTagList.copy()
+                    LocalExclTagList = AdjExclTagList.copy()
 
-                sAdj = self.GetNewAdj(NotList = self._NotList + [self._Noun] + self._AdjList, ReqTagList = LocalReqTagList, ExclTagList = LocalExclTagList + UsedTagList)
-                if sAdj == "":
-                    print("=*= WARNING =*= bodyparts.Reset() unable to get more adjectives.\n")
-                    break
+                    sAdj = self.GetNewAdj(NotList = self._NotList + [self._Noun] + self._AdjList, ReqTagList = LocalReqTagList, ExclTagList = list(set(LocalExclTagList) | set(UsedTagList)))
+                    if sAdj == "":
+                        print("=*= WARNING =*= bodyparts.Reset() unable to get more adjectives.\n")
+                        break
 
-                NewAdjTags = self.GetUnitTags(sAdj)
-                for tag in NewAdjTags:
-                    # Try and pick adjs from different tags if required tags are not set
-                    if self._bVaryAdjTags and len(LocalReqTagList) == 0:
-                        if not tag == "master" and not tag in UsedTagList:
-                            UsedTagList.append(tag)
+                    NewAdjTags = self.GetUnitTags(sAdj)
+                    for tag in NewAdjTags:
+                        # Try and pick adjs from different tags if required tags are not set
+                        if self._bVaryAdjTags and len(LocalReqTagList) == 0:
+                            if not tag == "master" and not tag in UsedTagList:
+                                UsedTagList.append(tag)
 
-                    # Avoid choosing adjectives with mutally exclusive tags
-                    if tag in TagExclDict:
-                        for excltag in TagExclDict[tag]:
-                            if not excltag in LocalExclTagList:
-                                LocalExclTagList.append(excltag)
-                                #print("    Detected tag \"" + tag + "\", excluding tags " + str(TagExclDict[tag]))
+                        # Avoid choosing adjectives with mutally exclusive tags
+                        if tag in TagExclDict:
+                            for excltag in TagExclDict[tag]:
+                                if not excltag in LocalExclTagList:
+                                    LocalExclTagList.append(excltag)
+                                    #print("    Detected tag \"" + tag + "\", excluding tags " + str(TagExclDict[tag]))
 
-                self.AddAdj(sAdj)
+                    self.AddAdj(sAdj)
 
-            #print("Reset() : Selected _AdjList is " + str(self._AdjList))
-            ExtraAdjBucket = ParsedExtraAdjList
-            SpecialAdjBucket = []
-            AgeAdjBucket = []
-            ColorAdjBucket = []
-            OtherAdjBucket = []
-            SuperAdjBucket = []
+                #print("Reset() : Selected _AdjList is " + str(self._AdjList))
+                ExtraAdjBucket = ParsedExtraAdjList
+                SpecialAdjBucket = []
+                AgeAdjBucket = []
+                ColorAdjBucket = []
+                OtherAdjBucket = []
+                SuperAdjBucket = []
 
-            if self.GetColor():
-                ColorAdjBucket.append(self.GetColor())
+                if self.GetColor():
+                    ColorAdjBucket.append(self.GetColor())
 
-            for adj in self._AdjList:
-                adjtags = self.GetUnitTags(adj)
-                if "special" in adjtags:
-                    SpecialAdjBucket.append(adj)
-                #elif "young" in self.GetUnitTags(adj) or "older" in self.GetUnitTags(adj):
-                elif "age" in adjtags:
-                    #print("      \"" + adj + "\" is an age adj.")
-                    AgeAdjBucket.append(adj)
-                #elif "color" in adjtags:
-                #    #print("      \"" + adj + "\" is a color adj.")
-                    ColorAdjBucket.append(adj)
-                elif "super" in adjtags:
-                    #print("      \"" + adj + "\" is a superlative adj.")
-                    SuperAdjBucket.append(adj)
-                else:
-                    #print("      \"" + adj + "\" is a normal adj.")
-                    OtherAdjBucket.append(adj)
-            AgeAdjBucket.sort(key = str.lower)
-            ColorAdjBucket.sort(key = str.lower)
-            SuperAdjBucket.sort(key = str.lower)
-            OtherAdjBucket.sort(key = str.lower)
-            SpecialAdjBucket.sort(key = str.lower)
+                for adj in self._AdjList:
+                    adjtags = self.GetUnitTags(adj)
+                    if "special" in adjtags:
+                        SpecialAdjBucket.append(adj)
+                    #elif "young" in self.GetUnitTags(adj) or "older" in self.GetUnitTags(adj):
+                    elif "age" in adjtags:
+                        #print("      \"" + adj + "\" is an age adj.")
+                        AgeAdjBucket.append(adj)
+                    #elif "color" in adjtags:
+                    #    #print("      \"" + adj + "\" is a color adj.")
+                        ColorAdjBucket.append(adj)
+                    elif "super" in adjtags:
+                        #print("      \"" + adj + "\" is a superlative adj.")
+                        SuperAdjBucket.append(adj)
+                    else:
+                        #print("      \"" + adj + "\" is a normal adj.")
+                        OtherAdjBucket.append(adj)
+                AgeAdjBucket.sort(key = str.lower)
+                ColorAdjBucket.sort(key = str.lower)
+                SuperAdjBucket.sort(key = str.lower)
+                OtherAdjBucket.sort(key = str.lower)
+                SpecialAdjBucket.sort(key = str.lower)
 
-            self._AdjList = SuperAdjBucket + OtherAdjBucket + ColorAdjBucket + AgeAdjBucket + SpecialAdjBucket + ExtraAdjBucket
+                self._AdjList = SuperAdjBucket + OtherAdjBucket + ColorAdjBucket + AgeAdjBucket + SpecialAdjBucket + ExtraAdjBucket
 
             return True
 
@@ -462,21 +451,26 @@ class NounPhrase:
 
     # Get a new adjective that is not in the current _AdjList but
     # does not conflict with it
-    def GetNewAdj(self, NotList = None, ReqTagList = None, ExclTagList = None):
+    def GetNewAdj(self, NotList = None, ReqTagList = None, ExclTagList = None, AdjExclTagList = None, AdjReqTagList = None, NounExclTagList = None, NounReqTagList = None):
         sNewAdj = ""
         
         if NotList is None:
             NotList = []
-        if ReqTagList is None:
-            ReqTagList = []
-        if ExclTagList is None:
-            ExclTagList = []
+
+        self._UpdateTagListsNoReset(TLParams = 
+                                    TagLists(excl = ExclTagList,
+                                             req = ReqTagList,
+                                             adj_excl = AdjExclTagList,
+                                             adj_req = AdjReqTagList,
+                                             noun_excl = NounExclTagList,
+                                             noun_req = NounReqTagList
+                                            ))
 
         UsedTagList = []
         for adj in self._AdjList:
             UsedTagList += self.GetUnitTags(adj)
 
-        sNewAdj = self.GetUnit("adj", NotList = NotList, ReqTagList = ReqTagList, ExclTagList = ExclTagList + UsedTagList)
+        sNewAdj = self.GetUnit("adj", NotList = NotList, ReqTagList = self._ReqTagList, ExclTagList = self._ExclTagList + UsedTagList)
         
         for tag in self.GetUnitTags(sNewAdj): 
             if not tag.lower() == "master":
@@ -765,28 +759,56 @@ class NounPhrase:
         if TLParams is None:
             TLParams = TagLists()
 
-        if len(TLParams.req) > 0:
-            self.ReqTagList(TLParams.req)
+        if not TLParams.adj_extra is None and len(TLParams.adj_extra) > 0:
+            self.AdjExtraTagList(TLParams.adj_extra)
 
-        if len(TLParams.excl) > 0:
-            self.ExclTagList(TLParams.excl)
-
-        if len(TLParams.noun_req) > 0:
-            self.NounReqTagList(TLParams.noun_req)
-
-        if len(TLParams.noun_excl) > 0:
-            self.NounExclTagList(TLParams.noun_excl)
-
-        if len(TLParams.adj_req) > 0:
-            self.AdjReqTagList(TLParams.adj_req)
-
-        if len(TLParams.adj_excl) > 0:
+        if not TLParams.adj_excl is None and len(TLParams.adj_excl) > 0:
             self.AdjExclTagList(TLParams.adj_excl)
 
-        if len(TLParams.adj_extra) > 0:
-            self.AdjReqTagList(TLParams.adj_extra)
+        if not TLParams.adj_req is None and len(TLParams.adj_req) > 0:
+            self.AdjReqTagList(TLParams.adj_req)
 
-        return True
+        if not TLParams.req is None and len(TLParams.req) > 0:
+            self.ReqTagList(TLParams.req)
+
+        if not TLParams.excl is None and len(TLParams.excl) > 0:
+            self.ExclTagList(TLParams.excl)
+
+        if not TLParams.noun_excl is None and len(TLParams.noun_excl) > 0:
+            self.NounExclTagList(TLParams.noun_excl)
+
+        if not TLParams.noun_req is None and len(TLParams.noun_req) > 0:
+            self.NounReqTagList(TLParams.noun_req)
+
+        return 
+
+    # Update any and all tag lists
+    def _UpdateTagListsNoReset(self, TLParams = None):
+        if TLParams is None:
+            TLParams = TagLists()
+
+        if not TLParams.adj_extra is None and len(TLParams.adj_extra) > 0:
+            self._ExtraAdjList = TLParams.adj_extra
+
+        if not TLParams.adj_excl is None and len(TLParams.adj_excl) > 0:
+            self._AdjExclTagList = TLParams.adj_excl
+
+        if not TLParams.adj_req is None and len(TLParams.adj_req) > 0:
+            self._AdjReqTagList = TLParams.adj_req
+
+        if not TLParams.req is None and len(TLParams.req) > 0:
+            self._ReqTagList = TLParams.req
+
+        if not TLParams.excl is None and len(TLParams.excl) > 0:
+            self._ExclTagList = TLParams.excl
+
+        if not TLParams.noun_excl is None and len(TLParams.noun_excl) > 0:
+            self._NounExclTagList = TLParams.noun_excl
+
+        if not TLParams.noun_req is None and len(TLParams.noun_req) > 0:
+            self._NounReqTagList = TLParams.noun_req
+
+        return 
 
 
     # *** Set the tag lists ***

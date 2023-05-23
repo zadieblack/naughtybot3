@@ -4083,7 +4083,7 @@ class Generator66(ExGen):
           sPizza = sPizzaType + " " + PizzaMeatToppings.GetWord() + " pizza with " + PizzaExtraToppings.GetWord() + " and " + PizzaBonus.GetWord()
           
           NotList = ["shameless","virgin"]
-          Lady = self.Woman 
+          Lady = bodies.Woman(NewFemTraits = bodies.FemPhysTraits(IsVirgin = False))
           Body = Lady.Body 
           Body.NounExclTagList(["silly","plur","virginal"])
           Skin = Lady.Skin 
@@ -4128,32 +4128,34 @@ class Generator66(ExGen):
                sTweet += "nestled between them."
           elif iRand == 2: 
                sTweet += "Her " + Ass.GetNoun() + " was " + Ass.GetRandomAdj() + " "
-               sTweet += "and her " + Tits.MediumDesc() + " were " + Tits.GetRandomAdj() + ". "
-               sTweet += "Her " + Pussy.GetNoun() + " was " + Pussy.GetRandomAdj() + " and " + Pussy.GetNewAdj() + ". "
+               sTweet += "and her " + Tits.MediumDesc() + " were " + Tits.GetNewAdj(AdjExclTagList = ["age","color"]) + ". "
+               sTweet += "Her " + Pussy.GetNoun() + " was " + Pussy.GetNewAdj(AdjExclTagList = ["age","color"]) + " " 
+               sTweet += "and " + Pussy.GetNewAdj(AdjExclTagList = ["age","color"]) + ". "
                sTweet += "She had steel rings piercing her " + Nips.MediumDesc() + ". "
           elif iRand == 3:
                sTweet += "He had never seen a woman with such "
-               sTweet += Tits.MediumDesc() + " "
+               sTweet += Tits.MediumDesc(TagLists = TagLists(adj_excl = ["age","color"])) + " "
                sTweet += "or such " + Legs.MediumDesc() + ". "
                sTweet += "He could clearly see her " + Pussy.MediumDesc() + ". "
                sTweet += "It looked good enough to eat. "
-               sTweet += "For that matter, so did her " + Ass.MediumDesc() + ". "
+               sTweet += "For that matter, so did her " + Ass.FloweryDesc() + ". "
           elif iRand == 4:
                sTweet += "Her " + Body.RandomDesc(bLongDesc = False) + " was extremely fit. "
                sTweet += "Her " + Tits.MediumDesc(NotList = ["high","tight"], ) + " "
                sTweet += "were high and tight. "
-               sTweet += "Her legs were " + Legs.GetRandomAdj() + " and " + Legs.GetNewAdj() + " "
-               sTweet += "and her " + Ass.MediumDesc() + " was " + Ass.GetNewAdj() + "."
+               sTweet += "Her legs were " + Legs.GetNewAdj(AdjExclTagList = ["age","color"]) + " and " + Legs.GetNewAdj(AdjExclTagList = ["age","color"]) + " "
+               sTweet += "and her " + Ass.MediumDesc() + " was " + Ass.GetNewAdj(AdjExclTagList = ["age","color"]) + "."
           elif iRand == 5:
                sTweet += "His jaw dropped at the sight of her smooth, " + Skin.MediumDesc() + ", "
                sTweet += "her " + Tits.FloweryDesc() + ", "
                sTweet += "her " + Ass.FloweryDesc() + ", "
-               sTweet += "and her shameless, " + Pussy.FloweryDesc(NotList = ["shameless"], ) + ". "
+               sTweet += "and her shameless, " + Pussy.FloweryDesc(NotList = ["shameless"]) + ". "
           else:
                sTweet += "Her nude body was stunning. She had " + Tits.MediumDesc() + " "
                sTweet += "with " + Nips.MediumDesc() + ", "
-               sTweet += AddArticles(Ass.RandomDesc(bShortDesc = False)) + ", and her legs were long and " + Legs.GetNewAdj(NotList = ['long']) + ". "
-               sTweet += "She was standing with legs apart "
+               sTweet += AddArticles(Ass.RandomDesc(bShortDesc = False)) + ", " 
+               sTweet += "and her legs were long and " + Legs.GetNewAdj(NotList = ["long","short"], AdjExclTagList = ["length","color","age"]) + ". "
+               sTweet += "She was standing with them apart "
                sTweet += "and he could clearly see her shameless " + Pussy.FloweryDesc() + " "
                if CoinFlip():
                     #sTweet += "and the " + WordList(['little folds','purple lips','pink ruffle']).GetWord() + " of her labia dangling from it. "

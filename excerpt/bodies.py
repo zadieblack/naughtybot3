@@ -23,7 +23,7 @@ class GenPhysTraits:
 #                           "FirstName LastName Gender Race PubeStyle",
 #                           defaults = ["","","",None,""]
 #                          )
-class Lover():
+class Body():
     def __init__(self, Gender, NewGenTraits = None):
         self.FirstName = ""
         self.LastName = ""
@@ -146,7 +146,7 @@ class MalePhysTraits:
     DickInches: int = 0
     IsCircumcised: bool = False 
 
-class Man(Lover):
+class Man(Body):
     def __init__(self, NewGenTraits = None, NewMaleTraits = None):
         super().__init__("male", NewGenTraits = NewGenTraits)
         
@@ -684,7 +684,7 @@ class FemPhysTraits:
     HairStyle: str = ""
     IsVirgin: bool = False
 
-class Woman(Lover):
+class Woman(Body):
     def __init__(self, NewGenTraits = None, NewFemTraits = None):
         super().__init__("female", NewGenTraits = NewGenTraits)
         self.Noun = ""

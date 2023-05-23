@@ -378,8 +378,8 @@ class WordList:
                     #        i += 1
             else:
                 print("=*= WARNING =*= WordList.GetWord() unable to select a word due to empty selection list.")
-                print("                List    = " + str(self.List))
-                print("                NotList = " + str(NotList) + "\n")
+                print("                List    = " + str(sorted(self.List)))
+                print("                NotList = " + str(sorted(NotList)) + "\n")
  
         return sWord
           
