@@ -270,7 +270,7 @@ class Man(Body):
         if bRandomize:
             self.IsCircumcised = CoinFlip()
         else:
-            self.IsCircumcised = NewMaleTraits.IsCircumcized
+            self.IsCircumcised = NewMaleTraits.IsCircumcised
 
         # ===============
         # Setup bodyparts

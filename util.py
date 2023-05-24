@@ -9,7 +9,7 @@ from enum import *
 
 MAX_TWITTER_CHARS = 280
 MAX_GENERATOR_NO = 44
-MAX_SEARCH_LOOPS = 20
+MAX_SEARCH_LOOPS = 40
 TWIT_CONTROLLER = 'zadieblack'
 
 Q_SIZE = 80
@@ -241,6 +241,8 @@ class HistoryQ():
     def __init__(self, iQSize = Q_SIZE):
         self.MaxQSize = iQSize
         self.HistoryQ = []
+
+        return
      
     def PushToHistoryQ(self, item):
         bPushOK = False 
@@ -259,10 +261,13 @@ class HistoryQ():
     def IsInQ(self, item):
         bIsInQ = True 
           
-        if len(self.HistoryQ) == 0 or not item in self.HistoryQ:
+        if len(self.HistoryQ) == 0 or not FoundIn(item, self.HistoryQ):
             bIsInQ = False
 
         return bIsInQ
+
+    def len(self):
+        return len(self.HistoryQ)
                
 class HistoryQWithLog(HistoryQ):
     def __init__(self, sLogFileName, iQSize = Q_SIZE):
@@ -294,6 +299,8 @@ class HistoryQWithLog(HistoryQ):
                         self.HistoryQ.append(item)
         #print("Loaded HistoryQ:")
         #print(self.HistoryQ)
+
+        return
                
     def LogHistoryQ(self):
         #print("Writing log file [" + self.LogFileName + "]")
@@ -306,6 +313,8 @@ class HistoryQWithLog(HistoryQ):
                 WriteHistoryQ.write(UTFLine)
         #print("Wrote HistoryQ to " + self.LogFileName)
         #print(self.HistoryQ)
+
+        return
 
      
 def FoundIn(sWord, SearchTarget):
@@ -340,9 +349,13 @@ class WordList:
             self.List = NewList
                
         self.DefaultWord = ""
+
+        return
           
     def AddWord(self, word):
         self.List.append(word)
+
+        return
      
     def GetWord(self, sNot = "", NotList = None, SomeHistoryQ = None):
         sWord = ""
@@ -358,28 +371,40 @@ class WordList:
             SelectList = self.List.copy()
             for notword in NotList:
                 for i, word in enumerate(SelectList):
-                    if FoundIn(word,notword):
+                    if FoundIn(word,notword) and len(SelectList) > 1:
                         SelectList.pop(i)
+                    elif len(SelectList) == 1 and len(self.List) > 1:
+                        print("=*= WARNING =*= WordList.GetWord() reduced to one choice by NotList.")
+                        print("                Orig. List = " + str(sorted(self.List)))
+                        print("                NotList    = " + str(sorted(NotList)) + "\n")
 
             if len(SelectList) > 0:
-                sWord = SelectList[randint(0, len(SelectList) - 1)]
-
                 if not SomeHistoryQ is None:
-                    i = 0
-                    while FoundIn(sWord, NotList) and i < MAX_SEARCH_LOOPS:
-                            #print("Collision! '" + sWord + "' in NotList, trying again.")
-                            sWord = SelectList[randint(0, len(SelectList) - 1)]
-                            i += 1
-                else:
-                    i = 0
+                    for i, word in enumerate(SelectList):
+                        if SomeHistoryQ.IsInQ(word) and len(SelectList) > 1:
+                            SelectList.pop(i)
+                        elif len(SelectList) == 1 and len(self.List) > 1:
+                            print("=*= WARNING =*= WordList.GetWord() reduced to one choice by HistoryQ.")
+                            print("                Orig. List = " + str(sorted(self.List)))
+                            print("                History Q  = " + str(sorted(SomeHistoryQ.HistoryQ)) + "\n")
+                sWord = choice(SelectList)
+
+                #if not SomeHistoryQ is None:
+                #    i = 0
+                #    while FoundIn(sWord, NotList) and i < MAX_SEARCH_LOOPS:
+                #            #print("Collision! '" + sWord + "' in NotList, trying again.")
+                #            sWord = SelectList[randint(0, len(SelectList) - 1)]
+                #            i += 1
+                #else:
+                    #i = 0
                     #while (not SomeHistoryQ.PushToHistoryQ(sWord) or FoundIn(sWord, NotList)) and i < MAX_SEARCH_LOOPS:
                     #        #print("Collision! '" + sWord + "' in NotList, trying again.")
                     #        sWord = SelectList[randint(0, len(SelectList) - 1)]
                     #        i += 1
-            else:
-                print("=*= WARNING =*= WordList.GetWord() unable to select a word due to empty selection list.")
-                print("                List    = " + str(sorted(self.List)))
-                print("                NotList = " + str(sorted(NotList)) + "\n")
+            #else:
+            #    print("=*= WARNING =*= WordList.GetWord() unable to select a word due to empty selection list.")
+            #    print("                List    = " + str(sorted(self.List)))
+            #    print("                NotList = " + str(sorted(NotList)) + "\n")
  
         return sWord
           

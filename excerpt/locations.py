@@ -8,6 +8,7 @@ from random import *
 import excerpt.util as exutil
 from util import *
 import excerpt.bodyparts
+import excerpt.bodies as bodies
 import excerpt.clothes as clothes
 
 Loc_FemWardrobe = clothes.FemWardrobe()
@@ -16,9 +17,9 @@ Loc_MaleWardrobe = clothes.MaleWardrobe()
 class Location():
     def __init__(self, LocMan = None, LocWoman = None):
         if LocMan is None:
-            LocMan = excerpt.bodyparts.Man()
+            LocMan = bodies.Man()
         if LocWoman is None:
-            LocWoman = excerpt.bodyparts.Woman()
+            LocWoman = bodies.Woman()
 
         self.Man = LocMan
         self.Woman = LocWoman

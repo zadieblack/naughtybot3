@@ -7,6 +7,7 @@ from collections import namedtuple
 from random import *
 from util import *
 import re 
+import excerpt.bodyparts
 
 MAXSECTIONBUCKETTRIES = 100
 BodyPartHistoryQ = HistoryQ(10)
@@ -119,8 +120,10 @@ class NounPhrase:
         self._DefaultNoun = ""
         self._DefaultAdj = "naked"
           
-        self.NounHistoryQ = HistoryQ(3)
-        self.AdjHistoryQ = HistoryQ(3)
+        self.AdjHistoryQ = HistoryQ(12)
+        self.ColorHistoryQ = HistoryQ(12)
+        self.NounHistoryQ = HistoryQ(12)
+        
 
         if Params is None:
             Params = NPParams()
@@ -226,19 +229,24 @@ class NounPhrase:
                     self.AddAdj(self.GetColor())
                     iColorAdjNum += 1
 
+                LocalReqTagList = AdjReqTagList.copy()
+                LocalExclTagList = AdjExclTagList.copy()
                 for i in range(self._iNumAdjs - iColorAdjNum):
-                    LocalReqTagList = AdjReqTagList.copy()
-                    LocalExclTagList = AdjExclTagList.copy()
-
-                    sAdj = self.GetNewAdj(NotList = self._NotList + [self._Noun] + self._AdjList, ReqTagList = LocalReqTagList, ExclTagList = list(set(LocalExclTagList) | set(UsedTagList)))
+                    sAdj = self.GetNewAdj(NotList = list(set(self._NotList) | set([self._Noun]) | set(self._AdjList)), 
+                                          ReqTagList = LocalReqTagList, 
+                                          ExclTagList = list(set(LocalExclTagList) | set(UsedTagList)),
+                                          bVaryAdjTags = True)
                     if sAdj == "":
                         print("=*= WARNING =*= bodyparts.Reset() unable to get more adjectives.\n")
                         break
 
+                    #if isinstance(self, excerpt.bodyparts.Breasts):
+                    #    print("Reset() adj(" + str(i) + ") = " + str(sAdj))
+
                     NewAdjTags = self.GetUnitTags(sAdj)
                     for tag in NewAdjTags:
                         # Try and pick adjs from different tags if required tags are not set
-                        if self._bVaryAdjTags and len(LocalReqTagList) == 0:
+                        if self._bVaryAdjTags:
                             if not tag == "master" and not tag in UsedTagList:
                                 UsedTagList.append(tag)
 
@@ -250,6 +258,15 @@ class NounPhrase:
                                     #print("    Detected tag \"" + tag + "\", excluding tags " + str(TagExclDict[tag]))
 
                     self.AddAdj(sAdj)
+
+                    # If we have required tags, once an adj with one
+                    # of the required tags has been used we can stop
+                    # worrying about selecting more adjs from that 
+                    # tag. 
+                    if set(NewAdjTags).intersection(LocalReqTagList):
+                        for newtag in NewAdjTags:
+                            if newtag in LocalReqTagList:
+                                LocalReqTagList.remove(newtag)
 
                 #print("Reset() : Selected _AdjList is " + str(self._AdjList))
                 ExtraAdjBucket = ParsedExtraAdjList
@@ -270,7 +287,7 @@ class NounPhrase:
                     elif "age" in adjtags:
                         #print("      \"" + adj + "\" is an age adj.")
                         AgeAdjBucket.append(adj)
-                    #elif "color" in adjtags:
+                    elif "color" in adjtags:
                     #    #print("      \"" + adj + "\" is a color adj.")
                         ColorAdjBucket.append(adj)
                     elif "super" in adjtags:
@@ -281,13 +298,13 @@ class NounPhrase:
                         OtherAdjBucket.append(adj)
                 AgeAdjBucket.sort(key = str.lower)
                 ColorAdjBucket.sort(key = str.lower)
-                SuperAdjBucket.sort(key = str.lower)
                 OtherAdjBucket.sort(key = str.lower)
                 SpecialAdjBucket.sort(key = str.lower)
+                SuperAdjBucket.sort(key = str.lower)
 
                 self._AdjList = SuperAdjBucket + OtherAdjBucket + ColorAdjBucket + AgeAdjBucket + SpecialAdjBucket + ExtraAdjBucket
 
-            return True
+            return
 
     # *** Alphabetized standard methods ***
     # -------------------------------------
@@ -296,22 +313,22 @@ class NounPhrase:
     def AddAdj(self, adj):
         if adj != "":
             self._AdjList.append(adj)
-        return True
+        return
 
     # Add an adjective to a tag list
     def AddAdjToList(self, sNoun, sListName, iPriority = None):
         self.AddUnitToList(sNoun,sListName,"adj", iPriority = iPriority)
-        return True
+        return
 
     # Add a noun to a tag list
     def AddNounToList(self, sNoun, sListName, iPriority = None):
         self.AddUnitToList(sNoun,sListName,"noun", iPriority = iPriority)
-        return True
+        return
 
     # SET the AdjList
     def AdjList(self, NewAdjList):
         self.UnitList(NewAdjList, "adj")
-        return True
+        return
 
     # Get the length of the AdjList
     def AdjListLen(self):
@@ -326,6 +343,8 @@ class NounPhrase:
         # No duplicates
         if not sTag in self._UnitTags[sUnit]:
             self._UnitTags[sUnit].append(sTag)
+
+        return
 
     # Add a unit to a list. Create list if that list doesn't exist.
     def AddUnitToList(self, sUnit, sListName, sType, iPriority = None):
@@ -348,21 +367,23 @@ class NounPhrase:
 
             self.AddUnitTag(sUnit, sListName)
 
+        return
+
     # Clear the _AdjList
     def ClearAdjList(self):
         self._AdjList = []
-        return True
+        return 
 
     # SET the color
     def Color(self, color):
         self._Color = color
-        return True
+        return 
 
     # SET the ColorList
     def ColorList(self, NewColorList):
         self.UnitList(NewColorList, "color")
         self.Reset("ColorList")
-        return True
+        return 
 
     # Get the length of the ColorList
     def ColorListLen(self):
@@ -375,12 +396,16 @@ class NounPhrase:
                
         self._DefaultAdj = NewAdj 
 
+        return
+
     # SET the default noun
     def DefaultNoun(self, NewNoun = None):
         if NewNoun == None:
             NewNoun = ""
                
         self._DefaultNoun = NewNoun 
+
+        return
 
     # Get a randomly-selected adj from the _AdjList
     def GetRandomAdj(self):
@@ -451,30 +476,47 @@ class NounPhrase:
 
     # Get a new adjective that is not in the current _AdjList but
     # does not conflict with it
-    def GetNewAdj(self, NotList = None, ReqTagList = None, ExclTagList = None, AdjExclTagList = None, AdjReqTagList = None, NounExclTagList = None, NounReqTagList = None):
+    def GetNewAdj(self, NotList = None, 
+                  ReqTagList = None, ExclTagList = None, AdjExclTagList = None, AdjReqTagList = None, NounExclTagList = None, NounReqTagList = None,
+                  bVaryAdjTags = False):
         sNewAdj = ""
         
         if NotList is None:
             NotList = []
 
-        self._UpdateTagListsNoReset(TLParams = 
-                                    TagLists(excl = ExclTagList,
-                                             req = ReqTagList,
-                                             adj_excl = AdjExclTagList,
-                                             adj_req = AdjReqTagList,
-                                             noun_excl = NounExclTagList,
-                                             noun_req = NounReqTagList
-                                            ))
+        if AdjExclTagList is None:
+            AdjExclTagList = []
+        if AdjReqTagList is None:
+            AdjReqTagList = []
+        if ExclTagList is None:
+            ExclTagList = []
+        if NounExclTagList is None:
+            NounExclTagList = []
+        if NounReqTagList is None:
+            NounReqTagList = []
+        if ReqTagList is None:
+            ReqTagList = []
+
+        #self._UpdateTagListsNoReset(TLParams = 
+        #                            TagLists(excl = ExclTagList,
+        #                                     req = ReqTagList,
+        #                                     adj_excl = AdjExclTagList,
+        #                                     adj_req = AdjReqTagList,
+        #                                     noun_excl = NounExclTagList,
+        #                                     noun_req = NounReqTagList
+        #                                    ))
 
         UsedTagList = []
-        for adj in self._AdjList:
-            UsedTagList += self.GetUnitTags(adj)
+        if bVaryAdjTags:
+            for adj in self._AdjList:
+                UsedTagList += self.GetUnitTags(adj)
 
-        sNewAdj = self.GetUnit("adj", NotList = NotList, ReqTagList = self._ReqTagList, ExclTagList = self._ExclTagList + UsedTagList)
+        sNewAdj = self.GetUnit("adj", 
+                               NotList = NotList, ReqTagList = ReqTagList, ExclTagList = list(set(ExclTagList) | set(AdjExclTagList) | set(UsedTagList)))
         
-        for tag in self.GetUnitTags(sNewAdj): 
-            if not tag.lower() == "master":
-                self.AddUnitTag(sNewAdj, tag)
+        #for tag in self.GetUnitTags(sNewAdj): 
+        #    if not tag.lower() == "master":
+        #        self.AddUnitTag(sNewAdj, tag)
 
         return sNewAdj
 
@@ -540,6 +582,14 @@ class NounPhrase:
         if ExclTagList is None:
             ExclTagList = []
 
+        HistoryQ = None
+        if sType.lower() == "adj":
+            HistoryQ = self.AdjHistoryQ 
+        elif sType.lower() == "color":
+            HistoryQ = self.ColorHistoryQ
+        elif sType.lower() == "noun":
+            HistoryQ = self.NounHistoryQ
+
         ExclUnitList = []
         for tag in ExclTagList:
             #print("    Getting word units for " + unitlist)
@@ -552,12 +602,16 @@ class NounPhrase:
             for unit in self.GetUnitList("special", sType):
                 ExclUnitList.append(unit)
 
+        # If the req tag list is empty, build the valid unit 
+        # selection list from the master list
         if ReqTagList == None or len(ReqTagList) == 0:
             #print("  ReqTagList is empty. Using master list.")
             for unit in self.GetUnitList("master", sType):
                 if not unit in ExclUnitList:
                     LocalUnitList.append(unit)
         else:
+        # Otherwise, build the valid unit selection list from
+        # words with tags in the req list
             for taglistname in ReqTagList:
                 #print("  Adding taglist " + taglistname)
                 for unit in self.GetUnitList(taglistname, sType):
@@ -566,34 +620,27 @@ class NounPhrase:
 
         #print("  LocalUnitList = " + str(LocalUnitList) + "\n")
 
-        if len(LocalUnitList) == 0:
-            if ReqTagList == None or len(ReqTagList) == 0:
-                LocalUnitList += self.GetUnitList("master", sType)
-        else:
-            for taglistname in ReqTagList:
-                LocalUnitList += self.GetUnitList(taglistname, sType)
-
         if len(LocalUnitList) > 0:
-            # First, try with the not list, the excluded tag list, and the required tag list
-
-            sUnit = WordList(LocalUnitList).GetWord(NotList = NotList + ExclUnitList)
+            # First, try with the not list, the excluded 
+            # tag list, and the required tag list
+            sUnit = WordList(LocalUnitList).GetWord(NotList = list(set(NotList) | set(ExclUnitList)), SomeHistoryQ = HistoryQ)
 
             if sUnit == "":
                 # Second, try with the not list and the required tag list
                 print("  GetUnit() could not retrieve word. Trying without excluded tag list.")
-                sUnit = WordList(LocalUnitList).GetWord(NotList = NotList)
+                sUnit = WordList(LocalUnitList).GetWord(NotList = NotList, SomeHistoryQ = HistoryQ)
 
                 if sUnit == "":
                     # Third, try with just the not list
                     print("   GetUnit() could not retrieve word. Trying without the required tag list.")
-                    sUnit = WordList(self.GetUnitList("master", sType)).GetWord(NotList = NotList)
+                    sUnit = WordList(self.GetUnitList("master", sType)).GetWord(NotList = NotList, SomeHistoryQ = HistoryQ)
 
-                    if sUnit == "":
-                        # Fourth, try without any constraints
-                        print("   GetUnit() could not retrieve word. Trying without the not list.")
-                        sUnit == WordList(self.GetUnitList("master", sType)).GetWord()
+                    #if sUnit == "":
+                    #    # Fourth, try without any constraints
+                    #    print("   GetUnit() could not retrieve word. Trying without the not list.")
+                    #    sUnit == WordList(self.GetUnitList("master", sType)).GetWord()
             #print("  GetUnit() new word is \"" + sUnit + "\"")
-
+        
         return sUnit
 
     # Get the tags for a specified unit
@@ -760,7 +807,7 @@ class NounPhrase:
             TLParams = TagLists()
 
         if not TLParams.adj_extra is None and len(TLParams.adj_extra) > 0:
-            self.AdjExtraTagList(TLParams.adj_extra)
+            self.ExtraAdjList(TLParams.adj_extra)
 
         if not TLParams.adj_excl is None and len(TLParams.adj_excl) > 0:
             self.AdjExclTagList(TLParams.adj_excl)
