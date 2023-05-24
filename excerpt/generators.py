@@ -48,6 +48,23 @@ from title.util import TempType
 from excerpt.tweettext import BookTitleBuilder
 
 PromoHistoryQ = shutil.HistoryQ(2)
+
+# This function initializes a generator container object for all
+# the ex gens. It then uses that to select either a random one
+# or a specific one requested by iGeneratorNo.
+def GetTweet(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = GeneratorType.Normal, TweetHistoryQ = None):
+     gen = None
+     GenType = None 
+
+     GenSel = GeneratorContainer(ExGen, HistoryQ = TweetHistoryQ)
+     if bTest:
+          gen = GenSel.GetGenerator(iGeneratorNo)
+          if gen == None:
+               gen = Generator()
+     else:
+          gen = GenSel.RandomGenerator(bAllowPromo = bAllowPromo, Type = GenType)
+          
+     return gen
      
 class ExGen(Generator):
      def GenerateTweet(self):
@@ -97,29 +114,7 @@ class ExGen(Generator):
           self.MaleWardrobe = clothes.MaleWardrobe()
      
           return ""
-          
-def GetTweet(bTest, iGeneratorNo = 0, bAllowPromo = True, Type = GeneratorType.Normal, TweetHistoryQ = None):
-     gen = None
-     GenType = None 
-     
-     #if not Type is None:
-     #     GenType = Type 
-     #else:
-     #     GenType = None 
-     # print("GetTweet() Generator Type is " + str(GenType))
-     
-     iSwitch = 999
-     
-     # print("  Excerpt GetTweet(): TweetHistoryQ is " + str(TweetHistoryQ))
-     GenSel = GeneratorContainer(ExGen, HistoryQ = TweetHistoryQ)
-     if bTest:
-          gen = GenSel.GetGenerator(iGeneratorNo)
-          if gen == None:
-               gen = Generator()
-     else:
-          gen = GenSel.RandomGenerator(bAllowPromo = bAllowPromo, Type = GenType)
-          
-     return gen
+        
      
 class Generator1(ExGen):
      # The baron desecrated Jacinda's well-used muffin with his thick pole.     

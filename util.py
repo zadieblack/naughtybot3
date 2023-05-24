@@ -261,7 +261,7 @@ class HistoryQ():
     def IsInQ(self, item):
         bIsInQ = True 
           
-        if len(self.HistoryQ) == 0 or not FoundIn(item, self.HistoryQ):
+        if len(self.HistoryQ) == 0 or not item in self.HistoryQ:
             bIsInQ = False
 
         return bIsInQ
