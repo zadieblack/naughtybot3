@@ -655,36 +655,39 @@ class Generator11(ExGen):
           sTweet = ""
           
           Parts = self.FemBodyParts
+          Woman = self.Woman
+          Man = self.Man
+          Semen = self.Semen
           
           sTweet = "\"" + WordList(["Oh fuck", "Oh god", "Oh baby", "Oh Christ"]).GetWord() + ", "
           sTweet += self.FemaleName.FirstName() + ",\" "
           sTweet += self.MaleName.FirstName() + " "
           sTweet += WordList(["moaned","gasped","exclaimed","whispered","cried"]).GetWord() + ", "
           sTweet += "\"You are " + WordList(['so beautiful','so sexy','perfect','so hot and sexy','such a woman','such a beautiful woman']).GetWord() + ". "
-          sTweet += "I love " + Parts.DescRandomNakedParts(iNum = 4, sPossessive = "your", bLongDesc = False, bBoobs = True, bAss = False, bPussy = False)
+          sTweet += "I love " + Woman.Body.DescRandomNakedParts(iNum = 4, sPossessive = "your", bLongDesc = False, bBoobs = True, bAss = False, bPussy = False)
                
           sTweet += ". But most of all I love " 
           
           Endings = []
-          Endings.append("the way you look with my " + self.MaleBodyParts.Penis.GetRandomPenisPart() + " in your " + self.FemBodyParts.Mouth.RandomDesc(bShortDesc = True))
-          Endings.append("the way you look with my " + self.Semen.MediumDesc() + " all over your " + Parts.Face.MediumDesc())
-          Endings.append("the way you look with my " + self.Semen.MediumDesc() + " dripping down your chin")
-          Endings.append("the way you look with my " + self.Semen.MediumDesc() + " all over your " + self.FemBodyParts.Breasts.RandomDesc() + "")
-          Endings.append("the way you look with my " + self.MaleBodyParts.Penis.Testicles.RandomDesc() + " slapping against your chin")
-          Endings.append("the way you look with my " + self.MaleBodyParts.Penis.Testicles.MediumDesc() + " in your " + Parts.Mouth.MediumDesc())
-          Endings.append("the way you look when I'm fucking your " + Parts.Mouth.MediumDesc() + " with my " + self.MaleBodyParts.Penis.RandomDesc())
-          Endings.append("the way you look with your " + Parts.Lips.RandomDesc() + " around my " + self.MaleBodyParts.Penis.RandomDesc(bShortDesc = True) + "")
+          Endings.append("the way you look with my " + Man.Body.Penis.GetRandomPenisPart() + " in your " + Woman.Mouth.RandomDesc(bShortDesc = True))
+          Endings.append("the way you look with my " + Semen.MediumDesc() + " all over your " + Woman.Face.MediumDesc())
+          Endings.append("the way you look with my " + Semen.MediumDesc() + " dripping down your chin")
+          Endings.append("the way you look with my " + Semen.MediumDesc() + " all over your " + Woman.Breasts.RandomDesc() + "")
+          Endings.append("the way you look with my " + Man.Testicles.RandomDesc() + " slapping against your chin")
+          Endings.append("the way you look with my " + Man.Testicles.MediumDesc() + " in your " + Woman.Mouth.MediumDesc())
+          Endings.append("the way you look when I'm fucking your " + Woman.Mouth.MediumDesc() + " with my " + Man.Penis.RandomDesc())
+          Endings.append("the way you look with your " + Woman.Lips.RandomDesc() + " around my " + Man.Penis.RandomDesc(bShortDesc = True) + "")
           Endings.append("the way you look at me when I'm " + WordList(['balls-deep in','buried to the hilt inside','deep inside','stuffing','pounding']).GetWord() + " " + WordList(["your sister","your twin-sister","your step-sister","your best friend","the babysitter","your step-mom","my secretary","the yoga instructor","that stripper Wendy","some college slut I picked up at the club"]).GetWord())
-          Endings.append("the way you look with my " + self.MaleBodyParts.Penis.Testicles.MediumDesc() + " stuffed in your " + Parts.Mouth.MediumDesc())
-          Endings.append("how you shriek when I whip your " + Parts.Ass.MediumDesc() + " with a riding crop")
+          Endings.append("the way you look with my " + Man.Penis.Testicles.MediumDesc() + " stuffed in your " + Parts.Mouth.MediumDesc())
+          Endings.append("how you shriek when I whip your " + Woman.Ass.MediumDesc() + " with a riding crop")
           Endings.append("how you let me " + WordList(['pound','drill','fuck','gape','stuff','finger','violate','cream','cream-pie']).GetWord() + " your little " + WordList(['sphincter','anus','asshole','bunghole','dirt pipe','pooper']).GetWord())
-          Endings.append("the way you look with my monogrammed butt-plug in your " + Parts.Ass.Anus.RandomDesc())
-          Endings.append("the way you look with a ball-gag in your " + Parts.Mouth.MediumDesc())
-          Endings.append("the way your black eyeliner runs as you gag on my " + self.MaleBodyParts.Penis.RandomDesc())
-          Endings.append("the way you look with my entire fist up your " + Parts.Ass.Anus.RandomDesc(TagLists = TagLists(noun_excl = ["sphincter"])))
-          Endings.append("the way you look with your " + Parts.Breasts.RandomDesc() + " " + WordList(["dripping with","covered in","glazed with","spattered with",]).GetWord() + " my " + self.Semen.RandomDesc())
+          Endings.append("the way you look with my monogrammed butt-plug in your " + Woman.Anus.RandomDesc())
+          Endings.append("the way you look with a ball-gag in your " + Woman.Mouth.MediumDesc())
+          Endings.append("the way your black eyeliner runs as you gag on my " + Man.Penis.RandomDesc())
+          Endings.append("the way you look with my entire fist up your " + Woman.Anus.RandomDesc(TagLists = TagLists(noun_excl = ["sphincter"])))
+          Endings.append("the way you look with your " + Woman.Breasts.RandomDesc() + " " + WordList(["dripping with","covered in","glazed with","spattered with",]).GetWord() + " my " + self.Semen.RandomDesc())
           Endings.append("the way you look when you're tied to the bed while my friends gangbang your holes")
-          Endings.append("the way you look with " + self.Semen.RandomDesc(TagLists = TagLists(noun_excl = ["silly","crude"])) + " oozing from your " + Parts.Ass.Anus.RandomDesc(TagLists = TagLists(adj_req = ["orifice","gape","horny"])))
+          Endings.append("the way you look with " + Semen.RandomDesc(TagLists = TagLists(noun_excl = ["silly","crude"])) + " oozing from your " + Woman.Anus.RandomDesc(TagLists = TagLists(adj_req = ["orifice","gape","horny"])))
 
           sTweet += Endings[randint(0,len(Endings)) - 1] + ".\""
           
@@ -702,13 +705,15 @@ class Generator12(ExGen):
           
           sHisName = names.PlainNamesMale().FirstName()
           sHerName = self.FemaleName.FirstName()
+
+          Woman = self.Woman
           
           FWBNotList = ['wife','roommate']
           #BodyNotList = ['naked','nude','leaky','body']
           Intros = WordList(["'s towel dropped to the floor, revealing her naked body",
-                                   " opened her bathrobe to reveal her naked body",
-                                   "'s " + clothes.Panties().RandomDesc(bLongDesc = False) + " fell to the floor",
-                                   " pushed the bed-sheets aside, revealing her naked body"])
+                             " opened her bathrobe to reveal her naked body",
+                             "'s " + clothes.Panties().RandomDesc(bLongDesc = False) + " fell to the floor",
+                             " pushed the bed-sheets aside, revealing her naked body"])
           Seductions = WordList(["Let's play a little game, baby,",
                                  "Come to mommy, baby,",
                                  "Come lay down so mommy can ride your face, baby,",
@@ -737,13 +742,14 @@ class Generator12(ExGen):
           if CoinFlip():
             sTweet = sHerName + Intros.GetWord() + ". " 
           else:
-            sTweet = "The " + self.Woman.Desc + Intros.GetWord() + ". " 
+            sTweet = "The " + Woman.Desc + Intros.GetWord() + ". " 
           
           sTweet += sHisName + "'s " + WordList(["heart skipped a beat","stomach did a somersault","jaw dropped"]).GetWord() + ". "
-          sTweet += "She had " + self.FemBodyParts.DescRandomNakedParts(iNum = 5, sDivideChar = ';', 
-                                                                        bPussy = True, bAss = True, bBoobs = True, bExplicit = False,
-                                                                        bLongDesc = True)  + ".\n\n"
-          sTweet += "\"" + Seductions.GetWord() + "\" she " + WordList(["said in a husky voice","purred","growled","said in a throaty voice"]).GetWord() + "."
+          sTweet += "She had " + Woman.Body.DescRandomNakedParts(iNum = 5, sDivideChar = ';', 
+                                                                 bPussy = True, bAss = True, bBoobs = True, bExplicit = False,
+                                                                 bLongDesc = True)  + ".\n\n"
+          sTweet += "\"" + Seductions.GetWord() + "\" " 
+          sTweet += "she " + WordList(["said in a husky voice","purred","growled","said in a throaty voice"]).GetWord() + "."
 
           if CoinFlip():
               sTweet += "\n\n. . .\n\n"
