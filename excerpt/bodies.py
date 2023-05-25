@@ -952,7 +952,7 @@ class Woman(Body):
         sDesc += sVirgin.ljust(20) + sBustSize.ljust(20) + sFakeTits.ljust(20) + sPubeStyle.ljust(20) 
         sDesc += sIsFit.ljust(20) + sIsTan.ljust(59) + "]"
 
-        print("\n" + sDesc)
+        #print("\n" + sDesc)
 
     def BuildDesc(self):
         NounList = []

@@ -2,8 +2,21 @@
 # -*- coding: utf-8 -*-
 # Twitter-related functions (Tweepy-based)
 
-# FYI I have learned something about twitter and bot automation that I want to share. I was having a lot of trouble with this bot's replies to people disappearing into the ether. They were being sent. If I logged in as the bot I could see them. But the recipient was not notified and sometimes the replies didnt show up even when I searched for them.
-# I googled everything I could think of and finally found a dev who was saying that the name you registered your app with at app.twitter.com had to match your bot's twitter handle. I updated my name to match, and within about 30 minutes the problem was solved! So be sure that the name of your bot matches the twitter handle it will be using. 
+# FYI I have learned something about twitter and bot 
+# automation that I want to share. I was having a lot 
+# of trouble with this bot's replies to people 
+# disappearing into the ether. They were being sent. 
+# If I logged in as the bot I could see them. But 
+# the recipient was not notified and sometimes 
+# the replies didnt show up even when I searched for 
+# them.
+# I googled everything I could think of and finally 
+# found a dev who was saying that the name you 
+# registered your app with at app.twitter.com had to 
+# match your bot's twitter handle. I updated my name 
+# to match, and within about 30 minutes the problem 
+# was solved! So be sure that the name of your bot 
+# matches the twitter handle it will be using. 
 
 from io import BytesIO
 from excerpt.generators import *

@@ -788,37 +788,37 @@ class Breasts(FemaleBodyParts):
 
         self.AdjList(self.GetAdjList())
 
-    def ShortDesc(self, NotList = None, TagLists = None, bCupSize = None):
+    def ShortDesc(self, NotList = None, TagLists = None, bSilly = False, bCupSize = None):
         if bCupSize is None:
             bCupSize = self._bCupSize
 
         if bCupSize and not self._bCupSize:
             self.AllowCupSize(bCupSize = bCupSize)
 
-        return super().ShortDesc(NotList, TagLists)
+        return super().ShortDesc(NotList, TagLists, bSilly)
           
-    def MediumDesc(self, NotList = None, TagLists = None, bCupSize = None):
+    def MediumDesc(self, NotList = None, TagLists = None, bSilly = False, bCupSize = None):
         if bCupSize is None:
             bCupSize = self._bCupSize
 
         if bCupSize and not self._bCupSize:
             self.AllowCupSize(bCupSize = bCupSize)
                
-        return super().MediumDesc(NotList, TagLists) 
+        return super().MediumDesc(NotList, TagLists, bSilly) 
           
-    def FloweryDesc(self, NotList = None, TagLists = None, bCupSize = None):
+    def FloweryDesc(self, NotList = None, TagLists = None, bSilly = False, bCupSize = None):
         if bCupSize is None:
             bCupSize = self._bCupSize
 
         if bCupSize and not self._bCupSize:
             self.AllowCupSize(bCupSize = bCupSize)
           
-        return super().FloweryDesc(NotList, TagLists) 
+        return super().FloweryDesc(NotList, TagLists, bSilly) 
           
-    def RandomDesc(self, bShortDesc = True, bLongDesc = True, NotList = None, TagLists = None, bCupSize = None):
+    def RandomDesc(self, bShortDesc = True, bLongDesc = True, NotList = None, TagLists = None, bSilly = False, bCupSize = None):
         self._bCupSize = bCupSize
 
-        return super().RandomDesc(NotList, TagLists) 
+        return super().RandomDesc(bShortDesc, bLongDesc, NotList, TagLists, bSilly) 
      
           
 class Clitoris(FemaleBodyParts):
@@ -1151,43 +1151,43 @@ class AnusFemale(FemaleBodyParts):
      def __init__(self, Params = None, NotList = None, TagLists = None):
           super().__init__(Params, NotList, TagLists)
 
-          self.NounList(['anus x4: std,default,clinical,sphincter,sing',
+          self.NounList(['anus x4: std,default,clinical,sphincter,orifice,sing',
                          'arse-cunt: crude,orifice,sing',
                          'ass: std,orifice,sing',
-                         'asshole x4: std,slang,crude,sphincter,sing',
+                         'asshole x4: std,slang,crude,sphincter,orifice,sing',
                          'back orifice: desc,clinical,orifice,sing',
                          'back passage: desc,orifice,sing',
                          'back-pussy: silly,crude,slang,orifice,sing',
                          'backdoor: desc,slang,orifice,sing',
-                         'bowels: std,plur',
-                         'brown hole: desc,slang,crude,sphincter,sing',
-                         'bunghole: silly,crude,slang,sphincter,sing',
+                         'bowels: std,orifice,plur',
+                         'brown hole: desc,slang,crude,sphincter,orifice,sing',
+                         'bunghole: silly,crude,slang,sphincter,orifice,sing',
                          'chocolate starfish: silly,crude,slang,sphincter,sing',
-                         'corn hole: silly,crude,slang,sphincter,sing',
+                         'corn hole: silly,crude,slang,sphincter,orifice,sing',
                          'dirt-pipe: crude,slang,orifice,sing',
                          'dirt-box: crude,slang,orifice,sing',
                          'fart-blaster: silly,crude,slang,orifice,sing',
                          'fart-box: silly,crude,slang,orifice,sing',
-                         'fart-hole: silly,crude,slang,sphincter,sing',
-                         'heinie hole: desc,slang,cute,sphincter,sing',
+                         'fart-hole: silly,crude,slang,sphincter,orifice,sing',
+                         'heinie hole: desc,slang,cute,sphincter,orifice,sing',
                          'knot: desc,sphincter, sing',
                          'poop-chute: crude,slang,desc,orifice,sing',
-                         'poop-trap: crude,slang,sing,sphincter',
+                         'poop-trap: silly,crude,slang,sing,orifice,sphincter',
                          'rear orifice: desc, clinical, orifice,sing',
                          'rectal cavity: desc, clinical, orifice,sing',
                          'rectum: std,clinical,orifice,sing',
                          'ring: desc,sphincter,sing',
-                         'rosebud: desc,slang,cute,crude,sing',
+                         'rosebud: desc,slang,cute,crude,sphincter,orifice,sing',
                          'shit-hole: crude,slang,desc,orifice,sing',
                          'shitter: crude,slang,orifice,sing',
                          'sphincter x2: std,clinical,sphincter,sing',
-                         'starfish x2: silly,cute,slang,sphincter,sing',
+                         'starfish x2: silly,cute,slang,sphincter,orifice,sing',
                         ])
        
           self.AdjList(['brown: color',
                         'clenched: small,tight,action',
                         'flexing: action',
-                        'forbidden: taboo',
+                        'forbidden: super',
                         'fuckable: horny',
                         'gaping: large,gape,loose',
                         'knotted: small,tight,desc',
@@ -1195,27 +1195,27 @@ class AnusFemale(FemaleBodyParts):
                         'little x4: small,cute,',
                         'loose: gape,loose',
                         'MILF: age,older,milf',
-                        'nasty: taboo',
+                        'nasty: super',
                         'naughty: horny',
                         'pert: cute,young',
-                        'perverted: slutty',
+                        'perverted: super',
                         'puckered: action',
                         'rusty: desc,color',
-                        'shameful: taboo',
-                        'shy: horny,taboo',
-                        'sinful: taboo',
+                        'shameful: super',
+                        'shy: cute,super',
+                        'sinful: super',
                         'smooth: feel,desc',
                         'snug x2: small,tight,cute,'
-                        'taboo: taboo',
+                        'taboo: super',
                         'teasing: horny',
                         'tender: feel,desc,cute',
                         'tight x4: small,tight',
                         'wanton: horny',
-                        'well-used: gape,older,slutty,loose',
+                        'well-used: gape,older,loose',
                         'willing: horny',
                         'winking: small,action',
                         'virgin: virginal',
-                        'vulgar: taboo',
+                        'vulgar: super',
                        ])
           
           self.DefaultNoun("anus")
@@ -2128,37 +2128,37 @@ class Penis(MaleBodyParts):
      def GetTLClass(self):
          return TagLists()
                
-     def ShortDesc(self, NotList = None, TagLists = None, bAddLen = False):
+     def ShortDesc(self, NotList = None, TagLists = None, bAddLen = False, bSilly = False):
           if bAddLen:
                if TagLists is None:
                    TagLists = self.GetTLClass()
                    TagLists.adj_extra.append(self.GenerateLength())
           
-          return super().ShortDesc(NotList, TagLists)
+          return super().ShortDesc(NotList, TagLists, bSilly)
           
-     def MediumDesc(self, NotList = None, TagLists = None, bAddLen = False):
+     def MediumDesc(self, NotList = None, TagLists = None, bAddLen = False, bSilly = False):
           if bAddLen:
                if TagLists is None:
                    TagLists = self.GetTLClass()
                    TagLists.adj_extra.append(self.GenerateLength())
                
-          return super().MediumDesc(NotList, TagLists) 
+          return super().MediumDesc(NotList, TagLists, bSilly) 
           
-     def FloweryDesc(self, NotList = None, TagLists = None, bAddLen = False):
+     def FloweryDesc(self, NotList = None, TagLists = None, bAddLen = False, bSilly = False):
           if bAddLen:
                if TagLists is None:
                    TagLists = self.GetTLClass()
                    TagLists.adj_extra.append(self.GenerateLength())
           
-          return super().FloweryDesc(NotList, TagLists) 
+          return super().FloweryDesc(NotList, TagLists, bSilly) 
           
-     def RandomDesc(self, NotList = None, TagLists = None, bShortDesc = True, bLongDesc = True, bAddLen = False):
+     def RandomDesc(self, NotList = None, TagLists = None, bShortDesc = True, bLongDesc = True, bAddLen = False, bSilly = False):
           if bAddLen:
                if TagLists is None:
                    TagLists = self.GetTLClass()
                    TagLists.adj_extra.append(self.GenerateLength())
           
-          return super().RandomDesc(NotList, TagLists) 
+          return super().RandomDesc(bShortDesc, bLongDesc, NotList, TagLists, bSilly) 
      
 class Semen(MaleBodyParts):
      def __init__(self, Params = None, NotList = None, TagLists = None):
@@ -2166,32 +2166,32 @@ class Semen(MaleBodyParts):
 
           self.NounList(['baby batter: silly,slang,sing',
                          'baby gravy: silly,crude,slang,sing',
-                         'cock-milk: crude,slang,sing',
-                         'cock-snot: crude,silly,slang,sing',
-                         'cream: desc,sing',
-                         'cum x4: std,slang,sing',
-                         'daddy-sauce: silly,crude,slang,sing',
-                         'gravy: desc,crude,sing',
-                         'jizm: crude,slang,sing',
-                         'jizz x2: crude,slang,sing',
-                         'load x2: slang,sing',
-                         'lotion: desc,sing',
-                         'love juice: silly,slang,sing',
-                         'man-custard: desc,silly,slang,sing',
-                         'man-o-naise: silly,sing',
-                         'man-milk: desc,silly,sing',
-                         'man-seed: desc,sing',
-                         'nut-butter: silly,slang,sing',
-                         'penis pudding: silly,crude,slang,sing',
-                         'sauce: desc,sing',
-                         'seed x2: std,sing',
+                         #'cock-milk: crude,slang,sing',
+                         #'cock-snot: crude,silly,slang,sing',
+                         #'cream: desc,sing',
+                         #'cum x4: std,slang,sing',
+                         #'daddy-sauce: silly,crude,slang,sing',
+                         #'gravy: desc,crude,sing',
+                         #'jizm: crude,slang,sing',
+                         #'jizz x2: crude,slang,sing',
+                         #'load x2: slang,sing',
+                         #'lotion: desc,sing',
+                         #'love juice: silly,slang,sing',
+                         #'man-custard: desc,silly,slang,sing',
+                         #'man-o-naise: silly,sing',
+                         #'man-milk: desc,silly,sing',
+                         #'man-seed: desc,sing',
+                         #'nut-butter: silly,slang,sing',
+                         #'penis pudding: silly,crude,slang,sing',
+                         #'sauce: desc,sing',
+                         #'seed x2: std,sing',
                          'semen x3: std,clinical,default,sing',
                          'sperm x2: std,clinical,plur',
                          'splooge: std,slang,sing',
                          'spunk: std,slang,sing',
-                         'throat yogurt: silly,crude,slang,sing',
-                         'trouser gravy: silly,crude,slang,sing',
-                         'weiner sauce: silly,crude,slang,sing',
+                         #'throat yogurt: silly,crude,slang,sing',
+                         #'trouser gravy: silly,crude,slang,sing',
+                         #'weiner sauce: silly,crude,slang,sing',
                         ])
                
           self.AdjList(['creamy x3: taste,color',

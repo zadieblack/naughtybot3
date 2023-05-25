@@ -474,6 +474,11 @@ class NounPhrase:
 
         return DescWordList
 
+    # Dumb workaround for when the param = the class name
+    # but you need to ref the class not the param
+    def GetEmptyTagLists(self):
+        return TagLists()
+
     # Get a new adjective that is not in the current _AdjList but
     # does not conflict with it
     def GetNewAdj(self, NotList = None, 
@@ -547,6 +552,8 @@ class NounPhrase:
         if ExclTagList is None:
             ExclTagList = []
 
+        if isinstance(self, excerpt.bodyparts.Semen):
+            print("Getting semen")
         if self.NounListLen() > 1 and not self._Noun == "":
             sNewNoun = self.GetUnit("noun", NotList = NotList + [self._Noun], ReqTagList = ReqTagList, ExclTagList = ExclTagList)
         else:
@@ -947,33 +954,48 @@ class NounPhrase:
         return sFullDesc
 
     # Gets a string description of the noun only ("hair")
-    def ShortDesc(self, NotList = None, TagLists = None): #, ExtraAdjList = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
+    def ShortDesc(self, NotList = None, TagLists = None, bSilly = False): #, ExtraAdjList = None, NounReqTagList = None, NounExclTagList = None, AdjReqTagList = None, AdjExclTagList = None):
         if NotList == None:
             NotList = []
         else:
             self.NotList(NotList)
+
+        if not bSilly:
+            if TagLists is None:
+                TagLists = self.GetEmptyTagLists()
+            TagLists.noun_excl.append("silly")
 
         self.UpdateTagLists(TagLists)
 
         return self.GetFullDesc(iNumAdjs = 0)
      
     # Gets a string description of one adjective plus the noun ("red hair")
-    def MediumDesc(self, NotList = None, TagLists = None):
+    def MediumDesc(self, NotList = None, TagLists = None, bSilly = False):
         if NotList == None:
             NotList = []
         else:
             self.NotList(NotList)
+
+        if not bSilly:
+            if TagLists is None:
+                TagLists = self.GetEmptyTagLists()
+            TagLists.noun_excl.append("silly")
 
         self.UpdateTagLists(TagLists)
           
         return self.GetFullDesc(iNumAdjs = 1)
      
     # Gets a string description of 1-3 adjs plus the noun ("long, wavy, red hair")
-    def FloweryDesc(self, NotList = None, TagLists = None):
+    def FloweryDesc(self, NotList = None, TagLists = None, bSilly = False):
         if NotList == None:
             NotList = []
         else:
             self.NotList(NotList)
+
+        if not bSilly:
+            if TagLists is None:
+                TagLists = self.GetEmptyTagLists()
+            TagLists.noun_excl.append("silly")
 
         self.UpdateTagLists(TagLists)
           
@@ -982,7 +1004,7 @@ class NounPhrase:
         return self.GetFullDesc(iNumAdjs = iNumAdjs)
      
     # Chooses either ShortDesc, MediumDesc, or FloweryDesc at random
-    def RandomDesc(self, bShortDesc = True, bLongDesc = True, NotList = None, TagLists = None):
+    def RandomDesc(self, bShortDesc = True, bLongDesc = True, NotList = None, TagLists = None, bSilly = False):
         sRandomDesc = ""
           
         iRand = randint(0, 12)
@@ -991,20 +1013,20 @@ class NounPhrase:
             if bShortDesc:
                 #use noun from the list or default noun
                 if CoinFlip():
-                        sRandomDesc = self.ShortDesc(NotList = NotList, TagLists = TagLists)
+                        sRandomDesc = self.ShortDesc(NotList = NotList, TagLists = TagLists, bSilly = bSilly)
                 else:
                         sRandomDesc = self.GetDefaultNoun(NotList = NotList)
             else:
-                sRandomDesc = self.MediumDesc(NotList = NotList, TagLists = TagLists)
+                sRandomDesc = self.MediumDesc(NotList = NotList, TagLists = TagLists, bSilly = bSilly)
         elif iRand in range(3,6):
         #medium desc 
-            sRandomDesc = self.MediumDesc(NotList = NotList, TagLists = TagLists)
+            sRandomDesc = self.MediumDesc(NotList = NotList, TagLists = TagLists, bSilly = bSilly)
         else:
         #flowery desc if allowed
             if bLongDesc:
-                sRandomDesc = self.FloweryDesc(NotList = NotList, TagLists = TagLists)
+                sRandomDesc = self.FloweryDesc(NotList = NotList, TagLists = TagLists, bSilly = bSilly)
             else:
-                sRandomDesc = self.MediumDesc(NotList = NotList, TagLists = TagLists)
+                sRandomDesc = self.MediumDesc(NotList = NotList, TagLists = TagLists, bSilly = bSilly)
                
         return sRandomDesc
 
