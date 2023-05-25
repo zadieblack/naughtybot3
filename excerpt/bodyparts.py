@@ -264,7 +264,6 @@ class Skin(FemaleBodyParts):
                        ])
           
           self.DefaultNoun('skin')
-          self.IsPlural = False
           
 class Mouth(FemaleBodyParts):
      def __init__(self, Params = None, NotList = None, TagLists = None):
@@ -293,7 +292,6 @@ class Mouth(FemaleBodyParts):
           
           self.DefaultNoun("open")
           self.DefaultAdj("insatiable")
-          self.IsPlural = False
           
 class Lips(FemaleBodyParts):
      def __init__(self, Params = None, NotList = None, TagLists = None):
@@ -864,7 +862,6 @@ class Clitoris(FemaleBodyParts):
                         'tingling: feel'])
           
           self.DefaultNoun("clit")
-          self.IsPlural = False
 
 class VaginaInner(FemaleBodyParts):
      def __init__(self, Params = None, NotList = None, TagLists = None):
@@ -933,7 +930,6 @@ class VaginaInner(FemaleBodyParts):
                        ])
                
           self.DefaultNoun("vaginal canal")
-          self.IsPlural = False
      
 class VaginaOuterLabia(FemaleBodyParts):
      def __init__(self, Params = None, NotList = None, TagLists = None):
@@ -1150,7 +1146,6 @@ class Vagina(FemaleBodyParts):
           # todo: Add "is wet" parameter
           
           self.DefaultNoun("vagina")
-          self.IsPlural = False
           self.InnerVag = VaginaInner()
           self.OuterLabia = VaginaOuterLabia()
           self.InnerLabia = VaginaInnerLabia()
@@ -1838,7 +1833,6 @@ class PenisHead(MaleBodyParts):
                        ])
           
           self.DefaultNoun("head")
-          self.IsPlural = False
           
 class Testicles(MaleBodyParts):
      def __init__(self, Params = None, NotList = None, TagLists = None):
@@ -2098,7 +2092,6 @@ class Penis(MaleBodyParts):
                                'worm']
           
           self.DefaultNoun("cock")
-          self.IsPlural = False
           self.Head = PenisHead()
           self.Testicles = Testicles()
           
@@ -2779,7 +2772,6 @@ class BodyMale(MaleBodyParts):
                      ])
           
         self.DefaultNoun("body")
-        self.IsPlural = False
         self.FacialHair = FacialHair()
         self.Hair = HairMale()
         self.Eyes = EyesMale()

@@ -8944,10 +8944,11 @@ class Generator119(ExGen):
 
         for i in range(8):
             Woman = bodies.Woman()
-            DescWordList = Woman.Breasts.GetDescWordList()
+            BodyPart = Woman.Buttocks
+            DescWordList = BodyPart.GetDescWordList()
             if len(DescWordList) > 3:
-                sTweet += "Woman.Breasts.GetDescWordList(): " + str(DescWordList) + "\n"
-                if Woman.Breasts.IsPlural:
+                sTweet += "BodyPart.GetDescWordList(): " + str(DescWordList) + "\n"
+                if BodyPart.IsPlural():
                     sVerb = "were"
                 else:
                     sVerb = "was"
@@ -8960,8 +8961,7 @@ class Generator119(ExGen):
                 while iWord2 >= -1 * len(DescWordList) and len(DescWordList[iWord2]) >= 3 and DescWordList[iWord2][-3:].lower() in ["ing","ble"] and iWord2 > -1 * len(DescWordList):
                     sTweet += "    DescWordList[" + str(iWord2) + "] is " + DescWordList[iWord2] + ", trying next word.\n"
                     iWord2 += -1
-                    
-                
+
                 sTweet += "   len = " + str(len(DescWordList)) + ", iWord1 = " + str(iWord1) + ", iWord2 = " + str(iWord2) + "\n"
                 sTweet += "   \"Her " + DescWordList[-2] + " " + DescWordList[-1] + " " + sVerb + " " + DescWordList[iWord2] + " and " + DescWordList[iWord1] + ".\"\n\n"
 
