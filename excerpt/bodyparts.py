@@ -1997,7 +1997,7 @@ class Penis(MaleBodyParts):
                         'long: length,long,bigdick',
                         'lovingly man-scaped: style,trimmed',
                         'lustful x2: horny',
-                        'magnificient: super',
+                        'magnificent: super',
                         'massive: size,bigdick',
                         'massively erect: size,bigdick,hard',
                         'meaty x3: feel,taste',

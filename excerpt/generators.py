@@ -595,23 +595,22 @@ class Generator9(ExGen):
           super().GenerateTweet()
           sTweet = ""
 
-          Penis = self.MaleBodyParts.Penis
-          Breasts = self.FemBodyParts.Breasts
-          Breasts.NounExclTagList(["smalltits","crude"])
-          Breasts.AdjExclTagList(["color","small","attractive","age"])
+          TitWoman = bodies.Woman(NewFemTraits = bodies.FemPhysTraits(BustSize = "large", IsVirgin = False))
+          Penis = self.Man.Penis
+          Penis.ExclTagList(["smalldick"])
+          Breasts = TitWoman.Breasts
+          Breasts.NounExclTagList(["sing"])
+          Breasts.AdjExclTagList(["super","horny","age","movement"])
+          sOiled = WordList(["oiled-up", "lubed-up", "greased-up", "baby oil-covered", "lotion-soaked"]).GetWord()
 
-          sTweet += "'What?' she asked. 'Hasn't a girl ever let you fuck " 
-          #sTweet += "her " + WordList(["big", "massive", "ample", "bountiful", "double-D", "jiggling", "pendulous", "swollen", "plump", "heavy", "hefty", "enormous", "fat"]).GetWord() + ", " 
-          sTweet += "her " + Breasts.GetNewAdj() + ", " 
-          if CoinFlip():
-              sTweet += Breasts.GetNewAdj() + ", " 
-          sTweet += WordList(["oiled-up", "lubed-up", "greased-up", "baby oil-covered", "lotion-soaked"]).GetWord() + " " 
-          sTweet += self.FemBodyParts.Breasts.GetNoun() + " with your "
-          if CoinFlip():
-               sTweet += Penis.RandomDesc(bAddLen = True) 
-          else:
-               sTweet += Penis.RandomDesc()
-          sTweet += " before?'\n\n'Only my " + self.FFWB.GetPerson() + ",' " + self.MaleName.FirstName() + " replied."
+          sTweet += "'What?' she asked him. 'Hasn't " + AddArticles(TitWoman.Noun) + " ever let you fuck " 
+          sTweet += "her " + Breasts.FloweryDesc(TagLists = TagLists(adj_extra = [sOiled]), bSilly = True) + " "
+          sTweet += "with your "
+          sTweet += Penis.RandomDesc(bAddLen = CoinFlip()) 
+          sTweet += " before?'\n\n" 
+          
+          sTweet += "'Only my " + self.FFWB.GetPerson() + ",' " 
+          sTweet += self.MaleName.FirstName() + " replied."
           
           return sTweet
           
