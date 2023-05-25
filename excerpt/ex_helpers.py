@@ -204,6 +204,9 @@ class NounPhrase:
                             if not tag in UsedTagList:
                                 UsedTagList.append(tag)
        
+                LocalReqTagList = AdjReqTagList.copy()
+                LocalExclTagList = AdjExclTagList.copy()
+
                 # Parse extra adjs list, add any tags to the parent
                 # and to the used tag list
                 ParsedExtraAdjList = []
@@ -218,6 +221,10 @@ class NounPhrase:
                                 self.AddUnitTag(sUnit,tag)
                                 if not tag in UsedTagList:
                                     UsedTagList.append(tag)
+                            if set(UsedTagList).intersection(LocalReqTagList):
+                                for newtag in UsedTagList:
+                                    if newtag in LocalReqTagList:
+                                        LocalReqTagList.remove(newtag)
 
                 # Get color
                 if not self.GetColor():
@@ -229,8 +236,6 @@ class NounPhrase:
                     self.AddAdj(self.GetColor())
                     iColorAdjNum += 1
 
-                LocalReqTagList = AdjReqTagList.copy()
-                LocalExclTagList = AdjExclTagList.copy()
                 for i in range(self._iNumAdjs - iColorAdjNum):
                     sAdj = self.GetNewAdj(NotList = list(set(self._NotList) | set([self._Noun]) | set(self._AdjList)), 
                                           ReqTagList = LocalReqTagList, 
