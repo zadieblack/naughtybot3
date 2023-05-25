@@ -716,7 +716,7 @@ class Generator12(ExGen):
                              " pushed the bed-sheets aside, revealing her naked body"])
           Seductions = WordList(["Let's play a little game, baby,",
                                  "Come to mommy, baby,",
-                                 "Come lay down so mommy can ride your face, baby,",
+                                 "Come here and let mommy can ride your face, baby,",
                                  "Please tell me you eat ass,",
                                  "Hope " + WordList(["you're hungry","you've got a big appetite"]).GetWord() + " because you're about to eat some " + self.Woman.Vagina.ShortDesc() + ",",
                                  "There's a bottle on the bedside table. Why don't you grab it and start " + WordList(["oiling","lubing"]).GetWord() + " me up?",
@@ -752,7 +752,7 @@ class Generator12(ExGen):
           sTweet += "she " + WordList(["said in a husky voice","purred","growled","said in a throaty voice"]).GetWord() + "."
 
           if CoinFlip():
-              sTweet += "\n\n. . .\n\n"
+              sTweet += "\n. . .\n\n"
               sTweet += "\"And that's how I wound up " 
               sTweet += WordList(["banging","fucking","going down on","having sex with",
                                   "getting a hand-job from","getting a blow-job from",
@@ -760,6 +760,7 @@ class Generator12(ExGen):
                                   "tea-bagging","losing my virginity to",
                                   "making a sex-tape with",
                                   "getting an enema from",
+                                  "getting handcuffed to the bed by"
                                   "getting herpes from","impregnating",
                                   "getting plugged with a strap-on by",
                                   "paying $1200 to","having my face ridden by",
