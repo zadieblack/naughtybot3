@@ -846,7 +846,8 @@ class Generator13(ExGen):
      
 class Generator14(ExGen):
      # 'Oh Julian,' she said, 'I've never been with a duke before.'
-     # 'Fear not, my love,' he said, as he began to gently fuck her bunghole."
+     # 'Fear not, my love, I would never hurt you,' he said as he
+     # began to gently fuck her bunghole."
      def __init__(self):
          super().__init__(ID = 14, Priority = GenPriority.Normal)
      
@@ -859,17 +860,45 @@ class Generator14(ExGen):
           sHerName1 = self.FemaleName.FirstName()
           sHerName2 = self.FemaleName.FirstName()
           
+          Woman1 = self.Woman
+          Woman2 = bodies.Woman(NewFemTraits = bodies.FemPhysTraits(AgeCat = WordList(["teen","college","twenties"]).GetWord(), IsVirgin = True))
+          Man1 = bodies.Man(NewMaleTraits = bodies.MalePhysTraits(DickInches = randint(7,15)))
+          Man2 = bodies.Man()
+
+          sAdv = WordList(["forcefully","relentlessly","urgently","vigorously"]).GetWord()
+
           iRand = randint(1,3)
-          
           if iRand == 1:
-               sTweet = "'Oh " + sHisName1 + ",' she said, 'I've never been with " + AddArticles(self.WealthyMan.GetPerson()) + " before.'\n\n"
-               sTweet += "'Fear not, my " + self.TermsOfEndearment.GetWord() + ", I would never hurt you,' he said as he began to " + self.VMakeLove.Present() + " her " + self.FemBodyParts.GetRandomHole() + " with his " +self.MaleBodyParts.Penis.RandomDesc(bAddLen = True) + "."
+               sTweet += "'Oh " + sHisName1 + ",' she said, 'I've never " 
+               sTweet += "been with " + AddArticles(self.WealthyMan.GetPerson()) + " before.'\n\n"
+               sTweet += "'Fear not, my " + self.TermsOfEndearment.GetWord() + ", " 
+               sTweet += "I would never hurt you,' he said as he " 
+               sTweet += "began to " + sAdv + " " + self.VThrust.Present() + " " 
+               sTweet += "her " + Woman1.Body.GetRandomHole() + " " 
+               sTweet += "with his " + Man1.Penis.RandomDesc(bAddLen = True) + "."
           elif iRand == 2:
-               sTweet = "'Oh " + sHerName1 + ",' she said, 'I've never been with " + AddArticles(self.WealthyWoman.GetPerson()) + " before.'\n\n"
-               sTweet += "'Fear not, my " + self.TermsOfEndearment.GetWord() + ", I would never hurt you,' " + sHerName1 + " said as she " + self.VMakeLove.Past() + " " + self.FemaleName.FirstName() + "'s " + self.FemBodyParts.GetRandomHole() + " with " + str(randint(2,5)) + " fingers."
-          else:
-               sTweet = "'Oh " + sHisName1 + ",' " + sHisName2 + " said, 'I've never been with " + AddArticles(self.WealthyMan.GetPerson()) + " before.'\n\n"
-               sTweet += "'Fear not, my sweet boy, I would never hurt you,' " + sHisName1 + " said as he began to " + self.VMakeLove.Present() + " " + sHisName2 + "'s " + self.FemBodyParts.Ass.Anus.ShortDesc() + " with his " + self.MaleBodyParts.Penis.RandomDesc(bAddLen = True) + "."
+               sTweet += "'Oh " + sHerName1 + ",' she said, 'I've never " 
+               sTweet += "been with " + AddArticles(self.WealthyWoman.GetPerson()) + " before.'\n\n"
+               sTweet += "'Fear not, my " + self.TermsOfEndearment.GetWord() + ", " 
+               sTweet += "I would never hurt you,' " + sHerName1 + " said " 
+               if CoinFlip() and CoinFlip():
+                   sTweet += "as she buckled on " 
+                   sTweet += AddArticles(WordList(["10-inch","12-inch","15-inch","foot-long","16-inch","two foot-long","huge"]).GetWord()) + " "
+                   sTweet += "black strap-on and began lubing up "
+                   sTweet += "the girl's " + Woman2.Anus.RandomDesc(bLongDesc = False, TagLists = TagLists(noun_req = ["sphincter"])) + "."
+               else:
+                   sTweet += "as she " + sAdv + " inserted "
+                   sTweet += WordList(["two fingers","three fingers","four fingers","her whole hand","her fist"]).GetWord() + " "
+                   sTweet += "into " + self.FemaleName.FirstName() + "'s " 
+                   sTweet += Woman2.Body.GetRandomHole() + "." 
+          elif iRand == 3:
+               sTweet += "'Oh " + sHisName1 + ",' " + sHisName2 + " said, " 
+               sTweet += "'I've never been with " + AddArticles(self.WealthyMan.GetPerson()) + " before.'\n\n"
+               sTweet += "'Fear not, my " + WordList(["sweet","handsome","pretty"]).GetWord() + " boy, " 
+               sTweet += "I would never hurt you,' " + sHisName1 + " said " 
+               sTweet += "as he began to " + sAdv + " " + self.VThrust.Present() + " "  
+               sTweet += sHisName2 + "'s " + self.FemBodyParts.Ass.Anus.ShortDesc() + " " 
+               sTweet += "with his " + Man1.Penis.RandomDesc(bAddLen = True) + "."
           
           return sTweet
           
