@@ -365,47 +365,32 @@ class WordList:
                
         if sNot != "":
             NotList.append(sNot)
+
+        if SomeHistoryQ is None:
+            SomeHistoryQ = HistoryQ()
                
         if not self.List == None and len(self.List) > 0:
             # Remove NotList words from selection list
-            SelectList = self.List.copy()
-            for notword in NotList:
-                for i, word in enumerate(SelectList):
-                    if FoundIn(word,notword) and len(SelectList) > 1:
-                        SelectList.pop(i)
-                    elif len(SelectList) == 1 and len(self.List) > 1:
-                        print("=*= WARNING =*= WordList.GetWord() reduced to one choice by NotList.")
-                        print("                Orig. List = " + str(sorted(self.List)))
-                        print("                NotList    = " + str(sorted(NotList)) + "\n")
+            SelectList = [] #self.List.copy()
+            for i, word in enumerate(self.List):
+                bWordOK = True
+                for notword in NotList:
+                    if FoundIn(word, notword):
+                        bWordOK = False
+                        break
+                if bWordOK and SomeHistoryQ.IsInQ(word):
+                    bWordOK = False
+                if bWordOK:
+                    SelectList.append(self.List[i])
+            
+            if len(SelectList) == 0:
+                SelectList = self.List.copy()
+                print("=*= WARNING =*= WordList.GetWord() found no valid words to choose from. Selecting from unfiltered list.")
+                print("                Orig. List = " + str(sorted(self.List)))
+                print("                NotList    = " + str(sorted(NotList)) + "\n")
 
-            if len(SelectList) > 0:
-                if not SomeHistoryQ is None:
-                    for i, word in enumerate(SelectList):
-                        if SomeHistoryQ.IsInQ(word) and len(SelectList) > 1:
-                            SelectList.pop(i)
-                        elif len(SelectList) == 1 and len(self.List) > 1:
-                            print("=*= WARNING =*= WordList.GetWord() reduced to one choice by HistoryQ.")
-                            print("                Orig. List = " + str(sorted(self.List)))
-                            print("                History Q  = " + str(sorted(SomeHistoryQ.HistoryQ)) + "\n")
-                sWord = choice(SelectList)
+            sWord = choice(SelectList)
 
-                #if not SomeHistoryQ is None:
-                #    i = 0
-                #    while FoundIn(sWord, NotList) and i < MAX_SEARCH_LOOPS:
-                #            #print("Collision! '" + sWord + "' in NotList, trying again.")
-                #            sWord = SelectList[randint(0, len(SelectList) - 1)]
-                #            i += 1
-                #else:
-                    #i = 0
-                    #while (not SomeHistoryQ.PushToHistoryQ(sWord) or FoundIn(sWord, NotList)) and i < MAX_SEARCH_LOOPS:
-                    #        #print("Collision! '" + sWord + "' in NotList, trying again.")
-                    #        sWord = SelectList[randint(0, len(SelectList) - 1)]
-                    #        i += 1
-            #else:
-            #    print("=*= WARNING =*= WordList.GetWord() unable to select a word due to empty selection list.")
-            #    print("                List    = " + str(sorted(self.List)))
-            #    print("                NotList = " + str(sorted(NotList)) + "\n")
- 
         return sWord
           
     def Length(self):

@@ -346,7 +346,7 @@ class Generator5(ExGen):
           sTweet = "'Oh, " + self.MaleName.FirstName() + ",' "
           sTweet += "she " + self.VMoan.Past() +", "
 
-          iRand = randint(1,9)
+          iRand = randint(1,10)
           #iRand = 3
           if iRand == 1:
               sTweet += "naked in his " + self.Man.Arms.RandomDesc()
@@ -374,14 +374,20 @@ class Generator5(ExGen):
               sTweet += WordList(["carressing","stroking","cupping","touching","rubbing","fondling"]).GetWord() + " "
               sTweet += "her " + self.Woman.Breasts.RandomDesc() + " "
               sTweet += WordList(["sensually","erotically","seductively","passionately"]).GetWord()
+          elif iRand == 10:
+              sTweet += "spreading her " + self.Woman.Vagina.ShortDesc() + " "
+              sTweet += "with her fingers to show him "
+              sTweet += "her " + self.Woman.InnerVagina.RandomDesc()
           sTweet += ", "
 
           sSemen = self.Semen.RandomDesc(NotList = SemenNotList)
           sTweet += "'" + WordList(["I'm so thirsty for your " + sSemen,
                                     "I crave the taste of your " + sSemen,
                                     "I need to be filled with your " + sSemen,
+                                    "I need your " + sSemen + " inside me so bad",
                                     "I long for you to cover me with your " + sSemen,
                                     "I need your " + sSemen + " so bad",
+                                    "I long for you to cover my " + self.Woman.Breasts.ShortDesc(TagLists = TagLists(noun_excl = ["silly","desc"])) + " with your " + sSemen,
                                    ]).GetWord() + "!'\n\n"
           sTweet += "'But " + self.FemaleName.FirstName() + ",' he said, "
           iRand = randint(1,3)
@@ -495,7 +501,7 @@ class Generator7(ExGen):
           iRand = randint(1,3)
           if iRand == 1:
                sTweet = self.FemaleName.FirstName() + " bit her lip. She lay on "
-               sTweet += Location.LyingOn + ", her " + self.FemBodyParts.Breasts.RandomDesc(TagLists = TagLists(noun_excl = ["silly"])) + " " 
+               sTweet += Location.LyingOn + ", her " + self.Woman.Breasts.RandomDesc() + " " 
                sTweet += WordList(["heaving", "quivering", "trembling", "shuddering", "rising and falling"]).GetWord() + " "
                sTweet += "as " + self.FemaleName.FirstName() + " lubed up a " 
                sTweet += str(randint(8,16)) + " 1/2\" " + WordList(["black", "pink", "steel", "vibrating"]).GetWord() + " strap-on. "
@@ -504,19 +510,19 @@ class Generator7(ExGen):
                sTweet += "my lesbian lover was about to " 
           else:
                sTweet = self.FemaleName.FirstName() + " bit her lip. She lay on " + Location.LyingOn + ", "
-               sTweet += "her " + self.FemBodyParts.Breasts.RandomDesc(TagLists = TagLists(noun_excl = ["silly"])) + " " 
+               sTweet += "her " + self.Woman.Breasts.RandomDesc() + " " 
                sTweet += WordList(["heaving", "quivering", "trembling", "shuddering", "rising and falling"]).GetWord() + " "
-               sTweet += "as " + self.MaleName.FirstName() + " lubed up her " + self.FemBodyParts.Ass.Anus.RandomDesc() + ". "
+               sTweet += "as " + self.MaleName.FirstName() + " lubed up her " + self.Woman.Ass.Anus.RandomDesc(TagLists = TagLists(noun_req = ["sphincter"])) + ". "
                sTweet += "'" + self.Exclamation.GetWord().capitalize() + "' she said, "
                sTweet += "'What would Father " + self.MaleName.FirstName() + " say if he knew that "
                sTweet += "my " + self.MFWB.GetPerson() + " was about to " 
           
           if CoinFlip():
           #ass 
-               sTweet += Verbs.GetWord(NotList = ['hammer','impale','nail']) + " my ass " + Location.NamePrep + "?'"
+               sTweet += Verbs.GetWord(NotList = ['fuck','hammer','impale','nail','ream','sodomize']) + " my ass " + Location.NamePrep + "?'"
           else:
           #asshole 
-               sTweet += Verbs.GetWord(NotList = ['bang','do']) + " my " + self.FemBodyParts.Ass.Anus.ShortDesc() + " " + Location.NamePrep + "?'"
+               sTweet += Verbs.GetWord(NotList = ['bang','do']) + " my " + self.Woman.Anus.ShortDesc(TagLists = TagLists(noun_req = ["orifice"])) + " " + Location.NamePrep + "?'"
           
           return sTweet
 

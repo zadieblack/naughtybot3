@@ -552,8 +552,6 @@ class NounPhrase:
         if ExclTagList is None:
             ExclTagList = []
 
-        if isinstance(self, excerpt.bodyparts.Semen):
-            print("Getting semen")
         if self.NounListLen() > 1 and not self._Noun == "":
             sNewNoun = self.GetUnit("noun", NotList = NotList + [self._Noun], ReqTagList = ReqTagList, ExclTagList = ExclTagList)
         else:
@@ -1012,10 +1010,10 @@ class NounPhrase:
         #short desc if allowed 
             if bShortDesc:
                 #use noun from the list or default noun
-                if CoinFlip():
-                        sRandomDesc = self.ShortDesc(NotList = NotList, TagLists = TagLists, bSilly = bSilly)
+                if FoundIn(self.GetDefaultNoun(), NotList) or CoinFlip():
+                    sRandomDesc = self.ShortDesc(NotList = NotList, TagLists = TagLists, bSilly = bSilly)
                 else:
-                        sRandomDesc = self.GetDefaultNoun(NotList = NotList)
+                    sRandomDesc = self.GetDefaultNoun(NotList = NotList)
             else:
                 sRandomDesc = self.MediumDesc(NotList = NotList, TagLists = TagLists, bSilly = bSilly)
         elif iRand in range(3,6):
