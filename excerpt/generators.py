@@ -1125,32 +1125,37 @@ class Generator20(ExGen):
           super().GenerateTweet()
           sTweet = ""
 
-          sTweet = self.MaleName.FirstName() + " approached the bed completely naked. "
+          Man = self.Man
+          Woman = self.Woman
+
+          if CoinFlip():
+               sTweet += self.MaleName.FirstName() + " approached the bed completely naked. "
+          else:
+               sTweet += "The " + Man.Desc + " approached the bed completely naked. "
           sTweet += "A " + WordList(['thrill','shiver','tingle']).GetWord() + " "
           sTweet += "ran through " + self.FemaleName.FirstName() + " at the sight of "
           if CoinFlip():
-               sTweet += "his " + self.MaleBodyParts.Eyes.RandomDesc(bShortDesc = False) + ", "
+               sTweet += "his " + Man.Eyes.RandomDesc(bShortDesc = False) + ", "
           else:
-               sTweet += "his " + self.MaleBodyParts.Jaw.RandomDesc(bShortDesc = False) + ", "
-          sTweet += self.MaleBodyParts.DescRandomNakedParts(iNum = 4, sDivideChar = ";",bAss = True, bPenis = True, sPossessive = "his")
+               sTweet += "his " + Man.Jaw.RandomDesc(bShortDesc = False) + ", "
+          sTweet += Man.Body.DescRandomNakedParts(iNum = 4, sDivideChar = ";",bAss = True, bPenis = True, sPossessive = "his")
           sTweet += ".\n\n"
           sTweet += "She could hardly believe that in a few minutes this man would be "
           iRand = randint(1,8)
           if iRand in [1,3]:
                #ass 
-               sTweet += self.VThrust.Gerund() + " her virgin " + self.FemBodyParts.Ass.Anus.ShortDesc()
+               sTweet += self.VThrust.Gerund() + " her virgin " + Woman.Anus.ShortDesc()
           elif iRand in [4]:
                #mouth
                sTweet += self.VThrust.Gerund() + " her "
-               sTweet += self.FemBodyParts.Mouth.RandomDesc()
+               sTweet += Woman.Mouth.RandomDesc()
           elif iRand in [5]:
                #other 
                sTweet += "deep inside her, filling her with his " + self.Semen.RandomDesc()
           else:
                #cunt
-               sTweet += self.VThrust.Gerund() + " her virgin " + self.FemBodyParts.Vagina.ShortDesc()
-               
-          
+               sTweet += self.VThrust.Gerund() + " her virgin " + Woman.Vagina.ShortDesc()
+      
           sTweet += "!"
           
           return sTweet
@@ -1191,16 +1196,16 @@ class Generator22(ExGen):
           
           ManNotList = ['prince','girlfriend']
 
-          sTweet = self.MaleName.FirstName() + "'s robe fell to the floor, and " + self.FemaleName.FirstName() + "'s heart skipped a beat. He had "
-          
-          sTweet += self.MaleBodyParts.DescRandomNakedParts(iNum = 5, sDivideChar = ";", bPenis = True, bAss = True)
+          sTweet = self.MaleName.FirstName() + "'s robe fell to the floor, and " 
+          sTweet += self.FemaleName.FirstName() + "'s heart skipped a beat. " 
+          sTweet += "He had " + self.Man.Body.DescRandomNakedParts(iNum = 5, sDivideChar = ";", bPenis = True, bAss = True)
           sTweet += ".\n\n\"" + self.Exclamation.GetWord(bHappy = True).capitalize() + " "
           sTweet += "I'm a lucky " + WordList(['girl','woman']).GetWord() + "!\" "
           sTweet += "she thought to herself. "
           sTweet += "\"My " + self.MFWB.GetPerson() + " "
           sTweet += "is " + WordList(["a sex god","such a snacck","a total dreamboat","such a DILF",
-                                             "such a hunk","fucking sexy","a total hearthrob",
-                                             "a hunk of beefcake"]).GetWord() + "!\""
+                                        "such a hunk","fucking sexy","a total hearthrob",
+                                        "a hunk of beefcake"]).GetWord() + "!\""
           
           return sTweet
           
@@ -8934,7 +8939,7 @@ class Generator118(ExGen):
 ## {the word 'lube'/'wrong hole'}."
 class Generator119(ExGen):
     def __init__(self):
-        super().__init__(ID = 119, Priority = GenPriority.Lowest, Disabled = False)
+        super().__init__(ID = 119, Priority = GenPriority.Lowest, Disabled = True)
      
     def GenerateTweet(self):
         super().GenerateTweet()
