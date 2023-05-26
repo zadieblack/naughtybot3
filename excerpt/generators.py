@@ -1520,6 +1520,8 @@ class Generator28(ExGen):
           sTweet = ""
           
           Location = locations.LocationSelector().Location()
+          Woman = self.Woman
+          Man = self.Man
           
           sHisName = self.MaleName.FirstName()
           sHerName = self.FemaleName.FirstName()
@@ -1529,12 +1531,19 @@ class Generator28(ExGen):
                sTweet += sHisName + " ripped " + sHerName + "'s " + Location.FemaleBottomClothing + " off. "
           sTweet += "She sat down " + Location.SittingOn + " and spread her legs. " + sHisName + " began to "
           if CoinFlip():
-               sTweet += self.VForeplay.Present() + " her " + self.FemBodyParts.Vagina.OuterLabia.RandomDesc() + " vigorously.\n\n" 
+               sTweet += self.VForeplay.Present() + " her " + Woman.OuterLabia.RandomDesc() + " vigorously.\n\n" 
           else: 
-               sTweet += self.VForeplay.Present() + " her " + self.FemBodyParts.Vagina.InnerLabia.RandomDesc() + " tenderly.\n\n"
-          sTweet += "'I'm ready!' she " + self.VMoan.Past() + ". 'I want that " + self.MaleBodyParts.Penis.RandomDesc() + " in me right now!'\n\n"
-          sTweet += "He inserted his " + self.MaleBodyParts.Penis.ShortDesc() + " into her " + self.FemBodyParts.Vagina.InnerVag.MediumDesc() + " and began to " + self.VThrust.Present() + " it roughly.\n\n"
-          sTweet += "'Harder, baby, I want you to " + self.VEjac.Present() + " inside,' she " + self.VMoan.Past() + ". Then she looked over at her " + self.MaleSO.GetWord() + ", " + self.MaleName.FirstName() + "."
+               sTweet += self.VForeplay.Present() + " her " + Woman.InnerLabia.RandomDesc() + " tenderly.\n\n"
+          sTweet += "'I'm ready!' she " + self.VMoan.Past() + ". " 
+          sTweet += "'I want that " + Man.Penis.RandomDesc() + " " 
+          sTweet += "in me right now!'\n\n"
+          sTweet += "He inserted his " + Man.Penis.ShortDesc() + " " 
+          sTweet += "into her " + Woman.InnerVagina.MediumDesc() + " and " 
+          sTweet += "began to " + self.VThrust.Present() + " it roughly.\n\n"
+          sTweet += "'Harder, baby, I want you to " + self.VEjac.Present() + " inside,' " 
+          sTweet += "she " + self.VMoan.Past() + ". Then she looked over " 
+          sTweet += "at her " + self.MaleSO.GetWord() + ", " 
+          sTweet += self.MaleName.FirstName() + "."
           
           iRand = randint(1,4)
           if iRand == 1:
@@ -1657,27 +1666,46 @@ class Generator30(ExGen):
           super().GenerateTweet()
           sTweet = ""
 
-          MoralAuthorities = WordList(['priest','priest','pastor'])
-          
+          MoralAuthorities = WordList(['priest','priest','pastor','AA sponsor'])
+          Woman = self.Woman
           FWBNotList = ['roommate','ex','land lady','maid','next-door','hot friend','wife','Avon']
           sFWB = self.FFWB.GetPerson(NotList = FWBNotList)
           sMoral = MoralAuthorities.GetWord(NotList = [sFWB])
           
-          sTweet = "'C'mere baby,' she said. 'I want you to suck on my "
+          sTweet = "'C'mere baby,' the " + Woman.Desc + " said. 'I want you to suck on my "
           if CoinFlip():
-               sTweet += self.FemBodyParts.Breasts.ShortDesc() + ". "
+               sTweet += Woman.Breasts.ShortDesc() + ". "
           else:
-               sTweet += self.FemBodyParts.Breasts.Nipples.RandomDesc() + ". "
+               sTweet += Woman.Nipples.RandomDesc() + ". "
           if CoinFlip():
-               sTweet += "I want to feel your " + self.MaleBodyParts.Penis.RandomDesc() + " against my " + self.FemBodyParts.Ass.ShortDesc() + " "
+               sTweet += "I want to feel your " + self.MaleBodyParts.Penis.RandomDesc() + " " 
+               sTweet += "against my " + Woman.Ass.ShortDesc() + " "
           else:
-               sTweet += "I want you to spread my legs wide and " + self.VForeplay.Present() + " my " + self.FemBodyParts.Vagina.Clitoris.RandomDesc() + " "
-          if CoinFlip():
-               sTweet += "and then I want you to " + self.VMakeLove.Present() + " my " + self.FemBodyParts.Vagina.RandomDesc() + ".'\n\n"
-          else:
-               sTweet += "and then I want you to fill my " + self.FemBodyParts.Vagina.InnerVag.RandomDesc() + " with your " + self.Semen.RandomDesc() + ".'\n\n"
+               sTweet += "I want you to spread my legs wide " 
+               sTweet += "and " + self.VForeplay.Present() + " " 
+               sTweet += "my " + Woman.Clitoris.RandomDesc() + " "
           
-          sTweet += "'Ooooh, yes,' " + self.VMoan.Past() + " " + self.MaleName.FirstName() + ". 'But my " + sMoral + " says it's wrong to do this with my " + sFWB + ".'"
+          iRand = randint(1,3)
+          if iRand == 1:
+               sTweet += "and then I want you to " + self.VMakeLove.Present() + " "
+               sTweet += "my " + Woman.Vagina.RandomDesc(bSilly = True) + ".'\n\n"
+          elif iRand == 2:
+               sTweet += "and then I want to " + WordList(["ride","bounce on","bounce up-and-down on","pogostick"]).GetWord() + " "
+               sTweet += "your " + self.Man.Penis.FloweryDesc(bSilly = True) + " "
+               sTweet += "all night long.'\n\n"
+          elif iRand == 3:
+               sTweet += "and then I want you to fill " 
+               if CoinFlip():
+                   sTweet += "my " + Woman.InnerVagina.RandomDesc(bLongDesc = False) + " " 
+               else:
+                   sTweet += "my " + Woman.Vagina.RandomDesc(bLongDesc = False, TagLists = TagLists(adj_excl = ["clinical"])) + " "
+               sTweet += "with your " + self.Semen.RandomDesc(bShortDesc = False, bSilly = True) + ".'\n\n"
+          
+          sTweet += "'" + WordList(["Ooooh, yes","Oh, fuck yes","Oh God yes","Oh fuck, baby, yes","Oh God, baby, yes"]).GetWord() + ",' " 
+          sTweet += self.VMoan.Past() + " " 
+          sTweet += self.MaleName.FirstName() + ". 'But... " 
+          sTweet += "my " + sMoral + " says it's wrong to do this "
+          sTweet += "with my " + sFWB + ".'"
           
           return sTweet
           
@@ -9280,6 +9308,10 @@ class Generator121(ExGen):
 #
 # "Mr. Peterson from the bank? Just forget he's there," he says.
 
+# Woman is so excited to finally have man inside her. She's been
+# anticipating this all night. She can't wait to ride his hard
+# dick. 
+# "Oh, shit, sorry," says the guy, accidentally ejaculating.
 #class Generator124(ExGen):
 #    def __init__(self):
 #        super().__init__(ID = 124, Priority = GenPriority.Normal)
