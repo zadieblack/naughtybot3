@@ -8942,28 +8942,31 @@ class Generator119(ExGen):
 
         Woman = None
 
-        for i in range(8):
+        for i in range(12):
             Woman = bodies.Woman()
-            BodyPart = Woman.Buttocks
-            DescWordList = BodyPart.GetDescWordList()
-            if len(DescWordList) > 3:
-                sTweet += "BodyPart.GetDescWordList(): " + str(DescWordList) + "\n"
-                if BodyPart.IsPlural():
-                    sVerb = "were"
-                else:
-                    sVerb = "was"
-                if len(DescWordList) == 4:
-                    iWord1 = -3 
-                else:
-                    iWord1 = choice([-3,-4])
-                iWord2 = -1 * randint(-1 * (iWord1 - 1), len(DescWordList))
-                sTweet += "   DescWordList[" + str(iWord2) + "][-3:] = \"" + str(DescWordList[iWord2][-3:]) + "\"\n"
-                while iWord2 >= -1 * len(DescWordList) and len(DescWordList[iWord2]) >= 3 and DescWordList[iWord2][-3:].lower() in ["ing","ble"] and iWord2 > -1 * len(DescWordList):
-                    sTweet += "    DescWordList[" + str(iWord2) + "] is " + DescWordList[iWord2] + ", trying next word.\n"
-                    iWord2 += -1
+            BodyPart = bodies.Man().Testicles
 
-                sTweet += "   len = " + str(len(DescWordList)) + ", iWord1 = " + str(iWord1) + ", iWord2 = " + str(iWord2) + "\n"
-                sTweet += "   \"Her " + DescWordList[-2] + " " + DescWordList[-1] + " " + sVerb + " " + DescWordList[iWord2] + " and " + DescWordList[iWord1] + ".\"\n\n"
+            sTweet += "His " + BodyPart.GetComplexPhrase() + ".\n\n"
+
+            #DescWordList = BodyPart.GetDescWordList()
+            #if len(DescWordList) > 3:
+            #    sTweet += "BodyPart.GetDescWordList(): " + str(DescWordList) + "\n"
+            #    if BodyPart.IsPlural():
+            #        sVerb = "were"
+            #    else:
+            #        sVerb = "was"
+            #    if len(DescWordList) == 4:
+            #        iWord1 = -3 
+            #    else:
+            #        iWord1 = choice([-3,-4])
+            #    iWord2 = -1 * randint(-1 * (iWord1 - 1), len(DescWordList))
+            #    sTweet += "   DescWordList[" + str(iWord2) + "][-3:] = \"" + str(DescWordList[iWord2][-3:]) + "\"\n"
+            #    while iWord2 >= -1 * len(DescWordList) and len(DescWordList[iWord2]) >= 3 and DescWordList[iWord2][-3:].lower() in ["ing","ble"] and iWord2 > -1 * len(DescWordList):
+            #        sTweet += "    DescWordList[" + str(iWord2) + "] is " + DescWordList[iWord2] + ", trying next word.\n"
+            #        iWord2 += -1
+
+            #    sTweet += "   len = " + str(len(DescWordList)) + ", iWord1 = " + str(iWord1) + ", iWord2 = " + str(iWord2) + "\n"
+            #    sTweet += "   \"Her " + DescWordList[-2] + " " + DescWordList[-1] + " " + sVerb + " " + DescWordList[iWord2] + " and " + DescWordList[iWord1] + ".\"\n\n"
 
         return sTweet
 

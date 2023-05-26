@@ -424,6 +424,56 @@ class NounPhrase:
         
         return sAdj
 
+    # Get two adjectives for use in sentences like
+    # "the noun was adj1 and adj2." The adjectives
+    # will be selected from the second or third 
+    # order adj in the adj list, plus one later adj.
+    def GetAdjPair(self):
+        AdjPair = ["",""]
+
+        DescWordList = self.GetDescWordList()
+        iWord1 = 0
+        iWord2 = 0
+
+        # The first words in the word list, the noun & 
+        # first order adj, cannot be used as part of this
+        # pair. If there are 4 or more words, this pair 
+        # will be 3 & 4. If there are only 3, this pair 
+        # will be 3 and a blank.
+        if len(DescWordList) > 3:
+            if len(DescWordList) == 4:
+                iWord1 = -3 
+            else:
+                iWord1 = choice([-3,-4])
+            iWord2 = -1 * randint(-1 * (iWord1 - 1), len(DescWordList))
+            
+            # Gerunds only really sound good in Word1.
+            # So if we have one in Word2, let's pick a
+            # different word.
+            iCounter = 0
+            while iWord2 >= -1 * len(DescWordList) and iCounter < 20:
+                if len(DescWordList[iWord2]) > 3 and DescWordList[iWord2][-3:].lower() == "ing":
+                    pass
+                elif len(DescWordList[iWord2]) > 4 and DescWordList[iWord2][-4:].lower() == "able":
+                    pass
+                else: 
+                    break
+                iWord2 = -1 * randint(-1 * (iWord1 - 1), len(DescWordList))
+                iCounter += 1
+
+        elif len(DescWordList) == 3:
+            iWord1 = -3
+        
+        if not iWord2 == 0:
+            AdjPair[0] = DescWordList[iWord2]
+        if not iWord1 == 0:
+            AdjPair[1] = DescWordList[iWord1]
+
+        return AdjPair
+
+        # The adjs are returned in reversed order
+        return [iWord2, iWord1]
+
     # Get the AdjList
     def GetAdjList(self, sListName = None):
         if sListName is None:
@@ -442,6 +492,35 @@ class NounPhrase:
     # Get the ColorList
     def GetColorList(self):
         return self.GetUnitList(sListName, "color") 
+
+    def GetComplexPhrase(self):
+        sPhrase = ""
+
+        DescWordList = self.GetDescWordList()
+
+        if len(DescWordList) > 0:
+            # Add the noun 
+            sPhrase = DescWordList[-1]
+
+        if len(DescWordList) > 1:
+            # Add the 1st order adj
+            sPhrase = DescWordList[-2] + " " + sPhrase
+
+        if len(DescWordList) > 2:
+            # Add "was" or "were" depending on noun
+            # plurality
+            sPhrase += " " + self.GetWasWere()
+
+            # Add the adj pair. If there are not enough
+            # adjs for a complete pair, only [1] will
+            # be used.
+            AdjPair = self.GetAdjPair()
+            if AdjPair[0] != "":
+                sPhrase += " " + AdjPair[0] + " and"
+            if AdjPair[1] != "":
+                sPhrase += " " + AdjPair[1]
+
+        return sPhrase
           
     # Get the default adj
     def GetDefaultAdj(self, NotList = None):
@@ -671,6 +750,13 @@ class NounPhrase:
             UnitList = ListDict[sListName.lower()]
 
         return UnitList 
+
+    def GetWasWere(self):
+        sVerb = "was"
+        if self.IsPlural():
+            sVerb = "were"
+
+        return sVerb
 
     # Return true if specified adj in specified list
     def IsAdjInList(self, sAdj, sListName):

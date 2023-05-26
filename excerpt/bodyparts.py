@@ -1839,7 +1839,7 @@ class Testicles(MaleBodyParts):
           super().__init__(Params, NotList, TagLists)
 
           self.NounList(['balls x3: std,default,plur', 
-                         'ballsack x2: silly,crude,slang,plur',
+                         'ballsack x2: silly,crude,slang,sing',
                          'bollocks: silly,crude,plur',
                          'gonads: std, clinical, plur',
                          'nuts: silly,slang,plur',
@@ -1850,23 +1850,50 @@ class Testicles(MaleBodyParts):
                          'testicles x2: std,clinical,plur',
                         ])
                
-          self.AdjList(['dangling',
-                        'downy',
-                        'down-covered',
-                        'fleshy',
-                        'hairy',
-                        'heavy',
-                        'hefty',
-                        'pendulous',
-                        'round',
-                        'satin',
-                        'silken',
-                        'soft',
-                        'smooth',
-                        'swaying',
-                        'swinging',
-                        'tender',
-                        'wrinkled'])
+          self.AdjList(['black: color,poc',
+                        'bare: nude,hairless',
+                        'brown: color,poc,latin',
+                        'bull-like: super,large',
+                        'dangling: hanging',
+                        'dark: color',
+                        'delicious: super,horny',
+                        'downy: hairy',
+                        'down-covered: hairy',
+                        'enormous: large',
+                        'fat: size,large',
+                        'fleshy: texture,feel',
+                        'fuzzy: hairy,texture',
+                        'hairless: hairless',
+                        'hairy: hairy',
+                        'heavy: size,large',
+                        'hefty: size,large',
+                        'large: size,large',
+                        'leathery: texture',
+                        'low-hanging: hanging',
+                        'low-swinging: movement,hanging',
+                        'magnificent: super',
+                        'mammoth: size,large',
+                        'monstrous: super,size,large',
+                        'pale: color,cauc,asian',
+                        'pendulous: shape',
+                        'plump: shape,large',
+                        'ripe: super',
+                        'round: shape',
+                        'satin: texture',
+                        'silken: texture',
+                        'soft: feel',
+                        'small: size,small',
+                        'smooth: hairless',
+                        'smooth-shaven: hairless',
+                        'swaying: movement',
+                        'swinging: movement',
+                        'taut: shape',
+                        'tender: super',
+                        'tight: shape',
+                        'virile: super',
+                        'wee: size,small,cute',
+                        'wrinkled: texture',
+                       ])
           
           self.DefaultNoun("testicles")
 
@@ -2344,7 +2371,7 @@ class ShouldersMale(MaleBodyParts):
           
           self.AddSkinColors() 
 
-          self.NounList(['shoulders'])
+          self.NounList(['shoulders: plur'])
                
           self.AdjList(['bare: nude',
                         'brawny: strong,large',
