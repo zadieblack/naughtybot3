@@ -1727,62 +1727,58 @@ class Generator31(ExGen):
 
           sCasualAdvbs = WordList(["idly","casually"]).GetWord()
 
-          Dude = bodyparts.BodyMale()
+          Dude = self.Man
 
-          Woman = self.FemBodyParts
-          Woman.AdjExclTagList(["nude","wet"])
+          Woman = self.Woman
+          Woman.Body.AdjExclTagList(["nude","wet"])
 
-          sBodyAdj1 = Woman.GetNewAdj()
-          sBodyAdj2 = Woman.GetNewAdj()
-          
           sTweet += sHisName + " walked in and froze. " 
           sTweet += "His " + sFFWB + " lay on the bed. "
-          sTweet += "Her " + sBodyAdj1 + ", " + sBodyAdj2 + " body "
-          sTweet += "was totally naked. "
+          sTweet += "Her " + Woman.Body.RandomDesc() + " "
+          sTweet += Woman.Body.GetWasWere() + " totally naked. "
           if CoinFlip():
-              sTweet += "Her " + Woman.Skin.RandomDesc(NotList = [sBodyAdj1,sBodyAdj2], TagLists = TagLists(adj_excl = ["nude"])) + " "
+              sTweet += "Her " + Woman.Skin.RandomDesc(NotList = ["glisten","sweat","moist"], TagLists = TagLists(adj_excl = ["nude"])) + " "
               sTweet += WordList(["glistened with","was beaded with"]).GetWord() + " " 
               sTweet += WordList(["sweat","moisture","a sheen of sweat"]).GetWord() + ". "
           else:
               sTweet += "He could see everything: "
-              sTweet += self.FemBodyParts.DescRandomNakedParts(bPussy = True, bAss = True, bLongDesc = True, sPossessive = "her", NotList = [sBodyAdj1,sBodyAdj2]) + ".\n\n"
-          sTweet += "The " + WordList(["naked","black","Latino","shirtless","pantsless","half-naked","young, shirtless"]).GetWord() + " " 
-          sTweet += "guy "
+              sTweet += Woman.Body.DescRandomNakedParts(bPussy = True, bAss = True, bLongDesc = True, sPossessive = "her", NotList = Woman.Body.GetDescWordList()) + ".\n\n"
+          sTweet += "The " + Dude.Desc + " "
           
           iRand = randint(1,8)
           if iRand == 1:
                 # Fingering her inner vag
                 sTweet += "between her legs was " + sCasualAdvbs + " " 
                 sTweet += WordList(["fingering","finger-banging","exploring","thrusting his fingers into","sticking his fingers up","poking his fingers up","diddling"]).GetWord() + " " 
-                sTweet += "her " + self.FemBodyParts.Vagina.InnerVag.RandomDesc(TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["nude"])) + ". "
+                sTweet += "her " + Woman.InnerVagina.RandomDesc(TagLists = TagLists(adj_excl = ["nude"])) + ". "
           elif iRand == 2:
                 # Playing with her pussy lips
                 sTweet += "between her legs was " + sCasualAdvbs + " " 
                 sTweet += WordList(["playing with","toying with","tweaking","nibbling","teasing","sucking on","diddling",]).GetWord() + " " 
-                sTweet += "her " + self.FemBodyParts.Vagina.InnerLabia.RandomDesc(TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["nude"])) + ". "
+                sTweet += "her " + Woman.InnerLabia.RandomDesc(TagLists = TagLists(adj_excl = ["nude"])) + ". "
           elif iRand == 3:
                 # Playing with her pussy
                 sTweet += "between her legs was " + sCasualAdvbs + " " 
                 sTweet += WordList(["playing with","rubbing","massaging","stroking","teasing","licking","diddling"]).GetWord() + " " 
-                sTweet += "her " + self.FemBodyParts.Vagina.RandomDesc(TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["nude"])) + ". "
+                sTweet += "her " + Woman.Vagina.RandomDesc(TagLists = TagLists(adj_excl = ["nude"])) + ". "
           elif iRand == 4:
                 # Fingering her anus
                 sTweet += "behind her had a finger " + sCasualAdvbs + " inserted knuckle deep " 
-                sTweet += "into her " + self.FemBodyParts.Ass.Anus.RandomDesc(TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["nude"])) + ". "
+                sTweet += "into her " + Woman.Anus.RandomDesc(TagLists = TagLists(adj_excl = ["nude"])) + ". "
           elif iRand == 5:
                 # Playing with her tits
                 sTweet += "next to her was " + sCasualAdvbs + " " 
                 sTweet += WordList(["playing with","toying with","tweaking","nibbling","teasing","sucking on","stroking","rubbing","squeezing","fondling"]).GetWord() + " " 
-                sTweet += "her " + self.FemBodyParts.Breasts.RandomDesc(TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["nude"])) + ". "
+                sTweet += "her " + Woman.Breasts.RandomDesc(TagLists = TagLists(adj_excl = ["nude"])) + ". "
           elif iRand == 6:
                 # Playing with her nipples
                 sTweet += "next to her was " + sCasualAdvbs + " " 
                 sTweet += WordList(["playing with","toying with","tweaking","nibbling","teasing","sucking on","stroking","pinching","squeezing","fondling"]).GetWord() + " " 
-                sTweet += "her " + self.FemBodyParts.Breasts.Nipples.RandomDesc(TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["nude"])) + ". "
+                sTweet += "her " + Woman.Nipples.RandomDesc(TagLists = TagLists(adj_excl = ["nude"])) + ". "
           elif iRand == 7:
                 # Spreading her legs
                 sTweet += "lying between her legs was "
-                sTweet += "spreading her " + self.FemBodyParts.Vagina.InnerVag.RandomDesc(TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["nude"])) + " wide. "
+                sTweet += "spreading her " + self.FemBodyParts.Vagina.InnerVag.RandomDesc(TagLists = TagLists(adj_excl = ["nude"])) + " wide. "
           elif iRand == 8:
                 # Dry-humping
                 sTweet += "on top of her was " + sCasualAdvbs + " dry-humping her, " 
@@ -1790,13 +1786,13 @@ class Generator31(ExGen):
 
                 iRand = randint(1,4)
                 if iRand == 1:
-                    sTweet += "between her " + self.FemBodyParts.Breasts.RandomDesc(TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["nude"]))
+                    sTweet += "between her " + Woman.Breasts.RandomDesc(TagLists = TagLists(adj_excl = ["nude"]))
                 elif iRand == 2:
-                    sTweet += "against her " + self.FemBodyParts.Thighs.RandomDesc(TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["nude"]))
+                    sTweet += "against her " + Woman.Thighs.RandomDesc(TagLists = TagLists(adj_excl = ["nude"]))
                 elif iRand == 3:
-                    sTweet += "between her" + self.FemBodyParts.Ass.Buttocks.RandomDesc(TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["nude"]))
+                    sTweet += "between her " + Woman.Buttocks.RandomDesc(TagLists = TagLists(adj_excl = ["nude"]))
                 elif iRand == 4:
-                    sTweet += "against her" + self.FemBodyParts.Face.RandomDesc(TagLists = TagLists(noun_excl = ["silly"], adj_excl = ["nude"]))
+                    sTweet += "against her " + Woman.Face.RandomDesc(TagLists = TagLists(adj_excl = ["nude"]))
 
                 sTweet += ". "
 
