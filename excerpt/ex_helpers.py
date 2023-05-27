@@ -2,6 +2,33 @@
 # -*- coding: utf-8 -*-
 # Excerpt Helpers module
 
+# When more than one adjective comes before a noun, the 
+# adjectives are normally in a particular order. 
+# Adjectives which describe opinions or attitudes (e.g. 
+# amazing) usually come first, before more neutral, 
+# factual ones (e.g. red):
+
+#   She was wearing an amazing red coat.
+
+#   Not: … red amazing coat
+
+# If we don’t want to emphasise any one of the 
+# adjectives, the most usual sequence of adjectives is:
+
+# ord | relating to   | examples 
+# -----------------------------------------------------
+# 1     opinion         unusual, lovely, beautiful
+# 2     size            big, small, tall
+# 3     phys. quality   thin, rough, untidy
+# 4     shape           round, square, rectangular
+# 5     age             young, old, youthful
+# 6     color           blue, red, pink
+# 7     origin          Dutch, Japanese, Turkish
+# 8     material        metal, wood, plastic
+# 9     type            general-purpose, four-sided, U-shaped
+# 10    purpose         cleaning, hammering, cooking
+
+
 from dataclasses import dataclass, field
 from collections import namedtuple
 from random import *
@@ -493,35 +520,6 @@ class NounPhrase:
     def GetColorList(self):
         return self.GetUnitList(sListName, "color") 
 
-    def GetComplexPhrase(self):
-        sPhrase = ""
-
-        DescWordList = self.GetDescWordList()
-
-        if len(DescWordList) > 0:
-            # Add the noun 
-            sPhrase = DescWordList[-1]
-
-        if len(DescWordList) > 1:
-            # Add the 1st order adj
-            sPhrase = DescWordList[-2] + " " + sPhrase
-
-        if len(DescWordList) > 2:
-            # Add "was" or "were" depending on noun
-            # plurality
-            sPhrase += " " + self.GetWasWere()
-
-            # Add the adj pair. If there are not enough
-            # adjs for a complete pair, only [1] will
-            # be used.
-            AdjPair = self.GetAdjPair()
-            if AdjPair[0] != "":
-                sPhrase += " " + AdjPair[0] + " and"
-            if AdjPair[1] != "":
-                sPhrase += " " + AdjPair[1]
-
-        return sPhrase
-          
     # Get the default adj
     def GetDefaultAdj(self, NotList = None):
         sDefaultAdj = ""
@@ -585,15 +583,6 @@ class NounPhrase:
             NounReqTagList = []
         if ReqTagList is None:
             ReqTagList = []
-
-        #self._UpdateTagListsNoReset(TLParams = 
-        #                            TagLists(excl = ExclTagList,
-        #                                     req = ReqTagList,
-        #                                     adj_excl = AdjExclTagList,
-        #                                     adj_req = AdjReqTagList,
-        #                                     noun_excl = NounExclTagList,
-        #                                     noun_req = NounReqTagList
-        #                                    ))
 
         UsedTagList = []
         if bVaryAdjTags:
@@ -837,6 +826,43 @@ class NounPhrase:
             TagList = "".join(matchTags.group().split(" ")).split(",")
 
         return ParsedUnit(sUnitWord, iPriority, TagList)
+
+    # Generates a descriptive phrase in the format:
+    #  "adj noun was adj2 and adj1"
+    def PhraseWasAnd(self, NotList = None, TagLists = None):
+        sPhrase = ""
+
+        if not NotList is None:
+            self.NotList(NotList)
+
+        if not TagLists is None:
+            self.UpdateTagLists(TLParams = TagLists)
+
+        DescWordList = self.GetDescWordList()
+
+        if len(DescWordList) > 0:
+            # Add the noun 
+            sPhrase = DescWordList[-1]
+
+        if len(DescWordList) > 1:
+            # Add the 1st order adj
+            sPhrase = DescWordList[-2] + " " + sPhrase
+
+        if len(DescWordList) > 2:
+            # Add "was" or "were" depending on noun
+            # plurality
+            sPhrase += " " + self.GetWasWere()
+
+            # Add the adj pair. If there are not enough
+            # adjs for a complete pair, only [1] will
+            # be used.
+            AdjPair = self.GetAdjPair()
+            if AdjPair[0] != "":
+                sPhrase += " " + AdjPair[0] + " and"
+            if AdjPair[1] != "":
+                sPhrase += " " + AdjPair[1]
+
+        return sPhrase
 
     # Remove an adjective from the currently selected adjs (_AdjList)
     # by value

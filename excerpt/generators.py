@@ -8972,7 +8972,7 @@ class Generator118(ExGen):
 ## {the word 'lube'/'wrong hole'}."
 class Generator119(ExGen):
     def __init__(self):
-        super().__init__(ID = 119, Priority = GenPriority.Lowest, Disabled = True)
+        super().__init__(ID = 119, Priority = GenPriority.Lowest, Disabled = False)
      
     def GenerateTweet(self):
         super().GenerateTweet()
@@ -8984,7 +8984,7 @@ class Generator119(ExGen):
             Woman = bodies.Woman()
             BodyPart = bodies.Man().Testicles
 
-            sTweet += "His " + BodyPart.GetComplexPhrase() + ".\n\n"
+            sTweet += "His " + BodyPart.PhraseWasAnd() + ".\n\n"
 
             #DescWordList = BodyPart.GetDescWordList()
             #if len(DescWordList) > 3:
