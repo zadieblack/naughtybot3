@@ -2012,7 +2012,7 @@ class Generator34(ExGen):
           #                     ]).GetWord()
 
           if CoinFlip() and CoinFlip():
-               sHole = self.FemBodyParts.Ass.Anus.ShortDesc(NotList = HoleNotList)
+               sHole = self.Woman.Anus.ShortDesc(NotList = HoleNotList)
           else:       
                sHole = mainmisc.VaginaSlang().GetWord()
           
@@ -2033,41 +2033,87 @@ class Generator35(ExGen):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          sHisName = self.MaleName.FirstName()
+          sHerName = self.FemaleName.FirstName()
           
           Location = locations.LocationSelector().Location(PubPrivType = exutil.LocPubPrivType.Private)
+          Woman = self.Woman
+          Man = self.Man
           
-          iRand = randint(1,7)
-          sHisName = self.MaleName.FirstName()
+          sTweet += "\"Oh " + sHisName + ",\" " 
+          sTweet += sHerName + " said to him. "
+          sTweet += "The couple was " + WordList(["snuggled together","sitting side-by-side","snuggling cozily"]).GetWord() + " "
+          sTweet += Location.NamePrep + ". " 
+          sTweet += "\"I love you so much. I would do anything to please you. Just tell me how,\" " 
+          sTweet += "she said, gazing up at him with " + Woman.Eyes.RandomDesc(bShortDesc = False) + ".\n\n"
           
-          sTweet = "'Oh " + sHisName + ",' " + self.FemaleName.FirstName() + " said to him. They were sitting together " + Location.NamePrep + ". 'I love you so much. I just want to be with you and make you happy. Just tell me how,' she said, giving him a peck on the lips.\n\n"
+          iRand = randint(1,10)
+          #iRand = 10
           if iRand == 1:
-               sTweet += "'I want to rub my " + self.MaleBodyParts.Penis.ShortDesc() + " on your " + self.FemBodyParts.Breasts.RandomDesc(bLongDesc = False) + "', he said."
+               sTweet += "\"I want to rub my " + Man.Penis.ShortDesc(TagLists = TagLists(noun_req = ["crude"])) + " "
+               sTweet += "on your " + Woman.Breasts.ShortDesc(bSilly = True) + ",\" he said."
           elif iRand == 2:
-               sTweet += "'I want to put my finger in your " + self.FemBodyParts.Ass.Anus.ShortDesc() + ",' he said."
+               sTweet += "\"I want to put my finger in your " + Woman.Anus.ShortDesc(bSilly = True) + ",\" he said."
           elif iRand == 3:
-               sTweet += "'I want to put my " + self.MaleBodyParts.Penis.Testicles.ShortDesc() + " in your mouth,' he said."
+               sTweet += "\"I want to put my " + Man.Testicles.ShortDesc(bSilly = True) + " in your mouth,\" he said."
           elif iRand == 4:
-               sTweet += "'I want to fist your " + self.FemBodyParts.Vagina.MediumDesc() + ",' he said."
-          elif iRand == 5:
+               sName = self.FemaleName.FirstName(NotList = [sHerName])
                sActs = WordList(["throat fuck","finger bang","tea bag","titty-fuck","bang","have sex with","butt-fuck",
-                                     "ass-fuck","impregnate","fist","creampie"]).GetWord()
-               sTweet += "'I want to " + sActs + " your " + WordList(['sister','twin sister','best friend','maid of honor','cousin','BFF']).GetWord() + ",' he said."
+                                 "ass-fuck","impregnate","fist","creampie"]).GetWord()
+               sTweet += "\"I want to " + sActs + " " 
+               sTweet += "your " + WordList(['girlfriend','sister','sister','twin sister',
+                                             'twin sister','best friend','maid of honor',
+                                             'cousin','BFF','step-mom',
+                                             'blonde friend','Asian friend',
+                                             'black friend','redhead friend']).GetWord() + ", " 
+               sTweet += sName + ",\" he said."
+          elif iRand == 5:
+               sFilthyAct = WordList(["you to go down on my friends","to try a gang-bang",
+                                      "you to fuck my friends","to try wife-swapping",
+                                      "to teabag you","to take your anal virginity",
+                                      "to pop your anal cherry","to post naked pics of you on Facebook",
+                                      "to share your nudes on the internet","you to blow my best friend",
+                                      "to try a Dirty Sanchez","to pee in your mouth","to butt fuck you",
+                                      "to ass-fuck you","nut on your face","nut on your tiddies",
+                                      "to fuck you in a church","to see you try double anal",
+                                      "you to give my dad a blowjob","to titty-fuck you",
+                                      "to see you have sex with strange men","to watch a black man fuck you",
+                                      "to watch a white guy fuck you","you to try professional porn",
+                                      "you to get breast implants","you to do porn",
+                                      "you to do porn with black men","to watch you go down a girl",
+                                      "to watch you fuck a girl","to try rape play",
+                                      "you to suck on my hairy balls","you to get your clit pierced",
+                                      "to get your tiddies pierced","to try fisting",
+                                      "to try anal fisting"]).GetWord()
+               sTweet += "\"I want " + sFilthyAct + ",\" he said."
           elif iRand == 6:
-               sFilthyAct = WordList(["my friends to gang-bang you","to have a gang-bang","to have a threesome with your sister",
-                                     "to fuck your mom","to taste your asshole","you to fuck my friends",
-                                     "to teabag you","to take your anal virginity","to pop your anal cherry",
-                                     "to post naked pics of you on Facebook","you to blow my best friend",
-                                     "to give you a Dirty Sanchez","to pee in your mouth","butt fuck you",
-                                     "cum on your face","to fuck you in a church","to see you take double anal",
-                                     "you to give my dad a blowjob","to titty-fuck you","to whore you out",
-                                     "you to do porn with black men","you to wear a ball gag",
-                                     "to watch you have sex with a girl","to do you in front of your brother",
-                                     "you to wear a gimp suit during sex","you to suck on my hairy balls",
-                                     "you to get your clit pierced","to fist your poop-chute"]).GetWord()
-               sTweet += "'I want " + sFilthyAct + ",' he said."
-          else:
-               sTweet += "'I want you to lick my " + self.FemBodyParts.Ass.Anus.ShortDesc() + ",' he said."
-          
+               sTweet += "\"I want you to " + WordList(["lick","eat out"]).GetWord() + " "
+               sTweet += "my " + Man.Anus.ShortDesc(bSilly = True) + ",\" he said."
+          elif iRand == 7:
+               sTweet += "\"I want " + WordList(["to drink your piss","you to pee on me","you to pee in my mouth","to drink your pee"]).GetWord() + ",\" he said."
+          elif iRand == 8:
+               sName = self.MaleName.FirstName(NotList = [sHisName])
+               sMFWB = WordList(["your boss, " + sName, "your brother","your dad",
+                                 "your ex-boyfriend","your father","your husband",
+                                 "the mailman","the poolboy",
+                                 "your roommate, " + sName,"your step-dad",
+                                 "your step-son","your yoga instructor, " + sName]).GetWord()
+               sTweet += "\"I want to have sex with " + sMFWB + ",\" he said."
+          elif iRand == 9:
+               sTweet += "\"I want to put my " + self.Man.Penis.ShortDesc(TagLists = TagLists(noun_req = ["crude"])) + " "
+               sTweet += "in your ass,\" he said."
+          elif iRand == 10:
+               sName = self.FemaleName.FirstName(NotList = [sHerName])
+               sOtherWoman = WordList(["your hot Asian friend, " + sName,"the babysitter, " + sName, "your best friend, " + sName, "your hot black friend, " + sName, "your cute roommate, " + sName,"your cousin, " + sName, "your daughter, " + sName, "your hot friend, " + sName, "the maid, " + sName,"our nextdoor neighbor, " + sName,"that hot redhead, " + sName,"your step-daughter, " + sName,"your mom","your mom, " + sName,"your sister","your sister, " + sName,"your twin sister","your busty yoga instructor, " + sName]).GetWord()
+               sTweet += "\"I want "
+               if CoinFlip():
+                   sTweet += "to have a threesome with you "
+                   sTweet += "and " + sOtherWoman
+               else:
+                   sTweet += "to have sex with " + sOtherWoman
+               sTweet += ",\" he said."
+
           return sTweet
           
 class Generator36(ExGen):
