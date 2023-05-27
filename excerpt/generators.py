@@ -1813,6 +1813,8 @@ class Generator32(ExGen):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          Woman = self.Woman
           
           Events = WordList(["Happy Ash Wednesday",
                              "Merry Christmas",
@@ -1835,24 +1837,27 @@ class Generator32(ExGen):
                             ])
           iRand = randint(1,4)
           
-          sTweet = "'I've got a present for you,' she said.\n\n"
+          sTweet = "\"I've got a present for you, " 
+          sTweet += WordList(["baby","honey",self.Man.FirstName]).GetWord() + ",\" " 
+          sTweet += "she " + WordList(["purred","growled in a throaty voice","said in a throaty voice"]).GetWord() + ".\n\n"
           sTweet += "'What's that?' he asked.\n\n"
           if iRand == 1:
-               sTweet += "She bent over and hiked her skirt up, showing him " 
-               sTweet += "her " + self.FemBodyParts.Ass.RandomDesc() + ". " 
-               sTweet += "Then she pulled her " + clothes.Panties().RandomDesc(bLongDesc = False) + " aside, "
-               sTweet += "revealing her " + self.FemBodyParts.Ass.Anus.RandomDesc() + ".\n\n"
+               sTweet += "The " + Woman.Desc + " bent over and " 
+               sTweet += "hiked her " + self.FemWardrobe.ShortSkirt.RandomDesc() + " up, showing him " 
+               sTweet += "her " + Woman.Ass.RandomDesc() + ". " 
+               sTweet += "Then she pulled her " + self.FemWardrobe.Panties.RandomDesc(bLongDesc = False) + " aside, "
+               sTweet += "revealing her " + Woman.Anus.RandomDesc() + ".\n\n"
           elif iRand == 2:
                Vaj = self.FemBodyParts.Vagina
-               Vaj.NounExclTagList(["silly"])
                Vaj.InnerLabia.NotList(["shy"])
                Vaj.OuterLabia.NotList(["shy"])
-               sTweet += "She lifted up her short skirt and he saw that "
+               sTweet += "The " + Woman.Desc + " lifted up her " + self.FemWardrobe.ShortSkirt.RandomDesc() + " and he saw that "
                sTweet += "she wasn't wearing panties. "
-               sTweet += "Her " + Vaj.InnerLabia.RandomDesc() + " "
-               sTweet += "peeked out shyly from her " + Vaj.OuterLabia.RandomDesc() + "."
+               sTweet += "Her " + Woman.InnerLabia.RandomDesc() + " "
+               sTweet += "peeked out shyly from her " + Woman.OuterLabia.RandomDesc() + "."
                if CoinFlip():
-                    sTweet += " Her " + self.FemBodyParts.Vagina.ShortDesc() + " "
+                    Vaj.ExclTagList(["hairy"])
+                    sTweet += " Her " + Woman.Vagina.ShortDesc() + " "
                     sTweet += "was shaved smooth and bare"
                else:
                     sTweet += " Her bush had been carefully trimmed " 
@@ -1861,26 +1866,27 @@ class Generator32(ExGen):
                          sTweet += " and dyed a startling shade of " + WordList(["mauve", "purple", "red", "turquoise", "blue", "green"]).GetWord()
                sTweet += ".\n\n"
           elif iRand == 3:
-               Boobs = self.FemBodyParts.Breasts
+               Boobs = Woman.Breasts
                Boobs.AdjExclTagList(["wet","small"])
-               sTweet += "She pulled her " + Boobs.RandomDesc(bCupSize = False) + " " 
-               sTweet += "out of her low-cut blouse. "
-               sTweet += "They were " + self.FemBodyParts.Breasts.GetNewAdj() + " " 
-               sTweet += "and " + self.FemBodyParts.Breasts.GetNewAdj() + " and "
+               sTweet += "The " + Woman.Desc + " pulled her " + Boobs.RandomDesc(bCupSize = False) + " " 
+               sTweet += "out of her " + self.FemWardrobe.Blouse.RandomDesc() + ". "
+               sTweet += "They were " + Boobs.GetNewAdj() + " " 
+               sTweet += "and " + Boobs.GetNewAdj() + " and "
                sTweet += "gleaming with oil. "
-               sTweet += "She rolled her " + self.FemBodyParts.Breasts.Nipples.RandomDesc() + " "
+               sTweet += "She rolled her " + Woman.Nipples.RandomDesc() + " "
                sTweet += "between her fingers.\n\n"
           elif iRand == 4:
-               Anus = self.FemBodyParts.Ass.Anus
+               Anus = Woman.Anus
                Toy = WordList(["a huge, black butt-plug","a large steel butt-plug","a shiny metal butt-plug",
                                "a bejeweled butt-plug","a heart-shaped butt-plug","a pink-gold butt-plug",
                                "a solid gold butt-plug","a thick black butt-plug","a pink plastic toy",
                                "a butt-plug with the words FUCK ME written on the end",
-                               "a rectal speculum","a large candle",
+                               "a rectal speculum","a large candle","a string of anal beads",
+                               "a set of silicone anal beads","a set of glass anal beads",
                               ])
-               sTweet += "She bent over in front of him, revealing that "
-               sTweet += "she was wearing " + Toy.GetWord() + " "
-               sTweet += "in her " + Anus.RandomDesc() + ".\n\n"
+               sTweet += "The " + Woman.Desc + " bent over in front of him, revealing that "
+               sTweet += Toy.GetWord() + " was protruding from "
+               sTweet += "her " + Anus.RandomDesc() + ".\n\n"
 
           sTweet += "'" + Events.GetWord() + ", baby,' she said."
           
