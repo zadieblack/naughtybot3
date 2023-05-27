@@ -2124,19 +2124,22 @@ class Generator36(ExGen):
      def GenerateTweet(self):
           super().GenerateTweet()
           sTweet = ""
+
+          Woman = self.Woman
           
-          print("Generator36 active")
-          
-          sTweet = "Their masked host ushered them into the banquet hall. In the center of the dining table a beautiful woman lay spread-eagled, completely naked. "
+          sTweet += "Their masked host ushered them into the banquet hall. "
+          sTweet += "In the center of the dining table " 
+          sTweet += AddArticles(Woman.Desc) + " "
+          sTweet += "lay spread-eagled, completely naked. "
           
           Feast = []
-          Feast.append("her succulent " + self.FemBodyParts.Skin.GetNewAdj(NotList = ["succulent"]) + " " + self.FemBodyParts.Skin.GetNoun() + " was dripping with syrup") 
-          Feast.append("she held a ripe cherry between her " + self.FemBodyParts.Lips.GetNewAdj(NotList = ["cherry"]) + " lips")
-          Feast.append("her " + self.FemBodyParts.GetNewAdj(NotList = ["womanly"]) + " " + self.FemBodyParts.GetNoun() + " was covered with fruits and berries")
+          Feast.append("her succulent " + Woman.Skin.MediumDesc(NotList = ["succulent"]) + " was dripping with syrup") 
+          Feast.append("she held a ripe cherry between her " + Woman.Lips.MediumDesc(NotList = ["cherry"]))
+          Feast.append("her " + Woman.Body.MediumDesc(NotList = ["womanly"]) + " was covered with fruits and berries")
           Feast.append("her navel was a goblet brimming with liquor") 
-          Feast.append("her full, " + self.FemBodyParts.Breasts.GetNewAdj(NotList = ["full"]) + " " + self.FemBodyParts.Breasts.GetNoun() + " were topped with whip cream")
-          Feast.append("the inside of her " + self.FemBodyParts.Thighs.ShortDesc() + " were glazed with chocolate")
-          Feast.append("her " + self.FemBodyParts.Vagina.OuterLabia.GetNoun() + " gleamed with sticky honey")
+          Feast.append("her full, " + Woman.Breasts.MediumDesc(NotList = ["full"]) + " were topped with whip cream")
+          Feast.append("the inside of her " + Woman.Thighs.MediumDesc() + " were glazed with chocolate")
+          Feast.append("her " + Woman.OuterLabia.RandomDesc(bLongDesc = False) + " gleamed with sticky honey")
                
           sFeast = ""
           if len(Feast) > 0:
@@ -2147,9 +2150,42 @@ class Generator36(ExGen):
           else: 
                sFeast = "A "
                     
-          sTweet += sFeast + "single, ripe strawberry was stuffed in her " + self.FemBodyParts.Vagina.MediumDesc() + ". "
-          sTweet += "'Gentlemen,' said the " + self.WealthyMan.GetPerson() + ", 'Let's feast!'\n\n"
-          sTweet += "'" + self.Exclamation.GetWord().capitalize() + "' thought " + self.MaleName.FirstName() + ", 'That's my " + self.FFWB.GetPerson() + "!'"
+          sTweet += sFeast + "single, ripe strawberry was "
+          sTweet += "stuffed in her " + Woman.Vagina.RandomDesc(bShortDesc = False) + ". "
+          sTweet += "\"Gentlemen,\" said the " + self.WealthyMan.GetPerson() + ", "
+          sTweet += "\"Let's feast!\"\n\n"
+          sTweet += "\"" + self.Exclamation.GetWord().capitalize() + "\" " 
+          sTweet += "thought " + self.MaleName.FirstName() + ", " 
+
+          if Woman.AgeCat in ["teen","college","twenties"]:
+               sYoungFFWB = WordList(["babysitter","barista","best friend's wife",
+                                      "best friend's sister","dad's girlfriend",
+                                      "boss's wife","bride-to-be","ex-girlfriend",
+                                      "cousin","daughter","daughter-in-law",
+                                      "daughter's best friend","ex-wife","fiancé","girlfriend",
+                                      "girlfriend's sister","lab-partner in Biochem",
+                                      "maid","math tutor",
+                                      "neighbor's wife","niece","pastor's wife",
+                                      "secretary","sister","sister-in-law",
+                                      "step-daughter","step-sister","study-partner in history class",
+                                      "twin sister",
+                                      "twin-sister","wife","yoga instructor",
+                                     ]).GetWord()
+               sTweet += "\"That's my " + sYoungFFWB + ", " 
+               sTweet += Woman.FirstName + "!\""
+          else:
+               sOlderFFWB = WordList(["aunt","best friend's wife","boss","co-worker",
+                                      "eighth-grade teacher","English Teacher",
+                                      "buddy's mom",
+                                      "girlfriend's mom","landlady","maid",
+                                      "math teacher","marriage counselor",
+                                      "mother-in-law","piano teacher",
+                                      "neighbor's wife","nextdoor neighbor",
+                                      "pastor's wife","secretary","step-mom",
+                                      "Sunday School teacher",
+                                     ]).GetWord()
+               sTweet += "\"That's my " + sOlderFFWB + ", "
+               sTweet += "Mrs. " + Woman.LastName + "!\""
           
           return sTweet
           
