@@ -40,20 +40,20 @@ MAXSECTIONBUCKETTRIES = 100
 BodyPartHistoryQ = HistoryQ(10)
 
 TagExclDict = {"adult": ["teen"],
-               "asian": ["cauc","ginger","latin","poc"],
+               "asian": ["cauc","redhead","latin","poc"],
                "bigdick": ["smalldick"],
                "bigtits": ["smalltits"],
                "blonde": ["brunette","darkhair","grayhair","redhead"],
                "brunette": ["blonde","darkhair","grayhair","redhead"],
-               "cauc": ["poc","asian","latin","ginger"],
+               "cauc": ["poc","asian","latin","redhead"],
                "college": ["teen","twenties","thirties","middleaged","milf","older"],
                "curvy": ["slender"],
                "darkhair": ["blonde","brunette","grayhair","redhead"],
                "female": ["male"],
-               "ginger": ["asian","cauc","latin","poc"],
+               "redhead": ["asian","cauc","latin","poc"],
                "grayhair": ["blonde","brunette","darkhair","redhead"],
                "hairy": ["shaved","trimmed"],
-               "latin": ["asian","cauc","ginger","poc"],
+               "latin": ["asian","cauc","redhead","poc"],
                "large": ["small"],
                "loose": ["tight"],
                "male": ["female"],
@@ -61,7 +61,7 @@ TagExclDict = {"adult": ["teen"],
                "milf": ["teen","college","twenties","young"],
                "narrow": ["wide"],
                "older": ["teen","college","twenties","young"],
-               "poc": ["cauc","asian","latin","ginger"],
+               "poc": ["cauc","asian","latin","redhead"],
                "plussize": ["slender"],
                "redhead": ["blonde","brunette","darkhair","grayhair"],
                "shaved": ["hairy","trimmed"],
@@ -95,6 +95,9 @@ class NPParams:
     bVaryAdjTags: bool = True
     bEnableSpecials: bool = False
     sColor: str = ""
+    AdjList: list = field(default_factory=list)
+    ColorList: list = field(default_factory=list)
+    NounList: list = field(default_factory=list)
 
 @dataclass 
 class TagLists:
@@ -141,10 +144,6 @@ class ParsedUnit:
 
 class NounPhrase:
     def __init__(self, Params = None,
-                       #iNumAdjs = 4, 
-                       #bVaryAdjTags = True, 
-                       #ExtraAdjList = None, 
-                       #bEnableSpecials = False,
                        NotList = None,
                        TLParams = None
                 ):
@@ -172,6 +171,13 @@ class NounPhrase:
             #print("WARNING - NounPhrase.init(): TagLists not found, creating new instance")
             TLParams = TagLists()
 
+        if len(Params.AdjList) > 0:
+            self.AdjList(NewAdjList = Params.AdjList, bReset = False)
+        if len(Params.ColorList) > 0:
+            self.ColorList(NewColorList = Params.ColorList, bReset = False)
+        if len(Params.NounList) > 0:
+            self.NounList(NewNounList = Params.NounList, bReset = False)
+
         if NotList is None:
             NotList = []
 
@@ -182,7 +188,7 @@ class NounPhrase:
         self._AdjList = []
         self._NotList = NotList
         self._Noun = ""
-
+ 
         self._AdjExtraTagList = []
         self._AdjExclTagList = []
         self._AdjReqTagList = []
@@ -264,7 +270,7 @@ class NounPhrase:
                                         LocalReqTagList.remove(newtag)
 
                 # Get color
-                if not self.GetColor():
+                if self.GetColor() == "":
                     if self.ColorListLen() > 0:
                         self.Color(self.GetNewColor(NotList = self._NotList + [self._Noun] + self._AdjList, ReqTagList = ["color"], ExclTagList = AdjExclTagList))
 
@@ -329,20 +335,20 @@ class NounPhrase:
                     adjtags = self.GetUnitTags(adj)
                     if "special" in adjtags:
                         SpecialAdjBucket.append(adj)
+                    elif "race" in adjtags:
+                        RaceAdjBucket.append(adj)
                     elif "age" in adjtags:
                         #print("      \"" + adj + "\" is an age adj.")
                         AgeAdjBucket.append(adj)
-                    elif "race" in adjtags:
-                        RaceAdjBucket.append(adj)
                     #elif "haircolor" in adjtags:
                     #    HairColorAdjBucket.append(adj)
+                    elif "color" in adjtags:
+                    #    #print("      \"" + adj + "\" is a color adj.")
+                        ColorAdjBucket.append(adj)
                     elif "haircolor" in adjtags or "eyecolor" in adjtags:
                         HairEyeAdjBucket.append(adj)
                     #elif "eyecolor" in adjtags:
                     #    EyeColorAdjBucket.append(adj)
-                    elif "color" in adjtags:
-                    #    #print("      \"" + adj + "\" is a color adj.")
-                        ColorAdjBucket.append(adj)
                     elif "super" in adjtags:
                         #print("      \"" + adj + "\" is a superlative adj.")
                         SuperAdjBucket.append(adj)
@@ -355,7 +361,7 @@ class NounPhrase:
                 SpecialAdjBucket.sort(key = str.lower)
                 SuperAdjBucket.sort(key = str.lower)
 
-                self._AdjList = SuperAdjBucket + OtherAdjBucket + ColorAdjBucket + HairEyeAdjBucket + AgeAdjBucket + RaceAdjBucket + SpecialAdjBucket + ExtraAdjBucket
+                self._AdjList = SuperAdjBucket + OtherAdjBucket + HairEyeAdjBucket + ColorAdjBucket + AgeAdjBucket + RaceAdjBucket + SpecialAdjBucket + ExtraAdjBucket
 
             return
 
@@ -379,8 +385,8 @@ class NounPhrase:
         return
 
     # SET the AdjList
-    def AdjList(self, NewAdjList):
-        self.UnitList(NewAdjList, "adj")
+    def AdjList(self, NewAdjList, bReset = True):
+        self.UnitList(NewAdjList, "adj", bReset)
         return
 
     # Get the length of the AdjList
@@ -433,9 +439,8 @@ class NounPhrase:
         return 
 
     # SET the ColorList
-    def ColorList(self, NewColorList):
-        self.UnitList(NewColorList, "color")
-        self.Reset("ColorList")
+    def ColorList(self, NewColorList, bReset = True):
+        self.UnitList(NewColorList, "color", bReset)
         return 
 
     # Get the length of the ColorList
@@ -539,7 +544,7 @@ class NounPhrase:
 
     # Get the ColorList
     def GetColorList(self):
-        return self.GetUnitList(sListName, "color") 
+        return self.GetUnitList("master", "color") 
 
     # Get the default adj
     def GetDefaultAdj(self, NotList = None):
@@ -813,6 +818,12 @@ class NounPhrase:
 
         return True
 
+    # SET the NounList
+    def NounList(self, NewNounList, bReset = True):
+        self.UnitList(NewNounList, "noun", bReset)
+        #self.Reset("NotList")
+        return True
+
     # Gets the length of the NounList
     def NounListLen(self):
         return self.UnitListLen("noun")
@@ -912,7 +923,7 @@ class NounPhrase:
         return True
 
     # SET a specified unit list (NounList, AdjList, or ColorList)
-    def UnitList(self, NewUnitList, sType):
+    def UnitList(self, NewUnitList, sType, bReset = True):
         #print("Entered UnitList()")
         for item in NewUnitList:
             sUnit = ""
@@ -931,7 +942,8 @@ class NounPhrase:
                     self.AddUnitToList(sUnit, tag, sType, iPriority)
                 #print(" Added \"" + sUnit + "\" to " + tag + " list.")
                
-        self.Reset("UnitList_" + sType)
+        if bReset:
+            self.Reset("UnitList_" + sType)
 
         return True
 
@@ -1026,12 +1038,6 @@ class NounPhrase:
     def AdjReqTagList(self, TagList):
         self._AdjReqTagList = TagList
         self.Reset("AdjReqTagList")
-        return True
-    
-    # SET the NounList
-    def NounList(self, NewNounList):
-        self.UnitList(NewNounList, "noun")
-        self.Reset("NotList")
         return True
 
     # SET the excluded noun tag list

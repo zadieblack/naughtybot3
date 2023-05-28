@@ -9076,12 +9076,18 @@ class Generator119(ExGen):
         sTweet = ""
 
         sTweet += "Female nouns:\n"
-        for i in range(24):
-            FemaleNoun = bodies.FemaleNoun(Params = NPParams(iNumAdjs = randint(3,4)))
+        for i in range(12):
+            #FemaleNoun = bodies.FemaleNoun(Params = NPParams(iNumAdjs = randint(3,4)))
             #sTweet += "   " + FemaleNoun.FloweryDesc() + "\n"
             #sTweet += "   " + " ".join(FemaleNoun.GetDescWordList()) + "\n"
-            sTweet += "   " + FemaleNoun.GetFullDesc(iNumAdjs = 4, bCommas = False) + "\n"
-
+            #sTweet += "   " + FemaleNoun.GetFullDesc(iNumAdjs = 4, bCommas = False) + "\n"
+            NewWoman = bodies.Woman()
+            
+            sTweet += "\n  " + NewWoman.Desc + " (" + NewWoman.RaceName + ")\n"
+            #sTweet += "\n  Color: " + str(NewWoman.Woman.GetColor()) + "\n"
+            # sTweet += "\n  AdjList: " + str(NewWoman.Woman.GetAdjList()) + "\n"
+            #sTweet += "\n  ColorList: " + str(NewWoman.Woman.GetColorList()) + "\n"
+            #sTweet += "\n  NounList: " + str(NewWoman.Woman.GetNounList()) + "\n"
         return sTweet
 
 ## Juan watched, wide-eyed, as Carla stripped off her white cotton 

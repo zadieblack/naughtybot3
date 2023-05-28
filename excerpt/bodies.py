@@ -82,9 +82,9 @@ class Body():
         if NewGenTraits.Race and isinstance(NewGenTraits.Race,Race):
             self.Race = NewGenTraits.Race
         else:
-            self.Race = choice([RaceCauc,RaceCauc,RaceCauc,RaceGinger,RacePOC,RacePOC,RaceAsian,RaceLatin]) # Add RaceAsian
+            self.Race = choice([RaceCauc,RaceCauc,RaceGinger,RacePOC,RacePOC,RaceAsian,RaceLatin]) # Add RaceAsian
 
-        self.RaceName = self.Race.Name
+        self.RaceName = self.Race.Name.lower()
 
         self.EyeColor = choice(self.Race.EyeColor)
         self.HairColor = choice(self.Race.HairColor)
@@ -99,17 +99,22 @@ class Body():
         LTagLists = self._TagLists
 
         # Handle race
+        #print("Selected " + self.Gender + " who is " + self.RaceName)
         RaceTags = ["asian","cauc","poc","latin","redhead"]
-        if self.RaceName in "caucasian" or "redhead":
-            RaceTags.remove("cauc")
-            RaceTags.remove("redhead")
-        elif self.RaceName == "asian":
+        if self.RaceName == "asian":
             RaceTags.remove("asian")
+        elif self.RaceName == "caucasian":
+            RaceTags.remove("cauc")
         elif self.RaceName == "latin":
             RaceTags.remove("latin")
         elif self.RaceName == "poc":
             RaceTags.remove("poc")
-        
+        elif self.RaceName == "redhead":
+            RaceTags.remove("redhead")
+        else:
+            RaceTags = []
+
+        #print("Excluding RaceTags: " + str(RaceTags))
         LTagLists.adj_excl += RaceTags
 
         if NewGenTraits.PubeStyle:
@@ -676,90 +681,6 @@ class Man(Body):
 
         return
 
-class FemaleDesc(NounPhrase):
-     def __init__(self, Params = None, NotList = None, TagLists = None):
-          super().__init__(Params, NotList, TagLists)
-          
-          self.NounList(['blonde x2: haircolor,blonde,cauc,sing', 
-                         'blonde bombshell: haircolor,blonde,cauc,sing',
-                         'brunette x2: haircolor,brunette,cauc,sing',
-                         'coed: age,young,college,sing',
-                         'college girl: age,young,college,sing',
-                         'girl x4: age,young,sing',
-                         'lady x2: adult,sing',
-                         'MILF x3: age,older,milf,sing',
-                         'redhead x2: haircolor,redhead,race,ginger,sing',
-                         'teen x3: age,young,teen,sing',
-                         'young lady x3: adult,age,young,sing',
-                         'young woman x3: adult,age,young,sing',
-                         'woman x6: adult,sing',
-                        ])
-
-          self.AdjList([#'ample-bosomed x2: bigtits',
-                        'athletic x3: muscular,shape',
-                        'Asian x5: race,asian',
-                        'beautiful: super',
-                        'black x8: color,race,poc',
-                        'blonde x4: blonde,haircolor,cauc',
-                        #'blue-eyed x3: eyes,eyecolor',
-                        'big-titted: bigtits',
-                        'bosomy x2: bigtits,shape',
-                        'bright-eyed: eyes',
-                        #'brown-eyed x3: eyes,eyecolor',
-                        'brunette x4: haircolor,brunette,cauc',
-                        'busty x2: bigtits',
-                        'buxom x2: bigtits',
-                        'chubby x3: plussize,shape',
-                        'curvaceous x2: curvy,shape',
-                        'cute: super',
-                        'dainty: small,fragile','delicate: fragile'
-                        #'dark-eyed x3: eyes,eyecolor',
-                        'dark-haired x3: haircolor,dark,brunette',
-                        'doe-eyed: eyes',
-                        'ebony x6: color,race,poc',
-                        'elfin: slender',
-                        'fit x3: muscular',
-                        'flat-chested x2: smalltits',
-                        'full-figured x2: bigtits,shape',
-                        'gray-haired x3: haircolor,grayhair,older,age',
-                        #'green-eyed x3: eyes,eyecolor',
-                        'latina x5: race,latin',
-                        'limber:slender,flexible',
-                        'lithe x2: slender,flexible',
-                        'little x3: size,small,height,short,slender',
-                        'lovely: super',
-                        'matronly: age,older,bigtits',
-                        'mature x4: age,older',
-                        'nubile x2: super,young',
-                        'petite x3: short,small,slender',
-                        'plump x3: curvy,plussize,shape',
-                        'pretty: super',
-                        'raven-haired x3: haircolor,darkhair',
-                        'redheaded x5: haircolor,race,redhead,ginger',
-                        'round-bottomed x2: curvy,shape',
-                        'Rubenesque x3: plussize,shape',
-                        'sexy: super',
-                        'shapely x2: curvy,bigtits,shape',
-                        'short: height,short',
-                        'skinny x2: slender',
-                        'slender x2: slender',
-                        'stacked x2: bigtits,shape',
-                        'statuesque x2: bigtits,shape',
-                        'striking: super',
-                        'tall x3: height,tall',
-                        'teen x4: age,teen,young',
-                        'teenage x4: age,teen,young',
-                        'tight-bodied: slender',
-                        'trim: slender,shape'
-                        'voluptuous: bigtits,curvy,shape',
-                        'waifish: slender,young',
-                        'willowy: height,tall'
-                        'young x4: age,young',
-                       ])
-          
-          self.DefaultNoun("woman")
-          self.DefaultAdj("brunette")
-
 @dataclass
 class FemPhysTraits:
     AgeCat: str = ""
@@ -784,11 +705,6 @@ class Woman(Body):
         self.HasFakeTits = False
         self.IsVirgin = False
 
-        # Need to pass colors in like:
-        #   EyeColor + ": " + self.Race.TagName + ",color,eyes"
-        #   HairColor + ": " + self.Race.TagName + ",color,hair"
-        #   NipColor + ": " + self.Race.TagName + ",color"
-        #   SkinColor + ": " + self.Race.TagName + ",color"
         EyeParams = NPParams(sColor = self.EyeColor)
         HairParams = NPParams(sColor = self.HairColor)
         NipParams = NPParams(sColor = self.NipColor)
@@ -1018,7 +934,7 @@ class Woman(Body):
         if not self.IsVirgin:
             WomanNotList += ["virgin","virginal"]
 
-        self.BuildDesc()
+        self.BuildDesc(LTagLists)
 
         sAge = "AgeCat: " + self.AgeCat
         sRace = "Race: " + self.RaceName
@@ -1040,103 +956,66 @@ class Woman(Body):
 
         #print("\n" + sDesc)
 
-    def BuildDesc(self):
-        NounList = []
-
-        if self.AgeCat == "teen":
-            if self.RaceName == "poc":
-                NounList += ["black teen girl: poc,young,teen,sing","black teenage girl: poc,young,teen,sing","young black teen: poc,young,teen,sing","young ebony teen: poc,young,teen,sing","young black woman: poc,young,sing","black girl: poc,young,teen,sing"]
-            elif self.RaceName == "asian":
-                NounList += ["Asian teen girl: asian,young,teen,sing","Asian teenage girl: asian,young,teen,sing","young Asian teen: asian,young,teen,sing","young Asian woman: asian,young,sing","Asian girl: asian,young,teen,sing"]
-            elif self.RaceName == "latin":
-                NounList += ["latina teen girl: latina,young,teen,sing","latina teenage girl: latina,young,teen,sing","young latina teen: latina,young,teen,sing","young latina woman: latina,young,sing","latina girl: latina,young,teen,sing","latina: latina,sing"]
-            elif self.RaceName == "redhead":
-                NounList += ["redheaded teen girl: redhead,young,teen,sing","redheaded teenage girl: redhead,young,teen,sing","young redheaded teen: redhead,young,teen,sing","young redheaded woman: redhead,young,sing","young redhead: redhead,young,sing","redheaded girl: redhead,young,teen,sing","redheaded teen: redhead,young,teen,sing","redhead: redhead,sing"]
-            else:
-                NounList += ["teen girl: young,teen,sing","teenage girl: young,teen,sing","young lady: young,sing","young woman: young,sing"]
-                if self.HairColor == "blonde":
-                    NounList += ["blonde teen girl: hair,cauc,young,teen,sing","blonde teenage girl: hair,cauc,young,teen,sing","young blonde: hair,cauc,young,sing","young blonde woman: hair,cauc,young,sing","blonde girl: hair,cauc,young,sing"]
-                elif self.HairColor == "redhead":
-                    NounList += ["redhead teen girl: hair,cauc,young,teen,sing","redhead teenage girl: hair,cauc,young,teen,sing","young redhead: hair,cauc,young,sing","young redhead woman: hair,cauc,young,sing","redhead girl: hair,cauc,young,sing"]
-                elif self.HairColor == "brown":
-                    NounList += ["brunette teen girl: hair,cauc,young,teen,sing","brunette teenage girl: hair,cauc,young,teen,sing","young brunette: hair,cauc,young,sing","young brunette woman: hair,cauc,young,sing","brunette girl: hair,cauc,young,sing","brunette teen: hair,cauc,young,teen,sing"]
-                elif self.HairColor == "black":
-                    NounList += ["dark-haired teen girl: hair,young,teen,sing","dark-haired girl: hair,young,teen,sing","dark-haired teen: hair,young,teen,sing","raven-haired girl: hair,young,sing","raven-haired teen girl: hair,young,teen,sing","raven-haired young lady: hair,young,sing"] 
-        elif self.AgeCat == "college":
-            if self.RaceName == "poc":
-                NounList += ["black college girl: poc,young,college,sing","ebony college girl: poc,young,college,sing","young black woman: poc,young,sing","black girl: poc,young,sing","young black lady: poc,young,sing","young ebony lady: poc,young,sing","young black college girl: poc,young,college,sing","young ebony college girl: poc,young,college,sing","black co-ed: poc,young,college,sing","ebony co-ed: poc,young,college,sing","young black co-ed: poc,young,college,sing"]
-            elif self.RaceName == "asian":
-                NounList += ["Asian college girl: asian,young,college,sing","young Asian woman: asian,young,sing","Asian girl: asian,young,sing","young Asian lady: asian,young,sing","young Asian college girl: asian,young,college,sing","Asian co-ed: asian,young,college,sing","young Asian co-ed: asian,young,college,sing"]
-            elif self.RaceName == "latin":
-                NounList += ["latina college girl: latina,young,college,sing","young latina woman: latina,young,sing","latina girl: latina,young,sing","young latina lady: latina,young,sing","young latina college girl: latina,young,college,sing","latina co-ed: latina,young,college,sing","young latina co-ed: latina,young,college,sing","latina: latina,sing"]
-            elif self.RaceName == "redhead":
-                NounList += ["redheaded college girl: redhead,young,college,sing","young redheaded woman: redhead,young,sing","redheaded girl: redhead,young,sing","young redheaded lady: redhead,young,sing","young redheaded college girl: redhead,young,college,sing","redheaded co-ed: redhead,young,college,sing","young redheaded co-ed: redhead,young,college,sing","young redhead: redhead,young,sing","redhead: redhead,sing"]
-            else:
-                NounList += ["college girl: young,college,sing","young lady: young,sing","young woman: young,sing","co-ed: young,college,sing","young co-ed: young,college,sing"]
-                if self.HairColor == "blonde":
-                    NounList += ["blonde college girl: hair,cauc,young,college,sing","young blonde college girl: hair,cauc,young,college,sing","blonde young woman: hair,cauc,young,sing","blonde girl: hair,cauc,young,sing","blonde young lady: hair,cauc,young,sing","blonde co-ed: hair,cauc,young,college,sing","blonde x3: hair,cauc,sing"]
-                elif self.HairColor == "redhead":
-                    NounList += ["redheaded college girl: hair,cauc,young,college,sing","young redheaded college girl: hair,cauc,young,college,sing","redheaded young woman: hair,cauc,young,sing","redheaded young lady: hair,cauc,young,sing","redheaded co-ed: hair,cauc,young,college,sing","redhead x3: hair,cauc,sing"]
-                elif self.HairColor == "brown":
-                    NounList += ["brunette college girl: hair,cauc,young,college,sing","young brunette college girl: hair,cauc,young,college,sing","brunette young woman: hair,cauc,young,sing","brunette girl: hair,cauc,young,sing","brunette young lady: hair,cauc,young,sing","brunette co-ed: hair,cauc,young,college,sing","brunette x3: hair,cauc,sing"]
-                elif self.HairColor == "black":
-                    NounList += ["dark-haired college girl: hair,young,college,sing","raven-haired college girl: hair,young,college,sing","raven-haired young lady: hair,young,sing","dark-haired co-ed: hair,young,college,sing","raven-haired co-ed: hair,young,college,sing"]
-        elif self.AgeCat == "twenties":
-            if self.RaceName == "poc":
-                NounList += ["young black woman: poc,young,twenties,sing","young ebony woman: poc,young,sing","black woman x3: poc,sing","ebony woman: poc,sing","young black lady: poc,young,sing","young black woman: poc,young,sing"]
-            elif self.RaceName == "asian":
-                NounList += ["young Asian woman: asian,young,twenties,sing","Asian woman x3: asian,sing","young Asian lady: asian,young,sing","young Asian woman: asian,young,sing"]
-            elif self.RaceName == "latin":
-                NounList += ["young latina woman: latina,young,twenties,sing","latina woman x3: latina,sing","young latina lady: latina,young,sing","young latina woman: latina,young,sing","latina x3: latina,sing"]
-            elif self.RaceName == "redhead":
-                NounList += ["young redheaded woman: redhead,young,twenties,sing","redheaded woman x2: redhead,sing","young redheaded lady: redhead,young,sing","young redhead: redhead,young,sing","redhead x4: redhead,sing"]
-            else:
-                NounList += ["young lady: young,sing","young woman: young,sing","woman x2: sing"]
-                if self.HairColor == "blonde":
-                    NounList += ["blonde young woman: hair,cauc,young,sing","blonde girl: hair,cauc,young,sing","blonde young lady: hair,cauc,young,sing","blonde woman x3: hair,cauc,sing","blonde x4: hair,cauc,sing","blonde bombshell: hair,cauc,sing"]
-                elif self.HairColor == "redhead":
-                    NounList += ["redheaded young woman: hair,cauc,young,sing","redheaded girl: hair,cauc,young,sing","redheaded young lady: hair,cauc,young,sing","redheaded woman: hair,cauc,sing","redhead x4: hair,cauc,sing"]
-                elif self.HairColor == "brown":
-                    NounList += ["brunette young woman: hair,cauc,young,sing","brunette girl: hair,cauc,young,sing","brunette young lady: hair,cauc,young,sing","brunette woman: hair,cauc,sing","brunette x3: hair,cauc,sing"]
-                elif self.HairColor == "black":
-                    NounList += ["dark-haired young woman: hair,young,sing","raven-haired young woman: hair,young,sing","dark-haired girl: hair,young,sing","raven-haired girl: hair,young,sing","dark-haired young lady: hair,young,sing","raven-haired young lady: hair,young,sing","dark-haired woman: hair,sing","raven-haired woman: hair,sing"]
-        else:
-            if self.RaceName == "poc":
-                NounList += ["black woman: poc,sing","ebony woman: poc,sing","mature black woman: poc,older,sing","black MILF: poc,older,milf,sing","ebony MILF: poc,older,milf,sing","black lady: poc,sing"]
-            elif self.RaceName == "asian":
-                NounList += ["Asian woman: asian,sing","mature Asian woman: asian,older,sing","Asian MILF: asian,older,milf,sing","Asian lady: asian,sing"]
-            elif self.RaceName == "latin":
-                NounList += ["latina woman: latina,sing","mature latina woman: latina,older,sing","latina MILF: latina,older,milf,sing","latina lady: latina,sing"]
-            elif self.RaceName == "redhead":
-                NounList += ["redheaded woman: redhead,sing","mature redheaded woman: redhead,older,sing","redheaded MILF: redhead,older,milf,sing","redheaded lady: redhead,sing", "mature redhead x3: redheader,older,milf,sing"]
-            else:
-                NounList += ["woman x2: sing","mature woman: older, sing","MILF: older,milf,sing","lady: sing"]
-                if self.HairColor == "blonde":
-                    NounList += ["blonde woman x2: hair,cauc,sing","mature blonde woman: hair,cauc,older,milf,sing","mature blonde: hair,cauc,older,milf,sing","blonde MILF: hair,cauc,older,milf,sing","blonde lady: hair,cauc,sing","blonde x3: hair,cauc,sing","blonde bombshell: hair,cauc,sing"]
-                elif self.HairColor == "redhead":
-                    NounList += ["redheaded woman x2: hair,cauc,sing","mature redheaded woman: hair,cauc,older,sing","mature redhead: hair,cauc,older,sing","redheaded MILF: hair,cauc,older,milf,sing","redheaded lady: hair,cauc,sing","redhead x3: hair,cauc,sing",]
-                elif self.HairColor == "brown":
-                    NounList += ["brunette woman x2: hair,cauc,sing","mature brunette woman: hair,cauc,older,sing","mature brunette: hair,cauc,older,sing","brunette MILF: hair,cauc,older,milf,sing","brunette lady: hair,cauc,sing","brunette x3: hair,cauc,sing",]
-                elif self.HairColor == "black":
-                    NounList += ["dark-haired woman: hair,sing","raven-haired woman: hair,milf,sing","mature dark-haired woman: hair,older,sing","mature raven-haired woman: hair,older,sing","dark-haired MILF: hair,older,milf,sing","raven-haired MILF: hair,older,milf,sing","dark-haired lady: hair,sing","raven-haired lady: hair,sing",]
-                else:
-                    NounList += ["gray-haired woman: hair,older,sing","silver-haired woman: hair,older,sing","mature gray-haired woman: hair,older,sing","mature silver-haired woman: hair,older,sing","gray-haired lady: hair,older,sing","silver-haired lady: hair,older,sing",]
-
-        self.Noun = choice(NounList)
-
+    def BuildDesc(self, TagLists):
+        
         AdjList = ['beautiful: super',
                    'bright-eyed: eyes',
-                   'cute: super,young',
+                   'cute: super',
                    'doe-eyed: eyes',
-                   'exotic: super',
                    'lovely: super',
-                   'matronly: age,older',
-                   'nubile x2: age,young',
                    'pretty: super',
                    'sexy: super',
                    'striking: super',
-                   'wide-eyed: eyes',
                   ]
+
+        ColorList = []
+
+        NounList = ['woman x4: adult,sing',
+                   ]
+
+        if self.RaceName == "asian":
+            AdjList += ['Asian x12: race,asian',]
+        elif self.RaceName == "caucasian":
+            if self.HairColor in ["blonde"]:
+                NounList += ['blonde x3: haircolor,blonde,cauc,sing','blonde bombshell: haircolor,blonde,cauc,sing',]
+                AdjList += ['blonde x8: blonde,haircolor,cauc','fair: blonde,haircolor,cauc','platinum blonde: blonde,haircolor,cauc',]
+            elif self.HairColor in ["brown"]:
+                NounList += ['brunette x3: haircolor,brunette,cauc,sing',]
+                AdjList += ['brunette x8: haircolor,brunette,cauc',]
+            elif self.HairColor in ["gray"]:
+                AdjList += ['gray-haired: haircolor,grayhair,older,age','silver-haired: haircolor,grayhair,older,age']
+            else:
+                AdjList += ['dark-haired: haircolor,dark,brunette','raven-haired x3: haircolor,darkhair',]
+        elif self.RaceName == "latin":
+            AdjList += ['latina x12: race,latina,sing',]
+            NounList += ['latina x3: race,latina,sing',]
+        elif self.RaceName == "poc":
+            AdjList += ['black x12: color,race,poc','ebony x6: color,race,poc',]
+        elif self.RaceName == "redhead":
+            AdjList += ['redheaded x12: haircolor,race,redhead,redhair',]
+            NounList += ['redhead x3: haircolor,redhead,race,ginger,sing',]
+
+        if self.AgeCat not in ["milf",]:
+            AdjList += ['young x8: age,young',]
+            NounList += ['girl x3: age,young,sing',]
+        else:
+            AdjList += ['matronly: age,older,bigtits',
+                        'mature x4: age,older',]
+            NounList += ['MILF x2: age,older,milf,sing',]
+        if self.AgeCat not in ["twenties","milf"]:
+            AdjList += ['nubile x2: super,young',]
+            NounList += ['young lady x3: adult,age,young,sing',
+                         'young woman x3: adult,age,young,sing',]
+        if self.AgeCat in ["teen"]:
+            AdjList += ['teen x8: age,teen,young',
+                        'teenage x6: age,teen,young',]
+            NounList += ['teen x3: age,young,teen,sing',]
+        else:
+            NounList += ['lady x2: adult,sing',]
+            
+        if self.AgeCat in ["college"]:
+            NounList += ['coed x3: age,young,college,sing',
+                         'college girl x3: age,young,college,sing',]
 
         if self.BustSize in ["large","huge"]:
             AdjList += ['ample-bosomed: bigtits','big-titted: bigtits','bosomy: bigtits,shape','busty: bigtits','buxom: bigtits','full-figured: bigtits,shape','shapely: curvy,bigtits,shape','stacked: bigtits,shape','statuesque: bigtits,shape','voluptuous: bigtits,curvy,shape',]
@@ -1144,25 +1023,27 @@ class Woman(Body):
             AdjList += ['flat-chested: smalltits','lithe: slender,flexible','petite: short,small,slender','skinny: slender','slender: slender','tight-bodied: slender','waifish: slender',]
             
         if self.BodyType in ["plussize"]:
-             AdjList += ['chubby: plussize,shape','Rubenesque: plussize,shape','plump: curvy,plussize,shape',]
+            AdjList += ['chubby: plussize,shape','Rubenesque: plussize,shape','plump: curvy,plussize,shape',]
         elif self.BodyType in ["curvy"]:
             AdjList += ['curvaceous: curvy,shape','round-bottomed: curvy,shape','shapely: curvy,shape']
         elif self.BodyType in ["slender"]:
             AdjList += ['elfin: slender','limber:slender,flexible','lithe: slender,flexible','little: size,small,slender','petite: short,small,slender','skinny: slender','slender: slender','tight-bodied: slender','waifish: slender',]
             
-        if self.EyeColor in ["blue"]:
-            AdjList += ['blue-eyed x3: eyes,cauc',]
-        elif self.EyeColor in ["green"]:
-            AdjList += ['green-eyed: eyes,cauc',]
-        elif self.EyeColor in ["brown","dark"]:
-            AdjList += ['brown-eyed x2: eyes','dark-eyed: eyes',]
-
-        if self.RaceName in ["caucasian"]:
+        if self.RaceName in ["asian","caucasian","latin"]:
             if self.IsTan:
                 AdjList += TanColors
-            else:
-                AdjList += ['fair: color,cauc','freckled: color,cauc','pale: color,cauc','fair: color,cauc',]
+        if self.RaceName in ["caucasian","redhead"]:
+            if not self.IsTan:
+                AdjList += ['fair-skinned: color','freckled: color','pale: color',]
 
+                if self.EyeColor in ["blue"]:
+                    AdjList += ['blue-eyed x3: eyes,eyecolor',]
+                elif self.EyeColor in ["green"]:
+                    AdjList += ['green-eyed: eyes,eyecolor',]
+                elif self.EyeColor in ["brown","dark"]:
+                    AdjList += ['brown-eyed x2: eyes,eyecolor','dark-eyed: eyes,eyecolor',]
+
+                
         if self.Height in ["tall"]:
             AdjList += ['tall: height,tall','willowy: height,tall']
         elif self.Height in ["short"]:
@@ -1170,30 +1051,30 @@ class Woman(Body):
         else:
             AdjList += ['little: height,short',]
 
-        if self.HairStyle in ["bobbed"]:
-            AdjList += ['bobbed: hairstyle,bob,shorthair',]
-        elif self.HairStyle in ["braids"]:
-            AdjList += ['braided: hairstyle,braids',]
-        elif self.HairStyle in ["cornrows"]:
-            AdjList += ['cornrowed: hairstyle,cornrows,poc',]
-        elif self.HairStyle in ["curls"]:
-            AdjList += ['curly: hairstyle,curls','curly-haired: hairstyle,curls',]
-        elif self.HairStyle in ["fro"]:
-            AdjList += ['afro\'d: hairstyle,fro,poc',]
-        elif self.HairStyle in ["kinky"]:
-            AdjList += ['kinky-haired: hairstyle,kinky,poc',]
-        elif self.HairStyle in ["long"]:
-            AdjList += ['long-haired: hairstyle,longhair',]
-        elif self.HairStyle in ["pigtails"]:
-            AdjList += ['pigtailed: hairstyle,pigtails',]
-        elif self.HairStyle in ["pixie"]:
-            AdjList += ['pixie-cut: hairstyle,pixie,shorthair',]
-        elif self.HairStyle in ["ponytail"]:
-            AdjList += ['pony-tailed: hairstyle,ponytail',]
-        elif self.HairStyle in ["short"]:
-            AdjList += ['short-haired: hairstyle,shorthair',]
-        elif self.HairStyle in ["updo"]:
-            AdjList += ['big-haired: hairstyle,updo','permed: hairstyle,updo',]
+        #if self.HairStyle in ["bobbed"]:
+        #    AdjList += ['bobbed: hairstyle,bob,shorthair',]
+        #elif self.HairStyle in ["braids"]:
+        #    AdjList += ['braided: hairstyle,braids',]
+        #elif self.HairStyle in ["cornrows"]:
+        #    AdjList += ['cornrowed: hairstyle,cornrows,poc',]
+        #elif self.HairStyle in ["curls"]:
+        #    AdjList += ['curly: hairstyle,curls','curly-haired: hairstyle,curls',]
+        #elif self.HairStyle in ["fro"]:
+        #    AdjList += ['afro\'d: hairstyle,fro,poc',]
+        #elif self.HairStyle in ["kinky"]:
+        #    AdjList += ['kinky-haired: hairstyle,kinky,poc',]
+        #elif self.HairStyle in ["long"]:
+        #    AdjList += ['long-haired: hairstyle,longhair',]
+        #elif self.HairStyle in ["pigtails"]:
+        #    AdjList += ['pigtailed: hairstyle,pigtails',]
+        #elif self.HairStyle in ["pixie"]:
+        #    AdjList += ['pixie-cut: hairstyle,pixie,shorthair',]
+        #elif self.HairStyle in ["ponytail"]:
+        #    AdjList += ['pony-tailed: hairstyle,ponytail',]
+        #elif self.HairStyle in ["short"]:
+        #    AdjList += ['short-haired: hairstyle,shorthair',]
+        #elif self.HairStyle in ["updo"]:
+        #    AdjList += ['big-haired: hairstyle,updo','permed: hairstyle,updo',]
 
         if self.IsFit:
             AdjList += ['athletic: muscular,shape','fit: muscular','trim: slender,shape']
@@ -1203,11 +1084,22 @@ class Woman(Body):
         if self.IsVirgin:
             AdjList += ['virginal: virginal',]
 
-        self.Woman = NounPhrase()
-        self.Woman.NounList(NounList)
-        self.Woman.AdjList(AdjList)
+        WomanParams = NPParams(iNumAdjs = randint(3,4),
+                               AdjList = AdjList,
+                               ColorList = ColorList,
+                               NounList = NounList)
+        WomanDesc = NounPhrase(Params = WomanParams, TLParams = TagLists)
+        WomanDesc.AdjList(AdjList)
+        WomanDesc.ColorList(ColorList)
+        WomanDesc.NounList(NounList)
+        WomanDesc.Color(WomanDesc.GetNewColor())
+        WomanDesc.Reset("bodies.Woman.BuildDesc()")
+
+        self.Woman = WomanDesc
+        #self.Woman.NounList(NounList)
+        #self.Woman.AdjList(AdjList)
         self.Noun = self.Woman.GetNoun()
-        self.Desc = self.Woman.FloweryDesc(TagLists = TagLists(adj_excl = ["color"]))
+        self.Desc = self.Woman.GetFullDesc(iNumAdjs = 4, bCommas = False)
         self.DescWords = self.Woman.GetDescWordList()
 
         return True
