@@ -9075,20 +9075,28 @@ class Generator119(ExGen):
         super().GenerateTweet()
         sTweet = ""
 
-        sTweet += "Female nouns:\n"
-        for i in range(12):
-            #FemaleNoun = bodies.FemaleNoun(Params = NPParams(iNumAdjs = randint(3,4)))
-            #sTweet += "   " + FemaleNoun.FloweryDesc() + "\n"
-            #sTweet += "   " + " ".join(FemaleNoun.GetDescWordList()) + "\n"
-            #sTweet += "   " + FemaleNoun.GetFullDesc(iNumAdjs = 4, bCommas = False) + "\n"
-            NewWoman = bodies.Woman()
+        #sTweet += "Female nouns:\n"
+        #for i in range(12):
+        #    #FemaleNoun = bodies.FemaleNoun(Params = NPParams(iNumAdjs = randint(3,4)))
+        #    #sTweet += "   " + FemaleNoun.FloweryDesc() + "\n"
+        #    #sTweet += "   " + " ".join(FemaleNoun.GetDescWordList()) + "\n"
+        #    #sTweet += "   " + FemaleNoun.GetFullDesc(iNumAdjs = 4, bCommas = False) + "\n"
+        #    NewWoman = bodies.Woman()
             
-            sTweet += "\n  " + NewWoman.Desc + " (" + NewWoman.RaceName + ")\n"
-            #sTweet += "\n  Color: " + str(NewWoman.Woman.GetColor()) + "\n"
-            # sTweet += "\n  AdjList: " + str(NewWoman.Woman.GetAdjList()) + "\n"
-            #sTweet += "\n  ColorList: " + str(NewWoman.Woman.GetColorList()) + "\n"
-            #sTweet += "\n  NounList: " + str(NewWoman.Woman.GetNounList()) + "\n"
+        #    sTweet += "\n  " + NewWoman.Desc + " (" + NewWoman.RaceName + ")\n"
+        #    #sTweet += "\n  Color: " + str(NewWoman.Woman.GetColor()) + "\n"
+        #    # sTweet += "\n  AdjList: " + str(NewWoman.Woman.GetAdjList()) + "\n"
+        #    #sTweet += "\n  ColorList: " + str(NewWoman.Woman.GetColorList()) + "\n"
+        #    #sTweet += "\n  NounList: " + str(NewWoman.Woman.GetNounList()) + "\n"
+    
+        sTweet += "Male nouns:\n"
+        for i in range(12):
+            NewMan = bodies.Man()
+            sTweet += "\n  " + NewMan.Desc + " (" + NewMan.RaceName + ")\n"
+            #sTweet += "\n  AdjList: " + str(NewMan.ManDesc.GetAdjList()) + "\n"
+            
         return sTweet
+
 
 ## Juan watched, wide-eyed, as Carla stripped off her white cotton 
 ## t-shirt, revealing her fulsome breasts. With gentle hands she 

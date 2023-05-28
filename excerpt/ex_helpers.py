@@ -160,9 +160,21 @@ class NounPhrase:
         self.ColorHistoryQ = HistoryQ(12)
         self.NounHistoryQ = HistoryQ(12)
         
+        bDoReset = False
 
         if Params is None:
             Params = NPParams()
+
+        if len(Params.AdjList) > 0:
+            self.AdjList(NewAdjList = Params.AdjList, bReset = False)
+            bDoReset = True
+        if len(Params.ColorList) > 0:
+            self.ColorList(NewColorList = Params.ColorList, bReset = False)
+            bDoReset = True
+        if len(Params.NounList) > 0:
+            self.NounList(NewNounList = Params.NounList, bReset = False)
+            bDoReset = True
+
 
         # Nouns and Adjs have their own specific required and excluded
         # tag lists which they will use if available. Otherwise, they
@@ -170,13 +182,6 @@ class NounPhrase:
         if TLParams is None or not isinstance(TLParams, TagLists):
             #print("WARNING - NounPhrase.init(): TagLists not found, creating new instance")
             TLParams = TagLists()
-
-        if len(Params.AdjList) > 0:
-            self.AdjList(NewAdjList = Params.AdjList, bReset = False)
-        if len(Params.ColorList) > 0:
-            self.ColorList(NewColorList = Params.ColorList, bReset = False)
-        if len(Params.NounList) > 0:
-            self.NounList(NewNounList = Params.NounList, bReset = False)
 
         if NotList is None:
             NotList = []
@@ -206,6 +211,10 @@ class NounPhrase:
 
         self._ExtraAdjList = TLParams.adj_extra
 
+        if bDoReset:
+            self.Reset("__init()__")
+
+        return
 
     # *** Reset method ***
     # --------------------

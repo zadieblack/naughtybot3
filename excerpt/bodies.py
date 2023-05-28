@@ -403,7 +403,7 @@ class Man(Body):
                                     ]
         self.NaughtyParts = [self.Ass,self.Penis,self.Penis.Head,self.Penis.Testicles]
 
-        self.BuildDesc()
+        self.BuildDesc(LTagLists)
 
         sCut = ""
         if self.IsCircumcised:
@@ -436,12 +436,74 @@ class Man(Body):
 
         return
 
-    def BuildDesc(self):
+    def BuildDesc(self, TLParams):
         # ["teen","college","twenties","thirties","middleaged","older"]
 
-        NounList = []
-        AdjList = []
+        AdjList = ['confident: attitude',
+                   'fatherly: older',
+                   'gruff: attitude,thirties,middleaged,older',
+                   'handsome x3: super',
+                   'hairy: hairy',
+                   'heavily-tattoed: style',
+                   'sexy x2: super',
+                   'striking: super',
+                   'wealthy: status,rich',
+                  ]
 
+        ColorList = []
+
+        NounList = ['guy x2: sing',
+                    'man x4: adult,sing',
+                   ]
+
+        if self.RaceName == "asian":
+            AdjList += ['Asian x20: race,asian',]
+        elif self.RaceName == "caucasian":
+            if self.HairColor in ["blonde"]:
+                AdjList += ['blonde x8: blonde,haircolor,cauc','fair: blonde,haircolor,cauc',]
+            elif self.HairColor in ["brown"]:
+                AdjList += ['brunette x6: haircolor,brunette,cauc','brown-haired x6: haircolor,brunette,cauc']
+            elif self.HairColor in ["gray"]:
+                AdjList += ['gray-haired: haircolor,grayhair,older,age','silver-haired: haircolor,grayhair,older,age']
+            else:
+                AdjList += ['dark-haired: haircolor,dark,brunette','raven-haired x3: haircolor,darkhair',]
+        elif self.RaceName == "latin":
+            AdjList += ['latino x20: race,latina,sing',]
+            NounList += ['latino x3: race,latina,sing',]
+        elif self.RaceName == "poc":
+            AdjList += ['black x20: color,race,poc','ebony x6: color,race,poc',]
+        elif self.RaceName == "redhead":
+            AdjList += ['redheaded x20: haircolor,race,redhead,redhair',]
+
+        
+        if self.AgeCat not in ["middleaged","older"]:
+            AdjList += ['young x12: age,young',]
+            NounList += ['boy x3: age,young,sing',]
+        else:
+            AdjList += ['fatherly: age,older',
+                        'grand-fatherly: age,older',
+                        'mature x8: age,older',
+                        'middle-aged x8: age,middleage',]
+        if self.AgeCat not in ["twenties","thirties","middleaged","older"]:
+            NounList += ['young man x3: adult,age,young,sing',]
+        if self.AgeCat in ["teen"]:
+            AdjList += ['teen x8: age,teen,young',
+                        'teenage x6: age,teen,young',]
+            NounList += ['teen x3: age,young,teen,sing',]
+            
+        if self.AgeCat in ["college"]:
+            NounList += ['college boy x3: age,young,college,sing',
+                         'college guy x4: age,young,college,sing']
+
+        if self.RaceName in ["asian","caucasian","latin"]:
+            if self.IsTan:
+                AdjList += TanColors
+        if self.RaceName in ["caucasian","redhead"]:
+            if not self.IsTan:
+                AdjList += ['fair-skinned: color','freckled: color','pale: color',]
+
+
+        # Old stuff ===========================================
         if self.AgeCat == "teen":
             if self.RaceName == "poc":
                 NounList += ["black teen boy: poc,young,teen,sing","black teenage boy: poc,young,teen,sing","young black man: poc,young,sing","young black guy: poc,young,sing","black boy: poc,young,teen,sing"]
@@ -590,21 +652,6 @@ class Man(Body):
                 elif self.HairStyle in ["bald"]:
                     NounList += ["bald man: hair,bald,sing","balding man: hair,bald,sing","bald guy: hair,bald,sing","bald older man x3: hair,bald,older,sing","balding older man: hair,bald,older,sing","bald older guy: hair,bald,older,sing"]
 
-        self.Noun = choice(NounList)
-
-        #'copper-skinned: color,poc',
-
-        AdjList = ['confident: attitude',
-                   'fatherly: older',
-                   'gruff: attitude,thirties,middleaged,older',
-                   'handsome x3: super',
-                   'hairy: hairy',
-                   'heavily-tattoed: style',
-                   'sexy x2: super',
-                   'striking: super',
-                   'wealthy: status,rich',
-                  ]
-
         if self.HeightType in ["tall"]:
             AdjList += ['tall x3: height,tall','lanky: height,tall','towering: height,tall','imposing: super',]
         elif self.HeightType in ["short"]:
@@ -627,7 +674,7 @@ class Man(Body):
         elif self.EyeColor in ["brown","dark"]:
             AdjList += ['brown-eyed x2: eyes','dark-eyed: eyes',]
 
-        if self.RaceName in ["caucasian"]:
+        if self.RaceName in ["asian","caucasian","latino"]:
             if self.IsTan:
                 AdjList += TanColors
             else:
@@ -672,12 +719,23 @@ class Man(Body):
         else:
             AdjList += ['clean-cut: facialhair,shaved','clean-shaven: facialhair,shaved','chiseled: super','square-jawed: jawshape,square',]
 
-        self.Man = NounPhrase()
-        self.Man.NounList(NounList)
-        self.Man.AdjList(AdjList)
-        self.Noun = self.Man.GetNoun()
-        self.Desc = self.Man.FloweryDesc(TagLists = TagLists(adj_excl = ["color"]))
-        self.DescWords = self.Man.GetDescWordList()
+        ManParams = NPParams(iNumAdjs = randint(3,4),
+                               AdjList = AdjList,
+                               ColorList = ColorList,
+                               NounList = NounList)
+        ManDesc = NounPhrase(Params = ManParams, TLParams = TagLists)
+
+        self.ManDesc = ManDesc
+        self.Noun = self.ManDesc.GetNoun()
+        self.Desc = self.ManDesc.GetFullDesc(iNumAdjs = 4, bCommas = False)
+        self.DescWords = self.ManDesc.GetDescWordList()
+
+        #self.Man = NounPhrase()
+        #self.Man.NounList(NounList)
+        #self.Man.AdjList(AdjList)
+        #self.Noun = self.Man.GetNoun()
+        #self.Desc = self.Man.FloweryDesc(TagLists = TagLists(adj_excl = ["color"]))
+        #self.DescWords = self.Man.GetDescWordList()
 
         return
 
@@ -696,7 +754,8 @@ class Woman(Body):
         super().__init__("female", NewGenTraits = NewGenTraits)
         self.Noun = ""
         self.Desc = ""
-        self.DescWords = ""
+        self.DescWords = []
+        self.WomanDesc = None
         self.AgeCat = ""
         self.Age = 0
         self.BodyType = ""
@@ -1089,18 +1148,11 @@ class Woman(Body):
                                ColorList = ColorList,
                                NounList = NounList)
         WomanDesc = NounPhrase(Params = WomanParams, TLParams = TagLists)
-        WomanDesc.AdjList(AdjList)
-        WomanDesc.ColorList(ColorList)
-        WomanDesc.NounList(NounList)
-        WomanDesc.Color(WomanDesc.GetNewColor())
-        WomanDesc.Reset("bodies.Woman.BuildDesc()")
 
-        self.Woman = WomanDesc
-        #self.Woman.NounList(NounList)
-        #self.Woman.AdjList(AdjList)
-        self.Noun = self.Woman.GetNoun()
-        self.Desc = self.Woman.GetFullDesc(iNumAdjs = 4, bCommas = False)
-        self.DescWords = self.Woman.GetDescWordList()
+        self.WomanDesc = WomanDesc
+        self.Noun = self.WomanDesc.GetNoun()
+        self.Desc = self.WomanDesc.GetFullDesc(iNumAdjs = 4, bCommas = False)
+        self.DescWords = self.WomanDesc.GetDescWordList()
 
         return True
 
