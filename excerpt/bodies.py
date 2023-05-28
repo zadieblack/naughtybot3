@@ -17,6 +17,7 @@ class GenPhysTraits:
     Race: Race = None
     Height: str = ""
     IsFit: bool = False
+    IsTan: bool = False
     PubeStyle: str = ""
 
 #GenPhysTraits = namedtuple("GenPhysTraits",
@@ -78,7 +79,7 @@ class Body():
         else:
             self.IsFit = choice([True,False,False])
 
-        if NewGenTraits.Race and isinstance(Race, NewGenTraits.Race):
+        if NewGenTraits.Race and isinstance(NewGenTraits.Race,Race):
             self.Race = NewGenTraits.Race
         else:
             self.Race = choice([RaceCauc,RaceCauc,RaceCauc,RaceGinger,RacePOC,RacePOC,RaceAsian,RaceLatin]) # Add RaceAsian
@@ -218,7 +219,6 @@ class Man(Body):
             self.HeightType = choice(["short","medium","medium","tall","tall","tall"])
 
         # Handle body type
-        # TODO: This lacks consistent tags
         if NewMaleTraits.BodyType:
             self.BodyType = NewMaleTraits.BodyType
         else:
@@ -675,6 +675,91 @@ class Man(Body):
         self.DescWords = self.Man.GetDescWordList()
 
         return
+
+class FemaleDesc(NounPhrase):
+     def __init__(self, Params = None, NotList = None, TagLists = None):
+          super().__init__(Params, NotList, TagLists)
+          
+          self.NounList(['blonde x2: haircolor,blonde,cauc,sing', 
+                         'blonde bombshell: haircolor,blonde,cauc,sing',
+                         'brunette x2: haircolor,brunette,cauc,sing',
+                         'coed: age,young,college,sing',
+                         'college girl: age,young,college,sing',
+                         'girl x4: age,young,sing',
+                         'lady x2: adult,sing',
+                         'MILF x3: age,older,milf,sing',
+                         'redhead x2: haircolor,redhead,race,ginger,sing',
+                         'teen x3: age,young,teen,sing',
+                         'young lady x3: adult,age,young,sing',
+                         'young woman x3: adult,age,young,sing',
+                         'woman x6: adult,sing',
+                        ])
+
+          self.AdjList([#'ample-bosomed x2: bigtits',
+                        'athletic x3: muscular,shape',
+                        'Asian x5: race,asian',
+                        'beautiful: super',
+                        'black x8: color,race,poc',
+                        'blonde x4: blonde,haircolor,cauc',
+                        #'blue-eyed x3: eyes,eyecolor',
+                        'big-titted: bigtits',
+                        'bosomy x2: bigtits,shape',
+                        'bright-eyed: eyes',
+                        #'brown-eyed x3: eyes,eyecolor',
+                        'brunette x4: haircolor,brunette,cauc',
+                        'busty x2: bigtits',
+                        'buxom x2: bigtits',
+                        'chubby x3: plussize,shape',
+                        'curvaceous x2: curvy,shape',
+                        'cute: super',
+                        'dainty: small,fragile','delicate: fragile'
+                        #'dark-eyed x3: eyes,eyecolor',
+                        'dark-haired x3: haircolor,dark,brunette',
+                        'doe-eyed: eyes',
+                        'ebony x6: color,race,poc',
+                        'elfin: slender',
+                        'fit x3: muscular',
+                        'flat-chested x2: smalltits',
+                        'full-figured x2: bigtits,shape',
+                        'gray-haired x3: haircolor,grayhair,older,age',
+                        #'green-eyed x3: eyes,eyecolor',
+                        'latina x5: race,latin',
+                        'limber:slender,flexible',
+                        'lithe x2: slender,flexible',
+                        'little x3: size,small,height,short,slender',
+                        'lovely: super',
+                        'matronly: age,older,bigtits',
+                        'mature x4: age,older',
+                        'nubile x2: super,young',
+                        'petite x3: short,small,slender',
+                        'plump x3: curvy,plussize,shape',
+                        'pretty: super',
+                        'raven-haired x3: haircolor,darkhair',
+                        'redheaded x5: haircolor,race,redhead,ginger',
+                        'round-bottomed x2: curvy,shape',
+                        'Rubenesque x3: plussize,shape',
+                        'sexy: super',
+                        'shapely x2: curvy,bigtits,shape',
+                        'short: height,short',
+                        'skinny x2: slender',
+                        'slender x2: slender',
+                        'stacked x2: bigtits,shape',
+                        'statuesque x2: bigtits,shape',
+                        'striking: super',
+                        'tall x3: height,tall',
+                        'teen x4: age,teen,young',
+                        'teenage x4: age,teen,young',
+                        'tight-bodied: slender',
+                        'trim: slender,shape'
+                        'voluptuous: bigtits,curvy,shape',
+                        'waifish: slender,young',
+                        'willowy: height,tall'
+                        'young x4: age,young',
+                       ])
+          
+          self.DefaultNoun("woman")
+          self.DefaultAdj("brunette")
+
 @dataclass
 class FemPhysTraits:
     AgeCat: str = ""
@@ -1064,7 +1149,7 @@ class Woman(Body):
             AdjList += ['curvaceous: curvy,shape','round-bottomed: curvy,shape','shapely: curvy,shape']
         elif self.BodyType in ["slender"]:
             AdjList += ['elfin: slender','limber:slender,flexible','lithe: slender,flexible','little: size,small,slender','petite: short,small,slender','skinny: slender','slender: slender','tight-bodied: slender','waifish: slender',]
-
+            
         if self.EyeColor in ["blue"]:
             AdjList += ['blue-eyed x3: eyes,cauc',]
         elif self.EyeColor in ["green"]:
@@ -1114,7 +1199,7 @@ class Woman(Body):
             AdjList += ['athletic: muscular,shape','fit: muscular','trim: slender,shape']
         else:
             AdjList += ['dainty: small,fragile','delicate: fragile',]
-
+            
         if self.IsVirgin:
             AdjList += ['virginal: virginal',]
 

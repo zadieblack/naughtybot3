@@ -139,6 +139,7 @@ RaceLatin   = Race(Name = "latin",
                    MaleHairStyle = ["buzz-cut","cornrows","crew-cut","curly","dreadlocks","kinky","ponytail","shaved","short-haired","slicked-back"]
                   )
 
+RaceList = [RaceCauc,RaceGinger,RacePOC,RaceAsian,RaceLatin]
 
 class BodyParts(NounPhrase):
     def AddSkinColors(self):
@@ -1648,7 +1649,7 @@ class BodyFemale(FemaleBodyParts):
           
           return sPartDesc
      
-     def DescRandomNakedParts(self, iNum = 3, sDivideChar = ',', bBoobs = True, bPussy = False, bAss = False, bExplicit = False, bLongDesc = True, sPossessive = None, NotList = None):
+     def DescRandomNakedParts(self, iNum = 3, sDivideChar = ',', bBoobs = True, bPussy = False, bAss = False, bBody = True, bExplicit = False, bLongDesc = True, sPossessive = None, NotList = None):
           sBodyDesc = ""
 
           if NotList is None:
@@ -1686,11 +1687,14 @@ class BodyFemale(FemaleBodyParts):
           body = self
           
           PartPriorities = [[legs,1],
-                                [hips,1],
-                                [thighs,2],
-                                [back,3],
-                                [skin,4],
-                                [body,4]]
+                            [hips,1],
+                            [thighs,2],
+                            [back,3],
+                            [skin,4],
+                           ]
+
+          if bBody:
+              PartPriorities.append([body,4])
           
           if bBoobs:
                PartPriorities.append([boobs,5])
@@ -3003,7 +3007,7 @@ class BodyMale(MaleBodyParts):
           
         return sPartDesc
      
-    def DescRandomNakedParts(self, iNum = 3, sDivideChar = ',', bPenis = True, bAss = True, bExplicit = False, bLongDesc = True, sPossessive = None):
+    def DescRandomNakedParts(self, iNum = 3, sDivideChar = ',', bPenis = True, bAss = True, bBody = True, bExplicit = False, bLongDesc = True, sPossessive = None):
         sBodyDesc = ""
           
         if sPossessive is None:
@@ -3033,11 +3037,14 @@ class BodyMale(MaleBodyParts):
         body = self
           
         PartPriorities = [[chest,1],
-                            [shoulders,2],
-                            [muscles,3],
-                            [legs,4],
-                            [skin,5],
-                            [body,6]]
+                          [shoulders,2],
+                          [muscles,3],
+                          [legs,4],
+                          [skin,5],
+                         ]
+
+        if bBody:
+            PartPriorities.append([body,6])
           
         if bAss:
             PartPriorities.append([ass,4])

@@ -39,12 +39,21 @@ import excerpt.bodyparts
 MAXSECTIONBUCKETTRIES = 100
 BodyPartHistoryQ = HistoryQ(10)
 
-TagExclDict = {"bigdick": ["smalldick"],
+TagExclDict = {"adult": ["teen"],
+               "asian": ["cauc","ginger","latin","poc"],
+               "bigdick": ["smalldick"],
                "bigtits": ["smalltits"],
-               "cauc": ["poc"],
+               "blonde": ["brunette","darkhair","grayhair","redhead"],
+               "brunette": ["blonde","darkhair","grayhair","redhead"],
+               "cauc": ["poc","asian","latin","ginger"],
                "college": ["teen","twenties","thirties","middleaged","milf","older"],
+               "curvy": ["slender"],
+               "darkhair": ["blonde","brunette","grayhair","redhead"],
                "female": ["male"],
+               "ginger": ["asian","cauc","latin","poc"],
+               "grayhair": ["blonde","brunette","darkhair","redhead"],
                "hairy": ["shaved","trimmed"],
+               "latin": ["asian","cauc","ginger","poc"],
                "large": ["small"],
                "loose": ["tight"],
                "male": ["female"],
@@ -52,17 +61,18 @@ TagExclDict = {"bigdick": ["smalldick"],
                "milf": ["teen","college","twenties","young"],
                "narrow": ["wide"],
                "older": ["teen","college","twenties","young"],
-               "poc": ["cauc"],
+               "poc": ["cauc","asian","latin","ginger"],
                "plussize": ["slender"],
+               "redhead": ["blonde","brunette","darkhair","grayhair"],
                "shaved": ["hairy","trimmed"],
                "short": ["tall"],
-               "slender": ["plussize"],
+               "slender": ["curvy","plussize"],
                "slutty": ["virginal"],
                "small": ["large"],
                "smalldick": ["bigdick"],
                "smalltits": ["bigtits"],
                "tall": ["short"],
-               "teen": ["college","twenties","thirties","middleaged","milf"],
+               "teen": ["adult","college","twenties","thirties","middleaged","milf"],
                "thick": ["thin"],
                "thin": ["thick"],
                "thirties": ["teen","college","twenties","middleaged"],
@@ -304,6 +314,10 @@ class NounPhrase:
                 ExtraAdjBucket = ParsedExtraAdjList
                 SpecialAdjBucket = []
                 AgeAdjBucket = []
+                RaceAdjBucket = []
+                #HairColorAdjBucket = []
+                #EyeColorAdjBucket = []
+                HairEyeAdjBucket = []
                 ColorAdjBucket = []
                 OtherAdjBucket = []
                 SuperAdjBucket = []
@@ -315,10 +329,17 @@ class NounPhrase:
                     adjtags = self.GetUnitTags(adj)
                     if "special" in adjtags:
                         SpecialAdjBucket.append(adj)
-                    #elif "young" in self.GetUnitTags(adj) or "older" in self.GetUnitTags(adj):
                     elif "age" in adjtags:
                         #print("      \"" + adj + "\" is an age adj.")
                         AgeAdjBucket.append(adj)
+                    elif "race" in adjtags:
+                        RaceAdjBucket.append(adj)
+                    #elif "haircolor" in adjtags:
+                    #    HairColorAdjBucket.append(adj)
+                    elif "haircolor" in adjtags or "eyecolor" in adjtags:
+                        HairEyeAdjBucket.append(adj)
+                    #elif "eyecolor" in adjtags:
+                    #    EyeColorAdjBucket.append(adj)
                     elif "color" in adjtags:
                     #    #print("      \"" + adj + "\" is a color adj.")
                         ColorAdjBucket.append(adj)
@@ -334,7 +355,7 @@ class NounPhrase:
                 SpecialAdjBucket.sort(key = str.lower)
                 SuperAdjBucket.sort(key = str.lower)
 
-                self._AdjList = SuperAdjBucket + OtherAdjBucket + ColorAdjBucket + AgeAdjBucket + SpecialAdjBucket + ExtraAdjBucket
+                self._AdjList = SuperAdjBucket + OtherAdjBucket + ColorAdjBucket + HairEyeAdjBucket + AgeAdjBucket + RaceAdjBucket + SpecialAdjBucket + ExtraAdjBucket
 
             return
 
@@ -1042,7 +1063,7 @@ class NounPhrase:
     # ---------------------------
 
     # Get selected adjectives and nouns as a comma-separated string
-    def GetFullDesc(self, iNumAdjs):
+    def GetFullDesc(self, iNumAdjs, bCommas = True):
         sFullDesc = ""
         DescWordList = self._AdjList.copy()
 
@@ -1054,18 +1075,21 @@ class NounPhrase:
         if self.GetNoun() != "":
             DescWordList.append(self.GetNoun())
 
-        #print("   DescWordList (filtered) = " + str(DescWordList))
-        if len(DescWordList) == 1:
-            sFullDesc = DescWordList[0]
-        elif len(DescWordList) == 2:
-            sFullDesc = DescWordList[0] + " " + DescWordList[1]
-        elif len(DescWordList) == 3:
-            sFullDesc = ", ".join(DescWordList[:1]) + ", " + " ".join(DescWordList[1:])
-        elif len(DescWordList) == 4:
-            sFullDesc = ", ".join(DescWordList[:-2]) + ", " + " ".join(DescWordList[-2:])
+        if bCommas:
+            #print("   DescWordList (filtered) = " + str(DescWordList))
+            if len(DescWordList) == 1:
+                sFullDesc = DescWordList[0]
+            elif len(DescWordList) == 2:
+                sFullDesc = DescWordList[0] + " " + DescWordList[1]
+            elif len(DescWordList) == 3:
+                sFullDesc = ", ".join(DescWordList[:1]) + ", " + " ".join(DescWordList[1:])
+            elif len(DescWordList) == 4:
+                sFullDesc = ", ".join(DescWordList[:-2]) + ", " + " ".join(DescWordList[-2:])
+            else:
+                sFullDesc = ", ".join(DescWordList[:-3]) + ", " + " ".join(DescWordList[-3:])
         else:
-            sFullDesc = ", ".join(DescWordList[:-3]) + ", " + " ".join(DescWordList[-3:])
-        
+            sFullDesc = " ".join(DescWordList)
+
         return sFullDesc
 
     # Gets a string description of the noun only ("hair")
