@@ -2463,7 +2463,7 @@ class Generator39(ExGen):
           sHerName = self.FemaleName.FirstName()
           sHisName = self.MaleName.FirstName()
 
-          Penis = self.MaleBodyParts.Penis
+          Penis = self.Man.Penis
           Penis.ExclTagList(["hard"])
 
           sExciteAdv = WordList(["feverishly","urgently","rapidly","vigorously","excitedly","furiously"]).GetWord()
@@ -2473,26 +2473,26 @@ class Generator39(ExGen):
           
           sTweet += sHerName + " " + Location.RemoveFemaleClothing() + ". " 
           sTweet += sHisName + " bent her over " + Location.BentOver + ". " 
-          sTweet += "His " + Penis.ShortDesc() + " " 
-          sTweet += "was " + self.MaleBodyParts.Penis.GetNewAdj() + " " 
+          sTweet += "His " + Penis.MediumDesc() + " " 
+          sTweet += "was " + Penis.GetNewAdj() + " " 
           sTweet += "and fully erect. "
 
           if CoinFlip():
-               sTweet += "He spread her " + self.FemBodyParts.Ass.MediumDesc() + " " 
+               sTweet += "He spread her " + self.Woman.Ass.MediumDesc() + " " 
                sTweet += "open.\n\n" 
                sTweet += "'But " + sHisName + ",' " 
                sTweet += "she " + self.VMoan.Past() + ", "
                sTweet += "as he carefully eased his " + Penis.MediumDesc() + " into "
-               sTweet += "her " + self.FemBodyParts.Ass.Anus.RandomDesc(bShortDesc = False) + ", "
+               sTweet += "her " + self.Woman.Anus.RandomDesc(bShortDesc = False) + ", "
                sTweet += "'" + Location.HurryReason + "!'\n\n"
 
           else:
-               sTweet += "He spread her " + self.FemBodyParts.Legs.MediumDesc() + ".\n\n"
+               sTweet += "He spread her " + self.Woman.Legs.MediumDesc() + ".\n\n"
                sTweet += "'But " + sHisName + ",' " 
                sTweet += "she " + self.VMoan.Past() + ", "
-               sTweet += "as he eased all " + str(randint(5,13)) + " inches of " 
+               sTweet += "as he eased all " + str(self.Man.DickInches) + " inches of " 
                sTweet += "his " + Penis.MediumDesc() + " " 
-               sTweet += "inside her " + self.FemBodyParts.Vagina.InnerVag.MediumDesc() + ", "
+               sTweet += "inside her " + self.Woman.InnerVagina.MediumDesc() + ", "
                sTweet += "'" + Location.HurryReason + "!'\n\n"
 
           sTweet += "'Don't worry, baby,' he said. "
@@ -2507,7 +2507,7 @@ class Generator39(ExGen):
                     sTweet += "he was stroking his " + Penis2.MediumDesc() + " "
                     sTweet += sExciteAdv + "."
                else:
-                    sTweet += self.MaleName.FirstName() + " watched through the camera. " 
+                    sTweet += self.MaleName.FirstName() + " watched the couple through the camera. " 
                     sTweet += "He was stroking his " + Penis2.MediumDesc() + " "
                     sTweet += sExciteAdv + "."
           else:
@@ -2519,7 +2519,7 @@ class Generator39(ExGen):
                     sTweet += "she was frigging her " + Vagina2.ShortDesc() + " "
                     sTweet += sExciteAdv + "."
                else:
-                    sTweet += self.FemaleName.FirstName() + " watched through the camera. " 
+                    sTweet += self.FemaleName.FirstName() + " watched the couple through the camera. " 
                     sTweet += "She was frigging her " + Vagina2.ShortDesc() + " "
                     sTweet += sExciteAdv + "."
                
