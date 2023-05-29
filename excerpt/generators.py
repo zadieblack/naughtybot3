@@ -2117,7 +2117,16 @@ class Generator35(ExGen):
           return sTweet
           
 class Generator36(ExGen):
-     #Their masked host guided them into the banquet hall. On the dining table a beautiful woman lay spread-eagled, completely naked, in the center. Her succulent bronzed skin was dripping with honey, her lissome form was covered with fruits and berries, her navel was brimming with liquor, her full, perfect breasts were topped with whipped cream, and her pussy was stuffed with a single ripe strawberry. 'Gentlemen,' said the marquis, 'Let's eat!'\n\n'Holy fuck,' thought Leon, 'That's my step-daughter!'
+     #Their masked host guided them into the banquet hall. 
+     #On the dining table a beautiful woman lay 
+     #spread-eagled, completely naked, in the center. Her 
+     #succulent bronzed skin was dripping with honey, her 
+     #lissome form was covered with fruits and berries, 
+     #her navel was brimming with liquor, her full, 
+     #perfect breasts were topped with whipped cream, and 
+     #her pussy was stuffed with a single ripe strawberry. 
+     #'Gentlemen,' said the marquis, 'Let's eat!'\n\n'Holy 
+     #fuck,' thought Leon, 'That's my step-daughter!'
      def __init__(self):
          super().__init__(ID = 36, Priority = GenPriority.Normal)
      
@@ -2379,8 +2388,6 @@ class Generator38(ExGen):
           Man2 = bodies.Man(NewGenTraits = bodies.GenPhysTraits(Race = RaceSelector.GetWord(NotList = [Man1.Race]), IsFit = True), 
                             NewMaleTraits = bodies.MalePhysTraits(AgeCat = choice(["college","twenties","thirties"]), HeightType = "tall", DickInches = randint(7,14)))
 
-          #ThirdAdj = WordList(['blonde', 'redheaded', 'brunette', 'Asian', 'black'])
-          
           sGiverName = ""
           sBirthdayName = ""
           
@@ -2388,11 +2395,15 @@ class Generator38(ExGen):
                # Female SO on bed
                sGiverName = self.FemaleName.FirstName()
                sBirthdayName = self.MaleName.FirstName()
+               Woman1.WomanDesc.Noun("wife")
           
                sTweet = sBirthdayName + " entered the bedroom. " + sGiverName + " was lying on the bed. " 
-               sTweet += "His " + Woman1.Woman.GetDescWordList()[-2] + " wife was wearing nothing "
-               sTweet += "but " + WordList(["a leather corset","a jeweled butt-plug","a red garter around her thigh", 
-                                            "crotchless panties", clothes.Heels().FloweryDesc()]).GetWord() + ". His gaze lingered on "
+               sTweet += "His " + Woman1.WomanDesc.FloweryDesc(bSilly = True) + " was wearing nothing "
+               sTweet += "but " + WordList(["a leather corset","a jeweled butt-plug",
+                                            "a red garter around her thigh", "leather straps",
+                                            "a cupless bra","a slave collar around her throat",
+                                            "crotchless panties", clothes.Heels().FloweryDesc(),
+                                           ]).GetWord() + ". His gaze lingered on "
                
                sTweet += Woman1.Body.DescRandomNakedParts(iNum = 4, bLongDesc = True, bPussy = True, bAss = True, bBody = False,
                                                      sPossessive = "her", sDivideChar = ";")
@@ -2403,11 +2414,14 @@ class Generator38(ExGen):
                # Male SO on bed
                sGiverName = self.MaleName.FirstName()
                sBirthdayName = self.FemaleName.FirstName()
+               Man1.ManDesc.Noun("husband")
           
                sTweet = sBirthdayName + " entered the bedroom. " + sGiverName + " was lying on the bed. " 
-               sTweet += "Her " + Man1.Man.GetDescWordList()[-2] + " husband was wearing nothing "
-               sTweet += "but " + WordList(["a cowboy hat","a leather jacket","a cock ring","a bowtie",
-                                            "a pair of cowboy boots", "a leather body harness"]).GetWord() + " "
+               sTweet += "Her " + Man1.ManDesc.FloweryDesc(bSilly = True) + " was wearing nothing "
+               sTweet += "but " + WordList(["a cowboy hat","a leather jacket","a cock ring",
+                                            "a bowtie","a pair of cowboy boots", 
+                                            "a leather body harness","a bulging thong",
+                                            ]).GetWord() + " "
                sTweet += "and his " + Man1.Skin.RandomDesc(bLongDesc = False) + " gleamed with oil. Her gazed lingered on "
                
                sTweet += Man1.Body.DescRandomNakedParts(iNum = 4, bAss = True, bPenis = True, bBody = False,
@@ -2417,27 +2431,19 @@ class Generator38(ExGen):
                
           if CoinFlip():
                # Female gift
-               #sTweet += " A tall " + ThirdAdj.GetWord() + " woman " 
                sTweet += " " + AddArticles(Woman2.Desc, bMakeUpper = True) + " " 
                sTweet += "stepped thru the bathroom door. " 
-               sTweet += "She opened her robe to reveal her naked body. "
-               sTweet += "Her sumptuous " + Woman2.Breasts.PhraseWasAnd() + " and "
+               sTweet += "She opened her " + self.FemWardrobe.Robe.RandomDesc(bLongDesc = False) + " "
+               sTweet += "to " + WordList(["reveal","expose","display","unveil"]).GetWord() + " her naked body. "
+               sTweet += "Her " + Woman2.Breasts.PhraseWasAnd() + " and "
                sTweet += "her " + Woman2.Vagina.PhraseWasAnd() + ".\n\n"
-               #sTweet += "were full and heavy and " 
-               #sTweet += "her " + Woman2.Vagina.GetNoun() + " " 
-               #sTweet += "was shaved bare.\n\n"
           else:
-               # Male gift
-               #sTweet += " A tall " + ThirdAdj.GetWord() + " man " 
+               # Male gift 
                sTweet += " " + AddArticles(Man2.Desc, bMakeUpper = True) + " "
                sTweet += "stepped thru the bathroom door. " 
-               sTweet += "He opened his robe to reveal his naked body. "
+               sTweet += "He opened his robe to " + WordList(["reveal","expose","display","unveil"]).GetWord() + " his naked body. "
                sTweet += "His " + Man2.Chest.PhraseWasAnd() + " and "
-               sTweet += "his " + Man2.Penis.PhraseWasAnd() + ".\n\n"
-              # sTweet += "His strapping chest was " + Man2.Chest.GetNewAdj(NotList = ["strapping"]) + " "
-               #sTweet += "and his " + Man2.Penis.ShortDesc(bAddLen = True) + " " 
-               #sTweet += "was " + Man2.Penis.GetNewAdj() + " " 
-               #sTweet += "and " + Man2.Penis.GetNewAdj() + ".\n\n"
+               sTweet += "his " + Man2.Penis.PhraseWasAnd(TagLists = TagLists(adj_req = ["hard"])) + ".\n\n"
                
           sTweet += "'THIS is your birthday present,' " + sGiverName + " said."
           
