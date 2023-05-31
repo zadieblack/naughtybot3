@@ -145,6 +145,7 @@ class FemWardrobe():
         # Combos & Dresses
 
         self.Bikini = Bikini()
+        self.BodyStocking = BodyStocking()
         self.Underwear = UnderwearFemale()
         self.Workout = WorkoutFemale()
 
@@ -1432,6 +1433,45 @@ class Bikini(FemaleClothes):
 
           self.Bottoms = BikiniBottoms()
           self.Top = BikiniTop()
+
+class BodyStocking(FemaleClothes):
+     def __init__(self):
+          super().__init__()
+          
+          self.NounList(['bodystocking: std,default,sing',
+                        ])
+          
+          self.AdjList(['beige x3: color',
+                        'black x3: color',
+                        'body-hugging: shape',
+                        'creamy: color',
+                        'diaphanous: seethru',
+                        'erotic: super',
+                        'figure-hugging: shape',
+                        'fishnet: seethru,texture,material',
+                        'form-fitting: shape',
+                        'lace: material',
+                        'nylon: material',
+                        'pink: color',
+                        'racy: super,skimpy',
+                        'red: color',
+                        'revealing: skimpy,super',
+                        'risqué: skimpy,super',
+                        'seductive: super',
+                        'sexy: super',
+                        'silk x2: material',
+                        'sheer x4: seethru,texture',
+                        'skin-tight: tight',
+                        'snug: tight',
+                        'tight: tight,small',
+                        'translucent: seethru,texture',
+                       ])
+               
+          self.DefaultNoun('bodystocking')
+          self.DefaultAdj('sheer')
+
+          self.Top = SportsBra()
+          self.Bottom = YogaPants()
 
 class UnderwearFemale(FemaleClothes):
      def __init__(self):

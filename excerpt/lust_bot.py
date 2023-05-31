@@ -30,7 +30,7 @@ def InitBot(iTweetTimer,
             iGeneratorNo = -1, 
             bRedditPost = False,
             bLocal = False):
-    print("=*=*=*= FLAMING LUST BOT IS RUNNING (@bot_lust) =*=*=*=\n\n")
+    print("=*=*=*= @BOT_LUST IS RUNNING =*=*=*=\n\n")
     print("InitBot() arguments:")
     print("  x iTweetTimer         = " + str(iTweetTimer))
     print("  x bTweet              = " + str(bTweet))
@@ -93,6 +93,8 @@ def InitBot(iTweetTimer,
                         else:
                             ImgFile = BytesIO() 
                             CreateImg(sTweet).save(ImgFile, format = 'jpeg', quality = 'high')
+                            # Supposedly required for tweepy media upload after v4.0
+                            ImgFile.seek(0)
                                    
                             status = UpdateStatusWithImage(api, sText, ImgFile)    
                                 

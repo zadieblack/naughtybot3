@@ -39,10 +39,24 @@ def InitTweepy():
      CONSUMER_SECRET = excerpt.twitterauth.ConsumerSecret
      ACCESS_KEY = excerpt.twitterauth.AccessKey
      ACCESS_SECRET = excerpt.twitterauth.AccessSecret
-     
-     auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
-     auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
-     
+     BEARER_TOKEN = excerpt.twitterauth.BearerToken
+
+     #auth = tweepy.OAuth2BearerHandler(BEARER_TOKEN)
+     #auth = tweepy.OAuth1UserHandler(consumer_key = CONSUMER_KEY, 
+     #                                consumer_secret = CONSUMER_SECRET,
+     #                                access_token = ACCESS_KEY,
+     #                                access_token_secret = ACCESS_SECRET)
+     #auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
+
+
+     auth = tweepy.OAuth1UserHandler(consumer_key = CONSUMER_KEY, 
+                                     consumer_secret = CONSUMER_SECRET,
+                                     callback="oob")
+     print(auth.get_authorization_url())
+     verifier = input("Input PIN: ")
+     access_token, access_token_secret = auth.get_access_token(verifier)
+     auth.set_access_token(access_token, access_token_secret)
+
      api = tweepy.API(auth, wait_on_rate_limit = True)
      
      return api
@@ -68,24 +82,36 @@ def UpdateStatus(api, Tweet, in_reply_to_status_id = ""):
 
      return status 
 
+# # Upload media to Twitter APIv1.1
+# ret = api.media_upload(filename="dummy_string", file=b)
+
+# # Attach media to tweet
+# api.update_status(media_ids=[ret.media_id_string], status="hello world")
+
 def UpdateStatusWithImage(api, Tweet, ImgFile, in_reply_to_status_id = ""):
      status = None 
      bTryToTweet = True 
-     
      while bTryToTweet:
           try:
-               status = api.update_with_media(GenerateFileName(), Tweet, in_reply_to_status_id, file = ImgFile)
+               #status = api.update_status(status = "Pest tost")
+               #print("Made a test post")
+               #ret = api.media_upload(filename = GenerateFileName(), file = ImgFile)
+               #print("Media uploaded")
+               #status = api.update_status(status = Tweet, media_ids=[ret.media_id_string])
+               status = api.update_status_with_media(status = Tweet, 
+                                                     filename = GenerateFileName(), 
+                                                     file = ImgFile)
                bTryToTweet = False 
-          except tweepy.TweepError as e:
-               print("***TWITTER ERROR*** " + e.reason)     
+          except tweepy.TweepyException as e:    
+               print("\n***TWITTER ERROR***\n" + str(e))
                # if twitter throws certain over capacity errors, wait a few seconds and try again
-               print(e.api_code)
-               code = e.api_code
-               if code in [88, 130, 131]:
-                    bTryToTweet = True
-                    time.sleep(30)
-               else:
-                    bTryToTweet = False
+               if not e.api_codes is None:
+                   code = e.api_codes
+                   if code in [88, 130, 131]:
+                        bTryToTweet = True
+                        time.sleep(30)
+                   else:
+                        bTryToTweet = False
 
      return status 
 
