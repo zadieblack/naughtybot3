@@ -2818,7 +2818,7 @@ class Generator44(ExGen):
                                 "Come ream my " + Anus.ShortDesc(TagLists = TagLists(noun_excl = ["std","clinical"]), bSilly = True) + ",",
                                 "I want you to bang me like a screen door, baby,",
                                 "I even shaved my " + Vagina.ShortDesc() + " for you, daddy,",
-                                "Forgive me father, for I'm about to do something VERY sinful,"
+                                "Forgive me father, for I'm about to do something VERY sinful,",
                                 "Lick my taint,",
                                 "I need it in my hot little " + Vagina.ShortDesc(TagLists = TagLists(noun_excl = ["std","clinical"]), bSilly = True) + ",",
                                 "Tonight we have a two-for-one special,",
@@ -2842,20 +2842,32 @@ class Generator45(ExGen):
           sBWAdj1 = BadWeatherAdjs.GetWord()
           sBWAdj2 = BadWeatherAdjs.GetWord(NotList = [sBWAdj1])
           
-          sTweet = "It was " + sBWAdj1 + " and " + sBWAdj2 + " " + WordList(["in the forest", "in the old manor house", "on the moor", "in the ruins of the castle", "on the shore of the frozen lake", "along the rocky beach", "atop the cliff", "among the craggy hills", "beneath the stars", "in the heart of the mountains"]).GetWord() + ".\n\n'We had best huddle together for warmth, " + sHerName + ",' said " + sHisName + ". She curled up against him and he wrapped his " + self.MaleBodyParts.Arms.GetNewAdj() + " arms around her.\n\n'Oh! What is that?' " + sHerName + " exclaimed."
+          sTweet = "It was " + sBWAdj1 + " and " + sBWAdj2 + " " 
+          sTweet += WordList(["in the forest", "in the old manor house", "on the moor", "in the ruins of the castle", "on the shore of the frozen lake", "along the rocky beach", "atop the cliff", "among the craggy hills", "beneath the stars", "in the heart of the mountains"]).GetWord() + ".\n\n" 
+          sTweet += "'We had best huddle together for warmth, " + sHerName + ",' said " + sHisName + ". " 
+          sTweet += "She curled up against him and he wrapped " 
+          sTweet += "his " + self.Man.Arms.MediumDesc() + " around her.\n\n" 
+          sTweet += "'Oh! What is that?' " + sHerName + " exclaimed."
 
           if CoinFlip():
                sTweet += " 'It feels long and hard!'"
                
-          sTweet += "\n\n'That's my " + self.MaleBodyParts.Penis.BuildAPenis() + ", " + misc.TermsOfEndearment().GetWord() + ",' he said.\n\n'We had better keep it warm,' " + sHerName + " said. "
+          sTweet += "\n\n'That's my " + self.Man.Penis.BuildAPenis() + ", " + misc.TermsOfEndearment().GetWord() + ",' he said." 
+          sTweet += "\n\n'We had better keep it warm,' " + sHerName + " said. "
           
           if CoinFlip():
                if CoinFlip():
-                    sTweet += "'Why don't you snuggle it against my " + self.FemBodyParts.Ass.GetNoun() + ",' she suggested."
+                    sTweet += "'Why don't you snuggle it against " 
+                    sTweet += "my " + self.Woman.Ass.GetNoun() + ",' she suggested."
                else:
-                    sTweet += "'I'll use my mouth,' she said. Then she scooted down and began to " + self.VOralMale.Present() + " his " + self.MaleBodyParts.Penis.RandomDesc(bShortDesc = True) + "."
+                    sTweet += "'I'll use my mouth,' she said. Then she scooted down " 
+                    sTweet += "and began to " + self.VOralMale.Present() + " " 
+                    sTweet += "his " + self.Man.Penis.RandomDesc(bShortDesc = True) + "."
           else:
-                    sTweet += "'Why don't you put it in here?' she asked. Then " + sHisName + " felt her hands guiding his " + self.MaleBodyParts.Penis.MediumDesc() + " into her " + self.FemBodyParts.GetRandomHole(bIncludeMouth = False) + "."
+                    sTweet += "'Why don't you put it in here?' she asked. " 
+                    sTweet += "Then " + sHisName + " felt her hands guiding " 
+                    sTweet += "his " + self.Man.Penis.MediumDesc() + " " 
+                    sTweet += "into her " + self.Woman.Body.GetRandomHole(bIncludeMouth = False) + "."
                
           return sTweet
 

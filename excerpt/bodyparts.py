@@ -1165,77 +1165,111 @@ class Vagina(FemaleBodyParts):
           self.Clitoris = Clitoris()
 
 class AnusFemale(FemaleBodyParts):
-     def __init__(self, Params = None, NotList = None, TagLists = None):
-          super().__init__(Params, NotList, TagLists)
+    def __init__(self, Params = None, NotList = None, TagLists = None, bGape = False):
+        super().__init__(Params, NotList, TagLists)
 
-          self.NounList(['anus x4: std,default,clinical,sphincter,orifice,sing',
-                         'arse-cunt: crude,orifice,sing',
-                         'ass: std,orifice,sing',
-                         'asshole x4: std,slang,crude,sphincter,orifice,sing',
-                         'back orifice: desc,clinical,orifice,sing',
-                         'back passage: desc,orifice,sing',
-                         'back-pussy: silly,crude,slang,orifice,sing',
-                         'backdoor: desc,slang,orifice,sing',
-                         'bowels: std,orifice,plur',
-                         'brown hole: desc,slang,crude,sphincter,orifice,sing',
-                         'bunghole: silly,crude,slang,sphincter,orifice,sing',
-                         'chocolate starfish: silly,crude,slang,sphincter,sing',
-                         'corn hole: silly,crude,slang,sphincter,orifice,sing',
-                         'dirt-pipe: crude,slang,orifice,sing',
-                         'dirt-box: crude,slang,orifice,sing',
-                         'fart-blaster: silly,crude,slang,orifice,sing',
-                         'fart-box: silly,crude,slang,orifice,sing',
-                         'fart-hole: silly,crude,slang,sphincter,orifice,sing',
-                         'heinie hole: desc,slang,cute,sphincter,orifice,sing',
-                         'knot: desc,sphincter, sing',
-                         'poop-chute: crude,slang,desc,orifice,sing',
-                         'poop-trap: silly,crude,slang,sing,orifice,sphincter',
-                         'rear orifice: desc, clinical, orifice,sing',
-                         'rectal cavity: desc, clinical, orifice,sing',
-                         'rectum: std,clinical,orifice,sing',
-                         'ring: desc,sphincter,sing',
-                         'rosebud: desc,slang,cute,crude,sphincter,orifice,sing',
-                         'shit-hole: crude,slang,desc,orifice,sing',
-                         'shitter: crude,slang,orifice,sing',
-                         'sphincter x2: std,clinical,sphincter,sing',
-                         'starfish x2: silly,cute,slang,sphincter,orifice,sing',
-                        ])
+        self.Gape = bGape
+
+        self.GapeCheck(self.Gape)
+
+        self.NounList(['anus x4: std,default,clinical,sphincter,orifice,sing',
+                        'arse-cunt: crude,orifice,sing',
+                        'ass: std,orifice,sing',
+                        'asshole x4: std,slang,crude,sphincter,orifice,sing',
+                        'back orifice: desc,clinical,orifice,sing',
+                        'back passage: desc,orifice,sing',
+                        'back-pussy: silly,crude,slang,orifice,sing',
+                        'backdoor: desc,slang,orifice,sing',
+                        'bowels: std,orifice,plur',
+                        'brown hole: desc,slang,crude,sphincter,orifice,sing',
+                        'bunghole: silly,crude,slang,sphincter,orifice,sing',
+                        'chocolate starfish: silly,crude,slang,sphincter,sing',
+                        'corn hole: silly,crude,slang,sphincter,orifice,sing',
+                        'dirt-pipe: crude,slang,orifice,sing',
+                        'dirt-box: crude,slang,orifice,sing',
+                        'fart-blaster: silly,crude,slang,orifice,sing',
+                        'fart-box: silly,crude,slang,orifice,sing',
+                        'fart-hole: silly,crude,slang,sphincter,orifice,sing',
+                        'heinie hole: desc,slang,cute,sphincter,orifice,sing',
+                        'knot: desc,sphincter, sing',
+                        'poop-chute: crude,slang,desc,orifice,sing',
+                        'poop-trap: silly,crude,slang,sing,orifice,sphincter',
+                        'rear orifice: desc, clinical, orifice,sing',
+                        'rectal cavity: desc, clinical, orifice,sing',
+                        'rectum: std,clinical,orifice,sing',
+                        'ring: desc,sphincter,sing',
+                        'rosebud: desc,slang,cute,crude,sphincter,orifice,sing',
+                        'shit-hole: crude,slang,desc,orifice,sing',
+                        'shitter: crude,slang,orifice,sing',
+                        'sphincter x2: std,clinical,sphincter,sing',
+                        'starfish x2: silly,cute,slang,sphincter,orifice,sing',
+                    ])
        
-          self.AdjList(['brown: color',
-                        'clenched: small,tight,action',
-                        'flexing: action',
-                        'forbidden: super',
-                        'fuckable: horny',
-                        'gaping: large,gape,loose',
-                        'knotted: small,tight,desc',
-                        'lewd: horny',
-                        'little x4: small,cute,',
-                        'loose: gape,loose',
-                        'MILF: age,older,milf',
-                        'nasty: super',
-                        'naughty: horny',
-                        'pert: cute,young',
-                        'perverted: super',
-                        'puckered: action',
-                        'rusty: desc,color',
-                        'shameful: super',
-                        'shy: cute,super',
-                        'sinful: super',
-                        'smooth: feel,desc',
-                        'snug x2: small,tight,cute,'
-                        'taboo: super',
-                        'teasing: horny',
-                        'tender: feel,desc,cute',
-                        'tight x4: small,tight',
-                        'wanton: horny',
-                        'well-used: gape,older,loose',
-                        'willing: horny',
-                        'winking: small,action',
-                        'virgin: virginal',
-                        'vulgar: super',
-                       ])
+        self.AdjList(['brown: color',
+                    'clenched: small,tight,action',
+                    'flexing: action',
+                    'forbidden: super',
+                    'fuckable: horny',
+                    'gaping: large,gape,loose',
+                    'knotted: small,tight,desc',
+                    'lewd: horny',
+                    'little x4: small,cute,',
+                    'loose: gape,loose',
+                    'MILF: age,older,milf',
+                    'nasty: super',
+                    'naughty: horny',
+                    'pert: cute,young',
+                    'perverted: super',
+                    'puckered: action',
+                    'rusty: desc,color',
+                    'shameful: super',
+                    'shy: cute,super',
+                    'sinful: super',
+                    'smooth: feel,desc',
+                    'snug x2: small,tight,cute,'
+                    'taboo: super',
+                    'teasing: horny',
+                    'tender: feel,desc,cute',
+                    'tight x4: small,tight',
+                    'wanton: horny',
+                    'well-used: gape,older,loose',
+                    'willing: horny',
+                    'winking: small,action',
+                    'virgin: virginal',
+                    'vulgar: super',
+                    ])
           
-          self.DefaultNoun("anus")
+        self.DefaultNoun("anus")
+
+    def GapeCheck(self, bGape = False):
+        if not bGape:
+            if not "gape" in self._ExclTagList:
+                self.ExclTagList(self._ExclTagList + ["gape"])
+        else:
+            if "gape" in self._ExclTagList:
+                self.ExclTagList(self._ExclTagList.copy.remove("gape"))
+        return
+
+    def ShortDesc(self, NotList = None, TagLists = None, bSilly = False, bGape = False):
+        self.GapeCheck(bGape)
+
+        return super().ShortDesc(NotList, TagLists, bSilly)
+          
+    def MediumDesc(self, NotList = None, TagLists = None, bSilly = False, bGape = False):
+        self.GapeCheck(bGape)
+               
+        return super().MediumDesc(NotList, TagLists, bSilly) 
+          
+    def FloweryDesc(self, NotList = None, TagLists = None, bSilly = False, bGape = False):
+        self.GapeCheck(bGape)
+          
+        return super().FloweryDesc(NotList, TagLists, bSilly) 
+          
+    def RandomDesc(self, bShortDesc = True, bLongDesc = True, NotList = None, TagLists = None, bSilly = False, bGape = False):
+        self.GapeCheck(bGape)
+
+        return super().RandomDesc(bShortDesc, bLongDesc, NotList, TagLists, bSilly) 
+     
           
 class ButtocksFemale(FemaleBodyParts):
      def __init__(self, Params = None, NotList = None, TagLists = None):
