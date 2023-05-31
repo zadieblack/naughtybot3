@@ -42,22 +42,22 @@ def InitTweepy():
      BEARER_TOKEN = excerpt.twitterauth.BearerToken
 
      #auth = tweepy.OAuth2BearerHandler(BEARER_TOKEN)
-     #auth = tweepy.OAuth1UserHandler(consumer_key = CONSUMER_KEY, 
-     #                                consumer_secret = CONSUMER_SECRET,
-     #                                access_token = ACCESS_KEY,
-     #                                access_token_secret = ACCESS_SECRET)
-     #auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
-
-
      auth = tweepy.OAuth1UserHandler(consumer_key = CONSUMER_KEY, 
                                      consumer_secret = CONSUMER_SECRET,
-                                     callback="oob")
-     print(auth.get_authorization_url())
-     verifier = input("Input PIN: ")
-     access_token, access_token_secret = auth.get_access_token(verifier)
-     auth.set_access_token(access_token, access_token_secret)
+                                     access_token = ACCESS_KEY,
+                                     access_token_secret = ACCESS_SECRET)
+     auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 
-     api = tweepy.API(auth, wait_on_rate_limit = True)
+
+     #auth = tweepy.OAuth1UserHandler(consumer_key = CONSUMER_KEY, 
+     #                                consumer_secret = CONSUMER_SECRET,
+     #                                callback="oob")
+     #print(auth.get_authorization_url())
+     #verifier = input("Input PIN: ")
+     #access_token, access_token_secret = auth.get_access_token(verifier)
+     #auth.set_access_token(access_token, access_token_secret)
+
+     #api = tweepy.API(auth, wait_on_rate_limit = True)
      
      return api
      

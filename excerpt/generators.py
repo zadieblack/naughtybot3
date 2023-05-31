@@ -2650,31 +2650,40 @@ class Generator42(ExGen):
           
           sHisName = self.MaleName.FirstName()
           sHerName = self.FemaleName.FirstName()
+
+          Woman = self.Woman
+          Man = self.Man
           
           Location = locations.LocationSelector().Location()
           
           if CoinFlip():
-               sTweet = "'Oh " + sHerName + "', he sighed as he held her in his " + self.MaleBodyParts.Arms.GetNewAdj() + " " + self.MaleBodyParts.Arms.GetNoun() + " " + Location.NamePrep + ", 'I never want this moment to end. I want to stare into your " + self.FemBodyParts.Eyes.MediumDesc() + " and "
+               sTweet = "\"Oh " + sHerName + "\", he sighed as he held her in " 
+               sTweet += "his " + Man.Arms.MediumDesc() + " " 
+               sTweet += Location.NamePrep + ", \"I never want this moment to end. " 
+               sTweet += "I want to gaze into your " + Woman.Eyes.MediumDesc() + " and "
                
                iRand = randint(1,3)
                if iRand == 1:
-                    sTweet += "kiss your " + self.FemBodyParts.Breasts.MediumDesc() 
+                    sTweet += "kiss your " + Woman.Breasts.MediumDesc() 
                elif iRand == 2:
-                    sTweet += "kiss your " + self.FemBodyParts.Lips.MediumDesc()
+                    sTweet += "kiss your " + Woman.Lips.MediumDesc()
                else:
-                    sTweet += "kiss you all over your " + self.FemBodyParts.Skin.MediumDesc()
+                    sTweet += "kiss every inch of your " + Woman.Skin.MediumDesc()
                
-               sTweet += " forever. I want to " + self.VSexActByMale.Present(NotList = ['jerk off']) + " you all night long.'"
+               sTweet += " forever. I want to " + self.VSexActByMale.Present(NotList = [\"jerk off\"]) + " you all night long.\""
           
           else:
-               sTweet = "'Oh " + sHisName + "', she sighed as he held her in his " + self.MaleBodyParts.Arms.GetNewAdj() + " " + self.MaleBodyParts.Arms.GetNoun() + " " + Location.NamePrep + ", 'I never want this moment to end. I want to stare into your " + self.MaleBodyParts.Eyes.MediumDesc() + " and "
+               sTweet = "\"Oh " + sHisName + "\", she sighed " 
+               sTweet += "as he held her in his " + Man.Arms.MediumDesc() + " " 
+               sTweet += Location.NamePrep + ", \"I never want this moment to end. " 
+               sTweet += "I want to stare into your " + Man.Eyes.MediumDesc() + " and "
                
                if CoinFlip():
-                    sTweet += "kiss your " + self.MaleBodyParts.Jaw.MediumDesc() 
+                    sTweet += "kiss your " + Man.Jaw.MediumDesc() 
                else:
-                    sTweet += "put my head against your " + self.MaleBodyParts.Chest.MediumDesc()
+                    sTweet += "put my head against your " + Man.Chest.MediumDesc()
                
-               sTweet += " forever. I want to " + self.VSexActByFemale.Present() + " you all night long.'"
+               sTweet += " forever. I want to " + self.VSexActByFemale.Present() + " you all night long.\""
           
           return sTweet
           
