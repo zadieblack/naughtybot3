@@ -1292,7 +1292,7 @@ class ShortSkirt(FemaleClothes):
                         'cute: super',
                         'dainty: super',
                         'delightful: super',
-                        'denim: material,color,texture',
+                        #'denim: material,color,texture',
                         'flirtatious: super',
                         'floral: pattern',
                         'flowered x2: pattern',

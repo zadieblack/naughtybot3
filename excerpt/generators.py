@@ -813,7 +813,7 @@ class Generator13(ExGen):
             else:
                 Woman.Ass.AdjExclTagList(["curvy","horny","movement","super"])
                 Woman.Ass.Noun("ass")
-                sTweet += "\"And you're gonna start by eating my " + Woman.Ass.RandomDesc(bLongDesc = False) + ",\" she said."
+                sTweet += "\"And you're gonna start by eating my " + Woman.Ass.RandomDesc(bLongDesc = False) + ","
         elif iRand == 2:
             sTweet += "sliding her " + self.FemWardrobe.Panties.RandomDesc() + " down " 
             sTweet += "to expose her " + Woman.Vagina.RandomDesc(bLongDesc = False) + " and "
@@ -2670,7 +2670,7 @@ class Generator42(ExGen):
                else:
                     sTweet += "kiss every inch of your " + Woman.Skin.MediumDesc()
                
-               sTweet += " forever. I want to " + self.VSexActByMale.Present(NotList = [\"jerk off\"]) + " you all night long.\""
+               sTweet += " forever. I want to " + self.VSexActByMale.Present(NotList = ["jerk off"]) + " you all night long.\""
           
           else:
                sTweet = "\"Oh " + sHisName + "\", she sighed " 
@@ -2699,95 +2699,133 @@ class Generator43(ExGen):
           sHerName = self.FemaleName.FirstName()
           sSkankDesc = self.BadGirlAdj.GetWord() + " " + self.BadGirlNoun.GetWord()
           
-          sTweet = "'Tell me the truth, " + sHisName + ",' she said. 'Tell me you're not seeing that " + sSkankDesc + " " + sHerName + " again.'\n\n"
+          sTweet += "'Tell me the truth, " + sHisName + ",' she said. " 
+          sTweet += "'Tell me you're not seeing that " + sSkankDesc + " " 
+          sTweet += sHerName + " again.'\n\n"
           sTweet += "'I promise, my dear,' he said."
           
           iRand = randint(1,6)
           if iRand == 1:
-               sTweet += "\n\n'Good,' she said. 'I want to be the only " + self.FFWB.GetPerson() + " that you are " + self.VSexWith.Gerund() + ".'"
+               sTweet += "\n\n'Good,' she said. 'I want to be " 
+               sTweet += "the only " + self.FFWB.GetPerson() + " " 
+               sTweet += "that you are " + self.VSexWith.Gerund() + ".'"
           elif iRand == 2:
                sHole = ""
                if CoinFlip():
-                    sHole = self.FemBodyParts.Vagina.ShortDesc()
+                    sHole = self.Woman.Vagina.ShortDesc()
                else:
-                    sHole = self.FemBodyParts.Ass.Anus.ShortDesc()
-               sTweet += " 'Besides, her " + sHole + " smells like " + WordList(["fish", "garlic", "pickles", "vinegar", "sour milk", "spinach"]).GetWord() + ".'"
+                    sHole = self.Woman.Anus.ShortDesc()
+               sTweet += " 'Besides, her " + sHole + " smells like " 
+               sTweet += WordList(["fish", "garlic", "pickles", "vinegar", 
+                                   "sour milk", "spinach"]).GetWord() + ".'"
           elif iRand == 3:
-               sHole = self.FemBodyParts.GetRandomHole(bIncludeMouth = False, bLongDesc = False, bShortDesc = True)
+               sHole = self.Woman.Body.GetRandomHole(bIncludeMouth = False, bLongDesc = False, bShortDesc = True)
                sTweet += " 'Your " + sHole + " is the only " + sHole + " for me.'"
           elif iRand == 4:
-               sTweet += "\n\n'Good,' she said. 'Anyway, I'll bet she doesn't let you " + self.VSexActByMale.Present() + " her like I do.'"
+               sTweet += "\n\n'Good,' she said. 'Anyway, I'll bet " 
+               sTweet += "she doesn't let you " + self.VSexActByMale.Present() + " her like I do.'"
           elif iRand == 5:
-               sTweet += " 'Do you think I'd buy a solid gold butt plug for anyone else's " + self.FemBodyParts.Ass.Anus.MediumDesc() + " but yours?'"
-          else:
-               sTweet += " 'She means nothing to me. She's only my " + self.FemaleSO.GetPerson() + ".'"
+               sTweet += " 'Do you think I'd buy a solid gold butt plug " 
+               sTweet += "for anyone else's " + self.Woman.Anus.MediumDesc() + " but yours?'"
+          elif iRand == 6:
+               sTweet += " 'She means nothing to me. She's only " 
+               sTweet += "my " + self.FemaleSO.GetPerson(NotList = ["bride"]) + ".'"
                
           return sTweet
           
 class Generator44(ExGen):
-     def __init__(self):
-         super().__init__(ID = 44, Priority = GenPriority.Normal) 
+    def __init__(self):
+        super().__init__(ID = 44, Priority = GenPriority.Normal) 
      
-     def GenerateTweet(self):
-          super().GenerateTweet()
-          sTweet = ""
+    def GenerateTweet(self):
+        super().GenerateTweet()
+        sTweet = ""
           
-          Vagina = self.FemBodyParts.Vagina
-          Breasts = self.FemBodyParts.Breasts
-          Ass = self.FemBodyParts.Ass 
+        Vagina = self.Woman.Vagina
+        Breasts = self.Woman.Breasts
+        Ass = self.Woman.Ass 
+        Ass.NotList(["bowels"])
+        Anus = self.Woman.Anus
+        Anus.NotList(["bowels"])
           
-          DressAdj = WordList(["little", "slinky", "skimpy", "scanty", "revealing", "elegant", "short", "sparkly"]).GetWord()
-          DressColor = WordList(["black", "red", "blue", "white", "sheer"]).GetWord()
-          
-          sTweet = "'You like my outfit?' " + self.FemaleName.FirstName() + " asked.\n\n"
-          sTweet += "'It's stunning, babe,' " + self.MaleName.FirstName() + " said.\n\n"
-          
-          if CoinFlip() and CoinFlip():
-          #do breasts
-               if CoinFlip():
-                    sTweet += "He slid one strap of her " + DressAdj + " " + DressColor + " dress off her shoulder. Then he boldly pulled out one of her " + Breasts.RandomDesc() + ". He squeezed it " + WordList(["gently", "tenderly", "delicately", "softly", "lovingly"]).GetWord() 
-               else:
-                    sTweet += "He grabbed the top of her strapless " + DressColor + " gown and tugged it down, revealing her " + Breasts.RandomDesc() + ". He cupped them with his hands and squeezed them " + WordList(["gently", "tenderly", "delicately", "softly", "lovingly"]).GetWord() 
-               sTweet += ". Then he began to " + WordList(["suck", "lick", "kiss"]).GetWord() + " her " + Breasts.Nipples.RandomDesc() + "."
+        sTweet = "\"You like my outfit?\" " + self.FemaleName.FirstName() + " asked.\n\n"
+        sTweet += "\"It's stunning, babe,\" " + self.MaleName.FirstName() + " said.\n\n"
+
+        if CoinFlip() and CoinFlip():
+        #do breasts
+            sSqueezeAdv = WordList(["gently", "tenderly", "delicately", "softly", "lovingly"]).GetWord() 
+            if CoinFlip():
+                TheDress = choice([self.FemWardrobe.Dress,self.FemWardrobe.EveningDress])
+                sTweet += "He slid one strap of her " + TheDress.MediumDesc(NotList = ["strapless"]) + " off her shoulder. " 
+                sTweet += "Then he boldly pulled out one " 
+                sTweet += "of her " + Breasts.RandomDesc(TagLists = TagLists(noun_excl = ["sing"])) + ". " 
+                sTweet += "He squeezed it " + sSqueezeAdv 
+            else:
+                EveDress = self.FemWardrobe.EveningDress
+                sTweet += "He grabbed the top of her " + EveDress.FloweryDesc() + " and " 
+                sTweet += "tugged it down, revealing her " + Breasts.RandomDesc() + ". " 
+                sTweet += "He cupped them with his hands and "
+                sTweet += "squeezed them " + sSqueezeAdv
+            sTweet += ". Then he began to " + WordList(["suck", "lick", "kiss"]).GetWord() + " " 
+            sTweet += "her " + Breasts.Nipples.RandomDesc() + "."
                     
-          else:
-          #do ass
-               if CoinFlip():
-                    sTweet += "She grinned wickedly and spun around. "
-               else:
-                    sTweet += "'Right answer', she said, turning around. "
-               sTweet += "She lifted up the hem of her " + DressAdj + " " + DressColor + " dress, showing him her " + Ass.RandomDesc() + " and " 
-               if CoinFlip():
-                    sTweet += Vagina.RandomDesc()
-               else:
+        else:
+        #do ass
+            TheSkirt = choice([self.FemWardrobe.Dress,self.FemWardrobe.EveningDress,self.FemWardrobe.ShortSkirt])
+            if CoinFlip():
+                sTweet += "She grinned wickedly and spun around. "
+            else:
+                sTweet += "\"Right answer,\" she said, turning around. "
+            sTweet += "She lifted up the hem of her " + TheSkirt.RandomDesc(bShortDesc = False) + ", " 
+            sTweet += "showing him " 
+            if CoinFlip():
+                # Ass
+                sTweet += "her " + Ass.RandomDesc() 
+            else: 
+                sTweet += "her " + Anus.RandomDesc() 
+            sTweet += " and " 
+            if CoinFlip():
+                sTweet += Vagina.RandomDesc()
+            else:
+                if CoinFlip():
+                    sTweet += "the " + Vagina.InnerLabia.RandomDesc() + " "
+                    sTweet += "nestled between her " + self.Woman.Thighs.RandomDesc(bShortDesc = False)
+                else: 
                     sTweet += Vagina.OuterLabia.RandomDesc()
-               sTweet += ".\n\n"
+            sTweet += ".\n\n"
                
-               sTweet += WordList(["'Now remember,' she said, 'Just the tip.'", 
-                                        "'Put your finger in my " + Ass.Anus.ShortDesc() + ",' she said.",
-                                        "'Do you want to do me in my " + Vagina.ShortDesc() + " or my " + Ass.Anus.ShortDesc() + "?' she asked.",
-                                        "'Pick a hole, daddy,' she said.", 
-                                        "'My " + Vagina.ShortDesc() + " is yours, daddy,' she said.",
-                                        "'My " + Ass.Anus.ShortDesc() + " is yours, daddy,' she said.",
-                                        "'Remember, no butt stuff', she said.", 
-                                        "'Take me hard, daddy,' she said.",
-                                        "'I want you to pop my anal cherry, baby,' she said.",
-                                        "'Come here and eat my ass,' she said.",
-                                        "'Use me like a whore,' she whispered.",
-                                        "'Spank me hard, I've been very naughty, daddy!' she said.",
-                                        "'I like it rough, daddy,' she purred.",
-                                        "'Lube me up, daddy,' she purred.",
-                                        "'Cum fill me with your " + self.Semen.RandomDesc() + ",' she moaned.",
-                                        "'Come lube up my " + Ass.Anus.ShortDesc() + ",' she said.",
-                                        "'All my holes are yours, daddy,' she purred.",
-                                        "'Now I want you to stuff me with that big " + self.MaleBodyParts.Penis.ShortDesc() + ",' she said.", 
-                                        "'The trick is not to wear anything underneath,' she said.", 
-                                        "'I need you to bang me like a screen door, baby,' she said.",
-                                        "'I even shaved my " + Vagina.ShortDesc() + " for you, daddy,' she said."
-                                     ]).GetWord()
+            sTweet += "\""
+            sTweet += WordList(["Now remember,\" she said, \"Just the tip.", 
+                                "Put your finger in my " + Anus.ShortDesc() + ",",
+                                "Do you want to do me in my " + Vagina.ShortDesc() + " or my " + Anus.ShortDesc() + "?",
+                                "Pick a hole, daddy,", 
+                                "My " + Vagina.ShortDesc() + " is yours, daddy,",
+                                "My " + Anus.ShortDesc() + " is yours, daddy,",
+                                "Remember, no butt stuff,", 
+                                "Take me hard, daddy,",
+                                "I want you to pop my anal cherry, baby,",
+                                "Come here and eat my ass,",
+                                "Use me like a whore,",
+                                "Let's use the big black anal plug tonight,",
+                                "Spank me hard, I\"ve been very naughty, daddy!",
+                                "I like it rough, daddy,",
+                                "Lube me up, daddy,",
+                                "Cum fill me with your " + self.Semen.RandomDesc() + ",",
+                                "Come lube up my " + Anus.ShortDesc(TagLists = TagLists(noun_req = ["sphincter"])) + ",",
+                                "All my holes belong to daddy,",
+                                "Now I want you to stuff me with that " + self.Man.Penis.RandomDesc(bShortDesc = False, TagLists = TagLists(adj_req = ["size","large"]), bSilly = True) + ",", 
+                                "The trick is not to wear anything underneath,", 
+                                "Come ream my " + Anus.ShortDesc(TagLists = TagLists(noun_excl = ["std","clinical"]), bSilly = True) + ",",
+                                "I want you to bang me like a screen door, baby,",
+                                "I even shaved my " + Vagina.ShortDesc() + " for you, daddy,",
+                                "Forgive me father, for I'm about to do something VERY sinful,"
+                                "Lick my taint,",
+                                "I need it in my hot little " + Vagina.ShortDesc(TagLists = TagLists(noun_excl = ["std","clinical"]), bSilly = True) + ",",
+                                "Tonight we have a two-for-one special,",
+                                ]).GetWord()
+            sTweet += "\" she purred."
                
-          
-          return sTweet
+        return sTweet
           
 class Generator45(ExGen):
      def __init__(self):
@@ -4229,7 +4267,7 @@ class Generator64(ExGen):
                                      "Put a baby " + sCreatureSingle + " in me, daddy!",
                                      "Be gentle, it's my first time,"
                                     ]).GetWord()
-          sTweet += "\" she said."
+          sTweet += ""
           
           
           return sTweet
