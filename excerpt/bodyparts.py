@@ -141,6 +141,13 @@ RaceLatin   = Race(Name = "latin",
 
 RaceList = [RaceCauc,RaceGinger,RacePOC,RaceAsian,RaceLatin]
 
+RaceNations = {"asian": ["Chinese","Filipino","Indian","Japanese","Korean","Malaysian","Thai"],
+               "caucasian": ["Australian","British","Dutch","French","German","Greek","Italian","Irish","Polish","Scotch","Swedish","Swiss",],
+               "latin": ["Brazilian","Colombian","Cuban","Mexican","Puerto Rican","Spanish"],
+               "poc": ["African","Bermudan","Botswanan","Brazilian","Carribean","Dominican","Ethiopian","French","Jamaican","Kenyan","Nigerian","South African",],
+               "redhead": ["Irish","Irish","Scotch","Swedish","Welsh"]
+              }
+
 class BodyParts(NounPhrase):
     def AddSkinColors(self):
         super().ColorList(SkinColors)

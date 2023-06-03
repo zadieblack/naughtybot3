@@ -19,6 +19,8 @@ class GenPhysTraits:
     IsFit: bool = False
     IsTan: bool = False
     PubeStyle: str = ""
+    IsNation: bool = True
+    Nation: str = ""
 
 #GenPhysTraits = namedtuple("GenPhysTraits",
 #                           "FirstName LastName Gender Race PubeStyle",
@@ -39,6 +41,7 @@ class Body():
         self.SkinColor = ""
         self.IsTan = False
         self.PubeStyle = ""
+        self.Nation = ""
 
         self._TagLists = TagLists()
 
@@ -140,6 +143,13 @@ class Body():
         else:
             self.SkinColor = choice(self.Race.SkinColor)
         self.NipColor = choice(self.Race.NipColor)
+
+        if NewGenTraits.IsNation:
+            if NewGenTraits.Nation == "" or bRandomize:
+                if self.RaceName in RaceNations:
+                    self.Nation = choice(RaceNations[self.RaceName])
+            else:
+                self.Nation = NewGenTraits.Nation
 
 @dataclass
 class MalePhysTraits:
@@ -1043,10 +1053,10 @@ class Woman(Body):
             AdjList += ['Asian x12: race,asian',]
         elif self.RaceName == "caucasian":
             if self.HairColor in ["blonde"]:
-                NounList += ['blonde x3: haircolor,blonde,cauc,sing','blonde bombshell: haircolor,blonde,cauc,sing',]
+                NounList += ['blonde x5: haircolor,blonde,cauc,sing','blonde bombshell: haircolor,blonde,cauc,sing',]
                 AdjList += ['blonde x8: blonde,haircolor,cauc','fair: blonde,haircolor,cauc','platinum blonde: blonde,haircolor,cauc',]
             elif self.HairColor in ["brown"]:
-                NounList += ['brunette x3: haircolor,brunette,cauc,sing',]
+                NounList += ['brunette x5: haircolor,brunette,cauc,sing',]
                 AdjList += ['brunette x8: haircolor,brunette,cauc',]
             elif self.HairColor in ["gray"]:
                 AdjList += ['gray-haired: haircolor,grayhair,older,age','silver-haired: haircolor,grayhair,older,age']
@@ -1054,16 +1064,18 @@ class Woman(Body):
                 AdjList += ['dark-haired: haircolor,dark,brunette','raven-haired x3: haircolor,darkhair',]
         elif self.RaceName == "latin":
             AdjList += ['latina x12: race,latina,sing',]
-            NounList += ['latina x3: race,latina,sing',]
+            NounList += ['latina x5: race,latina,sing',]
         elif self.RaceName == "poc":
             AdjList += ['black x12: color,race,poc','ebony x6: color,race,poc',]
         elif self.RaceName == "redhead":
             AdjList += ['redheaded x12: haircolor,race,redhead,redhair',]
-            NounList += ['redhead x3: haircolor,redhead,race,ginger,sing',]
+            NounList += ['redhead x5: haircolor,redhead,race,ginger,sing',]
 
         if self.AgeCat not in ["milf",]:
             AdjList += ['young x8: age,young',]
             NounList += ['girl x3: age,young,sing',]
+            if not self.Nation == "":
+                NounList += [self.Nation + ' girl x4: nation,age,young,sing',]
         else:
             AdjList += ['matronly: age,older,bigtits',
                         'mature x4: age,older',]
@@ -1073,15 +1085,21 @@ class Woman(Body):
             NounList += ['young lady x3: adult,age,young,sing',
                          'young woman x3: adult,age,young,sing',]
         if self.AgeCat in ["teen"]:
-            AdjList += ['teen x8: age,teen,young',
-                        'teenage x6: age,teen,young',]
-            NounList += ['teen x3: age,young,teen,sing',]
+            AdjList += ['teen x8: age,teen,young,sing',
+                        'teenage x6: age,teen,young,sing',]
+            NounList += [str(self.Age) + '-year-old: age,teen,young,sing',
+                        'teen x3: age,young,teen,sing',]
         else:
             NounList += ['lady x2: adult,sing',]
+            if not self.Nation == "":
+                NounList += [self.Nation + ' woman x4: nation,adult,sing',]
             
         if self.AgeCat in ["college"]:
-            NounList += ['coed x3: age,young,college,sing',
+            NounList += [str(self.Age) + "-year-old girl: age,college,young,sing",
+                         'coed x3: age,young,college,sing',
                          'college girl x3: age,young,college,sing',]
+
+        
 
         if self.BustSize in ["large","huge"]:
             AdjList += ['ample-bosomed: bigtits','big-titted: bigtits','bosomy: bigtits,shape','busty: bigtits','buxom: bigtits','full-figured: bigtits,shape','shapely: curvy,bigtits,shape','stacked: bigtits,shape','statuesque: bigtits,shape','voluptuous: bigtits,curvy,shape',]
