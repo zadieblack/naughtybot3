@@ -3480,33 +3480,36 @@ class Generator55(ExGen):
           
           if CoinFlip():
                #penis
-               sTweet += "and his " + self.MaleBodyParts.Penis.FloweryDesc(bAddLen = True)
+               sTweet += "and his " + self.Man.Penis.FloweryDesc(bAddLen = True)
                if CoinFlip():
-                    sTweet += " and the way " + self.Semen.RandomDesc(TagLists = TagLists(noun_excl = ["silly"])) + " " + VDrip.Past() + " from its " + self.MaleBodyParts.Penis.Head.FloweryDesc() 
+                    sTweet += " and the way " + self.Semen.RandomDesc() + " " 
+                    sTweet += VDrip.Past() + " from " 
+                    sTweet += "its " + self.Man.Penis.Head.FloweryDesc() 
           elif CoinFlip():
                #testicles
-               sTweet += "and his " + self.MaleBodyParts.Penis.FloweryDesc(bAddLen = True) + " and his "
-               sTweet += self.MaleBodyParts.Penis.Testicles.FloweryDesc()
+               sTweet += "and his " + self.Man.Penis.FloweryDesc(bAddLen = True) + " and his "
+               sTweet += self.Man.Testicles.FloweryDesc()
           elif CoinFlip():
                #ass
-               sTweet += Fantasies.GetWord(NotList = [sFantasy1,sFantasy2]) + ", and his " + self.MaleBodyParts.Ass.FloweryDesc()
+               sTweet += Fantasies.GetWord(NotList = [sFantasy1,sFantasy2]) + ", and " 
+               sTweet += "his " + self.MaleBodyParts.Ass.FloweryDesc()
           else:
                #sexing 
-               sTweet += self.MaleBodyParts.Ass.FloweryDesc() + ", "
+               sTweet += self.Man.Ass.FloweryDesc() + ", "
                sTweet += "and the way he " + WordList(["fucked me on the kitchen table",
-                                                               "bent me over the billiard table and fucked me",
-                                                               "fucked me on top of a grand piano",
-                                                               "pulled my hair when he did me doggy-style",
-                                                               "fucked me on my parents waterbed",
-                                                               "would spurt his load all over my tits",
-                                                               "would make love to me while we listened to Nickleback",
-                                                               "would nibble my sensitive nipples",
-                                                               "looked when he fucked me that one night at the gym",
-                                                               "went down on me in the back of an Uber",
-                                                               "looked having sex with that guy from Craigslist",
-                                                               "fingered me at last summer's pool party",
-                                                               "pushed me up against the wall and fingered my pussy",
-                                                               "made love to me in the janitor's closet in high school"]).GetWord()
+                                                        "bent me over the billiard table and fucked me",
+                                                        "fucked me on top of a grand piano",
+                                                        "pulled my hair when he did me doggy-style",
+                                                        "fucked me on my parents waterbed",
+                                                        "would spurt his load all over my tits",
+                                                        "would make love to me while we listened to Nickleback",
+                                                        "would nibble my sensitive nipples",
+                                                        "looked when he fucked me that one night at the gym",
+                                                        "went down on me in the back of an Uber",
+                                                        "looked having sex with that guy from Craigslist",
+                                                        "fingered me at last summer's pool party",
+                                                        "pushed me up against the wall and fingered my pussy",
+                                                        "made love to me in the janitor's closet in high school"]).GetWord()
 
                
           sTweet += ".\""
